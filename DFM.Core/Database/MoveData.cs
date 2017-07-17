@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
@@ -137,16 +138,27 @@ namespace DFM.Core.Database
         }
         #endregion
 
-        
+
 
         private static void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
+        {
+            var month = getMonth(move, account);
+            var secondMonth = secondAccount == null ? null : getMonth(move, secondAccount);
+
+            placeMonthsInMove(move, month, secondMonth);
+        }
+
+        private static Month getMonth(Move move, Account account)
         {
             var yearData = new YearData();
             var monthData = new MonthData();
 
             var year = yearData.GetOrCreateYear(move.Date.Year, account, move.Category);
-            var month = monthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
+            return monthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
+        }
 
+        private static void placeMonthsInMove(Move move, Month month, Month secondMonth = null)
+        {
             switch (move.Nature)
             {
                 case MoveNature.Out:
@@ -154,14 +166,10 @@ namespace DFM.Core.Database
                 case MoveNature.In:
                     month.AddIn(move); break;
                 case MoveNature.Transfer:
-                    if (secondAccount == null)
+                    if (secondMonth == null)
                         throw new DFMCoreException("TransferMoveWrong");
 
                     month.AddOut(move);
-
-                    var secondYear = yearData.GetOrCreateYear(move.Date.Year, secondAccount, move.Category);
-                    var secondMonth = monthData.GetOrCreateMonth(move.Date.Month, secondYear, move.Category);
-
                     secondMonth.AddIn(move);
 
                     break;
@@ -186,6 +194,29 @@ namespace DFM.Core.Database
 
             if (move.In != null) move.In.InList.Remove(move);
             if (move.Out != null) move.Out.OutList.Remove(move);
+        }
+
+
+
+        public void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
+        {
+            for(var t = 0; t <= scheduler.Times; t++)
+            {
+                var newMove = move.Clone();
+
+                switch (scheduler.Frequency)
+                {
+                    case ScheduleFrequency.Monthly:
+                        newMove.Date = newMove.Date.AddMonths(t);
+                        break;
+
+                    case ScheduleFrequency.Yearly:
+                        newMove.Date = newMove.Date.AddYears(t);
+                        break;
+                }
+
+                SaveOrUpdate(newMove, account, secondAccount);
+            }
         }
     }
 }

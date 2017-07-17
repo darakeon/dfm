@@ -24,6 +24,11 @@
     </p>
 
     <p>
+        @Html.CheckBoxFor(m => m.RememberMe)
+        @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"]) 
+    </p>
+
+    <p>
         <button type="submit">@PlainText.Dictionary["Logon"]</button>
     </p>
 

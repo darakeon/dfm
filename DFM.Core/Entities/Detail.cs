@@ -25,6 +25,7 @@ namespace DFM.Core.Entities
             return new Detail
                        {
                            Description = Description,
+                           Amount = Amount,
                            Value = Value,
                            Move = move,
                        };

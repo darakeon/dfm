@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
+using NHibernate.Linq;
 
 namespace DFM.Core.Entities
 {
@@ -41,6 +42,11 @@ namespace DFM.Core.Entities
             get { return DetailList.Sum(d => d.Value * d.Amount); }
         }
 
+        public virtual Boolean Show
+        {
+            get { return Date <= DateTime.Now; }
+        }
+
         [NhIgnore]
         public virtual Account AccountIn
         {
@@ -52,6 +58,7 @@ namespace DFM.Core.Entities
         {
             get { return Out.Year.Account; }
         }
+
 
 
         public virtual void AddDetail(Detail detail)
@@ -78,6 +85,26 @@ namespace DFM.Core.Entities
             var detail = new Detail { ID = id, Description = Description, Value = value };
 
             AddDetail(detail);
+        }
+
+        public virtual Move Clone()
+        {
+            var move = new Move
+                           {
+                               Description = Description,
+                               Date = Date,
+                               Nature = Nature,
+
+                               Category = Category,
+
+                               In = In,
+                               Out = Out,
+                           };
+
+            DetailList.ForEach(d => 
+                move.AddDetail(d.Clone(move)));
+
+            return move;
         }
 
 

@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Accounts
             context.MapRoute(
                 RouteNames.Accounts,
                 "Accounts/{accountid}/{controller}/{action}/{id}",
-                new { controller = "Account", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Report", action = "SeeMonth", id = UrlParameter.Optional }
             );
         }
     }

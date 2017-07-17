@@ -84,6 +84,7 @@
     <Compile Include="Entities\Summary.cs" />
     <Compile Include="Entities\Year.cs" />
     <Compile Include="Enums\AccountNature.cs" />
+    <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SummaryNature.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Entities\User.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Helpers\CoreValidationException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Helpers\Relations.cs" />
+    <Compile Include="Helpers\Scheduler.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\SummaryMap.cs" />

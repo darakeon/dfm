@@ -42,7 +42,7 @@ namespace DFM.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    return logOnUser(user, returnUrl);
+                    return logOnUser(user, returnUrl, model.RememberMe);
                 }
             }
 
@@ -94,9 +94,9 @@ namespace DFM.MVC.Controllers
         }
 
 
-        private ActionResult logOnUser(User user, String returnUrl = null)
+        private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
         {
-            Authenticate.Set(user.Login, Response);
+            Authenticate.Set(user.Login, Response, isPersistent);
 
             if (String.IsNullOrEmpty(returnUrl))
                 return RedirectToAction("Index", "Account");

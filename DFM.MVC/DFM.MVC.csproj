@@ -93,7 +93,7 @@
     </Compile>
     <Compile Include="Models\AccountIndexModel.cs" />
     <Compile Include="Models\BaseLoggedModel.cs" />
-    <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs">
+    <Compile Include="Areas\Accounts\Models\MoveCreateEditScheduleModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\CategoryCreateEditModel.cs" />
@@ -179,7 +179,7 @@
     <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Move\CreateEdit.cshtml" />
+    <Content Include="Areas\Accounts\Views\Move\CreateEditSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Report\SeeMonth.cshtml" />

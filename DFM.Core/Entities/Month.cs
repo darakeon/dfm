@@ -47,8 +47,8 @@ namespace DFM.Core.Entities
             {
                 var list = new List<Move>();
                 
-                list.AddRange(OutList);
-                list.AddRange(InList);
+                list.AddRange(OutList.Where(m => m.Show));
+                list.AddRange(InList.Where(m => m.Show));
 
                 return list.OrderBy(m => m.ID).ToList();
             }
@@ -58,10 +58,17 @@ namespace DFM.Core.Entities
 
         public virtual Double CheckUp(Category category)
         {
-            var @in = InList.Where(m => m.Category == category).Sum(m => m.Value);
-            var @out = OutList.Where(m => m.Category == category).Sum(m => m.Value);
+            var @in = sum(InList, category);
+            var @out = sum(OutList, category);
 
             return (@in - @out) * 100 / 100;
+        }
+
+        private static Double sum(IEnumerable<Move> moveList, Category category)
+        {
+            return moveList
+                .Where(m => m.Show && m.Category == category)
+                .Sum(m => m.Value);
         }
 
         public virtual void AjustSummaryList(Summary summary)

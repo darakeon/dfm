@@ -4,6 +4,7 @@
     <!--Actions-->
     <Create text="Create" />
     <Edit text="Edit" />
+    <Schedule text="Schedule" />
     <Add text="Add" />
     <Select text="Select" />
     <LogOff text="Log Off" />
@@ -36,6 +37,7 @@
     <!--Actions-->
     <Create text="Criar" />
     <Edit text="Editar" />
+    <Schedule text="Agendar" />
     <Add text="Adicionar" />
     <Select text="Selecione" />
     <LogOff text="Sair" />

@@ -32,15 +32,15 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditModel { Date = DateTime.Today };
+            var model = new MoveCreateEditScheduleModel();
             
             model.Populate(accountid);
 
-            return View("CreateEdit", model);
+            return viewCES(model);
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditModel model)
+        public ActionResult Create(MoveCreateEditScheduleModel model)
         {
             return createEdit(model);
         }
@@ -51,10 +51,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             if (!id.HasValue) return RedirectToAction("Create");
 
-
             var move = moveData.SelectById(id.Value);
 
-            var model = new MoveCreateEditModel(move);
+            if (move == null) return RedirectToAction("Create");
+
+
+            var model = new MoveCreateEditScheduleModel(move);
 
             if (model.AccountID == accountid)
                 return redirectToRightAccount(move);
@@ -63,7 +65,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             model.Populate(accountid);
 
-            return View("CreateEdit", model);
+            return viewCES(model);
         }
 
         private ActionResult redirectToRightAccount(Move move)
@@ -76,7 +78,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditModel model)
+        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
              model.Move.ID = id;
 
@@ -85,7 +87,24 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        private ActionResult createEdit(MoveCreateEditModel model)
+        public ActionResult Schedule()
+        {
+            var model = new MoveCreateEditScheduleModel();
+
+            model.Populate(accountid, true);
+
+            return viewCES(model);
+        }
+
+        [HttpPost]
+        public ActionResult Schedule(MoveCreateEditScheduleModel model)
+        {
+            return createEdit(model, true);
+        }
+
+
+
+        private ActionResult createEdit(MoveCreateEditScheduleModel model, Boolean isScheduler = false)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +115,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                     var currentAccount = accountData.SelectById(accountid);
                     var otherAccount = accountData.SelectById(model.AccountID ?? 0);
 
-                    moveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
+                    if (isScheduler)
+                        moveData.Schedule(model.Move, currentAccount, otherAccount, model.Scheduler);
+                    else
+                        moveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
 
                     return RedirectToRoute(
                             RouteNames.Default,
@@ -109,9 +131,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.Populate(accountid);
+            model.Populate(accountid, isScheduler);
 
-            return View("CreateEdit", model);
+            return viewCES(model);
+        }
+
+        private ActionResult viewCES(MoveCreateEditScheduleModel model)
+        {
+            return View("CreateEditSchedule", model);
         }
 
 

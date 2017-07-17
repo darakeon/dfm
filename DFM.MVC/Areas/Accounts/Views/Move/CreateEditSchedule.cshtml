@@ -1,4 +1,4 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditModel
+﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditScheduleModel
 
 @{
     ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Move"];
@@ -26,6 +26,21 @@
     <p>
         @Html.ValidationSummary(true) 
     </p>
+    
+    if (Model.IsScheduler)
+    {
+        @Html.LabelFor(m => m.Scheduler.Times, PlainText.Dictionary["TimesToSchedule"])
+    
+        @Html.TextBoxFor(m => m.Scheduler.Times, new { @class = "amount" })
+        @Html.DropDownListFor(m => m.Scheduler.Frequency, Model.FrequencySelectList)
+
+        <br />
+    
+        @Html.ValidationMessageFor(m => m.Scheduler.Times)
+        @Html.ValidationMessageFor(m => m.Scheduler.Frequency)
+    
+        <hr />
+    }
 
     <div class="createMoveScreenLeft">
         <div>
@@ -56,7 +71,7 @@
             @Html.ValidationMessageFor(m => m.Nature)
             @Html.ValidationMessageFor(m => m.AccountID)<br />
         
-            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList)
             @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
         </div>
     </div>
@@ -99,10 +114,11 @@
 
         @for (var d = 0; d < Model.Move.DetailList.Count; d++)
         {
-            @Html.Action("AddDetail", new {
-                   position = d,
-                   id = Model.Move.DetailList[d].ID
-               });
+            @Html.Action("AddDetail", new
+       {
+           position = d,
+           id = Model.Move.DetailList[d].ID
+       });
         }
     </table>
     

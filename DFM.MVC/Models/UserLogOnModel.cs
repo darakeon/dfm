@@ -10,5 +10,7 @@ namespace DFM.MVC.Models
 
         [Required(ErrorMessage = "*")]
         public String Password { get; set; }
+
+        public Boolean RememberMe { get; set; }
     }
 }

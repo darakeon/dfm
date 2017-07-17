@@ -9,6 +9,7 @@
     <Email text="E-mail" />
     <InvalidUser text="User and/or password invalid." />
     <AlreadyExists text="User already exists." />
+    <RememberMe text="Remember Me" />
   </en-US>
   <pt-BR>
     <Login text="Login" />
@@ -18,5 +19,6 @@
     <Email text="E-mail" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
     <AlreadyExists text="Usuário já existe." />
+    <RememberMe text="Manter logado" />
   </pt-BR>
 </user>

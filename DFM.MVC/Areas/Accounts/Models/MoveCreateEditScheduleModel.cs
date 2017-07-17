@@ -3,6 +3,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
+using DFM.Core.Helpers;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
@@ -11,9 +12,9 @@ using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditModel : BaseLoggedModel
+    public class MoveCreateEditScheduleModel : BaseLoggedModel
     {
-        public MoveCreateEditModel()
+        public MoveCreateEditScheduleModel()
         {
             var transferIsPossible = Current.User.AccountList
                                         .Where(a => a.Open)
@@ -23,10 +24,21 @@ namespace DFM.MVC.Areas.Accounts.Models
                 SelectListExtension.CreateSelect(PlainText.GetEnumNames<MoveNature>()) :
                 SelectListExtension.CreateSelect(PlainText.GetEnumNames<PrimalMoveNature>());
 
+            FrequencySelectList = 
+                SelectListExtension.CreateSelect(PlainText.GetEnumNames<ScheduleFrequency>());
+
+            CategorySelectList = SelectListExtension.CreateSelect(
+                        Current.User.CategoryList.Where(c => c.Active).ToList(),
+                        mv => mv.ID, mv => mv.Name
+                    );
+
             Move = new Move();
+            Date = DateTime.Today;
+
+            Scheduler = new Scheduler { Times = 1 };
         }
 
-        public MoveCreateEditModel(Move move) : this()
+        public MoveCreateEditScheduleModel(Move move) : this()
         {
             Move = move;
 
@@ -63,6 +75,12 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsDetailed { get; set; }
 
 
+        public Boolean IsScheduler { get; set; }
+
+        public Scheduler Scheduler { get; set; }
+        public SelectList FrequencySelectList { get; set; }
+
+
 
         public void MakeAccountTransferList(Int32 accountIdToExclude)
         {
@@ -73,16 +91,17 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             AccountSelectList = SelectListExtension
                 .CreateSelect(accountList, a => a.ID, a => a.Name);
-
         }
 
 
-        public void Populate(Int32 accountID)
+        public void Populate(Int32 accountID, Boolean isScheduler = false)
         {
             MakeAccountTransferList(accountID);
 
 
             IsDetailed = Move.HasRealDetails();
+
+            IsScheduler = isScheduler;
 
             if (!Move.DetailList.Any())
             {
@@ -97,10 +116,6 @@ namespace DFM.MVC.Areas.Accounts.Models
 
 
 
-            CategorySelectList = SelectListExtension.CreateSelect(
-                        Current.User.CategoryList.Where(c => c.Active).ToList(),
-                        mv => mv.ID, mv => mv.Name
-                    );
         }
 
     }
