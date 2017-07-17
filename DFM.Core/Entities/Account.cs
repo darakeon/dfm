@@ -36,6 +36,18 @@ namespace DFM.Core.Entities
             get { return EndDate == null; }
         }
 
+        public virtual Boolean HasMoves
+        {
+            get
+            {
+                return YearList.Any(
+                        y => y.MonthList.Any(
+                                m => m.MoveList.Any()
+                            )
+                    );
+            }
+        }
+
 
 
         public override String ToString()

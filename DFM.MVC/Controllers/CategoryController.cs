@@ -12,9 +12,6 @@ namespace DFM.MVC.Controllers
     [AjaxAuthorize]
     public class CategoryController : Controller
     {
-        readonly CategoryData categoryData = new CategoryData();
-
-
         public ActionResult Index()
         {
             var model = new CategoryIndexModel();
@@ -56,7 +53,7 @@ namespace DFM.MVC.Controllers
             
             var model = new CategoryCreateEditModel
             {
-                Category = categoryData.SelectById(id.Value)
+                Category = CategoryData.SelectById(id.Value)
             };
 
             return View("CreateEdit", model);
@@ -99,7 +96,7 @@ namespace DFM.MVC.Controllers
 
             model.Category.User = Current.User;
 
-            categoryData.SaveOrUpdate(model.Category);
+            CategoryData.SaveOrUpdate(model.Category);
 
             return model.Category;
         }
@@ -108,9 +105,9 @@ namespace DFM.MVC.Controllers
 
         public JsonResult Disable(Int32 id)
         {
-            var category = categoryData.SelectById(id);
+            var category = CategoryData.SelectById(id);
 
-            categoryData.Disable(category);
+            CategoryData.Disable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]
@@ -123,9 +120,9 @@ namespace DFM.MVC.Controllers
 
         public JsonResult Enable(Int32 id)
         {
-            var category = categoryData.SelectById(id);
+            var category = CategoryData.SelectById(id);
 
-            categoryData.Enable(category);
+            CategoryData.Enable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]

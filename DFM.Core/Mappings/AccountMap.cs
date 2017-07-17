@@ -18,6 +18,7 @@ namespace DFM.Core.Mappings
 
             mapping.IgnoreProperty(a => a.MovesSum);
             mapping.IgnoreProperty(a => a.Open);
+            mapping.IgnoreProperty(a => a.HasMoves);
 
 
             mapping.References(a => a.User)

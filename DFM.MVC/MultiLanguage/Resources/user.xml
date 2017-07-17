@@ -3,7 +3,7 @@
   <en-US>
     <Login text="Login" />
     <Password text="Password" />
-    <Logon text="Logon" />
+    <Enter text="Enter" />
     <SignUp text="Don't have!" />
     <Email text="E-mail" />
     <InvalidUser text="User and/or password invalid." />
@@ -13,7 +13,7 @@
   <pt-BR>
     <Login text="Login" />
     <Password text="Senha" />
-    <Logon text="Entrar" />
+    <Enter text="Entrar" />
     <SignUp text="Cadastrar-se" />
     <Email text="E-mail" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />

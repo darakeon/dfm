@@ -7,31 +7,34 @@ namespace DFM.Service.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly AccountData data = new AccountData();
-
         public IList<Move> GetMonthReport(Int32 id, Int32 dateMonth, Int32 dateYear)
         {
-            return (IList<Move>)data.GetMonthReport(id, dateMonth, dateYear);
+            return (IList<Move>)AccountData.GetMonthReport(id, dateMonth, dateYear);
         }
 
         public Year GetYearReport(Int32 id, Int32 year)
         {
-            return (Year)data.GetYearReport(id, year);
+            return (Year)AccountData.GetYearReport(id, year);
         }
 
         public void Close(Account account)
         {
-            data.Close(account);
+            AccountData.Close(account);
+        }
+
+        public void Delete(Account account)
+        {
+            AccountData.Delete(account);
         }
 
         public Account SaveOrUpdate(Account account)
         {
-            return (Account)data.SaveOrUpdate(account);
+            return (Account)AccountData.SaveOrUpdate(account);
         }
 
         public Account SelectById(Int32 id)
         {
-            return (Account)data.SelectById(id);
+            return (Account)AccountData.SelectById(id);
         }
     }
 }

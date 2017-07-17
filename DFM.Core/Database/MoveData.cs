@@ -10,23 +10,13 @@ namespace DFM.Core.Database
 {
     public class MoveData : BaseData<Move>
     {
-        public MoveData()
-        {
-            Validate += validate;
-            Complete += complete;
-        }
+		private MoveData() { }
 
-
-
-        public new Move SaveOrUpdate(Move move)
-        {
-            throw new DFMCoreException("AccountMissing");
-        }
-
-        public Move SaveOrUpdate(Move move, Account account, Account secondAccount = null)
+        public static Move SaveOrUpdate(Move move, Account account, Account secondAccount = null)
         {
             placeAccountsInMove(move, account, secondAccount);
-            return base.SaveOrUpdate(move);
+            
+            return SaveOrUpdate(move, validate, complete);
         }
 
 
@@ -93,7 +83,7 @@ namespace DFM.Core.Database
 
 
         #region Complete
-        private void complete(Move move)
+        private static void complete(Move move)
         {
             ajustDetailList(move);
 
@@ -104,7 +94,10 @@ namespace DFM.Core.Database
         private static void ajustDetailList(Move move)
         {
             if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
+            {
                 move.DetailList[0].Description = move.Description;
+                move.DetailList[0].Amount = 1;
+            }
 
             foreach (var detail in move.DetailList)
             {
@@ -116,7 +109,7 @@ namespace DFM.Core.Database
             }
         }
 
-        private void ajustMonthAndYear(Move move)
+        private static void ajustMonthAndYear(Move move)
         {
             invalidateSummary(move);
             
@@ -128,18 +121,17 @@ namespace DFM.Core.Database
         
         private static void invalidateSummary(Move move)
         {
-            var summaryData = new SummaryData();
-
             if (move.Nature.In(MoveNature.In, MoveNature.Transfer))
-                summaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn);
+                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn);
             
             if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
-                summaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
+                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
         }
         #endregion
 
 
 
+        #region PlaceAccountsInMove
         private static void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
         {
             var month = getMonth(move, account);
@@ -150,11 +142,8 @@ namespace DFM.Core.Database
 
         private static Month getMonth(Move move, Account account)
         {
-            var yearData = new YearData();
-            var monthData = new MonthData();
-
-            var year = yearData.GetOrCreateYear(move.Date.Year, account, move.Category);
-            return monthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
+            var year = YearData.GetOrCreateYear(move.Date.Year, account, move.Category);
+            return MonthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
         }
 
         private static void placeMonthsInMove(Move move, Month month, Month secondMonth = null)
@@ -177,38 +166,38 @@ namespace DFM.Core.Database
                     throw new DFMCoreException("MoveNatureNotFound");
             }
         }
+        #endregion
 
 
 
-        public new void Delete(Move move)
+        public static new void Delete(Move move)
         {
             removeFromMonth(move);
             ajustMonthAndYear(move);
 
-            base.Delete(move);
+            BaseData<Move>.Delete(move);
         }
 
         private static void removeFromMonth(Move move)
         {
             if (move == null) return;
 
-            var monthData = new MonthData();
-
             if (move.In != null)
             {
                 move.In.InList.Remove(move);
-                monthData.SaveOrUpdate(move.In);
+                MonthData.SaveOrUpdate(move.In);
             }
 
             if (move.Out != null)
             {
                 move.Out.OutList.Remove(move);
-                monthData.SaveOrUpdate(move.Out);
+                MonthData.SaveOrUpdate(move.Out);
             }
         }
 
 
-        public void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
+
+        public static void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
         {
             for(var t = 0; t <= scheduler.Times; t++)
             {
@@ -225,8 +214,19 @@ namespace DFM.Core.Database
                         break;
                 }
 
+                if (newMove.Date > DateTime.Now)
+                    newMove.Scheduled = true;
+
                 SaveOrUpdate(newMove, account, secondAccount);
             }
+        }
+
+
+
+        internal static void MakeVisible(Move move)
+        {
+            move.Scheduled = false;
+            SaveOrUpdate(move, validate, complete);
         }
     }
 }

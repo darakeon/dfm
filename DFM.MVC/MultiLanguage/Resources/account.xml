@@ -9,12 +9,16 @@
     <YearMoves text="{0} Summary" />
     <Close text="Close" />
     <CloseConfirm text="Do you really want to CLOSE Account '{0}'?" />
+    <DeleteConfirm text="Do you really want to DELETE Account '{0}'?" />
     <ClosedAccounts text="Closed Accounts" />
     <AccountNotFound text="Account not found." />
     <AccountClosed text="Account '{0}' closed." />
+    <AccountDeleted text="Account '{0}' deleted." />
     <AlreadyExists text="Account already exists." />
     <DuplicatedName text="There is more than one account with same name." />
     <Report text="Report" />
+    <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
+    <CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
@@ -25,11 +29,15 @@
     <YearMoves text="Resumo de {0}" />
     <Close text="Fechar" />
     <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?" />
+    <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?" />
     <ClosedAccounts text="Contas Fechadas" />
     <AccountNotFound text="Conta não encontrada." />
     <AccountClosed text="Conta '{0}' fechada." />
+    <AccountDeleted text="Conta '{0}' apagada." />
     <AlreadyExists text="Conta já existe." />
     <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
     <Report text="Relatórios" />
+    <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
+    <CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
   </pt-BR>
 </account>

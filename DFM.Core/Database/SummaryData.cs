@@ -9,7 +9,16 @@ namespace DFM.Core.Database
 {
     internal class SummaryData : BaseData<Summary>
     {
-        internal void SetSummary(ISummarizable summarizable, Category category)
+		private SummaryData() { }
+
+        public static Summary SaveOrUpdate(Summary summary)
+        {
+            return SaveOrUpdate(summary, null, null);
+        }
+
+
+
+        internal static void SetSummary(ISummarizable summarizable, Category category)
         {
             var summary = summarizable.SummaryList
                 .SingleOrDefault(s => s.Category == category);
@@ -27,7 +36,7 @@ namespace DFM.Core.Database
 
 
 
-        internal void Invalidate(Int32 month, Int32 year, Category category, Account account)
+        internal static void Invalidate(Int32 month, Int32 year, Category category, Account account)
         {
             invalidateYear(year, category, account);
             invalidateMonth(month, year, category, account);
@@ -35,7 +44,7 @@ namespace DFM.Core.Database
 
 
 
-        private void invalidateMonth(Int32 month, Int32 year, Category category, Account account)
+        private static void invalidateMonth(Int32 month, Int32 year, Category category, Account account)
         {
             var summaryMonth = SelectSingle(
                     s => s.Nature == SummaryNature.Month
@@ -49,14 +58,14 @@ namespace DFM.Core.Database
 
         private static Summary createSummaryMonth(Int32 month, Int32 year, Category category, Account account)
         {
-            var newYear = new YearData().SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
-            var newMonth = new MonthData().SelectSingle(m => m.Year.ID == newYear.ID && m.Time == month);
+            var newYear = YearData.SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
+            var newMonth = MonthData.SelectSingle(m => m.Year.ID == newYear.ID && m.Time == month);
 
             return new Summary { Category = category, Month = newMonth, Nature = SummaryNature.Month };
         }
 
 
-        private void invalidateYear(Int32 year, Category category, Account account)
+        private static void invalidateYear(Int32 year, Category category, Account account)
         {
             var summaryYear = SelectSingle(
                     s => s.Nature == SummaryNature.Year
@@ -70,14 +79,14 @@ namespace DFM.Core.Database
 
         private static Summary createSummaryYear(Int32 year, Category category, Account account)
         {
-            var newYear = new YearData().SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
+            var newYear = YearData.SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
 
             return new Summary { Category = category, Year = newYear, Nature = SummaryNature.Month };
         }
 
 
 
-        private void invalidate(Summary summary)
+        private static void invalidate(Summary summary)
         {
             summary.IsValid = false;
             SaveOrUpdate(summary);

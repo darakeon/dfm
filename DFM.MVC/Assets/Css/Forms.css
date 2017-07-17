@@ -9,10 +9,6 @@ select
 	height: 22px;
 }
 
-a {
-	white-space: nowrap;
-}
-
 button {
 	margin-top: 20px;
 	border-radius: 10px 0px;

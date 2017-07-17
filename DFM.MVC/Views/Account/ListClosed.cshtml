@@ -23,7 +23,10 @@ else
         </tr>
 
         @foreach (var account in Model.AccountList)
-        { 
+        {
+            var endMonth = account.EndDate.Value.Month;
+            var endYear = account.EndDate.Value.Year;
+            var monthReportId = endYear * 100 + endMonth;
             
             <tr>
                 <td>@account.Name </td>
@@ -32,14 +35,14 @@ else
                 <td>@account.MovesSum </td>
 
                 <td>@Html.RouteLink(
-                        String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
+                     String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear),
                         RouteNames.Accounts,
-                        new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
+                        new { action = "SeeMonth", controller = "Report", accountid = account.ID, id = monthReportId }, new { })</td>
                 
                 <td>@Html.RouteLink(
-                        String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
+                        String.Format(PlainText.Dictionary["YearMoves"], account.EndDate.Value.Year),
                         RouteNames.Accounts,
-                        new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
+                        new { action = "SeeYear", controller = "Report", accountid = account.ID, id = endYear }, new { })</td>
             </tr>
 
         } 

@@ -6,11 +6,12 @@ namespace DFM.Core.Database
 {
     public class CategoryData : BaseData<Category>
     {
-        public CategoryData()
-        {
-            Complete += complete;
-        }
+		private CategoryData() { }
 
+        public static Category SaveOrUpdate(Category category)
+        {
+            return SaveOrUpdate(category, null, complete);
+        }
 
         private static void complete(Category category)
         {
@@ -18,20 +19,23 @@ namespace DFM.Core.Database
                 category.Active = true;
         }
 
-        public void Disable(Category category)
+
+
+        public static void Disable(Category category)
         {
             alterActive(category, false);
         }
 
-        public void Enable(Category category)
+        public static void Enable(Category category)
         {
             alterActive(category, true);
         }
 
-        private void alterActive(Category category, Boolean enable)
+        private static void alterActive(Category category, Boolean enable)
         {
             category.Active = enable;
             SaveOrUpdate(category);
         }
+
     }
 }

@@ -9,13 +9,15 @@ namespace DFM.Core.Database
 {
     public class AccountData : BaseData<Account>
     {
-        public AccountData()
+		private AccountData() { }
+
+        public static Account SaveOrUpdate(Account account)
         {
-            Validate += validate;
-            Complete += complete;
+            return SaveOrUpdate(account, validate, complete);
         }
 
-        private void validate(Account account)
+
+        private static void validate(Account account)
         {
             var otherAccount = SelectByName(account.Name, account.User);
 
@@ -28,7 +30,7 @@ namespace DFM.Core.Database
             }
         }
 
-        private void complete(Account account)
+        private static void complete(Account account)
         {
             if (account.ID == 0)
             {
@@ -50,8 +52,8 @@ namespace DFM.Core.Database
         }
 
 
-        
-        internal Account SelectByName(String name, User user)
+
+        internal static Account SelectByName(String name, User user)
         {
             IList<Account> userList = Session
                 .CreateCriteria(typeof(Account))
@@ -66,7 +68,7 @@ namespace DFM.Core.Database
         }
 
 
-        public IList<Move> GetMonthReport(Int32 id, Int32 dateMonth, Int32 dateYear)
+        public static IList<Move> GetMonthReport(Int32 id, Int32 dateMonth, Int32 dateYear)
         {
             var account = SelectById(id);
 
@@ -88,18 +90,20 @@ namespace DFM.Core.Database
         }
 
 
-        public Year GetYearReport(Int32 id, Int32 dateYear)
+        public static Year GetYearReport(Int32 accountid, Int32 dateYear)
         {
-            var account = SelectById(id);
+            var account = SelectById(accountid);
 
             var year = account.YearList
                 .SingleOrDefault(y => y.Time == dateYear);
 
-            return nonFuture(year);
+            return year == null
+                ? new Year { Account = account, Time = dateYear }
+                : nonFuture(year);
         }
 
         private static Year nonFuture(Year year)
-        {
+        {         
             if (year.Time == DateTime.Today.Year)
             {
                 //prevent from saving and destroying the true element
@@ -114,12 +118,26 @@ namespace DFM.Core.Database
         }
 
 
-        public void Close(Account account)
+        public static void Close(Account account)
         {
             if (account == null) return;
-            
+
+            if (!account.HasMoves)
+                throw new DFMCoreException("CantCloseEmptyAccount");
+
             account.EndDate = DateTime.Now;
             SaveOrUpdate(account);
+        }
+
+
+        public new static void Delete(Account account)
+        {
+            if (account == null) return;
+
+            if (account.HasMoves)
+                throw new DFMCoreException("CantDeleteAccountWithMoves");
+
+            BaseData<Account>.Delete(account);
         }
     }
 }

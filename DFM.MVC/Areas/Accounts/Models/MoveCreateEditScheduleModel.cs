@@ -43,7 +43,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = move;
 
             AccountID = Move.Nature == MoveNature.Transfer
-                ? Move.In.ID : (Int32?)null;
+                ? Move.In.Year.Account.ID : (Int32?)null;
         }
 
 

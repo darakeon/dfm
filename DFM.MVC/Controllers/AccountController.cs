@@ -11,9 +11,6 @@ namespace DFM.MVC.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        readonly AccountData accountData = new AccountData();
-
-
         public ActionResult Index()
         {
             var model = new AccountIndexModel();
@@ -50,7 +47,7 @@ namespace DFM.MVC.Controllers
 
             var model = new AccountCreateEditModel
                             {
-                                Account = accountData.SelectById(id.Value)
+                                Account = AccountData.SelectById(id.Value)
                             };
 
             return View("CreateEdit", model);
@@ -71,7 +68,7 @@ namespace DFM.MVC.Controllers
                 try
                 {
                     model.Account.User = Current.User;
-                    accountData.SaveOrUpdate(model.Account);
+                    AccountData.SaveOrUpdate(model.Account);
                 }
                 catch (DFMCoreException e)
                 {
@@ -91,27 +88,50 @@ namespace DFM.MVC.Controllers
 
         public JsonResult Close(Int32 id)
         {
-            var account = accountData.SelectById(id);
+            var account = AccountData.SelectById(id);
 
-            accountData.Close(account);
+            String message;
 
-            var message = account == null
-                ? PlainText.Dictionary["AccountNotFound"]
-                : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
+            try
+            {
+                AccountData.Close(account);
+
+                message = account == null
+                    ? PlainText.Dictionary["AccountNotFound"]
+                    : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
+            }
+            catch (DFMCoreException e)
+            {
+                message = PlainText.Dictionary[e.Message];
+            }
+
 
             return new JsonResult { Data = new { message } };
         }
 
 
 
-
-        public ActionResult AnalyzeDictionary()
+        public JsonResult Delete(Int32 id)
         {
-            var plainText = Current.IsAuthenticated
-                                ? PlainText.Dictionary
-                                : new PlainText();
+            var account = AccountData.SelectById(id);
 
-            return View(plainText);
+            String message;
+
+            try
+            {
+                AccountData.Delete(account);
+
+                message = account == null
+                    ? PlainText.Dictionary["AccountNotFound"]
+                    : String.Format(PlainText.Dictionary["AccountDeleted"], account.Name);
+            }
+            catch (DFMCoreException e)
+            {
+                message = PlainText.Dictionary[e.Message];
+            }
+
+
+            return new JsonResult { Data = new { message } };
         }
 
     }

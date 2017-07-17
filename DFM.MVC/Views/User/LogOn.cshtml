@@ -1,32 +1,38 @@
 ﻿@model DFM.MVC.Models.UserLogOnModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["Logon"];
-    //Layout = "~/Views/Shared/Outer/_Layout.cshtml";
+    var isAuthenticated = DFM.MVC.Authentication.Current.IsAuthenticated;
 }
 
 <div class="MiniForm">
-    @using (Html.BeginForm("LogOn", "User"))
+    @if (isAuthenticated)
     {
-        @Html.ValidationSummary(true) 
+        <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@PlainText.Dictionary["Enter"]</button>
+    }
+    else
+    {
+        using (Html.BeginForm("LogOn", "User"))
+        {
+            @Html.ValidationSummary(true) 
         
-        <p>
-            @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])
-            @(": ")
-            @Html.TextBoxFor(m => m.Login) 
-        </p>
+            <p>
+                @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])
+                @(": ")
+                @Html.TextBoxFor(m => m.Login) 
+            </p>
 
-        <p>
-            @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])
-            @(": ")
-            @Html.PasswordFor(m => m.Password)
-        </p>
+            <p>
+                @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])
+                @(": ")
+                @Html.PasswordFor(m => m.Password)
+            </p>
 
-        <div id="Remember">
-            @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"])
-        </div>
+            <div id="Remember">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"])
+            </div>
 
-        <button type="submit">@PlainText.Dictionary["Logon"]</button>
+            <button type="submit">@PlainText.Dictionary["Enter"]</button>
+        }
     }
 </div>

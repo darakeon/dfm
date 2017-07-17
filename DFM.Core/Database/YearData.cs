@@ -7,7 +7,9 @@ namespace DFM.Core.Database
 {
     internal class YearData : BaseData<Year>
     {
-        internal Year GetOrCreateYear(Int32 year, Account account, Category category)
+		private YearData() { }
+
+        internal static Year GetOrCreateYear(Int32 year, Account account, Category category)
         {
             var newYear = account.YearList
                     .SingleOrDefault(y => y.Time == year)
@@ -19,7 +21,7 @@ namespace DFM.Core.Database
             return newYear;
         }
 
-        private Year createYear(Account account, Int32 year)
+        private static Year createYear(Account account, Int32 year)
         {
             var newYear = new Year{ Account = account, Time = year };
 
@@ -28,5 +30,13 @@ namespace DFM.Core.Database
             SaveOrUpdate(newYear);
             return newYear;
         }
+
+
+        public static Year SaveOrUpdate(Year year)
+        {
+            return SaveOrUpdate(year, null, null);
+        }
+
+
     }
 }

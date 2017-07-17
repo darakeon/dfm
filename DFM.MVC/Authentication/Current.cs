@@ -7,22 +7,19 @@ namespace DFM.MVC.Authentication
 {
     public class Current
     {
-        private static readonly UserData userData = new UserData();
-
         public static User User
         {
             get
             {
                 var username = Authenticate.AuthenticatedUser();
-                return userData.SelectByLogin(username);
+                return UserData.SelectByLogin(username);
             }
         }
-
-
 
         public static Boolean IsAuthenticated
         {
             get { return User != null; }
         }
+
     }
 }

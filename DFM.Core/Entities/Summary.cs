@@ -52,7 +52,7 @@ namespace DFM.Core.Entities
 
             IsValid = true;
 
-            new SummaryData().SaveOrUpdate(this);
+            SummaryData.SaveOrUpdate(this);
         }
 
 

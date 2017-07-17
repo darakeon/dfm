@@ -3,15 +3,13 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
-using DFM.MVC.MultiLanguage;
+using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
     [Authorize]
     public class ReportController : Controller
     {
-        readonly AccountData accountData = new AccountData();
-
         private Int32 accountid;
 
         protected override void Initialize(RequestContext requestContext)
@@ -23,25 +21,39 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
+        public ActionResult Index()
+        {
+            return RedirectToAction("SeeMonth");
+        }
+
+
+
         public ActionResult SeeMonth(Int32? id)
         {
+            var currentMonth = DateTime.Today.Month;
+
             var month = id.HasValue
                 ? id.Value % 100
-                : DateTime.Now.Month;
+                : currentMonth;
+
+            month = month.ForceBetween(1, 12);
+
+
+            var currentYear = DateTime.Today.Year;
 
             var year = id.HasValue
                 ? id.Value / 100
-                : DateTime.Now.Year;
+                : currentYear;
 
-            
+            year = year.ForceBetween(1900, currentYear);
+
+
             var model = new ReportSeeMonthModel
                             {
-                                MoveList = accountData.GetMonthReport(accountid, month, year),
-                                Account = accountData.SelectById(accountid),
-
-                                Date = 
-                                    String.Format(PlainText.Dictionary["ShortDateFormat"],
-                                        PlainText.GetMonthName(month), year)
+                                MoveList = AccountData.GetMonthReport(accountid, month, year),
+                                Account = AccountData.SelectById(accountid),
+                                Month = month,
+                                Year = year,
                             };
 
 
@@ -52,11 +64,16 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult SeeYear(Int32? id)
         {
-            var year = id ?? DateTime.Now.Year;
+            var currentYear = DateTime.Today.Year;
+            
+            var year = id ?? currentYear;
+            
+            year = year.ForceBetween(1900, currentYear);
+
 
             var model = new ReportSeeYearModel
                             {
-                                Year = accountData.GetYearReport(accountid, year),
+                                Year = AccountData.GetYearReport(accountid, year),
                             };
 
 

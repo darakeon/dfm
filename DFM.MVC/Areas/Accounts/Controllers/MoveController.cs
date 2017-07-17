@@ -14,11 +14,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     [Authorize]
     public class MoveController : Controller
     {
-        private readonly AccountData accountData = new AccountData();
-        private readonly MoveData moveData = new MoveData();
-        private readonly CategoryData categoryData = new CategoryData();
-        private readonly DetailData detailData = new DetailData();
-
         private Int32 accountid;
 
         protected override void Initialize(RequestContext requestContext)
@@ -42,7 +37,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Create(MoveCreateEditScheduleModel model)
         {
-            return createEdit(model);
+            return createEditSchedule(model);
         }
 
 
@@ -51,7 +46,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             if (!id.HasValue) return RedirectToAction("Create");
 
-            var move = moveData.SelectById(id.Value);
+            var move = MoveData.SelectById(id.Value);
 
             if (move == null) return RedirectToAction("Create");
 
@@ -72,7 +67,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var action = RouteData.Values["action"].ToString();
 
-            RouteData.Values["accountid"] = move.Out.ID;
+            RouteData.Values["accountid"] = move.Out.Year.Account.ID;
 
             return RedirectToAction(action, RouteData.Values);
         }
@@ -82,7 +77,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
              model.Move.ID = id;
 
-            return createEdit(model);
+            return createEditSchedule(model);
         }
 
 
@@ -99,26 +94,26 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Schedule(MoveCreateEditScheduleModel model)
         {
-            return createEdit(model, true);
+            return createEditSchedule(model, true);
         }
 
 
 
-        private ActionResult createEdit(MoveCreateEditScheduleModel model, Boolean isScheduler = false)
+        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model, Boolean isScheduler = false)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
+                    model.Move.Category = CategoryData.SelectById(model.CategoryID ?? 0);
 
-                    var currentAccount = accountData.SelectById(accountid);
-                    var otherAccount = accountData.SelectById(model.AccountID ?? 0);
+                    var currentAccount = AccountData.SelectById(accountid);
+                    var otherAccount = AccountData.SelectById(model.AccountID ?? 0);
 
                     if (isScheduler)
-                        moveData.Schedule(model.Move, currentAccount, otherAccount, model.Scheduler);
+                        MoveData.Schedule(model.Move, currentAccount, otherAccount, model.Scheduler);
                     else
-                        moveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
+                        MoveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
 
                     return RedirectToRoute(
                             RouteNames.Default,
@@ -145,7 +140,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
         {
-            var detail = detailData.SelectById(id);
+            var detail = DetailData.SelectById(id);
 
             var model = new MoveAddDetailModel(position, detail);
 
@@ -163,9 +158,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public JsonResult Delete(Int32 id)
         {
-            var move = moveData.SelectById(id);
+            var move = MoveData.SelectById(id);
 
-            moveData.Delete(move);
+            MoveData.Delete(move);
 
             var message = move == null
                 ? PlainText.Dictionary["MoveNotFound"]

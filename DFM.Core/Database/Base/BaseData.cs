@@ -14,16 +14,24 @@ namespace DFM.Core.Database.Base
     public abstract class BaseData<T>
         where T : class, IEntity
     {
-        protected ISession Session
+        protected static ISession Session
         {
             get { return SessionBuilder.Session; }
         }
 
 
-        public T SaveOrUpdate(T entity)
+        protected static T SaveOrUpdate(T entity, DelegateValidade validate, DelegateComplete complete)
         {
-            if (Complete != null) Complete(entity);
-            if (Validate != null) Validate(entity);
+            if (complete != null) completeEntity += complete;
+            if (validate != null) validateEntity += validate;
+
+            return saveOrUpdate(entity);
+        }
+
+        private static T saveOrUpdate(T entity)
+        {
+            if (completeEntity != null) completeEntity(entity);
+            if (validateEntity != null) validateEntity(entity);
 
             if (entity.ID == 0 || Session.Contains(entity))
                 Session.SaveOrUpdate(entity);
@@ -36,47 +44,47 @@ namespace DFM.Core.Database.Base
         protected delegate void DelegateValidade(T entity);
         protected delegate void DelegateComplete(T entity);
 
-        protected event DelegateValidade Validate;
-        protected event DelegateComplete Complete;
+        private static event DelegateValidade validateEntity;
+        private static event DelegateComplete completeEntity;
 
 
 
-        internal void Delete(T obj)
+        internal static void Delete(T obj)
         {
             if (obj != null)
                 Session.Delete(obj);
         }
 
 
-        public T SelectById(Int32 id)
+        public static T SelectById(Int32 id)
         {
             return Session.Get<T>(id);
         }
 
 
 
-        internal IList<T> Select()
+        internal static IList<T> Select()
         {
             return select().List<T>();
         }
 
-        internal T SelectSingle(Expression<Func<T, Boolean>> expression)
+        internal static T SelectSingle(Expression<Func<T, Boolean>> expression)
         {
             return select(expression).UniqueResult<T>();
         }
 
         // TODO: Replace this shit
-        internal T SelectSingle(Expression<Func<T, Boolean>> preCriteriaExpression, Func<T, Boolean> posCriteriaExpression)
+        internal static T SelectSingle(Expression<Func<T, Boolean>> preCriteriaExpression, Func<T, Boolean> posCriteriaExpression)
         {
             return Select(preCriteriaExpression).SingleOrDefault(posCriteriaExpression);
         }
 
-        internal IList<T> Select(Expression<Func<T, Boolean>> expression)
+        internal static IList<T> Select(Expression<Func<T, Boolean>> expression)
         {
             return select(expression).List<T>();
         }
 
-        private ICriteria select(Expression<Func<T, Boolean>> expression = null)
+        private static ICriteria select(Expression<Func<T, Boolean>> expression = null)
         {
             var criteria = Session.CreateCriteria(typeof (T));
 

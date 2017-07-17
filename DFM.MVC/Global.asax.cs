@@ -32,7 +32,9 @@ namespace DFM.MVC
 
 
 
+        // ReSharper disable InconsistentNaming
         protected void Application_Start()
+        // ReSharper restore InconsistentNaming
         {
             AreaRegistration.RegisterAllAreas();
 
@@ -43,7 +45,9 @@ namespace DFM.MVC
             PlainText.Initialize();
         }
 
+        // ReSharper disable InconsistentNaming
         protected void Application_BeginRequest()
+        // ReSharper restore InconsistentNaming
         {
             NHManager.Open();
             
@@ -53,17 +57,23 @@ namespace DFM.MVC
             specifyLanguage();
         }
 
+        // ReSharper disable InconsistentNaming
         protected void Application_Error()
+        // ReSharper restore InconsistentNaming
         {
             NHManager.Error();
         }
 
+        // ReSharper disable InconsistentNaming
         protected void Application_EndRequest()
+        // ReSharper restore InconsistentNaming
         {
             NHManager.Close();
         }
 
+        // ReSharper disable InconsistentNaming
         protected void Application_End()
+        // ReSharper restore InconsistentNaming
         {
             NHManager.End();
         }
@@ -76,10 +86,10 @@ namespace DFM.MVC
             if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
                 return;
 
-            var language = Request.UserLanguages[0];
-            //var language = "pt-BR";
+            //var language = Request.UserLanguages[0];
+            var language = "pt-BR";
 
-            if (!PlainText.AcceptLanguage(language) || true)
+            if (!PlainText.AcceptLanguage(language))
                 language = "pt-BR";
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);

@@ -2,11 +2,46 @@
 
 <div id="Menu">
 
-    @foreach (var account in Model.LateralAccountList) { 
-        @Html.RouteLink(account.Name, RouteNames.Accounts, new { controller = "Report", action = "Index", accountid = account.ID })
+    @foreach (var account in Model.LateralAccountList)
+    { 
+        <div class="accountMenu" id="@(account.ID)">
+            @Html.RouteLink(account.Name, RouteNames.Accounts,
+                new { controller = "Report", action = "Index", accountid = account.ID },
+                new { @class = "highMenu" })
+
+            <div class="reportsMenu" id="Sub@(account.ID)">
+                <ul>
+                    <li>
+                        @Html.RouteLink(
+                            String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
+                            RouteNames.Accounts,
+                            new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })
+                    </li>
+                    <li>
+                        @Html.RouteLink(
+                            String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
+                            RouteNames.Accounts,
+                            new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })
+                    </li>
+
+                    <li>@Html.RouteLink(
+                        PlainText.Dictionary["Create", "Move"],
+                        RouteNames.Accounts,
+                        new { action = "Create", controller = "Move", accountid = account.ID }, new { })
+                    </li>
+                    <li>@Html.RouteLink(
+                        PlainText.Dictionary["Schedule", "Move"],
+                        RouteNames.Accounts,
+                        new { action = "Schedule", controller = "Move", accountid = account.ID }, new { })
+                    </li>
+
+                </ul>
+            </div>
+        </div>
     }
 
     @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "Fix" })
+
     @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "Fix" })
 
 </div>

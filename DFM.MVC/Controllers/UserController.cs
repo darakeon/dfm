@@ -12,10 +12,6 @@ namespace DFM.MVC.Controllers
 {
     public class UserController : Controller
     {
-        readonly UserData userData = new UserData();
-
-
-
         public ActionResult Index()
         {
             var model = new UserIndexModel
@@ -47,7 +43,7 @@ namespace DFM.MVC.Controllers
                 
                 try
                 {
-                    user = userData.ValidateAndGet(model.Login, model.Password);
+                    user = UserData.ValidateAndGet(model.Login, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -82,7 +78,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    userData.SaveOrUpdate(model.User);
+                    UserData.SaveOrUpdate(model.User);
                 }
                 catch (DFMCoreException e)
                 {
@@ -105,7 +101,7 @@ namespace DFM.MVC.Controllers
         {
             Authenticate.Clean(Request);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "User");
         }
 
 

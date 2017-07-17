@@ -1,10 +1,21 @@
-﻿using DFM.Core.Entities;
+﻿using System;
+using DFM.Core.Entities;
 using DFM.MVC.Models;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
     public class ReportSeeYearModel : BaseLoggedModel
     {
         public Year Year { get; set; }
+
+        public String Date
+        {
+            get
+            {
+                return String.Format(PlainText.Dictionary["ShortDateFormat"],
+                                     PlainText.Dictionary["Summary"], Year);
+            }
+        }
     }
 }

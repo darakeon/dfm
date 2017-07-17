@@ -14,6 +14,11 @@ img#Logo {
 	margin: 20px;
 }
 
+img#Out {
+	margin: 10px;
+	float: right;
+}
+
 div#Main {
 	background: #FFF;
 	min-height: 500px;
@@ -37,4 +42,5 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 	color: #070;
+	white-space: nowrap;
 }

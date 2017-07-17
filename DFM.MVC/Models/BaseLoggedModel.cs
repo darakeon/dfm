@@ -22,7 +22,7 @@ namespace DFM.MVC.Models
         }
 
         public IList<Account> LateralAccountList { get; set; }
-        public String CurrentMonth { get { return DateTime.Now.ToString("MMMM", PlainText.Culture.DateTimeFormat).Capitalize(); } }
+        public String CurrentMonth { get { return PlainText.GetMonthName(DateTime.Now.Month); } }
         public String CurrentYear { get { return DateTime.Now.ToString("yyyy"); } }
 
         public String ActionName { get; set; }

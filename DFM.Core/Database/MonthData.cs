@@ -7,7 +7,9 @@ namespace DFM.Core.Database
 {
     internal class MonthData : BaseData<Month>
     {
-        internal Month GetOrCreateMonth(Int32 month, Year year, Category category)
+		private MonthData() { }
+
+        internal static Month GetOrCreateMonth(Int32 month, Year year, Category category)
         {
             var newMonth = year.MonthList
                     .SingleOrDefault(y => y.Time == month)
@@ -19,7 +21,7 @@ namespace DFM.Core.Database
             return newMonth;
         }
 
-        private Month createMonth(Year year, Int32 month)
+        private static Month createMonth(Year year, Int32 month)
         {
             var newMonth = new Month { Year = year, Time = month };
 
@@ -29,5 +31,13 @@ namespace DFM.Core.Database
 
             return newMonth;
         }
+
+
+
+        public static Month SaveOrUpdate(Month month)
+        {
+            return SaveOrUpdate(month, null, null);
+        }
+
     }
 }

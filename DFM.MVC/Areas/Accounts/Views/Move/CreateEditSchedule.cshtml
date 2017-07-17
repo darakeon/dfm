@@ -16,7 +16,7 @@
 }
 
 
-@section BeforeTitle { 
+@section TopRightDiv { 
     <div id="newCategory">@Html.Action("Create", "Category", new { @area = String.Empty })</div>
 }
 
@@ -94,11 +94,9 @@
     <div id="oneValue" class="createMoveScreenLeft">
         <table class="List">
             <tr>
-                <th>@Html.LabelFor(m => m.Move.DetailList[0].Amount, PlainText.Dictionary["Amount"])</th>
                 <th>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</th>
             </tr>
             <tr>
-                <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "amount" })</td>
                 <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Value, new { @class = "money" })</td>
             </tr>
         </table>

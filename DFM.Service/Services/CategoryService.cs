@@ -6,26 +6,26 @@ namespace DFM.Service.Services
 {
     class CategoryService : ICategoryService
     {
-        private readonly CategoryData data = new CategoryData();
 
         public void Disable(Category category)
         {
-            data.Disable(category);
+            CategoryData.Disable(category);
         }
 
         public void Enable(Category category)
         {
-            data.Enable(category);
+            CategoryData.Enable(category);
         }
 
         public Category SaveOrUpdate(Category category)
         {
-            return (Category)data.SaveOrUpdate(category);
+            return (Category)CategoryData.SaveOrUpdate(category);
         }
 
         public Category SelectById(Int32 id)
         {
-            return (Category)data.SelectById(id);
+            return (Category)CategoryData.SelectById(id);
         }
+
     }
 }

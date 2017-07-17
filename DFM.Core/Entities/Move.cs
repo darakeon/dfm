@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Core.Database;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
@@ -27,6 +28,8 @@ namespace DFM.Core.Entities
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
 
+        public virtual Boolean Scheduled { get; set; }
+
         public virtual IList<Detail> DetailList { get; set; }
 
 
@@ -35,21 +38,35 @@ namespace DFM.Core.Entities
             get { return Date.ToString("MMMM"); }
         }
 
+
         public virtual Double Value
         {
             get { return DetailList.Sum(d => d.Value * d.Amount); }
         }
 
+
         internal protected virtual Boolean Show
         {
-            get { return Date <= DateTime.Now; }
+            get
+            {
+                var show = Date <= DateTime.Now;
+
+                if (show && Scheduled)
+                {
+                    MoveData.MakeVisible(this);
+                }
+
+                return show;
+            }
         }
+
 
         [NhIgnore]
         internal protected virtual Account AccountIn
         {
             get { return In.Year.Account; }
         }
+
 
         [NhIgnore]
         internal protected virtual Account AccountOut
@@ -61,8 +78,9 @@ namespace DFM.Core.Entities
         public virtual void AddDetail(Detail detail)
         {
             DetailList.Add(detail);
-                detail.Move = this;
+            detail.Move = this;
         }
+
 
         public virtual Boolean HasRealDetails()
         {
@@ -72,6 +90,7 @@ namespace DFM.Core.Entities
                     || DetailList[0].HasDescription()
                 );
         }
+
 
         internal protected virtual void MakePseudoDetail(Double value)
         {
@@ -83,6 +102,7 @@ namespace DFM.Core.Entities
 
             AddDetail(detail);
         }
+
 
         internal protected virtual Move Clone()
         {
@@ -103,6 +123,7 @@ namespace DFM.Core.Entities
 
             return move;
         }
+
 
 
         public override String ToString()

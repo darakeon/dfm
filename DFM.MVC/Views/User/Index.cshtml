@@ -1,14 +1,12 @@
 ﻿@model DFM.MVC.Models.UserIndexModel
 
 @{
-    ViewBag.Title = "Bem-vindo!";
+    ViewBag.Title = PlainText.Dictionary["Bemvindo"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 }
 
-@section BeforeTitle { 
-    <div id="Login">
-        @Html.Partial("LogOn", new DFM.MVC.Models.UserLogOnModel())
-    </div>
+@section TopRightDiv {
+    @Html.Partial("LogOn", new DFM.MVC.Models.UserLogOnModel())
 }
 
 <p>

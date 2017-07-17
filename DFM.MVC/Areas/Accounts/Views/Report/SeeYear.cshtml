@@ -1,9 +1,22 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeYearModel
 
 @{
-    ViewBag.Title = String.Format("{0}: {1} Summary", Model.Year.Account, Model.Year.Time);
+    ViewBag.Title = String.Format("{0}: {1}", Model.Year.Account, Model.Date);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
+
+@section HtmlHead {
+    <script type='text/javascript'>
+        var reportPage = '@Url.Action("SeeYear")';
+    </script>
+}
+
+@section TopRightDiv {
+    @Html.NumberNavFor(m => m.Year, new Navigation.Navigator { Min = 1900, Max = DateTime.Today.Year })
+    <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
+}
+
+
 
 @if (!Model.Year.MonthList.Any()) { 
     

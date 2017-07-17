@@ -1,0 +1,14 @@
+input.navigation {
+	width: 40px !important;
+	text-align: center;
+}
+
+button.navLess {
+	border-radius: 20px 0 0 20px;
+	margin: 0 -1px 0 7px;
+}
+
+button.navMore {
+	border-radius: 0 20px 20px 0;
+	margin: 0 7px 0 -1px;
+}

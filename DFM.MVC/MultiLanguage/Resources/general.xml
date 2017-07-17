@@ -37,7 +37,21 @@
     <Bank text="Bank" />
     <Card text="Card" />
     <Debt text="Debt" />
-    
+
+    <!--Index-->
+    <Bemvindo text="Welcome!" />
+    <Index_Introdution text="Don't Fly Money is a personal financial management system. It is made thinking in the most generic way to manage money. To sign up you just need login, password and a valid e-mail." />
+    <Index_PossibleNowADays text="Nowadays, it's possible:" />
+    <Index_AccountAndTypes text="Create {0} account types ({1});" />
+    <Index_Moves text="Create, update, schedule and delete moves;" />
+    <Index_Transfer text="Make transfers between accounts;" />
+    <Index_Categories text="Manage categories of moves;" />
+    <Index_Reports text="From this data, you ca see reports of:" />
+    <Index_ReportMonth text="Month moves;" />
+    <Index_ReportYear text="Yearly summary, with month sums;" />
+    <Index_Close text="In case of any doubt, verify our Tutorial. We are just beta yet. Continuously, new features will come." />
+    <Index_Finish text="Sign up now and begin!" />
+
   </en-US>
   <pt-BR>
     
@@ -78,10 +92,11 @@
     <Debt text="Dívida" />
 
     <!--Index-->
-    <Index_Introdution text="O Don't Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer login, senha, e um e-mail de contato válido." />
+    <Bemvindo text="Bem-vindo!" />
+    <Index_Introdution text="O Don't Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer login, senha, e um e-mail válido." />
     <Index_PossibleNowADays text="Atualmente, é possível:" />
     <Index_AccountAndTypes text="Criar contas de {0} tipos ({1});" />
-    <Index_Moves text="Criar, atualizar, agendar e deletar movimentações;" />
+    <Index_Moves text="Criar, atualizar, agendar e apagar movimentações;" />
     <Index_Transfer text="Fazer transferências entre contas;" />
     <Index_Categories text="Gerenciar as categorias das movimentações;" />
     <Index_Reports text="A partir destes dados, são gerados os seguintes relatórios:" />

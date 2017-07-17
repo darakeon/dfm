@@ -6,26 +6,24 @@ namespace DFM.Service.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserData data = new UserData();
-
         public User SelectByLogin(String login)
         {
-            return (User)data.SelectByLogin(login);
+            return (User)UserData.SelectByLogin(login);
         }
 
         public User ValidateAndGet(String login, String password)
         {
-            return (User)data.ValidateAndGet(login, password);
+            return (User)UserData.ValidateAndGet(login, password);
         }
 
         public User SaveOrUpdate(User user)
         {
-            return (User)data.SaveOrUpdate(user);
+            return (User)UserData.SaveOrUpdate(user);
         }
 
         public User SelectById(Int32 id)
         {
-            return (User)data.SelectById(id);
+            return (User)UserData.SelectById(id);
         }
     }
 }
