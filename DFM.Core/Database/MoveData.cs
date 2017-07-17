@@ -98,13 +98,13 @@ namespace DFM.Core.Database
             if (oldMove == null) return;
 
             Session.Evict(oldMove);
-            
+
             if (oldMove.In != null)
-                oldMove.In.InList.Remove(oldMove);
+                oldMove.RemoveFromIn();
 
             if (oldMove.Out != null)
-                oldMove.Out.OutList.Remove(oldMove);
-            
+                oldMove.RemoveFromOut();
+
             ajustSummaries(oldMove);
         }
 

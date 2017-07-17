@@ -92,5 +92,23 @@ namespace DFM.Core.Entities.Extensions
             return (move.In ?? move.Out).Year.Account.User == user;
         }
 
+
+        //REMOVE DOESN'T WORK SOMETIMES
+        public static void RemoveFromIn(this Move move)
+        {
+            move.In.InList =
+                move.In.InList
+                    .Where(m => m.ID != move.ID)
+                    .ToList();
+        }
+
+        public static void RemoveFromOut(this Move move)
+        {
+            move.Out.OutList =
+                move.Out.OutList
+                    .Where(m => m.ID != move.ID)
+                    .ToList();
+        }
+
     }
 }
