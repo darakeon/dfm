@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Buttons = "out";
 }
 
 @section HtmlHeadCss {
@@ -10,16 +11,6 @@
 
 @section HtmlHeadJs {
     @RenderSection("HtmlHeadJs", required: false)
-}
-
-@section LogOut {
-    <img id="Out" alt="DFM" src="@Url.Content("~/Assets/Image/off_out.gif")"
-        onmouseover="this.src='@Url.Content("~/Assets/Image/off_out_hover.gif")'"
-        onmouseout="this.src='@Url.Content("~/Assets/Image/off_out.gif")'" />
-}
-
-@section Logo {
-    <img alt="DFM" src="@Url.Content("~/Assets/Image/logo_out.gif")" />
 }
 
 @{/* Made without spaces to hide when empty */}

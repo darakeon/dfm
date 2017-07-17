@@ -48,13 +48,15 @@
         @if (isAuthenticated)
         {
             <a href="@Url.RouteUrl(RouteNames.Default, new { action = "LogOff", controller = "User" })">
-                @RenderSection("LogOut", required: false)
+                <img id="Out" alt="DFM" src="@Url.Content("~/Assets/Image/off_" + ViewBag.Buttons + ".gif")"
+                    onmouseover="this.src='@Url.Content("~/Assets/Image/off_" + ViewBag.Buttons + "_hover.gif")'"
+                    onmouseout="this.src='@Url.Content("~/Assets/Image/off_" + ViewBag.Buttons + ".gif")'" />
             </a>
         }
 
         <a id="Logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
             <img alt="DFM" src="@Url.Content("~/Assets/Image/pig.gif")" />
-            @RenderSection("Logo", required: false)
+            <img alt="DFM" src="@Url.Content("~/Assets/Image/logo_" + ViewBag.Buttons + ".gif")" />
         </a>
 	</div>
 
