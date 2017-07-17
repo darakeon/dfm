@@ -9,6 +9,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<User> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.Map(u => u.Password)
                 .Length(MaximumLength.UserPassword);
 

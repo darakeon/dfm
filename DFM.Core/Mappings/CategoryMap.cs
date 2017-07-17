@@ -9,6 +9,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Category> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.Map(c => c.Name)
                 .Length(MaximumLength.CategoryName);
             

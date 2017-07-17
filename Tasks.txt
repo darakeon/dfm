@@ -61,17 +61,18 @@ VERSION 1.0.0.1
 ======================================================================================================
 
 VERSION 1.0.1.0
-		Proteção por usuário no Core
 		Log4Net / Elmah
 		BDD / Selenium
 		Refactor Geral
-		Service WCF
-		Follow twitter
 		
 		importador/exportador de XML
 		importador/exportador de Excel
 		importador/exportador de Money
 		importador/exportador de CSV
+
+		Proteção por usuário no Core
+		Follow twitter
+		Service WCF
 
 		Confirmação de senha
 		Colocar nome (ou apelido) no sign up

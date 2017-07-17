@@ -9,6 +9,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Account> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.Map(a => a.Name)
                 .Length(MaximumLength.AccountName);
 

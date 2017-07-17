@@ -8,6 +8,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Schedule> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.Map(s => s.Active)
                 .Default("1");
 

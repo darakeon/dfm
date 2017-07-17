@@ -9,6 +9,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Move> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.Map(m => m.Description)
                 .Length(MaximumLength.MoveDescription);
 

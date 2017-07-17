@@ -8,6 +8,8 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Month> mapping)
         {
+            mapping.Not.LazyLoad();
+
             mapping.HasMany(m => m.InList)
                 .Cascade.Delete();
 

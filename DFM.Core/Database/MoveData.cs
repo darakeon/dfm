@@ -219,12 +219,21 @@ namespace DFM.Core.Database
                 if (monthOut == null) throw error;
                 if (monthOut != move.Out) monthOut.AddOut(move);
             }
+            else
+            {
+                move.Out = null;
+            }
 
             if (move.Nature != MoveNature.Out)
             {
                 if (monthIn == null) throw error;
                 if (monthIn != move.In) monthIn.AddIn(move);
             }
+            else
+            {
+                move.In = null;
+            }
+
         }
         #endregion
 
