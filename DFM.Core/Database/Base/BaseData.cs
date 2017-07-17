@@ -23,7 +23,7 @@ namespace DFM.Core.Database.Base
             return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
 
-        protected static T SaveOrUpdate(T entity, DelegateValidade validate, DelegateComplete complete)
+        protected static T SaveOrUpdate(T entity, DelegateComplete complete, DelegateValidade validate)
         {
             if (complete != null) complete(entity);
             if (validate != null) validate(entity);

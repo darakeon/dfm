@@ -14,7 +14,7 @@ namespace DFM.Core.Database
 
         public static Account SaveOrUpdate(Account account)
         {
-            return SaveOrUpdate(account, validate, complete);
+            return SaveOrUpdate(account, complete, validate);
         }
 
 

@@ -10,6 +10,7 @@
         DetailRequired,
         DisabledCategory,
         DuplicatedAccountName,
+        FailOnEmailSend,
         InMoveWrong,
         InvalidUser,
         MonthAmbiguousInYear,
@@ -23,6 +24,7 @@
         TransferMoveWrong,
         UserAlreadyExists,
         UserInvalidEmail,
+        WrongUserEmail,
         YearAmbiguousInAccount,
         YellowLimitUnderRedLimit,
     }

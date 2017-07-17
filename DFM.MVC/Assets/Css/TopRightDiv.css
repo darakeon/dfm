@@ -31,3 +31,7 @@ div#TopRightDiv div.MiniForm {
 div#TopRightDiv p {
 	margin: 0px;
 }
+
+div#TopRightDiv #ForgotPass {
+	display: none;
+}

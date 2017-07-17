@@ -9,6 +9,7 @@
     <RememberMe text="Remember" />
     <Logon text="Logon" />
     <RetypeWrong text="Confirm password must be equal to Password." />
+    <ForgotPassword text="Forgot my password" />
   </en-US>
   <pt-BR>
     <Email text="E-mail" />
@@ -19,5 +20,6 @@
     <RememberMe text="Lembrar" />
     <Logon text="Entrar" />
     <RetypeWrong text="A confirmação deve ser igual à senha." />
+    <ForgotPassword text="Esqueci minha senha" />
   </pt-BR>
 </user>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.MVC.Models;
 using DFM.Core.Database;
@@ -55,7 +56,6 @@ namespace DFM.MVC.Controllers
         #endregion
 
 
-
         #region SignUp
         public ActionResult SignUp()
         {
@@ -93,6 +93,17 @@ namespace DFM.MVC.Controllers
         #endregion
 
 
+        private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
+        {
+            Authenticate.Set(user.Email, Response, isPersistent);
+
+            if (String.IsNullOrEmpty(returnUrl))
+                return RedirectToAction("Index", "Account");
+
+            return Redirect(returnUrl);
+        }
+
+        
 
         public ActionResult LogOff()
         {
@@ -102,15 +113,42 @@ namespace DFM.MVC.Controllers
         }
 
 
-        private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
-        {
-            Authenticate.Set(user.Email, Response, isPersistent);
 
-            if (String.IsNullOrEmpty(returnUrl))
-                return RedirectToAction("Index", "Account");
-            
-            return Redirect(returnUrl);
+        public ActionResult ForgotPassword()
+        {
+            var model = new UserForgotPasswordModel();
+            return View(model);
         }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(UserForgotPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    SecurityData.CreateAndSend(model.Email, SecurityAction.PasswordChange);
+                }
+                catch (DFMCoreException e)
+                {
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("ForgotPasswordSuccess");
+                }
+            }
+
+            return View(model);
+        }
+
+        public ActionResult ForgotPasswordSuccess()
+        {
+            return View();
+        }
+
+
 
     }
 }

@@ -8,6 +8,7 @@ namespace DFM.Core.Helpers
         public const Int16 CategoryName = 20;
         public const Int16 DetailDescription = 50;
         public const Int16 MoveDescription = 50;
+        public const Int16 SecurityGuid = 50;
         public const Int16 UserPassword = 50;
         public const Int16 UserEmail = 50;
         public const Int16 UserLanguage = 5;

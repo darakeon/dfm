@@ -15,7 +15,7 @@ namespace DFM.MVC.Authentication
                     return null;
                 
                 var username = Authenticate.GetUsername();
-                return UserData.SelectByLogin(username);
+                return UserData.SelectByEmail(username);
             }
         }
 

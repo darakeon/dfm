@@ -12,6 +12,7 @@
     <Delete text="Delete" />
     <GOTO text="GO TO" />
     <TODO text="TO DO" />
+    <Send text="Send" />
 
     <!--Nouns-->
     <Name text="Name" />
@@ -71,6 +72,7 @@
     <Delete text="Apagar" />
     <GOTO text="Ver" />
     <TODO text="Ações" />
+    <Send text="Enviar" />
 
     <!--Nouns-->
     <Name text="Nome" />

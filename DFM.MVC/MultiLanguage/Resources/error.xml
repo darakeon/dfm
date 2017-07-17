@@ -15,6 +15,7 @@
     <DisabledCategory text="Can't insert Moves in Disabled Categories." />
     <DuplicatedAccountName text="There are two accounts with same name." />
     <DuplicatedName text="There is more than one account with same name." />
+    <FailOnEmailSend text="Fail on trying to send. Verify the e-mail address." />
     <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
     <InvalidEmail text="Invalid E-mail" />
     <InvalidUser text="User and/or password invalid." />
@@ -29,6 +30,7 @@
     <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
     <UserAlreadyExists text="User already exists." />
     <UserInvalidEmail text="User e-mail is invalid." />
+    <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
     <YellowLimitUnderRedLimit text="Yellow Limit must be above Red Limit." />
   </en-US>
@@ -47,6 +49,7 @@
     <DisabledCategory text="Não é possível inserir Movimentações em Categorias desabilitadas." />
     <DuplicatedAccountName text="Há duas contas com o mesmo nome." />
     <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
+    <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail." />
     <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
     <InvalidEmail text="E-mail Inválido" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
@@ -61,6 +64,7 @@
     <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
     <UserAlreadyExists text="Usuário já existe." />
     <UserInvalidEmail text="E-mail inválido." />
+    <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
     <YellowLimitUnderRedLimit text="O Sinal Amarelo deve ter um valor maior que o Sinal Vermelho." />
   </pt-BR>

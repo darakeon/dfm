@@ -16,7 +16,7 @@ namespace DFM.Core.Database
         
         
         
-        public static User SelectByLogin(String email)
+        public static User SelectByEmail(String email)
         {
             var criteria = CreateSimpleCriteria(u => u.Email == email);
 
@@ -25,7 +25,7 @@ namespace DFM.Core.Database
 
         public static User ValidateAndGet(String email, String password)
         {
-            var user = SelectByLogin(email);
+            var user = SelectByEmail(email);
             password = encrypt(password);
 
             if (user == null || user.Password != password)
@@ -38,7 +38,7 @@ namespace DFM.Core.Database
 
         public static User SaveOrUpdate(User user)
         {
-            return SaveOrUpdate(user, validate, complete);
+            return SaveOrUpdate(user, complete, validate);
         }
 
         private static void validate(User user)
@@ -48,7 +48,7 @@ namespace DFM.Core.Database
             if (!regex.Match(user.Email).Success)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserInvalidEmail);
 
-            if (SelectByLogin(user.Email) != null)
+            if (SelectByEmail(user.Email) != null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserAlreadyExists);
         }
 

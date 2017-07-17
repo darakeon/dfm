@@ -10,7 +10,7 @@ namespace DFM.Core.Database
 
         public static Category SaveOrUpdate(Category category)
         {
-            return SaveOrUpdate(category, null, complete);
+            return SaveOrUpdate(category, complete, null);
         }
 
         private static void complete(Category category)

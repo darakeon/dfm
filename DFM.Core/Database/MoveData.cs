@@ -31,7 +31,7 @@ namespace DFM.Core.Database
 
         private static Move trySaveOrUpdate(Move move)
         {
-            try { return SaveOrUpdate(move, validate, complete); }
+            try { return SaveOrUpdate(move, complete, validate); }
             catch (Exception e) { return testIfIntermittent(e); }
         }
 
