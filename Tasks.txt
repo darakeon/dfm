@@ -1,3 +1,5 @@
+VERSION 1.0.0.0
+
 01/06	20/06	Detalhes na Movimentação
 20/06	29/06	-- Refazer roteamento para uma conta entrar em uma url
 29/06	18/07	Edição de Movimentação
@@ -46,3 +48,33 @@
 15/09	15/09	Robô para Taxas Fixas
 18/09	18/09	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
 18/09	19/09	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
+
+======================================================================================================
+
+VERSION 1.0.1.0
+		Implementar Log4Net
+		Refactor: BDD
+		Refactor Geral
+		Service WCF
+		
+		importador/exportador de XML
+		importador/exportador de Excel
+		importador/exportador de Money
+		importador/exportador de CSV
+
+		Validar login e senha por e-mail
+		Edição de Perfil de usuário
+		Permitir escolha da língua para usuário logado
+		Opção de enviar transações para o e-mail
+		Adicionar Sigla e opção de Habilitar em Menu ou não
+		
+		listar agendamentos para desativar (aparecerá deletar)
+		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
+	
+		relatórios anual por categoria
+		relatórios de mais de uma conta
+		Mostrar gastos futuros no relatório mensal
+		previsão de gastos (estatística)
+
+		"Adivinhar" categoria
+		taggeamento de movimentação
