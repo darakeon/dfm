@@ -37,37 +37,3 @@
 {
 	list-style-type: none;
 }
-
-
-button
-{
-	font-weight: bold;
-}
-
-a
-{
-    white-space: nowrap;
-}
-
-.finalList
-{
-	text-align: right;
-	margin-top: 20px;
-}
-
-
-
-td.numeric
-{
-	text-align: right;
-}
-
-td.in
-{
-	color: #00C;
-}
-
-td.out
-{
-	color: #C00;
-}

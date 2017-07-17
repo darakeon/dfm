@@ -1,0 +1,11 @@
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+a
+{
+    white-space: nowrap;
+}
+
+button
+{
+	font-weight: bold;
+}

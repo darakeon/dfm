@@ -1,0 +1,26 @@
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.tableFooterButtonList
+{
+	text-align: right;
+	margin-top: 20px;
+}
+
+td.numeric
+{
+	text-align: right;
+}
+
+td.in
+{
+	color: #00C;
+}
+
+td.out
+{
+	color: #C00;
+}
+
+
+
+

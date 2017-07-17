@@ -113,8 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Css\Color\Blood.css" />
-    <Content Include="Assets\Css\Entry.css" />
-    <Content Include="Assets\Css\LoggedIn.css" />
+    <Content Include="Assets\Css\LinkButton.css" />
+    <Content Include="Assets\Css\MVC.css" />
+    <Content Include="Assets\Css\SystemOut.css" />
+    <Content Include="Assets\Css\SystemIn.css" />
     <Content Include="Assets\Css\Color\Cripta.css" />
     <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
     <Content Include="Assets\Script\AllPages.js" />
@@ -126,7 +128,7 @@
     <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
     <Content Include="Global.asax" />
-    <Content Include="Assets\Css\Site.css" />
+    <Content Include="Assets\Css\Table.css" />
     <EmbeddedResource Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

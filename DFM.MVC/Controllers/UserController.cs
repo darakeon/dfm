@@ -5,6 +5,7 @@ using DFM.Core.Helpers;
 using DFM.MVC.Models;
 using DFM.Core.Database;
 using DFM.Core.Entities;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Controllers
 {
@@ -36,7 +37,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
                 }
 
 
@@ -71,7 +72,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)
