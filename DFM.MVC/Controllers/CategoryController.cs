@@ -70,11 +70,9 @@ namespace DFM.MVC.Controllers
 
             var oldCategory = CategoryData.SelectById(id);
 
-            if (isUnauthorized(oldCategory))
-                return RedirectToAction("Create");
-
-
-            return createEditForHtmlForm(model);
+            return isUnauthorized(oldCategory)
+                ? RedirectToAction("Create")
+                : createEditForHtmlForm(model);
         }
 
 

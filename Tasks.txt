@@ -49,7 +49,9 @@ VERSION 1.0.0.0
 18/09	18/09	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
 18/09	19/09	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
 21/09	21/09	Cifrar senha
-21/09	21/09	Limitar tamanhos dos campos de texto
+21/09	22/09	Limitar tamanhos dos campos de texto
+22/09	22/09	Verificar no IE
+22/09	22/09	Publicar
 
 ======================================================================================================
 

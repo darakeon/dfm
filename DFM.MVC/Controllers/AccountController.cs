@@ -66,11 +66,9 @@ namespace DFM.MVC.Controllers
 
             var oldAccount = AccountData.SelectById(id);
 
-            if (isUnauthorized(oldAccount))
-                return RedirectToAction("Create");
-
-
-            return createEdit(model);
+            return isUnauthorized(oldAccount)
+                ? RedirectToAction("Create")
+                : createEdit(model);
         }
 
         private ActionResult createEdit(AccountCreateEditModel model)
