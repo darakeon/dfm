@@ -19,11 +19,6 @@ namespace DFM.Service.Services
             MoveData.Delete(move);
         }
 
-        public void Schedule(Move move, Account account, Account secondAccount, Schedule schedule)
-        {
-            MoveData.Schedule(move, account, secondAccount, schedule);
-        }
-
         public Move SelectById(Int32 id)
         {
             return (Move)MoveData.SelectById(id);

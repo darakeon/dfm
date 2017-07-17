@@ -13,6 +13,7 @@ namespace DFM.Core.Entities
     {
         public Move()
         {
+
             DetailList = new List<Detail>();
         }
 
@@ -28,8 +29,6 @@ namespace DFM.Core.Entities
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
         public virtual Schedule Schedule { get; set; }
-
-        public virtual Boolean Scheduled { get; set; }
 
         public virtual IList<Detail> DetailList { get; set; }
 
@@ -50,14 +49,7 @@ namespace DFM.Core.Entities
         {
             get
             {
-                var show = Date <= DateTime.Now;
-
-                if (show && Scheduled)
-                {
-                    MoveData.MakeVisible(this);
-                }
-
-                return show;
+                return Date <= DateTime.Now;
             }
         }
 

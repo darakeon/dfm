@@ -34,8 +34,6 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             Move = new Move();
             Date = DateTime.Today;
-
-            Schedule = new Schedule();
         }
 
         public MoveCreateEditScheduleModel(Move move) : this()
@@ -75,9 +73,13 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsDetailed { get; set; }
 
 
-        public Boolean IsSchedule { get; set; }
+        public static Boolean IsSchedule { get; set; }
+        
+        [RequiredIfScheduled]
+        public Int32 Times { get { return Move.Schedule.Times; } set { Move.Schedule.Times = value; } }
+        [RequiredIfScheduled]
+        public ScheduleFrequency Frequency { get { return Move.Schedule.Frequency; } set { Move.Schedule.Frequency = value; } }
 
-        public Schedule Schedule { get; set; }
         public SelectList FrequencySelectList { get; set; }
 
 
@@ -112,6 +114,16 @@ namespace DFM.MVC.Areas.Accounts.Models
             if (Move.Category != null)
             {
                 CategoryID = Move.Category.ID;
+            }
+        }
+
+
+
+        public class RequiredIfScheduled : RequiredAttribute
+        {
+            public override bool IsValid(object value)
+            {
+                return !IsSchedule || base.IsValid(value);
             }
         }
 

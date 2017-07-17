@@ -33,15 +33,15 @@
     
     if (Model.IsSchedule)
     {
-        @Html.LabelFor(m => m.Schedule.Times, PlainText.Dictionary["TimesToSchedule"])
+        @Html.LabelFor(m => m.Times, PlainText.Dictionary["TimesToSchedule"])
     
-        @Html.TextBoxFor(m => m.Schedule.Times, new { @class = "amount" }) @(" ")
-        @Html.DropDownListFor(m => m.Schedule.Frequency, Model.FrequencySelectList)
+        @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
+        @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
 
         <br />
     
-        @Html.ValidationMessageFor(m => m.Schedule.Times)
-        @Html.ValidationMessageFor(m => m.Schedule.Frequency)
+        @Html.ValidationMessageFor(m => m.Times)
+        @Html.ValidationMessageFor(m => m.Frequency)
     
         <hr />
     }

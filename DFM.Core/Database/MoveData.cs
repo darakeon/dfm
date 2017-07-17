@@ -195,38 +195,5 @@ namespace DFM.Core.Database
             }
         }
 
-
-
-        public static void Schedule(Move move, Account account, Account secondAccount, Schedule schedule)
-        {
-            for(var t = 0; t <= schedule.Times; t++)
-            {
-                var newMove = move.Clone();
-
-                switch (schedule.Frequency)
-                {
-                    case ScheduleFrequency.Monthly:
-                        newMove.Date = newMove.Date.AddMonths(t);
-                        break;
-
-                    case ScheduleFrequency.Yearly:
-                        newMove.Date = newMove.Date.AddYears(t);
-                        break;
-                }
-
-                if (newMove.Date > DateTime.Now)
-                    newMove.Scheduled = true;
-
-                SaveOrUpdate(newMove, account, secondAccount);
-            }
-        }
-
-
-
-        internal static void MakeVisible(Move move)
-        {
-            move.Scheduled = false;
-            SaveOrUpdate(move, validate, complete);
-        }
     }
 }

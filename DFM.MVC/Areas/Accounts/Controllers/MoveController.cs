@@ -110,10 +110,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                     var currentAccount = AccountData.SelectById(accountid);
                     var otherAccount = AccountData.SelectById(model.AccountID ?? 0);
 
-                    if (isSchedule)
-                        MoveData.Schedule(model.Move, currentAccount, otherAccount, model.Schedule);
-                    else
-                        MoveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
+                    MoveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
 
                     return RedirectToRoute(
                             RouteNames.Default,
