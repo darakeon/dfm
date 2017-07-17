@@ -47,6 +47,10 @@ td.image {
 	text-align: center;
 }
 
+td.image img {
+	margin: 4px;
+}
+
 
 table.Mini {
 	width: 40%;

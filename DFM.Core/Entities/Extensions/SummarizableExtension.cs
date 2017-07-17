@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Ak.Generic.Enums;
+using DFM.Core.Database;
 using DFM.Core.Entities.Bases;
 using DFM.Core.Exceptions;
 
@@ -16,29 +17,38 @@ namespace DFM.Core.Entities.Extensions
 
         internal static Summary AjustSummaryList(this ISummarizable summarizable, Category category)
         {
-            return summarizable.GetSummary(category)
+            return summarizable.getSummary(category)
                 ?? summarizable.AddSummary(category);
         }
 
 
 
-        internal static Summary GetSummary(this ISummarizable summarizable, Category category)
+        internal static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
         {
+            return summarizable.getSummary(category)
+                   ?? summarizable.AddSummary(category);
+        }
+
+        private static Summary getSummary(this ISummarizable summarizable, Category category)
+        {
+            var list = summarizable.SummaryList
+                .Where(s => s.Category == category);
+
             try
             {
-                return summarizable.SummaryList
-                    .SingleOrDefault(s => s.Category == category);
+                return list.SingleOrDefault();
             }
             catch (InvalidOperationException e)
             {
-                var nature = summarizable.SummaryList.First().Nature;
+                if (!e.Message.StartsWith("Sequence contains more than one"))
+                    throw;
+                
+                foreach (var summary in list)
+                {
+                    SummaryData.Delete(summary);
+                }
 
-                var errorMessage = String.Format("SummaryAmbiguousIn{0}", nature);
-                var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
-
-                if (e.Message == "Sequence contains more than one matching element")
-                    throw DFMCoreException.WithMessage(errorEnumValue);
-                throw;
+                return null;
             }
         }
 

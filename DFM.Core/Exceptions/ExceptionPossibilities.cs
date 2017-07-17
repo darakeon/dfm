@@ -15,7 +15,6 @@
         InvalidCategory,
         InvalidToken,
         InvalidUser,
-        MonthAmbiguousInYear,
         MoveCircularTransfer,
         MoveFutureNotScheduled,
         OutMoveWrong,
@@ -26,7 +25,6 @@
         UserAlreadyExists,
         UserInvalidEmail,
         WrongUserEmail,
-        YearAmbiguousInAccount,
         YellowLimitUnderRedLimit,
     }
 

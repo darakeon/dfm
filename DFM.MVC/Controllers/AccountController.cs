@@ -96,7 +96,7 @@ namespace DFM.MVC.Controllers
 
 
 
-        public JsonResult Close(Int32 id)
+        public ActionResult Close(Int32 id)
         {
             var account = AccountData.SelectById(id);
 
@@ -118,13 +118,12 @@ namespace DFM.MVC.Controllers
                 message = PlainText.Dictionary[e.Message];
             }
 
-
-            return new JsonResult { Data = new { message } };
+            return RedirectToAction("Index");
         }
 
 
 
-        public JsonResult Delete(Int32 id)
+        public ActionResult Delete(Int32 id)
         {
             var account = AccountData.SelectById(id);
 
@@ -147,7 +146,7 @@ namespace DFM.MVC.Controllers
             }
 
 
-            return new JsonResult { Data = new { message } };
+            return RedirectToAction("Index");
         }
 
 

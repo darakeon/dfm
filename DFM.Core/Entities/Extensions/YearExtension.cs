@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DFM.Core.Exceptions;
+using DFM.Core.Database;
 
 namespace DFM.Core.Entities.Extensions
 {
@@ -15,21 +15,6 @@ namespace DFM.Core.Entities.Extensions
                 SummaryList = year.SummaryList,
                 Time = year.Time
             };
-        }
-
-        internal static Month GetMonth(this Year year, Int32 month)
-        {
-            try
-            {
-                return year.MonthList
-                    .SingleOrDefault(m => m.Time == month);
-            }
-            catch (InvalidOperationException e)
-            {
-                if (e.Message == "Sequence contains more than one matching element")
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.MonthAmbiguousInYear);
-                throw;
-            }
         }
 
     }

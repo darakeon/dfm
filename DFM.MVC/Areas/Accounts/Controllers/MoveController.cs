@@ -160,21 +160,21 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        [HttpPost]
-        public JsonResult Delete(Int32 id)
+        public ActionResult Delete(Int32 id)
         {
             var move = MoveData.SelectById(id);
+            var reportID = (move.In ?? move.Out).Url();
 
             if (isUnauthorized(move))
                 move = null;
             else
                 MoveData.Delete(move);
 
-            var message = move == null
-                ? PlainText.Dictionary["MoveNotFound"]
-                : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);
+            //var message = move == null
+            //    ? PlainText.Dictionary["MoveNotFound"]
+            //    : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);
 
-            return new JsonResult { Data = new { message } };
+            return RedirectToAction("SeeMonth", "Report", new { id = reportID });
         }
 
 

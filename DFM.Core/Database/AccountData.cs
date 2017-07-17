@@ -86,18 +86,18 @@ namespace DFM.Core.Database
         }
 
 
-        public static IList<Move> GetMonthReport(Int32 id, Int32 dateMonth, Int32 dateYear)
+        public static IList<Move> GetMonthReport(Int32 id, Int16 dateMonth, Int16 dateYear)
         {
             var account = SelectById(id);
 
 
-            var year = account.GetYear(dateYear);
+            var year = YearData.GetOrCreateYear(dateYear, account);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = year.GetMonth(dateMonth);
+            var month = MonthData.GetOrCreateMonth(dateMonth, year);
 
             return month == null
                 ? new List<Move>()
@@ -109,24 +109,24 @@ namespace DFM.Core.Database
         {
             var account = SelectById(accountid);
 
-            var year = account.GetYear(dateYear);
+            var year = YearData.GetOrCreateYear(dateYear, account);
 
-            return year == null
-                ? new Year { Account = account, Time = dateYear }
-                : nonFuture(year);
+            return nonFuture(year);
         }
 
         private static Year nonFuture(Year year)
         {         
-            if (year.Time == DateTime.Today.Year)
+            if (year.Time >= DateTime.Today.Year)
             {
-                //prevent from saving and destroying the true element
+                //prevent from saving and destroying the original element
                 var currentYear = year.Clone();
 
                 currentYear.MonthList =
                     currentYear.MonthList
                         .Where(m => m.Time <= DateTime.Today.Month)
                         .ToList();
+
+                return currentYear;
             }
 
             return year;

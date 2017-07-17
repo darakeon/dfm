@@ -16,10 +16,12 @@ namespace DFM.Core.Database
 
         public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
         {
+            ajustOldSummaries(move.ID);
+
             placeAccountsInMove(move, accountOut, accountIn);
             move = trySaveOrUpdate(move);
 
-            ajustLastAndCurrentSummaries(move);
+            ajustSummaries(move);
 
             return move;
         }
@@ -89,18 +91,21 @@ namespace DFM.Core.Database
         }
 
 
-        private static void ajustLastAndCurrentSummaries(Move move)
-        {
-            ajustOld(move.ID);
-            ajustSummaries(move);
-        }
-
-        private static void ajustOld(Int32 id)
+        private static void ajustOldSummaries(Int32 id)
         {
             var oldMove = SelectById(id);
 
-            if (oldMove != null)
-                ajustSummaries(oldMove);
+            if (oldMove == null) return;
+
+            Session.Evict(oldMove);
+            
+            if (oldMove.In != null)
+                oldMove.In.InList.Remove(oldMove);
+
+            if (oldMove.Out != null)
+                oldMove.Out.OutList.Remove(oldMove);
+            
+            ajustSummaries(oldMove);
         }
 
         private static void ajustSummaries(Move move)
@@ -241,7 +246,7 @@ namespace DFM.Core.Database
         public static new void Delete(Move move)
         {
             removeFromMonth(move);
-            ajustLastAndCurrentSummaries(move);
+            ajustSummaries(move);
 
             BaseData<Move>.Delete(move);
         }

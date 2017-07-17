@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DFM.Core.Enums;
-using DFM.Core.Exceptions;
 
 namespace DFM.Core.Entities.Extensions
 {
@@ -24,21 +23,6 @@ namespace DFM.Core.Entities.Extensions
                             m => m.MoveList().Any()
                         )
                 );
-        }
-
-        internal static Year GetYear(this Account account, Int32 year)
-        {
-            try
-            {
-                return account.YearList
-                    .SingleOrDefault(m => m.Time == year);
-            }
-            catch (InvalidOperationException e)
-            {
-                if (e.Message == "Sequence contains more than one matching element")
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.YearAmbiguousInAccount);
-                throw;
-            }
         }
 
         public static Boolean AuthorizeCRUD(this Account account, User user)

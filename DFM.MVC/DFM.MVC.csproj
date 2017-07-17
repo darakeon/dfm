@@ -228,6 +228,7 @@
     <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Assets\Script\Menu.js" />
     <Content Include="Assets\Script\Navigation.js" />
+    <Content Include="Assets\Script\ImageLink.js" />
     <Content Include="Assets\Script\Starter.js" />
     <Content Include="Assets\Script\Ajax.js" />
     <Content Include="Assets\Script\Detail.js" />

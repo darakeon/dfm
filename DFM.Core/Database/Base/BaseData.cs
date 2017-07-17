@@ -42,7 +42,7 @@ namespace DFM.Core.Database.Base
             }
             catch (Exception e)
             {
-                if (e.InnerException.Message.StartsWith("Data too long for column"))
+                if (e.InnerException != null && e.InnerException.Message.StartsWith("Data too long for column"))
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeData);
                 throw;
             }

@@ -58,13 +58,22 @@ else
                         { @(" ") }
                 </td>
 
-                <td>@Html.ActionLink(PlainText.Dictionary["Edit"], "Edit", "Move", new { id = move.ID }, null)</td>
+                @{
+                    var editLabel = PlainText.Dictionary["Edit", "Move"];
+                    var editUrl = Url.Action("Edit", "Move", new { id = move.ID });
 
-                <td>@Ajax.ActionLink(PlainText.Dictionary["Delete"], "Delete", "Move", new { id = move.ID },
-                        new AjaxOptionsDFM
-                        {
-                            Confirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.Description),
-                        })</td>
+                    var deleteLabel = PlainText.Dictionary["Delete", "Move"];
+                    var deleteUrl = Url.Action("Delete", "Move", new { id = move.ID });
+                    var deleteConfirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.Description);
+                    }
+
+                <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+
+                <td class="image">
+                    <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+                        <img src="/Assets/Image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                    </a>
+                </td>
                 
             </tr>
 

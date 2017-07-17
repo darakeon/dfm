@@ -32,28 +32,28 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var currentMonth = (Int16)DateTime.Today.Month;
 
-            var month = id.HasValue
-                ? id.Value % 100
+            var dateMonth = id.HasValue
+                ? (Int16)(id.Value % 100)
                 : currentMonth;
 
-            month = month.ForceBetween(1, 12);
+            dateMonth = dateMonth.ForceBetween(1, 12);
 
 
-            var currentYear = DateTime.Today.Year;
+            var currentYear = (Int16)DateTime.Today.Year;
 
-            var year = id.HasValue
-                ? id.Value / 100
+            var dateYear = id.HasValue
+                ? (Int16)(id.Value / 100)
                 : currentYear;
 
-            year = year.ForceBetween(1900, currentYear);
+            dateYear = dateYear.ForceBetween(1900, currentYear);
 
 
             var model = new ReportSeeMonthModel
                             {
-                                MoveList = AccountData.GetMonthReport(accountid, month, year),
+                                MoveList = AccountData.GetMonthReport(accountid, dateMonth, dateYear),
                                 Account = AccountData.SelectById(accountid),
-                                Month = month,
-                                Year = year,
+                                Month = dateMonth,
+                                Year = dateYear,
                             };
 
 

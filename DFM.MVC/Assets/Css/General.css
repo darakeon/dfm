@@ -9,6 +9,10 @@ body {
 	font-size: 15px;
 }
 
+img {
+    vertical-align: middle;
+}
+
 div#Head, div#Menu, div#Main, div#PS, div#Footer {
 	margin: 0 auto;
 }

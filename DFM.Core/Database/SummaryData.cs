@@ -34,8 +34,7 @@ namespace DFM.Core.Database
             var year = YearData.GetOrCreateYear(yearDate, account);
             var month = MonthData.GetOrCreateMonth(monthDate, year);
 
-            var summaryMonth = month.GetSummary(category)
-                ?? new Summary { Category = category, Month = month, Nature = SummaryNature.Month };
+            var summaryMonth = month.GetOrCreateSummary(category);
 
             AjustValue(summaryMonth);
         }
@@ -44,8 +43,7 @@ namespace DFM.Core.Database
         {
             var year = YearData.GetOrCreateYear(yearDate, account);
 
-            var summaryYear = year.GetSummary(category)
-                ?? new Summary { Category = category, Year = year, Nature = SummaryNature.Year };
+            var summaryYear = year.GetOrCreateSummary(category);
 
             AjustValue(summaryYear);
         }

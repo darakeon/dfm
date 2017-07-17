@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-
 @if (!Model.AccountList.Any())
 { 
     <div class="ZeroItems">@PlainText.Dictionary["NoAccounts"]</div>
@@ -32,41 +31,49 @@ else
 
             var sign = account.Sign();
             
+            
             var createLabel = PlainText.Dictionary["Create", "Move"];
             var createUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID });
             
             var scheduleLabel = PlainText.Dictionary["Schedule", "Move"];
             var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accountid = account.ID });
             
-            var editLabel = PlainText.Dictionary["Edit"];
-            var editUrl = Url.RouteUrl(RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID });
-            
+            var editLabel = PlainText.Dictionary["Edit", "Account"];
+            var editUrl = Url.Action("Edit", "Account", new { id = account.ID });
+
+
+            var closeLabel = PlainText.Dictionary["Close", "Account"];
+            var closeUrl = Url.Action("Close", new { id = account.ID });
+            var closeConfirm = String.Format(PlainText.Dictionary["CloseConfirm"], account.Name);
+
+            var deleteLabel = PlainText.Dictionary["Delete", "Account"];
+            var deleteUrl = Url.Action("Delete", new { id = account.ID });
+            var deleteConfirm = String.Format(PlainText.Dictionary["DeleteConfirm"], account.Name);
+
             <tr>
                 <td>@account.Name </td>
                 <td>@account.BeginDate.ToShortDateString() </td>
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                     
-                <td class="account_sign">@if (sign != null) {<img src="/Assets/image/@(sign)_sign.gif" alt="@sign" />}</td>
+                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
 
                 <td class="image"><a href="@createUrl"><img src="/Assets/Image/create_move.gif" alt="@createLabel" title="@createLabel" /></a></td>
                 <td class="image"><a href="@scheduleUrl"><img src="/Assets/Image/schedule_move.gif" alt="@scheduleLabel" title="@scheduleLabel" /></a></td>
                 <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
-                <td>
+                <td class="image">
                     @if (account.HasMoves())
                     {
-                        @Ajax.ActionLink(
-                                PlainText.Dictionary["Close"], "Close", new { id = account.ID },
-                                new AjaxOptionsDFM() { Confirm = String.Format(PlainText.Dictionary["CloseConfirm"], account.Name) }
-                            ) 
+                        <a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
+                            <img src="/Assets/Image/close.gif" alt="@closeLabel" title="@closeLabel" />
+                        </a>
                     }
                     else
                     {
-                        @Ajax.ActionLink(
-                                PlainText.Dictionary["Delete"], "Delete", new { id = account.ID },
-                                new AjaxOptionsDFM() { Confirm = String.Format(PlainText.Dictionary["DeleteConfirm"], account.Name) }
-                            ) 
+                        <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+                            <img src="/Assets/Image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                        </a>
                     }
                 </td>
             </tr>
