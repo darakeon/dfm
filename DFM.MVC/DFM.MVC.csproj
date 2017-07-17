@@ -150,11 +150,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
-    <Content Include="Assets\Css\IE.css" />
-    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
-    <Content Include="Assets\Css\Libraries\datepicker.css" />
-    <Content Include="Assets\Css\Navigation.css" />
-    <Content Include="Assets\Css\TopRightDiv.css" />
+    <Content Include="Assets\Css\IE.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\Libraries\datepicker.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\Navigation.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\TopRightDiv.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
@@ -204,63 +214,149 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Css\Forms.css" />
-    <Content Include="Assets\Css\HalfScreen.css" />
-    <Content Include="Assets\Css\Menu.css" />
-    <Content Include="Assets\Css\General.css" />
-    <Content Include="Assets\Css\MVC.css" />
-    <Content Include="Assets\Css\SystemOut.css" />
-    <Content Include="Assets\Css\SystemIn.css" />
-    <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css" />
-    <Content Include="Assets\Image\green_sign.gif" />
-    <Content Include="Assets\Image\logo_in.gif" />
-    <Content Include="Assets\Image\logo_out.gif" />
-    <Content Include="Assets\Image\off_in.gif" />
-    <Content Include="Assets\Image\off_in_hover.gif" />
-    <Content Include="Assets\Image\off_out.gif" />
-    <Content Include="Assets\Image\off_out_hover.gif" />
-    <Content Include="Assets\Image\pig.gif" />
-    <Content Include="Assets\Image\pig.ico" />
-    <Content Include="Assets\Image\red_sign.gif" />
-    <Content Include="Assets\Image\yellow_sign.gif" />
-    <Content Include="Assets\Script\Forms.js" />
-    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
-    <Content Include="Assets\Script\Menu.js" />
-    <Content Include="Assets\Script\Navigation.js" />
-    <Content Include="Assets\Script\ImageLink.js" />
-    <Content Include="Assets\Script\Starter.js" />
-    <Content Include="Assets\Script\Ajax.js" />
-    <Content Include="Assets\Script\Detail.js" />
-    <Content Include="Assets\Script\ButtonHref.js" />
-    <Content Include="Assets\Script\MoneyAndDate.js" />
-    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js" />
-    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
+    <Content Include="Assets\Css\Forms.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\HalfScreen.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\Menu.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\General.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\MVC.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\SystemOut.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\SystemIn.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\green_sign.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\logo_in.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\logo_out.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\off_in.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\off_in_hover.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\off_out.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\off_out_hover.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\pig.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\pig.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\red_sign.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Image\yellow_sign.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Forms.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Menu.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Navigation.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\ImageLink.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Starter.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Ajax.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Detail.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\ButtonHref.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\MoneyAndDate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery.validate.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
-    <Content Include="Assets\Css\Table.css" />
+    <Content Include="Assets\Css\Table.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\EmailLayouts\en-US\UserVerification.htm" />
     <Content Include="MultiLanguage\EmailLayouts\en-US\ForgotPassword.htm" />
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\ForgotPassword.htm" />
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\UserVerification.htm" />
     <Content Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\token.xml" />
-    <Content Include="MultiLanguage\Resources\report.xml" />
+    <Content Include="MultiLanguage\Resources\token.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MultiLanguage\Resources\report.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\Resources\general.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\move.xml" />
+    <Content Include="MultiLanguage\Resources\move.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\Resources\user.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\category.xml" />
+    <Content Include="MultiLanguage\Resources\category.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\Resources\error.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
