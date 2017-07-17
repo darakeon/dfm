@@ -1,6 +1,6 @@
 ﻿function AjustMoneyAndDate() {
     AjustMoney(".money");
-    AjustDate(".date");
+    AjustDate(".date_notHour");
 }
 
 function AjustMoney(discriminator) {

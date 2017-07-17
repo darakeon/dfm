@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    ActiveDatePicker();
+
     $('#newCategoryCaller').click(function () {
         $('#newCategory').toggle();
     });
@@ -26,6 +28,16 @@ $(document).ready(function () {
     var boundless = $("#Boundless:checked");
     ToggleBoundless(boundless);
 });
+
+
+function ActiveDatePicker() {
+    $("#Move_Date").datepicker({
+        dateFormat: "dd/mm/yy",
+        dayNamesMin: dayNames
+    });
+
+    $("#Move_Date").attr("disabled", false);
+}
 
 
 function InsertCategoryOnDropDown(data) {

@@ -151,6 +151,8 @@
   <ItemGroup>
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
     <Content Include="Assets\Css\IE.css" />
+    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\Css\Libraries\datepicker.css" />
     <Content Include="Assets\Css\Navigation.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
@@ -205,7 +207,7 @@
     <Content Include="Assets\Css\MVC.css" />
     <Content Include="Assets\Css\SystemOut.css" />
     <Content Include="Assets\Css\SystemIn.css" />
-    <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
+    <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css" />
     <Content Include="Assets\Image\green_sign.gif" />
     <Content Include="Assets\Image\logo_in.gif" />
     <Content Include="Assets\Image\logo_out.gif" />
@@ -218,6 +220,8 @@
     <Content Include="Assets\Image\red_sign.gif" />
     <Content Include="Assets\Image\yellow_sign.gif" />
     <Content Include="Assets\Script\Forms.js" />
+    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Assets\Script\Menu.js" />
     <Content Include="Assets\Script\Navigation.js" />
     <Content Include="Assets\Script\Starter.js" />
@@ -225,13 +229,12 @@
     <Content Include="Assets\Script\Detail.js" />
     <Content Include="Assets\Script\ButtonHref.js" />
     <Content Include="Assets\Script\MoneyAndDate.js" />
-    <Content Include="Assets\Script\Libraries\jquery-1.6.1.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js" />
     <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
+    <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Table.css" />
     <Content Include="MultiLanguage\Resources\account.xml">
