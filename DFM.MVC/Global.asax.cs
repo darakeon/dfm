@@ -25,6 +25,8 @@ namespace DFM.MVC
 
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("elmah.axd");
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -48,7 +50,11 @@ namespace DFM.MVC
             NHManager.Start();
             PlainText.Initialize();
 
-            XmlConfigurator.Configure();
+
+            if (isLocal)
+                XmlConfigurator.Configure();
+
+                
             
         }
 
@@ -61,7 +67,7 @@ namespace DFM.MVC
 
             NHManager.Open();
 
-            if (Request.Url.Host == "localhost")
+            if (isLocal)
                 PlainText.Initialize();
 
         }
@@ -133,5 +139,16 @@ namespace DFM.MVC
                     .Url.AbsolutePath.StartsWith("/Assets/");
             }
         }
+
+        private static Boolean isLocal
+        {
+            get
+            {
+                return HttpContext.Current.Request
+                    .Url.Host == "localhost";
+            }
+        }
+
+
     }
 }

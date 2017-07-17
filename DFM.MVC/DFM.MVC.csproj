@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\Library\Elmah\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
     <Reference Include="Iesi.Collections">
       <HintPath>..\Library\NHibernate\Iesi.Collections.dll</HintPath>
