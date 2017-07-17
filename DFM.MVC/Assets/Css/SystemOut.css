@@ -24,3 +24,7 @@ hr.Text {
     height: 1px;
     width: 25%;
 }
+
+div#PS {
+	display: none;
+}
