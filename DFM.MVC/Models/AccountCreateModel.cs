@@ -8,7 +8,7 @@ using DFM.Core.Enums;
 
 namespace DFM.MVC.Models
 {
-    public class AccountCreateModel : BaseModel
+    public class AccountCreateModel : BaseLoggedModel
     {
         public AccountCreateModel()
         {

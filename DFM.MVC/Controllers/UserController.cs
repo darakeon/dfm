@@ -33,7 +33,7 @@ namespace DFM.MVC.Controllers
                 
                 try
                 {
-                    user = userData.Validate(model.Login, model.Password);
+                    user = userData.GetAndValidate(model.Login, model.Password);
                 }
                 catch (CoreValidationException e)
                 {
@@ -43,7 +43,7 @@ namespace DFM.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    return LogOnUser(user, returnUrl);
+                    return logOnUser(user, returnUrl);
                 }
             }
 
@@ -77,7 +77,7 @@ namespace DFM.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    return LogOnUser(model.User);
+                    return logOnUser(model.User);
                 }
             }
 
@@ -91,11 +91,11 @@ namespace DFM.MVC.Controllers
         {
             Authenticate.Clean(Request);
 
-            return RedirectToRoute(RouteNames.Default);
+            return RedirectToAction("Index", "Home");
         }
 
 
-        private ActionResult LogOnUser(User user, String returnUrl = null)
+        private ActionResult logOnUser(User user, String returnUrl = null)
         {
             Authenticate.Set(user.Login, Response);
 

@@ -1,27 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.Core.Enums;
 
 namespace DFM.Core.Entities
 {
     public class Transfer : IEntity
     {
-        public Transfer() { }
-
-        public Transfer(Move outMove, Move inMove) : this()
+        public Transfer(Move @in, Move @out)
         {
-            outMove.Transfer = this;
-            outMove.Nature = MoveNature.Out;
-            Out = outMove;
-
-            inMove.Transfer = this;
-            inMove.Nature = MoveNature.In;
-            In = inMove;
+            In = @in;
+            Out = @out;
         }
 
-        public Transfer(Move move, Account otherAccount)
-            : this(move, move.Clone(otherAccount)) { }
 
-
+        public Transfer(Move move, Account otherAccount) : this(move, move.Clone(otherAccount)) { }
 
         public virtual Int32 ID { get; set; }
 
@@ -31,8 +24,7 @@ namespace DFM.Core.Entities
 
         public override string ToString()
         {
-            return String.Format("{0} / {1}", In, Out);
+            return String.Format("{0} > {1}", Out, In);
         }
-
     }
 }

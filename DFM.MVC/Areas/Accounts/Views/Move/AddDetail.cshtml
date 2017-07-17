@@ -5,4 +5,9 @@
 
     <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Description)</td>
     <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Value, new { @class = "money" })</td>
+    <td>
+        @Html.ValidationMessageFor(m => m.Move.DetailList[Model.Position].Description)
+        @Html.ValidationMessageFor(m => m.Move.DetailList[Model.Position].Value)
+    </td>
+
 </tr>

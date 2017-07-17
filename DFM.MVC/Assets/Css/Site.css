@@ -43,3 +43,8 @@ button
 {
 	font-weight: bold;
 }
+
+a
+{
+    white-space: nowrap;
+}

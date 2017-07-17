@@ -7,11 +7,6 @@ div.menu
 	text-align: center;
 }
 
-p.menuTitle
-{
-	font-weight: bold;
-}
-
 div.Main
 {
 	border: 3px dashed;
@@ -21,7 +16,7 @@ div.Main
 
 table.List
 {
-	width: 90%;
+	width: 100%;
 }
 
 table.List td

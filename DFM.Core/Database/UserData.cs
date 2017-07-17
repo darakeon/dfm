@@ -1,21 +1,25 @@
 ﻿using System;
-using System.Linq;
 using DFM.Core.Entities;
+using NHibernate.Criterion;
 
 namespace DFM.Core.Database
 {
     public class UserData : BaseData<User>
     {
+        public UserData()
+        {
+            Validate += validate;
+        }
+
         public User SelectByLogin(string login)
         {
             return Session
                 .CreateCriteria(typeof(User))
-                .List<User>()
-                .Where(u => u.Login == login)
-                .SingleOrDefault();
+                .Add(Restrictions.Eq("Login", login))
+                .UniqueResult<User>();
         }
 
-        public User Validate(string login, string password)
+        public User GetAndValidate(string login, string password)
         {
             var user = SelectByLogin(login);
 
@@ -25,14 +29,8 @@ namespace DFM.Core.Database
             return user;
         }
 
-        public override User SaveOrUpdate(User user)
-        {
-            Validate(user);
 
-            return base.SaveOrUpdate(user);
-        }
-
-        private void Validate(User user)
+        private void validate(User user)
         {
             if (SelectByLogin(user.Login) != null)
                 throw new ApplicationException("Already Exists.");

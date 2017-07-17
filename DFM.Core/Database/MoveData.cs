@@ -1,39 +1,48 @@
 ﻿using System.Linq;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
-using System;
 using DFM.Core.Helpers;
+using NHibernate.Linq;
 
 namespace DFM.Core.Database
 {
     public class MoveData : BaseData<Move>
     {
-        public Move SaveOrUpdate(Move move, Account accountToTransfer = null)
+        TransferData transferData = new TransferData();
+
+        public MoveData()
         {
-            Validate(move);
-
-            MakeTransfer(move, accountToTransfer);
-
-            return base.SaveOrUpdate(move);
+            Validate += validate;
+            Complete += complete;
         }
 
-        public void MakeTransfer(Move move, Account accountToTransfer)
+        private void complete(Move move)
         {
-            if (move.Nature == MoveNature.Transfer)
-            {
-                if (accountToTransfer == null)
-                    throw new CoreValidationException("Another Account is required to create a Transfer Move.");
-
-                move.Transfer = new Transfer(move, accountToTransfer);
-            }
+            ajustDetail(move);
+            editTransfer(move);
         }
 
-        public void Validate(Move move)
+        private void editTransfer(Move move)
         {
-            if (!move.DetailList.Any())
-                throw new CoreValidationException("At least one value required.");
+            //var isEditing = move.ID != 0;
+            //var isTransfer = move.Transfer != null;
 
+            //if (isEditing && isTransfer)
+            //{
+            //    switch (move.Nature)
+            //    {
+            //        case MoveNature.In:
+            //            move.Transfer.Out.Mirror(move);
+            //            break;
+            //        case MoveNature.Out:
+            //            move.Transfer.In.Mirror(move);
+            //            break;
+            //    }
+            //}
+        }
 
+        private void ajustDetail(Move move)
+        {
             foreach (var detail in move.DetailList)
             {
                 if (detail.Value < 0)
@@ -43,5 +52,34 @@ namespace DFM.Core.Database
                     detail.Move = move;
             }
         }
+
+
+
+        private void validate(Move move)
+        {
+            if (move.Nature == MoveNature.Transfer)
+                throw new CoreValidationException("If the move is a Transfer, call TestAndMakeTransfer before save.");
+
+            if (!move.DetailList.Any())
+                throw new CoreValidationException("At least one value required.");
+        }
+
+
+
+        public void TestAndMakeTransfer(Move move, Account accountToTransfer)
+        {
+            if (move.Nature == MoveNature.Transfer)
+            {
+                if (accountToTransfer == null)
+                    throw new CoreValidationException("Another Account is required to create a Transfer Move.");
+
+                transferData.Delete(move.Transfer);
+
+                move.Transfer = new Transfer(move, accountToTransfer);
+            }
+        }
+
+
+
     }
 }

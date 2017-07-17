@@ -6,14 +6,12 @@ namespace DFM.Core.Database
 {
     public class TransferData : BaseData<Transfer>
     {
-        public override Transfer SaveOrUpdate(Transfer transfer)
+        public TransferData()
         {
-            Validate(transfer);
-
-            return base.SaveOrUpdate(transfer);
+            Validate += validate;
         }
 
-        public void Validate(Transfer transfer)
+        private void validate(Transfer transfer)
         {
             var movesIsRight = transfer.In.Nature == MoveNature.In
                                && transfer.Out.Nature == MoveNature.Out;

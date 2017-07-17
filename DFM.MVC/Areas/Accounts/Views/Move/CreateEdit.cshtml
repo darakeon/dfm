@@ -5,12 +5,16 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-    var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
-    var addDetailsPage = '@Url.Action("AddDetail")';
-</script>
-<script src='@Url.Content("~/Assets/Script/Pages/MoveCreate.js")' type='text/javascript'></script>
-<link href="@Url.Content("~/Assets/Css/Pages/MoveCreate.css")" rel="stylesheet" type="text/css" />
+@section HtmlHead { 
+    <script type="text/javascript">
+        var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
+        var addDetailsPage = '@Url.Action("AddDetail")';
+    </script>
+
+    <script src='@Url.Content("~/Assets/Script/Pages/MoveCreate.js")' type='text/javascript'></script>
+    <link href="@Url.Content("~/Assets/Css/Pages/MoveCreate.css")" rel="stylesheet" type="text/css" />
+}
+
 
 
 <div id="newCategory">@Html.Action("CreateClean", "Category")</div>

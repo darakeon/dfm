@@ -40,6 +40,7 @@
     <Reference Include="Ak.MVC">
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -76,7 +77,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\AccountIndexModel.cs" />
-    <Compile Include="Areas\Accounts\Models\BaseModel.cs" />
+    <Compile Include="Models\BaseLoggedModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +125,10 @@
     <Content Include="Areas\Accounts\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\00 - Lib\Ak\Ak.DataAccess\Ak.DataAccess.csproj">
+      <Project>{DFC0990E-F17C-414B-BB07-10DC86835EC1}</Project>
+      <Name>Ak.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Core\DFM.Core.csproj">
       <Project>{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}</Project>
       <Name>DFM.Core</Name>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Enums;
+using NHibernate.Linq;
 
 namespace DFM.Core.Entities
 {
@@ -34,42 +35,20 @@ namespace DFM.Core.Entities
 
         public virtual Double Value
         {
-            get
-            {
-                return Sign * DetailList.Sum(d => d.Value);
-            }
+            get { return sign * DetailList.Sum(d => d.Value); }
         }
 
-        private Int32 Sign
+        private Int32 sign
         {
             get { return Nature == MoveNature.Out ? -1 : 1; }   
         }
 
 
 
-
-        public virtual Move Clone()
-        {
-            return Clone(Account);
-        }
-
-        public virtual Move Clone(Account otherAccount)
-        {
-            return new Move
-            {
-                Account = otherAccount,
-                Category = Category,
-                Date = Date,
-                Nature = Nature,
-                Transfer = Transfer,
-                DetailList = DetailList,
-            };
-        }
-
         public virtual void AddDetail(Detail detail)
         {
-            detail.Move = this;
             DetailList.Add(detail);
+                detail.Move = this;
         }
 
         public virtual Boolean HasRealDetails()
@@ -89,6 +68,38 @@ namespace DFM.Core.Entities
 
             AddDetail(detail);
         }
+
+
+
+        public virtual Move Clone(Account otherAccount)
+        {
+            var move = new Move
+                           {
+                               Account = otherAccount,
+                               Nature = Nature,
+                           };
+            
+            move.Mirror(this);
+
+            return move;
+        }
+
+        public virtual void Mirror(Move move)
+        {
+        	Date = move.Date;
+            Description = move.Description;
+
+            Category = move.Category;
+            Transfer = move.Transfer;
+            
+            move.DetailList
+                .ForEach(
+                    d => DetailList.Add( 
+                        d.Clone(move)
+                    )
+                );
+        }
+
 
 
         public override string ToString()

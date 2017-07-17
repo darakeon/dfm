@@ -29,8 +29,15 @@ function AjustMoney(discriminator) {
     $(discriminator).maskMoney();
 
     $(discriminator).each(function () {
+        var dotPosition = this.value.indexOf('.');
+        var numberSize = this.value.length;
+
         if (this.value == '0')
             this.value = '';
+        else if (dotPosition == -1)
+            this.value += '.00';
+        else if (dotPosition + 3 > numberSize)
+            this.value += '0';
     });
 }
 

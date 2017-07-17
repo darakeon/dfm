@@ -1,36 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
+using Ak.DataAccess.NHibernate;
 using DFM.Core.Entities;
 using NHibernate;
 
 namespace DFM.Core.Database
 {
     public abstract class BaseData<T>
-        where T : IEntity
+        where T : class, IEntity
     {
         protected ISession Session
         {
-            get
-            {
-                return NHManager.Session;
-            }
+            get { return SessionBuilder.Session; }
         }
 
-        public virtual T SaveOrUpdate(T obj)
+        public T SaveOrUpdate(T entity)
         {
-            if (obj.ID == 0)
-                Session.SaveOrUpdate(obj);
-            else
-                Session.Merge(obj);
+            if (Complete != null) Complete(entity);
+            if (Validate != null) Validate(entity);
 
-            return obj;
+            if (entity.ID == 0)
+                Session.SaveOrUpdate(entity);
+            else
+                Session.Merge(entity);
+
+            return entity;
         }
+
+        protected delegate void DelegateValidade(T entity);
+        protected delegate void DelegateComplete(T entity);
+
+        protected event DelegateValidade Validate;
+        protected event DelegateComplete Complete;
+
+
 
         public virtual void Delete(T obj)
         {
-            Session.Delete(obj);
+            if (obj != null)
+                Session.Delete(obj);
         }
 
         public virtual T SelectById(int id)

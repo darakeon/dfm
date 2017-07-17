@@ -37,8 +37,8 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    model.Account.BeginDate = DateTime.Now;
-                    accountData.SaveOrUpdate(model.Account, Current.User);
+                    model.Account.User = Current.User;
+                    accountData.SaveOrUpdate(model.Account);
                 }
                 catch (CoreValidationException e)
                 {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class ReportSeeYearModel : BaseModel
+    public class ReportSeeYearModel : BaseLoggedModel
     {
         public ReportSeeYearModel()
         {

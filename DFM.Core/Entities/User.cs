@@ -8,6 +8,7 @@ namespace DFM.Core.Entities
         public User()
         {
             AccountList = new List<Account>();
+            CategoryList = new List<Category>();
         }
 
 

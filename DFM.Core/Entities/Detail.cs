@@ -13,6 +13,18 @@ namespace DFM.Core.Entities
 
 
 
+        public virtual Detail Clone(Move move)
+        {
+            return new Detail
+                       {
+                           Description = Description,
+                           Value = Value,
+                           Move = move,
+                       };
+        }
+
+
+
         public virtual bool HasDescription()
         {
             return !String.IsNullOrEmpty(Description)

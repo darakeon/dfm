@@ -1,26 +1,19 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.BaseModel
+﻿@model DFM.MVC.Models.BaseLoggedModel
 
-<p class='menuTitle'>ACCOUNTS</p>
+@foreach (var account in Model.LateralAccountList) { 
+    <p>
+        <span class="accountName">@account.Name </span><br />
+        @Html.RouteLink(Model.CurrentMonth, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeMonth", accountid = account.ID })
+        @Html.RouteLink(Model.CurrentYear, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeYear", accountid = account.ID }) 
+    </p>
+}
 
-@if (Model.LateralAccountList.Count == 0) { 
-    
-    @("Create the first Account, ")
-    @Html.ActionLink("click here", "Create")
-    @("!")
-    
-} else { 
-        
-    foreach (var account in Model.LateralAccountList) { 
-            
-        <p>
-            <span class="accountName">@account.Name </span><br />
-            @Html.RouteLink(Model.CurrentMonth, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeMonth", accountid = account.ID })
-            @Html.RouteLink(Model.CurrentYear, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeYear", accountid = account.ID }) 
-        </p>
+@if (Model.LateralAccountList.Any()) { <br /> }
 
-    } 
-
-    <p class="submit">@Html.ActionLink("New!", "Create", "Account") </p>
-} 
-
-<p class="submit">@Html.RouteLink("Signout", DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"}) </p>
+<p>
+    @Html.ActionLink("New Account", "Create", "Account")
+    <br />
+    @Html.RouteLink("Home", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
+    <b>//</b>
+    @Html.RouteLink("Log Off", DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"})
+</p>

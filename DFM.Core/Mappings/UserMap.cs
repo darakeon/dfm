@@ -11,7 +11,8 @@ namespace DFM.Core.Mappings
             mapping.Map(u => u.Login).Unique();
 
             mapping.HasMany(u => u.AccountList)
-                .Cascade.SaveUpdate();
+                .Cascade.SaveUpdate()
+                .Not.LazyLoad();
         }
     }
 }

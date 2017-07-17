@@ -9,10 +9,10 @@ namespace DFM.Core.Mappings
         public void Override(AutoMapping<Transfer> mapping)
         {
             mapping.References(t => t.In)
-                .Cascade.SaveUpdate();
+                .Cascade.All();
 
             mapping.References(t => t.Out)
-                .Cascade.SaveUpdate();
+                .Cascade.None();
         }
     }
 }

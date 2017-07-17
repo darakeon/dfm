@@ -16,6 +16,7 @@ namespace DFM.Core.Mappings
             mapping.IgnoreProperty(m => m.Value);
 
             mapping.HasMany(m => m.DetailList)
+                .Not.Inverse()
                 .Cascade.AllDeleteOrphan();
         }
     }

@@ -45,7 +45,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Create(MoveCreateEditModel model)
         {
-            return CreateEdit(model);
+            return createEdit(model);
         }
 
 
@@ -66,10 +66,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             model.Move.ID = id;
 
-            return CreateEdit(model);
+            return createEdit(model);
         }
 
-        private ActionResult CreateEdit(MoveCreateEditModel model)
+        private ActionResult createEdit(MoveCreateEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -83,11 +83,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
                 try
                 {
+                    var accountToTransfer = accountData.SelectById(model.AccountID ?? 0);
+                    moveData.TestAndMakeTransfer(model.Move, accountToTransfer);
+                    
                     moveData.SaveOrUpdate(model.Move);
 
                     return RedirectToRoute(
-                        RouteNames.Default,
-                        new { action = "Index", controller = "Account" }
+                            RouteNames.Default,
+                            new { action = "Index", controller = "Account" }
                         );
                 }
                 catch (CoreValidationException e)
@@ -125,8 +128,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             model.Title = RouteData.Values["action"].ToString();
 
 
-            
-            NHManager.NhInitialize(Current.User.CategoryList);
             
             model.CategorySelectList = SelectListExtension
                 .CreateSelect(Current.User.CategoryList, mv => mv.ID, mv => mv.Name);

@@ -24,6 +24,13 @@ namespace DFM.Core.Entities
         public virtual User User { get; set; }
 
         public virtual IList<Move> MoveList { get; set; }
+
+
+
+        public virtual Double MovesSum
+        {
+            get { return MoveList.Sum(m => m.Value); }
+        }
         
 
 
@@ -31,11 +38,6 @@ namespace DFM.Core.Entities
         {
             move.Account = this;
             MoveList.Add(move);
-        }
-
-        public virtual Double MovesSum()
-        {
-            return MoveList.Sum(m => m.Value);
         }
 
 

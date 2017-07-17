@@ -9,10 +9,11 @@ using DFM.Core.Database;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
+using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditModel : BaseModel
+    public class MoveCreateEditModel : BaseLoggedModel
     {
         public MoveCreateEditModel()
         {

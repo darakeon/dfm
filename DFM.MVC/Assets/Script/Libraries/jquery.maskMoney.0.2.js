@@ -33,7 +33,7 @@
 			symbol: "$",
 			decimal: ".",
 			precision: 2,
-			thousands: ",",
+			thousands: "",
 			showSymbol:false
 		}, settings);
 

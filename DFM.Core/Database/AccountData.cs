@@ -8,27 +8,25 @@ namespace DFM.Core.Database
 {
     public class AccountData : BaseData<Account>
     {
-        public Account SaveOrUpdate(Account account, User user)
+        public AccountData()
         {
-            Validate(account, user);
-
-            account.BeginDate = DateTime.Now;
-            account.User = user;
-
-            return base.SaveOrUpdate(account);
+            Validate += validate;
+            Complete += complete;
         }
 
-        public void Validate(Account account, User user)
+        private void validate(Account account)
         {
-            if (SelectByName(account.Name, user) != null)
+            var existingAccountForUser = SelectByName(account.Name, account.User);
+
+            if (existingAccountForUser != null)
             {
                 throw new CoreValidationException("Already Exists.");
             }
         }
 
-        public override Account SaveOrUpdate(Account obj)
+        private void complete(Account account)
         {
-            throw new CoreValidationException("Use the option with parameter User");
+            account.BeginDate = DateTime.Now;
         }
 
 

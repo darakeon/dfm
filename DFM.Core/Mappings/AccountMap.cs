@@ -16,6 +16,8 @@ namespace DFM.Core.Mappings
 
             mapping.References(a => a.User)
                 .Cascade.None();
+
+            mapping.IgnoreProperty(a => a.MovesSum);
         }
     }
 }
