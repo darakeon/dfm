@@ -46,10 +46,10 @@
     <Index_Moves text="Create, update, schedule and delete moves;" />
     <Index_Transfer text="Make transfers between accounts;" />
     <Index_Categories text="Manage categories of moves;" />
-    <Index_Reports text="From this data, you ca see reports of:" />
+    <Index_Reports text="From this data, you can see reports of:" />
     <Index_ReportMonth text="Month moves;" />
     <Index_ReportYear text="Yearly summary, with month sums;" />
-    <Index_Close text="In case of any doubt, verify our Tutorial. We are just beta yet. Continuously, new features will come." />
+    <Index_Close text="We are just beta yet. Continuously, new features will come." />
     <Index_Finish text="Sign up now and begin!" />
     
     <!--Menu (and Account)-->
