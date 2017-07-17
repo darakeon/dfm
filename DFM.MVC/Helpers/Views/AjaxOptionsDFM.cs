@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc.Ajax;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Views
 {
     public class AjaxOptionsDFM : AjaxOptions
     {

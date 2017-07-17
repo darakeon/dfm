@@ -6,15 +6,15 @@
 }
 
 <div class="MiniForm">
-    @if (isAuthenticated)
+    @if (isAuthenticated && false)
     {
         <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@PlainText.Dictionary["Enter"]</button>
     }
     else
     {
-        using (Html.BeginForm("LogOn", "User"))
+        using (Html.BeginForm("LogOn", "User", new { returnUrl = Request.QueryString["returnUrl"] }))
         {
-            @Html.ValidationSummary(true) 
+            @Html.ValidationSummary(true)
         
             <p>
                 @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])

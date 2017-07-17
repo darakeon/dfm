@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Extensions
 {
     public static class Int32Extension
     {

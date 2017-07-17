@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Views
 {
-    public static class Navigation
+    public static class TimeNavigation
     {
         public static MvcHtmlString NumberNavFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, Navigator navigator)
         {

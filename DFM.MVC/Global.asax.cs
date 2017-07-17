@@ -39,6 +39,8 @@ namespace DFM.MVC
         protected void Application_Start()
         // ReSharper restore InconsistentNaming
         {
+            if (isAsset) return;
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
@@ -53,6 +55,8 @@ namespace DFM.MVC
         protected void Application_BeginRequest()
         // ReSharper restore InconsistentNaming
         {
+            if (isAsset) return;
+
             NHManager.Open();
 
             if (Request.Url.Host == "localhost")
@@ -66,14 +70,18 @@ namespace DFM.MVC
         protected void Application_Error()
         // ReSharper restore InconsistentNaming
         {
+            if (isAsset) return;
+
             NHManager.Error();
         }
 
 
         // ReSharper disable InconsistentNaming
-        protected void Application_EndRequest(Object sender, EventArgs e)
+        protected void Application_EndRequest(object sender, EventArgs e)
         // ReSharper restore InconsistentNaming
         {
+            if (isAsset) return;
+
             if (!NHManager.IsAssetCalling && Current.IsAuthenticated)
                 ScheduleRunner.Run(Current.User);
 
@@ -85,6 +93,8 @@ namespace DFM.MVC
         protected void Application_End()
         // ReSharper restore InconsistentNaming
         {
+            if (isAsset) return;
+
             NHManager.End();
         }
 
@@ -105,5 +115,10 @@ namespace DFM.MVC
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
         }
 
+
+        private static Boolean isAsset
+        {
+            get { return HttpContext.Current.Request.Url.AbsolutePath.StartsWith("/Assets/"); }
+        }
     }
 }

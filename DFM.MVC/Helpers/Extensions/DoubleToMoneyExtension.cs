@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.MVC.MultiLanguage;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Extensions
 {
     public static class DoubleToMoneyExtension
     {

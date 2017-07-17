@@ -34,7 +34,7 @@ namespace DFM.Core.Entities
             var @in = sum(InList, category);
             var @out = sum(OutList, category);
 
-            return (@in - @out) * 100 / 100;
+            return Math.Round(@in - @out, 2);
         }
 
         private static Double sum(IEnumerable<Move> moveList, Category category)

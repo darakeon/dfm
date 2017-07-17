@@ -28,7 +28,8 @@ namespace DFM.Core.Database
 
             account.YearList.Add(newYear);
 
-            SaveOrUpdate(newYear);
+            //SaveOrUpdate(newYear);
+            
             return newYear;
         }
 

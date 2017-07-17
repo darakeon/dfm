@@ -3,7 +3,7 @@ using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Controllers
 {
     public class AccountSelector
     {

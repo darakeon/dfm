@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Extensions
 {
     public static class StringExtension
     {

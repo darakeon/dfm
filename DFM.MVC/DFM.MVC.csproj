@@ -35,12 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.MVC">
+    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
@@ -123,13 +127,13 @@
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
     <Content Include="Assets\Css\Navigation.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
-    <Compile Include="Helpers\AccountSelector.cs" />
-    <Compile Include="Helpers\AjaxOptionsDFM.cs" />
-    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
-    <Compile Include="Helpers\Menu.cs" />
-    <Compile Include="Helpers\Navigation.cs" />
-    <Compile Include="Helpers\Int32Extension.cs" />
-    <Compile Include="Helpers\StringExtension.cs" />
+    <Compile Include="Helpers\Controllers\AccountSelector.cs" />
+    <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
+    <Compile Include="Helpers\Extensions\DoubleToMoneyExtension.cs" />
+    <Compile Include="Helpers\Views\Menu.cs" />
+    <Compile Include="Helpers\Views\TimeNavigation.cs" />
+    <Compile Include="Helpers\Extensions\Int32Extension.cs" />
+    <Compile Include="Helpers\Extensions\StringExtension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />

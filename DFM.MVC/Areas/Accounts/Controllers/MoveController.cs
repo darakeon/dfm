@@ -7,6 +7,7 @@ using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
