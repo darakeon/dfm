@@ -1,8 +1,11 @@
 body {
-	background: #111;
+	background: #999;
+	text-align: justify;
+}
+
+* {
 	font-family: Calibri;
 	font-size: 15px;
-	text-align: justify;
 }
 
 div#Head, div#Main, div#Footer, div#Menu {
@@ -36,11 +39,23 @@ div#Footer {
 
 h2 {
 	color: #050;
+	font-size: 20px;
+}
+
+hr.underTitle {
+    background-color: #070;
+    border: none;
+    height: 2px;
 }
 
 a {
 	text-decoration: none;
 	cursor: pointer;
-	color: #070;
+	color: #555;
 	white-space: nowrap;
+}
+
+
+a:hover {
+	color: #090;
 }

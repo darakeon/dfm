@@ -40,9 +40,9 @@
         @if (isAuthenticated)
         {
             <a href="@Url.RouteUrl(RouteNames.Default, new { action = "LogOff", controller = "User" })">
-                <img id="Out" alt="DFM" src="@Url.Content("~/Assets/Image/sair.gif")"
-                    onmouseover="this.src='@Url.Content("~/Assets/Image/sair_on.gif")'"
-                    onmouseout="this.src='@Url.Content("~/Assets/Image/sair.gif")'" />
+                <img id="Out" alt="DFM" src="@Url.Content("~/Assets/Image/off.gif")"
+                    onmouseover="this.src='@Url.Content("~/Assets/Image/off_hover.gif")'"
+                    onmouseout="this.src='@Url.Content("~/Assets/Image/off.gif")'" />
             </a>
         }
 		
@@ -53,17 +53,18 @@
         }
 
         <a href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
-            <img id="Logo" alt="DFM" src="@Url.Content("~/Assets/Image/DFM.gif")" /></a>
+            <img id="Logo" alt="DFM" src="@Url.Content("~/Assets/Image/logo.gif")" /></a>
 	</div>
 
     @RenderSection("Menu", required: false)
 
     <div id="Main">
-        <div id="TopRightDiv">
-            @RenderSection("TopRightDiv", required: false)
-        </div>
+        @{/* Made without spaces to hide when empty */}
+        <div id="TopRightDiv">@RenderSection("TopRightDiv", required: false)</div>
 
-        <h2>@ViewBag.Title</h2>
+        <h2>@ViewBag.Title<hr class="underTitle" /></h2>
+
+        
 
         @RenderBody()
     </div>

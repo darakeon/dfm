@@ -1,9 +1,14 @@
-﻿div#TopRightDiv {
+﻿div#TopRightDiv:empty {
+    display: none;
+}
+
+div#TopRightDiv {
 	float: right;
 	background: #DFD;
 	padding: 10px 10px 10px 10px;
 	margin: -20px -20px 10px 10px;
 	border-radius: 0px 0px 0px 50px;
+	z-index: 1;
 }
 		
 div#TopRightDiv input {

@@ -8,8 +8,7 @@
     @RenderSection("HtmlHead", required: false)
 }
 
-@section TopRightDiv {
-    @RenderSection("TopRightDiv", required: false)
-}
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
 
 @RenderBody()

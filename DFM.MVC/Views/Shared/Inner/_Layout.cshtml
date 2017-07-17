@@ -17,8 +17,7 @@
     @{ Html.RenderPartial("Inner/Menu"); }
 }
 
-@section TopRightDiv {
-    @RenderSection("TopRightDiv", required: false)
-}
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
 
 @RenderBody()

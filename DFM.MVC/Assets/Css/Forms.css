@@ -12,7 +12,8 @@ select
 button {
 	margin-top: 20px;
 	border-radius: 10px 0px;
-	color: #fff; 
+	color: #fff;
+	font-weight: bold;
 	font-size: 12px;
 	text-transform: uppercase;
 	padding: 1px 5px 3px 5px;

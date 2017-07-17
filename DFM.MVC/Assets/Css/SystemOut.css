@@ -13,3 +13,10 @@ div#TopRightDiv div.MiniForm {
 button.topRightMoreSpace {
 	margin-left: 20px;
 }
+
+hr.Text {
+    background-color: #030;
+    border: none;
+    height: 1px;
+    width: 25%;
+}

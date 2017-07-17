@@ -40,8 +40,12 @@
         </div>
     }
 
-    @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "Fix" })
+    <div class="fixMenu">
+        @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "Fix" })
+    </div>
 
-    @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "Fix" })
+    <div class="fixMenu">
+        @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "Fix" })
+    </div>
 
 </div>
