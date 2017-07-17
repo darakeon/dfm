@@ -20,7 +20,6 @@ namespace DFM.Core.Database.Base
         }
 
 
-
         public T SaveOrUpdate(T entity)
         {
             if (Complete != null) Complete(entity);
@@ -42,12 +41,11 @@ namespace DFM.Core.Database.Base
 
 
 
-        public void Delete(T obj)
+        internal void Delete(T obj)
         {
             if (obj != null)
                 Session.Delete(obj);
         }
-
 
 
         public T SelectById(Int32 id)
@@ -57,23 +55,23 @@ namespace DFM.Core.Database.Base
 
 
 
-        public IList<T> Select()
+        internal IList<T> Select()
         {
             return select().List<T>();
         }
 
-        public T SelectSingle(Expression<Func<T, Boolean>> expression)
+        internal T SelectSingle(Expression<Func<T, Boolean>> expression)
         {
             return select(expression).UniqueResult<T>();
         }
 
         // TODO: Replace this shit
-        public T SelectOne(Expression<Func<T, Boolean>> preCriteriaExpression, Func<T, Boolean> posCriteriaExpression)
+        internal T SelectSingle(Expression<Func<T, Boolean>> preCriteriaExpression, Func<T, Boolean> posCriteriaExpression)
         {
             return Select(preCriteriaExpression).SingleOrDefault(posCriteriaExpression);
         }
 
-        public IList<T> Select(Expression<Func<T, Boolean>> expression)
+        internal IList<T> Select(Expression<Func<T, Boolean>> expression)
         {
             return select(expression).List<T>();
         }

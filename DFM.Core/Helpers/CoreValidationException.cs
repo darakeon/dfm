@@ -5,7 +5,7 @@ namespace DFM.Core.Helpers
 {
     public class DFMCoreException : Exception
     {
-        public DFMCoreException(String message) : base(message)
+        internal DFMCoreException(String message) : base(message)
         {
             NHManager.Error();
         }

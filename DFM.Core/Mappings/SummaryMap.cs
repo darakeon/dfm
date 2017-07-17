@@ -19,7 +19,7 @@ namespace DFM.Core.Mappings
             mapping.Map(s => s.IsValid)
                 .Default("1");
 
-            mapping.IgnoreProperty(s => s.SafeValue);
+            mapping.IgnoreProperty(s => s.Value);
         }
     }
 }

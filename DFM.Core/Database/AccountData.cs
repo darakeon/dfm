@@ -51,7 +51,7 @@ namespace DFM.Core.Database
 
 
         
-        public Account SelectByName(String name, User user)
+        internal Account SelectByName(String name, User user)
         {
             IList<Account> userList = Session
                 .CreateCriteria(typeof(Account))
@@ -95,7 +95,6 @@ namespace DFM.Core.Database
             return account.YearList
                 .SingleOrDefault(y => y.Time == year);
         }
-
 
 
         public void Close(Account account)

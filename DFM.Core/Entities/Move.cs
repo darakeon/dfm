@@ -16,23 +16,21 @@ namespace DFM.Core.Entities
         }
 
 
-
         public virtual Int32 ID { get; set; }
 
         public virtual String Description { get; set; }
         public virtual DateTime Date { get; set; }
         public virtual MoveNature Nature { get; set; }
-        
+
         public virtual Category Category { get; set; }
-        
+
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
 
         public virtual IList<Detail> DetailList { get; set; }
 
 
-
-        public virtual String Month
+        internal protected virtual String Month
         {
             get { return Date.ToString("MMMM"); }
         }
@@ -42,23 +40,22 @@ namespace DFM.Core.Entities
             get { return DetailList.Sum(d => d.Value * d.Amount); }
         }
 
-        public virtual Boolean Show
+        internal protected virtual Boolean Show
         {
             get { return Date <= DateTime.Now; }
         }
 
         [NhIgnore]
-        public virtual Account AccountIn
+        internal protected virtual Account AccountIn
         {
             get { return In.Year.Account; }
         }
 
         [NhIgnore]
-        public virtual Account AccountOut
+        internal protected virtual Account AccountOut
         {
             get { return Out.Year.Account; }
         }
-
 
 
         public virtual void AddDetail(Detail detail)
@@ -76,7 +73,7 @@ namespace DFM.Core.Entities
                 );
         }
 
-        public virtual void MakePseudoDetail(Double value)
+        internal protected virtual void MakePseudoDetail(Double value)
         {
             var id = (DetailList.FirstOrDefault() ?? new Detail()).ID;
 
@@ -87,7 +84,7 @@ namespace DFM.Core.Entities
             AddDetail(detail);
         }
 
-        public virtual Move Clone()
+        internal protected virtual Move Clone()
         {
             var move = new Move
                            {
@@ -106,7 +103,6 @@ namespace DFM.Core.Entities
 
             return move;
         }
-
 
 
         public override String ToString()

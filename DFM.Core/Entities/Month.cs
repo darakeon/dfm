@@ -29,19 +29,18 @@ namespace DFM.Core.Entities
         public virtual IList<Move> OutList { get; set; }
 
 
-
         public virtual Double Value
         {
-            get { return SummaryList.Sum(s => s.SafeValue); }
+            get { return SummaryList.Sum(s => s.Value); }
         }
 
         [NhIgnore]
-        public virtual Account Account 
+        internal protected virtual Account Account 
         {
             get { return Year.Account; }
         }
 
-        public virtual IList<Move> MoveList
+        internal protected virtual IList<Move> MoveList
         {
             get
             {
@@ -53,7 +52,6 @@ namespace DFM.Core.Entities
                 return list.OrderBy(m => m.ID).ToList();
             }
         }
-
 
 
         public virtual Double CheckUp(Category category)
@@ -80,26 +78,24 @@ namespace DFM.Core.Entities
             SummaryList.Add(summary);
         }
 
-        public virtual void AjustSummaryList(Category category)
+        internal protected virtual void AjustSummaryList(Category category)
         {
             if (!SummaryList.Any(s => s.Category == category))
                 AjustSummaryList(new Summary { Category = category });
         }
 
-        
-        
-        public virtual void AddOut(Move move)
+
+        internal protected virtual void AddOut(Move move)
         {
             move.Out = this;
             OutList.Add(move);
         }
 
-        public virtual void AddIn(Move move)
+        internal protected virtual void AddIn(Move move)
         {
             move.In = this;
             InList.Add(move);
         }
-
 
 
         public override String ToString()

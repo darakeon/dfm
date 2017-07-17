@@ -25,11 +25,10 @@ namespace DFM.Core.Entities
         public virtual IList<Summary> SummaryList { get; set; }
 
 
-        public virtual Double Value
+        internal protected virtual Double Value
         {
-            get { return SummaryList.Sum(s => s.SafeValue); }
+            get { return SummaryList.Sum(s => s.Value); }
         }
-
 
 
         public virtual Double CheckUp(Category category)
@@ -46,14 +45,13 @@ namespace DFM.Core.Entities
             SummaryList.Add(summary);
         }
 
-        public virtual void AjustSummaryList(Category category)
+        internal protected virtual void AjustSummaryList(Category category)
         {
             if (!SummaryList.Any(s => s.Category == category))
                 AjustSummaryList(new Summary { Category = category });
         }
 
-        
-        
+
         public override String ToString()
         {
             return Time.ToString();

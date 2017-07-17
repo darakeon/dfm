@@ -19,8 +19,7 @@ namespace DFM.Core.Entities
         public virtual Move Move { get; set; }
 
 
-
-        public virtual Detail Clone(Move move)
+        internal protected virtual Detail Clone(Move move)
         {
             return new Detail
                        {
@@ -32,15 +31,13 @@ namespace DFM.Core.Entities
         }
 
 
-
-        public virtual Boolean HasDescription()
+        internal protected virtual Boolean HasDescription()
         {
             return !String.IsNullOrEmpty(Description)
                 && Description != Move.Description;
         }
 
-        
-        
+
         public override String ToString()
         {
             return Description;

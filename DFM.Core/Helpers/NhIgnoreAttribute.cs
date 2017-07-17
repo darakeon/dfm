@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace DFM.Core.Helpers
 {
-    public class NhIgnoreAttribute : Attribute
+    internal class NhIgnoreAttribute : Attribute
     {
-        public static bool HasMe(PropertyInfo propertyInfo)
+        internal static bool HasMe(PropertyInfo propertyInfo)
         {
             return propertyInfo
                 .GetCustomAttributes(false)

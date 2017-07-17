@@ -1,6 +1,6 @@
 ﻿using System;
-using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Database.Base;
 
 namespace DFM.Core.Database
 {

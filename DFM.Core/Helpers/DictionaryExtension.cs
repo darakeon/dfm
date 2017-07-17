@@ -3,9 +3,9 @@ using System;
 
 namespace DFM.Core.Helpers
 {
-    public static class DictionaryExtension
+    internal static class DictionaryExtension
     {
-        public static void SumItem<TKey>(this IDictionary<TKey, Double> sumList, TKey key, Double value)
+        internal static void SumItem<TKey>(this IDictionary<TKey, Double> sumList, TKey key, Double value)
         {
             if (sumList.ContainsKey(key))
                 sumList[key] += value;

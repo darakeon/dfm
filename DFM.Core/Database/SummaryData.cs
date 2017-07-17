@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using DFM.Core.Database.Base;
-using DFM.Core.Entities;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
+using DFM.Core.Database.Base;
+using DFM.Core.Entities;
 
 namespace DFM.Core.Database
 {
-    public class SummaryData : BaseData<Summary>
+    internal class SummaryData : BaseData<Summary>
     {
         internal void SetSummary(ISummarizable summarizable, Category category)
         {
@@ -20,14 +20,14 @@ namespace DFM.Core.Database
                 summarizable.AjustSummaryList(summary);
             }
 
-            summary.SafeValue = summarizable.CheckUp(category);
+            summary.Value = summarizable.CheckUp(category);
 
             SaveOrUpdate(summary);
         }
 
 
 
-        public void Invalidate(Int32 month, Int32 year, Category category, Account account)
+        internal void Invalidate(Int32 month, Int32 year, Category category, Account account)
         {
             invalidateYear(year, category, account);
             invalidateMonth(month, year, category, account);
@@ -37,7 +37,7 @@ namespace DFM.Core.Database
 
         private void invalidateMonth(Int32 month, Int32 year, Category category, Account account)
         {
-            var summaryMonth = SelectOne(
+            var summaryMonth = SelectSingle(
                     s => s.Nature == SummaryNature.Month
                          && s.Month.Time == month
                          && s.Category.ID == category.ID,

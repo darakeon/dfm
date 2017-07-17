@@ -1,7 +1,7 @@
 ﻿using System;
-using DFM.Core.Database;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
+using DFM.Core.Database;
 using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
@@ -11,19 +11,18 @@ namespace DFM.Core.Entities
         public virtual Int32 ID { get; set; }
 
 
+        protected virtual Double FixValue { get; set; }
 
-        public virtual Double Value { get; set; }
-
-        public virtual Double SafeValue
+        public virtual Double Value
         {
             get
             {
                 if (!IsValid)
                     AjustValue();
 
-                return Value;
+                return FixValue;
             }
-            protected internal set { Value = value; }
+            set { FixValue = value; }
         }
 
 
@@ -32,16 +31,14 @@ namespace DFM.Core.Entities
         public virtual SummaryNature Nature { get; set; }
 
 
-
         public virtual Category Category { get; set; }
-        
+
         public virtual Month Month { get; set; }
-        
+
         public virtual Year Year { get; set; }
 
 
-
-        public virtual void AjustValue()
+        internal protected virtual void AjustValue()
         {
             switch (Nature)
             {
@@ -59,7 +56,6 @@ namespace DFM.Core.Entities
         }
 
 
-        
         public override String ToString()
         {
             return String.Format("{0} - {1}",

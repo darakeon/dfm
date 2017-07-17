@@ -5,7 +5,7 @@ using DFM.Core.Entities;
 
 namespace DFM.Core.Database
 {
-    public class YearData : BaseData<Year>
+    internal class YearData : BaseData<Year>
     {
         internal Year GetOrCreateYear(Int32 year, Account account, Category category)
         {

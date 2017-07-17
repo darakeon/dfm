@@ -15,7 +15,7 @@ namespace DFM.Core.Entities
 
 
         public virtual Int32 ID { get; set; }
-        
+
         public virtual String Name { get; set; }
         public virtual DateTime BeginDate { get; set; }
         public virtual DateTime? EndDate { get; set; }
@@ -24,7 +24,6 @@ namespace DFM.Core.Entities
         public virtual User User { get; set; }
 
         public virtual IList<Year> YearList { get; set; }
-
 
 
         public virtual Double MovesSum

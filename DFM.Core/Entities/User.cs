@@ -13,7 +13,6 @@ namespace DFM.Core.Entities
         }
 
 
-
         public virtual Int32 ID { get; set; }
 
         public virtual String Login { get; set; }
@@ -24,7 +23,6 @@ namespace DFM.Core.Entities
         public virtual IList<Category> CategoryList { get; set; }
 
 
-        
         public override String ToString()
         {
             return Login;

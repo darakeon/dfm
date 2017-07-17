@@ -5,7 +5,7 @@ using DFM.Core.Entities;
 
 namespace DFM.Core.Database
 {
-    public class MonthData : BaseData<Month>
+    internal class MonthData : BaseData<Month>
     {
         internal Month GetOrCreateMonth(Int32 month, Year year, Category category)
         {

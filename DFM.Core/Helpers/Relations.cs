@@ -7,9 +7,9 @@ using NHibernate.Linq;
 
 namespace DFM.Core.Helpers
 {
-    public class Relations<T>
+    internal class Relations<T>
     {
-        public static IEnumerable<String> GetDeeper(Int32 deep)
+        internal static IEnumerable<String> GetDeeper(Int32 deep)
         {
             var list = new List<String>();
 

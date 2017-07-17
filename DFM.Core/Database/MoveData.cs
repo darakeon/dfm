@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
-using DFM.Core.Enums;
 using DFM.Core.Helpers;
 using Ak.Generic.Collection;
 
@@ -192,10 +191,20 @@ namespace DFM.Core.Database
         {
             if (move == null) return;
 
-            if (move.In != null) move.In.InList.Remove(move);
-            if (move.Out != null) move.Out.OutList.Remove(move);
-        }
+            var monthData = new MonthData();
 
+            if (move.In != null)
+            {
+                move.In.InList.Remove(move);
+                monthData.SaveOrUpdate(move.In);
+            }
+
+            if (move.Out != null)
+            {
+                move.Out.OutList.Remove(move);
+                monthData.SaveOrUpdate(move.Out);
+            }
+        }
 
 
         public void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
