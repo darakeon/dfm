@@ -11,7 +11,9 @@ namespace DFM.Core.Database
 
         public static User SelectByLogin(String login)
         {
-            return SelectSingle(u => u.Login == login);
+            var criteria = CreateSimpleCriteria(u => u.Login == login);
+
+            return criteria.UniqueResult<User>();
         }
 
         public static User ValidateAndGet(String login, String password)

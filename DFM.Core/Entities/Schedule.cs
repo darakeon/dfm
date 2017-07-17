@@ -10,6 +10,7 @@ namespace DFM.Core.Entities
         public Schedule()
         {
             Times = 1;
+            MoveList = new List<Move>();
         }
 
 

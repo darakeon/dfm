@@ -20,6 +20,11 @@ namespace DFM.Core.Database.Base
         }
 
 
+        protected static ICriteria CreateSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
+        {
+            return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
+        }
+
         protected static T SaveOrUpdate(T entity, DelegateValidade validate, DelegateComplete complete)
         {
             if (complete != null) completeEntity += complete;
@@ -65,33 +70,7 @@ namespace DFM.Core.Database.Base
 
         internal static IList<T> Select()
         {
-            return select().List<T>();
-        }
-
-        internal static T SelectSingle(Expression<Func<T, Boolean>> expression)
-        {
-            return select(expression).UniqueResult<T>();
-        }
-
-        // TODO: Replace this shit
-        internal static T SelectSingle(Expression<Func<T, Boolean>> preCriteriaExpression, Func<T, Boolean> posCriteriaExpression)
-        {
-            return Select(preCriteriaExpression).SingleOrDefault(posCriteriaExpression);
-        }
-
-        internal static IList<T> Select(Expression<Func<T, Boolean>> expression)
-        {
-            return select(expression).List<T>();
-        }
-
-        private static ICriteria select(Expression<Func<T, Boolean>> expression = null)
-        {
-            var criteria = Session.CreateCriteria(typeof (T));
-
-            if (expression != null)
-                criteria.Add(Restrictions.Where(expression));
-
-            return criteria;
+            return CreateSimpleCriteria().List<T>();
         }
 
 

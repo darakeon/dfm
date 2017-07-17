@@ -1,5 +1,3 @@
-		Testes Unitários no projeto todo
-
 		Validar login e senha por e-mail
 
 		importador/exportador de Money

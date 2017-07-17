@@ -47,42 +47,52 @@ namespace DFM.Core.Database
 
         private static void invalidateMonth(Int32 month, Int32 year, Category category, Account account)
         {
-            var summaryMonth = SelectSingle(
-                    s => s.Nature == SummaryNature.Month
-                         && s.Month.Time == month
-                         && s.Category.ID == category.ID,
-                    s => s.Month.Year.Account.ID == account.ID
-                ) ?? createSummaryMonth(month, year, category, account);
+            var summaryMonth = getSummaryMonth(month, year, category, account)
+                ?? createSummaryMonth(month, year, category, account);
 
             invalidate(summaryMonth);
         }
 
+
+        private static Summary getSummaryMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
+        {
+            var year = account.YearList.SingleOrDefault(y => y.Time == yearDate && y.Account == account) ?? new Year();
+            var month = year.MonthList.SingleOrDefault(m => m.Time == monthDate) ?? new Month();
+
+            return month.SummaryList.SingleOrDefault(s => s.Category == category && s.Nature == SummaryNature.Month);
+        }
+
         private static Summary createSummaryMonth(Int32 month, Int32 year, Category category, Account account)
         {
-            var newYear = YearData.SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
-            var newMonth = MonthData.SelectSingle(m => m.Year.ID == newYear.ID && m.Time == month);
+            var newYear = account.YearList.SingleOrDefault(y => y.Time == year);
+            var newMonth = newYear.MonthList.SingleOrDefault(m => m.Time == month);
 
             return new Summary { Category = category, Month = newMonth, Nature = SummaryNature.Month };
         }
 
 
+
         private static void invalidateYear(Int32 year, Category category, Account account)
         {
-            var summaryYear = SelectSingle(
-                    s => s.Nature == SummaryNature.Year
-                         && s.Year.Time == year
-                         && s.Category.ID == category.ID
-                         && s.Year.Account.ID == account.ID
-                ) ?? createSummaryYear(year, category, account);
+            var summaryYear = getSummaryYear(year, category, account)
+                ?? createSummaryYear(year, category, account);
 
             invalidate(summaryYear);
         }
 
+
+        private static Summary getSummaryYear(Int32 yearDate, Category category, Account account)
+        {
+            var year = account.YearList.SingleOrDefault(y => y.Time == yearDate && y.Account == account) ?? new Year();
+
+            return year.SummaryList.SingleOrDefault(s => s.Category == category && s.Nature == SummaryNature.Year);
+        }
+
         private static Summary createSummaryYear(Int32 year, Category category, Account account)
         {
-            var newYear = YearData.SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
+            var newYear = account.YearList.SingleOrDefault(y => y.Time == year);
 
-            return new Summary { Category = category, Year = newYear, Nature = SummaryNature.Month };
+            return new Summary { Category = category, Year = newYear, Nature = SummaryNature.Year };
         }
 
 
@@ -113,5 +123,25 @@ namespace DFM.Core.Database
 
             SaveOrUpdate(summary);
         }
+
+
+
+        internal static void Complete(Schedule schedule)
+        {
+            var move = schedule.MoveList.Last();
+
+            schedule.Begin = move.Date;
+            
+            schedule.Next = 
+                schedule.Frequency == ScheduleFrequency.Monthly 
+                    ? move.Date.AddMonths(1)
+                    : move.Date.AddYears(1);
+
+            var user = (move.In ?? move.Out)
+                            .Year.Account.User;
+
+            schedule.User = user;
+        }
+
     }
 }

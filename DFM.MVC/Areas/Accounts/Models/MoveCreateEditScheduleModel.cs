@@ -73,12 +73,25 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsDetailed { get; set; }
 
 
-        public static Boolean IsSchedule { get; set; }
-        
-        [RequiredIfScheduled]
-        public Int32 Times { get { return Move.Schedule.Times; } set { Move.Schedule.Times = value; } }
-        [RequiredIfScheduled]
-        public ScheduleFrequency Frequency { get { return Move.Schedule.Frequency; } set { Move.Schedule.Frequency = value; } }
+        public Boolean IsSchedule { get; set; }
+
+
+
+        private Schedule schedule
+        {
+            get
+            {
+                if (Move.Schedule == null)
+                    Move.Schedule = new Schedule();
+
+                return Move.Schedule;
+            }
+        }
+
+        [Required]
+        public Int32 Times { get { return schedule.Times; } set { schedule.Times = value; } }
+        [Required]
+        public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
 
         public SelectList FrequencySelectList { get; set; }
 
@@ -114,16 +127,6 @@ namespace DFM.MVC.Areas.Accounts.Models
             if (Move.Category != null)
             {
                 CategoryID = Move.Category.ID;
-            }
-        }
-
-
-
-        public class RequiredIfScheduled : RequiredAttribute
-        {
-            public override bool IsValid(object value)
-            {
-                return !IsSchedule || base.IsValid(value);
             }
         }
 

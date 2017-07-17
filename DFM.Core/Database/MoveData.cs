@@ -86,9 +86,8 @@ namespace DFM.Core.Database
         private static void complete(Move move)
         {
             ajustDetailList(move);
-
-            if (move.ID != 0)
-                ajustMonthAndYear(move);
+            ajustMonthAndYear(move);
+            ajustSchedule(move);
         }
 
         private static void ajustDetailList(Move move)
@@ -126,6 +125,15 @@ namespace DFM.Core.Database
             
             if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
                 SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
+        }
+
+        private static void ajustSchedule(Move move)
+        {
+            if (move.Schedule != null)
+            {
+                move.Schedule.MoveList.Add(move);
+                SummaryData.Complete(move.Schedule);
+            }
         }
         #endregion
 

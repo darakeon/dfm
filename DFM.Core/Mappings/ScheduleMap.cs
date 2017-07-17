@@ -8,7 +8,7 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Schedule> mapping)
         {
-            mapping.References(d => d.MoveList)
+            mapping.HasMany(d => d.MoveList)
                 .Cascade.None();
 
             mapping.References(d => d.User)

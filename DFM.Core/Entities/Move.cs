@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
@@ -13,7 +12,6 @@ namespace DFM.Core.Entities
     {
         public Move()
         {
-
             DetailList = new List<Detail>();
         }
 
@@ -47,10 +45,7 @@ namespace DFM.Core.Entities
 
         internal protected virtual Boolean Show
         {
-            get
-            {
-                return Date <= DateTime.Now;
-            }
+            get { return Date <= DateTime.Now; }
         }
 
 

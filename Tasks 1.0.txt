@@ -30,9 +30,12 @@
 23/08	23/08	Submenu com relatórios
 23/08	27/08	Revisar o layout (verificar faixa no topo, se fica legal)
 27/08	27/08	Mudar cor para amarelo / colocar ícone
-28/08		Despesa Fixa (controlar por login no sistema) - pega a última e duplica
+28/08		Despesa Fixa (criar Agenda)
+02/09	02/09	Refactor: kill SelectOne and Select with lambda
+		Criar robô executor da Agenda (controlar por login no sistema) - pega a última e duplica
+		Testes Unitários no projeto todo
 		Criar extensions das entidades, para deixar apenas as propriedades nas entidades
-		Refactor: kill SelectOne and Select with lambda
+		Proteger alteração / deleção de itens que não pertencem ao usuário logado
 		Taxa da conta + Data (bank)
 		Percentual de crescimento + Data (debt)
 		Taxa do cartão, Limite + Data (cartão) ]
