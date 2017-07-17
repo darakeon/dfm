@@ -5,6 +5,8 @@
 		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
 		Mostrar gastos futuros no relatório mensal
 
+		Edição de Perfil de usuário
+		Permitir escolha da língua para usuário logado
 		Validar login e senha por e-mail
 		Opção de enviar transações para o e-mail
 

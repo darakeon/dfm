@@ -103,14 +103,15 @@ namespace DFM.MVC
 
         private void specifyLanguage()
         {
-            if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
+            if (Request.UserLanguages == null 
+                || Request.UserLanguages.Length == 0)
                 return;
 
-            //var language = Request.UserLanguages[0];
+            //var language = Current.User.Language ?? Request.UserLanguages[0];
             var language = "pt-BR";
 
             if (!PlainText.AcceptLanguage(language))
-                language = "pt-BR";
+                language = "en-US";
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
         }
@@ -118,7 +119,11 @@ namespace DFM.MVC
 
         private static Boolean isAsset
         {
-            get { return HttpContext.Current.Request.Url.AbsolutePath.StartsWith("/Assets/"); }
+            get
+            {
+                return HttpContext.Current.Request
+                    .Url.AbsolutePath.StartsWith("/Assets/");
+            }
         }
     }
 }
