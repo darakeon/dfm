@@ -12,7 +12,7 @@ namespace DFM.Core.Enums
 
     public static class ScheduleFrequencyExtension
     {
-        public static DateTime Next(this ScheduleFrequency frequency, DateTime date)
+        internal static DateTime Next(this ScheduleFrequency frequency, DateTime date)
         {
             switch (frequency)
             {
@@ -26,5 +26,30 @@ namespace DFM.Core.Enums
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleFrequencyNotRecognized);
             }
         }
+
+        internal static Int32 AppliedTimes(this ScheduleFrequency frequency, DateTime firstDate, DateTime lastDate)
+        {
+            var months = lastDate.Month - firstDate.Month;
+            var years = lastDate.Year - firstDate.Year;
+
+            switch (frequency)
+            {
+                case ScheduleFrequency.Daily:
+                    return (lastDate - firstDate).TotalDays.toInt();
+                case ScheduleFrequency.Monthly:
+                    return months;
+                case ScheduleFrequency.Yearly:
+                    return months + (years * 12);
+                default:
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleFrequencyNotRecognized);
+            }
+        }
+
+
+        private static Int32 toInt(this Double d)
+        {
+            return (Int32) Math.Floor(d);
+        }
+
     }
 }

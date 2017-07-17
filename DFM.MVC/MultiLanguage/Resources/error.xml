@@ -25,7 +25,6 @@
     <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
     <OutOfDateSummary text="Report out of date. Contact support." />
     <ScheduleFrequencyNotRecognized text="Schedule frequency not recognized." />
-    <ScheduleNoMoves text="No moves in schedule." />
     <SummaryNatureNotFound text="Summary Nature doesn't exist." />
     <TooLargeData text="Field exceeded the characters limit." />
     <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
@@ -61,7 +60,6 @@
     <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
     <OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
     <ScheduleFrequencyNotRecognized text="Frequência de agendador desconhecida." />
-    <ScheduleNoMoves text="Agendamento sem Movimentações." />
     <SummaryNatureNotFound text="Natureza de Resumo inexistente." />
     <TooLargeData text="O campo excedeu o limite de caracteres." />
     <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />

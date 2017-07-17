@@ -19,7 +19,6 @@
         MoveFutureNotScheduled,
         OutMoveWrong,
         ScheduleFrequencyNotRecognized,
-        ScheduleNoMoves,
         SummaryNatureNotFound,
         TooLargeData,
         TransferMoveWrong,

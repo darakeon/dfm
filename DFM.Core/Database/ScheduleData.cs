@@ -4,7 +4,6 @@ using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
-using DFM.Core.Robots;
 
 namespace DFM.Core.Database
 {
@@ -14,9 +13,7 @@ namespace DFM.Core.Database
 
         public static void SaveOrUpdate(Schedule schedule)
         {
-            //var scheduleTransac = Session.BeginTransaction();
             SaveOrUpdate(schedule, complete, null);
-            //scheduleTransac.Commit();
         }
 
         internal static IList<Schedule> GetScheduleToRun(User user)
@@ -30,19 +27,21 @@ namespace DFM.Core.Database
         
         private static void complete(Schedule schedule)
         {
-            var move = schedule.MoveList.Last();
+            if (schedule.ID == 0)
+            {
+                var move = schedule.MoveList.First();
 
-            schedule.Active = true;
-            schedule.Begin = move.Date;
+                schedule.Active = true;
+                schedule.Begin = move.Date;
 
-            schedule.SetNextRun();
+                var user = (move.Out ?? move.In)
+                    .Year.Account.User;
 
-            var user = (move.Out ?? move.In)
-                            .Year.Account.User;
+                schedule.User = user;
+            }
 
-            schedule.User = user;
-
-            //ScheduleRunner.CreateMovesUntilNow(schedule);
+            if (schedule.Active)
+                schedule.SetNextRun();
         }
 
     }

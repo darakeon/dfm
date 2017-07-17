@@ -28,7 +28,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        public ActionResult SeeMonth(Int16? id)
+        public ActionResult SeeMonth(Int32? id)
         {
             var currentMonth = (Int16)DateTime.Today.Month;
 

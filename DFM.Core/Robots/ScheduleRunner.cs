@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
@@ -25,12 +24,15 @@ namespace DFM.Core.Robots
 
         internal static void CreateMovesUntilNow(Schedule schedule)
         {
-            while (schedule.Active &&
-                   schedule.Next <= DateTime.Today)
+            while (schedule.CanRunNow())
             {
                 var move = getNextMove(schedule);
+
+                if (move == null)
+                    return;
+
                 ajustSchedule(schedule, move);
-                    
+                
                 save(move);
             }
         }
@@ -41,7 +43,12 @@ namespace DFM.Core.Robots
             var lastMove = schedule.MoveList.LastOrDefault();
 
             if (lastMove == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleNoMoves);
+            {
+                schedule.Deactivate();
+                ScheduleData.SaveOrUpdate(schedule);
+                return null;
+            }
+            
 
             accountIn = getAccount(lastMove.In);
             accountOut = getAccount(lastMove.Out);
@@ -71,17 +78,10 @@ namespace DFM.Core.Robots
             if (!schedule.IsFirstMove())
                 schedule.AddMove(move);
 
-
-            var doneMoves = schedule.MoveList.Count;
-
-            var doneAll = doneMoves >= schedule.Times;
-            var boundless = schedule.Boundless;
-
-
-            if (!boundless && doneAll)
-                schedule.Deactivate();
-            else
+            if (schedule.CanRun())
                 schedule.SetNextRun();
+            else
+                schedule.Deactivate();
         }
 
 

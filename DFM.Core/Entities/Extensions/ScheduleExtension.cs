@@ -11,11 +11,13 @@ namespace DFM.Core.Entities.Extensions
             return schedule.MoveList.Contains(move);
         }
 
+
         public static void AddMove(this Schedule schedule, Move move)
         {
             move.Schedule = schedule;
             schedule.MoveList.Add(move);
         }
+
 
         public static void SetNextRun(this Schedule schedule)
         {
@@ -26,6 +28,7 @@ namespace DFM.Core.Entities.Extensions
                     ? move.Date
                     : schedule.Frequency.Next(move.Date);
         }
+
 
         public static void Deactivate(this Schedule schedule)
         {
@@ -38,7 +41,32 @@ namespace DFM.Core.Entities.Extensions
             return schedule.Begin == schedule.Next;
         }
 
-    
+
+        public static Boolean CanRun(this Schedule schedule)
+        {
+            var doneMoves = schedule.appliedTimes();
+
+            var doneAll = doneMoves >= schedule.Times;
+            var boundless = schedule.Boundless;
+
+            return schedule.Active && 
+                (boundless || !doneAll);
+        }
+
+
+        public static Boolean CanRunNow(this Schedule schedule)
+        {
+            return schedule.CanRun() &&
+                   schedule.Next <= DateTime.Today;
+        }
+
+
+        private static Int32 appliedTimes(this Schedule schedule)
+        {
+            return schedule.Frequency
+                .AppliedTimes(schedule.Begin, schedule.Next);
+        }
+
 
     }
 }
