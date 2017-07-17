@@ -80,10 +80,10 @@ VERSION 1.0.0.3
 
 VERSION 1.0.1.0
 19/10	19/10	Log4Net
-19/10		/ Elmah
+19/10	19/10	/ Elmah
 		BDD
 		/ Selenium
-		Passar Log4Net para MySql
+		Passar Log4Net / Elmah para MySql
 		Refactor Geral
 		
 		Proteção por usuário no Core (verificar active também)
@@ -98,7 +98,8 @@ VERSION 1.0.2.0
 		Schedule: inserir até data atual, não apenas a primeira
 		Security desativa os anteriores
 		Follow twitter
-		Service WCF
+		Criar projeto UI, que será referenciado pelo MVC
+		Criar projeto que retorna UI em Json
 
 		Colocar nome (ou apelido) no sign up
 		Edição de Perfil de usuário
