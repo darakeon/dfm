@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.Web.Mvc;
+using System.Web.Routing;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
-using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
@@ -13,9 +12,18 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     {
         readonly AccountData accountData = new AccountData();
 
+        private Int32 accountid;
+
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            accountid = Int32.Parse(RouteData.Values["accountid"].ToString());
+        }
 
 
-        public ActionResult SeeMonth(Int32? id, Int32 accountid)
+
+        public ActionResult SeeMonth(Int32? id)
         {
             var month = id.HasValue
                 ? id.Value % 100
@@ -42,14 +50,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        public ActionResult SeeYear(Int32? id, Int32 accountid)
+        public ActionResult SeeYear(Int32? id)
         {
             var year = id ?? DateTime.Now.Year;
 
             var model = new ReportSeeYearModel
                             {
                                 Year = accountData.GetYearReport(accountid, year),
-                                Account = accountData.SelectById(accountid),
                             };
 
 

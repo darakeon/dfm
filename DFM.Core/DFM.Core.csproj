@@ -73,21 +73,24 @@
     <Compile Include="Database\MoveData.cs" />
     <Compile Include="Database\NHManager.cs" />
     <Compile Include="Database\UserData.cs" />
-    <Compile Include="Database\BaseData.cs" />
+    <Compile Include="Database\Bases\BaseData.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Interfaces\IEntity.cs" />
-    <Compile Include="Entities\Interfaces\ISummarizable.cs" />
+    <Compile Include="Entities\Bases\IEntity.cs" />
+    <Compile Include="Entities\Bases\ISummarizable.cs" />
     <Compile Include="Entities\Month.cs" />
     <Compile Include="Entities\Move.cs" />
     <Compile Include="Entities\Summary.cs" />
     <Compile Include="Entities\Year.cs" />
     <Compile Include="Enums\AccountNature.cs" />
+    <Compile Include="Enums\SummaryNature.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Helpers\NhIgnoreAttribute.cs" />
     <Compile Include="Helpers\CoreValidationException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
+    <Compile Include="Helpers\Relations.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\SummaryMap.cs" />
@@ -97,6 +100,10 @@
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\Completes\" />
+    <Folder Include="Database\Validates\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

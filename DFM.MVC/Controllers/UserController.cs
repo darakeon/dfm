@@ -32,7 +32,7 @@ namespace DFM.MVC.Controllers
                 
                 try
                 {
-                    user = userData.GetAndValidate(model.Login, model.Password);
+                    user = userData.ValidateAndGet(model.Login, model.Password);
                 }
                 catch (CoreValidationException e)
                 {

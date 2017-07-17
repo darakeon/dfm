@@ -10,6 +10,8 @@ namespace DFM.Core.Mappings
         {
             mapping.IgnoreProperty(m => m.Month);
             mapping.IgnoreProperty(m => m.Value);
+            mapping.IgnoreProperty(m => m.AccountIn);
+            mapping.IgnoreProperty(m => m.AccountOut);
 
             mapping.HasMany(m => m.DetailList)
                 .Cascade.AllDeleteOrphan()

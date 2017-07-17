@@ -29,9 +29,10 @@ else
                 <td>@account.Name </td>
                 <td>@account.BeginDate.ToShortDateString() </td>
 
-                @{ 
-               var negative = account.MovesSum < 0;
-               var value = (negative ? -account.MovesSum : account.MovesSum).ToMoney();
+                @{
+                    var movesSum = account.MovesSum;
+                    var negative = movesSum < 0;
+                    var value = (negative ? -movesSum : movesSum).ToMoney();
                 }
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>

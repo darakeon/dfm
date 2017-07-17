@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Entities.Interfaces;
+using DFM.Core.Entities.Bases;
 using DFM.Core.Enums;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
@@ -38,6 +39,18 @@ namespace DFM.Core.Entities
         public virtual Double Value
         {
             get { return DetailList.Sum(d => d.Value * d.Amount); }
+        }
+
+        [NhIgnore]
+        public virtual Account AccountIn
+        {
+            get { return In.Year.Account; }
+        }
+
+        [NhIgnore]
+        public virtual Account AccountOut
+        {
+            get { return Out.Year.Account; }
         }
 
 

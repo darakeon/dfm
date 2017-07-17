@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using DFM.Core.Database.Bases;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
+using Ak.Generic.Collection;
 
 namespace DFM.Core.Database
 {
@@ -15,40 +17,15 @@ namespace DFM.Core.Database
 
 
 
-        private void complete(Move move)
+        public new Move SaveOrUpdate(Move move)
         {
-            ajustDetailList(move);
-            ajustMonthAndYear(move);
+            throw new CoreValidationException("AccountMissing");
         }
 
-        private void ajustDetailList(Move move)
+        public Move SaveOrUpdate(Move move, Account account, Account secondAccount = null)
         {
-            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
-                move.DetailList[0].Description = move.Description;
-
-            foreach (var detail in move.DetailList)
-            {
-                if (detail.Value < 0)
-                    detail.Value = -detail.Value;
-
-                if (detail.Move == null)
-                    detail.Move = move;
-            }
-        }
-
-        private void ajustMonthAndYear(Move move)
-        {
-            var summaryData = new SummaryData();
-            var oldMove = SelectById(move.ID) ?? new Move();
-            var category = move.Category;
-
-            removeFromMonth(oldMove);
-
-            summaryData.AjustMonth(move.In, oldMove.In, category);
-            summaryData.AjustMonth(move.Out, oldMove.Out, category);
-
-            summaryData.AjustYear(move.In, oldMove.In, category);
-            summaryData.AjustYear(move.Out, oldMove.Out, category);
+            placeAccountsInMove(move, account, secondAccount);
+            return base.SaveOrUpdate(move);
         }
 
 
@@ -79,7 +56,7 @@ namespace DFM.Core.Database
                         throw new CoreValidationException("InMoveWrong");
                     break;
 
-                case MoveNature.Out: 
+                case MoveNature.Out:
                     if (hasIn || !hasOut)
                         throw new CoreValidationException("OutMoveWrong");
                     break;
@@ -111,34 +88,80 @@ namespace DFM.Core.Database
         }
 
 
+        
+        private void complete(Move move)
+        {
+            ajustDetailList(move);
 
-        public void PlaceAccountsInMove(Move move, Account currentAccount, Account otherAccount)
+            if (move.ID != 0)
+                ajustMonthAndYear(move);
+        }
+
+        private void ajustDetailList(Move move)
+        {
+            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
+                move.DetailList[0].Description = move.Description;
+
+            foreach (var detail in move.DetailList)
+            {
+                if (detail.Value < 0)
+                    detail.Value = -detail.Value;
+
+                if (detail.Move == null)
+                    detail.Move = move;
+            }
+        }
+
+        private void ajustMonthAndYear(Move move)
+        {
+            invalidateSummary(move);
+            
+            var oldMove = SelectById(move.ID);
+
+            if (oldMove != null)
+                invalidateSummary(oldMove);
+        }
+
+
+
+        private void invalidateSummary(Move move)
+        {
+            var summaryData = new SummaryData();
+
+            if (move.Nature.In(MoveNature.In, MoveNature.Transfer))
+                summaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn);
+            
+            if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
+                summaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
+        }
+
+
+
+        private void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
         {
             var yearData = new YearData();
             var monthData = new MonthData();
 
-            var currentYear = yearData.GetYear(currentAccount, move.Date.Year);
-            var currentMonth = monthData.GetMonth(currentYear, move.Date.Month);
-
+            var year = yearData.GetOrCreateYear(move.Date.Year, account, move.Category);
+            var month = monthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
 
             switch (move.Nature)
             {
                 case MoveNature.Out:
-                    currentMonth.AddOut(move);
-                    break;
+                    month.AddOut(move); break;
                 case MoveNature.In:
-                    currentMonth.AddIn(move);
-                    break;
+                    month.AddIn(move); break;
                 case MoveNature.Transfer:
-                    if (otherAccount == null)
+                    if (secondAccount == null)
                         throw new CoreValidationException("TransferMoveWrong");
 
-                    currentMonth.AddOut(move);
+                    month.AddOut(move);
 
-                    var otherYear = yearData.GetYear(otherAccount, move.Date.Year);
-                    var otherMonth = monthData.GetMonth(otherYear, move.Date.Month);
+                    var secondYear = yearData.GetOrCreateYear(move.Date.Year, secondAccount, move.Category);
+                    var secondMonth = monthData.GetOrCreateMonth(move.Date.Month, secondYear, move.Category);
 
-                    otherMonth.AddIn(move);
+                    secondMonth.AddIn(move);
+
                     break;
                 default:
                     throw new CoreValidationException("MoveNatureNotFound");
@@ -147,7 +170,7 @@ namespace DFM.Core.Database
 
 
 
-        public override void Delete(Move move)
+        public new void Delete(Move move)
         {
             removeFromMonth(move);
             ajustMonthAndYear(move);

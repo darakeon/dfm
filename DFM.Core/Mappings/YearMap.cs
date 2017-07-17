@@ -14,6 +14,9 @@ namespace DFM.Core.Mappings
             mapping.References(y => y.Account)
                 .Cascade.None();
 
+            mapping.HasMany(y => y.SummaryList)
+                .Cascade.SaveUpdate();
+
             mapping.IgnoreProperty(y => y.Value);
         }
     }

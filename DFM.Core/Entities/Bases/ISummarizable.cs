@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DFM.Core.Entities.Interfaces
+namespace DFM.Core.Entities.Bases
 {
-    internal interface ISummarizable
+    public interface ISummarizable : IEntity
     {
         IList<Summary> SummaryList { get; set; }
         Int32 Time { get; set; }
 
         Double CheckUp(Category category);
-        void AddSummary(Summary summary);
+        void AjustSummaryList(Summary summary);
     }
 }

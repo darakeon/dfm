@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Entities.Interfaces;
+using DFM.Core.Entities.Bases;
+using DFM.Core.Enums;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
@@ -30,7 +32,13 @@ namespace DFM.Core.Entities
 
         public virtual Double Value
         {
-            get { return SummaryList.Sum(s => s.Value); }
+            get { return SummaryList.Sum(s => s.SafeValue); }
+        }
+
+        [NhIgnore]
+        public virtual Account Account 
+        {
+            get { return Year.Account; }
         }
 
         public virtual IList<Move> MoveList
@@ -56,10 +64,19 @@ namespace DFM.Core.Entities
             return (@in - @out) * 100 / 100;
         }
 
-        public virtual void AddSummary(Summary summary)
+        public virtual void AjustSummaryList(Summary summary)
         {
             summary.Month = this;
+            summary.Nature = SummaryNature.Month;
+            summary.IsValid = false;
+
             SummaryList.Add(summary);
+        }
+
+        public virtual void AjustSummaryList(Category category)
+        {
+            if (!SummaryList.Any(s => s.Category == category))
+                AjustSummaryList(new Summary { Category = category });
         }
 
         

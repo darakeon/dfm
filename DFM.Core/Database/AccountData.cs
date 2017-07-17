@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Core.Database.Bases;
 using DFM.Core.Entities;
 using DFM.Core.Helpers;
 using NHibernate.Linq;
@@ -71,13 +72,15 @@ namespace DFM.Core.Database
             var account = SelectById(id);
 
 
-            var year = account.YearList.SingleOrDefault(y => y.Time == dateYear);
+            var year = account.YearList
+                .SingleOrDefault(y => y.Time == dateYear);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = year.MonthList.SingleOrDefault(y => y.Time == dateMonth);
+            var month = year.MonthList
+                .SingleOrDefault(y => y.Time == dateMonth);
 
             if (month == null)
                 return new List<Move>();

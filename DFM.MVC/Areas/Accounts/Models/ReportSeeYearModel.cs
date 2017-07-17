@@ -6,6 +6,5 @@ namespace DFM.MVC.Areas.Accounts.Models
     public class ReportSeeYearModel : BaseLoggedModel
     {
         public Year Year { get; set; }
-        public Account Account { get; set; }
     }
 }

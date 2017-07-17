@@ -43,7 +43,7 @@ namespace DFM.MVC.Controllers
         public JsonResult CreateAjax(CategoryCreateEditModel model)
         {
             var category = createEditForAll(model);
-            var json = new {id = category.ID, name = category.Name};
+            var json = new { id = category.ID, name = category.Name };
 
             return new JsonResult { Data = json };
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Entities.Interfaces;
+using DFM.Core.Entities.Bases;
 
 namespace DFM.Core.Entities
 {

@@ -6,6 +6,8 @@
     <ConfirmDeleteMove text="Do you really want to DELETE Move '{0}'?" />
     <ShortDateFormat text="{1} {0}" />
     <Month text="Month" />
+    <OutOfDateSummary text="Report out of date. Contact support." />
+    <SummaryNatureNotFound text="Summary Nature doesn't exist." />
   </en-US>
   <pt-BR>
     <NoMonthMoves text="Não há Movimentações para este mês." />
@@ -13,5 +15,7 @@
     <ConfirmDeleteMove text="Realmente deseja APAGAR a Movimentação '{0}'?" />
     <ShortDateFormat text="{0} de {1}" />
     <Month text="Mês" />
+    <OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
+    <SummaryNatureNotFound text="Natureza de Resumo inexistente." />
   </pt-BR>
 </report>

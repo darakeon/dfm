@@ -54,13 +54,15 @@ namespace DFM.MVC.MultiLanguage
 
         private static void setAcceptedLaguages()
         {
+            var list = new List<String>();
+
             Dictionary.SectionList.ForEach(
-                s => AcceptedLanguages.AddRange( 
-                    s.LanguageList.Select(l => l.Name)
-                         )
+                s => list.AddRange( 
+                        s.LanguageList.Select(l => l.Name)
+                    )
                 );
 
-            AcceptedLanguages = AcceptedLanguages.Distinct().ToList();
+            AcceptedLanguages = list.Distinct().ToList();
         }
 
 

@@ -33,6 +33,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
 
+
         public ActionResult Create()
         {
             var model = new MoveCreateEditModel { Date = DateTime.Today };
@@ -47,6 +48,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             return createEdit(model);
         }
+
+
 
         public ActionResult Edit(Int32? id)
         {
@@ -79,7 +82,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditModel model)
         {
-            model.Move.ID = id;
+             model.Move.ID = id;
 
             return createEdit(model);
         }
@@ -92,14 +95,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 try
                 {
+                    model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
+
                     var currentAccount = accountData.SelectById(accountid);
                     var otherAccount = accountData.SelectById(model.AccountID ?? 0);
 
-                    moveData.PlaceAccountsInMove(model.Move, currentAccount, otherAccount);
-
-                    model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
-
-                    moveData.SaveOrUpdate(model.Move);
+                    moveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
 
                     return RedirectToRoute(
                             RouteNames.Default,

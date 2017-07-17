@@ -24,11 +24,19 @@ namespace DFM.MVC.Models
         public Account Account { get; set; }
 
         [Required(ErrorMessage = "*")]
-        public String Name { get { return Account.Name; } set { Account.Name = value; } }
+        public String Name
+        {
+            get { return Account.Name; } 
+            set { Account.Name = value; }
+        }
 
 
         [Required(ErrorMessage = "*")]
-        public AccountNature Nature { get { return Account.Nature; } set { Account.Nature = value; } }
+        public AccountNature Nature
+        {
+            get { return Account.Nature; } 
+            set { Account.Nature = value; }
+        }
         public SelectList NatureSelectList { get; set; }
     }
 }

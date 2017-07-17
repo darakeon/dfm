@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Entities.Interfaces;
+using DFM.Core.Entities.Bases;
 using DFM.Core.Enums;
 
 namespace DFM.Core.Entities

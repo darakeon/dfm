@@ -16,6 +16,10 @@ namespace DFM.Core.Mappings
                 .Cascade.SaveUpdate()
                 .Nullable();
 
+            mapping.Map(s => s.IsValid)
+                .Default("1");
+
+            mapping.IgnoreProperty(s => s.SafeValue);
         }
     }
 }

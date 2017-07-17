@@ -1,7 +1,7 @@
 ﻿using System;
+using DFM.Core.Database.Bases;
 using DFM.Core.Entities;
 using DFM.Core.Helpers;
-using NHibernate.Criterion;
 
 namespace DFM.Core.Database
 {
@@ -14,13 +14,10 @@ namespace DFM.Core.Database
 
         public User SelectByLogin(String login)
         {
-            return Session
-                .CreateCriteria(typeof(User))
-                .Add(Restrictions.Eq("Login", login))
-                .UniqueResult<User>();
+            return SelectSingle(u => u.Login == login);
         }
 
-        public User GetAndValidate(String login, String password)
+        public User ValidateAndGet(String login, String password)
         {
             var user = SelectByLogin(login);
 
