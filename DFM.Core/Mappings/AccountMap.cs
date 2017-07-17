@@ -13,13 +13,13 @@ namespace DFM.Core.Mappings
 
 
             mapping.HasMany(a => a.InList)
-                .Cascade.SaveUpdate();
+                .Cascade.Delete();
 
             mapping.HasMany(a => a.OutList)
-                .Cascade.SaveUpdate();
+                .Cascade.Delete();
+
 
             mapping.IgnoreProperty(a => a.MoveList);
-
             mapping.IgnoreProperty(a => a.MovesSum);
 
 

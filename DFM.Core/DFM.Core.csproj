@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
     <Compile Include="Database\CategoryData.cs" />
+    <Compile Include="Database\DetailData.cs" />
     <Compile Include="Database\MoveData.cs" />
     <Compile Include="Database\NHManager.cs" />
     <Compile Include="Database\UserData.cs" />

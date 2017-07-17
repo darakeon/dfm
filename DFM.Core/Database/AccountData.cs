@@ -17,9 +17,12 @@ namespace DFM.Core.Database
 
         private void validate(Account account)
         {
-            var existingAccountForUser = SelectByName(account.Name, account.User);
+            var otherAccount = SelectByName(account.Name, account.User);
 
-            if (existingAccountForUser != null)
+            var accountExistsForUser = otherAccount != null
+                                            && otherAccount.ID != account.ID;
+
+            if (accountExistsForUser)
             {
                 throw new CoreValidationException("Already Exists.");
             }
@@ -27,7 +30,15 @@ namespace DFM.Core.Database
 
         private void complete(Account account)
         {
-            account.BeginDate = DateTime.Now;
+            if (account.ID == 0)
+            {
+                account.BeginDate = DateTime.Now;
+            }
+            else if (!account.MoveList.Any())
+            {
+                account.InList = SelectById(account.ID).InList;
+                account.OutList = SelectById(account.ID).OutList;
+            }
         }
 
 

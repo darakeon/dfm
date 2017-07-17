@@ -11,7 +11,7 @@
 @if (Model.LateralAccountList.Any()) { <br /> }
 
 <p>
-    @Html.ActionLink("New Account", "Create", "Account")
+    @Html.RouteLink("New Account", DFM.MVC.Helpers.RouteNames.Default, new { action = "Create", controller = "Account" })
     <br />
     @Html.RouteLink("Home", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
     <b>//</b>

@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = new Move();
         }
 
-        public MoveAddDetailModel(Int32 position, Int32 id, String description, Double value)
+        public MoveAddDetailModel(Int32 position, Detail detail)
             : this()
         {
             Position = position;
@@ -20,9 +20,7 @@ namespace DFM.MVC.Areas.Accounts.Models
                 Move.AddDetail(new Detail());
             }
 
-            Move.DetailList[position].ID = id;
-            Move.DetailList[position].Description = description;
-            Move.DetailList[position].Value = value;
+            Move.DetailList[position] = detail ?? new Detail();
         }
 
         public Int32 Position { get; set; }

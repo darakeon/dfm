@@ -21,7 +21,7 @@
             <td>End Date</td>
             <td>Value</td>
             <td colspan="2">GO TO</td>
-            <td colspan="2">TO DO</td>
+            <td colspan="3">TO DO</td>
         </tr>
 
         @foreach (var account in Model.AccountList) { 
@@ -37,12 +37,15 @@
                 
                 <td>@Html.RouteLink("Insert Move", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
 
+                <td>@Html.RouteLink("Edit", DFM.MVC.Helpers.RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID }, new { })</td>
+
                 <td>
                     @Ajax.ActionLink(
-                        "X Close",
+                        "Close",
                         "Close",
                         new { id = account.ID },
-                        new AjaxOptions() { 
+                        new AjaxOptions()
+                        {
                             Confirm = "Do you really want to CLOSE the Account " + account.Name + "?",
                             HttpMethod = "Post"
                         }) 

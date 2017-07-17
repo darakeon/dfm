@@ -64,8 +64,24 @@ function AddDetail() {
             $("#addDetailButton").show();
         }
     );
-
 }
+
+function RemoveDetail(position) {
+    var prefix = "#Detail_";
+
+    $(prefix + position).remove();
+
+    do {
+        position++;
+
+        AjustNumbersLess(prefix + position, "Detail", position)
+
+    } while ($(prefix + position)[0]);
+
+    AjustMoney("#details .money");
+}
+
+
 
 function ChangeDetailLevel(detailed) {
     if (detailed) {

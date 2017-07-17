@@ -4,9 +4,15 @@ namespace DFM.Core.Entities
 {
     public class Detail : IEntity
     {
+        public Detail()
+        {
+            Amount = 1;
+        }
+
         public virtual Int32 ID { get; set; }
 
         public virtual String Description { get; set; }
+        public virtual Int32 Amount { get; set; }
         public virtual Double Value { get; set; }
 
         public virtual Move Move { get; set; }

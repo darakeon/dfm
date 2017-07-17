@@ -16,6 +16,11 @@ namespace DFM.Core.Database
 
         private void complete(Move move)
         {
+            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
+            {
+                move.DetailList[0].Description = move.Description;
+            }
+
             foreach (var detail in move.DetailList)
             {
                 if (detail.Value < 0)

@@ -25,13 +25,36 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Create()
         {
-            var model = new AccountCreateModel();
+            var model = new AccountCreateEditModel();
 
-            return View(model);
+            return View("CreateEdit", model);
         }
 
         [HttpPost]
-        public ActionResult Create(AccountCreateModel model)
+        public ActionResult Create(AccountCreateEditModel model)
+        {
+            return createEdit(model);
+        }
+
+        public ActionResult Edit(Int32 id)
+        {
+            var model = new AccountCreateEditModel
+                            {
+                                Account = accountData.SelectById(id)
+                            };
+
+            return View("CreateEdit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Int32 id, AccountCreateEditModel model)
+        {
+            model.Account.ID = id;
+
+            return createEdit(model);
+        }
+
+        private ActionResult createEdit(AccountCreateEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -51,8 +74,10 @@ namespace DFM.MVC.Controllers
                 }
             }
 
-            return View(model);
+            return View("CreateEdit", model);
         }
+
+
 
         public ActionResult Close(Int32 id)
         {

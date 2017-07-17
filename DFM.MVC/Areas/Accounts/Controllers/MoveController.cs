@@ -20,6 +20,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         private readonly AccountData accountData = new AccountData();
         private readonly MoveData moveData = new MoveData();
         private readonly CategoryData categoryData = new CategoryData();
+        private readonly DetailData detailData = new DetailData();
 
         private Int32 accountid;
 
@@ -33,10 +34,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditModel
-                            {
-                                Date = DateTime.Today
-                            };
+            var model = new MoveCreateEditModel { Date = DateTime.Today };
             
             model = populate(model, accountid);
 
@@ -54,28 +52,25 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var move = moveData.SelectById(id);
 
-            var secondAccountID = 
-                move.Nature == MoveNature.Transfer
-                    ? move.In.ID : (Int32?)null;
+            var model = new MoveCreateEditModel(move);
 
-            if (secondAccountID == accountid)
-            {
-                var action = RouteData.Values["action"].ToString();
+            if (model.AccountID == accountid)
+                return redirectToRightAccount(move);
 
-                RouteData.Values["accountid"] = move.Out.ID;
 
-                return RedirectToAction(action, RouteData.Values);
-            }
 
-            var model = new MoveCreateEditModel
-                            {
-                                Move = move,
-                                AccountID = secondAccountID
-                            };
-            
             model = populate(model, accountid);
 
             return View("CreateEdit", model);
+        }
+
+        private ActionResult redirectToRightAccount(Move move)
+        {
+            var action = RouteData.Values["action"].ToString();
+
+            RouteData.Values["accountid"] = move.Out.ID;
+
+            return RedirectToAction(action, RouteData.Values);
         }
 
         [HttpPost]
@@ -86,27 +81,44 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return createEdit(model);
         }
 
+
+        private MoveCreateEditModel populate(MoveCreateEditModel model, Int32 accountID)
+        {
+            model.MakeAccountTransferList(accountID);
+
+
+            model.IsDetailed = model.Move.HasRealDetails();
+
+            if (!model.Move.DetailList.Any())
+            {
+                var detail = new Detail { Amount = 1 };
+                model.Move.AddDetail(detail);
+            }
+
+            if (model.Move.Category != null)
+            {
+                model.CategoryID = model.Move.Category.ID;
+            }
+
+
+          
+            model.CategorySelectList = SelectListExtension
+                .CreateSelect(Current.User.CategoryList, mv => mv.ID, mv => mv.Name);
+            
+
+            return model;
+        }
+
         private ActionResult createEdit(MoveCreateEditModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    switch (model.Move.Nature)
-                    {
-                        case MoveNature.Out:
-                            model.Move.Out = accountData.SelectById(accountid);
-                            break;
-                        case MoveNature.In:
-                            model.Move.In = accountData.SelectById(accountid);
-                            break;
-                        case MoveNature.Transfer:
-                            model.Move.Out = accountData.SelectById(accountid);
-                            model.Move.In = accountData.SelectById(model.AccountID ?? 0);
-                            break;
-                        default:
-                            throw new Exception("Move Nature doesn't exist");
-                    }
+                    var currentAccount = accountData.SelectById(accountid);
+                    var otherAccount = accountData.SelectById(model.AccountID ?? 0);
+
+                    model.PlaceAccountsInMove(currentAccount, otherAccount);
 
                     model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
 
@@ -129,41 +141,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
 
-        private MoveCreateEditModel populate(MoveCreateEditModel model, Int32 accountID)
+
+        public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
         {
-            model.MakeAccountTransferList(accountID);
+            var detail = detailData.SelectById(id);
 
-
-            model.IsDetailed = model.Move.HasRealDetails();
-
-            if (!model.Move.DetailList.Any())
-            {
-                var detail = new Detail();
-                model.Move.AddDetail(detail);
-            }
-
-            if (model.Move.Category != null)
-            {
-                model.CategoryID = model.Move.Category.ID;
-            }
-
-
-
-            model.Title = RouteData.Values["action"].ToString();
-
-
-            
-            model.CategorySelectList = SelectListExtension
-                .CreateSelect(Current.User.CategoryList, mv => mv.ID, mv => mv.Name);
-            
-
-            return model;
-        }
-
-
-        public ActionResult AddDetail(Int32 position = 0, Int32 id = 0, String description = null, Double value = 0)
-        {
-            var model = new MoveAddDetailModel(position, id, description, value);
+            var model = new MoveAddDetailModel(position, detail);
 
             return View(model);
         }

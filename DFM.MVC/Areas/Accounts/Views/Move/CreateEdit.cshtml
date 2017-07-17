@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditModel
 
 @{
-    ViewBag.Title = Model.Title + " Move";
+    ViewBag.Title = Model.ActionName + " Move";
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -63,8 +63,6 @@
     
     <hr />
     
-    @Html.ValidationMessageFor(m => m.Value)<br />
-
     <div class="createMoveScreenLeft">
         @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })
         Just One Value
@@ -78,8 +76,16 @@
     </div>
 
     <div id="oneValue" class="createMoveScreenLeft">
-        @Html.LabelFor(m => m.Value)<br />
-        @Html.TextBoxFor(m => m.Value, new { @class = "money" })
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.Move.DetailList[0].Amount)</td>
+                <td>@Html.LabelFor(m => m.Move.DetailList[0].Value)</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Value, new { @class = "money" })</td>
+            </tr>
+        </table>
         
         @Html.HiddenFor(m => m.Move.DetailList[0].ID)
     </div>
@@ -87,6 +93,7 @@
     <table id="details" class="createMoveScreenRight">
         <tr>
             <td>Description</td>
+            <td>Amount</td>
             <td>Value</td>
         </tr>
 
@@ -94,15 +101,13 @@
         {
             @Html.Action("AddDetail", new {
                    position = d,
-                   id = Model.Move.DetailList[d].ID,
-                   description = Model.Move.DetailList[d].Description,
-                   value = Model.Move.DetailList[d].Value
-                });
+                   id = Model.Move.DetailList[d].ID
+               });
         }
     </table>
     
     <div id="moveCreateButton">
-        <button type="submit">@Model.Title!</button>
+        <button type="submit">@Model.ActionName!</button>
     </div>
 
 }

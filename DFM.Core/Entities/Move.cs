@@ -36,7 +36,7 @@ namespace DFM.Core.Entities
 
         public virtual Double Value
         {
-            get { return DetailList.Sum(d => d.Value); }
+            get { return DetailList.Sum(d => d.Value * d.Amount); }
         }
 
 

@@ -10,6 +10,9 @@ namespace DFM.Core.Mappings
         {
             mapping.References(a => a.Move)
                 .Cascade.SaveUpdate();
+
+            mapping.Map(a => a.Amount)
+                .Default("1");
         }
     }
 }
