@@ -1,0 +1,34 @@
+#newCategory 
+{
+    float: right;
+    display: none;
+}
+
+#AccountID
+{
+    display: none;
+}
+
+.createMoveScreenLeft
+{
+    float: left;
+    width: 35%;
+    clear: left;
+}
+
+div
+{
+    padding-bottom: 10px;
+}
+
+#moveCreateButton
+{
+    clear: both;
+    text-align: right;
+}
+
+#addDetailButton
+{
+    margin-left: 20px;
+    display: none;
+}

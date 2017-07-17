@@ -1,0 +1,44 @@
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #000;
+    background: #0F0;
+}
+
+.input-validation-error
+{
+    border-color: #0F0;
+    background-color: #EFE;
+}
+
+.validation-summary-errors
+{
+    color: #000;
+    background: #0F0;
+}
+
+
+
+body
+{
+	background: #000;
+	color: #0F0;
+}
+
+button
+{
+	background: #0F0;
+	color: #000;
+	border: #090;
+}
+
+a
+{
+	color: #0F0;
+}
+
+.Main hr
+{
+    color: #0F0;
+}

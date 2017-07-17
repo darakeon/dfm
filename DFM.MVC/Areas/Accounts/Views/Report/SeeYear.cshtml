@@ -1,0 +1,31 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeYearModel
+
+@{
+    ViewBag.Title = String.Format("{0} Summary", Model.Year);
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@if (Model.MoveSumList.Count == 0) { 
+    
+    @("There's no Moves for this Year.")
+        
+} else { 
+        
+    <table class="List">
+
+        <tr>
+            <td>Month</td>
+            <td>Value</td>
+        </tr>
+
+        @foreach (var move in Model.MoveSumList) { 
+            
+            <tr>
+                <td>@move.Key </td>
+                <td>@move.Value </td>
+            </tr>
+
+        } 
+
+    </table>
+} 

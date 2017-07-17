@@ -1,0 +1,104 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditModel
+
+@{
+    ViewBag.Title = Model.Title + " Move";
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
+    var addDetailsPage = '@Url.Action("AddDetail")';
+</script>
+<script src='@Url.Content("~/Assets/Script/Pages/MoveCreate.js")' type='text/javascript'></script>
+<link href="@Url.Content("~/Assets/Css/Pages/MoveCreate.css")" rel="stylesheet" type="text/css" />
+
+
+<div id="newCategory">@Html.Action("CreateClean", "Category")</div>
+
+
+@using (Html.BeginForm())
+{ 
+
+    <p>
+        @Html.ValidationSummary(true) 
+    </p>
+
+    <div class="createMoveScreenLeft">
+        <div>
+            @Html.LabelFor(m => m.Description) 
+            @Html.ValidationMessageFor(m => m.Description)<br />
+            @Html.TextBoxFor(m => m.Description)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Move.Date)
+            @Html.ValidationMessageFor(m => m.Move.Date)<br />
+            @Html.TextBoxFor(m => m.Move.Date, new { @class = "date" })
+        </div>
+    </div>
+
+    <div class="createMoveScreenRight">
+        <div>
+            @Html.LabelFor(m => m.CategoryID) 
+            @Html.ValidationMessageFor(m => m.CategoryID)<br />
+            @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- Select --")
+
+            <button type="button" id="newCategoryCaller">New Category</button>
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Nature) 
+
+            @Html.ValidationMessageFor(m => m.Nature)
+            @Html.ValidationMessageFor(m => m.AccountID)<br />
+        
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- Select --")
+            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- Select an Account --")
+        </div>
+    </div>
+    
+    <hr />
+    
+    @Html.ValidationMessageFor(m => m.Value)<br />
+
+    <div class="createMoveScreenLeft">
+        @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })
+        Just One Value
+    </div> 
+        
+    <div class="createMoveScreenRight">
+        @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "DetailLevel" })
+        Detailed
+        
+        <button id="addDetailButton" type="button" onclick="AddDetail()">Add Detail</button>
+    </div>
+
+    <div id="oneValue" class="createMoveScreenLeft">
+        @Html.LabelFor(m => m.Value)<br />
+        @Html.TextBoxFor(m => m.Value, new { @class = "money" })
+        
+        @Html.HiddenFor(m => m.Move.DetailList[0].ID)
+    </div>
+        
+    <table id="details" class="createMoveScreenRight">
+        <tr>
+            <td>Description</td>
+            <td>Value</td>
+        </tr>
+
+        @for (var d = 0; d < Model.Move.DetailList.Count; d++)
+        {
+            @Html.Action("AddDetail", new {
+                   position = d,
+                   id = Model.Move.DetailList[d].ID,
+                   description = Model.Move.DetailList[d].Description,
+                   value = Model.Move.DetailList[d].Value
+                });
+        }
+    </table>
+    
+    <div id="moveCreateButton">
+        <button type="submit">@Model.Title!</button>
+    </div>
+
+}

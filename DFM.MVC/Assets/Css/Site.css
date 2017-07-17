@@ -1,0 +1,45 @@
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    padding: 2px;
+    margin: 3px 3px;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    padding: 0px;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.validation-summary-errors ul
+{
+	padding: 0px;
+	margin: 7px;
+}
+
+.validation-summary-errors li
+{
+	list-style-type: none;
+}
+
+
+button
+{
+	font-weight: bold;
+}

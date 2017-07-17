@@ -1,0 +1,49 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeMonthModel
+
+@{
+    ViewBag.Title = String.Format("{1} {0}", Model.Month, Model.Year);
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@if (Model.MoveList.Count == 0) { 
+    
+    @("There's no Moves for this Month.")
+        
+} else { 
+        
+    <table class="List">
+
+        <tr>
+            <td>Description</td>
+            <td>Category</td>
+            <td>Date</td>
+            <td>In</td>
+            <td>Out</td>
+            <td></td>
+        </tr>
+
+        @foreach (var move in Model.MoveList) { 
+            
+            <tr>
+                <td>@move.Description </td>
+                <td>@move.Category </td>
+                <td>@move.Date.ToShortDateString() </td>
+
+                @if (move.Nature == DFM.Core.Enums.MoveNature.In)
+                    { <td>@move.Value</td> }
+                else
+                    { <td>&nbsp;</td> }
+
+                @if (move.Nature == DFM.Core.Enums.MoveNature.Out)
+                    { <td>@move.Value</td> }
+                else
+                    { <td>&nbsp;</td> }
+
+                <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
+                
+            </tr>
+
+        } 
+
+    </table>
+} 

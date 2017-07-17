@@ -1,0 +1,36 @@
+﻿@model DFM.MVC.Models.UserSignUpModel
+
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/Outer/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) { 
+
+    <p>
+        @Html.ValidationSummary(true) 
+    </p>
+        
+    <p>
+        @Html.LabelFor(m => m.Login) 
+        @Html.ValidationMessageFor(m => m.Login) <br />
+        @Html.TextBoxFor(m => m.Login) 
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Password) 
+        @Html.ValidationMessageFor(m => m.Password)<br />
+        @Html.PasswordFor(m => m.Password)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Email) 
+        @Html.ValidationMessageFor(m => m.Email)<br />
+        @Html.TextBoxFor(m => m.Email)
+    </p>
+
+    <p>
+        <button type="submit">Create!</button>
+    </p>
+
+} 

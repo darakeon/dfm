@@ -1,0 +1,46 @@
+div.menu
+{
+	float: right;
+	width: 120px;
+	border: 3px double;
+	padding: 10px 15px 20px 15px;
+	text-align: center;
+}
+
+p.menuTitle
+{
+	font-weight: bold;
+}
+
+div.Main
+{
+	border: 3px dashed;
+	width: 80%;
+	padding: 20px;
+}
+
+table.List
+{
+	width: 90%;
+}
+
+table.List td
+{
+	border-left: dashed 1px;
+	border-bottom-width: 2px;
+	border-bottom-style: groove;
+	padding: 5px 5px 5px 5px;
+}
+
+span.accountName
+{
+	font-weight: bold;
+}
+
+.Main hr
+{
+	border: 0px;
+	border-top: 2px dashed;
+	width: 100%;
+	margin: 20px 0px;
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Core", "DFM.Core\DFM.Core.csproj", "{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{D8715D0D-45FE-4623-A573-BC53AE5275A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ak.DataAccess", "..\..\00 - Lib\Ak\Ak.DataAccess\Ak.DataAccess.csproj", "{DFC0990E-F17C-414B-BB07-10DC86835EC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC0990E-F17C-414B-BB07-10DC86835EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC0990E-F17C-414B-BB07-10DC86835EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC0990E-F17C-414B-BB07-10DC86835EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC0990E-F17C-414B-BB07-10DC86835EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

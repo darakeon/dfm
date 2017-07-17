@@ -1,0 +1,27 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.CategoryCreateModel
+
+@{
+    ViewBag.Title = "New Move";
+}
+
+@{
+    var ajax = new AjaxOptions {
+        HttpMethod = "Post",
+        OnFailure = "AjaxFail",
+        OnSuccess = "InsertCategoryOnDropDown",
+    };
+}
+
+
+@using (Ajax.BeginForm("Create", "Category", ajax)) { 
+
+    <p>
+        <label>New Category Name:</label><br />
+        @Html.TextBoxFor(m => m.Category.Name)
+    </p>
+    
+    <p>
+        <button type="submit">Create!</button>
+    </p>
+
+}

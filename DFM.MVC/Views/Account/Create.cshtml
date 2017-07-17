@@ -1,0 +1,30 @@
+﻿@model DFM.MVC.Models.AccountCreateModel
+
+@{
+    ViewBag.Title = "Create Account";
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) { 
+
+    <p>
+        @Html.ValidationSummary(true)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Name) 
+        @Html.ValidationMessageFor(m => m.Name)<br />
+        @Html.TextBoxFor(m => m.Name)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Nature) 
+        @Html.ValidationMessageFor(m => m.Nature)<br />
+        @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- Select --")
+    </p>
+
+    <p>
+        <button type="submit">Create!</button>
+    </p>
+
+} 

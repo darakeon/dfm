@@ -1,0 +1,8 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.MoveAddDetailModel
+
+<tr class="moveDetailItem">
+    @Html.HiddenFor(m => m.Move.DetailList[Model.Position].ID)
+
+    <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Description)</td>
+    <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Value, new { @class = "money" })</td>
+</tr>
