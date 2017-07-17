@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
@@ -29,6 +30,7 @@ namespace DFM.Core.Database
         {
             testDetailList(move);
             testNature(move);
+            testAccounts(move);
         }
 
         private void testDetailList(Move move)
@@ -45,18 +47,28 @@ namespace DFM.Core.Database
             switch (move.Nature)
             {
                 case MoveNature.In:
-                    if (!hasIn || hasOut) throw new CoreValidationException("An In move need to have an In Account, and can't have an Out Account.");
+                    if (!hasIn || hasOut)
+                        throw new CoreValidationException("An In move need to have an In Account, and can't have an Out Account.");
                     break;
 
                 case MoveNature.Out: 
-                    if (hasIn || !hasOut) throw new CoreValidationException("An Out move need to have an Out Account, and can't have an In Account.");
+                    if (hasIn || !hasOut)
+                        throw new CoreValidationException("An Out move need to have an Out Account, and can't have an In Account.");
                     break;
 
                 case MoveNature.Transfer:
-                    if (!hasIn || !hasOut) throw new CoreValidationException("A Transfer move need to have Out and In Accounts.");
+                    if (!hasIn || !hasOut)
+                        throw new CoreValidationException("A Transfer move need to have Out and In Accounts.");
                     break;
 
             }
         }
+        
+        private void testAccounts(Move move)
+        {
+            if (move.In == move.Out)
+                throw new CoreValidationException("The Account In must be different from Account Out.");
+        }
+
     }
 }

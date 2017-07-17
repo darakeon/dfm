@@ -84,6 +84,7 @@
     <Compile Include="Areas\Accounts\Models\CategoryCreateModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
+    <Content Include="Assets\Css\Color\Money.css" />
     <Content Include="Assets\Script\AllPages.js" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -161,10 +162,10 @@
     <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Folder Include="Areas\Accounts\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Accounts\Views\Shared\" />
+    <Content Include="Views\Shared\_Error.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

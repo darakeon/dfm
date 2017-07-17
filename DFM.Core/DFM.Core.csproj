@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
@@ -80,12 +84,6 @@
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\00 - Lib\Ak\Ak.DataAccess\Ak.DataAccess.csproj">
-      <Project>{DFC0990E-F17C-414B-BB07-10DC86835EC1}</Project>
-      <Name>Ak.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeMonthModel
 
 @{
-    ViewBag.Title = String.Format("{1} {0}", Model.Month, Model.Year);
+    ViewBag.Title = String.Format("{0}: {2} {1}", Model.Account, Model.Month, Model.Year);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -29,15 +29,19 @@
                 <td>@move.Category </td>
                 <td>@move.Date.ToShortDateString() </td>
 
-                @if (move.Nature == DFM.Core.Enums.MoveNature.In)
-                    { <td>@move.Value</td> }
-                else
-                    { <td>&nbsp;</td> }
+                <td class="numeric in">
+                    @if (move.In == Model.Account)
+                        {@move.Value.ToString("#0.00")}
+                    else
+                        { @(" ") }
+                </td>
 
-                @if (move.Nature == DFM.Core.Enums.MoveNature.Out)
-                    { <td>@move.Value</td> }
-                else
-                    { <td>&nbsp;</td> }
+                <td class="numeric out">
+                    @if (move.Out == Model.Account)
+                        {@move.Value.ToString("#0.00")}
+                    else
+                        { @(" ") }
+                </td>
 
                 <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
                 

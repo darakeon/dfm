@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeYearModel
 
 @{
-    ViewBag.Title = String.Format("{0} Summary", Model.Year);
+    ViewBag.Title = String.Format("{0}: {1} Summary", Model.Account, Model.Year);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 

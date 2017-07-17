@@ -15,8 +15,9 @@ namespace DFM.Core.Entities
 
 
         public virtual Int32 ID { get; set; }
-        public virtual DateTime Date { get; set; }
+
         public virtual String Description { get; set; }
+        public virtual DateTime Date { get; set; }
         public virtual MoveNature Nature { get; set; }
         
         public virtual Category Category { get; set; }
@@ -34,12 +35,7 @@ namespace DFM.Core.Entities
 
         public virtual Double Value
         {
-            get { return sign * DetailList.Sum(d => d.Value); }
-        }
-
-        private Int32 sign
-        {
-            get { return Nature == MoveNature.Out ? -1 : 1; }   
+            get { return DetailList.Sum(d => d.Value); }
         }
 
 
@@ -61,9 +57,11 @@ namespace DFM.Core.Entities
 
         public virtual void MakePseudoDetail(Double value)
         {
+            var id = (DetailList.FirstOrDefault() ?? new Detail()).ID;
+
             DetailList = new List<Detail>();
 
-            var detail = new Detail {Description = Description, Value = value};
+            var detail = new Detail { ID = id, Description = Description, Value = value };
 
             AddDetail(detail);
         }

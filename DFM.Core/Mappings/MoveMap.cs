@@ -12,7 +12,8 @@ namespace DFM.Core.Mappings
             mapping.IgnoreProperty(m => m.Value);
 
             mapping.HasMany(m => m.DetailList)
-                .Cascade.AllDeleteOrphan();
+                .Cascade.AllDeleteOrphan()
+                .Inverse();
 
             mapping.References(m => m.In)
                 .Nullable();

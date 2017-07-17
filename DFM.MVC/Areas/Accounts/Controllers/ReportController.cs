@@ -26,9 +26,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             
             var model = new ReportSeeMonthModel
                             {
+                                MoveList = accountData.GetMonthReport(accountid, month, year),
+                                Account = accountData.SelectById(accountid),
+
                                 Month = DateTimeFormatInfo.InvariantInfo.GetMonthName(month),
-                                Year = year, 
-                                MoveList = accountData.GetMonthReport(accountid, month, year)
+                                Year = year,
                             };
 
 
@@ -43,8 +45,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeYearModel
                             {
+                                MoveSumList = accountData.GetYearReport(accountid, year),
+                                Account = accountData.SelectById(accountid),
+
                                 Year = year,
-                                MoveSumList = accountData.GetYearReport(accountid, year)
                             };
 
 

@@ -2,7 +2,7 @@
 
 namespace DFM.Core.Entities
 {
-    public class Detail
+    public class Detail : IEntity
     {
         public virtual Int32 ID { get; set; }
 

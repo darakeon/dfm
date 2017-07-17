@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Core.Entities;
+using DFM.Core.Helpers;
 using NHibernate.Criterion;
 
 namespace DFM.Core.Database
@@ -24,7 +25,7 @@ namespace DFM.Core.Database
             var user = SelectByLogin(login);
 
             if (user == null || user.Password != password)
-                throw new ApplicationException("Wrong.");
+                throw new CoreValidationException("Wrong.");
 
             return user;
         }
@@ -33,7 +34,7 @@ namespace DFM.Core.Database
         private void validate(User user)
         {
             if (SelectByLogin(user.Login) != null)
-                throw new ApplicationException("Already Exists.");
+                throw new CoreValidationException("Already Exists.");
         }
     }
 }

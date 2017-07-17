@@ -57,7 +57,7 @@ namespace DFM.Core.Database
         }
 
 
-        public IDictionary<String, Double> GetYearReport(int id, int? year)
+        public IDictionary<String, Double> GetYearReport(Int32 id, Int32 year)
         {
             var moveSumList = new Dictionary<String, Double>();
 

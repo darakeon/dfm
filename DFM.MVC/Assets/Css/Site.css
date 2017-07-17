@@ -48,3 +48,20 @@ a
 {
     white-space: nowrap;
 }
+
+
+
+td.numeric
+{
+	text-align: right;
+}
+
+td.in
+{
+	color: #00C;
+}
+
+td.out
+{
+	color: #C00;
+}

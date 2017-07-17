@@ -40,7 +40,7 @@ namespace DFM.Core.Entities
 
         public virtual Double MovesSum
         {
-            get { return MoveList.Sum(m => m.Value); }
+            get { return InList.Sum(m => m.Value) - OutList.Sum(m => m.Value); }
         }
 
 

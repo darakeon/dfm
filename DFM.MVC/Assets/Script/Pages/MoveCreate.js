@@ -14,6 +14,9 @@ $(document).ready(function () {
     });
 
     SetDetailLevel();
+
+    var nature = $("#Nature option:selected").val();
+    ShowAccountList(nature);
 });
 
 

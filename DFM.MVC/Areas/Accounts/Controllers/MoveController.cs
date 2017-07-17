@@ -10,6 +10,7 @@ using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
+using Ak.MVC.Route;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -51,9 +52,25 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Edit(Int32 id)
         {
+            var move = moveData.SelectById(id);
+
+            var secondAccountID = 
+                move.Nature == MoveNature.Transfer
+                    ? move.In.ID : (Int32?)null;
+
+            if (secondAccountID == accountid)
+            {
+                var action = RouteData.Values["action"].ToString();
+
+                RouteData.Values["accountid"] = move.Out.ID;
+
+                return RedirectToAction(action, RouteData.Values);
+            }
+
             var model = new MoveCreateEditModel
                             {
-                                Move = moveData.SelectById(id),
+                                Move = move,
+                                AccountID = secondAccountID
                             };
             
             model = populate(model, accountid);
