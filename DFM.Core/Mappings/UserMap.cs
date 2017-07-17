@@ -11,9 +11,6 @@ namespace DFM.Core.Mappings
             mapping.Map(u => u.Login)
                 .Unique();
 
-            mapping.Map(u => u.Language)
-                .Default("1");
-
             mapping.HasMany(u => u.AccountList)
                 .Cascade.SaveUpdate()
                 .Not.LazyLoad();

@@ -8,7 +8,7 @@ using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Models;
-using DFM.MVC.Resources;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {

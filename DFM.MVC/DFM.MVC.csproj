@@ -73,7 +73,9 @@
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
     <Compile Include="Helpers\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
-    <Compile Include="Resources\PlainText.cs" />
+    <Compile Include="Helpers\StringExtension.cs" />
+    <Compile Include="MultiLanguage\DictionaryCreator.cs" />
+    <Compile Include="MultiLanguage\PlainText.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -118,9 +120,12 @@
     <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Site.css" />
-    <Content Include="Resources\account.xml" />
-    <Content Include="Resources\general.xml" />
-    <Content Include="Resources\move.xml" />
+    <Content Include="MultiLanguage\Resources\account.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MultiLanguage\Resources\general.xml" />
+    <Content Include="MultiLanguage\Resources\move.xml" />
+    <Content Include="MultiLanguage\Resources\user.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

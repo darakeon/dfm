@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<user>
+  <en-US>
+    <Login text="Login" />
+    <Password text="Password" />
+    <Logon text="Logon" />
+  </en-US>
+  <pt-BR>
+    <Login text="Login" />
+    <Password text="Senha" />
+    <Logon text="Entrar" />
+  </pt-BR>
+</user>

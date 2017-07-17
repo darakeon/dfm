@@ -1,14 +1,11 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
-@using DFM.MVC.Resources;
 @using DFM.MVC.Helpers;
 
 @{
-    ViewBag.Title = "Accounts";
+    ViewBag.Title = PlainText.Dictionary["Accounts"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
-
-
 
 @if (Model.AccountList.Count == 0)
 { 
@@ -19,11 +16,11 @@ else
     <table class='List'>
 
         <tr>
-            <td>Name</td>
-            <td>Begin Date</td>
-            <td>Value</td>
-            <td colspan="2">GO TO</td>
-            <td colspan="3">TO DO</td>
+            <td>@PlainText.Dictionary["Name"]</td>
+            <td>@PlainText.Dictionary["BeginDate"]</td>
+            <td>@PlainText.Dictionary["Value"]</td>
+            <td colspan="2">@PlainText.Dictionary["GOTO"]</td>
+            <td colspan="3">@PlainText.Dictionary["TODO"]</td>
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -40,10 +37,17 @@ else
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
 
-                <td>@Html.RouteLink(Model.CurrentMonth + " Moves", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
-                <td>@Html.RouteLink(Model.CurrentYear + " Summary", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
+                <td>@Html.RouteLink(
+                        String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
+                        DFM.MVC.Helpers.RouteNames.Accounts,
+                        new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
                 
-                <td>@Html.RouteLink("Insert Move", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
+                <td>@Html.RouteLink(
+                        String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
+                        DFM.MVC.Helpers.RouteNames.Accounts,
+                        new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
+                
+                <td>@Html.RouteLink(PlainText.Dictionary["Create", "Move"], DFM.MVC.Helpers.RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
 
                 <td>@Html.RouteLink("Edit", DFM.MVC.Helpers.RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID }, new { })</td>
 

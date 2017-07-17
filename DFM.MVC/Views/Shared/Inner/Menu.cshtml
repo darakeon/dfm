@@ -12,10 +12,10 @@
 
 <p>
     <br />
-    @Html.RouteLink("Accounts", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
+    @Html.RouteLink(PlainText.Dictionary["Accounts"], DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
     <br />
-    @Html.RouteLink("Categories", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Category"})
+    @Html.RouteLink(PlainText.Dictionary["Categories"], DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Category"})
     <br />
     <br />
-    @Html.RouteLink("Log Off", DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"})
+    @Html.RouteLink(PlainText.Dictionary["LogOff"], DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"})
 </p>

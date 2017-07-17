@@ -19,7 +19,7 @@ namespace DFM.Core.Database
             if (Complete != null) Complete(entity);
             if (Validate != null) Validate(entity);
 
-            if (entity.ID == 0)
+            if (entity.ID == 0 || Session.Contains(entity))
                 Session.SaveOrUpdate(entity);
             else
                 Session.Merge(entity);

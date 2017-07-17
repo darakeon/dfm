@@ -1,9 +1,11 @@
-﻿using System.Web;
+﻿using System.Globalization;
+using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database;
 using DFM.MVC.Helpers;
-using DFM.MVC.Resources;
+using DFM.MVC.MultiLanguage;
 
 // ReSharper disable InconsistentNaming
 namespace DFM.MVC
@@ -45,6 +47,14 @@ namespace DFM.MVC
         protected void Application_BeginRequest()
         {
             NHManager.Open();
+
+            if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
+                return;
+
+            var language = "pt-BR";//Request.UserLanguages[0].ToLower();
+
+            if (PlainText.AcceptedLanguages.Contains(language))
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
         }
 
         protected void Application_EndRequest()
