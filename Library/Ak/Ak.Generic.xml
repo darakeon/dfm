@@ -19,6 +19,18 @@
              Give a name of a property, to use lambda expression, not strings
             </summary>
         </member>
+        <member name="T:Ak.Generic.Collection.IGroupable`1">
+            <summary>
+             Interface to use GroupedCollection
+            </summary>
+            <typeparam name="TG">Type of the Item that will group the objects</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.IGroupable`1.GetGroup">
+            <summary>
+             When implemented in a class, Retrieve de Group of the object
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
             <summary>
              Extension for Exception Base Class
@@ -27,6 +39,67 @@
         <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
             <summary>
              Get the most InnerException
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Enums.Str2Enum">
+            <summary>
+             Convert String to Enum
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T">Enum type</typeparam>
+        </member>
+        <member name="T:Ak.Generic.Collection.IsInExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+            <summary>
+             Whether an object is in a list
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Collection.ItemGroup`2">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+            <typeparam name="TI">Type of the Items of the Group</typeparam>
+            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor(`1)">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.Add(`0)">
+            <summary>
+             Add an item for this Group
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.GetEnumerator">
+            <summary>
+             To make ForEach
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.Group">
+            <summary>
+             The group chosen of this list
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.Item(System.Int32)">
+            <summary>
+             Get an item by its position
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.List">
+            <summary>
+             Return the list of objects of this group
             </summary>
         </member>
         <member name="T:Ak.Generic.Exceptions.AkException">
@@ -74,70 +147,6 @@
             <summary>
             </summary>
         </member>
-        <member name="T:Ak.Generic.Enums.Str2Enum">
-            <summary>
-             Convert String to Enum
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
-            <summary>
-            </summary>
-            <typeparam name="T">Enum type</typeparam>
-        </member>
-        <member name="T:Ak.Generic.Collection.IGroupable`1">
-            <summary>
-             Interface to use GroupedCollection
-            </summary>
-            <typeparam name="TG">Type of the Item that will group the objects</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.IGroupable`1.GetGroup">
-            <summary>
-             When implemented in a class, Retrieve de Group of the object
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Ak.Generic.Collection.ItemGroup`2">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-            <typeparam name="TI">Type of the Items of the Group</typeparam>
-            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor(`1)">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.Add(`0)">
-            <summary>
-             Add an item for this Group
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.GetEnumerator">
-            <summary>
-             To make ForEach
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Group">
-            <summary>
-             The group chosen of this list
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Item(System.Int32)">
-            <summary>
-             Get an item by its position
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.List">
-            <summary>
-             Return the list of objects of this group
-            </summary>
-        </member>
         <member name="T:Ak.Generic.Collection.GroupedCollection`2">
             <summary>
             Collection Grouped by one of the properties of the original IList
@@ -178,15 +187,6 @@
             <summary>
              Return the list of Groups and itens
              Recommended when is needed to use Linq
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Collection.IsInExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
-            <summary>
-             Whether an object is in a list
             </summary>
         </member>
     </members>

@@ -4,23 +4,6 @@
         <name>Ak.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
-            <summary>
-             To Force error when the user is not logged-in
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Authentication.AjaxAuthorizeAttribute.AuthorizeCore(System.Web.HttpContextBase)">
-            <summary>
-            When overridden, provides an entry point for custom authorization checks.
-            </summary>
-            <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="httpContext"/> parameter is null.</exception>
-            <returns>Whether the user is authorized</returns>
-        </member>
-        <member name="P:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
-            <summary>
-             The message to return as exception
-            </summary>
-        </member>
         <member name="T:Ak.MVC.Authentication.Authenticate">
             <summary>
              To make authentication in MVC easier
@@ -75,28 +58,6 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="T:Ak.MVC.Forms.SelectListExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
-            <summary>
-             Create a SelectList from List of objects
-            </summary>
-            <param name="list">The list that will fill the SelectList</param>
-            <param name="value">The property the will fill the values of the options</param>
-            <param name="text">The property the will fill the text that appears in options</param>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
-            <summary>
-             Create a SelectList from a Enum, using the text.
-             Can't use the number value, MVC don't recognize to assign selected.
-            </summary>
-            <param name="texts">
-             The texts that will appear for the user.
-             key = value of enum // value = text to appear
-             </param>
-        </member>
         <member name="T:Ak.MVC.Route.RouteInfo">
             <summary>
              Retrieves the routedata as the property of the controllers
@@ -136,6 +97,45 @@
             <summary>
              The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
+        </member>
+        <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
+            <summary>
+             To Force error when the user is not logged-in
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Authentication.AjaxAuthorizeAttribute.AuthorizeCore(System.Web.HttpContextBase)">
+            <summary>
+            When overridden, provides an entry point for custom authorization checks.
+            </summary>
+            <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="httpContext"/> parameter is null.</exception>
+            <returns>Whether the user is authorized</returns>
+        </member>
+        <member name="P:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
+            <summary>
+             The message to return as exception
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Forms.SelectListExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
+            <summary>
+             Create a SelectList from List of objects
+            </summary>
+            <param name="list">The list that will fill the SelectList</param>
+            <param name="value">The property the will fill the values of the options</param>
+            <param name="text">The property the will fill the text that appears in options</param>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
+            <summary>
+             Create a SelectList from a Enum, using the text.
+             Can't use the number value, MVC don't recognize to assign selected.
+            </summary>
+            <param name="texts">
+             The texts that will appear for the user.
+             key = value of enum // value = text to appear
+             </param>
         </member>
     </members>
 </doc>
