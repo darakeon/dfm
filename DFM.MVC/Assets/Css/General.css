@@ -1,6 +1,7 @@
 body {
 	background: #999;
 	text-align: justify;
+	margin: 8px 0 8px 0;
 }
 
 * {
@@ -33,6 +34,10 @@ div#Footer {
 	padding-top: 20px;
 	color: #FFF;
 	text-align: center;
+}
+
+div#Belt {
+    background: #BBB;
 }
 
 

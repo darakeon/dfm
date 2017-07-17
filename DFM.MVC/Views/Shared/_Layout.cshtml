@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿@{
+    var isAuthenticated = DFM.MVC.Authentication.Current.IsAuthenticated;
+
+    var routeValues = isAuthenticated
+        ? new { controller = "Account", action = "Index" }
+        : new { controller = "User", action = "Index" };
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
@@ -9,6 +17,8 @@
     <link href="@Url.Content("~/Assets/Css/MiniForm.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Assets/Css/Forms.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Assets/Css/TopRightDiv.css")" rel="stylesheet" type="text/css" />
+
+    @RenderSection("HtmlHeadCss", required: false)
 
     <script src="@Url.Content("~/Assets/Script/Libraries/jquery-1.6.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Assets/Script/Libraries/jquery.validate.min.js")" type="text/javascript"></script>
@@ -28,14 +38,10 @@
 
     <script src="@Url.Content("~/Assets/Script/Starter.js")" type="text/javascript"></script>
 
-
-    @RenderSection("HtmlHead", required: false)
+    @RenderSection("HtmlHeadJs", required: false)
 </head>
 <body>
 	<div id="Head">
-        @{
-            var isAuthenticated = DFM.MVC.Authentication.Current.IsAuthenticated;
-        }
 
         @if (isAuthenticated)
         {
@@ -45,18 +51,14 @@
                     onmouseout="this.src='@Url.Content("~/Assets/Image/off.gif")'" />
             </a>
         }
-		
-        @{
-            var routeValues = isAuthenticated
-                ? new { controller = "Account", action = "Index" }
-                : new { controller = "User", action = "Index" };
-        }
 
         <a href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
             <img id="Logo" alt="DFM" src="@Url.Content("~/Assets/Image/logo.gif")" /></a>
 	</div>
 
-    @RenderSection("Menu", required: false)
+    <div id="Belt">
+        @RenderSection("Menu", required: false)
+    </div>
 
     <div id="Main">
         @{/* Made without spaces to hide when empty */}

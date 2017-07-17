@@ -5,14 +5,17 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@section HtmlHead { 
+@section HtmlHeadCss { 
+    <link href="@Url.Content("~/Assets/Css/Pages/MoveCreateEdit.css")" rel="stylesheet" type="text/css" />
+}
+
+@section HtmlHeadJs { 
     <script type="text/javascript">
         var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
         var addDetailsPage = '@Url.Action("AddDetail")';
     </script>
 
     <script src='@Url.Content("~/Assets/Script/Pages/MoveCreateEdit.js")' type='text/javascript'></script>
-    <link href="@Url.Content("~/Assets/Css/Pages/MoveCreateEdit.css")" rel="stylesheet" type="text/css" />
 }
 
 

@@ -1,4 +1,4 @@
-﻿function AjustLinkButtons() {
+﻿function AjustMenuButtons() {
     $(".accountMenu").hover(ShowSub, HideSub);
 }
 

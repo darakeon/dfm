@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@section HtmlHead {
+@section HtmlHeadJs {
     <script type='text/javascript'>
         var reportPage = '@Url.Action("SeeMonth")';
     </script>
 }
 
 @section TopRightDiv {
-    @Html.NumberNavFor(m => m.Month, new Navigation.Navigator { Min = 1, Max = 12 })
-    @Html.NumberNavFor(m => m.Year, new Navigation.Navigator { Min = 1900, Max = DateTime.Today.Year })
+    @Html.NumberNavFor(m => m.Month, Navigation.Limits(1, 12))
+    @Html.NumberNavFor(m => m.Year, Navigation.Limits(1900, DateTime.Today.Year))
     <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
 }
 

@@ -1,5 +1,8 @@
-﻿div#TopRightDiv:empty {
-    display: none;
+﻿div#TopRightDiv:empty 
+{
+    /* Doens't work fine on chrome */
+    /*display: none;*/
+    background: #FFF;
 }
 
 div#TopRightDiv {
