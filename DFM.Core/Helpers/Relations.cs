@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DFM.Core.Entities.Bases;
+using DFM.Core.Entities.Base;
 using NHibernate.Linq;
 
 namespace DFM.Core.Helpers

@@ -2,7 +2,7 @@
 using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
-using DFM.Core.Entities.Bases;
+using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 
 namespace DFM.Core.Database

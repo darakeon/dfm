@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Core.Database;
-using DFM.Core.Entities.Bases;
+using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
 

@@ -77,8 +77,8 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Bases\IEntity.cs" />
-    <Compile Include="Entities\Bases\ISummarizable.cs" />
+    <Compile Include="Entities\Base\IEntity.cs" />
+    <Compile Include="Entities\Base\ISummarizable.cs" />
     <Compile Include="Entities\Month.cs" />
     <Compile Include="Entities\Move.cs" />
     <Compile Include="Entities\Summary.cs" />
