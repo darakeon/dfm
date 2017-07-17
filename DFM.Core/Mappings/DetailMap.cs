@@ -8,10 +8,10 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Detail> mapping)
         {
-            mapping.References(a => a.Move)
+            mapping.References(d => d.Move)
                 .Cascade.SaveUpdate();
 
-            mapping.Map(a => a.Amount)
+            mapping.Map(d => d.Amount)
                 .Default("1");
         }
     }

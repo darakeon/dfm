@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Core.Entities.Interfaces;
 
 namespace DFM.Core.Entities
 {
@@ -13,7 +14,7 @@ namespace DFM.Core.Entities
 
 
 
-        public override string ToString()
+        public override String ToString()
         {
             return Name;
         }

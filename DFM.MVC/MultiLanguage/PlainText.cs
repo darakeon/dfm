@@ -7,6 +7,7 @@ using System.Threading;
 using System.Web;
 using Ak.DataAccess.XML;
 using Ak.MVC.Route;
+using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage.Helpers;
 using NHibernate.Linq;
 
@@ -115,7 +116,7 @@ namespace DFM.MVC.MultiLanguage
 
         public static Dictionary<TEnum, String> GetEnumNames<TEnum>()
         {
-            var natures = new Dictionary<TEnum, string>();
+            var natures = new Dictionary<TEnum, String>();
 
             foreach (var item in Enum.GetValues(typeof(TEnum)))
             {
@@ -125,6 +126,11 @@ namespace DFM.MVC.MultiLanguage
                 natures.Add(key, value);
             }
             return natures;
+        }
+
+        public static String GetMonthName(Int32 month)
+        {
+            return Culture.DateTimeFormat.GetMonthName(month).Capitalize();
         }
     }
 }

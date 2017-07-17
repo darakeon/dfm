@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Core.Entities.Interfaces;
 using DFM.Core.Enums;
-using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
@@ -22,8 +22,9 @@ namespace DFM.Core.Entities
         public virtual MoveNature Nature { get; set; }
         
         public virtual Category Category { get; set; }
-        public virtual Account In { get; set; }
-        public virtual Account Out { get; set; }
+        
+        public virtual Month In { get; set; }
+        public virtual Month Out { get; set; }
 
         public virtual IList<Detail> DetailList { get; set; }
 
@@ -68,7 +69,7 @@ namespace DFM.Core.Entities
 
 
 
-        public override string ToString()
+        public override String ToString()
         {
             return Description;
         }

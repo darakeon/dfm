@@ -1,11 +1,12 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeYearModel
 
 @{
-    ViewBag.Title = String.Format("{0}: {1} Summary", Model.Account, Model.Year);
+    ViewBag.Title = String.Format("{0}: {1} Summary", Model.Account, Model.Year.Time);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@if (Model.MoveSumList.Count == 0) { 
+@if (!Model.Year.MonthList.Any())
+{ 
     
     @PlainText.Dictionary["NoYearMoves"]
         
@@ -18,11 +19,14 @@
             <td>@PlainText.Dictionary["Value"]</td>
         </tr>
 
-        @foreach (var move in Model.MoveSumList) { 
+        @foreach (var month in Model.Year.MonthList) {
+
+            var sign = month.Value < 0 ? "out" : "in";
+            var value = month.Value > 0 ? month.Value : -month.Value;
             
             <tr>
-                <td>@move.Key </td>
-                <td>@move.Value </td>
+                <td>@PlainText.GetMonthName(month.Time) </td>
+                <td class="numeric @sign">@value.ToMoney() </td>
             </tr>
 
         } 

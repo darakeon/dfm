@@ -1,8 +1,10 @@
-﻿namespace DFM.MVC.Helpers
+﻿using System;
+
+namespace DFM.MVC.Helpers
 {
     public class RouteNames
     {
-        public const string Default = "Default";
-        public const string Accounts = "Accounts";
+        public const String Default = "Default";
+        public const String Accounts = "Accounts";
     }
 }

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@if (Model.CategoryList.Count == 0)
+@if (!Model.CategoryList.Any())
 { 
     @PlainText.Dictionary["NoCategories"]
 }

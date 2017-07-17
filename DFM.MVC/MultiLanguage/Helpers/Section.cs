@@ -32,7 +32,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
 
 
 
-        public override string ToString()
+        public override String ToString()
         {
             return Name;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ak.DataAccess.NHibernate;
-using DFM.Core.Entities;
+using DFM.Core.Entities.Interfaces;
 using NHibernate;
 
 namespace DFM.Core.Database

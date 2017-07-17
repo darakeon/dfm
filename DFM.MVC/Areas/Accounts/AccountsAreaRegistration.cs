@@ -1,11 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.Accounts
 {
     public class AccountsAreaRegistration : AreaRegistration
     {
-        public override string AreaName
+        public override String AreaName
         {
             get
             {

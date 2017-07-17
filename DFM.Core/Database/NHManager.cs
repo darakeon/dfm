@@ -19,6 +19,11 @@ namespace DFM.Core.Database
             SessionBuilder.Open();
         }
 
+        public static void Error()
+        {
+            SessionBuilder.Error();
+        }
+
         public static void Close()
         {
             SessionBuilder.Close();

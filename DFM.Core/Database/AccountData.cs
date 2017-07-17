@@ -33,17 +33,20 @@ namespace DFM.Core.Database
             if (account.ID == 0)
             {
                 account.BeginDate = DateTime.Now;
+                return;
             }
-            else if (!account.MoveList.Any())
-            {
-                var oldAccount = SelectById(account.ID);
 
+            var oldAccount = SelectById(account.ID);
+
+            if (!account.YearList.Any())
+                account.YearList = oldAccount.YearList;
+
+            if (account.BeginDate == DateTime.MinValue)
                 account.BeginDate = oldAccount.BeginDate;
+
+            if (account.EndDate == null)
                 account.EndDate = oldAccount.EndDate;
 
-                account.InList = oldAccount.InList;
-                account.OutList = oldAccount.OutList;
-            }
         }
 
 
@@ -63,36 +66,33 @@ namespace DFM.Core.Database
         }
 
 
-        public IList<Move> GetMonthReport(Int32 id, Int32 month, Int32 year)
+        public IList<Move> GetMonthReport(Int32 id, Int32 dateMonth, Int32 dateYear)
         {
             var account = SelectById(id);
 
-            return account.MoveList
-                .Where(m => m.Date.Month == month
-                        && m.Date.Year == year)
-                .ToList();
+
+            var year = account.YearList.SingleOrDefault(y => y.Time == dateYear);
+
+            if (year == null)
+                return new List<Move>();
+
+
+            var month = year.MonthList.SingleOrDefault(y => y.Time == dateMonth);
+
+            if (month == null)
+                return new List<Move>();
+
+
+            return month.MoveList;
         }
 
 
-        public IDictionary<String, Double> GetYearReport(Int32 id, Int32 year)
+        public Year GetYearReport(Int32 id, Int32 year)
         {
-            var moveSumList = new Dictionary<String, Double>();
-
             var account = SelectById(id);
 
-            makeYearList(moveSumList, account.InList, year, 1);
-            makeYearList(moveSumList, account.OutList, year, -1);
-
-            return moveSumList;
-        }
-
-        private static void makeYearList(IDictionary<String, Double> moveSumList, IEnumerable<Move> moveList, Int32 year, Int32 sign)
-        {
-            moveList
-                .Where(m => m.Date.Year == year)
-                .ForEach(m =>
-                    moveSumList.SumItem(m.Month, sign * m.Value)
-                );
+            return account.YearList
+                .SingleOrDefault(y => y.Time == year);
         }
 
 

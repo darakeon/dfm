@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Core.Entities
+namespace DFM.Core.Entities.Interfaces
 {
     public interface IEntity
     {

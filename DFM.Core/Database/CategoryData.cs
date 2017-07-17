@@ -1,4 +1,5 @@
-﻿using DFM.Core.Entities;
+﻿using System;
+using DFM.Core.Entities;
 
 namespace DFM.Core.Database
 {
@@ -26,7 +27,7 @@ namespace DFM.Core.Database
             alterActive(category, true);
         }
 
-        private void alterActive(Category category, bool enable)
+        private void alterActive(Category category, Boolean enable)
         {
             category.Active = enable;
             SaveOrUpdate(category);

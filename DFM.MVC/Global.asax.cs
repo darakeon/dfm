@@ -54,6 +54,11 @@ namespace DFM.MVC
             specifyLanguage();
         }
 
+        protected void Application_Error()
+        {
+            NHManager.Error();
+        }
+
         protected void Application_EndRequest()
         {
             NHManager.Close();

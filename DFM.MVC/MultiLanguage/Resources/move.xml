@@ -14,6 +14,7 @@
     <CircularTransfer text="The In Account must be different from the Out Account." />
     <ClosedAccount text="Closed Account." />
     <DisabledCategory text="Disabled Category." />
+    <MoveNatureNotFound text="Move Nature doesn't exist." />
   </en-US>
   <pt-BR>
     <Amount text="Qte" />
@@ -27,5 +28,6 @@
     <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
     <ClosedAccount text="Conta fechada." />
     <DisabledCategory text="Categoria desativada." />
+    <MoveNatureNotFound text="Natureza de Movimentação inexistente;" />
   </pt-BR>
 </move>

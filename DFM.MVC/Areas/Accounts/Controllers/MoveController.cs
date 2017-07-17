@@ -95,7 +95,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                     var currentAccount = accountData.SelectById(accountid);
                     var otherAccount = accountData.SelectById(model.AccountID ?? 0);
 
-                    model.PlaceAccountsInMove(currentAccount, otherAccount);
+                    moveData.PlaceAccountsInMove(model.Move, currentAccount, otherAccount);
 
                     model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
 

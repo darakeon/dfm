@@ -12,14 +12,10 @@ namespace DFM.Core.Mappings
                 .Nullable();
 
 
-            mapping.HasMany(a => a.InList)
-                .Cascade.Delete();
-
-            mapping.HasMany(a => a.OutList)
+            mapping.HasMany(a => a.YearList)
                 .Cascade.Delete();
 
 
-            mapping.IgnoreProperty(a => a.MoveList);
             mapping.IgnoreProperty(a => a.MovesSum);
             mapping.IgnoreProperty(a => a.Open);
 

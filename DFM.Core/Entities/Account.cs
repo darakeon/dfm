@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Core.Entities.Interfaces;
 using DFM.Core.Enums;
 
 namespace DFM.Core.Entities
@@ -9,10 +10,8 @@ namespace DFM.Core.Entities
     {
         public Account()
         {
-            InList = new List<Move>();
-            OutList = new List<Move>();
+            YearList = new List<Year>();
         }
-
 
 
         public virtual Int32 ID { get; set; }
@@ -24,23 +23,13 @@ namespace DFM.Core.Entities
 
         public virtual User User { get; set; }
 
-        public virtual IList<Move> InList { get; set; }
-        public virtual IList<Move> OutList { get; set; }
-        
-        public virtual IList<Move> MoveList { 
-            get
-            {
-                var list = InList.ToList();
-                list.AddRange(OutList);
-                return list;
-            }
-        }
+        public virtual IList<Year> YearList { get; set; }
 
 
 
         public virtual Double MovesSum
         {
-            get { return InList.Sum(m => m.Value) - OutList.Sum(m => m.Value); }
+            get { return YearList.Sum(m => m.Value); }
         }
 
         public virtual Boolean Open
@@ -49,7 +38,8 @@ namespace DFM.Core.Entities
         }
 
 
-        public override string ToString()
+
+        public override String ToString()
         {
             return Name;
         }

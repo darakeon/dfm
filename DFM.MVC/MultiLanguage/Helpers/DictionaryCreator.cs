@@ -34,7 +34,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
             return new Node(fileName);
         }
 
-        private static void createSection(string section, string fileName)
+        private static void createSection(String section, String fileName)
         {
             var file = File.Create(fileName);
 
@@ -78,7 +78,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
                 createPhrase(languageNode, phrase);
         }
 
-        private static void createPhrase(Node languageNode, string phrase)
+        private static void createPhrase(Node languageNode, String phrase)
         {
             var phraseNode = new Node { Name = phrase };
 

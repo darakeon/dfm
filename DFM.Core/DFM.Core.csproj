@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
     <Compile Include="Database\CategoryData.cs" />
+    <Compile Include="Database\SummaryData.cs" />
+    <Compile Include="Database\MonthData.cs" />
+    <Compile Include="Database\YearData.cs" />
     <Compile Include="Database\DetailData.cs" />
     <Compile Include="Database\MoveData.cs" />
     <Compile Include="Database\NHManager.cs" />
@@ -74,8 +77,12 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Interfaces\IEntity.cs" />
+    <Compile Include="Entities\Interfaces\ISummarizable.cs" />
+    <Compile Include="Entities\Month.cs" />
     <Compile Include="Entities\Move.cs" />
+    <Compile Include="Entities\Summary.cs" />
+    <Compile Include="Entities\Year.cs" />
     <Compile Include="Enums\AccountNature.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Entities\User.cs" />
@@ -83,6 +90,9 @@
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\SummaryMap.cs" />
+    <Compile Include="Mappings\MonthMap.cs" />
+    <Compile Include="Mappings\YearMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />

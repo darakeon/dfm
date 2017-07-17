@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.Core.Enums;
+using DFM.Core.Entities.Interfaces;
 
 namespace DFM.Core.Entities
 {
@@ -25,15 +25,7 @@ namespace DFM.Core.Entities
 
 
         
-        public virtual void AddCategory(Category category)
-        {
-            CategoryList.Add(category);
-            category.User = this;
-        }
-
-
-
-        public override string ToString()
+        public override String ToString()
         {
             return Login;
         }

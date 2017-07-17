@@ -23,11 +23,11 @@ namespace DFM.MVC.Models
 
         public Account Account { get; set; }
 
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public String Name { get { return Account.Name; } set { Account.Name = value; } }
 
 
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public AccountNature Nature { get { return Account.Nature; } set { Account.Nature = value; } }
         public SelectList NatureSelectList { get; set; }
     }

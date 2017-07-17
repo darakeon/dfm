@@ -16,6 +16,6 @@ namespace DFM.MVC.Models
                 .ToList();
         }
 
-        public IList<Account> AccountList;
+        public IList<Account> AccountList { get; set; }
     }
 }

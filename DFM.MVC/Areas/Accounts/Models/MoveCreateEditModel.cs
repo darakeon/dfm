@@ -38,21 +38,21 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         public Move Move { get; set; }
 
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public String Description { get { return Move.Description; } set { Move.Description = value; } }
 
         
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public DateTime Date { get { return Move.Date; } set { Move.Date = value; } }
 
 
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public MoveNature Nature { get { return Move.Nature; } set { Move.Nature = value; } }
         public SelectList NatureSelectList { get; set; }
 
         
 
-        [Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "*")]
         public Int32? CategoryID { get; set; }
         public SelectList CategorySelectList { get; set; }
 
@@ -77,25 +77,6 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         }
 
-
-        public void PlaceAccountsInMove(Account currentAccount, Account otherAccount)
-        {
-            switch (Move.Nature)
-            {
-                case MoveNature.Out:
-                    Move.Out = currentAccount;
-                    break;
-                case MoveNature.In:
-                    Move.In = currentAccount;
-                    break;
-                case MoveNature.Transfer:
-                    Move.Out = currentAccount;
-                    Move.In = otherAccount;
-                    break;
-                default:
-                    throw new Exception("Move Nature doesn't exist");
-            }
-        }
 
         public void Populate(Int32 accountID)
         {

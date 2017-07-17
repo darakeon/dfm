@@ -6,7 +6,7 @@
 }
 
 
-@if (Model.AccountList.Count == 0)
+@if (!Model.AccountList.Any())
 { 
     @PlainText.Dictionary["NoAccounts"]
 }

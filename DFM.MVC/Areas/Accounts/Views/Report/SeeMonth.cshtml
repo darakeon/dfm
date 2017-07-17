@@ -34,14 +34,14 @@
                 <td>@move.Date.ToShortDateString() </td>
 
                 <td class="numeric in">
-                    @if (move.In == Model.Account)
+                    @if (move.In != null && move.In.Year.Account == Model.Account)
                         {@move.Value.ToMoney()}
                     else
                         { @(" ") }
                 </td>
 
                 <td class="numeric out">
-                    @if (move.Out == Model.Account)
+                    @if (move.Out != null && move.Out.Year.Account == Model.Account)
                         {@move.Value.ToMoney()}
                     else
                         { @(" ") }

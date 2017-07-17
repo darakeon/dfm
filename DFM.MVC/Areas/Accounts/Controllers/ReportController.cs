@@ -33,7 +33,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
                                 Date = 
                                     String.Format(PlainText.Dictionary["ShortDateFormat"],
-                                        PlainText.Culture.DateTimeFormat.GetMonthName(month).Capitalize(), year)
+                                        PlainText.GetMonthName(month), year)
                             };
 
 
@@ -48,10 +48,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeYearModel
                             {
-                                MoveSumList = accountData.GetYearReport(accountid, year),
+                                Year = accountData.GetYearReport(accountid, year),
                                 Account = accountData.SelectById(accountid),
-
-                                Year = year,
                             };
 
 

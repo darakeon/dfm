@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DFM.MVC.Models
 {
     public class UserLogOnModel
     {
-        [Required(ErrorMessage = "> Mandatory Field")]
-        public string Login { get; set; }
+        [Required(ErrorMessage = "*")]
+        public String Login { get; set; }
 
-        [Required(ErrorMessage = "> Mandatory Field")]
-        public string Password { get; set; }
+        [Required(ErrorMessage = "*")]
+        public String Password { get; set; }
     }
 }
