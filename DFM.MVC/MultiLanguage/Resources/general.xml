@@ -39,7 +39,7 @@
     <Debt text="Debt" />
 
     <!--Index-->
-    <Bemvindo text="Welcome!" />
+    <Welcome text="Welcome!" />
     <Index_Introdution text="Don't Fly Money is a personal financial management system. It is made thinking in the most generic way to manage money. To sign up you just need login, password and a valid e-mail." />
     <Index_PossibleNowADays text="Nowadays, it's possible:" />
     <Index_AccountAndTypes text="Create {0} account types ({1});" />
@@ -51,7 +51,10 @@
     <Index_ReportYear text="Yearly summary, with month sums;" />
     <Index_Close text="In case of any doubt, verify our Tutorial. We are just beta yet. Continuously, new features will come." />
     <Index_Finish text="Sign up now and begin!" />
-
+    
+    <!--Menu-->
+    <WeirdMenuExplanation text="Your menu is different because you have too much accounts to list here."/>
+    
   </en-US>
   <pt-BR>
     
@@ -92,7 +95,7 @@
     <Debt text="Dívida" />
 
     <!--Index-->
-    <Bemvindo text="Bem-vindo!" />
+    <Welcome text="Bem-vindo!" />
     <Index_Introdution text="O Don't Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer login, senha, e um e-mail válido." />
     <Index_PossibleNowADays text="Atualmente, é possível:" />
     <Index_AccountAndTypes text="Criar contas de {0} tipos ({1});" />
@@ -104,6 +107,9 @@
     <Index_ReportYear text="Resumo anual, com soma dos meses;" />
     <Index_Close text="Se tiver dúvidas ao entrar no sistema, verifique nosso Tutorial. Ainda estamos em fase de testes. Continuamente, implementaremos novas funcionalidades." />
     <Index_Finish text="Cadastre-se e comece a usar!" />
-    
+
+    <!--Menu-->
+    <WeirdMenuExplanation text="Seu menu aparece diferente por excesso de contas para listar."/>
+
   </pt-BR>
 </general>

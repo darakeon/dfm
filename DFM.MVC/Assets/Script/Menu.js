@@ -1,5 +1,6 @@
 ﻿function AjustMenuButtons() {
-    $(".accountMenu").hover(ShowSub, HideSub);
+    $(".higherMenu").hover(ShowSub, HideSub);
+    $("#weirdMenu").click(WeirdMenu);
 }
 
 function ShowSub() {
@@ -10,4 +11,8 @@ function ShowSub() {
 function HideSub() {
     var id = $(this).attr("id");
     $("#Sub" + id).hide();
+}
+
+function WeirdMenu() {
+    alert(weirdMenuExplanation);
 }

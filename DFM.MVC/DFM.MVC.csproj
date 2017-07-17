@@ -75,6 +75,7 @@
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Helpers\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
+    <Compile Include="Helpers\Menu.cs" />
     <Compile Include="Helpers\Navigation.cs" />
     <Compile Include="Helpers\Int32Extension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />

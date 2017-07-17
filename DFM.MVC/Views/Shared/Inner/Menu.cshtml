@@ -1,51 +1,86 @@
 ﻿@model DFM.MVC.Models.BaseLoggedModel
+           
+@{
+    var menuList = new List<Menu>
+    {
+        Model.MenuWith("MonthMoves", String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth), "SeeMonth", "Report"),
+        Model.MenuWith("YearMoves", String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear), "SeeYear", "Report"),
+        Model.MenuWith("CreateMove", PlainText.Dictionary["Create", "Move"], "Create", "Move"),
+        Model.MenuWith("ScheduleMove", PlainText.Dictionary["Schedule", "Move"], "Schedule", "Move"),
+    };
+}
 
 <div id="Menu">
 
-    @foreach (var account in Model.LateralAccountList)
-    { 
-        <div class="accountMenu" id="@(account.ID)">
-            @Html.RouteLink(account.Name, RouteNames.Accounts,
-                new { controller = "Report", action = "Index", accountid = account.ID },
-                new { @class = "highMenu" })
-
-            <div class="reportsMenu" id="Sub@(account.ID)">
-                <ul>
-                    <li>
-                        @Html.RouteLink(
-                            String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
-                            RouteNames.Accounts,
-                            new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })
-                    </li>
-                    <li>
-                        @Html.RouteLink(
-                            String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
-                            RouteNames.Accounts,
-                            new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })
-                    </li>
-
-                    <li>@Html.RouteLink(
-                        PlainText.Dictionary["Create", "Move"],
-                        RouteNames.Accounts,
-                        new { action = "Create", controller = "Move", accountid = account.ID }, new { })
-                    </li>
-                    <li>@Html.RouteLink(
-                        PlainText.Dictionary["Schedule", "Move"],
-                        RouteNames.Accounts,
-                        new { action = "Schedule", controller = "Move", accountid = account.ID }, new { })
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    }
-
     <div class="fixMenu">
-        @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "Fix" })
+        @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "fixItem" })
+        @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })
     </div>
 
-    <div class="fixMenu">
-        @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "Fix" })
+    <div class="accountMenu">
+        @if (Model.TooBigMeny())
+        {
+            var invertedMenuList = new List<Menu> { 
+                Model.MenuWith("Accounts", PlainText.Dictionary["Accounts"], "Index", "Report")
+            };
+            
+            invertedMenuList.AddRange(menuList);
+            
+
+            foreach (var item in invertedMenuList)
+            { 
+                <div class="higherMenu" id="@(item.ID)">
+                    <a class="higherTitle Simple">@item.Text </a>
+
+                    <div class="reportsMenu" id="Sub@(item.ID)">
+                        <ul>
+                            @foreach (var account in Model.LateralAccountList)
+                            {
+                                <li>
+                                    @Html.RouteLink(account.Name, RouteNames.Accounts,
+                                        new { controller = item.Controller, action = item.Action, accountid = account.ID },
+                                        new { })
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+
+            var weirdMenuExplanation = PlainText.Dictionary["WeirdMenuExplanation"];
+            
+            <script type="text/javascript">
+                var weirdMenuExplanation = '@weirdMenuExplanation';
+            </script>
+            <div class="higherMenu" id="weirdMenu">
+                <a class="higherTitle">?</a>
+            </div>
+        }
+        else
+        {
+
+            foreach (var account in Model.LateralAccountList)
+            { 
+                <div class="higherMenu" id="@(account.ID)">
+                    @Html.RouteLink(account.Name, RouteNames.Accounts,
+                        new { controller = "Report", action = "Index", accountid = account.ID },
+                        new { @class = "higherTitle" })
+
+                    <div class="reportsMenu" id="Sub@(account.ID)">
+                        <ul>
+                            @foreach (var item in menuList)
+                            {
+                                <li>
+                                    @Html.RouteLink(item.Text, RouteNames.Accounts,
+                                        new { action = item.Action, controller = item.Controller, accountid = account.ID }, new { })
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+
+        }
     </div>
 
 </div>
