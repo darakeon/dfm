@@ -16,6 +16,16 @@
     @RenderSection("HtmlHeadJs", required: false)
 }
 
+@section LogOut {
+    <img id="Out" alt="DFM" src="@Url.Content("~/Assets/Image/off_in.gif")"
+        onmouseover="this.src='@Url.Content("~/Assets/Image/off_in_hover.gif")'"
+        onmouseout="this.src='@Url.Content("~/Assets/Image/off_in.gif")'" />
+}
+
+@section Logo {
+    <img alt="DFM" src="@Url.Content("~/Assets/Image/logo_in.gif")" />
+}
+
 @section Menu { 
     @{ Html.RenderPartial("Inner/Menu"); }
 }
