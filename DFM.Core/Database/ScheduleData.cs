@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
+using DFM.Core.Robots;
 
 namespace DFM.Core.Database
 {
@@ -40,6 +41,8 @@ namespace DFM.Core.Database
                             .Year.Account.User;
 
             schedule.User = user;
+
+            //ScheduleRunner.CreateMovesUntilNow(schedule);
         }
 
     }

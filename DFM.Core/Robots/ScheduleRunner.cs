@@ -18,19 +18,23 @@ namespace DFM.Core.Robots
 
             foreach (var schedule in scheduleList)
             {
-                while (schedule.Active &&
-                    schedule.Next <= DateTime.Today)
-                {
-                    var move = getNextMove(schedule);
-                    ajustSchedule(schedule, move);
-                    
-                    save(move);
-                }
+                CreateMovesUntilNow(schedule);
             }
-
-
-
         }
+
+
+        internal static void CreateMovesUntilNow(Schedule schedule)
+        {
+            while (schedule.Active &&
+                   schedule.Next <= DateTime.Today)
+            {
+                var move = getNextMove(schedule);
+                ajustSchedule(schedule, move);
+                    
+                save(move);
+            }
+        }
+
 
         private static Move getNextMove(Schedule schedule)
         {
@@ -55,11 +59,11 @@ namespace DFM.Core.Robots
             return newMove;
         }
 
+
         private static Account getAccount(Month month)
         {
             return month == null ? null : month.Year.Account;
         }
-
 
         
         private static void ajustSchedule(Schedule schedule, Move move)
@@ -79,8 +83,6 @@ namespace DFM.Core.Robots
             else
                 schedule.SetNextRun();
         }
-
-
 
 
         private static void save(Move newMove)
