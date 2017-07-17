@@ -59,7 +59,7 @@ function InsertCategoryOnDropDown(data) {
 
 function ShowAccountList(obj) {
     $.post(whetherShowAccountListPage,
-            { nature: obj.val() },
+            { nature: $(obj).val() },
             function (show) {
                 $('#AccountID').toggle(toBoolean(show));
             }
