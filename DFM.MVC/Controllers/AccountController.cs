@@ -4,6 +4,7 @@ using DFM.Core.Helpers;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
 using DFM.Core.Database;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Controllers
 {
@@ -43,16 +44,13 @@ namespace DFM.MVC.Controllers
             return createEdit(model);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(Int32? id)
         {
-            return RedirectToAction("Create");
-        }
+            if (!id.HasValue) return RedirectToAction("Create");
 
-        public ActionResult Edit(Int32 id)
-        {
             var model = new AccountCreateEditModel
                             {
-                                Account = accountData.SelectById(id)
+                                Account = accountData.SelectById(id.Value)
                             };
 
             return View("CreateEdit", model);
@@ -98,8 +96,8 @@ namespace DFM.MVC.Controllers
             accountData.Close(account);
 
             var message = account == null
-                ? "No Account to close."
-                : String.Format("Account '{0}' closed.", account.Name);
+                ? PlainText.Dictionary["AccountNotFound"]
+                : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
 
             return new JsonResult { Data = new { message } };
         }

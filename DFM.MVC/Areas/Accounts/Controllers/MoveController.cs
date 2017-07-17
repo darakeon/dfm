@@ -11,6 +11,7 @@ using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -36,7 +37,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditModel { Date = DateTime.Today };
             
-            model = populate(model, accountid);
+            model.Populate(accountid);
 
             return View("CreateEdit", model);
         }
@@ -47,14 +48,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return createEdit(model);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(Int32? id)
         {
-            return RedirectToAction("Create");
-        }
+            if (!id.HasValue) return RedirectToAction("Create");
 
-        public ActionResult Edit(Int32 id)
-        {
-            var move = moveData.SelectById(id);
+
+            var move = moveData.SelectById(id.Value);
 
             var model = new MoveCreateEditModel(move);
 
@@ -63,7 +62,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-            model = populate(model, accountid);
+            model.Populate(accountid);
 
             return View("CreateEdit", model);
         }
@@ -86,32 +85,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
 
-        private MoveCreateEditModel populate(MoveCreateEditModel model, Int32 accountID)
-        {
-            model.MakeAccountTransferList(accountID);
-
-
-            model.IsDetailed = model.Move.HasRealDetails();
-
-            if (!model.Move.DetailList.Any())
-            {
-                var detail = new Detail { Amount = 1 };
-                model.Move.AddDetail(detail);
-            }
-
-            if (model.Move.Category != null)
-            {
-                model.CategoryID = model.Move.Category.ID;
-            }
-
-
-          
-            model.CategorySelectList = SelectListExtension
-                .CreateSelect(Current.User.CategoryList, mv => mv.ID, mv => mv.Name);
-            
-
-            return model;
-        }
 
         private ActionResult createEdit(MoveCreateEditModel model)
         {
@@ -135,11 +108,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
                 catch (CoreValidationException e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
                 }
             }
 
-            model = populate(model, accountid);
+            model.Populate(accountid);
 
             return View("CreateEdit", model);
         }
@@ -171,8 +144,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             moveData.Delete(move);
 
             var message = move == null
-                ? "No Move to delete."
-                : String.Format("Move '{0}' deleted.", move.Description);
+                ? PlainText.Dictionary["MoveNotFound"]
+                : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);
 
             return new JsonResult { Data = new { message } };
         }

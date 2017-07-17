@@ -24,7 +24,7 @@ namespace DFM.Core.Database
 
             if (accountExistsForUser)
             {
-                throw new CoreValidationException("Already Exists.");
+                throw new CoreValidationException("AlreadyExists");
             }
         }
 
@@ -48,7 +48,7 @@ namespace DFM.Core.Database
 
 
         
-        public Account SelectByName(string name, User user)
+        public Account SelectByName(String name, User user)
         {
             IList<Account> userList = Session
                 .CreateCriteria(typeof(Account))
@@ -57,7 +57,7 @@ namespace DFM.Core.Database
                 .ToList();
 
             if (userList.Count > 1)
-                throw new CoreValidationException("There is more than one account.");
+                throw new CoreValidationException("DuplicatedName");
 
             return userList.SingleOrDefault();
         }

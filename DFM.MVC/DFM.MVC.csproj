@@ -74,6 +74,7 @@
     <Compile Include="Helpers\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
+    <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
     <Compile Include="MultiLanguage\Helpers\DictionaryCreator.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\CategoryCreateModel.cs" />
+    <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Content Include="Assets\Css\Color\Money.css" />
@@ -130,9 +131,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguage\Resources\report.xml" />
-    <EmbeddedResource Include="MultiLanguage\Resources\general.xml" />
+    <EmbeddedResource Include="MultiLanguage\Resources\general.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguage\Resources\move.xml" />
     <EmbeddedResource Include="MultiLanguage\Resources\user.xml" />
+    <Content Include="MultiLanguage\Resources\category.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -184,7 +188,7 @@
     <Content Include="Areas\Accounts\Views\Report\SeeYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
@@ -203,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Inner\AD.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

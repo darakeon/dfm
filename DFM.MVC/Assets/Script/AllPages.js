@@ -65,12 +65,12 @@ function AjaxFail(html) {
     EndAjaxPost()
 
     if (error.match(/session expired/i))
-        location.reload();
+        SafeReload()
 }
 
 function TellResultAndReload(data) {
     alert(data.message);
-    location.reload();
+    SafeReload();
 }
 
 function BeginAjaxPost() {
@@ -79,6 +79,14 @@ function BeginAjaxPost() {
 
 function EndAjaxPost() {
     $("*").css("cursor", "default");
+}
+
+function SafeReload() {
+    $("a").removeAttr("href");
+    $("button").hide();
+    $("form").submit(function () { return false; });
+    
+    location.reload();
 }
 
 

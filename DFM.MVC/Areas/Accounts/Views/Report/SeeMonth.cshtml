@@ -9,7 +9,7 @@
     <script src='@Url.Content("~/Assets/Script/Pages/ReportSeeMonth.js")' type='text/javascript'></script>
 }
 
-@if (Model.MoveList.Count == 0) { 
+@if (!Model.MoveList.Any()) { 
     
     @PlainText.Dictionary["NoMonthMoves"]
         

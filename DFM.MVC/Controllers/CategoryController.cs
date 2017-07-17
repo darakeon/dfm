@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
-using DFM.MVC.Areas.Accounts.Models;
+using DFM.Core.Entities;
 using DFM.MVC.Authentication;
 using DFM.Core.Database;
+using DFM.MVC.Models;
+using DFM.MVC.MultiLanguage;
 
-namespace DFM.MVC.Areas.Accounts.Controllers
+namespace DFM.MVC.Controllers
 {
     [AjaxAuthorize]
     public class CategoryController : Controller
@@ -13,42 +15,121 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         readonly CategoryData categoryData = new CategoryData();
 
 
-        // It's called on page, by Html.Action.
-        // This causes the call method depend on the call method of mother page
-        // So, it has to have different names for Get and Post
-        public ActionResult CreateClean()
+        public ActionResult Index()
         {
-            var model = new CategoryCreateModel();
+            var model = new CategoryIndexModel();
 
-            return View("Create", model);
+            return View(model);
+        }
+
+
+        
+        public ActionResult Create()
+        {
+            var model = new CategoryCreateEditModel();
+
+            model.DefineAction(Request);
+
+            return View("CreateEdit", model);
         }
 
         [HttpPost]
-        public JsonResult Create(CategoryCreateModel model)
+        public ActionResult Create(CategoryCreateEditModel model)
         {
-            var result = new JsonResult();
+            return createEditForHtmlForm(model);
+        }
 
+        [HttpPost]
+        public JsonResult CreateAjax(CategoryCreateEditModel model)
+        {
+            var category = createEditForAll(model);
+            var json = new {id = category.ID, name = category.Name};
+
+            return new JsonResult { Data = json };
+        }
+
+
+        public ActionResult Edit(Int32? id)
+        {
+            if (!id.HasValue) return RedirectToAction("Create"); 
+            
+            
+            var model = new CategoryCreateEditModel
+            {
+                Category = categoryData.SelectById(id.Value)
+            };
+
+            return View("CreateEdit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Int32 id, CategoryCreateEditModel model)
+        {
+            model.Category.ID = id;
+
+            return createEditForHtmlForm(model);
+        }
+
+
+
+        private ActionResult createEditForHtmlForm(CategoryCreateEditModel model)
+        {
+            var category = createEditForAll(model);
+
+            if (category.ID != 0)
+                return RedirectToAction("Index");
+
+
+            model.DefineAction(Request);
+
+            return View("CreateEdit", model);
+        }
+
+        private Category createEditForAll(CategoryCreateEditModel model)
+        {
             var categoryIdEmpty = model.Category == null
-                || String.IsNullOrEmpty(model.Category.Name);
-
+                                  || String.IsNullOrEmpty(model.Category.Name);
 
             if (categoryIdEmpty)
-            {
-                result.Data = new { id = 0 };
-            }
-            else
-            {
-                var category = model.Category;
+                return new Category { ID = 0 };
 
-                Current.User.AddCategory(category);
+            
+            model.Category.User = Current.User;
 
-                categoryData.SaveOrUpdate(category);
+            categoryData.SaveOrUpdate(model.Category);
 
-                result.Data = new { id = category.ID, name = category.Name };
-            }
-
-
-            return result;
+            return model.Category;
         }
+
+
+
+        public JsonResult Disable(Int32 id)
+        {
+            var category = categoryData.SelectById(id);
+
+            categoryData.Disable(category);
+
+            var message = category == null
+                ? PlainText.Dictionary["CategoryNotFound"]
+                : String.Format(PlainText.Dictionary["CategoryDisabled"], category.Name);
+
+            return new JsonResult { Data = new { message } };
+        }
+
+
+
+        public JsonResult Enable(Int32 id)
+        {
+            var category = categoryData.SelectById(id);
+
+            categoryData.Enable(category);
+
+            var message = category == null
+                ? PlainText.Dictionary["CategoryNotFound"]
+                : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
+
+            return new JsonResult { Data = new { message } };
+        }
+
     }
 }

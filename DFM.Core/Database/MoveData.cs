@@ -36,12 +36,13 @@ namespace DFM.Core.Database
             testDetailList(move);
             testNature(move);
             testAccounts(move);
+            testCategory(move);
         }
 
         private void testDetailList(Move move)
         {
             if (!move.DetailList.Any())
-                throw new CoreValidationException("At least one value required.");
+                throw new CoreValidationException("DetailRequired");
         }
 
         private void testNature(Move move)
@@ -53,26 +54,38 @@ namespace DFM.Core.Database
             {
                 case MoveNature.In:
                     if (!hasIn || hasOut)
-                        throw new CoreValidationException("An In move need to have an In Account, and can't have an Out Account.");
+                        throw new CoreValidationException("InMoveWrong");
                     break;
 
                 case MoveNature.Out: 
                     if (hasIn || !hasOut)
-                        throw new CoreValidationException("An Out move need to have an Out Account, and can't have an In Account.");
+                        throw new CoreValidationException("OutMoveWrong");
                     break;
 
                 case MoveNature.Transfer:
                     if (!hasIn || !hasOut)
-                        throw new CoreValidationException("A Transfer move need to have Out and In Accounts.");
+                        throw new CoreValidationException("TransferMoveWrong");
                     break;
 
             }
         }
-        
+
         private void testAccounts(Move move)
         {
             if (move.In == move.Out)
-                throw new CoreValidationException("The Account In must be different from Account Out.");
+                throw new CoreValidationException("CircularTransfer");
+
+            var moveInClosed = move.In != null && !move.In.Open;
+            var moveOutClosed = move.Out != null && !move.Out.Open;
+
+            if (moveInClosed || moveOutClosed)
+                throw new CoreValidationException("ClosedAccount");
+        }
+
+        private void testCategory(Move move)
+        {
+            if (!move.Category.Active)
+                throw new CoreValidationException("DisabledCategory");
         }
 
     }

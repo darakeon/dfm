@@ -82,6 +82,7 @@
     <Compile Include="Helpers\CoreValidationException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
+    <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />

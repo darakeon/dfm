@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<category>
+  <en-US>
+    <Enable text="Enable" />
+    <Disable text="Disable" />
+    <CategoryNotFound text="Category not found." />
+    <CategoryEnabled text="Category '{0}' enabled." />
+    <CategoryDisabled text="Category '{0}' disabled." />
+  </en-US>
+  <pt-BR>
+    <Enable text="Ativar" />
+    <Disable text="Desativar" />
+    <CategoryNotFound text="Categoria não encontrada." />
+    <CategoryEnabled text="Categoria '{0}' ativada." />
+    <CategoryDisabled text="Categoria '{0}' desativada." />
+  </pt-BR>
+</category>

@@ -14,6 +14,10 @@
     <Close text="Close" />
     <CloseConfirm text="Do you really want to CLOSE Account '{0}'?" />
     <ClosedAccounts text="Closed Accounts" />
+    <AccountNotFound text="Account not found." />
+    <AccountClosed text="Account '{0}' closed." />
+    <AlreadyExists text="Account already exists." />
+    <DuplicatedName text="There is more than one account with same name." />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
@@ -29,5 +33,9 @@
     <Close text="Fechar" />
     <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?" />
     <ClosedAccounts text="Contas Fechadas" />
+    <AccountNotFound text="Conta não encontrada." />
+    <AccountClosed text="Conta '{0}' fechada." />
+    <AlreadyExists text="Conta já existe." />
+    <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
   </pt-BR>
 </account>

@@ -1,0 +1,48 @@
+﻿@model DFM.MVC.Models.CategoryIndexModel
+
+@{
+    ViewBag.Title = PlainText.Dictionary["Categories"];
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@if (Model.CategoryList.Count == 0)
+{ 
+    @PlainText.Dictionary["NoCategories"]
+}
+else
+{ 
+    <table class='List'>
+
+        <tr>
+            <td>@PlainText.Dictionary["Name"]</td>
+            <td colspan="2">@PlainText.Dictionary["TODO"]</td>
+        </tr>
+
+        @foreach (var category in Model.CategoryList)
+        { 
+            
+            <tr>
+                <td>@category.Name </td>
+
+                <td>@Html.RouteLink(PlainText.Dictionary["Edit"], RouteNames.Default, new { action = "Edit", controller = "Category", id = category.ID }, new { })</td>
+
+                <td>
+                    @if (category.Active)
+                    {
+                        @Ajax.ActionLink(PlainText.Dictionary["Disable"], "Disable", new { id = category.ID }, new AjaxOptionsDFM()) 
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink(PlainText.Dictionary["Enable"], "Enable", new { id = category.ID }, new AjaxOptionsDFM()) 
+                    }
+                </td>
+            </tr>
+
+        } 
+
+    </table>
+} 
+
+<div class="finalList">
+    <button href="@Url.Action("Create")">@PlainText.Dictionary["Create", "Category"]</button>
+</div>

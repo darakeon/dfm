@@ -87,6 +87,8 @@ namespace DFM.MVC.MultiLanguage
                     try { return SectionList[section][language][phrase].Text; }
                     catch (DicException)
                     {
+                        phrase = Phrase.RemoveWrongCharacters(phrase);
+
                         DictionaryCreator.Fix(path, section, language, phrase);
                         
                         return Dictionary[phrase];

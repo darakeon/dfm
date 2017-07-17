@@ -7,6 +7,8 @@
     <Logon text="Logon" />
     <SignUp text="Don't have!" />
     <Email text="E-mail" />
+    <InvalidUser text="User and/or password invalid." />
+    <AlreadyExists text="User already exists." />
   </en-US>
   <pt-BR>
     <Login text="Login" />
@@ -14,5 +16,7 @@
     <Logon text="Entrar" />
     <SignUp text="Cadastrar-se" />
     <Email text="E-mail" />
+    <InvalidUser text="Usuário e/ou senha inválido(s)." />
+    <AlreadyExists text="Usuário já existe." />
   </pt-BR>
 </user>

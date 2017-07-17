@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Ak.DataAccess.XML;
 
 namespace DFM.MVC.MultiLanguage.Helpers
@@ -21,6 +22,14 @@ namespace DFM.MVC.MultiLanguage.Helpers
         public override string ToString()
         {
             return Name;
+        }
+
+        
+        public static String RemoveWrongCharacters(String phrase)
+        {
+            var regex = new Regex(@"[^a-zA-Z0-9]*");
+
+            return regex.Replace(phrase, "");
         }
     }
 }

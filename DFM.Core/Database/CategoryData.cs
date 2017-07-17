@@ -4,5 +4,32 @@ namespace DFM.Core.Database
 {
     public class CategoryData : BaseData<Category>
     {
+        public CategoryData()
+        {
+            Complete += complete;
+        }
+
+
+        private void complete(Category category)
+        {
+            if (category.ID == 0)
+                category.Active = true;
+        }
+
+        public void Disable(Category category)
+        {
+            alterActive(category, false);
+        }
+
+        public void Enable(Category category)
+        {
+            alterActive(category, true);
+        }
+
+        private void alterActive(Category category, bool enable)
+        {
+            category.Active = enable;
+            SaveOrUpdate(category);
+        }
     }
 }

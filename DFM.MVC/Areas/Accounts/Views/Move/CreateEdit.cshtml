@@ -17,7 +17,7 @@
 
 
 
-<div id="newCategory">@Html.Action("CreateClean", "Category")</div>
+<div id="newCategory">@Html.Action("Create", "Category", new { @area = String.Empty })</div>
 
 
 @using (Html.BeginForm())

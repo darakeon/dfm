@@ -16,7 +16,9 @@ namespace DFM.MVC.Areas.Accounts.Models
     {
         public MoveCreateEditModel()
         {
-            var transferIsPossible = Current.User.AccountList.Count > 1;
+            var transferIsPossible = Current.User.AccountList
+                                        .Where(a => a.Open)
+                                        .Count() > 1;
 
             NatureSelectList = transferIsPossible ?
                 SelectListExtension.CreateSelect(PlainText.GetEnumNames<MoveNature>()) :
@@ -67,7 +69,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var accountList = 
                 Current.User.AccountList
-                    .Where(a => a.ID != accountIdToExclude)
+                    .Where(a => a.Open && a.ID != accountIdToExclude)
                     .ToList();
 
             AccountSelectList = SelectListExtension
@@ -94,5 +96,32 @@ namespace DFM.MVC.Areas.Accounts.Models
                     throw new Exception("Move Nature doesn't exist");
             }
         }
+
+        public void Populate(Int32 accountID)
+        {
+            MakeAccountTransferList(accountID);
+
+
+            IsDetailed = Move.HasRealDetails();
+
+            if (!Move.DetailList.Any())
+            {
+                var detail = new Detail { Amount = 1 };
+                Move.AddDetail(detail);
+            }
+
+            if (Move.Category != null)
+            {
+                CategoryID = Move.Category.ID;
+            }
+
+
+
+            CategorySelectList = SelectListExtension.CreateSelect(
+                        Current.User.CategoryList.Where(c => c.Active).ToList(),
+                        mv => mv.ID, mv => mv.Name
+                    );
+        }
+
     }
 }

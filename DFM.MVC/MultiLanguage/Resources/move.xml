@@ -5,10 +5,27 @@
     <Amount text="Amount" />
     <JustOneValue text="Just One Value" />
     <Detailed text="Detailed" />
+    <MoveNotFound text="Move not found." />
+    <MoveDeleted text="Move '{0}' deleted." />
+    <DetailRequired text="At least one value required." />
+    <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
+    <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
+    <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
+    <CircularTransfer text="The In Account must be different from the Out Account." />
+    <ClosedAccount text="Closed Account." />
+    <DisabledCategory text="Disabled Category." />
   </en-US>
   <pt-BR>
     <Amount text="Qte" />
     <JustOneValue text="Valor Único" />
     <Detailed text="Detalhado" />
+    <MoveNotFound text="Movimentação não encontrada." />
+    <MoveDeleted text="Movimentação '{0}' apagada." />
+    <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
+    <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
+    <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
+    <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
+    <ClosedAccount text="Conta fechada." />
+    <DisabledCategory text="Categoria desativada." />
   </pt-BR>
 </move>
