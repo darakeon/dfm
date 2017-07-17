@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.Mail;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
@@ -12,19 +11,19 @@ namespace DFM.Core.Database
     {
         private SecurityData() { }
 
-        public static void CreateAndSend(String email, SecurityAction action)
+        public static void CreateAndSend(String email, SecurityAction action, String subject, String layout)
         {
             var user = UserData.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
 
-            CreateAndSend(user, action);
+            CreateAndSend(user, action, subject, layout);
         }
 
-        internal static void CreateAndSend(User user, SecurityAction action)
+        internal static void CreateAndSend(User user, SecurityAction action, String subject, String layout)
         {
-            var security = new Security { Action = action, User = user };
+            var security = new Security { Action = action, User = user, Subject = subject, Layout = layout };
 
             security = SaveOrUpdate(security);
 
@@ -63,7 +62,15 @@ namespace DFM.Core.Database
         {
             try
             {
-                EmailSender.Send();
+                var fileContent =
+                    String.Format(security.Layout, security.Guid);
+                    
+
+                new EmailSender()
+                    .To(security.User.Email)
+                    .Subject("Envio de Senha")
+                    .Body(fileContent)
+                    .Send();
             }
             catch (Exception e)
             {

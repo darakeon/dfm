@@ -14,6 +14,9 @@ namespace DFM.Core.Entities
         public virtual SecurityAction Action { get; set; }
         public virtual Boolean Sent { get; set; }
 
+        public virtual String Layout { get; set; }
+        public virtual String Subject { get; set; }
+
         public virtual User User { get; set; }
 
     }

@@ -165,6 +165,7 @@
     <Compile Include="Helpers\Extensions\StringExtension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
+    <Compile Include="MultiLanguage\Helpers\EmailLayout.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
     <Compile Include="MultiLanguage\Helpers\DicCreator.cs" />
@@ -238,6 +239,7 @@
     <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Table.css" />
+    <Content Include="MultiLanguage\EmailLayouts\en-US\ForgotPassword.htm" />
     <Content Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -311,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Accounts\Views\Shared\" />
+    <Folder Include="MultiLanguage\EmailLayouts\pt-BR\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ListClosed.cshtml" />

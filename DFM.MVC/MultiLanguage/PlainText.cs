@@ -15,7 +15,9 @@ namespace DFM.MVC.MultiLanguage
 {
     public class PlainText
     {
+        public static EmailLayout EmailLayout;
         public static PlainText Dictionary;
+
         private static List<String> acceptedLanguages;
         private static readonly String path = HttpContext.Current.Server.MapPath(@"~\MultiLanguage\Resources");
 
@@ -48,6 +50,7 @@ namespace DFM.MVC.MultiLanguage
         public static void Initialize()
         {
             Dictionary = new PlainText(Directory.GetFiles(path, "*.xml"));
+            EmailLayout = new EmailLayout();
 
             setAcceptedLaguages();
         }
