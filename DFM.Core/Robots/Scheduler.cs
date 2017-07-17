@@ -27,18 +27,23 @@ namespace DFM.Core.Robots
                 while (schedule.Active &&
                     schedule.Next <= DateTime.Today)
                 {
-                    var newMove = createMove(schedule);
-                    ajustSchedule(schedule, newMove);
-
-                    save(newMove);
+                    var move = getNextMove(schedule);
+                    ajustSchedule(schedule, move);
+                    
+                    save(move);
                 }
             }
 
         }
 
-        private static Move createMove(Schedule schedule)
+        private static Move getNextMove(Schedule schedule)
         {
             var lastMove = schedule.MoveList.Last();
+
+            if (schedule.RunningFirstMove())
+                return lastMove;
+
+
             var newMove = lastMove.Clone();
 
             newMove.In = null;
@@ -60,7 +65,9 @@ namespace DFM.Core.Robots
         
         private static void ajustSchedule(Schedule schedule, Move move)
         {
-            schedule.AddMove(move);
+            if (!schedule.RunningFirstMove())
+                schedule.AddMove(move);
+
 
             var doneMoves = schedule.MoveList.Count;
 

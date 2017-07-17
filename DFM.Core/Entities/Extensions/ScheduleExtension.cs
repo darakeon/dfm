@@ -22,15 +22,25 @@ namespace DFM.Core.Entities.Extensions
             var move = schedule.MoveList.Last();
 
             schedule.Next =
-                schedule.Frequency == ScheduleFrequency.Monthly
-                    ? move.Date.AddMonths(1)
-                    : move.Date.AddYears(1);
+                move.Date > DateTime.Now 
+                    ? move.Date
+                    : schedule.Frequency == ScheduleFrequency.Monthly
+                        ? move.Date.AddMonths(1)
+                        : move.Date.AddYears(1);
         }
 
         public static void Deactivate(this Schedule schedule)
         {
             schedule.Active = false;
         }
+
+
+        public static Boolean RunningFirstMove(this Schedule schedule)
+        {
+            return schedule.Begin == schedule.Next;
+        }
+
+    
 
     }
 }

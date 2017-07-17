@@ -1,23 +1,24 @@
 		Implementar Log4Net
-		Refactor: centralizar textos de erro em enum
 		Refactor: BDD
-
 		Service WCF
+
+		listar agendamentos para desativar (aparecerá deletar)
 		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
-		Mostrar gastos futuros no relatório mensal
+		Refactor: centralizar textos de erro em enum
+		"Adivinhar" categoria
+		Adicionar Sigla e opção de Habilitar em Menu ou não
 
 		Edição de Perfil de usuário
 		Permitir escolha da língua para usuário logado
+
 		Validar login e senha por e-mail
 		Opção de enviar transações para o e-mail
 
-		listar agendamentos para desativar (aparecerá deletar)
-		previsão de gastos
 		relatórios anual por categoria
+		Mostrar gastos futuros no relatório mensal
+		previsão de gastos (estatística)
 
-		Adicionar Sigla e opção de Habilitar em Menu ou não
-		Adivinhar categoria
-
-		importador/exportador de Money
-		importador/exportador de Excel
 		importador/exportador de XML
+		importador/exportador de Excel
+		importador/exportador de Money
+		importador/exportador de CSV
