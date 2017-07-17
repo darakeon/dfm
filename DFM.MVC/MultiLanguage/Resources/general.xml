@@ -52,9 +52,11 @@
     <Index_Close text="In case of any doubt, verify our Tutorial. We are just beta yet. Continuously, new features will come." />
     <Index_Finish text="Sign up now and begin!" />
     
-    <!--Menu-->
+    <!--Menu (and Account)-->
     <WeirdMenuExplanation text="Your menu is different because you have too much accounts to list here."/>
-    
+    <MonthMoves text="{0} Moves" />
+    <YearMoves text="{0} Summary" />
+
   </en-US>
   <pt-BR>
     
@@ -108,8 +110,10 @@
     <Index_Close text="Se tiver dúvidas ao entrar no sistema, verifique nosso Tutorial. Ainda estamos em fase de testes. Continuamente, implementaremos novas funcionalidades." />
     <Index_Finish text="Cadastre-se e comece a usar!" />
 
-    <!--Menu-->
+    <!--Menu (and Account)-->
     <WeirdMenuExplanation text="Seu menu aparece diferente por excesso de contas para listar."/>
+    <MonthMoves text="Extrato de {0}" />
+    <YearMoves text="Resumo de {0}" />
 
   </pt-BR>
 </general>

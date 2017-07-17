@@ -64,7 +64,7 @@ div#Menu .reportsMenu
 div#Menu .reportsMenu ul
 {
 	position: absolute;
-	top: -1px;
+	top: 2px;
 	left: 0px;
 	margin: 0;
 	padding: 0;

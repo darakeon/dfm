@@ -1,4 +1,8 @@
-input[type="text"]
+select, button, input {
+    vertical-align: middle;
+}
+
+input[type="text"], input[type="password"]
 {
 	width: 150px;
 }
@@ -22,8 +26,4 @@ button {
 
 	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
 	background: -moz-linear-gradient(top,  #999,  #333);
-}
-
-select, button, input {
-    vertical-align: middle;
 }

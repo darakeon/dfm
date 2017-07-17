@@ -124,9 +124,11 @@
     <Content Include="Assets\Css\SystemOut.css" />
     <Content Include="Assets\Css\SystemIn.css" />
     <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
-    <Content Include="Assets\Image\DFM.gif" />
-    <Content Include="Assets\Image\sair.gif" />
-    <Content Include="Assets\Image\sair_on.gif" />
+    <Content Include="Assets\Image\logo.gif" />
+    <Content Include="Assets\Image\luckpig.ico" />
+    <Content Include="Assets\Image\off.gif" />
+    <Content Include="Assets\Image\off_hover.gif" />
+    <Content Include="Assets\Image\pig.gif" />
     <Content Include="Assets\Script\Menu.js" />
     <Content Include="Assets\Script\Navigation.js" />
     <Content Include="Assets\Script\Starter.js" />

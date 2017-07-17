@@ -5,8 +5,6 @@
     <NoClosedAccounts text="There's no closed Accounts." />
     <BeginDate text="Begin" />
     <EndDate text="End" />
-    <MonthMoves text="{0} Moves" />
-    <YearMoves text="{0} Summary" />
     <Close text="Close" />
     <CloseConfirm text="Do you really want to CLOSE Account '{0}'?" />
     <DeleteConfirm text="Do you really want to DELETE Account '{0}'?" />
@@ -25,8 +23,6 @@
     <NoClosedAccounts text="Não há Contas Fechadas." />
     <BeginDate text="Início" />
     <EndDate text="Fim" />
-    <MonthMoves text="Extrato de {0}" />
-    <YearMoves text="Resumo de {0}" />
     <Close text="Fechar" />
     <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?" />
     <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?" />

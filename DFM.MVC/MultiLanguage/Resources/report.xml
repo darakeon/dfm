@@ -21,7 +21,5 @@
 		<OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
 		<SummaryNatureNotFound text="Natureza de Resumo inexistente." />
 		<Go text="Go" />
-		<MonthMoves text="MonthMoves" automatic="" />
-		<YearMoves text="YearMoves" automatic="" />
 	</pt-BR>
 </report>

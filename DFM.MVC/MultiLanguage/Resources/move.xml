@@ -38,7 +38,5 @@
 		<Monthly text="Meses" />
 		<Yearly text="Anos" />
 		<TimesToSchedule text="Repetir por: " />
-		<MonthMoves text="MonthMoves" automatic="" />
-		<YearMoves text="YearMoves" automatic="" />
 	</pt-BR>
 </move>

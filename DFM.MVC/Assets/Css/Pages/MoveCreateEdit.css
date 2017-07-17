@@ -13,12 +13,8 @@
     clear: left;
 }
 
-div#Main div {
-    padding-bottom: 10px;
-}
-
 .CRUDCategory button {
-	margin: 0;
+	margin-top: 5px;
 }
 
 .CRUDCategory {

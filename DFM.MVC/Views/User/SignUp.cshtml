@@ -11,17 +11,17 @@
         @Html.ValidationSummary(true) 
         
         <p>
-            @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"]) 
+            @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])<br />
             @Html.TextBoxFor(m => m.Login) 
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"]) 
+            @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])<br />
             @Html.PasswordFor(m => m.Password)
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"]) 
+            @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"])<br />
             @Html.TextBoxFor(m => m.Email)
         </p>
 
