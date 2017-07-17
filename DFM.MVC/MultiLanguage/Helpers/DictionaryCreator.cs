@@ -27,9 +27,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
             var fileName = Path.Combine(path, section + ".xml");
 
             if (!File.Exists(fileName))
-            {
                 createSection(section, fileName);
-            }
 
             return new Node(fileName);
         }

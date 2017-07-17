@@ -90,20 +90,27 @@ namespace DFM.MVC.MultiLanguage
         {
             get
             {
-                try { return SectionList["general"][language][phrase].Text; }
-                catch (DicException)
-                {
-                    try { return SectionList[section][language][phrase].Text; }
-                    catch (DicException)
-                    {
-                        phrase = Phrase.RemoveWrongCharacters(phrase);
+                phrase = Phrase.RemoveWrongCharacters(phrase);
 
-                        DictionaryCreator.Fix(path, section, language, phrase);
-                        
-                        return Dictionary[phrase];
-                    }
+                var text = (tryGetText("general", phrase) 
+                    ?? tryGetText(section, phrase))
+                    ?? tryGetText("error", phrase);
+
+                if (text == null)
+                {
+                    DictionaryCreator.Fix(path, section, language, phrase);
+                    return Dictionary[phrase];
                 }
+
+                return text;
+
             }
+        }
+
+        private String tryGetText(String chosenSection, String phrase)
+        {
+            try { return SectionList[chosenSection][language][phrase].Text; }
+            catch (DicException) { return null; }
         }
 
 

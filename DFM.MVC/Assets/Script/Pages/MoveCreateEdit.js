@@ -3,7 +3,6 @@ $(document).ready(function () {
         $('#newCategory').toggle();
     });
 
-
     $(".boundlessRadio").change(function () {
         ToggleBoundless(this);
     });
@@ -121,5 +120,7 @@ function SetDetailLevel() {
 
 function ToggleBoundless(obj) {
     var isBoundless = valueToBoolean(obj);
-    $('#Times').attr("disabled", isBoundless);
+
+    if (isBoundless != null)
+        $('#Times').attr("disabled", isBoundless);
 }

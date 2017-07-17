@@ -8,6 +8,11 @@ input[type="text"], input[type="password"]
 	width: 150px;
 }
 
+input[type="radio"]
+{
+    vertical-align: top;
+}
+
 select
 {
 	width: 156px;

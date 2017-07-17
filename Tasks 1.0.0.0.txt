@@ -39,4 +39,4 @@
 		Taxa da conta + Data (bank)
 		Percentual de crescimento + Data (debt)
 		Taxa do cartão, Limite + Data (cartão) ]
-		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
+		Retirar campo Login

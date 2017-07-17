@@ -26,33 +26,11 @@ namespace DFM.Core.Entities
         public virtual IList<Year> YearList { get; set; }
 
 
-        //public virtual Double MovesSum
-        //{
-        //    get { return YearList.Sum(m => m.Value); }
-        //}
-
-        //public virtual Boolean Open
-        //{
-        //    get { return EndDate == null; }
-        //}
-
-        //public virtual Boolean HasMoves
-        //{
-        //    get
-        //    {
-        //        return YearList.Any(
-        //                y => y.MonthList.Any(
-        //                        m => m.MoveList.Any()
-        //                    )
-        //            );
-        //    }
-        //}
-
-
 
         public override String ToString()
         {
             return Name;
         }
+
     }
 }

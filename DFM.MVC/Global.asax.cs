@@ -1,9 +1,12 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database.Base;
+using DFM.Core.Robots;
+using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
 
@@ -45,17 +48,19 @@ namespace DFM.MVC
             PlainText.Initialize();
         }
 
+
         // ReSharper disable InconsistentNaming
         protected void Application_BeginRequest()
         // ReSharper restore InconsistentNaming
         {
             NHManager.Open();
-            
+
             if (Request.Url.Host == "localhost")
                 PlainText.Initialize();
 
             specifyLanguage();
         }
+
 
         // ReSharper disable InconsistentNaming
         protected void Application_Error()
@@ -64,12 +69,17 @@ namespace DFM.MVC
             NHManager.Error();
         }
 
+
         // ReSharper disable InconsistentNaming
-        protected void Application_EndRequest()
+        protected void Application_EndRequest(Object sender, EventArgs e)
         // ReSharper restore InconsistentNaming
         {
+            if (!NHManager.IsAssetCalling && Current.IsAuthenticated)
+                ScheduleRunner.Run(Current.User);
+
             NHManager.Close();
         }
+
 
         // ReSharper disable InconsistentNaming
         protected void Application_End()

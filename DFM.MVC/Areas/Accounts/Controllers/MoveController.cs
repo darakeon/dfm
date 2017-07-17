@@ -107,10 +107,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     model.Move.Category = CategoryData.SelectById(model.CategoryID ?? 0);
 
-                    var currentAccount = AccountData.SelectById(accountid);
-                    var otherAccount = AccountData.SelectById(model.AccountID ?? 0);
+                    var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    MoveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
+                    MoveData.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn);
 
                     return RedirectToRoute(
                             RouteNames.Default,
@@ -126,11 +125,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             model.Populate(accountid, isSchedule);
 
             return viewCES(model);
-        }
-
-        private ActionResult viewCES(MoveCreateEditScheduleModel model)
-        {
-            return View("CreateEditSchedule", model);
         }
 
 
@@ -165,5 +159,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             return new JsonResult { Data = new { message } };
         }
+
+
+
+        private ActionResult viewCES(MoveCreateEditScheduleModel model)
+        {
+            return View("CreateEditSchedule", model);
+        }
+
     }
 }

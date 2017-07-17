@@ -1,0 +1,20 @@
+		Refactor: centralizar textos de erro em enum
+		Refactor: BDD
+
+		Service WCF
+		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
+		Mostrar gastos futuros no relatório mensal
+
+		Validar login e senha por e-mail
+		Opção de enviar transações para o e-mail
+
+		listar agendamentos para desativar (aparecerá deletar)
+		previsão de gastos
+		relatórios anual por categoria
+
+		Adicionar Sigla e opção de Habilitar em Menu ou não
+		Adivinhar categoria
+
+		importador/exportador de Money
+		importador/exportador de Excel
+		importador/exportador de XML

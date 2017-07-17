@@ -3,8 +3,7 @@
 
     if (value == undefined) value = obj.val();
     if (value == undefined) value = obj.attr("value");
-    if (value == undefined) alert(obj.id);
-
+    if (value == undefined) return null;
 
     return toBoolean(value);
 }

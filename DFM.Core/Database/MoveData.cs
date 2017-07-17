@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
@@ -12,9 +13,9 @@ namespace DFM.Core.Database
     {
 		private MoveData() { }
 
-        public static Move SaveOrUpdate(Move move, Account account, Account secondAccount = null)
+        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
         {
-            placeAccountsInMove(move, account, secondAccount);
+            placeAccountsInMove(move, accountOut, accountIn);
             
             return SaveOrUpdate(move, validate, complete);
         }
@@ -129,23 +130,25 @@ namespace DFM.Core.Database
 
         private static void ajustSchedule(Move move)
         {
-            if (move.Schedule != null)
-            {
+            if (move.Schedule == null 
+                || move.Schedule.ID != 0) return;
+
+            if (!move.Schedule.Contains(move))
                 move.Schedule.MoveList.Add(move);
-                SummaryData.Complete(move.Schedule);
-            }
+
+            ScheduleData.Initialize(move.Schedule);
         }
         #endregion
 
 
 
         #region PlaceAccountsInMove
-        private static void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
+        private static void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
         {
-            var month = getMonth(move, account);
-            var secondMonth = secondAccount == null ? null : getMonth(move, secondAccount);
+            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
-            placeMonthsInMove(move, month, secondMonth);
+            placeMonthsInMove(move, monthOut, monthIn);
         }
 
         private static Month getMonth(Move move, Account account)
@@ -154,24 +157,20 @@ namespace DFM.Core.Database
             return MonthData.GetOrCreateMonth(move.Date.Month, year, move.Category);
         }
 
-        private static void placeMonthsInMove(Move move, Month month, Month secondMonth = null)
+        private static void placeMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
-            switch (move.Nature)
+            var error = new DFMCoreException(String.Format("{0}MoveWrong", move.Nature));
+
+            if (move.Nature != MoveNature.In)
             {
-                case MoveNature.Out:
-                    month.AddOut(move); break;
-                case MoveNature.In:
-                    month.AddIn(move); break;
-                case MoveNature.Transfer:
-                    if (secondMonth == null)
-                        throw new DFMCoreException("TransferMoveWrong");
+                if (monthOut == null) throw error;
+                monthOut.AddOut(move);
+            }
 
-                    month.AddOut(move);
-                    secondMonth.AddIn(move);
-
-                    break;
-                default:
-                    throw new DFMCoreException("MoveNatureNotFound");
+            if (move.Nature != MoveNature.Out)
+            {
+                if (monthIn == null) throw error;
+                monthIn.AddIn(move);
             }
         }
         #endregion

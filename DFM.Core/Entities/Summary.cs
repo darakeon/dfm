@@ -26,14 +26,11 @@ namespace DFM.Core.Entities
 
 
         public virtual Boolean IsValid { get; set; }
-
         public virtual SummaryNature Nature { get; set; }
 
 
         public virtual Category Category { get; set; }
-
         public virtual Month Month { get; set; }
-
         public virtual Year Year { get; set; }
 
 

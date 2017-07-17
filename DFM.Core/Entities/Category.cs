@@ -19,11 +19,11 @@ namespace DFM.Core.Entities
         public virtual User User { get; set; }
 
 
+
         public override String ToString()
         {
             return Name;
         }
-
-
+        
     }
 }

@@ -19,24 +19,6 @@ namespace DFM.Core.Entities
         public virtual Move Move { get; set; }
 
 
-        //internal protected virtual Detail Clone(Move move)
-        //{
-        //    return new Detail
-        //               {
-        //                   Description = Description,
-        //                   Amount = Amount,
-        //                   Value = Value,
-        //                   Move = move,
-        //               };
-        //}
-
-
-        //internal protected virtual Boolean HasDescription()
-        //{
-        //    return !String.IsNullOrEmpty(Description)
-        //        && Description != Move.Description;
-        //}
-
 
         public override String ToString()
         {

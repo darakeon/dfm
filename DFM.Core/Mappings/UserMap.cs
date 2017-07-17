@@ -14,6 +14,9 @@ namespace DFM.Core.Mappings
             mapping.HasMany(u => u.AccountList)
                 .Cascade.SaveUpdate()
                 .Not.LazyLoad();
+
+            mapping.HasMany(u => u.ScheduleList)
+                .Cascade.SaveUpdate();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace DFM.Core.Entities
         {
             Times = 1;
             MoveList = new List<Move>();
+            Active = true;
         }
 
 
@@ -21,6 +22,8 @@ namespace DFM.Core.Entities
 
         public virtual DateTime Begin { get; set; }
         public virtual DateTime Next { get; set; }
+
+        public virtual Boolean Active { get; set; }
         public virtual ScheduleFrequency Frequency { get; set; }
 
         public virtual User User { get; set; }

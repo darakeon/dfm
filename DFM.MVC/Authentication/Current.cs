@@ -11,7 +11,10 @@ namespace DFM.MVC.Authentication
         {
             get
             {
-                var username = Authenticate.AuthenticatedUser();
+                if (!Authenticate.IsAuthenticated())
+                    return null;
+                
+                var username = Authenticate.GetUsername();
                 return UserData.SelectByLogin(username);
             }
         }

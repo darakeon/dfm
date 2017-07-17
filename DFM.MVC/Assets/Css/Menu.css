@@ -9,6 +9,7 @@ div#Menu .higherTitle, div#Menu .fixItem
 {
 	font-size: 16px;
     text-align: center;
+	color: #AA7;
 	padding: 2px 5px;
 }
 
@@ -40,7 +41,6 @@ div#Menu .higherTitle
 	vertical-align: bottom;
 	margin: 0 5px 0 0;
 	background: #FFF;
-	color: #770;
 	border-radius: 10px 10px 0 0;
 }
 
@@ -48,8 +48,7 @@ div#Menu .fixItem
 {
 	vertical-align: top;
 	margin: 0 0 0 5px;
-	background: #DDA;
-	color: #770;
+	background: #EEC;
 	border-radius: 0 0 10px 10px;
 }
 

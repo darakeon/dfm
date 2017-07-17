@@ -8,6 +8,9 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Schedule> mapping)
         {
+            mapping.Map(s => s.Active)
+                .Default("1");
+
             mapping.HasMany(d => d.MoveList)
                 .Cascade.None();
 

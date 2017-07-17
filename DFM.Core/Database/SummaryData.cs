@@ -124,24 +124,5 @@ namespace DFM.Core.Database
             SaveOrUpdate(summary);
         }
 
-
-
-        internal static void Complete(Schedule schedule)
-        {
-            var move = schedule.MoveList.Last();
-
-            schedule.Begin = move.Date;
-            
-            schedule.Next = 
-                schedule.Frequency == ScheduleFrequency.Monthly 
-                    ? move.Date.AddMonths(1)
-                    : move.Date.AddYears(1);
-
-            var user = (move.In ?? move.Out)
-                            .Year.Account.User;
-
-            schedule.User = user;
-        }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using Ak.DataAccess.NHibernate;
+﻿using System;
+using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Core.Entities;
 using DFM.Core.Mappings;
@@ -7,6 +8,12 @@ namespace DFM.Core.Database.Base
 {
     public class NHManager
     {
+
+        public static Boolean IsAssetCalling
+        {
+            get { return SessionBuilder.IsAssetCalling; }
+        }
+
         public static void Start()
         {
             var mapInfo = new AutoMappingInfo<UserMap, User>();
@@ -33,5 +40,6 @@ namespace DFM.Core.Database.Base
         {
             SessionBuilder.End();
         }
+
     }
 }

@@ -24,8 +24,8 @@ namespace DFM.Core.Database.Base
 
         protected static T SaveOrUpdate(T entity, DelegateValidade validate, DelegateComplete complete)
         {
-            if (complete != null) completeEntity += complete;
-            if (validate != null) validateEntity += validate;
+            if (complete != null && completeEntity == null) completeEntity += complete;
+            if (validate != null && validateEntity == null) validateEntity += validate;
 
             return saveOrUpdate(entity);
         }

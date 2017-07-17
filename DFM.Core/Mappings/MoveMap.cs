@@ -20,7 +20,6 @@ namespace DFM.Core.Mappings
                 .Nullable();
 
             mapping.References(m => m.Schedule)
-                .Cascade.SaveUpdate()
                 .Nullable();
         }
     }
