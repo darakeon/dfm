@@ -47,7 +47,6 @@ namespace DFM.MVC
         {
             NHManager.Open();
             
-            // TO-DO: take this out
             if (Request.Url.Host == "localhost")
                 PlainText.Initialize();
 
@@ -77,10 +76,12 @@ namespace DFM.MVC
             if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
                 return;
 
-            const string language = "pt-BR";
+            var language = "pt-BR"; //Request.UserLanguages[0];
 
-            if (PlainText.AcceptedLanguages.Contains(language))
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
+            if (!PlainText.AcceptedLanguages.Contains(language))
+                language = "pt-BR";
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
         }
 
     }

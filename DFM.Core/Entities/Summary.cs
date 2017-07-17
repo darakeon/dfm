@@ -11,7 +11,7 @@ namespace DFM.Core.Entities
         public virtual Int32 ID { get; set; }
 
 
-        protected virtual Double FixValue { get; set; }
+        public virtual Double FixValue { get; set; }
 
         public virtual Double Value
         {
