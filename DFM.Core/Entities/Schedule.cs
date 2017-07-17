@@ -17,6 +17,8 @@ namespace DFM.Core.Entities
         public virtual Int32 ID { get; set; }
 
         public virtual Int32 Times { get; set; }
+        public virtual Boolean Boundless { get; set; }
+
         public virtual DateTime Begin { get; set; }
         public virtual DateTime Next { get; set; }
         public virtual ScheduleFrequency Frequency { get; set; }

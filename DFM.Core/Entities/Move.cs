@@ -31,86 +31,86 @@ namespace DFM.Core.Entities
         public virtual IList<Detail> DetailList { get; set; }
 
 
-        internal protected virtual String Month
-        {
-            get { return Date.ToString("MMMM"); }
-        }
+        //internal protected virtual String Month
+        //{
+        //    get { return Date.ToString("MMMM"); }
+        //}
 
 
-        public virtual Double Value
-        {
-            get { return DetailList.Sum(d => d.Value * d.Amount); }
-        }
+        //public virtual Double Value
+        //{
+        //    get { return DetailList.Sum(d => d.Value * d.Amount); }
+        //}
 
 
-        internal protected virtual Boolean Show
-        {
-            get { return Date <= DateTime.Now; }
-        }
+        //internal protected virtual Boolean Show
+        //{
+        //    get { return Date <= DateTime.Now; }
+        //}
 
 
-        [NhIgnore]
-        internal protected virtual Account AccountIn
-        {
-            get { return In.Year.Account; }
-        }
+        //[NhIgnore]
+        //internal protected virtual Account AccountIn
+        //{
+        //    get { return In.Year.Account; }
+        //}
 
 
-        [NhIgnore]
-        internal protected virtual Account AccountOut
-        {
-            get { return Out.Year.Account; }
-        }
+        //[NhIgnore]
+        //internal protected virtual Account AccountOut
+        //{
+        //    get { return Out.Year.Account; }
+        //}
 
 
-        public virtual void AddDetail(Detail detail)
-        {
-            DetailList.Add(detail);
-            detail.Move = this;
-        }
+        //public virtual void AddDetail(Detail detail)
+        //{
+        //    DetailList.Add(detail);
+        //    detail.Move = this;
+        //}
 
 
-        public virtual Boolean HasRealDetails()
-        {
-            return DetailList.Any()
-                && (
-                    DetailList.Count > 1
-                    || DetailList[0].HasDescription()
-                );
-        }
+        //public virtual Boolean HasRealDetails()
+        //{
+        //    return DetailList.Any()
+        //        && (
+        //            DetailList.Count > 1
+        //            || DetailList[0].HasDescription()
+        //        );
+        //}
 
 
-        internal protected virtual void MakePseudoDetail(Double value)
-        {
-            var id = (DetailList.FirstOrDefault() ?? new Detail()).ID;
+        //internal protected virtual void MakePseudoDetail(Double value)
+        //{
+        //    var id = (DetailList.FirstOrDefault() ?? new Detail()).ID;
 
-            DetailList = new List<Detail>();
+        //    DetailList = new List<Detail>();
 
-            var detail = new Detail { ID = id, Description = Description, Value = value };
+        //    var detail = new Detail { ID = id, Description = Description, Value = value };
 
-            AddDetail(detail);
-        }
+        //    AddDetail(detail);
+        //}
 
 
-        internal protected virtual Move Clone()
-        {
-            var move = new Move
-                           {
-                               Description = Description,
-                               Date = Date,
-                               Nature = Nature,
+        //internal protected virtual Move Clone()
+        //{
+        //    var move = new Move
+        //                   {
+        //                       Description = Description,
+        //                       Date = Date,
+        //                       Nature = Nature,
 
-                               Category = Category,
+        //                       Category = Category,
 
-                               In = In,
-                               Out = Out,
-                           };
+        //                       In = In,
+        //                       Out = Out,
+        //                   };
 
-            DetailList.ForEach(d => 
-                move.AddDetail(d.Clone(move)));
+        //    DetailList.ForEach(d => 
+        //        move.AddDetail(d.Clone(move)));
 
-            return move;
-        }
+        //    return move;
+        //}
 
 
 

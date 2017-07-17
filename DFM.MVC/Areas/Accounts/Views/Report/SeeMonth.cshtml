@@ -46,16 +46,16 @@ else
 
                 <td class="numeric in">
                     @if (move.In != null && move.In.Year.Account == Model.Account)
-                    {@move.Value.ToMoney()}
+                        {@move.Value().ToMoney()}
                     else
-                    { @(" ") }
+                        { @(" ") }
                 </td>
 
                 <td class="numeric out">
                     @if (move.Out != null && move.Out.Year.Account == Model.Account)
-                    {@move.Value.ToMoney()}
+                        {@move.Value().ToMoney()}
                     else
-                    { @(" ") }
+                        { @(" ") }
                 </td>
 
                 <td>@Html.ActionLink(PlainText.Dictionary["Edit"], "Edit", "Move", new { id = move.ID }, null)</td>

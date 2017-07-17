@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using Ak.DataAccess.NHibernate;
 using DFM.Core.Entities.Base;
-using DFM.Core.Helpers;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.SqlCommand;
 
 namespace DFM.Core.Database.Base
 {

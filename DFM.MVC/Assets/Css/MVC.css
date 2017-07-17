@@ -4,7 +4,7 @@
 {
     padding: 2px;
     margin: 3px 3px;
-    color: #C00;
+    color: #CC0;
 }
 
 .field-validation-valid
@@ -15,14 +15,15 @@
 .input-validation-error
 {
     border: 3px ridge;
-    background-color: #FDD;
+    background-color: #FFD;
 }
 
 .validation-summary-errors
 {
     font-weight: bold;
     padding: 0px;
-    color: #C00;
+    color: #BB5;
+    margin: -15px 0 15px 0;
 }
 
 .validation-summary-valid
@@ -32,11 +33,16 @@
 
 .validation-summary-errors ul
 {
-	padding: 0px;
 	margin: 7px;
+	padding: 0px 20px;
+	text-align: center;
+	
 }
 
 .validation-summary-errors li
 {
 	list-style-type: none;
+	border-bottom: 3px double #995;
+	border-top: 3px double #995;
+	padding: 2px 0;
 }

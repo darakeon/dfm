@@ -2,6 +2,7 @@
 using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Entities.Extensions;
 
 namespace DFM.Core.Database
 {

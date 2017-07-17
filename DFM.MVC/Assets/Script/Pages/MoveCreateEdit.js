@@ -3,20 +3,29 @@ $(document).ready(function () {
         $('#newCategory').toggle();
     });
 
-    $('#Nature').change(function () {
-        ShowAccountList(this.value);
+
+    $(".boundlessRadio").change(function () {
+        ToggleBoundless(this);
     });
+
+
+    $('#Nature').change(function () {
+        ShowAccountList(this);
+    });
+
 
     $('.DetailLevel').click(function () {
-        var thisIsTrue = this.value.toLowerCase() == 'true';
-
-        ChangeDetailLevel(thisIsTrue);
+        ChangeDetailLevel(valueToBoolean(this));
     });
+
 
     SetDetailLevel();
 
-    var nature = $("#Nature option:selected").val();
+    var nature = $("#Nature option:selected");
     ShowAccountList(nature);
+
+    var boundless = $("#Boundless:checked");
+    ToggleBoundless(boundless);
 });
 
 
@@ -37,11 +46,11 @@ function InsertCategoryOnDropDown(data) {
 }
 
 
-function ShowAccountList(value) {
+function ShowAccountList(obj) {
     $.post(whetherShowAccountListPage,
-            { nature: value },
+            { nature: obj.val() },
             function (show) {
-                $('#AccountID').toggle(show == 'True');
+                $('#AccountID').toggle(toBoolean(show));
             }
         );
 }
@@ -83,6 +92,8 @@ function RemoveDetail(position) {
 
 
 
+
+
 function ChangeDetailLevel(detailed) {
     if (detailed) {
         $("#addDetailCaller").show();
@@ -99,10 +110,16 @@ function ChangeDetailLevel(detailed) {
 
 function SetDetailLevel() {
     var first = $('.DetailLevel')[0];
-    var firstIsDetailed = first.value == 'True';
+    var firstIsDetailed = valueToBoolean(first);
     var firstIsChecked = first.checked;
 
     var detailedIsChecked = firstIsDetailed == firstIsChecked;
 
     ChangeDetailLevel(detailedIsChecked);
+}
+
+
+function ToggleBoundless(obj) {
+    var isBoundless = valueToBoolean(obj);
+    $('#Times').attr("disabled", isBoundless);
 }

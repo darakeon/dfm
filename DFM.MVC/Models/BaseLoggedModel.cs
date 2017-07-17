@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ak.MVC.Route;
+using DFM.Core.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.MVC.MultiLanguage;
@@ -14,7 +15,7 @@ namespace DFM.MVC.Models
         public BaseLoggedModel()
         {
             LateralAccountList = Current.User.AccountList
-                .Where(a => a.Open)
+                .Where(a => a.Open())
                 .ToList();
 
             ActionName = RouteInfo.Current.RouteData
@@ -35,10 +36,10 @@ namespace DFM.MVC.Models
             return new Menu(id, text, action, controller);
         }
 
-        public bool TooBigMeny()
+        public bool TooBigMeny(Int32 maxSize)
         {
             var accountNameList = LateralAccountList
-                                    .Where(a => a.Open)
+                                    .Where(a => a.Open())
                                     .Select(a => a.Name)
                                     .ToList();
             
@@ -47,7 +48,7 @@ namespace DFM.MVC.Models
                     accountName => accountName.Length
                 ) * 15;
 
-            return width > 1200;
+            return width > maxSize;
         }
     }
 }

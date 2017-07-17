@@ -11,15 +11,8 @@ namespace DFM.Core.Mappings
             mapping.Map(a => a.EndDate)
                 .Nullable();
 
-
             mapping.HasMany(a => a.YearList)
                 .Cascade.Delete();
-
-
-            mapping.IgnoreProperty(a => a.MovesSum);
-            mapping.IgnoreProperty(a => a.Open);
-            mapping.IgnoreProperty(a => a.HasMoves);
-
 
             mapping.References(a => a.User)
                 .Cascade.None();

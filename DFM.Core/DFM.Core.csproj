@@ -80,6 +80,11 @@
     <Compile Include="Entities\Base\ISummarizable.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Detail.cs" />
+    <Compile Include="Entities\Extensions\AccountExtension.cs" />
+    <Compile Include="Entities\Extensions\DetailExtension.cs" />
+    <Compile Include="Entities\Extensions\MonthExtension.cs" />
+    <Compile Include="Entities\Extensions\MoveExtension.cs" />
+    <Compile Include="Entities\Extensions\YearExtension.cs" />
     <Compile Include="Entities\Month.cs" />
     <Compile Include="Entities\Move.cs" />
     <Compile Include="Entities\Schedule.cs" />

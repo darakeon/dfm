@@ -178,6 +178,7 @@
     <Content Include="Assets\Image\off_out.gif" />
     <Content Include="Assets\Image\off_out_hover.gif" />
     <Content Include="Assets\Image\pig.gif" />
+    <Content Include="Assets\Script\Forms.js" />
     <Content Include="Assets\Script\Menu.js" />
     <Content Include="Assets\Script\Navigation.js" />
     <Content Include="Assets\Script\Starter.js" />

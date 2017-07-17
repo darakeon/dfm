@@ -18,7 +18,7 @@
 09/08	10/08	REFACTORING
 10/08	14/08	-- Agendamento de Movimentação
 14/08	14/08	-- Implementar "manter logado"
-15/08		-- WCF
+15/08		-- WCF Iniciado
 16/08	17/08	Layout
 18/08	18/08	Quantidade - tirar de Valor único
 18/08	22/08	Navegação Mês / Ano
@@ -30,11 +30,11 @@
 23/08	23/08	Submenu com relatórios
 23/08	27/08	Revisar o layout (verificar faixa no topo, se fica legal)
 27/08	27/08	Mudar cor para amarelo / colocar ícone
-28/08		Despesa Fixa (criar Agenda)
+28/08	02/09	Despesa Fixa (criar Agenda)
 02/09	02/09	Refactor: kill SelectOne and Select with lambda
+04/09	05/09	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
+05/09		Possibilitar agendador "eterno"
 		Criar robô executor da Agenda (controlar por login no sistema) - pega a última e duplica
-		Testes Unitários no projeto todo
-		Criar extensions das entidades, para deixar apenas as propriedades nas entidades
 		Proteger alteração / deleção de itens que não pertencem ao usuário logado
 		Taxa da conta + Data (bank)
 		Percentual de crescimento + Data (debt)

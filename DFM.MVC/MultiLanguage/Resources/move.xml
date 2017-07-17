@@ -1,42 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <move>
-	<en-US>
-		<Amount text="Amount" />
-		<JustOneValue text="Just One Value" />
-		<Detailed text="Detailed" />
-		<MoveNotFound text="Move not found." />
-		<MoveDeleted text="Move '{0}' deleted." />
-		<DetailRequired text="At least one value required." />
-		<InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
-		<OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
-		<TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
-		<CircularTransfer text="The In Account must be different from the Out Account." />
-		<ClosedAccount text="Closed Account." />
-		<DisabledCategory text="Disabled Category." />
-		<MoveNatureNotFound text="Move Nature doesn't exist." />
-		<AccountMissing text="A Move need an Account." />
-		<AskFutureAuthorization text="Ask future authorization to include this Move." />
-		<Monthly text="Months" />
-		<Yearly text="Years" />
-		<TimesToSchedule text="Repeat for: " />
-	</en-US>
-	<pt-BR>
-		<Amount text="Qte" />
-		<JustOneValue text="Valor Único" />
-		<Detailed text="Detalhado" />
-		<MoveNotFound text="Movimentação não encontrada." />
-		<MoveDeleted text="Movimentação '{0}' apagada." />
-		<InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
-		<OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
-		<TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
-		<CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
-		<ClosedAccount text="Conta fechada." />
-		<DisabledCategory text="Categoria desativada." />
-		<MoveNatureNotFound text="Natureza de Movimentação inexistente." />
-		<AccountMissing text="Uma Movimentação precisa ser cadastrada numa Conta." />
-		<AskFutureAuthorization text="Pedir autorização no futuro para incluir esta Movimentação." />
-		<Monthly text="Meses" />
-		<Yearly text="Anos" />
-		<TimesToSchedule text="Repetir por: " />
-	</pt-BR>
+  <en-US>
+    <Amount text="Amount" />
+    <JustOneValue text="Just One Value" />
+    <Detailed text="Detailed" />
+    <MoveNotFound text="Move not found." />
+    <MoveDeleted text="Move '{0}' deleted." />
+    <DetailRequired text="At least one value required." />
+    <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
+    <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
+    <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
+    <CircularTransfer text="The In Account must be different from the Out Account." />
+    <ClosedAccount text="Closed Account." />
+    <DisabledCategory text="Disabled Category." />
+    <MoveNatureNotFound text="Move Nature doesn't exist." />
+    <AccountMissing text="A Move need an Account." />
+    <AskFutureAuthorization text="Ask future authorization to include this Move." />
+    <Monthly text="Monthly" />
+    <Yearly text="Yearly" />
+    <Times text="times" />
+    <Boundless text="Boundless" />
+    <Repeat text="Repeat" />
+    <Frequency text="Frequency" />
+  </en-US>
+  <pt-BR>
+    <Amount text="Qte" />
+    <JustOneValue text="Valor Único" />
+    <Detailed text="Detalhado" />
+    <MoveNotFound text="Movimentação não encontrada." />
+    <MoveDeleted text="Movimentação '{0}' apagada." />
+    <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
+    <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
+    <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
+    <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
+    <ClosedAccount text="Conta fechada." />
+    <DisabledCategory text="Categoria desativada." />
+    <MoveNatureNotFound text="Natureza de Movimentação inexistente." />
+    <AccountMissing text="Uma Movimentação precisa ser cadastrada numa Conta." />
+    <AskFutureAuthorization text="Pedir autorização no futuro para incluir esta Movimentação." />
+    <Monthly text="Mensal" />
+    <Yearly text="Anual" />
+    <Times text="vezes" />
+    <Boundless text="Ilimitado" />
+    <Repeat text="Repetir" />
+    <Frequency text="Frequência" />
+  </pt-BR>
 </move>

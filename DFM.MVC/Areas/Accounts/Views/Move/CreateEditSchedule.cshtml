@@ -27,23 +27,30 @@
 @using (Html.BeginForm())
 {
 
-    <p>
-        @Html.ValidationSummary(true) 
-    </p>
+    @Html.ValidationSummary(true) 
     
     if (Model.IsSchedule)
     {
-        @Html.LabelFor(m => m.Times, PlainText.Dictionary["TimesToSchedule"])
+        <div class="createMoveScreenLeft">
+            <div>
+                @Html.LabelFor(m => m.Frequency, PlainText.Dictionary["Frequency"])<br />
+                @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
+            </div>
+        </div>
     
-        @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
-        @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
+        <div class="createMoveScreenRight">
+            <div>
+                @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio" }) @(" ")
+                @Html.LabelFor(m => m.Boundless, PlainText.Dictionary["Boundless"])<br />
 
-        <br />
-        
-        @Html.ValidationMessageFor(m => m.Times)
-        @Html.ValidationMessageFor(m => m.Frequency)
+                @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio" }) @(" ")
+                @Html.LabelFor(m => m.Times, PlainText.Dictionary["Repeat"])
+                @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
+                @Html.LabelFor(m => m.Times, PlainText.Dictionary["Times"])
+            </div>
+        </div>
     
-        <hr />
+        <div class="divRowForm"><hr /></div>
     }
 
     <div class="createMoveScreenLeft">
@@ -59,7 +66,7 @@
             @Html.TextBoxFor(m => m.Move.Date, new { @class = "date" })
         </div>
     </div>
-
+    
     <div class="createMoveScreenRight">
         <div>
             @Html.LabelFor(m => m.CategoryID, PlainText.Dictionary["Category"]) 
@@ -80,7 +87,7 @@
         </div>
     </div>
     
-    <hr />
+    <div class="divRowForm"><hr /></div>
     
     <div class="createMoveScreenLeft">
         @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })

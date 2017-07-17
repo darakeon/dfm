@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
@@ -63,8 +63,8 @@ namespace DFM.Core.Database
 
         private static void testAccounts(Move move)
         {
-            var moveInClosed = move.In != null && !move.In.Year.Account.Open;
-            var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open;
+            var moveInClosed = move.In != null && !move.In.Year.Account.Open();
+            var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open();
 
             if (moveInClosed || moveOutClosed)
                 throw new DFMCoreException("ClosedAccount");
@@ -121,10 +121,10 @@ namespace DFM.Core.Database
         private static void invalidateSummary(Move move)
         {
             if (move.Nature.In(MoveNature.In, MoveNature.Transfer))
-                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn);
+                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
             
             if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
-                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
+                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
         }
 
         private static void ajustSchedule(Move move)

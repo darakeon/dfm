@@ -3,7 +3,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
-using DFM.Core.Helpers;
+using DFM.Core.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
@@ -17,7 +17,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         public MoveCreateEditScheduleModel()
         {
             var transferIsPossible = Current.User.AccountList
-                                        .Where(a => a.Open)
+                                        .Where(a => a.Open())
                                         .Count() > 1;
 
             NatureSelectList = transferIsPossible ?
@@ -89,6 +89,8 @@ namespace DFM.MVC.Areas.Accounts.Models
         }
 
         [Required]
+        public Boolean Boundless { get { return schedule.Boundless; } set { schedule.Boundless = value; } }
+        [Required]
         public Int32 Times { get { return schedule.Times; } set { schedule.Times = value; } }
         [Required]
         public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
@@ -101,7 +103,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var accountList = 
                 Current.User.AccountList
-                    .Where(a => a.Open && a.ID != accountIdToExclude)
+                    .Where(a => a.Open() && a.ID != accountIdToExclude)
                     .ToList();
 
             AccountSelectList = SelectListExtension

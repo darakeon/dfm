@@ -7,11 +7,28 @@
     display: none;
 }
 
-.createMoveScreenLeft {
+
+
+.createMoveScreenLeft, .createMoveScreenRight
+{
     float: left;
+}
+
+.createMoveScreenLeft {
     width: 35%;
     clear: left;
 }
+
+.createMoveScreenRight {
+    width: 60%;
+}
+
+.createMoveScreenLeft div, .createMoveScreenRight div 
+{
+    margin: 10px 0;
+}
+
+
 
 .CRUDCategory button {
 	margin-top: 5px;
@@ -33,4 +50,18 @@
 
 input.amount {
 	width: 30px;
+}
+
+.divRowForm
+{
+    clear: both;
+    padding: 10px 0;
+}
+
+.divRowForm hr
+{
+    background-color: #990;
+    height: 1px;
+    width: 95%;
+    border: none;
 }

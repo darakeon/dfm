@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Core.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 
@@ -11,7 +12,7 @@ namespace DFM.MVC.Models
         public AccountIndexModel(Boolean open = true)
         {
             AccountList = Current.User.AccountList
-                .Where(a => a.Open == open)
+                .Where(a => a.Open() == open)
                 .OrderByDescending(a => a.ID)
                 .ToList();
         }

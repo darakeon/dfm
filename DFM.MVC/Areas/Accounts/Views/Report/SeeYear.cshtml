@@ -33,8 +33,8 @@
 
         @foreach (var month in Model.Year.MonthList) {
 
-            var sign = month.Value < 0 ? "out" : "in";
-            var value = month.Value > 0 ? month.Value : -month.Value;
+            var sign = month.Value() < 0 ? "out" : "in";
+            var value = month.Value() > 0 ? month.Value() : -month.Value();
             
             <tr>
                 <td>@PlainText.GetMonthName(month.Time) </td>

@@ -18,7 +18,7 @@
     </div>
 
     <div class="accountMenu">
-        @if (Model.TooBigMeny())
+        @if (Model.TooBigMeny(1350))
         {
             var invertedMenuList = new List<Menu> { 
                 Model.MenuWith("Accounts", PlainText.Dictionary["Accounts"], "Index", "Report")

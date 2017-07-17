@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Helpers;
 
 namespace DFM.Core.Database
@@ -86,7 +87,7 @@ namespace DFM.Core.Database
 
             return month == null
                 ? new List<Move>()
-                : month.MoveList;
+                : month.MoveList();
         }
 
 
@@ -122,7 +123,7 @@ namespace DFM.Core.Database
         {
             if (account == null) return;
 
-            if (!account.HasMoves)
+            if (!account.HasMoves())
                 throw new DFMCoreException("CantCloseEmptyAccount");
 
             account.EndDate = DateTime.Now;
@@ -134,7 +135,7 @@ namespace DFM.Core.Database
         {
             if (account == null) return;
 
-            if (account.HasMoves)
+            if (account.HasMoves())
                 throw new DFMCoreException("CantDeleteAccountWithMoves");
 
             BaseData<Account>.Delete(account);

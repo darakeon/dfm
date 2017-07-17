@@ -16,8 +16,6 @@ namespace DFM.Core.Mappings
 
             mapping.HasMany(y => y.SummaryList)
                 .Cascade.SaveUpdate();
-
-            mapping.IgnoreProperty(y => y.Value);
         }
     }
 }

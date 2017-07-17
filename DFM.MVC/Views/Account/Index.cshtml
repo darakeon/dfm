@@ -30,7 +30,7 @@ else
                 <td>@account.BeginDate.ToShortDateString() </td>
 
                 @{
-               var movesSum = account.MovesSum;
+               var movesSum = account.MovesSum();
                var negative = movesSum < 0;
                var value = (negative ? -movesSum : movesSum).ToMoney();
                 }
@@ -44,7 +44,7 @@ else
                 <td>@Html.RouteLink(PlainText.Dictionary["Edit"], RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID }, new { })</td>
 
                 <td>
-                    @if (account.HasMoves)
+                    @if (account.HasMoves())
                     {
                         @Ajax.ActionLink(
                                 PlainText.Dictionary["Close"], "Close", new { id = account.ID },

@@ -1,19 +1,19 @@
 div#Menu {
-	height: 34px;
+	height: 30px;
 	position: relative;
 	z-index: 2;
 	padding: 0 50px;
 }
 
-div#Menu .higherTitle, div#Menu .fixItem 
+div#Menu .higherTitle, div#Menu .fixItem
 {
-	font-size: 17px;
+	font-size: 16px;
     text-align: center;
-	text-transform: uppercase;
 	padding: 2px 5px;
 }
 
 div#Menu .higherTitle, div#Menu .fixItem, .reportsMenu li a {
+	text-transform: uppercase;
 	font-weight: bold;
 	text-decoration: none;
 	cursor: pointer;
@@ -72,7 +72,8 @@ div#Menu .reportsMenu ul
 
 div#Menu .reportsMenu li
 {
-	padding: 3px 5px;
+    font-size: 14px;
+	padding: 2px 5px;
 	list-style: none;
 }
 

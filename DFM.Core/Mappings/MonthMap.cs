@@ -19,10 +19,6 @@ namespace DFM.Core.Mappings
 
             mapping.HasMany(m => m.SummaryList)
                 .Cascade.SaveUpdate();
-
-            mapping.IgnoreProperty(m => m.MoveList);
-            mapping.IgnoreProperty(m => m.Value);
-            mapping.IgnoreProperty(m => m.Account);
         }
     }
 }

@@ -32,7 +32,7 @@ else
                 <td>@account.Name </td>
                 <td>@account.BeginDate.ToShortDateString() </td>
                 <td>@account.EndDate.Value.ToShortDateString() </td>
-                <td>@account.MovesSum </td>
+                <td>@account.MovesSum() </td>
 
                 <td>@Html.RouteLink(
                      String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear),

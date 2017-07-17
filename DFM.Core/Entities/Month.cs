@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Entities.Base;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
-using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
@@ -29,31 +29,6 @@ namespace DFM.Core.Entities
         public virtual IList<Move> OutList { get; set; }
 
 
-        public virtual Double Value
-        {
-            get { return SummaryList.Sum(s => s.Value); }
-        }
-
-        [NhIgnore]
-        internal protected virtual Account Account 
-        {
-            get { return Year.Account; }
-        }
-
-        internal protected virtual IList<Move> MoveList
-        {
-            get
-            {
-                var list = new List<Move>();
-                
-                list.AddRange(OutList.Where(m => m.Show));
-                list.AddRange(InList.Where(m => m.Show));
-
-                return list.OrderBy(m => m.ID).ToList();
-            }
-        }
-
-
         public virtual Double CheckUp(Category category)
         {
             var @in = sum(InList, category);
@@ -65,8 +40,8 @@ namespace DFM.Core.Entities
         private static Double sum(IEnumerable<Move> moveList, Category category)
         {
             return moveList
-                .Where(m => m.Show && m.Category == category)
-                .Sum(m => m.Value);
+                .Where(m => m.Show() && m.Category == category)
+                .Sum(m => m.Value());
         }
 
         public virtual void AjustSummaryList(Summary summary)
@@ -76,25 +51,6 @@ namespace DFM.Core.Entities
             summary.IsValid = false;
 
             SummaryList.Add(summary);
-        }
-
-        internal protected virtual void AjustSummaryList(Category category)
-        {
-            if (!SummaryList.Any(s => s.Category == category))
-                AjustSummaryList(new Summary { Category = category });
-        }
-
-
-        internal protected virtual void AddOut(Move move)
-        {
-            move.Out = this;
-            OutList.Add(move);
-        }
-
-        internal protected virtual void AddIn(Move move)
-        {
-            move.In = this;
-            InList.Add(move);
         }
 
 
