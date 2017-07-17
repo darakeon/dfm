@@ -1,0 +1,39 @@
+﻿@model DFM.MVC.Models.AccountIndexModel
+
+@{
+    ViewBag.Title = "Closed Accounts";
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@if (Model.AccountList.Count == 0) { 
+    
+    @("There's no closed Accounts.")
+
+} else { 
+        
+    <table class='List'>
+
+        <tr>
+            <td>Name</td>
+            <td>Begin Date</td>
+            <td>End Date</td>
+            <td>Value</td>
+            <td colspan="2">GO TO</td>
+        </tr>
+
+        @foreach (var account in Model.AccountList) { 
+            
+            <tr>
+                <td>@account.Name </td>
+                <td>@account.BeginDate </td>
+                <td>@(account.EndDate == null ? "open account" : account.EndDate.ToString()) </td>
+                <td>@account.MovesSum </td>
+
+                <td>@Html.RouteLink(Model.CurrentMonth + " Moves", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
+                <td>@Html.RouteLink(Model.CurrentYear + " Summary", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
+            </tr>
+
+        } 
+
+    </table>
+} 

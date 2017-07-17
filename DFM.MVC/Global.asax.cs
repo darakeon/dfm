@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database;
 using DFM.MVC.Helpers;
+using DFM.MVC.Resources;
 
 // ReSharper disable InconsistentNaming
 namespace DFM.MVC
@@ -38,6 +39,7 @@ namespace DFM.MVC
             RegisterRoutes(RouteTable.Routes);
 
             NHManager.Start();
+            PlainText.Initialize();
         }
 
         protected void Application_BeginRequest()

@@ -8,6 +8,7 @@ using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Models;
+using DFM.MVC.Resources;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -18,8 +19,8 @@ namespace DFM.MVC.Areas.Accounts.Models
             var transferIsPossible = Current.User.AccountList.Count > 1;
 
             NatureSelectList = transferIsPossible ?
-                SelectListExtension.CreateSelect<MoveNature>() :
-                SelectListExtension.CreateSelect<PrimalMoveNature>();
+                SelectListExtension.CreateSelect(PlainText.GetEnumNames<MoveNature>()) :
+                SelectListExtension.CreateSelect(PlainText.GetEnumNames<PrimalMoveNature>());
 
             Move = new Move();
         }
@@ -49,12 +50,11 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         
 
-        [DisplayName("Category"), Required(ErrorMessage = "Mandatory Field")]
+        [Required(ErrorMessage = "Mandatory Field")]
         public Int32? CategoryID { get; set; }
         public SelectList CategorySelectList { get; set; }
 
 
-        [DisplayName("Account")]
         public Int32? AccountID { get; set; }
         public SelectList AccountSelectList { get; set; }
 

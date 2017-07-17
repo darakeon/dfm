@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ak.MVC.Route;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
@@ -10,8 +11,12 @@ namespace DFM.MVC.Models
     {
         public BaseLoggedModel()
         {
-            LateralAccountList = Current.User.AccountList;
-            ActionName = RouteInfo.Current.RouteData.Values["action"].ToString();
+            LateralAccountList = Current.User.AccountList
+                .Where(a => a.Open)
+                .ToList();
+
+            ActionName = RouteInfo.Current.RouteData
+                .Values["action"].ToString();
         }
 
         public IList<Account> LateralAccountList { get; set; }

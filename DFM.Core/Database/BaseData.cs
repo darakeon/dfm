@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ak.DataAccess.NHibernate;
 using DFM.Core.Entities;
 using NHibernate;
@@ -40,7 +41,7 @@ namespace DFM.Core.Database
                 Session.Delete(obj);
         }
 
-        public virtual T SelectById(int id)
+        public virtual T SelectById(Int32 id)
         {
             return Session.Get<T>(id);
         }

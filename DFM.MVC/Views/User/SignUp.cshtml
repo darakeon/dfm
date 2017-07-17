@@ -12,19 +12,19 @@
     </p>
         
     <p>
-        @Html.LabelFor(m => m.Login) 
+        @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"]) 
         @Html.ValidationMessageFor(m => m.Login) <br />
         @Html.TextBoxFor(m => m.Login) 
     </p>
 
     <p>
-        @Html.LabelFor(m => m.Password) 
+        @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"]) 
         @Html.ValidationMessageFor(m => m.Password)<br />
         @Html.PasswordFor(m => m.Password)
     </p>
 
     <p>
-        @Html.LabelFor(m => m.Email) 
+        @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"]) 
         @Html.ValidationMessageFor(m => m.Email)<br />
         @Html.TextBoxFor(m => m.Email)
     </p>

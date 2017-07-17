@@ -1,37 +1,8 @@
 ﻿$(document).ready(function () {
     AjustMoneyAndDate();
+    AjustLinkButtons();
 });
 
-
-var fail;
-
-
-function AjaxFail(html) {
-    var error = html.responseText
-                .split(/title/g)[1];
-
-    error = error.substr(1, error.length - 3);
-
-    alert(error);
-    EndAjaxPost()
-
-    if (error.match(/session expired/i))
-        location.reload();
-}
-
-function TellResultAndReload(data) {
-    alert(data.message);
-    EndAjaxPost();
-    location.reload();
-}
-
-function BeginAjaxPost() {
-    $("*").css("cursor", "wait");
-}
-
-function EndAjaxPost() {
-    $("*").css("cursor", "default");
-}
 
 
 function AjustMoneyAndDate() {
@@ -64,6 +35,45 @@ function AjustDate(discriminator) {
         if (this.value == '01/01/0001')
             this.value = '';
     });
+}
+
+
+function AjustLinkButtons() {
+    $("button").each(function () {
+        $(this).click(function () {
+            var href = $(this).attr("href");
+            if (href) location = href;
+        });
+    });
+}
+
+
+
+var fail;
+function AjaxFail(html) {
+    var error = html.responseText
+                .split(/title/g)[1];
+
+    error = error.substr(1, error.length - 3);
+
+    alert(error);
+    EndAjaxPost()
+
+    if (error.match(/session expired/i))
+        location.reload();
+}
+
+function TellResultAndReload(data) {
+    alert(data.message);
+    location.reload();
+}
+
+function BeginAjaxPost() {
+    $("*").css("cursor", "wait");
+}
+
+function EndAjaxPost() {
+    $("*").css("cursor", "default");
 }
 
 

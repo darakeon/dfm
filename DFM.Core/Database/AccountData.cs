@@ -91,16 +91,8 @@ namespace DFM.Core.Database
             moveList
                 .Where(m => m.Date.Year == year)
                 .ForEach(m =>
-                    addItem(moveSumList, m.Month, sign * m.Value)
+                    moveSumList.SumItem(m.Month, sign * m.Value)
                 );
-        }
-
-        private static void addItem(IDictionary<String, Double> sumList, String name, Double value)
-        {
-            if (sumList.ContainsKey(name))
-                sumList[name] += value;
-            else
-                sumList.Add(name, value);
         }
 
 

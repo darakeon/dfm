@@ -1,19 +1,11 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.CategoryCreateModel
 
-@{
-    ViewBag.Title = "New Move";
-}
+@using DFM.MVC.Helpers;
 
-@{
-    var ajax = new AjaxOptions {
-        HttpMethod = "Post",
-        OnFailure = "AjaxFail",
-        OnSuccess = "InsertCategoryOnDropDown",
-    };
-}
+@{ Layout = null; }
 
 
-@using (Ajax.BeginForm("Create", "Category", ajax)) { 
+@using (Ajax.BeginForm("Create", "Category", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })) { 
 
     <p>
         <label>New Category Name:</label><br />
@@ -23,5 +15,4 @@
     <p>
         <button type="submit">Create!</button>
     </p>
-
 }

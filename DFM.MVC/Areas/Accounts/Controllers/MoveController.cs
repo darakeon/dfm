@@ -47,6 +47,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return createEdit(model);
         }
 
+        public ActionResult Edit()
+        {
+            return RedirectToAction("Create");
+        }
 
         public ActionResult Edit(Int32 id)
         {

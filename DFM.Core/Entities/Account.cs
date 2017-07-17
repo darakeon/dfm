@@ -43,6 +43,10 @@ namespace DFM.Core.Entities
             get { return InList.Sum(m => m.Value) - OutList.Sum(m => m.Value); }
         }
 
+        public virtual Boolean Open
+        {
+            get { return EndDate == null; }
+        }
 
 
         public override string ToString()

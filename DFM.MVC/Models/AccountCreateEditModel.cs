@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
+using DFM.MVC.Resources;
 
 namespace DFM.MVC.Models
 {
@@ -12,8 +14,11 @@ namespace DFM.MVC.Models
         public AccountCreateEditModel()
         {
             Account = new Account();
-            NatureSelectList = SelectListExtension.CreateSelect<AccountNature>();
+
+            NatureSelectList = 
+                SelectListExtension.CreateSelect(PlainText.GetEnumNames<AccountNature>());
         }
+
 
 
         public Account Account { get; set; }

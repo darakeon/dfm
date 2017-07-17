@@ -1,5 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeMonthModel
 
+@using DFM.MVC.Helpers;
+
 @{
     ViewBag.Title = String.Format("{0}: {2} {1}", Model.Account, Model.Month, Model.Year);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
@@ -35,14 +37,14 @@
 
                 <td class="numeric in">
                     @if (move.In == Model.Account)
-                        {@move.Value.ToString("#0.00")}
+                        {@move.Value.ToMoney()}
                     else
                         { @(" ") }
                 </td>
 
                 <td class="numeric out">
                     @if (move.Out == Model.Account)
-                        {@move.Value.ToString("#0.00")}
+                        {@move.Value.ToMoney()}
                     else
                         { @(" ") }
                 </td>
@@ -50,12 +52,8 @@
                 <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
 
                 <td>@Ajax.ActionLink("Delete", "Delete", "Move", new { id = move.ID }, 
-                        new AjaxOptions {
+                        new AjaxOptionsDFM {
                             Confirm = String.Format("Do you really want to DELETE Move '{0}'?", move.Description),
-                            OnBegin = "BeginAjaxPost",
-                            OnFailure = "AjaxFail",
-                            OnSuccess = "TellResultAndReload",
-                            HttpMethod = "Post",
                         })</td>
                 
             </tr>

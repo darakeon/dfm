@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DFM.Core.Enums;
 
 namespace DFM.Core.Entities
 {
@@ -18,6 +19,7 @@ namespace DFM.Core.Entities
         public virtual String Login { get; set; }
         public virtual String Password { get; set; }
         public virtual String Email { get; set; }
+        public virtual UserLanguage Language { get; set; }
 
         public virtual IList<Account> AccountList { get; set; }
         public virtual IList<Category> CategoryList { get; set; }

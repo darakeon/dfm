@@ -49,6 +49,12 @@ a
     white-space: nowrap;
 }
 
+.finalList
+{
+	text-align: right;
+	margin-top: 20px;
+}
+
 
 
 td.numeric

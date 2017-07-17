@@ -29,13 +29,13 @@
 
     <div class="createMoveScreenLeft">
         <div>
-            @Html.LabelFor(m => m.Description) 
+            @Html.LabelFor(m => m.Description, PlainText.Dictionary["Description"]) 
             @Html.ValidationMessageFor(m => m.Description)<br />
             @Html.TextBoxFor(m => m.Description)
         </div>
 
         <div>
-            @Html.LabelFor(m => m.Move.Date)
+            @Html.LabelFor(m => m.Move.Date, PlainText.Dictionary["Date"])
             @Html.ValidationMessageFor(m => m.Move.Date)<br />
             @Html.TextBoxFor(m => m.Move.Date, new { @class = "date" })
         </div>
@@ -43,21 +43,21 @@
 
     <div class="createMoveScreenRight">
         <div>
-            @Html.LabelFor(m => m.CategoryID) 
+            @Html.LabelFor(m => m.CategoryID, PlainText.Dictionary["Category"]) 
             @Html.ValidationMessageFor(m => m.CategoryID)<br />
-            @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- Select --")
+            @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
 
             <button type="button" id="newCategoryCaller">New Category</button>
         </div>
 
         <div>
-            @Html.LabelFor(m => m.Nature) 
+            @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
 
             @Html.ValidationMessageFor(m => m.Nature)
             @Html.ValidationMessageFor(m => m.AccountID)<br />
         
-            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- Select --")
-            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- Select --")
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
         </div>
     </div>
     
@@ -78,8 +78,8 @@
     <div id="oneValue" class="createMoveScreenLeft">
         <table>
             <tr>
-                <td>@Html.LabelFor(m => m.Move.DetailList[0].Amount)</td>
-                <td>@Html.LabelFor(m => m.Move.DetailList[0].Value)</td>
+                <td>@Html.LabelFor(m => m.Move.DetailList[0].Amount, PlainText.Dictionary["Amount"])</td>
+                <td>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</td>
             </tr>
             <tr>
                 <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "number" })</td>

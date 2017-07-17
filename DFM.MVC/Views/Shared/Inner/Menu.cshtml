@@ -11,9 +11,11 @@
 @if (Model.LateralAccountList.Any()) { <br /> }
 
 <p>
-    @Html.RouteLink("New Account", DFM.MVC.Helpers.RouteNames.Default, new { action = "Create", controller = "Account" })
     <br />
-    @Html.RouteLink("Home", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
-    <b>//</b>
+    @Html.RouteLink("Accounts", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
+    <br />
+    @Html.RouteLink("Categories", DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Category"})
+    <br />
+    <br />
     @Html.RouteLink("Log Off", DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"})
 </p>

@@ -20,6 +20,13 @@ namespace DFM.MVC.Controllers
             return View(model);
         }
 
+        public ActionResult ListClosed()
+        {
+            var model = new AccountIndexModel(false);
+
+            return View(model);
+        }
+
 
 
 
@@ -34,6 +41,11 @@ namespace DFM.MVC.Controllers
         public ActionResult Create(AccountCreateEditModel model)
         {
             return createEdit(model);
+        }
+
+        public ActionResult Edit()
+        {
+            return RedirectToAction("Create");
         }
 
         public ActionResult Edit(Int32 id)

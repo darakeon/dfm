@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<move>
+  <en_us>
+    <Out text="Out" />
+    <In text="In" />
+    <Transfer text="Transfer" />
+  </en_us>
+  <pt_br>
+    <Out text="Saída" />
+    <In text="Entrada" />
+    <Transfer text="Transferência" />
+  </pt_br>
+</move>

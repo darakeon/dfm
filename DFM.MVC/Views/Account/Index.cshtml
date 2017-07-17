@@ -1,36 +1,44 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
+@using DFM.MVC.Resources;
+@using DFM.MVC.Helpers;
+
 @{
     ViewBag.Title = "Accounts";
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@if (Model.AccountList.Count == 0) { 
-    
-    @("There's no Accounts yet. Create the first one, ")
-    @Html.ActionLink("click here", "Create")
-    @("!")
 
-} else { 
-        
+
+@if (Model.AccountList.Count == 0)
+{ 
+    @PlainText.Dictionary["NoAccounts"]
+}
+else
+{ 
     <table class='List'>
 
         <tr>
             <td>Name</td>
             <td>Begin Date</td>
-            <td>End Date</td>
             <td>Value</td>
             <td colspan="2">GO TO</td>
             <td colspan="3">TO DO</td>
         </tr>
 
-        @foreach (var account in Model.AccountList) { 
+        @foreach (var account in Model.AccountList)
+        { 
             
             <tr>
                 <td>@account.Name </td>
-                <td>@account.BeginDate </td>
-                <td>@(account.EndDate == null ? "open account" : account.EndDate.ToString()) </td>
-                <td>@account.MovesSum </td>
+                <td>@account.BeginDate.ToShortDateString() </td>
+
+                @{ 
+               var negative = account.MovesSum < 0;
+               var value = (negative ? -account.MovesSum : account.MovesSum).ToMoney();
+                }
+
+                <td class="numeric @(negative ? "out" : "in")">@value</td>
 
                 <td>@Html.RouteLink(Model.CurrentMonth + " Moves", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
                 <td>@Html.RouteLink(Model.CurrentYear + " Summary", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
@@ -41,17 +49,9 @@
 
                 <td>
                     @Ajax.ActionLink(
-                        "Close",
-                        "Close",
-                        new { id = account.ID },
-                        new AjaxOptions()
-                        {
-                            Confirm = String.Format("Do you really want to CLOSE Account '{0}'?", account.Name),
-                            OnBegin = "BeginAjaxPost",
-                            OnFailure = "AjaxFail",
-                            OnSuccess = "TellResultAndReload",
-                            HttpMethod = "Post"
-                        }) 
+                            "Close", "Close", new { id = account.ID },
+                            new AjaxOptionsDFM() { Confirm = String.Format("Do you really want to CLOSE Account '{0}'?", account.Name) }
+                        ) 
                 </td>
             </tr>
 
@@ -59,3 +59,8 @@
 
     </table>
 } 
+
+<div class="finalList">
+    <button href="@Url.Action("Create")">New Account</button>
+    <button href="@Url.Action("ListClosed")">See closed Accounts</button>
+</div>

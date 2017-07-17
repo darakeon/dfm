@@ -77,9 +77,11 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Move.cs" />
     <Compile Include="Enums\AccountNature.cs" />
+    <Compile Include="Enums\UserLanguage.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Helpers\CoreValidationException.cs" />
+    <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />

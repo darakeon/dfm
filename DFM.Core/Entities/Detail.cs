@@ -31,7 +31,7 @@ namespace DFM.Core.Entities
 
 
 
-        public virtual bool HasDescription()
+        public virtual Boolean HasDescription()
         {
             return !String.IsNullOrEmpty(Description)
                 && Description != Move.Description;

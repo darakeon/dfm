@@ -1,7 +1,8 @@
 ﻿@model DFM.MVC.Models.AccountCreateEditModel
 
 @{
-    ViewBag.Title = Model.ActionName + " Account";
+    ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Account"];
+        
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -12,19 +13,19 @@
     </p>
 
     <p>
-        @Html.LabelFor(m => m.Name) 
+        @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
         @Html.ValidationMessageFor(m => m.Name)<br />
         @Html.TextBoxFor(m => m.Name)
     </p>
 
     <p>
-        @Html.LabelFor(m => m.Nature) 
+        @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
         @Html.ValidationMessageFor(m => m.Nature)<br />
-        @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- Select --")
+        @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
     </p>
 
     <p>
-        <button type="submit">@Model.ActionName!</button>
+        <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
     </p>
 
 } 

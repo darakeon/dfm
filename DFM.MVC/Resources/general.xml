@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<general>
+  <en_us>
+    <Create text="Create" />
+    <Edit text="Edit" />
+    <Account text="Account" />
+    <Select text="Select" />
+    <Name text="Name" />
+    <Nature text="Nature" />
+  </en_us>
+  <pt_br>
+    <Create text="Criar" />
+    <Edit text="Editar" />
+    <Account text="Conta" />
+    <Select text="Selecione" />
+    <Name text="Nome" />
+    <Nature text="Natureza" />
+  </pt_br>
+</general>
