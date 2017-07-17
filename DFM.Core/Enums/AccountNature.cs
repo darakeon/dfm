@@ -4,7 +4,8 @@
     {
         Home,
         Bank,
-        Card,
         Debt,
+        Credit,
+        Charge,
     }
 }

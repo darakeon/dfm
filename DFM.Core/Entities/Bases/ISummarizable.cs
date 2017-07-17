@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DFM.Core.Entities.Base
+namespace DFM.Core.Entities.Bases
 {
     public interface ISummarizable : IEntity
     {

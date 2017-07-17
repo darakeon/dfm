@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Entities.Base;
+using DFM.Core.Entities.Bases;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;

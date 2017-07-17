@@ -14,6 +14,11 @@ namespace DFM.Core.Database
     {
 		private MoveData() { }
 
+        public static Move SaveOrUpdate(Move move, Account accountOut)
+        {
+            return SaveOrUpdate(move, accountOut, null);
+        }
+
         public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
         {
             placeAccountsInMove(move, accountOut, accountIn);

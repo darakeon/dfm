@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Ak.Generic.Enums;
-using DFM.Core.Entities.Base;
+using DFM.Core.Entities.Bases;
 using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities.Extensions

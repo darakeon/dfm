@@ -18,14 +18,13 @@ namespace DFM.Core.Database
             //scheduleTransac.Commit();
         }
 
-        public static IList<Schedule> GetScheduleToRun(User user)
+        internal static IList<Schedule> GetScheduleToRun(User user)
         {
-            var criteria = CreateSimpleCriteria(
-                s => s.Active 
-                    && s.Next <= DateTime.Today 
-                    && s.User.ID == user.ID);
-
-            return criteria.List<Schedule>();
+            return user.ScheduleList
+                .Where(
+                    s => s.Active 
+                        && s.Next <= DateTime.Today)
+                .ToList();
         }
         
         private static void complete(Schedule schedule)
@@ -42,5 +41,6 @@ namespace DFM.Core.Database
 
             schedule.User = user;
         }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Entities.Bases;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Helpers;
 
@@ -137,5 +138,37 @@ namespace DFM.Core.Database
 
             BaseData<Account>.Delete(account);
         }
+
+
+
+        public static IList<IAccountDetail> GetRatesToApply(User user)
+        {
+            var accountDetailList = new List<IAccountDetail>();
+
+            var bankList = user.AccountList
+                            .Where(a => a.Bank != null
+                                     && a.Bank.Next <= DateTime.Today)
+                            .Select(a => a.Bank)
+                            .ToList();
+            bankList.ForEach(accountDetailList.Add);
+
+            var debtList = user.AccountList
+                            .Where(a => a.Debt != null
+                                     && a.Debt.Next <= DateTime.Today)
+                            .Select(a => a.Debt)
+                            .ToList();
+            debtList.ForEach(accountDetailList.Add);
+
+            var creditList = user.AccountList
+                            .Where(a => a.Credit != null
+                                     && a.Credit.Next <= DateTime.Today)
+                            .Select(a => a.Credit)
+                            .ToList();
+            creditList.ForEach(accountDetailList.Add);
+
+
+            return accountDetailList;
+        }
+
     }
 }

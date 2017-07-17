@@ -71,7 +71,7 @@ namespace DFM.MVC
             if (isAsset) return;
 
             if (Current.IsAuthenticated)
-                ScheduleRunner.Run(Current.User);
+                MainRobot.Run(Current.User);
 
             specifyLanguage();
         }

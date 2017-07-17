@@ -7,7 +7,7 @@ using DFM.Core.Helpers;
 
 namespace DFM.Core.Robots
 {
-    public class ScheduleRunner
+    internal class ScheduleRunner
     {
         private static Account accountIn { get; set; }
         private static Account accountOut { get; set; }
@@ -27,6 +27,8 @@ namespace DFM.Core.Robots
                     save(move);
                 }
             }
+
+
 
         }
 

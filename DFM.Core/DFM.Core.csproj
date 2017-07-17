@@ -80,8 +80,14 @@
     <Compile Include="Database\UserData.cs" />
     <Compile Include="Database\Base\BaseData.cs" />
     <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Base\IEntity.cs" />
-    <Compile Include="Entities\Base\ISummarizable.cs" />
+    <Compile Include="Entities\AccountDetails\Bank.cs" />
+    <Compile Include="Entities\AccountDetails\Charge.cs" />
+    <Compile Include="Entities\AccountDetails\Credit.cs" />
+    <Compile Include="Entities\AccountDetails\Debt.cs" />
+    <Compile Include="Robots\AccountDetailExtension.cs" />
+    <Compile Include="Entities\Bases\IEntity.cs" />
+    <Compile Include="Entities\Bases\IAccountDetail.cs" />
+    <Compile Include="Entities\Bases\ISummarizable.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Extensions\AccountExtension.cs" />
@@ -115,7 +121,8 @@
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Robots\Scheduler.cs" />
+    <Compile Include="Robots\MainRobot.cs" />
+    <Compile Include="Robots\ScheduleRunner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

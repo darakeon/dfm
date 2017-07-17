@@ -18,7 +18,7 @@
 09/08	10/08	REFACTORING
 10/08	14/08	-- Agendamento de Movimentação
 14/08	14/08	-- Implementar "manter logado"
-15/08		-- WCF Iniciado
+15/08	16/08	-- WCF Iniciado
 16/08	17/08	Layout
 18/08	18/08	Quantidade - tirar de Valor único
 18/08	22/08	Navegação Mês / Ano
@@ -42,6 +42,9 @@
 15/09	15/09	Proteger alteração / deleção de itens que não pertencem ao usuário logado
 15/09	15/09	Retirar campo Login
 15/09	15/09	Refactor: centralizar textos de erro em enum
-		Taxa da conta + Data (bank)
-		Percentual de crescimento + Data (debt)
-		Taxa do cartão, Limite + Data (cartão)
+15/09	15/09	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
+15/09	15/09	Robô para Taxas Fixas
+		Mudar inserção / edição de conta para englobar tipos
+		Aviso de Limite da conta Credit
+		Limite de carga da conta Charge
+		Previsão de Charge vazia
