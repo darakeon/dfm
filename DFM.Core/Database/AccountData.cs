@@ -32,9 +32,7 @@ namespace DFM.Core.Database
                                        && otherAccount.ID != account.ID;
 
             if (accountExistsForUser)
-            {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountAlreadyExists);
-            }
         }
 
         private static void checkLimits(Account account)
@@ -76,7 +74,8 @@ namespace DFM.Core.Database
             IList<Account> accountList = Session
                 .CreateCriteria(typeof(Account))
                 .List<Account>()
-                .Where(a => a.Name == name)
+                .Where(a => a.Name == name 
+                    && a.User.ID == user.ID)
                 .ToList();
 
             if (accountList.Count > 1)

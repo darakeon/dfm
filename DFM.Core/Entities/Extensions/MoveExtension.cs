@@ -93,7 +93,7 @@ namespace DFM.Core.Entities.Extensions
         }
 
 
-        //REMOVE DOESN'T WORK SOMETIMES
+        //Remove doesn't work because they aren't same object
         public static void RemoveFromIn(this Move move)
         {
             move.In.InList =
@@ -102,6 +102,7 @@ namespace DFM.Core.Entities.Extensions
                     .ToList();
         }
 
+        //Remove doesn't work because they aren't same object
         public static void RemoveFromOut(this Move move)
         {
             move.Out.OutList =

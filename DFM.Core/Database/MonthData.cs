@@ -13,7 +13,7 @@ namespace DFM.Core.Database
 
         internal static Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
         {
-            var newMonth = getMonth(year, dateMonth);
+            var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
                 newMonth.AjustSummaryList(category);
@@ -21,7 +21,7 @@ namespace DFM.Core.Database
             return newMonth;
         }
 
-        private static Month getMonth(Year year, Int16 dateMonth)
+        private static Month getOrCreateMonth(Year year, Int16 dateMonth)
         {
             var monthList = year.MonthList
                 .Where(m => m.Time == dateMonth);
@@ -60,15 +60,16 @@ namespace DFM.Core.Database
             var newMonth = new Month { Year = year, Time = month };
 
             year.MonthList.Add(newMonth);
+
             SaveOrUpdate(newMonth);
 
             return newMonth;
         }
 
 
-        public static Month SaveOrUpdate(Month month)
+        public static void SaveOrUpdate(Month month)
         {
-            return SaveOrUpdate(month, null, null);
+            SaveOrUpdateInstantly(month, null, null);
         }
 
     }

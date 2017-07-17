@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Ak.Generic.Enums;
 using DFM.Core.Database;
 using DFM.Core.Entities.Bases;
-using DFM.Core.Exceptions;
 
 namespace DFM.Core.Entities.Extensions
 {

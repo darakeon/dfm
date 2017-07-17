@@ -8,6 +8,7 @@
     <Password text="Password" />
     <RetypePassword text="Retype password" />
     <PasswordReset text="Password Reset" />
+    <Reset text="Reset" />
     <PasswordResetSuccess text="Password successfuly reset." />
     <Token text="Token" />
     <TokenReceivedByEmail text="Token received by e-mail" />
@@ -23,6 +24,7 @@
     <Password text="Senha" />
     <RetypePassword text="Redigite a senha" />
     <PasswordReset text="Redefinição de Senha" />
+    <Reset text="Redefinir" />
     <PasswordResetSuccess text="Senha redefinida com sucesso." />
     <Token text="Token" />
     <TokenReceivedByEmail text="Token recebido via e-mail" />

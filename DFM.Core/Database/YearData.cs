@@ -13,7 +13,7 @@ namespace DFM.Core.Database
 
         internal static Year GetOrCreateYear(Int16 year, Account account, Category category = null)
         {
-            var newYear = getYear(account, year);
+            var newYear = getOrCreateYear(account, year);
 
             if (category != null)
                 newYear.AjustSummaryList(category);
@@ -21,7 +21,7 @@ namespace DFM.Core.Database
             return newYear;
         }
 
-        private static Year getYear(Account account, Int16 dateYear)
+        private static Year getOrCreateYear(Account account, Int16 dateYear)
         {
             var yearList = account.YearList
                 .Where(m => m.Time == dateYear);
@@ -63,9 +63,9 @@ namespace DFM.Core.Database
         }
 
 
-        public static Year SaveOrUpdate(Year year)
+        public static void SaveOrUpdate(Year year)
         {
-            return SaveOrUpdate(year, null, null);
+            SaveOrUpdateInstantly(year, null, null);
         }
 
 

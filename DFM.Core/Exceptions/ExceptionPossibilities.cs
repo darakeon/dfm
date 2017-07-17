@@ -5,6 +5,7 @@
         AccountAlreadyExists,
         CantCloseEmptyAccount,
         CantDeleteAccountWithMoves,
+        CategoryAlreadyExists,
         ClosedAccount,
         ConnectionError,
         DetailRequired,

@@ -23,6 +23,13 @@ namespace DFM.Core.Database.Base
             return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
 
+        protected static void SaveOrUpdateInstantly(T entity, DelegateComplete complete, DelegateValidade validate)
+        {
+            var transac = Session.BeginTransaction();
+            SaveOrUpdate(entity, null, null);
+            transac.Commit();
+        }
+
         protected static T SaveOrUpdate(T entity, DelegateComplete complete, DelegateValidade validate)
         {
             if (complete != null) complete(entity);

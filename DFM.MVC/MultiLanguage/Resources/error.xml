@@ -7,6 +7,7 @@
     <AccountNotFound text="Account not found." />
     <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
     <CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
+    <CategoryAlreadyExists text="Category already exists." />
     <CategoryNotFound text="Category not found." />
     <CircularTransfer text="The In Account must be different from the Out Account." />
     <ClosedAccount text="Can't insert Moves in Closed Accounts." />
@@ -45,6 +46,7 @@
     <AccountNotFound text="Conta não encontrada." />
     <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
     <CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
+    <CategoryAlreadyExists text="Categoria já existe." />
     <CategoryNotFound text="Categoria não encontrada." />
     <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
     <ClosedAccount text="Não é possível inserir Movimentações em Contas fechadas." />

@@ -14,9 +14,7 @@ namespace DFM.Core.Database
 
         private static void saveOrUpdate(Summary summary)
         {
-            var summaryTransac = Session.BeginTransaction();
-            SaveOrUpdate(summary, null, null);
-            summaryTransac.Commit();
+            SaveOrUpdateInstantly(summary, null, null);
         }
 
 
