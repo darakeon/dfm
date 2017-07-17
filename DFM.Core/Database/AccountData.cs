@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Bases;
+using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Helpers;
-using NHibernate.Linq;
 
 namespace DFM.Core.Database
 {
@@ -25,7 +24,7 @@ namespace DFM.Core.Database
 
             if (accountExistsForUser)
             {
-                throw new CoreValidationException("AlreadyExists");
+                throw new DFMCoreException("AlreadyExists");
             }
         }
 
@@ -61,7 +60,7 @@ namespace DFM.Core.Database
                 .ToList();
 
             if (userList.Count > 1)
-                throw new CoreValidationException("DuplicatedName");
+                throw new DFMCoreException("DuplicatedName");
 
             return userList.SingleOrDefault();
         }
@@ -82,11 +81,10 @@ namespace DFM.Core.Database
             var month = year.MonthList
                 .SingleOrDefault(y => y.Time == dateMonth);
 
-            if (month == null)
-                return new List<Move>();
 
-
-            return month.MoveList;
+            return month == null
+                ? new List<Move>()
+                : month.MoveList;
         }
 
 
@@ -102,11 +100,10 @@ namespace DFM.Core.Database
 
         public void Close(Account account)
         {
-            if (account != null)
-            {
-                account.EndDate = DateTime.Now;
-                SaveOrUpdate(account);
-            }
+            if (account == null) return;
+            
+            account.EndDate = DateTime.Now;
+            SaveOrUpdate(account);
         }
     }
 }

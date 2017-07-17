@@ -34,7 +34,7 @@ namespace DFM.MVC.Controllers
                 {
                     user = userData.ValidateAndGet(model.Login, model.Password);
                 }
-                catch (CoreValidationException e)
+                catch (DFMCoreException e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }
@@ -69,7 +69,7 @@ namespace DFM.MVC.Controllers
                 {
                     userData.SaveOrUpdate(model.User);
                 }
-                catch (CoreValidationException e)
+                catch (DFMCoreException e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }

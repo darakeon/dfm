@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using DFM.Core.Database.Bases;
+using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
@@ -19,7 +19,7 @@ namespace DFM.Core.Database
 
         public new Move SaveOrUpdate(Move move)
         {
-            throw new CoreValidationException("AccountMissing");
+            throw new DFMCoreException("AccountMissing");
         }
 
         public Move SaveOrUpdate(Move move, Account account, Account secondAccount = null)
@@ -30,7 +30,8 @@ namespace DFM.Core.Database
 
 
 
-        private void validate(Move move)
+        #region Validate
+        private static void validate(Move move)
         {
             testDetailList(move);
             testNature(move);
@@ -38,13 +39,13 @@ namespace DFM.Core.Database
             testCategory(move);
         }
 
-        private void testDetailList(Move move)
+        private static void testDetailList(Move move)
         {
             if (!move.DetailList.Any())
-                throw new CoreValidationException("DetailRequired");
+                throw new DFMCoreException("DetailRequired");
         }
 
-        private void testNature(Move move)
+        private static void testNature(Move move)
         {
             var hasIn = move.In != null;
             var hasOut = move.Out != null;
@@ -53,42 +54,44 @@ namespace DFM.Core.Database
             {
                 case MoveNature.In:
                     if (!hasIn || hasOut)
-                        throw new CoreValidationException("InMoveWrong");
+                        throw new DFMCoreException("InMoveWrong");
                     break;
 
                 case MoveNature.Out:
                     if (hasIn || !hasOut)
-                        throw new CoreValidationException("OutMoveWrong");
+                        throw new DFMCoreException("OutMoveWrong");
                     break;
 
                 case MoveNature.Transfer:
                     if (!hasIn || !hasOut)
-                        throw new CoreValidationException("TransferMoveWrong");
+                        throw new DFMCoreException("TransferMoveWrong");
                     break;
 
             }
         }
 
-        private void testAccounts(Move move)
+        private static void testAccounts(Move move)
         {
             var moveInClosed = move.In != null && !move.In.Year.Account.Open;
             var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open;
 
             if (moveInClosed || moveOutClosed)
-                throw new CoreValidationException("ClosedAccount");
+                throw new DFMCoreException("ClosedAccount");
 
             if (move.In != null && move.Out != null && move.In.Year.Account == move.Out.Year.Account)
-                throw new CoreValidationException("CircularTransfer");
+                throw new DFMCoreException("CircularTransfer");
         }
 
-        private void testCategory(Move move)
+        private static void testCategory(Move move)
         {
             if (!move.Category.Active)
-                throw new CoreValidationException("DisabledCategory");
+                throw new DFMCoreException("DisabledCategory");
         }
+        #endregion
 
 
-        
+
+        #region Complete
         private void complete(Move move)
         {
             ajustDetailList(move);
@@ -97,7 +100,7 @@ namespace DFM.Core.Database
                 ajustMonthAndYear(move);
         }
 
-        private void ajustDetailList(Move move)
+        private static void ajustDetailList(Move move)
         {
             if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
                 move.DetailList[0].Description = move.Description;
@@ -121,10 +124,8 @@ namespace DFM.Core.Database
             if (oldMove != null)
                 invalidateSummary(oldMove);
         }
-
-
-
-        private void invalidateSummary(Move move)
+        
+        private static void invalidateSummary(Move move)
         {
             var summaryData = new SummaryData();
 
@@ -134,10 +135,11 @@ namespace DFM.Core.Database
             if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
                 summaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut);
         }
+        #endregion
 
+        
 
-
-        private void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
+        private static void placeAccountsInMove(Move move, Account account, Account secondAccount = null)
         {
             var yearData = new YearData();
             var monthData = new MonthData();
@@ -153,7 +155,7 @@ namespace DFM.Core.Database
                     month.AddIn(move); break;
                 case MoveNature.Transfer:
                     if (secondAccount == null)
-                        throw new CoreValidationException("TransferMoveWrong");
+                        throw new DFMCoreException("TransferMoveWrong");
 
                     month.AddOut(move);
 
@@ -164,7 +166,7 @@ namespace DFM.Core.Database
 
                     break;
                 default:
-                    throw new CoreValidationException("MoveNatureNotFound");
+                    throw new DFMCoreException("MoveNatureNotFound");
             }
         }
 
@@ -178,7 +180,7 @@ namespace DFM.Core.Database
             base.Delete(move);
         }
 
-        private void removeFromMonth(Move move)
+        private static void removeFromMonth(Move move)
         {
             if (move == null) return;
 

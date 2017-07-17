@@ -15,10 +15,11 @@ namespace DFM.MVC.Controllers
 
         public ActionResult AnalyzeDictionary()
         {
-            if (Current.IsAuthenticated)
-                return View(PlainText.Dictionary);
+            var plainText = Current.IsAuthenticated
+                                ? PlainText.Dictionary
+                                : new PlainText();
 
-            return View(new PlainText());
+            return View(plainText);
         }
     }
 }

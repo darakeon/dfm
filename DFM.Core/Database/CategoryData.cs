@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Database.Bases;
+using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 
 namespace DFM.Core.Database
@@ -12,7 +12,7 @@ namespace DFM.Core.Database
         }
 
 
-        private void complete(Category category)
+        private static void complete(Category category)
         {
             if (category.ID == 0)
                 category.Active = true;

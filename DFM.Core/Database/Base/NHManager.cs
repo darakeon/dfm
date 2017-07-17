@@ -3,7 +3,7 @@ using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Core.Entities;
 using DFM.Core.Mappings;
 
-namespace DFM.Core.Database
+namespace DFM.Core.Database.Base
 {
     public class NHManager
     {

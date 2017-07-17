@@ -71,9 +71,9 @@
     <Compile Include="Database\YearData.cs" />
     <Compile Include="Database\DetailData.cs" />
     <Compile Include="Database\MoveData.cs" />
-    <Compile Include="Database\NHManager.cs" />
+    <Compile Include="Database\Base\NHManager.cs" />
     <Compile Include="Database\UserData.cs" />
-    <Compile Include="Database\Bases\BaseData.cs" />
+    <Compile Include="Database\Base\BaseData.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Category.cs" />
@@ -101,10 +101,7 @@
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database\Completes\" />
-    <Folder Include="Database\Validates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

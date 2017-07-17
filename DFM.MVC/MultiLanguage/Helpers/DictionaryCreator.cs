@@ -51,12 +51,9 @@ namespace DFM.MVC.MultiLanguage.Helpers
 
         private static Node getLanguage(Node sectionFile, String language)
         {
-            var languageNode = sectionFile.Childs.SingleOrDefault(c => c.Name == language.ToString());
-
-            if (languageNode == null)
-                languageNode = createLanguage(sectionFile, language);
-
-            return languageNode;
+            return sectionFile.Childs
+                    .SingleOrDefault(c => c.Name == language.ToString())
+                ?? createLanguage(sectionFile, language);
         }
 
         private static Node createLanguage(Node sectionFile, String language)

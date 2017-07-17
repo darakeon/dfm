@@ -1,12 +1,11 @@
 ﻿using System;
-using Ak.DataAccess.NHibernate;
-using DFM.Core.Database;
+using DFM.Core.Database.Base;
 
 namespace DFM.Core.Helpers
 {
-    public class CoreValidationException : Exception
+    public class DFMCoreException : Exception
     {
-        public CoreValidationException(String message) : base(message)
+        public DFMCoreException(String message) : base(message)
         {
             NHManager.Error();
         }

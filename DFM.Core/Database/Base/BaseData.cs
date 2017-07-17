@@ -9,7 +9,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.SqlCommand;
 
-namespace DFM.Core.Database.Bases
+namespace DFM.Core.Database.Base
 {
     public abstract class BaseData<T>
         where T : class, IEntity

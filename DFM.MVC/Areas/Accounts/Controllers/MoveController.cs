@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ak.Generic.Exceptions;
-using Ak.MVC.Forms;
 using DFM.Core.Helpers;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
-using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
 
@@ -107,7 +103,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                             new { action = "Index", controller = "Account" }
                         );
                 }
-                catch (CoreValidationException e)
+                catch (DFMCoreException e)
                 {
                     ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
                 }

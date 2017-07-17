@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System;
-using NHibernate.Linq;
 
 namespace DFM.Core.Helpers
 {

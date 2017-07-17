@@ -7,7 +7,7 @@ using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
-    public class Month : IEntity, ISummarizable
+    public class Month : ISummarizable
     {
         public Month()
         {

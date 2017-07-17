@@ -50,7 +50,7 @@ namespace DFM.Core.Entities
                 case SummaryNature.Year:
                     Value = Year.CheckUp(Category); break;
                 default:
-                    throw new CoreValidationException("SummaryNatureNotFound");
+                    throw new DFMCoreException("SummaryNatureNotFound");
             }
 
             IsValid = true;

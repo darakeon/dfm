@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Database.Bases;
+using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Helpers;
 
@@ -22,7 +22,7 @@ namespace DFM.Core.Database
             var user = SelectByLogin(login);
 
             if (user == null || user.Password != password)
-                throw new CoreValidationException("InvalidUser");
+                throw new DFMCoreException("InvalidUser");
 
             return user;
         }
@@ -31,7 +31,7 @@ namespace DFM.Core.Database
         private void validate(User user)
         {
             if (SelectByLogin(user.Login) != null)
-                throw new CoreValidationException("AlreadyExists");
+                throw new DFMCoreException("AlreadyExists");
         }
     }
 }

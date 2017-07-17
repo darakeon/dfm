@@ -1,4 +1,4 @@
-﻿using DFM.Core.Database.Bases;
+﻿using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 
 namespace DFM.Core.Database

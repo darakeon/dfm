@@ -73,7 +73,7 @@ namespace DFM.MVC.Controllers
                     model.Account.User = Current.User;
                     accountData.SaveOrUpdate(model.Account);
                 }
-                catch (CoreValidationException e)
+                catch (DFMCoreException e)
                 {
                     ModelState.AddModelError("Name", e.Message);
                 }

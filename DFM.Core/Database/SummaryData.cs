@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using DFM.Core.Database.Bases;
+using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Bases;
 using DFM.Core.Enums;
-using NHibernate.Criterion;
 
 namespace DFM.Core.Database
 {
@@ -48,7 +47,7 @@ namespace DFM.Core.Database
             invalidate(summaryMonth);
         }
 
-        private Summary createSummaryMonth(Int32 month, Int32 year, Category category, Account account)
+        private static Summary createSummaryMonth(Int32 month, Int32 year, Category category, Account account)
         {
             var newYear = new YearData().SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
             var newMonth = new MonthData().SelectSingle(m => m.Year.ID == newYear.ID && m.Time == month);
@@ -57,7 +56,7 @@ namespace DFM.Core.Database
         }
 
 
-        private void invalidateYear(int year, Category category, Account account)
+        private void invalidateYear(Int32 year, Category category, Account account)
         {
             var summaryYear = SelectSingle(
                     s => s.Nature == SummaryNature.Year
@@ -69,7 +68,7 @@ namespace DFM.Core.Database
             invalidate(summaryYear);
         }
 
-        private Summary createSummaryYear(Int32 year, Category category, Account account)
+        private static Summary createSummaryYear(Int32 year, Category category, Account account)
         {
             var newYear = new YearData().SelectSingle(y => y.Account.ID == account.ID && y.Time == year);
 
