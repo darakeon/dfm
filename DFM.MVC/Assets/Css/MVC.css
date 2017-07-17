@@ -1,10 +1,15 @@
 /* Styles for validation helpers
 -----------------------------------------------------------*/
+.field-validation-error, .validation-summary-errors
+{
+    font-weight: bold;
+    color: #995;
+}
+
 .field-validation-error
 {
     padding: 2px;
     margin: 3px 3px;
-    color: #CC0;
 }
 
 .field-validation-valid
@@ -20,9 +25,7 @@
 
 .validation-summary-errors
 {
-    font-weight: bold;
     padding: 0px;
-    color: #BB5;
     margin: -15px 0 15px 0;
 }
 

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <error>
   <en-US>
+    <CheckErrors text="Check the fields and try again."/>
+    
     <AccountAlreadyExists text="Account already exists." />
     <AccountNotFound text="Account not found." />
     <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
@@ -31,6 +33,8 @@
     <YellowLimitUnderRedLimit text="Yellow Limit must be above Red Limit." />
   </en-US>
   <pt-BR>
+    <CheckErrors text="Verifique os erros e tente novamente."/>
+
     <AccountAlreadyExists text="Conta já existe." />
     <AccountNotFound text="Conta não encontrada." />
     <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />

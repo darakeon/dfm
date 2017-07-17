@@ -77,7 +77,7 @@ namespace DFM.MVC.MultiLanguage
 
         private static String section { get { return RouteInfo.Current.RouteData.Values["controller"].ToString().ToLower(); } }
 
-        private static String language { get { return Culture.Name; } }
+        public static String Language { get { return Culture.Name; } }
 
 
 
@@ -102,16 +102,16 @@ namespace DFM.MVC.MultiLanguage
 
         private String tryGetText(String chosenSection, String phrase)
         {
-            try { return SectionList[chosenSection][language][phrase].Text; }
+            try { return SectionList[chosenSection][Language][phrase].Text; }
             catch (DicException) { return null; }
         }
 
         private String notFound(String phrase)
         {
             if (HttpContext.Current.Request.Url.Host != "localhost")
-                throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, language, phrase));
+                throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, Language, phrase));
 
-            DicCreator.Fix(path, section, language, phrase);
+            DicCreator.Fix(path, section, Language, phrase);
             return Dictionary[phrase];
         }
 

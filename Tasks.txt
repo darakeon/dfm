@@ -64,8 +64,8 @@ VERSION 1.0.0.1
 VERSION 1.0.0.2
 25/09	26/09	Conflito de formato de data
 28/09	01/10	Confirmação de senha
-01/10		Data de cadastro do usuário
-		Escurecer mensagem de erro (inverter cor?)
+01/10	01/10	Data de cadastro do usuário
+01/10	01/10	Escurecer mensagem de erro (inverter cor?)
 
 ======================================================================================================
 
@@ -94,6 +94,7 @@ VERSION 1.0.1.0
 		Edição de Perfil de usuário
 		Permitir escolha da língua para usuário logado
 		Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+		Arrumar tratamento de erro para ir tudo para o cabeçalho e trduzir erros
 		Account: Adicionar Sigla e opção de Habilitar ou não em Menu
 		
 		Listar agendamentos para desativar (aparecerá deletar)

@@ -54,9 +54,18 @@ namespace DFM.Core.Database
 
         private static void complete(User user)
         {
-            user.Language = "pt-BR";
+            var oldUser = SelectById(user.ID);
+            var userIsNew = oldUser == null;
 
-            user.Password = encrypt(user.Password);
+            if (userIsNew)
+            {
+                user.Language = "pt-BR";
+                user.Creation = DateTime.Now;
+            }
+
+            if (userIsNew || oldUser.Password != user.Password)
+                user.Password = encrypt(user.Password);
+
         }
 
 
