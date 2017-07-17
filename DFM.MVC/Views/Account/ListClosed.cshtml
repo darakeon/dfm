@@ -32,9 +32,20 @@ else
                 <td>@account.Name </td>
                 <td>@account.BeginDate.ToShortDateString() </td>
                 <td>@account.EndDate.Value.ToShortDateString() </td>
-                <td>@account.MovesSum() </td>
 
-                <td>@Html.RouteLink(
+
+                @{
+                    var movesSum = account.Sum();
+
+                    var negative = movesSum < 0;
+                    var value = (negative ? -movesSum : movesSum).ToMoney();
+
+                    var sign = account.Sign();
+                }
+
+                <td class="numeric @(negative ? "out" : "in")">@value</td>
+
+                <td>@Url.RouteUrl(
                      String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear),
                         RouteNames.Accounts,
                         new { action = "SeeMonth", controller = "Report", accountid = account.ID, id = monthReportId }, new { })</td>
