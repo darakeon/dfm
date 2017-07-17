@@ -12,6 +12,10 @@ namespace DFM.Core.Database
     {
 		private UserData() { }
 
+        private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
+        
+        
+        
         public static User SelectByLogin(String email)
         {
             var criteria = CreateSimpleCriteria(u => u.Email == email);
@@ -39,7 +43,7 @@ namespace DFM.Core.Database
 
         private static void validate(User user)
         {
-            var regex = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$", RegexOptions.IgnoreCase);
+            var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
             if (!regex.Match(user.Email).Success)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserInvalidEmail);

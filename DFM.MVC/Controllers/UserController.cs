@@ -68,9 +68,8 @@ namespace DFM.MVC.Controllers
         public ActionResult SignUp(UserSignUpModel model)
         {
             if (model.Password != model.RetypePassword)
-            {
-                ModelState.AddModelError("RetypePassword", PlainText.Dictionary["RetypeWrong"]);
-            }
+                ModelState.AddModelError("", PlainText.Dictionary["RetypeWrong"]);
+
 
             if (ModelState.IsValid)
             {

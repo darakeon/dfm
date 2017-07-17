@@ -36,13 +36,12 @@
 	margin: 7px;
 	padding: 0px 20px;
 	text-align: center;
-	
+	border-bottom: 3px double #995;
+	border-top: 3px double #995;
 }
 
 .validation-summary-errors li
 {
 	list-style-type: none;
-	border-bottom: 3px double #995;
-	border-top: 3px double #995;
 	padding: 2px 0;
 }

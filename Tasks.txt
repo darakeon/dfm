@@ -63,8 +63,8 @@ VERSION 1.0.0.1
 
 VERSION 1.0.0.2
 25/09	26/09	Conflito de formato de data
-28/09		Confirmação de senha
-		Data de cadastro do usuário
+28/09	01/10	Confirmação de senha
+01/10		Data de cadastro do usuário
 		Escurecer mensagem de erro (inverter cor?)
 
 ======================================================================================================
