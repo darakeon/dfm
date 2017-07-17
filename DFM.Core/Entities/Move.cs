@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Enums;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities
 {
@@ -37,7 +38,6 @@ namespace DFM.Core.Entities
         {
             get { return DetailList.Sum(d => d.Value); }
         }
-
 
 
         public virtual void AddDetail(Detail detail)

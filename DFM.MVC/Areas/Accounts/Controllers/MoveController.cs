@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ak.Generic.Exceptions;
 using Ak.MVC.Forms;
 using DFM.Core.Helpers;
 using DFM.MVC.Areas.Accounts.Models;
@@ -10,7 +11,6 @@ using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
-using Ak.MVC.Route;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -161,7 +161,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
 
-
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0, String description = null, Double value = 0)
         {
             var model = new MoveAddDetailModel(position, id, description, value);
@@ -169,12 +168,35 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return View(model);
         }
 
-
-
         [HttpPost]
         public Boolean ShowAccountList(MoveNature nature)
         {
             return nature == MoveNature.Transfer;
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Delete(Int32 id)
+        {
+            String message;
+
+            try
+            {
+                var move = moveData.SelectById(id);
+
+                moveData.Delete(move);
+
+                message = move == null
+                    ? "No Move to delete."
+                    : String.Format("Move '{0}' deleted.", move.Description);
+            }
+            catch (Exception e)
+            {
+                message = String.Format("Error: {0}", e.MostInner().Message);
+            }
+
+            return new JsonResult { Data = new { message } };
         }
     }
 }

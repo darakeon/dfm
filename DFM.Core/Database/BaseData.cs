@@ -6,7 +6,7 @@ using NHibernate;
 namespace DFM.Core.Database
 {
     public abstract class BaseData<T>
-        where T : IEntity
+        where T : class, IEntity
     {
         protected ISession Session
         {

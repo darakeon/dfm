@@ -101,10 +101,11 @@
     <Content Include="Assets\Css\Entry.css" />
     <Content Include="Assets\Css\LoggedIn.css" />
     <Content Include="Assets\Css\Color\Cripta.css" />
-    <Content Include="Assets\Css\Pages\MoveCreate.css" />
+    <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
+    <Content Include="Assets\Script\Pages\ReportSeeMonth.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Site.css" />
-    <Content Include="Assets\Script\Pages\MoveCreate.js" />
+    <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

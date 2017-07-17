@@ -18,6 +18,15 @@ function AjaxFail(html) {
         location.reload();
 }
 
+function BeginAjaxPost() {
+    $("*").css("cursor", "wait");
+}
+
+function EndAjaxPost() {
+    $("*").css("cursor", "default");
+}
+
+
 
 function AjustMoneyAndDate() {
     AjustMoney(".money");

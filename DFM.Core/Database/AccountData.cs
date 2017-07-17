@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Entities;
 using DFM.Core.Helpers;
+using NHibernate.Linq;
 
 namespace DFM.Core.Database
 {
@@ -61,27 +62,29 @@ namespace DFM.Core.Database
         {
             var moveSumList = new Dictionary<String, Double>();
 
-
             var account = SelectById(id);
 
-            var moveList = account.MoveList
-                    .Where(m => m.Date.Year == year)
-                    .Select(m => m)
-                    .ToList();
-
-
-            foreach (var move in moveList)
-            {
-                var sum = move.DetailList.Sum(d => d.Value);
-
-                if (moveSumList.ContainsKey(move.Month))
-                    moveSumList[move.Month] += sum;
-                else
-                    moveSumList.Add(move.Month, sum);
-            }
-
+            makeYearList(moveSumList, account.InList, year, 1);
+            makeYearList(moveSumList, account.OutList, year, -1);
 
             return moveSumList;
+        }
+
+        private static void makeYearList(IDictionary<String, Double> moveSumList, IEnumerable<Move> moveList, Int32 year, Int32 sign)
+        {
+            moveList
+                .Where(m => m.Date.Year == year)
+                .ForEach(m =>
+                    addItem(moveSumList, m.Month, sign * m.Value)
+                );
+        }
+
+        private static void addItem(IDictionary<String, Double> sumList, String name, Double value)
+        {
+            if (sumList.ContainsKey(name))
+                sumList[name] += value;
+            else
+                sumList.Add(name, value);
         }
     }
 }

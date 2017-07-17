@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
+@section HtmlHead { 
+    <script src='@Url.Content("~/Assets/Script/Pages/ReportSeeMonth.js")' type='text/javascript'></script>
+}
+
 @if (Model.MoveList.Count == 0) { 
     
     @("There's no Moves for this Month.")
@@ -19,7 +23,7 @@
             <td>Date</td>
             <td>In</td>
             <td>Out</td>
-            <td></td>
+            <td colspan="2"></td>
         </tr>
 
         @foreach (var move in Model.MoveList) { 
@@ -44,10 +48,19 @@
                 </td>
 
                 <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
+
+                <td>@Ajax.ActionLink("Delete", "Delete", "Move", new { id = move.ID }, 
+                        new AjaxOptions { 
+                            Confirm = String.Format("Are you sure you want to delete Move '{0}'?", move.Description),
+                            OnBegin = "BeginAjaxPost",
+                            OnFailure = "AjaxFail",
+                            OnSuccess = "TellResultAndReload",
+                            HttpMethod = "Post",
+                        })</td>
                 
             </tr>
 
         } 
 
     </table>
-} 
+}
