@@ -79,8 +79,10 @@ VERSION 1.0.0.3
 ======================================================================================================
 
 VERSION 1.0.1.0
-		Log4Net / Elmah
-		BDD / Selenium
+19/10		Log4Net
+		/ Elmah
+		BDD
+		/ Selenium
 		Refactor Geral
 		
 		importador/exportador de XML

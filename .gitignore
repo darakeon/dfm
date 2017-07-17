@@ -5,5 +5,6 @@ obj
 *.suo
 *.user
 *dotCover
+log_files
 .hg*
 DFM.MVC/DFM.MVC.Publish.xml

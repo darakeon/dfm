@@ -9,6 +9,7 @@ using DFM.Core.Robots;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
+using log4net.Config;
 
 namespace DFM.MVC
 {
@@ -46,6 +47,9 @@ namespace DFM.MVC
 
             NHManager.Start();
             PlainText.Initialize();
+
+            XmlConfigurator.Configure();
+            
         }
 
 
