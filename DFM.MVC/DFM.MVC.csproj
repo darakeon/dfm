@@ -162,7 +162,6 @@
     <Compile Include="Helpers\Views\Menu.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
-    <Compile Include="Helpers\Extensions\StringExtension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
     <Compile Include="MultiLanguage\Helpers\EmailLayout.cs" />

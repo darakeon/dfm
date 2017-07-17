@@ -19,12 +19,14 @@ namespace DFM.MVC.MultiLanguage.Helpers
                 if (!File.Exists(filePath))
                     return "";
 
-                var reader = new StreamReader(filePath);
                 var content = new StringBuilder();
 
-                while (!reader.EndOfStream)
+                using (var reader = new StreamReader(filePath))
                 {
-                    content.AppendLine(reader.ReadLine());
+                    while (!reader.EndOfStream)
+                    {
+                        content.AppendLine(reader.ReadLine());
+                    }
                 }
 
                 return content.ToString();

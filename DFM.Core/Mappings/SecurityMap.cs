@@ -11,8 +11,9 @@ namespace DFM.Core.Mappings
         {
             mapping.Not.LazyLoad();
 
-            mapping.Map(s => s.Guid)
-                .Length(MaximumLength.SecurityGuid);
+            mapping.Map(s => s.Token)
+                .Length(MaximumLength.SecurityToken)
+                .Unique();
 
         }
     }

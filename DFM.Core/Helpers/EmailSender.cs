@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 using System.Net;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Helpers
 {
@@ -52,7 +53,15 @@ namespace DFM.Core.Helpers
                                 IsBodyHtml = true
                             };
 
-            smtp.Send(message);
+            try
+            {
+                smtp.Send(message);
+            }
+            catch (Exception e)
+            {
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+            }
+
         }
 
     }

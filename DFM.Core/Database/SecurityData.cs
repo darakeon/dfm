@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.Core.Helpers;
@@ -23,11 +25,11 @@ namespace DFM.Core.Database
 
         internal static void CreateAndSend(User user, SecurityAction action, String subject, String layout)
         {
-            var security = new Security { Action = action, User = user, Subject = subject, Layout = layout };
+            var security = new Security { Action = action, User = user };//, Subject = subject, Layout = layout };
 
             security = SaveOrUpdate(security);
 
-            sendEmail(security);
+            sendEmail(security, subject, layout);
         }
 
         internal static Security SaveOrUpdate(Security security)
@@ -41,9 +43,8 @@ namespace DFM.Core.Database
         {
             security.Active = true;
             security.Expire = DateTime.Now.AddDays(30);
-            security.Guid = Guid.NewGuid().ToString();
+            security.CreateToken();
         }
-
 
 
         private static void validate(Security security)
@@ -58,24 +59,22 @@ namespace DFM.Core.Database
 
 
 
-        private static void sendEmail(Security security)
+        private static void sendEmail(Security security, String subject, String layout)
         {
-            try
-            {
-                var fileContent =
-                    String.Format(security.Layout, security.Guid);
-                    
+            var dic = new Dictionary<String, String>
+                            {
+                                {"Url", Dfm.Url},
+                                {"Code", security.Token},
+                            };
 
-                new EmailSender()
-                    .To(security.User.Email)
-                    .Subject("Envio de Senha")
-                    .Body(fileContent)
-                    .Send();
-            }
-            catch (Exception e)
-            {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
-            }
+            var fileContent =
+                layout.Format(dic);
+                    
+            new EmailSender()
+                .To(security.User.Email)
+                .Subject(subject)
+                .Body(fileContent)
+                .Send();
 
             security.Sent = true;
             SaveOrUpdate(security);
