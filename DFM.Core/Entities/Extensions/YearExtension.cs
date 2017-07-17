@@ -28,7 +28,7 @@ namespace DFM.Core.Entities.Extensions
             catch (InvalidOperationException e)
             {
                 if (e.Message == "Sequence contains more than one matching element")
-                    throw new DFMCoreException("MonthAmbiguousInYear");
+                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.MonthAmbiguousInYear);
                 throw;
             }
         }

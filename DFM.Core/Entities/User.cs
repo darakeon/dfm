@@ -16,7 +16,6 @@ namespace DFM.Core.Entities
 
         public virtual Int32 ID { get; set; }
 
-        public virtual String Login { get; set; }
         public virtual String Password { get; set; }
         public virtual String Email { get; set; }
         public virtual String Language { get; set; }
@@ -28,7 +27,7 @@ namespace DFM.Core.Entities
 
         public override String ToString()
         {
-            return Login;
+            return Email;
         }
     }
 }

@@ -14,10 +14,10 @@ namespace DFM.MVC.Models
         public User User { get; set; }
 
         [Required(ErrorMessage = "*")]
-        public String Login
+        public String Email
         {
-            get { return User.Login; }
-            set { User.Login = value; }
+            get { return User.Email; }
+            set { User.Email = value; }
         }
 
         [Required(ErrorMessage = "*")]
@@ -25,13 +25,6 @@ namespace DFM.MVC.Models
         {
             get { return User.Password; }
             set { User.Password = value; }
-        }
-
-        [Required(ErrorMessage = "*")]
-        public String Email
-        {
-            get { return User.Email; }
-            set { User.Email = value; }
         }
     }
 }

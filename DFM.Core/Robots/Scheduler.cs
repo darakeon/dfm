@@ -35,7 +35,7 @@ namespace DFM.Core.Robots
             var lastMove = schedule.MoveList.LastOrDefault();
 
             if (lastMove == null)
-                throw new DFMCoreException("ScheduleNoMoves");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ScheduleNoMoves);
 
             accountIn = getAccount(lastMove.In);
             accountOut = getAccount(lastMove.Out);

@@ -43,7 +43,7 @@ namespace DFM.MVC.Controllers
                 
                 try
                 {
-                    user = UserData.ValidateAndGet(model.Login, model.Password);
+                    user = UserData.ValidateAndGet(model.Email, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -107,7 +107,7 @@ namespace DFM.MVC.Controllers
 
         private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
         {
-            Authenticate.Set(user.Login, Response, isPersistent);
+            Authenticate.Set(user.Email, Response, isPersistent);
 
             if (String.IsNullOrEmpty(returnUrl))
                 return RedirectToAction("Index", "Account");

@@ -14,8 +14,6 @@
 			Opção de enviar transações para o e-mail
 			Adicionar Sigla e opção de Habilitar em Menu ou não
 		
-			Refactor: centralizar textos de erro em enum
-		
 			listar agendamentos para desativar (aparecerá deletar)
 			Colocar tooltip (na criação): qual a diferença de cada tipo de conta
 		

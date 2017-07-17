@@ -8,7 +8,7 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<User> mapping)
         {
-            mapping.Map(u => u.Login)
+            mapping.Map(u => u.Email)
                 .Unique();
 
             mapping.HasMany(u => u.AccountList)

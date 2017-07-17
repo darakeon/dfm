@@ -1,9 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<account>
+<error>
   <en-US>
-    <ConnectionError text="Connection error. Please, try again." automatic="" />
+    <AccountAlreadyExists text="Account already exists." />
+    <AccountNotFound text="Account not found." />
+    <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
+    <CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
+    <CategoryNotFound text="Category not found." />
+    <CircularTransfer text="The In Account must be different from the Out Account." />
+    <ClosedAccount text="Can't insert Moves in Closed Accounts." />
+    <ConnectionError text="Connection error. Please, try again." />
+    <DetailRequired text="Moves need at least one value." />
+    <DisabledCategory text="Can't insert Moves in Disabled Categories." />
+    <DuplicatedAccountName text="There are two accounts with same name." />
+    <DuplicatedName text="There is more than one account with same name." />
+    <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
+    <InvalidEmail text="Invalid E-mail" />
+    <InvalidUser text="User and/or password invalid." />
+    <MonthAmbiguousInYear text="Month ambiguous reference. Contact support." />
+    <MoveFutureNotScheduled text="To create future Moves use Schedule." />
+    <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
+    <OutOfDateSummary text="Report out of date. Contact support." />
+    <ScheduleFrequencyNotRecognized text="Schedule frequency not recognized." />
+    <ScheduleNoMoves text="No moves in schedule." />
+    <SummaryNatureNotFound text="Summary Nature doesn't exist." />
+    <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
+    <UserAlreadyExists text="User already exists." />
+    <UserInvalidEmail text="User e-mail is invalid." />
+    <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
   </en-US>
   <pt-BR>
-    <ConnectionError text="Erro de conexão. Por favor, tente novamente." automatic="" />
+    <AccountAlreadyExists text="Conta já existe." />
+    <AccountNotFound text="Conta não encontrada." />
+    <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
+    <CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
+    <CategoryNotFound text="Categoria não encontrada." />
+    <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
+    <ClosedAccount text="Não é possível inserir Movimentações em Contas fechadas." />
+    <ConnectionError text="Erro de conexão. Por favor, tente novamente." />
+    <DetailRequired text="É necessário ter ao menos um valor para uma Movimentação." />
+    <DisabledCategory text="Não é possível inserir Movimentações em Categorias desabilitadas." />
+    <DuplicatedAccountName text="Há duas contas com o mesmo nome." />
+    <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
+    <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
+    <InvalidEmail text="E-mail Inválido" />
+    <InvalidUser text="Usuário e/ou senha inválido(s)." />
+    <MonthAmbiguousInYear text="Referência de mês ambígua. Contate o suporte." />
+    <MoveFutureNotScheduled text="Para criar Movimentações futuras, use o Agendamento." />
+    <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
+    <OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
+    <ScheduleFrequencyNotRecognized text="Frequência de agendador desconhecida." />
+    <ScheduleNoMoves text="Agendamento sem Movimentações." />
+    <SummaryNatureNotFound text="Natureza de Resumo inexistente." />
+    <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
+    <UserAlreadyExists text="Usuário já existe." />
+    <UserInvalidEmail text="E-mail inválido." />
+    <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
   </pt-BR>
-</account>
+</error>

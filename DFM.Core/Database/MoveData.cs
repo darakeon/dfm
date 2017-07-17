@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Ak.Generic.Enums;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
@@ -33,7 +34,7 @@ namespace DFM.Core.Database
         private static Move testIfIntermittent(Exception e)
         {
             if (isForeignKeyIntermittentException(e.InnerException))
-                throw new DFMCoreException("ConnectionError");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ConnectionError);
 
             throw e;
         }
@@ -126,7 +127,7 @@ namespace DFM.Core.Database
         private static void testDetailList(Move move)
         {
             if (!move.DetailList.Any())
-                throw new DFMCoreException("DetailRequired");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.DetailRequired);
         }
 
         private static void testNature(Move move)
@@ -138,17 +139,17 @@ namespace DFM.Core.Database
             {
                 case MoveNature.In:
                     if (!hasIn || hasOut)
-                        throw new DFMCoreException("InMoveWrong");
+                        throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.InMoveWrong);
                     break;
 
                 case MoveNature.Out:
                     if (hasIn || !hasOut)
-                        throw new DFMCoreException("OutMoveWrong");
+                        throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.OutMoveWrong);
                     break;
 
                 case MoveNature.Transfer:
                     if (!hasIn || !hasOut)
-                        throw new DFMCoreException("TransferMoveWrong");
+                        throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.TransferMoveWrong);
                     break;
 
             }
@@ -160,16 +161,16 @@ namespace DFM.Core.Database
             var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open();
 
             if (moveInClosed || moveOutClosed)
-                throw new DFMCoreException("ClosedAccount");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ClosedAccount);
 
             if (move.In != null && move.Out != null && move.In.Year.Account == move.Out.Year.Account)
-                throw new DFMCoreException("CircularTransfer");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.MoveCircularTransfer);
         }
 
         private static void testCategory(Move move)
         {
             if (!move.Category.Active)
-                throw new DFMCoreException("DisabledCategory");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.DisabledCategory);
         }
 
         private static void testDate(Move move)
@@ -180,7 +181,7 @@ namespace DFM.Core.Database
                                     && move.Schedule.IsFirstMove();
 
             if (isFutureMove && !isFirstOfSchedule)
-                throw new DFMCoreException("MoveFutureNotScheduled");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.MoveFutureNotScheduled);
         }
         #endregion
 
@@ -203,7 +204,10 @@ namespace DFM.Core.Database
 
         private static void placeMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
-            var error = new DFMCoreException(String.Format("{0}MoveWrong", move.Nature));
+            var errorMessage = String.Format("{0}MoveWrong", move.Nature);
+            var errorEnumValue = Str2Enum.Cast<DFMCoreException.Possibilities>(errorMessage);
+
+            var error = DFMCoreException.WithMessage(errorEnumValue);
 
             if (move.Nature != MoveNature.In)
             {

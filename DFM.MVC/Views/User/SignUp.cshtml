@@ -9,20 +9,15 @@
     @using (Html.BeginForm()) { 
 
         @Html.ValidationSummary(true) 
-        
+
         <p>
-            @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])<br />
-            @Html.TextBoxFor(m => m.Login) 
+            @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"])<br />
+            @Html.TextBoxFor(m => m.Email)
         </p>
 
         <p>
             @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])<br />
             @Html.PasswordFor(m => m.Password)
-        </p>
-
-        <p>
-            @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"])<br />
-            @Html.TextBoxFor(m => m.Email)
         </p>
 
         <button type="submit">@PlainText.Dictionary["Create"]!</button>

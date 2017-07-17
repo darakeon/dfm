@@ -65,7 +65,7 @@ namespace DFM.Core.Database
                     summarizable = summary.Year;
                     break;
                 default:
-                    throw new DFMCoreException("SummaryNatureNotFound");
+                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.SummaryNatureNotFound);
             }
 
             summary.In = summarizable.CheckUpIn(summary.Category);

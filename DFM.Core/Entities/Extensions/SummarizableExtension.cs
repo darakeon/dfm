@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Ak.Generic.Enums;
 using DFM.Core.Entities.Base;
 using DFM.Core.Helpers;
 
@@ -31,10 +32,9 @@ namespace DFM.Core.Entities.Extensions
             catch (InvalidOperationException e)
             {
                 var nature = summarizable.SummaryList.First().Nature;
-                var error = String.Format("SummaryAmbiguousIn{0}", nature);
 
                 if (e.Message == "Sequence contains more than one matching element")
-                    throw new DFMCoreException(error);
+                    throw DFMCoreException.WithMessage("SummaryAmbiguousIn{0}", nature);
                 throw;
             }
         }

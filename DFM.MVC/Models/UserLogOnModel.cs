@@ -6,7 +6,7 @@ namespace DFM.MVC.Models
     public class UserLogOnModel
     {
         [Required(ErrorMessage = "*")]
-        public String Login { get; set; }
+        public String Email { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String Password { get; set; }

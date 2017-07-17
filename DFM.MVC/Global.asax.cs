@@ -116,7 +116,7 @@ namespace DFM.MVC
                     ? Request.UserLanguages[0]
                     : null;
 
-            var language = Current.User.Language ?? browserLanguage;
+            var language = Current.Language ?? browserLanguage;
 
             if (language == null || !PlainText.AcceptLanguage(language))
                 language = "en-US";

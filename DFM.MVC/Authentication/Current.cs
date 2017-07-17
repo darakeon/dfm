@@ -24,5 +24,9 @@ namespace DFM.MVC.Authentication
             get { return User != null; }
         }
 
+
+        public static String Language {
+            get { return User == null ? null : User.Language; }
+        }
     }
 }

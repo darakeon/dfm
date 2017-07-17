@@ -27,7 +27,7 @@ namespace DFM.Core.Database
 
             if (accountExistsForUser)
             {
-                throw new DFMCoreException("AlreadyExists");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.AccountAlreadyExists);
             }
         }
 
@@ -56,16 +56,16 @@ namespace DFM.Core.Database
 
         internal static Account SelectByName(String name, User user)
         {
-            IList<Account> userList = Session
+            IList<Account> accountList = Session
                 .CreateCriteria(typeof(Account))
                 .List<Account>()
                 .Where(a => a.Name == name)
                 .ToList();
 
-            if (userList.Count > 1)
-                throw new DFMCoreException("DuplicatedName");
+            if (accountList.Count > 1)
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.DuplicatedAccountName);
 
-            return userList.SingleOrDefault();
+            return accountList.SingleOrDefault();
         }
 
 
@@ -121,7 +121,7 @@ namespace DFM.Core.Database
             if (account == null) return;
 
             if (!account.HasMoves())
-                throw new DFMCoreException("CantCloseEmptyAccount");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.CantCloseEmptyAccount);
 
             account.EndDate = DateTime.Now;
             SaveOrUpdate(account);
@@ -133,7 +133,7 @@ namespace DFM.Core.Database
             if (account == null) return;
 
             if (account.HasMoves())
-                throw new DFMCoreException("CantDeleteAccountWithMoves");
+                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.CantDeleteAccountWithMoves);
 
             BaseData<Account>.Delete(account);
         }

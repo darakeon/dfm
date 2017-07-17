@@ -23,7 +23,7 @@ namespace DFM.Core.Enums
                 case ScheduleFrequency.Yearly:
                     return date.AddYears(1);
                 default:
-                    throw new DFMCoreException("ScheduleFrequencyNotRecognized");
+                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ScheduleFrequencyNotRecognized);
             }
         }
     }
