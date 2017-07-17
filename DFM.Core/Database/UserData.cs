@@ -36,7 +36,34 @@ namespace DFM.Core.Database
 
 
 
-        public static User SaveOrUpdate(User user)
+        public static User SaveAndSendVerify(User user, String subject, String layout)
+        {
+            user = saveOrUpdate(user);
+
+            SecurityData.SendUserVerify(user, subject, layout);
+
+            return user;
+        }
+
+        public static User Update(User user)
+        {
+            if (user.ID == 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+
+            return saveOrUpdate(user);
+        }
+
+
+
+        internal static void Activate(User user)
+        {
+            user.Active = true;
+            Update(user);
+        }
+
+
+        
+        private static User saveOrUpdate(User user)
         {
             return SaveOrUpdate(user, complete, validate);
         }
@@ -57,16 +84,24 @@ namespace DFM.Core.Database
         private static void complete(User user)
         {
             var oldUser = SelectById(user.ID);
+            
             var userIsNew = oldUser == null;
 
             if (userIsNew)
             {
+                user.Active = false;
                 user.Language = "pt-BR";
                 user.Creation = DateTime.Now;
-            }
-
-            if (userIsNew)
                 user.Password = encrypt(user.Password);
+            }
+            else
+            {
+                if (user.Active
+                    && SecurityData.GetUserActivation(user) == null)
+                {
+                    user.Active = false;
+                }
+            }
 
         }
 
@@ -76,7 +111,7 @@ namespace DFM.Core.Database
         {
             user.Password = encrypt(user.Password);
 
-            return SaveOrUpdate(user);
+            return Update(user);
         }
 
         

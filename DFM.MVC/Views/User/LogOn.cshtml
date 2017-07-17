@@ -37,6 +37,10 @@
             <button type="button" id="ForgotPass" href="@Url.Action("ForgotPassword")">
                 @PlainText.Dictionary["ForgotPassword"]
             </button>
+        
+            <div id="TokenReceived">
+                <a href="@Url.Action("Received", "Token")">@PlainText.Dictionary["TokenReceivedByEmail"]</a>
+            </div>
 
         }
     }

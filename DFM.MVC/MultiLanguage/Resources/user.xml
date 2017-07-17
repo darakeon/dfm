@@ -6,11 +6,15 @@
     <RetypePassword text="Retype password" />
     <Enter text="Enter" />
     <SignUp text="Sign up" />
+    <SignUpSuccess text="Sign up succeded." />
+    <LogonDeactivated text="Your user is not active." />
     <RememberMe text="Remember" />
     <Logon text="Logon" />
     <ForgotPassword text="Forgot my password" />
-    <ForgotPasswordSuccess text="Follow the instructions in the e-mail sent. Attention to the sender address: must be {0}." />
+    <FollowEmailIntructions text="Follow the instructions in the e-mail sent. Pay attention to the sender address: must be {0}." />
     <PasswordReset text="Password Reset" />
+    <TokenReceivedByEmail text="Token received by e-mail" />
+    <UserVerification text="User Verification" />
   </en-US>
   <pt-BR>
     <Email text="E-mail" />
@@ -18,10 +22,14 @@
     <RetypePassword text="Redigite a senha" />
     <Enter text="Entrar" />
     <SignUp text="Cadastrar-se" />
+    <SignUpSuccess text="Cadastro efetuado com sucesso." />
+    <LogonDeactivated text="Seu usuário não foi ativado." />
     <RememberMe text="Lembrar" />
     <Logon text="Entrar" />
     <ForgotPassword text="Esqueci minha senha" />
-    <ForgotPasswordSuccess text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
+    <FollowEmailIntructions text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
     <PasswordReset text="Recuperação de Senha" />
+    <TokenReceivedByEmail text="Token recebido via e-mail" />
+    <UserVerification text="Verificação de Usuário" />
   </pt-BR>
 </user>

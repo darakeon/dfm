@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
@@ -13,24 +14,40 @@ namespace DFM.Core.Database
     {
         private SecurityData() { }
 
-        public static void CreateAndSend(String email, SecurityAction action, String subject, String layout)
+        public static void PasswordReset(String email, String subject, String layout)
+        {
+            createAndSend(email, SecurityAction.PasswordReset, subject, layout);
+        }
+
+
+
+        public static void SendUserVerify(User user, String subject, String layout)
+        {
+            createAndSend(user, SecurityAction.UserVerify, subject, layout);
+        }
+
+
+
+        private static void createAndSend(String email, SecurityAction action, String subject, String layout)
         {
             var user = UserData.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
 
-            CreateAndSend(user, action, subject, layout);
+            createAndSend(user, action, subject, layout);
         }
 
-        internal static void CreateAndSend(User user, SecurityAction action, String subject, String layout)
+        private static void createAndSend(User user, SecurityAction action, String subject, String layout)
         {
-            var security = new Security { Action = action, User = user };//, Subject = subject, Layout = layout };
+            var security = new Security { Action = action, User = user };
 
             security = SaveOrUpdate(security);
 
             sendEmail(security, subject, layout);
         }
+
+
 
         internal static Security SaveOrUpdate(Security security)
         {
@@ -115,9 +132,14 @@ namespace DFM.Core.Database
 
         public static void UserActivate(String token)
         {
+            var security = selectByToken(token);
+
+            if (security.Action != SecurityAction.UserVerify)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
+            UserData.Activate(security.User);
 
             Deactivate(token);
-            throw new NotImplementedException();
         }
 
 
@@ -125,11 +147,43 @@ namespace DFM.Core.Database
         {
             var security = selectByToken(token);
 
+            if (security.Action != SecurityAction.PasswordReset)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
             security.User.Password = password;
 
             UserData.ChangePassword(security.User);
 
             Deactivate(token);
         }
+
+
+
+        public static SecurityAction GetTokenAction(String token)
+        {
+            var security = selectByToken(token);
+
+            if (security == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
+            return security.Action;
+        }
+
+
+
+        internal static Security GetUserActivation(User user)
+        {
+            var criteria = 
+                CreateSimpleCriteria(
+                    s => s.User.ID == user.ID 
+                        && s.Action == SecurityAction.UserVerify
+                        && s.Active
+                        && s.Expire >= DateTime.Now);
+
+            return criteria
+                .List<Security>()
+                .LastOrDefault();
+        }
+
     }
 }

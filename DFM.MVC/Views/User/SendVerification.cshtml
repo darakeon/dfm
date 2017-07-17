@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = PlainText.Dictionary["Logon"];
+}
+
+<div class="HalfScreen">
+    @String.Format(
+        PlainText.Dictionary["LogonDeactivated", "FollowEmailIntructions"], 
+        EmailSender.Sender)
+</div>

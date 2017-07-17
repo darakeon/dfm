@@ -12,6 +12,17 @@ namespace DFM.MVC.Controllers
 {
     public class UserController : Controller
     {
+        private readonly String layout;
+        private readonly String subject;
+
+        public UserController()
+        {
+            layout = PlainText.EmailLayout["UserVerification"];
+            subject = PlainText.Dictionary["UserVerification"];
+        }
+
+
+
         public ActionResult Index()
         {
             return View();
@@ -19,44 +30,6 @@ namespace DFM.MVC.Controllers
 
 
         
-        #region LogOn
-        public ActionResult LogOn(String returnUrl)
-        {
-            var model = new UserLogOnModel();
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult LogOn(UserLogOnModel model, String returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User();
-
-                
-                try
-                {
-                    user = UserData.ValidateAndGet(model.Email, model.Password);
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
-                }
-
-
-                if (ModelState.IsValid)
-                {
-                    return logOnUser(user, returnUrl, model.RememberMe);
-                }
-            }
-
-            return View(model);
-        }
-        #endregion
-
-
-        #region SignUp
         public ActionResult SignUp()
         {
             var model = new UserSignUpModel();
@@ -75,7 +48,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    UserData.SaveOrUpdate(model.User);
+                    UserData.SaveAndSendVerify(model.User, subject, layout);
                 }
                 catch (DFMCoreException e)
                 {
@@ -84,14 +57,50 @@ namespace DFM.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    return logOnUser(model.User);
+                    return View("SignUpSuccess");
                 }
             }
 
             return View(model);
         }
-        #endregion
 
+
+
+        public ActionResult LogOn(String returnUrl)
+        {
+            var model = new UserLogOnModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult LogOn(UserLogOnModel model, String returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User();
+
+
+                try
+                {
+                    user = UserData.ValidateAndGet(model.Email, model.Password);
+                }
+                catch (DFMCoreException e)
+                {
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                }
+
+
+                if (ModelState.IsValid)
+                {
+                    return user.Active 
+                        ? logOnUser(user, returnUrl, model.RememberMe) 
+                        : RedirectToAction("SendVerification", new { id = user.Email });
+                }
+            }
+
+            return View(model);
+        }
 
         private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
         {
@@ -103,7 +112,16 @@ namespace DFM.MVC.Controllers
             return Redirect(returnUrl);
         }
 
-        
+        public ActionResult SendVerification(String id)
+        {
+            var user = UserData.SelectByEmail(id);
+
+            SecurityData.SendUserVerify(user, subject, layout);
+
+            return View();
+        }
+
+
 
         public ActionResult LogOff()
         {
@@ -112,7 +130,7 @@ namespace DFM.MVC.Controllers
             return RedirectToAction("Index", "User");
         }
 
-
+        
 
         public ActionResult ForgotPassword()
         {
@@ -130,7 +148,7 @@ namespace DFM.MVC.Controllers
                     var layout = PlainText.EmailLayout["ForgotPassword"];
                     var subject = PlainText.Dictionary["PasswordReset"];
 
-                    SecurityData.CreateAndSend(model.Email, SecurityAction.PasswordReset, subject, layout);
+                    SecurityData.PasswordReset(model.Email, subject, layout);
                 }
                 catch (DFMCoreException e)
                 {
@@ -139,16 +157,11 @@ namespace DFM.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    return RedirectToAction("ForgotPasswordSuccess");
+                    return View("ForgotPasswordSuccess");
                 }
             }
 
             return View(model);
-        }
-
-        public ActionResult ForgotPasswordSuccess()
-        {
-            return View();
         }
 
 

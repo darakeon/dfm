@@ -1,0 +1,19 @@
+﻿@model DFM.MVC.Models.TokenReceivedModel
+
+@{
+    ViewBag.Title = PlainText.Dictionary["TokenReceivedByEmail"];
+}
+
+<div class="HalfScreen">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        
+        <p>
+            @Html.LabelFor(m => m.Token, PlainText.Dictionary["Token"])
+            @Html.TextBoxFor(m => m.Token) 
+        </p>
+
+        <button type="submit">@PlainText.Dictionary["Go"]</button>
+    }
+</div>

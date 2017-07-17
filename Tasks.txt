@@ -22,7 +22,7 @@ VERSION 1.0.0.0
 14/08	14/08	-- Implementar "manter logado"
 15/08	16/08	-- WCF Iniciado
 16/08	17/08	Layout
-18/08	18/08	Quantidade - tirar de Valor único
+18/08	18/08	tirar Quantidade de Valor único
 18/08	22/08	Navegação Mês / Ano
 19/08	21/08	Unificar página layout
 22/08	22/08	Fazer EntityData static
@@ -71,8 +71,9 @@ VERSION 1.0.0.2
 ======================================================================================================
 
 VERSION 1.0.0.3
-02/10		Recuperação de Senha - hashcode
-		Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+02/10	09/10	Recuperação de Senha - hashcode
+10/10	10/10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+		Schedule: inserir até data atual, não apenas a primeira
 		Ícones ao invés de palavras nas listagem de contas
 
 ======================================================================================================
@@ -87,7 +88,7 @@ VERSION 1.0.1.0
 		importador/exportador de Money
 		importador/exportador de CSV
 
-		Proteção por usuário no Core
+		Proteção por usuário no Core (verificar active também)
 		Security desativa os anteriores
 		Follow twitter
 		Service WCF

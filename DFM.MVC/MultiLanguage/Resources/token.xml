@@ -3,21 +3,31 @@
   <en-US>
     <TokenDeactivate text="Token Deactivate" />
     <TokenDeactivateSuccess text="Token successfuly deactivated." />
-    <TokenDeactivated text="Token Deactivated" />
-    <TokenDeactivatedMessage text="Token already deactivated." />
+    <TokenInvalid text="Token Invalid" />
+    <TokenInvalidMessage text="The Token is invalid." />
     <Password text="Password" />
     <RetypePassword text="Retype password" />
     <PasswordReset text="Password Reset" />
     <PasswordResetSuccess text="Password successfuly reset." />
+    <Token text="Token" />
+    <TokenReceivedByEmail text="Token received by e-mail" />
+    <NotRecognizedAction text="Action not recognized. Please, contact us." />
+    <UserVerification text="User Verification" />
+    <UserVerificationSuccess text="User successfuly verified." />
   </en-US>
   <pt-BR>
     <TokenDeactivate text="Desativação de Token" />
     <TokenDeactivateSuccess text="Token desativado com sucesso." />
-    <TokenDeactivated text="Token Desativado" />
-    <TokenDeactivatedMessage text="Este Token já foi desativado." />
+    <TokenInvalid text="Token Inválido" />
+    <TokenInvalidMessage text="Este Token é inválido." />
     <Password text="Senha" />
     <RetypePassword text="Redigite a senha" />
     <PasswordReset text="Redefinição de Senha" />
     <PasswordResetSuccess text="Senha redefinida com sucesso." />
+    <Token text="Token" />
+    <TokenReceivedByEmail text="Token recebido via e-mail" />
+    <NotRecognizedAction text="Ação não reconhecida. Por favor, contate-nos." />
+    <UserVerification text="Verificação de Usuário" />
+    <UserVerificationSuccess text="Usuário verificado com sucesso." />
   </pt-BR>
 </token>

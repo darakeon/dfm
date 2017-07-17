@@ -12,6 +12,7 @@
         DuplicatedAccountName,
         FailOnEmailSend,
         InMoveWrong,
+        InvalidToken,
         InvalidUser,
         MonthAmbiguousInYear,
         MoveCircularTransfer,

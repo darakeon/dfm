@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.Core.Database;
+using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
@@ -14,7 +15,7 @@ namespace DFM.MVC.Controllers
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return View("Deactivated");
+                return deactivated();
 
             var model = new TokenPasswordResetModel();
 
@@ -27,7 +28,12 @@ namespace DFM.MVC.Controllers
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return View("Deactivated");
+                return deactivated();
+
+            var action = SecurityData.GetTokenAction(id);
+
+            //if (action != SecurityAction.PasswordReset)
+            //    return Received
 
             if (model.Password != model.RetypePassword)
                 ModelState.AddModelError("", PlainText.Dictionary["RetypeWrong"]);
@@ -54,16 +60,72 @@ namespace DFM.MVC.Controllers
 
 
 
+        public ActionResult UserVerification(String id)
+        {
+            var exists = SecurityData.TokenExist(id);
+
+            if (!exists)
+                return deactivated();
+
+            SecurityData.UserActivate(id);
+
+            return View();
+        }
+
+
+
         public ActionResult Deactivate(String id)
         {
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return View("Deactivated");
+                return deactivated();
 
             SecurityData.Deactivate(id);
 
             return View();
+        }
+
+
+
+        public ActionResult Received()
+        {
+            var model = new TokenReceivedModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Received(TokenReceivedModel model)
+        {
+            model.Token = model.Token.Trim();
+
+            var exists = SecurityData.TokenExist(model.Token);
+
+            if (!exists)
+                return deactivated();
+
+
+            var action = SecurityData.GetTokenAction(model.Token);
+
+            switch (action)
+            {
+                case SecurityAction.PasswordReset:
+                    return RedirectToAction("PasswordReset", new { id = model.Token } );
+                case SecurityAction.UserVerify:
+                    return RedirectToAction("UserVerification", new { id = model.Token });
+                default:
+                    ModelState.AddModelError("", PlainText.Dictionary["NotRecognizedAction"]);
+                    return View(model);
+            }
+
+        }
+
+
+
+        private ActionResult deactivated()
+        {
+            return View("Invalid");
         }
 
     }

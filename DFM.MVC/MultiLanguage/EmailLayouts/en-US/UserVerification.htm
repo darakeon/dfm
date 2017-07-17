@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Recuperação de Senha</title>
+    <title>User Verification</title>
 </head>
 <body>
     <div style="background: #CCC; text-align: justify; width: 100%; padding-bottom: 20px; font-family: Calibri; font-size: 15px;">
@@ -14,31 +14,31 @@
     
         <div style="margin: 0 auto; background: #FFF; padding: 20px; border-radius: 50px 0px; width: 400px;">
             <h2 style="color: #550; font-size: 20px;">
-                Recuperação de Senha
+                User Verification
                 <hr style="background-color: #770; border: none; height: 2px;">
             </h2>
 
-            Foi feita uma solicitação para recuperar sua senha. Para completar o processo, clique no link abaixo e escolha a nova senha.
+            Your user in Don't Fly Money is waiting for a confirm to be activated. To proceed, click the link below.
         
             <div style="text-align: center; padding: 20px;">
                 <a style="text-decoration: none; cursor: pointer; color: #555; white-space: nowrap;"
-                    href="{{Url}}/Token/PasswordReset/{{Token}}">Recriar Senha</a>
+                    href="{{Url}}/Token/UserVerification/{{Token}}">User Verification</a>
             </div>
 
-            Se preferir, vá até o site, clique no link 'Token recebido via e-mail' e cole o Token.
+            If you prefer, go to the site, click in the link 'Token received by e-mail' and type the token below.
 
             <div style="text-align: center; padding: 20px;">
                 {{Token}}
             </div>
 
-            Se você não fez esta solicitação, por favor, desative o Token. Não será necessário passar qualquer informação.
+            If your user is already activated, please, deactivate the Token. Won't be necessary give any information.
 
             <div style="text-align: center; padding: 20px;">
                 <a style="text-decoration: none; cursor: pointer; color: #555; white-space: nowrap;"
-                    href="{{Url}}/Token/Deactivate/{{Token}}">Desativar Token</a>
+                    href="{{Url}}/Token/Deactivate/{{Token}}">Deactivate Token</a>
             </div>
 
-            Token válido até {{Date}}. Não responda este e-mail. Nosso contato: dfm@dontflymoney.com
+            Token valid to {{Date}}. Don't reply this e-mail. Our contact: dfm@dontflymoney.com
 
         </div>
     </div>

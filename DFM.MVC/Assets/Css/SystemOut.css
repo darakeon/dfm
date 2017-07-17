@@ -28,3 +28,11 @@ hr.Text {
 div#PS {
 	display: none;
 }
+
+div#TokenReceived {
+    padding-top: 5px;
+}
+
+div#TokenReceived a {
+    font-size: 85%;
+}

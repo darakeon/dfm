@@ -39,8 +39,6 @@ namespace DFM.MVC
         protected void Application_Start()
         // ReSharper restore InconsistentNaming
         {
-            //if (isAsset) return;
-
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
@@ -101,8 +99,6 @@ namespace DFM.MVC
         protected void Application_End()
         // ReSharper restore InconsistentNaming
         {
-            //if (isAsset) return;
-
             NHManager.End();
         }
 
