@@ -33,8 +33,11 @@ namespace DFM.MVC.MultiLanguage
 
         private PlainText(IEnumerable<String> xmls) : this()
         {
-            xmls.Select(x => new Node(x))
-                .ForEach(addSectionToDictionary);
+            var nodes = xmls.Select(x => new Node(x));
+
+            DicCreator.Check(xmls.ToList(), nodes.ToList());
+
+            nodes.ForEach(addSectionToDictionary);
         }
 
         private void addSectionToDictionary(Node nodeSection)

@@ -7,7 +7,6 @@ using DFM.MVC.Models;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.MVC.MultiLanguage;
-using DFM.MVC.MultiLanguage.Helpers;
 
 namespace DFM.MVC.Controllers
 {
@@ -129,9 +128,9 @@ namespace DFM.MVC.Controllers
                 try
                 {
                     var layout = PlainText.EmailLayout["ForgotPassword"];
-                    var subject = PlainText.Dictionary["PasswordRecover"];
+                    var subject = PlainText.Dictionary["PasswordReset"];
 
-                    SecurityData.CreateAndSend(model.Email, SecurityAction.PasswordChange, subject, layout);
+                    SecurityData.CreateAndSend(model.Email, SecurityAction.PasswordReset, subject, layout);
                 }
                 catch (DFMCoreException e)
                 {

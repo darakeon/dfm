@@ -33,6 +33,7 @@
     <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
     <YellowLimitUnderRedLimit text="Yellow Limit must be above Red Limit." />
+    <RetypeWrong text="Confirm password must be equal to Password." />
   </en-US>
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
@@ -67,5 +68,6 @@
     <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
     <YellowLimitUnderRedLimit text="O Sinal Amarelo deve ter um valor maior que o Sinal Vermelho." />
+    <RetypeWrong text="A confirmação deve ser igual à senha." />
   </pt-BR>
 </error>

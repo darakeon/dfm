@@ -8,10 +8,9 @@
     <SignUp text="Sign up" />
     <RememberMe text="Remember" />
     <Logon text="Logon" />
-    <RetypeWrong text="Confirm password must be equal to Password." />
     <ForgotPassword text="Forgot my password" />
     <ForgotPasswordSuccess text="Follow the instructions in the e-mail sent. Attention to the sender address: must be {0}." />
-    <PasswordRecover text="Password Recover" />
+    <PasswordReset text="Password Reset" />
   </en-US>
   <pt-BR>
     <Email text="E-mail" />
@@ -21,9 +20,8 @@
     <SignUp text="Cadastrar-se" />
     <RememberMe text="Lembrar" />
     <Logon text="Entrar" />
-    <RetypeWrong text="A confirmação deve ser igual à senha." />
     <ForgotPassword text="Esqueci minha senha" />
     <ForgotPasswordSuccess text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
-    <PasswordRecover text="Recuperação de Senha" />
+    <PasswordReset text="Recuperação de Senha" />
   </pt-BR>
 </user>

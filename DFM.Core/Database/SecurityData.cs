@@ -41,8 +41,10 @@ namespace DFM.Core.Database
 
         private static void complete(Security security)
         {
+            if (security.ID != 0) return;
+            
             security.Active = true;
-            security.Expire = DateTime.Now.AddDays(30);
+            security.Expire = DateTime.Now.AddMonths(1);
             security.CreateToken();
         }
 
@@ -52,9 +54,7 @@ namespace DFM.Core.Database
             var currentUser = UserData.SelectById(security.User.ID);
 
             if (currentUser == null || currentUser.Email != security.User.Email)
-            {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
-            }
         }
 
 
@@ -63,8 +63,9 @@ namespace DFM.Core.Database
         {
             var dic = new Dictionary<String, String>
                             {
-                                {"Url", Dfm.Url},
-                                {"Code", security.Token},
+                                { "Url", Dfm.Url },
+                                { "Token", security.Token },
+                                { "Date", security.Expire.AddDays(-1).ToShortDateString() }
                             };
 
             var fileContent =
@@ -82,10 +83,53 @@ namespace DFM.Core.Database
 
 
 
-        public static void Use(Security security)
+        private static Security selectByToken(String token)
         {
+            var criteria = CreateSimpleCriteria(
+                s => s.Token == token 
+                    && s.Active 
+                    && s.Expire >= DateTime.Now);
+
+            return criteria.UniqueResult<Security>();
+        }
+
+
+        
+        public static Boolean TokenExist(String token)
+        {
+            return selectByToken(token) != null;
+        }
+
+
+
+        public static void Deactivate(String token)
+        {
+            var security = selectByToken(token);
+
+            security.Active = false;
+
+            SaveOrUpdate(security);
+        }
+
+
+
+        public static void UserActivate(String token)
+        {
+
+            Deactivate(token);
             throw new NotImplementedException();
         }
 
+
+        public static void PasswordReset(String token, String password)
+        {
+            var security = selectByToken(token);
+
+            security.User.Password = password;
+
+            UserData.ChangePassword(security.User);
+
+            Deactivate(token);
+        }
     }
 }

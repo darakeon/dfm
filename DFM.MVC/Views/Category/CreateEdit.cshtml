@@ -7,7 +7,7 @@
     Layout = Model.IsMoveCRUD ? null : "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-<div class="MiniForm CRUDCategory">
+<div class="HalfScreen CRUDCategory">
     @using (
             Model.IsMoveCRUD
                 ? Ajax.BeginForm("CreateAjax", "Category", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })

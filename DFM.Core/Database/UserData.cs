@@ -48,7 +48,9 @@ namespace DFM.Core.Database
             if (!regex.Match(user.Email).Success)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserInvalidEmail);
 
-            if (SelectByEmail(user.Email) != null)
+            var userByEmail = SelectByEmail(user.Email);
+
+            if (userByEmail != null && userByEmail.ID != user.ID)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserAlreadyExists);
         }
 
@@ -63,13 +65,22 @@ namespace DFM.Core.Database
                 user.Creation = DateTime.Now;
             }
 
-            if (userIsNew || oldUser.Password != user.Password)
+            if (userIsNew)
                 user.Password = encrypt(user.Password);
 
         }
 
 
 
+        internal static User ChangePassword(User user)
+        {
+            user.Password = encrypt(user.Password);
+
+            return SaveOrUpdate(user);
+        }
+
+        
+        
         private static String encrypt(String password)
         {
             var md5 = new MD5CryptoServiceProvider();

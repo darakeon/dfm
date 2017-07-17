@@ -3,6 +3,6 @@
     public enum SecurityAction
     {
         UserVerify,
-        PasswordChange,
+        PasswordReset,
     }
 }

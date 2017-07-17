@@ -6,7 +6,7 @@ div#TopRightDiv, div#TopRightDiv input, div#TopRightDiv button {
 	font-size: 80%;
 }
 
-div#TopRightDiv div.MiniForm {
+div#TopRightDiv div.HalfScreen {
 	text-align: right;
 }
 

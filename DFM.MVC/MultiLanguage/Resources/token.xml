@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<token>
+  <en-US>
+    <TokenDeactivate text="Token Deactivate" />
+    <TokenDeactivateSuccess text="Token successfuly deactivated." />
+    <TokenDeactivated text="Token Deactivated" />
+    <TokenDeactivatedMessage text="Token already deactivated." />
+    <Password text="Password" />
+    <RetypePassword text="Retype password" />
+    <PasswordReset text="Password Reset" />
+    <PasswordResetSuccess text="Password successfuly reset." />
+  </en-US>
+  <pt-BR>
+    <TokenDeactivate text="Desativação de Token" />
+    <TokenDeactivateSuccess text="Token desativado com sucesso." />
+    <TokenDeactivated text="Token Desativado" />
+    <TokenDeactivatedMessage text="Este Token já foi desativado." />
+    <Password text="Senha" />
+    <RetypePassword text="Redigite a senha" />
+    <PasswordReset text="Redefinição de Senha" />
+    <PasswordResetSuccess text="Senha redefinida com sucesso." />
+  </pt-BR>
+</token>

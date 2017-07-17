@@ -1,10 +1,10 @@
-div.MiniForm {
+div.HalfScreen {
 	width: 300px;
 	margin: 0 auto;
 	text-align: center;
 }
 
-div.MiniForm label {
+div.HalfScreen label {
 	display: block;
 }
 

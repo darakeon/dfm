@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Ak.DataAccess.XML;
+using System.Collections.Generic;
 
 namespace DFM.MVC.MultiLanguage.Helpers
 {
@@ -81,6 +82,21 @@ namespace DFM.MVC.MultiLanguage.Helpers
             phraseNode.Add("automatic", null);
             
             languageNode.Add(phraseNode);
+        }
+
+
+
+        internal static void Check(IList<String> xmls, IList<Node> nodes)
+        {
+            for (var i = 0; i < xmls.Count; i++)
+            {
+                var fileName = new FileInfo(xmls[i]).Name;
+                fileName = fileName.Replace(".xml", "");
+
+                if (fileName != nodes[i].Name)
+                    throw new Exception(
+                        String.Format("File: {0}; Node: {1}", fileName, nodes[i].Name));
+            }
         }
 
     }
