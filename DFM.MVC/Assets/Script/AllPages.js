@@ -13,9 +13,16 @@ function AjaxFail(html) {
     error = error.substr(1, error.length - 3);
 
     alert(error);
+    EndAjaxPost()
 
     if (error.match(/session expired/i))
         location.reload();
+}
+
+function TellResultAndReload(data) {
+    alert(data.message);
+    EndAjaxPost();
+    location.reload();
 }
 
 function BeginAjaxPost() {
@@ -25,7 +32,6 @@ function BeginAjaxPost() {
 function EndAjaxPost() {
     $("*").css("cursor", "default");
 }
-
 
 
 function AjustMoneyAndDate() {

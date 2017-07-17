@@ -50,8 +50,8 @@
                 <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
 
                 <td>@Ajax.ActionLink("Delete", "Delete", "Move", new { id = move.ID }, 
-                        new AjaxOptions { 
-                            Confirm = String.Format("Are you sure you want to delete Move '{0}'?", move.Description),
+                        new AjaxOptions {
+                            Confirm = String.Format("Do you really want to DELETE Move '{0}'?", move.Description),
                             OnBegin = "BeginAjaxPost",
                             OnFailure = "AjaxFail",
                             OnSuccess = "TellResultAndReload",

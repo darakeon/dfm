@@ -36,8 +36,13 @@ namespace DFM.Core.Database
             }
             else if (!account.MoveList.Any())
             {
-                account.InList = SelectById(account.ID).InList;
-                account.OutList = SelectById(account.ID).OutList;
+                var oldAccount = SelectById(account.ID);
+
+                account.BeginDate = oldAccount.BeginDate;
+                account.EndDate = oldAccount.EndDate;
+
+                account.InList = oldAccount.InList;
+                account.OutList = oldAccount.OutList;
             }
         }
 
@@ -96,6 +101,17 @@ namespace DFM.Core.Database
                 sumList[name] += value;
             else
                 sumList.Add(name, value);
+        }
+
+
+
+        public void Close(Account account)
+        {
+            if (account != null)
+            {
+                account.EndDate = DateTime.Now;
+                SaveOrUpdate(account);
+            }
         }
     }
 }

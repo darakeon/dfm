@@ -46,7 +46,10 @@
                         new { id = account.ID },
                         new AjaxOptions()
                         {
-                            Confirm = "Do you really want to CLOSE the Account " + account.Name + "?",
+                            Confirm = String.Format("Do you really want to CLOSE Account '{0}'?", account.Name),
+                            OnBegin = "BeginAjaxPost",
+                            OnFailure = "AjaxFail",
+                            OnSuccess = "TellResultAndReload",
                             HttpMethod = "Post"
                         }) 
                 </td>

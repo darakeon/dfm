@@ -162,22 +162,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public JsonResult Delete(Int32 id)
         {
-            String message;
+            var move = moveData.SelectById(id);
 
-            try
-            {
-                var move = moveData.SelectById(id);
+            moveData.Delete(move);
 
-                moveData.Delete(move);
-
-                message = move == null
-                    ? "No Move to delete."
-                    : String.Format("Move '{0}' deleted.", move.Description);
-            }
-            catch (Exception e)
-            {
-                message = String.Format("Error: {0}", e.MostInner().Message);
-            }
+            var message = move == null
+                ? "No Move to delete."
+                : String.Format("Move '{0}' deleted.", move.Description);
 
             return new JsonResult { Data = new { message } };
         }

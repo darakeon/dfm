@@ -79,9 +79,17 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Close(Int32 id)
+        public JsonResult Close(Int32 id)
         {
-            throw new NotImplementedException();
+            var account = accountData.SelectById(id);
+
+            accountData.Close(account);
+
+            var message = account == null
+                ? "No Account to close."
+                : String.Format("Account '{0}' closed.", account.Name);
+
+            return new JsonResult { Data = new { message } };
         }
     }
 }

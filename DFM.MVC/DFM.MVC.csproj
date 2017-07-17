@@ -108,7 +108,6 @@
     <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
     <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\Script\Pages\ReportSeeMonth.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Site.css" />
     <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
