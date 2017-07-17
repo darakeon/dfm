@@ -18,7 +18,7 @@ namespace DFM.Core.Entities
             get
             {
                 if (!IsValid)
-                    AjustValue();
+                    SummaryData.AjustValue(this);
 
                 return FixValue;
             }
@@ -37,23 +37,6 @@ namespace DFM.Core.Entities
 
         public virtual Year Year { get; set; }
 
-
-        internal protected virtual void AjustValue()
-        {
-            switch (Nature)
-            {
-                case SummaryNature.Month:
-                    Value = Month.CheckUp(Category); break;
-                case SummaryNature.Year:
-                    Value = Year.CheckUp(Category); break;
-                default:
-                    throw new DFMCoreException("SummaryNatureNotFound");
-            }
-
-            IsValid = true;
-
-            SummaryData.SaveOrUpdate(this);
-        }
 
 
         public override String ToString()

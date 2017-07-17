@@ -4,6 +4,7 @@ using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Database
 {
@@ -89,6 +90,27 @@ namespace DFM.Core.Database
         private static void invalidate(Summary summary)
         {
             summary.IsValid = false;
+            SaveOrUpdate(summary);
+        }
+
+
+
+        internal static void AjustValue(Summary summary)
+        {
+            switch (summary.Nature)
+            {
+                case SummaryNature.Month:
+                    summary.Value = summary.Month.CheckUp(summary.Category);
+                    break;
+                case SummaryNature.Year:
+                    summary.Value = summary.Year.CheckUp(summary.Category);
+                    break;
+                default:
+                    throw new DFMCoreException("SummaryNatureNotFound");
+            }
+
+            summary.IsValid = true;
+
             SaveOrUpdate(summary);
         }
     }

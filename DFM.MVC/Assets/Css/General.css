@@ -14,9 +14,9 @@ div#Head, div#Main, div#Footer, div#Menu {
 	margin: 0 auto;
 }
 
-img#Logo {
-	margin: 20px;
-}
+#Logo img { margin: 20px 3px; }
+#Logo img:first-child { margin-left: 20px; }
+#Logo img:last-child { margin-right: 20px; }
 
 img#Out {
 	margin: 10px;
@@ -43,12 +43,12 @@ div#Belt {
 
 
 h2 {
-	color: #050;
+	color: #550;
 	font-size: 20px;
 }
 
 hr.underTitle {
-    background-color: #070;
+    background-color: #770;
     border: none;
     height: 2px;
 }
@@ -62,5 +62,5 @@ a {
 
 
 a:hover {
-	color: #090;
+	color: #990;
 }

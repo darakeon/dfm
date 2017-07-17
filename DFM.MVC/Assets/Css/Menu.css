@@ -77,9 +77,9 @@ div#Menu .reportsMenu li
 }
 
 div#Menu .reportsMenu li:nth-child(2n) { background: #888; }
-div#Menu .reportsMenu li:nth-child(2n):hover { background: #080; }
+div#Menu .reportsMenu li:nth-child(2n):hover { background: #880; }
 div#Menu .reportsMenu li:nth-child(2n+1) { background: #AAA; }
-div#Menu .reportsMenu li:nth-child(2n+1):hover { background: #0A0; }
+div#Menu .reportsMenu li:nth-child(2n+1):hover { background: #AA0; }
 
 div#Menu .reportsMenu li:first-child { 
 	border-radius: 0 10px 0 0;

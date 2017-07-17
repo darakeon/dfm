@@ -12,6 +12,8 @@
 <head>
     <title>DFM - @ViewBag.Title</title>
 
+    <link rel="icon" href="@Url.Content("~/Assets/Image/luckpig.ico")" />
+
     <link href="@Url.Content("~/Assets/Css/MVC.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Assets/Css/General.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Assets/Css/MiniForm.css")" rel="stylesheet" type="text/css" />
@@ -52,8 +54,10 @@
             </a>
         }
 
-        <a href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
-            <img id="Logo" alt="DFM" src="@Url.Content("~/Assets/Image/logo.gif")" /></a>
+        <a id="Logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
+            <img alt="DFM" src="@Url.Content("~/Assets/Image/pig.gif")" />
+            <img alt="DFM" src="@Url.Content("~/Assets/Image/logo.gif")" />
+        </a>
 	</div>
 
     <div id="Belt">
