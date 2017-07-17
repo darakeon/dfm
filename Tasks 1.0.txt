@@ -1,0 +1,39 @@
+01/06	20/06	Detalhes na Movimentação
+20/06	29/06	-- Refazer roteamento para uma conta entrar em uma url
+29/06	18/07	Edição de Movimentação
+18/07	23/07	-- Arrancar entidade Transferência
+23/07	23/07	Deleção de Movimentação
+23/07	23/07	-- Implementar Quantidade em Detalhes
+23/07	23/07	-- Possibilitar deleção de Detalhes
+23/07	24/07	Edição de Conta
+24/07	24/07	Desativação de Conta
+24/07	24/07	Listagem de Contas desativadas
+24/07	25/07	-- Multi-língue
+25/07	31/07	-- Tradução
+31/07	01/08	-- Listagem de Categorias
+01/08	01/08	-- Desativação de Categoria
+01/08	01/08	-- Edição de Categoria
+01/08	03/08	Saldo mensal (adaptar edição / criação de movimentação)
+03/08	08/08	-- Criar Select com lambda expression no BaseData
+09/08	10/08	REFACTORING
+10/08	14/08	-- Agendamento de Movimentação
+14/08	14/08	-- Implementar "manter logado"
+15/08		-- WCF
+16/08	17/08	Layout
+18/08	18/08	Quantidade - tirar de Valor único
+18/08	22/08	Navegação Mês / Ano
+19/08	21/08	Unificar página layout
+22/08	22/08	Fazer EntityData static
+22/08	22/08	Colocar apenas botão de entrar, quando já logado
+22/08	22/08	Conta vazia - Deletar / Conta com Movimentações - Desativar
+22/08	22/08	Link do Relatório de Conta fechada aponta para últimos relatórios
+23/08	23/08	Submenu com relatórios
+23/08	27/08	Revisar o layout (verificar faixa no topo, se fica legal)
+27/08	27/08	Mudar cor para amarelo / colocar ícone
+28/08		Despesa Fixa (controlar por login no sistema) - pega a última e duplica
+		Criar extensions das entidades, para deixar apenas as propriedades nas entidades
+		Refactor: kill SelectOne and Select with lambda
+		Taxa da conta + Data (bank)
+		Percentual de crescimento + Data (debt)
+		Taxa do cartão, Limite + Data (cartão) ]
+		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
