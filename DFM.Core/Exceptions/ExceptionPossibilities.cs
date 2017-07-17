@@ -12,6 +12,7 @@
         DuplicatedAccountName,
         FailOnEmailSend,
         InMoveWrong,
+        InvalidCategory,
         InvalidToken,
         InvalidUser,
         MonthAmbiguousInYear,

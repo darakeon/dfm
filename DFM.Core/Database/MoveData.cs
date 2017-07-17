@@ -14,11 +14,6 @@ namespace DFM.Core.Database
     {
 		private MoveData() { }
 
-        public static Move SaveOrUpdate(Move move, Account accountOut)
-        {
-            return SaveOrUpdate(move, accountOut, null);
-        }
-
         public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
         {
             placeAccountsInMove(move, accountOut, accountIn);
@@ -31,14 +26,15 @@ namespace DFM.Core.Database
 
         private static Move trySaveOrUpdate(Move move)
         {
-            try { return SaveOrUpdate(move, complete, validate); }
+            //Keep inverted, weird errors happen if make in the right order
+            try { return SaveOrUpdate(move, validate, complete); }
             catch (Exception e) { return testIfIntermittent(e); }
         }
 
         //TODO: I shouldn't do it
         private static Move testIfIntermittent(Exception e)
         {
-            if (isForeignKeyIntermittentException(e.InnerException))
+            if (e.InnerException != null && isForeignKeyIntermittentException(e.InnerException))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ConnectionError);
 
             throw e;
@@ -174,6 +170,9 @@ namespace DFM.Core.Database
 
         private static void testCategory(Move move)
         {
+            if (move.Category == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+
             if (!move.Category.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
         }
