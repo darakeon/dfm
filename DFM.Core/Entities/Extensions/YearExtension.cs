@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Linq;
+using DFM.Core.Database;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities.Extensions
 {
     public static class YearExtension
     {
-        //internal static Double Value(this Year year)
-        //{
-        //    return year.SummaryList.Sum(s => s.FixValue);
-        //}
-
-
-        //internal static void AjustSummaryList(this Year year, Category category)
-        //{
-        //    if (!year.SummaryList.Any(s => s.Category == category))
-        //        year.AddSummary(category);
-        //}
-
         internal static Year Clone(this Year year)
         {
             return new Year
@@ -26,6 +16,21 @@ namespace DFM.Core.Entities.Extensions
                 SummaryList = year.SummaryList,
                 Time = year.Time
             };
+        }
+
+        internal static Month GetMonth(this Year year, Int32 month)
+        {
+            try
+            {
+                return year.MonthList
+                    .SingleOrDefault(m => m.Time == month);
+            }
+            catch (InvalidOperationException e)
+            {
+                if (e.Message == "Sequence contains more than one matching element")
+                    throw new DFMCoreException("MonthAmbiguousInYear");
+                throw;
+            }
         }
 
     }

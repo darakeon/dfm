@@ -12,8 +12,7 @@ namespace DFM.Core.Database
 
         internal static Year GetOrCreateYear(Int32 year, Account account, Category category)
         {
-            var newYear = account.YearList
-                    .SingleOrDefault(y => y.Time == year)
+            var newYear = account.GetYear(year)
                 ?? createYear(account, year);
 
             if (category != null)

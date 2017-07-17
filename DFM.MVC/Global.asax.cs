@@ -62,6 +62,15 @@ namespace DFM.MVC
             if (Request.Url.Host == "localhost")
                 PlainText.Initialize();
 
+        }
+
+        protected void Application_AuthenticateRequest()
+        {
+            if (isAsset) return;
+
+            if (Current.IsAuthenticated)
+                ScheduleRunner.Run(Current.User);
+
             specifyLanguage();
         }
 
@@ -81,9 +90,6 @@ namespace DFM.MVC
         // ReSharper restore InconsistentNaming
         {
             if (isAsset) return;
-
-            if (Current.IsAuthenticated)
-                ScheduleRunner.Run(Current.User);
 
             NHManager.Close();
         }

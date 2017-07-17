@@ -6,7 +6,7 @@
 }
 
 <div class="MiniForm">
-    @if (isAuthenticated && false)
+    @if (isAuthenticated)
     {
         <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@PlainText.Dictionary["Enter"]</button>
     }

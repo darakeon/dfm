@@ -74,16 +74,13 @@ namespace DFM.Core.Database
             var account = SelectById(id);
 
 
-            var year = account.YearList
-                .SingleOrDefault(y => y.Time == dateYear);
+            var year = account.GetYear(dateYear);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = year.MonthList
-                .SingleOrDefault(y => y.Time == dateMonth);
-
+            var month = year.GetMonth(dateMonth);
 
             return month == null
                 ? new List<Move>()
@@ -95,8 +92,7 @@ namespace DFM.Core.Database
         {
             var account = SelectById(accountid);
 
-            var year = account.YearList
-                .SingleOrDefault(y => y.Time == dateYear);
+            var year = account.GetYear(dateYear);
 
             return year == null
                 ? new Year { Account = account, Time = dateYear }
@@ -108,11 +104,12 @@ namespace DFM.Core.Database
             if (year.Time == DateTime.Today.Year)
             {
                 //prevent from saving and destroying the true element
-                year = year.Clone();
+                var currentYear = year.Clone();
 
-                year.MonthList = year.MonthList
-                                    .Where(m => m.Time <= DateTime.Today.Month)
-                                    .ToList();
+                currentYear.MonthList =
+                    currentYear.MonthList
+                        .Where(m => m.Time <= DateTime.Today.Month)
+                        .ToList();
             }
 
             return year;

@@ -1,3 +1,4 @@
+		Implementar Log4Net
 		Refactor: centralizar textos de erro em enum
 		Refactor: BDD
 

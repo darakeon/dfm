@@ -9,8 +9,7 @@ namespace DFM.Core.Mappings
         public void Override(AutoMapping<Move> mapping)
         {
             mapping.HasMany(m => m.DetailList)
-                .Cascade.AllDeleteOrphan()
-                .Inverse();
+                .Cascade.AllDeleteOrphan();
 
 
             mapping.References(m => m.In)

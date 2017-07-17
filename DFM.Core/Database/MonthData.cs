@@ -12,8 +12,7 @@ namespace DFM.Core.Database
 
         internal static Month GetOrCreateMonth(Int32 month, Year year, Category category)
         {
-            var newMonth = year.MonthList
-                    .SingleOrDefault(y => y.Time == month)
+            var newMonth = year.GetMonth(month)
                 ?? createMonth(year, month);
 
             if (category != null)

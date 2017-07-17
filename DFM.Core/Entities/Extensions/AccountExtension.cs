@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities.Extensions
 {
@@ -22,6 +23,21 @@ namespace DFM.Core.Entities.Extensions
                             m => m.MoveList().Any()
                         )
                 );
+        }
+
+        internal static Year GetYear(this Account account, Int32 year)
+        {
+            try
+            {
+                return account.YearList
+                    .SingleOrDefault(m => m.Time == year);
+            }
+            catch (InvalidOperationException e)
+            {
+                if (e.Message == "Sequence contains more than one matching element")
+                    throw new DFMCoreException("YearAmbiguousInAccount");
+                throw;
+            }
         }
 
     }

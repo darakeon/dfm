@@ -29,15 +29,22 @@ namespace DFM.Core.Database
             catch (Exception e) { return testIfIntermittent(e); }
         }
 
-        //TODO: I shouldn't do that
+        //TODO: I shouldn't do it
         private static Move testIfIntermittent(Exception e)
         {
-            const string intermittentError = "Cannot add or update a child row: a foreign key constraint fails";
-
-            if (e.InnerException.Message.StartsWith(intermittentError))
+            if (isForeignKeyIntermittentException(e.InnerException))
                 throw new DFMCoreException("ConnectionError");
 
             throw e;
+        }
+
+        private static Boolean isForeignKeyIntermittentException(Exception exception)
+        {
+            const string intermittentError = 
+                "Cannot add or update a child row: a foreign key constraint fails";
+
+            return exception != null &&
+                exception.Message.StartsWith(intermittentError);
         }
 
 

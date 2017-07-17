@@ -6,11 +6,6 @@ namespace DFM.Core.Entities.Extensions
 {
     public static class MonthExtension
     {
-        //public static Double Value(this Month month)
-        //{
-        //    return month.SummaryList.Sum(s => s.FixValue);
-        //}
-
         internal static Account Account(this Month month)
         {
             return month.Year.Account;
@@ -26,13 +21,6 @@ namespace DFM.Core.Entities.Extensions
             return list.OrderBy(m => m.ID).ToList();
         }
 
-
-
-        //internal static void AjustSummaryList(this Month month, Category category)
-        //{
-        //    if (!month.SummaryList.Any(s => s.Category == category))
-        //        month.AddSummary(category);
-        //}
 
 
         internal static void AddOut(this Month month, Move move)

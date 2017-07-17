@@ -8,22 +8,33 @@ namespace DFM.Core.Robots
 {
     public class ScheduleRunner
     {
+        private static Account accountIn { get; set; }
+        private static Account accountOut { get; set; }
+        
         /*
          * Verificar se existe um que esteja ativo e que a data de next seja menor que hoje
          * Ao finalizar o agendamento, colocar como inativo
          */
+
+
+
         public static void Run(User user)
         {
             var scheduleList = ScheduleData.GetScheduleToRun(user);
 
             foreach (var schedule in scheduleList)
             {
-                var newMove = createMove(schedule);
-                ajustSchedule(schedule, newMove);
+                while (schedule.Active &&
+                    schedule.Next <= DateTime.Today)
+                {
+                    var newMove = createMove(schedule);
+                    ajustSchedule(schedule, newMove);
+
+                    save(newMove);
+                }
             }
+
         }
-
-
 
         private static Move createMove(Schedule schedule)
         {
@@ -34,10 +45,8 @@ namespace DFM.Core.Robots
             newMove.Out = null;
             newMove.Date = schedule.Next;
 
-            var accountIn = getAccount(lastMove.In);
-            var accountOut = getAccount(lastMove.Out);
-
-            MoveData.SaveOrUpdate(newMove, accountOut, accountIn);
+            accountIn = getAccount(lastMove.In);
+            accountOut = getAccount(lastMove.Out);
 
             return newMove;
         }
@@ -63,9 +72,15 @@ namespace DFM.Core.Robots
                 schedule.Deactivate();
             else
                 schedule.SetNextRun();
-
-
-            ScheduleData.SaveOrUpdate(schedule);
         }
+
+
+
+
+        private static void save(Move newMove)
+        {
+            MoveData.SaveOrUpdate(newMove, accountOut, accountIn);
+        }
+
     }
 }

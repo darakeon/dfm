@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Entities.Base;
-using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 
 namespace DFM.Core.Entities
