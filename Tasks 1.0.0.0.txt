@@ -38,8 +38,10 @@
 10/09	10/09	-- Arrancar IsValid de Summary
 11/09		-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
 		Implementar Frequência Daily em Scheduler
+		Quebrar Value de Summary em In e Out
 		Proteger alteração / deleção de itens que não pertencem ao usuário logado
 		Taxa da conta + Data (bank)
 		Percentual de crescimento + Data (debt)
 		Taxa do cartão, Limite + Data (cartão)
 		Retirar campo Login
+		Refactor Geral
