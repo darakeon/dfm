@@ -2,14 +2,11 @@
 using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Helpers;
-using NHibernate.Linq;
 
 namespace DFM.Core.Database
 {
     public class MoveData : BaseData<Move>
     {
-        TransferData transferData = new TransferData();
-
         public MoveData()
         {
             Validate += validate;
@@ -17,31 +14,6 @@ namespace DFM.Core.Database
         }
 
         private void complete(Move move)
-        {
-            ajustDetail(move);
-            editTransfer(move);
-        }
-
-        private void editTransfer(Move move)
-        {
-            //var isEditing = move.ID != 0;
-            //var isTransfer = move.Transfer != null;
-
-            //if (isEditing && isTransfer)
-            //{
-            //    switch (move.Nature)
-            //    {
-            //        case MoveNature.In:
-            //            move.Transfer.Out.Mirror(move);
-            //            break;
-            //        case MoveNature.Out:
-            //            move.Transfer.In.Mirror(move);
-            //            break;
-            //    }
-            //}
-        }
-
-        private void ajustDetail(Move move)
         {
             foreach (var detail in move.DetailList)
             {
@@ -53,33 +25,38 @@ namespace DFM.Core.Database
             }
         }
 
-
-
         private void validate(Move move)
         {
-            if (move.Nature == MoveNature.Transfer)
-                throw new CoreValidationException("If the move is a Transfer, call TestAndMakeTransfer before save.");
+            testDetailList(move);
+            testNature(move);
+        }
 
+        private void testDetailList(Move move)
+        {
             if (!move.DetailList.Any())
                 throw new CoreValidationException("At least one value required.");
         }
 
-
-
-        public void TestAndMakeTransfer(Move move, Account accountToTransfer)
+        private void testNature(Move move)
         {
-            if (move.Nature == MoveNature.Transfer)
+            var hasIn = move.In != null;
+            var hasOut = move.Out != null;
+
+            switch (move.Nature)
             {
-                if (accountToTransfer == null)
-                    throw new CoreValidationException("Another Account is required to create a Transfer Move.");
+                case MoveNature.In:
+                    if (!hasIn || hasOut) throw new CoreValidationException("An In move need to have an In Account, and can't have an Out Account.");
+                    break;
 
-                transferData.Delete(move.Transfer);
+                case MoveNature.Out: 
+                    if (hasIn || !hasOut) throw new CoreValidationException("An Out move need to have an Out Account, and can't have an In Account.");
+                    break;
 
-                move.Transfer = new Transfer(move, accountToTransfer);
+                case MoveNature.Transfer:
+                    if (!hasIn || !hasOut) throw new CoreValidationException("A Transfer move need to have Out and In Accounts.");
+                    break;
+
             }
         }
-
-
-
     }
 }

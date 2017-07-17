@@ -9,7 +9,8 @@ namespace DFM.Core.Entities
     {
         public Account()
         {
-            MoveList = new List<Move>();
+            InList = new List<Move>();
+            OutList = new List<Move>();
         }
 
 
@@ -23,21 +24,23 @@ namespace DFM.Core.Entities
 
         public virtual User User { get; set; }
 
-        public virtual IList<Move> MoveList { get; set; }
+        public virtual IList<Move> InList { get; set; }
+        public virtual IList<Move> OutList { get; set; }
+        
+        public virtual IList<Move> MoveList { 
+            get
+            {
+                var list = InList.ToList();
+                list.AddRange(OutList);
+                return list;
+            }
+        }
 
 
 
         public virtual Double MovesSum
         {
             get { return MoveList.Sum(m => m.Value); }
-        }
-        
-
-
-        public virtual void AddMove(Move move)
-        {
-            move.Account = this;
-            MoveList.Add(move);
         }
 
 

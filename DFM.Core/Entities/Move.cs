@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Enums;
-using NHibernate.Linq;
 
 namespace DFM.Core.Entities
 {
@@ -21,8 +20,8 @@ namespace DFM.Core.Entities
         public virtual MoveNature Nature { get; set; }
         
         public virtual Category Category { get; set; }
-        public virtual Transfer Transfer { get; set; }
-        public virtual Account Account { get; set; }
+        public virtual Account In { get; set; }
+        public virtual Account Out { get; set; }
 
         public virtual IList<Detail> DetailList { get; set; }
 
@@ -60,44 +59,13 @@ namespace DFM.Core.Entities
                 );
         }
 
-        public virtual void MakeFakeDetail(Double value)
+        public virtual void MakePseudoDetail(Double value)
         {
             DetailList = new List<Detail>();
 
             var detail = new Detail {Description = Description, Value = value};
 
             AddDetail(detail);
-        }
-
-
-
-        public virtual Move Clone(Account otherAccount)
-        {
-            var move = new Move
-                           {
-                               Account = otherAccount,
-                               Nature = Nature,
-                           };
-            
-            move.Mirror(this);
-
-            return move;
-        }
-
-        public virtual void Mirror(Move move)
-        {
-        	Date = move.Date;
-            Description = move.Description;
-
-            Category = move.Category;
-            Transfer = move.Transfer;
-            
-            move.DetailList
-                .ForEach(
-                    d => DetailList.Add( 
-                        d.Clone(move)
-                    )
-                );
         }
 
 

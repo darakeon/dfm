@@ -37,7 +37,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                                 Date = DateTime.Today
                             };
             
-            model = Populate(model, accountid);
+            model = populate(model, accountid);
 
             return View("CreateEdit", model);
         }
@@ -56,7 +56,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                                 Move = moveData.SelectById(id),
                             };
             
-            model = Populate(model, accountid);
+            model = populate(model, accountid);
 
             return View("CreateEdit", model);
         }
@@ -73,19 +73,26 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Move.Account = accountData.SelectById(accountid);
-
-
-                Int32? categoryID = model.CategoryID ?? 0;
-
-                model.Move.Category = categoryData.SelectById(categoryID.Value);
-
-
                 try
                 {
-                    var accountToTransfer = accountData.SelectById(model.AccountID ?? 0);
-                    moveData.TestAndMakeTransfer(model.Move, accountToTransfer);
-                    
+                    switch (model.Move.Nature)
+                    {
+                        case MoveNature.Out:
+                            model.Move.Out = accountData.SelectById(accountid);
+                            break;
+                        case MoveNature.In:
+                            model.Move.In = accountData.SelectById(accountid);
+                            break;
+                        case MoveNature.Transfer:
+                            model.Move.Out = accountData.SelectById(accountid);
+                            model.Move.In = accountData.SelectById(model.AccountID ?? 0);
+                            break;
+                        default:
+                            throw new Exception("Move Nature doesn't exist");
+                    }
+
+                    model.Move.Category = categoryData.SelectById(model.CategoryID ?? 0);
+
                     moveData.SaveOrUpdate(model.Move);
 
                     return RedirectToRoute(
@@ -99,13 +106,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model = Populate(model, accountid);
+            model = populate(model, accountid);
 
             return View("CreateEdit", model);
         }
 
 
-        private MoveCreateEditModel Populate(MoveCreateEditModel model, Int32 accountID)
+        private MoveCreateEditModel populate(MoveCreateEditModel model, Int32 accountID)
         {
             model.MakeAccountTransferList(accountID);
 

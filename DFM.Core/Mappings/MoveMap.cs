@@ -8,16 +8,17 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Move> mapping)
         {
-            mapping.References(m => m.Transfer)
-                .Cascade.SaveUpdate()
-                .Nullable();
-
             mapping.IgnoreProperty(m => m.Month);
             mapping.IgnoreProperty(m => m.Value);
 
             mapping.HasMany(m => m.DetailList)
-                .Not.Inverse()
                 .Cascade.AllDeleteOrphan();
+
+            mapping.References(m => m.In)
+                .Nullable();
+
+            mapping.References(m => m.Out)
+                .Nullable();
         }
     }
 }

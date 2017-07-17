@@ -61,13 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
-    <Compile Include="Database\TransferData.cs" />
     <Compile Include="Database\CategoryData.cs" />
     <Compile Include="Database\MoveData.cs" />
+    <Compile Include="Database\NHManager.cs" />
     <Compile Include="Database\UserData.cs" />
     <Compile Include="Database\BaseData.cs" />
     <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Transfer.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\IEntity.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="Helpers\CoreValidationException.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
-    <Compile Include="Mappings\TransferMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

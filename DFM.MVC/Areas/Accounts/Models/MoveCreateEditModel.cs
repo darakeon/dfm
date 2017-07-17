@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
-using DFM.Core.Database;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
@@ -69,7 +67,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             {
                 if (!Move.HasRealDetails() && value.HasValue)
                 {
-                    Move.MakeFakeDetail(value.Value);
+                    Move.MakePseudoDetail(value.Value);
                 }
             }
         }

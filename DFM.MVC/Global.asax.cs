@@ -1,11 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ak.DataAccess.NHibernate;
 using DFM.Core.Database;
-using DFM.Core.Entities;
-using DFM.Core.Mappings;
-using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 
 // ReSharper disable InconsistentNaming
@@ -41,26 +37,24 @@ namespace DFM.MVC
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-
-            var mapInfo = new AutoMappingInfo<UserMap, User>();
-
-            SessionBuilder.Start(mapInfo);
+            NHManager.Start();
         }
 
         protected void Application_BeginRequest()
         {
-            SessionBuilder.Open();
+            NHManager.Open();
         }
 
         protected void Application_EndRequest()
         {
-            SessionBuilder.Close();
+            NHManager.Close();
         }
 
         protected void Application_End()
         {
-            SessionBuilder.End();
+            NHManager.End();
         }
     
     }
 }
+// ReSharper enable InconsistentNaming

@@ -125,10 +125,6 @@
     <Content Include="Areas\Accounts\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\00 - Lib\Ak\Ak.DataAccess\Ak.DataAccess.csproj">
-      <Project>{DFC0990E-F17C-414B-BB07-10DC86835EC1}</Project>
-      <Name>Ak.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DFM.Core\DFM.Core.csproj">
       <Project>{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}</Project>
       <Name>DFM.Core</Name>

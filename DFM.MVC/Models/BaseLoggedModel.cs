@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.Core.Database;
 using DFM.MVC.Authentication;
 using DFM.Core.Entities;
 
-namespace DFM.MVC.Areas.Accounts.Models
+namespace DFM.MVC.Models
 {
-    public class BaseModel
+    public class BaseLoggedModel
     {
-        public BaseModel()
+        public BaseLoggedModel()
         {
-            NHManager.NhInitialize(Current.User.AccountList);
-            
             LateralAccountList = Current.User.AccountList;
         }
 

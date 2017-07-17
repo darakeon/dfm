@@ -11,13 +11,20 @@ namespace DFM.Core.Mappings
             mapping.Map(a => a.EndDate)
                 .Nullable();
 
-            mapping.HasMany(a => a.MoveList)
+
+            mapping.HasMany(a => a.InList)
                 .Cascade.SaveUpdate();
+
+            mapping.HasMany(a => a.OutList)
+                .Cascade.SaveUpdate();
+
+            mapping.IgnoreProperty(a => a.MoveList);
+
+            mapping.IgnoreProperty(a => a.MovesSum);
+
 
             mapping.References(a => a.User)
                 .Cascade.None();
-
-            mapping.IgnoreProperty(a => a.MovesSum);
         }
     }
 }
