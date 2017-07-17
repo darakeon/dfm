@@ -30,7 +30,8 @@ else
                 <td>@account.BeginDate.ToShortDateString() </td>
 
                 @{
-               var movesSum = account.MovesSum();
+               var movesSum = account.Sum();
+
                var negative = movesSum < 0;
                var value = (negative ? -movesSum : movesSum).ToMoney();
                 }

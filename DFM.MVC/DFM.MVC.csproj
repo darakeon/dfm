@@ -59,9 +59,6 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Helpers">
       <Private>True</Private>
     </Reference>
@@ -128,6 +125,7 @@
     <Content Include="Assets\Css\Navigation.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
+    <Compile Include="Helpers\Extensions\MonthExtension.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\Extensions\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\Views\Menu.cs" />

@@ -17,6 +17,9 @@ namespace DFM.Core.Mappings
 
             mapping.HasMany(u => u.ScheduleList)
                 .Cascade.SaveUpdate();
+
+            mapping.Map(u => u.Language)
+                .Default("'pt-BR'");
         }
     }
 }

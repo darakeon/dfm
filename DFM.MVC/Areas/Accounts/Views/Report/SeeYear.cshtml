@@ -31,14 +31,21 @@
             <th>@PlainText.Dictionary["Value"]</th>
         </tr>
 
-        @foreach (var month in Model.Year.MonthList) {
+        @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
+        {
 
-            var sign = month.Value() < 0 ? "out" : "in";
-            var value = month.Value() > 0 ? month.Value() : -month.Value();
+            var sum = month.Sum();
+            
+            var sign = month.Sum() < 0 ? "out" : "in";
+            sum = sum > 0 ? sum : -sum;
             
             <tr>
-                <td>@PlainText.GetMonthName(month.Time) </td>
-                <td class="numeric @sign">@value.ToMoney() </td>
+                <td>
+                    <a href="@Url.Action("SeeMonth", new { id = month.Url() } )">
+                        @PlainText.GetMonthName(month.Time)
+                    </a>
+                </td>
+                <td class="numeric @sign">@sum.ToMoney() </td>
             </tr>
 
         } 

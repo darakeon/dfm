@@ -36,7 +36,7 @@ else
             <th colspan="2">@PlainText.Dictionary["TODO"]</th>
         </tr>
 
-        @foreach (var move in Model.MoveList)
+        @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
         { 
             
             <tr>

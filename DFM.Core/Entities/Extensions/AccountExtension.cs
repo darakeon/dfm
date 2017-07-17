@@ -6,7 +6,7 @@ namespace DFM.Core.Entities.Extensions
 {
     public static class AccountExtension
     {
-        public static Double MovesSum(this Account account)
+        public static Double Sum(this Account account)
         {
             return account.YearList.Sum(m => m.Sum());
         }

@@ -8,6 +8,7 @@ using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
@@ -76,7 +77,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
-             model.Move.ID = id;
+            var oldMove = MoveData.SelectById(id);
+
+            model.Move.ID = id;
+            model.Move.Out = oldMove.Out;
+            model.Move.In = oldMove.In;
+            model.Move.Schedule = oldMove.Schedule;
 
             return createEditSchedule(model);
         }
@@ -112,9 +118,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
                     MoveData.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn);
 
-                    return RedirectToRoute(
-                            RouteNames.Default,
-                            new { action = "Index", controller = "Account" }
+                    return RedirectToAction("SeeMonth", "Report",
+                            new { id = (model.Move.Out ?? model.Move.In).Url() }
                         );
                 }
                 catch (DFMCoreException e)

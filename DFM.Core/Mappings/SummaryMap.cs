@@ -8,6 +8,9 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Summary> mapping)
         {
+            mapping.Map(s => s.In, "In_");
+            mapping.Map(s => s.Out, "Out_");
+
             mapping.References(s => s.Month)
                 .UniqueKey("Summary_CategoryTime")
                 .Cascade.SaveUpdate()
