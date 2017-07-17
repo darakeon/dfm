@@ -39,7 +39,7 @@ namespace DFM.MVC
         protected void Application_Start()
         // ReSharper restore InconsistentNaming
         {
-            if (isAsset) return;
+            //if (isAsset) return;
 
             AreaRegistration.RegisterAllAreas();
 
@@ -101,7 +101,7 @@ namespace DFM.MVC
         protected void Application_End()
         // ReSharper restore InconsistentNaming
         {
-            if (isAsset) return;
+            //if (isAsset) return;
 
             NHManager.End();
         }

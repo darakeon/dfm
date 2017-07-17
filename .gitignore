@@ -6,3 +6,4 @@ obj
 *.user
 *dotCover
 .hg*
+DFM.MVC/DFM.MVC.Publish.xml

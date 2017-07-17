@@ -9,6 +9,7 @@ using DFM.Core.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
+using DFM.MVC.MultiLanguage.Helpers;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -21,11 +22,11 @@ namespace DFM.MVC.Areas.Accounts.Models
                                         .Count() > 1;
 
             NatureSelectList = transferIsPossible ?
-                SelectListExtension.CreateSelect(PlainText.GetEnumNames<MoveNature>()) :
-                SelectListExtension.CreateSelect(PlainText.GetEnumNames<PrimalMoveNature>());
+                SelectListExtension.CreateSelect(EnumHelper.GetEnumNames<MoveNature>()) :
+                SelectListExtension.CreateSelect(EnumHelper.GetEnumNames<PrimalMoveNature>());
 
-            FrequencySelectList = 
-                SelectListExtension.CreateSelect(PlainText.GetEnumNames<ScheduleFrequency>());
+            FrequencySelectList =
+                SelectListExtension.CreateSelect(EnumHelper.GetEnumNames<ScheduleFrequency>());
 
             CategorySelectList = SelectListExtension.CreateSelect(
                         Current.User.CategoryList.Where(c => c.Active).ToList(),

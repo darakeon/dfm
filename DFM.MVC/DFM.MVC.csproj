@@ -34,6 +34,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -55,7 +59,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NHibernate\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\NHibernate\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.ByteCode.Castle, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -90,6 +106,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq">
@@ -135,7 +163,8 @@
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
-    <Compile Include="MultiLanguage\Helpers\DictionaryCreator.cs" />
+    <Compile Include="MultiLanguage\Helpers\DicCreator.cs" />
+    <Compile Include="MultiLanguage\Helpers\EnumHelper.cs" />
     <Compile Include="MultiLanguage\Helpers\INameable.cs" />
     <Compile Include="MultiLanguage\Helpers\Language.cs" />
     <Compile Include="MultiLanguage\Helpers\Phrase.cs" />
@@ -179,7 +208,6 @@
     <Content Include="Assets\Image\green_sign.gif" />
     <Content Include="Assets\Image\logo_in.gif" />
     <Content Include="Assets\Image\logo_out.gif" />
-    <Content Include="Assets\Image\luckpig.ico" />
     <Content Include="Assets\Image\off_in.gif" />
     <Content Include="Assets\Image\off_in_hover.gif" />
     <Content Include="Assets\Image\off_out.gif" />
@@ -205,19 +233,19 @@
     <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Table.css" />
-    <EmbeddedResource Include="MultiLanguage\Resources\account.xml">
+    <Content Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\Resources\report.xml" />
-    <EmbeddedResource Include="MultiLanguage\Resources\general.xml">
+    </Content>
+    <Content Include="MultiLanguage\Resources\report.xml" />
+    <Content Include="MultiLanguage\Resources\general.xml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\Resources\move.xml" />
-    <EmbeddedResource Include="MultiLanguage\Resources\user.xml" />
+    </Content>
+    <Content Include="MultiLanguage\Resources\move.xml" />
+    <Content Include="MultiLanguage\Resources\user.xml" />
     <Content Include="MultiLanguage\Resources\category.xml" />
-    <EmbeddedResource Include="MultiLanguage\Resources\error.xml">
+    <Content Include="MultiLanguage\Resources\error.xml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -5,7 +5,7 @@ using Ak.DataAccess.XML;
 
 namespace DFM.MVC.MultiLanguage.Helpers
 {
-    class DictionaryCreator
+    class DicCreator
     {
         public static void Fix(String path, String section, String language, String phrase)
         {

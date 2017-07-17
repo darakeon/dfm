@@ -96,14 +96,7 @@ namespace DFM.MVC.MultiLanguage
                     ?? tryGetText(section, phrase))
                     ?? tryGetText("error", phrase);
 
-                if (text == null)
-                {
-                    DictionaryCreator.Fix(path, section, language, phrase);
-                    return Dictionary[phrase];
-                }
-
-                return text;
-
+                return text ?? notFound(phrase);
             }
         }
 
@@ -111,6 +104,15 @@ namespace DFM.MVC.MultiLanguage
         {
             try { return SectionList[chosenSection][language][phrase].Text; }
             catch (DicException) { return null; }
+        }
+
+        private String notFound(String phrase)
+        {
+            if (HttpContext.Current.Request.Url.Host != "localhost")
+                throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, language, phrase));
+
+            DicCreator.Fix(path, section, language, phrase);
+            return Dictionary[phrase];
         }
 
 
@@ -129,39 +131,6 @@ namespace DFM.MVC.MultiLanguage
 
         
 
-        public static Dictionary<TEnum, String> GetEnumNames<TEnum>()
-        {
-            var natures = new Dictionary<TEnum, String>();
-
-            foreach (var item in Enum.GetValues(typeof(TEnum)))
-            {
-                var key = (TEnum)item;
-                var value = Dictionary[item];
-
-                natures.Add(key, value);
-            }
-            return natures;
-        }
-
-        public static String GetEnumNamesConcat<T>()
-        {
-            var enumList = Enum.GetNames(typeof(T));
-            var result = String.Empty;
-
-            for (var e = 0; e < enumList.Length; e++)
-            {
-                result += Dictionary[enumList[e]];
-
-                switch (enumList.Length - e)
-                {
-                    case 1: break;
-                    case 2: result += String.Format(" {0} ", Dictionary["and"]); break;
-                    default: result += ", "; break;
-                }
-            }
-
-            return result;
-        }
 
         public static String GetMonthName(Int32 month)
         {

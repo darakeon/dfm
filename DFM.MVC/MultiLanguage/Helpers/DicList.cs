@@ -14,7 +14,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
                 var item = this.FirstOrDefault(t => t.Name == name);
 
                 if (item == null)
-                    throw new DicException();
+                    throw new DicException(String.Format("No {0} {1}", typeof(T), name));
 
                 return item;
             }
