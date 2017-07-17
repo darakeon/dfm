@@ -49,7 +49,7 @@ function ShowAccountList(value) {
 
 
 function AddDetail() {
-    $("#addDetailButton").hide();
+    $("#addDetailCaller").hide();
 
     var positionDetail = $(".moveDetailItem").length;
 
@@ -61,7 +61,7 @@ function AddDetail() {
 
             AjustMoney("#details .money");
 
-            $("#addDetailButton").show();
+            $("#addDetailCaller").show();
         }
     );
 }
@@ -85,12 +85,12 @@ function RemoveDetail(position) {
 
 function ChangeDetailLevel(detailed) {
     if (detailed) {
-        $("#addDetailButton").show();
+        $("#addDetailCaller").show();
         $('#oneValue :input').attr('disabled', true);
         $('#details :input').removeAttr('disabled');
     }
     else {
-        $("#addDetailButton").hide();
+        $("#addDetailCaller").hide();
         $('#oneValue :input').removeAttr('disabled');
         $('#details :input').attr('disabled', true);
     }

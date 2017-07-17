@@ -1,25 +1,28 @@
 ﻿@model DFM.MVC.Models.CategoryCreateEditModel
 
-@{ 
+@{
+    if (Model.IsMoveCRUD) { Model.ActionName = "Create"; }
+    
     ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Category"];
     Layout = Model.IsMoveCRUD ? null : "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@using (
-        Model.IsMoveCRUD
-            ? Ajax.BeginForm("CreateAjax", "Category", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })
-            : Html.BeginForm()
-    )
-{ 
+<div class="CRUDCategory MiniForm">
+    @using (
+            Model.IsMoveCRUD
+                ? Ajax.BeginForm("CreateAjax", "Category", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })
+                : Html.BeginForm()
+        )
+    {
 
-    <p>
-        @Html.LabelFor(m => m.Category.Name, PlainText.Dictionary["Category"])<br />
-        @Html.TextBoxFor(m => m.Category.Name)
-    </p>
+        <p>
+            @Html.LabelFor(m => m.Category.Name, PlainText.Dictionary["Category"])<br />
+        
+            @Html.TextBoxFor(m => m.Category.Name)
+        </p>
     
-    <p>
         <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
-    </p>
-    
-    @Html.HiddenFor(m => m.Category.Active)
-}
+
+        @Html.HiddenFor(m => m.Category.Active)
+    }
+</div>

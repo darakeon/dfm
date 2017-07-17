@@ -10,7 +10,7 @@
 
 @foreach (var section in Model.SectionList)
 {
-    <table>
+    <table class="List">
         <tr>
             <th colspan="@(section.LanguageList.Max(l => l.PhraseList.Count) + 1)">
                 @(section.Name.ToUpper())

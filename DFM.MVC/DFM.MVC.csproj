@@ -75,6 +75,7 @@
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
+    <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
     <Compile Include="MultiLanguage\Helpers\DictionaryCreator.cs" />
@@ -99,8 +100,6 @@
     <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
-    <Content Include="Assets\Css\Color\Money.css" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Authentication\Current.cs" />
     <Compile Include="Models\UserLogOnModel.cs" />
@@ -112,12 +111,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Css\Color\Blood.css" />
-    <Content Include="Assets\Css\LinkButton.css" />
+    <Content Include="Assets\Css\Forms.css" />
+    <Content Include="Assets\Css\MiniForm.css" />
+    <Content Include="Assets\Css\Menu.css" />
+    <Content Include="Assets\Css\General.css" />
     <Content Include="Assets\Css\MVC.css" />
     <Content Include="Assets\Css\SystemOut.css" />
     <Content Include="Assets\Css\SystemIn.css" />
-    <Content Include="Assets\Css\Color\Cripta.css" />
     <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
     <Content Include="Assets\Script\AllPages.js" />
     <Content Include="Assets\Script\Libraries\jquery-1.6.1.min.js" />
@@ -205,13 +205,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\AnalyzeDictionary.cshtml" />
+    <Content Include="Views\Account\AnalyzeDictionary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Inner\AD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Category\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

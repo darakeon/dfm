@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <general>
   <en-US>
+    
     <!--Actions-->
     <Create text="Create" />
     <Edit text="Edit" />
@@ -17,6 +18,7 @@
     <Value text="Value" />
     <Description text="Description" />
     <Date text="Date" />
+    <and text="and" />
 
     <!--Entities-->
     <Account text="Account" />
@@ -31,9 +33,14 @@
     <In text="In" />
     <Out text="Out" />
     <Transfer text="Transfer" />
-
+    <Home text="Home" />
+    <Bank text="Bank" />
+    <Card text="Card" />
+    <Debt text="Debt" />
+    
   </en-US>
   <pt-BR>
+    
     <!--Actions-->
     <Create text="Criar" />
     <Edit text="Editar" />
@@ -50,6 +57,7 @@
     <Value text="Valor" />
     <Description text="Descrição" />
     <Date text="Data" />
+    <and text="e" />
 
     <!--Entities-->
     <Account text="Conta" />
@@ -64,5 +72,23 @@
     <In text="Entrada" />
     <Out text="Saída" />
     <Transfer text="Transferência" />
+    <Home text="Casa" />
+    <Bank text="Banco" />
+    <Card text="Cartão" />
+    <Debt text="Dívida" />
+
+    <!--Index-->
+    <Index_Introdution text="O Don't Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer login, senha, e um e-mail de contato válido." />
+    <Index_PossibleNowADays text="Atualmente, é possível:" />
+    <Index_AccountAndTypes text="Criar contas de {0} tipos ({1});" />
+    <Index_Moves text="Criar, atualizar, agendar e deletar movimentações;" />
+    <Index_Transfer text="Fazer transferências entre contas;" />
+    <Index_Categories text="Gerenciar as categorias das movimentações;" />
+    <Index_Reports text="A partir destes dados, são gerados os seguintes relatórios:" />
+    <Index_ReportMonth text="Movimentações do mês;" />
+    <Index_ReportYear text="Resumo anual, com soma dos meses;" />
+    <Index_Close text="Se tiver dúvidas ao entrar no sistema, verifique nosso Tutorial. Ainda estamos em fase de testes. Continuamente, implementaremos novas funcionalidades." />
+    <Index_Finish text="Cadastre-se e comece a usar!" />
+    
   </pt-BR>
 </general>

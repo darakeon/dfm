@@ -1,9 +1,38 @@
-body
+div#Main
 {
-	text-align: center;
+	border-radius: 50px 0px;
 }
 
-div.center
-{
-	padding: 20%;
+div#Login {
+	/*width: 145px;*/
+	float: right;
+	background: #DDF;
+	padding: 10px 10px 10px 10px;
+	font-size: 75%;
+	margin: -20px -20px 10px 10px;
+	border-radius: 0px 0px 0px 50px;
+}
+		
+div#Login input, div#Login button {
+	font-size: 75%;
+	width: auto;
+}
+		
+div#Login div#Remember {
+	float: left;
+	padding-left: 15px;
+}
+
+div#Login div.MiniForm {
+	width: auto;
+	margin: 0 auto;
+	text-align: right;
+}
+
+div#Login button {
+	margin-top: 0px;
+}
+
+div#Login p {
+	margin: 0px;
 }

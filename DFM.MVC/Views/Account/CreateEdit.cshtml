@@ -6,26 +6,26 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@using (Html.BeginForm()) { 
+<div class="MiniForm">
+    @using (Html.BeginForm()) { 
 
-    <p>
         @Html.ValidationSummary(true)
-    </p>
 
-    <p>
-        @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
-        @Html.ValidationMessageFor(m => m.Name)<br />
-        @Html.TextBoxFor(m => m.Name)
-    </p>
+        <p>
+            @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
+            @Html.ValidationMessageFor(m => m.Name)<br />
+            @Html.TextBoxFor(m => m.Name)
+        </p>
 
-    <p>
-        @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
-        @Html.ValidationMessageFor(m => m.Nature)<br />
-        @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
-    </p>
+        <p>
+            @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
+            @Html.ValidationMessageFor(m => m.Nature)<br />
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+        </p>
 
-    <p>
-        <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
-    </p>
+        <p>
+            <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
+        </p>
 
-} 
+    } 
+</div>

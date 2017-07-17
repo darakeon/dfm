@@ -5,18 +5,17 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@if (!Model.Year.MonthList.Any())
-{ 
+@if (!Model.Year.MonthList.Any()) { 
     
-    @PlainText.Dictionary["NoYearMoves"]
-        
+    <div class="ZeroItems">@PlainText.Dictionary["NoYearMoves"]</div>
+
 } else { 
         
-    <table class="List">
+    <table class="List Mini">
 
         <tr>
-            <td>@PlainText.Dictionary["Month"]</td>
-            <td>@PlainText.Dictionary["Value"]</td>
+            <th>@PlainText.Dictionary["Month"]</th>
+            <th>@PlainText.Dictionary["Value"]</th>
         </tr>
 
         @foreach (var month in Model.Year.MonthList) {

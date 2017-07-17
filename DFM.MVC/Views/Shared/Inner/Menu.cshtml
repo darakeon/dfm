@@ -1,21 +1,12 @@
 ﻿@model DFM.MVC.Models.BaseLoggedModel
 
-@foreach (var account in Model.LateralAccountList) { 
-    <p>
-        <span class="accountName">@account.Name </span><br />
-        @Html.RouteLink(Model.CurrentMonth, RouteNames.Accounts, new { controller = "Report", action = "SeeMonth", accountid = account.ID })
-        @Html.RouteLink(Model.CurrentYear, RouteNames.Accounts, new { controller = "Report", action = "SeeYear", accountid = account.ID }) 
-    </p>
-}
+<div id="Menu">
 
-@if (Model.LateralAccountList.Any()) { <br /> }
+    @foreach (var account in Model.LateralAccountList) { 
+        @Html.RouteLink(account.Name, RouteNames.Accounts, new { controller = "Report", action = "Index", accountid = account.ID })
+    }
 
-<p>
-    <br />
-    @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account"})
-    <br />
-    @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category"})
-    <br />
-    <br />
-    @Html.RouteLink(PlainText.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User"})
-</p>
+    @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "Fix" })
+    @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "Fix" })
+
+</div>

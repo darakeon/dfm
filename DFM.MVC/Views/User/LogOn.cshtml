@@ -2,40 +2,31 @@
 
 @{
     ViewBag.Title = PlainText.Dictionary["Logon"];
-    Layout = "~/Views/Shared/Outer/_Layout.cshtml";
+    //Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 }
 
-@using (Html.BeginForm()) { 
-
-    <p>
+<div class="MiniForm">
+    @using (Html.BeginForm("LogOn", "User"))
+    {
         @Html.ValidationSummary(true) 
-    </p>
         
-    <p>
-        @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"]) 
-        @Html.ValidationMessageFor(m => m.Login) <br />
-        @Html.TextBoxFor(m => m.Login) 
-    </p>
+        <p>
+            @Html.LabelFor(m => m.Login, PlainText.Dictionary["Login"])
+            @(": ")
+            @Html.TextBoxFor(m => m.Login) 
+        </p>
 
-    <p>
-        @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"]) 
-        @Html.ValidationMessageFor(m => m.Password)<br />
-        @Html.PasswordFor(m => m.Password)
-    </p>
+        <p>
+            @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])
+            @(": ")
+            @Html.PasswordFor(m => m.Password)
+        </p>
 
-    <p>
-        @Html.CheckBoxFor(m => m.RememberMe)
-        @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"]) 
-    </p>
+        <div id="Remember">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"])
+        </div>
 
-    <p>
         <button type="submit">@PlainText.Dictionary["Logon"]</button>
-    </p>
-
-} 
-
-
-<p>
-    @Html.ActionLink(PlainText.Dictionary["SignUp"], "SignUp") 
-</p>
-
+    }
+</div>

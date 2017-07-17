@@ -51,6 +51,18 @@ namespace DFM.Core.Entities
                 AjustSummaryList(new Summary { Category = category });
         }
 
+        internal protected virtual Year Clone()
+        {
+            return new Year
+            {
+                Account = Account,
+                MonthList = MonthList,
+                SummaryList = SummaryList,
+                Time = Time
+            };
+        }
+
+
 
         public override String ToString()
         {

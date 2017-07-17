@@ -27,7 +27,7 @@ namespace DFM.MVC.MultiLanguage.Helpers
         
         public static String RemoveWrongCharacters(String phrase)
         {
-            var regex = new Regex(@"[^a-zA-Z0-9]*");
+            var regex = new Regex(@"[^a-zA-Z0-9_]*");
 
             return regex.Replace(phrase, "");
         }

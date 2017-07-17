@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <user>
   <en-US>
     <Login text="Login" />
@@ -9,7 +8,7 @@
     <Email text="E-mail" />
     <InvalidUser text="User and/or password invalid." />
     <AlreadyExists text="User already exists." />
-    <RememberMe text="Remember Me" />
+    <RememberMe text="Remember" />
   </en-US>
   <pt-BR>
     <Login text="Login" />
@@ -19,6 +18,6 @@
     <Email text="E-mail" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
     <AlreadyExists text="Usuário já existe." />
-    <RememberMe text="Manter logado" />
+    <RememberMe text="Lembrar" />
   </pt-BR>
 </user>

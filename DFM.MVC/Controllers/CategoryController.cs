@@ -91,9 +91,12 @@ namespace DFM.MVC.Controllers
                                   || String.IsNullOrEmpty(model.Category.Name);
 
             if (categoryIdEmpty)
-                return new Category { ID = 0 };
+            {
+                ModelState.AddModelError("Category.Name", "");
+                return new Category {ID = 0};
+            }
 
-            
+
             model.Category.User = Current.User;
 
             categoryData.SaveOrUpdate(model.Category);

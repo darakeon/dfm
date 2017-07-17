@@ -1,39 +1,40 @@
-#newCategory 
-{
+#newCategory {
     float: right;
     display: none;
 }
 
-#AccountID
-{
+#AccountID {
     display: none;
 }
 
-.createMoveScreenLeft
-{
+.createMoveScreenLeft {
     float: left;
     width: 35%;
     clear: left;
 }
 
-div
-{
+div#Main div {
     padding-bottom: 10px;
 }
 
-#moveCreateButton
-{
+.CRUDCategory button {
+	margin: 0;
+}
+
+.CRUDCategory {
+	width: 200px !important;
+}
+
+#moveCreateButton {
     clear: both;
     text-align: right;
 }
 
-#addDetailButton
-{
+#addDetailCaller {
     margin-left: 20px;
     display: none;
 }
 
-input.amount
-{
+input.amount {
 	width: 30px;
 }

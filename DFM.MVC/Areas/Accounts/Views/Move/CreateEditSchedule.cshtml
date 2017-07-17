@@ -16,8 +16,9 @@
 }
 
 
-
-<div id="newCategory">@Html.Action("Create", "Category", new { @area = String.Empty })</div>
+@section BeforeTitle { 
+    <div id="newCategory">@Html.Action("Create", "Category", new { @area = String.Empty })</div>
+}
 
 
 @using (Html.BeginForm())
@@ -31,7 +32,7 @@
     {
         @Html.LabelFor(m => m.Scheduler.Times, PlainText.Dictionary["TimesToSchedule"])
     
-        @Html.TextBoxFor(m => m.Scheduler.Times, new { @class = "amount" })
+        @Html.TextBoxFor(m => m.Scheduler.Times, new { @class = "amount" }) @(" ")
         @Html.DropDownListFor(m => m.Scheduler.Frequency, Model.FrequencySelectList)
 
         <br />
@@ -62,7 +63,7 @@
             @Html.ValidationMessageFor(m => m.CategoryID)<br />
             @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
 
-            <button type="button" id="newCategoryCaller">@PlainText.Dictionary["Create", "Category"]</button>
+            <a href="#" type="button" id="newCategoryCaller">@PlainText.Dictionary["Create", "Category"]</a>
         </div>
 
         <div>
@@ -87,14 +88,14 @@
         @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "DetailLevel" })
         @PlainText.Dictionary["Detailed"]
         
-        <button id="addDetailButton" type="button" onclick="AddDetail()">@PlainText.Dictionary["Add", "Detail"]</button>
+        <a href="#" id="addDetailCaller" onclick="AddDetail()">@PlainText.Dictionary["Add", "Detail"]</a>
     </div>
 
     <div id="oneValue" class="createMoveScreenLeft">
-        <table>
+        <table class="List">
             <tr>
-                <td>@Html.LabelFor(m => m.Move.DetailList[0].Amount, PlainText.Dictionary["Amount"])</td>
-                <td>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</td>
+                <th>@Html.LabelFor(m => m.Move.DetailList[0].Amount, PlainText.Dictionary["Amount"])</th>
+                <th>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</th>
             </tr>
             <tr>
                 <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "amount" })</td>
@@ -105,21 +106,19 @@
         @Html.HiddenFor(m => m.Move.DetailList[0].ID)
     </div>
         
-    <table id="details" class="createMoveScreenRight">
-        <tr>
-            <td>@PlainText.Dictionary["Description"]</td>
-            <td>@PlainText.Dictionary["Amount"]</td>
-            <td>@PlainText.Dictionary["Value"]</td>
-        </tr>
+    <table class="createMoveScreenRight">
+        <tbody id="details">
+            <tr>
+                <th>@PlainText.Dictionary["Description"]</th>
+                <th>@PlainText.Dictionary["Amount"]</th>
+                <th>@PlainText.Dictionary["Value"]</th>
+            </tr>
 
-        @for (var d = 0; d < Model.Move.DetailList.Count; d++)
-        {
-            @Html.Action("AddDetail", new
-       {
-           position = d,
-           id = Model.Move.DetailList[d].ID
-       });
-        }
+            @for (var d = 0; d < Model.Move.DetailList.Count; d++)
+            {
+                @Html.Action("AddDetail", new { position = d, id = Model.Move.DetailList[d].ID });
+            }
+        </tbody>
     </table>
     
     <div id="moveCreateButton">

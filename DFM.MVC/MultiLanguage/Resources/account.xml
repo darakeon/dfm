@@ -3,12 +3,8 @@
   <en-US>
     <NoAccounts text="There's no Accounts yet." />
     <NoClosedAccounts text="There's no closed Accounts." />
-    <Home text="Home" />
-    <Bank text="Bank" />
-    <Card text="Card" />
-    <Debt text="Debt" />
-    <BeginDate text="Begin Date" />
-    <EndDate text="End Date" />
+    <BeginDate text="Begin" />
+    <EndDate text="End" />
     <MonthMoves text="{0} Moves" />
     <YearMoves text="{0} Summary" />
     <Close text="Close" />
@@ -18,17 +14,14 @@
     <AccountClosed text="Account '{0}' closed." />
     <AlreadyExists text="Account already exists." />
     <DuplicatedName text="There is more than one account with same name." />
+    <Report text="Report" />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
     <NoClosedAccounts text="Não há Contas Fechadas." />
-    <Home text="Casa" />
-    <Bank text="Banco" />
-    <Card text="Cartão" />
-    <Debt text="Dívida" />
-    <BeginDate text="Data de Início" />
-    <EndDate text="Data de Fim" />
-    <MonthMoves text="Movimentações de {0}" />
+    <BeginDate text="Início" />
+    <EndDate text="Fim" />
+    <MonthMoves text="Extrato de {0}" />
     <YearMoves text="Resumo de {0}" />
     <Close text="Fechar" />
     <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?" />
@@ -37,5 +30,6 @@
     <AccountClosed text="Conta '{0}' fechada." />
     <AlreadyExists text="Conta já existe." />
     <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
+    <Report text="Relatórios" />
   </pt-BR>
 </account>

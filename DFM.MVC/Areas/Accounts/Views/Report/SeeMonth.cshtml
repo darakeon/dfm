@@ -9,21 +9,21 @@
     <script src='@Url.Content("~/Assets/Script/Pages/ReportSeeMonth.js")' type='text/javascript'></script>
 }
 
-@if (!Model.MoveList.Any()) { 
-    
-    @PlainText.Dictionary["NoMonthMoves"]
-        
-} else { 
-        
+@if (!Model.MoveList.Any())
+{ 
+    <div class="ZeroItems">@PlainText.Dictionary["NoMonthMoves"]</div>
+}
+else
+{ 
     <table class="List">
 
         <tr>
-            <td>@PlainText.Dictionary["Description"]</td>
-            <td>@PlainText.Dictionary["Category"]</td>
-            <td>@PlainText.Dictionary["Date"]</td>
-            <td>@PlainText.Dictionary["In"]</td>
-            <td>@PlainText.Dictionary["Out"]</td>
-            <td colspan="2">@PlainText.Dictionary["TODO"]</td>
+            <th>@PlainText.Dictionary["Description"]</th>
+            <th>@PlainText.Dictionary["Category"]</th>
+            <th>@PlainText.Dictionary["Date"]</th>
+            <th>@PlainText.Dictionary["In"]</th>
+            <th>@PlainText.Dictionary["Out"]</th>
+            <th colspan="2">@PlainText.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var move in Model.MoveList) { 

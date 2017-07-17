@@ -6,6 +6,7 @@
     <CategoryNotFound text="Category not found." />
     <CategoryEnabled text="Category '{0}' enabled." />
     <CategoryDisabled text="Category '{0}' disabled." />
+    <NoCategories text="There's no Categories yet." />
   </en-US>
   <pt-BR>
     <Enable text="Ativar" />
@@ -13,5 +14,6 @@
     <CategoryNotFound text="Categoria não encontrada." />
     <CategoryEnabled text="Categoria '{0}' ativada." />
     <CategoryDisabled text="Categoria '{0}' desativada." />
+    <NoCategories text="Não há Categorias ainda." />
   </pt-BR>
 </category>

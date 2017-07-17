@@ -4,6 +4,7 @@
 {
     padding: 2px;
     margin: 3px 3px;
+    color: #C00;
 }
 
 .field-validation-valid
@@ -14,12 +15,14 @@
 .input-validation-error
 {
     border: 3px ridge;
+    background-color: #FDD;
 }
 
 .validation-summary-errors
 {
     font-weight: bold;
     padding: 0px;
+    color: #C00;
 }
 
 .validation-summary-valid

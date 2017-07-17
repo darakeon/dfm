@@ -1,0 +1,40 @@
+body {
+	background: #111;
+	font-family: Calibri;
+	font-size: 15px;
+	text-align: justify;
+}
+
+div#Head, div#Main, div#Footer, div#Menu {
+	width: 950px;
+	margin: 0 auto;
+}
+
+img#Logo {
+	margin: 20px;
+}
+
+div#Main {
+	background: #FFF;
+	min-height: 500px;
+	width: 910px;
+	padding: 20px;
+}
+
+div#Footer {
+	padding-top: 20px;
+	color: #FFF;
+	text-align: center;
+}
+
+
+
+h2 {
+	color: #050;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #070;
+}

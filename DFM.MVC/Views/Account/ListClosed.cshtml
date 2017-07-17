@@ -5,23 +5,25 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
-@if (!Model.AccountList.Any()) { 
-    
-    @PlainText.Dictionary["NoClosedAccounts"]
-
-} else { 
+@if (!Model.AccountList.Any())
+{ 
+    <div class="ZeroItems">@PlainText.Dictionary["NoClosedAccounts"]</div>
+}
+else
+{ 
         
-    <table class='List'>
+    <table class="List">
 
         <tr>
-            <td>@PlainText.Dictionary["Name"]</td>
-            <td>@PlainText.Dictionary["BeginDate"]</td>
-            <td>@PlainText.Dictionary["EndDate"]</td>
-            <td>@PlainText.Dictionary["Value"]</td>
-            <td colspan="2">@PlainText.Dictionary["GOTO"]</td>
+            <th>@PlainText.Dictionary["Name"]</th>
+            <th>@PlainText.Dictionary["BeginDate"]</th>
+            <th>@PlainText.Dictionary["EndDate"]</th>
+            <th>@PlainText.Dictionary["Value"]</th>
+            <th colspan="2">@PlainText.Dictionary["GOTO"]</th>
         </tr>
 
-        @foreach (var account in Model.AccountList) { 
+        @foreach (var account in Model.AccountList)
+        { 
             
             <tr>
                 <td>@account.Name </td>

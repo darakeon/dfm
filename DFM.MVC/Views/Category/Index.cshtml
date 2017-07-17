@@ -7,15 +7,15 @@
 
 @if (!Model.CategoryList.Any())
 { 
-    @PlainText.Dictionary["NoCategories"]
+    <div class="ZeroItems">@PlainText.Dictionary["NoCategories"]</div>
 }
 else
 { 
-    <table class='List'>
+    <table class="List">
 
         <tr>
-            <td>@PlainText.Dictionary["Name"]</td>
-            <td colspan="2">@PlainText.Dictionary["TODO"]</td>
+            <th>@PlainText.Dictionary["Name"]</th>
+            <th colspan="2">@PlainText.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var category in Model.CategoryList)

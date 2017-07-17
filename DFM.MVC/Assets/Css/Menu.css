@@ -1,0 +1,42 @@
+div#Menu {
+	height: 24px;
+}
+
+div#Menu a {
+	border-radius: 10px 0px;
+	color: #fff; 
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	padding: 3px 7px 5px 7px;
+	cursor: pointer;
+
+	float: left;
+	margin: -2px 5px 0 0;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
+	background: -moz-linear-gradient(top,  #999,  #333);
+}
+
+div#Menu a.Fix
+{
+	float: right;
+	margin: -2px 0 0 5px;
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#111));
+	background: -moz-linear-gradient(top,  #777,  #111);
+}
+		
+div#Menu a:hover
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#BBB), to(#777));
+	background: -moz-linear-gradient(top,  #BBB,  #777);
+}
+		
+div#Menu a.Fix:hover
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#555));
+	background: -moz-linear-gradient(top,  #999,  #555);
+}

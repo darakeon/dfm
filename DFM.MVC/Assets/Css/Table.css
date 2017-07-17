@@ -1,26 +1,49 @@
-/* Styles for validation helpers
------------------------------------------------------------*/
-.tableFooterButtonList
-{
+.tableFooterButtonList {
 	text-align: right;
 	margin-top: 20px;
 }
 
-td.numeric
-{
+table.List {
+	width: 95%;
+	padding: 0;
+	margin: auto;
+}
+
+th, td {
+	padding: 0px 7px;
+}
+
+tr:nth-child(2n) {
+	background: #FFF;
+}
+
+tr:nth-child(2n+1) {
+	background: #CCC;
+}
+
+th {
+	background: #111;
+	color: #FFF;
+	margin: 0;
+	border-radius: 7px 7px 0 0;
+}
+
+
+
+
+td.numeric {
 	text-align: right;
 }
 
-td.in
-{
+td.in {
 	color: #00C;
 }
 
-td.out
-{
+td.out {
 	color: #C00;
 }
 
 
-
-
+table.Mini {
+	width: 40%;
+}

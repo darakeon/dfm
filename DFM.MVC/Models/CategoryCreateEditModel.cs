@@ -7,6 +7,11 @@ namespace DFM.MVC.Models
 {
     public class CategoryCreateEditModel : BaseLoggedModel
     {
+        public CategoryCreateEditModel()
+        {
+            Category = new Category();
+        }
+
         public Category Category { get; set; }
 
         public Boolean IsMoveCRUD { get; private set; }

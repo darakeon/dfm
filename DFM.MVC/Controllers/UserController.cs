@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.Core.Enums;
 using DFM.Core.Helpers;
 using DFM.MVC.Models;
 using DFM.Core.Database;
@@ -15,6 +16,19 @@ namespace DFM.MVC.Controllers
 
 
 
+        public ActionResult Index()
+        {
+            var model = new UserIndexModel
+            {
+                Types = PlainText.GetEnumNamesConcat<AccountNature>(),
+                TypeAmount = Enum.GetNames(typeof(AccountNature)).Length
+            };
+
+            return View(model);
+        }
+
+
+        
         #region LogOn
         public ActionResult LogOn(String returnUrl)
         {

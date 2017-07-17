@@ -26,7 +26,7 @@ namespace DFM.MVC
             routes.MapRoute(
                 RouteNames.Default, // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "User", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
         }
 
@@ -76,9 +76,10 @@ namespace DFM.MVC
             if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
                 return;
 
-            var language = "pt-BR"; //Request.UserLanguages[0];
+            var language = Request.UserLanguages[0];
+            //var language = "pt-BR";
 
-            if (!PlainText.AcceptedLanguages.Contains(language))
+            if (!PlainText.AcceptLanguage(language) || true)
                 language = "pt-BR";
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);

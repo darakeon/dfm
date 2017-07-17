@@ -88,12 +88,29 @@ namespace DFM.Core.Database
         }
 
 
-        public Year GetYearReport(Int32 id, Int32 year)
+        public Year GetYearReport(Int32 id, Int32 dateYear)
         {
             var account = SelectById(id);
 
-            return account.YearList
-                .SingleOrDefault(y => y.Time == year);
+            var year = account.YearList
+                .SingleOrDefault(y => y.Time == dateYear);
+
+            return nonFuture(year);
+        }
+
+        private static Year nonFuture(Year year)
+        {
+            if (year.Time == DateTime.Today.Year)
+            {
+                //prevent from saving and destroying the true element
+                year = year.Clone();
+
+                year.MonthList = year.MonthList
+                                    .Where(m => m.Time <= DateTime.Today.Month)
+                                    .ToList();
+            }
+
+            return year;
         }
 
 

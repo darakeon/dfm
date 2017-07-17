@@ -5,6 +5,12 @@ namespace DFM.Core.Entities
 {
     public class Category : IEntity
     {
+        public Category()
+        {
+            Active = true;
+        }
+
+
         public virtual Int32 ID { get; set; }
 
         public virtual String Name { get; set; }

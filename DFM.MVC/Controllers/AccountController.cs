@@ -101,5 +101,18 @@ namespace DFM.MVC.Controllers
 
             return new JsonResult { Data = new { message } };
         }
+
+
+
+
+        public ActionResult AnalyzeDictionary()
+        {
+            var plainText = Current.IsAuthenticated
+                                ? PlainText.Dictionary
+                                : new PlainText();
+
+            return View(plainText);
+        }
+
     }
 }

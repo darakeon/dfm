@@ -16,7 +16,7 @@ namespace DFM.MVC.MultiLanguage
     public class PlainText
     {
         public static PlainText Dictionary;
-        public static List<String> AcceptedLanguages;
+        private static List<String> acceptedLanguages;
         private static readonly String path = HttpContext.Current.Server.MapPath(@"~\MultiLanguage\Resources");
 
         public DicList<Section> SectionList { get; private set; }
@@ -26,7 +26,7 @@ namespace DFM.MVC.MultiLanguage
         public PlainText()
         {
             SectionList = new DicList<Section>();
-            AcceptedLanguages = new List<String>();
+            acceptedLanguages = new List<String>();
         }
 
         private PlainText(IEnumerable<String> xmls) : this()
@@ -58,11 +58,17 @@ namespace DFM.MVC.MultiLanguage
 
             Dictionary.SectionList.ForEach(
                 s => list.AddRange( 
-                        s.LanguageList.Select(l => l.Name)
+                        s.LanguageList
+                            .Select(l => l.Name.ToLower())
                     )
                 );
 
-            AcceptedLanguages = list.Distinct().ToList();
+            acceptedLanguages = list.Distinct().ToList();
+        }
+
+        internal static Boolean AcceptLanguage(String chosenLanguage)
+        {
+            return acceptedLanguages.Contains(chosenLanguage.ToLower());
         }
 
 
@@ -130,9 +136,30 @@ namespace DFM.MVC.MultiLanguage
             return natures;
         }
 
+        public static String GetEnumNamesConcat<T>()
+        {
+            var enumList = Enum.GetNames(typeof(T));
+            var result = String.Empty;
+
+            for (var e = 0; e < enumList.Length; e++)
+            {
+                result += Dictionary[enumList[e]];
+
+                switch (enumList.Length - e)
+                {
+                    case 1: break;
+                    case 2: result += String.Format(" {0} ", Dictionary["and"]); break;
+                    default: result += ", "; break;
+                }
+            }
+
+            return result;
+        }
+
         public static String GetMonthName(Int32 month)
         {
             return Culture.DateTimeFormat.GetMonthName(month).Capitalize();
         }
+
     }
 }
