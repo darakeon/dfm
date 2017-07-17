@@ -121,10 +121,10 @@ namespace DFM.Core.Database
         
         private static void invalidateSummary(Move move)
         {
-            if (move.Nature.In(MoveNature.In, MoveNature.Transfer))
+            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
                 SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
             
-            if (move.Nature.In(MoveNature.Out, MoveNature.Transfer))
+            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
                 SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
         }
 
@@ -134,7 +134,7 @@ namespace DFM.Core.Database
                 || move.Schedule.ID != 0) return;
 
             if (!move.Schedule.Contains(move))
-                move.Schedule.MoveList.Add(move);
+                move.Schedule.AddMove(move);
 
             ScheduleData.Initialize(move.Schedule);
         }

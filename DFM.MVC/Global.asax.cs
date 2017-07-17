@@ -82,7 +82,7 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
-            if (!NHManager.IsAssetCalling && Current.IsAuthenticated)
+            if (Current.IsAuthenticated)
                 ScheduleRunner.Run(Current.User);
 
             NHManager.Close();

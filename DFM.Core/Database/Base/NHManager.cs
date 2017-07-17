@@ -9,11 +9,6 @@ namespace DFM.Core.Database.Base
     public class NHManager
     {
 
-        public static Boolean IsAssetCalling
-        {
-            get { return SessionBuilder.IsAssetCalling; }
-        }
-
         public static void Start()
         {
             var mapInfo = new AutoMappingInfo<UserMap, User>();

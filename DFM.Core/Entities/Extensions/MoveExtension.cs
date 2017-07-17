@@ -78,6 +78,7 @@ namespace DFM.Core.Entities.Extensions
 
                                In = move.In,
                                Out = move.Out,
+                               Schedule = move.Schedule,
                            };
 
             move.DetailList.ForEach(d => 
