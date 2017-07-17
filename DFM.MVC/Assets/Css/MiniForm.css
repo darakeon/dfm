@@ -3,3 +3,11 @@ div.MiniForm {
 	margin: 0 auto;
 	text-align: center;
 }
+
+div.MiniForm label {
+	display: block;
+}
+
+#Remember label, #TopRightDiv label {
+	display: inline;
+}

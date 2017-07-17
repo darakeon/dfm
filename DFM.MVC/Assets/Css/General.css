@@ -9,9 +9,16 @@ body {
 	font-size: 15px;
 }
 
-div#Head, div#Main, div#Footer, div#Menu {
-	width: 950px;
+div#Head, div#Menu, div#Main, div#PS, div#Footer {
 	margin: 0 auto;
+}
+
+div#Head, div#Menu, div#Footer {
+	width: 950px;
+}
+
+div#Main, div#PS {
+	background: #FFF;
 }
 
 #Logo img { margin: 20px 3px; }
@@ -24,10 +31,16 @@ img#Out {
 }
 
 div#Main {
-	background: #FFF;
 	min-height: 500px;
 	width: 910px;
 	padding: 20px;
+}
+
+div#PS {
+	width: 930px;
+	padding: 10px;
+	color: #990;
+	font-size: 80%;
 }
 
 div#Footer {

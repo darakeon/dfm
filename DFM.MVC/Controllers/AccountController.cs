@@ -84,7 +84,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("Name", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)

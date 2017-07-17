@@ -12,12 +12,13 @@
 }
 else
 { 
+    
     <table class="List">
 
         <tr>
             <th width="200px">@PlainText.Dictionary["Name"]</th>
             <th>@PlainText.Dictionary["BeginDate"]</th>
-            <th>@PlainText.Dictionary["Value"]</th>
+            <th colspan="2">@PlainText.Dictionary["Value"]</th>
             <th colspan="2">@PlainText.Dictionary["Move"]</th>
             <th colspan="2">@PlainText.Dictionary["TODO"]</th>
         </tr>
@@ -30,14 +31,18 @@ else
                 <td>@account.BeginDate.ToShortDateString() </td>
 
                 @{
-               var movesSum = account.Sum();
+                    var movesSum = account.Sum();
 
-               var negative = movesSum < 0;
-               var value = (negative ? -movesSum : movesSum).ToMoney();
+                    var negative = movesSum < 0;
+                    var value = (negative ? -movesSum : movesSum).ToMoney();
+
+                    var sign = account.Sign();
                 }
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                     
+                <td class="account_sign">@if (sign != null) {<img src="/Assets/image/@(sign)_sign.gif" alt="@sign" />}</td>
+
                 <td>@Html.RouteLink(PlainText.Dictionary["Create"], RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
 
                 <td>@Html.RouteLink(PlainText.Dictionary["Schedule"], RouteNames.Accounts, new { action = "Schedule", controller = "Move", accountid = account.ID }, new { })</td>

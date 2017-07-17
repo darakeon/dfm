@@ -133,7 +133,6 @@
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Extensions\StringExtension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
-    <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
     <Compile Include="MultiLanguage\Helpers\DictionaryCreator.cs" />
@@ -177,6 +176,7 @@
     <Content Include="Assets\Css\SystemOut.css" />
     <Content Include="Assets\Css\SystemIn.css" />
     <Content Include="Assets\Css\Pages\MoveCreateEdit.css" />
+    <Content Include="Assets\Image\green_sign.gif" />
     <Content Include="Assets\Image\logo_in.gif" />
     <Content Include="Assets\Image\logo_out.gif" />
     <Content Include="Assets\Image\luckpig.ico" />
@@ -185,6 +185,9 @@
     <Content Include="Assets\Image\off_out.gif" />
     <Content Include="Assets\Image\off_out_hover.gif" />
     <Content Include="Assets\Image\pig.gif" />
+    <Content Include="Assets\Image\pig.ico" />
+    <Content Include="Assets\Image\red_sign.gif" />
+    <Content Include="Assets\Image\yellow_sign.gif" />
     <Content Include="Assets\Script\Forms.js" />
     <Content Include="Assets\Script\Menu.js" />
     <Content Include="Assets\Script\Navigation.js" />

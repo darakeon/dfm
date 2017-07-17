@@ -1,5 +1,4 @@
 ﻿using System;
-using Ak.Generic.Enums;
 using DFM.Core.Database.Base;
 
 namespace DFM.Core.Helpers
@@ -9,14 +8,6 @@ namespace DFM.Core.Helpers
         internal static DFMCoreException WithMessage(Possibilities message)
         {
             return new DFMCoreException(message);
-        }
-
-        internal static DFMCoreException WithMessage(String format, params object[] args)
-        {
-            var errorMessage = String.Format(format, args);
-            var errorEnumValue = Str2Enum.Cast<Possibilities>(errorMessage);
-
-            return WithMessage(errorEnumValue);
         }
 
 
@@ -44,12 +35,13 @@ namespace DFM.Core.Helpers
             MoveFutureNotScheduled,
             OutMoveWrong,
             ScheduleFrequencyNotRecognized,
+            ScheduleNoMoves,
             SummaryNatureNotFound,
             TransferMoveWrong,
             UserAlreadyExists,
             UserInvalidEmail,
             YearAmbiguousInAccount,
-            ScheduleNoMoves,
+            YellowLimitUnderRedLimit,
         }
 
     }

@@ -12,6 +12,9 @@
     <AccountClosed text="Account '{0}' closed." />
     <AccountDeleted text="Account '{0}' deleted." />
     <Report text="Report" />
+    <RedLimit text="Red Limit" />
+    <YellowLimit text="Yellow Limit" />
+    <LimitExplanation text="when account goes under this, a sign is shown on account list." />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
@@ -25,5 +28,8 @@
     <AccountClosed text="Conta '{0}' fechada." />
     <AccountDeleted text="Conta '{0}' apagada." />
     <Report text="Relatórios" />
+    <RedLimit text="Sinal Vermelho" />
+    <YellowLimit text="Sinal Amarelo" />
+    <LimitExplanation text="quando uma conta fica abaixo do valor, um sinal aparecerá na listagem de contas." />
   </pt-BR>
 </account>

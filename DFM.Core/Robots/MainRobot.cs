@@ -7,7 +7,6 @@ namespace DFM.Core.Robots
         public static void Run(User user)
         {
             ScheduleRunner.Run(user);
-            FixRateRunner.Run(user);
         }
     }
 }

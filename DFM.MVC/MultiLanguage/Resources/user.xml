@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <user>
   <en-US>
-    <Login text="Login" />
+    <Email text="E-mail" />
     <Password text="Password" />
     <Enter text="Enter" />
-    <SignUp text="Don't have!" />
-    <Email text="E-mail" />
+    <SignUp text="Sign up" />
     <RememberMe text="Remember" />
     <Logon text="Logon" />
   </en-US>
   <pt-BR>
-    <Login text="Login" />
+    <Email text="E-mail" />
     <Password text="Senha" />
     <Enter text="Entrar" />
     <SignUp text="Cadastrar-se" />
-    <Email text="E-mail" />
     <RememberMe text="Lembrar" />
     <Logon text="Entrar" />
   </pt-BR>

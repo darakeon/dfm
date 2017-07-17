@@ -27,6 +27,7 @@
     <UserAlreadyExists text="User already exists." />
     <UserInvalidEmail text="User e-mail is invalid." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
+    <YellowLimitUnderRedLimit text="Yellow Limit must be above Red Limit." />
   </en-US>
   <pt-BR>
     <AccountAlreadyExists text="Conta já existe." />
@@ -55,5 +56,6 @@
     <UserAlreadyExists text="Usuário já existe." />
     <UserInvalidEmail text="E-mail inválido." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
+    <YellowLimitUnderRedLimit text="O Sinal Amarelo deve ter um valor maior que o Sinal Vermelho." />
   </pt-BR>
 </error>

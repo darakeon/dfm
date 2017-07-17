@@ -33,8 +33,11 @@ namespace DFM.Core.Entities.Extensions
             {
                 var nature = summarizable.SummaryList.First().Nature;
 
+                var errorMessage = String.Format("SummaryAmbiguousIn{0}", nature);
+                var errorEnumValue = Str2Enum.Cast<DFMCoreException.Possibilities>(errorMessage);
+
                 if (e.Message == "Sequence contains more than one matching element")
-                    throw DFMCoreException.WithMessage("SummaryAmbiguousIn{0}", nature);
+                    throw DFMCoreException.WithMessage(errorEnumValue);
                 throw;
             }
         }

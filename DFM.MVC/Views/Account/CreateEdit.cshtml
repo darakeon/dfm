@@ -13,19 +13,26 @@
 
         <p>
             @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
-            @Html.ValidationMessageFor(m => m.Name)<br />
             @Html.TextBoxFor(m => m.Name)
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
-            @Html.ValidationMessageFor(m => m.Nature)<br />
-            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.LabelFor(m => m.Account.RedLimit, PlainText.Dictionary["RedLimit"])
+            @Html.TextBoxFor(m => m.Account.RedLimit)
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.Account.YellowLimit, PlainText.Dictionary["YellowLimit"])
+            @Html.TextBoxFor(m => m.Account.YellowLimit)
         </p>
 
         <p>
             <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
         </p>
 
-    } 
+    }
 </div>
+
+@section PS {
+    @PlainText.Dictionary["RedLimit"] / @PlainText.Dictionary["YellowLimit"]: @PlainText.Dictionary["LimitExplanation"]
+}

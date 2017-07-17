@@ -80,13 +80,7 @@
     <Compile Include="Database\UserData.cs" />
     <Compile Include="Database\Base\BaseData.cs" />
     <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\AccountDetails\Bank.cs" />
-    <Compile Include="Entities\AccountDetails\Charge.cs" />
-    <Compile Include="Entities\AccountDetails\Credit.cs" />
-    <Compile Include="Entities\AccountDetails\Debt.cs" />
-    <Compile Include="Robots\AccountDetailExtension.cs" />
     <Compile Include="Entities\Bases\IEntity.cs" />
-    <Compile Include="Entities\Bases\IAccountDetail.cs" />
     <Compile Include="Entities\Bases\ISummarizable.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Detail.cs" />
@@ -105,7 +99,7 @@
     <Compile Include="Entities\Summary.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Year.cs" />
-    <Compile Include="Enums\AccountNature.cs" />
+    <Compile Include="Enums\AccountSign.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SummaryNature.cs" />

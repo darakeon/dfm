@@ -14,13 +14,7 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            var model = new UserIndexModel
-            {
-                Types = PlainText.GetEnumNamesConcat<AccountNature>(),
-                TypeAmount = Enum.GetNames(typeof(AccountNature)).Length
-            };
-
-            return View(model);
+            return View();
         }
 
 

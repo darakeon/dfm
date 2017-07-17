@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.Core.Enums;
 using DFM.Core.Helpers;
 
 namespace DFM.Core.Entities.Extensions
@@ -43,6 +44,24 @@ namespace DFM.Core.Entities.Extensions
         public static Boolean AuthorizeCRUD(this Account account, User user)
         {
             return account.User == user;
+        }
+
+        public static AccountSign? Sign(this Account account)
+        {
+            var hasRed = account.RedLimit != null;
+            var hasYellow = account.YellowLimit != null;
+            var sum = account.Sum();
+
+            if (hasRed && sum < account.RedLimit)
+                return AccountSign.Red;
+            
+            if (hasYellow && sum < account.YellowLimit)
+                return AccountSign.Yellow;
+
+            if (hasRed || hasYellow)
+                return AccountSign.Green;
+            
+            return null;
         }
 
     }

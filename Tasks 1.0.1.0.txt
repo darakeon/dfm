@@ -8,7 +8,7 @@
 			importador/exportador de Money
 			importador/exportador de CSV
 
-		1	Validar login e senha por e-mail
+			Validar login e senha por e-mail
 			Edição de Perfil de usuário
 			Permitir escolha da língua para usuário logado
 			Opção de enviar transações para o e-mail

@@ -1,6 +1,4 @@
-﻿@model DFM.MVC.Models.UserIndexModel
-
-@{
+﻿@{
     ViewBag.Title = PlainText.Dictionary["Welcome"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 }
@@ -20,7 +18,6 @@
 </p>
 			
 <ul>
-	<li>@String.Format(PlainText.Dictionary["Index_AccountAndTypes"], Model.TypeAmount, Model.Types)</li>
 	<li>@PlainText.Dictionary["Index_Moves"]</li>
 	<li>@PlainText.Dictionary["Index_Transfer"]</li>
 	<li>@PlainText.Dictionary["Index_Categories"]</li>
