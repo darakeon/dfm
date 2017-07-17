@@ -87,5 +87,10 @@ namespace DFM.Core.Entities.Extensions
             return newMove;
         }
 
+        public static Boolean AuthorizeCRUD(this Move move, User user)
+        {
+            return (move.In ?? move.Out).Year.Account.User == user;
+        }
+
     }
 }

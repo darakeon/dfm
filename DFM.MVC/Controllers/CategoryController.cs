@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
 using DFM.Core.Entities;
+using DFM.Core.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Core.Database;
 using DFM.MVC.Models;
@@ -48,14 +49,16 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Edit(Int32? id)
         {
-            if (!id.HasValue) return RedirectToAction("Create"); 
-            
-            
+            if (!id.HasValue) return RedirectToAction("Create");
+
             var model = new CategoryCreateEditModel
             {
                 Category = CategoryData.SelectById(id.Value)
             };
 
+            if (isUnauthorized(model.Category))
+                return RedirectToAction("Create");
+            
             return View("CreateEdit", model);
         }
 
@@ -63,6 +66,13 @@ namespace DFM.MVC.Controllers
         public ActionResult Edit(Int32 id, CategoryCreateEditModel model)
         {
             model.Category.ID = id;
+
+
+            var oldCategory = CategoryData.SelectById(id);
+
+            if (isUnauthorized(oldCategory))
+                return RedirectToAction("Create");
+
 
             return createEditForHtmlForm(model);
         }
@@ -107,7 +117,10 @@ namespace DFM.MVC.Controllers
         {
             var category = CategoryData.SelectById(id);
 
-            CategoryData.Disable(category);
+            if (isUnauthorized(category))
+                category = null;
+            else
+                CategoryData.Disable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]
@@ -122,13 +135,24 @@ namespace DFM.MVC.Controllers
         {
             var category = CategoryData.SelectById(id);
 
-            CategoryData.Enable(category);
+            if (isUnauthorized(category))
+                category = null;
+            else
+                CategoryData.Enable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]
                 : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
 
             return new JsonResult { Data = new { message } };
+        }
+
+
+
+        private static Boolean isUnauthorized(Category category)
+        {
+            return category == null
+                   || !category.AuthorizeCRUD(Current.User);
         }
 
     }

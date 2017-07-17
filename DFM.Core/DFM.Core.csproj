@@ -85,6 +85,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Extensions\AccountExtension.cs" />
+    <Compile Include="Entities\Extensions\CategoryExtension.cs" />
     <Compile Include="Entities\Extensions\SummaryExtension.cs" />
     <Compile Include="Entities\Extensions\SummarizableExtension.cs" />
     <Compile Include="Entities\Extensions\ScheduleExtension.cs" />

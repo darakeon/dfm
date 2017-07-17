@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.Core.Entities;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Helpers;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
@@ -46,9 +48,12 @@ namespace DFM.MVC.Controllers
             if (!id.HasValue) return RedirectToAction("Create");
 
             var model = new AccountCreateEditModel
-                            {
-                                Account = AccountData.SelectById(id.Value)
-                            };
+            {
+                Account = AccountData.SelectById(id.Value)
+            };
+
+            if (isUnauthorized(model.Account))
+                return RedirectToAction("Create");
 
             return View("CreateEdit", model);
         }
@@ -57,6 +62,13 @@ namespace DFM.MVC.Controllers
         public ActionResult Edit(Int32 id, AccountCreateEditModel model)
         {
             model.Account.ID = id;
+
+
+            var oldAccount = AccountData.SelectById(id);
+
+            if (isUnauthorized(oldAccount))
+                return RedirectToAction("Create");
+
 
             return createEdit(model);
         }
@@ -94,7 +106,10 @@ namespace DFM.MVC.Controllers
 
             try
             {
-                AccountData.Close(account);
+                if (isUnauthorized(account))
+                    account = null;
+                else
+                    AccountData.Close(account);
 
                 message = account == null
                     ? PlainText.Dictionary["AccountNotFound"]
@@ -119,7 +134,10 @@ namespace DFM.MVC.Controllers
 
             try
             {
-                AccountData.Delete(account);
+                if (isUnauthorized(account))
+                    account = null;
+                else
+                    AccountData.Delete(account);
 
                 message = account == null
                     ? PlainText.Dictionary["AccountNotFound"]
@@ -132,6 +150,14 @@ namespace DFM.MVC.Controllers
 
 
             return new JsonResult { Data = new { message } };
+        }
+
+
+
+        private static Boolean isUnauthorized(Account account)
+        {
+            return account == null
+                   || !account.AuthorizeCRUD(Current.User);
         }
 
     }

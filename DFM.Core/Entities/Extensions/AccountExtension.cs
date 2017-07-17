@@ -40,5 +40,10 @@ namespace DFM.Core.Entities.Extensions
             }
         }
 
+        public static Boolean AuthorizeCRUD(this Account account, User user)
+        {
+            return account.User == user;
+        }
+
     }
 }

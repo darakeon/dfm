@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Helpers;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Enums;
-using DFM.MVC.Helpers;
+using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.MultiLanguage;
@@ -46,11 +47,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Edit(Int32? id)
         {
-            if (!id.HasValue) return RedirectToAction("Create");
+            if (!id.HasValue)
+                return RedirectToAction("Create");
 
             var move = MoveData.SelectById(id.Value);
 
-            if (move == null) return RedirectToAction("Create");
+            if (isUnauthorized(move))
+                return RedirectToAction("Create");
+
 
 
             var model = new MoveCreateEditScheduleModel(move);
@@ -78,6 +82,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
             var oldMove = MoveData.SelectById(id);
+
+            if (isUnauthorized(oldMove))
+                return RedirectToAction("Create");
+
 
             model.Move.ID = id;
             model.Move.Out = oldMove.Out;
@@ -157,7 +165,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var move = MoveData.SelectById(id);
 
-            MoveData.Delete(move);
+            if (isUnauthorized(move))
+                move = null;
+            else
+                MoveData.Delete(move);
 
             var message = move == null
                 ? PlainText.Dictionary["MoveNotFound"]
@@ -171,6 +182,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         private ActionResult viewCES(MoveCreateEditScheduleModel model)
         {
             return View("CreateEditSchedule", model);
+        }
+
+        private static Boolean isUnauthorized(Move move)
+        {
+            return move == null
+                   || !move.AuthorizeCRUD(Current.User);
         }
 
     }
