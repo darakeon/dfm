@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Core.Entities.Base;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
@@ -53,17 +54,22 @@ namespace DFM.Core.Database
 
         internal static void AjustValue(Summary summary)
         {
+            ISummarizable summarizable;
+
             switch (summary.Nature)
             {
                 case SummaryNature.Month:
-                    summary.Value = summary.Month.CheckUp(summary.Category);
+                    summarizable = summary.Month;
                     break;
                 case SummaryNature.Year:
-                    summary.Value = summary.Year.CheckUp(summary.Category);
+                    summarizable = summary.Year;
                     break;
                 default:
                     throw new DFMCoreException("SummaryNatureNotFound");
             }
+
+            summary.In = summarizable.CheckUpIn(summary.Category);
+            summary.Out = summarizable.CheckUpOut(summary.Category);
 
             saveOrUpdate(summary);
         }

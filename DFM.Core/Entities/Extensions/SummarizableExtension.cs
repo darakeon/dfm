@@ -7,9 +7,9 @@ namespace DFM.Core.Entities.Extensions
 {
     public static class SummarizableExtension
     {
-        internal static Double Value(this ISummarizable summarizable)
+        internal static Double Sum(this ISummarizable summarizable)
         {
-            return summarizable.SummaryList.Sum(s => s.Value);
+            return summarizable.SummaryList.Sum(s => s.Value());
         }
 
 

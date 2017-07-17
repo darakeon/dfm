@@ -8,7 +8,8 @@ namespace DFM.Core.Entities.Base
         IList<Summary> SummaryList { get; set; }
         Int32 Time { get; set; }
 
-        Double CheckUp(Category category);
+        Double CheckUpIn(Category category);
+        Double CheckUpOut(Category category);
         Summary AddSummary(Category category);
     }
 }

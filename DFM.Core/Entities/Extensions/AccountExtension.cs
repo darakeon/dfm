@@ -8,7 +8,7 @@ namespace DFM.Core.Entities.Extensions
     {
         public static Double MovesSum(this Account account)
         {
-            return account.YearList.Sum(m => m.Value());
+            return account.YearList.Sum(m => m.Sum());
         }
 
         public static Boolean Open(this Account account)

@@ -8,7 +8,8 @@ namespace DFM.Core.Entities
     {
         public virtual Int32 ID { get; set; }
 
-        public virtual Double Value { get; set; }
+        public virtual Double In { get; set; }
+        public virtual Double Out { get; set; }
         public virtual SummaryNature Nature { get; set; }
 
         public virtual Category Category { get; set; }

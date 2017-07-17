@@ -25,11 +25,19 @@ namespace DFM.Core.Entities
         public virtual IList<Summary> SummaryList { get; set; }
 
 
-        public virtual Double CheckUp(Category category)
+
+        public virtual Double CheckUpIn(Category category)
         {
-            return MonthList.Sum(mt => mt.CheckUp(category));
+            return MonthList.Sum(mt => mt.CheckUpIn(category));
         }
 
+        public virtual Double CheckUpOut(Category category)
+        {
+            return MonthList.Sum(mt => mt.CheckUpOut(category));
+        }
+
+
+        
         public virtual Summary AddSummary(Category category)
         {
             var summary = new Summary

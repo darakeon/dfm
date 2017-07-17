@@ -15,6 +15,7 @@
 		Opção de enviar transações para o e-mail
 
 		relatórios anual por categoria
+		relatórios de mais de uma conta
 		Mostrar gastos futuros no relatório mensal
 		previsão de gastos (estatística)
 		taggeamento de movimentação

@@ -1,5 +1,4 @@
-﻿using System;
-using Ak.DataAccess.NHibernate;
+﻿using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Core.Entities;
 using DFM.Core.Mappings;

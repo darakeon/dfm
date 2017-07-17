@@ -29,13 +29,21 @@ namespace DFM.Core.Entities
         public virtual IList<Move> OutList { get; set; }
 
 
-        public virtual Double CheckUp(Category category)
+
+        public virtual Double CheckUpIn(Category category)
         {
             var @in = sum(InList, category);
+
+            return Math.Round(@in, 2);
+        }
+
+        public virtual Double CheckUpOut(Category category)
+        {
             var @out = sum(OutList, category);
 
-            return Math.Round(@in - @out, 2);
+            return Math.Round(@out, 2);
         }
+
 
         private static Double sum(IEnumerable<Move> moveList, Category category)
         {
