@@ -28,8 +28,6 @@ namespace DFM.Core.Database
 
             year.MonthList.Add(newMonth);
 
-            //SaveOrUpdate(newMonth);
-
             return newMonth;
         }
 

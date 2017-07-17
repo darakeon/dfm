@@ -103,17 +103,19 @@ namespace DFM.MVC
 
         private void specifyLanguage()
         {
-            if (Request.UserLanguages == null 
-                || Request.UserLanguages.Length == 0)
-                return;
+            //var browserLanguage =
+            //    Request.UserLanguages != null && Request.UserLanguages.Length > 0
+            //        ? Request.UserLanguages[0]
+            //        : null;
 
-            //var language = Current.User.Language ?? Request.UserLanguages[0];
+            //var language = Current.User.Language ?? browserLanguage;
+
+            //if (language == null || !PlainText.AcceptLanguage(language))
+            //    language = "en-US";
+
             var language = "pt-BR";
 
-            if (!PlainText.AcceptLanguage(language))
-                language = "en-US";
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(language);
         }
 
 

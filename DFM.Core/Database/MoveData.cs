@@ -16,8 +16,28 @@ namespace DFM.Core.Database
         public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
         {
             placeAccountsInMove(move, accountOut, accountIn);
-            
-            return SaveOrUpdate(move, validate, complete);
+            move = trySaveOrUpdate(move);
+
+            ajustLastAndCurrentSummaries(move);
+
+            return move;
+        }
+
+        private static Move trySaveOrUpdate(Move move)
+        {
+            try { return SaveOrUpdate(move, validate, complete); }
+            catch (Exception e) { return testIfIntermittent(e); }
+        }
+
+        //TODO: I shouldn't do that
+        private static Move testIfIntermittent(Exception e)
+        {
+            const string intermittentError = "Cannot add or update a child row: a foreign key constraint fails";
+
+            if (e.InnerException.Message.StartsWith(intermittentError))
+                throw new DFMCoreException("ConnectionError");
+
+            throw e;
         }
 
 
@@ -87,7 +107,6 @@ namespace DFM.Core.Database
         private static void complete(Move move)
         {
             ajustDetailList(move);
-            ajustMonthAndYear(move);
             ajustSchedule(move);
         }
 
@@ -107,25 +126,6 @@ namespace DFM.Core.Database
                 if (detail.Move == null)
                     detail.Move = move;
             }
-        }
-
-        private static void ajustMonthAndYear(Move move)
-        {
-            invalidateSummary(move);
-            
-            var oldMove = SelectById(move.ID);
-
-            if (oldMove != null)
-                invalidateSummary(oldMove);
-        }
-        
-        private static void invalidateSummary(Move move)
-        {
-            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
-            
-            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                SummaryData.Invalidate(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
         }
 
         private static void ajustSchedule(Move move)
@@ -180,7 +180,7 @@ namespace DFM.Core.Database
         public static new void Delete(Move move)
         {
             removeFromMonth(move);
-            ajustMonthAndYear(move);
+            ajustLastAndCurrentSummaries(move);
 
             BaseData<Move>.Delete(move);
         }
@@ -201,6 +201,33 @@ namespace DFM.Core.Database
                 MonthData.SaveOrUpdate(move.Out);
             }
         }
+
+
+        
+        private static void ajustLastAndCurrentSummaries(Move move)
+        {
+            ajustOld(move.ID);
+            ajustSummaries(move);
+        }
+
+        private static void ajustOld(Int32 id)
+        {
+            var oldMove = SelectById(id);
+
+            if (oldMove != null)
+                ajustSummaries(oldMove);
+        }
+
+        private static void ajustSummaries(Move move)
+        {
+            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
+                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
+
+            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
+                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
+        }
+
+
 
     }
 }

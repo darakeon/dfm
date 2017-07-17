@@ -35,6 +35,7 @@
 04/09	05/09	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
 05/09	06/09	Interface do agendador ilimitado
 07/09		Criar robô executor da Agenda (controlar por login no sistema) - pega a última e duplica
+10/09		Arrancar IsValid de Summary
 		Proteger alteração / deleção de itens que não pertencem ao usuário logado
 		Taxa da conta + Data (bank)
 		Percentual de crescimento + Data (debt)

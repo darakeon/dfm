@@ -9,6 +9,6 @@ namespace DFM.Core.Entities.Base
         Int32 Time { get; set; }
 
         Double CheckUp(Category category);
-        void AjustSummaryList(Summary summary);
+        Summary AddSummary(Category category);
     }
 }

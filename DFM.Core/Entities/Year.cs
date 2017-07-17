@@ -31,13 +31,18 @@ namespace DFM.Core.Entities
             return MonthList.Sum(mt => mt.CheckUp(category));
         }
 
-        public virtual void AjustSummaryList(Summary summary)
+        public virtual Summary AddSummary(Category category)
         {
-            summary.Year = this;
-            summary.Nature = SummaryNature.Year;
-            summary.IsValid = false;
+            var summary = new Summary
+            {
+                Category = category,
+                Year = this,
+                Nature = SummaryNature.Year,
+            };
 
             SummaryList.Add(summary);
+
+            return summary;
         }
 
         public override String ToString()

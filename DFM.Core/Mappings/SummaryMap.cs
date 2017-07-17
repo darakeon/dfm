@@ -9,17 +9,18 @@ namespace DFM.Core.Mappings
         public void Override(AutoMapping<Summary> mapping)
         {
             mapping.References(s => s.Month)
+                .UniqueKey("Summary_CategoryTime")
                 .Cascade.SaveUpdate()
                 .Nullable();
 
             mapping.References(s => s.Year)
+                .UniqueKey("Summary_CategoryTime")
                 .Cascade.SaveUpdate()
                 .Nullable();
 
-            mapping.Map(s => s.IsValid)
-                .Default("1");
-
-            mapping.IgnoreProperty(s => s.Value);
+            mapping.References(s => s.Category)
+                .UniqueKey("Summary_CategoryTime")
+                .Cascade.None();
         }
     }
 }

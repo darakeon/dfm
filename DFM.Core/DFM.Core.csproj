@@ -85,6 +85,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Extensions\AccountExtension.cs" />
+    <Compile Include="Entities\Extensions\SummarizableExtension.cs" />
     <Compile Include="Entities\Extensions\ScheduleExtension.cs" />
     <Compile Include="Entities\Extensions\DetailExtension.cs" />
     <Compile Include="Entities\Extensions\MonthExtension.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SummaryNature.cs" />
-    <Compile Include="Helpers\CoreValidationException.cs" />
+    <Compile Include="Helpers\DFMCoreException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />

@@ -24,17 +24,14 @@ namespace DFM.Core.Database.Base
 
         protected static T SaveOrUpdate(T entity, DelegateValidade validate, DelegateComplete complete)
         {
-            if (complete != null && completeEntity == null) completeEntity += complete;
-            if (validate != null && validateEntity == null) validateEntity += validate;
+            if (complete != null) complete(entity);
+            if (validate != null) validate(entity);
 
             return saveOrUpdate(entity);
         }
 
         private static T saveOrUpdate(T entity)
         {
-            if (completeEntity != null) completeEntity(entity);
-            if (validateEntity != null) validateEntity(entity);
-
             if (entity.ID == 0 || Session.Contains(entity))
                 Session.SaveOrUpdate(entity);
             else
@@ -45,10 +42,6 @@ namespace DFM.Core.Database.Base
 
         protected delegate void DelegateValidade(T entity);
         protected delegate void DelegateComplete(T entity);
-
-        private static event DelegateValidade validateEntity;
-        private static event DelegateComplete completeEntity;
-
 
 
         internal static void Delete(T obj)

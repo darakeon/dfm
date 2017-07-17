@@ -11,11 +11,11 @@ namespace DFM.Core.Mappings
             mapping.Map(s => s.Active)
                 .Default("1");
 
-            mapping.HasMany(d => d.MoveList)
+            mapping.References(s => s.User)
                 .Cascade.None();
 
-            mapping.References(d => d.User)
-                .Cascade.None();
+            mapping.HasMany(s => s.MoveList)
+                .Inverse();
         }
     }
 }

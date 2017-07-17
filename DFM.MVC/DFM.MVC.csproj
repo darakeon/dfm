@@ -214,6 +214,9 @@
     <EmbeddedResource Include="MultiLanguage\Resources\move.xml" />
     <EmbeddedResource Include="MultiLanguage\Resources\user.xml" />
     <Content Include="MultiLanguage\Resources\category.xml" />
+    <EmbeddedResource Include="MultiLanguage\Resources\error.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

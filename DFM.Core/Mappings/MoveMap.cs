@@ -14,12 +14,15 @@ namespace DFM.Core.Mappings
 
 
             mapping.References(m => m.In)
+                .Cascade.SaveUpdate()
                 .Nullable();
 
             mapping.References(m => m.Out)
+                .Cascade.SaveUpdate()
                 .Nullable();
 
             mapping.References(m => m.Schedule)
+                .Cascade.None()
                 .Nullable();
         }
     }

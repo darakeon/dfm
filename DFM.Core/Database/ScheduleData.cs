@@ -40,6 +40,8 @@ namespace DFM.Core.Database
                             .Year.Account.User;
 
             schedule.User = user;
+
+            SaveOrUpdate(schedule);
         }
     }
 }

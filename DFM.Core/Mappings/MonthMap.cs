@@ -15,7 +15,7 @@ namespace DFM.Core.Mappings
                 .Cascade.Delete();
 
             mapping.References(m => m.Year)
-                .Cascade.None();
+                .Cascade.SaveUpdate();
 
             mapping.HasMany(m => m.SummaryList)
                 .Cascade.SaveUpdate();

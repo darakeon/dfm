@@ -44,13 +44,18 @@ namespace DFM.Core.Entities
                 .Sum(m => m.Value());
         }
 
-        public virtual void AjustSummaryList(Summary summary)
+        public virtual Summary AddSummary(Category category)
         {
-            summary.Month = this;
-            summary.Nature = SummaryNature.Month;
-            summary.IsValid = false;
+            var summary = new Summary
+            {
+                Category = category,
+                Month = this,
+                Nature = SummaryNature.Month,
+            };
 
             SummaryList.Add(summary);
+
+            return summary;
         }
 
 

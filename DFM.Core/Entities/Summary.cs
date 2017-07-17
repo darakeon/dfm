@@ -9,25 +9,8 @@ namespace DFM.Core.Entities
     {
         public virtual Int32 ID { get; set; }
 
-
-        public virtual Double FixValue { get; set; }
-
-        public virtual Double Value
-        {
-            get
-            {
-                if (!IsValid)
-                    SummaryData.AjustValue(this);
-
-                return FixValue;
-            }
-            set { FixValue = value; }
-        }
-
-
-        public virtual Boolean IsValid { get; set; }
+        public virtual Double Value { get; set; }
         public virtual SummaryNature Nature { get; set; }
-
 
         public virtual Category Category { get; set; }
         public virtual Month Month { get; set; }

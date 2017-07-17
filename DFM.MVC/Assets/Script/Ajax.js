@@ -27,8 +27,8 @@ function EndAjaxPost() {
 
 function SafeReload() {
     $("a").removeAttr("href");
-    $("button").hide();
-    $("form").submit(function () { return false; });
+    $("button").click(function (e) { e.preventDefault(); });
+    $("form").submit(function (e) { e.preventDefault(); });
     
     location.reload();
 }

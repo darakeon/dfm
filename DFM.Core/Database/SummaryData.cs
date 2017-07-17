@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.Core.Entities.Base;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
@@ -21,14 +22,7 @@ namespace DFM.Core.Database
 
         internal static void SetSummary(ISummarizable summarizable, Category category)
         {
-            var summary = summarizable.SummaryList
-                .SingleOrDefault(s => s.Category == category);
-
-            if (summary == null)
-            {
-                summary = new Summary { Category = category };
-                summarizable.AjustSummaryList(summary);
-            }
+            var summary = summarizable.AjustSummaryList(category);
 
             summary.Value = summarizable.CheckUp(category);
 
@@ -37,29 +31,28 @@ namespace DFM.Core.Database
 
 
 
-        internal static void Invalidate(Int32 month, Int32 year, Category category, Account account)
+        internal static void Ajust(Int32 month, Int32 year, Category category, Account account)
         {
-            invalidateYear(year, category, account);
-            invalidateMonth(month, year, category, account);
+            ajustMonth(month, year, category, account);
+            ajustYear(year, category, account);
         }
 
 
 
-        private static void invalidateMonth(Int32 month, Int32 year, Category category, Account account)
+        private static void ajustMonth(Int32 month, Int32 year, Category category, Account account)
         {
             var summaryMonth = getSummaryMonth(month, year, category, account)
                 ?? createSummaryMonth(month, year, category, account);
 
-            invalidate(summaryMonth);
+            AjustValue(summaryMonth);
         }
-
 
         private static Summary getSummaryMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
         {
             var year = account.YearList.SingleOrDefault(y => y.Time == yearDate && y.Account == account) ?? new Year();
             var month = year.MonthList.SingleOrDefault(m => m.Time == monthDate) ?? new Month();
 
-            return month.SummaryList.SingleOrDefault(s => s.Category == category && s.Nature == SummaryNature.Month);
+            return month.SummaryList.SingleOrDefault(s => s.Category == category);
         }
 
         private static Summary createSummaryMonth(Int32 month, Int32 year, Category category, Account account)
@@ -72,12 +65,12 @@ namespace DFM.Core.Database
 
 
 
-        private static void invalidateYear(Int32 year, Category category, Account account)
+        private static void ajustYear(Int32 year, Category category, Account account)
         {
             var summaryYear = getSummaryYear(year, category, account)
                 ?? createSummaryYear(year, category, account);
 
-            invalidate(summaryYear);
+            AjustValue(summaryYear);
         }
 
 
@@ -85,7 +78,7 @@ namespace DFM.Core.Database
         {
             var year = account.YearList.SingleOrDefault(y => y.Time == yearDate && y.Account == account) ?? new Year();
 
-            return year.SummaryList.SingleOrDefault(s => s.Category == category && s.Nature == SummaryNature.Year);
+            return year.SummaryList.SingleOrDefault(s => s.Category == category);
         }
 
         private static Summary createSummaryYear(Int32 year, Category category, Account account)
@@ -97,16 +90,10 @@ namespace DFM.Core.Database
 
 
 
-        private static void invalidate(Summary summary)
-        {
-            summary.IsValid = false;
-            SaveOrUpdate(summary);
-        }
-
-
-
         internal static void AjustValue(Summary summary)
         {
+            SaveOrUpdate(summary);
+
             switch (summary.Nature)
             {
                 case SummaryNature.Month:
@@ -118,10 +105,6 @@ namespace DFM.Core.Database
                 default:
                     throw new DFMCoreException("SummaryNatureNotFound");
             }
-
-            summary.IsValid = true;
-
-            SaveOrUpdate(summary);
         }
 
     }

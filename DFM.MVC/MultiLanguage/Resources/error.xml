@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<account>
+  <en-US>
+    <ConnectionError text="Connection error. Please, try again." automatic="" />
+  </en-US>
+  <pt-BR>
+    <ConnectionError text="Erro de conexão. Por favor, tente novamente." automatic="" />
+  </pt-BR>
+</account>
