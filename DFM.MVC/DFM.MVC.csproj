@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
+    <Content Include="Assets\Css\IE.css" />
     <Content Include="Assets\Css\Navigation.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />

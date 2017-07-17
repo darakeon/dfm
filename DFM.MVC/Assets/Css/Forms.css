@@ -32,6 +32,7 @@ button {
 
 	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
 	background: -moz-linear-gradient(top,  #999,  #333);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
 }
 
 .max {
