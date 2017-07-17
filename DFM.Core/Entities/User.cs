@@ -10,6 +10,7 @@ namespace DFM.Core.Entities
         {
             AccountList = new List<Account>();
             CategoryList = new List<Category>();
+            ScheduleList = new List<Schedule>();
         }
 
 
@@ -21,6 +22,7 @@ namespace DFM.Core.Entities
 
         public virtual IList<Account> AccountList { get; set; }
         public virtual IList<Category> CategoryList { get; set; }
+        public virtual IList<Schedule> ScheduleList { get; set; }
 
 
         public override String ToString()

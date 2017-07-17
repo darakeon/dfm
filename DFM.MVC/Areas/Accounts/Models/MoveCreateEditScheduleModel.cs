@@ -35,7 +35,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = new Move();
             Date = DateTime.Today;
 
-            Scheduler = new Scheduler { Times = 1 };
+            Schedule = new Schedule();
         }
 
         public MoveCreateEditScheduleModel(Move move) : this()
@@ -75,9 +75,9 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsDetailed { get; set; }
 
 
-        public Boolean IsScheduler { get; set; }
+        public Boolean IsSchedule { get; set; }
 
-        public Scheduler Scheduler { get; set; }
+        public Schedule Schedule { get; set; }
         public SelectList FrequencySelectList { get; set; }
 
 
@@ -94,14 +94,14 @@ namespace DFM.MVC.Areas.Accounts.Models
         }
 
 
-        public void Populate(Int32 accountID, Boolean isScheduler = false)
+        public void Populate(Int32 accountID, Boolean isSchedule = false)
         {
             MakeAccountTransferList(accountID);
 
 
             IsDetailed = Move.HasRealDetails();
 
-            IsScheduler = isScheduler;
+            IsSchedule = isSchedule;
 
             if (!Move.DetailList.Any())
             {
@@ -113,9 +113,6 @@ namespace DFM.MVC.Areas.Accounts.Models
             {
                 CategoryID = Move.Category.ID;
             }
-
-
-
         }
 
     }

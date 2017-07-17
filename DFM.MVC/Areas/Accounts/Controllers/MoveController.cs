@@ -99,7 +99,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model, Boolean isScheduler = false)
+        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model, Boolean isSchedule = false)
         {
             if (ModelState.IsValid)
             {
@@ -110,8 +110,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                     var currentAccount = AccountData.SelectById(accountid);
                     var otherAccount = AccountData.SelectById(model.AccountID ?? 0);
 
-                    if (isScheduler)
-                        MoveData.Schedule(model.Move, currentAccount, otherAccount, model.Scheduler);
+                    if (isSchedule)
+                        MoveData.Schedule(model.Move, currentAccount, otherAccount, model.Schedule);
                     else
                         MoveData.SaveOrUpdate(model.Move, currentAccount, otherAccount);
 
@@ -126,7 +126,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.Populate(accountid, isScheduler);
+            model.Populate(accountid, isSchedule);
 
             return viewCES(model);
         }

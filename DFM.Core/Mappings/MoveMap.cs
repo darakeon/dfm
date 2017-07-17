@@ -21,10 +21,14 @@ namespace DFM.Core.Mappings
                 .Cascade.AllDeleteOrphan()
                 .Inverse();
 
+
             mapping.References(m => m.In)
                 .Nullable();
 
             mapping.References(m => m.Out)
+                .Nullable();
+
+            mapping.References(m => m.Schedule)
                 .Nullable();
         }
     }

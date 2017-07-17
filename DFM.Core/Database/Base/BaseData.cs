@@ -88,11 +88,6 @@ namespace DFM.Core.Database.Base
         {
             var criteria = Session.CreateCriteria(typeof (T));
 
-            foreach (var entity in Relations<T>.GetDeeper(0))
-            {
-                criteria.CreateAlias(entity, entity, JoinType.LeftOuterJoin);
-            }
-
             if (expression != null)
                 criteria.Add(Restrictions.Where(expression));
 

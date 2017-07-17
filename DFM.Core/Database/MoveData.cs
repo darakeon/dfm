@@ -197,13 +197,13 @@ namespace DFM.Core.Database
 
 
 
-        public static void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
+        public static void Schedule(Move move, Account account, Account secondAccount, Schedule schedule)
         {
-            for(var t = 0; t <= scheduler.Times; t++)
+            for(var t = 0; t <= schedule.Times; t++)
             {
                 var newMove = move.Clone();
 
-                switch (scheduler.Frequency)
+                switch (schedule.Frequency)
                 {
                     case ScheduleFrequency.Monthly:
                         newMove.Date = newMove.Date.AddMonths(t);

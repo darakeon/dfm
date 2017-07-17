@@ -1,7 +1,9 @@
 ﻿using System;
 using DFM.Core.Database;
-using DFM.Service.Entities;
+using DFM.Core.Entities;
 using DFM.Core.Helpers;
+using Account = DFM.Service.Entities.Account;
+using Move = DFM.Service.Entities.Move;
 
 namespace DFM.Service.Services
 {
@@ -17,9 +19,9 @@ namespace DFM.Service.Services
             MoveData.Delete(move);
         }
 
-        public void Schedule(Move move, Account account, Account secondAccount, Scheduler scheduler)
+        public void Schedule(Move move, Account account, Account secondAccount, Schedule schedule)
         {
-            MoveData.Schedule(move, account, secondAccount, scheduler);
+            MoveData.Schedule(move, account, secondAccount, schedule);
         }
 
         public Move SelectById(Int32 id)

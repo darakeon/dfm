@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
     <Compile Include="Database\CategoryData.cs" />
+    <Compile Include="Database\ScheduleData.cs" />
     <Compile Include="Database\SummaryData.cs" />
     <Compile Include="Database\MonthData.cs" />
     <Compile Include="Database\YearData.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Month.cs" />
     <Compile Include="Entities\Move.cs" />
+    <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Summary.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Year.cs" />
@@ -91,10 +93,9 @@
     <Compile Include="Helpers\NhIgnoreAttribute.cs" />
     <Compile Include="Helpers\CoreValidationException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
-    <Compile Include="Helpers\Relations.cs" />
-    <Compile Include="Helpers\Scheduler.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\ScheduleMap.cs" />
     <Compile Include="Mappings\SummaryMap.cs" />
     <Compile Include="Mappings\MonthMap.cs" />
     <Compile Include="Mappings\YearMap.cs" />

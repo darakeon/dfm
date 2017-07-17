@@ -27,6 +27,7 @@ namespace DFM.Core.Entities
 
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
+        public virtual Schedule Schedule { get; set; }
 
         public virtual Boolean Scheduled { get; set; }
 
