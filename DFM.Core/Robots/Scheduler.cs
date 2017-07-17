@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Robots
 {
@@ -11,13 +12,6 @@ namespace DFM.Core.Robots
         private static Account accountIn { get; set; }
         private static Account accountOut { get; set; }
         
-        /*
-         * Verificar se existe um que esteja ativo e que a data de next seja menor que hoje
-         * Ao finalizar o agendamento, colocar como inativo
-         */
-
-
-
         public static void Run(User user)
         {
             var scheduleList = ScheduleData.GetScheduleToRun(user);
@@ -38,9 +32,15 @@ namespace DFM.Core.Robots
 
         private static Move getNextMove(Schedule schedule)
         {
-            var lastMove = schedule.MoveList.Last();
+            var lastMove = schedule.MoveList.LastOrDefault();
 
-            if (schedule.RunningFirstMove())
+            if (lastMove == null)
+                throw new DFMCoreException("ScheduleNoMoves");
+
+            accountIn = getAccount(lastMove.In);
+            accountOut = getAccount(lastMove.Out);
+
+            if (schedule.IsFirstMove())
                 return lastMove;
 
 
@@ -49,9 +49,6 @@ namespace DFM.Core.Robots
             newMove.In = null;
             newMove.Out = null;
             newMove.Date = schedule.Next;
-
-            accountIn = getAccount(lastMove.In);
-            accountOut = getAccount(lastMove.Out);
 
             return newMove;
         }
@@ -65,7 +62,7 @@ namespace DFM.Core.Robots
         
         private static void ajustSchedule(Schedule schedule, Move move)
         {
-            if (!schedule.RunningFirstMove())
+            if (!schedule.IsFirstMove())
                 schedule.AddMove(move);
 
 

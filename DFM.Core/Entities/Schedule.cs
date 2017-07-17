@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
 
@@ -28,5 +29,14 @@ namespace DFM.Core.Entities
 
         public virtual User User { get; set; }
         public virtual IList<Move> MoveList { get; set; }
+
+
+
+        public override string ToString()
+        {
+            return String.Format("{0} of {1}", 
+                Frequency, MoveList.FirstOrDefault());
+        }
+
     }
 }

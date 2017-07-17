@@ -10,7 +10,7 @@ namespace DFM.Core.Database
     {
 		private MonthData() { }
 
-        internal static Month GetOrCreateMonth(Int32 month, Year year, Category category)
+        internal static Month GetOrCreateMonth(Int32 month, Year year, Category category = null)
         {
             var newMonth = year.GetMonth(month)
                 ?? createMonth(year, month);

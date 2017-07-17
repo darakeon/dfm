@@ -11,7 +11,6 @@ namespace DFM.Core.Mappings
             mapping.HasMany(m => m.DetailList)
                 .Cascade.AllDeleteOrphan();
 
-
             mapping.References(m => m.In)
                 .Cascade.SaveUpdate()
                 .Nullable();

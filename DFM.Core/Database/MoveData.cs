@@ -49,6 +49,70 @@ namespace DFM.Core.Database
 
 
 
+        #region Complete
+        private static void complete(Move move)
+        {
+            ajustDetailList(move);
+            ajustSchedule(move);
+        }
+
+        private static void ajustDetailList(Move move)
+        {
+            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
+            {
+                move.DetailList[0].Description = move.Description;
+                move.DetailList[0].Amount = 1;
+            }
+
+            foreach (var detail in move.DetailList)
+            {
+                if (detail.Value < 0)
+                    detail.Value = -detail.Value;
+
+                if (detail.Move == null)
+                    detail.Move = move;
+            }
+        }
+
+
+        private static void ajustSchedule(Move move)
+        {
+            if (move.Schedule == null 
+                || move.Schedule.ID != 0) return;
+
+            if (!move.Schedule.Contains(move))
+                move.Schedule.AddMove(move);
+
+            ScheduleData.SaveOrUpdate(move.Schedule);
+        }
+
+
+        private static void ajustLastAndCurrentSummaries(Move move)
+        {
+            ajustOld(move.ID);
+            ajustSummaries(move);
+        }
+
+        private static void ajustOld(Int32 id)
+        {
+            var oldMove = SelectById(id);
+
+            if (oldMove != null)
+                ajustSummaries(oldMove);
+        }
+
+        private static void ajustSummaries(Move move)
+        {
+            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
+                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
+
+            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
+                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
+        }
+        #endregion
+
+
+
         #region Validate
         private static void validate(Move move)
         {
@@ -56,6 +120,7 @@ namespace DFM.Core.Database
             testNature(move);
             testAccounts(move);
             testCategory(move);
+            testDate(move);
         }
 
         private static void testDetailList(Move move)
@@ -106,44 +171,16 @@ namespace DFM.Core.Database
             if (!move.Category.Active)
                 throw new DFMCoreException("DisabledCategory");
         }
-        #endregion
 
-
-
-        #region Complete
-        private static void complete(Move move)
+        private static void testDate(Move move)
         {
-            ajustDetailList(move);
-            ajustSchedule(move);
-        }
+            var isFutureMove = move.Date > DateTime.Today;
 
-        private static void ajustDetailList(Move move)
-        {
-            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
-            {
-                move.DetailList[0].Description = move.Description;
-                move.DetailList[0].Amount = 1;
-            }
+            var isFirstOfSchedule = move.Schedule != null
+                                    && move.Schedule.IsFirstMove();
 
-            foreach (var detail in move.DetailList)
-            {
-                if (detail.Value < 0)
-                    detail.Value = -detail.Value;
-
-                if (detail.Move == null)
-                    detail.Move = move;
-            }
-        }
-
-        private static void ajustSchedule(Move move)
-        {
-            if (move.Schedule == null 
-                || move.Schedule.ID != 0) return;
-
-            if (!move.Schedule.Contains(move))
-                move.Schedule.AddMove(move);
-
-            ScheduleData.Initialize(move.Schedule);
+            if (isFutureMove && !isFirstOfSchedule)
+                throw new DFMCoreException("MoveFutureNotScheduled");
         }
         #endregion
 
@@ -171,13 +208,13 @@ namespace DFM.Core.Database
             if (move.Nature != MoveNature.In)
             {
                 if (monthOut == null) throw error;
-                monthOut.AddOut(move);
+                if (monthOut != move.Out) monthOut.AddOut(move);
             }
 
             if (move.Nature != MoveNature.Out)
             {
                 if (monthIn == null) throw error;
-                monthIn.AddIn(move);
+                if (monthIn != move.In) monthIn.AddIn(move);
             }
         }
         #endregion
@@ -210,29 +247,6 @@ namespace DFM.Core.Database
         }
 
 
-        
-        private static void ajustLastAndCurrentSummaries(Move move)
-        {
-            ajustOld(move.ID);
-            ajustSummaries(move);
-        }
-
-        private static void ajustOld(Int32 id)
-        {
-            var oldMove = SelectById(id);
-
-            if (oldMove != null)
-                ajustSummaries(oldMove);
-        }
-
-        private static void ajustSummaries(Move move)
-        {
-            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountIn());
-
-            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                SummaryData.Ajust(move.Date.Month, move.Date.Year, move.Category, move.AccountOut());
-        }
 
 
 

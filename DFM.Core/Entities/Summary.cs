@@ -1,7 +1,6 @@
 ﻿using System;
 using DFM.Core.Entities.Base;
 using DFM.Core.Enums;
-using DFM.Core.Database;
 
 namespace DFM.Core.Entities
 {

@@ -64,7 +64,9 @@ namespace DFM.MVC
 
         }
 
+        // ReSharper disable InconsistentNaming
         protected void Application_AuthenticateRequest()
+        // ReSharper restore InconsistentNaming
         {
             if (isAsset) return;
 

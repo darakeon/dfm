@@ -81,10 +81,10 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             get
             {
-                if (Move.Schedule == null)
-                    Move.Schedule = new Schedule();
-
-                return Move.Schedule;
+                return !IsSchedule
+                    ? new Schedule()
+                    : Move.Schedule
+                        ?? (Move.Schedule = new Schedule());
             }
         }
 

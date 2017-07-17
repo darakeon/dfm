@@ -31,6 +31,8 @@
     
     if (Model.IsSchedule)
     {
+        @Html.HiddenFor(m => m.IsSchedule)
+
         <div class="createMoveScreenLeft">
             <div>
                 @Html.LabelFor(m => m.Frequency, PlainText.Dictionary["Frequency"])<br />

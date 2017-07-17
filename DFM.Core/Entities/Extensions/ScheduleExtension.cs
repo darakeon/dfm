@@ -35,7 +35,7 @@ namespace DFM.Core.Entities.Extensions
         }
 
 
-        public static Boolean RunningFirstMove(this Schedule schedule)
+        public static Boolean IsFirstMove(this Schedule schedule)
         {
             return schedule.Begin == schedule.Next;
         }

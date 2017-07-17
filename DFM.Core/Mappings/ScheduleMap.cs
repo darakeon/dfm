@@ -15,7 +15,7 @@ namespace DFM.Core.Mappings
                 .Cascade.None();
 
             mapping.HasMany(s => s.MoveList)
-                .Inverse();
+                .Cascade.None();
         }
     }
 }

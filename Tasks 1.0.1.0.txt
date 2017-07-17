@@ -17,6 +17,7 @@
 		relatórios anual por categoria
 		Mostrar gastos futuros no relatório mensal
 		previsão de gastos (estatística)
+		taggeamento de movimentação
 
 		importador/exportador de XML
 		importador/exportador de Excel

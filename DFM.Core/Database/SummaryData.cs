@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
@@ -14,11 +13,8 @@ namespace DFM.Core.Database
 
         private static void saveOrUpdate(Summary summary)
         {
-            //TODO: I shouldn't do it too
             var summaryTransac = Session.BeginTransaction();
-            
             SaveOrUpdate(summary, null, null);
-
             summaryTransac.Commit();
         }
 
@@ -32,53 +28,25 @@ namespace DFM.Core.Database
 
 
 
-        private static void ajustMonth(Int32 month, Int32 year, Category category, Account account)
+        private static void ajustMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
         {
-            var summaryMonth = getSummaryMonth(month, year, category, account)
-                ?? createSummaryMonth(month, year, category, account);
+            var year = YearData.GetOrCreateYear(yearDate, account);
+            var month = MonthData.GetOrCreateMonth(monthDate, year);
+
+            var summaryMonth = month.GetSummary(category)
+                ?? new Summary { Category = category, Month = month, Nature = SummaryNature.Month };
 
             AjustValue(summaryMonth);
         }
 
-        private static Summary getSummaryMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
+        private static void ajustYear(Int32 yearDate, Category category, Account account)
         {
-            var year = account.GetYear(yearDate) ?? new Year();
-            var month = year.GetMonth(monthDate) ?? new Month();
+            var year = YearData.GetOrCreateYear(yearDate, account);
 
-            return month.GetSummary(category);
-        }
-
-        private static Summary createSummaryMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
-        {
-            var year = account.GetYear(yearDate);
-            var month = year.GetMonth(monthDate);
-
-            return new Summary { Category = category, Month = month, Nature = SummaryNature.Month };
-        }
-
-
-
-        private static void ajustYear(Int32 year, Category category, Account account)
-        {
-            var summaryYear = getSummaryYear(year, category, account)
-                ?? createSummaryYear(year, category, account);
+            var summaryYear = year.GetSummary(category)
+                ?? new Summary { Category = category, Year = year, Nature = SummaryNature.Year };
 
             AjustValue(summaryYear);
-        }
-
-
-        private static Summary getSummaryYear(Int32 yearDate, Category category, Account account)
-        {
-            var year = account.GetYear(yearDate) ?? new Year();
-
-            return year.GetSummary(category);
-        }
-
-        private static Summary createSummaryYear(Int32 yearDate, Category category, Account account)
-        {
-            var year = account.GetYear(yearDate);
-
-            return new Summary { Category = category, Year = year, Nature = SummaryNature.Year };
         }
 
 

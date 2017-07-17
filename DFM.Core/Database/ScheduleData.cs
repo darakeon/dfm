@@ -4,7 +4,6 @@ using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
-using DFM.Core.Enums;
 
 namespace DFM.Core.Database
 {
@@ -12,9 +11,11 @@ namespace DFM.Core.Database
     {
         private ScheduleData() { }
 
-        public static Schedule SaveOrUpdate(Schedule schedule)
+        public static void SaveOrUpdate(Schedule schedule)
         {
-            return SaveOrUpdate(schedule, null, null);
+            //var scheduleTransac = Session.BeginTransaction();
+            SaveOrUpdate(schedule, complete, null);
+            //scheduleTransac.Commit();
         }
 
         public static IList<Schedule> GetScheduleToRun(User user)
@@ -27,7 +28,7 @@ namespace DFM.Core.Database
             return criteria.List<Schedule>();
         }
         
-        internal static void Initialize(Schedule schedule)
+        private static void complete(Schedule schedule)
         {
             var move = schedule.MoveList.Last();
 
@@ -40,8 +41,6 @@ namespace DFM.Core.Database
                             .Year.Account.User;
 
             schedule.User = user;
-
-            SaveOrUpdate(schedule);
         }
     }
 }
