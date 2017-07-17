@@ -17,7 +17,7 @@ namespace DFM.Core.Entities
 
         public virtual Int32 ID { get; set; }
 
-        public virtual Int32 Time { get; set; }
+        public virtual Int16 Time { get; set; }
 
         public virtual Account Account { get; set; }
 

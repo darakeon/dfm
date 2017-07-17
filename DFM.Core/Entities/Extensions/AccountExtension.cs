@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.Core.Enums;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Entities.Extensions
 {
@@ -36,7 +36,7 @@ namespace DFM.Core.Entities.Extensions
             catch (InvalidOperationException e)
             {
                 if (e.Message == "Sequence contains more than one matching element")
-                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.YearAmbiguousInAccount);
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.YearAmbiguousInAccount);
                 throw;
             }
         }

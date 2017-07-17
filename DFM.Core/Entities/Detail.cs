@@ -13,7 +13,7 @@ namespace DFM.Core.Entities
         public virtual Int32 ID { get; set; }
 
         public virtual String Description { get; set; }
-        public virtual Int32 Amount { get; set; }
+        public virtual Int16 Amount { get; set; }
         public virtual Double Value { get; set; }
 
         public virtual Move Move { get; set; }

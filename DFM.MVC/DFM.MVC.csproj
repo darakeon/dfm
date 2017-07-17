@@ -241,7 +241,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="MultiLanguage\Resources\move.xml" />
-    <Content Include="MultiLanguage\Resources\user.xml" />
+    <Content Include="MultiLanguage\Resources\user.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="MultiLanguage\Resources\category.xml" />
     <Content Include="MultiLanguage\Resources\error.xml">
       <SubType>Designer</SubType>

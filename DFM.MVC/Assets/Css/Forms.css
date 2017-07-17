@@ -33,3 +33,9 @@ button {
 	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
 	background: -moz-linear-gradient(top,  #999,  #333);
 }
+
+.max {
+	font-size: 80%;
+	color: #999;
+	display: block;
+}

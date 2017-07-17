@@ -9,7 +9,7 @@
     <link href="/Assets/Css/Pages/MoveCreateEdit.css" rel="stylesheet" type="text/css" />
 }
 
-@section HtmlHeadJs { 
+@section HtmlHeadJs {
     <script type="text/javascript">
         var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
         var addDetailsPage = '@Url.Action("AddDetail")';
@@ -59,7 +59,8 @@
         <div>
             @Html.LabelFor(m => m.Description, PlainText.Dictionary["Description"]) 
             @Html.ValidationMessageFor(m => m.Description)<br />
-            @Html.TextBoxFor(m => m.Description)
+            @Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MoveDescription })
+            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
         </div>
 
         <div>
@@ -119,7 +120,10 @@
     <table class="createMoveScreenRight">
         <tbody id="details">
             <tr>
-                <th>@PlainText.Dictionary["Description"]</th>
+                <th>
+                    @PlainText.Dictionary["Description"]
+                    <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
+                </th>
                 <th>@PlainText.Dictionary["Amount"]</th>
                 <th>@PlainText.Dictionary["Value"]</th>
             </tr>

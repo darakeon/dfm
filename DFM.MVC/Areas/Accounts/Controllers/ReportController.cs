@@ -28,9 +28,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        public ActionResult SeeMonth(Int32? id)
+        public ActionResult SeeMonth(Int16? id)
         {
-            var currentMonth = DateTime.Today.Month;
+            var currentMonth = (Int16)DateTime.Today.Month;
 
             var month = id.HasValue
                 ? id.Value % 100
@@ -62,9 +62,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        public ActionResult SeeYear(Int32? id)
+        public ActionResult SeeYear(Int16? id)
         {
-            var currentYear = DateTime.Today.Year;
+            var currentYear = (Int16)DateTime.Today.Year;
             
             var year = id ?? currentYear;
             

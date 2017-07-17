@@ -2,7 +2,7 @@
 using System.Linq;
 using Ak.Generic.Enums;
 using DFM.Core.Entities.Bases;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Entities.Extensions
 {
@@ -34,7 +34,7 @@ namespace DFM.Core.Entities.Extensions
                 var nature = summarizable.SummaryList.First().Nature;
 
                 var errorMessage = String.Format("SummaryAmbiguousIn{0}", nature);
-                var errorEnumValue = Str2Enum.Cast<DFMCoreException.Possibilities>(errorMessage);
+                var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
 
                 if (e.Message == "Sequence contains more than one matching element")
                     throw DFMCoreException.WithMessage(errorEnumValue);

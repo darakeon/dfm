@@ -3,7 +3,7 @@ using System.Linq;
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Robots
 {
@@ -37,7 +37,7 @@ namespace DFM.Core.Robots
             var lastMove = schedule.MoveList.LastOrDefault();
 
             if (lastMove == null)
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ScheduleNoMoves);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleNoMoves);
 
             accountIn = getAccount(lastMove.In);
             accountOut = getAccount(lastMove.Out);

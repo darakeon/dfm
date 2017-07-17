@@ -92,7 +92,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         [Required]
         public Boolean Boundless { get { return schedule.Boundless; } set { schedule.Boundless = value; } }
         [Required]
-        public Int32 Times { get { return schedule.Times; } set { schedule.Times = value; } }
+        public Int16 Times { get { return schedule.Times; } set { schedule.Times = value; } }
         [Required]
         public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
 

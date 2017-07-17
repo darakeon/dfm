@@ -13,17 +13,18 @@
 
         <p>
             @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
-            @Html.TextBoxFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
+            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Account.RedLimit, PlainText.Dictionary["RedLimit"])
-            @Html.TextBoxFor(m => m.Account.RedLimit)
+            @Html.LabelFor(m => m.Account.RedLimit, PlainText.Dictionary["RedLimit"] + " #")
+            @Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money" })
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Account.YellowLimit, PlainText.Dictionary["YellowLimit"])
-            @Html.TextBoxFor(m => m.Account.YellowLimit)
+            @Html.LabelFor(m => m.Account.YellowLimit, PlainText.Dictionary["YellowLimit"] + " #")
+            @Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money" })
         </p>
 
         <p>
@@ -34,5 +35,5 @@
 </div>
 
 @section PS {
-    @PlainText.Dictionary["RedLimit"] / @PlainText.Dictionary["YellowLimit"]: @PlainText.Dictionary["LimitExplanation"]
+    # @PlainText.Dictionary["RedLimit"] / @PlainText.Dictionary["YellowLimit"]: @PlainText.Dictionary["LimitExplanation"]
 }

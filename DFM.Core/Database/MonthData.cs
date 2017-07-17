@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
@@ -10,7 +9,7 @@ namespace DFM.Core.Database
     {
 		private MonthData() { }
 
-        internal static Month GetOrCreateMonth(Int32 month, Year year, Category category = null)
+        internal static Month GetOrCreateMonth(Int16 month, Year year, Category category = null)
         {
             var newMonth = year.GetMonth(month)
                 ?? createMonth(year, month);
@@ -21,7 +20,7 @@ namespace DFM.Core.Database
             return newMonth;
         }
 
-        private static Month createMonth(Year year, Int32 month)
+        private static Month createMonth(Year year, Int16 month)
         {
             var newMonth = new Month { Year = year, Time = month };
 

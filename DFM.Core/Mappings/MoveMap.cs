@@ -1,4 +1,5 @@
 ﻿using DFM.Core.Entities;
+using DFM.Core.Helpers;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -8,6 +9,9 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Move> mapping)
         {
+            mapping.Map(m => m.Description)
+                .Length(MaximumLength.MoveDescription);
+
             mapping.HasMany(m => m.DetailList)
                 .Cascade.AllDeleteOrphan();
 

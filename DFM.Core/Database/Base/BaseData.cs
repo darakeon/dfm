@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Ak.DataAccess.NHibernate;
 using DFM.Core.Entities.Bases;
+using DFM.Core.Exceptions;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -32,10 +33,19 @@ namespace DFM.Core.Database.Base
 
         private static T saveOrUpdate(T entity)
         {
-            if (entity.ID == 0 || Session.Contains(entity))
-                Session.SaveOrUpdate(entity);
-            else
-                Session.Merge(entity);
+            try
+            {
+                if (entity.ID == 0 || Session.Contains(entity))
+                    Session.SaveOrUpdate(entity);
+                else
+                    Session.Merge(entity);
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException.Message.StartsWith("Data too long for column"))
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeData);
+                throw;
+            }
 
             return entity;
         }

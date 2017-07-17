@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
@@ -10,7 +9,7 @@ namespace DFM.Core.Database
     {
 		private YearData() { }
 
-        internal static Year GetOrCreateYear(Int32 year, Account account, Category category = null)
+        internal static Year GetOrCreateYear(Int16 year, Account account, Category category = null)
         {
             var newYear = account.GetYear(year)
                 ?? createYear(account, year);
@@ -21,7 +20,7 @@ namespace DFM.Core.Database
             return newYear;
         }
 
-        private static Year createYear(Account account, Int32 year)
+        private static Year createYear(Account account, Int16 year)
         {
             var newYear = new Year{ Account = account, Time = year };
 

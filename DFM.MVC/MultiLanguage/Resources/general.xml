@@ -19,6 +19,7 @@
     <Description text="Description" />
     <Date text="Date" />
     <and text="and" />
+    <CharactersMax text="max. {0} characters" />
 
     <!--Entities-->
     <Account text="Account" />
@@ -76,6 +77,7 @@
     <Description text="Descrição" />
     <Date text="Data" />
     <and text="e" />
+    <CharactersMax text="max. {0} caracteres" />
 
     <!--Entities-->
     <Account text="Conta" />

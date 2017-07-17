@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Enums
 {
@@ -23,7 +23,7 @@ namespace DFM.Core.Enums
                 case ScheduleFrequency.Yearly:
                     return date.AddYears(1);
                 default:
-                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.ScheduleFrequencyNotRecognized);
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleFrequencyNotRecognized);
             }
         }
     }

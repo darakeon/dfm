@@ -12,7 +12,8 @@
 
         <p>
             @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"])
-            @Html.TextBoxFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { maxlength = MaximumLength.UserEmail })
+            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.UserEmail)</span>
         </p>
 
         <p>

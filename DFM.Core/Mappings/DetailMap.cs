@@ -1,4 +1,5 @@
 ﻿using DFM.Core.Entities;
+using DFM.Core.Helpers;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -8,11 +9,14 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Detail> mapping)
         {
-            mapping.References(d => d.Move)
-                .Cascade.SaveUpdate();
+            mapping.Map(d => d.Description)
+                .Length(MaximumLength.DetailDescription);
 
             mapping.Map(d => d.Amount)
                 .Default("1");
+
+            mapping.References(d => d.Move)
+                .Cascade.SaveUpdate();
         }
     }
 }

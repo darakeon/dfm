@@ -1,4 +1,5 @@
 ﻿using DFM.Core.Entities;
+using DFM.Core.Helpers;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -8,6 +9,9 @@ namespace DFM.Core.Mappings
     {
         public void Override(AutoMapping<Category> mapping)
         {
+            mapping.Map(c => c.Name)
+                .Length(MaximumLength.CategoryName);
+            
             mapping.Map(c => c.Active)
                 .Default("1");
 

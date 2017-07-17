@@ -50,6 +50,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NHibernate\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="NHibernate">
       <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -69,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
+    <Compile Include="Exceptions\ExceptionPossibilities.cs" />
     <Compile Include="Database\CategoryData.cs" />
     <Compile Include="Database\ScheduleData.cs" />
     <Compile Include="Database\SummaryData.cs" />
@@ -103,10 +105,11 @@
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SummaryNature.cs" />
-    <Compile Include="Helpers\DFMCoreException.cs" />
+    <Compile Include="Exceptions\DFMCoreException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Helpers\MaximumLength.cs" />
     <Compile Include="Mappings\ScheduleMap.cs" />
     <Compile Include="Mappings\SummaryMap.cs" />
     <Compile Include="Mappings\MonthMap.cs" />

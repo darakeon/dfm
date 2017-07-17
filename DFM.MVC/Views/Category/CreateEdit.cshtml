@@ -17,7 +17,8 @@
 
         <p>
             @Html.LabelFor(m => m.Category.Name, PlainText.Dictionary["Category"])
-            @Html.TextBoxFor(m => m.Category.Name)
+            @Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaximumLength.CategoryName })
+            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.CategoryName)</span>
         </p>
     
         <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>

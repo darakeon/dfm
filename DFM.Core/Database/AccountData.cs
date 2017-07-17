@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
-using DFM.Core.Entities.Bases;
 using DFM.Core.Entities.Extensions;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Database
 {
@@ -34,7 +33,7 @@ namespace DFM.Core.Database
 
             if (accountExistsForUser)
             {
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.AccountAlreadyExists);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountAlreadyExists);
             }
         }
 
@@ -44,7 +43,7 @@ namespace DFM.Core.Database
                 return;
 
             if (account.RedLimit >= account.YellowLimit)
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.YellowLimitUnderRedLimit);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.YellowLimitUnderRedLimit);
         }
 
 
@@ -81,7 +80,7 @@ namespace DFM.Core.Database
                 .ToList();
 
             if (accountList.Count > 1)
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.DuplicatedAccountName);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
 
             return accountList.SingleOrDefault();
         }
@@ -106,7 +105,7 @@ namespace DFM.Core.Database
         }
 
 
-        public static Year GetYearReport(Int32 accountid, Int32 dateYear)
+        public static Year GetYearReport(Int32 accountid, Int16 dateYear)
         {
             var account = SelectById(accountid);
 
@@ -139,7 +138,7 @@ namespace DFM.Core.Database
             if (account == null) return;
 
             if (!account.HasMoves())
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.CantCloseEmptyAccount);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
 
             account.EndDate = DateTime.Now;
             SaveOrUpdate(account);
@@ -151,7 +150,7 @@ namespace DFM.Core.Database
             if (account == null) return;
 
             if (account.HasMoves())
-                throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.CantDeleteAccountWithMoves);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
 
             BaseData<Account>.Delete(account);
         }

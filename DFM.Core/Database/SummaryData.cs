@@ -4,7 +4,7 @@ using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
-using DFM.Core.Helpers;
+using DFM.Core.Exceptions;
 
 namespace DFM.Core.Database
 {
@@ -21,7 +21,7 @@ namespace DFM.Core.Database
 
 
 
-        internal static void Ajust(Int32 month, Int32 year, Category category, Account account)
+        internal static void Ajust(Int16 month, Int16 year, Category category, Account account)
         {
             ajustMonth(month, year, category, account);
             ajustYear(year, category, account);
@@ -29,7 +29,7 @@ namespace DFM.Core.Database
 
 
 
-        private static void ajustMonth(Int32 monthDate, Int32 yearDate, Category category, Account account)
+        private static void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
         {
             var year = YearData.GetOrCreateYear(yearDate, account);
             var month = MonthData.GetOrCreateMonth(monthDate, year);
@@ -40,7 +40,7 @@ namespace DFM.Core.Database
             AjustValue(summaryMonth);
         }
 
-        private static void ajustYear(Int32 yearDate, Category category, Account account)
+        private static void ajustYear(Int16 yearDate, Category category, Account account)
         {
             var year = YearData.GetOrCreateYear(yearDate, account);
 
@@ -65,7 +65,7 @@ namespace DFM.Core.Database
                     summarizable = summary.Year;
                     break;
                 default:
-                    throw DFMCoreException.WithMessage(DFMCoreException.Possibilities.SummaryNatureNotFound);
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.SummaryNatureNotFound);
             }
 
             summary.In = summarizable.CheckUpIn(summary.Category);

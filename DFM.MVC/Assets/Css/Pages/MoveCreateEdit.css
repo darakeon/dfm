@@ -21,6 +21,7 @@
 
 .createMoveScreenRight {
     width: 60%;
+    margin-right: -200px;
 }
 
 .createMoveScreenLeft div, .createMoveScreenRight div 
@@ -64,4 +65,14 @@ input.amount {
     height: 1px;
     width: 95%;
     border: none;
+}
+
+.max {
+	display: inline;
+}
+
+#details .max {
+	color: #CCC;
+	float: right;
+	margin-top: 2px;
 }

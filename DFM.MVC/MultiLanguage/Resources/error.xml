@@ -23,6 +23,7 @@
     <ScheduleFrequencyNotRecognized text="Schedule frequency not recognized." />
     <ScheduleNoMoves text="No moves in schedule." />
     <SummaryNatureNotFound text="Summary Nature doesn't exist." />
+    <TooLargeData text="Field exceeded the characters limit." />
     <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
     <UserAlreadyExists text="User already exists." />
     <UserInvalidEmail text="User e-mail is invalid." />
@@ -52,6 +53,7 @@
     <ScheduleFrequencyNotRecognized text="Frequência de agendador desconhecida." />
     <ScheduleNoMoves text="Agendamento sem Movimentações." />
     <SummaryNatureNotFound text="Natureza de Resumo inexistente." />
+    <TooLargeData text="O campo excedeu o limite de caracteres." />
     <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
     <UserAlreadyExists text="Usuário já existe." />
     <UserInvalidEmail text="E-mail inválido." />
