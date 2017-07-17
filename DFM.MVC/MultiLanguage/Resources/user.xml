@@ -3,17 +3,21 @@
   <en-US>
     <Email text="E-mail" />
     <Password text="Password" />
+    <RetypePassword text="Retype password" />
     <Enter text="Enter" />
     <SignUp text="Sign up" />
     <RememberMe text="Remember" />
     <Logon text="Logon" />
+    <RetypeWrong text="Confirm password must be equal to Password." />
   </en-US>
   <pt-BR>
     <Email text="E-mail" />
     <Password text="Senha" />
+    <RetypePassword text="Redigite a senha" />
     <Enter text="Entrar" />
     <SignUp text="Cadastrar-se" />
     <RememberMe text="Lembrar" />
     <Logon text="Entrar" />
+    <RetypeWrong text="A confirmação deve ser igual à senha." />
   </pt-BR>
 </user>

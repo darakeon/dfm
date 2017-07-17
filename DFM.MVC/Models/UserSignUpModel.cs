@@ -26,5 +26,8 @@ namespace DFM.MVC.Models
             get { return User.Password; }
             set { User.Password = value; }
         }
+
+        [Required(ErrorMessage = "*")]
+        public String RetypePassword { get; set; }
     }
 }

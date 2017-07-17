@@ -63,11 +63,15 @@ VERSION 1.0.0.1
 
 VERSION 1.0.0.2
 25/09	26/09	Conflito de formato de data
-		Recuperação de Senha - hashcode
-		Confirmação de senha
+28/09		Confirmação de senha
 		Data de cadastro do usuário
-		Ícones ao invés de palavras nas listagem de contas
 		Escurecer mensagem de erro (inverter cor?)
+
+======================================================================================================
+
+VERSION 1.0.0.3
+		Recuperação de Senha - hashcode
+		Ícones ao invés de palavras nas listagem de contas
 
 ======================================================================================================
 
