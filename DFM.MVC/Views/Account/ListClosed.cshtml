@@ -27,33 +27,30 @@ else
             var endMonth = account.EndDate.Value.Month;
             var endYear = account.EndDate.Value.Year;
             var monthReportId = endYear * 100 + endMonth;
+
             
+            var movesSum = account.Sum();
+            var negative = movesSum < 0;
+            var value = (negative ? -movesSum : movesSum).ToMoney();
+
+            var sign = account.Sign();
+                    
+
+            var monthLabel = String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear);
+            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID, id = monthReportId });
+                    
+            var yearLabel = String.Format(PlainText.Dictionary["YearMoves"], account.EndDate.Value.Year);
+            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID, id = endYear });
+                        
             <tr>
                 <td>@account.Name </td>
                 <td>@account.BeginDate.ToShortDateString() </td>
                 <td>@account.EndDate.Value.ToShortDateString() </td>
 
-
-                @{
-                    var movesSum = account.Sum();
-
-                    var negative = movesSum < 0;
-                    var value = (negative ? -movesSum : movesSum).ToMoney();
-
-                    var sign = account.Sign();
-                }
-
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
 
-                <td>@Url.RouteUrl(
-                     String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear),
-                        RouteNames.Accounts,
-                        new { action = "SeeMonth", controller = "Report", accountid = account.ID, id = monthReportId }, new { })</td>
-                
-                <td>@Html.RouteLink(
-                        String.Format(PlainText.Dictionary["YearMoves"], account.EndDate.Value.Year),
-                        RouteNames.Accounts,
-                        new { action = "SeeYear", controller = "Report", accountid = account.ID, id = endYear }, new { })</td>
+                <td class="image"><a href="@monthUrl"><img src="/Assets/Image/month.gif" alt="@monthLabel" title="@monthLabel" /></a></td>
+                <td class="image"><a href="@yearUrl"><img src="/Assets/Image/year.gif" alt="@yearLabel" title="@yearLabel" /></a></td>
             </tr>
 
         } 

@@ -43,6 +43,10 @@ td.out {
 	color: #C00;
 }
 
+td.image {
+	text-align: center;
+}
+
 
 table.Mini {
 	width: 40%;
