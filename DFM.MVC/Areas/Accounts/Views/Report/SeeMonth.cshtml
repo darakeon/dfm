@@ -1,9 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeMonthModel
 
-@using DFM.MVC.Helpers;
-
 @{
-    ViewBag.Title = String.Format("{0}: {2} {1}", Model.Account, Model.Month, Model.Year);
+    ViewBag.Title = String.Format("{0}: {1}", Model.Account, Model.Date);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -13,19 +11,19 @@
 
 @if (Model.MoveList.Count == 0) { 
     
-    @("There's no Moves for this Month.")
+    @PlainText.Dictionary["NoMonthMoves"]
         
 } else { 
         
     <table class="List">
 
         <tr>
-            <td>Description</td>
-            <td>Category</td>
-            <td>Date</td>
-            <td>In</td>
-            <td>Out</td>
-            <td colspan="2"></td>
+            <td>@PlainText.Dictionary["Description"]</td>
+            <td>@PlainText.Dictionary["Category"]</td>
+            <td>@PlainText.Dictionary["Date"]</td>
+            <td>@PlainText.Dictionary["In"]</td>
+            <td>@PlainText.Dictionary["Out"]</td>
+            <td colspan="2">@PlainText.Dictionary["TODO"]</td>
         </tr>
 
         @foreach (var move in Model.MoveList) { 
@@ -49,11 +47,11 @@
                         { @(" ") }
                 </td>
 
-                <td>@Html.ActionLink("Edit", "Edit", "Move", new { id = move.ID }, null)</td>
+                <td>@Html.ActionLink(PlainText.Dictionary["Edit"], "Edit", "Move", new { id = move.ID }, null)</td>
 
-                <td>@Ajax.ActionLink("Delete", "Delete", "Move", new { id = move.ID }, 
+                <td>@Ajax.ActionLink(PlainText.Dictionary["Delete"], "Delete", "Move", new { id = move.ID }, 
                         new AjaxOptionsDFM {
-                            Confirm = String.Format("Do you really want to DELETE Move '{0}'?", move.Description),
+                            Confirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.Description),
                         })</td>
                 
             </tr>

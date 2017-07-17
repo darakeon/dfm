@@ -1,30 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <general>
   <en-US>
+    <!--Actions-->
     <Create text="Create" />
     <Edit text="Edit" />
-    <Account text="Account" />
+    <Add text="Add" />
     <Select text="Select" />
-    <Name text="Name" />
-    <Nature text="Nature" />
-    <Accounts text="Accounts" />
-    <Categories text="Categories" />
     <LogOff text="Log Off" />
+    <Delete text="Delete" />
     <GOTO text="GO TO" />
     <TODO text="TO DO" />
+
+    <!--Nouns-->
+    <Name text="Name" />
+    <Value text="Value" />
+    <Description text="Description" />
+    <Date text="Date" />
+
+    <!--Entities-->
+    <Account text="Account" />
+    <Accounts text="Accounts" />
+    <Move text="Move" />
+    <Category text="Category" />
+    <Categories text="Categories" />
+    <Detail text="Detail" />
+    <Nature text="Nature" />
+
+    <!--Enums-->
+    <In text="In" />
+    <Out text="Out" />
+    <Transfer text="Transfer" />
+
   </en-US>
   <pt-BR>
+    <!--Actions-->
     <Create text="Criar" />
     <Edit text="Editar" />
-    <Account text="Conta" />
+    <Add text="Adicionar" />
     <Select text="Selecione" />
-    <Name text="Nome" />
-    <Nature text="Natureza" />
-    <Accounts text="Contas" />
-    <Categories text="Categorias" />
     <LogOff text="Sair" />
+    <Delete text="Apagar" />
     <GOTO text="Ver" />
     <TODO text="Ações" />
+
+    <!--Nouns-->
+    <Name text="Nome" />
+    <Value text="Valor" />
+    <Description text="Descrição" />
+    <Date text="Data" />
+
+    <!--Entities-->
+    <Account text="Conta" />
+    <Accounts text="Contas" />
+    <Move text="Movimentação" />
+    <Category text="Categoria" />
+    <Categories text="Categorias" />
+    <Detail text="Detalhe" />
+    <Nature text="Natureza" />
+
+    <!--Enums-->
+    <In text="Entrada" />
+    <Out text="Saída" />
+    <Transfer text="Transferência" />
   </pt-BR>
 </general>

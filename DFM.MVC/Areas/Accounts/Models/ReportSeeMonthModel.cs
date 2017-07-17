@@ -15,7 +15,6 @@ namespace DFM.MVC.Areas.Accounts.Models
         public IList<Move> MoveList { get; set; }
         public Account Account { get; set; }
         
-        public Int32 Year { get; set; }
-        public String Month { get; set; }
+        public String Date { get; set; }
     }
 }

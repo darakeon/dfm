@@ -2,13 +2,13 @@
 
 <move>
   <en-US>
-    <Out text="Out" />
-    <In text="In" />
-    <Transfer text="Transfer" />
+    <Amount text="Amount" />
+    <JustOneValue text="Just One Value" />
+    <Detailed text="Detailed" />
   </en-US>
   <pt-BR>
-    <Out text="Saída" />
-    <In text="Entrada" />
-    <Transfer text="Transferência" />
+    <Amount text="Qte" />
+    <JustOneValue text="Valor Único" />
+    <Detailed text="Detalhado" />
   </pt-BR>
 </move>

@@ -7,7 +7,6 @@ using DFM.Core.Database;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
 
-// ReSharper disable InconsistentNaming
 namespace DFM.MVC
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -47,14 +46,12 @@ namespace DFM.MVC
         protected void Application_BeginRequest()
         {
             NHManager.Open();
+            
+            // TO-DO: take this out
+            if (Request.Url.Host == "localhost")
+                PlainText.Initialize();
 
-            if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
-                return;
-
-            var language = "pt-BR";//Request.UserLanguages[0].ToLower();
-
-            if (PlainText.AcceptedLanguages.Contains(language))
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
+            specifyLanguage();
         }
 
         protected void Application_EndRequest()
@@ -66,7 +63,20 @@ namespace DFM.MVC
         {
             NHManager.End();
         }
-    
+
+
+
+
+        private void specifyLanguage()
+        {
+            if (Request.UserLanguages == null || Request.UserLanguages.Length == 0)
+                return;
+
+            var language = "pt-BR";//Request.UserLanguages[0].ToLower();
+
+            if (PlainText.AcceptedLanguages.Contains(language))
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
+        }
+
     }
 }
-// ReSharper enable InconsistentNaming

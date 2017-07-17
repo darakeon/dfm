@@ -1,0 +1,41 @@
+﻿@model DFM.MVC.MultiLanguage.PlainText
+
+@{
+    ViewBag.Title = "Analyze Dictionary";
+    Layout = "~/Views/Shared/Inner/AD.cshtml";
+    
+    var phrases = new List<String>();
+}
+
+
+@foreach (var section in Model.SectionList)
+{
+    <table>
+        <tr>
+            <th colspan="@(section.LanguageList.Max(l => l.PhraseList.Count) + 1)">
+                @(section.Name.ToUpper())
+            </th>
+        </tr>
+
+        @foreach (var language in section.LanguageList)
+	    {
+            <tr>
+                
+                <td>@language.Name</td>
+                
+                @foreach (var phrase in language.PhraseList)
+                {
+                    var key = phrase.Name + "_" + language.Name;
+                    
+                    <td class="@(phrases.Contains(key) ? "ALERT" : "")">
+                        @phrase.Text<br />
+                        (@phrase.Name)
+                    </td>
+                    
+                    phrases.Add(key);
+                }
+
+            </tr>
+        }
+    </table>
+}

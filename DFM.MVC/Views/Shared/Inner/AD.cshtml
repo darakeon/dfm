@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>DFM - @ViewBag.Title</title>
+    <style>
+        table
+        {
+        	text-align: center;
+        	width: 100%;
+        	border: 1px solid;
+        	margin-bottom: 20px;
+        }
+        
+        td
+        {
+        	border: 1px solid;
+        }
+        
+        .ALERT
+        {
+        	border: 2px solid #F00;
+        	color: #F00;
+        	background: #FF0;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        @ViewBag.Title
+    </h2>
+
+    <div class='Main'>
+        @RenderBody()
+    </div>
+</body>
+</html>

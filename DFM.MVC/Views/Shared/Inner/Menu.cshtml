@@ -3,8 +3,8 @@
 @foreach (var account in Model.LateralAccountList) { 
     <p>
         <span class="accountName">@account.Name </span><br />
-        @Html.RouteLink(Model.CurrentMonth, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeMonth", accountid = account.ID })
-        @Html.RouteLink(Model.CurrentYear, DFM.MVC.Helpers.RouteNames.Accounts, new { controller = "Report", action = "SeeYear", accountid = account.ID }) 
+        @Html.RouteLink(Model.CurrentMonth, RouteNames.Accounts, new { controller = "Report", action = "SeeMonth", accountid = account.ID })
+        @Html.RouteLink(Model.CurrentYear, RouteNames.Accounts, new { controller = "Report", action = "SeeYear", accountid = account.ID }) 
     </p>
 }
 
@@ -12,10 +12,10 @@
 
 <p>
     <br />
-    @Html.RouteLink(PlainText.Dictionary["Accounts"], DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Account"})
+    @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account"})
     <br />
-    @Html.RouteLink(PlainText.Dictionary["Categories"], DFM.MVC.Helpers.RouteNames.Default, new { action = "Index", controller = "Category"})
+    @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category"})
     <br />
     <br />
-    @Html.RouteLink(PlainText.Dictionary["LogOff"], DFM.MVC.Helpers.RouteNames.Default, new { action = "LogOff", controller = "User"})
+    @Html.RouteLink(PlainText.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User"})
 </p>

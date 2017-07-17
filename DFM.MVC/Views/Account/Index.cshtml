@@ -1,7 +1,5 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
-@using DFM.MVC.Helpers;
-
 @{
     ViewBag.Title = PlainText.Dictionary["Accounts"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
@@ -39,22 +37,22 @@ else
 
                 <td>@Html.RouteLink(
                         String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
-                        DFM.MVC.Helpers.RouteNames.Accounts,
+                        RouteNames.Accounts,
                         new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
                 
                 <td>@Html.RouteLink(
                         String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
-                        DFM.MVC.Helpers.RouteNames.Accounts,
+                        RouteNames.Accounts,
                         new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
                 
-                <td>@Html.RouteLink(PlainText.Dictionary["Create", "Move"], DFM.MVC.Helpers.RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
+                <td>@Html.RouteLink(PlainText.Dictionary["Create", "Move"], RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID }, new { })</td>
 
-                <td>@Html.RouteLink("Edit", DFM.MVC.Helpers.RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID }, new { })</td>
+                <td>@Html.RouteLink(PlainText.Dictionary["Edit"], RouteNames.Default, new { action = "Edit", controller = "Account", id = account.ID }, new { })</td>
 
                 <td>
                     @Ajax.ActionLink(
-                            "Close", "Close", new { id = account.ID },
-                            new AjaxOptionsDFM() { Confirm = String.Format("Do you really want to CLOSE Account '{0}'?", account.Name) }
+                            PlainText.Dictionary["Close"], "Close", new { id = account.ID },
+                            new AjaxOptionsDFM() { Confirm = String.Format(PlainText.Dictionary["CloseConfirm"], account.Name) }
                         ) 
                 </td>
             </tr>
@@ -65,6 +63,6 @@ else
 } 
 
 <div class="finalList">
-    <button href="@Url.Action("Create")">New Account</button>
-    <button href="@Url.Action("ListClosed")">See closed Accounts</button>
+    <button href="@Url.Action("Create")">@PlainText.Dictionary["Create", "Account"]</button>
+    <button href="@Url.Action("ListClosed")">@PlainText.Dictionary["ClosedAccounts"]</button>
 </div>

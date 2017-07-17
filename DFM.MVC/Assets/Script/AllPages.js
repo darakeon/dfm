@@ -18,10 +18,15 @@ function AjustMoney(discriminator) {
         var dotPosition = this.value.indexOf('.');
         var numberSize = this.value.length;
 
+        if (this.value == '')
+            return;
+
         if (this.value == '0')
             this.value = '';
-        else if (this.value != '' && dotPosition == -1)
+        
+        else if (dotPosition == -1)
             this.value += '.00';
+        
         else if (dotPosition + 3 > numberSize)
             this.value += '0';
     });

@@ -74,7 +74,12 @@
     <Compile Include="Helpers\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
-    <Compile Include="MultiLanguage\DictionaryCreator.cs" />
+    <Compile Include="MultiLanguage\Helpers\DicException.cs" />
+    <Compile Include="MultiLanguage\Helpers\DicList.cs" />
+    <Compile Include="MultiLanguage\Helpers\DictionaryCreator.cs" />
+    <Compile Include="MultiLanguage\Helpers\INameable.cs" />
+    <Compile Include="MultiLanguage\Helpers\Language.cs" />
+    <Compile Include="MultiLanguage\Helpers\Phrase.cs" />
     <Compile Include="MultiLanguage\PlainText.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MultiLanguage\Helpers\Section.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,12 +126,13 @@
     <Content Include="Assets\Script\Pages\MoveCreateEdit.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Site.css" />
-    <Content Include="MultiLanguage\Resources\account.xml">
+    <EmbeddedResource Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="MultiLanguage\Resources\general.xml" />
-    <Content Include="MultiLanguage\Resources\move.xml" />
-    <Content Include="MultiLanguage\Resources\user.xml" />
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiLanguage\Resources\report.xml" />
+    <EmbeddedResource Include="MultiLanguage\Resources\general.xml" />
+    <EmbeddedResource Include="MultiLanguage\Resources\move.xml" />
+    <EmbeddedResource Include="MultiLanguage\Resources\user.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -186,10 +193,16 @@
     <Folder Include="Areas\Accounts\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Account\ListClosed.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\ListClosed.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\AnalyzeDictionary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Inner\AD.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

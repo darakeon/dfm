@@ -5,10 +5,14 @@
     <Login text="Login" />
     <Password text="Password" />
     <Logon text="Logon" />
+    <SignUp text="Don't have!" />
+    <Email text="E-mail" />
   </en-US>
   <pt-BR>
     <Login text="Login" />
     <Password text="Senha" />
     <Logon text="Entrar" />
+    <SignUp text="Cadastrar-se" />
+    <Email text="E-mail" />
   </pt-BR>
 </user>

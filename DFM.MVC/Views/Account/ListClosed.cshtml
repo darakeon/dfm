@@ -1,36 +1,43 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
 @{
-    ViewBag.Title = "Closed Accounts";
+    ViewBag.Title = PlainText.Dictionary["ClosedAccounts"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
 @if (Model.AccountList.Count == 0) { 
     
-    @("There's no closed Accounts.")
+    @PlainText.Dictionary["NoClosedAccounts"]
 
 } else { 
         
     <table class='List'>
 
         <tr>
-            <td>Name</td>
-            <td>Begin Date</td>
-            <td>End Date</td>
-            <td>Value</td>
-            <td colspan="2">GO TO</td>
+            <td>@PlainText.Dictionary["Name"]</td>
+            <td>@PlainText.Dictionary["BeginDate"]</td>
+            <td>@PlainText.Dictionary["EndDate"]</td>
+            <td>@PlainText.Dictionary["Value"]</td>
+            <td colspan="2">@PlainText.Dictionary["GOTO"]</td>
         </tr>
 
         @foreach (var account in Model.AccountList) { 
             
             <tr>
                 <td>@account.Name </td>
-                <td>@account.BeginDate </td>
-                <td>@(account.EndDate == null ? "open account" : account.EndDate.ToString()) </td>
+                <td>@account.BeginDate.ToShortDateString() </td>
+                <td>@account.EndDate.Value.ToShortDateString() </td>
                 <td>@account.MovesSum </td>
 
-                <td>@Html.RouteLink(Model.CurrentMonth + " Moves", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
-                <td>@Html.RouteLink(Model.CurrentYear + " Summary", DFM.MVC.Helpers.RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
+                <td>@Html.RouteLink(
+                        String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth),
+                        RouteNames.Accounts,
+                        new { action = "SeeMonth", controller = "Report", accountid = account.ID }, new { })</td>
+                
+                <td>@Html.RouteLink(
+                        String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear),
+                        RouteNames.Accounts,
+                        new { action = "SeeYear", controller = "Report", accountid = account.ID }, new { })</td>
             </tr>
 
         } 

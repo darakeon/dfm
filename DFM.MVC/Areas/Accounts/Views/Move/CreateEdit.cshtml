@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditModel
 
 @{
-    ViewBag.Title = Model.ActionName + " Move";
+    ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Move"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -47,7 +47,7 @@
             @Html.ValidationMessageFor(m => m.CategoryID)<br />
             @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
 
-            <button type="button" id="newCategoryCaller">New Category</button>
+            <button type="button" id="newCategoryCaller">@PlainText.Dictionary["Create", "Category"]</button>
         </div>
 
         <div>
@@ -65,14 +65,14 @@
     
     <div class="createMoveScreenLeft">
         @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })
-        Just One Value
+        @PlainText.Dictionary["JustOneValue"]
     </div> 
         
     <div class="createMoveScreenRight">
         @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "DetailLevel" })
-        Detailed
+        @PlainText.Dictionary["Detailed"]
         
-        <button id="addDetailButton" type="button" onclick="AddDetail()">Add Detail</button>
+        <button id="addDetailButton" type="button" onclick="AddDetail()">@PlainText.Dictionary["Add", "Detail"]</button>
     </div>
 
     <div id="oneValue" class="createMoveScreenLeft">
@@ -82,7 +82,7 @@
                 <td>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</td>
             </tr>
             <tr>
-                <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "number" })</td>
+                <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Amount, new { @class = "amount" })</td>
                 <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Value, new { @class = "money" })</td>
             </tr>
         </table>
@@ -92,9 +92,9 @@
         
     <table id="details" class="createMoveScreenRight">
         <tr>
-            <td>Description</td>
-            <td>Amount</td>
-            <td>Value</td>
+            <td>@PlainText.Dictionary["Description"]</td>
+            <td>@PlainText.Dictionary["Amount"]</td>
+            <td>@PlainText.Dictionary["Value"]</td>
         </tr>
 
         @for (var d = 0; d < Model.Move.DetailList.Count; d++)
@@ -107,7 +107,7 @@
     </table>
     
     <div id="moveCreateButton">
-        <button type="submit">@Model.ActionName!</button>
+        <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
     </div>
 
 }

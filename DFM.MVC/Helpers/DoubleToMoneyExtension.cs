@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Helpers
 {
@@ -6,7 +7,7 @@ namespace DFM.MVC.Helpers
     {
         public static String ToMoney(this Double number)
         {
-            return number.ToString("#0.00");
+            return number.ToString("#0.00", PlainText.Culture.NumberFormat);
         }
     }
 }

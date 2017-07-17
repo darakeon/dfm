@@ -7,15 +7,15 @@
 
 @if (Model.MoveSumList.Count == 0) { 
     
-    @("There's no Moves for this Year.")
+    @PlainText.Dictionary["NoYearMoves"]
         
 } else { 
         
     <table class="List">
 
         <tr>
-            <td>Month</td>
-            <td>Value</td>
+            <td>@PlainText.Dictionary["Month"]</td>
+            <td>@PlainText.Dictionary["Value"]</td>
         </tr>
 
         @foreach (var move in Model.MoveSumList) { 

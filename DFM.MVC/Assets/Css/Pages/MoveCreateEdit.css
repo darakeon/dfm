@@ -32,3 +32,8 @@ div
     margin-left: 20px;
     display: none;
 }
+
+input.amount
+{
+	width: 30px;
+}

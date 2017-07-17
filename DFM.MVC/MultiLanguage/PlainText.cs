@@ -7,6 +7,7 @@ using System.Threading;
 using System.Web;
 using Ak.DataAccess.XML;
 using Ak.MVC.Route;
+using DFM.MVC.MultiLanguage.Helpers;
 using NHibernate.Linq;
 
 namespace DFM.MVC.MultiLanguage
@@ -17,41 +18,29 @@ namespace DFM.MVC.MultiLanguage
         public static List<String> AcceptedLanguages;
         private static readonly String path = HttpContext.Current.Server.MapPath(@"~\MultiLanguage\Resources");
 
-        private readonly IDictionary<String, IDictionary<String, IDictionary<String, String>>> dictionary;
+        public DicList<Section> SectionList { get; private set; }
 
 
 
-        private PlainText(IEnumerable<String> xmls)
+        public PlainText()
         {
-            dictionary = new Dictionary<String, IDictionary<String, IDictionary<String, String>>>();
+            SectionList = new DicList<Section>();
+            AcceptedLanguages = new List<String>();
+        }
 
+        private PlainText(IEnumerable<String> xmls) : this()
+        {
             xmls.Select(x => new Node(x))
                 .ForEach(addSectionToDictionary);
         }
 
-        private void addSectionToDictionary(Node file)
+        private void addSectionToDictionary(Node nodeSection)
         {
-            var newSection = new Dictionary<String, IDictionary<String, String>>();
+            var dicSection = new Section(nodeSection);
 
-            foreach (var newLanguage in file)
-            {
-                addLanguageToSection(newLanguage, newSection);
-            }
-
-            dictionary.Add(file.Name, newSection);
+            SectionList.Add(dicSection);
         }
 
-        private static void addLanguageToSection(Node newLanguage, Dictionary<String, IDictionary<String, String>> newSection)
-        {
-            var phrases = new Dictionary<String, String>();
-
-            foreach (var phrase in newLanguage)
-            {
-                phrases.Add(phrase.Name, phrase["text"]);
-            }
-
-            newSection.Add(newLanguage.Name, phrases);
-        }
 
 
 
@@ -64,11 +53,9 @@ namespace DFM.MVC.MultiLanguage
 
         private static void setAcceptedLaguages()
         {
-            AcceptedLanguages = new List<String>();
-
-            Dictionary.dictionary.ForEach(
+            Dictionary.SectionList.ForEach(
                 s => AcceptedLanguages.AddRange( 
-                    s.Value.Select(l => l.Key)
+                    s.LanguageList.Select(l => l.Name)
                          )
                 );
 
@@ -76,11 +63,13 @@ namespace DFM.MVC.MultiLanguage
         }
 
 
+
         public static CultureInfo Culture { get { return Thread.CurrentThread.CurrentUICulture; } }
 
         private static String section { get { return RouteInfo.Current.RouteData.Values["controller"].ToString().ToLower(); } }
 
         private static String language { get { return Culture.Name; } }
+
 
 
         public String this[object phrase]
@@ -92,28 +81,18 @@ namespace DFM.MVC.MultiLanguage
         {
             get
             {
-                try { return dictionary["general"][language][phrase]; }
-                catch (KeyNotFoundException)
+                try { return SectionList["general"][language][phrase].Text; }
+                catch (DicException)
                 {
-                    try { return dictionary[section][language][phrase]; }
-                    catch (KeyNotFoundException)
+                    try { return SectionList[section][language][phrase].Text; }
+                    catch (DicException)
                     {
-                        if (HttpContext.Current.Request.Url.Host != "localhost")
-                            throw notFoundKey(phrase);
-
                         DictionaryCreator.Fix(path, section, language, phrase);
                         
                         return Dictionary[phrase];
                     }
                 }
             }
-        }
-
-        private Exception notFoundKey(String phrase)
-        {
-            return new Exception(
-                    String.Format("Key not found (section: {0} / language: {1} / phrase: {2}).", section, language, phrase)
-                );
         }
 
 

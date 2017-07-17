@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Web.Mvc;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
+using DFM.MVC.Helpers;
+using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -29,8 +31,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                                 MoveList = accountData.GetMonthReport(accountid, month, year),
                                 Account = accountData.SelectById(accountid),
 
-                                Month = DateTimeFormatInfo.InvariantInfo.GetMonthName(month),
-                                Year = year,
+                                Date = 
+                                    String.Format(PlainText.Dictionary["ShortDateFormat"],
+                                        PlainText.Culture.DateTimeFormat.GetMonthName(month).Capitalize(), year)
                             };
 
 
