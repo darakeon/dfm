@@ -44,7 +44,7 @@
 15/09	15/09	Refactor: centralizar textos de erro em enum
 15/09	15/09	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
 15/09	15/09	Robô para Taxas Fixas
-		Mudar inserção / edição de conta para englobar tipos
+		Mudar inserção / edição de conta para englobar detalhes
 		Aviso de Limite da conta Credit
 		Limite de carga da conta Charge
 		Previsão de Charge vazia
