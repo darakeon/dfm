@@ -22,6 +22,9 @@ namespace DFM.Core.Mappings
                 .Length(MaximumLength.UserLanguage)
                 .Default("'pt-BR'");
 
+            mapping.Map(u => u.Creation)
+                .Default("'2011-09-21'");
+
             mapping.HasMany(u => u.AccountList)
                 .Cascade.SaveUpdate()
                 .Not.LazyLoad();
