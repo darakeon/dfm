@@ -24,9 +24,7 @@ namespace DFM.Core.Entities.Extensions
             schedule.Next =
                 move.Date > DateTime.Now 
                     ? move.Date
-                    : schedule.Frequency == ScheduleFrequency.Monthly
-                        ? move.Date.AddMonths(1)
-                        : move.Date.AddYears(1);
+                    : schedule.Frequency.Next(move.Date);
         }
 
         public static void Deactivate(this Schedule schedule)

@@ -13,6 +13,7 @@ namespace DFM.Core.Entities
             Times = 1;
             MoveList = new List<Move>();
             Active = true;
+            Frequency = ScheduleFrequency.Monthly;
         }
 
 

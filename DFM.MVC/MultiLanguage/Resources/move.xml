@@ -46,5 +46,6 @@
 		<Frequency text="Frequência" />
 		<ConnectionError text="ConnectionError" automatic="" />
 		<MoveFutureNotScheduled text="MoveFutureNotScheduled" automatic="" />
+		<Daily text="Daily" automatic="" />
 	</pt-BR>
 </move>
