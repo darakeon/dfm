@@ -55,12 +55,18 @@ VERSION 1.0.0.0
 
 ======================================================================================================
 
+VERSION 1.0.0.1
+		Consertar acesso NH no publicado
+
+======================================================================================================
+
 VERSION 1.0.1.0
 		Implementar proteção por usuário no Core
 		Implementar Log4Net / Elmah
 		Refactor: BDD
 		Refactor Geral
 		Service WCF
+		Follow twitter
 		
 		importador/exportador de XML
 		importador/exportador de Excel
