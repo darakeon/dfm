@@ -122,6 +122,8 @@ VERSÃO 1.0.2.1
 18/03/2012			BDD
 				Selenium
 				Refactor de limpeza geral
+				Security desativa os anteriores
+				Colocar robot.txt para google
 				Fornecer detalhes do erro no e-mail de report
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)
@@ -155,8 +157,8 @@ VERSÃO 1.0.2.2
 
 VERSÃO 1.0.3.0
 
+				Possibilitar Apelido e Url escolhida para a conta
 				Rever layout (relógio de parede para agendamento)
-				Security desativa os anteriores
 				Follow twitter
 				Criar projeto UI, que será referenciado pelo MVC
 				Criar projeto que retorna UI em Json

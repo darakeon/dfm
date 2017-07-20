@@ -17,7 +17,7 @@ namespace DFM.Repositories
 
         private static String requestCode { get { return HttpContext.Current.Request.GetHashCode().ToString(); } }
         private static IIdentity user { get { return HttpContext.Current.User.Identity; } }
-        private static String userKey { get { return user.IsAuthenticated ? user.Name : requestCode; } }
+        private static String userKey { get { return user != null && user.IsAuthenticated ? user.Name : requestCode; } }
 
         public static ISession Session
         {
