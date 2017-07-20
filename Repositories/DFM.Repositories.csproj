@@ -34,6 +34,7 @@
     <Compile Include="BaseData.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
+    <Compile Include="Mappings\BaseMoveMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\FutureMoveMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
@@ -72,6 +73,7 @@
     <Reference Include="NHibernate">
       <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
