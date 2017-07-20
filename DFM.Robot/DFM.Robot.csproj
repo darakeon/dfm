@@ -52,7 +52,7 @@
       <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
       <Name>DFM.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Repositories\DFM.Repositories.csproj">
+    <ProjectReference Include="..\DFM.Repositories\DFM.Repositories.csproj">
       <Project>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</Project>
       <Name>DFM.Repositories</Name>
     </ProjectReference>

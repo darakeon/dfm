@@ -26,7 +26,9 @@ namespace DFM.Repositories
                 if (!sessionList.ContainsKey(userKey))
                 {
                     var session = SessionBuilder.Open();
-                    sessionList.Add(userKey, session);
+
+                    if (!sessionList.ContainsKey(userKey))
+                        sessionList.Add(userKey, session);
                 }
 
                 return sessionList[userKey];

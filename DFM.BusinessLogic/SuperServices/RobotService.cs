@@ -130,15 +130,27 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void TransformFutureInMove(FutureMove futureMove, bool boundless, Format.GetterForMove formatGetter)
         {
-            if (boundless)
+            var transaction = futureMoveService.BeginTransaction();
+
+            try
             {
-                addNextFutureMove(futureMove.Schedule);
+                if (boundless)
+                {
+                    addNextFutureMove(futureMove.Schedule);
+                }
+
+                var move = futureMove.Cast();
+
+                moneyService.SaveOrUpdateMove(move, futureMove.Out, futureMove.In, formatGetter);
+                DeleteFutureMove(futureMove);
+
+                futureMoveService.CommitTransaction(transaction);
             }
-
-            var move = futureMove.Cast();
-
-            moneyService.SaveOrUpdateMove(move, futureMove.Out, futureMove.In, formatGetter);
-            DeleteFutureMove(futureMove);
+            catch
+            {
+                futureMoveService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
 
