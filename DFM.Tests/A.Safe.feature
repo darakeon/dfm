@@ -1,15 +1,46 @@
 ﻿Feature: Create and security of User
 
-Scenario: SaveUserAndSendVerify
-Scenario: ActivateUser
+@SaveUserAndSendVerify
+Scenario: 001. Save user without email (E)
+Scenario: 002. Save user without password (E)
+Scenario: 003. Save user with invalid email (E)
+Scenario: 099. Save user with info all right (S)
 
-Scenario: SendPasswordReset
-Scenario: PasswordReset
+@ActivateUser
+Scenario: 101. Activate user with invalid token (E)
+Scenario: 102. Activate user with token of reset password (E)
+Scenario: 199. Activate user with info all right (S)
 
-Scenario: SecurityTokenExist
-Scenario: SelectUserByEmail
-Scenario: GetSecurityTokenAction
-Scenario: Deactivate
-Scenario: ValidateAndGet
-Scenario: SendUserVerify
-Scenario: SendPasswordReset
+@ValidateAndGetUser
+Scenario: 201. Validate without email (E)
+Scenario: 202. Validate without password (E)
+Scenario: 203. Validate with wrong email (E)
+Scenario: 204. Validate with wrong password (E)
+Scenario: 299. Validate with info all right (S)
+
+@SelectUserByEmail
+Scenario: 301. Select with email that doesn't exist (E)
+Scenario: 399. Select with info all right (S)
+
+@SendUserVerify
+Scenario: 401. Send with email that doesn't exist (E)
+Scenario: 499. Send with info all right (S)
+
+@SendPasswordReset
+Scenario: 501. Send with email that doesn't exist (E)
+Scenario: 599. Send with info all right (S)
+
+@PasswordReset
+Scenario: 601. Password reset with invalid token (E)
+Scenario: 602. Password reset with token of validate user (E)
+Scenario: 603. Password reset with no password (E)
+Scenario: 699. Password reset with info all right (S)
+
+@TestSecurityToken
+Scenario: 701. Test with no token (E)
+Scenario: 702. Test with token of other action (E)
+Scenario: 799. Test with info all right (S)
+
+@Deactivate
+Scenario: 801. Deactivate with invalid token (E)
+Scenario: 899. Deactivate with info all right (S)

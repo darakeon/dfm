@@ -13,6 +13,11 @@
             @Html.LabelFor(m => m.Token, MultiLanguage.Dictionary["Token"])
             @Html.TextBoxFor(m => m.Token) 
         </p>
+        
+        <p>
+            @Html.LabelFor(m => m.SecurityAction, MultiLanguage.Dictionary["SecurityAction"])
+            @Html.DropDownListFor(m => m.SecurityAction, Model.SecurityActionList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+        </p>
 
         <button type="submit">@MultiLanguage.Dictionary["Go"]</button>
     }

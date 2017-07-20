@@ -15,6 +15,7 @@
     <NotRecognizedAction text="Action not recognized. Please, contact us." />
     <UserVerification text="User Verification" />
     <UserVerificationSuccess text="User successfuly verified." />
+    <SecurityAction text="Action" />
   </en-US>
   <pt-BR>
     <TokenDeactivate text="Desativação de Token" />
@@ -31,5 +32,6 @@
     <NotRecognizedAction text="Ação não reconhecida. Por favor, contate-nos." />
     <UserVerification text="Verificação de Usuário" />
     <UserVerificationSuccess text="Usuário verificado com sucesso." />
+    <SecurityAction text="Ação" />
   </pt-BR>
 </token>

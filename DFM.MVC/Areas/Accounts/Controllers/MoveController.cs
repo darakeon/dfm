@@ -125,7 +125,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
             }
 

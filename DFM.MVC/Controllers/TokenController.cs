@@ -12,10 +12,14 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult PasswordReset(String id)
         {
-            var tokenExist =  Services.Safe.SecurityTokenExist(id);
-
-            if (!tokenExist)
+            try
+            {
+                Services.Safe.TestSecurityToken(id, SecurityAction.PasswordReset);
+            }
+            catch (DFMCoreException)
+            {
                 return invalidTokenAction();
+            }
 
             var model = new TokenPasswordResetModel();
 
@@ -25,15 +29,15 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult PasswordReset(String id, TokenPasswordResetModel model)
         {
-            var tokenExist =  Services.Safe.SecurityTokenExist(id);
-
-            if (!tokenExist)
+            try
+            {
+                Services.Safe.TestSecurityToken(id, SecurityAction.PasswordReset);
+            }
+            catch (DFMCoreException)
+            {
                 return invalidTokenAction();
+            }
 
-            var action =  Services.Safe.GetSecurityTokenAction(id);
-
-            if (action != SecurityAction.PasswordReset)
-                return invalidTokenAction();
 
             if (model.Password != model.RetypePassword)
                 ModelState.AddModelError("", MultiLanguage.Dictionary["RetypeWrong"]);
@@ -46,7 +50,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
 
                 if (ModelState.IsValid)
@@ -62,15 +66,14 @@ namespace DFM.MVC.Controllers
 
         public ActionResult UserVerification(String id)
         {
-            var tokenExist =  Services.Safe.SecurityTokenExist(id);
-
-            if (!tokenExist)
+            try
+            {
+                Services.Safe.TestSecurityToken(id, SecurityAction.UserVerification);
+            }
+            catch (DFMCoreException)
+            {
                 return invalidTokenAction();
-
-            var action =  Services.Safe.GetSecurityTokenAction(id);
-
-            if (action != SecurityAction.UserVerification)
-                return invalidTokenAction();
+            }
 
             Services.Safe.ActivateUser(id);
 
@@ -81,12 +84,14 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Deactivate(String id)
         {
-            var tokenExist =  Services.Safe.SecurityTokenExist(id);
-
-            if (!tokenExist)
+            try
+            {
+                Services.Safe.Deactivate(id);
+            }
+            catch (DFMCoreException)
+            {
                 return invalidTokenAction();
-
-            Services.Safe.Deactivate(id);
+            }
 
             return View();
         }
@@ -103,17 +108,23 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Received(TokenReceivedModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             model.Token = model.Token.Trim();
 
-            var exists =  Services.Safe.SecurityTokenExist(model.Token);
+            try
+            {
+                Services.Safe.TestSecurityToken(model.Token, model.SecurityAction);
+            }
+            catch (DFMCoreException e)
+            {
+                ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
+                return View(model);
+            }
 
-            if (!exists)
-                return invalidTokenAction();
 
-
-            var action =  Services.Safe.GetSecurityTokenAction(model.Token);
-
-            switch (action)
+            switch (model.SecurityAction)
             {
                 case SecurityAction.PasswordReset:
                     return RedirectToAction("PasswordReset", new { id = model.Token } );

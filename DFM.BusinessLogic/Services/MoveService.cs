@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.Services
                     .Body(fileContent)
                     .Send();
             }
-            catch (Exception)
+            catch (Sender.DFMEmailException)
             {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
             }

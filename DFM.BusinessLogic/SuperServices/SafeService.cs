@@ -101,19 +101,15 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        public Boolean SecurityTokenExist(String token)
+        public void TestSecurityToken(String token, SecurityAction securityAction)
         {
-            return securityService.TokenExist(token);
+            securityService.TestSecurityToken(token, securityAction);
         }
+
 
         public User SelectUserByEmail(String email)
         {
             return userService.SelectByEmail(email);
-        }
-
-        public SecurityAction GetSecurityTokenAction(String token)
-        {
-            return securityService.GetTokenAction(token);
         }
 
         public void Deactivate(String token)
@@ -127,7 +123,8 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        
+
+
 
 
     }

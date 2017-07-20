@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Services
                     .Body(fileContent)
                     .Send();
             }
-            catch (Exception)
+            catch (Sender.DFMEmailException)
             {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
             }
@@ -87,6 +87,9 @@ namespace DFM.BusinessLogic.Services
         {
             var security = SelectByToken(token);
 
+            if (security == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
             security.Active = false;
 
             SaveOrUpdate(security);
@@ -94,17 +97,14 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal SecurityAction GetTokenAction(String token)
+
+        internal void TestSecurityToken(String token, SecurityAction securityAction)
         {
-            var security = SelectByToken(token);
+            var securityToken = SelectByToken(token);
 
-            if (security == null)
+            if (securityToken == null || securityToken.Action != securityAction)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
-
-            return security.Action;
         }
-
-
 
     }
 }

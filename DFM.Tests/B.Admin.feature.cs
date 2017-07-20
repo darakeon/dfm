@@ -31,7 +31,7 @@ namespace DFM.Tests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Admininistration of Accounts and Categories", "\r\n--SaveOrUpdateAccount", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Admininistration of Accounts and Categories", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -55,9 +55,11 @@ namespace DFM.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("001. Save account without name (E)")]
+        [NUnit.Framework.CategoryAttribute("SaveOrUpdateAccount")]
         public virtual void _001_SaveAccountWithoutNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("001. Save account without name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("001. Save account without name (E)", new string[] {
+                        "SaveOrUpdateAccount"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -120,10 +122,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("007. Save account with info all right (S)")]
-        public virtual void _007_SaveAccountWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("099. Save account with info all right (S)")]
+        public virtual void _099_SaveAccountWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("007. Save account with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("099. Save account with info all right (S)", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -132,9 +134,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("101. Try to get account with wrong ID (E)")]
+        [NUnit.Framework.CategoryAttribute("SelectAccountById")]
         public virtual void _101_TryToGetAccountWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("101. Try to get account with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("101. Try to get account with wrong ID (E)", new string[] {
+                        "SelectAccountById"});
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -142,10 +146,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("102. Get the account by ID (S)")]
-        public virtual void _102_GetTheAccountByIDS()
+        [NUnit.Framework.DescriptionAttribute("199. Get the account by ID info all right (S)")]
+        public virtual void _199_GetTheAccountByIDInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("102. Get the account by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("199. Get the account by ID info all right (S)", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -154,9 +158,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("200. Close an account already closed (E)")]
+        [NUnit.Framework.CategoryAttribute("CloseAccount")]
         public virtual void _200_CloseAnAccountAlreadyClosedE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("200. Close an account already closed (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("200. Close an account already closed (E)", new string[] {
+                        "CloseAccount"});
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -175,10 +181,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("201. Close an account with info all right (S)")]
-        public virtual void _201_CloseAnAccountWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("299. Close an account with info all right (S)")]
+        public virtual void _299_CloseAnAccountWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("201. Close an account with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("299. Close an account with info all right (S)", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -187,9 +193,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("300. Delete an account already deleted (E)")]
+        [NUnit.Framework.CategoryAttribute("DeleteAccount")]
         public virtual void _300_DeleteAnAccountAlreadyDeletedE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("300. Delete an account already deleted (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("300. Delete an account already deleted (E)", new string[] {
+                        "DeleteAccount"});
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -208,10 +216,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("301. Delete an account with info all right (S)")]
-        public virtual void _301_DeleteAnAccountWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("399. Delete an account with info all right (S)")]
+        public virtual void _399_DeleteAnAccountWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("301. Delete an account with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("399. Delete an account with info all right (S)", ((string[])(null)));
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -220,9 +228,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("401. Save category without name (E)")]
+        [NUnit.Framework.CategoryAttribute("SaveOrUpdateCategory")]
         public virtual void _401_SaveCategoryWithoutNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("401. Save category without name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("401. Save category without name (E)", new string[] {
+                        "SaveOrUpdateCategory"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -241,10 +251,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("403. Save category with info all right (S)")]
-        public virtual void _403_SaveCategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("499. Save category with info all right (S)")]
+        public virtual void _499_SaveCategoryWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("403. Save category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("499. Save category with info all right (S)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -253,9 +263,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("501. Try to get category with wrong ID (E)")]
+        [NUnit.Framework.CategoryAttribute("SelectCategoryById")]
         public virtual void _501_TryToGetCategoryWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("501. Try to get category with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("501. Try to get category with wrong ID (E)", new string[] {
+                        "SelectCategoryById"});
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -263,10 +275,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("502. Get the category by ID (S)")]
-        public virtual void _502_GetTheCategoryByIDS()
+        [NUnit.Framework.DescriptionAttribute("599. Get the category by ID info all right (S)")]
+        public virtual void _599_GetTheCategoryByIDInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("502. Get the category by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("599. Get the category by ID info all right (S)", ((string[])(null)));
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -275,9 +287,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("600. Disable an category already disabled (E)")]
+        [NUnit.Framework.CategoryAttribute("DisableCategory")]
         public virtual void _600_DisableAnCategoryAlreadyDisabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("600. Disable an category already disabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("600. Disable an category already disabled (E)", new string[] {
+                        "DisableCategory"});
 #line 37
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -296,10 +310,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("601. Disable an category with info all right (S)")]
-        public virtual void _601_DisableAnCategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("699. Disable an category with info all right (S)")]
+        public virtual void _699_DisableAnCategoryWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("601. Disable an category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("699. Disable an category with info all right (S)", ((string[])(null)));
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -308,9 +322,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("700. Enable an category already enabled (E)")]
+        [NUnit.Framework.CategoryAttribute("EnableCategory")]
         public virtual void _700_EnableAnCategoryAlreadyEnabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("700. Enable an category already enabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("700. Enable an category already enabled (E)", new string[] {
+                        "EnableCategory"});
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -329,10 +345,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("701. Enable an category with info all right (S)")]
-        public virtual void _701_EnableAnCategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("799. Enable an category with info all right (S)")]
+        public virtual void _799_EnableAnCategoryWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("701. Enable an category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("799. Enable an category with info all right (S)", ((string[])(null)));
 #line 44
 this.ScenarioSetup(scenarioInfo);
 #line hidden

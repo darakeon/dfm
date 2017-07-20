@@ -5,6 +5,7 @@ using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
 using DFM.MVC.Authentication;
 using System.Web;
+using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Helpers
 {
@@ -14,6 +15,7 @@ namespace DFM.MVC.Helpers
         {
             PlainText.Initialize();
         }
+
 
         private static MultiLanguage dictionary;
 
@@ -26,13 +28,17 @@ namespace DFM.MVC.Helpers
             }
         }
 
+        
+        public String this[DFMCoreException exception]
+        {
+            get { return this[exception.Type.ToString()]; }
+        }
+
         public String this[params String[] phrase]
         {
-            get
-            {
-                return PlainText.Dictionary[section, Language, phrase];
-            }
+            get { return PlainText.Dictionary[section, Language, phrase]; }
         }
+
 
         public static String EmailLayout(String layout)
         {
@@ -75,6 +81,8 @@ namespace DFM.MVC.Helpers
                 return userLanguage;
             }
         }
+
+
 
         private static HttpRequest request
         {

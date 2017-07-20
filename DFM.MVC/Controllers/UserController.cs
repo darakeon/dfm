@@ -40,7 +40,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
 
                 if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
 
 
@@ -142,7 +142,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
 
                 if (ModelState.IsValid)

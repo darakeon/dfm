@@ -89,16 +89,16 @@ namespace DFM.Email
             }
             catch (Exception e)
             {
-                throw new SendException(e);
+                throw new DFMEmailException(e);
             }
 
         }
 
 
 
-        public class SendException : Exception
+        public class DFMEmailException : Exception
         {
-            public SendException(Exception e) 
+            public DFMEmailException(Exception e) 
                 : base("Exception on sending e-mail", e) { }
         }
 

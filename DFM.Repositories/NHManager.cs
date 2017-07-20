@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
@@ -37,6 +38,8 @@ namespace DFM.Repositories
                               {
                                   EntityBase = typeof (BaseMove)
                               };
+
+            var server = ConfigurationManager.AppSettings["server"];
 
             SessionBuilder.Start(mapInfo);
         }
