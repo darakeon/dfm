@@ -357,7 +357,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 
 
 
-Scenario: 91. Save with info all right (value - Out) (S)
+Scenario: 91. Save with info all right (Out) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca91   | 31/03/2012 | Out    | 10    |
@@ -371,7 +371,7 @@ Scenario: 91. Save with info all right (value - Out) (S)
 	And the month-category-accountOut value will decrease in 10
 	And the year-category-accountOut value will decrease in 10
 	
-Scenario: 92. Save with info all right (value - In) (S)
+Scenario: 92. Save with info all right (In) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca92   | 31/03/2012 | In     | 10    |
@@ -385,7 +385,7 @@ Scenario: 92. Save with info all right (value - In) (S)
 	And the month-category-accountIn value will increase in 10
 	And the year-category-accountIn value will increase in 10
 	
-Scenario: 93. Save with info all right (value - Transfer) (S)
+Scenario: 93. Save with info all right (Transfer) (S)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca93   | 31/03/2012 | Transfer | 10    |
@@ -401,7 +401,21 @@ Scenario: 93. Save with info all right (value - Transfer) (S)
 	And the month-category-accountIn value will increase in 10
 	And the year-category-accountIn value will increase in 10
 
-Scenario: 94. Save with info all right (details) (S)
+Scenario: 94. Save with info all right (value) (S)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca91   | 31/03/2012 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no error
+	And the move will be saved
+	And the month-category-accountOut value will decrease in 10
+	And the year-category-accountOut value will decrease in 10
+
+Scenario: 95. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca94   | 31/03/2012 | Out    |       |
@@ -417,7 +431,7 @@ Scenario: 94. Save with info all right (details) (S)
 	And the month-category-accountOut value will decrease in 20
 	And the year-category-accountOut value will decrease in 20
 
-Scenario: 95. Save negative (value) (S)
+Scenario: 96. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca95   | 31/03/2012 | Out    | -10   |
@@ -431,7 +445,7 @@ Scenario: 95. Save negative (value) (S)
 	And the month-category-accountOut value will decrease in 10
 	And the year-category-accountOut value will decrease in 10
 
-Scenario: 96. Save negative (details) (S)
+Scenario: 97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca96   | 31/03/2012 | Out    |       |

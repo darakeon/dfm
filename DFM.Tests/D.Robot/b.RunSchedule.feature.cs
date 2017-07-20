@@ -45,6 +45,7 @@ namespace DFM.Tests.D_Robot
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -53,24 +54,478 @@ namespace DFM.Tests.D_Robot
             testRunner.OnScenarioEnd();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Run with invalid user (E)")]
-        public virtual void _01_RunWithInvalidUserE()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Run with invalid user (E)", ((string[])(null)));
 #line 3
+#line 4
+ testRunner.Given("I have an user");
+#line 5
+ testRunner.And("I have two accounts");
+#line 6
+ testRunner.And("I have a category");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("01. Run with unlogged user (E)")]
+        public virtual void _01_RunWithUnloggedUserE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Run with unlogged user (E)", ((string[])(null)));
+#line 8
 this.ScenarioSetup(scenarioInfo);
+#line 9
+ testRunner.Given("I have no logged user (logoff)");
+#line 10
+ testRunner.When("I try to run the scheduler");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table1.AddRow(new string[] {
+                        "Unauthorized"});
+#line 11
+ testRunner.Then("I will receive this error", ((string)(null)), table1);
+#line 14
+ testRunner.And("the user amount money will be kept");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Run with info all right (S)")]
-        public virtual void _99_RunWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("91. Run with bounded schedule (S)")]
+        public virtual void _91_RunWithBoundedScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Run with info all right (S)", ((string[])(null)));
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Run with bounded schedule (S)", ((string[])(null)));
+#line 18
 this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table2.AddRow(new string[] {
+                        "Move Ca91",
+                        "31/03/2012",
+                        "Out",
+                        "10"});
+#line 19
+ testRunner.Given("I have this move to create", ((string)(null)), table2);
+#line 22
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 23
+ testRunner.And("the move has this schedule", ((string)(null)), table3);
+#line 26
+ testRunner.And("it has a Category");
+#line 27
+ testRunner.And("it has an Account Out");
+#line 28
+ testRunner.And("it has no Account In");
+#line 29
+ testRunner.And("I save the move");
+#line 30
+ testRunner.When("I run the scheduler");
+#line 31
+ testRunner.Then("the month-category-accountOut value will decrease in 10");
+#line 32
+ testRunner.And("the year-category-accountOut value will decrease in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("92. Run with boundless schedule (S)")]
+        public virtual void _92_RunWithBoundlessScheduleS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Run with boundless schedule (S)", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table4.AddRow(new string[] {
+                        "Move Ca91",
+                        "31/03/2012",
+                        "Out",
+                        "10"});
+#line 35
+ testRunner.Given("I have this move to create", ((string)(null)), table4);
+#line 38
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table5.AddRow(new string[] {
+                        "",
+                        "True",
+                        "Monthly",
+                        "False"});
+#line 39
+ testRunner.And("the move has this schedule", ((string)(null)), table5);
+#line 42
+ testRunner.And("it has a Category");
+#line 43
+ testRunner.And("it has an Account Out");
+#line 44
+ testRunner.And("it has no Account In");
+#line 45
+ testRunner.And("I save the move");
+#line 46
+ testRunner.When("I run the scheduler");
+#line 47
+ testRunner.Then("the month-category-accountOut value will decrease in 10 plus the months until now" +
+                    "");
+#line 48
+ testRunner.And("the year-category-accountOut value will decrease in 10 plus the months until now");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("93. Run schedule that will finish (S)")]
+        public virtual void _93_RunScheduleThatWillFinishS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Run schedule that will finish (S)", ((string[])(null)));
+#line 51
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table6.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        "10"});
+#line 52
+ testRunner.Given("I have this move to create", ((string)(null)), table6);
+#line 55
+ testRunner.And("its Date is 5 days ago");
+#line 56
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table7.AddRow(new string[] {
+                        "3",
+                        "False",
+                        "Daily",
+                        "False"});
+#line 57
+ testRunner.And("the move has this schedule", ((string)(null)), table7);
+#line 60
+ testRunner.And("it has a Category");
+#line 61
+ testRunner.And("it has an Account Out");
+#line 62
+ testRunner.And("it has no Account In");
+#line 63
+ testRunner.And("I save the move");
+#line 64
+ testRunner.When("I run the scheduler");
+#line 65
+ testRunner.Then("the month-category-accountOut value will decrease in 30");
+#line 66
+ testRunner.And("the year-category-accountOut value will decrease in 30");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("94. Run schedule that wont finish (S)")]
+        public virtual void _94_RunScheduleThatWontFinishS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Run schedule that wont finish (S)", ((string[])(null)));
+#line 68
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table8.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        "10"});
+#line 69
+ testRunner.Given("I have this move to create", ((string)(null)), table8);
+#line 72
+ testRunner.And("its Date is 5 days ago");
+#line 73
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table9.AddRow(new string[] {
+                        "7",
+                        "False",
+                        "Daily",
+                        "False"});
+#line 74
+ testRunner.And("the move has this schedule", ((string)(null)), table9);
+#line 77
+ testRunner.And("it has a Category");
+#line 78
+ testRunner.And("it has an Account Out");
+#line 79
+ testRunner.And("it has no Account In");
+#line 80
+ testRunner.And("I save the move");
+#line 81
+ testRunner.When("I run the scheduler");
+#line 82
+ testRunner.Then("the month-category-accountOut value will decrease in 5");
+#line 83
+ testRunner.And("the year-category-accountOut value will decrease in 5");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("95. Run with daily schedule (S)")]
+        public virtual void _95_RunWithDailyScheduleS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Run with daily schedule (S)", ((string[])(null)));
+#line 86
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table10.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        "10"});
+#line 87
+ testRunner.Given("I have this move to create", ((string)(null)), table10);
+#line 90
+ testRunner.And("its Date is 20 days ago");
+#line 91
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table11.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Daily",
+                        "False"});
+#line 92
+ testRunner.And("the move has this schedule", ((string)(null)), table11);
+#line 95
+ testRunner.And("it has a Category");
+#line 96
+ testRunner.And("it has an Account Out");
+#line 97
+ testRunner.And("it has no Account In");
+#line 98
+ testRunner.And("I save the move");
+#line 99
+ testRunner.When("I run the scheduler");
+#line 100
+ testRunner.Then("the month-category-accountOut value will decrease in 100");
+#line 101
+ testRunner.And("the year-category-accountOut value will decrease in 100");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("96. Run with monthly schedule (S)")]
+        public virtual void _96_RunWithMonthlyScheduleS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Run with monthly schedule (S)", ((string[])(null)));
+#line 103
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table12.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        "10"});
+#line 104
+ testRunner.Given("I have this move to create", ((string)(null)), table12);
+#line 107
+ testRunner.And("its Date is 190 days ago");
+#line 108
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table13.AddRow(new string[] {
+                        "6",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 109
+ testRunner.And("the move has this schedule", ((string)(null)), table13);
+#line 112
+ testRunner.And("it has a Category");
+#line 113
+ testRunner.And("it has an Account Out");
+#line 114
+ testRunner.And("it has no Account In");
+#line 115
+ testRunner.And("I save the move");
+#line 116
+ testRunner.When("I run the scheduler");
+#line 117
+ testRunner.Then("the month-category-accountOut value will decrease in 60");
+#line 118
+ testRunner.And("the year-category-accountOut value will decrease in 60");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("97. Run with yearly schedule (S)")]
+        public virtual void _97_RunWithYearlyScheduleS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Run with yearly schedule (S)", ((string[])(null)));
+#line 120
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table14.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        "10"});
+#line 121
+ testRunner.Given("I have this move to create", ((string)(null)), table14);
+#line 124
+ testRunner.And("its Date is 750 days ago");
+#line 125
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table15.AddRow(new string[] {
+                        "2",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 126
+ testRunner.And("the move has this schedule", ((string)(null)), table15);
+#line 129
+ testRunner.And("it has a Category");
+#line 130
+ testRunner.And("it has an Account Out");
+#line 131
+ testRunner.And("it has no Account In");
+#line 132
+ testRunner.And("I save the move");
+#line 133
+ testRunner.When("I run the scheduler");
+#line 134
+ testRunner.Then("the month-category-accountOut value will decrease in 20");
+#line 135
+ testRunner.And("the year-category-accountOut value will decrease in 20");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Run with details in schedule (S)")]
+        public virtual void _98_RunWithDetailsInScheduleS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Run with details in schedule (S)", ((string[])(null)));
+#line 138
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Nature",
+                        "Value"});
+            table16.AddRow(new string[] {
+                        "Move Ca91",
+                        "Out",
+                        ""});
+#line 139
+ testRunner.Given("I have this move to create", ((string)(null)), table16);
+#line 142
+ testRunner.And("its Date is 10 days ago");
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description1",
+                        "Amount1",
+                        "Value1",
+                        "Description2",
+                        "Amount2",
+                        "Value2"});
+            table17.AddRow(new string[] {
+                        "Detail 1",
+                        "1",
+                        "10",
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 143
+ testRunner.And("the move has this details", ((string)(null)), table17);
+#line hidden
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table18.AddRow(new string[] {
+                        "5",
+                        "False",
+                        "Daily",
+                        "False"});
+#line 146
+ testRunner.And("the move has this schedule", ((string)(null)), table18);
+#line 149
+ testRunner.And("it has a Category");
+#line 150
+ testRunner.And("it has an Account Out");
+#line 151
+ testRunner.And("it has no Account In");
+#line 152
+ testRunner.And("I save the move");
+#line 153
+ testRunner.When("I run the scheduler");
+#line 154
+ testRunner.Then("the month-category-accountOut value will decrease in 100");
+#line 155
+ testRunner.And("the year-category-accountOut value will decrease in 100");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

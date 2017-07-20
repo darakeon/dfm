@@ -446,7 +446,7 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 
 
 
-Scenario: 91. Save with info all right (value - Out) (S)
+Scenario: 91. Save with info all right (Out) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca91   | 31/03/2012 | Out    | 10    |
@@ -463,7 +463,7 @@ Scenario: 91. Save with info all right (value - Out) (S)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 	
-Scenario: 92. Save with info all right (value - In) (S)
+Scenario: 92. Save with info all right (In) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca92   | 31/03/2012 | In     | 10    |
@@ -480,7 +480,7 @@ Scenario: 92. Save with info all right (value - In) (S)
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 	
-Scenario: 93. Save with info all right (value - Transfer) (S)
+Scenario: 93. Save with info all right (Transfer) (S)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca93   | 31/03/2012 | Transfer | 10    |
@@ -499,7 +499,24 @@ Scenario: 93. Save with info all right (value - Transfer) (S)
 	And the year-category-accountOut value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 94. Save with info all right (details) (S)
+Scenario: 94. Save with info all right (value) (S)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca91   | 31/03/2012 | Out    | 10    |
+	And it has no Details
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no error
+	And the schedule will be saved
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	
+Scenario: 95. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca94   | 31/03/2012 | Out    |       |
@@ -518,7 +535,7 @@ Scenario: 94. Save with info all right (details) (S)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 95. Save negative (value) (S)
+Scenario: 96. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca95   | 31/03/2012 | Out    | -10   |
@@ -535,7 +552,7 @@ Scenario: 95. Save negative (value) (S)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 96. Save negative (details) (S)
+Scenario: 97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca96   | 31/03/2012 | Out    |       |
