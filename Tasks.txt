@@ -105,30 +105,30 @@ VERSÃO 1.0.2.0
 05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
 04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
-28/01/2012	28/01/2012 >>>	Iluminar conta escolhida (na area account)
-30/01/2012	31/01/2012 >>>	Opção de colocar (atual/total) na descrição de agendadas
-30/01/2012	31/01/2012 >>>	Layout com sombras e 3D
+28/01/2012	28/01/2012	Iluminar conta escolhida (na area account)
+30/01/2012	31/01/2012	Opção de colocar (atual/total) na descrição de agendadas
+30/01/2012	31/01/2012	Layout com sombras e 3D
 02/02/2012	14/03/2012	Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
 14/03/2012	14/03/2012	Retirar delegate DeleteSummary / outros try de duplicata
 14/03/2012	14/03/2012	Separar Multilanguage de MVC
 14/03/2012	16/03/2012	Retirar delegates de Getters para envio de e-mail
-16/03/2012	17/03/2012 >>>	Testar Elmah com página tratada (Report > SeeYear)
+16/03/2012	17/03/2012	Testar Elmah com página tratada (Report > SeeYear)
 17/03/2012	17/03/2012	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
 ======================================================================================================
 
 VERSÃO 1.0.2.1
 
-				BDD
+18/03/2012			BDD
 				Selenium
 				Refactor de limpeza geral
 				Fornecer detalhes do erro no e-mail de report
-				Aumentar tamanho da tela principal (considerar deletar cor do topo)
-				Alterar interface externa para neutra (cores do site)
-				Disponibilizar cores para interfaces
-				Criar relatórios por anos
+			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
+			>>>	Alterar interface externa para neutra (cores do site)
+			>>>	Disponibilizar cores para interfaces
+			>>>	Criar relatórios por anos
 				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
-				Iluminar última movimentação verificada
+			>>>	Iluminar última movimentação verificada
 				Em Move, colocar Value como campo gravado e usar Total para exibição
 				Tratar FailOnEmailSend em Robot
 
