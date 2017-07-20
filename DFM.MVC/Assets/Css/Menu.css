@@ -2,7 +2,6 @@ div#Menu {
 	height: 30px;
 	position: relative;
 	z-index: 2;
-	padding: 0 50px;
 }
 
 div#Menu .higherTitle, div#Menu .fixItem
@@ -62,7 +61,7 @@ div#Menu .fixItem
 	margin: 0 0 0 5px;
 	background: #EEC;
 	border-radius: 0 0 10px 10px;
-	box-shadow: inset 0px -2px 2px #CCA;
+	box-shadow: 0 2px 14px #EEC inset, inset 0px -2px 3px #CCA;
 }
 
 
