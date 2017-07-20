@@ -3,8 +3,8 @@
 @{
     var menuList = new List<Menu>
     {
-        Model.MenuWith("MonthMoves", String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth), "SeeMonth", "Report"),
-        Model.MenuWith("YearMoves", String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear), "SeeYear", "Report"),
+        Model.MenuWith("MonthMoves", String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth), "ShowMoves", "Report"),
+        Model.MenuWith("YearMoves", String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear), "SummarizeMonths", "Report"),
         Model.MenuWith("CreateMove", PlainText.Dictionary["Create", "Move"], "Create", "Move"),
         Model.MenuWith("ScheduleMove", PlainText.Dictionary["Schedule", "Move"], "Schedule", "Move"),
     };

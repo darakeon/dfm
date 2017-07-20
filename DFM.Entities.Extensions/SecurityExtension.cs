@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DFM.Generic;
 
 namespace DFM.Entities.Extensions
 {
@@ -6,11 +6,7 @@ namespace DFM.Entities.Extensions
     {
         public static void CreateToken(this Security security)
         {
-            security.Token = 
-                Guid.NewGuid()
-                    .ToString()
-                    .ToUpper()
-                    .Replace("-", "");
+            security.Token = Token.New();
         }
 
     }

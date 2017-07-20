@@ -1,5 +1,4 @@
-﻿using System;
-using DFM.Entities.Bases;
+﻿using DFM.Entities.Bases;
 
 namespace DFM.Entities
 {

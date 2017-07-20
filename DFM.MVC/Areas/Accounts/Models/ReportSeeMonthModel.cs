@@ -6,9 +6,9 @@ using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class ReportSeeMonthModel : BaseLoggedModel
+    public class ReportShowMovesModel : BaseLoggedModel
     {
-        public ReportSeeMonthModel()
+        public ReportShowMovesModel()
         {
             MoveList = new List<Move>();
         }

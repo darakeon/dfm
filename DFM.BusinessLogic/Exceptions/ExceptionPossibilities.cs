@@ -27,6 +27,7 @@
         UserAlreadyExists,
         UserInvalidEmail,
         WrongUserEmail,
+        DetailWithoutMove,
     }
 
 }

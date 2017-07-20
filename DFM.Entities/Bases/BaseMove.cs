@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
-using Newtonsoft.Json;
+using DFM.Generic;
 
 namespace DFM.Entities.Bases
 {
@@ -50,19 +50,10 @@ namespace DFM.Entities.Bases
         public virtual Account AccIn() { throw new NotImplementedException(); }
 
 
-
-        public TC ConvertToOtherChild<TC>()
-            where TC : IEntity
+        public T CastToChild<T>()
+            where T : BaseMove
         {
-            var serial = JsonConvert.SerializeObject(this);
-
-            var newObj = JsonConvert.DeserializeObject<TC>(serial);
-
-            newObj.ID = 0;
-
-            return newObj;
+            return ConvertToChild.Convert<BaseMove, T>(this);
         }
-
-
     }
 }

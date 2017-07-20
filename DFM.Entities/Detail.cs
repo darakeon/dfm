@@ -20,10 +20,10 @@ namespace DFM.Entities
         public virtual FutureMove FutureMove { get; set; }
 
 
-
         public override String ToString()
         {
             return Description;
         }
+
     }
 }

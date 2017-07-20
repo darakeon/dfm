@@ -59,6 +59,12 @@
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFM.Generic\DFM.Generic.csproj">
+      <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
+      <Name>DFM.Generic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

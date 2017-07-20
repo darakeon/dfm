@@ -1,4 +1,4 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeMonthModel
+﻿@model DFM.MVC.Areas.Accounts.Models.ReportShowMovesModel
 
 @{
     ViewBag.Title = String.Format("{0}: {1}", Model.Account, Model.Date);
@@ -7,7 +7,7 @@
 
 @section HtmlHeadJs {
     <script type='text/javascript'>
-        var reportPage = '@Url.Action("SeeMonth", new { id = "" })';
+        var reportPage = '@Url.Action("ShowMoves", new { id = "" })';
     </script>
 }
 

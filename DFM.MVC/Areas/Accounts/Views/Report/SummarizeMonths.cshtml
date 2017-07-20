@@ -1,4 +1,4 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.ReportSeeYearModel
+﻿@model DFM.MVC.Areas.Accounts.Models.ReportSummarizeMonthsModel
 
 @{
     ViewBag.Title = String.Format("{0}: {1}", Model.Year.Account, Model.Date);
@@ -7,7 +7,7 @@
 
 @section HtmlHeadJs {
     <script type='text/javascript'>
-        var reportPage = '@Url.Action("SeeYear", new { id = "" })';
+        var reportPage = '@Url.Action("SummarizeMonths", new { id = "" })';
     </script>
 }
 
@@ -41,7 +41,7 @@
             
             <tr>
                 <td>
-                    <a href="@Url.Action("SeeMonth", new { id = month.Url() } )">
+                    <a href="@Url.Action("ShowMoves", new { id = month.Url() } )">
                         @PlainText.GetMonthName(month.Time)
                     </a>
                 </td>

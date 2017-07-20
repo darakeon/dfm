@@ -50,15 +50,20 @@ namespace DFM.BusinessLogic.Bases
         }
 
 
-        protected T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions)
-        {
-            return repository.SaveOrUpdateInstantly(entity, actions);
-        }
-
-
         internal T SelectOldById(Int32 id)
         {
             return repository.SelectOldById(id);
+        }
+
+
+        internal object BeginTransaction()
+        {
+            return repository.BeginTransaction();
+        }
+
+        internal void CommitTransaction(object transaction)
+        {
+            repository.CommitTransaction(transaction);
         }
 
     }

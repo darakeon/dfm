@@ -5,7 +5,7 @@ using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class ReportSeeYearModel : BaseLoggedModel
+    public class ReportSummarizeMonthsModel : BaseLoggedModel
     {
         public Year Year { get; set; }
 

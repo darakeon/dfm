@@ -104,16 +104,16 @@ namespace DFM.BusinessLogic.Services
                 .AppliedTimes(schedule.Begin, schedule.Next);
         }
 
-
-        internal void AjustSchedule(FutureMove move)
+        
+        internal void AjustSchedule(FutureMove futureMove)
         {
-            if (move.Schedule == null
-                || move.Schedule.ID != 0) return;
+            if (futureMove.Schedule == null
+                || futureMove.Schedule.ID != 0) return;
 
-            if (!move.Schedule.Contains(move))
-                move.Schedule.AddMove(move);
+            if (!futureMove.Schedule.Contains(futureMove))
+                futureMove.Schedule.AddMove(futureMove);
 
-            SaveOrUpdate(move.Schedule);
+            SaveOrUpdate(futureMove.Schedule);
         }
 
 

@@ -4,16 +4,16 @@ namespace DFM.Entities.Extensions
 {
     public static class ScheduleExtension
     {
-        public static Boolean Contains(this Schedule schedule, FutureMove move)
+        public static Boolean Contains(this Schedule schedule, FutureMove futureMove)
         {
-            return schedule.MoveList.Contains(move);
+            return schedule.MoveList.Contains(futureMove);
         }
 
 
-        public static void AddMove(this Schedule schedule, FutureMove move)
+        public static void AddMove(this Schedule schedule, FutureMove futureMove)
         {
-            move.Schedule = schedule;
-            schedule.MoveList.Add(move);
+            futureMove.Schedule = schedule;
+            schedule.MoveList.Add(futureMove);
         }
 
 

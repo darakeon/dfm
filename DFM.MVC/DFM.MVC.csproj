@@ -277,8 +277,8 @@
     <Content Include="Views\Shared\Inner\Menu.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Areas\Accounts\Views\Move\CreateEditSchedule.cshtml" />
-    <Content Include="Areas\Accounts\Views\Report\SeeMonth.cshtml" />
-    <Content Include="Areas\Accounts\Views\Report\SeeYear.cshtml" />
+    <Content Include="Areas\Accounts\Views\Report\ShowMoves.cshtml" />
+    <Content Include="Areas\Accounts\Views\Report\SummarizeMonths.cshtml" />
     <Content Include="Views\Category\CreateEdit.cshtml" />
     <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
     <Content Include="Views\Account\ListClosed.cshtml" />

@@ -27,5 +27,6 @@ namespace DFM.Repositories.Mappings
                 .UniqueKey("Summary_CategoryTime")
                 .Cascade.None();
         }
+
     }
 }

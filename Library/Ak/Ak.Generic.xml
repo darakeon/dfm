@@ -4,6 +4,69 @@
         <name>Ak.Generic</name>
     </assembly>
     <members>
+        <member name="T:Ak.Generic.Extensions.StringExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
+            <summary>
+             Puts the first letter in Upper and the rest in Lower
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+             String format with words instead of number (e.g. {data} instead {0})
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
+            <summary>
+             Extension for Exception Base Class
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
+            <summary>
+             Get the most InnerException
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Exceptions.ErrorComposedReturn`2">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+            <typeparam name="TS">Success return Type</typeparam>
+            <typeparam name="TE">Error return Type</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`1)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0,`1)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Success">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Error">
+            <summary>
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Reflection.Property">
             <summary>
              Helper of PropertyInfo
@@ -17,47 +80,6 @@
         <member name="M:Ak.Generic.Reflection.Property.Name``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
              Give a name of a property, to use lambda expression, not strings
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Collection.IGroupable`1">
-            <summary>
-             Interface to use GroupedCollection
-            </summary>
-            <typeparam name="TG">Type of the Item that will group the objects</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.IGroupable`1.GetGroup">
-            <summary>
-             When implemented in a class, Retrieve de Group of the object
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
-            <summary>
-             Extension for Exception Base Class
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
-            <summary>
-             Get the most InnerException
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Enums.Str2Enum">
-            <summary>
-             Convert String to Enum
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
-            <summary>
-            </summary>
-            <typeparam name="T">Enum type</typeparam>
-        </member>
-        <member name="T:Ak.Generic.Collection.IsInExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
-            <summary>
-             Whether an object is in a list
             </summary>
         </member>
         <member name="T:Ak.Generic.Collection.ItemGroup`2">
@@ -102,6 +124,15 @@
              Return the list of objects of this group
             </summary>
         </member>
+        <member name="T:Ak.Generic.Collection.IsInExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+            <summary>
+             Whether an object is in a list
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Exceptions.AkException">
             <summary>
              Any exception thrown by Ak library
@@ -112,58 +143,27 @@
              Any exception thrown by Ak library
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
+        <member name="T:Ak.Generic.Collection.IGroupable`1">
             <summary>
+             Interface to use GroupedCollection
+            </summary>
+            <typeparam name="TG">Type of the Item that will group the objects</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.IGroupable`1.GetGroup">
+            <summary>
+             When implemented in a class, Retrieve de Group of the object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ak.Generic.Enums.Str2Enum">
+            <summary>
+             Convert String to Enum
             </summary>
         </member>
-        <member name="T:Ak.Generic.Exceptions.ErrorComposedReturn`2">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-            <typeparam name="TS">Success return Type</typeparam>
-            <typeparam name="TE">Error return Type</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`1)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0,`1)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Success">
+        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
             <summary>
             </summary>
-        </member>
-        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Error">
-            <summary>
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Extensions.StringExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
-            <summary>
-             Puts the first letter in Upper and the rest in Lower
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-             String format with words instead of number (e.g. {data} instead {0})
-            </summary>
+            <typeparam name="T">Enum type</typeparam>
         </member>
         <member name="T:Ak.Generic.Collection.GroupedCollection`2">
             <summary>

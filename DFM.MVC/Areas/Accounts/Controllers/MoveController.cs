@@ -33,7 +33,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditScheduleModel<Move>();
+            var model = new MoveCreateEditScheduleModel();
             
             model.Populate(accountid);
 
@@ -41,9 +41,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditScheduleModel<Move> model)
+        public ActionResult Create(MoveCreateEditScheduleModel model)
         {
-            return createEditSchedule(model);
+            return createEditSchedule<Move>(model);
         }
 
 
@@ -60,7 +60,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-            var model = new MoveCreateEditScheduleModel<Move>(move);
+            var model = new MoveCreateEditScheduleModel(move);
 
             if (model.AccountID == accountid)
                 return redirectToRightAccount(move);
@@ -82,27 +82,24 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel<Move> model)
+        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
             var oldMove =  Services.Money.SelectMoveById(id);
 
             if (isUnauthorized(oldMove))
                 return RedirectToAction("Create");
 
-
             model.Move.ID = id;
-            model.Move.Out = oldMove.Out;
-            model.Move.In = oldMove.In;
             model.Move.Schedule = oldMove.Schedule;
 
-            return createEditSchedule(model);
+            return createEditSchedule<Move>(model);
         }
 
 
 
         public ActionResult Schedule()
         {
-            var model = new MoveCreateEditScheduleModel<FutureMove>();
+            var model = new MoveCreateEditScheduleModel();
 
             model.Populate(accountid);
 
@@ -110,14 +107,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Schedule(MoveCreateEditScheduleModel<FutureMove> model)
+        public ActionResult Schedule(MoveCreateEditScheduleModel model)
         {
-            return createEditSchedule(model);
+            return createEditSchedule<FutureMove>(model);
         }
 
 
 
-        private ActionResult createEditSchedule<T>(MoveCreateEditScheduleModel<T> model) 
+        private ActionResult createEditSchedule<T>(MoveCreateEditScheduleModel model) 
             where T : BaseMove, new()
         {
             if (ModelState.IsValid)
@@ -126,7 +123,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    return saveOrUpdateAndRedirect(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
                 }
                 catch (DFMCoreException e)
                 {
@@ -139,23 +136,25 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect(BaseMove baseMove, Account accountOut, Account accountIn, Format.GetterForMove getForMove)
+        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, Account accountOut, Account accountIn, Format.GetterForMove getForMove)
+            where T : BaseMove, new()
         {
-            if (baseMove is FutureMove)
+            if (typeof(T) == typeof(FutureMove))
             {
-                var futureMove = (FutureMove)baseMove;
+                var futureMove = baseMove.CastToChild<FutureMove>();
 
                 Services.Money.SaveOrUpdateMove(futureMove, accountOut, accountIn);
 
                 return RedirectToAction("Index", "Report");
             }
             
-            if (baseMove is Move)
+            if (typeof(T) == typeof(Move))
             {
-                var move = (Move)baseMove;
+                var move = baseMove.CastToChild<Move>();
+
                 Services.Money.SaveOrUpdateMove(move, accountOut, accountIn, getForMove);
 
-                return RedirectToAction("SeeMonth", "Report", new { id = (move.Out ?? move.In).Url() } );
+                return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }
             
             throw new Exception("Not known type of Move");
@@ -194,21 +193,20 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             //    ? PlainText.Dictionary["MoveNotFound"]
             //    : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);
 
-            return RedirectToAction("SeeMonth", "Report", new { id = reportID });
+            return RedirectToAction("ShowMoves", "Report", new { id = reportID });
         }
 
 
 
-        private ActionResult viewCES<T>(MoveCreateEditScheduleModel<T> model) 
-            where T : BaseMove, new()
+        private ActionResult viewCES(MoveCreateEditScheduleModel model) 
         {
-            return View("CreateEditSchedule", model.ConvertToGeneric());
+            return View("CreateEditSchedule", model);
         }
 
-        private static Boolean isUnauthorized(Move move)
+        private static Boolean isUnauthorized(BaseMove baseMove)
         {
-            return move == null
-                   || !move.AuthorizeCRUD(Current.User);
+            return baseMove == null
+                   || !baseMove.AuthorizeCRUD(Current.User);
         }
 
     }

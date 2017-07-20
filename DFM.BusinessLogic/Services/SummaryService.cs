@@ -10,13 +10,6 @@ namespace DFM.BusinessLogic.Services
     {
         internal SummaryService(IRepository<Summary> repository) : base(repository) { }
 
-        private void saveOrUpdate(Summary summary)
-        {
-            SaveOrUpdateInstantly(summary);
-        }
-
-
-
 
         internal void AjustValue(Summary summary)
         {
@@ -37,13 +30,8 @@ namespace DFM.BusinessLogic.Services
             summary.In = summarizable.CheckUpIn(summary.Category);
             summary.Out = summarizable.CheckUpOut(summary.Category);
 
-            saveOrUpdate(summary);
+            SaveOrUpdate(summary);
         }
-
-
-
-
-
 
     }
 }

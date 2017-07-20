@@ -23,12 +23,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("SeeMonth");
+            return RedirectToAction("ShowMoves");
         }
 
 
 
-        public ActionResult SeeMonth(Int32? id)
+        public ActionResult ShowMoves(Int32? id)
         {
             var currentMonth = (Int16)DateTime.Today.Month;
 
@@ -48,7 +48,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             dateYear = dateYear.ForceBetween(1900, currentYear);
 
 
-            var model = new ReportSeeMonthModel
+            var model = new ReportShowMovesModel
                             {
                                 MoveList = Services.Report.GetMonthReport(accountid, dateMonth, dateYear),
                                 Account = Services.Admin.SelectAccountById(accountid),
@@ -62,7 +62,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        public ActionResult SeeYear(Int16? id)
+        public ActionResult SummarizeMonths(Int16? id)
         {
             var currentYear = (Int16)DateTime.Today.Year;
             
@@ -71,7 +71,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             year = year.ForceBetween(1900, currentYear);
 
 
-            var model = new ReportSeeYearModel
+            var model = new ReportSummarizeMonthsModel
                             {
                                 Year =  Services.Report.GetYearReport(accountid, year),
                             };

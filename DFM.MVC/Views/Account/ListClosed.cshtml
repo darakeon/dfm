@@ -37,10 +37,10 @@ else
                     
 
             var monthLabel = String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear);
-            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SeeMonth", controller = "Report", accountid = account.ID, id = monthReportId });
+            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "ShowMoves", controller = "Report", accountid = account.ID, id = monthReportId });
                     
             var yearLabel = String.Format(PlainText.Dictionary["YearMoves"], account.EndDate.Value.Year);
-            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SeeYear", controller = "Report", accountid = account.ID, id = endYear });
+            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SummarizeMonths", controller = "Report", accountid = account.ID, id = endYear });
                         
             <tr>
                 <td>@account.Name </td>

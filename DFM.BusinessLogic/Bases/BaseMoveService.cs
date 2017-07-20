@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -24,27 +22,27 @@ namespace DFM.BusinessLogic.Bases
 
 
         #region Validate
-        protected static void Validate(BaseMove move)
+        protected static void Validate(BaseMove baseMove)
         {
-            testDetailList(move);
-            testNature(move);
-            testAccounts(move);
-            testCategory(move);
-            testDate(move);
+            testDetailList(baseMove);
+            testNature(baseMove);
+            testAccounts(baseMove);
+            testCategory(baseMove);
+            testDate(baseMove);
         }
 
-        private static void testDetailList(BaseMove move)
+        private static void testDetailList(BaseMove baseMove)
         {
-            if (!move.DetailList.Any())
+            if (!baseMove.DetailList.Any())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailRequired);
         }
 
-        private static void testNature(BaseMove move)
+        private static void testNature(BaseMove baseMove)
         {
-            var hasIn = move.AccIn() != null;
-            var hasOut = move.AccOut() != null;
+            var hasIn = baseMove.AccIn() != null;
+            var hasOut = baseMove.AccOut() != null;
 
-            switch (move.Nature)
+            switch (baseMove.Nature)
             {
                 case MoveNature.In:
                     if (!hasIn || hasOut)
@@ -63,34 +61,34 @@ namespace DFM.BusinessLogic.Bases
 
             }
         }
-
-        private static void testAccounts(BaseMove move)
+        
+        private static void testAccounts(BaseMove baseMove)
         {
-            var moveInClosed = move.AccIn() != null && !move.AccIn().Open();
-            var moveOutClosed = move.AccOut() != null && !move.AccOut().Open();
+            var moveInClosed = baseMove.AccIn() != null && !baseMove.AccIn().Open();
+            var moveOutClosed = baseMove.AccOut() != null && !baseMove.AccOut().Open();
 
             if (moveInClosed || moveOutClosed)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
 
-            if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
+            if (baseMove.AccIn() != null && baseMove.AccOut() != null && baseMove.AccIn().ID == baseMove.AccOut().ID)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        private static void testCategory(BaseMove move)
+        private static void testCategory(BaseMove baseMove)
         {
-            if (move.Category == null)
+            if (baseMove.Category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
 
-            if (!move.Category.Active)
+            if (!baseMove.Category.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
         }
 
-        private static void testDate(BaseMove move)
+        private static void testDate(BaseMove baseMove)
         {
-            var isFutureMove = move.Date > DateTime.Today;
+            var isFutureMove = baseMove.Date > DateTime.Today;
 
-            var isFirstOfSchedule = move.Schedule != null
-                                    && move.Schedule.IsFirstMove();
+            var isFirstOfSchedule = baseMove.Schedule != null
+                                    && baseMove.Schedule.IsFirstMove();
 
             if (isFutureMove && !isFirstOfSchedule)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveFutureNotScheduled);
@@ -100,20 +98,20 @@ namespace DFM.BusinessLogic.Bases
 
 
         #region Complete
-        protected static void Complete(BaseMove move)
+        protected static void Complete(BaseMove baseMove)
         {
-            ajustDetailList(move);
+            ajustDetailList(baseMove);
         }
-
-        private static void ajustDetailList(BaseMove move)
+        
+        private static void ajustDetailList(BaseMove baseMove)
         {
-            if (!move.IsDetailed())
+            if (!baseMove.IsDetailed())
             {
-                move.DetailList[0].Description = move.Description;
-                move.DetailList[0].Amount = 1;
+                baseMove.DetailList[0].Description = baseMove.Description;
+                baseMove.DetailList[0].Amount = 1;
             }
 
-            foreach (var detail in move.DetailList)
+            foreach (var detail in baseMove.DetailList)
             {
                 if (detail.Value < 0)
                     detail.Value = -detail.Value;

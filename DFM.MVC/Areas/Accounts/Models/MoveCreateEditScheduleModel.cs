@@ -10,12 +10,10 @@ using DFM.MVC.Authentication;
 using DFM.Entities;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage.Helpers;
-using Newtonsoft.Json;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditScheduleModel<T> : BaseLoggedModel
-        where T : BaseMove, new()
+    public class MoveCreateEditScheduleModel : BaseLoggedModel
     {
         public MoveCreateEditScheduleModel()
         {
@@ -35,20 +33,21 @@ namespace DFM.MVC.Areas.Accounts.Models
                         mv => mv.ID, mv => mv.Name
                     );
 
-            Move = new T();
+            Move = new BaseMove();
             Date = DateTime.Today;
         }
 
-        public MoveCreateEditScheduleModel(T move) : this()
+        public MoveCreateEditScheduleModel(BaseMove baseMove)
+            : this()
         {
-            Move = move;
+            Move = baseMove;
 
             AccountID = Move.Nature == MoveNature.Transfer
                 ? Move.AccIn().ID : (Int32?)null;
         }
 
 
-        public T Move { get; set; }
+        public BaseMove Move { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String Description { get { return Move.Description; } set { Move.Description = value; } }
@@ -127,16 +126,6 @@ namespace DFM.MVC.Areas.Accounts.Models
                 Move.AddDetail(detail);
             }
         }
-
-
-
-        public MoveCreateEditScheduleModel<BaseMove> ConvertToGeneric()
-        {
-            var serial = JsonConvert.SerializeObject(this);
-
-            return JsonConvert.DeserializeObject<MoveCreateEditScheduleModel<BaseMove>>(serial);
-        }
-
 
     }
 }

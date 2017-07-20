@@ -12,7 +12,9 @@ namespace DFM.BusinessLogic.Bases
         T SingleOrDefault(Expression<Func<T, Boolean>> func);
         IList<T> List(Expression<Func<T, Boolean>> func);
         void Delete(T entity);
-        T SaveOrUpdateInstantly(T entity, params BaseService<T>.DelegateAction[] actions);
         T SelectOldById(Int32 id);
+
+        object BeginTransaction();
+        void CommitTransaction(object transaction);
     }
 }

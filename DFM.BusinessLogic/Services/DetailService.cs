@@ -1,5 +1,9 @@
-﻿using DFM.BusinessLogic.Bases;
+﻿using System;
+using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
+using DFM.Entities.Bases;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -7,9 +11,25 @@ namespace DFM.BusinessLogic.Services
     {
         internal DetailService(IRepository<Detail> repository) : base(repository) { }
 
-        internal Detail SaveOrUpdate(Detail detail)
+        internal Detail SaveOrUpdate(Detail detail, BaseMove baseMove)
         {
-            return base.SaveOrUpdate(detail);
+            try
+            {
+                detail.SetMove(baseMove);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
+            }
+
+            return SaveOrUpdate(detail, validate);
+        }
+
+
+        private void validate(Detail detail)
+        {
+            if (detail.Move == null && detail.FutureMove == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
         }
 
     }

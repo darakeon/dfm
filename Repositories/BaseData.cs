@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Ak.DataAccess.NHibernate;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.BusinessLogic.Exceptions;
@@ -14,7 +13,7 @@ namespace DFM.Repositories
     {
         protected static ISession Session
         {
-            get { return SessionBuilder.Session; }
+            get { return NHManager.Session; }
         }
 
 
@@ -23,15 +22,9 @@ namespace DFM.Repositories
             return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
 
-        public T SaveOrUpdateInstantly(T entity, params BaseService<T>.DelegateAction[] actions)
-        {
-            var transac = Session.BeginTransaction();
-            entity = SaveOrUpdate(entity, actions);
-            transac.Commit();
 
-            return entity;
-        }
-
+        protected delegate void DelegateAction(T entity);
+        
         public T SaveOrUpdate(T entity, params BaseService<T>.DelegateAction[] actions)
         {
             foreach (var delegateAction in actions)
@@ -61,6 +54,8 @@ namespace DFM.Repositories
             return entity;
         }
 
+
+
         public T SingleOrDefault(Expression<Func<T, Boolean>> func)
         {
             var criteria = CreateSimpleCriteria(func);
@@ -83,11 +78,6 @@ namespace DFM.Repositories
             return entity;
         }
 
-
-
-
-
-        protected delegate void DelegateAction(T entity);
 
 
         public void Delete(T obj)
@@ -113,6 +103,17 @@ namespace DFM.Repositories
 
 
 
+
+        public object BeginTransaction()
+        {
+            return Session.BeginTransaction();
+        }
+
+
+        public void CommitTransaction(object transaction)
+        {
+            ((ITransaction)transaction).Commit();
+        }
 
     }
 }

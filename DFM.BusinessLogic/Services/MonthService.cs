@@ -69,7 +69,7 @@ namespace DFM.BusinessLogic.Services
 
         internal void SaveOrUpdate(Month month)
         {
-            SaveOrUpdateInstantly(month);
+            base.SaveOrUpdate(month);
         }
 
         internal void RemoveMoveFromMonth(Move move)
