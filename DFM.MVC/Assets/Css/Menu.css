@@ -2,6 +2,7 @@ div#Menu {
 	height: 30px;
 	position: relative;
 	z-index: 2;
+	top: 2px;
 }
 
 div#Menu .higherTitle, div#Menu .fixItem
