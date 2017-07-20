@@ -4,28 +4,6 @@
         <name>Ak.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Forms.SelectListExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
-            <summary>
-             Create a SelectList from List of objects
-            </summary>
-            <param name="list">The list that will fill the SelectList</param>
-            <param name="value">The property the will fill the values of the options</param>
-            <param name="text">The property the will fill the text that appears in options</param>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
-            <summary>
-             Create a SelectList from a Enum, using the text.
-             Can't use the number value, MVC don't recognize to assign selected.
-            </summary>
-            <param name="texts">
-             The texts that will appear for the user.
-             key = value of enum // value = text to appear
-             </param>
-        </member>
         <member name="T:Ak.MVC.Authentication.Authenticate">
             <summary>
              To make authentication in MVC easier
@@ -136,6 +114,28 @@
             <summary>
              The message to return as exception
             </summary>
+        </member>
+        <member name="T:Ak.MVC.Forms.SelectListExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
+            <summary>
+             Create a SelectList from List of objects
+            </summary>
+            <param name="list">The list that will fill the SelectList</param>
+            <param name="value">The property the will fill the values of the options</param>
+            <param name="text">The property the will fill the text that appears in options</param>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
+            <summary>
+             Create a SelectList from a Enum, using the text.
+             Can't use the number value, MVC don't recognize to assign selected.
+            </summary>
+            <param name="texts">
+             The texts that will appear for the user.
+             key = value of enum // value = text to appear
+             </param>
         </member>
     </members>
 </doc>

@@ -4,16 +4,6 @@
         <name>Ak.Generic</name>
     </assembly>
     <members>
-        <member name="T:Ak.Generic.Exceptions.AkException">
-            <summary>
-             Any exception thrown by Ak library
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.AkException.#ctor(System.String)">
-            <summary>
-             Any exception thrown by Ak library
-            </summary>
-        </member>
         <member name="T:Ak.Generic.Reflection.Property">
             <summary>
              Helper of PropertyInfo
@@ -29,16 +19,6 @@
              Give a name of a property, to use lambda expression, not strings
             </summary>
         </member>
-        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
-            <summary>
-             Extension for Exception Base Class
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
-            <summary>
-             Get the most InnerException
-            </summary>
-        </member>
         <member name="T:Ak.Generic.Collection.IGroupable`1">
             <summary>
              Interface to use GroupedCollection
@@ -50,6 +30,35 @@
              When implemented in a class, Retrieve de Group of the object
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
+            <summary>
+             Extension for Exception Base Class
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
+            <summary>
+             Get the most InnerException
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Enums.Str2Enum">
+            <summary>
+             Convert String to Enum
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T">Enum type</typeparam>
+        </member>
+        <member name="T:Ak.Generic.Collection.IsInExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+            <summary>
+             Whether an object is in a list
+            </summary>
         </member>
         <member name="T:Ak.Generic.Collection.ItemGroup`2">
             <summary>
@@ -93,27 +102,14 @@
              Return the list of objects of this group
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.StringExtension">
+        <member name="T:Ak.Generic.Exceptions.AkException">
             <summary>
+             Any exception thrown by Ak library
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
+        <member name="M:Ak.Generic.Exceptions.AkException.#ctor(System.String)">
             <summary>
-             Puts the first letter in Upper and the rest in Lower
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-             String format with words instead of number (e.g. {data} instead {0})
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Collection.IsInExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
-            <summary>
-             Whether an object is in a list
+             Any exception thrown by Ak library
             </summary>
         </member>
         <member name="T:Ak.Generic.Extensions.DictionaryExtension">
@@ -155,15 +151,19 @@
             <summary>
             </summary>
         </member>
-        <member name="T:Ak.Generic.Enums.Str2Enum">
+        <member name="T:Ak.Generic.Extensions.StringExtension">
             <summary>
-             Convert String to Enum
             </summary>
         </member>
-        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
+        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
             <summary>
+             Puts the first letter in Upper and the rest in Lower
             </summary>
-            <typeparam name="T">Enum type</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+             String format with words instead of number (e.g. {data} instead {0})
+            </summary>
         </member>
         <member name="T:Ak.Generic.Collection.GroupedCollection`2">
             <summary>

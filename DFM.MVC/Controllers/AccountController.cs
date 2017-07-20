@@ -49,7 +49,7 @@ namespace DFM.MVC.Controllers
 
             var model = new AccountCreateEditModel
             {
-                Account = Service.Access.Admin.SelectAccountById(id.Value)
+                Account = Services.Admin.SelectAccountById(id.Value)
             };
 
             if (isUnauthorized(model.Account))
@@ -64,7 +64,7 @@ namespace DFM.MVC.Controllers
             model.Account.ID = id;
 
 
-            var oldAccount = Service.Access.Admin.SelectAccountById(id);
+            var oldAccount = Services.Admin.SelectAccountById(id);
 
             return isUnauthorized(oldAccount)
                 ? RedirectToAction("Create")
@@ -78,7 +78,7 @@ namespace DFM.MVC.Controllers
                 try
                 {
                     model.Account.User = Current.User;
-                    Service.Access.Admin.SaveOrUpdateAccount(model.Account);
+                    Services.Admin.SaveOrUpdateAccount(model.Account);
                 }
                 catch (DFMCoreException e)
                 {
@@ -98,7 +98,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Close(Int32 id)
         {
-            var account =  Service.Access.Admin.SelectAccountById(id);
+            var account =  Services.Admin.SelectAccountById(id);
 
             // TODO: implement messages on page head
             //String message;
@@ -106,7 +106,7 @@ namespace DFM.MVC.Controllers
             try
             {
                 if (!isUnauthorized(account))
-                    Service.Access.Admin.CloseAccount(account);
+                    Services.Admin.CloseAccount(account);
                 //else
                 //    account = null;
 
@@ -126,7 +126,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var account =  Service.Access.Admin.SelectAccountById(id);
+            var account =  Services.Admin.SelectAccountById(id);
 
             // TODO: implement messages on page head
             //String message;
@@ -134,7 +134,7 @@ namespace DFM.MVC.Controllers
             try
             {
                 if (!isUnauthorized(account))
-                    Service.Access.Admin.DeleteAccount(account);
+                    Services.Admin.DeleteAccount(account);
                 //else
                 //    account = null;
 

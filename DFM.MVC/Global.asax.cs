@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Repositories;
-using DFM.Robot;
 using DFM.MVC.Authentication;
-using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
 using DFM.MVC.MultiLanguage.Helpers;
+using DFM.Repositories;
+using DFM.Robot;
 using log4net.Config;
 
 namespace DFM.MVC
@@ -20,34 +18,16 @@ namespace DFM.MVC
 
     public class MvcApplication : HttpApplication
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-        }
-
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("elmah.axd");
-
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                RouteNames.Default, // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "User", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-        }
-
-
-
         // ReSharper disable InconsistentNaming
         protected void Application_Start()
         // ReSharper restore InconsistentNaming
         {
             AreaRegistration.RegisterAllAreas();
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            GeneralAreaRegistration.RegisterGlobalFilters(GlobalFilters.Filters);
+            GeneralAreaRegistration.RegisterRoutes(RouteTable.Routes);
+
+            Directory.SetCurrentDirectory(Server.MapPath("~"));
 
             NHManager.Start();
             PlainText.Initialize();
@@ -79,9 +59,16 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User, EmailFormats.GetForMove, Service.Access.Robot);
+                MainRobot.Run(Current.User, EmailFormats.GetForMove, Services.Robot);
 
-            specifyLanguage();
+            var browserLanguage =
+                Request.UserLanguages != null && Request.UserLanguages.Length > 0
+                    ? Request.UserLanguages[0]
+                    : null;
+
+            var language = Current.Language ?? browserLanguage;
+
+            PlainText.SpecifyLanguage(language);
         }
 
 
@@ -118,20 +105,6 @@ namespace DFM.MVC
 
 
 
-        private void specifyLanguage()
-        {
-            var browserLanguage =
-                Request.UserLanguages != null && Request.UserLanguages.Length > 0
-                    ? Request.UserLanguages[0]
-                    : null;
-
-            var language = Current.Language ?? browserLanguage;
-
-            if (language == null || !PlainText.AcceptLanguage(language))
-                language = "en-US";
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(language);
-        }
 
 
 

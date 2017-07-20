@@ -143,5 +143,17 @@ namespace DFM.MVC.MultiLanguage
             return Culture.DateTimeFormat.GetMonthName(month).Capitalize();
         }
 
+
+
+
+        public static void SpecifyLanguage(String language)
+        {
+            if (language == null || !PlainText.AcceptLanguage(language))
+                language = "en-US";
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(language);
+        }
+
+
     }
 }
