@@ -66,6 +66,8 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
+            ErrorManager.SendEmail();
+
             NHManager.Error();
         }
 

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.EmailSent)
+@if (Model.EmailSent == DFM.Email.Error.Status.Sent)
 {
     @MultiLanguage.Dictionary["InternalMessageSent"]
 }

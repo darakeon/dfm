@@ -47,7 +47,9 @@ namespace DFM.BusinessLogic.Services
         
         private static void complete(Schedule schedule)
         {
+            // ReSharper disable InvertIf
             if (schedule.ID == 0)
+            // ReSharper restore InvertIf
             {
                 schedule.Active = true;
                 schedule.Begin = schedule.GetNextRunDate();

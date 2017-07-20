@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Extensions;
+using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 using DFM.Entities;
@@ -13,6 +15,9 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
+            if (Current.IsAuthenticated && Current.User.IsAdm())
+                throw new Exception("Teste");
+
             return View();
         }
 

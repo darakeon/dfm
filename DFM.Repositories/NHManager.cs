@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Principal;
-using System.Web;
 using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
@@ -15,23 +13,19 @@ namespace DFM.Repositories
     {
         private static readonly IDictionary<String, ISession> sessionList = new Dictionary<String, ISession>();
 
-        private static String requestCode { get { return HttpContext.Current.Request.GetHashCode().ToString(); } }
-        private static IIdentity user { get { return HttpContext.Current.User.Identity; } }
-        private static String userKey { get { return user != null && user.IsAuthenticated ? user.Name : requestCode; } }
-
         public static ISession Session
         {
             get
             {
-                if (!sessionList.ContainsKey(userKey))
+                if (!sessionList.ContainsKey(HttpHelper.UserKey))
                 {
                     var session = SessionBuilder.Open();
 
-                    if (!sessionList.ContainsKey(userKey))
-                        sessionList.Add(userKey, session);
+                    if (!sessionList.ContainsKey(HttpHelper.UserKey))
+                        sessionList.Add(HttpHelper.UserKey, session);
                 }
 
-                return sessionList[userKey];
+                return sessionList[HttpHelper.UserKey];
             }
         }
 
@@ -51,14 +45,14 @@ namespace DFM.Repositories
         {
             SessionBuilder.Error(Session);
 
-            sessionList.Remove(userKey);
+            sessionList.Remove(HttpHelper.UserKey);
         }
 
         public static void Close()
         {
             SessionBuilder.Close(Session);
 
-            sessionList.Remove(userKey);
+            sessionList.Remove(HttpHelper.UserKey);
         }
 
         public static void End()

@@ -82,7 +82,9 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
+        // ReSharper disable SuggestBaseTypeForParameter
         private static String detailsHTML(Move move)
+        // ReSharper restore SuggestBaseTypeForParameter
         {
             var details = new StringBuilder();
             var language = move.User().Language;

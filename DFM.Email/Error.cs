@@ -6,8 +6,16 @@ namespace DFM.Email
 {
     public class Error
     {
-        public static Boolean Report(Exception[] exceptions)
+        /// <summary>
+        /// Send a report e-mail with errors occured
+        /// </summary>
+        /// <param name="exceptions">Errors occured</param>
+        /// <returns>Status of e-mail</returns>
+        public static Status SendReport(Exception[] exceptions)
         {
+            if (exceptions == null)
+                return Status.Empty;
+
             try
             {
                 var body = String.Join("<br />",
@@ -17,27 +25,49 @@ namespace DFM.Email
 
                 new Sender()
                     .ToDefault()
-                    .Subject(DateTime.Now.ToString())
+                    .Subject(subject)
                     .Body(body)
                     .Send();
 
-                return true;
+                return Status.Sent;
             }
             catch
             {
-                return false;
+                return Status.Error;
             }
         }
 
         private static String format(Exception exception)
         {
             var realException = exception.MostInner();
+            var stackTrace = realException.StackTrace
+                .Replace("\n", "<br style='border-top: 1px solid #AAA' />");
 
             return String.Format(
-                    "{0}: {1}<br />{2}", realException.GetType(), realException.Message, realException.StackTrace
+                    @"<h3>{0}</h3>
+                      <h2>{1}</h2>
+                        <div style='background:#ffd;padding:20px 7px; white-space: nowrap;'>
+                            {2}
+                        </div>"
+                        , realException.GetType()
+                        , realException.Message
+                        , stackTrace
                 );
         }
 
+        private static String subject
+        {
+            get { return DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss´fff"); }
+        }
+
+
+
+        public enum Status
+        {
+            Sent,
+            Error,
+            Empty
+        }
 
     }
 }

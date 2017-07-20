@@ -80,6 +80,10 @@
       <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
       <Name>DFM.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFM.Generic\DFM.Generic.csproj">
+      <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
+      <Name>DFM.Generic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Multilanguage</Name>

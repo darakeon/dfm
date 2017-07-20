@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.Generic.Collection;
-using DFM.Email;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
@@ -23,7 +23,7 @@ namespace DFM.MVC.Controllers
 
             if (id == 500)
             {
-                model.EmailSent = Error.Report(HttpContext.AllErrors);
+                model.EmailSent = ErrorManager.EmailSent;
             }
 
 

@@ -120,7 +120,7 @@ VERSÃO 1.0.2.0
 VERSÃO 1.0.2.1
 
 20/03/2012	20/03/2012	Refactor Resharper
-21/03/2012			Fornecer detalhes do erro no e-mail de report
+21/03/2012	22/03/2012	Fornecer detalhes do erro no e-mail de report
 
 ======================================================================================================
 

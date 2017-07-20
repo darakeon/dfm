@@ -1,8 +1,9 @@
 ﻿using System;
+using DFM.Generic;
 
 namespace DFM.Repositories
 {
-    public class DFMRepositoryException : Exception
+    public class DFMRepositoryException : DFMException
     {
         public DFMRepositoryException(String message)
             : base(message) { }

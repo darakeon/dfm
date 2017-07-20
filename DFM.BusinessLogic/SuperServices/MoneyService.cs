@@ -134,7 +134,9 @@ namespace DFM.BusinessLogic.SuperServices
             ajustSummaries(oldMove);
         }
 
+        // ReSharper disable SuggestBaseTypeForParameter
         private void ajustSummaries(Move move)
+        // ReSharper restore SuggestBaseTypeForParameter
         {
             if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
                 ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccIn());

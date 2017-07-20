@@ -1,8 +1,9 @@
 ﻿using System;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Exceptions
 {
-    public class DFMCoreException : Exception
+    public class DFMCoreException : DFMException
     {
         public static Int32 ErrorCounter { get; private set; }
         public ExceptionPossibilities Type { get; private set; }

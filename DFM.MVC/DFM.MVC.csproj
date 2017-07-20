@@ -56,6 +56,10 @@
       <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
       <Name>DFM.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFM.Generic\DFM.Generic.csproj">
+      <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
+      <Name>DFM.Generic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Multilanguage</Name>
@@ -97,7 +101,6 @@
     <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NHibernate\MySql.Data.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
@@ -154,6 +157,7 @@
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
+    <Compile Include="Helpers\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
     <Compile Include="Helpers\MultiLanguage.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
