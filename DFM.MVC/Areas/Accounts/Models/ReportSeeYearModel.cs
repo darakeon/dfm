@@ -14,7 +14,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             get
             {
                 return String.Format(PlainText.Dictionary["ShortDateFormat"],
-                                     PlainText.Dictionary["Summary"], Year);
+                                     PlainText.Dictionary["Summary"], Year.Time);
             }
         }
     }

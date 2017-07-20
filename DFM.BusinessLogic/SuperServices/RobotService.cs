@@ -109,25 +109,6 @@ namespace DFM.BusinessLogic.SuperServices
                 }
             }
 
-            if (schedule.ShowInstallment)
-            {
-                var total = schedule.MoveList.Count 
-                    + schedule.FutureMoveList.Count;
-
-                
-                var format = schedule.Boundless
-                                 ? boundlessFormat
-                                 : boundedFormat;
-
-                for (var fm = 0; fm < total; fm++)
-                {
-                    schedule.FutureMoveList[fm].Description =
-                        String.Format(format,
-                                      schedule.FutureMoveList[fm].Description,
-                                      fm + 1, total);
-                }
-            }
-
 
             foreach (var futureMove in schedule.FutureMoveList)
             {
@@ -193,11 +174,6 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
         #endregion
-
-
-
-        private const String boundlessFormat = "{0} [{1}]";
-        private const String boundedFormat = "{0} [{1}/{2}]";
 
     }
 }

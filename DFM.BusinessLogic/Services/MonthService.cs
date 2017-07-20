@@ -11,12 +11,12 @@ namespace DFM.BusinessLogic.Services
     {
         protected internal MonthService(IRepository<Month> repository) : base(repository) { }
 
-        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
+        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
         {
             var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.AjustSummaryList(category, deleteSummary);
+                newMonth.AjustSummaryList(category);
 
             return newMonth;
         }
@@ -26,33 +26,8 @@ namespace DFM.BusinessLogic.Services
             var monthList = year.MonthList
                 .Where(m => m.Time == dateMonth);
 
-            try
-            {
-                return monthList.SingleOrDefault()
-                    ?? createMonth(year, dateMonth);
-            }
-            catch (InvalidOperationException e)
-            {
-                if (!e.Message.StartsWith("Sequence contains more than one"))
-                    throw;
-
-                var outList = new List<Move>();
-                var inList = new List<Move>();
-
-                foreach (var month in monthList)
-                {
-                    outList.AddRange(month.OutList);
-                    inList.AddRange(month.InList);
-
-                    Delete(month);
-                }
-
-                var newMonth = createMonth(year, dateMonth);
-                newMonth.InList = inList;
-                newMonth.OutList = outList;
-
-                return newMonth;
-            }
+            return monthList.SingleOrDefault()
+                ?? createMonth(year, dateMonth);
         }
 
         private Month createMonth(Year year, Int16 month)

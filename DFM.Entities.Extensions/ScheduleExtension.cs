@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.Entities.Bases;
 
 namespace DFM.Entities.Extensions
 {
@@ -48,5 +49,22 @@ namespace DFM.Entities.Extensions
 
 
 
+        public static Int32 TotalMoves(this Schedule schedule)
+        {
+            return schedule.MoveList.Count
+                   + schedule.FutureMoveList.Count;
+        }
+
+        public static Int32 ExecutedMoves(this Schedule schedule, BaseMove baseMove)
+        {
+            return baseMove.GetType() == typeof (Move)
+                    
+                    ? schedule.MoveList
+                        .Count(m => m.Date <= baseMove.Date)
+                    
+                    : schedule.MoveList.Count
+                        + schedule.FutureMoveList
+                            .Count(m => m.Date <= baseMove.Date);
+        }
     }
 }

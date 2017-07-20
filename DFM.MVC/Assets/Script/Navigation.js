@@ -28,18 +28,22 @@
     });
 
     $("button#NavGo").click(function () {
+        $("input#Year_Time").attr("id", "Year");
 
-        var year = $("input#Year")[0];
-        var month = $("input#Month")[0];
+        var year = $("input#Year");
+        var month = $("input#Month");
 
-        var hasYear = year && !isNaN(year.value);
-        var hasMonth = month && !isNaN(month.value);
+        var yearTime = year.val();
+        var monthTime = month.val();
+
+        var hasYear = year.length && !isNaN(yearTime);
+        var hasMonth = month.length && !isNaN(monthTime);
 
         if (hasYear)
             if (hasMonth)
-                time = year.value * 100 + month.value * 1;
+                time = yearTime * 100 + monthTime * 1;
             else
-                time = year.value;
+                time = yearTime;
         else
             time = "";
 

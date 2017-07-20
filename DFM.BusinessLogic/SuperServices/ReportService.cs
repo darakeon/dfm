@@ -28,13 +28,13 @@ namespace DFM.BusinessLogic.SuperServices
             var account = accountService.SelectById(id);
 
 
-            var year = yearService.GetOrCreateYear(dateYear, account, summaryService.Delete);
+            var year = yearService.GetOrCreateYear(dateYear, account);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = monthService.GetOrCreateMonth(dateMonth, year, summaryService.Delete);
+            var month = monthService.GetOrCreateMonth(dateMonth, year);
 
             return month == null
                 ? new List<Move>()
@@ -47,7 +47,7 @@ namespace DFM.BusinessLogic.SuperServices
         {
             var account = accountService.SelectById(accountid);
 
-            var year = yearService.GetOrCreateYear(dateYear, account, summaryService.Delete);
+            var year = yearService.GetOrCreateYear(dateYear, account);
 
             return accountService.NonFuture(year);
         }

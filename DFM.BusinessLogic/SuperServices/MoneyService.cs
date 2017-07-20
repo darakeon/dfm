@@ -152,19 +152,19 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
         {
-            var year = yearService.GetOrCreateYear(yearDate, account, summaryService.Delete);
-            var month = monthService.GetOrCreateMonth(monthDate, year, summaryService.Delete);
+            var year = yearService.GetOrCreateYear(yearDate, account);
+            var month = monthService.GetOrCreateMonth(monthDate, year);
 
-            var summaryMonth = month.GetOrCreateSummary(category, summaryService.Delete);
+            var summaryMonth = month.GetOrCreateSummary(category);
 
             summaryService.AjustValue(summaryMonth);
         }
 
         private void ajustYear(Int16 yearDate, Category category, Account account)
         {
-            var year = yearService.GetOrCreateYear(yearDate, account, summaryService.Delete);
+            var year = yearService.GetOrCreateYear(yearDate, account);
 
-            var summaryYear = year.GetOrCreateSummary(category, summaryService.Delete);
+            var summaryYear = year.GetOrCreateSummary(category);
 
             summaryService.AjustValue(summaryYear);
         }
@@ -182,8 +182,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         private Month getMonth(BaseMove baseMove, Account account)
         {
-            var year = yearService.GetOrCreateYear((Int16)baseMove.Date.Year, account, summaryService.Delete, baseMove.Category);
-            return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, summaryService.Delete, baseMove.Category);
+            var year = yearService.GetOrCreateYear((Int16)baseMove.Date.Year, account, baseMove.Category);
+            return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, baseMove.Category);
         }
 
     }

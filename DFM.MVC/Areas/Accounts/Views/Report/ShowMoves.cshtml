@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportShowMovesModel
 
 @{
-    ViewBag.Title = String.Format("{0}: {1}", Model.Account, Model.Date);
+    ViewBag.Title = String.Format("{0}: {1}", Model.Account.Name, Model.Date);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -40,19 +40,19 @@ else
         { 
             
             <tr>
-                <td>@move.Description </td>
-                <td>@move.Category </td>
+                <td>@move.GetDescriptionDetailed() </td>
+                <td>@move.Category.Name </td>
                 <td>@move.Date.ToShortDateString() </td>
 
                 <td class="numeric in">
-                    @if (move.In != null && move.In.Year.Account == Model.Account)
+                    @if (move.In != null && move.In.Year.Account.ID == Model.Account.ID)
                         {@move.Value().ToMoney()}
                     else
                         { @(" ") }
                 </td>
 
                 <td class="numeric out">
-                    @if (move.Out != null && move.Out.Year.Account == Model.Account)
+                    @if (move.Out != null && move.Out.Year.Account.ID == Model.Account.ID)
                         {@move.Value().ToMoney()}
                     else
                         { @(" ") }
@@ -64,7 +64,7 @@ else
 
                     var deleteLabel = PlainText.Dictionary["Delete", "Move"];
                     var deleteUrl = Url.Action("Delete", "Move", new { id = move.ID });
-                    var deleteConfirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.Description);
+                    var deleteConfirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
                     }
 
                 <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>

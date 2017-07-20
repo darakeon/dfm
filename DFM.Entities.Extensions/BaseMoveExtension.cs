@@ -67,5 +67,27 @@ namespace DFM.Entities.Extensions
 
 
 
+
+        public static String GetDescriptionDetailed(this BaseMove baseMove)
+        {
+            const string boundlessFormat = "{0} [{1}]";
+            const string boundedFormat = "{0} [{1}/{2}]";
+            var schedule = baseMove.Schedule;
+
+            if (schedule == null || !schedule.ShowInstallment)
+                return baseMove.Description;
+
+            
+            var total = schedule.TotalMoves();
+            var executed = schedule.ExecutedMoves(baseMove);
+                
+            var format = schedule.Boundless
+                             ? boundlessFormat
+                             : boundedFormat;
+
+            return String.Format(format, baseMove.Description, executed, total);
+        }
+
+
     }
 }

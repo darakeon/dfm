@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.ReportSummarizeMonthsModel
 
 @{
-    ViewBag.Title = String.Format("{0}: {1}", Model.Year.Account, Model.Date);
+    ViewBag.Title = String.Format("{0}: {1}", Model.Year.Account.Name, Model.Date);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -12,8 +12,10 @@
 }
 
 @section TopRightDiv {
-    @Html.NumberNavFor(m => m.Year, TimeNavigation.Limits(1900, DateTime.Today.Year))
-    <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
+    @{
+        @Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, DateTime.Today.Year))
+        <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
+    }
 }
 
 

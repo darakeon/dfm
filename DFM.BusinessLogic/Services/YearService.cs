@@ -11,12 +11,12 @@ namespace DFM.BusinessLogic.Services
     {
         internal YearService(IRepository<Year> repository) : base(repository) { }
 
-        internal Year GetOrCreateYear(Int16 year, Account account, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
+        internal Year GetOrCreateYear(Int16 year, Account account, Category category = null)
         {
             var newYear = getOrCreateYear(account, year);
 
             if (category != null)
-                newYear.AjustSummaryList(category, deleteSummary);
+                newYear.AjustSummaryList(category);
 
             return newYear;
         }
@@ -26,30 +26,8 @@ namespace DFM.BusinessLogic.Services
             var yearList = account.YearList
                 .Where(m => m.Time == dateYear);
 
-            try
-            {
                 return yearList.SingleOrDefault()
                     ?? createYear(account, dateYear);
-            }
-            catch (InvalidOperationException e)
-            {
-                if (!e.Message.StartsWith("Sequence contains more than one"))
-                    throw;
-
-                var monthList = new List<Month>();
-
-                foreach (var year in yearList)
-                {
-                    monthList.AddRange(year.MonthList);
-
-                    Delete(year);
-                }
-
-                var newYear = createYear(account, dateYear);
-                newYear.MonthList = monthList;
-
-                return newYear;
-            }
         }
 
         private Year createYear(Account account, Int16 year)

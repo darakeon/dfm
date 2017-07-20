@@ -42,7 +42,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                      Services.Safe.PasswordReset(id, model.Password);
+                    Services.Safe.PasswordReset(id, model.Password);
                 }
                 catch (DFMCoreException e)
                 {

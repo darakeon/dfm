@@ -13,44 +13,26 @@ namespace DFM.Entities.Extensions
 
 
 
-        public delegate void DeleteSummary(Summary summary);
-
-
-        public static Summary AjustSummaryList(this ISummarizable summarizable, Category category, DeleteSummary deleteSummary)
+        public static Summary AjustSummaryList(this ISummarizable summarizable, Category category)
         {
-            return summarizable.getSummary(category, deleteSummary)
+            return summarizable.getSummary(category)
                 ?? summarizable.AddSummary(category);
         }
 
 
 
-        public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category, DeleteSummary deleteSummary)
+        public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
         {
-            return summarizable.getSummary(category, deleteSummary)
+            return summarizable.getSummary(category)
                    ?? summarizable.AddSummary(category);
         }
 
-        private static Summary getSummary(this ISummarizable summarizable, Category category, DeleteSummary deleteSummary)
+        private static Summary getSummary(this ISummarizable summarizable, Category category)
         {
             var list = summarizable.SummaryList
                 .Where(s => s.Category == category);
 
-            try
-            {
-                return list.SingleOrDefault();
-            }
-            catch (InvalidOperationException e)
-            {
-                if (!e.Message.StartsWith("Sequence contains more than one"))
-                    throw;
-                
-                foreach (var summary in list)
-                {
-                    deleteSummary(summary);
-                }
-
-                return null;
-            }
+            return list.SingleOrDefault();
         }
 
     }
