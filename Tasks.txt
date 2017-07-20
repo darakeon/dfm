@@ -80,6 +80,7 @@ VERSION 1.0.0.3
 
 VERSION 1.0.0.4
 23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
+		Verificar se recuperação de senha está desativando usuário
 		Tornar possível valor ZERO em sinais (vermelho / amarelo)
 		Colocar lista em contas em ordem alfabética (menu, abertas, fechadas)
 		Substituir links por desenhos na lista de Categorias
@@ -87,11 +88,10 @@ VERSION 1.0.0.4
 ======================================================================================================
 
 VERSION 1.0.1.0
-19/10	19/10	Log4Net
-19/10	19/10	/ Elmah
+19/10	19/10	Log4Net / Elmah
+24/10		Passar Log4Net / Elmah para MySql
 		BDD
 		/ Selenium
-		Passar Log4Net / Elmah para MySql
 		Refactor Geral
 		
 		Proteção por usuário no Core (verificar active também)
@@ -109,6 +109,7 @@ VERSION 1.0.2.0
 		Criar projeto UI, que será referenciado pelo MVC
 		Criar projeto que retorna UI em Json
 
+		Possibilitar mudar a conta de uma movimentação (decidir ainda se implemento)
 		Colocar nome (ou apelido) no sign up
 		Edição de Perfil de usuário
 		Permitir escolha da língua para usuário logado
