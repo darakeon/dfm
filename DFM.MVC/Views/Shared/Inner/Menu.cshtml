@@ -58,10 +58,13 @@
         }
         else
         {
+            var accountid = this.ViewContext.RouteData.Values["accountid"] ?? "";
 
             foreach (var account in Model.LateralAccountList)
-            { 
-                <div class="higherMenu" id="@(account.ID)">
+            {
+                var isChosen = account.ID.ToString() == accountid.ToString();
+                
+                <div class="higherMenu @if(isChosen) { @("light") }" id="@(account.ID)">
                     @Html.RouteLink(account.Name, RouteNames.Accounts,
                         new { controller = "Report", action = "Index", accountid = account.ID },
                         new { @class = "higherTitle" })

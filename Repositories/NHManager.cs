@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Web;
 using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
@@ -13,9 +14,10 @@ namespace DFM.Repositories
     public class NHManager
     {
         private static readonly IDictionary<String, ISession> sessionList = new Dictionary<String, ISession>();
-        
-        private static HttpRequest request { get { return HttpContext.Current.Request; } }
-        private static String userKey { get { return request.UserHostAddress + request.LogonUserIdentity.Name; } }
+
+        private static String requestCode { get { return HttpContext.Current.Request.GetHashCode().ToString(); } }
+        private static IIdentity user { get { return HttpContext.Current.User.Identity; } }
+        private static String userKey { get { return user.IsAuthenticated ? user.Name : requestCode; } }
 
         public static ISession Session
         {
@@ -41,11 +43,6 @@ namespace DFM.Repositories
                               };
 
             SessionBuilder.Start(mapInfo);
-        }
-
-        public static void Open()
-        {
-            SessionBuilder.Open();
         }
 
         public static void Error()

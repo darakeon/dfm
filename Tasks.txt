@@ -105,7 +105,7 @@ VERSÃO 1.0.2.0
 05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
 04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
-				Iluminar conta escolhida (na area account)
+28/01/2012			Iluminar conta escolhida (na area account)
 				Opção de colocar (atual/total) na descrição de agendadas
 				Criar relatórios por anos
 				Retirar delegate DeleteSummary / outros try de duplicata
@@ -146,7 +146,7 @@ VERSÃO 1.0.2.3
 
 VERSÃO 1.0.3.0
 
-				Schedule: inserir até data atual, não apenas a primeira
+				Rever layout (relógio de parede para agendamento)
 				Security desativa os anteriores
 				Follow twitter
 				Criar projeto UI, que será referenciado pelo MVC

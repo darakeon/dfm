@@ -42,8 +42,6 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
-            NHManager.Open();
-
             if (isLocal)
                 PlainText.Initialize();
 
