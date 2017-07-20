@@ -1,4 +1,4 @@
-﻿Feature: Robot that execute periodic tasks
+﻿Feature: a. Creation of schedules
 
 Scenario: 01. Save without Description (E)
 Scenario: 02. Save without Date (E)

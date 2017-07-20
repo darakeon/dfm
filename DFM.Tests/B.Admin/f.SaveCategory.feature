@@ -1,4 +1,4 @@
-﻿Feature: e. Save Category
+﻿Feature: e. Creation of Category
 
 Scenario: 01. Save Category without name (E)
 Scenario: 02. Save Category with name that already exists (E)

@@ -1,4 +1,4 @@
-﻿Feature: Money Movements
+﻿Feature: a. Creation of Move
 
 Scenario: 01. Save without Description (E)
 Scenario: 02. Save without Date (E)
