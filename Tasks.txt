@@ -106,7 +106,9 @@ VERSÃO 1.0.2.0
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
 04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
 28/01/2012	28/01/2012	Iluminar conta escolhida (na area account)
-30/01/2012			Opção de colocar (atual/total) na descrição de agendadas
+30/01/2012	31/01/2012	Opção de colocar (atual/total) na descrição de agendadas
+30/01/2012	31/01/2012	Layout com sombras e 3D
+				Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
 				Criar relatórios por anos
 				Retirar delegate DeleteSummary / outros try de duplicata
 				Separar Multilanguage de MVC
