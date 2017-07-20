@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Email", "DFM.Email\DFM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.BusinessLogic", "DFM.BusinessLogic\DFM.BusinessLogic.csproj", "{E749C813-2963-49E6-9D0A-7E6F165EF929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Repositories", "Repositories\DFM.Repositories.csproj", "{40054C79-2502-4A01-AF87-8AB2489F8A0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Repositories", "DFM.Repositories\DFM.Repositories.csproj", "{40054C79-2502-4A01-AF87-8AB2489F8A0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Generic", "DFM.Generic\DFM.Generic.csproj", "{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}"
 EndProject
