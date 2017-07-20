@@ -81,6 +81,8 @@ VERSION 1.0.0.3
 VERSION 1.0.0.4
 23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 		Tornar possível valor ZERO em sinais (vermelho / amarelo)
+		Colocar lista em contas em ordem alfabética (menu, abertas, fechadas)
+		Substituir links por desenhos na lista de Categorias
 
 ======================================================================================================
 
