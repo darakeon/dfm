@@ -144,6 +144,7 @@ VERSÃO 1.0.2.3
 				Proteção por usuário no Core (verificar active também)
 				Retornar mensagens de erro já traduzidas (do core)
 				Security desativa os anteriores
+				Colocar hover em TRs de tabela (destacar linha que está em cima)
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)
 			>>>	Disponibilizar cores para interfaces
