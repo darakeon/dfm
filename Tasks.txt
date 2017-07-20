@@ -1,157 +1,166 @@
 VERSÃO 1.0.0.0
 
-01/06	20/06	Detalhes na Movimentação
-20/06	29/06	-- Refazer roteamento para uma conta entrar em uma url
-29/06	18/07	Edição de Movimentação
-18/07	23/07	-- Arrancar entidade Transferência
-23/07	23/07	Deleção de Movimentação
-23/07	23/07	-- Implementar Quantidade em Detalhes
-23/07	23/07	-- Possibilitar deleção de Detalhes
-23/07	24/07	Edição de Conta
-24/07	24/07	Desativação de Conta
-24/07	24/07	Listagem de Contas desativadas
-24/07	25/07	-- Multi-língue
-25/07	31/07	-- Tradução
-31/07	01/08	-- Listagem de Categorias
-01/08	01/08	-- Desativação de Categoria
-01/08	01/08	-- Edição de Categoria
-01/08	03/08	Saldo mensal (adaptar edição / criação de movimentação)
-03/08	08/08	-- Criar Select com lambda expression no BaseData
-09/08	10/08	REFACTORING
-10/08	14/08	-- Agendamento de Movimentação
-14/08	14/08	-- Implementar "manter logado"
-15/08	16/08	-- WCF Iniciado
-16/08	17/08	Layout
-18/08	18/08	tirar Quantidade de Valor único
-18/08	22/08	Navegação Mês / Ano
-19/08	21/08	Unificar página layout
-22/08	22/08	Fazer EntityData static
-22/08	22/08	Colocar apenas botão de entrar, quando já logado
-22/08	22/08	Conta vazia - Deletar / Conta com Movimentações - Desativar
-22/08	22/08	Link do Relatório de Conta fechada aponta para últimos relatórios
-23/08	23/08	Submenu com relatórios
-23/08	27/08	Revisar o layout (verificar faixa no topo, se fica legal)
-27/08	27/08	Mudar cor para amarelo / colocar ícone
-28/08	02/09	Despesa Fixa (criar Agenda)
-02/09	02/09	Refactor: kill SelectOne and Select with lambda
-04/09	05/09	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
-05/09	06/09	Interface do agendador ilimitado
-07/09	11/09	Criar robô executor da Agenda (controlar request) - pega a última e duplica
-10/09	10/09	-- Arrancar IsValid de Summary
-11/09	12/09	-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
-12/09	12/09	Implementar Frequência Daily em Scheduler (testar funções ligadas aos valores postas no Enum)
-13/09	15/09	Quebrar Value de Summary em In e Out
-15/09	15/09	Proteger alteração / deleção de itens que não pertencem ao usuário logado
-15/09	15/09	Retirar campo Login
-15/09	15/09	Refactor: centralizar textos de erro em enum
-15/09	15/09	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
-15/09	15/09	Robô para Taxas Fixas
-18/09	18/09	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
-18/09	19/09	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
-21/09	21/09	Cifrar senha
-21/09	22/09	Limitar tamanhos dos campos de texto
-22/09	22/09	Verificar no IE
-22/09	22/09	Publicar
+01/06/2011	20/06/2011	Detalhes na Movimentação
+20/06/2011	29/06/2011	-- Refazer roteamento para uma conta entrar em uma url
+29/06/2011	18/07/2011	Edição de Movimentação
+18/07/2011	23/07/2011	-- Arrancar entidade Transferência
+23/07/2011	23/07/2011	Deleção de Movimentação
+23/07/2011	23/07/2011	-- Implementar Quantidade em Detalhes
+23/07/2011	23/07/2011	-- Possibilitar deleção de Detalhes
+23/07/2011	24/07/2011	Edição de Conta
+24/07/2011	24/07/2011	Desativação de Conta
+24/07/2011	24/07/2011	Listagem de Contas desativadas
+24/07/2011	25/07/2011	-- Multi-língue
+25/07/2011	31/07/2011	-- Tradução
+31/07/2011	01/08/2011	-- Listagem de Categorias
+01/08/2011	01/08/2011	-- Desativação de Categoria
+01/08/2011	01/08/2011	-- Edição de Categoria
+01/08/2011	03/08/2011	Saldo mensal (adaptar edição / criação de movimentação)
+03/08/2011	08/08/2011	-- Criar Select com lambda expression no BaseData
+09/08/2011	10/08/2011	REFACTORING
+10/08/2011	14/08/2011	-- Agendamento de Movimentação
+14/08/2011	14/08/2011	-- Implementar "manter logado"
+15/08/2011	16/08/2011	-- WCF Iniciado
+16/08/2011	17/08/2011	Layout
+18/08/2011	18/08/2011	tirar Quantidade de Valor único
+18/08/2011	22/08/2011	Navegação Mês / Ano
+19/08/2011	21/08/2011	Unificar página layout
+22/08/2011	22/08/2011	Fazer EntityData static
+22/08/2011	22/08/2011	Colocar apenas botão de entrar, quando já logado
+22/08/2011	22/08/2011	Conta vazia - Deletar / Conta com Movimentações - Desativar
+22/08/2011	22/08/2011	Link do Relatório de Conta fechada aponta para últimos relatórios
+23/08/2011	23/08/2011	Submenu com relatórios
+23/08/2011	27/08/2011	Revisar o layout (verificar faixa no topo, se fica legal)
+27/08/2011	27/08/2011	Mudar cor para amarelo / colocar ícone
+28/08/2011	02/09/2011	Despesa Fixa (criar Agenda)
+02/09/2011	02/09/2011	Refactor: kill SelectOne and Select with lambda
+04/09/2011	05/09/2011	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
+05/09/2011	06/09/2011	Interface do agendador ilimitado
+07/09/2011	11/09/2011	Criar robô executor da Agenda (controlar request) - pega a última e duplica
+10/09/2011	10/09/2011	-- Arrancar IsValid de Summary
+11/09/2011	12/09/2011	-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
+12/09/2011	12/09/2011	Implementar Frequência Daily em Scheduler (testar funções ligadas aos valores postas no Enum)
+13/09/2011	15/09/2011	Quebrar Value de Summary em In e Out
+15/09/2011	15/09/2011	Proteger alteração / deleção de itens que não pertencem ao usuário logado
+15/09/2011	15/09/2011	Retirar campo Login
+15/09/2011	15/09/2011	Refactor: centralizar textos de erro em enum
+15/09/2011	15/09/2011	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
+15/09/2011	15/09/2011	Robô para Taxas Fixas
+18/09/2011	18/09/2011	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
+18/09/2011	19/09/2011	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
+21/09/2011	21/09/2011	Cifrar senha
+21/09/2011	22/09/2011	Limitar tamanhos dos campos de texto
+22/09/2011	22/09/2011	Verificar no IE
+22/09/2011	22/09/2011	Publicar
 
 ======================================================================================================
 
 VERSÃO 1.0.0.1
-24/09	24/09	Consertar acesso NH no publicado
-24/09	24/09	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
+
+24/09/2011	24/09/2011	Consertar acesso NH no publicado
+24/09/2011	24/09/2011	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 
 ======================================================================================================
 
 VERSÃO 1.0.0.2
-25/09	26/09	Conflito de formato de data
-28/09	01/10	Confirmação de senha
-01/10	01/10	Data de cadastro do usuário
-01/10	01/10	Escurecer mensagem de erro (inverter cor?)
-01/10	01/10	Colocar BETA no logo do site
+
+25/09/2011	26/09/2011	Conflito de formato de data
+28/09/2011	01/10/2011	Confirmação de senha
+01/10/2011	01/10/2011	Data de cadastro do usuário
+01/10/2011	01/10/2011	Escurecer mensagem de erro (inverter cor?)
+01/10/2011	01/10/2011	Colocar BETA no logo do site
 
 ======================================================================================================
 
 VERSÃO 1.0.0.3
-02/10	09/10	Recuperação de Senha - hashcode
-10/10	10/10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-11/10	13/10	Ícones ao invés de palavras nas listagem de contas
-13/10	14/10	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
+
+02/10/2011	09/10/2011	Recuperação de Senha - hashcode
+10/10/2011	10/10/2011	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+11/10/2011	13/10/2011	Ícones ao invés de palavras nas listagem de contas
+13/10/2011	14/10/2011	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
 
 ======================================================================================================
 
 VERSÃO 1.0.1.0 (e VERSÃO 1.0.0.4)
-23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
-08/11	08/11	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
-09/11	09/11	Substituir links por desenhos na lista de Categorias
-09/11	22/11	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
-09/11	09/11	Verificar se recuperação de senha está desativando usuário
-11/11	11/11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
+
+23/10/2011	23/10/2011	Corrigido erro na movimentação de Transferência: não estava trazendo contas
+08/11/2011	08/11/2011	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
+09/11/2011	09/11/2011	Substituir links por desenhos na lista de Categorias
+09/11/2011	22/11/2011	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
+09/11/2011	09/11/2011	Verificar se recuperação de senha está desativando usuário
+11/11/2011	11/11/2011	Tornar possível valor ZERO em sinais (vermelho / amarelo)
 ======================================================================================================
-19/10	19/10	Log4Net / Elmah
-24/10	25/10	Tentativa de passar Log4Net / Elmah para MySql: FAIL
-25/10	25/10	Proteção para log do Elmah
-25/10	25/10	Erros tratados
-25/11	30/11	Testes e Publicação
+19/10/2011	19/10/2011	Log4Net / Elmah
+24/10/2011	25/10/2011	Tentativa de passar Log4Net / Elmah para MySql: FAIL
+25/10/2011	25/10/2011	Proteção para log do Elmah
+25/10/2011	25/10/2011	Erros tratados
+25/11/2011	30/11/2011	Testes e Publicação
 
 ======================================================================================================
 
 VERSÃO 1.0.2.0
-02/12	05/12	Reorganização primária de camadas
------	-----	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
-05/12	19/12	Separar BusinessLogic de NHibernate
-28/12	28/12	Refactor Resharper
-28/12		Criar superServices e migrar uso para ele
-		Proteção por usuário no Core (verificar active também)
-		Separar Multilanguage de MVC
-		Testar Elmah com página tratada (Report > SeeYear)
 
-		BDD
-		Selenium
-		Refactor de limpeza geral
-		Fornecer detalhes do erro no e-mail de report
+02/12/2011	05/12/2011	Reorganização primária de camadas
+----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
+05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
+28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
+04/01/2012			Criar objeto que herda Move (FutureMove?) para usar em schedule
+				Retirar delegate DeleteSummary / outros try de duplicata
+				Separar Multilanguage de MVC
+				Retirar delegate GetterForMove
+				Testar Elmah com página tratada (Report > SeeYear)
+
+				BDD
+				Selenium
+				Refactor de limpeza geral
+				Fornecer detalhes do erro no e-mail de report
 
 ======================================================================================================
 
 VERSÃO 1.0.2.1
-		importador de Excel
-		importador de XML
-		importador de Money
-		importador de CSV
-		gravador de importação
-		transformador de importação
 
-		transformador de exportação
-		gravador de exportação
-		exportador de Excel
-		exportador de XML
-		exportador de Money
-		exportador de CSV
+				Proteção por usuário no Core (verificar active também)
+				importador de Excel
+				importador de XML
+				importador de Money
+				importador de CSV
+				gravador de importação
+				transformador de importação
 
-		Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
+				transformador de exportação
+				gravador de exportação
+				exportador de Excel
+				exportador de XML
+				exportador de Money
+				exportador de CSV
+
+				Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
 ======================================================================================================
 
 VERSÃO 1.0.3.0
-		Schedule: inserir até data atual, não apenas a primeira
-		Security desativa os anteriores
-		Follow twitter
-		Criar projeto UI, que será referenciado pelo MVC
-		Criar projeto que retorna UI em Json
 
-		Possibilitar mudar a conta de uma movimentação (decidir ainda se implemento)
-		Colocar nome (ou apelido) no sign up
-		Edição de Perfil de usuário
-		Permitir escolha da língua para usuário logado
-		Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-		Arrumar tratamento de erro para ir tudo para o cabeçalho e traduzir erros
-		Account: Adicionar Sigla e opção de Habilitar ou não em Menu
-		
-		Listar agendamentos para desativar (aparecerá deletar)
-		Colocar tooltip (na criação): qual a diferença de cada tipo de conta
+				Schedule: inserir até data atual, não apenas a primeira
+				Security desativa os anteriores
+				Follow twitter
+				Criar projeto UI, que será referenciado pelo MVC
+				Criar projeto que retorna UI em Json
+
+				Possibilitar mudar a conta de uma movimentação (decidir ainda se implemento)
+				Colocar nome (ou apelido) no sign up
+				Edição de Perfil de usuário
+				Permitir escolha da língua para usuário logado
+				Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+				Arrumar tratamento de erro para ir tudo para o cabeçalho e traduzir erros
+				Account: Adicionar Sigla e opção de Habilitar ou não em Menu
+				
+				Listar agendamentos para desativar (aparecerá deletar)
+				Colocar tooltip (na criação): qual a diferença de cada tipo de conta
 	
-		relatórios anual por categoria
-		relatórios de mais de uma conta
-		Mostrar gastos futuros no relatório mensal
-		previsão de gastos (estatística)
+				relatórios anual por categoria
+				relatórios de mais de uma conta
+				Mostrar gastos futuros no relatório mensal
+				previsão de gastos (estatística)
 
-		"Adivinhar" categoria
-		taggeamento de movimentação
+				"Adivinhar" categoria
+				taggeamento de movimentação
