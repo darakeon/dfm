@@ -1,51 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Move : IEntity
+    public class Move : BaseMove
     {
-        public Move()
-        {
-            DetailList = new List<Detail>();
-        }
-
-
-        public virtual Int32 ID { get; set; }
-
-        public virtual String Description { get; set; }
-        public virtual DateTime Date { get; set; }
-        public virtual MoveNature Nature { get; set; }
-
-        public virtual Category Category { get; set; }
-
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
-        public virtual Schedule Schedule { get; set; }
+        
 
-        public virtual IList<Detail> DetailList { get; set; }
-
-
-
-        public Double Value()
+        
+        public override User User()
         {
-            return DetailList.Sum(d => d.Value * d.Amount);
+            return (In ?? Out)
+                .Year.Account.User;
+        }
+
+        public override Account AccOut()
+        {
+            return getAccount(Out);
+        }
+
+        public override Account AccIn()
+        {
+            return getAccount(In);
+        }
+
+        private static Account getAccount(Month month)
+        {
+            return month == null ? null : month.Year.Account;
         }
 
 
-        public Boolean Show()
+
+
+        //Remove doesn't work because they aren't same object
+        public void RemoveFromIn()
         {
-            return Date <= DateTime.Now;
+            In.InList =
+                In.InList
+                    .Where(m => m.ID != ID)
+                    .ToList();
+        }
+
+        //Remove doesn't work because they aren't same object
+        public void RemoveFromOut()
+        {
+            Out.OutList =
+                Out.OutList
+                    .Where(m => m.ID != ID)
+                    .ToList();
         }
 
 
 
-        public override String ToString()
-        {
-            return Description;
-        }
     }
 }

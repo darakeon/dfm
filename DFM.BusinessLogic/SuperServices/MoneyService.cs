@@ -3,6 +3,7 @@ using Ak.Generic.Collection;
 using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
@@ -10,15 +11,15 @@ namespace DFM.BusinessLogic.SuperServices
 {
     public class MoneyService
     {
-        private readonly MoveService<Move> moveService;
-        private readonly MoveService<FutureMove> futureMoveService;
+        private readonly MoveService moveService;
+        private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
         private readonly SummaryService summaryService;
         private readonly ScheduleService scheduleService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
 
-        internal MoneyService(MoveService<Move> moveService, MoveService<FutureMove> futureMoveService, DetailService detailService, SummaryService summaryService, ScheduleService scheduleService, MonthService monthService, YearService yearService)
+        internal MoneyService(MoveService moveService, FutureMoveService futureMoveService, DetailService detailService, SummaryService summaryService, ScheduleService scheduleService, MonthService monthService, YearService yearService)
         {
             this.moveService = moveService;
             this.futureMoveService = futureMoveService;
@@ -35,35 +36,48 @@ namespace DFM.BusinessLogic.SuperServices
             return moveService.SelectById(id);
         }
 
-        public Move SaveOrUpdateMove<T>(T move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
-            where T : Move
+
+
+        public FutureMove SaveOrUpdateMove(FutureMove move, Account accountOut, Account accountIn)
         {
-            var oldMove = moveService.SelectOldById(move.ID);
-            
-            ajustOldSummaries(oldMove);
+            scheduleService.AjustSchedule(move);
+
+            move.Out = accountOut;
+            move.In = accountIn;
+
+            move = futureMoveService.SaveOrUpdate(move);
+
+            ajustDetailAndSummaries(move);
+
+            return move;
+        }
+
+        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        {
+            ajustOldSummaries(move.ID);
 
             placeAccountsInMove(move, accountOut, accountIn);
 
-            scheduleService.AjustSchedule(move);
+            move = moveService.SaveOrUpdate(move);
 
-            if (move is FutureMove)
-                move = (T)(Move)futureMoveService.SaveOrUpdate((FutureMove)(Move)move);
-            else
-                move = (T)moveService.SaveOrUpdate(move);
+            ajustDetailAndSummaries(move);
 
+            var action = move.ID == 0 ? "create_move" : "edit"; 
+            moveService.SendEmail(move, getterForMove, action);
+
+            return move;
+        }
+
+        private void ajustDetailAndSummaries(BaseMove move)
+        {
             foreach (var detail in move.DetailList)
             {
                 detailService.SaveOrUpdate(detail);
             }
 
             ajustSummaries(move);
-
-            var action = move.ID == 0 ? "create_move" : "edit";
-            
-            moveService.SendEmail(move, getterForMove, action);
-
-            return move;
         }
+
 
         public void DeleteMove(Move move, Format.GetterForMove getterForMove)
         {
@@ -85,8 +99,10 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Ajust Summaries
-        private void ajustOldSummaries(Move oldMove)
+        private void ajustOldSummaries(Int32 moveID)
         {
+            var oldMove = moveService.SelectOldById(moveID);
+
             if (oldMove == null) return;
 
             if (oldMove.In != null)
@@ -98,13 +114,13 @@ namespace DFM.BusinessLogic.SuperServices
             ajustSummaries(oldMove);
         }
 
-        private void ajustSummaries(Move move)
+        private void ajustSummaries(BaseMove move)
         {
             if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
+                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccIn());
 
             if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
+                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccOut());
         }
 
         private void ajustSummary(Int16 month, Int16 year, Category category, Account account)
@@ -143,7 +159,7 @@ namespace DFM.BusinessLogic.SuperServices
             moveService.PlaceMonthsInMove(move, monthOut, monthIn);
         }
 
-        private Month getMonth(Move move, Account account)
+        private Month getMonth(BaseMove move, Account account)
         {
             var year = yearService.GetOrCreateYear((Int16)move.Date.Year, account, summaryService.Delete, move.Category);
             return monthService.GetOrCreateMonth((Int16)move.Date.Month, year, summaryService.Delete, move.Category);

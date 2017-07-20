@@ -11,7 +11,7 @@ namespace DFM.Entities
         public Schedule()
         {
             Times = 1;
-            MoveList = new List<Move>();
+            MoveList = new List<FutureMove>();
             Active = true;
             Frequency = ScheduleFrequency.Monthly;
         }
@@ -29,7 +29,7 @@ namespace DFM.Entities
         public virtual ScheduleFrequency Frequency { get; set; }
 
         public virtual User User { get; set; }
-        public virtual IList<Move> MoveList { get; set; }
+        public virtual IList<FutureMove> MoveList { get; set; }
 
 
 

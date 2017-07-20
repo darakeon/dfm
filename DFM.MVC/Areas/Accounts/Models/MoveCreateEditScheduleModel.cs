@@ -3,19 +3,21 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Entities;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage.Helpers;
+using Newtonsoft.Json;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public abstract class MoveCreateEditScheduleModel<T> : BaseLoggedModel
-        where T : Move, new()
+    public class MoveCreateEditScheduleModel<T> : BaseLoggedModel
+        where T : BaseMove, new()
     {
-        protected MoveCreateEditScheduleModel()
+        public MoveCreateEditScheduleModel()
         {
             var transferIsPossible = Current.User.AccountList
                                         .Where(a => a.Open())
@@ -37,12 +39,12 @@ namespace DFM.MVC.Areas.Accounts.Models
             Date = DateTime.Today;
         }
 
-        protected MoveCreateEditScheduleModel(T move) : this()
+        public MoveCreateEditScheduleModel(T move) : this()
         {
             Move = move;
 
             AccountID = Move.Nature == MoveNature.Transfer
-                ? Move.In.Year.Account.ID : (Int32?)null;
+                ? Move.AccIn().ID : (Int32?)null;
         }
 
 
@@ -63,7 +65,6 @@ namespace DFM.MVC.Areas.Accounts.Models
         
 
         [Required(ErrorMessage = "*")]
-        public Int32? CategoryID { get; set; }
         public SelectList CategorySelectList { get; set; }
 
 
@@ -116,7 +117,6 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             MakeAccountTransferList(accountID);
 
-
             IsDetailed = Move.IsDetailed();
 
             IsSchedule = Move is FutureMove;
@@ -126,12 +126,17 @@ namespace DFM.MVC.Areas.Accounts.Models
                 var detail = new Detail { Amount = 1 };
                 Move.AddDetail(detail);
             }
-
-            if (Move.Category != null)
-            {
-                CategoryID = Move.Category.ID;
-            }
         }
+
+
+
+        public MoveCreateEditScheduleModel<BaseMove> ConvertToGeneric()
+        {
+            var serial = JsonConvert.SerializeObject(this);
+
+            return JsonConvert.DeserializeObject<MoveCreateEditScheduleModel<BaseMove>>(serial);
+        }
+
 
     }
 }

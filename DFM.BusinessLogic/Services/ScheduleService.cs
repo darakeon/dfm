@@ -53,8 +53,7 @@ namespace DFM.BusinessLogic.Services
                 schedule.Active = true;
                 schedule.Begin = move.Date;
 
-                var user = (move.Out ?? move.In)
-                    .Year.Account.User;
+                var user = move.User();
 
                 schedule.User = user;
             }
@@ -106,7 +105,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void AjustSchedule(Move move)
+        internal void AjustSchedule(FutureMove move)
         {
             if (move.Schedule == null
                 || move.Schedule.ID != 0) return;

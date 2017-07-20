@@ -49,7 +49,7 @@ function InsertCategoryOnDropDown(data) {
     }
     else {
         var op = new Option(name, id, true);
-        $("#CategoryID").append(op);
+        $("#Move_Category_ID").append(op);
 
         $('#newCategory form')[0].reset();
         $('#newCategory').hide();

@@ -1,6 +1,7 @@
 ﻿using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Repositories.Mappings;
 
 namespace DFM.Repositories
@@ -9,7 +10,10 @@ namespace DFM.Repositories
     {
         public static void Start()
         {
-            var mapInfo = new AutoMappingInfo<UserMap, User>();
+            var mapInfo = new AutoMappingInfo<UserMap, User>
+                              {
+                                  EntityBase = typeof (BaseMove)
+                              };
 
             SessionBuilder.Start(mapInfo);
         }

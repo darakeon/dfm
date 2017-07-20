@@ -1,5 +1,4 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditScheduleModel
-
+﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditScheduleModel<DFM.Entities.Bases.BaseMove>
 @{
     ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Move"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
@@ -73,9 +72,9 @@
     
     <div class="createMoveScreenRight">
         <div>
-            @Html.LabelFor(m => m.CategoryID, PlainText.Dictionary["Category"]) 
-            @Html.ValidationMessageFor(m => m.CategoryID)<br />
-            @Html.DropDownListFor(m => m.CategoryID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.LabelFor(m => m.Move.Category.ID, PlainText.Dictionary["Category"]) 
+            @Html.ValidationMessageFor(m => m.Move.Category.ID)<br />
+            @Html.DropDownListFor(m => m.Move.Category.ID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
 
             <a href="#" type="button" id="newCategoryCaller">@PlainText.Dictionary["Create", "Category"]</a>
         </div>

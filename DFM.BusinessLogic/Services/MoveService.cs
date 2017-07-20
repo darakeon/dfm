@@ -9,133 +9,20 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class MoveService<T> : BaseService<T>
-        where T : Move
+    internal class MoveService : BaseMoveService<Move>
     {
-        internal MoveService(IRepository<T> repository) : base(repository) { }
-
-        
-
-        internal T SaveOrUpdate(T move)
-        {
-            //Keep inverted, weird errors happen if make in the right order
-            return SaveOrUpdate(move, validate, complete);
-        }
-
-
-
-        #region Complete
-        private static void complete(T move)
-        {
-            ajustDetailList(move);
-        }
-
-        private static void ajustDetailList(T move)
-        {
-            if (!move.IsDetailed())
-            {
-                move.DetailList[0].Description = move.Description;
-                move.DetailList[0].Amount = 1;
-            }
-
-            foreach (var detail in move.DetailList)
-            {
-                if (detail.Value < 0)
-                    detail.Value = -detail.Value;
-            }
-        }
-
-
-
-
-        #endregion
-
-
-
-        #region Validate
-        private static void validate(T move)
-        {
-            testDetailList(move);
-            testNature(move);
-            testAccounts(move);
-            testCategory(move);
-            testDate(move);
-        }
-
-        private static void testDetailList(T move)
-        {
-            if (!move.DetailList.Any())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailRequired);
-        }
-
-        private static void testNature(T move)
-        {
-            var hasIn = move.In != null;
-            var hasOut = move.Out != null;
-
-            switch (move.Nature)
-            {
-                case MoveNature.In:
-                    if (!hasIn || hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.InMoveWrong);
-                    break;
-
-                case MoveNature.Out:
-                    if (hasIn || !hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.OutMoveWrong);
-                    break;
-
-                case MoveNature.Transfer:
-                    if (!hasIn || !hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.TransferMoveWrong);
-                    break;
-
-            }
-        }
-
-        private static void testAccounts(T move)
-        {
-            var moveInClosed = move.In != null && !move.In.Year.Account.Open();
-            var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open();
-
-            if (moveInClosed || moveOutClosed)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
-
-            if (move.In != null && move.Out != null && move.In.Year.Account == move.Out.Year.Account)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
-        }
-
-        private static void testCategory(T move)
-        {
-            if (move.Category == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
-
-            if (!move.Category.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
-        }
-
-        private static void testDate(T move)
-        {
-            var isFutureMove = move.Date > DateTime.Today;
-
-            var isFirstOfSchedule = move.Schedule != null
-                                    && move.Schedule.IsFirstMove();
-
-            if (isFutureMove && !isFirstOfSchedule)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveFutureNotScheduled);
-        }
-        #endregion
+        internal MoveService(IRepository<Move> repository) : base(repository) { }
 
 
 
         #region PlaceAccountsInMove
-
-        internal void PlaceMonthsInMove(T move, Month monthOut, Month monthIn)
+        internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
             var errorMessage = String.Format("{0}MoveWrong", move.Nature);
             var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
@@ -165,15 +52,13 @@ namespace DFM.BusinessLogic.Services
 
 
 
-
-
-
-        internal void SendEmail(T move, Format.GetterForMove getterForMove, String action)
+        #region SendEmail
+        internal void SendEmail(Move move, Format.GetterForMove getterForMove, String action)
         {
             if (!move.User().SendMoveEmail) return;
 
-            var accountInName = accountName(move.AccountIn());
-            var accountOutName = accountName(move.AccountOut());
+            var accountInName = accountName(move.AccIn());
+            var accountOutName = accountName(move.AccOut());
 
             var format = getterForMove(move.Nature);
 
@@ -207,7 +92,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        private static String detailsHTML(T move)
+        private static String detailsHTML(Move move)
         {
             var details = new StringBuilder();
 
@@ -230,6 +115,7 @@ namespace DFM.BusinessLogic.Services
                        ? null
                        : account.Name;
         }
+        #endregion
 
     }
 }

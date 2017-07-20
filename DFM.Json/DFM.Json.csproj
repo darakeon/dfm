@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{288B6282-630A-4D92-BF07-717774BFB2BD}</ProjectGuid>
+    <ProjectGuid>{F7FD58D5-A430-4B1E-AC4E-79EFD487B512}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFM.Entities</RootNamespace>
-    <AssemblyName>DFM.Entities</AssemblyName>
+    <RootNamespace>DFM.Json</RootNamespace>
+    <AssemblyName>DFM.Json</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,33 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="Bases\BaseMove.cs" />
-    <Compile Include="Bases\IEntity.cs" />
-    <Compile Include="Bases\IMove.cs" />
-    <Compile Include="Bases\ISummarizable.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Detail.cs" />
-    <Compile Include="Enums\AccountSign.cs" />
-    <Compile Include="Enums\MoveNature.cs" />
-    <Compile Include="Enums\ScheduleFrequency.cs" />
-    <Compile Include="Enums\SecurityAction.cs" />
-    <Compile Include="Enums\SummaryNature.cs" />
-    <Compile Include="FutureMove.cs" />
-    <Compile Include="Month.cs" />
-    <Compile Include="Move.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="Security.cs" />
-    <Compile Include="Summary.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Year.cs" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Library\Json\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

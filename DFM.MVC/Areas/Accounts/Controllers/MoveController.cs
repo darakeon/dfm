@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.Email;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
@@ -31,7 +33,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditModel();
+            var model = new MoveCreateEditScheduleModel<Move>();
             
             model.Populate(accountid);
 
@@ -39,7 +41,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditModel model)
+        public ActionResult Create(MoveCreateEditScheduleModel<Move> model)
         {
             return createEditSchedule(model);
         }
@@ -58,7 +60,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-            var model = new MoveCreateEditModel(move);
+            var model = new MoveCreateEditScheduleModel<Move>(move);
 
             if (model.AccountID == accountid)
                 return redirectToRightAccount(move);
@@ -80,7 +82,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditModel model)
+        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel<Move> model)
         {
             var oldMove =  Services.Money.SelectMoveById(id);
 
@@ -100,7 +102,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Schedule()
         {
-            var model = new MoveScheduleModel();
+            var model = new MoveCreateEditScheduleModel<FutureMove>();
 
             model.Populate(accountid);
 
@@ -108,7 +110,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Schedule(MoveScheduleModel model)
+        public ActionResult Schedule(MoveCreateEditScheduleModel<FutureMove> model)
         {
             return createEditSchedule(model);
         }
@@ -116,21 +118,15 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
         private ActionResult createEditSchedule<T>(MoveCreateEditScheduleModel<T> model) 
-            where T : Move, new()
+            where T : BaseMove, new()
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.Move.Category =  Services.Admin.SelectCategoryById(model.CategoryID ?? 0);
-
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    Services.Money.SaveOrUpdateMove(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
-
-                    return RedirectToAction("SeeMonth", "Report",
-                            new { id = (model.Move.Out ?? model.Move.In).Url() }
-                        );
+                    return saveOrUpdateAndRedirect(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
                 }
                 catch (DFMCoreException e)
                 {
@@ -143,6 +139,27 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
+        private ActionResult saveOrUpdateAndRedirect(BaseMove baseMove, Account accountOut, Account accountIn, Format.GetterForMove getForMove)
+        {
+            if (baseMove is FutureMove)
+            {
+                var futureMove = (FutureMove)baseMove;
+
+                Services.Money.SaveOrUpdateMove(futureMove, accountOut, accountIn);
+
+                return RedirectToAction("Index", "Report");
+            }
+            
+            if (baseMove is Move)
+            {
+                var move = (Move)baseMove;
+                Services.Money.SaveOrUpdateMove(move, accountOut, accountIn, getForMove);
+
+                return RedirectToAction("SeeMonth", "Report", new { id = (move.Out ?? move.In).Url() } );
+            }
+            
+            throw new Exception("Not known type of Move");
+        }
 
 
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
@@ -183,9 +200,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
         private ActionResult viewCES<T>(MoveCreateEditScheduleModel<T> model) 
-            where T : Move, new()
+            where T : BaseMove, new()
         {
-            return View("CreateEditSchedule", model);
+            return View("CreateEditSchedule", model.ConvertToGeneric());
         }
 
         private static Boolean isUnauthorized(Move move)
