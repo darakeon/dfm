@@ -120,6 +120,7 @@ VERSÃO 1.0.2.0
 VERSÃO 1.0.2.1
 
 18/03/2012			BDD
+20/03/2012	20/03/2012	Refactor Resharper
 				Selenium
 				Refactor de limpeza geral
 				Security desativa os anteriores

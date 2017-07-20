@@ -125,10 +125,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             IsSchedule = Move is FutureMove || IsSchedule;
 
             if (!Move.DetailList.Any())
-            {
-                var detail = new Detail { Amount = 1 };
-                Move.AddDetail(detail);
-            }
+                Move.AddDetail(new Detail { Amount = 1 });
         }
 
 

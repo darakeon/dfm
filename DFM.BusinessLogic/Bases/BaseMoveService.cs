@@ -98,12 +98,13 @@ namespace DFM.BusinessLogic.Bases
                 baseMove.DetailList[0].Amount = 1;
             }
 
-            foreach (var detail in baseMove.DetailList)
+            foreach (var detail in baseMove.DetailList
+                                    .Where(detail => detail.Value < 0))
             {
-                if (detail.Value < 0)
-                    detail.Value = -detail.Value;
+                detail.Value = -detail.Value;
             }
         }
+
         #endregion
 
 

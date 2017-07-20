@@ -122,7 +122,7 @@ namespace DFM.Repositories
             getTransactionAndTest(transaction).Rollback();
         }
 
-        private ITransaction getTransactionAndTest(object transaction)
+        private static ITransaction getTransactionAndTest(object transaction)
         {
             var localTransaction = (ITransaction)transaction;
 

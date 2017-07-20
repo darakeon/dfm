@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 

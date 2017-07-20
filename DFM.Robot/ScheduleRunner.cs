@@ -22,18 +22,17 @@ namespace DFM.Robot
         {
             var scheduleList = robotService.GetScheduleToRun(user);
 
-            foreach (var schedule in scheduleList)
+            //TODO: colocar isto no serviço
+            var futureMoves = scheduleList
+                .Select(s => s.FutureMoveList
+                                .Where(m => m.Date <= DateTime.Now).ToList())
+                .SelectMany(moves => moves);
+
+            foreach (var futureMove in futureMoves)
             {
-                var moves = schedule.FutureMoveList
-                    .Where(m => m.Date <= DateTime.Now)
-                    .ToList();
-
-                foreach (var futureMove in moves)
-                {
-                    Services.Robot.TransformFutureInMove(futureMove);
-                }
+                Services.Robot.TransformFutureInMove(futureMove);
             }
-        }
 
+        }
     }
 }

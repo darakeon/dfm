@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        private void validate(Detail detail)
+        private static void validate(Detail detail)
         {
             if (detail.Move == null && detail.FutureMove == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);

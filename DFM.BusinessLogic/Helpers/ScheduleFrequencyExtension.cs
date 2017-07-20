@@ -3,7 +3,6 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Helpers
 {

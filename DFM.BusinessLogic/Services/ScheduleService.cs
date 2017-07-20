@@ -45,7 +45,7 @@ namespace DFM.BusinessLogic.Services
         }
 
         
-        private void complete(Schedule schedule)
+        private static void complete(Schedule schedule)
         {
             if (schedule.ID == 0)
             {
@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        private void validate(Schedule schedule)
+        private static void validate(Schedule schedule)
         {
             var isCreating = schedule.ID == 0;
             var hasNoFuture = !schedule.FutureMoveList.Any();

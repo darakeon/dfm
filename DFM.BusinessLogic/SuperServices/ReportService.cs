@@ -11,12 +11,10 @@ namespace DFM.BusinessLogic.SuperServices
         private readonly AccountService accountService;
         private readonly YearService yearService;
         private readonly MonthService monthService;
-        private readonly SummaryService summaryService;
 
-        internal ReportService(AccountService accountService, YearService yearService, MonthService monthService, SummaryService summaryService)
+        internal ReportService(AccountService accountService, YearService yearService, MonthService monthService)
         {
             this.accountService = accountService;
-            this.summaryService = summaryService;
             this.monthService = monthService;
             this.yearService = yearService;
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Ak.Generic.Collection;
 using DFM.BusinessLogic.Services;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
 using System.Net;
 
@@ -73,9 +74,11 @@ namespace DFM.Email
                             };
 
 
-            foreach (var fileFullName in files)
+            var attachments = files.Select(
+                fileFullName => new Attachment(fileFullName));
+
+            foreach (var attachment in attachments)
             {
-                var attachment = new Attachment(fileFullName);
                 message.Attachments.Add(attachment);
             }
             
