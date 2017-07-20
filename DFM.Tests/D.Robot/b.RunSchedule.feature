@@ -141,8 +141,9 @@ Scenario: 98. Run with details in schedule (S)
 		| Move Ca91   | Out    |       |
 	And its Date is 10 days ago
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		| Detail 1     | 1       | 10     | Detail 2     | 1       | 10     |
+		| Description | Amount | Value |
+		| Detail 1    | 1      | 10    |
+		| Detail 2    | 1      | 10    |
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
 		| 5     | False     | Daily     | False           |

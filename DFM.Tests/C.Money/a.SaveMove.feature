@@ -312,8 +312,9 @@ Scenario: 43. Save without value and without Description in Detail (E)
 		| Description | Date       | Nature | Value |
 		| Move Ca43   | 31/03/2012 | Out    |       |
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		|              | 1       | 10     | Detail 2     | 1       | 10     |
+		| Description | Amount | Value |
+		|             | 1      | 10    |
+		| Detail 2    | 1      | 10    |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -328,8 +329,9 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 		| Description | Date       | Nature | Value |
 		| Move Ca44   | 31/03/2012 | Out    |       |
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		| Detail 1     | 0       | 10     | Detail 2     | 1       | 10     |
+		| Description | Amount | Value |
+		| Detail 1    | 0      | 10    |
+		| Detail 2    | 1      | 10    |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -344,8 +346,9 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 		| Description | Date       | Nature | Value |
 		| Move Ca45   | 31/03/2012 | Out    |       |
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		| Detail 1     | 1       | 0      | Detail 2     | 1       | 10     |
+		| Description | Amount | Value |
+		| Detail 1    | 1      | 0     |
+		| Detail 2    | 1      | 10    |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -420,8 +423,9 @@ Scenario: 95. Save with info all right (details) (S)
 		| Description | Date       | Nature | Value |
 		| Move Ca94   | 31/03/2012 | Out    |       |
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		| Detail 1     | 1       | 10     | Detail 2     | 1       | 10     |
+		| Description | Amount | Value |
+		| Detail 1    | 1      | 10    |
+		| Detail 2    | 1      | 10    |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -450,8 +454,9 @@ Scenario: 97. Save negative (details) (S)
 		| Description | Date       | Nature | Value |
 		| Move Ca96   | 31/03/2012 | Out    |       |
 	And the move has this details
-		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
-		| Detail 1     | 1       | -10    | Detail 2     | 1       | 10     |
+		| Description  | Amount  | Value  |
+		| Detail 1     | 1       | -10    |
+		| Description2 | Amount2 | Value2 |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
