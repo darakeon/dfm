@@ -126,8 +126,8 @@ VERSÃO 1.0.2.1
 
 VERSÃO 1.0.2.2
 
-18/03/2012			Escrever BDD
-				Implementar BDD
+18/03/2012	06/04/2012	Escrever BDD
+06/04/2012			Implementar BDD
 				Selenium
 				Colocar try-catchs de Commit/Rollback nos superservices
 				Colocar dados de Post no e-mail de erro
