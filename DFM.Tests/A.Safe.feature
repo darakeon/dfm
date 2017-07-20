@@ -2,8 +2,27 @@
 
 @SaveUserAndSendVerify
 Scenario: 001. Save user without email (E)
+	Given I have this user to create
+	| Email | Password |
+	|       | testDFM  |
+	When I try to save the user
+	Then I will receive this error
+	| Error            |
+	| UserInvalidEmail |
+	And the user will not be saved
+
 Scenario: 002. Save user without password (E)
+	Given I have this user to create
+	| Email                 | Password |
+	| test@dontflymoney.com | testDFM  |
+	When I try to save the user
+	Then I will receive this error
+	| Error            |
+	| UserInvalidEmail |
+	And the user will not be saved
+
 Scenario: 003. Save user with invalid email (E)
+Scenario: 003. Save user with repeated email (E)
 Scenario: 099. Save user with info all right (S)
 
 @ActivateUser
