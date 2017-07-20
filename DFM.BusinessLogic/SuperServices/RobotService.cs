@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
@@ -30,21 +29,51 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Scheduler
-        public void SaveOrUpdateSchedule(Schedule schedule)
+        public void RunSchedule(User user)
         {
-            scheduleService.SaveOrUpdate(schedule);
+            var scheduleList = scheduleService.GetScheduleToRun(user);
+
+            var futureMoves = scheduleList
+                .Select(s => s.FutureMoveList
+                                .Where(m => m.Date <= DateTime.Now).ToList())
+                .SelectMany(moves => moves);
+
+            foreach (var futureMove in futureMoves)
+            {
+                transformFutureInMove(futureMove);
+            }
         }
 
-        public IList<Schedule> GetScheduleToRun(User user)
+        private void transformFutureInMove(FutureMove futureMove)
         {
-            return scheduleService.GetScheduleToRun(user);
+            var transaction = futureMoveService.BeginTransaction();
+
+            try
+            {
+                var schedule = futureMove.Schedule;
+                var boundless = schedule.Boundless;
+                var isLast = futureMove.ID == schedule.FutureMoveList.Last().ID;
+
+                if (boundless && isLast)
+                    addNextFutureMove(futureMove.Schedule);
+
+                var accountOut = futureMove.Out;
+                var accountIn = futureMove.In;
+
+                var move = futureMove.CastToKill();
+
+                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
+                futureMoveService.Delete(futureMove);
+
+                futureMoveService.CommitTransaction(transaction);
+            }
+            catch
+            {
+                futureMoveService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
-
-        public void DeleteFutureMove(FutureMove move)
-        {
-            futureMoveService.Delete(move);
-        }
 
 
         public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
@@ -107,56 +136,12 @@ namespace DFM.BusinessLogic.SuperServices
             }
 
 
-            foreach (var futureMove in schedule.FutureMoveList)
-            {
-                futureMoveService.SaveOrUpdate(futureMove);
-
-                detailService.SaveDetails(futureMove);
-            }
-
-
             scheduleService.SaveOrUpdate(schedule);
 
 
             return firstFMove;
         }
 
-
-
-        public void TransformFutureInMove(FutureMove futureMove)
-        {
-            var transaction = futureMoveService.BeginTransaction();
-
-            try
-            {
-                var schedule = futureMove.Schedule;
-                var boundless = schedule.Boundless;
-                var isLast = futureMove.ID == schedule.FutureMoveList.Last().ID;
-
-                if (boundless && isLast)
-                {
-                    addNextFutureMove(futureMove.Schedule);
-                    var nextFMove = schedule.FutureMoveList.Last();
-
-                    saveOrUpdateSchedule(nextFMove);
-                }
-
-                var accountOut = futureMove.Out;
-                var accountIn = futureMove.In;
-
-                var move = futureMove.CastToKill();
-
-                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
-                DeleteFutureMove(futureMove);
-
-                futureMoveService.CommitTransaction(transaction);
-            }
-            catch
-            {
-                futureMoveService.RollbackTransaction(transaction);
-                throw;
-            }
-        }
 
 
         private void addNextFutureMove(Schedule schedule)
@@ -168,9 +153,14 @@ namespace DFM.BusinessLogic.SuperServices
                                 .CloneChangingDate(nextDate);
 
             schedule.FutureMoveList.Add(nextFMove);
+
+            futureMoveService.SaveOrUpdate(nextFMove);
+
+            detailService.SaveDetails(nextFMove);
         }
 
         #endregion
+
 
     }
 }

@@ -64,10 +64,6 @@
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Multilanguage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Robot\DFM.Robot.csproj">
-      <Project>{418078A8-A13A-40AE-A939-68E0EA25F35B}</Project>
-      <Name>DFM.Robot</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DFM.Repositories\DFM.Repositories.csproj">
       <Project>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</Project>
       <Name>DFM.Repositories</Name>

@@ -130,6 +130,7 @@ VERSÃO 1.0.2.2
 				Selenium
 				Reorganização da ordem das funções nos serviços
 				Refactor de limpeza geral
+				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
 				Colocar robot.txt para google
 				Security desativa os anteriores

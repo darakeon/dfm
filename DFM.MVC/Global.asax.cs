@@ -7,7 +7,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.Repositories;
-using DFM.Robot;
 using log4net.Config;
 
 namespace DFM.MVC
@@ -56,7 +55,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User, Services.Robot);
+                Services.Robot.RunSchedule(Current.User);
         }
 
 
@@ -66,7 +65,9 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
+#if !DEBUG
             ErrorManager.SendEmail();
+#endif
 
             NHManager.Error();
         }

@@ -41,22 +41,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>B.Admin.feature</DependentUpon>
     </Compile>
-    <Compile Include="C.Money.cs">
+    <Compile Include="C.Money.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>C.Money.feature</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="E.Report.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>E.Report.feature</DependentUpon>
-    </Compile>
-    <Compile Include="D.Robot.cs">
+    <Compile Include="D.Robot.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>D.Robot.feature</DependentUpon>
     </Compile>
+    <Compile Include="E.Report.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>E.Report.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="B.Admin.feature">
@@ -65,15 +65,15 @@
     </None>
     <None Include="C.Money.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>C.Money.cs</LastGenOutput>
+      <LastGenOutput>C.Money.feature.cs</LastGenOutput>
     </None>
     <None Include="E.Report.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>E.Report.cs</LastGenOutput>
+      <LastGenOutput>E.Report.feature.cs</LastGenOutput>
     </None>
     <None Include="D.Robot.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>D.Robot.cs</LastGenOutput>
+      <LastGenOutput>D.Robot.feature.cs</LastGenOutput>
     </None>
     <None Include="A.Safe.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

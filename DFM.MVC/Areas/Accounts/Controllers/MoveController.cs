@@ -179,10 +179,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         public ActionResult Delete(Int32 id)
         {
             var move =  Services.Money.SelectMoveById(id);
-            var reportID = (move.In ?? move.Out).Url();
 
             if (!isUnauthorized(move))
-                Services.Money.DeleteMove(move);
+                Services.Money.DeleteMove(id);
             //else
             //    move = null;
 
@@ -190,6 +189,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             //var message = move == null
             //    ? MultiLanguage.Dictionary["MoveNotFound"]
             //    : String.Format(MultiLanguage.Dictionary["MoveDeleted"], move.Description);
+
+            var reportID = (move.In ?? move.Out).Url();
 
             return RedirectToAction("ShowMoves", "Report", new { id = reportID });
         }

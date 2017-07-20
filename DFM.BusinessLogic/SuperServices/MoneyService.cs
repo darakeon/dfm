@@ -83,12 +83,14 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public void DeleteMove(Move move)
+        public void DeleteMove(Int32 id)
         {
             var transaction = moveService.BeginTransaction();
 
             try
             {
+                var move = SelectMoveById(id);
+
                 monthService.RemoveMoveFromMonth(move);
                 ajustSummaries(move);
 
