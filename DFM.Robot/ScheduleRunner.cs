@@ -4,7 +4,6 @@ using System.Linq;
 using DFM.BusinessLogic.SuperServices;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Entities.Extensions;
 using DFM.Repositories;
 
 namespace DFM.Robot
@@ -32,22 +31,13 @@ namespace DFM.Robot
                 var moves = schedule.FutureMoveList
                     .Where(m => m.Date <= DateTime.Now);
 
-                transformToMoves(moves);
+                foreach (var futureMove in moves)
+                {
+                    Services.Robot
+                        .TransformFutureInMove(futureMove, schedule.Boundless, formatGetter);
+                }
             }
         }
-
-
-        private void transformToMoves(IEnumerable<FutureMove> futureMoveList)
-        {
-            foreach (var futureMove in futureMoveList)
-            {
-                var move = futureMove.Cast();
-
-                Services.Money.SaveOrUpdateMove(move, futureMove.Out, futureMove.In, formatGetter);
-                Services.Money.DeleteMove(futureMove);
-            }
-        }
-
 
     }
 }

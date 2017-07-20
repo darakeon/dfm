@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -14,15 +13,15 @@ namespace DFM.BusinessLogic.Bases
 
         internal T SaveOrUpdate(T move)
         {
-            //Keep inverted, weird errors happen if make in the right order
-            return SaveOrUpdate(move, Validate, Complete);
+            //Keep this order, weird errors happen if invert
+            return SaveOrUpdate(move, validate, complete);
         }
 
 
 
 
         #region Validate
-        protected static void Validate(BaseMove baseMove)
+        private static void validate(BaseMove baseMove)
         {
             testDetailList(baseMove);
             testNature(baseMove);
@@ -86,7 +85,7 @@ namespace DFM.BusinessLogic.Bases
 
 
         #region Complete
-        protected static void Complete(BaseMove baseMove)
+        private static void complete(BaseMove baseMove)
         {
             ajustDetailList(baseMove);
         }

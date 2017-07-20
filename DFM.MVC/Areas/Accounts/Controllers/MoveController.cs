@@ -123,7 +123,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector, EmailFormats.GetForMove);
                 }
                 catch (DFMCoreException e)
                 {
@@ -136,14 +136,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, Account accountOut, Account accountIn, Format.GetterForMove getForMove)
+        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, Format.GetterForMove getForMove)
             where T : BaseMove, new()
         {
             if (typeof(T) == typeof(FutureMove))
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Money.SaveOrUpdateSchedule(futureMove, accountOut, accountIn);
+                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOut, selector.AccountIn);
 
                 return RedirectToAction("Index", "Report");
             }
@@ -152,7 +152,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, accountOut, accountIn, getForMove);
+                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn, getForMove);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }

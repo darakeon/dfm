@@ -35,11 +35,6 @@ namespace DFM.Entities.Extensions
             move.Schedule = schedule;
             move.ID = 0;
 
-            foreach (var detail in move.DetailList)
-            {
-                detail.SetMove(move);
-            }
-
             return move;
         }
 

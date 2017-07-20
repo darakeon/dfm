@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Ak.Generic.Collection;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
@@ -14,22 +12,18 @@ namespace DFM.BusinessLogic.SuperServices
     public class MoneyService
     {
         private readonly MoveService moveService;
-        private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
         private readonly CategoryService categoryService;
         private readonly SummaryService summaryService;
-        private readonly ScheduleService scheduleService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
 
-        internal MoneyService(MoveService moveService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, ScheduleService scheduleService, MonthService monthService, YearService yearService)
+        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService)
         {
             this.moveService = moveService;
-            this.futureMoveService = futureMoveService;
             this.detailService = detailService;
             this.categoryService = categoryService;
             this.summaryService = summaryService;
-            this.scheduleService = scheduleService;
             this.monthService = monthService;
             this.yearService = yearService;
         }
@@ -43,95 +37,11 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Save or Update
-        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
-        {
-            if (futureMove.Schedule == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
-
-            var transaction = futureMoveService.BeginTransaction();
-
-            try
-            {
-                categoryService.SetCategory(futureMove);
-
-                if (!futureMove.Schedule.FutureMoveList.Any())
-                    futureMove.Schedule.FutureMoveList.Add(futureMove);
-
-                futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule, accountOut, accountIn);
-
-
-                futureMoveService.CommitTransaction(transaction);
-            }
-            catch (Exception)
-            {
-                futureMoveService.RollbackTransaction(transaction);
-                throw;
-            }
-
-            return futureMove;
-        }
-
-        private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule, Account accountOut, Account accountIn)
-        {
-            var firstFMove = schedule.FutureMoveList.First();
-            
-            firstFMove.Out = accountOut;
-            firstFMove.In = accountIn;
-
-
-            if (!schedule.Boundless)
-            {
-                var addedFMoveCount = schedule.FutureMoveList.Count;
-
-                for(var fm = addedFMoveCount; fm < schedule.Times; fm++)
-                {
-                    var nextDate = scheduleService.GetNextRunDate(schedule);
-                    
-                    var nextFMove = firstFMove.GetNext(nextDate);
-                    
-                    schedule.FutureMoveList.Add(nextFMove);
-                }
-            }
-
-            if (schedule.ShowInstallment)
-            {
-                var total = schedule.FutureMoveList.Count;
-
-                var format = schedule.Boundless
-                                 ? "{0} [{1}]"
-                                 : "{0} [{1}/{2}]";
-
-                for (var fm = 0; fm < total; fm++)
-                {
-                    schedule.FutureMoveList[fm].Description =
-                        String.Format(format,
-                                      schedule.FutureMoveList[fm].Description,
-                                      fm + 1, total);
-                }
-            }
-
-
-            foreach (var futureMove in schedule.FutureMoveList)
-            {
-                futureMoveService.SaveOrUpdate(futureMove);
-
-                detailService.SaveDetails(futureMove);
-            }
-
-
-            scheduleService.SaveOrUpdate(schedule);
-
-
-            return firstFMove;
-        }
-
-
-
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            var transaction = futureMoveService.BeginTransaction();
+            var transaction = moveService.BeginTransaction();
 
             try
             {
@@ -150,11 +60,11 @@ namespace DFM.BusinessLogic.SuperServices
                 moveService.SendEmail(move, getterForMove, sendEmailAction);
 
 
-                futureMoveService.CommitTransaction(transaction);
+                moveService.CommitTransaction(transaction);
             }
             catch (Exception)
             {
-                futureMoveService.RollbackTransaction(transaction);
+                moveService.RollbackTransaction(transaction);
                 throw;
             }
 
@@ -173,11 +83,6 @@ namespace DFM.BusinessLogic.SuperServices
             moveService.Delete(move);
 
             moveService.SendEmail(move, getterForMove, "delete");
-        }
-
-        public void DeleteMove(FutureMove move)
-        {
-            futureMoveService.Delete(move);
         }
 
 

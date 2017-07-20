@@ -1,6 +1,8 @@
 ﻿using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.SuperServices;
+using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic
 {
@@ -8,37 +10,24 @@ namespace DFM.BusinessLogic
     {
         public ServiceAccess(IConnector resolver)
         {
-            account = new AccountService(resolver.Resolve<Account>());
-            category = new CategoryService(resolver.Resolve<Category>());
-            detail = new DetailService(resolver.Resolve<Detail>());
-            month = new MonthService(resolver.Resolve<Month>());
-            move = new MoveService(resolver.Resolve<Move>());
-            futureMove = new FutureMoveService(resolver.Resolve<FutureMove>());
-            schedule = new ScheduleService(resolver.Resolve<Schedule>());
-            security = new SecurityService(resolver.Resolve<Security>());
-            summary = new SummaryService(resolver.Resolve<Summary>());
-            user = new UserService(resolver.Resolve<User>());
-            year = new YearService(resolver.Resolve<Year>());
+            var account = new AccountService(resolver.Resolve<Account>());
+            var category = new CategoryService(resolver.Resolve<Category>());
+            var detail = new DetailService(resolver.Resolve<Detail>());
+            var month = new MonthService(resolver.Resolve<Month>());
+            var move = new MoveService(resolver.Resolve<Move>());
+            var futureMove = new FutureMoveService(resolver.Resolve<FutureMove>());
+            var schedule = new ScheduleService(resolver.Resolve<Schedule>());
+            var security = new SecurityService(resolver.Resolve<Security>());
+            var summary = new SummaryService(resolver.Resolve<Summary>());
+            var user = new UserService(resolver.Resolve<User>());
+            var year = new YearService(resolver.Resolve<Year>());
 
-            Money = new MoneyService(move, futureMove, detail, category, summary, schedule, month, year);
+            Money = new MoneyService(move, detail, category, summary, month, year);
             Report = new ReportService(account, year, month, summary);
             Safe = new SafeService(user, security);
             Admin = new AdminService(account, category);
-            Robot = new RobotService(schedule);
+            Robot = new RobotService(Money, schedule, futureMove, detail, category);
         }
-
-
-        private AccountService account { get; set; }
-        private CategoryService category { get; set; }
-        private DetailService detail { get; set; }
-        private MonthService month { get; set; }
-        private MoveService move { get; set; }
-        private FutureMoveService futureMove { get; set; }
-        private ScheduleService schedule { get; set; }
-        private SecurityService security { get; set; }
-        private SummaryService summary { get; set; }
-        private UserService user { get; set; }
-        private YearService year { get; set; }
 
 
         public MoneyService Money { get; private set; }
