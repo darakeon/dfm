@@ -23,8 +23,6 @@ namespace DFM.Repositories
         }
 
 
-        protected delegate void DelegateAction(T entity);
-        
         public T SaveOrUpdate(T entity, params BaseService<T>.DelegateAction[] actions)
         {
             foreach (var delegateAction in actions)
