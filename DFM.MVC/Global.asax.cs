@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database.Base;
+using DFM.Core.Entities.Extensions;
 using DFM.Core.Robots;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
@@ -78,6 +79,9 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
+            if (isElmah && !Current.IsAdm)
+                Response.Redirect("/");
+
             if (Current.IsAuthenticated)
                 MainRobot.Run(Current.User);
 
@@ -131,24 +135,11 @@ namespace DFM.MVC
         }
 
 
-        private static Boolean isAsset
-        {
-            get
-            {
-                return HttpContext.Current.Request
-                    .Url.AbsolutePath.StartsWith("/Assets/");
-            }
-        }
 
-        private static Boolean isLocal
-        {
-            get
-            {
-                return HttpContext.Current.Request
-                    .Url.Host == "localhost";
-            }
-        }
-
+        private static Uri url { get { return HttpContext.Current.Request.Url; } }
+        private static Boolean isAsset { get { return url.AbsolutePath.ToLowerInvariant().StartsWith("/Assets/"); } }
+        private static Boolean isLocal { get { return url.Host == "localhost"; } }
+        private static Boolean isElmah { get { return url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd"); } }
 
     }
 }

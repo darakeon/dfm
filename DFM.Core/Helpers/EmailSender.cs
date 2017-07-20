@@ -10,7 +10,7 @@ namespace DFM.Core.Helpers
         private const String domain = "dontflymoney.com";
 
         public static String Sender = "no-reply@" + domain;
-
+        private const String @default = "[some default sender here]";
 
 
         private String to, subject, body;
@@ -18,6 +18,12 @@ namespace DFM.Core.Helpers
         public EmailSender To(String email)
         {
             to = email;
+            return this;
+        }
+
+        public EmailSender ToDefault()
+        {
+            to = @default;
             return this;
         }
 
@@ -34,8 +40,7 @@ namespace DFM.Core.Helpers
         }
 
 
-
-        internal void Send()
+        public void Send()
         {
             var credentials = new NetworkCredential("no-reply@" + domain, "[some-awful-password]");
 
@@ -63,6 +68,7 @@ namespace DFM.Core.Helpers
             }
 
         }
+
 
     }
 }

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Core.Database;
+using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Extensions;
 
 namespace DFM.MVC.Areas.Accounts.Controllers

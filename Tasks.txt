@@ -89,7 +89,9 @@ VERSION 1.0.0.4
 
 VERSION 1.0.1.0
 19/10	19/10	Log4Net / Elmah
-24/10		Passar Log4Net / Elmah para MySql
+24/10	25/10	Tentativa de passar Log4Net / Elmah para MySql: FAIL
+25/10	25/10	Proteção para log do Elmah
+25/10	25/10	Erros tratados
 		BDD
 		/ Selenium
 		Refactor Geral

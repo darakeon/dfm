@@ -81,7 +81,7 @@ namespace DFM.MVC.MultiLanguage
 
         public static CultureInfo Culture { get { return Thread.CurrentThread.CurrentUICulture; } }
 
-        private static String section { get { return RouteInfo.Current.RouteData.Values["controller"].ToString().ToLower(); } }
+        private static String section { get { return RouteInfo.Current.RouteData == null ? "ops" : RouteInfo.Current.RouteData.Values["controller"].ToString().ToLower(); } }
 
         public static String Language { get { return Culture.Name; } }
 

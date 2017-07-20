@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ops>
+  <en-US>
+    <Unknown text="Ops..." />
+    <UnknownMessage text="Please, contact us." />
+    
+    <NotFound text="Not found" />
+    <NotFoundMessage text="Sorry, page not found." />
+    
+    <Internal text="Ops!" />
+    <InternalMessageSent text="An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible." />
+    <InternalMessageNotSent text="An internal error ocurred. Please, contact us." />
+  </en-US>
+  <pt-BR>
+    <Unknown text="Ops..." />
+    <UnknownMessage text="Por favor, entre em contato conosco." />
+
+    <NotFound text="Não encontrada" />
+    <NotFoundMessage text="Página não encontrada." />
+
+    <Internal text="Ops!" />
+    <InternalMessageSent text="Ocorreu um erro interno. Um e-mail foi enviado, resolveremos assim que possível." />
+    <InternalMessageNotSent text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
+  </pt-BR>
+</ops>

@@ -19,8 +19,9 @@ namespace DFM.MVC.Models
                 .OrderByDescending(a => a.ID)
                 .ToList();
 
-            ActionName = RouteInfo.Current.RouteData
-                .Values["action"].ToString();
+            ActionName = RouteInfo.Current.RouteData == null
+                ? String.Empty
+                : RouteInfo.Current.RouteData.Values["action"].ToString();
         }
 
         public IList<Account> LateralAccountList { get; set; }

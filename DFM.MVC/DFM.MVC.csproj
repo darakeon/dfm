@@ -168,6 +168,7 @@
     <Content Include="Assets\Css\TopRightDiv.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
+    <Compile Include="Models\OpsCodeModel.cs" />
     <Compile Include="Models\TokenReceivedModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
@@ -337,6 +339,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MultiLanguage\Resources\ops.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\Resources\token.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -427,7 +433,7 @@
     <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Master.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\ForgotPassword.cshtml" />
@@ -464,6 +470,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Token\UserVerification.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ops\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ops\500.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ops\404.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

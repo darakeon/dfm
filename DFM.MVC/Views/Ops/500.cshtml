@@ -1,0 +1,16 @@
+﻿@model DFM.MVC.Models.OpsCodeModel
+
+@{
+    ViewBag.Title = "Ops!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.EmailSent)
+{
+    @PlainText.Dictionary["InternalMessageSent"]
+}
+else
+{
+    @PlainText.Dictionary["InternalMessageNotSent"]
+}
+
