@@ -16,7 +16,7 @@ namespace DFM.Repositories.Mappings
             mapping.References(s => s.User)
                 .Cascade.None();
 
-            mapping.HasMany(s => s.MoveList)
+            mapping.HasMany(s => s.FutureMoveList)
                 .Cascade.None();
         }
     }

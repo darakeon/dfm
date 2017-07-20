@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace DFM.Generic
 {
@@ -12,7 +13,9 @@ namespace DFM.Generic
         public static TO Convert<TP, TO>(TP obj)
             where TO : TP
         {
-            var serial = JsonConvert.SerializeObject(obj);
+            var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+
+            var serial = JsonConvert.SerializeObject(obj, Formatting.None, settings);
 
             return JsonConvert.DeserializeObject<TO>(serial);
         }

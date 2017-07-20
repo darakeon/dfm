@@ -16,5 +16,7 @@ namespace DFM.BusinessLogic.Bases
 
         object BeginTransaction();
         void CommitTransaction(object transaction);
+        void RollbackTransaction(object transaction);
+
     }
 }

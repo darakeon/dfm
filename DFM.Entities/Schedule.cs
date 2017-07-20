@@ -11,7 +11,10 @@ namespace DFM.Entities
         public Schedule()
         {
             Times = 1;
-            MoveList = new List<FutureMove>();
+
+            FutureMoveList = new List<FutureMove>();
+            MoveList = new List<Move>();
+            
             Active = true;
             Frequency = ScheduleFrequency.Monthly;
         }
@@ -23,20 +26,21 @@ namespace DFM.Entities
         public virtual Boolean Boundless { get; set; }
 
         public virtual DateTime Begin { get; set; }
-        public virtual DateTime Next { get; set; }
 
         public virtual Boolean Active { get; set; }
         public virtual ScheduleFrequency Frequency { get; set; }
 
         public virtual User User { get; set; }
-        public virtual IList<FutureMove> MoveList { get; set; }
+
+        public virtual IList<FutureMove> FutureMoveList { get; set; }
+        public virtual IList<Move> MoveList { get; set; }
 
 
 
         public override string ToString()
         {
             return String.Format("{0} of {1}", 
-                Frequency, MoveList.FirstOrDefault());
+                Frequency, FutureMoveList.FirstOrDefault());
         }
 
     }

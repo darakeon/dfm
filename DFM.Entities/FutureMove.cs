@@ -1,4 +1,6 @@
-﻿using DFM.Entities.Bases;
+﻿using System;
+using System.Linq;
+using DFM.Entities.Bases;
 
 namespace DFM.Entities
 {
@@ -22,6 +24,6 @@ namespace DFM.Entities
         {
             return In;
         }
-        
+
     }
 }

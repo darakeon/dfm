@@ -62,13 +62,14 @@ div#Menu .reportsMenu
 {
 	display: none;
 	position: relative;
-	left: 0px;
+	left: -5px;
+	z-index: 1;
 }
 
 div#Menu .reportsMenu ul
 {
 	position: absolute;
-	top: 2px;
+	top: 1px;
 	left: 0px;
 	margin: 0;
 	padding: 0;

@@ -28,7 +28,6 @@ namespace DFM.BusinessLogic.Bases
             testNature(baseMove);
             testAccounts(baseMove);
             testCategory(baseMove);
-            testDate(baseMove);
         }
 
         private static void testDetailList(BaseMove baseMove)
@@ -81,17 +80,6 @@ namespace DFM.BusinessLogic.Bases
 
             if (!baseMove.Category.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
-        }
-
-        private static void testDate(BaseMove baseMove)
-        {
-            var isFutureMove = baseMove.Date > DateTime.Today;
-
-            var isFirstOfSchedule = baseMove.Schedule != null
-                                    && baseMove.Schedule.IsFirstMove();
-
-            if (isFutureMove && !isFirstOfSchedule)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveFutureNotScheduled);
         }
         #endregion
 

@@ -115,5 +115,9 @@ namespace DFM.Repositories
             ((ITransaction)transaction).Commit();
         }
 
+        public void RollbackTransaction(object transaction)
+        {
+            ((ITransaction)transaction).Rollback();
+        }
     }
 }

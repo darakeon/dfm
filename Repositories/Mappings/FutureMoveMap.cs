@@ -15,7 +15,7 @@ namespace DFM.Repositories.Mappings
                 .Length(MaximumLength.MoveDescription);
 
             mapping.HasMany(m => m.DetailList)
-                .Cascade.Delete()
+                .Cascade.None()
                 .Not.LazyLoad();
 
             mapping.References(m => m.In)
@@ -29,6 +29,10 @@ namespace DFM.Repositories.Mappings
             mapping.References(m => m.Schedule)
                 .Cascade.None()
                 .Nullable();
+
+            mapping.References(m => m.Category)
+                .Cascade.None();
+
         }
     }
 }

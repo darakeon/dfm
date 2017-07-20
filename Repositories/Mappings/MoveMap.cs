@@ -29,6 +29,10 @@ namespace DFM.Repositories.Mappings
             mapping.References(m => m.Schedule)
                 .Cascade.None()
                 .Nullable();
+
+            mapping.References(m => m.Category)
+                .Cascade.None();
+
         }
     }
 }

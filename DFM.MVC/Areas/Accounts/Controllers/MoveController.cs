@@ -99,7 +99,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Schedule()
         {
-            var model = new MoveCreateEditScheduleModel();
+            var model = new MoveCreateEditScheduleModel {IsSchedule = true };
 
             model.Populate(accountid);
 
@@ -143,7 +143,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Money.SaveOrUpdateMove(futureMove, accountOut, accountIn);
+                Services.Money.SaveOrUpdateSchedule(futureMove, accountOut, accountIn);
 
                 return RedirectToAction("Index", "Report");
             }

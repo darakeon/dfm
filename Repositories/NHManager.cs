@@ -15,7 +15,7 @@ namespace DFM.Repositories
         private static readonly IDictionary<String, ISession> sessionList = new Dictionary<String, ISession>();
         
         private static HttpRequest request { get { return HttpContext.Current.Request; } }
-        private static String userKey { get { return request.UserHostAddress + request.LogonUserIdentity; } }
+        private static String userKey { get { return request.UserHostAddress + request.LogonUserIdentity.Name; } }
 
         public static ISession Session
         {

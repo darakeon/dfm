@@ -32,5 +32,14 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
         }
 
+
+        internal void SaveDetails(BaseMove baseMove)
+        {
+            foreach (var detail in baseMove.DetailList)
+            {
+                SaveOrUpdate(detail, baseMove);
+            }
+        }
+
     }
 }

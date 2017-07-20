@@ -25,21 +25,6 @@ namespace DFM.BusinessLogic.SuperServices
             return scheduleService.GetScheduleToRun(user);
         }
 
-        public void SetNextRun(Schedule schedule)
-        {
-            scheduleService.SetNextRun(schedule);
-        }
-
-        public Boolean CanRun(Schedule schedule)
-        {
-            return scheduleService.CanRun(schedule);
-        }
-
-        public Boolean CanRunNow(Schedule schedule)
-        {
-            return scheduleService.CanRunNow(schedule);
-        }
-
 
     }
 }

@@ -66,5 +66,10 @@ namespace DFM.BusinessLogic.Bases
             repository.CommitTransaction(transaction);
         }
 
+        internal void RollbackTransaction(object transaction)
+        {
+            repository.RollbackTransaction(transaction);
+        }
+
     }
 }

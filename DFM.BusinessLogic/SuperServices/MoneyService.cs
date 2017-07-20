@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Ak.Generic.Collection;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
@@ -41,67 +43,106 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Save or Update
-        public FutureMove SaveOrUpdateMove(FutureMove futureMove, Account accountOut, Account accountIn)
+        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
         {
+            if (futureMove.Schedule == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+
             var transaction = futureMoveService.BeginTransaction();
 
-            
-            ajustCategory(futureMove);
+            try
+            {
+                categoryService.SetCategory(futureMove);
 
-            scheduleService.AjustSchedule(futureMove);
+                if (!futureMove.Schedule.FutureMoveList.Any())
+                    futureMove.Schedule.FutureMoveList.Add(futureMove);
 
-            futureMove.Out = accountOut;
-            futureMove.In = accountIn;
-
-            futureMove = futureMoveService.SaveOrUpdate(futureMove);
-
-            ajustDetail(futureMove);
+                futureMove = ajustFutureMoves(futureMove.Schedule, accountOut, accountIn);
 
 
-            futureMoveService.CommitTransaction(transaction);
+                futureMoveService.CommitTransaction(transaction);
+            }
+            catch (Exception)
+            {
+                futureMoveService.RollbackTransaction(transaction);
+                throw;
+            }
 
             return futureMove;
         }
 
+        private FutureMove ajustFutureMoves(Schedule schedule, Account accountOut, Account accountIn)
+        {
+            var firstFMove = schedule.FutureMoveList.First();
+            
+            firstFMove.Out = accountOut;
+            firstFMove.In = accountIn;
+
+
+            if (!schedule.Boundless)
+            {
+                var addedFMoveCount = schedule.FutureMoveList.Count;
+
+                for(var fm = addedFMoveCount; fm < schedule.Times; fm++)
+                {
+                    var nextDate = scheduleService.GetNextRunDate(schedule);
+                    
+                    var nextFMove = firstFMove.GetNext(nextDate);
+                    
+                    schedule.FutureMoveList.Add(nextFMove);
+                }
+            }
+
+
+            foreach (var futureMove in schedule.FutureMoveList)
+            {
+                futureMoveService.SaveOrUpdate(futureMove);
+
+                detailService.SaveDetails(futureMove);
+            }
+
+
+            scheduleService.SaveOrUpdate(schedule);
+
+
+            return firstFMove;
+        }
+
+
+
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
-            var transaction = futureMoveService.BeginTransaction();
-
-
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            ajustCategory(move);
+            var transaction = futureMoveService.BeginTransaction();
 
-            ajustOldSummaries(move.ID);
+            try
+            {
+                categoryService.SetCategory(move);
 
-            placeAccountsInMove(move, accountOut, accountIn);
+                ajustOldSummaries(move.ID);
 
-            move = moveService.SaveOrUpdate(move);
+                placeAccountsInMove(move, accountOut, accountIn);
 
-            ajustDetail(move);
+                move = moveService.SaveOrUpdate(move);
 
-            ajustSummaries(move);
+                detailService.SaveDetails(move);
 
-            moveService.SendEmail(move, getterForMove, sendEmailAction);
+                ajustSummaries(move);
+
+                moveService.SendEmail(move, getterForMove, sendEmailAction);
 
 
-            futureMoveService.CommitTransaction(transaction);
+                futureMoveService.CommitTransaction(transaction);
+            }
+            catch (Exception)
+            {
+                futureMoveService.RollbackTransaction(transaction);
+                throw;
+            }
+
 
             return move;
-        }
-
-        private void ajustCategory(BaseMove baseMove)
-        {
-            baseMove.Category = 
-                categoryService.SelectById(baseMove.Category.ID);
-        }
-
-        private void ajustDetail(BaseMove baseMove)
-        {
-            foreach (var detail in baseMove.DetailList)
-            {
-                detailService.SaveOrUpdate(detail, baseMove);
-            }
         }
         #endregion
 
@@ -115,6 +156,11 @@ namespace DFM.BusinessLogic.SuperServices
             moveService.Delete(move);
 
             moveService.SendEmail(move, getterForMove, "delete");
+        }
+
+        public void DeleteMove(FutureMove move)
+        {
+            futureMoveService.Delete(move);
         }
 
 

@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -50,7 +51,7 @@ namespace DFM.BusinessLogic.Services
                 .ToList();
 
             if (categoryList.Count > 1)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedCategoryName);
 
             return categoryList.SingleOrDefault();
         }
@@ -71,6 +72,12 @@ namespace DFM.BusinessLogic.Services
         {
             category.Active = enable;
             SaveOrUpdate(category);
+        }
+
+
+        internal void SetCategory(BaseMove baseMove)
+        {
+            baseMove.Category = SelectById(baseMove.Category.ID);
         }
 
     }

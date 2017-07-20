@@ -2,32 +2,40 @@
 {
     public enum ExceptionPossibilities
     {
-        AccountAlreadyExists,
-        CantCloseEmptyAccount,
-        CantDeleteAccountWithMoves,
-        CategoryAlreadyExists,
-        ClosedAccount,
-        ConnectionError,
-        DetailRequired,
-        DisabledCategory,
-        DuplicatedAccountName,
         FailOnEmailSend,
-        InMoveWrong,
-        InvalidCategory,
+        TooLargeData,
+
         InvalidToken,
         InvalidUser,
-        MoveCircularTransfer,
-        MoveFutureNotScheduled,
-        OutMoveWrong,
-        RedLimitAboveYellowLimit,
-        ScheduleFrequencyNotRecognized,
-        SummaryNatureNotFound,
-        TooLargeData,
-        TransferMoveWrong,
         UserAlreadyExists,
         UserInvalidEmail,
         WrongUserEmail,
+
+        AccountAlreadyExists,
+        CantCloseEmptyAccount,
+        CantDeleteAccountWithMoves,
+        ClosedAccount,
+        DuplicatedAccountName,
+        RedLimitAboveYellowLimit,
+
+        CategoryAlreadyExists,
+        DisabledCategory,
+        InvalidCategory,
+        DuplicatedCategoryName,
+
+        InMoveWrong,
+        OutMoveWrong,
+        TransferMoveWrong,
+        MoveCircularTransfer,
+
+        DetailRequired,
         DetailWithoutMove,
+
+        ScheduleRequired,
+        ScheduleFrequencyNotRecognized,
+        ScheduleWithNoMoves,
+
+        SummaryNatureNotFound,
     }
 
 }

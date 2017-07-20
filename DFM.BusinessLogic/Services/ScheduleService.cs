@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Extensions;
@@ -14,15 +15,15 @@ namespace DFM.BusinessLogic.Services
 
         internal void SaveOrUpdate(Schedule schedule)
         {
-            SaveOrUpdate(schedule, complete);
+            SaveOrUpdate(schedule, complete, validate);
         }
 
         internal IList<Schedule> GetScheduleToRun(User user)
         {
-            return getRunnableAndDisableOthers(
-                    user.ScheduleList
-                        .Where(s => s.Active 
-                            && s.Next <= DateTime.Today))
+            var scheduleList = getRunnableAndDisableOthers(user.ScheduleList);
+
+            return scheduleList
+                .Where(s => s.CanRunNow())
                 .ToList();
         }
 
@@ -48,72 +49,52 @@ namespace DFM.BusinessLogic.Services
         {
             if (schedule.ID == 0)
             {
-                var move = schedule.MoveList.First();
-
                 schedule.Active = true;
-                schedule.Begin = move.Date;
-
-                var user = move.User();
-
-                schedule.User = user;
+                schedule.Begin = schedule.GetNextDate();
+                schedule.User = schedule.GetUser();
             }
+        }
 
-            if (schedule.Active)
-                SetNextRun(schedule);
+        private void validate(Schedule schedule)
+        {
+            var isCreating = schedule.ID == 0;
+            var hasNoFuture = !schedule.FutureMoveList.Any();
+
+            if (isCreating && hasNoFuture)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
         }
 
 
 
-        internal void SetNextRun(Schedule schedule)
-        {
-            var move = schedule.MoveList.Last();
 
-            schedule.Next =
-                move.Date > DateTime.Now
-                    ? move.Date
-                    : schedule.Frequency.Next(move.Date);
+        internal DateTime GetNextRunDate(Schedule schedule)
+        {
+            var move = schedule.FutureMoveList.Last();
+
+            return schedule.Frequency.Next(move.Date);
         }
 
 
 
         internal Boolean CanRun(Schedule schedule)
         {
-            var hasMoveToClone = schedule.MoveList.Any();
+            if (!schedule.FutureMoveList.Any())
+                return false;
 
             var doneMoves = appliedTimes(schedule);
 
             var doneAll = doneMoves >= schedule.Times;
             var boundless = schedule.Boundless;
 
-            return schedule.Active && 
-                hasMoveToClone &&
+            return schedule.Active &&
                 (boundless || !doneAll);
-        }
-
-
-        internal Boolean CanRunNow(Schedule schedule)
-        {
-            return CanRun(schedule) &&
-                   schedule.Next <= DateTime.Today;
         }
 
 
         private static Int32 appliedTimes(Schedule schedule)
         {
             return schedule.Frequency
-                .AppliedTimes(schedule.Begin, schedule.Next);
-        }
-
-        
-        internal void AjustSchedule(FutureMove futureMove)
-        {
-            if (futureMove.Schedule == null
-                || futureMove.Schedule.ID != 0) return;
-
-            if (!futureMove.Schedule.Contains(futureMove))
-                futureMove.Schedule.AddMove(futureMove);
-
-            SaveOrUpdate(futureMove.Schedule);
+                .AppliedTimes(schedule.Begin, schedule.GetNextDate());
         }
 
 

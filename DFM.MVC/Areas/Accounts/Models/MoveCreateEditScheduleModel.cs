@@ -118,7 +118,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             IsDetailed = Move.IsDetailed();
 
-            IsSchedule = Move is FutureMove;
+            IsSchedule = Move is FutureMove || IsSchedule;
 
             if (!Move.DetailList.Any())
             {
