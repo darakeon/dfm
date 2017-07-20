@@ -2,7 +2,7 @@
 {
     public enum SecurityAction
     {
-        UserVerify,
+        UserVerification,
         PasswordReset,
     }
 }

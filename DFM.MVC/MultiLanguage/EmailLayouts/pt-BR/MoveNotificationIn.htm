@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Notificação de Movimentação</title>
+</head>
+<body>
+    <div style="background: #CCC; text-align: justify; width: 100%; padding-bottom: 20px; font-family: Calibri; font-size: 15px;">
+        <a id="Logo" href="{{Url}}">
+            <img style="margin: 20px 3px 20px 20px;" src="{{Url}}/Assets/Image/pig.gif" alt="DFM">
+            <img style="margin: 20px 20px 20px 3px;" src="{{Url}}/Assets/Image/logo_out.gif" alt="DFM">
+        </a>
+
+        <br />
+    
+        <div style="margin: 0 auto; background: #FFF; padding: 20px; border-radius: 50px 0px; width: 400px;">
+            <h2 style="color: #550; font-size: 20px;">
+                Notificação de Movimentação (no DFM)
+                <hr style="background-color: #770; border: none; height: 2px;" />
+            </h2>
+
+            <table style="width: 100%">
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <img style="margin: 5px;" src="{{Url}}/Assets/Image/{{Action}}.gif" alt="DFM">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Entrada</td>
+                    <td style="text-align: right;">{{Description}}</td>
+                </tr>
+                <tr>
+                    <td>Cta. {{AccountIn}}</td>
+                    <td style="text-align: right;">{{Date}}</td>
+                </tr>
+                <tr>
+                    <td>Cat. {{Category}}</td>
+                    <td style="text-align: right;">{{Value}}</td>
+                </tr>
+            </table>
+
+            <div style="margin: 20px 0;">
+                {{Details}}
+            </div>
+
+            Esta movimentação foi feita APENAS NO SISTEMA DO DFM. Não temos vínculos com instituições financeiras. Não responda este e-mail. Nosso contato: dfm@dontflymoney.com
+
+        </div>
+    </div>
+</body>
+</html>

@@ -111,5 +111,13 @@ namespace DFM.Core.Entities.Extensions
                     .ToList();
         }
 
+
+
+        public static User User(this Move move)
+        {
+            return (move.In ?? move.Out)
+                .Year.Account.User;
+        }
+
     }
 }

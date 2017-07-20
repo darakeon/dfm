@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using DFM.Core.Database.Base;
+using DFM.Core.Email;
 using DFM.Core.Entities;
 using DFM.Core.Exceptions;
 
@@ -36,11 +37,11 @@ namespace DFM.Core.Database
 
 
 
-        public static User SaveAndSendVerify(User user, String subject, String layout)
+        public static User SaveAndSendVerify(User user, Format format)
         {
             user = saveOrUpdate(user);
 
-            SecurityData.SendUserVerify(user, subject, layout);
+            SecurityData.SendUserVerify(user, format);
 
             return user;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
+using DFM.Core.Email;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
@@ -14,37 +15,37 @@ namespace DFM.Core.Database
     {
         private SecurityData() { }
 
-        public static void PasswordReset(String email, String subject, String layout)
+        public static void PasswordReset(String email, Format format)
         {
-            createAndSend(email, SecurityAction.PasswordReset, subject, layout);
+            createAndSend(email, SecurityAction.PasswordReset, format);
         }
 
 
 
-        public static void SendUserVerify(User user, String subject, String layout)
+        public static void SendUserVerify(User user, Format format)
         {
-            createAndSend(user, SecurityAction.UserVerify, subject, layout);
+            createAndSend(user, SecurityAction.UserVerification, format);
         }
 
 
 
-        private static void createAndSend(String email, SecurityAction action, String subject, String layout)
+        private static void createAndSend(String email, SecurityAction action, Format format)
         {
             var user = UserData.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
 
-            createAndSend(user, action, subject, layout);
+            createAndSend(user, action, format);
         }
 
-        private static void createAndSend(User user, SecurityAction action, String subject, String layout)
+        private static void createAndSend(User user, SecurityAction action, Format format)
         {
             var security = new Security { Action = action, User = user };
 
             security = SaveOrUpdate(security);
 
-            sendEmail(security, subject, layout);
+            sendEmail(security, format);
         }
 
 
@@ -76,7 +77,7 @@ namespace DFM.Core.Database
 
 
 
-        private static void sendEmail(Security security, String subject, String layout)
+        private static void sendEmail(Security security, Format format)
         {
             var dic = new Dictionary<String, String>
                             {
@@ -86,11 +87,11 @@ namespace DFM.Core.Database
                             };
 
             var fileContent =
-                layout.Format(dic);
+                format.Layout.Format(dic);
                     
-            new EmailSender()
+            new Sender()
                 .To(security.User.Email)
-                .Subject(subject)
+                .Subject(format.Subject)
                 .Body(fileContent)
                 .Send();
 
@@ -134,7 +135,7 @@ namespace DFM.Core.Database
         {
             var security = selectByToken(token);
 
-            if (security.Action != SecurityAction.UserVerify)
+            if (security.Action != SecurityAction.UserVerification)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
 
             UserData.Activate(security.User);
@@ -176,7 +177,7 @@ namespace DFM.Core.Database
             var criteria = 
                 CreateSimpleCriteria(
                     s => s.User.ID == user.ID 
-                        && s.Action == SecurityAction.UserVerify
+                        && s.Action == SecurityAction.UserVerification
                         && s.Active
                         && s.Expire >= DateTime.Now);
 

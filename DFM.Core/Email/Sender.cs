@@ -3,37 +3,37 @@ using System.Net.Mail;
 using System.Net;
 using DFM.Core.Exceptions;
 
-namespace DFM.Core.Helpers
+namespace DFM.Core.Email
 {
-    public class EmailSender
+    public class Sender
     {
         private const String domain = "dontflymoney.com";
 
-        public static String Sender = "no-reply@" + domain;
+        public const String SenderAddress = "no-reply@" + domain;
         private const String @default = "[some default sender here]";
 
 
         private String to, subject, body;
 
-        public EmailSender To(String email)
+        public Sender To(String email)
         {
             to = email;
             return this;
         }
 
-        public EmailSender ToDefault()
+        public Sender ToDefault()
         {
             to = @default;
             return this;
         }
 
-        public EmailSender Subject(String text)
+        public Sender Subject(String text)
         {
             subject = text;
             return this;
         }
 
-        public EmailSender Body(String html)
+        public Sender Body(String html)
         {
             body = html;
             return this;
@@ -53,7 +53,7 @@ namespace DFM.Core.Helpers
                                 Credentials = credentials,
                             };
 
-            var message = new MailMessage(Sender, to, subject, body)
+            var message = new MailMessage(SenderAddress, to, subject, body)
                             {
                                 IsBodyHtml = true
                             };

@@ -2,7 +2,6 @@
 using DFM.Core.Database;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
-using DFM.Core.Exceptions;
 
 namespace DFM.Core.Robots
 {

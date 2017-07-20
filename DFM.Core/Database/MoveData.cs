@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Ak.Generic.Enums;
+using DFM.Core.Email;
 using DFM.Core.Entities.Extensions;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
 using DFM.Core.Entities;
 using DFM.Core.Exceptions;
 using Ak.Generic.Collection;
+using DFM.Core.Helpers;
 
 namespace DFM.Core.Database
 {
@@ -14,14 +18,18 @@ namespace DFM.Core.Database
     {
 		private MoveData() { }
 
-        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn)
+        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format format)
         {
+            var action = move.ID == 0 ? "create_move" : "edit";
+
             ajustOldSummaries(move.ID);
 
             placeAccountsInMove(move, accountOut, accountIn);
             move = trySaveOrUpdate(move);
 
             ajustSummaries(move);
+
+            sendEmail(move, format, action);
 
             return move;
         }
@@ -243,12 +251,14 @@ namespace DFM.Core.Database
 
 
 
-        public static new void Delete(Move move)
+        public static void Delete(Move move, Format format)
         {
             removeFromMonth(move);
             ajustSummaries(move);
 
-            BaseData<Move>.Delete(move);
+            Delete(move);
+
+            sendEmail(move, format, "delete");
         }
 
         private static void removeFromMonth(Move move)
@@ -270,7 +280,60 @@ namespace DFM.Core.Database
 
 
 
+        private static void sendEmail(Move move, Format format, String action)
+        {
+            if (!move.User().SendMoveEmail) return;
 
+            var accountInName = accountName(move.AccountIn());
+            var accountOutName = accountName(move.AccountOut());
+
+
+            var dic = new Dictionary<String, String>
+                            {
+                                { "Url", Dfm.Url },
+                                { "AccountIn", accountInName },
+                                { "AccountOut", accountOutName },
+                                { "Date", move.Date.ToShortDateString() },
+                                { "Category", move.Category.Name },
+                                { "Description", move.Description },
+                                { "Value", move.Value().ToString() },
+                                { "Details", detailsHTML(move) },
+                                { "Action", action }
+                            };
+
+            var fileContent =
+                format.Layout.Format(dic);
+                    
+            new Sender()
+                .To(move.User().Email)
+                .Subject(format.Subject)
+                .Body(fileContent)
+                .Send();
+        }
+
+        private static String detailsHTML(Move move)
+        {
+            var details = new StringBuilder();
+
+            foreach (var detail in move.DetailList)
+            {
+                details.Append(
+                    String.Format(
+                        "{0} ({1}): {2}<br />"
+                        , detail.Description
+                        , detail.Amount
+                        , detail.Value));
+            }
+
+            return details.ToString();
+        }
+
+        private static String accountName(Account account)
+        {
+            return account == null
+                       ? null
+                       : account.Name;
+        }
 
     }
 }

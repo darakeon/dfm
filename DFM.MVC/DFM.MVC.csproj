@@ -156,6 +156,8 @@
     <Content Include="Assets\Css\IE.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\close.gif" />
+    <Content Include="Assets\Image\create_move.gif" />
     <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -243,15 +245,19 @@
     <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\delete.gif" />
+    <Content Include="Assets\Image\edit.gif" />
     <Content Include="Assets\Image\green_sign.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\logo_email.gif" />
     <Content Include="Assets\Image\logo_in.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Image\logo_out.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\month.gif" />
     <Content Include="Assets\Image\off_in.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -264,6 +270,7 @@
     <Content Include="Assets\Image\off_out_hover.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\open.gif" />
     <Content Include="Assets\Image\pig.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -273,6 +280,8 @@
     <Content Include="Assets\Image\red_sign.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\schedule_move.gif" />
+    <Content Include="Assets\Image\year.gif" />
     <Content Include="Assets\Image\yellow_sign.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -331,9 +340,15 @@
     <Content Include="Assets\Css\Table.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationTransfer.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationOut.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationIn.htm" />
     <Content Include="MultiLanguage\EmailLayouts\en-US\UserVerification.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\ForgotPassword.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\ForgotPassword.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\en-US\PasswordReset.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationTransfer.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationOut.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationIn.htm" />
+    <Content Include="MultiLanguage\EmailLayouts\pt-BR\PasswordReset.htm" />
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\UserVerification.htm" />
     <Content Include="MultiLanguage\Resources\account.xml">
       <SubType>Designer</SubType>

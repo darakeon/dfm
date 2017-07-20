@@ -50,7 +50,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NHibernate\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="NHibernate">
       <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -71,6 +70,8 @@
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
     <Compile Include="Database\SecurityData.cs" />
+    <Compile Include="Email\Error.cs" />
+    <Compile Include="Email\Format.cs" />
     <Compile Include="Entities\Extensions\SecurityExtension.cs" />
     <Compile Include="Entities\Extensions\UserExtension.cs" />
     <Compile Include="Entities\Security.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="Enums\SummaryNature.cs" />
     <Compile Include="Exceptions\DFMCoreException.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
-    <Compile Include="Helpers\EmailSender.cs" />
+    <Compile Include="Email\Sender.cs" />
     <Compile Include="Helpers\Dfm.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />

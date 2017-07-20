@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return deactivated();
+                return invalidTokenAction();
 
             var model = new TokenPasswordResetModel();
 
@@ -28,12 +28,12 @@ namespace DFM.MVC.Controllers
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return deactivated();
+                return invalidTokenAction();
 
             var action = SecurityData.GetTokenAction(id);
 
-            //if (action != SecurityAction.PasswordReset)
-            //    return Received
+            if (action != SecurityAction.PasswordReset)
+                return invalidTokenAction();
 
             if (model.Password != model.RetypePassword)
                 ModelState.AddModelError("", PlainText.Dictionary["RetypeWrong"]);
@@ -62,10 +62,15 @@ namespace DFM.MVC.Controllers
 
         public ActionResult UserVerification(String id)
         {
-            var exists = SecurityData.TokenExist(id);
+            var tokenExist = SecurityData.TokenExist(id);
 
-            if (!exists)
-                return deactivated();
+            if (!tokenExist)
+                return invalidTokenAction();
+
+            var action = SecurityData.GetTokenAction(id);
+
+            if (action != SecurityAction.UserVerification)
+                return invalidTokenAction();
 
             SecurityData.UserActivate(id);
 
@@ -79,7 +84,7 @@ namespace DFM.MVC.Controllers
             var tokenExist = SecurityData.TokenExist(id);
 
             if (!tokenExist)
-                return deactivated();
+                return invalidTokenAction();
 
             SecurityData.Deactivate(id);
 
@@ -103,7 +108,7 @@ namespace DFM.MVC.Controllers
             var exists = SecurityData.TokenExist(model.Token);
 
             if (!exists)
-                return deactivated();
+                return invalidTokenAction();
 
 
             var action = SecurityData.GetTokenAction(model.Token);
@@ -112,7 +117,7 @@ namespace DFM.MVC.Controllers
             {
                 case SecurityAction.PasswordReset:
                     return RedirectToAction("PasswordReset", new { id = model.Token } );
-                case SecurityAction.UserVerify:
+                case SecurityAction.UserVerification:
                     return RedirectToAction("UserVerification", new { id = model.Token });
                 default:
                     ModelState.AddModelError("", PlainText.Dictionary["NotRecognizedAction"]);
@@ -123,7 +128,7 @@ namespace DFM.MVC.Controllers
 
 
 
-        private ActionResult deactivated()
+        private ActionResult invalidTokenAction()
         {
             return View("Invalid");
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.Core.Email;
 using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.MVC.Models;
@@ -12,13 +13,15 @@ namespace DFM.MVC.Controllers
 {
     public class UserController : Controller
     {
-        private readonly String layout;
-        private readonly String subject;
+        private readonly Format formatUserVerification;
 
         public UserController()
         {
-            layout = PlainText.EmailLayout["UserVerification"];
-            subject = PlainText.Dictionary["UserVerification"];
+            formatUserVerification = new Format
+                {
+                    Layout = PlainText.EmailLayout["UserVerification"],
+                    Subject = PlainText.Dictionary["UserVerification"],
+                };
         }
 
 
@@ -48,7 +51,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    UserData.SaveAndSendVerify(model.User, subject, layout);
+                    UserData.SaveAndSendVerify(model.User, formatUserVerification);
                 }
                 catch (DFMCoreException e)
                 {
@@ -116,7 +119,7 @@ namespace DFM.MVC.Controllers
         {
             var user = UserData.SelectByEmail(id);
 
-            SecurityData.SendUserVerify(user, subject, layout);
+            SecurityData.SendUserVerify(user, formatUserVerification);
 
             return View();
         }
@@ -145,10 +148,13 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    var layout = PlainText.EmailLayout["ForgotPassword"];
-                    var subject = PlainText.Dictionary["PasswordReset"];
+                    var format = new Format
+                        {
+                            Layout = PlainText.EmailLayout["PasswordReset"],
+                            Subject = PlainText.Dictionary["PasswordReset"],
+                        };
 
-                    SecurityData.PasswordReset(model.Email, subject, layout);
+                    SecurityData.PasswordReset(model.Email, format);
                 }
                 catch (DFMCoreException e)
                 {
