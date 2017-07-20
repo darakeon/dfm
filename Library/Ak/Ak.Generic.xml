@@ -93,6 +93,20 @@
              Return the list of objects of this group
             </summary>
         </member>
+        <member name="T:Ak.Generic.Extensions.StringExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
+            <summary>
+             Puts the first letter in Upper and the rest in Lower
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+             String format with words instead of number (e.g. {data} instead {0})
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Collection.IsInExtension">
             <summary>
             </summary>
