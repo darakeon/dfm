@@ -12,8 +12,8 @@ namespace DFM.MVC.Helpers.Controllers
 
         public AccountSelector(MoveNature nature, Int32 currentAccountID, Int32? chosenAccountID)
         {
-            var currentAccount = Service.Access.Account.SelectById(currentAccountID);
-            var chosenAccount = Service.Access.Account.SelectById(chosenAccountID ?? 0);
+            var currentAccount = Service.Access.Admin.SelectAccountById(currentAccountID);
+            var chosenAccount = Service.Access.Admin.SelectAccountById(chosenAccountID ?? 0);
 
             switch (nature)
             {

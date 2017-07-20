@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Ak.Generic.Extensions;
 using DFM.Email;
 using DFM.Entities;
@@ -11,35 +10,20 @@ using DFM.BusinessLogic.Helpers;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class SecurityService : BaseService<Security>
+    internal class SecurityService : BaseService<Security>
     {
-        internal SecurityService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal SecurityService(IRepository repository) : base(repository) { }
 
-        public void PasswordReset(String email, Format format)
+
+
+
+        internal void SendUserVerify(User user, Format format)
         {
-            createAndSend(email, SecurityAction.PasswordReset, format);
+            CreateAndSend(user, SecurityAction.UserVerification, format);
         }
 
 
-
-        public void SendUserVerify(User user, Format format)
-        {
-            createAndSend(user, SecurityAction.UserVerification, format);
-        }
-
-
-
-        private void createAndSend(String email, SecurityAction action, Format format)
-        {
-            var user = Father.User.SelectByEmail(email);
-
-            if (user == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
-
-            createAndSend(user, action, format);
-        }
-
-        private void createAndSend(User user, SecurityAction action, Format format)
+        internal void CreateAndSend(User user, SecurityAction action, Format format)
         {
             var security = new Security { Action = action, User = user };
 
@@ -52,7 +36,7 @@ namespace DFM.BusinessLogic.Services
 
         internal Security SaveOrUpdate(Security security)
         {
-            return SaveOrUpdate(security, complete, validate);
+            return SaveOrUpdate(security, complete);
         }
 
 
@@ -67,13 +51,6 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        private void validate(Security security)
-        {
-            var currentUser = Father.User.SelectById(security.User.ID);
-
-            if (currentUser == null || currentUser.Email != security.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
-        }
 
 
 
@@ -106,8 +83,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-
-        private Security selectByToken(String token)
+        internal Security SelectByToken(String token)
         {
             return SingleOrDefault(
                 s => s.Token == token 
@@ -117,16 +93,16 @@ namespace DFM.BusinessLogic.Services
 
 
         
-        public Boolean TokenExist(String token)
+        internal Boolean TokenExist(String token)
         {
-            return selectByToken(token) != null;
+            return SelectByToken(token) != null;
         }
 
 
 
-        public void Deactivate(String token)
+        internal void Deactivate(String token)
         {
-            var security = selectByToken(token);
+            var security = SelectByToken(token);
 
             security.Active = false;
 
@@ -135,38 +111,12 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void UserActivate(String token)
+
+
+
+        internal SecurityAction GetTokenAction(String token)
         {
-            var security = selectByToken(token);
-
-            if (security.Action != SecurityAction.UserVerification)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
-
-            Father.User.Activate(security.User);
-
-            Deactivate(token);
-        }
-
-
-        public void PasswordReset(String token, String password)
-        {
-            var security = selectByToken(token);
-
-            if (security.Action != SecurityAction.PasswordReset)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
-
-            security.User.Password = password;
-
-            Father.User.ChangePassword(security.User);
-
-            Deactivate(token);
-        }
-
-
-
-        public SecurityAction GetTokenAction(String token)
-        {
-            var security = selectByToken(token);
+            var security = SelectByToken(token);
 
             if (security == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
@@ -175,17 +125,6 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-
-        internal Security GetUserActivation(User user)
-        {
-            var securityList = 
-                List(s => s.User.ID == user.ID 
-                        && s.Action == SecurityAction.UserVerification
-                        && s.Active
-                        && s.Expire >= DateTime.Now);
-
-            return securityList.LastOrDefault();
-        }
 
     }
 }

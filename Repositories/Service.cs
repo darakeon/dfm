@@ -4,14 +4,14 @@ namespace DFM.Repositories
 {
     public class Service
     {
-        private static DataAccess access;
+        private static ServiceAccess access;
 
-        public static DataAccess Access
+        public static ServiceAccess Access
         {
             get
             {
                 return access 
-                    ?? (access = new DataAccess( new Connector() ));
+                    ?? (access = new ServiceAccess( new Connector() ));
             }
         }
 

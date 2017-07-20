@@ -2,26 +2,26 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using DFM.Email;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class UserService : BaseService<User>
+    internal class UserService : BaseService<User>
     {
-        internal UserService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal UserService(IRepository repository) : base(repository) { }
 
         private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
         
         
         
-        public User SelectByEmail(String email)
+        internal User SelectByEmail(String email)
         {
             return SingleOrDefault(u => u.Email == email);
         }
 
-        public User ValidateAndGet(String email, String password)
+        internal User ValidateAndGet(String email, String password)
         {
             var user = SelectByEmail(email);
             password = encrypt(password);
@@ -34,21 +34,13 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public User SaveAndSendVerify(User user, Format format)
-        {
-            user = saveOrUpdate(user);
 
-            Father.Security.SendUserVerify(user, format);
-
-            return user;
-        }
-
-        public User Update(User user)
+        internal User Update(User user)
         {
             if (user.ID == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-            return saveOrUpdate(user);
+            return SaveOrUpdate(user);
         }
 
 
@@ -60,8 +52,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        
-        private User saveOrUpdate(User user)
+        internal User SaveOrUpdate(User user)
         {
             return SaveOrUpdate(user, complete, validate);
         }
@@ -95,7 +86,7 @@ namespace DFM.BusinessLogic.Services
             else
             {
                 if (user.Active
-                    && Father.Security.GetUserActivation(user) == null)
+                    && user.HasPendentActivation())
                 {
                     user.Active = false;
                 }

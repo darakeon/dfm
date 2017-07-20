@@ -52,7 +52,7 @@ namespace DFM.MVC.Controllers
 
             var model = new CategoryCreateEditModel
             {
-                Category =  Service.Access.Category.SelectById(id.Value)
+                Category = Service.Access.Admin.SelectCategoryById(id.Value)
             };
 
             if (isUnauthorized(model.Category))
@@ -66,8 +66,7 @@ namespace DFM.MVC.Controllers
         {
             model.Category.ID = id;
 
-
-            var oldCategory =  Service.Access.Category.SelectById(id);
+            var oldCategory = Service.Access.Admin.SelectCategoryById(id);
 
             return isUnauthorized(oldCategory)
                 ? RedirectToAction("Create")
@@ -103,7 +102,7 @@ namespace DFM.MVC.Controllers
 
             model.Category.User = Current.User;
 
-            Service.Access.Category.SaveOrUpdate(model.Category);
+            Service.Access.Admin.SaveOrUpdateCategory(model.Category);
 
             return model.Category;
         }
@@ -112,10 +111,10 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Disable(Int32 id)
         {
-            var category =  Service.Access.Category.SelectById(id);
+            var category = Service.Access.Admin.SelectCategoryById(id);
 
             if (!isUnauthorized(category))
-                Service.Access.Category.Disable(category);
+                Service.Access.Admin.DisableCategory(category);
             //else
             //    category = null;
 
@@ -131,10 +130,10 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Enable(Int32 id)
         {
-            var category =  Service.Access.Category.SelectById(id);
+            var category =  Service.Access.Admin.SelectCategoryById(id);
 
             if (!isUnauthorized(category))
-                Service.Access.Category.Enable(category);
+                Service.Access.Admin.EnableCategory(category);
             //else
             //    category = null;
 

@@ -9,11 +9,9 @@ namespace DFM.BusinessLogic.Services
         where T: IEntity
     {
         private readonly IRepository repository;
-        protected readonly DataAccess Father;
 
-        public BaseService(DataAccess father, IRepository repository)
+        internal BaseService(IRepository repository)
         {
-            Father = father;
             this.repository = repository;
         }
 
@@ -29,31 +27,31 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public T SelectById(Int32 id)
+        internal T SelectById(Int32 id)
         {
             return repository.SelectById(id);
         }
         
 
-        public T SingleOrDefault(Expression<Func<T, Boolean>> func)
+        internal T SingleOrDefault(Expression<Func<T, Boolean>> func)
         {
             return repository.SingleOrDefault(func);
         }
 
 
-        public IList<T> List(Expression<Func<T, Boolean>> func)
+        internal IList<T> List(Expression<Func<T, Boolean>> func)
         {
             return repository.List(func);
         }
 
         
-        public void Delete(T entity)
+        internal void Delete(T entity)
         {
             repository.Delete(entity);
         }
 
 
-        public T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions)
+        internal T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions)
         {
             return repository.SaveOrUpdateInstantly(entity, actions);
         }

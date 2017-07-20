@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Extensions;
@@ -7,11 +6,12 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class AccountService : BaseService<Account>
+    internal class AccountService : BaseService<Account>
     {
-        internal AccountService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal AccountService(
+            IRepository repository) : base(repository) { }
 
-        public Account SaveOrUpdate(Account account)
+        internal Account SaveOrUpdate(Account account)
         {
             return SaveOrUpdate(account, complete, validate);
         }
@@ -81,35 +81,10 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public IList<Move> GetMonthReport(Int32 id, Int16 dateMonth, Int16 dateYear)
-        {
-            var account = SelectById(id);
 
 
-            var year = Father.Year.GetOrCreateYear(dateYear, account);
 
-            if (year == null)
-                return new List<Move>();
-
-
-            var month = Father.Month.GetOrCreateMonth(dateMonth, year);
-
-            return month == null
-                ? new List<Move>()
-                : month.MoveList();
-        }
-
-
-        public Year GetYearReport(Int32 accountid, Int16 dateYear)
-        {
-            var account = SelectById(accountid);
-
-            var year = Father.Year.GetOrCreateYear(dateYear, account);
-
-            return nonFuture(year);
-        }
-
-        private static Year nonFuture(Year year)
+        internal Year NonFuture(Year year)
         {         
             if (year.Time >= DateTime.Today.Year)
             {
@@ -128,7 +103,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public void Close(Account account)
+        internal void Close(Account account)
         {
             if (account == null) return;
 
@@ -140,7 +115,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public new void Delete(Account account)
+        internal new void Delete(Account account)
         {
             if (account == null) return;
 

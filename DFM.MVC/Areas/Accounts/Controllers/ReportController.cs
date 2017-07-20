@@ -50,8 +50,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeMonthModel
                             {
-                                MoveList = Service.Access.Account.GetMonthReport(accountid, dateMonth, dateYear),
-                                Account = Service.Access.Account.SelectById(accountid),
+                                MoveList = Service.Access.Report.GetMonthReport(accountid, dateMonth, dateYear),
+                                Account = Service.Access.Admin.SelectAccountById(accountid),
                                 Month = dateMonth,
                                 Year = dateYear,
                             };
@@ -73,7 +73,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeYearModel
                             {
-                                Year =  Service.Access.Account.GetYearReport(accountid, year),
+                                Year =  Service.Access.Report.GetYearReport(accountid, year),
                             };
 
 

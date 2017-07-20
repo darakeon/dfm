@@ -1,35 +1,49 @@
 ﻿using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.SuperServices;
 using DFM.Entities;
 
 namespace DFM.BusinessLogic
 {
-    public class DataAccess 
+    public class ServiceAccess 
     {
-        public DataAccess(IConnector resolver)
+        public ServiceAccess(IConnector resolver)
         {
-            Account = new AccountService(this, resolver.Resolve<Account>());
-            Category = new CategoryService(this, resolver.Resolve<Category>());
-            Detail = new DetailService(this, resolver.Resolve<Detail>());
-            Month = new MonthService(this, resolver.Resolve<Month>());
-            Move = new MoveService(this, resolver.Resolve<Move>());
-            Schedule = new ScheduleService(this, resolver.Resolve<Schedule>());
-            Security = new SecurityService(this, resolver.Resolve<Security>());
-            Summary = new SummaryService(this, resolver.Resolve<Summary>());
-            User = new UserService(this, resolver.Resolve<User>());
-            Year = new YearService(this, resolver.Resolve<Year>());
+            account = new AccountService(resolver.Resolve<Account>());
+            category = new CategoryService(resolver.Resolve<Category>());
+            detail = new DetailService(resolver.Resolve<Detail>());
+            month = new MonthService(resolver.Resolve<Month>());
+            move = new MoveService(resolver.Resolve<Move>());
+            schedule = new ScheduleService(resolver.Resolve<Schedule>());
+            security = new SecurityService(resolver.Resolve<Security>());
+            summary = new SummaryService(resolver.Resolve<Summary>());
+            user = new UserService(resolver.Resolve<User>());
+            year = new YearService(resolver.Resolve<Year>());
+
+            Money = new MoneyService(move, detail, summary, schedule, month, year);
+            Report = new ReportService(account, year, month, summary);
+            Safety = new SafetyService(user, security);
+            Admin = new AdminService(account, category, schedule, move, detail);
+            Robot = new RobotService(schedule);
         }
 
 
-        public AccountService Account { get; private set; }
-        public CategoryService Category { get; private set; }
-        public DetailService Detail { get; private set; }
-        internal MonthService Month { get; private set; }
-        public MoveService Move { get; private set; }
-        public ScheduleService Schedule { get; private set; }
-        public SecurityService Security { get; private set; }
-        internal SummaryService Summary { get; private set; }
-        public UserService User { get; private set; }
-        internal YearService Year { get; private set; }
+        private AccountService account { get; set; }
+        private CategoryService category { get; set; }
+        private DetailService detail { get; set; }
+        private MonthService month { get; set; }
+        private MoveService move { get; set; }
+        private ScheduleService schedule { get; set; }
+        private SecurityService security { get; set; }
+        private SummaryService summary { get; set; }
+        private UserService user { get; set; }
+        private YearService year { get; set; }
+
+
+        public MoneyService Money { get; private set; }
+        public ReportService Report { get; private set; }
+        public SafetyService Safety { get; private set; }
+        public AdminService Admin { get; private set; }
+        public RobotService Robot { get; private set; }
 
     }
 }

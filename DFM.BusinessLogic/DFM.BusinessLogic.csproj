@@ -58,6 +58,11 @@
     <Compile Include="Helpers\MaximumLength.cs" />
     <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuperServices\AdminService.cs" />
+    <Compile Include="SuperServices\MoneyService.cs" />
+    <Compile Include="SuperServices\ReportService.cs" />
+    <Compile Include="SuperServices\RobotService.cs" />
+    <Compile Include="SuperServices\SafetyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
@@ -73,6 +78,7 @@
       <Name>DFM.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -50,7 +50,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Service.Access.User.SaveAndSendVerify(model.User, formatUserVerification);
+                    Service.Access.Safety.SaveAndSendVerify(model.User, formatUserVerification);
                 }
                 catch (DFMCoreException e)
                 {
@@ -85,7 +85,7 @@ namespace DFM.MVC.Controllers
 
                 try
                 {
-                    user = Service.Access.User.ValidateAndGet(model.Email, model.Password);
+                    user = Service.Access.Safety.ValidateAndGet(model.Email, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -116,9 +116,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult SendVerification(String id)
         {
-            var user = Service.Access.User.SelectByEmail(id);
+            var user = Service.Access.Safety.SelectUserByEmail(id);
 
-            Service.Access.Security.SendUserVerify(user, formatUserVerification);
+            Service.Access.Safety.SendUserVerify(user, formatUserVerification);
 
             return View();
         }
@@ -153,7 +153,7 @@ namespace DFM.MVC.Controllers
                             Subject = PlainText.Dictionary["PasswordReset"],
                         };
 
-                    Service.Access.Security.PasswordReset(model.Email, format);
+                    Service.Access.Safety.PasswordReset(model.Email, format);
                 }
                 catch (DFMCoreException e)
                 {

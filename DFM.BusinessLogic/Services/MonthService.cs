@@ -8,14 +8,14 @@ namespace DFM.BusinessLogic.Services
 {
     internal class MonthService : BaseService<Month>
     {
-        protected internal MonthService(DataAccess father, IRepository repository) : base(father, repository) { }
+        protected internal MonthService(IRepository repository) : base(repository) { }
 
-        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
+        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
         {
             var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.AjustSummaryList(category, Father.Summary.Delete);
+                newMonth.AjustSummaryList(category, deleteSummary);
 
             return newMonth;
         }
@@ -66,10 +66,28 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public void SaveOrUpdate(Month month)
+        internal void SaveOrUpdate(Month month)
         {
             SaveOrUpdateInstantly(month);
         }
+
+        internal void RemoveMoveFromMonth(Move move)
+        {
+            if (move == null) return;
+
+            if (move.In != null)
+            {
+                move.In.InList.Remove(move);
+                SaveOrUpdate(move.In);
+            }
+
+            if (move.Out != null)
+            {
+                move.Out.OutList.Remove(move);
+                SaveOrUpdate(move.Out);
+            }
+        }
+
 
     }
 }

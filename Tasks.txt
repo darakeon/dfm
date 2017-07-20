@@ -98,10 +98,10 @@ VERSÃO 1.0.2.0
 02/12	05/12	Reorganização primária de camadas
 -----	-----	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
 05/12	19/12	Separar BusinessLogic de NHibernate
-		Refactor Resharper
+28/12	28/12	Refactor Resharper
+28/12		Criar superServices e migrar uso para ele
 		Proteção por usuário no Core (verificar active também)
 		Separar Multilanguage de MVC
-		Criar superServices e migrar uso para ele
 		Testar Elmah com página tratada (Report > SeeYear)
 
 		BDD

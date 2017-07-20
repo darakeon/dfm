@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ak.Generic.Collection;
 using Ak.Generic.Enums;
 using Ak.Generic.Extensions;
 using DFM.BusinessLogic.Exceptions;
@@ -14,32 +13,13 @@ using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class MoveService : BaseService<Move>
+    internal class MoveService : BaseService<Move>
     {
-        internal MoveService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal MoveService(IRepository repository) : base(repository) { }
 
-        public Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
-        {
-            var action = move.ID == 0 ? "create_move" : "edit";
+        
 
-            ajustOldSummaries(move.ID);
-
-            placeAccountsInMove(move, accountOut, accountIn);
-            move = saveOrUpdate(move);
-
-            foreach (var detail in move.DetailList)
-            {
-                Father.Detail.SaveOrUpdate(detail);
-            }
-
-            ajustSummaries(move);
-
-            sendEmail(move, getterForMove, action);
-
-            return move;
-        }
-
-        private Move saveOrUpdate(Move move)
+        internal Move SaveOrUpdate(Move move)
         {
             //Keep inverted, weird errors happen if make in the right order
             return SaveOrUpdate(move, validate, complete);
@@ -48,10 +28,9 @@ namespace DFM.BusinessLogic.Services
 
 
         #region Complete
-        private void complete(Move move)
+        private static void complete(Move move)
         {
             ajustDetailList(move);
-            ajustSchedule(move);
         }
 
         private static void ajustDetailList(Move move)
@@ -73,41 +52,8 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        private void ajustSchedule(Move move)
-        {
-            if (move.Schedule == null 
-                || move.Schedule.ID != 0) return;
-
-            if (!move.Schedule.Contains(move))
-                move.Schedule.AddMove(move);
-
-            Father.Schedule.SaveOrUpdate(move.Schedule);
-        }
 
 
-        private void ajustOldSummaries(Int32 id)
-        {
-            var oldMove = SelectOldById(id);
-
-            if (oldMove == null) return;
-
-            if (oldMove.In != null)
-                oldMove.RemoveFromIn();
-
-            if (oldMove.Out != null)
-                oldMove.RemoveFromOut();
-
-            ajustSummaries(oldMove);
-        }
-
-        private void ajustSummaries(Move move)
-        {
-            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                Father.Summary.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
-
-            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                Father.Summary.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
-        }
         #endregion
 
 
@@ -189,21 +135,8 @@ namespace DFM.BusinessLogic.Services
 
 
         #region PlaceAccountsInMove
-        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
-        {
-            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
-            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
-            placeMonthsInMove(move, monthOut, monthIn);
-        }
-
-        private Month getMonth(Move move, Account account)
-        {
-            var year = Father.Year.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
-            return Father.Month.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
-        }
-
-        private static void placeMonthsInMove(Move move, Month monthOut, Month monthIn)
+        internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
             var errorMessage = String.Format("{0}MoveWrong", move.Nature);
             var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
@@ -233,36 +166,10 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void Delete(Move move, Format.GetterForMove getterForMove)
-        {
-            removeFromMonth(move);
-            ajustSummaries(move);
-
-            Delete(move);
-
-            sendEmail(move, getterForMove, "delete");
-        }
-
-        private void removeFromMonth(Move move)
-        {
-            if (move == null) return;
-
-            if (move.In != null)
-            {
-                move.In.InList.Remove(move);
-                Father.Month.SaveOrUpdate(move.In);
-            }
-
-            if (move.Out != null)
-            {
-                move.Out.OutList.Remove(move);
-                Father.Month.SaveOrUpdate(move.Out);
-            }
-        }
 
 
 
-        private static void sendEmail(Move move, Format.GetterForMove getterForMove, String action)
+        internal void SendEmail(Move move, Format.GetterForMove getterForMove, String action)
         {
             if (!move.User().SendMoveEmail) return;
 

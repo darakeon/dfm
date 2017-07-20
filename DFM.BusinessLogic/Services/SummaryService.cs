@@ -1,7 +1,5 @@
-﻿using System;
-using DFM.Entities.Bases;
+﻿using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Extensions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 
@@ -9,41 +7,13 @@ namespace DFM.BusinessLogic.Services
 {
     internal class SummaryService : BaseService<Summary>
     {
-        internal SummaryService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal SummaryService(IRepository repository) : base(repository) { }
 
         private void saveOrUpdate(Summary summary)
         {
             SaveOrUpdateInstantly(summary);
         }
 
-
-
-        internal void Ajust(Int16 month, Int16 year, Category category, Account account)
-        {
-            ajustMonth(month, year, category, account);
-            ajustYear(year, category, account);
-        }
-
-
-
-        private void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
-        {
-            var year = Father.Year.GetOrCreateYear(yearDate, account);
-            var month = Father.Month.GetOrCreateMonth(monthDate, year);
-
-            var summaryMonth = month.GetOrCreateSummary(category, Delete);
-
-            AjustValue(summaryMonth);
-        }
-
-        private void ajustYear(Int16 yearDate, Category category, Account account)
-        {
-            var year = Father.Year.GetOrCreateYear(yearDate, account);
-
-            var summaryYear = year.GetOrCreateSummary(category, Delete);
-
-            AjustValue(summaryYear);
-        }
 
 
 
@@ -68,6 +38,11 @@ namespace DFM.BusinessLogic.Services
 
             saveOrUpdate(summary);
         }
+
+
+
+
+
 
     }
 }

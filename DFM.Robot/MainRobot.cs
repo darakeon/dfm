@@ -1,13 +1,14 @@
-﻿using DFM.Email;
+﻿using DFM.BusinessLogic.SuperServices;
+using DFM.Email;
 using DFM.Entities;
 
 namespace DFM.Robot
 {
     public class MainRobot
     {
-        public static void Run(User user, Format.GetterForMove formatGetter)
+        public static void Run(User user, Format.GetterForMove formatGetter, RobotService access)
         {
-            new ScheduleRunner(user, formatGetter).Run();
+            new ScheduleRunner(user, formatGetter, access).Run();
         }
 
     }

@@ -6,16 +6,16 @@ using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class YearService : BaseService<Year>
+    internal class YearService : BaseService<Year>
     {
-        internal YearService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal YearService(IRepository repository) : base(repository) { }
 
-        public Year GetOrCreateYear(Int16 year, Account account, Category category = null)
+        internal Year GetOrCreateYear(Int16 year, Account account, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
         {
             var newYear = getOrCreateYear(account, year);
 
             if (category != null)
-                newYear.AjustSummaryList(category, Father.Summary.Delete);
+                newYear.AjustSummaryList(category, deleteSummary);
 
             return newYear;
         }
@@ -62,7 +62,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public void SaveOrUpdate(Year year)
+        internal void SaveOrUpdate(Year year)
         {
             SaveOrUpdateInstantly(year);
         }

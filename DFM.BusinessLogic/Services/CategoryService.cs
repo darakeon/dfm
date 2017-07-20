@@ -5,11 +5,11 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class CategoryService : BaseService<Category>
+    internal class CategoryService : BaseService<Category>
     {
-        internal CategoryService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal CategoryService(IRepository repository) : base(repository) { }
 
-        public Category SaveOrUpdate(Category category)
+        internal Category SaveOrUpdate(Category category)
         {
             return SaveOrUpdate(category, complete, validate);
         }
@@ -56,12 +56,12 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void Disable(Category category)
+        internal void Disable(Category category)
         {
             alterActive(category, false);
         }
 
-        public void Enable(Category category)
+        internal void Enable(Category category)
         {
             alterActive(category, true);
         }

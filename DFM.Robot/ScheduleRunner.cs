@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.SuperServices;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Extensions;
@@ -9,21 +9,23 @@ namespace DFM.Robot
 {
     internal class ScheduleRunner
     {
+        private readonly RobotService robotService;
         private User user { get; set; }
         private Account accountIn { get; set; }
         private Account accountOut { get; set; }
         private event Format.GetterForMove formatGetter;
 
 
-        public ScheduleRunner(User user, Format.GetterForMove formatGetter)
+        public ScheduleRunner(User user, Format.GetterForMove formatGetter, RobotService robotService)
         {
+            this.robotService = robotService;
             this.user = user;
             this.formatGetter += formatGetter;
         }
 
         public void Run()
         {
-            var scheduleList = ScheduleService.GetScheduleToRun(user);
+            var scheduleList = robotService.GetScheduleToRun(user);
 
             foreach (var schedule in scheduleList)
             {
@@ -36,7 +38,7 @@ namespace DFM.Robot
         {
             setAccounts(schedule);
 
-            while (ScheduleService.CanRunNow(schedule))
+            while (robotService.CanRunNow(schedule))
             {
                 var move = getNextMove(schedule);
 
@@ -69,7 +71,7 @@ namespace DFM.Robot
             if (lastMove == null)
             {
                 schedule.Deactivate();
-                Service.Access.Schedule.SaveOrUpdate(schedule);
+                Service.Access.Admin.SaveOrUpdateSchedule(schedule);
                 return null;
             }
 
@@ -89,13 +91,13 @@ namespace DFM.Robot
 
 
         
-        private static void ajustSchedule(Schedule schedule, Move move)
+        private void ajustSchedule(Schedule schedule, Move move)
         {
             if (!schedule.IsFirstMove())
                 schedule.AddMove(move);
 
-            if (ScheduleService.CanRun(schedule))
-                ScheduleService.SetNextRun(schedule);
+            if (robotService.CanRun(schedule))
+                robotService.SetNextRun(schedule);
             else
                 schedule.Deactivate();
         }
@@ -103,7 +105,7 @@ namespace DFM.Robot
 
         private void save(Move newMove)
         {
-            Service.Access.Move.SaveOrUpdate(newMove, accountOut, accountIn, formatGetter);
+            Service.Access.Money.SaveOrUpdateMove(newMove, accountOut, accountIn, formatGetter);
         }
 
     }

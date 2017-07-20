@@ -79,7 +79,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User, EmailFormats.GetForMove);
+                MainRobot.Run(Current.User, EmailFormats.GetForMove, Service.Access.Robot);
 
             specifyLanguage();
         }

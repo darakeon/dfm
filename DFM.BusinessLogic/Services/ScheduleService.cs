@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
+using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class ScheduleService : BaseService<Schedule>
+    internal class ScheduleService : BaseService<Schedule>
     {
-        internal ScheduleService(DataAccess father, IRepository repository) : base(father, repository) { }
+        internal ScheduleService(IRepository repository) : base(repository) { }
 
-        public void SaveOrUpdate(Schedule schedule)
+        internal void SaveOrUpdate(Schedule schedule)
         {
             SaveOrUpdate(schedule, complete);
         }
 
-        public static IList<Schedule> GetScheduleToRun(User user)
+        internal IList<Schedule> GetScheduleToRun(User user)
         {
             return user.ScheduleList
                 .Where(
@@ -24,7 +25,7 @@ namespace DFM.BusinessLogic.Services
                 .ToList();
         }
         
-        private static void complete(Schedule schedule)
+        private void complete(Schedule schedule)
         {
             if (schedule.ID == 0)
             {
@@ -45,7 +46,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public static void SetNextRun(Schedule schedule)
+        internal void SetNextRun(Schedule schedule)
         {
             var move = schedule.MoveList.Last();
 
@@ -57,7 +58,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public static Boolean CanRun(Schedule schedule)
+        internal Boolean CanRun(Schedule schedule)
         {
             var doneMoves = appliedTimes(schedule);
 
@@ -69,7 +70,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public static Boolean CanRunNow(Schedule schedule)
+        internal Boolean CanRunNow(Schedule schedule)
         {
             return CanRun(schedule) &&
                    schedule.Next <= DateTime.Today;
@@ -81,6 +82,19 @@ namespace DFM.BusinessLogic.Services
             return schedule.Frequency
                 .AppliedTimes(schedule.Begin, schedule.Next);
         }
+
+
+        internal void AjustSchedule(Move move)
+        {
+            if (move.Schedule == null
+                || move.Schedule.ID != 0) return;
+
+            if (!move.Schedule.Contains(move))
+                move.Schedule.AddMove(move);
+
+            SaveOrUpdate(move.Schedule);
+        }
+
 
 
     }
