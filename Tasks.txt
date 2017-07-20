@@ -112,8 +112,8 @@ VERSÃO 1.0.2.0
 14/03/2012	14/03/2012	Retirar delegate DeleteSummary / outros try de duplicata
 14/03/2012	14/03/2012	Separar Multilanguage de MVC
 14/03/2012	16/03/2012	Retirar delegates de Getters para envio de e-mail
-16/03/2012		 >>>	Testar Elmah com página tratada (Report > SeeYear)
-				Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
+16/03/2012	17/03/2012 >>>	Testar Elmah com página tratada (Report > SeeYear)
+17/03/2012	17/03/2012	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
 ======================================================================================================
 
