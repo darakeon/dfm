@@ -6,8 +6,9 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using Ak.DataAccess.XML;
+using Ak.Generic.Extensions;
 using Ak.MVC.Route;
-using DFM.Core.Helpers;
+using DFM.BusinessLogic.Helpers;
 using DFM.MVC.MultiLanguage.Helpers;
 using NHibernate.Linq;
 

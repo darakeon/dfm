@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace DFM.Core.Helpers
+namespace DFM.BusinessLogic.Helpers
 {
     public class Dfm
     {

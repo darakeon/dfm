@@ -40,6 +40,10 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
+      <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
+      <Name>DFM.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
       <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
       <Name>DFM.Email</Name>

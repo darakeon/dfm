@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Base;
 using DFM.Entities;
 using DFM.Extensions.Entities;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class AccountData : BaseData<Account>
+    public class AccountService : BaseService<Account>
     {
-		private AccountData() { }
+        internal AccountService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static Account SaveOrUpdate(Account account)
+        public Account SaveOrUpdate(Account account)
         {
             return SaveOrUpdate(account, complete, validate);
         }
@@ -46,7 +45,7 @@ namespace DFM.Core.Database
 
 
 
-        private static void complete(Account account)
+        private void complete(Account account)
         {
             if (account.ID == 0)
             {
@@ -71,11 +70,8 @@ namespace DFM.Core.Database
 
         internal static Account SelectByName(String name, User user)
         {
-            IList<Account> accountList = Session
-                .CreateCriteria(typeof(Account))
-                .List<Account>()
-                .Where(a => a.Name == name 
-                    && a.User.ID == user.ID)
+            var accountList = user.AccountList
+                .Where(a => a.Name == name)
                 .ToList();
 
             if (accountList.Count > 1)
@@ -85,18 +81,18 @@ namespace DFM.Core.Database
         }
 
 
-        public static IList<Move> GetMonthReport(Int32 id, Int16 dateMonth, Int16 dateYear)
+        public IList<Move> GetMonthReport(Int32 id, Int16 dateMonth, Int16 dateYear)
         {
             var account = SelectById(id);
 
 
-            var year = YearData.GetOrCreateYear(dateYear, account);
+            var year = Father.Year.GetOrCreateYear(dateYear, account);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = MonthData.GetOrCreateMonth(dateMonth, year);
+            var month = Father.Month.GetOrCreateMonth(dateMonth, year);
 
             return month == null
                 ? new List<Move>()
@@ -104,11 +100,11 @@ namespace DFM.Core.Database
         }
 
 
-        public static Year GetYearReport(Int32 accountid, Int16 dateYear)
+        public Year GetYearReport(Int32 accountid, Int16 dateYear)
         {
             var account = SelectById(accountid);
 
-            var year = YearData.GetOrCreateYear(dateYear, account);
+            var year = Father.Year.GetOrCreateYear(dateYear, account);
 
             return nonFuture(year);
         }
@@ -132,7 +128,7 @@ namespace DFM.Core.Database
         }
 
 
-        public static void Close(Account account)
+        public void Close(Account account)
         {
             if (account == null) return;
 
@@ -144,14 +140,14 @@ namespace DFM.Core.Database
         }
 
 
-        public new static void Delete(Account account)
+        public new void Delete(Account account)
         {
             if (account == null) return;
 
             if (account.HasMoves())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
 
-            BaseData<Account>.Delete(account);
+            base.Delete(account);
         }
 
     }

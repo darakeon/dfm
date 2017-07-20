@@ -1,6 +1,6 @@
 ﻿using System;
 using Ak.MVC.Authentication;
-using DFM.Core.Database;
+using DFM.Core;
 using DFM.Entities;
 using DFM.Extensions.Entities;
 
@@ -16,7 +16,7 @@ namespace DFM.MVC.Authentication
                     return null;
                 
                 var username = Authenticate.GetUsername();
-                return UserData.SelectByEmail(username);
+                return Service.Access.User.SelectByEmail(username);
             }
         }
 

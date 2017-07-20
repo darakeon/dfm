@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
-using DFM.Core.Database.Base;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class CategoryData : BaseData<Category>
+    public class CategoryService : BaseService<Category>
     {
-		private CategoryData() { }
+        internal CategoryService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static Category SaveOrUpdate(Category category)
+        public Category SaveOrUpdate(Category category)
         {
             return SaveOrUpdate(category, complete, validate);
         }
@@ -46,11 +44,8 @@ namespace DFM.Core.Database
 
         internal static Category SelectByName(String name, User user)
         {
-            IList<Category> categoryList = Session
-                .CreateCriteria(typeof(Category))
-                .List<Category>()
-                .Where(c => c.Name == name
-                    && c.User.ID == user.ID)
+            var categoryList = user.CategoryList
+                .Where(c => c.Name == name)
                 .ToList();
 
             if (categoryList.Count > 1)
@@ -61,17 +56,17 @@ namespace DFM.Core.Database
 
 
 
-        public static void Disable(Category category)
+        public void Disable(Category category)
         {
             alterActive(category, false);
         }
 
-        public static void Enable(Category category)
+        public void Enable(Category category)
         {
             alterActive(category, true);
         }
 
-        private static void alterActive(Category category, Boolean enable)
+        private void alterActive(Category category, Boolean enable)
         {
             category.Active = enable;
             SaveOrUpdate(category);

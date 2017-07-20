@@ -2,29 +2,26 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using DFM.Core.Database.Base;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class UserData : BaseData<User>
+    public class UserService : BaseService<User>
     {
-		private UserData() { }
+        internal UserService(DataAccess father, IRepository repository) : base(father, repository) { }
 
         private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
         
         
         
-        public static User SelectByEmail(String email)
+        public User SelectByEmail(String email)
         {
-            var criteria = CreateSimpleCriteria(u => u.Email == email);
-
-            return criteria.UniqueResult<User>();
+            return SingleOrDefault(u => u.Email == email);
         }
 
-        public static User ValidateAndGet(String email, String password)
+        public User ValidateAndGet(String email, String password)
         {
             var user = SelectByEmail(email);
             password = encrypt(password);
@@ -37,16 +34,16 @@ namespace DFM.Core.Database
 
 
 
-        public static User SaveAndSendVerify(User user, Format format)
+        public User SaveAndSendVerify(User user, Format format)
         {
             user = saveOrUpdate(user);
 
-            SecurityData.SendUserVerify(user, format);
+            Father.Security.SendUserVerify(user, format);
 
             return user;
         }
 
-        public static User Update(User user)
+        public User Update(User user)
         {
             if (user.ID == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -56,7 +53,7 @@ namespace DFM.Core.Database
 
 
 
-        internal static void Activate(User user)
+        internal void Activate(User user)
         {
             user.Active = true;
             Update(user);
@@ -64,12 +61,12 @@ namespace DFM.Core.Database
 
 
         
-        private static User saveOrUpdate(User user)
+        private User saveOrUpdate(User user)
         {
             return SaveOrUpdate(user, complete, validate);
         }
 
-        private static void validate(User user)
+        private void validate(User user)
         {
             var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
@@ -82,7 +79,7 @@ namespace DFM.Core.Database
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserAlreadyExists);
         }
 
-        private static void complete(User user)
+        private void complete(User user)
         {
             var oldUser = SelectById(user.ID);
             
@@ -98,7 +95,7 @@ namespace DFM.Core.Database
             else
             {
                 if (user.Active
-                    && SecurityData.GetUserActivation(user) == null)
+                    && Father.Security.GetUserActivation(user) == null)
                 {
                     user.Active = false;
                 }
@@ -108,7 +105,7 @@ namespace DFM.Core.Database
 
 
 
-        internal static User ChangePassword(User user)
+        internal User ChangePassword(User user)
         {
             user.Password = encrypt(user.Password);
 

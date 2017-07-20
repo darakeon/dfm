@@ -2,12 +2,12 @@
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
 using DFM.Core.Mappings;
+using DFM.BusinessLogic;
 
-namespace DFM.Core.Database.Base
+namespace DFM.Core
 {
     public class NHManager
     {
-
         public static void Start()
         {
             var mapInfo = new AutoMappingInfo<UserMap, User>();
@@ -34,6 +34,8 @@ namespace DFM.Core.Database.Base
         {
             SessionBuilder.End();
         }
+
+
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using DFM.Core.Database;
-using DFM.Core.Database.Base;
+using DFM.BusinessLogic.Services;
+using DFM.Core;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Extensions.Entities;
@@ -23,7 +23,7 @@ namespace DFM.Robot
 
         public void Run()
         {
-            var scheduleList = ScheduleData.GetScheduleToRun(user);
+            var scheduleList = ScheduleService.GetScheduleToRun(user);
 
             foreach (var schedule in scheduleList)
             {
@@ -36,7 +36,7 @@ namespace DFM.Robot
         {
             setAccounts(schedule);
 
-            while (ScheduleData.CanRunNow(schedule))
+            while (ScheduleService.CanRunNow(schedule))
             {
                 var move = getNextMove(schedule);
 
@@ -69,7 +69,7 @@ namespace DFM.Robot
             if (lastMove == null)
             {
                 schedule.Deactivate();
-                ScheduleData.SaveOrUpdate(schedule);
+                Service.Access.Schedule.SaveOrUpdate(schedule);
                 return null;
             }
 
@@ -94,8 +94,8 @@ namespace DFM.Robot
             if (!schedule.IsFirstMove())
                 schedule.AddMove(move);
 
-            if (ScheduleData.CanRun(schedule))
-                ScheduleData.SetNextRun(schedule);
+            if (ScheduleService.CanRun(schedule))
+                ScheduleService.SetNextRun(schedule);
             else
                 schedule.Deactivate();
         }
@@ -103,7 +103,7 @@ namespace DFM.Robot
 
         private void save(Move newMove)
         {
-            MoveData.SaveOrUpdate(newMove, accountOut, accountIn, formatGetter);
+            Service.Access.Move.SaveOrUpdate(newMove, accountOut, accountIn, formatGetter);
         }
 
     }

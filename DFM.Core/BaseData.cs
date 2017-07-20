@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Ak.DataAccess.NHibernate;
+using DFM.BusinessLogic.Services;
 using DFM.Entities.Bases;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 using NHibernate;
 using NHibernate.Criterion;
 
-namespace DFM.Core.Database.Base
+namespace DFM.Core
 {
-    public abstract class BaseData<T>
-        where T : class, IEntity
+    public abstract class BaseData<T> : BaseService<T>.IRepository where T : class, IEntity
     {
         protected static ISession Session
         {
@@ -18,22 +18,26 @@ namespace DFM.Core.Database.Base
         }
 
 
-        protected static ICriteria CreateSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
+        protected ICriteria CreateSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
         {
             return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
 
-        protected static void SaveOrUpdateInstantly(T entity, DelegateComplete complete, DelegateValidade validate)
+        public T SaveOrUpdateInstantly(T entity, params BaseService<T>.DelegateAction[] actions)
         {
             var transac = Session.BeginTransaction();
-            SaveOrUpdate(entity, null, null);
+            entity = SaveOrUpdate(entity, actions);
             transac.Commit();
+
+            return entity;
         }
 
-        protected static T SaveOrUpdate(T entity, DelegateComplete complete, DelegateValidade validate)
+        public T SaveOrUpdate(T entity, params BaseService<T>.DelegateAction[] actions)
         {
-            if (complete != null) complete(entity);
-            if (validate != null) validate(entity);
+            foreach (var delegateAction in actions)
+            {
+                delegateAction(entity);
+            }
 
             return saveOrUpdate(entity);
         }
@@ -57,28 +61,55 @@ namespace DFM.Core.Database.Base
             return entity;
         }
 
-        protected delegate void DelegateValidade(T entity);
-        protected delegate void DelegateComplete(T entity);
+        public T SingleOrDefault(Expression<Func<T, Boolean>> func)
+        {
+            var criteria = CreateSimpleCriteria(func);
+
+            return criteria.UniqueResult<T>();
+
+        }
+
+        public IList<T> List(Expression<Func<T, Boolean>> func)
+        {
+            var criteria = CreateSimpleCriteria(func);
+
+            return criteria.List<T>();
+        }
+
+        public T SelectOldById(Int32 id)
+        {
+            var entity = SelectById(id);
+            if (entity != null) Session.Evict(entity);
+            return entity;
+        }
 
 
-        internal static void Delete(T obj)
+
+
+
+        protected delegate void DelegateAction(T entity);
+
+
+        public void Delete(T obj)
         {
             if (obj != null)
                 Session.Delete(obj);
         }
 
 
-        public static T SelectById(Int32 id)
+        public T SelectById(Int32 id)
         {
             return Session.Get<T>(id);
         }
 
 
 
-        internal static IList<T> Select()
+        internal IList<T> Select()
         {
             return CreateSimpleCriteria().List<T>();
         }
+
+
 
 
 

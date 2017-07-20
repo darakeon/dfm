@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.Core;
 using DFM.Entities;
 using DFM.Extensions.Entities;
 using DFM.MVC.Authentication;
-using DFM.Core.Database;
+using DFM.BusinessLogic.Services;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
 
@@ -53,7 +54,7 @@ namespace DFM.MVC.Controllers
 
             var model = new CategoryCreateEditModel
             {
-                Category = CategoryData.SelectById(id.Value)
+                Category =  Service.Access.Category.SelectById(id.Value)
             };
 
             if (isUnauthorized(model.Category))
@@ -68,7 +69,7 @@ namespace DFM.MVC.Controllers
             model.Category.ID = id;
 
 
-            var oldCategory = CategoryData.SelectById(id);
+            var oldCategory =  Service.Access.Category.SelectById(id);
 
             return isUnauthorized(oldCategory)
                 ? RedirectToAction("Create")
@@ -104,7 +105,7 @@ namespace DFM.MVC.Controllers
 
             model.Category.User = Current.User;
 
-            CategoryData.SaveOrUpdate(model.Category);
+             Service.Access.Category.SaveOrUpdate(model.Category);
 
             return model.Category;
         }
@@ -113,12 +114,12 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Disable(Int32 id)
         {
-            var category = CategoryData.SelectById(id);
+            var category =  Service.Access.Category.SelectById(id);
 
             if (isUnauthorized(category))
                 category = null;
             else
-                CategoryData.Disable(category);
+                 Service.Access.Category.Disable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]
@@ -131,12 +132,12 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Enable(Int32 id)
         {
-            var category = CategoryData.SelectById(id);
+            var category =  Service.Access.Category.SelectById(id);
 
             if (isUnauthorized(category))
                 category = null;
             else
-                CategoryData.Enable(category);
+                 Service.Access.Category.Enable(category);
 
             var message = category == null
                 ? PlainText.Dictionary["CategoryNotFound"]

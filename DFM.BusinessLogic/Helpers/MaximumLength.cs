@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Core.Helpers
+namespace DFM.BusinessLogic.Helpers
 {
     public class MaximumLength
     {

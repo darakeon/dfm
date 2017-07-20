@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Base;
-using DFM.Core.Helpers;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class ScheduleData : BaseData<Schedule>
+    public class ScheduleService : BaseService<Schedule>
     {
-        private ScheduleData() { }
+        internal ScheduleService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static void SaveOrUpdate(Schedule schedule)
+        public void SaveOrUpdate(Schedule schedule)
         {
             SaveOrUpdate(schedule, complete, null);
         }

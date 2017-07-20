@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Robot", "DFM.Robot\DFM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Email", "DFM.Email\DFM.Email.csproj", "{B586AB4F-74BD-4E49-B584-57F624522C45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.BusinessLogic", "DFM.BusinessLogic\DFM.BusinessLogic.csproj", "{E749C813-2963-49E6-9D0A-7E6F165EF929}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DFM.vsmdi
@@ -86,6 +88,16 @@ Global
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Release|x86.ActiveCfg = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E749C813-2963-49E6-9D0A-7E6F165EF929}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

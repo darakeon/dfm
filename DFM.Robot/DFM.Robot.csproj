@@ -45,6 +45,10 @@
     <Compile Include="ScheduleRunner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
+      <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
+      <Name>DFM.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Core\DFM.Core.csproj">
       <Project>{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}</Project>
       <Name>DFM.Core</Name>

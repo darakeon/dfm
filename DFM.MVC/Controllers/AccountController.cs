@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.Core;
 using DFM.Entities;
 using DFM.Extensions.Entities;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
-using DFM.Core.Database;
+using DFM.BusinessLogic.Services;
 using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Controllers
@@ -49,7 +50,7 @@ namespace DFM.MVC.Controllers
 
             var model = new AccountCreateEditModel
             {
-                Account = AccountData.SelectById(id.Value)
+                Account = Service.Access.Account.SelectById(id.Value)
             };
 
             if (isUnauthorized(model.Account))
@@ -64,7 +65,7 @@ namespace DFM.MVC.Controllers
             model.Account.ID = id;
 
 
-            var oldAccount = AccountData.SelectById(id);
+            var oldAccount =  Service.Access.Account.SelectById(id);
 
             return isUnauthorized(oldAccount)
                 ? RedirectToAction("Create")
@@ -78,7 +79,7 @@ namespace DFM.MVC.Controllers
                 try
                 {
                     model.Account.User = Current.User;
-                    AccountData.SaveOrUpdate(model.Account);
+                     Service.Access.Account.SaveOrUpdate(model.Account);
                 }
                 catch (DFMCoreException e)
                 {
@@ -98,7 +99,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Close(Int32 id)
         {
-            var account = AccountData.SelectById(id);
+            var account =  Service.Access.Account.SelectById(id);
 
             String message;
 
@@ -107,7 +108,7 @@ namespace DFM.MVC.Controllers
                 if (isUnauthorized(account))
                     account = null;
                 else
-                    AccountData.Close(account);
+                     Service.Access.Account.Close(account);
 
                 message = account == null
                     ? PlainText.Dictionary["AccountNotFound"]
@@ -125,7 +126,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var account = AccountData.SelectById(id);
+            var account =  Service.Access.Account.SelectById(id);
 
             String message;
 
@@ -134,7 +135,7 @@ namespace DFM.MVC.Controllers
                 if (isUnauthorized(account))
                     account = null;
                 else
-                    AccountData.Delete(account);
+                     Service.Access.Account.Delete(account);
 
                 message = account == null
                     ? PlainText.Dictionary["AccountNotFound"]

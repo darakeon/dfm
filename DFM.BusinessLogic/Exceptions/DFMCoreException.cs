@@ -1,11 +1,10 @@
 ﻿using System;
-using DFM.Core.Database.Base;
 
-namespace DFM.Core.Exceptions
+namespace DFM.BusinessLogic.Exceptions
 {
     public class DFMCoreException : Exception
     {
-        public delegate void ErrorEvent();
+        public static Int32 ErrorCounter { get; private set; }
 
         public static DFMCoreException WithMessage(ExceptionPossibilities message)
         {
@@ -16,7 +15,7 @@ namespace DFM.Core.Exceptions
         private DFMCoreException(ExceptionPossibilities message)
             : base(message.ToString())
         {
-            NHManager.Error();
+            ErrorCounter++;
         }
 
     }

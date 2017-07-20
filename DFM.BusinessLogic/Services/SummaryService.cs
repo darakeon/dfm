@@ -2,24 +2,23 @@
 using DFM.Entities.Bases;
 using DFM.Extensions.Entities;
 using DFM.Core.Enums;
-using DFM.Core.Database.Base;
 using DFM.Entities;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    internal class SummaryData : BaseData<Summary>
+    internal class SummaryService : BaseService<Summary>
     {
-		private SummaryData() { }
+        internal SummaryService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        private static void saveOrUpdate(Summary summary)
+        private void saveOrUpdate(Summary summary)
         {
             SaveOrUpdateInstantly(summary, null, null);
         }
 
 
 
-        internal static void Ajust(Int16 month, Int16 year, Category category, Account account)
+        internal void Ajust(Int16 month, Int16 year, Category category, Account account)
         {
             ajustMonth(month, year, category, account);
             ajustYear(year, category, account);
@@ -27,19 +26,19 @@ namespace DFM.Core.Database
 
 
 
-        private static void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
+        private void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
         {
-            var year = YearData.GetOrCreateYear(yearDate, account);
-            var month = MonthData.GetOrCreateMonth(monthDate, year);
+            var year = Father.Year.GetOrCreateYear(yearDate, account);
+            var month = Father.Month.GetOrCreateMonth(monthDate, year);
 
             var summaryMonth = month.GetOrCreateSummary(category, Delete);
 
             AjustValue(summaryMonth);
         }
 
-        private static void ajustYear(Int16 yearDate, Category category, Account account)
+        private void ajustYear(Int16 yearDate, Category category, Account account)
         {
-            var year = YearData.GetOrCreateYear(yearDate, account);
+            var year = Father.Year.GetOrCreateYear(yearDate, account);
 
             var summaryYear = year.GetOrCreateSummary(category, Delete);
 
@@ -48,7 +47,7 @@ namespace DFM.Core.Database
 
 
 
-        internal static void AjustValue(Summary summary)
+        internal void AjustValue(Summary summary)
         {
             ISummarizable summarizable;
 

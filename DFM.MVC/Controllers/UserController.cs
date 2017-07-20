@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.Core;
 using DFM.Email;
-using DFM.Core.Enums;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Models;
-using DFM.Core.Database;
 using DFM.Entities;
 using DFM.MVC.MultiLanguage;
 
@@ -51,7 +50,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    UserData.SaveAndSendVerify(model.User, formatUserVerification);
+                    Service.Access.User.SaveAndSendVerify(model.User, formatUserVerification);
                 }
                 catch (DFMCoreException e)
                 {
@@ -86,7 +85,7 @@ namespace DFM.MVC.Controllers
 
                 try
                 {
-                    user = UserData.ValidateAndGet(model.Email, model.Password);
+                    user = Service.Access.User.ValidateAndGet(model.Email, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -117,9 +116,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult SendVerification(String id)
         {
-            var user = UserData.SelectByEmail(id);
+            var user = Service.Access.User.SelectByEmail(id);
 
-            SecurityData.SendUserVerify(user, formatUserVerification);
+            Service.Access.Security.SendUserVerify(user, formatUserVerification);
 
             return View();
         }
@@ -154,7 +153,7 @@ namespace DFM.MVC.Controllers
                             Subject = PlainText.Dictionary["PasswordReset"],
                         };
 
-                    SecurityData.PasswordReset(model.Email, format);
+                    Service.Access.Security.PasswordReset(model.Email, format);
                 }
                 catch (DFMCoreException e)
                 {

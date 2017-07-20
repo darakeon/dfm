@@ -1,8 +1,8 @@
 ﻿using System;
 using DFM.Core.Enums;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 
-namespace DFM.Core.Helpers
+namespace DFM.BusinessLogic.Helpers
 {
     public static class ScheduleFrequencyExtension
     {

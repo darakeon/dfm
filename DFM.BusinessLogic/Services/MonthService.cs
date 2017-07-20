@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Base;
 using DFM.Entities;
 using DFM.Extensions.Entities;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    internal class MonthData : BaseData<Month>
+    internal class MonthService : BaseService<Month>
     {
-		private MonthData() { }
+        protected internal MonthService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        internal static Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
+        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
         {
             var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.AjustSummaryList(category, SummaryData.Delete);
+                newMonth.AjustSummaryList(category, Father.Summary.Delete);
 
             return newMonth;
         }
 
-        private static Month getOrCreateMonth(Year year, Int16 dateMonth)
+        private Month getOrCreateMonth(Year year, Int16 dateMonth)
         {
             var monthList = year.MonthList
                 .Where(m => m.Time == dateMonth);
@@ -55,7 +54,7 @@ namespace DFM.Core.Database
             }
         }
 
-        private static Month createMonth(Year year, Int16 month)
+        private Month createMonth(Year year, Int16 month)
         {
             var newMonth = new Month { Year = year, Time = month };
 
@@ -67,7 +66,7 @@ namespace DFM.Core.Database
         }
 
 
-        public static void SaveOrUpdate(Month month)
+        public void SaveOrUpdate(Month month)
         {
             SaveOrUpdateInstantly(month, null, null);
         }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.Core;
 using DFM.Extensions.Entities;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.Core.Database;
+using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Core.Enums;
 using DFM.MVC.Authentication;
@@ -51,7 +52,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Create");
 
-            var move = MoveData.SelectById(id.Value);
+            var move = Service.Access.Move.SelectById(id.Value);
 
             if (isUnauthorized(move))
                 return RedirectToAction("Create");
@@ -82,7 +83,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
-            var oldMove = MoveData.SelectById(id);
+            var oldMove =  Service.Access.Move.SelectById(id);
 
             if (isUnauthorized(oldMove))
                 return RedirectToAction("Create");
@@ -121,11 +122,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 try
                 {
-                    model.Move.Category = CategoryData.SelectById(model.CategoryID ?? 0);
+                    model.Move.Category =  Service.Access.Category.SelectById(model.CategoryID ?? 0);
 
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    MoveData.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
+                     Service.Access.Move.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
 
                     return RedirectToAction("SeeMonth", "Report",
                             new { id = (model.Move.Out ?? model.Move.In).Url() }
@@ -146,7 +147,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
         {
-            var detail = DetailData.SelectById(id);
+            var detail =  Service.Access.Detail.SelectById(id);
 
             var model = new MoveAddDetailModel(position, detail);
 
@@ -163,13 +164,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var move = MoveData.SelectById(id);
+            var move =  Service.Access.Move.SelectById(id);
             var reportID = (move.In ?? move.Out).Url();
 
             if (isUnauthorized(move))
                 move = null;
             else
-                MoveData.Delete(move, EmailFormats.GetForMove);
+                 Service.Access.Move.Delete(move, EmailFormats.GetForMove);
 
             //var message = move == null
             //    ? PlainText.Dictionary["MoveNotFound"]

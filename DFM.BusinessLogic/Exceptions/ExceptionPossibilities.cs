@@ -1,4 +1,4 @@
-﻿namespace DFM.Core.Exceptions
+﻿namespace DFM.BusinessLogic.Exceptions
 {
     public enum ExceptionPossibilities
     {

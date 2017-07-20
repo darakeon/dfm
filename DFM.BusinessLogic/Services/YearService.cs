@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Base;
 using DFM.Entities;
 using DFM.Extensions.Entities;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class YearData : BaseData<Year>
+    public class YearService : BaseService<Year>
     {
-		private YearData() { }
+        internal YearService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static Year GetOrCreateYear(Int16 year, Account account, Category category = null)
+        public Year GetOrCreateYear(Int16 year, Account account, Category category = null)
         {
             var newYear = getOrCreateYear(account, year);
 
             if (category != null)
-                newYear.AjustSummaryList(category, SummaryData.Delete);
+                newYear.AjustSummaryList(category, Father.Summary.Delete);
 
             return newYear;
         }
 
-        private static Year getOrCreateYear(Account account, Int16 dateYear)
+        private Year getOrCreateYear(Account account, Int16 dateYear)
         {
             var yearList = account.YearList
                 .Where(m => m.Time == dateYear);
@@ -52,7 +51,7 @@ namespace DFM.Core.Database
             }
         }
 
-        private static Year createYear(Account account, Int16 year)
+        private Year createYear(Account account, Int16 year)
         {
             var newYear = new Year{ Account = account, Time = year };
 
@@ -63,7 +62,7 @@ namespace DFM.Core.Database
         }
 
 
-        public static void SaveOrUpdate(Year year)
+        public void SaveOrUpdate(Year year)
         {
             SaveOrUpdateInstantly(year, null, null);
         }

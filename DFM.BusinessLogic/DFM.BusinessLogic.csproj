@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>d8b26619-0fd9-431a-a48e-4a6c36f3cda4</ProjectGuid>
+    <ProjectGuid>{E749C813-2963-49E6-9D0A-7E6F165EF929}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DFM.BusinessLogic</RootNamespace>
@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ak.Generic">
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +44,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="ServiceAccess.cs" />
+    <Compile Include="Services\DetailService.cs" />
+    <Compile Include="IResolver.cs" />
+    <Compile Include="Services\MonthService.cs" />
+    <Compile Include="Services\MoveService.cs" />
+    <Compile Include="Services\ScheduleService.cs" />
+    <Compile Include="Services\SecurityService.cs" />
+    <Compile Include="Services\SummaryService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\YearService.cs" />
+    <Compile Include="Exceptions\DFMCoreException.cs" />
+    <Compile Include="Exceptions\ExceptionPossibilities.cs" />
+    <Compile Include="Helpers\Dfm.cs" />
+    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
+    <Compile Include="Helpers\MaximumLength.cs" />
+    <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
+      <Name>DFM.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
+      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
+      <Name>DFM.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Extensions\DFM.Extensions.csproj">
+      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
+      <Name>DFM.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

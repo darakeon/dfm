@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.Core;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.Core.Database;
+using DFM.BusinessLogic.Services;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Extensions;
 
@@ -51,8 +52,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeMonthModel
                             {
-                                MoveList = AccountData.GetMonthReport(accountid, dateMonth, dateYear),
-                                Account = AccountData.SelectById(accountid),
+                                MoveList = Service.Access.Account.GetMonthReport(accountid, dateMonth, dateYear),
+                                Account = Service.Access.Account.SelectById(accountid),
                                 Month = dateMonth,
                                 Year = dateYear,
                             };
@@ -74,7 +75,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSeeYearModel
                             {
-                                Year = AccountData.GetYearReport(accountid, year),
+                                Year =  Service.Access.Account.GetYearReport(accountid, year),
                             };
 
 

@@ -4,7 +4,8 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DFM.Core.Database.Base;
+using DFM.BusinessLogic.Exceptions;
+using DFM.Core;
 using DFM.Robot;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
@@ -99,6 +100,9 @@ namespace DFM.MVC
         // ReSharper restore InconsistentNaming
         {
             if (isAsset) return;
+
+            if (DFMCoreException.ErrorCounter > 0)
+                NHManager.Error();
 
             NHManager.Close();
         }

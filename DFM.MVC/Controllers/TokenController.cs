@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Core.Database;
+using DFM.BusinessLogic.Services;
+using DFM.Core;
 using DFM.Core.Enums;
-using DFM.Core.Exceptions;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
 
@@ -12,7 +13,7 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult PasswordReset(String id)
         {
-            var tokenExist = SecurityData.TokenExist(id);
+            var tokenExist =  Service.Access.Security.TokenExist(id);
 
             if (!tokenExist)
                 return invalidTokenAction();
@@ -25,12 +26,12 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult PasswordReset(String id, TokenPasswordResetModel model)
         {
-            var tokenExist = SecurityData.TokenExist(id);
+            var tokenExist =  Service.Access.Security.TokenExist(id);
 
             if (!tokenExist)
                 return invalidTokenAction();
 
-            var action = SecurityData.GetTokenAction(id);
+            var action =  Service.Access.Security.GetTokenAction(id);
 
             if (action != SecurityAction.PasswordReset)
                 return invalidTokenAction();
@@ -42,7 +43,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    SecurityData.PasswordReset(id, model.Password);
+                      Service.Access.Security.PasswordReset(id, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -62,17 +63,17 @@ namespace DFM.MVC.Controllers
 
         public ActionResult UserVerification(String id)
         {
-            var tokenExist = SecurityData.TokenExist(id);
+            var tokenExist =  Service.Access.Security.TokenExist(id);
 
             if (!tokenExist)
                 return invalidTokenAction();
 
-            var action = SecurityData.GetTokenAction(id);
+            var action =  Service.Access.Security.GetTokenAction(id);
 
             if (action != SecurityAction.UserVerification)
                 return invalidTokenAction();
 
-            SecurityData.UserActivate(id);
+             Service.Access.Security.UserActivate(id);
 
             return View();
         }
@@ -81,12 +82,12 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Deactivate(String id)
         {
-            var tokenExist = SecurityData.TokenExist(id);
+            var tokenExist =  Service.Access.Security.TokenExist(id);
 
             if (!tokenExist)
                 return invalidTokenAction();
 
-            SecurityData.Deactivate(id);
+             Service.Access.Security.Deactivate(id);
 
             return View();
         }
@@ -105,13 +106,13 @@ namespace DFM.MVC.Controllers
         {
             model.Token = model.Token.Trim();
 
-            var exists = SecurityData.TokenExist(model.Token);
+            var exists =  Service.Access.Security.TokenExist(model.Token);
 
             if (!exists)
                 return invalidTokenAction();
 
 
-            var action = SecurityData.GetTokenAction(model.Token);
+            var action =  Service.Access.Security.GetTokenAction(model.Token);
 
             switch (action)
             {

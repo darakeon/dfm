@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace DFM.Core.Helpers
+namespace DFM.BusinessLogic.Helpers
 {
     public static class DoubleToMoneyExtension
     {

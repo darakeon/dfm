@@ -116,6 +116,10 @@
              Whether an object is in a list
             </summary>
         </member>
+        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
+            <summary>
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Exceptions.ErrorComposedReturn`2">
             <summary>
             Class to return an object composed by the return error and the success return

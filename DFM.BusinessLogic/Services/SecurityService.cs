@@ -1,37 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Database.Base;
+using Ak.Generic.Extensions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Extensions.Entities;
 using DFM.Core.Enums;
-using DFM.Core.Exceptions;
-using DFM.Core.Helpers;
+using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class SecurityData : BaseData<Security>
+    public class SecurityService : BaseService<Security>
     {
-        private SecurityData() { }
+        internal SecurityService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static void PasswordReset(String email, Format format)
+        public void PasswordReset(String email, Format format)
         {
             createAndSend(email, SecurityAction.PasswordReset, format);
         }
 
 
 
-        public static void SendUserVerify(User user, Format format)
+        public void SendUserVerify(User user, Format format)
         {
             createAndSend(user, SecurityAction.UserVerification, format);
         }
 
 
 
-        private static void createAndSend(String email, SecurityAction action, Format format)
+        private void createAndSend(String email, SecurityAction action, Format format)
         {
-            var user = UserData.SelectByEmail(email);
+            var user = Father.User.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
@@ -39,7 +39,7 @@ namespace DFM.Core.Database
             createAndSend(user, action, format);
         }
 
-        private static void createAndSend(User user, SecurityAction action, Format format)
+        private void createAndSend(User user, SecurityAction action, Format format)
         {
             var security = new Security { Action = action, User = user };
 
@@ -50,7 +50,7 @@ namespace DFM.Core.Database
 
 
 
-        internal static Security SaveOrUpdate(Security security)
+        internal Security SaveOrUpdate(Security security)
         {
             return SaveOrUpdate(security, complete, validate);
         }
@@ -67,9 +67,9 @@ namespace DFM.Core.Database
         }
 
 
-        private static void validate(Security security)
+        private void validate(Security security)
         {
-            var currentUser = UserData.SelectById(security.User.ID);
+            var currentUser = Father.User.SelectById(security.User.ID);
 
             if (currentUser == null || currentUser.Email != security.User.Email)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
@@ -77,7 +77,7 @@ namespace DFM.Core.Database
 
 
 
-        private static void sendEmail(Security security, Format format)
+        private void sendEmail(Security security, Format format)
         {
             var dic = new Dictionary<String, String>
                             {
@@ -86,8 +86,7 @@ namespace DFM.Core.Database
                                 { "Date", security.Expire.AddDays(-1).ToShortDateString() }
                             };
 
-            var fileContent =
-                format.Layout.Format(dic);
+            var fileContent = format.Layout.Format(dic);
 
             var exception = DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
 
@@ -103,26 +102,24 @@ namespace DFM.Core.Database
 
 
 
-        private static Security selectByToken(String token)
+        private Security selectByToken(String token)
         {
-            var criteria = CreateSimpleCriteria(
+            return SingleOrDefault(
                 s => s.Token == token 
                     && s.Active 
                     && s.Expire >= DateTime.Now);
-
-            return criteria.UniqueResult<Security>();
         }
 
 
         
-        public static Boolean TokenExist(String token)
+        public Boolean TokenExist(String token)
         {
             return selectByToken(token) != null;
         }
 
 
 
-        public static void Deactivate(String token)
+        public void Deactivate(String token)
         {
             var security = selectByToken(token);
 
@@ -133,20 +130,20 @@ namespace DFM.Core.Database
 
 
 
-        public static void UserActivate(String token)
+        public void UserActivate(String token)
         {
             var security = selectByToken(token);
 
             if (security.Action != SecurityAction.UserVerification)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
 
-            UserData.Activate(security.User);
+            Father.User.Activate(security.User);
 
             Deactivate(token);
         }
 
 
-        public static void PasswordReset(String token, String password)
+        public void PasswordReset(String token, String password)
         {
             var security = selectByToken(token);
 
@@ -155,14 +152,14 @@ namespace DFM.Core.Database
 
             security.User.Password = password;
 
-            UserData.ChangePassword(security.User);
+            Father.User.ChangePassword(security.User);
 
             Deactivate(token);
         }
 
 
 
-        public static SecurityAction GetTokenAction(String token)
+        public SecurityAction GetTokenAction(String token)
         {
             var security = selectByToken(token);
 
@@ -174,18 +171,15 @@ namespace DFM.Core.Database
 
 
 
-        internal static Security GetUserActivation(User user)
+        internal Security GetUserActivation(User user)
         {
-            var criteria = 
-                CreateSimpleCriteria(
-                    s => s.User.ID == user.ID 
+            var securityList = 
+                List(s => s.User.ID == user.ID 
                         && s.Action == SecurityAction.UserVerification
                         && s.Active
                         && s.Expire >= DateTime.Now);
 
-            return criteria
-                .List<Security>()
-                .LastOrDefault();
+            return securityList.LastOrDefault();
         }
 
     }

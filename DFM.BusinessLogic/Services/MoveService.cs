@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ak.Generic.Enums;
-using DFM.Email;
-using DFM.Extensions.Entities;
-using DFM.Core.Enums;
-using DFM.Core.Database.Base;
-using DFM.Entities;
-using DFM.Core.Exceptions;
 using Ak.Generic.Collection;
-using DFM.Core.Helpers;
+using Ak.Generic.Enums;
+using Ak.Generic.Extensions;
+using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
+using DFM.Core.Enums;
 using DFM.Email;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 
-namespace DFM.Core.Database
+namespace DFM.BusinessLogic.Services
 {
-    public class MoveData : BaseData<Move>
+    public class MoveService : BaseService<Move>
     {
-		private MoveData() { }
+        internal MoveService(DataAccess father, IRepository repository) : base(father, repository) { }
 
-        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        public Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
             var action = move.ID == 0 ? "create_move" : "edit";
 
@@ -30,7 +29,7 @@ namespace DFM.Core.Database
 
             foreach (var detail in move.DetailList)
             {
-                DetailData.SaveOrUpdate(detail);
+                Father.Detail.SaveOrUpdate(detail);
             }
 
             ajustSummaries(move);
@@ -40,7 +39,7 @@ namespace DFM.Core.Database
             return move;
         }
 
-        private static Move saveOrUpdate(Move move)
+        private Move saveOrUpdate(Move move)
         {
             //Keep inverted, weird errors happen if make in the right order
             return SaveOrUpdate(move, validate, complete);
@@ -49,7 +48,7 @@ namespace DFM.Core.Database
 
 
         #region Complete
-        private static void complete(Move move)
+        private void complete(Move move)
         {
             ajustDetailList(move);
             ajustSchedule(move);
@@ -74,7 +73,7 @@ namespace DFM.Core.Database
         }
 
 
-        private static void ajustSchedule(Move move)
+        private void ajustSchedule(Move move)
         {
             if (move.Schedule == null 
                 || move.Schedule.ID != 0) return;
@@ -82,17 +81,15 @@ namespace DFM.Core.Database
             if (!move.Schedule.Contains(move))
                 move.Schedule.AddMove(move);
 
-            ScheduleData.SaveOrUpdate(move.Schedule);
+            Father.Schedule.SaveOrUpdate(move.Schedule);
         }
 
 
-        private static void ajustOldSummaries(Int32 id)
+        private void ajustOldSummaries(Int32 id)
         {
-            var oldMove = SelectById(id);
+            var oldMove = SelectOldById(id);
 
             if (oldMove == null) return;
-
-            Session.Evict(oldMove);
 
             if (oldMove.In != null)
                 oldMove.RemoveFromIn();
@@ -103,13 +100,13 @@ namespace DFM.Core.Database
             ajustSummaries(oldMove);
         }
 
-        private static void ajustSummaries(Move move)
+        private void ajustSummaries(Move move)
         {
             if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                SummaryData.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
+                Father.Summary.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
 
             if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                SummaryData.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
+                Father.Summary.Ajust((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
         }
         #endregion
 
@@ -192,7 +189,7 @@ namespace DFM.Core.Database
 
 
         #region PlaceAccountsInMove
-        private static void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
+        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
         {
             var monthOut = accountOut == null ? null : getMonth(move, accountOut);
             var monthIn = accountIn == null ? null : getMonth(move, accountIn);
@@ -200,10 +197,10 @@ namespace DFM.Core.Database
             placeMonthsInMove(move, monthOut, monthIn);
         }
 
-        private static Month getMonth(Move move, Account account)
+        private Month getMonth(Move move, Account account)
         {
-            var year = YearData.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
-            return MonthData.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
+            var year = Father.Year.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
+            return Father.Month.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
         }
 
         private static void placeMonthsInMove(Move move, Month monthOut, Month monthIn)
@@ -238,7 +235,7 @@ namespace DFM.Core.Database
 
 
 
-        public static void Delete(Move move, Format.GetterForMove getterForMove)
+        public void Delete(Move move, Format.GetterForMove getterForMove)
         {
             removeFromMonth(move);
             ajustSummaries(move);
@@ -248,20 +245,20 @@ namespace DFM.Core.Database
             sendEmail(move, getterForMove, "delete");
         }
 
-        private static void removeFromMonth(Move move)
+        private void removeFromMonth(Move move)
         {
             if (move == null) return;
 
             if (move.In != null)
             {
                 move.In.InList.Remove(move);
-                MonthData.SaveOrUpdate(move.In);
+                Father.Month.SaveOrUpdate(move.In);
             }
 
             if (move.Out != null)
             {
                 move.Out.OutList.Remove(move);
-                MonthData.SaveOrUpdate(move.Out);
+                Father.Month.SaveOrUpdate(move.Out);
             }
         }
 
