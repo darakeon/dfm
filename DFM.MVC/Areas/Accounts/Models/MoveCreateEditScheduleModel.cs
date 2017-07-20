@@ -96,6 +96,10 @@ namespace DFM.MVC.Areas.Accounts.Models
         [Required]
         public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
 
+        public Boolean ShowInstallment { get { return schedule.ShowInstallment; } set { schedule.ShowInstallment = value; } }
+
+
+
         public SelectList FrequencySelectList { get; set; }
 
 
@@ -126,6 +130,7 @@ namespace DFM.MVC.Areas.Accounts.Models
                 Move.AddDetail(detail);
             }
         }
+
 
     }
 }

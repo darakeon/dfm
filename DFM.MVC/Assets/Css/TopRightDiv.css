@@ -1,17 +1,20 @@
-﻿div#TopRightDiv:empty 
+﻿div#TopRightDiv:empty
 {
     /* Doens't work fine on chrome */
     /*display: none;*/
+    
     background: #FFF;
+    box-shadow: none;
 }
 
 div#TopRightDiv {
 	float: right;
 	background: #EED;
-	padding: 10px 7px 10px 10px;
+	padding: 10px 7px 13px 13px;
 	margin: -20px -20px 10px 10px;
 	border-radius: 0px 0px 0px 50px;
 	z-index: 1;
+	box-shadow: inset 3px -3px 5px #CC6;
 }
 
 div#TopRightDiv input {

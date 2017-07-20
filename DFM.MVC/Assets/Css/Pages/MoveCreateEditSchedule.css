@@ -1,9 +1,4 @@
-#newCategory {
-    float: right;
-    display: none;
-}
-
-#AccountID {
+#hiddenNewCategory, #AccountID {
     display: none;
 }
 

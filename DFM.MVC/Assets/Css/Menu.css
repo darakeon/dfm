@@ -27,12 +27,12 @@ div#Menu .fixMenu
 
 
 .accountMenu {
-	margin-top: -10px;
+	margin-top: -12px;
 }
 
 
 .accountMenu .light .higherTitle {
-	box-shadow: inset 0px 2px 5px #FFF, 0 -2px 14px #FFF inset, inset 0px 2px 2px #886 !important;
+	box-shadow: 0 -2px 14px #FFF inset, inset 0px 2px 2px #990 !important;
 	color: #BB3 !important;
 }
 
@@ -53,7 +53,7 @@ div#Menu .higherTitle
 	margin: 0 5px 0 0;
 	background: #FFF;
 	border-radius: 10px 10px 0 0;
-	box-shadow: inset 0px 3px 3px #DDB;
+	box-shadow: 0 -2px 14px #FFF inset, inset 0px 2px 3px #DDB;
 }
 
 div#Menu .fixItem
@@ -71,6 +71,7 @@ div#Menu .reportsMenu
 	display: none;
 	position: relative;
 	left: -5px;
+	top: -1px;
 	z-index: 1;
 }
 

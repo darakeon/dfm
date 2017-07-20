@@ -30,6 +30,8 @@ namespace DFM.Entities
         public virtual Boolean Active { get; set; }
         public virtual ScheduleFrequency Frequency { get; set; }
 
+        public virtual Boolean ShowInstallment { get; set; }
+
         public virtual User User { get; set; }
 
         public virtual IList<FutureMove> FutureMoveList { get; set; }
@@ -42,6 +44,7 @@ namespace DFM.Entities
             return String.Format("{0} of {1}", 
                 Frequency, FutureMoveList.FirstOrDefault());
         }
+
 
     }
 }

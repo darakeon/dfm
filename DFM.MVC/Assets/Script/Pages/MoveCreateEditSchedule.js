@@ -2,7 +2,14 @@ $(document).ready(function () {
     ActiveDatePicker();
 
     $('#newCategoryCaller').click(function () {
-        $('#newCategory').toggle();
+        if ($('#TopRightDiv').html() == "") {
+            
+            var html = $("#hiddenNewCategory").html();
+            $('#TopRightDiv').html(html);
+
+        } else {
+            $('#TopRightDiv').html("");
+        }
     });
 
     $(".boundlessRadio").change(function () {
@@ -52,7 +59,7 @@ function InsertCategoryOnDropDown(data) {
         $("#Move_Category_ID").append(op);
 
         $('#newCategory form')[0].reset();
-        $('#newCategory').hide();
+        $('#TopRightDiv').html("");
     }
 }
 
