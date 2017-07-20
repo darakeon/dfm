@@ -105,14 +105,14 @@ VERSÃO 1.0.2.0
 05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
 04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
-28/01/2012	28/01/2012	Iluminar conta escolhida (na area account)
-30/01/2012	31/01/2012	Opção de colocar (atual/total) na descrição de agendadas
-30/01/2012	31/01/2012	Layout com sombras e 3D
+28/01/2012	28/01/2012 >>>	Iluminar conta escolhida (na area account)
+30/01/2012	31/01/2012 >>>	Opção de colocar (atual/total) na descrição de agendadas
+30/01/2012	31/01/2012 >>>	Layout com sombras e 3D
 02/02/2012	14/03/2012	Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
 14/03/2012	14/03/2012	Retirar delegate DeleteSummary / outros try de duplicata
 14/03/2012	14/03/2012	Separar Multilanguage de MVC
 14/03/2012	16/03/2012	Retirar delegates de Getters para envio de e-mail
-				Testar Elmah com página tratada (Report > SeeYear)
+			 >>>	Testar Elmah com página tratada (Report > SeeYear)
 				Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
 ======================================================================================================
