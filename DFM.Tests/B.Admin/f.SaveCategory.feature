@@ -1,4 +1,4 @@
-﻿Feature: e. Creation of Category
+﻿Feature: f. Creation of Category
 
 Background:
 	Given I have an user

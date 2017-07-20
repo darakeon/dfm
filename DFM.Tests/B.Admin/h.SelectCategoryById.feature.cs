@@ -18,8 +18,8 @@ namespace DFM.Tests.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Get Category")]
-    public partial class F_GetCategoryFeature
+    [NUnit.Framework.DescriptionAttribute("h. Get Category")]
+    public partial class H_GetCategoryFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "h. Get Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,6 +45,7 @@ namespace DFM.Tests.B_Admin
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -53,13 +54,36 @@ namespace DFM.Tests.B_Admin
             testRunner.OnScenarioEnd();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 3
+#line 4
+ testRunner.Given("I have an user");
+#line 5
+ testRunner.And("I have a category");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("01. Try to get Category with wrong ID (E)")]
         public virtual void _01_TryToGetCategoryWithWrongIDE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Category with wrong ID (E)", ((string[])(null)));
-#line 3
+#line 7
 this.ScenarioSetup(scenarioInfo);
+#line 8
+ testRunner.Given("I pass an id the doesn\'t exist");
+#line 9
+ testRunner.When("I try to get the category");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table1.AddRow(new string[] {
+                        "InvalidID"});
+#line 10
+ testRunner.Then("I will receive this error", ((string)(null)), table1);
+#line 13
+ testRunner.And("I will receive no category");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -69,8 +93,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_GetTheCategoryByIDS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Category by ID (S)", ((string[])(null)));
-#line 4
+#line 15
 this.ScenarioSetup(scenarioInfo);
+#line 16
+ testRunner.Given("I pass valid ID");
+#line 17
+ testRunner.When("I try to get the category");
+#line 18
+ testRunner.Then("I will receive no error");
+#line 19
+ testRunner.And("I will receive the category");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

@@ -43,7 +43,7 @@ Scenario: 04. Save Account with red limit bigger than yellow limit (E)
 		| RedLimitAboveYellowLimit |
 	And the account will not be saved
 
-Scenario: 06. Save Account with name that already exists (E)
+Scenario: 05. Save Account with name that already exists (E)
 	Given I have this account to create
 		| Name       | Yellow | Red |
 		| AccountDFM |        |     |

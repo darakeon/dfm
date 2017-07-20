@@ -18,8 +18,8 @@ namespace DFM.Tests.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("h. Enable Category")]
-    public partial class H_EnableCategoryFeature
+    [NUnit.Framework.DescriptionAttribute("j. Enable Category")]
+    public partial class J_EnableCategoryFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "h. Enable Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "j. Enable Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,6 +45,7 @@ namespace DFM.Tests.B_Admin
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -53,35 +54,77 @@ namespace DFM.Tests.B_Admin
             testRunner.OnScenarioEnd();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("00. Enable an Category already enabled (E)")]
-        public virtual void _00_EnableAnCategoryAlreadyEnabledE()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("00. Enable an Category already enabled (E)", ((string[])(null)));
 #line 3
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Enable an Category that doesn\'t exist (E)")]
-        public virtual void _01_EnableAnCategoryThatDoesnTExistE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Enable an Category that doesn\'t exist (E)", ((string[])(null)));
 #line 4
+ testRunner.Given("I have an user");
+#line 5
+ testRunner.And("I have a category");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("01. Enable a Category that doesn\'t exist (E)")]
+        public virtual void _01_EnableACategoryThatDoesnTExistE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Enable a Category that doesn\'t exist (E)", ((string[])(null)));
+#line 7
 this.ScenarioSetup(scenarioInfo);
+#line 8
+ testRunner.Given("I pass an id the doesn\'t exist");
+#line 9
+ testRunner.When("I try to enable the category");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table1.AddRow(new string[] {
+                        "InvalidID"});
+#line 10
+ testRunner.Then("I will receive this error", ((string)(null)), table1);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Enable an Category with info all right (S)")]
-        public virtual void _99_EnableAnCategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("02. Enable a Category already enabled (E)")]
+        public virtual void _02_EnableACategoryAlreadyEnabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Enable an Category with info all right (S)", ((string[])(null)));
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Enable a Category already enabled (E)", ((string[])(null)));
+#line 14
 this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.Given("I enable a category");
+#line 16
+ testRunner.And("I pass its id to enable again");
+#line 17
+ testRunner.When("I try to enable the category");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table2.AddRow(new string[] {
+                        "EnabledCategory"});
+#line 18
+ testRunner.Then("I will receive this error", ((string)(null)), table2);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Enable a Category with info all right (S)")]
+        public virtual void _99_EnableACategoryWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Enable a Category with info all right (S)", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given("I give an id of an disabled category");
+#line 24
+ testRunner.When("I try to enable the category");
+#line 25
+ testRunner.Then("I will receive no error");
+#line 26
+ testRunner.And("the category will be enabled");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

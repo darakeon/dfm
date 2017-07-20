@@ -195,10 +195,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Save Account with name that already exists (E)")]
-        public virtual void _06_SaveAccountWithNameThatAlreadyExistsE()
+        [NUnit.Framework.DescriptionAttribute("05. Save Account with name that already exists (E)")]
+        public virtual void _05_SaveAccountWithNameThatAlreadyExistsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Save Account with name that already exists (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Save Account with name that already exists (E)", ((string[])(null)));
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line hidden

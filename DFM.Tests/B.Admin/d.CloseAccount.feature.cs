@@ -18,8 +18,8 @@ namespace DFM.Tests.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Close Account")]
-    public partial class C_CloseAccountFeature
+    [NUnit.Framework.DescriptionAttribute("d. Close Account")]
+    public partial class D_CloseAccountFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Close Account", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Close Account", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,6 +45,7 @@ namespace DFM.Tests.B_Admin
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -53,15 +54,14 @@ namespace DFM.Tests.B_Admin
             testRunner.OnScenarioEnd();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("00. Close an Account already closed (E)")]
-        public virtual void _00_CloseAnAccountAlreadyClosedE()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("00. Close an Account already closed (E)", ((string[])(null)));
 #line 3
-this.ScenarioSetup(scenarioInfo);
+#line 4
+ testRunner.Given("I have an user");
+#line 5
+ testRunner.And("I have an account");
 #line hidden
-            testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -69,8 +69,67 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _01_CloseAnAccountThatDoesnTExistE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Close an Account that doesn\'t exist (E)", ((string[])(null)));
-#line 4
+#line 7
 this.ScenarioSetup(scenarioInfo);
+#line 8
+ testRunner.Given("I pass an id that doesn\'t exist");
+#line 9
+ testRunner.When("I try to close the account");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table1.AddRow(new string[] {
+                        "InvalidID"});
+#line 10
+ testRunner.Then("I will receive this error", ((string)(null)), table1);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02. Close an Account already closed (E)")]
+        public virtual void _02_CloseAnAccountAlreadyClosedE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Close an Account already closed (E)", ((string[])(null)));
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.Given("I close an account");
+#line 16
+ testRunner.And("I pass its id to close again");
+#line 17
+ testRunner.When("I try to close the account");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table2.AddRow(new string[] {
+                        "ClosedAccount"});
+#line 18
+ testRunner.Then("I will receive this error", ((string)(null)), table2);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03. Close an Account that has no moves (E)")]
+        public virtual void _03_CloseAnAccountThatHasNoMovesE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Close an Account that has no moves (E)", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given("I give an id of an account without moves");
+#line 24
+ testRunner.When("I try to close the account");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Error"});
+            table3.AddRow(new string[] {
+                        "CantCloseEmptyAccount"});
+#line 25
+ testRunner.Then("I will receive this error", ((string)(null)), table3);
+#line 28
+ testRunner.And("the account will not be closed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -80,8 +139,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_CloseAnAccountWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Close an Account with info all right (S)", ((string[])(null)));
-#line 5
+#line 30
 this.ScenarioSetup(scenarioInfo);
+#line 31
+ testRunner.Given("I give an id of an account with moves");
+#line 32
+ testRunner.When("I try to close the account");
+#line 33
+ testRunner.Then("I will receive no error");
+#line 34
+ testRunner.And("the account will be closed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
