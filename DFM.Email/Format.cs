@@ -11,7 +11,7 @@ namespace DFM.Email
         
         public Format(MoveNature moveNature)
         {
-
+            throw new NotImplementedException();
         }
 
         //public static Format GetForMove(String section, String language, MoveNature moveNature)
@@ -21,6 +21,7 @@ namespace DFM.Email
 
         public Format(SecurityAction securityAction)
         {
+            throw new NotImplementedException();
         }
 
         //public static Format GetForSecurity(String section, String language, SecurityAction securityAction)
