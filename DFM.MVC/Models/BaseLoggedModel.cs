@@ -14,10 +14,13 @@ namespace DFM.MVC.Models
     {
         public BaseLoggedModel()
         {
-            LateralAccountList = Current.User.AccountList
-                .Where(a => a.Open())
-                .OrderBy(a => a.Name)
-                .ToList();
+            if (Current.IsAuthenticated)
+            {
+                LateralAccountList = Current.User.AccountList
+                    .Where(a => a.Open())
+                    .OrderBy(a => a.Name)
+                    .ToList();
+            }
 
             ActionName = RouteInfo.Current.RouteData == null
                 ? String.Empty

@@ -28,9 +28,6 @@ namespace DFM.MVC.Controllers
             }
 
 
-            //if (Current.IsAuthenticated)
-            //    return View(id.ToString(), model);
-            
             // ReSharper disable Asp.NotResolved
             return View(id.ToString(), model);
             // ReSharper restore Asp.NotResolved

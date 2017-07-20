@@ -150,26 +150,15 @@
     <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
+
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
-    <Content Include="Assets\Css\IE.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Css\IE.css" />
     <Content Include="Assets\Image\close.gif" />
     <Content Include="Assets\Image\create_move.gif" />
-    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\Libraries\datepicker.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\Navigation.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\TopRightDiv.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\Css\Libraries\datepicker.css" />
+    <Content Include="Assets\Css\Navigation.css" />
+    <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
@@ -199,14 +188,10 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Areas\Accounts\Controllers\MoveController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ReportController.cs" />
-    <Compile Include="Models\AccountCreateEditModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Models\AccountCreateEditModel.cs" />
     <Compile Include="Models\AccountIndexModel.cs" />
     <Compile Include="Models\BaseLoggedModel.cs" />
-    <Compile Include="Areas\Accounts\Models\MoveCreateEditScheduleModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Areas\Accounts\Models\MoveCreateEditScheduleModel.cs" />
     <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
@@ -219,128 +204,53 @@
     </Compile>
     <Compile Include="MultiLanguage\Helpers\Section.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Css\Forms.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\HalfScreen.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\Menu.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\General.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\MVC.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\SystemOut.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\SystemIn.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+
+    <Content Include="Assets\Css\Forms.css" />
+    <Content Include="Assets\Css\HalfScreen.css" />
+    <Content Include="Assets\Css\Menu.css" />
+    <Content Include="Assets\Css\General.css" />
+    <Content Include="Assets\Css\MVC.css" />
+    <Content Include="Assets\Css\SystemOut.css" />
+    <Content Include="Assets\Css\SystemIn.css" />
+    <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css" />
     <Content Include="Assets\Image\delete.gif" />
     <Content Include="Assets\Image\edit.gif" />
-    <Content Include="Assets\Image\green_sign.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\green_sign.gif" />
     <Content Include="Assets\Image\logo_email.gif" />
-    <Content Include="Assets\Image\logo_in.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\logo_out.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\logo_in.gif" />
+    <Content Include="Assets\Image\logo_out.gif" />
     <Content Include="Assets\Image\month.gif" />
-    <Content Include="Assets\Image\off_in.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\off_in_hover.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\off_out.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\off_out_hover.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\off_in.gif" />
+    <Content Include="Assets\Image\off_in_hover.gif" />
+    <Content Include="Assets\Image\off_out.gif" />
+    <Content Include="Assets\Image\off_out_hover.gif" />
     <Content Include="Assets\Image\open.gif" />
-    <Content Include="Assets\Image\pig.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\pig.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Image\red_sign.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\pig.gif" />
+    <Content Include="Assets\Image\pig.ico" />
+    <Content Include="Assets\Image\red_sign.gif" />
     <Content Include="Assets\Image\schedule_move.gif" />
     <Content Include="Assets\Image\year.gif" />
-    <Content Include="Assets\Image\yellow_sign.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Forms.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Menu.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Navigation.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\ImageLink.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Image\yellow_sign.gif" />
+    <Content Include="Assets\Script\Forms.js" />
+    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Assets\Script\Menu.js" />
+    <Content Include="Assets\Script\Navigation.js" />
+    <Content Include="Assets\Script\ImageLink.js" />
     <Content Include="Assets\Script\Pages\AccountCreateEdit.js" />
-    <Content Include="Assets\Script\Starter.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Ajax.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Detail.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\ButtonHref.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\MoneyAndDate.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery.validate.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Script\Starter.js" />
+    <Content Include="Assets\Script\Ajax.js" />
+    <Content Include="Assets\Script\Detail.js" />
+    <Content Include="Assets\Script\ButtonHref.js" />
+    <Content Include="Assets\Script\MoneyAndDate.js" />
+    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js" />
+    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
     <Content Include="Global.asax" />
-    <Content Include="Assets\Css\Table.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Css\Table.css" />
     <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationTransfer.htm" />
     <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationOut.htm" />
     <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationIn.htm" />
@@ -351,41 +261,16 @@
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationIn.htm" />
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\PasswordReset.htm" />
     <Content Include="MultiLanguage\EmailLayouts\pt-BR\UserVerification.htm" />
-    <Content Include="MultiLanguage\Resources\account.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\ops.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\token.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\report.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\general.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\move.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\user.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\category.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MultiLanguage\Resources\error.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="MultiLanguage\Resources\account.xml" />
+    <Content Include="MultiLanguage\Resources\ops.xml" />
+    <Content Include="MultiLanguage\Resources\token.xml" />
+    <Content Include="MultiLanguage\Resources\report.xml" />
+    <Content Include="MultiLanguage\Resources\general.xml" />
+    <Content Include="MultiLanguage\Resources\move.xml" />
+    <Content Include="MultiLanguage\Resources\user.xml" />
+    <Content Include="MultiLanguage\Resources\category.xml" />
+    <Content Include="MultiLanguage\Resources\error.xml" />
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -396,107 +281,41 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Assets\Error.cshtml" />
     <Content Include="Views\Shared\Outer\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Account\CreateEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\LogOn.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\SignUp.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\Inner\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\Inner\Menu.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Account\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\CreateEditSchedule.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Report\SeeMonth.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Report\SeeYear.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Category\CreateEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Areas\Accounts\Views\Shared\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Account\ListClosed.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\Error.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Category\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_Master.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\ForgotPassword.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\ForgotPasswordSuccess.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\Deactivate.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\PasswordReset.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\Invalid.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\Received.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DFM.Core\DFM.Core.csproj">
       <Project>{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}</Project>
       <Name>DFM.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\SignUpSuccess.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\SendVerification.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Token\UserVerification.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Ops\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Ops\500.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Ops\404.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities.Extensions;
 using DFM.Core.Robots;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
@@ -52,12 +51,7 @@ namespace DFM.MVC
             NHManager.Start();
             PlainText.Initialize();
 
-
-            if (isLocal)
-                XmlConfigurator.Configure();
-
-                
-            
+            XmlConfigurator.Configure();
         }
 
 

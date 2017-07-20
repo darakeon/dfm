@@ -98,17 +98,18 @@ VERSION 1.0.1.0
 ======================================================================================================
 
 VERSION 1.0.2.0
+		Fornecer detalhes do erro no e-mail de report
 		BDD
 		Selenium
-		Refactor Geral
-		
+		Reorganizar camadas
+		Refactor de limpeza geral
 		Proteção por usuário no Core (verificar active também)
 
-23/11		importador de Excel
+		importador de Excel
 		importador de XML
 		importador de Money
-23/11		importador de CSV
-23/11		gravador de importação
+		importador de CSV
+		gravador de importação
 		transformador de importação
 
 		transformador de exportação
