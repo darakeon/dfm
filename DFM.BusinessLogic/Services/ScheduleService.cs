@@ -81,20 +81,13 @@ namespace DFM.BusinessLogic.Services
             if (!schedule.FutureMoveList.Any())
                 return false;
 
-            var doneMoves = appliedTimes(schedule);
+            var doneMoves = schedule.AppliedTimes();
 
             var doneAll = doneMoves >= schedule.Times;
             var boundless = schedule.Boundless;
 
             return schedule.Active &&
                 (boundless || !doneAll);
-        }
-
-
-        private static Int32 appliedTimes(Schedule schedule)
-        {
-            return schedule.Frequency
-                .AppliedTimes(schedule.Begin, schedule.GetNextDate());
         }
 
 

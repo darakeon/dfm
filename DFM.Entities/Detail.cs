@@ -22,7 +22,7 @@ namespace DFM.Entities
 
         public override String ToString()
         {
-            return Description;
+            return String.Format("[{0}] {1}", ID, Description);
         }
 
     }

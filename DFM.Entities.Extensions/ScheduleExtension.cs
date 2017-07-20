@@ -34,6 +34,12 @@ namespace DFM.Entities.Extensions
         }
 
 
+        public static DateTime LastDate(this Schedule schedule)
+        {
+            return schedule.FutureMoveList.Max(f => f.Date);
+        }
+
+
 
     }
 }

@@ -5,7 +5,7 @@ namespace DFM.Entities.Extensions
 {
     public static class FutureMoveExtension
     {
-        public static FutureMove GetNext(this FutureMove futureMove, DateTime dateTime)
+        public static FutureMove CloneChangingDate(this FutureMove futureMove, DateTime dateTime)
         {
             return new FutureMove
             {
@@ -23,16 +23,25 @@ namespace DFM.Entities.Extensions
         }
 
 
-        public static Move Cast(this FutureMove futureMove)
+        public static Move CastToKill(this FutureMove futureMove)
         {
             var schedule = futureMove.Schedule;
+            var category = futureMove.Category;
+            var detailList = futureMove.DetailList;
+
             futureMove.Schedule = null;
+            futureMove.Category = null;
+            futureMove.DetailList = null;
+
+            futureMove.In = null;
+            futureMove.Out = null;
 
             var move = futureMove.CastToChild<Move>();
 
-            futureMove.Schedule = schedule;
-
             move.Schedule = schedule;
+            move.Category = category;
+            move.DetailList = detailList;
+
             move.ID = 0;
 
             return move;

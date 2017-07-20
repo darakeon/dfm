@@ -106,18 +106,33 @@ namespace DFM.Repositories
 
         public object BeginTransaction()
         {
+            if (Session.Transaction != null 
+                    && Session.Transaction.IsActive)
+                throw new DFMRepositoryException("There's a Transaction opened already.");
+
             return Session.BeginTransaction();
         }
 
 
         public void CommitTransaction(object transaction)
         {
-            ((ITransaction)transaction).Commit();
+            getTransactionAndTest(transaction).Commit();
         }
 
         public void RollbackTransaction(object transaction)
         {
-            ((ITransaction)transaction).Rollback();
+            getTransactionAndTest(transaction).Rollback();
         }
+
+        private ITransaction getTransactionAndTest(object transaction)
+        {
+            var localTransaction = (ITransaction)transaction;
+
+            if (localTransaction.WasCommitted || localTransaction.WasRolledBack)
+                throw new AccessViolationException("There's a Transaction opened already.");
+
+            return localTransaction;
+        }
+
     }
 }

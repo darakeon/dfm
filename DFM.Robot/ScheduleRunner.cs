@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.SuperServices;
 using DFM.Email;
@@ -29,12 +28,13 @@ namespace DFM.Robot
             foreach (var schedule in scheduleList)
             {
                 var moves = schedule.FutureMoveList
-                    .Where(m => m.Date <= DateTime.Now);
+                    .Where(m => m.Date <= DateTime.Now)
+                    .ToList();
 
                 foreach (var futureMove in moves)
                 {
                     Services.Robot
-                        .TransformFutureInMove(futureMove, schedule.Boundless, formatGetter);
+                        .TransformFutureInMove(futureMove, formatGetter);
                 }
             }
         }

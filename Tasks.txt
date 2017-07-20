@@ -124,6 +124,8 @@ VERSÃO 1.0.2.1
 				Selenium
 				Refactor de limpeza geral
 				Fornecer detalhes do erro no e-mail de report
+				Alterar interface externa para neutra
+				Disponibilizar cores para interfaces
 
 ======================================================================================================
 

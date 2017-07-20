@@ -1,6 +1,8 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Helpers
 {
@@ -38,6 +40,13 @@ namespace DFM.BusinessLogic.Helpers
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleFrequencyNotRecognized);
             }
         }
+
+        internal static Int32 AppliedTimes(this Schedule schedule)
+        {
+            return schedule.Frequency
+                .AppliedTimes(schedule.Begin, schedule.GetNextDate());
+        }
+
 
 
         private static Int32 toInt(this Double d)

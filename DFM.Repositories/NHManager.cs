@@ -50,6 +50,8 @@ namespace DFM.Repositories
         public static void Error()
         {
             SessionBuilder.Error(Session);
+
+            sessionList.Remove(userKey);
         }
 
         public static void Close()

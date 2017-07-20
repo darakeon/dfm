@@ -8,7 +8,9 @@ namespace DFM.Robot
     {
         public static void Run(User user, Format.GetterForMove formatGetter, RobotService access)
         {
-            new ScheduleRunner(user, formatGetter, access).Run();
+            var scheduleRunner = new ScheduleRunner(user, formatGetter, access);
+            
+            scheduleRunner.Run();
         }
 
     }

@@ -33,7 +33,8 @@ namespace DFM.Entities
 
         public override String ToString()
         {
-            return Email;
+            return String.Format("[{0}] {1}", ID, Email);
         }
+
     }
 }

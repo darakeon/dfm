@@ -41,8 +41,8 @@ namespace DFM.Entities
 
         public override string ToString()
         {
-            return String.Format("{0} of {1}", 
-                Frequency, FutureMoveList.FirstOrDefault());
+            return String.Format("[{0}] {1} of {2}", 
+                ID, Frequency, FutureMoveList.FirstOrDefault());
         }
 
 

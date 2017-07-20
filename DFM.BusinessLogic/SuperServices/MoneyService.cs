@@ -39,30 +39,15 @@ namespace DFM.BusinessLogic.SuperServices
         #region Save or Update
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
-            var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
-
             var transaction = moveService.BeginTransaction();
-
+            
             try
             {
-                categoryService.SetCategory(move);
-
-                ajustOldSummaries(move.ID);
-
-                placeAccountsInMove(move, accountOut, accountIn);
-
-                move = moveService.SaveOrUpdate(move);
-
-                detailService.SaveDetails(move);
-
-                ajustSummaries(move);
-
-                moveService.SendEmail(move, getterForMove, sendEmailAction);
-
+                move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, getterForMove);
 
                 moveService.CommitTransaction(transaction);
             }
-            catch (Exception)
+            catch
             {
                 moveService.RollbackTransaction(transaction);
                 throw;
@@ -71,6 +56,28 @@ namespace DFM.BusinessLogic.SuperServices
 
             return move;
         }
+
+        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        {
+            var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
+
+            categoryService.SetCategory(move);
+
+            ajustOldSummaries(move.ID);
+
+            placeAccountsInMove(move, accountOut, accountIn);
+
+            move = moveService.SaveOrUpdate(move);
+
+            detailService.SaveDetails(move);
+
+            ajustSummaries(move);
+
+            moveService.SendEmail(move, getterForMove, sendEmailAction);
+
+            return move;
+        }
+
         #endregion
 
 

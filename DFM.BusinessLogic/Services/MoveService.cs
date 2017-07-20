@@ -22,28 +22,19 @@ namespace DFM.BusinessLogic.Services
         #region PlaceAccountsInMove
         internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
-            var errorMessage = String.Format("{0}MoveWrong", move.Nature);
-            var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
-
-            if (move.Nature != MoveNature.In)
-            {
-                if (monthOut == null) throw DFMCoreException.WithMessage(errorEnumValue);
-                if (!monthOut.OutContains(move)) monthOut.AddOut(move);
-            }
+            if (move.Nature != MoveNature.In
+                    && monthOut != null 
+                    && !monthOut.OutContains(move))
+                monthOut.AddOut(move);
             else
-            {
                 move.Out = null;
-            }
 
-            if (move.Nature != MoveNature.Out)
-            {
-                if (monthIn == null) throw DFMCoreException.WithMessage(errorEnumValue);
-                if (!monthIn.InContains(move)) monthIn.AddIn(move);
-            }
+            if (move.Nature != MoveNature.Out
+                    && monthIn != null
+                    && !monthIn.InContains(move))
+                monthIn.AddIn(move);
             else
-            {
                 move.In = null;
-            }
 
         }
         #endregion

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
@@ -11,6 +12,9 @@ namespace DFM.BusinessLogic.SuperServices
 {
     public class RobotService
     {
+        private const String boundlessFormat = "{0} [{1}]";
+        private const String boundedFormat = "{0} [{1}/{2}]";
+
         private readonly ScheduleService scheduleService;
         private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
@@ -46,45 +50,58 @@ namespace DFM.BusinessLogic.SuperServices
         {
             futureMoveService.Delete(move);
         }
-        
+
 
         public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
         {
-            if (futureMove.Schedule == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+            futureMove.Out = accountOut;
+            futureMove.In = accountIn;
 
             var transaction = futureMoveService.BeginTransaction();
 
             try
             {
-                categoryService.SetCategory(futureMove);
-
-                if (!futureMove.Schedule.FutureMoveList.Contains(futureMove))
-                    futureMove.Schedule.FutureMoveList.Add(futureMove);
-
-                futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule, accountOut, accountIn);
-
-
+                futureMove = saveOrUpdateSchedule(futureMove);
+                
                 futureMoveService.CommitTransaction(transaction);
+
+                return futureMove;
             }
-            catch (Exception)
+            catch
             {
                 futureMoveService.RollbackTransaction(transaction);
                 throw;
             }
+        }
+
+        private FutureMove saveOrUpdateSchedule(FutureMove futureMove)
+        {
+            if (futureMove.Schedule == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+
+            categoryService.SetCategory(futureMove);
+
+            if (!futureMove.Schedule.FutureMoveList.Contains(futureMove))
+                futureMove.Schedule.FutureMoveList.Add(futureMove);
+
+            futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule);
+
 
             return futureMove;
         }
 
-        private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule, Account accountOut, Account accountIn)
+        private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule)
         {
             var firstFMove = schedule.FutureMoveList.First();
 
-            firstFMove.Out = accountOut;
-            firstFMove.In = accountIn;
-
-
-            if (!schedule.Boundless)
+            if (schedule.Boundless)
+            {
+                while(schedule.LastDate() < DateTime.Today)
+                {
+                    addNextFutureMove(schedule);
+                }
+            }
+            else
             {
                 var addedFMoveCount = schedule.FutureMoveList.Count;
 
@@ -99,8 +116,8 @@ namespace DFM.BusinessLogic.SuperServices
                 var total = schedule.FutureMoveList.Count;
 
                 var format = schedule.Boundless
-                                 ? "{0} [{1}]"
-                                 : "{0} [{1}/{2}]";
+                                 ? boundlessFormat
+                                 : boundedFormat;
 
                 for (var fm = 0; fm < total; fm++)
                 {
@@ -128,20 +145,34 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public void TransformFutureInMove(FutureMove futureMove, bool boundless, Format.GetterForMove formatGetter)
+        public void TransformFutureInMove(FutureMove futureMove, Format.GetterForMove formatGetter)
         {
             var transaction = futureMoveService.BeginTransaction();
 
             try
             {
-                if (boundless)
+                var schedule = futureMove.Schedule;
+                var boundless = schedule.Boundless;
+                var isLast = futureMove.ID == schedule.FutureMoveList.Last().ID;
+
+                if (boundless && isLast)
                 {
                     addNextFutureMove(futureMove.Schedule);
+                    var nextFMove = schedule.FutureMoveList.Last();
+
+                    if (schedule.ShowInstallment)
+                        nextFMove.Description =
+                            String.Format(boundlessFormat, nextFMove.Description, schedule.AppliedTimes());
+
+                    saveOrUpdateSchedule(nextFMove);
                 }
 
-                var move = futureMove.Cast();
+                var accountOut = futureMove.Out;
+                var accountIn = futureMove.In;
 
-                moneyService.SaveOrUpdateMove(move, futureMove.Out, futureMove.In, formatGetter);
+                var move = futureMove.CastToKill();
+
+                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, formatGetter);
                 DeleteFutureMove(futureMove);
 
                 futureMoveService.CommitTransaction(transaction);
@@ -158,12 +189,15 @@ namespace DFM.BusinessLogic.SuperServices
         {
             var nextDate = scheduleService.GetNextRunDate(schedule);
 
-            var nextFMove = schedule.FutureMoveList.First().GetNext(nextDate);
+            var nextFMove = schedule.FutureMoveList
+                                .Last()
+                                .CloneChangingDate(nextDate);
 
             schedule.FutureMoveList.Add(nextFMove);
         }
 
         #endregion
+
 
     }
 }
