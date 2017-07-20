@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 using DFM.MVC.Authentication;
 using DFM.Core.Database;
 using DFM.MVC.Models;

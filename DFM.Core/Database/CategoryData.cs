@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.Core.Database.Base;
 using DFM.Core.Exceptions;
 

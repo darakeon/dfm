@@ -1,5 +1,5 @@
 ﻿using DFM.Core.Database.Base;
-using DFM.Core.Entities;
+using DFM.Entities;
 
 namespace DFM.Core.Database
 {

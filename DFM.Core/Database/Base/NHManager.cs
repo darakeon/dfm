@@ -1,6 +1,6 @@
 ﻿using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.Core.Mappings;
 
 namespace DFM.Core.Database.Base

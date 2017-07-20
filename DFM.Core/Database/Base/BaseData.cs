@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Ak.DataAccess.NHibernate;
-using DFM.Core.Entities.Bases;
+using DFM.Entities.Bases;
 using DFM.Core.Exceptions;
 using NHibernate;
 using NHibernate.Criterion;

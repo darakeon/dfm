@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 using DFM.Core.Exceptions;
 
 namespace DFM.Core.Database

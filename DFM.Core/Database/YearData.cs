@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 
 namespace DFM.Core.Database
 {
-    internal class YearData : BaseData<Year>
+    public class YearData : BaseData<Year>
     {
 		private YearData() { }
 
-        internal static Year GetOrCreateYear(Int16 year, Account account, Category category = null)
+        public static Year GetOrCreateYear(Int16 year, Account account, Category category = null)
         {
             var newYear = getOrCreateYear(account, year);
 
             if (category != null)
-                newYear.AjustSummaryList(category);
+                newYear.AjustSummaryList(category, SummaryData.Delete);
 
             return newYear;
         }

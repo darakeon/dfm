@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Core.Helpers;
+using DFM.Entities;
 
 namespace DFM.Core.Database
 {
@@ -16,7 +16,7 @@ namespace DFM.Core.Database
             SaveOrUpdate(schedule, complete, null);
         }
 
-        internal static IList<Schedule> GetScheduleToRun(User user)
+        public static IList<Schedule> GetScheduleToRun(User user)
         {
             return user.ScheduleList
                 .Where(
@@ -41,8 +41,48 @@ namespace DFM.Core.Database
             }
 
             if (schedule.Active)
-                schedule.SetNextRun();
+                SetNextRun(schedule);
         }
+
+
+
+        public static void SetNextRun(Schedule schedule)
+        {
+            var move = schedule.MoveList.Last();
+
+            schedule.Next =
+                move.Date > DateTime.Now
+                    ? move.Date
+                    : schedule.Frequency.Next(move.Date);
+        }
+
+
+
+        public static Boolean CanRun(Schedule schedule)
+        {
+            var doneMoves = appliedTimes(schedule);
+
+            var doneAll = doneMoves >= schedule.Times;
+            var boundless = schedule.Boundless;
+
+            return schedule.Active &&
+                (boundless || !doneAll);
+        }
+
+
+        public static Boolean CanRunNow(Schedule schedule)
+        {
+            return CanRun(schedule) &&
+                   schedule.Next <= DateTime.Today;
+        }
+
+
+        private static Int32 appliedTimes(Schedule schedule)
+        {
+            return schedule.Frequency
+                .AppliedTimes(schedule.Begin, schedule.Next);
+        }
+
 
     }
 }

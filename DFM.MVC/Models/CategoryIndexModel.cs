@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DFM.MVC.Authentication;
-using DFM.Core.Entities;
+using DFM.Entities;
 
 namespace DFM.MVC.Models
 {

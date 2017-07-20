@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
-using DFM.Core.Email;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Email;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.Core.Helpers;
@@ -88,12 +88,14 @@ namespace DFM.Core.Database
 
             var fileContent =
                 format.Layout.Format(dic);
-                    
+
+            var exception = DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+
             new Sender()
                 .To(security.User.Email)
                 .Subject(format.Subject)
                 .Body(fileContent)
-                .Send();
+                .Send(exception);
 
             security.Sent = true;
             SaveOrUpdate(security);

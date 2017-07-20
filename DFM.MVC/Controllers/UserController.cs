@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
-using DFM.Core.Email;
+using DFM.Email;
 using DFM.Core.Enums;
 using DFM.Core.Exceptions;
 using DFM.MVC.Models;
 using DFM.Core.Database;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Controllers

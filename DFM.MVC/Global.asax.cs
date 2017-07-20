@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core.Database.Base;
-using DFM.Core.Robots;
+using DFM.Robot;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;

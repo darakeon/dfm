@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models

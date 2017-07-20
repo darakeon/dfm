@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Email;
+using DFM.Email;
 using DFM.Core.Enums;
 
 namespace DFM.MVC.MultiLanguage.Helpers

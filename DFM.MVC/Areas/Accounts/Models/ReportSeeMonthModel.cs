@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
 

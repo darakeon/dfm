@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 
 namespace DFM.Core.Database
 {
@@ -16,7 +16,7 @@ namespace DFM.Core.Database
             var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.AjustSummaryList(category);
+                newMonth.AjustSummaryList(category, SummaryData.Delete);
 
             return newMonth;
         }

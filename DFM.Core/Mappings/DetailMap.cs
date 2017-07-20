@@ -1,4 +1,4 @@
-﻿using DFM.Core.Entities;
+﻿using DFM.Entities;
 using DFM.Core.Helpers;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;

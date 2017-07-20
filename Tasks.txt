@@ -95,13 +95,20 @@ VERSÃO 1.0.1.0 (e VERSÃO 1.0.0.4)
 ======================================================================================================
 
 VERSÃO 1.0.2.0
+02/12		Reorganização primária de camadas
+		Separar BusinessLogic de NHibernate
+		Separar Multilanguage de MVC
+		Refactor Resharper
+
 		BDD
 		Selenium
-		Reorganizar camadas
 		Refactor de limpeza geral
 		Fornecer detalhes do erro no e-mail de report
 		Proteção por usuário no Core (verificar active também)
 
+======================================================================================================
+
+VERSÃO 1.0.2.1
 		importador de Excel
 		importador de XML
 		importador de Money

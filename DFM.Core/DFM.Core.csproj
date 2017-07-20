@@ -70,13 +70,6 @@
   <ItemGroup>
     <Compile Include="Database\AccountData.cs" />
     <Compile Include="Database\SecurityData.cs" />
-    <Compile Include="Email\Error.cs" />
-    <Compile Include="Email\Format.cs" />
-    <Compile Include="Entities\Extensions\SecurityExtension.cs" />
-    <Compile Include="Entities\Extensions\UserExtension.cs" />
-    <Compile Include="Entities\Security.cs" />
-    <Compile Include="Enums\SecurityAction.cs" />
-    <Compile Include="Exceptions\ExceptionPossibilities.cs" />
     <Compile Include="Database\CategoryData.cs" />
     <Compile Include="Database\ScheduleData.cs" />
     <Compile Include="Database\SummaryData.cs" />
@@ -87,35 +80,12 @@
     <Compile Include="Database\Base\NHManager.cs" />
     <Compile Include="Database\UserData.cs" />
     <Compile Include="Database\Base\BaseData.cs" />
-    <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Bases\IEntity.cs" />
-    <Compile Include="Entities\Bases\ISummarizable.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Detail.cs" />
-    <Compile Include="Entities\Extensions\AccountExtension.cs" />
-    <Compile Include="Entities\Extensions\CategoryExtension.cs" />
-    <Compile Include="Entities\Extensions\SummaryExtension.cs" />
-    <Compile Include="Entities\Extensions\SummarizableExtension.cs" />
-    <Compile Include="Entities\Extensions\ScheduleExtension.cs" />
-    <Compile Include="Entities\Extensions\DetailExtension.cs" />
-    <Compile Include="Entities\Extensions\MonthExtension.cs" />
-    <Compile Include="Entities\Extensions\MoveExtension.cs" />
-    <Compile Include="Entities\Extensions\YearExtension.cs" />
-    <Compile Include="Entities\Month.cs" />
-    <Compile Include="Entities\Move.cs" />
-    <Compile Include="Entities\Schedule.cs" />
-    <Compile Include="Entities\Summary.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Year.cs" />
-    <Compile Include="Enums\AccountSign.cs" />
-    <Compile Include="Enums\MoveNature.cs" />
-    <Compile Include="Enums\ScheduleFrequency.cs" />
-    <Compile Include="Enums\SummaryNature.cs" />
     <Compile Include="Exceptions\DFMCoreException.cs" />
+    <Compile Include="Exceptions\ExceptionPossibilities.cs" />
     <Compile Include="Helpers\DictionaryExtension.cs" />
-    <Compile Include="Email\Sender.cs" />
     <Compile Include="Helpers\Dfm.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
+    <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
@@ -129,8 +99,20 @@
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\MoveMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Robots\MainRobot.cs" />
-    <Compile Include="Robots\ScheduleRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
+      <Name>DFM.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
+      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
+      <Name>DFM.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Extensions\DFM.Extensions.csproj">
+      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
+      <Name>DFM.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

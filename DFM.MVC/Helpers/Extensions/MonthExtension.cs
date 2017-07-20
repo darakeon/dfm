@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Entities;
+using DFM.Entities;
 
 namespace DFM.MVC.Helpers.Extensions
 {

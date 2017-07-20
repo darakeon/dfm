@@ -14,6 +14,7 @@
     <AssemblyName>DFM.MVC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,22 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
+      <Name>DFM.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
+      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
+      <Name>DFM.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Extensions\DFM.Extensions.csproj">
+      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
+      <Name>DFM.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Robot\DFM.Robot.csproj">
+      <Project>{418078A8-A13A-40AE-A939-68E0EA25F35B}</Project>
+      <Name>DFM.Robot</Name>
+    </ProjectReference>
     <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
@@ -150,7 +167,6 @@
     <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
-
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
     <Content Include="Assets\Css\IE.css" />
     <Content Include="Assets\Image\close.gif" />
@@ -204,7 +220,6 @@
     </Compile>
     <Compile Include="MultiLanguage\Helpers\Section.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-
     <Content Include="Assets\Css\Forms.css" />
     <Content Include="Assets\Css\HalfScreen.css" />
     <Content Include="Assets\Css\Menu.css" />
@@ -293,7 +308,6 @@
     <Content Include="Areas\Accounts\Views\Report\SeeYear.cshtml" />
     <Content Include="Views\Category\CreateEdit.cshtml" />
     <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
-    <Folder Include="Areas\Accounts\Views\Shared\" />
     <Content Include="Views\Account\ListClosed.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
@@ -317,6 +331,9 @@
     <Content Include="Views\Ops\500.cshtml" />
     <Content Include="Views\Ops\404.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Accounts\Views\Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

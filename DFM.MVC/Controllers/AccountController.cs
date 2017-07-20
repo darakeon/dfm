@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Core.Entities;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities;
+using DFM.Extensions.Entities;
 using DFM.Core.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;

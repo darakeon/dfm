@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
 

@@ -5,7 +5,9 @@ namespace DFM.Core.Exceptions
 {
     public class DFMCoreException : Exception
     {
-        internal static DFMCoreException WithMessage(ExceptionPossibilities message)
+        public delegate void ErrorEvent();
+
+        public static DFMCoreException WithMessage(ExceptionPossibilities message)
         {
             return new DFMCoreException(message);
         }

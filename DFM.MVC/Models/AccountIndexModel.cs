@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Core.Entities.Extensions;
+using DFM.Extensions.Entities;
 using DFM.MVC.Authentication;
-using DFM.Core.Entities;
+using DFM.Entities;
 
 namespace DFM.MVC.Models
 {

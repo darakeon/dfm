@@ -1,6 +1,6 @@
 ﻿namespace DFM.Core.Exceptions
 {
-    internal enum ExceptionPossibilities
+    public enum ExceptionPossibilities
     {
         AccountAlreadyExists,
         CantCloseEmptyAccount,

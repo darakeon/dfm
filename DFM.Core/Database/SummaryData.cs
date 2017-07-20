@@ -1,9 +1,9 @@
 ﻿using System;
-using DFM.Core.Entities.Bases;
-using DFM.Core.Entities.Extensions;
+using DFM.Entities.Bases;
+using DFM.Extensions.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.Core.Exceptions;
 
 namespace DFM.Core.Database
@@ -32,7 +32,7 @@ namespace DFM.Core.Database
             var year = YearData.GetOrCreateYear(yearDate, account);
             var month = MonthData.GetOrCreateMonth(monthDate, year);
 
-            var summaryMonth = month.GetOrCreateSummary(category);
+            var summaryMonth = month.GetOrCreateSummary(category, Delete);
 
             AjustValue(summaryMonth);
         }
@@ -41,7 +41,7 @@ namespace DFM.Core.Database
         {
             var year = YearData.GetOrCreateYear(yearDate, account);
 
-            var summaryYear = year.GetOrCreateSummary(category);
+            var summaryYear = year.GetOrCreateSummary(category, Delete);
 
             AjustValue(summaryYear);
         }

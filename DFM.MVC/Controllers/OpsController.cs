@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.Generic.Collection;
-using DFM.Core.Email;
-using DFM.MVC.Authentication;
+using DFM.Email;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers

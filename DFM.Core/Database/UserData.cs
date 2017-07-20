@@ -3,8 +3,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using DFM.Core.Database.Base;
-using DFM.Core.Email;
-using DFM.Core.Entities;
+using DFM.Email;
+using DFM.Entities;
 using DFM.Core.Exceptions;
 
 namespace DFM.Core.Database

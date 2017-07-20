@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ak.Generic.Enums;
-using DFM.Core.Email;
-using DFM.Core.Entities.Extensions;
+using DFM.Email;
+using DFM.Extensions.Entities;
 using DFM.Core.Enums;
 using DFM.Core.Database.Base;
-using DFM.Core.Entities;
+using DFM.Entities;
 using DFM.Core.Exceptions;
 using Ak.Generic.Collection;
 using DFM.Core.Helpers;
+using DFM.Email;
 
 namespace DFM.Core.Database
 {
@@ -293,11 +294,14 @@ namespace DFM.Core.Database
 
             try
             {
+                //TO-DO: tell user that the e-mail was not send
+                var exception = DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+
                 new Sender()
                     .To(move.User().Email)
                     .Subject(format.Subject)
                     .Body(fileContent)
-                    .Send();
+                    .Send(exception);
             }
             catch (DFMCoreException) { }
         }
