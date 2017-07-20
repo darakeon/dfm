@@ -8,7 +8,7 @@ namespace DFM.BusinessLogic.Exceptions
 
         public static DFMCoreException WithMessage(ExceptionPossibilities message)
         {
-            return new DFMCoreException(message);
+            throw new DFMCoreException(message);
         }
 
 

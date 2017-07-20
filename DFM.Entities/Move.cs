@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Bases;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {

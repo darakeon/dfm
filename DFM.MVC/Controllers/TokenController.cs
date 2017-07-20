@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Services;
-using DFM.Core;
-using DFM.Core.Enums;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;
 using DFM.Repositories;
@@ -74,7 +72,7 @@ namespace DFM.MVC.Controllers
             if (action != SecurityAction.UserVerification)
                 return invalidTokenAction();
 
-             Service.Access.Security.UserActivate(id);
+            Service.Access.Security.UserActivate(id);
 
             return View();
         }
@@ -88,7 +86,7 @@ namespace DFM.MVC.Controllers
             if (!tokenExist)
                 return invalidTokenAction();
 
-             Service.Access.Security.Deactivate(id);
+            Service.Access.Security.Deactivate(id);
 
             return View();
         }

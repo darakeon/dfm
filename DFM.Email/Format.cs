@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 
 namespace DFM.Email
 {

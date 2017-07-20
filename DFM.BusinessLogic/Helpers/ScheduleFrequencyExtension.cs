@@ -1,6 +1,6 @@
 ﻿using System;
-using DFM.Core.Enums;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Helpers
 {

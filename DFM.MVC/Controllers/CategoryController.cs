@@ -5,7 +5,6 @@ using DFM.Entities;
 using DFM.Extensions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
-using DFM.MVC.MultiLanguage;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
@@ -104,7 +103,7 @@ namespace DFM.MVC.Controllers
 
             model.Category.User = Current.User;
 
-             Service.Access.Category.SaveOrUpdate(model.Category);
+            Service.Access.Category.SaveOrUpdate(model.Category);
 
             return model.Category;
         }
@@ -115,14 +114,15 @@ namespace DFM.MVC.Controllers
         {
             var category =  Service.Access.Category.SelectById(id);
 
-            if (isUnauthorized(category))
-                category = null;
-            else
-                 Service.Access.Category.Disable(category);
+            if (!isUnauthorized(category))
+                Service.Access.Category.Disable(category);
+            //else
+            //    category = null;
 
-            var message = category == null
-                ? PlainText.Dictionary["CategoryNotFound"]
-                : String.Format(PlainText.Dictionary["CategoryDisabled"], category.Name);
+            // TODO: implement messages on page head
+            //var message = category == null
+            //    ? PlainText.Dictionary["CategoryNotFound"]
+            //    : String.Format(PlainText.Dictionary["CategoryDisabled"], category.Name);
 
             return RedirectToAction("Index");
         }
@@ -133,14 +133,15 @@ namespace DFM.MVC.Controllers
         {
             var category =  Service.Access.Category.SelectById(id);
 
-            if (isUnauthorized(category))
-                category = null;
-            else
-                 Service.Access.Category.Enable(category);
+            if (!isUnauthorized(category))
+                Service.Access.Category.Enable(category);
+            //else
+            //    category = null;
 
-            var message = category == null
-                ? PlainText.Dictionary["CategoryNotFound"]
-                : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
+            // TODO: implement messages on page head
+            //var message = category == null
+            //    ? PlainText.Dictionary["CategoryNotFound"]
+            //    : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
 
             return RedirectToAction("Index");
         }

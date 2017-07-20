@@ -1,4 +1,4 @@
-﻿namespace DFM.Core.Enums
+﻿namespace DFM.Entities.Enums
 {
     public enum SummaryNature
     {

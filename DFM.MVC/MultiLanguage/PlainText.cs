@@ -8,7 +8,6 @@ using System.Web;
 using Ak.DataAccess.XML;
 using Ak.Generic.Extensions;
 using Ak.MVC.Route;
-using DFM.BusinessLogic.Helpers;
 using DFM.MVC.MultiLanguage.Helpers;
 using NHibernate.Linq;
 
@@ -113,7 +112,7 @@ namespace DFM.MVC.MultiLanguage
             catch (DicException) { return null; }
         }
 
-        private String notFound(String phrase)
+        private static String notFound(String phrase)
         {
             if (HttpContext.Current.Request.Url.Host != "localhost")
                 throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, Language, phrase));

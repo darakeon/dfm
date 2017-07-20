@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.Entities;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 
 namespace DFM.Extensions
 {

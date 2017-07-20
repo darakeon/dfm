@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Email;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 
 namespace DFM.MVC.MultiLanguage.Helpers
 {

@@ -7,9 +7,9 @@ using Ak.Generic.Enums;
 using Ak.Generic.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
-using DFM.Core.Enums;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
@@ -208,11 +208,9 @@ namespace DFM.BusinessLogic.Services
             var errorMessage = String.Format("{0}MoveWrong", move.Nature);
             var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
 
-            var error = DFMCoreException.WithMessage(errorEnumValue);
-
             if (move.Nature != MoveNature.In)
             {
-                if (monthOut == null) throw error;
+                if (monthOut == null) throw DFMCoreException.WithMessage(errorEnumValue);
                 if (!monthOut.OutContains(move)) monthOut.AddOut(move);
             }
             else
@@ -222,7 +220,7 @@ namespace DFM.BusinessLogic.Services
 
             if (move.Nature != MoveNature.Out)
             {
-                if (monthIn == null) throw error;
+                if (monthIn == null) throw DFMCoreException.WithMessage(errorEnumValue);
                 if (!monthIn.InContains(move)) monthIn.AddIn(move);
             }
             else

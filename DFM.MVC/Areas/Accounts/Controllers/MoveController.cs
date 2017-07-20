@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DFM.Core;
+using DFM.Entities.Enums;
 using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.BusinessLogic.Services;
 using DFM.Entities;
-using DFM.Core.Enums;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
@@ -127,7 +125,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                     Service.Access.Move.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
+                    Service.Access.Move.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
 
                     return RedirectToAction("SeeMonth", "Report",
                             new { id = (model.Move.Out ?? model.Move.In).Url() }
@@ -168,11 +166,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             var move =  Service.Access.Move.SelectById(id);
             var reportID = (move.In ?? move.Out).Url();
 
-            if (isUnauthorized(move))
-                move = null;
-            else
-                 Service.Access.Move.Delete(move, EmailFormats.GetForMove);
+            if (!isUnauthorized(move))
+                Service.Access.Move.Delete(move, EmailFormats.GetForMove);
+            //else
+            //    move = null;
 
+            // TODO: implement messages on page head
             //var message = move == null
             //    ? PlainText.Dictionary["MoveNotFound"]
             //    : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);

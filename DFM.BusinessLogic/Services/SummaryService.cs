@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using DFM.Extensions;
-using DFM.Core.Enums;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 

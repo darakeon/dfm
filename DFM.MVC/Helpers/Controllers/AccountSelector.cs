@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Entities;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 using DFM.Repositories;
 
 namespace DFM.MVC.Helpers.Controllers

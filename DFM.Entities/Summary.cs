@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Entities.Bases;
-using DFM.Core.Enums;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {

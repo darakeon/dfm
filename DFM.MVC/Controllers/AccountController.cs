@@ -78,7 +78,7 @@ namespace DFM.MVC.Controllers
                 try
                 {
                     model.Account.User = Current.User;
-                     Service.Access.Account.SaveOrUpdate(model.Account);
+                    Service.Access.Account.SaveOrUpdate(model.Account);
                 }
                 catch (DFMCoreException e)
                 {
@@ -100,22 +100,23 @@ namespace DFM.MVC.Controllers
         {
             var account =  Service.Access.Account.SelectById(id);
 
-            String message;
+            // TODO: implement messages on page head
+            //String message;
 
             try
             {
-                if (isUnauthorized(account))
-                    account = null;
-                else
-                     Service.Access.Account.Close(account);
+                if (!isUnauthorized(account))
+                    Service.Access.Account.Close(account);
+                //else
+                //    account = null;
 
-                message = account == null
-                    ? PlainText.Dictionary["AccountNotFound"]
-                    : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
+                //message = account == null
+                //    ? PlainText.Dictionary["AccountNotFound"]
+                //    : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
             }
-            catch (DFMCoreException e)
+            catch (DFMCoreException)// e)
             {
-                message = PlainText.Dictionary[e.Message];
+                //message = PlainText.Dictionary[e.Message];
             }
 
             return RedirectToAction("Index");
@@ -127,22 +128,23 @@ namespace DFM.MVC.Controllers
         {
             var account =  Service.Access.Account.SelectById(id);
 
-            String message;
+            // TODO: implement messages on page head
+            //String message;
 
             try
             {
-                if (isUnauthorized(account))
-                    account = null;
-                else
-                     Service.Access.Account.Delete(account);
+                if (!isUnauthorized(account))
+                    Service.Access.Account.Delete(account);
+                //else
+                //    account = null;
 
-                message = account == null
-                    ? PlainText.Dictionary["AccountNotFound"]
-                    : String.Format(PlainText.Dictionary["AccountDeleted"], account.Name);
+                //message = account == null
+                //    ? PlainText.Dictionary["AccountNotFound"]
+                //    : String.Format(PlainText.Dictionary["AccountDeleted"], account.Name);
             }
-            catch (DFMCoreException e)
+            catch (DFMCoreException)// e)
             {
-                message = PlainText.Dictionary[e.Message];
+                //message = PlainText.Dictionary[e.Message];
             }
 
 
