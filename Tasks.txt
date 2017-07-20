@@ -126,10 +126,11 @@ VERSÃO 1.0.2.1
 				Fornecer detalhes do erro no e-mail de report
 				Alterar interface externa para neutra
 				Disponibilizar cores para interfaces
+				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 
 ======================================================================================================
 
-VERSÃO 1.0.2.3
+VERSÃO 1.0.2.2
 
 				Proteção por usuário no Core (verificar active também)
 				importador de Excel
