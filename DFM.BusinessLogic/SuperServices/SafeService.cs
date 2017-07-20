@@ -31,17 +31,29 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void sendPasswordReset(User user)
         {
-            createAndSend(user, SecurityAction.PasswordReset);
+            createAndSendToken(user, SecurityAction.PasswordReset);
         }
       
         
         public User SaveUserAndSendVerify(User user)
         {
-            user = userService.SaveOrUpdate(user);
+            var transaction = userService.BeginTransaction();
 
-            sendUserVerify(user);
+            try
+            {
+                user = userService.SaveOrUpdate(user);
 
-            return user;
+                sendUserVerify(user);
+
+                userService.CommitTransaction(transaction);
+
+                return user;
+            }
+            catch
+            {
+                userService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
         public void SendUserVerify(String email)
@@ -56,11 +68,11 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void sendUserVerify(User user)
         {
-            createAndSend(user, SecurityAction.UserVerification);
+            createAndSendToken(user, SecurityAction.UserVerification);
         }
 
 
-        private void createAndSend(User user, SecurityAction action)
+        private void createAndSendToken(User user, SecurityAction action)
         {
             var security = new Security { Action = action, User = user };
 

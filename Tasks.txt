@@ -128,8 +128,15 @@ VERSÃO 1.0.2.2
 
 18/03/2012			BDD
 				Selenium
+				Colocar try-catchs de Commit/Rollback nos superservices
+				Colocar dados de Post no e-mail de erro
 				Reorganização da ordem das funções nos serviços
 				Refactor de limpeza geral
+
+======================================================================================================
+
+VERSÃO 1.0.2.3
+
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
 				Retornar mensagens de erro já traduzidas (do core)
@@ -146,7 +153,7 @@ VERSÃO 1.0.2.2
 
 ======================================================================================================
 
-VERSÃO 1.0.2.3
+VERSÃO 1.0.3.0
 
 				importador de Excel
 				importador de XML
@@ -164,7 +171,7 @@ VERSÃO 1.0.2.3
 
 ======================================================================================================
 
-VERSÃO 1.0.3.0
+VERSÃO 1.0.4.0
 
 				Possibilitar Apelido e Url escolhida para a conta
 				Rever layout (relógio de parede para agendamento)
