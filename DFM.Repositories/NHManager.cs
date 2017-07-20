@@ -65,7 +65,7 @@ namespace DFM.Repositories
 
         private static String key
         {
-            get { return Identity.GetCookieGuid("NHManager"); }
+            get { return Identity.GetKeyFor("NHManager"); }
         }
 
 

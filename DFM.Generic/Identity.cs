@@ -5,7 +5,7 @@ namespace DFM.Generic
 {
     public class Identity
     {
-        public static String GetCookieGuid(String name)
+        public static String GetKeyFor(String name)
         {
             if (cookies[name] == null)
             {
