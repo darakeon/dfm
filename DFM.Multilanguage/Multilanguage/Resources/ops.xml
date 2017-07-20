@@ -10,6 +10,7 @@
     <Internal text="Ops!" />
     <InternalMessageSent text="An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible." />
     <InternalMessageNotSent text="An internal error ocurred. Please, contact us." />
+    <CommunicationError text="An internal error ocurred. Please, contact us." />
   </en-US>
   <pt-BR>
     <Unknown text="Ops..." />
@@ -21,5 +22,6 @@
     <Internal text="Ops!" />
     <InternalMessageSent text="Ocorreu um erro interno. Um e-mail foi enviado, resolveremos assim que possível." />
     <InternalMessageNotSent text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
+    <CommunicationError text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
   </pt-BR>
 </ops>

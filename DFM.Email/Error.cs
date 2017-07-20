@@ -10,18 +10,18 @@ namespace DFM.Email
         /// Send a report e-mail with errors occured
         /// </summary>
         /// <param name="exceptions">Errors occured</param>
+        /// <param name="url">Current url</param>
+        /// <param name="user">Name of current user logged</param>
         /// <returns>Status of e-mail</returns>
-        public static Status SendReport(Exception[] exceptions)
+        public static Status SendReport(Exception[] exceptions, String url, String user)
         {
             if (exceptions == null)
                 return Status.Empty;
 
             try
             {
-                var body = String.Join("<br />",
-                        exceptions.Select(format)
-                    );
-
+                var errors = String.Join("<br /><br />", exceptions.Select(format));
+                var body = String.Format("<h4>{0} at {1}</h4>{2}", user, url, errors);
 
                 new Sender()
                     .ToDefault()

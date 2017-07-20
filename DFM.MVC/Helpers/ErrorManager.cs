@@ -9,7 +9,12 @@ namespace DFM.MVC.Helpers
     {
         public static void SendEmail()
         {
-            EmailSent = Error.SendReport(HttpContext.Current.AllErrors);
+            var current = HttpContext.Current;
+            var user = current.User.Identity;
+
+            EmailSent = Error.SendReport(current.AllErrors
+                , current.Request.Url.ToString()
+                , user.IsAuthenticated ? user.Name : "Off");
 
         }
 
@@ -50,7 +55,7 @@ namespace DFM.MVC.Helpers
             get
             {
                 // ReSharper disable PossibleNullReferenceException
-                return HttpContext.Current.Request.Cookies["ASP.NET_SessionId"].Value;
+                return HttpContext.Current.Request.Cookies[0].Value;
                 // ReSharper restore PossibleNullReferenceException
             }
         }
