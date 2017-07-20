@@ -82,7 +82,7 @@ VERSION 1.0.0.4
 23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 08/11	08/11	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 09/11	09/11	Substituir links por desenhos na lista de Categorias
-09/11		Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
+09/11	22/11	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
 09/11	09/11	Verificar se recuperação de senha está desativando usuário
 11/11	11/11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
 
@@ -93,19 +93,30 @@ VERSION 1.0.1.0
 24/10	25/10	Tentativa de passar Log4Net / Elmah para MySql: FAIL
 25/10	25/10	Proteção para log do Elmah
 25/10	25/10	Erros tratados
+25/11		Testes e Publicação
 
 ======================================================================================================
 
 VERSION 1.0.2.0
 		BDD
-		/ Selenium
+		Selenium
 		Refactor Geral
 		
 		Proteção por usuário no Core (verificar active também)
-		importador/exportador de XML
-		importador/exportador de Excel
-		importador/exportador de Money
-		importador/exportador de CSV
+
+23/11		importador de Excel
+		importador de XML
+		importador de Money
+23/11		importador de CSV
+23/11		gravador de importação
+		transformador de importação
+
+		transformador de exportação
+		gravador de exportação
+		exportador de Excel
+		exportador de XML
+		exportador de Money
+		exportador de CSV
 
 		Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 

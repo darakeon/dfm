@@ -25,38 +25,24 @@ namespace DFM.Core.Database
             ajustOldSummaries(move.ID);
 
             placeAccountsInMove(move, accountOut, accountIn);
-            move = trySaveOrUpdate(move);
+            move = saveOrUpdate(move);
 
             ajustSummaries(move);
 
             sendEmail(move, getterForMove, action);
 
+            foreach (var detail in move.DetailList)
+            {
+                DetailData.SaveOrUpdate(detail);
+            }
+
             return move;
         }
 
-        private static Move trySaveOrUpdate(Move move)
+        private static Move saveOrUpdate(Move move)
         {
             //Keep inverted, weird errors happen if make in the right order
-            try { return SaveOrUpdate(move, validate, complete); }
-            catch (Exception e) { return testIfIntermittent(e); }
-        }
-
-        //TODO: I shouldn't do it
-        private static Move testIfIntermittent(Exception e)
-        {
-            if (e.InnerException != null && isForeignKeyIntermittentException(e.InnerException))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ConnectionError);
-
-            throw e;
-        }
-
-        private static Boolean isForeignKeyIntermittentException(Exception exception)
-        {
-            const string intermittentError = 
-                "Cannot add or update a child row: a foreign key constraint fails";
-
-            return exception != null &&
-                exception.Message.StartsWith(intermittentError);
+            return SaveOrUpdate(move, validate, complete);
         }
 
 

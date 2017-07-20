@@ -11,10 +11,10 @@ namespace DFM.Core.Mappings
             mapping.Not.LazyLoad();
 
             mapping.HasMany(m => m.InList)
-                .Cascade.Delete();
+                .Cascade.None();
 
             mapping.HasMany(m => m.OutList)
-                .Cascade.Delete();
+                .Cascade.None();
 
             mapping.References(m => m.Year)
                 .Cascade.SaveUpdate();
