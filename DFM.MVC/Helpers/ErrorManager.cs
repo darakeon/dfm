@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using DFM.Email;
+using DFM.Generic;
 
 namespace DFM.MVC.Helpers
 {
@@ -12,6 +13,7 @@ namespace DFM.MVC.Helpers
             var current = HttpContext.Current;
             var user = current.User.Identity;
 
+            // TODO: Use Current here (when its in separate project)
             EmailSent = Error.SendReport(current.AllErrors
                 , current.Request.Url.ToString()
                 , user.IsAuthenticated ? user.Name : "Off");
@@ -52,14 +54,8 @@ namespace DFM.MVC.Helpers
 
         private static String key
         {
-            get
-            {
-                // ReSharper disable PossibleNullReferenceException
-                return HttpContext.Current.Request.Cookies[0].Value;
-                // ReSharper restore PossibleNullReferenceException
-            }
+            get { return Identity.GetCookieGuid("ErrorManager"); }
         }
-
 
 
     }

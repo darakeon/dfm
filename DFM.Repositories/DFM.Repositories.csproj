@@ -34,7 +34,6 @@
     <Compile Include="BaseData.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="DFMRepositoryException.cs" />
-    <Compile Include="HttpHelper.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\BaseMoveMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Repositories.Mappings;
 using NHibernate;
+using DFM.Generic;
 
 namespace DFM.Repositories
 {
@@ -18,15 +18,15 @@ namespace DFM.Repositories
         {
             get
             {
-                if (!sessionList.ContainsKey(HttpHelper.UserKey))
+                if (!sessionList.ContainsKey(key))
                 {
                     var session = SessionBuilder.Open();
 
-                    if (!sessionList.ContainsKey(HttpHelper.UserKey))
-                        sessionList.Add(HttpHelper.UserKey, session);
+                    if (!sessionList.ContainsKey(key))
+                        sessionList.Add(key, session);
                 }
 
-                return sessionList[HttpHelper.UserKey];
+                return sessionList[key];
             }
         }
 
@@ -39,8 +39,6 @@ namespace DFM.Repositories
                                   EntityBase = typeof (BaseMove)
                               };
 
-            var server = ConfigurationManager.AppSettings["server"];
-
             SessionBuilder.Start(mapInfo);
         }
 
@@ -48,14 +46,14 @@ namespace DFM.Repositories
         {
             SessionBuilder.Error(Session);
 
-            sessionList.Remove(HttpHelper.UserKey);
+            sessionList.Remove(key);
         }
 
         public static void Close()
         {
             SessionBuilder.Close(Session);
 
-            sessionList.Remove(HttpHelper.UserKey);
+            sessionList.Remove(key);
         }
 
         public static void End()
@@ -63,6 +61,12 @@ namespace DFM.Repositories
             SessionBuilder.End();
         }
 
+
+
+        private static String key
+        {
+            get { return Identity.GetCookieGuid("NHManager"); }
+        }
 
 
     }

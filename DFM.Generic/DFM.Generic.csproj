@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="ConvertToOtherChild.cs" />
     <Compile Include="DFMException.cs" />
+    <Compile Include="Identity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
@@ -42,6 +43,7 @@
       <HintPath>..\Library\Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
