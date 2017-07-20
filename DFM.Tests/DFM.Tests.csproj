@@ -31,10 +31,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="A.Safe.feature.cs">
+    <Compile Include="A.Safe\A1.ActivateUser.feature.cs">
+      <DependentUpon>A1.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>A.Safe.feature</DependentUpon>
+    </Compile>
+    <Compile Include="A.Safe\A2.ValidateAndGetUser.feature.cs">
+      <DependentUpon>A2.ValidateAndGetUser.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A3.SelectUserByEmail.feature.cs">
+      <DependentUpon>A3.SelectUserByEmail.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A4.SendUserVerify.feature.cs">
+      <DependentUpon>A4.SendUserVerify.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A5.SendPasswordReset.feature.cs">
+      <DependentUpon>A5.SendPasswordReset.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A6.PasswordReset.feature.cs">
+      <DependentUpon>A6.PasswordReset.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A7.TestSecurityToken.feature.cs">
+      <DependentUpon>A7.TestSecurityToken.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A8.Deactivate.feature.cs">
+      <DependentUpon>A8.Deactivate.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="A.Safe\A0.SaveUserAndSendVerify.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A0.SaveUserAndSendVerify.feature</DependentUpon>
     </Compile>
     <Compile Include="B.Admin.feature.cs">
       <AutoGen>True</AutoGen>
@@ -75,9 +115,41 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>D.Robot.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe.feature">
+    <None Include="A.Safe\A1.ActivateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A.Safe.feature.cs</LastGenOutput>
+      <LastGenOutput>A1.ActivateUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A2.ValidateAndGetUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A2.ValidateAndGetUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A3.SelectUserByEmail.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A3.SelectUserByEmail.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A4.SendUserVerify.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A4.SendUserVerify.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A5.SendPasswordReset.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A5.SendPasswordReset.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A6.PasswordReset.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A6.PasswordReset.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A7.TestSecurityToken.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A7.TestSecurityToken.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A8.Deactivate.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A8.Deactivate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="A.Safe\A0.SaveUserAndSendVerify.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>A0.SaveUserAndSendVerify.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
