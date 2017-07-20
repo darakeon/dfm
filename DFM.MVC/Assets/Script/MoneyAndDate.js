@@ -11,15 +11,17 @@ function AjustMoney(discriminator) {
         var dotPosition = this.value.indexOf('.');
         var numberSize = this.value.length;
 
+        var letZero = $(this).hasClass('letZero');
+
         if (this.value == '')
             return;
 
-        if (this.value == '0')
+        if (this.value == '0' && !letZero)
             this.value = '';
-        
+
         else if (dotPosition == -1)
             this.value += '.00';
-        
+
         else if (dotPosition + 3 > numberSize)
             this.value += '0';
     });

@@ -18,7 +18,7 @@ namespace DFM.Core.Database
     {
 		private MoveData() { }
 
-        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format format)
+        public static Move SaveOrUpdate(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
             var action = move.ID == 0 ? "create_move" : "edit";
 
@@ -29,7 +29,7 @@ namespace DFM.Core.Database
 
             ajustSummaries(move);
 
-            sendEmail(move, format, action);
+            sendEmail(move, getterForMove, action);
 
             return move;
         }
@@ -251,14 +251,14 @@ namespace DFM.Core.Database
 
 
 
-        public static void Delete(Move move, Format format)
+        public static void Delete(Move move, Format.GetterForMove getterForMove)
         {
             removeFromMonth(move);
             ajustSummaries(move);
 
             Delete(move);
 
-            sendEmail(move, format, "delete");
+            sendEmail(move, getterForMove, "delete");
         }
 
         private static void removeFromMonth(Move move)
@@ -280,12 +280,14 @@ namespace DFM.Core.Database
 
 
 
-        private static void sendEmail(Move move, Format format, String action)
+        private static void sendEmail(Move move, Format.GetterForMove getterForMove, String action)
         {
             if (!move.User().SendMoveEmail) return;
 
             var accountInName = accountName(move.AccountIn());
             var accountOutName = accountName(move.AccountOut());
+
+            var format = getterForMove(move.Nature);
 
 
             var dic = new Dictionary<String, String>
@@ -303,12 +305,16 @@ namespace DFM.Core.Database
 
             var fileContent =
                 format.Layout.Format(dic);
-                    
-            new Sender()
-                .To(move.User().Email)
-                .Subject(format.Subject)
-                .Body(fileContent)
-                .Send();
+
+            try
+            {
+                new Sender()
+                    .To(move.User().Email)
+                    .Subject(format.Subject)
+                    .Body(fileContent)
+                    .Send();
+            }
+            catch (DFMCoreException) { }
         }
 
         private static String detailsHTML(Move move)

@@ -11,6 +11,7 @@ using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.MultiLanguage;
+using DFM.MVC.MultiLanguage.Helpers;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -124,7 +125,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    MoveData.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn);
+                    MoveData.SaveOrUpdate(model.Move, selector.AccountOut, selector.AccountIn, EmailFormats.GetForMove);
 
                     return RedirectToAction("SeeMonth", "Report",
                             new { id = (model.Move.Out ?? model.Move.In).Url() }
@@ -168,7 +169,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (isUnauthorized(move))
                 move = null;
             else
-                MoveData.Delete(move);
+                MoveData.Delete(move, EmailFormats.GetForMove);
 
             //var message = move == null
             //    ? PlainText.Dictionary["MoveNotFound"]

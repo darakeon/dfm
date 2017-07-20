@@ -184,6 +184,7 @@
     <Compile Include="Models\TokenReceivedModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
+    <Compile Include="MultiLanguage\Helpers\EmailFormats.cs" />
     <Compile Include="MultiLanguage\Helpers\EmailLayout.cs" />
     <Compile Include="MultiLanguage\Helpers\DicException.cs" />
     <Compile Include="MultiLanguage\Helpers\DicList.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Assets\Script\ImageLink.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Script\Pages\AccountCreateEdit.js" />
     <Content Include="Assets\Script\Starter.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

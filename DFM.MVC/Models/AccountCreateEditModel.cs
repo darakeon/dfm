@@ -22,5 +22,30 @@ namespace DFM.MVC.Models
             set { Account.Name = value; }
         }
 
+
+        public Boolean HasLimit
+        {
+            get { return Account.RedLimit != null || Account.YellowLimit != null; }
+            set { setLimit(value); }
+        }
+
+
+        private void setLimit(Boolean hasLimit)
+        {
+            if (hasLimit)
+            {
+                if (Account.RedLimit == null)
+                    Account.RedLimit = 0;
+                    
+                if (Account.YellowLimit == null)
+                    Account.YellowLimit = 0;
+            }
+            else
+            {
+                Account.RedLimit = null;
+                Account.YellowLimit = null;
+            }
+        }
+
     }
 }

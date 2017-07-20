@@ -8,6 +8,6 @@ div.HalfScreen label {
 	display: block;
 }
 
-#Remember label, #TopRightDiv label {
+#Remember label, #TopRightDiv label, .HalfScreen .radio label {
 	display: inline;
 }

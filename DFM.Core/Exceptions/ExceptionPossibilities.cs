@@ -19,6 +19,7 @@
         MoveCircularTransfer,
         MoveFutureNotScheduled,
         OutMoveWrong,
+        RedLimitAboveYellowLimit,
         ScheduleFrequencyNotRecognized,
         SummaryNatureNotFound,
         TooLargeData,
@@ -26,7 +27,6 @@
         UserAlreadyExists,
         UserInvalidEmail,
         WrongUserEmail,
-        YellowLimitUnderRedLimit,
     }
 
 }

@@ -40,8 +40,8 @@ namespace DFM.Core.Database
             if (account.RedLimit == null || account.YellowLimit == null)
                 return;
 
-            if (account.RedLimit >= account.YellowLimit)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.YellowLimitUnderRedLimit);
+            if (account.RedLimit > account.YellowLimit)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.RedLimitAboveYellowLimit);
         }
 
 

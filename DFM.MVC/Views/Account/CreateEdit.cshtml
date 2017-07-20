@@ -6,6 +6,10 @@
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
+@section HtmlHeadJs { 
+    <script src="/Assets/Script/Pages/AccountCreateEdit.js" type="text/javascript"></script>
+}
+
 <div class="HalfScreen">
     @using (Html.BeginForm()) {
 
@@ -17,14 +21,19 @@
             <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>
 
+        <p class="radio">
+            @Html.CheckBoxFor(m => m.HasLimit)
+            @Html.LabelFor(m => m.HasLimit, PlainText.Dictionary["AccountHasLimit"])
+        </p>
+        
         <p>
             @Html.LabelFor(m => m.Account.RedLimit, PlainText.Dictionary["RedLimit"] + " #")
-            @Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money" })
+            @Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money letZero" })
         </p>
 
         <p>
             @Html.LabelFor(m => m.Account.YellowLimit, PlainText.Dictionary["YellowLimit"] + " #")
-            @Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money" })
+            @Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money letZero" })
         </p>
 
         <p>

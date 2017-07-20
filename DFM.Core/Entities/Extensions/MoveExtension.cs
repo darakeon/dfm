@@ -27,13 +27,17 @@ namespace DFM.Core.Entities.Extensions
 
         internal static Account AccountIn(this Move move)
         {
-            return move.In.Year.Account;
+            return getAccount(move.In);
         }
-
 
         internal static Account AccountOut(this Move move)
         {
-            return move.Out.Year.Account;
+            return getAccount(move.Out);
+        }
+
+        private static Account getAccount(Month month)
+        {
+            return month == null ? null : month.Year.Account;
         }
 
 

@@ -1,12 +1,14 @@
-﻿using DFM.Core.Entities;
+﻿using DFM.Core.Email;
+using DFM.Core.Entities;
 
 namespace DFM.Core.Robots
 {
     public class MainRobot
     {
-        public static void Run(User user)
+        public static void Run(User user, Format.GetterForMove formatGetter)
         {
-            ScheduleRunner.Run(user);
+            new ScheduleRunner(user, formatGetter).Run();
         }
+
     }
 }

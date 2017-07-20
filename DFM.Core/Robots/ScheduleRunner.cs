@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.Core.Database;
+using DFM.Core.Email;
 using DFM.Core.Entities;
 using DFM.Core.Entities.Extensions;
 
@@ -7,22 +9,33 @@ namespace DFM.Core.Robots
 {
     internal class ScheduleRunner
     {
-        private static Account accountIn { get; set; }
-        private static Account accountOut { get; set; }
-        
-        public static void Run(User user)
+        private User user { get; set; }
+        private Account accountIn { get; set; }
+        private Account accountOut { get; set; }
+        private event Format.GetterForMove formatGetter;
+
+
+        public ScheduleRunner(User user, Format.GetterForMove formatGetter)
+        {
+            this.user = user;
+            this.formatGetter += formatGetter;
+        }
+
+        public void Run()
         {
             var scheduleList = ScheduleData.GetScheduleToRun(user);
 
             foreach (var schedule in scheduleList)
             {
-                CreateMovesUntilNow(schedule);
+                createMovesUntilNow(schedule);
             }
         }
 
 
-        internal static void CreateMovesUntilNow(Schedule schedule)
+        private void createMovesUntilNow(Schedule schedule)
         {
+            setAccounts(schedule);
+
             while (schedule.CanRunNow())
             {
                 var move = getNextMove(schedule);
@@ -37,6 +50,18 @@ namespace DFM.Core.Robots
         }
 
 
+        private void setAccounts(Schedule schedule)
+        {
+            var lastMove = schedule.MoveList.LastOrDefault();
+
+            if (lastMove == null)
+                return;
+
+            accountIn = lastMove.AccountIn();
+            accountOut = lastMove.AccountOut();
+        }
+
+
         private static Move getNextMove(Schedule schedule)
         {
             var lastMove = schedule.MoveList.LastOrDefault();
@@ -47,10 +72,7 @@ namespace DFM.Core.Robots
                 ScheduleData.SaveOrUpdate(schedule);
                 return null;
             }
-            
 
-            accountIn = getAccount(lastMove.In);
-            accountOut = getAccount(lastMove.Out);
 
             if (schedule.IsFirstMove())
                 return lastMove;
@@ -66,11 +88,6 @@ namespace DFM.Core.Robots
         }
 
 
-        private static Account getAccount(Month month)
-        {
-            return month == null ? null : month.Year.Account;
-        }
-
         
         private static void ajustSchedule(Schedule schedule, Move move)
         {
@@ -84,9 +101,9 @@ namespace DFM.Core.Robots
         }
 
 
-        private static void save(Move newMove)
+        private void save(Move newMove)
         {
-            MoveData.SaveOrUpdate(newMove, accountOut, accountIn);
+            MoveData.SaveOrUpdate(newMove, accountOut, accountIn, formatGetter);
         }
 
     }

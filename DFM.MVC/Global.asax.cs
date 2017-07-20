@@ -10,6 +10,7 @@ using DFM.Core.Robots;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.MultiLanguage;
+using DFM.MVC.MultiLanguage.Helpers;
 using log4net.Config;
 
 namespace DFM.MVC
@@ -83,7 +84,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User);
+                MainRobot.Run(Current.User, EmailFormats.GetForMove);
 
             specifyLanguage();
         }

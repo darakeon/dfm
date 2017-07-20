@@ -26,6 +26,8 @@
     <MoveFutureNotScheduled text="To create future Moves use Schedule." />
     <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
     <OutOfDateSummary text="Report out of date. Contact support." />
+    <RedLimitAboveYellowLimit text="Yellow Limit must be greater or equal to Red Limit." />
+    <RetypeWrong text="Confirm password must be equal to Password." />
     <ScheduleFrequencyNotRecognized text="Schedule frequency not recognized." />
     <SummaryAmbiguousInMonth text="Error in monthly summary. Contact us." />
     <SummaryAmbiguousInYear text="Error in yearly summary. Contact us." />
@@ -36,8 +38,6 @@
     <UserInvalidEmail text="User e-mail is invalid." />
     <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
-    <YellowLimitUnderRedLimit text="Yellow Limit must be above Red Limit." />
-    <RetypeWrong text="Confirm password must be equal to Password." />
   </en-US>
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
@@ -65,6 +65,8 @@
     <MoveFutureNotScheduled text="Para criar Movimentações futuras, use o Agendamento." />
     <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
     <OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
+    <RedLimitAboveYellowLimit text="O Sinal Amarelo deve ter um valor maior ou igual ao Sinal Vermelho." />
+    <RetypeWrong text="A confirmação deve ser igual à senha." />
     <ScheduleFrequencyNotRecognized text="Frequência de agendador desconhecida." />
     <SummaryAmbiguousInMonth text="Erro no resumo mensal. Entre em contato com o suporte." />
     <SummaryAmbiguousInYear text="Erro no resumo anual. Entre em contato com o suporte." />
@@ -75,7 +77,5 @@
     <UserInvalidEmail text="E-mail inválido." />
     <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
-    <YellowLimitUnderRedLimit text="O Sinal Amarelo deve ter um valor maior que o Sinal Vermelho." />
-    <RetypeWrong text="A confirmação deve ser igual à senha." />
   </pt-BR>
 </error>
