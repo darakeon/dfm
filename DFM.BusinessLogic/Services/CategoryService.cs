@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 
@@ -7,7 +8,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class CategoryService : BaseService<Category>
     {
-        internal CategoryService(IRepository repository) : base(repository) { }
+        internal CategoryService(IRepository<Category> repository) : base(repository) { }
 
         internal Category SaveOrUpdate(Category category)
         {

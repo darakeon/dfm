@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
@@ -8,8 +9,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class AccountService : BaseService<Account>
     {
-        internal AccountService(
-            IRepository repository) : base(repository) { }
+        internal AccountService(IRepository<Account> repository) : base(repository) { }
 
         internal Account SaveOrUpdate(Account account)
         {

@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Create");
 
-            var move = Service.Access.Admin.SelectMoveById(id.Value);
+            var move = Service.Access.Money.SelectMoveById(id.Value);
 
             if (isUnauthorized(move))
                 return RedirectToAction("Create");
@@ -82,7 +82,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
-            var oldMove =  Service.Access.Admin.SelectMoveById(id);
+            var oldMove =  Service.Access.Money.SelectMoveById(id);
 
             if (isUnauthorized(oldMove))
                 return RedirectToAction("Create");
@@ -146,7 +146,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
         {
-            var detail =  Service.Access.Admin.SelectDetailById(id);
+            var detail =  Service.Access.Money.SelectDetailById(id);
 
             var model = new MoveAddDetailModel(position, detail);
 
@@ -163,7 +163,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var move =  Service.Access.Admin.SelectMoveById(id);
+            var move =  Service.Access.Money.SelectMoveById(id);
             var reportID = (move.In ?? move.Out).Url();
 
             if (!isUnauthorized(move))

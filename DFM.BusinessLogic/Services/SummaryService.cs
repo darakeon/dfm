@@ -1,4 +1,5 @@
-﻿using DFM.Entities.Bases;
+﻿using DFM.BusinessLogic.Bases;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
@@ -7,7 +8,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class SummaryService : BaseService<Summary>
     {
-        internal SummaryService(IRepository repository) : base(repository) { }
+        internal SummaryService(IRepository<Summary> repository) : base(repository) { }
 
         private void saveOrUpdate(Summary summary)
         {

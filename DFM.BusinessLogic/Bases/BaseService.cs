@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using DFM.Entities.Bases;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Bases
 {
-    public class BaseService<T>
-        where T: IEntity
+    public class BaseService<T> where T : IEntity
     {
-        private readonly IRepository repository;
+        private readonly IRepository<T> repository;
 
-        internal BaseService(IRepository repository)
+        protected BaseService(IRepository<T> repository)
         {
             this.repository = repository;
         }
@@ -51,7 +50,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions)
+        protected T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions)
         {
             return repository.SaveOrUpdateInstantly(entity, actions);
         }
@@ -62,20 +61,5 @@ namespace DFM.BusinessLogic.Services
             return repository.SelectOldById(id);
         }
 
-
-
-        public interface IRepository
-        {
-            T SaveOrUpdate(T entity, params DelegateAction[] actions);
-            T SelectById(Int32 id);
-            T SingleOrDefault(Expression<Func<T, Boolean>> func);
-            IList<T> List(Expression<Func<T, Boolean>> func);
-            void Delete(T entity);
-            T SaveOrUpdateInstantly(T entity, params DelegateAction[] actions);
-            T SelectOldById(Int32 id);
-        }
-
-
     }
-
 }

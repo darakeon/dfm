@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Extensions;
 
@@ -8,7 +9,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class YearService : BaseService<Year>
     {
-        internal YearService(IRepository repository) : base(repository) { }
+        internal YearService(IRepository<Year> repository) : base(repository) { }
 
         internal Year GetOrCreateYear(Int16 year, Account account, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
         {

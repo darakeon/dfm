@@ -72,7 +72,7 @@ namespace DFM.MVC.Controllers
             if (action != SecurityAction.UserVerification)
                 return invalidTokenAction();
 
-            Service.Access.Safety.UserActivate(id);
+            Service.Access.Safety.ActivateUser(id);
 
             return View();
         }

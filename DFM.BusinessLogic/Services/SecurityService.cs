@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ak.Generic.Extensions;
+using DFM.BusinessLogic.Bases;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -12,25 +13,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class SecurityService : BaseService<Security>
     {
-        internal SecurityService(IRepository repository) : base(repository) { }
-
-
-
-
-        internal void SendUserVerify(User user, Format format)
-        {
-            CreateAndSend(user, SecurityAction.UserVerification, format);
-        }
-
-
-        internal void CreateAndSend(User user, SecurityAction action, Format format)
-        {
-            var security = new Security { Action = action, User = user };
-
-            security = SaveOrUpdate(security);
-
-            sendEmail(security, format);
-        }
+        internal SecurityService(IRepository<Security> repository) : base(repository) { }
 
 
 
@@ -39,12 +22,10 @@ namespace DFM.BusinessLogic.Services
             return SaveOrUpdate(security, complete);
         }
 
-
-
         private static void complete(Security security)
         {
             if (security.ID != 0) return;
-            
+
             security.Active = true;
             security.Expire = DateTime.Now.AddMonths(1);
             security.CreateToken();
@@ -52,9 +33,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-
-
-        private void sendEmail(Security security, Format format)
+        internal void SendEmail(Security security, Format format)
         {
             var dic = new Dictionary<String, String>
                             {
@@ -83,6 +62,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
+
         internal Security SelectByToken(String token)
         {
             return SingleOrDefault(
@@ -108,9 +88,6 @@ namespace DFM.BusinessLogic.Services
 
             SaveOrUpdate(security);
         }
-
-
-
 
 
 

@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <report>
-  <en-US>
-    <NoMonthMoves text="There's no Moves for this Month." />
-    <NoYearMoves text="There's no Moves for this Year." />
-    <ConfirmDeleteMove text="Do you really want to DELETE Move '{0}'?" />
-    <ShortDateFormat text="{1} {0}" />
-    <Month text="Month" />
-    <Summary text="Summary" />
-    <Go text="Ir" />
-  </en-US>
-  <pt-BR>
-    <NoMonthMoves text="Não há Movimentações para este mês." />
-    <NoYearMoves text="Não há Movimentações para este ano." />
-    <ConfirmDeleteMove text="Realmente deseja APAGAR a Movimentação '{0}'?" />
-    <ShortDateFormat text="{0} de {1}" />
-    <Month text="Mês" />
-    <Summary text="Resumo" />
-    <Go text="Go" />
-  </pt-BR>
+	<en-US>
+		<NoMonthMoves text="There's no Moves for this Month." />
+		<NoYearMoves text="There's no Moves for this Year." />
+		<ConfirmDeleteMove text="Do you really want to DELETE Move '{0}'?" />
+		<ShortDateFormat text="{1} {0}" />
+		<Month text="Month" />
+		<Summary text="Summary" />
+		<Go text="Ir" />
+	</en-US>
+	<pt-BR>
+		<NoMonthMoves text="Não há Movimentações para este mês." />
+		<NoYearMoves text="Não há Movimentações para este ano." />
+		<ConfirmDeleteMove text="Realmente deseja APAGAR a Movimentação '{0}'?" />
+		<ShortDateFormat text="{0} de {1}" />
+		<Month text="Mês" />
+		<Summary text="Resumo" />
+		<Go text="Go" />
+	</pt-BR>
 </report>

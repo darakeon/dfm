@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Ak.Generic.Enums;
 using Ak.Generic.Extensions;
+using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
@@ -15,7 +16,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class MoveService : BaseService<Move>
     {
-        internal MoveService(IRepository repository) : base(repository) { }
+        internal MoveService(IRepository<Move> repository) : base(repository) { }
 
         
 

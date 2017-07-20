@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Ak.DataAccess.NHibernate;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.BusinessLogic.Exceptions;
 using NHibernate;
@@ -10,7 +10,7 @@ using NHibernate.Criterion;
 
 namespace DFM.Repositories
 {
-    public class BaseData<T> : BaseService<T>.IRepository where T : class, IEntity
+    public class BaseData<T> : IRepository<T> where T : class, IEntity
     {
         protected static ISession Session
         {

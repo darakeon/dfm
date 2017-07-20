@@ -19,13 +19,6 @@ namespace DFM.Extensions
 
 
 
-
-        public static void Deactivate(this Schedule schedule)
-        {
-            schedule.Active = false;
-        }
-
-
         public static Boolean IsFirstMove(this Schedule schedule)
         {
             return schedule.Begin == schedule.Next;

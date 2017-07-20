@@ -15,6 +15,11 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
+        public void SaveOrUpdateSchedule(Schedule schedule)
+        {
+            scheduleService.SaveOrUpdate(schedule);
+        }
+
         public IList<Schedule> GetScheduleToRun(User user)
         {
             return scheduleService.GetScheduleToRun(user);

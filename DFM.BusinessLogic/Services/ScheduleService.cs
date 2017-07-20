@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Extensions;
@@ -9,7 +10,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class ScheduleService : BaseService<Schedule>
     {
-        internal ScheduleService(IRepository repository) : base(repository) { }
+        internal ScheduleService(IRepository<Schedule> repository) : base(repository) { }
 
         internal void SaveOrUpdate(Schedule schedule)
         {
@@ -18,12 +19,30 @@ namespace DFM.BusinessLogic.Services
 
         internal IList<Schedule> GetScheduleToRun(User user)
         {
-            return user.ScheduleList
-                .Where(
-                    s => s.Active 
-                        && s.Next <= DateTime.Today)
+            return getRunnableAndDisableOthers(
+                    user.ScheduleList
+                        .Where(s => s.Active 
+                            && s.Next <= DateTime.Today))
                 .ToList();
         }
+
+        private IEnumerable<Schedule> getRunnableAndDisableOthers(IEnumerable<Schedule> scheduleList)
+        {
+            foreach (var schedule in scheduleList)
+            {
+                if (CanRun(schedule))
+                    yield return schedule;
+                else
+                    deactivate(schedule);
+            }
+        }
+
+        private void deactivate(Schedule schedule)
+        {
+            schedule.Active = false;
+            SaveOrUpdate(schedule);
+        }
+
         
         private void complete(Schedule schedule)
         {
@@ -60,12 +79,15 @@ namespace DFM.BusinessLogic.Services
 
         internal Boolean CanRun(Schedule schedule)
         {
+            var hasMoveToClone = schedule.MoveList.Any();
+
             var doneMoves = appliedTimes(schedule);
 
             var doneAll = doneMoves >= schedule.Times;
             var boundless = schedule.Boundless;
 
-            return schedule.Active &&
+            return schedule.Active && 
+                hasMoveToClone &&
                 (boundless || !doneAll);
         }
 

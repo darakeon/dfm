@@ -15,7 +15,8 @@ namespace DFM.Repositories.Mappings
                 .Length(MaximumLength.MoveDescription);
 
             mapping.HasMany(m => m.DetailList)
-                .Cascade.Delete();
+                .Cascade.Delete()
+                .Not.LazyLoad();
 
             mapping.References(m => m.In)
                 .Cascade.None()

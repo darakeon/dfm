@@ -35,6 +35,11 @@ div#Menu .fixMenu
 	float: left;
 }
 
+.higherMenu .higherTitle, .higherMenu .reportsMenu {
+    position: relative;
+	top: -3px;
+}
+
 
 div#Menu .higherTitle
 {

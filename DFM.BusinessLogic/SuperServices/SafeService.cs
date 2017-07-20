@@ -7,54 +7,28 @@ using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafetyService
+    public class SafeService
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;
 
-        internal SafetyService(UserService userService, SecurityService securityService)
+        internal SafeService(UserService userService, SecurityService securityService)
         {
             this.userService = userService;
             this.securityService = securityService;
         }
 
-        public void PasswordReset(String email, Format format)
-        {
-            createAndSend(email, SecurityAction.PasswordReset, format);
-        }
 
-        private void createAndSend(String email, SecurityAction action, Format format)
+
+        public void SendPasswordReset(String email, Format format)
         {
             var user = userService.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
 
-            securityService.CreateAndSend(user, action, format);
+            SendPasswordReset(user, format);
         }
-
-
-        internal Security SaveOrUpdate(Security security)
-        {
-            validateSecurity(security);
-
-            return SaveOrUpdate(security);
-        }
-
-
-
-        public void UserActivate(String token)
-        {
-            var security = securityService.SelectByToken(token);
-
-            if (security.Action != SecurityAction.UserVerification)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
-
-            userService.Activate(security.User);
-
-            securityService.Deactivate(token);
-        }
-
 
         public void PasswordReset(String token, String password)
         {
@@ -70,26 +44,27 @@ namespace DFM.BusinessLogic.SuperServices
             securityService.Deactivate(token);
         }
 
-
-
-
-        private void validateSecurity(Security security)
-        {
-            var currentUser = userService.SelectById(security.User.ID);
-
-            if (currentUser == null || currentUser.Email != security.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
-        }
-
-
-
-        public User SaveAndSendVerify(User user, Format format)
+        
+        
+        public User SaveUserAndSendVerify(User user, Format format)
         {
             user = userService.SaveOrUpdate(user);
 
-            securityService.SendUserVerify(user, format);
+            SendUserVerify(user, format);
 
             return user;
+        }
+
+        public void ActivateUser(String token)
+        {
+            var security = securityService.SelectByToken(token);
+
+            if (security.Action != SecurityAction.UserVerification)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
+            userService.Activate(security.User);
+
+            securityService.Deactivate(token);
         }
 
 
@@ -121,7 +96,25 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SendUserVerify(User user, Format format)
         {
-            securityService.SendUserVerify(user, format);
+            createAndSend(user, SecurityAction.UserVerification, format);
         }
+
+        public void SendPasswordReset(User user, Format format)
+        {
+            createAndSend(user, SecurityAction.PasswordReset, format);
+        }
+
+
+
+        private void createAndSend(User user, SecurityAction action, Format format)
+        {
+            var security = new Security { Action = action, User = user };
+
+            userService.ValidateSecurity(security);
+            security = securityService.SaveOrUpdate(security);
+
+            securityService.SendEmail(security, format);
+        }
+
     }
 }

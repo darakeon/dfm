@@ -28,10 +28,16 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
+        public Move SelectMoveById(Int32 id)
+        {
+            return moveService.SelectById(id);
+        }
+
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
         {
             var oldMove = moveService.SelectOldById(move.ID);
-            AjustOldSummaries(oldMove);
+            
+            ajustOldSummaries(oldMove);
 
             placeAccountsInMove(move, accountOut, accountIn);
 
@@ -44,9 +50,10 @@ namespace DFM.BusinessLogic.SuperServices
                 detailService.SaveOrUpdate(detail);
             }
 
-            AjustSummaries(move);
+            ajustSummaries(move);
 
             var action = move.ID == 0 ? "create_move" : "edit";
+            
             moveService.SendEmail(move, getterForMove, action);
 
             return move;
@@ -55,29 +62,24 @@ namespace DFM.BusinessLogic.SuperServices
         public void DeleteMove(Move move, Format.GetterForMove getterForMove)
         {
             monthService.RemoveMoveFromMonth(move);
-            AjustSummaries(move);
+            ajustSummaries(move);
 
             moveService.Delete(move);
 
             moveService.SendEmail(move, getterForMove, "delete");
         }
 
-        private Month getMonth(Move move, Account account)
-        {
-            var year = yearService.GetOrCreateYear((Int16)move.Date.Year, account, summaryService.Delete, move.Category);
-            return monthService.GetOrCreateMonth((Int16)move.Date.Month, year, summaryService.Delete, move.Category);
-        }
 
-        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
-        {
-            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
-            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
-            moveService.PlaceMonthsInMove(move, monthOut, monthIn);
+        public Detail SelectDetailById(Int32 id)
+        {
+            return detailService.SelectById(id);
         }
 
 
-        internal void AjustOldSummaries(Move oldMove)
+
+        #region Ajust Summaries
+        private void ajustOldSummaries(Move oldMove)
         {
             if (oldMove == null) return;
 
@@ -87,24 +89,23 @@ namespace DFM.BusinessLogic.SuperServices
             if (oldMove.Out != null)
                 oldMove.RemoveFromOut();
 
-            AjustSummaries(oldMove);
+            ajustSummaries(oldMove);
         }
 
-        internal void AjustSummaries(Move move)
+        private void ajustSummaries(Move move)
         {
             if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                AjustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
+                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountIn());
 
             if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                AjustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
+                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccountOut());
         }
 
-        internal void AjustSummary(Int16 month, Int16 year, Category category, Account account)
+        private void ajustSummary(Int16 month, Int16 year, Category category, Account account)
         {
             ajustMonth(month, year, category, account);
             ajustYear(year, category, account);
         }
-
 
         private void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
         {
@@ -124,7 +125,23 @@ namespace DFM.BusinessLogic.SuperServices
 
             summaryService.AjustValue(summaryYear);
         }
+        #endregion
 
+
+
+        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
+        {
+            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
+
+            moveService.PlaceMonthsInMove(move, monthOut, monthIn);
+        }
+
+        private Month getMonth(Move move, Account account)
+        {
+            var year = yearService.GetOrCreateYear((Int16)move.Date.Year, account, summaryService.Delete, move.Category);
+            return monthService.GetOrCreateMonth((Int16)move.Date.Month, year, summaryService.Delete, move.Category);
+        }
 
     }
 }

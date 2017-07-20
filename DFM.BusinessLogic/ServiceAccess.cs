@@ -21,8 +21,8 @@ namespace DFM.BusinessLogic
 
             Money = new MoneyService(move, detail, summary, schedule, month, year);
             Report = new ReportService(account, year, month, summary);
-            Safety = new SafetyService(user, security);
-            Admin = new AdminService(account, category, schedule, move, detail);
+            Safety = new SafeService(user, security);
+            Admin = new AdminService(account, category);
             Robot = new RobotService(schedule);
         }
 
@@ -41,7 +41,7 @@ namespace DFM.BusinessLogic
 
         public MoneyService Money { get; private set; }
         public ReportService Report { get; private set; }
-        public SafetyService Safety { get; private set; }
+        public SafeService Safety { get; private set; }
         public AdminService Admin { get; private set; }
         public RobotService Robot { get; private set; }
 

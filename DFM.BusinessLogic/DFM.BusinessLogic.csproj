@@ -39,11 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Bases\BaseService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Services\DetailService.cs" />
     <Compile Include="IConnector.cs" />
+    <Compile Include="Bases\IRepository.cs" />
     <Compile Include="Services\MonthService.cs" />
     <Compile Include="Services\MoveService.cs" />
     <Compile Include="Services\ScheduleService.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="SuperServices\MoneyService.cs" />
     <Compile Include="SuperServices\ReportService.cs" />
     <Compile Include="SuperServices\RobotService.cs" />
-    <Compile Include="SuperServices\SafetyService.cs" />
+    <Compile Include="SuperServices\SafeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">

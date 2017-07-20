@@ -69,12 +69,7 @@ namespace DFM.Robot
             var lastMove = schedule.MoveList.LastOrDefault();
 
             if (lastMove == null)
-            {
-                schedule.Deactivate();
-                Service.Access.Admin.SaveOrUpdateSchedule(schedule);
                 return null;
-            }
-
 
             if (schedule.IsFirstMove())
                 return lastMove;
@@ -96,10 +91,7 @@ namespace DFM.Robot
             if (!schedule.IsFirstMove())
                 schedule.AddMove(move);
 
-            if (robotService.CanRun(schedule))
-                robotService.SetNextRun(schedule);
-            else
-                schedule.Deactivate();
+            robotService.SetNextRun(schedule);
         }
 
 

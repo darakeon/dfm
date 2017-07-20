@@ -21,6 +21,8 @@ namespace DFM.BusinessLogic.SuperServices
             this.yearService = yearService;
         }
 
+
+
         public IList<Move> GetMonthReport(Int32 id, Int16 dateMonth, Int16 dateYear)
         {
             var account = accountService.SelectById(id);
@@ -39,6 +41,8 @@ namespace DFM.BusinessLogic.SuperServices
                 : month.MoveList();
         }
 
+        
+        
         public Year GetYearReport(Int32 accountid, Int16 dateYear)
         {
             var account = accountService.SelectById(accountid);

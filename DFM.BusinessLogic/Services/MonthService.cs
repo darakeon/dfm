@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Extensions;
 
@@ -8,7 +9,7 @@ namespace DFM.BusinessLogic.Services
 {
     internal class MonthService : BaseService<Month>
     {
-        protected internal MonthService(IRepository repository) : base(repository) { }
+        protected internal MonthService(IRepository<Month> repository) : base(repository) { }
 
         internal Month GetOrCreateMonth(Int16 dateMonth, Year year, SummarizableExtension.DeleteSummary deleteSummary, Category category = null)
         {
