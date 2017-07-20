@@ -92,10 +92,6 @@ namespace DFM.MVC
 
 
 
-
-
-
-
         private static Uri url { get { return HttpContext.Current.Request.Url; } }
         private static Boolean isAsset { get { return url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/"); } }
         private static Boolean isLocal { get { return url.Host == "localhost"; } }

@@ -97,11 +97,6 @@ namespace DFM.Multilanguage
 
 
 
-
-
-
-
-
         public String this[String section, String language, params String[] phrase]
         {
             get
@@ -150,8 +145,11 @@ namespace DFM.Multilanguage
                 .DateTimeFormat.GetMonthName(month).Capitalize();
         }
 
+        public static NumberFormatInfo GetNumberFormat(String language)
+        {
+            return CultureInfo.GetCultureInfo(language).NumberFormat;
+        }
 
-
-
+    
     }
 }

@@ -24,8 +24,10 @@
     
     <div class="ZeroItems">@MultiLanguage.Dictionary["NoYearMoves"]</div>
 
-} else { 
-        
+} else {
+
+    var language = Model.Year.User().Language;
+
     <table class="List Mini">
 
         <tr>
@@ -35,10 +37,10 @@
 
         @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
         {
-
             var sum = month.Sum();
             
-            var sign = month.Sum() < 0 ? "out" : "in";
+            var sign = sum < 0 ? "out" : "in";
+            
             sum = sum > 0 ? sum : -sum;
             
             <tr>
@@ -47,7 +49,7 @@
                         @MultiLanguage.GetMonthName(month.Time)
                     </a>
                 </td>
-                <td class="numeric @sign">@sum.ToMoney() </td>
+                <td class="numeric @sign">@sum.ToMoney(language) </td>
             </tr>
 
         } 

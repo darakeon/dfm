@@ -24,6 +24,8 @@ else
 
         @foreach (var account in Model.AccountList)
         {
+            var language = account.User.Language;
+
             var endMonth = account.EndDate.Value.Month;
             var endYear = account.EndDate.Value.Year;
             var monthReportId = endYear * 100 + endMonth;
@@ -31,7 +33,7 @@ else
             
             var movesSum = account.Sum();
             var negative = movesSum < 0;
-            var value = (negative ? -movesSum : movesSum).ToMoney();
+            var value = (negative ? -movesSum : movesSum).ToMoney(language);
 
             var sign = account.Sign();
                     

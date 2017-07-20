@@ -37,7 +37,8 @@ else
         </tr>
 
         @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
-        { 
+        {
+            var language = move.User().Language;
             
             <tr>
                 <td>@move.GetDescriptionDetailed() </td>
@@ -46,14 +47,14 @@ else
 
                 <td class="numeric in">
                     @if (move.In != null && move.In.Year.Account.ID == Model.Account.ID)
-                        {@move.Value().ToMoney()}
+                        {@move.Value().ToMoney(language)}
                     else
                         { @(" ") }
                 </td>
 
                 <td class="numeric out">
                     @if (move.Out != null && move.Out.Year.Account.ID == Model.Account.ID)
-                        {@move.Value().ToMoney()}
+                        {@move.Value().ToMoney(language)}
                     else
                         { @(" ") }
                 </td>

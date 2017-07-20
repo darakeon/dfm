@@ -61,7 +61,7 @@ namespace DFM.BusinessLogic.Services
                                 { "Date", move.Date.ToShortDateString() },
                                 { "Category", move.Category.Name },
                                 { "Description", move.Description },
-                                { "Value", move.Value().ToMoney() },
+                                { "Value", move.Value().ToMoney(user.Language) },
                                 { "Details", detailsHTML(move) },
                                 { "Action", action }
                             };
@@ -86,6 +86,7 @@ namespace DFM.BusinessLogic.Services
         private static String detailsHTML(Move move)
         {
             var details = new StringBuilder();
+            var language = move.User().Language;
 
             foreach (var detail in move.DetailList)
             {
@@ -94,7 +95,7 @@ namespace DFM.BusinessLogic.Services
                         "{0}: {1} x {2}<br />"
                         , detail.Description
                         , detail.Amount
-                        , detail.Value.ToMoney()));
+                        , detail.Value.ToMoney(language)));
             }
 
             return details.ToString();

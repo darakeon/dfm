@@ -50,8 +50,11 @@ namespace DFM.MVC.Helpers
         {
             get
             {
-                return RouteInfo.Current.RouteData
-                    .Values["controller"].ToString().ToLower();
+                return RouteInfo.Current == null
+                        || RouteInfo.Current.RouteData == null
+                    ? "Ops"
+                    : RouteInfo.Current.RouteData
+                        .Values["controller"].ToString().ToLower();
             }
         }
 

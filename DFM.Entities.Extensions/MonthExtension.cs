@@ -6,6 +6,11 @@ namespace DFM.Entities.Extensions
 {
     public static class MonthExtension
     {
+        public static User User(this Month month)
+        {
+            return month.Account().User;
+        }
+
         public static Account Account(this Month month)
         {
             return month.Year.Account;

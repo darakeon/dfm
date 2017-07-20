@@ -2,6 +2,12 @@
 {
     public static class YearExtension
     {
+        public static User User(this Year year)
+        {
+            return year.Account.User;
+        }
+
+
         public static Year Clone(this Year year)
         {
             return new Year
