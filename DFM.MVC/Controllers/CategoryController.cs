@@ -111,7 +111,7 @@ namespace DFM.MVC.Controllers
 
 
 
-        public JsonResult Disable(Int32 id)
+        public ActionResult Disable(Int32 id)
         {
             var category = CategoryData.SelectById(id);
 
@@ -124,12 +124,12 @@ namespace DFM.MVC.Controllers
                 ? PlainText.Dictionary["CategoryNotFound"]
                 : String.Format(PlainText.Dictionary["CategoryDisabled"], category.Name);
 
-            return new JsonResult { Data = new { message } };
+            return RedirectToAction("Index");
         }
 
 
 
-        public JsonResult Enable(Int32 id)
+        public ActionResult Enable(Int32 id)
         {
             var category = CategoryData.SelectById(id);
 
@@ -142,7 +142,7 @@ namespace DFM.MVC.Controllers
                 ? PlainText.Dictionary["CategoryNotFound"]
                 : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
 
-            return new JsonResult { Data = new { message } };
+            return RedirectToAction("Index");
         }
 
 

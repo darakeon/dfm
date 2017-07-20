@@ -19,21 +19,29 @@ else
         </tr>
 
         @foreach (var category in Model.CategoryList)
-        { 
-            
+        {
+            var editLabel = PlainText.Dictionary["Edit", "Category"];
+            var editUrl = Url.Action("Edit", "Category", new { id = category.ID });
+
+            var enableLabel = PlainText.Dictionary["Enable", "Category"];
+            var enableUrl = Url.Action("Enable", new { id = category.ID });
+
+            var disableLabel = PlainText.Dictionary["Disable", "Category"];
+            var disableUrl = Url.Action("Disable", new { id = category.ID });
+                        
             <tr>
                 <td>@category.Name </td>
 
-                <td>@Html.RouteLink(PlainText.Dictionary["Edit"], RouteNames.Default, new { action = "Edit", controller = "Category", id = category.ID }, new { })</td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
-                <td>
+                <td class="image">
                     @if (category.Active)
                     {
-                        @Ajax.ActionLink(PlainText.Dictionary["Disable"], "Disable", new { id = category.ID }, new AjaxOptionsDFM()) 
+                        <a href="@disableUrl"><img src="/Assets/Image/close.gif" alt="@disableLabel" title="@disableLabel" /></a>
                     }
                     else
                     {
-                        @Ajax.ActionLink(PlainText.Dictionary["Enable"], "Enable", new { id = category.ID }, new AjaxOptionsDFM()) 
+                        <a href="@enableUrl"><img src="/Assets/Image/open.gif" alt="@enableLabel" title="@enableLabel" /></a>
                     }
                 </td>
             </tr>
