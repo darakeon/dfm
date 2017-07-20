@@ -54,10 +54,10 @@ namespace DFM.Tests.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A001. Save user without email (E)")]
-        public virtual void A001_SaveUserWithoutEmailE()
+        [NUnit.Framework.DescriptionAttribute("A001. Save user without e-mail (E)")]
+        public virtual void A001_SaveUserWithoutE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A001. Save user without email (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A001. Save user without e-mail (E)", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -116,10 +116,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A003. Save user with invalid email (E)")]
-        public virtual void A003_SaveUserWithInvalidEmailE()
+        [NUnit.Framework.DescriptionAttribute("A003. Save user with invalid e-mail (E)")]
+        public virtual void A003_SaveUserWithInvalidE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A003. Save user with invalid email (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A003. Save user with invalid e-mail (E)", ((string[])(null)));
 #line 23
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -147,10 +147,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A003. Save user with repeated email (E)")]
-        public virtual void A003_SaveUserWithRepeatedEmailE()
+        [NUnit.Framework.DescriptionAttribute("A003. Save user with repeated e-mail (E)")]
+        public virtual void A003_SaveUserWithRepeatedE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A003. Save user with repeated email (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A003. Save user with repeated e-mail (E)", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line hidden

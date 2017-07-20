@@ -1,7 +1,42 @@
-﻿Feature: Validate and return user by its e-mail and password
+﻿Feature: get user by its e-mail and password
 
-Scenario: A201. Validate without email (E)
+Background:
+	Given I have an active user
+
+Scenario: A201. Validate without e-mail (E)
+	Given I dont pass the e-mail
+	When I try to get the user
+	Then I will receive this error
+		| Error    		|
+		| UserEmailRequired |
+	And I will receive no user
+
 Scenario: A202. Validate without password (E)
-Scenario: A203. Validate with wrong email (E)
+	Given I dont pass the password
+	When I try to get the user
+	Then I will receive this error
+		| Error       		|
+		| UserPasswordRequired |
+	And I will receive no user
+
+Scenario: A203. Validate with wrong e-mail (E)
+	Given I pass an e-mail the doesn't exist
+	When I try to get the user
+	Then I will receive this error
+		| Error       |
+		| InvalidUser |
+	And I will receive no user
+
 Scenario: A204. Validate with wrong password (E)
+	Given I pass a wrong password
+	When I try to get the user
+	Then I will receive this error
+		| Error       |
+		| InvalidUser |
+	And I will receive no user
+
 Scenario: A299. Validate with info all right (S)
+	Given I pass valid e-mail and password
+	When I try to get the user
+	Then I will receive no error
+	And I will receive the user

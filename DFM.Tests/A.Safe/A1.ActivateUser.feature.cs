@@ -58,9 +58,9 @@ namespace DFM.Tests.A_Safe
         {
 #line 3
 #line 4
- testRunner.Given("I have a user");
+ testRunner.Given("I have an user");
 #line 5
- testRunner.And("I have a valid token for this user actvation");
+ testRunner.And("I have a token for its actvation");
 #line hidden
         }
         

@@ -112,7 +112,7 @@ namespace DFM.BusinessLogic.SuperServices
             return userService.SelectByEmail(email);
         }
 
-        public void Deactivate(String token)
+        public void DeactivateToken(String token)
         {
             securityService.Deactivate(token);
         }

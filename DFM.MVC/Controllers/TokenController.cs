@@ -86,7 +86,7 @@ namespace DFM.MVC.Controllers
         {
             try
             {
-                Services.Safe.Deactivate(id);
+                Services.Safe.DeactivateToken(id);
             }
             catch (DFMCoreException)
             {
