@@ -6,9 +6,9 @@ namespace DFM.Robot
 {
     public class MainRobot
     {
-        public static void Run(User user, Format.GetterForMove formatGetter, RobotService access)
+        public static void Run(User user, RobotService access)
         {
-            var scheduleRunner = new ScheduleRunner(user, formatGetter, access);
+            var scheduleRunner = new ScheduleRunner(user, access);
             
             scheduleRunner.Run();
         }

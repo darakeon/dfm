@@ -11,14 +11,12 @@ namespace DFM.Robot
     {
         private readonly RobotService robotService;
         private readonly User user;
-        private event Format.GetterForMove formatGetter;
 
 
-        public ScheduleRunner(User user, Format.GetterForMove formatGetter, RobotService robotService)
+        public ScheduleRunner(User user, RobotService robotService)
         {
             this.robotService = robotService;
             this.user = user;
-            this.formatGetter += formatGetter;
         }
 
         public void Run()
@@ -33,8 +31,7 @@ namespace DFM.Robot
 
                 foreach (var futureMove in moves)
                 {
-                    Services.Robot
-                        .TransformFutureInMove(futureMove, formatGetter);
+                    Services.Robot.TransformFutureInMove(futureMove);
                 }
             }
         }

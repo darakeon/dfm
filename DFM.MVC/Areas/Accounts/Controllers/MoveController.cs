@@ -122,7 +122,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector, MultiLanguage.GetForMove);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector);
                 }
                 catch (DFMCoreException e)
                 {
@@ -135,7 +135,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, Format.GetterForMove getForMove)
+        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector)
             where T : BaseMove, new()
         {
             if (typeof(T) == typeof(FutureMove))
@@ -151,7 +151,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn, getForMove);
+                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }
@@ -183,7 +183,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             var reportID = (move.In ?? move.Out).Url();
 
             if (!isUnauthorized(move))
-                Services.Money.DeleteMove(move, MultiLanguage.GetForMove);
+                Services.Money.DeleteMove(move);
             //else
             //    move = null;
 

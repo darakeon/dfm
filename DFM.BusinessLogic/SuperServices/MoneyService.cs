@@ -39,13 +39,13 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Save or Update
-        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn)
         {
             var transaction = moveService.BeginTransaction();
             
             try
             {
-                move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, getterForMove);
+                move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
 
                 moveService.CommitTransaction(transaction);
             }
@@ -59,7 +59,7 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
@@ -75,7 +75,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             ajustSummaries(move);
 
-            moveService.SendEmail(move, getterForMove, sendEmailAction);
+            moveService.SendEmail(move, sendEmailAction);
 
             return move;
         }
@@ -84,7 +84,7 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public void DeleteMove(Move move, Format.GetterForMove getterForMove)
+        public void DeleteMove(Move move)
         {
             var transaction = moveService.BeginTransaction();
 
@@ -95,7 +95,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 moveService.Delete(move);
 
-                moveService.SendEmail(move, getterForMove, "delete");
+                moveService.SendEmail(move, "delete");
 
                 move.Schedule.Times--;
                 scheduleService.SaveOrUpdate(move.Schedule);

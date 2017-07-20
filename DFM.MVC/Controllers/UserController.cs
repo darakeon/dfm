@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Ak.MVC.Authentication;
 using DFM.Email;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 using DFM.Entities;
@@ -16,11 +17,7 @@ namespace DFM.MVC.Controllers
 
         public UserController()
         {
-            formatUserVerification = new Format
-                {
-                    Layout = MultiLanguage.EmailLayout("UserVerification"),
-                    Subject = MultiLanguage.Dictionary["UserVerification"],
-                };
+            formatUserVerification = new Format(SecurityAction.UserVerification);
         }
 
 
@@ -147,11 +144,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    var format = new Format
-                        {
-                            Layout = MultiLanguage.EmailLayout("PasswordReset"),
-                            Subject = MultiLanguage.Dictionary["PasswordReset"],
-                        };
+                    var format = new Format(SecurityAction.PasswordReset);
 
                     Services.Safe.SendPasswordReset(model.Email, format);
                 }

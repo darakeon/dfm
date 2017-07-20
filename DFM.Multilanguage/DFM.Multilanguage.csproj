@@ -52,7 +52,6 @@
     <Compile Include="Helpers\DicCreator.cs" />
     <Compile Include="Helpers\DicException.cs" />
     <Compile Include="Helpers\DicList.cs" />
-    <Compile Include="Helpers\EmailFormats.cs" />
     <Compile Include="Helpers\EmailLayout.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\INameable.cs" />
@@ -120,16 +119,6 @@
     <Content Include="Multilanguage\Resources\user.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
-      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
-      <Name>DFM.Email</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
-      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
-      <Name>DFM.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

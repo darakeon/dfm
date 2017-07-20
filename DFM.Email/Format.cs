@@ -8,7 +8,42 @@ namespace DFM.Email
         public String Subject { get; set; }
         public String Layout { get; set; }
 
-        public delegate Format GetterForMove(MoveNature moveNature);
-        public delegate Format GetterForSecurity(SecurityAction securityAction);
+        
+        public Format(MoveNature moveNature)
+        {
+
+        }
+
+        //public static Format GetForMove(String section, String language, MoveNature moveNature)
+        //{
+        //    return Get(section, language, String.Format("MoveNotification{0}", moveNature));
+        //}
+
+        public Format(SecurityAction securityAction)
+        {
+        }
+
+        //public static Format GetForSecurity(String section, String language, SecurityAction securityAction)
+        //{
+        //    return Get(section, language, securityAction.ToString());
+        //}
+
+        //public static Format Get(String section, String language, String format)
+        //{
+        //    return new Format
+        //    {
+        //        Layout = PlainText.EmailLayout[language, format],
+        //        Subject = PlainText.Dictionary[section, language, format],
+        //    };
+        //}
+
+        
+
+
+
+
+
+
+
     }
 }

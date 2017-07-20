@@ -56,7 +56,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User, MultiLanguage.GetForMove, Services.Robot);
+                MainRobot.Run(Current.User, Services.Robot);
         }
 
 

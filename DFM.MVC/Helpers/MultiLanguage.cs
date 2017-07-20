@@ -86,11 +86,6 @@ namespace DFM.MVC.Helpers
             return EnumHelper.GetEnumNames<T>(section, Language);
         }
 
-        public static Format GetForMove(MoveNature movenature)
-        {
-            return EmailFormats.GetForMove(section, Language, movenature);
-        }
-
 
     }
 }

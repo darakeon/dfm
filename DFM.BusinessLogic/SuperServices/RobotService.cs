@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public void TransformFutureInMove(FutureMove futureMove, Format.GetterForMove formatGetter)
+        public void TransformFutureInMove(FutureMove futureMove)
         {
             var transaction = futureMoveService.BeginTransaction();
 
@@ -149,7 +149,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var move = futureMove.CastToKill();
 
-                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, formatGetter);
+                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
                 DeleteFutureMove(futureMove);
 
                 futureMoveService.CommitTransaction(transaction);

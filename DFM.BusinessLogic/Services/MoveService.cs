@@ -42,14 +42,14 @@ namespace DFM.BusinessLogic.Services
 
 
         #region SendEmail
-        internal void SendEmail(Move move, Format.GetterForMove getterForMove, String action)
+        internal void SendEmail(Move move, String action)
         {
             if (!move.User().SendMoveEmail) return;
 
             var accountInName = accountName(move.AccIn());
             var accountOutName = accountName(move.AccOut());
 
-            var format = getterForMove(move.Nature);
+            var format = new Format(move.Nature);
 
             var dic = new Dictionary<String, String>
                             {
