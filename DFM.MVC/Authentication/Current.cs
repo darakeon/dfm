@@ -12,10 +12,10 @@ namespace DFM.MVC.Authentication
         {
             get
             {
-                if (!Authenticate.IsAuthenticated())
+                if (!Authenticate.IsAuthenticated)
                     return null;
                 
-                var username = Authenticate.GetUsername();
+                var username = Authenticate.Username;
                 return Services.Safe.SelectUserByEmail(username);
             }
         }

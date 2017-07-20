@@ -1,8 +1,6 @@
 ﻿using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.SuperServices;
-using DFM.Email;
 using DFM.Entities;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic
 {
@@ -22,7 +20,7 @@ namespace DFM.BusinessLogic
             var user = new UserService(resolver.Resolve<User>());
             var year = new YearService(resolver.Resolve<Year>());
 
-            Money = new MoneyService(move, detail, category, summary, month, year);
+            Money = new MoneyService(move, detail, category, summary, month, year, schedule);
             Report = new ReportService(account, year, month, summary);
             Safe = new SafeService(user, security);
             Admin = new AdminService(account, category);
