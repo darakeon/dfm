@@ -1,5 +1,8 @@
 ﻿Feature: e. Creation of Category
 
+Background:
+	Given I have an user
+
 Scenario: 01. Save Category without name (E)
 	Given I have this category to create
 		| Name |
