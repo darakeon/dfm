@@ -123,23 +123,23 @@ VERSÃO 1.0.2.1
 20/03/2012	20/03/2012	Refactor Resharper
 				Selenium
 				Refactor de limpeza geral
-				Security desativa os anteriores
+				Proteção por usuário no Core (verificar active também)
 				Colocar robot.txt para google
 				Fornecer detalhes do erro no e-mail de report
+				Security desativa os anteriores
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)
 			>>>	Disponibilizar cores para interfaces
 			>>>	Criar relatórios por anos
-				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 			>>>	Iluminar última movimentação verificada
 				Em Move, colocar Value como campo gravado e usar Total para exibição
 				Tratar FailOnEmailSend em Robot
+				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 
 ======================================================================================================
 
 VERSÃO 1.0.2.2
 
-				Proteção por usuário no Core (verificar active também)
 				importador de Excel
 				importador de XML
 				importador de Money
