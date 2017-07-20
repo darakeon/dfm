@@ -102,9 +102,14 @@ namespace DFM.MVC.Controllers
 
         public ActionResult SendVerification(String id)
         {
-            var user = Services.Safe.SelectUserByEmail(id);
-
-            Services.Safe.SendUserVerify(user);
+            try
+            {
+                Services.Safe.SendUserVerify(id);
+            }
+            catch (DFMCoreException e)
+            {
+                return RedirectToAction("Error", "Ops", new { id = e.Type });
+            }
 
             return View();
         }

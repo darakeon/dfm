@@ -1,9 +1,11 @@
 ﻿Feature: Create and security of User
 
-Scenario: SendPasswordReset
-Scenario: PasswordReset
 Scenario: SaveUserAndSendVerify
 Scenario: ActivateUser
+
+Scenario: SendPasswordReset
+Scenario: PasswordReset
+
 Scenario: SecurityTokenExist
 Scenario: SelectUserByEmail
 Scenario: GetSecurityTokenAction

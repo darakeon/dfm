@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.Generic.Collection;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 
@@ -31,6 +32,13 @@ namespace DFM.MVC.Controllers
             return View(id.ToString(), model);
             // ReSharper restore Asp.NotResolved
         }
+
+
+        public ActionResult Error(ExceptionPossibilities id)
+        {
+            return View(id);
+        }
+
 
     }
 }

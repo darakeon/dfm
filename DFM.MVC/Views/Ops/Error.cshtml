@@ -1,0 +1,8 @@
+﻿@model DFM.BusinessLogic.Exceptions.ExceptionPossibilities
+
+@{
+    ViewBag.Title = MultiLanguage.Dictionary["NotFound"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@MultiLanguage.Dictionary[Model.ToString()]
