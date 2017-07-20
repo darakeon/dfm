@@ -109,7 +109,6 @@ VERSÃO 1.0.2.0
 30/01/2012	31/01/2012	Opção de colocar (atual/total) na descrição de agendadas
 30/01/2012	31/01/2012	Layout com sombras e 3D
 02/02/2012			Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
-				Criar relatórios por anos
 				Retirar delegate DeleteSummary / outros try de duplicata
 				Separar Multilanguage de MVC
 				Retirar delegate GetterForMove
@@ -120,6 +119,7 @@ VERSÃO 1.0.2.0
 
 VERSÃO 1.0.2.1
 
+				Criar relatórios por anos
 				BDD
 				Selenium
 				Refactor de limpeza geral
