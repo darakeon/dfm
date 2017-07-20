@@ -61,17 +61,19 @@
         @RenderSection("Menu", required: false)
     </div>
 
-    <div id="Main">
-        @{/* Made without spaces to hide when empty */}
-        <div id="TopRightDiv">@RenderSection("TopRightDiv", required: false)</div>
+    <div id="Body">
+        <div id="Main">
+            @{/* Made without spaces to hide when empty */}
+            <div id="TopRightDiv">@RenderSection("TopRightDiv", required: false)</div>
 
-        <h2>@ViewBag.Title<hr class="underTitle" /></h2>
+            <h2>@ViewBag.Title<hr class="underTitle" /></h2>
 
-        @RenderBody()
-    </div>
+            @RenderBody()
+        </div>
 
-    <div id="PS">
-        @RenderSection("PS", required: false)
+        <div id="PS">
+            @RenderSection("PS", required: false)
+        </div>
     </div>
 
     <div id="Footer">

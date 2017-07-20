@@ -1,5 +1,6 @@
 div#Main {
 	border-radius: 50px 0px;
+    box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.7);
 }
 
 div#TopRightDiv, div#TopRightDiv input, div#TopRightDiv button {
