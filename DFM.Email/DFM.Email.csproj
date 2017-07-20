@@ -41,6 +41,10 @@
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
       <Name>DFM.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
+      <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
+      <Name>DFM.Multilanguage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

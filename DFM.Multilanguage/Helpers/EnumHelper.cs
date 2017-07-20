@@ -19,24 +19,5 @@ namespace DFM.Multilanguage.Helpers
             return natures;
         }
 
-        public static String GetEnumNamesConcat<T>(String section, String language)
-        {
-            var enumList = Enum.GetNames(typeof(T));
-            var result = String.Empty;
-
-            for (var e = 0; e < enumList.Length; e++)
-            {
-                result += PlainText.Dictionary[section, language, enumList[e]];
-
-                switch (enumList.Length - e)
-                {
-                    case 1: break;
-                    case 2: result += String.Format(" {0} ", PlainText.Dictionary[section, language, "and"]); break;
-                    default: result += ", "; break;
-                }
-            }
-
-            return result;
-        }
     }
 }

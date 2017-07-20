@@ -25,8 +25,7 @@ namespace DFM.Multilanguage
 
         private static List<String> acceptedLanguages;
 
-        public static CultureInfo Culture { get { return Thread.CurrentThread.CurrentUICulture; } }
-
+        
 
 
 
@@ -36,13 +35,26 @@ namespace DFM.Multilanguage
             acceptedLanguages = new List<String>();
         }
 
-        private PlainText(IEnumerable<String> xmls) : this()
+        private PlainText(IList<String> xmls) : this()
         {
-            var nodes = xmls.Select(x => new Node(x));
+            var nodes = xmls.Select(x => new Node(x)).ToList();
 
-            DicCreator.Check(xmls.ToList(), nodes.ToList());
+            check(xmls, nodes);
 
-            nodes.ToList().ForEach(addSectionToDictionary);
+            nodes.ForEach(addSectionToDictionary);
+        }
+
+        private static void check(IList<String> xmls, IList<Node> nodes)
+        {
+            for (var i = 0; i < xmls.Count; i++)
+            {
+                var fileName = new FileInfo(xmls[i])
+                    .Name.Replace(".xml", "").ToLower();
+
+                if (fileName != nodes[i].Name)
+                    throw new Exception(
+                        String.Format("File: {0}; Node: {1}", fileName, nodes[i].Name));
+            }
         }
 
         private void addSectionToDictionary(Node nodeSection)
@@ -57,6 +69,8 @@ namespace DFM.Multilanguage
 
         public static void Initialize()
         {
+            if (Dictionary != null) return;
+
             Dictionary = new PlainText(Directory.GetFiles(path, "*.xml"));
             EmailLayout = new EmailLayout();
 
@@ -69,8 +83,7 @@ namespace DFM.Multilanguage
 
             Dictionary.SectionList.ForEach(
                 s => list.AddRange( 
-                        s.LanguageList
-                            .Select(l => l.Name.ToLower())
+                        s.LanguageList.Select(l => l.Name.ToLower())
                     )
                 );
 
@@ -126,19 +139,15 @@ namespace DFM.Multilanguage
 
         private static String notFound(String section, String language, String phrase)
         {
-#if DEBUG
-            DicCreator.Fix(path, section, language, phrase);
-            return Dictionary[section, language, phrase];
-#else
-            throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, Language, phrase));
-#endif
+            throw new DicException(String.Format("S: {0} /// L: {1} /// P: {2}", section, language, phrase));
         }
         
 
 
-        public static String GetMonthName(Int32 month)
+        public static String GetMonthName(Int32 month, String language)
         {
-            return Culture.DateTimeFormat.GetMonthName(month).Capitalize();
+            return CultureInfo.GetCultureInfo(language)
+                .DateTimeFormat.GetMonthName(month).Capitalize();
         }
 
 

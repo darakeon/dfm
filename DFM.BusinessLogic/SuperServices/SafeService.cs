@@ -20,14 +20,14 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public void SendPasswordReset(String email, Format format)
+        public void SendPasswordReset(String email)
         {
             var user = userService.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
 
-            SendPasswordReset(user, format);
+            SendPasswordReset(user);
         }
 
         public void PasswordReset(String token, String password)
@@ -46,11 +46,11 @@ namespace DFM.BusinessLogic.SuperServices
 
         
         
-        public User SaveUserAndSendVerify(User user, Format format)
+        public User SaveUserAndSendVerify(User user)
         {
             user = userService.SaveOrUpdate(user);
 
-            SendUserVerify(user, format);
+            SendUserVerify(user);
 
             return user;
         }
@@ -94,26 +94,26 @@ namespace DFM.BusinessLogic.SuperServices
             return userService.ValidateAndGet(email, password);
         }
 
-        public void SendUserVerify(User user, Format format)
+        public void SendUserVerify(User user)
         {
-            createAndSend(user, SecurityAction.UserVerification, format);
+            createAndSend(user, SecurityAction.UserVerification);
         }
 
-        public void SendPasswordReset(User user, Format format)
+        public void SendPasswordReset(User user)
         {
-            createAndSend(user, SecurityAction.PasswordReset, format);
+            createAndSend(user, SecurityAction.PasswordReset);
         }
 
 
 
-        private void createAndSend(User user, SecurityAction action, Format format)
+        private void createAndSend(User user, SecurityAction action)
         {
             var security = new Security { Action = action, User = user };
 
             userService.ValidateSecurity(security);
             security = securityService.SaveOrUpdate(security);
 
-            securityService.SendEmail(security, format);
+            securityService.SendEmail(security);
         }
 
     }

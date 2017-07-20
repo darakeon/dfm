@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<email>
+  <en-US>
+    <MoveNotificationIn text="Move Notification" />
+    <MoveNotificationOut text="Move Notification" />
+    <MoveNotificationTransfer text="Move Notification" />
+  </en-US>
+  <pt-BR>
+    <MoveNotificationIn text="Notificação de Movimentação" />
+    <MoveNotificationOut text="Notificação de Movimentação" />
+    <MoveNotificationTransfer text="Notificação de Movimentação" />
+  </pt-BR>
+</email>

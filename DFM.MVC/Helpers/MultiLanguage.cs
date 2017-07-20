@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ak.MVC.Route;
-using DFM.Email;
-using DFM.Entities.Enums;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
 using DFM.MVC.Authentication;
@@ -43,7 +41,7 @@ namespace DFM.MVC.Helpers
 
         public static String GetMonthName(Int32 month)
         {
-            return PlainText.GetMonthName(month);
+            return PlainText.GetMonthName(month, Language);
         }
 
 

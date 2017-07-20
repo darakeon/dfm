@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;

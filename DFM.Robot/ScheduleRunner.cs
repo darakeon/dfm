@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.SuperServices;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Repositories;
 

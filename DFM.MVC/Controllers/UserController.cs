@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
-using DFM.Email;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 using DFM.Entities;
@@ -13,15 +11,6 @@ namespace DFM.MVC.Controllers
 {
     public class UserController : Controller
     {
-        private readonly Format formatUserVerification;
-
-        public UserController()
-        {
-            formatUserVerification = new Format(SecurityAction.UserVerification);
-        }
-
-
-
         public ActionResult Index()
         {
             return View();
@@ -47,7 +36,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Services.Safe.SaveUserAndSendVerify(model.User, formatUserVerification);
+                    Services.Safe.SaveUserAndSendVerify(model.User);
                 }
                 catch (DFMCoreException e)
                 {
@@ -115,7 +104,7 @@ namespace DFM.MVC.Controllers
         {
             var user = Services.Safe.SelectUserByEmail(id);
 
-            Services.Safe.SendUserVerify(user, formatUserVerification);
+            Services.Safe.SendUserVerify(user);
 
             return View();
         }
@@ -144,9 +133,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    var format = new Format(SecurityAction.PasswordReset);
-
-                    Services.Safe.SendPasswordReset(model.Email, format);
+                    Services.Safe.SendPasswordReset(model.Email);
                 }
                 catch (DFMCoreException e)
                 {

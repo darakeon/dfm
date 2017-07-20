@@ -11,7 +11,8 @@ namespace DFM.Multilanguage.Helpers
         {
             get
             {
-                var item = this.FirstOrDefault(t => t.Name == name);
+                var item = this.FirstOrDefault(t => t.Name
+                    .Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
                 if (item == null)
                     throw new DicException(String.Format("No {0} {1}", typeof(T), name));
@@ -19,5 +20,7 @@ namespace DFM.Multilanguage.Helpers
                 return item;
             }
         }
+
+
     }
 }

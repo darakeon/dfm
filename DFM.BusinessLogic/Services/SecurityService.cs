@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void SendEmail(Security security, Format format)
+        internal void SendEmail(Security security)
         {
             var dic = new Dictionary<String, String>
                             {
@@ -41,6 +41,9 @@ namespace DFM.BusinessLogic.Services
                                 { "Token", security.Token },
                                 { "Date", security.Expire.AddDays(-1).ToShortDateString() }
                             };
+
+            var format = new Format(security.User.Language, security.Action);
+            
 
             var fileContent = format.Layout.Format(dic);
 

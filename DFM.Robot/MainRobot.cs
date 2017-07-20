@@ -1,5 +1,4 @@
 ﻿using DFM.BusinessLogic.SuperServices;
-using DFM.Email;
 using DFM.Entities;
 
 namespace DFM.Robot
