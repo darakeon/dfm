@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities", "DFM.Entities\DFM.Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Extensions", "DFM.Extensions\DFM.Extensions.csproj", "{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities.Extensions", "DFM.Entities.Extensions\DFM.Entities.Extensions.csproj", "{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Robot", "DFM.Robot\DFM.Robot.csproj", "{418078A8-A13A-40AE-A939-68E0EA25F35B}"
 EndProject

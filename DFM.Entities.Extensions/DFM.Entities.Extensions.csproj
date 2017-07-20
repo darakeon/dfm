@@ -8,8 +8,8 @@
     <ProjectGuid>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFM.Extensions</RootNamespace>
-    <AssemblyName>DFM.Extensions</AssemblyName>
+    <RootNamespace>DFM.Entities.Extensions</RootNamespace>
+    <AssemblyName>DFM.Entities.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
