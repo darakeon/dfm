@@ -132,6 +132,7 @@ VERSÃO 1.0.2.2
 				Refactor de limpeza geral
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
+				Retornar mensagens de erro já traduzidas (do core)
 				Colocar robot.txt para google
 				Security desativa os anteriores
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
