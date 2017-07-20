@@ -56,6 +56,8 @@ namespace DFM.Repositories
         public static void Close()
         {
             SessionBuilder.Close(Session);
+
+            sessionList.Remove(userKey);
         }
 
         public static void End()
