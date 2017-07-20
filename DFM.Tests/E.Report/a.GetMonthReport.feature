@@ -1,6 +1,74 @@
 ﻿Feature: a. Month report
 
+Background:
+	Given I have an user
+	And I have an account
+	And I have moves of
+		| Date       |
+		| 27/03/2012 |
+		| 28/03/2012 |
+		| 29/03/2012 |
+		| 30/03/2012 |
+		| 31/03/2012 |
+		| 01/04/2012 |
+		| 02/04/2012 |
+		| 03/04/2012 |
+		| 04/04/2012 |
+		| 05/04/2012 |
+		| 06/04/2012 |
+
 Scenario: 01. Get with invalid Account ID (E)
-Scenario: 02. Get with invalid Date Year (E)
-Scenario: 03. Get with invalid Date Month (E)
+	Given I pass an invalid account ID
+	And I pass this date
+		| Month | Year |
+		| 4     | 2012 |
+	When I try to get the month report
+	Then I will receive this error
+		| Error            |
+		| InvalidAccountID |
+	And I will receive no month report
+
+Scenario: 02. Get with Date Year Zero (E)
+	Given I pass a valid account ID
+	And I pass this date
+		| Month | Year |
+		| 4     | 0    |
+	When I try to get the month report
+	Then I will receive this error
+		| Error       |
+		| InvalidYear |
+	And I will receive no month report
+
+Scenario: 03. Get with Date Month less than 1 (E)
+	Given I pass a valid account ID
+	And I pass this date
+		| Month | Year |
+		| 0     | 2012 |
+	When I try to get the month report
+	Then I will receive this error
+		| Error        |
+		| InvalidMonth |
+	And I will receive no month report
+
+Scenario: 04. Get with Date Month more than 12 (E)
+	Given I pass a valid account ID
+	And I pass this date
+		| Month | Year |
+		| 13    | 2012 |
+	When I try to get the month report
+	Then I will receive this error
+		| Error        |
+		| InvalidMonth |
+	And I will receive no month report
+
+
+
 Scenario: 99. Get with info all right (S)
+	Given I pass a valid account ID
+	And I pass this date
+		| Month | Year |
+		| 4     | 2012 |
+	When I try to get the month report
+	Then I will receive no error
+	And I will receive the month report
+	And its sum value will be equal to its moves sum value

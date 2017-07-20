@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an user
+	And I have a move
 	And I have a detail
 
 Scenario: 01. Try to get Detail with wrong ID (E)
