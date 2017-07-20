@@ -4,16 +4,6 @@
         <name>Ak.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Authentication.IRole">
-            <summary>
-             The Interface to paas Roles (permissions) to Authenticate
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Authentication.IRole.Name">
-            <summary>
-             The Name of Permission that will be verified by Authorize decorator (MVC)
-            </summary>
-        </member>
         <member name="T:Ak.MVC.Authentication.Authenticate">
             <summary>
              To make authentication in MVC easier
@@ -51,15 +41,13 @@
             </summary>
             <param name="request">Current Request of the Controller</param>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.IsAuthenticated">
+        <member name="M:Ak.MVC.Authentication.Authenticate.CleanIfDead(System.Web.HttpRequestBase)">
             <summary>
-             Whether there is user logged-in at the site
+            Clean the session if the login is out on core, 
+            but there is authentication on browser
             </summary>
-        </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.GetUsername">
-            <summary>
-             Return the username that is logged-in
-            </summary>
+            <param name="request">Request context</param>
+            <returns>If the login was cleaned</returns>
         </member>
         <member name="M:Ak.MVC.Authentication.Authenticate.EncryptPassword(System.String)">
             <summary>
@@ -68,21 +56,14 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
+        <member name="P:Ak.MVC.Authentication.Authenticate.IsAuthenticated">
             <summary>
-             To Force error when the user is not logged-in
+             Whether there is user logged-in at the site
             </summary>
         </member>
-        <member name="M:Ak.MVC.Authentication.AjaxAuthorizeAttribute.AuthorizeCore(System.Web.HttpContextBase)">
+        <member name="P:Ak.MVC.Authentication.Authenticate.Username">
             <summary>
-            When overridden, provides an entry point for custom authorization checks.
-            </summary>
-            <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="httpContext"/> parameter is null.</exception>
-            <returns>Whether the user is authorized</returns>
-        </member>
-        <member name="P:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
-            <summary>
-             The message to return as exception
+             Return the username that is logged-in
             </summary>
         </member>
         <member name="T:Ak.MVC.Route.RouteInfo">
@@ -113,6 +94,26 @@
         <member name="P:Ak.MVC.Route.RouteInfo.Current">
             <summary>
              RouteData of the current Url
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Authentication.IRole">
+            <summary>
+             The Interface to paas Roles (permissions) to Authenticate
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Authentication.IRole.Name">
+            <summary>
+             The Name of Permission that will be verified by Authorize decorator (MVC)
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
+            <summary>
+             To Force error when the user is not logged-in
+            </summary>
+        </member>
+        <member name="F:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
+            <summary>
+             Message of expiration of session
             </summary>
         </member>
         <member name="T:Ak.MVC.Forms.SelectListExtension">
