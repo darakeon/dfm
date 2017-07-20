@@ -18,7 +18,9 @@ else
             <th width="200px">@PlainText.Dictionary["Name"]</th>
             <th>@PlainText.Dictionary["BeginDate"]</th>
             <th colspan="2">@PlainText.Dictionary["Value"]</th>
+            <!--
             <th colspan="2">@PlainText.Dictionary["Move"]</th>
+            -->
             <th colspan="2">@PlainText.Dictionary["TODO"]</th>
         </tr>
 
@@ -58,8 +60,11 @@ else
                     
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
 
+                <!--
                 <td class="image"><a href="@createUrl"><img src="/Assets/Image/create_move.gif" alt="@createLabel" title="@createLabel" /></a></td>
                 <td class="image"><a href="@scheduleUrl"><img src="/Assets/Image/schedule_move.gif" alt="@scheduleLabel" title="@scheduleLabel" /></a></td>
+                -->
+
                 <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
