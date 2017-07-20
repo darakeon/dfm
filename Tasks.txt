@@ -104,12 +104,19 @@ VERSÃO 1.0.2.0
 ----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
 05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
-04/01/2012			Criar objeto que herda Move (FutureMove?) e usar em schedule
+04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
 				Iluminar conta escolhida (na area account)
+				Opção de colocar (atual/total) na descrição de agendadas
+				Criar relatórios por anos
 				Retirar delegate DeleteSummary / outros try de duplicata
 				Separar Multilanguage de MVC
 				Retirar delegate GetterForMove
 				Testar Elmah com página tratada (Report > SeeYear)
+				Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
+
+======================================================================================================
+
+VERSÃO 1.0.2.1
 
 				BDD
 				Selenium
@@ -118,7 +125,7 @@ VERSÃO 1.0.2.0
 
 ======================================================================================================
 
-VERSÃO 1.0.2.1
+VERSÃO 1.0.2.3
 
 				Proteção por usuário no Core (verificar active também)
 				importador de Excel
@@ -134,8 +141,6 @@ VERSÃO 1.0.2.1
 				exportador de XML
 				exportador de Money
 				exportador de CSV
-
-				Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
 ======================================================================================================
 
