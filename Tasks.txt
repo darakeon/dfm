@@ -1,4 +1,4 @@
-VERSION 1.0.0.0
+VERSÃO 1.0.0.0
 
 01/06	20/06	Detalhes na Movimentação
 20/06	29/06	-- Refazer roteamento para uma conta entrar em uma url
@@ -55,13 +55,13 @@ VERSION 1.0.0.0
 
 ======================================================================================================
 
-VERSION 1.0.0.1
+VERSÃO 1.0.0.1
 24/09	24/09	Consertar acesso NH no publicado
 24/09	24/09	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 
 ======================================================================================================
 
-VERSION 1.0.0.2
+VERSÃO 1.0.0.2
 25/09	26/09	Conflito de formato de data
 28/09	01/10	Confirmação de senha
 01/10	01/10	Data de cadastro do usuário
@@ -70,7 +70,7 @@ VERSION 1.0.0.2
 
 ======================================================================================================
 
-VERSION 1.0.0.3
+VERSÃO 1.0.0.3
 02/10	09/10	Recuperação de Senha - hashcode
 10/10	10/10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 11/10	13/10	Ícones ao invés de palavras nas listagem de contas
@@ -78,31 +78,28 @@ VERSION 1.0.0.3
 
 ======================================================================================================
 
-VERSION 1.0.0.4
+VERSÃO 1.0.1.0 (e VERSÃO 1.0.0.4)
 23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 08/11	08/11	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 09/11	09/11	Substituir links por desenhos na lista de Categorias
 09/11	22/11	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
 09/11	09/11	Verificar se recuperação de senha está desativando usuário
 11/11	11/11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
-
 ======================================================================================================
-
-VERSION 1.0.1.0
 19/10	19/10	Log4Net / Elmah
 24/10	25/10	Tentativa de passar Log4Net / Elmah para MySql: FAIL
 25/10	25/10	Proteção para log do Elmah
 25/10	25/10	Erros tratados
-25/11		Testes e Publicação
+25/11	30/11	Testes e Publicação
 
 ======================================================================================================
 
-VERSION 1.0.2.0
-		Fornecer detalhes do erro no e-mail de report
+VERSÃO 1.0.2.0
 		BDD
 		Selenium
 		Reorganizar camadas
 		Refactor de limpeza geral
+		Fornecer detalhes do erro no e-mail de report
 		Proteção por usuário no Core (verificar active também)
 
 		importador de Excel
@@ -123,7 +120,7 @@ VERSION 1.0.2.0
 
 ======================================================================================================
 
-VERSION 1.0.3.0
+VERSÃO 1.0.3.0
 		Schedule: inserir até data atual, não apenas a primeira
 		Security desativa os anteriores
 		Follow twitter
