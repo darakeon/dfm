@@ -133,7 +133,7 @@ namespace DFM.BusinessLogic.Services
             var currentUser = SelectById(security.User.ID);
 
             if (currentUser == null || currentUser.Email != security.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
         }
 
     }

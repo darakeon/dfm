@@ -11,6 +11,7 @@ namespace DFM.Entities
             AccountList = new List<Account>();
             CategoryList = new List<Category>();
             ScheduleList = new List<Schedule>();
+            SecurityList = new List<Security>();
         }
 
 

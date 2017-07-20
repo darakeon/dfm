@@ -142,15 +142,18 @@ VERSÃO 1.0.2.3
 
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
+				Troca SelectUserByEmail por SelectUserByLogin
+				Fazer ValidateAndGet pegar String de Login
 				Retornar mensagens de erro já traduzidas (do core)
 				Security desativa os anteriores
+				Em Move, colocar Value como campo gravado e usar Total para exibição
 				Colocar hover em TRs de tabela (destacar linha que está em cima)
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)
 			>>>	Disponibilizar cores para interfaces
 			>>>	Criar relatórios por anos
 			>>>	Iluminar última movimentação verificada
-				Em Move, colocar Value como campo gravado e usar Total para exibição
+			>>>	Mostrar valor da conta com movimentações futuras
 				Tratar FailOnEmailSend em Robot
 				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 
@@ -201,3 +204,4 @@ VERSÃO 1.0.4.0
 
 				"Adivinhar" categoria
 				taggeamento de movimentação
+				Recover de conta pelo MISC

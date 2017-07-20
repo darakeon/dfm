@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.SuperServices
             var user = userService.SelectByEmail(email);
 
             if (user == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongUserEmail);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
             sendPasswordReset(user);
         }

@@ -10,7 +10,6 @@
         UserAlreadyExists,
         UserEmailInvalid,
         UserPasswordRequired,
-        WrongUserEmail,
 
         AccountAlreadyExists,
         CantCloseEmptyAccount,

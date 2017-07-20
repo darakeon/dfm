@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("b. Activate the user")]
-    public partial class B_ActivateTheUserFeature
+    [NUnit.Framework.DescriptionAttribute("b. Send user verify token to user")]
+    public partial class B_SendUserVerifyTokenToUserFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "b.ActivateUser.feature"
+#line 1 "b.SendUserVerify.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Activate the user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Send user verify token to user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -59,74 +59,44 @@ namespace DFM.Tests.A_Safe
 #line 3
 #line 4
  testRunner.Given("I have an user");
-#line 5
- testRunner.And("I have a token for its actvation");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Activate user with invalid token (E)")]
-        public virtual void _01_ActivateUserWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("01. Send with email that doesn\'t exist (E)")]
+        public virtual void _01_SendWithEmailThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Activate user with invalid token (E)", ((string[])(null)));
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Send with email that doesn\'t exist (E)", ((string[])(null)));
+#line 6
 this.ScenarioSetup(scenarioInfo);
+#line 7
+ testRunner.Given("I pass an e-mail that doesn\'t exist");
 #line 8
- testRunner.Given("I pass an invalid token");
-#line 9
- testRunner.When("I try to activate the user");
+ testRunner.When("I try to send the e-mail of user verify");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table1.AddRow(new string[] {
-                        "InvalidToken"});
-#line 10
+                        "InvalidUser"});
+#line 9
  testRunner.Then("I will receive this error", ((string)(null)), table1);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Send with info all right (S)")]
+        public virtual void _99_SendWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Send with info all right (S)", ((string[])(null)));
 #line 13
- testRunner.And("the user will not be activated");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Activate user with token of reset password (E)")]
-        public virtual void _02_ActivateUserWithTokenOfResetPasswordE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Activate user with token of reset password (E)", ((string[])(null)));
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I pass valid e-mail");
 #line 15
-this.ScenarioSetup(scenarioInfo);
+ testRunner.When("I try to send the e-mail of user verify");
 #line 16
- testRunner.Given("I pass a token of password reset");
-#line 17
- testRunner.When("I try to activate the user");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table2.AddRow(new string[] {
-                        "InvalidToken"});
-#line 18
- testRunner.Then("I will receive this error", ((string)(null)), table2);
-#line 21
- testRunner.And("the user will not be activated");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Activate user with info all right (S)")]
-        public virtual void _99_ActivateUserWithInfoAllRightS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Activate user with info all right (S)", ((string[])(null)));
-#line 23
-this.ScenarioSetup(scenarioInfo);
-#line 24
- testRunner.Given("I pass the valid token");
-#line 25
- testRunner.When("I try to activate the user");
-#line 26
  testRunner.Then("I will receive no error");
-#line 27
- testRunner.And("the user will be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

@@ -1,7 +1,7 @@
-﻿Feature: c. Get user by its e-mail and password
+﻿Feature: e. Get user by its e-mail and password
 
-Background:
-	Given I have an active user
+Background: 
+	Given I have an user
 
 Scenario: 01. Validate without e-mail (E)
 	Given I have this user data
@@ -9,8 +9,8 @@ Scenario: 01. Validate without e-mail (E)
 		|       | password |
 	When I try to get the user
 	Then I will receive this error
-		| Error    		|
-		| UserEmailRequired |
+		| Error       |
+		| InvalidUser |
 	And I will receive no user
 
 Scenario: 02. Validate without password (E)
@@ -19,8 +19,8 @@ Scenario: 02. Validate without password (E)
 		| test@dontflymoney.com |          |
 	When I try to get the user
 	Then I will receive this error
-		| Error       		|
-		| UserPasswordRequired |
+		| Error       |
+		| InvalidUser |
 	And I will receive no user
 
 Scenario: 03. Validate with wrong e-mail (E)

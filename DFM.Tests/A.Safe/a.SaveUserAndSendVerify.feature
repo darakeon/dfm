@@ -32,7 +32,7 @@ Scenario: 03. Save user with invalid e-mail (E)
 	
 Scenario: 04. Save user with repeated e-mail (E)
 	Given I have this user to create
-		| Email                 | Password |
+		| Email                     | Password |
 		| repeated@dontflymoney.com | password |
 	And I already have created this user
 	When I try to save the user

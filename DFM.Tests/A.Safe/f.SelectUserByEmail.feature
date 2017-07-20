@@ -1,4 +1,4 @@
-﻿Feature: d. Get an user by its e-mail
+﻿Feature: f. Get an user by its e-mail
 
 * Change to select an user to its token
 
@@ -6,7 +6,7 @@ Background:
 	Given I have an user
 
 Scenario: 01. Select with email that doesn't exist (E)
-	Given I pass an e-mail the doesn't exist
+	Given I pass an e-mail that doesn't exist
 	When I try to get the user
 	Then I will receive this error
 		| Error       |

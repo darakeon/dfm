@@ -1,4 +1,4 @@
-﻿Feature: b. Activate the user
+﻿Feature: d. Activate the user
 
 Background:
 	Given I have an user

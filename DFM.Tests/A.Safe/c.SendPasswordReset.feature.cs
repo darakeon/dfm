@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("d. Get an user by its e-mail")]
-    public partial class D_GetAnUserByItsE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("c. Send a password reset token to user")]
+    public partial class C_SendAPasswordResetTokenToUserFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "d.SelectUserByEmail.feature"
+#line 1 "c.SendPasswordReset.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Get an user by its e-mail", "\r\n* Change to select an user to its token", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Send a password reset token to user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -56,51 +56,47 @@ namespace DFM.Tests.A_Safe
         
         public virtual void FeatureBackground()
         {
-#line 5
-#line 6
+#line 3
+#line 4
  testRunner.Given("I have an user");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Select with email that doesn\'t exist (E)")]
-        public virtual void _01_SelectWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("01. Send with email that doesn\'t exist (E)")]
+        public virtual void _01_SendWithEmailThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Select with email that doesn\'t exist (E)", ((string[])(null)));
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Send with email that doesn\'t exist (E)", ((string[])(null)));
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.Given("I pass an e-mail the doesn\'t exist");
-#line 10
- testRunner.When("I try to get the user");
+#line 7
+ testRunner.Given("I pass an e-mail that doesn\'t exist");
+#line 8
+ testRunner.When("I try to send the e-mail of password reset");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table1.AddRow(new string[] {
                         "InvalidUser"});
-#line 11
+#line 9
  testRunner.Then("I will receive this error", ((string)(null)), table1);
-#line 14
- testRunner.And("I will receive no user");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Select with info all right (S)")]
-        public virtual void _99_SelectWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("99. Send with info all right (S)")]
+        public virtual void _99_SendWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Select with info all right (S)", ((string[])(null)));
-#line 16
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Send with info all right (S)", ((string[])(null)));
+#line 13
 this.ScenarioSetup(scenarioInfo);
-#line 17
+#line 14
  testRunner.Given("I pass valid e-mail");
-#line 18
- testRunner.When("I try to get the user");
-#line 19
+#line 15
+ testRunner.When("I try to send the e-mail of password reset");
+#line 16
  testRunner.Then("I will receive no error");
-#line 20
- testRunner.And("I will receive the user");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
