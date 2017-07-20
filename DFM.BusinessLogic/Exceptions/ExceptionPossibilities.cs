@@ -8,7 +8,8 @@
         InvalidToken,
         InvalidUser,
         UserAlreadyExists,
-        UserInvalidEmail,
+        UserEmailInvalid,
+        UserPasswordRequired,
         WrongUserEmail,
 
         AccountAlreadyExists,

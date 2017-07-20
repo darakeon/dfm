@@ -11,11 +11,10 @@ namespace DFM.Multilanguage
 {
     public class PlainText
     {
-        internal static readonly String MainPath = 
-            Path.Combine(Directory.GetCurrentDirectory(), "bin/MultiLanguage");
-        
-        private static readonly String path = 
-            Path.Combine(MainPath, "Resources");
+        private static String currentPath;
+
+        internal static String MainPath { get { return Path.Combine(currentPath, "MultiLanguage"); } }
+        private static String path { get { return Path.Combine(MainPath, "Resources"); } }
 
         public static EmailLayout EmailLayout { get; private set; }
         public static PlainText Dictionary { get; private set; }
@@ -66,9 +65,9 @@ namespace DFM.Multilanguage
 
 
 
-        public static void Initialize()
+        public static void Initialize(String currentXmlPath)
         {
-            if (Dictionary != null) return;
+            currentPath = currentXmlPath;
 
             Dictionary = new PlainText(Directory.GetFiles(path, "*.xml"));
             EmailLayout = new EmailLayout();

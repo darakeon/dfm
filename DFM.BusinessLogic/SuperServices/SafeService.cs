@@ -35,19 +35,19 @@ namespace DFM.BusinessLogic.SuperServices
         }
       
         
-        public User SaveUserAndSendVerify(User user)
+        public void SaveUserAndSendVerify(String email, String password)
         {
             var transaction = userService.BeginTransaction();
 
             try
             {
+                var user = new User { Email = email, Password = password };
+
                 user = userService.SaveOrUpdate(user);
 
                 sendUserVerify(user);
 
                 userService.CommitTransaction(transaction);
-
-                return user;
             }
             catch
             {

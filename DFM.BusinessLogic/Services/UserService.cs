@@ -55,15 +55,18 @@ namespace DFM.BusinessLogic.Services
 
         internal User SaveOrUpdate(User user)
         {
-            return SaveOrUpdate(user, complete, validate);
+            return SaveOrUpdate(user, complete, validate); ;
         }
 
         private void validate(User user)
         {
+            if (String.IsNullOrEmpty(user.Password))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
+
             var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
             if (!regex.Match(user.Email).Success)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.UserInvalidEmail);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.UserEmailInvalid);
 
             var userByEmail = SelectByEmail(user.Email);
 
@@ -108,6 +111,9 @@ namespace DFM.BusinessLogic.Services
         
         private static String encrypt(String password)
         {
+            if (String.IsNullOrEmpty(password))
+                return null;
+
             var md5 = new MD5CryptoServiceProvider();
 
             var originalBytes = Encoding.Default.GetBytes(password);

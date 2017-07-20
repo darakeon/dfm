@@ -18,8 +18,6 @@ namespace DFM.Email
 
         private Format(String language, String key)
         {
-            PlainText.Initialize();
-
             Layout = PlainText.EmailLayout[language, key];
             Subject = PlainText.Dictionary["Email", language, key];
         }

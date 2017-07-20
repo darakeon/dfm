@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Ak.MVC.Route;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
@@ -13,7 +14,10 @@ namespace DFM.MVC.Helpers
     {
         public static void Initialize()
         {
-            PlainText.Initialize();
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(), "bin");
+
+            PlainText.Initialize(path);
         }
 
 

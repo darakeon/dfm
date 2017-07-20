@@ -75,7 +75,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table2.AddRow(new string[] {
-                        "UserEmailRequired"});
+                        "UserEmailInvalid"});
 #line 8
  testRunner.Then("I will receive this error", ((string)(null)), table2);
 #line 11
@@ -147,10 +147,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Save user with repeated e-mail (E)")]
-        public virtual void _03_SaveUserWithRepeatedE_MailE()
+        [NUnit.Framework.DescriptionAttribute("04. Save user with repeated e-mail (E)")]
+        public virtual void _04_SaveUserWithRepeatedE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save user with repeated e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Save user with repeated e-mail (E)", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -158,7 +158,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table7.AddRow(new string[] {
-                        "test@dontflymoney.com",
+                        "repeated@dontflymoney.com",
                         "password"});
 #line 34
  testRunner.Given("I have this user to create", ((string)(null)), table7);
@@ -174,7 +174,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 39
  testRunner.Then("I will receive this error", ((string)(null)), table8);
 #line 42
- testRunner.And("the user will not be saved");
+ testRunner.And("the user will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

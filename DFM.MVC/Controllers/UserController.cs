@@ -36,7 +36,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Services.Safe.SaveUserAndSendVerify(model.User);
+                    Services.Safe.SaveUserAndSendVerify(model.User.Email, model.User.Password);
                 }
                 catch (DFMCoreException e)
                 {
