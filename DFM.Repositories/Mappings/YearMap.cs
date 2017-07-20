@@ -13,7 +13,11 @@ namespace DFM.Repositories.Mappings
             mapping.HasMany(y => y.MonthList)
                 .Cascade.Delete();
 
+            mapping.Map(m => m.Time)
+                .UniqueKey("Year_TimeAccount");
+
             mapping.References(y => y.Account)
+                .UniqueKey("Year_TimeAccount")
                 .Cascade.None();
 
             mapping.HasMany(y => y.SummaryList)

@@ -16,7 +16,11 @@ namespace DFM.Repositories.Mappings
             mapping.HasMany(m => m.OutList)
                 .Cascade.None();
 
+            mapping.Map(m => m.Time)
+                .UniqueKey("Month_TimeYear");
+
             mapping.References(m => m.Year)
+                .UniqueKey("Month_TimeYear")
                 .Cascade.SaveUpdate();
 
             mapping.HasMany(m => m.SummaryList)
