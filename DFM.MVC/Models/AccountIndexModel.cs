@@ -13,7 +13,7 @@ namespace DFM.MVC.Models
         {
             AccountList = Current.User.AccountList
                 .Where(a => a.Open() == open)
-                .OrderByDescending(a => a.ID)
+                .OrderBy(a => a.Name)
                 .ToList();
         }
 

@@ -16,7 +16,7 @@ namespace DFM.MVC.Models
         {
             LateralAccountList = Current.User.AccountList
                 .Where(a => a.Open())
-                .OrderByDescending(a => a.ID)
+                .OrderBy(a => a.Name)
                 .ToList();
 
             ActionName = RouteInfo.Current.RouteData == null

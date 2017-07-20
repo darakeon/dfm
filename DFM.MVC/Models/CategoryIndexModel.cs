@@ -10,7 +10,7 @@ namespace DFM.MVC.Models
         public CategoryIndexModel()
         {
             CategoryList = Current.User.CategoryList
-                .OrderByDescending(c => c.ID)
+                .OrderBy(c => c.Name)
                 .OrderByDescending(c => c.Active)
                 .ToList();
         }

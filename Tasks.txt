@@ -80,8 +80,11 @@ VERSION 1.0.0.3
 
 VERSION 1.0.0.4
 23/10	23/10	Corrigido erro na movimentação de Transferência: não estava trazendo contas
-		Colocar lista em contas em ordem alfabética (menu, abertas, fechadas)
+08/11	08/11	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 		Substituir links por desenhos na lista de Categorias
+		Verificar se recuperação de senha está desativando usuário
+		Tornar possível valor ZERO em sinais (vermelho / amarelo)
+		Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
 
 ======================================================================================================
 
@@ -99,9 +102,6 @@ VERSION 1.0.1.0
 		importador/exportador de Excel
 		importador/exportador de Money
 		importador/exportador de CSV
-
-		Verificar se recuperação de senha está desativando usuário
-		Tornar possível valor ZERO em sinais (vermelho / amarelo)
 
 		Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 
