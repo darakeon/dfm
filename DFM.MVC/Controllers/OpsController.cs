@@ -23,7 +23,7 @@ namespace DFM.MVC.Controllers
 
             if (id == 500)
             {
-                model.EmailSent = Error.Report();
+                model.EmailSent = Error.Report(HttpContext.AllErrors);
             }
 
 
