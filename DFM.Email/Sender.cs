@@ -14,7 +14,7 @@ namespace DFM.Email
 
 
         private String to, subject, body;
-        private IList<String> files;
+        private readonly IList<String> files;
 
 
         public Sender()
@@ -54,7 +54,7 @@ namespace DFM.Email
         }
 
 
-        public void Send(Exception exception = null)
+        public void Send()
         {
             var credentials = new NetworkCredential("no-reply@" + domain, "[some-awful-password]");
 
@@ -86,9 +86,17 @@ namespace DFM.Email
             }
             catch (Exception e)
             {
-                throw exception ?? e;
+                throw new SendException(e);
             }
 
+        }
+
+
+
+        public class SendException : Exception
+        {
+            public SendException(Exception e) 
+                : base("Exception on sending e-mail", e) { }
         }
 
 

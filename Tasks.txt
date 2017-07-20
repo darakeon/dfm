@@ -96,7 +96,8 @@ VERSÃO 1.0.1.0 (e VERSÃO 1.0.0.4)
 
 VERSÃO 1.0.2.0
 02/12	05/12	Reorganização primária de camadas
-05/12		Separar BusinessLogic de NHibernate
+-----	-----	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
+05/12	19/12	Separar BusinessLogic de NHibernate
 		Criar superServices e migrar uso para ele
 		Separar Multilanguage de MVC
 		Refactor Resharper

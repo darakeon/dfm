@@ -291,16 +291,16 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                //TO-DO: tell user that the e-mail was not send
-                var exception = DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
-
                 new Sender()
                     .To(move.User().Email)
                     .Subject(format.Subject)
                     .Body(fileContent)
-                    .Send(exception);
+                    .Send();
             }
-            catch (DFMCoreException) { }
+            catch (Exception)
+            {
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+            }
         }
 
         private static String detailsHTML(Move move)

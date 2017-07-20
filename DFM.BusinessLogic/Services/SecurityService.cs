@@ -88,13 +88,18 @@ namespace DFM.BusinessLogic.Services
 
             var fileContent = format.Layout.Format(dic);
 
-            var exception = DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
-
-            new Sender()
-                .To(security.User.Email)
-                .Subject(format.Subject)
-                .Body(fileContent)
-                .Send(exception);
+            try
+            {
+                new Sender()
+                    .To(security.User.Email)
+                    .Subject(format.Subject)
+                    .Body(fileContent)
+                    .Send();
+            }
+            catch (Exception)
+            {
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+            }
 
             security.Sent = true;
             SaveOrUpdate(security);
