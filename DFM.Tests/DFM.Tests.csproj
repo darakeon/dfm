@@ -141,10 +141,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="D.Robot\a.SaveOrUpdateSchedule.feature.cs">
+    <Compile Include="D.Robot\a.SaveSchedule.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveOrUpdateSchedule.feature</DependentUpon>
+      <DependentUpon>a.SaveSchedule.feature</DependentUpon>
     </Compile>
     <Compile Include="E.Report\b.GetYearReport.feature.cs">
       <DependentUpon>b.GetYearReport.feature</DependentUpon>
@@ -219,9 +219,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.GetMonthReport.feature.cs</LastGenOutput>
     </None>
-    <None Include="D.Robot\a.SaveOrUpdateSchedule.feature">
+    <None Include="D.Robot\a.SaveSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveOrUpdateSchedule.feature.cs</LastGenOutput>
+      <LastGenOutput>a.SaveSchedule.feature.cs</LastGenOutput>
     </None>
     <None Include="A.Safe\b.ActivateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
