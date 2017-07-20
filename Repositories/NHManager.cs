@@ -1,10 +1,9 @@
 ﻿using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
 using DFM.Entities;
-using DFM.Core.Mappings;
-using DFM.BusinessLogic;
+using DFM.Repositories.Mappings;
 
-namespace DFM.Core
+namespace DFM.Repositories
 {
     public class NHManager
     {

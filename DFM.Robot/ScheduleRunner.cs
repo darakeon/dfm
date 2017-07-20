@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using DFM.BusinessLogic.Services;
-using DFM.Core;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
+using DFM.Repositories;
 
 namespace DFM.Robot
 {

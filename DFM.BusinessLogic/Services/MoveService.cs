@@ -10,7 +10,7 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Core.Enums;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {

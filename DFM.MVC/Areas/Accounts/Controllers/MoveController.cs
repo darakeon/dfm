@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Core;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.BusinessLogic.Services;
@@ -13,6 +13,7 @@ using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.MultiLanguage;
 using DFM.MVC.MultiLanguage.Helpers;
+using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {

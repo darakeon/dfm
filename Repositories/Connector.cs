@@ -2,9 +2,9 @@
 using DFM.BusinessLogic.Services;
 using DFM.Entities.Bases;
 
-namespace DFM.Core
+namespace DFM.Repositories
 {
-    public class Resolver : IResolver
+    public class Connector : IConnector
     {
         public BaseService<T>.IRepository Resolve<T>() where T : class, IEntity
         {

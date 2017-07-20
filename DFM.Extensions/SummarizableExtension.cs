@@ -3,7 +3,7 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Bases;
 
-namespace DFM.Extensions.Entities
+namespace DFM.Extensions
 {
     public static class SummarizableExtension
     {

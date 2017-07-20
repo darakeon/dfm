@@ -1,8 +1,8 @@
 ﻿using System;
 using Ak.MVC.Authentication;
-using DFM.Core;
 using DFM.Entities;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
+using DFM.Repositories;
 
 namespace DFM.MVC.Authentication
 {

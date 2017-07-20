@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</ProjectGuid>
+    <ProjectGuid>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFM.Extensions</RootNamespace>
-    <AssemblyName>DFM.Extensions</AssemblyName>
+    <RootNamespace>DFM.Repositories</RootNamespace>
+    <AssemblyName>DFM.Repositories</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,24 +31,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AccountExtension.cs" />
-    <Compile Include="CategoryExtension.cs" />
-    <Compile Include="DetailExtension.cs" />
-    <Compile Include="MonthExtension.cs" />
-    <Compile Include="MoveExtension.cs" />
-    <Compile Include="ScheduleExtension.cs" />
-    <Compile Include="SecurityExtension.cs" />
-    <Compile Include="SummarizableExtension.cs" />
-    <Compile Include="SummaryExtension.cs" />
-    <Compile Include="UserExtension.cs" />
-    <Compile Include="YearExtension.cs" />
+    <Compile Include="BaseData.cs" />
+    <Compile Include="Connector.cs" />
+    <Compile Include="Mappings\AccountMap.cs" />
+    <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\DetailMap.cs" />
+    <Compile Include="Mappings\MonthMap.cs" />
+    <Compile Include="Mappings\MoveMap.cs" />
+    <Compile Include="Mappings\ScheduleMap.cs" />
+    <Compile Include="Mappings\SecurityMap.cs" />
+    <Compile Include="Mappings\SummaryMap.cs" />
+    <Compile Include="Mappings\UserMap.cs" />
+    <Compile Include="Mappings\YearMap.cs" />
+    <Compile Include="NHManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
+      <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
+      <Name>DFM.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
       <Name>DFM.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Ak.DataAccess">
+      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

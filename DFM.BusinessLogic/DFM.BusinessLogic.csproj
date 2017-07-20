@@ -34,14 +34,6 @@
     <Reference Include="Ak.Generic">
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\AccountService.cs" />
@@ -49,7 +41,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Services\DetailService.cs" />
-    <Compile Include="IResolver.cs" />
+    <Compile Include="IConnector.cs" />
     <Compile Include="Services\MonthService.cs" />
     <Compile Include="Services\MoveService.cs" />
     <Compile Include="Services\ScheduleService.cs" />

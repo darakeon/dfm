@@ -60,6 +60,10 @@
       <Project>{418078A8-A13A-40AE-A939-68E0EA25F35B}</Project>
       <Name>DFM.Robot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositories\DFM.Repositories.csproj">
+      <Project>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</Project>
+      <Name>DFM.Repositories</Name>
+    </ProjectReference>
     <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
@@ -99,28 +103,10 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Helpers">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.DynamicData">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Entity">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.ApplicationServices">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -129,46 +115,25 @@
     <Reference Include="System.Core">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Extensions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Abstractions">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Routing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Configuration">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Services">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
@@ -324,10 +289,6 @@
     <Content Include="Views\Token\Invalid.cshtml" />
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />
     <Content Include="Views\Token\Received.cshtml" />
-    <ProjectReference Include="..\DFM.Core\DFM.Core.csproj">
-      <Project>{AEA621F8-5F62-4E7B-BCE8-EB629E8C4FC7}</Project>
-      <Name>DFM.Core</Name>
-    </ProjectReference>
     <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\User\SendVerification.cshtml" />
     <Content Include="Views\Token\UserVerification.cshtml" />

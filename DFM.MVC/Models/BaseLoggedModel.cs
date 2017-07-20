@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ak.MVC.Route;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Entities;
 using DFM.MVC.Helpers.Views;

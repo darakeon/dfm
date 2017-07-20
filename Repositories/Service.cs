@@ -1,6 +1,6 @@
 ﻿using DFM.BusinessLogic;
 
-namespace DFM.Core
+namespace DFM.Repositories
 {
     public class Service
     {
@@ -11,7 +11,7 @@ namespace DFM.Core
             get
             {
                 return access 
-                    ?? (access = new DataAccess( new Resolver() ));
+                    ?? (access = new DataAccess( new Connector() ));
             }
         }
 

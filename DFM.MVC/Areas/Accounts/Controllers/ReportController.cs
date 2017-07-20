@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DFM.Core;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.BusinessLogic.Services;
-using DFM.MVC.Authentication;
 using DFM.MVC.Helpers.Extensions;
+using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {

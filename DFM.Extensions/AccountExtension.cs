@@ -3,7 +3,7 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Core.Enums;
 
-namespace DFM.Extensions.Entities
+namespace DFM.Extensions
 {
     public static class AccountExtension
     {

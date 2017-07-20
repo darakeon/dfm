@@ -1,6 +1,6 @@
 ﻿using DFM.Entities;
 
-namespace DFM.Extensions.Entities
+namespace DFM.Extensions
 {
     public static class YearExtension
     {

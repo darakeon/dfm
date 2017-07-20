@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Core;
 using DFM.Entities;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
-using DFM.BusinessLogic.Services;
 using DFM.MVC.MultiLanguage;
+using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {

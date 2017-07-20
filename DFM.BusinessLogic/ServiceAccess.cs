@@ -5,7 +5,7 @@ namespace DFM.BusinessLogic
 {
     public class DataAccess 
     {
-        public DataAccess(IResolver resolver)
+        public DataAccess(IConnector resolver)
         {
             Account = new AccountService(this, resolver.Resolve<Account>());
             Category = new CategoryService(this, resolver.Resolve<Category>());

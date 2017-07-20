@@ -3,7 +3,7 @@ using DFM.BusinessLogic.Helpers;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace DFM.Core.Mappings
+namespace DFM.Repositories.Mappings
 {
     public class DetailMap : IAutoMappingOverride<Detail>
     {

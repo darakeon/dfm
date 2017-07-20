@@ -4,7 +4,7 @@ using System.Linq;
 using Ak.Generic.Extensions;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Extensions.Entities;
+using DFM.Extensions;
 using DFM.Core.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
