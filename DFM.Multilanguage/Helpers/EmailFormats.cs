@@ -2,28 +2,28 @@
 using DFM.Email;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.MultiLanguage.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     public class EmailFormats
     {
-        public static Format GetForMove(MoveNature moveNature)
+        public static Format GetForMove(String section, String language, MoveNature moveNature)
         {
-            return Get(String.Format("MoveNotification{0}", moveNature));
+            return Get(section, language, String.Format("MoveNotification{0}", moveNature));
         }
 
 
-        public static Format GetForSecurity(SecurityAction securityAction)
+        public static Format GetForSecurity(String section, String language, SecurityAction securityAction)
         {
-            return Get(securityAction.ToString());
+            return Get(section, language, securityAction.ToString());
         }
 
 
-        public static Format Get(String format)
+        public static Format Get(String section, String language, String format)
         {
             return new Format
                         {
-                            Layout = PlainText.EmailLayout[format],
-                            Subject = PlainText.Dictionary[format],
+                            Layout = PlainText.EmailLayout[language, format],
+                            Subject = PlainText.Dictionary[section, language, format],
                         };
         }
 

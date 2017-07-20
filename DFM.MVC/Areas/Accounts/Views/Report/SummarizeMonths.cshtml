@@ -14,7 +14,7 @@
 @section TopRightDiv {
     @{
         @Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, DateTime.Today.Year))
-        <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
+        <button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
     }
 }
 
@@ -22,15 +22,15 @@
 
 @if (!Model.Year.MonthList.Any()) { 
     
-    <div class="ZeroItems">@PlainText.Dictionary["NoYearMoves"]</div>
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoYearMoves"]</div>
 
 } else { 
         
     <table class="List Mini">
 
         <tr>
-            <th>@PlainText.Dictionary["Month"]</th>
-            <th>@PlainText.Dictionary["Value"]</th>
+            <th>@MultiLanguage.Dictionary["Month"]</th>
+            <th>@MultiLanguage.Dictionary["Value"]</th>
         </tr>
 
         @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
@@ -44,7 +44,7 @@
             <tr>
                 <td>
                     <a href="@Url.Action("ShowMoves", new { id = month.Url() } )">
-                        @PlainText.GetMonthName(month.Time)
+                        @MultiLanguage.GetMonthName(month.Time)
                     </a>
                 </td>
                 <td class="numeric @sign">@sum.ToMoney() </td>

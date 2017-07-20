@@ -5,8 +5,8 @@ using Ak.MVC.Route;
 using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Entities;
+using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Views;
-using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Models
 {
@@ -29,7 +29,7 @@ namespace DFM.MVC.Models
 
         public IList<Account> LateralAccountList { get; set; }
 
-        public String CurrentMonth { get { return PlainText.GetMonthName(DateTime.Now.Month); } }
+        public String CurrentMonth { get { return MultiLanguage.GetMonthName(DateTime.Now.Month); } }
         public String CurrentYear { get { return DateTime.Now.ToString("yyyy"); } }
 
         public String ActionName { get; set; }

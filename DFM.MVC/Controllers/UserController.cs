@@ -3,9 +3,9 @@ using System.Web.Mvc;
 using Ak.MVC.Authentication;
 using DFM.Email;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 using DFM.Entities;
-using DFM.MVC.MultiLanguage;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
@@ -18,8 +18,8 @@ namespace DFM.MVC.Controllers
         {
             formatUserVerification = new Format
                 {
-                    Layout = PlainText.EmailLayout["UserVerification"],
-                    Subject = PlainText.Dictionary["UserVerification"],
+                    Layout = MultiLanguage.EmailLayout("UserVerification"),
+                    Subject = MultiLanguage.Dictionary["UserVerification"],
                 };
         }
 
@@ -43,7 +43,7 @@ namespace DFM.MVC.Controllers
         public ActionResult SignUp(UserSignUpModel model)
         {
             if (model.Password != model.RetypePassword)
-                ModelState.AddModelError("", PlainText.Dictionary["RetypeWrong"]);
+                ModelState.AddModelError("", MultiLanguage.Dictionary["RetypeWrong"]);
 
 
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
 
 
@@ -149,15 +149,15 @@ namespace DFM.MVC.Controllers
                 {
                     var format = new Format
                         {
-                            Layout = PlainText.EmailLayout["PasswordReset"],
-                            Subject = PlainText.Dictionary["PasswordReset"],
+                            Layout = MultiLanguage.EmailLayout("PasswordReset"),
+                            Subject = MultiLanguage.Dictionary["PasswordReset"],
                         };
 
                     Services.Safe.SendPasswordReset(model.Email, format);
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)

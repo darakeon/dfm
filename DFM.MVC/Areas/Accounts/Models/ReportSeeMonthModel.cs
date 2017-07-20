@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.Entities;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
-using DFM.MVC.MultiLanguage;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -23,8 +23,8 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             get
             {
-                return String.Format(PlainText.Dictionary["ShortDateFormat"],
-                                     PlainText.GetMonthName(Month), Year);
+                return String.Format(MultiLanguage.Dictionary["ShortDateFormat"],
+                                     MultiLanguage.GetMonthName(Month), Year);
             }
         }
     }

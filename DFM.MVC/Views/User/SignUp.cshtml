@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Models.UserSignUpModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["SignUp"];
+    ViewBag.Title = MultiLanguage.Dictionary["SignUp"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 }
 
@@ -11,22 +11,22 @@
         @Html.ValidationSummary(true)
 
         <p>
-            @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"])
+            @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"])
             @Html.TextBoxFor(m => m.Email, new { maxlength = MaximumLength.UserEmail })
-            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.UserEmail)</span>
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.UserEmail)</span>
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"])
+            @Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"])
             @Html.PasswordFor(m => m.Password)
         </p>
 
         <p>
-            @Html.LabelFor(m => m.RetypePassword, PlainText.Dictionary["RetypePassword"])
+            @Html.LabelFor(m => m.RetypePassword, MultiLanguage.Dictionary["RetypePassword"])
             @Html.PasswordFor(m => m.RetypePassword)
         </p>
         
-        <button type="submit">@PlainText.Dictionary["Create"]!</button>
+        <button type="submit">@MultiLanguage.Dictionary["Create"]!</button>
 
     }
 </div>

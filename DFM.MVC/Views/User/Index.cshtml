@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = PlainText.Dictionary["Welcome"];
+    ViewBag.Title = MultiLanguage.Dictionary["Welcome"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 }
 
@@ -8,38 +8,38 @@
 }
 
 <p>
-    @PlainText.Dictionary["Index_Introdution"]
+    @MultiLanguage.Dictionary["Index_Introdution"]
 </p>
 
 <hr class="Text" />
 
 <p>
-    @PlainText.Dictionary["Index_PossibleNowADays"]
+    @MultiLanguage.Dictionary["Index_PossibleNowADays"]
 </p>
 			
 <ul>
-	<li>@PlainText.Dictionary["Index_Moves"]</li>
-	<li>@PlainText.Dictionary["Index_Transfer"]</li>
-	<li>@PlainText.Dictionary["Index_Categories"]</li>
+	<li>@MultiLanguage.Dictionary["Index_Moves"]</li>
+	<li>@MultiLanguage.Dictionary["Index_Transfer"]</li>
+	<li>@MultiLanguage.Dictionary["Index_Categories"]</li>
 </ul>
 
 <hr class="Text" />
 
 <p>
-	@PlainText.Dictionary["Index_Reports"]
+	@MultiLanguage.Dictionary["Index_Reports"]
 </p>
 			
 <ul>
-	<li>@PlainText.Dictionary["Index_ReportMonth"]</li>
-	<li>@PlainText.Dictionary["Index_ReportYear"]</li>
+	<li>@MultiLanguage.Dictionary["Index_ReportMonth"]</li>
+	<li>@MultiLanguage.Dictionary["Index_ReportYear"]</li>
 </ul>
 
 <hr class="Text" />
 
 <p>
-	@PlainText.Dictionary["Index_Close"]
+	@MultiLanguage.Dictionary["Index_Close"]
 </p>
 			
 <p>
-	@Html.ActionLink(PlainText.Dictionary["Index_Finish"], "SignUp")
+	@Html.ActionLink(MultiLanguage.Dictionary["Index_Finish"], "SignUp")
 </p>

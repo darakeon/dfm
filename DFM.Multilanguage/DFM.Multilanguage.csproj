@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>39a1ea9a-e7f3-4f66-ae7b-8fdf10cdeebe</ProjectGuid>
+    <ProjectGuid>{A747268B-CE55-4577-8D72-5405A2E5866C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DFM.Multilanguage</RootNamespace>
@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ak.DataAccess">
+      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.Generic">
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.MVC">
+      <HintPath>..\DFM.MVC\Bin\Ak.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +49,87 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Helpers\DicCreator.cs" />
+    <Compile Include="Helpers\DicException.cs" />
+    <Compile Include="Helpers\DicList.cs" />
+    <Compile Include="Helpers\EmailFormats.cs" />
+    <Compile Include="Helpers\EmailLayout.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\INameable.cs" />
+    <Compile Include="Helpers\Language.cs" />
+    <Compile Include="Helpers\Phrase.cs" />
+    <Compile Include="Helpers\Section.cs" />
+    <Compile Include="PlainText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Multilanguage\EmailLayouts\en-US\MoveNotificationIn.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\en-US\MoveNotificationOut.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\en-US\MoveNotificationTransfer.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\en-US\PasswordReset.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\en-US\UserVerification.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\pt-BR\MoveNotificationIn.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\pt-BR\MoveNotificationOut.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\pt-BR\MoveNotificationTransfer.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\pt-BR\PasswordReset.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\EmailLayouts\pt-BR\UserVerification.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\account.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\category.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\error.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\general.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\move.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\ops.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\report.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\token.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Multilanguage\Resources\user.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
+      <Name>DFM.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
+      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
+      <Name>DFM.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

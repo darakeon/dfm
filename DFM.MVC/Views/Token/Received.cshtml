@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Models.TokenReceivedModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["TokenReceivedByEmail"];
+    ViewBag.Title = MultiLanguage.Dictionary["TokenReceivedByEmail"];
 }
 
 <div class="HalfScreen">
@@ -10,10 +10,10 @@
         @Html.ValidationSummary(true)
         
         <p>
-            @Html.LabelFor(m => m.Token, PlainText.Dictionary["Token"])
+            @Html.LabelFor(m => m.Token, MultiLanguage.Dictionary["Token"])
             @Html.TextBoxFor(m => m.Token) 
         </p>
 
-        <button type="submit">@PlainText.Dictionary["Go"]</button>
+        <button type="submit">@MultiLanguage.Dictionary["Go"]</button>
     }
 </div>

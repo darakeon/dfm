@@ -4,24 +4,29 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Web;
 using Ak.DataAccess.XML;
 using Ak.Generic.Extensions;
-using Ak.MVC.Route;
-using DFM.MVC.MultiLanguage.Helpers;
-using NHibernate.Linq;
+using DFM.Multilanguage.Helpers;
 
-namespace DFM.MVC.MultiLanguage
+namespace DFM.Multilanguage
 {
     public class PlainText
     {
-        public static EmailLayout EmailLayout;
-        public static PlainText Dictionary;
+        internal static readonly String MainPath = 
+            Path.Combine(Directory.GetCurrentDirectory(), "bin/MultiLanguage");
+        
+        private static readonly String path = 
+            Path.Combine(MainPath, "Resources");
+
+        public static EmailLayout EmailLayout { get; private set; }
+        public static PlainText Dictionary { get; private set; }
+        
+        public DicList<Section> SectionList { get; private set; }
 
         private static List<String> acceptedLanguages;
-        private static readonly String path = HttpContext.Current.Server.MapPath(@"~\MultiLanguage\Resources");
 
-        public DicList<Section> SectionList { get; private set; }
+        public static CultureInfo Culture { get { return Thread.CurrentThread.CurrentUICulture; } }
+
 
 
 
@@ -37,7 +42,7 @@ namespace DFM.MVC.MultiLanguage
 
             DicCreator.Check(xmls.ToList(), nodes.ToList());
 
-            nodes.ForEach(addSectionToDictionary);
+            nodes.ToList().ForEach(addSectionToDictionary);
         }
 
         private void addSectionToDictionary(Node nodeSection)
@@ -72,69 +77,62 @@ namespace DFM.MVC.MultiLanguage
             acceptedLanguages = list.Distinct().ToList();
         }
 
-        internal static Boolean AcceptLanguage(String chosenLanguage)
+        public static Boolean AcceptLanguage(String chosenLanguage)
         {
             return acceptedLanguages.Contains(chosenLanguage.ToLower());
         }
 
 
 
-        public static CultureInfo Culture { get { return Thread.CurrentThread.CurrentUICulture; } }
-
-        private static String section { get { return RouteInfo.Current.RouteData == null ? "ops" : RouteInfo.Current.RouteData.Values["controller"].ToString().ToLower(); } }
-
-        public static String Language { get { return Culture.Name; } }
 
 
 
-        public String this[object phrase]
-        {
-            get { return this[phrase.ToString()]; }
-        }
 
-        public String this[String phrase]
+
+        public String this[String section, String language, params String[] phrase]
         {
             get
             {
-                phrase = Phrase.RemoveWrongCharacters(phrase);
+                if (phrase.Length == 0)
+                    throw new ArgumentException("Need at least one phrase.");
 
-                var text = (tryGetText("general", phrase) 
-                    ?? tryGetText(section, phrase))
-                    ?? tryGetText("error", phrase);
-
-                return text ?? notFound(phrase);
-            }
-        }
-
-        private String tryGetText(String chosenSection, String phrase)
-        {
-            try { return SectionList[chosenSection][Language][phrase].Text; }
-            catch (DicException) { return null; }
-        }
-
-        private static String notFound(String phrase)
-        {
-            if (HttpContext.Current.Request.Url.Host != "localhost")
-                throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, Language, phrase));
-
-            DicCreator.Fix(path, section, Language, phrase);
-            return Dictionary[phrase];
-        }
-
-
-
-        public String this[params String[] phrase]
-        {
-            get
-            {
                 var entire = String.Empty;
 
-                phrase.ForEach(p => entire += this[p] + " ");
+                phrase.ToList().ForEach(p => entire += this[section, language, p] + " ");
                 
                 return entire;
             }
         }
 
+        private String this[String section, String language, String phrase]
+        {
+            get
+            {
+                phrase = Phrase.RemoveWrongCharacters(phrase);
+
+                var text = (tryGetText("general", language, phrase)
+                    ?? tryGetText(section, language, phrase))
+                    ?? tryGetText("error", language, phrase);
+
+                return text ?? notFound(section, language, phrase);
+            }
+        }
+
+        private String tryGetText(String chosenSection, String language, String phrase)
+        {
+            try { return SectionList[chosenSection][language][phrase].Text; }
+            catch (DicException) { return null; }
+        }
+
+        private static String notFound(String section, String language, String phrase)
+        {
+#if DEBUG
+            DicCreator.Fix(path, section, language, phrase);
+            return Dictionary[section, language, phrase];
+#else
+            throw new DicException(String.Format("S: {0}<br/>L: {1}<br/>P: {2}", section, Language, phrase));
+#endif
+        }
         
 
 
@@ -144,15 +142,6 @@ namespace DFM.MVC.MultiLanguage
         }
 
 
-
-
-        public static void SpecifyLanguage(String language)
-        {
-            if (language == null || !PlainText.AcceptLanguage(language))
-                language = "en-US";
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(language);
-        }
 
 
     }

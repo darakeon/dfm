@@ -14,26 +14,26 @@
 @section TopRightDiv {
     @Html.NumberNavFor(m => m.Month, TimeNavigation.Limits(1, 12))
     @Html.NumberNavFor(m => m.Year, TimeNavigation.Limits(1900, DateTime.Today.Year))
-    <button type="button" id="NavGo">@PlainText.Dictionary["Go"]</button>
+    <button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
 }
 
 
 
 @if (!Model.MoveList.Any())
 { 
-    <div class="ZeroItems">@PlainText.Dictionary["NoMonthMoves"]</div>
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoMonthMoves"]</div>
 }
 else
 {    
     <table class="List">
 
         <tr>
-            <th>@PlainText.Dictionary["Description"]</th>
-            <th>@PlainText.Dictionary["Category"]</th>
-            <th>@PlainText.Dictionary["Date"]</th>
-            <th>@PlainText.Dictionary["In"]</th>
-            <th>@PlainText.Dictionary["Out"]</th>
-            <th colspan="2">@PlainText.Dictionary["TODO"]</th>
+            <th>@MultiLanguage.Dictionary["Description"]</th>
+            <th>@MultiLanguage.Dictionary["Category"]</th>
+            <th>@MultiLanguage.Dictionary["Date"]</th>
+            <th>@MultiLanguage.Dictionary["In"]</th>
+            <th>@MultiLanguage.Dictionary["Out"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
@@ -59,12 +59,12 @@ else
                 </td>
 
                 @{
-                    var editLabel = PlainText.Dictionary["Edit", "Move"];
+                    var editLabel = MultiLanguage.Dictionary["Edit", "Move"];
                     var editUrl = Url.Action("Edit", "Move", new { id = move.ID });
 
-                    var deleteLabel = PlainText.Dictionary["Delete", "Move"];
+                    var deleteLabel = MultiLanguage.Dictionary["Delete", "Move"];
                     var deleteUrl = Url.Action("Delete", "Move", new { id = move.ID });
-                    var deleteConfirm = String.Format(PlainText.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
+                    var deleteConfirm = String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
                     }
 
                 <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>

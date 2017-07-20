@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Models.AccountCreateEditModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Account"];
+    ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
         
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
@@ -16,33 +16,33 @@
         @Html.ValidationSummary(true)
 
         <p>
-            @Html.LabelFor(m => m.Name, PlainText.Dictionary["Name"])
+            @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
             @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
-            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>
 
         <p class="radio">
             @Html.CheckBoxFor(m => m.HasLimit)
-            @Html.LabelFor(m => m.HasLimit, PlainText.Dictionary["AccountHasLimit"])
+            @Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"])
         </p>
         
         <p>
-            @Html.LabelFor(m => m.Account.RedLimit, PlainText.Dictionary["RedLimit"] + " #")
+            @Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"] + " #")
             @Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money letZero" })
         </p>
 
         <p>
-            @Html.LabelFor(m => m.Account.YellowLimit, PlainText.Dictionary["YellowLimit"] + " #")
+            @Html.LabelFor(m => m.Account.YellowLimit, MultiLanguage.Dictionary["YellowLimit"] + " #")
             @Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money letZero" })
         </p>
 
         <p>
-            <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
+            <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
         </p>
 
     }
 </div>
 
 @section PS {
-    # @PlainText.Dictionary["RedLimit"] / @PlainText.Dictionary["YellowLimit"]: @PlainText.Dictionary["LimitExplanation"]
+    # @MultiLanguage.Dictionary["RedLimit"] / @MultiLanguage.Dictionary["YellowLimit"]: @MultiLanguage.Dictionary["LimitExplanation"]
 }

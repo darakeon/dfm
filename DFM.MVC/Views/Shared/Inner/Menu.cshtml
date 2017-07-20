@@ -3,25 +3,25 @@
 @{
     var menuList = new List<Menu>
     {
-        Model.MenuWith("MonthMoves", String.Format(PlainText.Dictionary["MonthMoves"], Model.CurrentMonth), "ShowMoves", "Report"),
-        Model.MenuWith("YearMoves", String.Format(PlainText.Dictionary["YearMoves"], Model.CurrentYear), "SummarizeMonths", "Report"),
-        Model.MenuWith("CreateMove", PlainText.Dictionary["Create", "Move"], "Create", "Move"),
-        Model.MenuWith("ScheduleMove", PlainText.Dictionary["Schedule", "Move"], "Schedule", "Move"),
+        Model.MenuWith("MonthMoves", String.Format(MultiLanguage.Dictionary["MonthMoves"], Model.CurrentMonth), "ShowMoves", "Report"),
+        Model.MenuWith("YearMoves", String.Format(MultiLanguage.Dictionary["YearMoves"], Model.CurrentYear), "SummarizeMonths", "Report"),
+        Model.MenuWith("CreateMove", MultiLanguage.Dictionary["Create", "Move"], "Create", "Move"),
+        Model.MenuWith("ScheduleMove", MultiLanguage.Dictionary["Schedule", "Move"], "Schedule", "Move"),
     };
 }
 
 <div id="Menu">
 
     <div class="fixMenu">
-        @Html.RouteLink(PlainText.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "fixItem" })
-        @Html.RouteLink(PlainText.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })
+        @Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "fixItem" })
+        @Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })
     </div>
 
     <div class="accountMenu">
         @if (Model.TooBigMeny(1350))
         {
             var invertedMenuList = new List<Menu> { 
-                Model.MenuWith("Accounts", PlainText.Dictionary["Accounts"], "Index", "Report")
+                Model.MenuWith("Accounts", MultiLanguage.Dictionary["Accounts"], "Index", "Report")
             };
             
             invertedMenuList.AddRange(menuList);
@@ -47,7 +47,7 @@
                 </div>
             }
 
-            var weirdMenuExplanation = PlainText.Dictionary["WeirdMenuExplanation"];
+            var weirdMenuExplanation = MultiLanguage.Dictionary["WeirdMenuExplanation"];
             
             <script type="text/javascript">
                 var weirdMenuExplanation = '@weirdMenuExplanation';

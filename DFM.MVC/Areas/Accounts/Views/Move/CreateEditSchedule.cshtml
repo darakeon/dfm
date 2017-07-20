@@ -1,6 +1,6 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.MoveCreateEditScheduleModel
 @{
-    ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Move"];
+    ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Move"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -12,7 +12,7 @@
     <script type="text/javascript">
         var whetherShowAccountListPage = '@Url.Action("ShowAccountList")';
         var addDetailsPage = '@Url.Action("AddDetail")';
-        var dayNames = '@PlainText.Dictionary["DayNames"]'.split(",");
+        var dayNames = '@MultiLanguage.Dictionary["DayNames"]'.split(",");
     </script>
 
     <script src='/Assets/Script/Pages/MoveCreateEditSchedule.js' type='text/javascript'></script>
@@ -33,7 +33,7 @@
 
         <div class="createMoveScreenLeft">
             <div>
-                @Html.LabelFor(m => m.Frequency, PlainText.Dictionary["Frequency"])<br />
+                @Html.LabelFor(m => m.Frequency, MultiLanguage.Dictionary["Frequency"])<br />
                 @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
             </div>
         </div>
@@ -41,18 +41,18 @@
         <div class="createMoveScreenRight">
             <div>
                 @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio" }) @(" ")
-                @Html.LabelFor(m => m.Boundless, PlainText.Dictionary["Boundless"])<br />
+                @Html.LabelFor(m => m.Boundless, MultiLanguage.Dictionary["Boundless"])<br />
 
                 @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio" }) @(" ")
-                @Html.LabelFor(m => m.Times, PlainText.Dictionary["Repeat"])
+                @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Repeat"])
                 @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
-                @Html.LabelFor(m => m.Times, PlainText.Dictionary["Times"])
+                @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Times"])
             </div>
         </div>
     
         <div class="divRowForm">
             @Html.CheckBoxFor(m => m.ShowInstallment)
-            @Html.LabelFor(m => m.ShowInstallment, PlainText.Dictionary["ShowInstallment"])
+            @Html.LabelFor(m => m.ShowInstallment, MultiLanguage.Dictionary["ShowInstallment"])
         </div>
     
         <div class="divRowForm">
@@ -62,14 +62,14 @@
 
     <div class="createMoveScreenLeft">
         <div>
-            @Html.LabelFor(m => m.Description, PlainText.Dictionary["Description"]) 
+            @Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"]) 
             @Html.ValidationMessageFor(m => m.Description)<br />
             @Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MoveDescription })
-            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
         </div>
 
         <div>
-            @Html.LabelFor(m => m.Move.Date, PlainText.Dictionary["Date"])
+            @Html.LabelFor(m => m.Move.Date, MultiLanguage.Dictionary["Date"])
             @Html.ValidationMessageFor(m => m.Move.Date)<br />
             @Html.TextBoxFor(m => m.Move.Date, new { @class = "date_notHour", disabled = "disabled" })
         </div>
@@ -77,21 +77,21 @@
     
     <div class="createMoveScreenRight">
         <div>
-            @Html.LabelFor(m => m.Move.Category.ID, PlainText.Dictionary["Category"]) 
+            @Html.LabelFor(m => m.Move.Category.ID, MultiLanguage.Dictionary["Category"]) 
             @Html.ValidationMessageFor(m => m.Move.Category.ID)<br />
-            @Html.DropDownListFor(m => m.Move.Category.ID, Model.CategorySelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.DropDownListFor(m => m.Move.Category.ID, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
 
-            <a href="#" type="button" id="newCategoryCaller">@PlainText.Dictionary["Create", "Category"]</a>
+            <a href="#" type="button" id="newCategoryCaller">@MultiLanguage.Dictionary["Create", "Category"]</a>
         </div>
 
         <div>
-            @Html.LabelFor(m => m.Nature, PlainText.Dictionary["Nature"]) 
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
 
             @Html.ValidationMessageFor(m => m.Nature)
             @Html.ValidationMessageFor(m => m.AccountID)<br />
         
             @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList)
-            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- " + PlainText.Dictionary["Select"] + " --")
+            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
         </div>
     </div>
     
@@ -99,20 +99,20 @@
     
     <div class="createMoveScreenLeft">
         @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })
-        @PlainText.Dictionary["JustOneValue"]
+        @MultiLanguage.Dictionary["JustOneValue"]
     </div> 
         
     <div class="createMoveScreenRight">
         @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "DetailLevel" })
-        @PlainText.Dictionary["Detailed"]
+        @MultiLanguage.Dictionary["Detailed"]
         
-        <a href="#" id="addDetailCaller" onclick="AddDetail()">@PlainText.Dictionary["Add", "Detail"]</a>
+        <a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>
     </div>
 
     <div id="oneValue" class="createMoveScreenLeft">
         <table class="List">
             <tr>
-                <th>@Html.LabelFor(m => m.Move.DetailList[0].Value, PlainText.Dictionary["Value"])</th>
+                <th>@Html.LabelFor(m => m.Move.DetailList[0].Value, MultiLanguage.Dictionary["Value"])</th>
             </tr>
             <tr>
                 <td>@Html.TextBoxFor(m => m.Move.DetailList[0].Value, new { @class = "money" })</td>
@@ -126,11 +126,11 @@
         <tbody id="details">
             <tr>
                 <th>
-                    @PlainText.Dictionary["Description"]
-                    <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
+                    @MultiLanguage.Dictionary["Description"]
+                    <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
                 </th>
-                <th>@PlainText.Dictionary["Amount"]</th>
-                <th>@PlainText.Dictionary["Value"]</th>
+                <th>@MultiLanguage.Dictionary["Amount"]</th>
+                <th>@MultiLanguage.Dictionary["Value"]</th>
             </tr>
 
             @for (var d = 0; d < Model.Move.DetailList.Count; d++)
@@ -141,7 +141,7 @@
     </table>
     
     <div id="moveCreateButton">
-        <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
+        <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
     </div>
 
 }

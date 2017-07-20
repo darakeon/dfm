@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.MVC.MultiLanguage.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     public class DicException : Exception
     {

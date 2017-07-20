@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.Entities;
 using DFM.MVC.Authentication;
+using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
-using DFM.MVC.MultiLanguage;
-using DFM.MVC.MultiLanguage.Helpers;
 using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
@@ -123,11 +122,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector, EmailFormats.GetForMove);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector, MultiLanguage.GetForMove);
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
             }
 
@@ -184,14 +183,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             var reportID = (move.In ?? move.Out).Url();
 
             if (!isUnauthorized(move))
-                Services.Money.DeleteMove(move, EmailFormats.GetForMove);
+                Services.Money.DeleteMove(move, MultiLanguage.GetForMove);
             //else
             //    move = null;
 
             // TODO: implement messages on page head
             //var message = move == null
-            //    ? PlainText.Dictionary["MoveNotFound"]
-            //    : String.Format(PlainText.Dictionary["MoveDeleted"], move.Description);
+            //    ? MultiLanguage.Dictionary["MoveNotFound"]
+            //    : String.Format(MultiLanguage.Dictionary["MoveDeleted"], move.Description);
 
             return RedirectToAction("ShowMoves", "Report", new { id = reportID });
         }

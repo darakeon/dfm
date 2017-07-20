@@ -3,7 +3,7 @@
 @{
     if (Model.IsMoveCRUD) { Model.ActionName = "Create"; }
     
-    ViewBag.Title = PlainText.Dictionary[Model.ActionName, "Category"];
+    ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
     Layout = Model.IsMoveCRUD ? null : "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -16,12 +16,12 @@
     {
 
         <p>
-            @Html.LabelFor(m => m.Category.Name, PlainText.Dictionary["Category"])
+            @Html.LabelFor(m => m.Category.Name, MultiLanguage.Dictionary["Category"])
             @Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaximumLength.CategoryName })
-            <span class='max'>@String.Format(PlainText.Dictionary["CharactersMax"], MaximumLength.CategoryName)</span>
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CategoryName)</span>
         </p>
     
-        <button type="submit">@PlainText.Dictionary[Model.ActionName]!</button>
+        <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
 
         @Html.HiddenFor(m => m.Category.Active)
     }

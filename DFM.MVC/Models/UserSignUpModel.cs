@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using DFM.Entities;
-using DFM.MVC.MultiLanguage;
+using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
@@ -9,7 +9,7 @@ namespace DFM.MVC.Models
     {
         public UserSignUpModel()
         {
-            User = new User { Language = PlainText.Language };
+            User = new User { Language = MultiLanguage.Language };
         }
 
         public User User { get; set; }

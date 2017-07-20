@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = PlainText.Dictionary["Logon"];
+    ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 
 <div class="HalfScreen">
     @String.Format(
-        PlainText.Dictionary["LogonDeactivated", "FollowEmailIntructions"],
+        MultiLanguage.Dictionary["LogonDeactivated", "FollowEmailIntructions"],
         DFM.Email.Sender.SenderAddress)
 </div>

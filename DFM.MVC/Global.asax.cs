@@ -5,8 +5,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
-using DFM.MVC.MultiLanguage;
-using DFM.MVC.MultiLanguage.Helpers;
+using DFM.MVC.Helpers;
 using DFM.Repositories;
 using DFM.Robot;
 using log4net.Config;
@@ -30,7 +29,7 @@ namespace DFM.MVC
             Directory.SetCurrentDirectory(Server.MapPath("~"));
 
             NHManager.Start();
-            PlainText.Initialize();
+            MultiLanguage.Initialize();
 
             XmlConfigurator.Configure();
         }
@@ -43,7 +42,7 @@ namespace DFM.MVC
             if (isAsset) return;
 
             if (isLocal)
-                PlainText.Initialize();
+                MultiLanguage.Initialize();
 
         }
 
@@ -57,16 +56,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (Current.IsAuthenticated)
-                MainRobot.Run(Current.User, EmailFormats.GetForMove, Services.Robot);
-
-            var browserLanguage =
-                Request.UserLanguages != null && Request.UserLanguages.Length > 0
-                    ? Request.UserLanguages[0]
-                    : null;
-
-            var language = Current.Language ?? browserLanguage;
-
-            PlainText.SpecifyLanguage(language);
+                MainRobot.Run(Current.User, MultiLanguage.GetForMove, Services.Robot);
         }
 
 

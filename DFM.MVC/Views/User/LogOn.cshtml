@@ -2,13 +2,13 @@
 
 @{
     var isAuthenticated = DFM.MVC.Authentication.Current.IsAuthenticated;
-    ViewBag.Title = PlainText.Dictionary["Logon"];
+    ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 
 <div class="HalfScreen">
     @if (isAuthenticated)
     {
-        <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@PlainText.Dictionary["Enter"]</button>
+        <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@MultiLanguage.Dictionary["Enter"]</button>
     }
     else
     {
@@ -17,29 +17,29 @@
             @Html.ValidationSummary(true)
         
             <p>
-                @Html.LabelFor(m => m.Email, PlainText.Dictionary["Email"] + ":")
+                @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
                 @Html.TextBoxFor(m => m.Email) 
             </p>
 
             <p>
-                @Html.LabelFor(m => m.Password, PlainText.Dictionary["Password"] + ":")
+                @Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"] + ":")
                 @Html.PasswordFor(m => m.Password)
             </p>
 
             <div id="Remember">
                 @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, PlainText.Dictionary["RememberMe"])
+                @Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
             </div>
 
-            <button type="submit">@PlainText.Dictionary["Enter"]</button>
+            <button type="submit">@MultiLanguage.Dictionary["Enter"]</button>
 
         
             <button type="button" id="ForgotPass" href="@Url.Action("ForgotPassword")">
-                @PlainText.Dictionary["ForgotPassword"]
+                @MultiLanguage.Dictionary["ForgotPassword"]
             </button>
         
             <div id="TokenReceived">
-                <a href="@Url.Action("Received", "Token")">@PlainText.Dictionary["TokenReceivedByEmail"]</a>
+                <a href="@Url.Action("Received", "Token")">@MultiLanguage.Dictionary["TokenReceivedByEmail"]</a>
             </div>
 
         }

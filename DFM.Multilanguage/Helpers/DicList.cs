@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace DFM.MVC.MultiLanguage.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     public class DicList<T> : List<T>
         where T : class, INameable

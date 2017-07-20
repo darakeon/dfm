@@ -1,32 +1,32 @@
 ﻿@model DFM.MVC.Models.CategoryIndexModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["Categories"];
+    ViewBag.Title = MultiLanguage.Dictionary["Categories"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
 @if (!Model.CategoryList.Any())
 { 
-    <div class="ZeroItems">@PlainText.Dictionary["NoCategories"]</div>
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoCategories"]</div>
 }
 else
 { 
     <table class="List">
 
         <tr>
-            <th>@PlainText.Dictionary["Name"]</th>
-            <th colspan="2">@PlainText.Dictionary["TODO"]</th>
+            <th>@MultiLanguage.Dictionary["Name"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var category in Model.CategoryList)
         {
-            var editLabel = PlainText.Dictionary["Edit", "Category"];
+            var editLabel = MultiLanguage.Dictionary["Edit", "Category"];
             var editUrl = Url.Action("Edit", "Category", new { id = category.ID });
 
-            var enableLabel = PlainText.Dictionary["Enable", "Category"];
+            var enableLabel = MultiLanguage.Dictionary["Enable", "Category"];
             var enableUrl = Url.Action("Enable", new { id = category.ID });
 
-            var disableLabel = PlainText.Dictionary["Disable", "Category"];
+            var disableLabel = MultiLanguage.Dictionary["Disable", "Category"];
             var disableUrl = Url.Action("Disable", new { id = category.ID });
                         
             <tr>
@@ -52,5 +52,5 @@ else
 } 
 
 <div class="tableFooterButtonList">
-    <button href="@Url.Action("Create")">@PlainText.Dictionary["Create", "Category"]</button>
+    <button href="@Url.Action("Create")">@MultiLanguage.Dictionary["Create", "Category"]</button>
 </div>

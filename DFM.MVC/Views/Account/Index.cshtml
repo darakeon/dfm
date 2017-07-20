@@ -1,13 +1,13 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["Accounts"];
+    ViewBag.Title = MultiLanguage.Dictionary["Accounts"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
 @if (!Model.AccountList.Any())
 { 
-    <div class="ZeroItems">@PlainText.Dictionary["NoAccounts"]</div>
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoAccounts"]</div>
 }
 else
 { 
@@ -15,13 +15,13 @@ else
     <table class="List">
 
         <tr>
-            <th width="200px">@PlainText.Dictionary["Name"]</th>
-            <th>@PlainText.Dictionary["BeginDate"]</th>
-            <th colspan="2">@PlainText.Dictionary["Value"]</th>
+            <th width="200px">@MultiLanguage.Dictionary["Name"]</th>
+            <th>@MultiLanguage.Dictionary["BeginDate"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
             <!--
-            <th colspan="2">@PlainText.Dictionary["Move"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Move"]</th>
             -->
-            <th colspan="2">@PlainText.Dictionary["TODO"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -34,23 +34,23 @@ else
             var sign = account.Sign();
             
             
-            var createLabel = PlainText.Dictionary["Create", "Move"];
+            var createLabel = MultiLanguage.Dictionary["Create", "Move"];
             var createUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Create", controller = "Move", accountid = account.ID });
             
-            var scheduleLabel = PlainText.Dictionary["Schedule", "Move"];
+            var scheduleLabel = MultiLanguage.Dictionary["Schedule", "Move"];
             var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accountid = account.ID });
             
-            var editLabel = PlainText.Dictionary["Edit", "Account"];
+            var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
             var editUrl = Url.Action("Edit", "Account", new { id = account.ID });
 
 
-            var closeLabel = PlainText.Dictionary["Close", "Account"];
+            var closeLabel = MultiLanguage.Dictionary["Close", "Account"];
             var closeUrl = Url.Action("Close", new { id = account.ID });
-            var closeConfirm = String.Format(PlainText.Dictionary["CloseConfirm"], account.Name);
+            var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
 
-            var deleteLabel = PlainText.Dictionary["Delete", "Account"];
+            var deleteLabel = MultiLanguage.Dictionary["Delete", "Account"];
             var deleteUrl = Url.Action("Delete", new { id = account.ID });
-            var deleteConfirm = String.Format(PlainText.Dictionary["DeleteConfirm"], account.Name);
+            var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
 
             <tr>
                 <td>@account.Name </td>
@@ -89,6 +89,6 @@ else
 } 
 
 <div class="tableFooterButtonList">
-    <button href="@Url.Action("Create")">@PlainText.Dictionary["Create", "Account"]</button>
-    <button href="@Url.Action("ListClosed")">@PlainText.Dictionary["ClosedAccounts"]</button>
+    <button href="@Url.Action("Create")">@MultiLanguage.Dictionary["Create", "Account"]</button>
+    <button href="@Url.Action("ListClosed")">@MultiLanguage.Dictionary["ClosedAccounts"]</button>
 </div>

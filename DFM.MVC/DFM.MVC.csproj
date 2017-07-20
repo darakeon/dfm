@@ -56,6 +56,10 @@
       <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
       <Name>DFM.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
+      <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
+      <Name>DFM.Multilanguage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Robot\DFM.Robot.csproj">
       <Project>{418078A8-A13A-40AE-A939-68E0EA25F35B}</Project>
       <Name>DFM.Robot</Name>
@@ -150,6 +154,7 @@
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
+    <Compile Include="Helpers\MultiLanguage.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\Views\Menu.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
@@ -159,16 +164,6 @@
     <Compile Include="Models\TokenReceivedModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
-    <Compile Include="MultiLanguage\Helpers\EmailFormats.cs" />
-    <Compile Include="MultiLanguage\Helpers\EmailLayout.cs" />
-    <Compile Include="MultiLanguage\Helpers\DicException.cs" />
-    <Compile Include="MultiLanguage\Helpers\DicList.cs" />
-    <Compile Include="MultiLanguage\Helpers\DicCreator.cs" />
-    <Compile Include="MultiLanguage\Helpers\EnumHelper.cs" />
-    <Compile Include="MultiLanguage\Helpers\INameable.cs" />
-    <Compile Include="MultiLanguage\Helpers\Language.cs" />
-    <Compile Include="MultiLanguage\Helpers\Phrase.cs" />
-    <Compile Include="MultiLanguage\PlainText.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -189,7 +184,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MultiLanguage\Helpers\Section.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Assets\Css\Forms.css" />
     <Content Include="Assets\Css\HalfScreen.css" />
@@ -237,25 +231,6 @@
     <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Table.css" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationTransfer.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationOut.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\MoveNotificationIn.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\UserVerification.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\en-US\PasswordReset.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationTransfer.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationOut.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\MoveNotificationIn.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\PasswordReset.htm" />
-    <Content Include="MultiLanguage\EmailLayouts\pt-BR\UserVerification.htm" />
-    <Content Include="MultiLanguage\Resources\account.xml" />
-    <Content Include="MultiLanguage\Resources\ops.xml" />
-    <Content Include="MultiLanguage\Resources\token.xml" />
-    <Content Include="MultiLanguage\Resources\report.xml" />
-    <Content Include="MultiLanguage\Resources\general.xml" />
-    <Content Include="MultiLanguage\Resources\move.xml" />
-    <Content Include="MultiLanguage\Resources\user.xml" />
-    <Content Include="MultiLanguage\Resources\category.xml" />
-    <Content Include="MultiLanguage\Resources\error.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

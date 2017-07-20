@@ -1,13 +1,13 @@
 ﻿@model DFM.MVC.Models.AccountIndexModel
 
 @{
-    ViewBag.Title = PlainText.Dictionary["ClosedAccounts"];
+    ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
 @if (!Model.AccountList.Any())
 { 
-    <div class="ZeroItems">@PlainText.Dictionary["NoClosedAccounts"]</div>
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoClosedAccounts"]</div>
 }
 else
 { 
@@ -15,11 +15,11 @@ else
     <table class="List">
 
         <tr>
-            <th>@PlainText.Dictionary["Name"]</th>
-            <th>@PlainText.Dictionary["BeginDate"]</th>
-            <th>@PlainText.Dictionary["EndDate"]</th>
-            <th>@PlainText.Dictionary["Value"]</th>
-            <th colspan="2">@PlainText.Dictionary["GOTO"]</th>
+            <th>@MultiLanguage.Dictionary["Name"]</th>
+            <th>@MultiLanguage.Dictionary["BeginDate"]</th>
+            <th>@MultiLanguage.Dictionary["EndDate"]</th>
+            <th>@MultiLanguage.Dictionary["Value"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["GOTO"]</th>
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -36,10 +36,10 @@ else
             var sign = account.Sign();
                     
 
-            var monthLabel = String.Format(PlainText.Dictionary["MonthMoves"] + " ({1})", PlainText.GetMonthName(endMonth), endYear);
+            var monthLabel = String.Format(MultiLanguage.Dictionary["MonthMoves"] + " ({1})", MultiLanguage.GetMonthName(endMonth), endYear);
             var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "ShowMoves", controller = "Report", accountid = account.ID, id = monthReportId });
                     
-            var yearLabel = String.Format(PlainText.Dictionary["YearMoves"], account.EndDate.Value.Year);
+            var yearLabel = String.Format(MultiLanguage.Dictionary["YearMoves"], account.EndDate.Value.Year);
             var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SummarizeMonths", controller = "Report", accountid = account.ID, id = endYear });
                         
             <tr>

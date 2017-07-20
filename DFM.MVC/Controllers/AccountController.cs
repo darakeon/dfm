@@ -4,8 +4,8 @@ using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
-using DFM.MVC.MultiLanguage;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
@@ -82,7 +82,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)
@@ -111,12 +111,12 @@ namespace DFM.MVC.Controllers
                 //    account = null;
 
                 //message = account == null
-                //    ? PlainText.Dictionary["AccountNotFound"]
-                //    : String.Format(PlainText.Dictionary["AccountClosed"], account.Name);
+                //    ? MultiLanguage.Dictionary["AccountNotFound"]
+                //    : String.Format(MultiLanguage.Dictionary["AccountClosed"], account.Name);
             }
             catch (DFMCoreException)// e)
             {
-                //message = PlainText.Dictionary[e.Message];
+                //message = MultiLanguage.Dictionary[e.Message];
             }
 
             return RedirectToAction("Index");
@@ -139,12 +139,12 @@ namespace DFM.MVC.Controllers
                 //    account = null;
 
                 //message = account == null
-                //    ? PlainText.Dictionary["AccountNotFound"]
-                //    : String.Format(PlainText.Dictionary["AccountDeleted"], account.Name);
+                //    ? MultiLanguage.Dictionary["AccountNotFound"]
+                //    : String.Format(MultiLanguage.Dictionary["AccountDeleted"], account.Name);
             }
             catch (DFMCoreException)// e)
             {
-                //message = PlainText.Dictionary[e.Message];
+                //message = MultiLanguage.Dictionary[e.Message];
             }
 
 

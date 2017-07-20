@@ -120,8 +120,8 @@ namespace DFM.MVC.Controllers
 
             // TODO: implement messages on page head
             //var message = category == null
-            //    ? PlainText.Dictionary["CategoryNotFound"]
-            //    : String.Format(PlainText.Dictionary["CategoryDisabled"], category.Name);
+            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
+            //    : String.Format(MultiLanguage.Dictionary["CategoryDisabled"], category.Name);
 
             return RedirectToAction("Index");
         }
@@ -139,8 +139,8 @@ namespace DFM.MVC.Controllers
 
             // TODO: implement messages on page head
             //var message = category == null
-            //    ? PlainText.Dictionary["CategoryNotFound"]
-            //    : String.Format(PlainText.Dictionary["CategoryEnabled"], category.Name);
+            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
+            //    : String.Format(MultiLanguage.Dictionary["CategoryEnabled"], category.Name);
 
             return RedirectToAction("Index");
         }

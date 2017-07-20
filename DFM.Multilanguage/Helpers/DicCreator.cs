@@ -4,7 +4,7 @@ using System.Linq;
 using Ak.DataAccess.XML;
 using System.Collections.Generic;
 
-namespace DFM.MVC.MultiLanguage.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     class DicCreator
     {

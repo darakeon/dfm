@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Ak.DataAccess.XML;
 
-namespace DFM.MVC.MultiLanguage.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     public class Phrase : INameable
     {

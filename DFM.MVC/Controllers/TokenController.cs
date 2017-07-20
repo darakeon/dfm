@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
-using DFM.MVC.MultiLanguage;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
@@ -36,7 +36,7 @@ namespace DFM.MVC.Controllers
                 return invalidTokenAction();
 
             if (model.Password != model.RetypePassword)
-                ModelState.AddModelError("", PlainText.Dictionary["RetypeWrong"]);
+                ModelState.AddModelError("", MultiLanguage.Dictionary["RetypeWrong"]);
 
             if (ModelState.IsValid)
             {
@@ -46,7 +46,7 @@ namespace DFM.MVC.Controllers
                 }
                 catch (DFMCoreException e)
                 {
-                    ModelState.AddModelError("", PlainText.Dictionary[e.Message]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary[e.Message]);
                 }
 
                 if (ModelState.IsValid)
@@ -120,7 +120,7 @@ namespace DFM.MVC.Controllers
                 case SecurityAction.UserVerification:
                     return RedirectToAction("UserVerification", new { id = model.Token });
                 default:
-                    ModelState.AddModelError("", PlainText.Dictionary["NotRecognizedAction"]);
+                    ModelState.AddModelError("", MultiLanguage.Dictionary["NotRecognizedAction"]);
                     return View(model);
             }
 

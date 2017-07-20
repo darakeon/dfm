@@ -44,7 +44,7 @@
 
     <!--Index-->
     <Welcome text="Welcome!" />
-    <Index_Introdution text="Dont Fly Money is a personal financial management system. It is made thinking in the most generic way to manage money. To sign up you just need login, password and a valid e-mail." />
+    <Index_Introdution text="Dont Fly Money is a personal financial management system. It is made thinking in the most generic way to manage money. To sign up you just need a valid e-mail and a password." />
     <Index_PossibleNowADays text="Nowadays, its possible:" />
     <Index_Moves text="Create, update, schedule and delete moves;" />
     <Index_Transfer text="Make transfers between accounts;" />
@@ -105,7 +105,7 @@
 
     <!--Index-->
     <Welcome text="Bem-vindo!" />
-    <Index_Introdution text="O Dont Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer login, senha, e um e-mail válido." />
+    <Index_Introdution text="O Dont Fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa. Para se cadastrar, basta fornecer um e-mail válido e uma senha." />
     <Index_PossibleNowADays text="Atualmente, é possível:" />
     <Index_Moves text="Criar, atualizar, agendar e apagar movimentações;" />
     <Index_Transfer text="Fazer transferências entre contas;" />
