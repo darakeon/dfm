@@ -360,7 +360,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 Scenario: 91. Save with info all right (value - Out) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca96   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 31/03/2012 | Out    | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -368,11 +368,17 @@ Scenario: 91. Save with info all right (value - Out) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountOut value will change in
+		| Value |
+		| -10   |
+	And the year-category-accountOut value will change in
+		| Value |
+		| -10   |
 	
 Scenario: 92. Save with info all right (value - In) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca96   | 31/03/2012 | In     | 10    |
+		| Move Ca92   | 31/03/2012 | In     | 10    |
 	And it has no Details
 	And it has a Category
 	And it has no Account Out
@@ -380,11 +386,17 @@ Scenario: 92. Save with info all right (value - In) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountIn value will change in
+		| Value |
+		| +10   |
+	And the year-category-accountIn value will change in
+		| Value |
+		| +10   |
 	
 Scenario: 93. Save with info all right (value - Transfer) (S)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca96   | 31/03/2012 | Transfer | 10    |
+		| Move Ca93   | 31/03/2012 | Transfer | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -392,11 +404,23 @@ Scenario: 93. Save with info all right (value - Transfer) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountOut value will change in
+		| Value |
+		| -10   |
+	And the month-category-accountIn value will change in
+		| Value |
+		| +10   |
+	And the year-category-accountOut value will change in
+		| Value |
+		| -10   |
+	And the year-category-accountIn value will change in
+		| Value |
+		| +10   |
 
 Scenario: 94. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca97   | 31/03/2012 | Out    | 10    |
+		| Move Ca94   | 31/03/2012 | Out    |       |
 	And the move has this details
 		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
 		| Detail 1     | 1       | 10     | Detail 2     | 1       | 10     |
@@ -406,11 +430,17 @@ Scenario: 94. Save with info all right (details) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountOut value will change in
+		| Value |
+		| -20   |
+	And the year-category-accountOut value will change in
+		| Value |
+		| -20   |
 
 Scenario: 95. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca98   | 31/03/2012 | Out    | -10   |
+		| Move Ca95   | 31/03/2012 | Out    | -10   |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -418,11 +448,17 @@ Scenario: 95. Save negative (value) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountOut value will change in
+		| Value |
+		| -10   |
+	And the year-category-accountOut value will change in
+		| Value |
+		| -10   |
 
 Scenario: 96. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca99   | 31/03/2012 | Out    | 10    |
+		| Move Ca96   | 31/03/2012 | Out    |       |
 	And the move has this details
 		| Description1 | Amount1 | Value1 | Description2 | Amount2 | Value2 |
 		| Detail 1     | 1       | -10    | Detail 2     | 1       | 10     |
@@ -432,3 +468,9 @@ Scenario: 96. Save negative (details) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
+	And the month-category-accountOut value will change in
+		| Value |
+		| -20   |
+	And the year-category-accountOut value will change in
+		| Value |
+		| -20   |
