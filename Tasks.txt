@@ -119,14 +119,15 @@ VERSÃO 1.0.2.0
 
 VERSÃO 1.0.2.1
 
-				Criar relatórios por anos
 				BDD
 				Selenium
 				Refactor de limpeza geral
 				Fornecer detalhes do erro no e-mail de report
 				Alterar interface externa para neutra
 				Disponibilizar cores para interfaces
+				Criar relatórios por anos
 				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
+				Iluminar última movimentação verificada
 
 ======================================================================================================
 
