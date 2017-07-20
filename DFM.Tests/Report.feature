@@ -1,1 +1,4 @@
-﻿Feature: Report
+﻿Feature: Reports
+
+Scenario: GetMonthReport
+Scenario: GetYearReport
