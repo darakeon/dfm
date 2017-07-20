@@ -123,6 +123,7 @@ VERSÃO 1.0.2.1
 				Selenium
 				Refactor de limpeza geral
 				Fornecer detalhes do erro no e-mail de report
+				Aumentar tamanho da tela principal (considerar deletar cor do topo)
 				Alterar interface externa para neutra (cores do site)
 				Disponibilizar cores para interfaces
 				Criar relatórios por anos
