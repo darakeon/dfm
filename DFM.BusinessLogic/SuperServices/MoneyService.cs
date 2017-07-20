@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.SuperServices
                 if (!futureMove.Schedule.FutureMoveList.Any())
                     futureMove.Schedule.FutureMoveList.Add(futureMove);
 
-                futureMove = ajustFutureMoves(futureMove.Schedule, accountOut, accountIn);
+                futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule, accountOut, accountIn);
 
 
                 futureMoveService.CommitTransaction(transaction);
@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.SuperServices
             return futureMove;
         }
 
-        private FutureMove ajustFutureMoves(Schedule schedule, Account accountOut, Account accountIn)
+        private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule, Account accountOut, Account accountIn)
         {
             var firstFMove = schedule.FutureMoveList.First();
             
@@ -90,6 +90,23 @@ namespace DFM.BusinessLogic.SuperServices
                     var nextFMove = firstFMove.GetNext(nextDate);
                     
                     schedule.FutureMoveList.Add(nextFMove);
+                }
+            }
+
+            if (schedule.ShowInstallment)
+            {
+                var total = schedule.FutureMoveList.Count;
+
+                var format = schedule.Boundless
+                                 ? "{0} [{1}]"
+                                 : "{0} [{1}/{2}]";
+
+                for (var fm = 0; fm < total; fm++)
+                {
+                    schedule.FutureMoveList[fm].Description =
+                        String.Format(format,
+                                      schedule.FutureMoveList[fm].Description,
+                                      fm + 1, total);
                 }
             }
 

@@ -21,6 +21,11 @@ namespace DFM.Entities.Extensions
         }
 
 
+        public static Boolean HasDetails(this BaseMove move)
+        {
+            return move.DetailList.Any();
+        }
+
         public static Boolean IsDetailed(this BaseMove move)
         {
             return !move.hasJustOneDetail()

@@ -48,14 +48,16 @@
                 @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
                 @Html.LabelFor(m => m.Times, PlainText.Dictionary["Times"])
             </div>
-
-            <div>
-                @Html.CheckBoxFor(m => m.ShowInstallment)
-                @Html.LabelFor(m => m.ShowInstallment, PlainText.Dictionary["ShowInstallment"])
-            </div>
         </div>
     
-        <div class="divRowForm"><hr /></div>
+        <div class="divRowForm">
+            @Html.CheckBoxFor(m => m.ShowInstallment)
+            @Html.LabelFor(m => m.ShowInstallment, PlainText.Dictionary["ShowInstallment"])
+        </div>
+    
+        <div class="divRowForm">
+            <hr />
+        </div>
     }
 
     <div class="createMoveScreenLeft">

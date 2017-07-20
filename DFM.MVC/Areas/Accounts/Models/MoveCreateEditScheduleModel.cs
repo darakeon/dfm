@@ -120,7 +120,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             MakeAccountTransferList(accountID);
 
-            IsDetailed = Move.IsDetailed();
+            IsDetailed = Move.HasDetails() && Move.IsDetailed();
 
             IsSchedule = Move is FutureMove || IsSchedule;
 

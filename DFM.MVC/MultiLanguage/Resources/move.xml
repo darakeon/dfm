@@ -1,37 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <move>
-	<en-US>
-		<Amount text="Amount" />
-		<JustOneValue text="Just One Value" />
-		<Detailed text="Detailed" />
-		<MoveNotFound text="Move not found." />
-		<MoveDeleted text="Move '{0}' deleted." />
-		<Daily text="Daily" />
-		<Monthly text="Monthly" />
-		<Yearly text="Yearly" />
-		<Times text="times" />
-		<Boundless text="Boundless" />
-		<Repeat text="Repeat" />
-		<Frequency text="Frequency" />
-		<MoveNotificationIn text="Move Notification" />
-		<MoveNotificationOut text="Move Notification" />
-		<MoveNotificationTransfer text="Move Notification" />
-	</en-US>
-	<pt-BR>
-		<Amount text="Qte" />
-		<JustOneValue text="Valor Único" />
-		<Detailed text="Detalhado" />
-		<MoveNotFound text="Movimentação não encontrada." />
-		<MoveDeleted text="Movimentação '{0}' apagada." />
-		<Daily text="Diária" />
-		<Monthly text="Mensal" />
-		<Yearly text="Anual" />
-		<Times text="vezes" />
-		<Boundless text="Ilimitado" />
-		<Repeat text="Repetir" />
-		<Frequency text="Frequência" />
-		<MoveNotificationIn text="Notificação de Movimentação" />
-		<MoveNotificationOut text="Notificação de Movimentação" />
-		<MoveNotificationTransfer text="Notificação de Movimentação" />
-	</pt-BR>
+  <en-US>
+    <Amount text="Amount" />
+    <JustOneValue text="Just One Value" />
+    <Detailed text="Detailed" />
+    <MoveNotFound text="Move not found." />
+    <MoveDeleted text="Move '{0}' deleted." />
+    <Daily text="Daily" />
+    <Monthly text="Monthly" />
+    <Yearly text="Yearly" />
+    <Times text="times" />
+    <Boundless text="Boundless" />
+    <Repeat text="Repeat" />
+    <Frequency text="Frequency" />
+    <MoveNotificationIn text="Move Notification" />
+    <MoveNotificationOut text="Move Notification" />
+    <MoveNotificationTransfer text="Move Notification" />
+    <ScheduleRequired text="Schedule not found." />
+    <ShowInstallment text="Show number of installment on Move description" />
+  </en-US>
+  <pt-BR>
+    <Amount text="Qte" />
+    <JustOneValue text="Valor Único" />
+    <Detailed text="Detalhado" />
+    <MoveNotFound text="Movimentação não encontrada." />
+    <MoveDeleted text="Movimentação '{0}' apagada." />
+    <Daily text="Diária" />
+    <Monthly text="Mensal" />
+    <Yearly text="Anual" />
+    <Times text="vezes" />
+    <Boundless text="Ilimitado" />
+    <Repeat text="Repetir" />
+    <Frequency text="Frequência" />
+    <MoveNotificationIn text="Notificação de Movimentação" />
+    <MoveNotificationOut text="Notificação de Movimentação" />
+    <MoveNotificationTransfer text="Notificação de Movimentação" />
+    <ScheduleRequired text="Agendamento não encontrado." />
+    <ShowInstallment text="Exibir número da parcela na descrição da Movimentação" />
+  </pt-BR>
 </move>
