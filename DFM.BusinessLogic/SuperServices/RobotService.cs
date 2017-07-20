@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
@@ -12,9 +13,6 @@ namespace DFM.BusinessLogic.SuperServices
 {
     public class RobotService
     {
-        private const String boundlessFormat = "{0} [{1}]";
-        private const String boundedFormat = "{0} [{1}/{2}]";
-
         private readonly ScheduleService scheduleService;
         private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
@@ -113,8 +111,10 @@ namespace DFM.BusinessLogic.SuperServices
 
             if (schedule.ShowInstallment)
             {
-                var total = schedule.FutureMoveList.Count;
+                var total = schedule.MoveList.Count 
+                    + schedule.FutureMoveList.Count;
 
+                
                 var format = schedule.Boundless
                                  ? boundlessFormat
                                  : boundedFormat;
@@ -160,10 +160,6 @@ namespace DFM.BusinessLogic.SuperServices
                     addNextFutureMove(futureMove.Schedule);
                     var nextFMove = schedule.FutureMoveList.Last();
 
-                    if (schedule.ShowInstallment)
-                        nextFMove.Description =
-                            String.Format(boundlessFormat, nextFMove.Description, schedule.AppliedTimes());
-
                     saveOrUpdateSchedule(nextFMove);
                 }
 
@@ -198,6 +194,10 @@ namespace DFM.BusinessLogic.SuperServices
 
         #endregion
 
+
+
+        private const String boundlessFormat = "{0} [{1}]";
+        private const String boundedFormat = "{0} [{1}/{2}]";
 
     }
 }

@@ -17,8 +17,9 @@ namespace DFM.BusinessLogic.SuperServices
         private readonly SummaryService summaryService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
+        private readonly ScheduleService scheduleService;
 
-        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService)
+        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, ScheduleService scheduleService)
         {
             this.moveService = moveService;
             this.detailService = detailService;
@@ -26,6 +27,7 @@ namespace DFM.BusinessLogic.SuperServices
             this.summaryService = summaryService;
             this.monthService = monthService;
             this.yearService = yearService;
+            this.scheduleService = scheduleService;
         }
 
 
@@ -84,12 +86,28 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeleteMove(Move move, Format.GetterForMove getterForMove)
         {
-            monthService.RemoveMoveFromMonth(move);
-            ajustSummaries(move);
+            var transaction = moveService.BeginTransaction();
 
-            moveService.Delete(move);
+            try
+            {
+                monthService.RemoveMoveFromMonth(move);
+                ajustSummaries(move);
 
-            moveService.SendEmail(move, getterForMove, "delete");
+                moveService.Delete(move);
+
+                moveService.SendEmail(move, getterForMove, "delete");
+
+                move.Schedule.Times--;
+                scheduleService.SaveOrUpdate(move.Schedule);
+
+                moveService.CommitTransaction(transaction);
+            }
+            catch
+            {
+                moveService.RollbackTransaction(transaction);
+                throw;
+            }
+
         }
 
 

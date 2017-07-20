@@ -50,7 +50,7 @@ namespace DFM.BusinessLogic.Services
             if (schedule.ID == 0)
             {
                 schedule.Active = true;
-                schedule.Begin = schedule.GetNextDate();
+                schedule.Begin = schedule.GetNextRunDate();
                 schedule.User = schedule.GetUser();
             }
         }

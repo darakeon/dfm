@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -23,8 +24,18 @@ namespace DFM.BusinessLogic.Helpers
             }
         }
 
-        internal static Int32 AppliedTimes(this ScheduleFrequency frequency, DateTime firstDate, DateTime lastDate)
+        internal static Int32 AppliedTimes(this Schedule schedule)
         {
+            var lastRunMove = schedule.MoveList.LastOrDefault();
+
+            if (lastRunMove == null)
+                return 0;
+
+
+            var frequency = schedule.Frequency;
+            var firstDate = schedule.Begin;
+            var lastDate = lastRunMove.Date;
+
             var months = lastDate.Month - firstDate.Month;
             var years = lastDate.Year - firstDate.Year;
 
@@ -33,18 +44,12 @@ namespace DFM.BusinessLogic.Helpers
                 case ScheduleFrequency.Daily:
                     return (lastDate - firstDate).TotalDays.toInt();
                 case ScheduleFrequency.Monthly:
-                    return months;
-                case ScheduleFrequency.Yearly:
                     return months + (years * 12);
+                case ScheduleFrequency.Yearly:
+                    return years;
                 default:
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleFrequencyNotRecognized);
             }
-        }
-
-        internal static Int32 AppliedTimes(this Schedule schedule)
-        {
-            return schedule.Frequency
-                .AppliedTimes(schedule.Begin, schedule.GetNextDate());
         }
 
 

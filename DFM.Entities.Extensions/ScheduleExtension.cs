@@ -17,9 +17,16 @@ namespace DFM.Entities.Extensions
             schedule.FutureMoveList.Add(futureMove);
         }
 
-        public static DateTime GetNextDate(this Schedule schedule)
+        public static DateTime GetNextRunDate(this Schedule schedule)
         {
-            return schedule.FutureMoveList.Min(m => m.Date);
+            return schedule.FutureMoveList
+                .Min(m => m.Date);
+        }
+
+        public static DateTime GetLastRunDate(this Schedule schedule)
+        {
+            return schedule.FutureMoveList
+                .Min(m => m.Date);
         }
 
         public static User GetUser(this Schedule schedule)
@@ -30,7 +37,7 @@ namespace DFM.Entities.Extensions
 
         public static Boolean CanRunNow(this Schedule schedule)
         {
-            return schedule.GetNextDate() <= DateTime.Today;
+            return schedule.GetNextRunDate() <= DateTime.Today;
         }
 
 

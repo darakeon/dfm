@@ -10,7 +10,7 @@ namespace DFM.Robot
     internal class ScheduleRunner
     {
         private readonly RobotService robotService;
-        private User user { get; set; }
+        private readonly User user;
         private event Format.GetterForMove formatGetter;
 
 
