@@ -15,12 +15,12 @@ namespace DFM.Core.Mappings
 
             mapping.References(s => s.Month)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.SaveUpdate()
+                .Cascade.None()
                 .Nullable();
 
             mapping.References(s => s.Year)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.SaveUpdate()
+                .Cascade.None()
                 .Nullable();
 
             mapping.References(s => s.Category)

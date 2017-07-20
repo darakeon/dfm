@@ -27,14 +27,14 @@ namespace DFM.Core.Database
             placeAccountsInMove(move, accountOut, accountIn);
             move = saveOrUpdate(move);
 
-            ajustSummaries(move);
-
-            sendEmail(move, getterForMove, action);
-
             foreach (var detail in move.DetailList)
             {
                 DetailData.SaveOrUpdate(detail);
             }
+
+            ajustSummaries(move);
+
+            sendEmail(move, getterForMove, action);
 
             return move;
         }
@@ -215,7 +215,7 @@ namespace DFM.Core.Database
             if (move.Nature != MoveNature.In)
             {
                 if (monthOut == null) throw error;
-                if (monthOut != move.Out) monthOut.AddOut(move);
+                if (!monthOut.OutContains(move)) monthOut.AddOut(move);
             }
             else
             {
@@ -225,7 +225,7 @@ namespace DFM.Core.Database
             if (move.Nature != MoveNature.Out)
             {
                 if (monthIn == null) throw error;
-                if (monthIn != move.In) monthIn.AddIn(move);
+                if (!monthIn.InContains(move)) monthIn.AddIn(move);
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DFM.Core.Entities.Extensions
@@ -32,6 +33,18 @@ namespace DFM.Core.Entities.Extensions
         {
             move.In = month;
             month.InList.Add(move);
+        }
+
+
+
+        internal static Boolean OutContains(this Month month, Move move)
+        {
+            return month.OutList.Contains(move);
+        }
+
+        internal static Boolean InContains(this Month month, Move move)
+        {
+            return month.InList.Contains(move);
         }
 
     }

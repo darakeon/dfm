@@ -18,11 +18,11 @@ namespace DFM.Core.Mappings
                 .Cascade.Delete();
 
             mapping.References(m => m.In)
-                .Cascade.SaveUpdate()
+                .Cascade.None()
                 .Nullable();
 
             mapping.References(m => m.Out)
-                .Cascade.SaveUpdate()
+                .Cascade.None()
                 .Nullable();
 
             mapping.References(m => m.Schedule)
