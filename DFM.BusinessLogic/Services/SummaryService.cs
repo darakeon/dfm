@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Services
 
         private void saveOrUpdate(Summary summary)
         {
-            SaveOrUpdateInstantly(summary, null, null);
+            SaveOrUpdateInstantly(summary);
         }
 
 

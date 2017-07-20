@@ -10,7 +10,7 @@ using NHibernate.Criterion;
 
 namespace DFM.Core
 {
-    public abstract class BaseData<T> : BaseService<T>.IRepository where T : class, IEntity
+    public class BaseData<T> : BaseService<T>.IRepository where T : class, IEntity
     {
         protected static ISession Session
         {

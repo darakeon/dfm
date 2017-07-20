@@ -7,17 +7,6 @@ namespace DFM.BusinessLogic
     {
         public DataAccess(IResolver resolver)
         {
-            resolver.Register<Account>();
-            resolver.Register<Category>();
-            resolver.Register<Detail>();
-            resolver.Register<Month>();
-            resolver.Register<Move>();
-            resolver.Register<Schedule>();
-            resolver.Register<Security>();
-            resolver.Register<Summary>();
-            resolver.Register<User>();
-            resolver.Register<Year>();
-
             Account = new AccountService(this, resolver.Resolve<Account>());
             Category = new CategoryService(this, resolver.Resolve<Category>());
             Detail = new DetailService(this, resolver.Resolve<Detail>());

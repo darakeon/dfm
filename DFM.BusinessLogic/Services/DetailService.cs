@@ -8,7 +8,7 @@ namespace DFM.BusinessLogic.Services
 
         public Detail SaveOrUpdate(Detail detail)
         {
-            return SaveOrUpdate(detail, null, null);
+            return base.SaveOrUpdate(detail);
         }
 
     }

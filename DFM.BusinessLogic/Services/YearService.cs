@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Services
 
         public void SaveOrUpdate(Year year)
         {
-            SaveOrUpdateInstantly(year, null, null);
+            SaveOrUpdateInstantly(year);
         }
 
 

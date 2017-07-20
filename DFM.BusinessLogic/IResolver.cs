@@ -5,7 +5,6 @@ namespace DFM.BusinessLogic
 {
     public interface IResolver
     {
-        BaseService<T>.IRepository Resolve<T>() where T : IEntity;
-        void Register<T>() where T : class, IEntity;
+        BaseService<T>.IRepository Resolve<T>() where T : class, IEntity;
     }
 }

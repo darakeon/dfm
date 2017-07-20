@@ -23,7 +23,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public T SaveOrUpdate(T entity, params DelegateAction[] actions)
+        protected T SaveOrUpdate(T entity, params DelegateAction[] actions)
         {
             return repository.SaveOrUpdate(entity, actions);
         }

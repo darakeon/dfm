@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Services
 
         public void SaveOrUpdate(Schedule schedule)
         {
-            SaveOrUpdate(schedule, complete, null);
+            SaveOrUpdate(schedule, complete);
         }
 
         public static IList<Schedule> GetScheduleToRun(User user)
