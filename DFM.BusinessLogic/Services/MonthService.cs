@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {

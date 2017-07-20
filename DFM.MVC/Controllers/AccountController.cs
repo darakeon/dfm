@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.Entities;
-using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
 using DFM.MVC.MultiLanguage;

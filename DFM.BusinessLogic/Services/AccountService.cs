@@ -2,7 +2,7 @@
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.Services

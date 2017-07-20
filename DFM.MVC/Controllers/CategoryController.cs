@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
 using DFM.Entities;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Models;
 using DFM.Repositories;

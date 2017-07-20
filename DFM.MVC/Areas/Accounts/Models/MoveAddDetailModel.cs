@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Entities;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {

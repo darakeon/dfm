@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.SuperServices;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 using DFM.Repositories;
 
 namespace DFM.Robot

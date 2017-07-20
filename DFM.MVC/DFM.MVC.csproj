@@ -145,6 +145,8 @@
     <Content Include="Assets\Css\Libraries\datepicker.css" />
     <Content Include="Assets\Css\Navigation.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
+    <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
+    <Compile Include="Areas\Accounts\Models\MoveScheduleModel.cs" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />

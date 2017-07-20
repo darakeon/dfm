@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities;
 
-namespace DFM.Extensions
+namespace DFM.Entities.Extensions
 {
     public static class MoveExtension
     {
@@ -32,18 +31,28 @@ namespace DFM.Extensions
         public static void AddDetail(this Move move, Detail detail)
         {
             move.DetailList.Add(detail);
-            detail.Move = move;
         }
 
 
-        public static Boolean HasRealDetails(this Move move)
+        public static Boolean IsDetailed(this Move move)
         {
-            return move.DetailList.Any()
-                && (
-                    move.DetailList.Count > 1
-                    || move.DetailList[0].HasDescription()
-                );
+            return !move.hasJustOneDetail()
+                    || move.hasFirstDetailDescription();
         }
+
+        private static Boolean hasJustOneDetail(this Move move)
+        {
+            return move.DetailList.Count == 1;
+        }
+
+        private static Boolean hasFirstDetailDescription(this Move move)
+        {
+            var detail = move.DetailList.First();
+
+            return !String.IsNullOrEmpty(detail.Description)
+                && detail.Description != move.Description;
+        }
+
 
 
         public static void MakePseudoDetail(this Move move, Double value)
@@ -74,7 +83,7 @@ namespace DFM.Extensions
                            };
 
             move.DetailList.ToList().ForEach(d => 
-                newMove.AddDetail(d.Clone(newMove)));
+                newMove.AddDetail(d.Clone()));
 
             return newMove;
         }

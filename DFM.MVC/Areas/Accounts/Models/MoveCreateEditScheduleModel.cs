@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
 using DFM.Entities.Enums;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Entities;
 using DFM.MVC.Models;
@@ -12,9 +12,10 @@ using DFM.MVC.MultiLanguage.Helpers;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditScheduleModel : BaseLoggedModel
+    public abstract class MoveCreateEditScheduleModel<T> : BaseLoggedModel
+        where T : Move, new()
     {
-        public MoveCreateEditScheduleModel()
+        protected MoveCreateEditScheduleModel()
         {
             var transferIsPossible = Current.User.AccountList
                                         .Where(a => a.Open())
@@ -32,11 +33,11 @@ namespace DFM.MVC.Areas.Accounts.Models
                         mv => mv.ID, mv => mv.Name
                     );
 
-            Move = new Move();
+            Move = new T();
             Date = DateTime.Today;
         }
 
-        public MoveCreateEditScheduleModel(Move move) : this()
+        protected MoveCreateEditScheduleModel(T move) : this()
         {
             Move = move;
 
@@ -45,7 +46,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         }
 
 
-        public Move Move { get; set; }
+        public T Move { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String Description { get { return Move.Description; } set { Move.Description = value; } }
@@ -111,14 +112,14 @@ namespace DFM.MVC.Areas.Accounts.Models
         }
 
 
-        public void Populate(Int32 accountID, Boolean isSchedule = false)
+        public void Populate(Int32 accountID)
         {
             MakeAccountTransferList(accountID);
 
 
-            IsDetailed = Move.HasRealDetails();
+            IsDetailed = Move.IsDetailed();
 
-            IsSchedule = isSchedule;
+            IsSchedule = Move is FutureMove;
 
             if (!Move.DetailList.Any())
             {

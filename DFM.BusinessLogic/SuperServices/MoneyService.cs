@@ -4,22 +4,24 @@ using DFM.BusinessLogic.Services;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
     public class MoneyService
     {
-        private readonly MoveService moveService;
+        private readonly MoveService<Move> moveService;
+        private readonly MoveService<FutureMove> futureMoveService;
         private readonly DetailService detailService;
         private readonly SummaryService summaryService;
         private readonly ScheduleService scheduleService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
 
-        internal MoneyService(MoveService moveService, DetailService detailService, SummaryService summaryService, ScheduleService scheduleService, MonthService monthService, YearService yearService)
+        internal MoneyService(MoveService<Move> moveService, MoveService<FutureMove> futureMoveService, DetailService detailService, SummaryService summaryService, ScheduleService scheduleService, MonthService monthService, YearService yearService)
         {
             this.moveService = moveService;
+            this.futureMoveService = futureMoveService;
             this.yearService = yearService;
             this.monthService = monthService;
             this.scheduleService = scheduleService;
@@ -33,7 +35,8 @@ namespace DFM.BusinessLogic.SuperServices
             return moveService.SelectById(id);
         }
 
-        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+        public Move SaveOrUpdateMove<T>(T move, Account accountOut, Account accountIn, Format.GetterForMove getterForMove)
+            where T : Move
         {
             var oldMove = moveService.SelectOldById(move.ID);
             
@@ -43,7 +46,10 @@ namespace DFM.BusinessLogic.SuperServices
 
             scheduleService.AjustSchedule(move);
 
-            move = moveService.SaveOrUpdate(move);
+            if (move is FutureMove)
+                move = (T)(Move)futureMoveService.SaveOrUpdate((FutureMove)(Move)move);
+            else
+                move = (T)moveService.SaveOrUpdate(move);
 
             foreach (var detail in move.DetailList)
             {

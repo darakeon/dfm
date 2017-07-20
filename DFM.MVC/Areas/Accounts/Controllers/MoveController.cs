@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.Entities.Enums;
-using DFM.Extensions;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Extensions;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.Entities;
 using DFM.MVC.Authentication;
@@ -31,7 +31,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditScheduleModel();
+            var model = new MoveCreateEditModel();
             
             model.Populate(accountid);
 
@@ -39,7 +39,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditScheduleModel model)
+        public ActionResult Create(MoveCreateEditModel model)
         {
             return createEditSchedule(model);
         }
@@ -58,7 +58,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-            var model = new MoveCreateEditScheduleModel(move);
+            var model = new MoveCreateEditModel(move);
 
             if (model.AccountID == accountid)
                 return redirectToRightAccount(move);
@@ -80,7 +80,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
+        public ActionResult Edit(Int32 id, MoveCreateEditModel model)
         {
             var oldMove =  Services.Money.SelectMoveById(id);
 
@@ -100,22 +100,23 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Schedule()
         {
-            var model = new MoveCreateEditScheduleModel();
+            var model = new MoveScheduleModel();
 
-            model.Populate(accountid, true);
+            model.Populate(accountid);
 
             return viewCES(model);
         }
 
         [HttpPost]
-        public ActionResult Schedule(MoveCreateEditScheduleModel model)
+        public ActionResult Schedule(MoveScheduleModel model)
         {
-            return createEditSchedule(model, true);
+            return createEditSchedule(model);
         }
 
 
 
-        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model, Boolean isSchedule = false)
+        private ActionResult createEditSchedule<T>(MoveCreateEditScheduleModel<T> model) 
+            where T : Move, new()
         {
             if (ModelState.IsValid)
             {
@@ -137,7 +138,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.Populate(accountid, isSchedule);
+            model.Populate(accountid);
 
             return viewCES(model);
         }
@@ -181,7 +182,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        private ActionResult viewCES(MoveCreateEditScheduleModel model)
+        private ActionResult viewCES<T>(MoveCreateEditScheduleModel<T> model) 
+            where T : Move, new()
         {
             return View("CreateEditSchedule", model);
         }

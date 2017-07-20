@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {

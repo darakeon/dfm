@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities;
 
-namespace DFM.Extensions
+namespace DFM.Entities.Extensions
 {
     public static class MonthExtension
     {

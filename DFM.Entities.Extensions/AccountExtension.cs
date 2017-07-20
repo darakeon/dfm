@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using DFM.Entities;
 using DFM.Entities.Enums;
 
-namespace DFM.Extensions
+namespace DFM.Entities.Extensions
 {
     public static class AccountExtension
     {

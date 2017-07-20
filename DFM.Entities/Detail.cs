@@ -17,6 +17,7 @@ namespace DFM.Entities
         public virtual Double Value { get; set; }
 
         public virtual Move Move { get; set; }
+        public virtual FutureMove FutureMove { get; set; }
 
 
 

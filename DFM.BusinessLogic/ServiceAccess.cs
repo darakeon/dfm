@@ -12,14 +12,15 @@ namespace DFM.BusinessLogic
             category = new CategoryService(resolver.Resolve<Category>());
             detail = new DetailService(resolver.Resolve<Detail>());
             month = new MonthService(resolver.Resolve<Month>());
-            move = new MoveService(resolver.Resolve<Move>());
+            move = new MoveService<Move>(resolver.Resolve<Move>());
+            futureMove = new MoveService<FutureMove>(resolver.Resolve<FutureMove>());
             schedule = new ScheduleService(resolver.Resolve<Schedule>());
             security = new SecurityService(resolver.Resolve<Security>());
             summary = new SummaryService(resolver.Resolve<Summary>());
             user = new UserService(resolver.Resolve<User>());
             year = new YearService(resolver.Resolve<Year>());
 
-            Money = new MoneyService(move, detail, summary, schedule, month, year);
+            Money = new MoneyService(move, futureMove, detail, summary, schedule, month, year);
             Report = new ReportService(account, year, month, summary);
             Safe = new SafeService(user, security);
             Admin = new AdminService(account, category);
@@ -31,7 +32,8 @@ namespace DFM.BusinessLogic
         private CategoryService category { get; set; }
         private DetailService detail { get; set; }
         private MonthService month { get; set; }
-        private MoveService move { get; set; }
+        private MoveService<Move> move { get; set; }
+        private MoveService<FutureMove> futureMove { get; set; }
         private ScheduleService schedule { get; set; }
         private SecurityService security { get; set; }
         private SummaryService summary { get; set; }

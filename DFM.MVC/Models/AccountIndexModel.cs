@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
 using DFM.Entities;
 

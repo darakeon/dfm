@@ -10,17 +10,18 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Extensions;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class MoveService : BaseService<Move>
+    internal class MoveService<T> : BaseService<T>
+        where T : Move
     {
-        internal MoveService(IRepository<Move> repository) : base(repository) { }
+        internal MoveService(IRepository<T> repository) : base(repository) { }
 
         
 
-        internal Move SaveOrUpdate(Move move)
+        internal T SaveOrUpdate(T move)
         {
             //Keep inverted, weird errors happen if make in the right order
             return SaveOrUpdate(move, validate, complete);
@@ -29,14 +30,14 @@ namespace DFM.BusinessLogic.Services
 
 
         #region Complete
-        private static void complete(Move move)
+        private static void complete(T move)
         {
             ajustDetailList(move);
         }
 
-        private static void ajustDetailList(Move move)
+        private static void ajustDetailList(T move)
         {
-            if (move.DetailList.Count == 1 && move.DetailList[0].Description == null)
+            if (!move.IsDetailed())
             {
                 move.DetailList[0].Description = move.Description;
                 move.DetailList[0].Amount = 1;
@@ -46,9 +47,6 @@ namespace DFM.BusinessLogic.Services
             {
                 if (detail.Value < 0)
                     detail.Value = -detail.Value;
-
-                if (detail.Move == null)
-                    detail.Move = move;
             }
         }
 
@@ -60,7 +58,7 @@ namespace DFM.BusinessLogic.Services
 
 
         #region Validate
-        private static void validate(Move move)
+        private static void validate(T move)
         {
             testDetailList(move);
             testNature(move);
@@ -69,13 +67,13 @@ namespace DFM.BusinessLogic.Services
             testDate(move);
         }
 
-        private static void testDetailList(Move move)
+        private static void testDetailList(T move)
         {
             if (!move.DetailList.Any())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailRequired);
         }
 
-        private static void testNature(Move move)
+        private static void testNature(T move)
         {
             var hasIn = move.In != null;
             var hasOut = move.Out != null;
@@ -100,7 +98,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        private static void testAccounts(Move move)
+        private static void testAccounts(T move)
         {
             var moveInClosed = move.In != null && !move.In.Year.Account.Open();
             var moveOutClosed = move.Out != null && !move.Out.Year.Account.Open();
@@ -112,7 +110,7 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        private static void testCategory(Move move)
+        private static void testCategory(T move)
         {
             if (move.Category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
@@ -121,7 +119,7 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
         }
 
-        private static void testDate(Move move)
+        private static void testDate(T move)
         {
             var isFutureMove = move.Date > DateTime.Today;
 
@@ -137,7 +135,7 @@ namespace DFM.BusinessLogic.Services
 
         #region PlaceAccountsInMove
 
-        internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
+        internal void PlaceMonthsInMove(T move, Month monthOut, Month monthIn)
         {
             var errorMessage = String.Format("{0}MoveWrong", move.Nature);
             var errorEnumValue = Str2Enum.Cast<ExceptionPossibilities>(errorMessage);
@@ -170,7 +168,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void SendEmail(Move move, Format.GetterForMove getterForMove, String action)
+        internal void SendEmail(T move, Format.GetterForMove getterForMove, String action)
         {
             if (!move.User().SendMoveEmail) return;
 
@@ -209,7 +207,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        private static String detailsHTML(Move move)
+        private static String detailsHTML(T move)
         {
             var details = new StringBuilder();
 
