@@ -104,7 +104,8 @@ VERSÃO 1.0.2.0
 ----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
 05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
 28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
-04/01/2012			Criar objeto que herda Move (FutureMove?) para usar em schedule
+04/01/2012			Criar objeto que herda Move (FutureMove?) e usar em schedule
+				Iluminar conta escolhida (na area account)
 				Retirar delegate DeleteSummary / outros try de duplicata
 				Separar Multilanguage de MVC
 				Retirar delegate GetterForMove
