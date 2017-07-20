@@ -16,7 +16,7 @@ Scenario: 02. Enable a Category already enabled (E)
 	And I pass its id to enable again
 	When I try to enable the category
 	Then I will receive this error
-		| Error            |
+		| Error           |
 		| EnabledCategory |
 
 Scenario: 99. Enable a Category with info all right (S)

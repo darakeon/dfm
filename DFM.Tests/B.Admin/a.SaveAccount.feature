@@ -15,8 +15,8 @@ Scenario: 01. Save Account without name (E)
 
 Scenario: 02. Save Account with just yellow limit (E)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM | 100    |     |
+		| Name         | Yellow | Red |
+		| Account Ba02 | 100    |     |
 	When I try to save the account
 	Then I will receive this error
 		| Error                    |
@@ -25,8 +25,8 @@ Scenario: 02. Save Account with just yellow limit (E)
 
 Scenario: 03. Save Account with just red limit (E)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM |        | 100 |
+		| Name         | Yellow | Red |
+		| Account Ba03 |        | 100 |
 	When I try to save the account
 	Then I will receive this error
 		| Error                    |
@@ -35,8 +35,8 @@ Scenario: 03. Save Account with just red limit (E)
 
 Scenario: 04. Save Account with red limit bigger than yellow limit (E)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM | 100    | 200 |
+		| Name         | Yellow | Red |
+		| Account Ba04 | 100    | 200 |
 	When I try to save the account
 	Then I will receive this error
 		| Error                    |
@@ -45,8 +45,8 @@ Scenario: 04. Save Account with red limit bigger than yellow limit (E)
 
 Scenario: 05. Save Account with name that already exists (E)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM |        |     |
+		| Name         | Yellow | Red |
+		| Account Ba05 |        |     |
 	And I already have created this account
 	When I try to save the account
 	Then I will receive this error
@@ -56,16 +56,16 @@ Scenario: 05. Save Account with name that already exists (E)
 
 Scenario: 98. Save Account with info all right (without limits) (S)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM |        |     |
+		| Name         | Yellow | Red |
+		| Account Ba98 |        |     |
 	When I try to save the account
 	Then I will receive no error
 	And the account will be saved
 
 Scenario: 99. Save Account with info all right (with limits) (S)
 	Given I have this account to create
-		| Name       | Yellow | Red |
-		| AccountDFM | 100    | 200 |
+		| Name         | Yellow | Red |
+		| Account Ba99 | 100    | 200 |
 	When I try to save the account
 	Then I will receive no error
 	And the account will be saved

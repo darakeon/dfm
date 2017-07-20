@@ -116,10 +116,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="C.Money\a.SaveOrUpdateMove.feature.cs">
+    <Compile Include="C.Money\a.SaveMove.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveOrUpdateMove.feature</DependentUpon>
+      <DependentUpon>a.SaveMove.feature</DependentUpon>
     </Compile>
     <Compile Include="C.Money\c.SelectMoveById.feature.cs">
       <DependentUpon>c.SelectMoveById.feature</DependentUpon>
@@ -191,9 +191,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>j.EnableCategory.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\a.SaveOrUpdateMove.feature">
+    <None Include="C.Money\a.SaveMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveOrUpdateMove.feature.cs</LastGenOutput>
+      <LastGenOutput>a.SaveMove.feature.cs</LastGenOutput>
     </None>
     <None Include="C.Money\c.SelectMoveById.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

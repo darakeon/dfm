@@ -15,8 +15,8 @@ Scenario: 01. Save Category without name (E)
 
 Scenario: 02. Save Category with name that already exists (E)
 	Given I have this category to create
-		| Name        |
-		| CategoryDFM |
+		| Name          |
+		| Category Bf02 |
 	And I already have created this category
 	When I try to save the category
 	Then I will receive this error
@@ -26,8 +26,8 @@ Scenario: 02. Save Category with name that already exists (E)
 
 Scenario: 99. Save Category with info all right (S)
 	Given I have this category to create
-		| Name        |
-		| CategoryDFM |
+		| Name          |
+		| Category Bf99 |
 	When I try to save the category
 	Then I will receive no error
 	And the category will be saved

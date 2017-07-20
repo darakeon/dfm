@@ -4,7 +4,9 @@ Background:
 	Given I have an active user
 
 Scenario: 01. Validate without e-mail (E)
-	Given I dont pass the e-mail
+	Given I have this user data
+		| Email | Password |
+		|       | password |
 	When I try to get the user
 	Then I will receive this error
 		| Error    		|
@@ -12,7 +14,9 @@ Scenario: 01. Validate without e-mail (E)
 	And I will receive no user
 
 Scenario: 02. Validate without password (E)
-	Given I dont pass the password
+	Given I have this user data
+		| Email                 | Password |
+		| test@dontflymoney.com |          |
 	When I try to get the user
 	Then I will receive this error
 		| Error       		|
@@ -20,7 +24,9 @@ Scenario: 02. Validate without password (E)
 	And I will receive no user
 
 Scenario: 03. Validate with wrong e-mail (E)
-	Given I pass an e-mail the doesn't exist
+	Given I have this user data
+		| Email                       | Password |
+		| dont_exist@dontflymoney.com | password |
 	When I try to get the user
 	Then I will receive this error
 		| Error       |
@@ -28,7 +34,9 @@ Scenario: 03. Validate with wrong e-mail (E)
 	And I will receive no user
 
 Scenario: 04. Validate with wrong password (E)
-	Given I pass a wrong password
+	Given I have this user data
+		| Email                 | Password       |
+		| test@dontflymoney.com | password_wrong |
 	When I try to get the user
 	Then I will receive this error
 		| Error       |
@@ -36,7 +44,9 @@ Scenario: 04. Validate with wrong password (E)
 	And I will receive no user
 
 Scenario: 99. Validate with info all right (S)
-	Given I pass valid e-mail and password
+	Given I have this user data
+		| Email                 | Password |
+		| test@dontflymoney.com | password |
 	When I try to get the user
 	Then I will receive no error
 	And I will receive the user

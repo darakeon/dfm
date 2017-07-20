@@ -3,7 +3,7 @@
 Scenario: 01. Save user without e-mail (E)
 	Given I have this user to create
 		| Email | Password |
-		|       | testDFM  |
+		|       | password |
 	When I try to save the user
 	Then I will receive this error
 		| Error             |
@@ -23,7 +23,7 @@ Scenario: 02. Save user without password (E)
 Scenario: 03. Save user with invalid e-mail (E)
 	Given I have this user to create
 		| Email | Password |
-		| test  | testDFM  |
+		| test  | password |
 	When I try to save the user
 	Then I will receive this error
 		| Error            |
@@ -33,7 +33,7 @@ Scenario: 03. Save user with invalid e-mail (E)
 Scenario: 03. Save user with repeated e-mail (E)
 	Given I have this user to create
 		| Email                 | Password |
-		| test@dontflymoney.com | testDFM  |
+		| test@dontflymoney.com | password |
 	And I already have created this user
 	When I try to save the user
 	Then I will receive this error
@@ -44,7 +44,7 @@ Scenario: 03. Save user with repeated e-mail (E)
 Scenario: 99. Save user with info all right (S)
 	Given I have this user to create
 		| Email                 | Password |
-		| test@dontflymoney.com | testDFM  |
+		| test@dontflymoney.com | password |
 	When I try to save the user
 	Then I will receive no error
 	And the user will be saved

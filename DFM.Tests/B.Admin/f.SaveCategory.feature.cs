@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table3.AddRow(new string[] {
-                        "CategoryDFM"});
+                        "Category Bf02"});
 #line 17
  testRunner.Given("I have this category to create", ((string)(null)), table3);
 #line 20
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table5.AddRow(new string[] {
-                        "CategoryDFM"});
+                        "Category Bf99"});
 #line 28
  testRunner.Given("I have this category to create", ((string)(null)), table5);
 #line 31
