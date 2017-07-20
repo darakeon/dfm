@@ -1,6 +1,6 @@
-﻿Feature: Creation of User
+﻿Feature: a. Creation of User
 
-Scenario: A001. Save user without e-mail (E)
+Scenario: 01. Save user without e-mail (E)
 	Given I have this user to create
 		| Email | Password |
 		|       | testDFM  |
@@ -10,7 +10,7 @@ Scenario: A001. Save user without e-mail (E)
 		| UserEmailRequired |
 	And the user will not be saved
 
-Scenario: A002. Save user without password (E)
+Scenario: 02. Save user without password (E)
 	Given I have this user to create
 		| Email                 | Password |
 		| test@dontflymoney.com |          |
@@ -20,7 +20,7 @@ Scenario: A002. Save user without password (E)
 		| UserPasswordRequired |
 	And the user will not be saved
 
-Scenario: A003. Save user with invalid e-mail (E)
+Scenario: 03. Save user with invalid e-mail (E)
 	Given I have this user to create
 		| Email | Password |
 		| test  | testDFM  |
@@ -30,7 +30,7 @@ Scenario: A003. Save user with invalid e-mail (E)
 		| UserEmailInvalid |
 	And the user will not be saved
 
-Scenario: A003. Save user with repeated e-mail (E)
+Scenario: 03. Save user with repeated e-mail (E)
 	Given I have this user to create
 		| Email                 | Password |
 		| test@dontflymoney.com | testDFM  |
@@ -41,7 +41,7 @@ Scenario: A003. Save user with repeated e-mail (E)
 		| UserAlreadyExists |
 	And the user will not be saved
 
-Scenario: A099. Save user with info all right (S)
+Scenario: 99. Save user with info all right (S)
 	Given I have this user to create
 		| Email                 | Password |
 		| test@dontflymoney.com | testDFM  |

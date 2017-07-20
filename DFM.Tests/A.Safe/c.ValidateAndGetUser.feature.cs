@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("get user by its e-mail and password")]
-    public partial class GetUserByItsE_MailAndPasswordFeature
+    [NUnit.Framework.DescriptionAttribute("c. Get user by its e-mail and password")]
+    public partial class C_GetUserByItsE_MailAndPasswordFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A2.ValidateAndGetUser.feature"
+#line 1 "c.ValidateAndGetUser.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "get user by its e-mail and password", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Get user by its e-mail and password", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -63,10 +63,10 @@ namespace DFM.Tests.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A201. Validate without e-mail (E)")]
-        public virtual void A201_ValidateWithoutE_MailE()
+        [NUnit.Framework.DescriptionAttribute("01. Validate without e-mail (E)")]
+        public virtual void _01_ValidateWithoutE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A201. Validate without e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Validate without e-mail (E)", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -87,10 +87,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A202. Validate without password (E)")]
-        public virtual void A202_ValidateWithoutPasswordE()
+        [NUnit.Framework.DescriptionAttribute("02. Validate without password (E)")]
+        public virtual void _02_ValidateWithoutPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A202. Validate without password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Validate without password (E)", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -111,10 +111,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A203. Validate with wrong e-mail (E)")]
-        public virtual void A203_ValidateWithWrongE_MailE()
+        [NUnit.Framework.DescriptionAttribute("03. Validate with wrong e-mail (E)")]
+        public virtual void _03_ValidateWithWrongE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A203. Validate with wrong e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Validate with wrong e-mail (E)", ((string[])(null)));
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 23
@@ -135,10 +135,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A204. Validate with wrong password (E)")]
-        public virtual void A204_ValidateWithWrongPasswordE()
+        [NUnit.Framework.DescriptionAttribute("04. Validate with wrong password (E)")]
+        public virtual void _04_ValidateWithWrongPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A204. Validate with wrong password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Validate with wrong password (E)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 31
@@ -159,10 +159,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A299. Validate with info all right (S)")]
-        public virtual void A299_ValidateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("99. Validate with info all right (S)")]
+        public virtual void _99_ValidateWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A299. Validate with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Validate with info all right (S)", ((string[])(null)));
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 39

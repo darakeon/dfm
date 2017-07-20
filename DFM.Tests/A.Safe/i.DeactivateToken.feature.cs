@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Get an user by its e-mail")]
-    public partial class GetAnUserByItsE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("i. Deactivate the user")]
+    public partial class I_DeactivateTheUserFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A3.SelectUserByEmail.feature"
+#line 1 "i.DeactivateToken.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get an user by its e-mail", "\r\n* Change to select an user to its token", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "i. Deactivate the user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,7 +45,6 @@ namespace DFM.Tests.A_Safe
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
-            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -54,53 +53,43 @@ namespace DFM.Tests.A_Safe
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 5
-#line 6
- testRunner.Given("I have an user");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A301. Select with email that doesn\'t exist (E)")]
-        public virtual void A301_SelectWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("01. Deactivate with invalid token (E)")]
+        public virtual void _01_DeactivateWithInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A301. Select with email that doesn\'t exist (E)", ((string[])(null)));
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Deactivate with invalid token (E)", ((string[])(null)));
+#line 3
 this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.Given("I pass an e-mail the doesn\'t exist");
-#line 10
- testRunner.When("I try to get the user");
+#line 4
+ testRunner.Given("I pass an invalid token");
+#line 5
+ testRunner.When("I try do deactivate the token");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table1.AddRow(new string[] {
-                        "InvalidUser"});
-#line 11
+                        "InvalidToken"});
+#line 6
  testRunner.Then("I will receive this error", ((string)(null)), table1);
-#line 14
- testRunner.And("I will receive no user");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A399. Select with info all right (S)")]
-        public virtual void A399_SelectWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("99. Deactivate with info all right (S)")]
+        public virtual void _99_DeactivateWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A399. Select with info all right (S)", ((string[])(null)));
-#line 16
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Deactivate with info all right (S)", ((string[])(null)));
+#line 10
 this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("I pass valid e-mail");
-#line 18
- testRunner.When("I try to get the user");
-#line 19
+#line 11
+ testRunner.Given("I pass a valid token");
+#line 12
+ testRunner.When("I try do deactivate the token");
+#line 13
  testRunner.Then("I will receive no error");
-#line 20
- testRunner.And("I will receive the user");
+#line 14
+ testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Test security token received by e-mail")]
-    public partial class TestSecurityTokenReceivedByE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("g. Reset password of user")]
+    public partial class G_ResetPasswordOfUserFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A7.TestSecurityToken.feature"
+#line 1 "g.PasswordReset.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Test security token received by e-mail", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "g. Reset password of user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -61,44 +61,44 @@ namespace DFM.Tests.A_Safe
  testRunner.Given("I have an user");
 #line 5
  testRunner.And("I have a token for its password reset");
-#line 6
- testRunner.And("I have a token for its actvation");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A701. Test with invalid token (E)")]
-        public virtual void A701_TestWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("01. Password reset with invalid token (E)")]
+        public virtual void _01_PasswordResetWithInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A701. Test with invalid token (E)", ((string[])(null)));
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Password reset with invalid token (E)", ((string[])(null)));
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given("I pass an invalid token");
-#line 10
- testRunner.When("I test the token");
+#line 9
+ testRunner.When("I try to reset the password");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table1.AddRow(new string[] {
                         "InvalidToken"});
-#line 11
+#line 10
  testRunner.Then("I will receive this error", ((string)(null)), table1);
+#line 13
+ testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A702. Test with token of UV with action PS (E)")]
-        public virtual void A702_TestWithTokenOfUVWithActionPSE()
+        [NUnit.Framework.DescriptionAttribute("02. Password reset with token of user verification (E)")]
+        public virtual void _02_PasswordResetWithTokenOfUserVerificationE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A702. Test with token of UV with action PS (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password reset with token of user verification (E)", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Given("I pass a token of user verification with action password reset");
+ testRunner.Given("I pass a token of user verification");
 #line 17
- testRunner.When("I test the token");
+ testRunner.When("I try to reset the password");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
@@ -106,62 +106,51 @@ this.ScenarioSetup(scenarioInfo);
                         "InvalidToken"});
 #line 18
  testRunner.Then("I will receive this error", ((string)(null)), table2);
+#line 21
+ testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A703. Test with token of PS with action UV (E)")]
-        public virtual void A703_TestWithTokenOfPSWithActionUVE()
+        [NUnit.Framework.DescriptionAttribute("03. Password reset with no password (E)")]
+        public virtual void _03_PasswordResetWithNoPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A703. Test with token of PS with action UV (E)", ((string[])(null)));
-#line 22
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Password reset with no password (E)", ((string[])(null)));
 #line 23
- testRunner.Given("I pass a token of password reset with action user verification");
+this.ScenarioSetup(scenarioInfo);
 #line 24
- testRunner.When("I test the token");
+ testRunner.Given("I pass no password");
+#line 25
+ testRunner.When("I try to reset the password");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Error"});
             table3.AddRow(new string[] {
-                        "InvalidToken"});
-#line 25
+                        "UserPasswordRequired"});
+#line 26
  testRunner.Then("I will receive this error", ((string)(null)), table3);
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A798. Test with token of UV with action UV (S)")]
-        public virtual void A798_TestWithTokenOfUVWithActionUVS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A798. Test with token of UV with action UV (S)", ((string[])(null)));
 #line 29
-this.ScenarioSetup(scenarioInfo);
-#line 30
- testRunner.Given("I pass a token of user verification with right action");
-#line 31
- testRunner.When("I test the token");
-#line 32
- testRunner.Then("I will receive no error");
+ testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A799. Test with token of PS with action PS (S)")]
-        public virtual void A799_TestWithTokenOfPSWithActionPSS()
+        [NUnit.Framework.DescriptionAttribute("99. Password reset with info all right (S)")]
+        public virtual void _99_PasswordResetWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A799. Test with token of PS with action PS (S)", ((string[])(null)));
-#line 34
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Password reset with info all right (S)", ((string[])(null)));
+#line 31
 this.ScenarioSetup(scenarioInfo);
-#line 35
- testRunner.Given("I pass a token of password reset with right action");
-#line 36
- testRunner.When("I test the token");
-#line 37
+#line 32
+ testRunner.Given("I pass the valid token");
+#line 33
+ testRunner.When("I try to reset the password");
+#line 34
  testRunner.Then("I will receive no error");
+#line 35
+ testRunner.And("the password will be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

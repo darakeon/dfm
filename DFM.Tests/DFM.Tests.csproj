@@ -31,55 +31,90 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="A.Safe\A1.ActivateUser.feature.cs">
-      <DependentUpon>A1.ActivateUser.feature</DependentUpon>
+    <Compile Include="A.Safe\b.ActivateUser.feature.cs">
+      <DependentUpon>b.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A2.ValidateAndGetUser.feature.cs">
-      <DependentUpon>A2.ValidateAndGetUser.feature</DependentUpon>
+    <Compile Include="A.Safe\c.ValidateAndGetUser.feature.cs">
+      <DependentUpon>c.ValidateAndGetUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A3.SelectUserByEmail.feature.cs">
-      <DependentUpon>A3.SelectUserByEmail.feature</DependentUpon>
+    <Compile Include="A.Safe\d.SelectUserByEmail.feature.cs">
+      <DependentUpon>d.SelectUserByEmail.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A4.SendUserVerify.feature.cs">
-      <DependentUpon>A4.SendUserVerify.feature</DependentUpon>
+    <Compile Include="A.Safe\e.SendUserVerify.feature.cs">
+      <DependentUpon>e.SendUserVerify.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A5.SendPasswordReset.feature.cs">
-      <DependentUpon>A5.SendPasswordReset.feature</DependentUpon>
+    <Compile Include="A.Safe\f.SendPasswordReset.feature.cs">
+      <DependentUpon>f.SendPasswordReset.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A6.PasswordReset.feature.cs">
-      <DependentUpon>A6.PasswordReset.feature</DependentUpon>
+    <Compile Include="A.Safe\g.PasswordReset.feature.cs">
+      <DependentUpon>g.PasswordReset.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A7.TestSecurityToken.feature.cs">
-      <DependentUpon>A7.TestSecurityToken.feature</DependentUpon>
+    <Compile Include="A.Safe\h.TestSecurityToken.feature.cs">
+      <DependentUpon>h.TestSecurityToken.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A8.Deactivate.feature.cs">
-      <DependentUpon>A8.Deactivate.feature</DependentUpon>
+    <Compile Include="A.Safe\i.DeactivateToken.feature.cs">
+      <DependentUpon>i.DeactivateToken.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\A0.SaveUserAndSendVerify.feature.cs">
+    <Compile Include="A.Safe\a.SaveUserAndSendVerify.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>A0.SaveUserAndSendVerify.feature</DependentUpon>
+      <DependentUpon>a.SaveUserAndSendVerify.feature</DependentUpon>
     </Compile>
-    <Compile Include="B.Admin.feature.cs">
+    <Compile Include="B.Admin\a.SaveOrUpdateAccount.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>B.Admin.feature</DependentUpon>
+      <DependentUpon>a.SaveOrUpdateAccount.feature</DependentUpon>
+    </Compile>
+    <Compile Include="B.Admin\b.SelectAccountById.feature.cs">
+      <DependentUpon>b.SelectAccountById.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\c.CloseAccount.feature.cs">
+      <DependentUpon>c.CloseAccount.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\d.DeleteAccount.feature.cs">
+      <DependentUpon>d.DeleteAccount.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\e.SaveOrUpdateCategory.feature.cs">
+      <DependentUpon>e.SaveOrUpdateCategory.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\f.SelectCategoryById.feature.cs">
+      <DependentUpon>f.SelectCategoryById.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\g.DisableCategory.feature.cs">
+      <DependentUpon>g.DisableCategory.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\h.EnableCategory.feature.cs">
+      <DependentUpon>h.EnableCategory.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="C.Money.feature.cs">
       <AutoGen>True</AutoGen>
@@ -99,9 +134,37 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="B.Admin.feature">
+    <None Include="B.Admin\a.SaveOrUpdateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>B.Admin.feature.cs</LastGenOutput>
+      <LastGenOutput>a.SaveOrUpdateAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\b.SelectAccountById.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>b.SelectAccountById.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\c.CloseAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>c.CloseAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\d.DeleteAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>d.DeleteAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\e.SaveOrUpdateCategory.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>e.SaveOrUpdateCategory.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\f.SelectCategoryById.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>f.SelectCategoryById.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\g.DisableCategory.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>g.DisableCategory.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\h.EnableCategory.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>h.EnableCategory.feature.cs</LastGenOutput>
     </None>
     <None Include="C.Money.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -115,41 +178,41 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>D.Robot.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A1.ActivateUser.feature">
+    <None Include="A.Safe\b.ActivateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A1.ActivateUser.feature.cs</LastGenOutput>
+      <LastGenOutput>b.ActivateUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A2.ValidateAndGetUser.feature">
+    <None Include="A.Safe\c.ValidateAndGetUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A2.ValidateAndGetUser.feature.cs</LastGenOutput>
+      <LastGenOutput>c.ValidateAndGetUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A3.SelectUserByEmail.feature">
+    <None Include="A.Safe\d.SelectUserByEmail.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A3.SelectUserByEmail.feature.cs</LastGenOutput>
+      <LastGenOutput>d.SelectUserByEmail.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A4.SendUserVerify.feature">
+    <None Include="A.Safe\e.SendUserVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A4.SendUserVerify.feature.cs</LastGenOutput>
+      <LastGenOutput>e.SendUserVerify.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A5.SendPasswordReset.feature">
+    <None Include="A.Safe\f.SendPasswordReset.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A5.SendPasswordReset.feature.cs</LastGenOutput>
+      <LastGenOutput>f.SendPasswordReset.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A6.PasswordReset.feature">
+    <None Include="A.Safe\g.PasswordReset.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A6.PasswordReset.feature.cs</LastGenOutput>
+      <LastGenOutput>g.PasswordReset.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A7.TestSecurityToken.feature">
+    <None Include="A.Safe\h.TestSecurityToken.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A7.TestSecurityToken.feature.cs</LastGenOutput>
+      <LastGenOutput>h.TestSecurityToken.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A8.Deactivate.feature">
+    <None Include="A.Safe\i.DeactivateToken.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A8.Deactivate.feature.cs</LastGenOutput>
+      <LastGenOutput>i.DeactivateToken.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\A0.SaveUserAndSendVerify.feature">
+    <None Include="A.Safe\a.SaveUserAndSendVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>A0.SaveUserAndSendVerify.feature.cs</LastGenOutput>
+      <LastGenOutput>a.SaveUserAndSendVerify.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

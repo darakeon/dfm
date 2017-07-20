@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace DFM.Tests.A_Safe
+namespace DFM.Tests.B_Admin
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Deactivate the user")]
-    public partial class DeactivateTheUserFeature
+    [NUnit.Framework.DescriptionAttribute("b. Get Account")]
+    public partial class B_GetAccountFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A8.DeactivateToken.feature"
+#line 1 "b.SelectAccountById.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Deactivate the user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Get Account", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -54,42 +54,23 @@ namespace DFM.Tests.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A801. Deactivate with invalid token (E)")]
-        public virtual void A801_DeactivateWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("B101. Try to get Account with wrong ID (E)")]
+        public virtual void B101_TryToGetAccountWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A801. Deactivate with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B101. Try to get Account with wrong ID (E)", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
-#line 4
- testRunner.Given("I pass an invalid token");
-#line 5
- testRunner.When("I try do deactivate the token");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table1.AddRow(new string[] {
-                        "InvalidToken"});
-#line 6
- testRunner.Then("I will receive this error", ((string)(null)), table1);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A899. Deactivate with info all right (S)")]
-        public virtual void A899_DeactivateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("B199. Get the Account by ID (S)")]
+        public virtual void B199_GetTheAccountByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A899. Deactivate with info all right (S)", ((string[])(null)));
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B199. Get the Account by ID (S)", ((string[])(null)));
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 11
- testRunner.Given("I pass a valid token");
-#line 12
- testRunner.When("I try do deactivate the token");
-#line 13
- testRunner.Then("I will receive no error");
-#line 14
- testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

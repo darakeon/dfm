@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace DFM.Tests.A_Safe
+namespace DFM.Tests.B_Admin
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Send a password reset token to user")]
-    public partial class SendAPasswordResetTokenToUserFeature
+    [NUnit.Framework.DescriptionAttribute("d. Delete Account")]
+    public partial class D_DeleteAccountFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A5.SendPasswordReset.feature"
+#line 1 "d.DeleteAccount.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Send a password reset token to user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Delete Account", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,7 +45,6 @@ namespace DFM.Tests.A_Safe
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
-            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -54,49 +53,35 @@ namespace DFM.Tests.A_Safe
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I have an user");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A501. Send with email that doesn\'t exist (E)")]
-        public virtual void A501_SendWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("B300. Delete an Account already deleted (E)")]
+        public virtual void B300_DeleteAnAccountAlreadyDeletedE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A501. Send with email that doesn\'t exist (E)", ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B300. Delete an Account already deleted (E)", ((string[])(null)));
+#line 3
 this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("I pass an e-mail the doesn\'t exist");
-#line 8
- testRunner.When("I try to send the e-mail of password reset");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table1.AddRow(new string[] {
-                        "InvalidUser"});
-#line 9
- testRunner.Then("I will receive this error", ((string)(null)), table1);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A599. Send with info all right (S)")]
-        public virtual void A599_SendWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("B301. Delete an Account that doesn\'t exist (E)")]
+        public virtual void B301_DeleteAnAccountThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A599. Send with info all right (S)", ((string[])(null)));
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B301. Delete an Account that doesn\'t exist (E)", ((string[])(null)));
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 14
- testRunner.Given("I pass valid e-mail");
-#line 15
- testRunner.When("I try to send the e-mail of password reset");
-#line 16
- testRunner.Then("I will receive no error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("B399. Delete an Account with info all right (S)")]
+        public virtual void B399_DeleteAnAccountWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B399. Delete an Account with info all right (S)", ((string[])(null)));
+#line 5
+this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

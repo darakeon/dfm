@@ -1,11 +1,11 @@
-﻿Feature: Get an user by its e-mail
+﻿Feature: d. Get an user by its e-mail
 
 * Change to select an user to its token
 
 Background:
 	Given I have an user
 
-Scenario: A301. Select with email that doesn't exist (E)
+Scenario: 01. Select with email that doesn't exist (E)
 	Given I pass an e-mail the doesn't exist
 	When I try to get the user
 	Then I will receive this error
@@ -13,7 +13,7 @@ Scenario: A301. Select with email that doesn't exist (E)
 		| InvalidUser |
 	And I will receive no user
 
-Scenario: A399. Select with info all right (S)
+Scenario: 99. Select with info all right (S)
 	Given I pass valid e-mail
 	When I try to get the user
 	Then I will receive no error

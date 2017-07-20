@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace DFM.Tests.A_Safe
+namespace DFM.Tests.B_Admin
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace DFM.Tests.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Send user verify token to user")]
-    public partial class SendUserVerifyTokenToUserFeature
+    [NUnit.Framework.DescriptionAttribute("f. Get Category")]
+    public partial class F_GetCategoryFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "A4.SendUserVerify.feature"
+#line 1 "f.SelectCategoryById.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Send user verify token to user", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,7 +45,6 @@ namespace DFM.Tests.A_Safe
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
-            this.FeatureBackground();
         }
         
         [NUnit.Framework.TearDownAttribute()]
@@ -54,49 +53,24 @@ namespace DFM.Tests.A_Safe
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I have an user");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A401. Send with email that doesn\'t exist (E)")]
-        public virtual void A401_SendWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("B501. Try to get Category with wrong ID (E)")]
+        public virtual void B501_TryToGetCategoryWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A401. Send with email that doesn\'t exist (E)", ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B501. Try to get Category with wrong ID (E)", ((string[])(null)));
+#line 3
 this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("I pass an e-mail the doesn\'t exist");
-#line 8
- testRunner.When("I try to send the e-mail of user verify");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table1.AddRow(new string[] {
-                        "InvalidUser"});
-#line 9
- testRunner.Then("I will receive this error", ((string)(null)), table1);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A499. Send with info all right (S)")]
-        public virtual void A499_SendWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("B599. Get the Category by ID (S)")]
+        public virtual void B599_GetTheCategoryByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A499. Send with info all right (S)", ((string[])(null)));
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B599. Get the Category by ID (S)", ((string[])(null)));
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 14
- testRunner.Given("I pass valid e-mail");
-#line 15
- testRunner.When("I try to send the e-mail of user verify");
-#line 16
- testRunner.Then("I will receive no error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
