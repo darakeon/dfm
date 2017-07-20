@@ -289,7 +289,6 @@ namespace DFM.Core.Database
 
             var format = getterForMove(move.Nature);
 
-
             var dic = new Dictionary<String, String>
                             {
                                 { "Url", Dfm.Url },
@@ -298,7 +297,7 @@ namespace DFM.Core.Database
                                 { "Date", move.Date.ToShortDateString() },
                                 { "Category", move.Category.Name },
                                 { "Description", move.Description },
-                                { "Value", move.Value().ToString() },
+                                { "Value", move.Value().ToMoney() },
                                 { "Details", detailsHTML(move) },
                                 { "Action", action }
                             };
@@ -325,10 +324,10 @@ namespace DFM.Core.Database
             {
                 details.Append(
                     String.Format(
-                        "{0} ({1}): {2}<br />"
+                        "{0}: {1} x {2}<br />"
                         , detail.Description
                         , detail.Amount
-                        , detail.Value));
+                        , detail.Value.ToMoney()));
             }
 
             return details.ToString();

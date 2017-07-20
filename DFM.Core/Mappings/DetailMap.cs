@@ -16,9 +16,6 @@ namespace DFM.Core.Mappings
 
             mapping.Map(d => d.Amount)
                 .Default("1");
-
-            mapping.References(d => d.Move)
-                .Cascade.SaveUpdate();
         }
     }
 }

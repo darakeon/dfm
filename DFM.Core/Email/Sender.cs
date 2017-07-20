@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Mail;
 using System.Net;
 using DFM.Core.Exceptions;
@@ -14,6 +16,14 @@ namespace DFM.Core.Email
 
 
         private String to, subject, body;
+        private IList<String> files;
+
+
+        public Sender()
+        {
+            files = new List<String>();
+        }
+
 
         public Sender To(String email)
         {
@@ -39,6 +49,12 @@ namespace DFM.Core.Email
             return this;
         }
 
+        public Sender Attach(String fileFullName)
+        {
+            files.Add(fileFullName);
+            return this;
+        }
+
 
         public void Send()
         {
@@ -57,6 +73,14 @@ namespace DFM.Core.Email
                             {
                                 IsBodyHtml = true
                             };
+
+
+            foreach (var fileFullName in files)
+            {
+                var attachment = new Attachment(fileFullName);
+                message.Attachments.Add(attachment);
+            }
+            
 
             try
             {

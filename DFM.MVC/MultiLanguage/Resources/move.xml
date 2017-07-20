@@ -13,6 +13,9 @@
     <Boundless text="Boundless" />
     <Repeat text="Repeat" />
     <Frequency text="Frequency" />
+    <MoveNotificationIn text="Move Notification" />
+    <MoveNotificationOut text="Move Notification" />
+    <MoveNotificationTransfer text="Move Notification" />
   </en-US>
   <pt-BR>
     <Amount text="Qte" />
@@ -27,5 +30,8 @@
     <Boundless text="Ilimitado" />
     <Repeat text="Repetir" />
     <Frequency text="Frequência" />
+    <MoveNotificationIn text="Notificação de Movimentação" />
+    <MoveNotificationOut text="Notificação de Movimentação" />
+    <MoveNotificationTransfer text="Notificação de Movimentação" />
   </pt-BR>
 </move>

@@ -115,6 +115,7 @@
     <Compile Include="Helpers\DictionaryExtension.cs" />
     <Compile Include="Email\Sender.cs" />
     <Compile Include="Helpers\Dfm.cs" />
+    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\StringExtension.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />

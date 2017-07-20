@@ -15,7 +15,8 @@ namespace DFM.Core.Mappings
                 .Length(MaximumLength.MoveDescription);
 
             mapping.HasMany(m => m.DetailList)
-                .Cascade.AllDeleteOrphan();
+                .Cascade.AllDeleteOrphan()
+                .Inverse();
 
             mapping.References(m => m.In)
                 .Cascade.SaveUpdate()

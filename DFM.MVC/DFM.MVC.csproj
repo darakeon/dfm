@@ -175,7 +175,6 @@
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
-    <Compile Include="Helpers\Extensions\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\Views\Menu.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
