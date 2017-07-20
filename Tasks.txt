@@ -95,7 +95,7 @@ VERSÃO 1.0.1.0 (e VERSÃO 1.0.0.4)
 ======================================================================================================
 
 VERSÃO 1.0.2.0
-02/12		Reorganização primária de camadas
+02/12	05/12	Reorganização primária de camadas
 		Separar BusinessLogic de NHibernate
 		Separar Multilanguage de MVC
 		Refactor Resharper
