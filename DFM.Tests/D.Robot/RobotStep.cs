@@ -6,52 +6,9 @@ namespace DFM.Tests.D.Robot
     [Binding]
     public class RobotStep
     {
-        /*
         #region SaveSchedule
-        [Given(@"I have two accounts")]
-        public void GivenIHaveTwoAccounts()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have a category")]
-        public void GivenIHaveACategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have this move to create")]
-        public void GivenIHaveThisMoveToCreate(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Details")]
-        public void GivenItHasNoDetails()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"the move has this details")]
-        public void GivenTheMoveHasThisDetails(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"the move has no schedule")]
         public void GivenTheMoveHasNoSchedule()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"the move has this schedule")]
-        public void GivenTheMoveHasThisSchedule(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has a Category")]
-        public void GivenItHasACategory()
         {
             ScenarioContext.Current.Pending();
         }
@@ -64,12 +21,6 @@ namespace DFM.Tests.D.Robot
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an Account Out")]
-        public void GivenItHasAnAccountOut()
         {
             ScenarioContext.Current.Pending();
         }
@@ -88,12 +39,6 @@ namespace DFM.Tests.D.Robot
 
         [Given(@"it has an Account In")]
         public void GivenItHasAnAccountIn()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Account In")]
-        public void GivenItHasNoAccountIn()
         {
             ScenarioContext.Current.Pending();
         }
@@ -153,21 +98,8 @@ namespace DFM.Tests.D.Robot
         }
 
         #endregion
-        */
 
         #region RunSchedule
-        [Given(@"I have two accounts")]
-        public void GivenIHaveTwoAccounts()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have a category")]
-        public void GivenIHaveACategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I have no logged user \(logoff\)")]
         public void GivenIHaveNoLoggedUserLogoff()
         {
@@ -182,48 +114,6 @@ namespace DFM.Tests.D.Robot
 
         [Then(@"the user amount money will be kept")]
         public void ThenTheUserAmountMoneyWillBeKept()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have this move to create")]
-        public void GivenIHaveThisMoveToCreate(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Details")]
-        public void GivenItHasNoDetails()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"the move has this details")]
-        public void GivenTheMoveHasThisDetails(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"the move has this schedule")]
-        public void GivenTheMoveHasThisSchedule(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has a Category")]
-        public void GivenItHasACategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an Account Out")]
-        public void GivenItHasAnAccountOut()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Account In")]
-        public void GivenItHasNoAccountIn()
         {
             ScenarioContext.Current.Pending();
         }
@@ -274,7 +164,61 @@ namespace DFM.Tests.D.Robot
 
         #endregion
 
-        #region
+        #region More than one
+        [Given(@"I have two accounts")]
+        public void GivenIHaveTwoAccounts()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I have a category")]
+        public void GivenIHaveACategory()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I have this move to create")]
+        public void GivenIHaveThisMoveToCreate(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"it has no Details")]
+        public void GivenItHasNoDetails()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"the move has this details")]
+        public void GivenTheMoveHasThisDetails(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"the move has this schedule")]
+        public void GivenTheMoveHasThisSchedule(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"it has a Category")]
+        public void GivenItHasACategory()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"it has an Account Out")]
+        public void GivenItHasAnAccountOut()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"it has no Account In")]
+        public void GivenItHasNoAccountIn()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
         #endregion
 
 
