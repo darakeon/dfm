@@ -138,8 +138,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\C.MoneyStep.cs" />
-    <Compile Include="Steps\D.RobotStep.cs" />
+    <Compile Include="C.Money\MoneyStep.cs" />
+    <Compile Include="D.Robot\RobotStep.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainStep.cs" />
     <Compile Include="D.Robot\b.RunSchedule.feature.cs">
