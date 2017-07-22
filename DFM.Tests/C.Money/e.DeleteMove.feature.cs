@@ -61,7 +61,7 @@ namespace DFM.Tests.C_Money
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.Given("I pass an id the doesn\'t exist");
+ testRunner.Given("I pass an id of Move that doesn\'t exist");
 #line 5
  testRunner.When("I try to delete the move");
 #line hidden
@@ -85,7 +85,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.Given("I pass valid ID");
+ testRunner.Given("I pass valid Detail ID");
 #line 13
  testRunner.When("I try to delete the move");
 #line 14

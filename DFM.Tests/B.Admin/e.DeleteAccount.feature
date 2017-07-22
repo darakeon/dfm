@@ -5,7 +5,7 @@ Background:
 	And I have an account
 
 Scenario: 01. Delete an Account that doesn't exist (E)
-	Given I pass an id the doesn't exist
+	Given I pass an id of Account that doesn't exist
 	When I try to delete the account
 	Then I will receive this error
 		| Error     |

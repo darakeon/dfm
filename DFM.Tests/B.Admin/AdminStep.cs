@@ -224,12 +224,6 @@ namespace DFM.Tests.B.Admin
         #endregion
 
         #region EnableCategory
-        [Given(@"I pass an id the doesn't exist")]
-        public void GivenIPassAnIdTheDoesnTExist()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I enable a category")]
         public void GivenIEnableACategory()
         {
@@ -270,7 +264,7 @@ namespace DFM.Tests.B.Admin
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I pass an id of account the doesn't exist")]
+        [Given(@"I pass an id of account that doesn't exist")]
         public void GivenIPassAnIdOfAccountTheDoesnTExist()
         {
             ScenarioContext.Current.Pending();
@@ -295,7 +289,7 @@ namespace DFM.Tests.B.Admin
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I pass an id of category the doesn't exist")]
+        [Given(@"I pass an id of category that doesn't exist")]
         public void GivenIPassAnIdOfCategoryTheDoesnTExist()
         {
             ScenarioContext.Current.Pending();
