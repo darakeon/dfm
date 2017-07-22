@@ -81,7 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="B.Admin\AdminStep.cs" />
+    <Compile Include="B.Admin\_B.AdminStep.cs" />
     <Compile Include="B.Admin\c.SelectAccountById.feature.cs">
       <DependentUpon>c.SelectAccountById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -138,9 +138,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="C.Money\MoneyStep.cs" />
-    <Compile Include="D.Robot\RobotStep.cs" />
-    <Compile Include="E.Report\ReportStep.cs" />
+    <Compile Include="C.Money\_C.MoneyStep.cs" />
+    <Compile Include="D.Robot\_D.RobotStep.cs" />
+    <Compile Include="E.Report\_E.ReportStep.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainStep.cs" />
     <Compile Include="D.Robot\b.RunSchedule.feature.cs">
@@ -164,7 +164,7 @@
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="A.Safe\SafeStep.cs">
+    <Compile Include="A.Safe\_A.SafeStep.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
