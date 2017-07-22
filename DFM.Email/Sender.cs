@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using System.Net;
@@ -57,6 +58,11 @@ namespace DFM.Email
 
         public void Send()
         {
+            var emailSender = ConfigurationManager.AppSettings["EmailSender"];
+
+            if (emailSender == "DontSend")
+                return;
+
             var credentials = new NetworkCredential("no-reply@" + domain, "[some-awful-password]");
 
             var smtp = new SmtpClient("smtp." + domain, 587)

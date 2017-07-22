@@ -241,8 +241,5 @@ namespace DFM.Tests.C.Money
         #endregion
 
 
-        #region
-        #endregion
-
     }
 }
