@@ -1,7 +1,7 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Steps
+namespace DFM.Tests.C.Money
 {
     [Binding]
     public class MoneyStep
