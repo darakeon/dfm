@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 
@@ -22,9 +23,25 @@ namespace DFM.BusinessLogic.SuperServices
             return accountService.SelectById(id);
         }
 
+        public Account SelectAccountByName(String name, User user)
+        {
+            return accountService.SelectByName(name, user);
+        }
+
         public void SaveOrUpdateAccount(Account account)
         {
-            accountService.SaveOrUpdate(account);
+            var transaction = accountService.BeginTransaction();
+
+            try
+            {
+                accountService.SaveOrUpdate(account);
+                accountService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                accountService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
         public void CloseAccount(Account account)
@@ -58,6 +75,7 @@ namespace DFM.BusinessLogic.SuperServices
         {
             categoryService.Enable(category);
         }
+
 
     }
 }

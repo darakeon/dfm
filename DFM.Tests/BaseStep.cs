@@ -44,6 +44,15 @@ namespace DFM.Tests
 
 
 
+        protected Int32? GetInt(String str)
+        {
+            return String.IsNullOrEmpty(str)
+                ? (Int32?) null
+                : Int32.Parse(str);
+        }
+
+
+
         protected DFMCoreException Error
         {
             get { return Get<DFMCoreException>("error"); }

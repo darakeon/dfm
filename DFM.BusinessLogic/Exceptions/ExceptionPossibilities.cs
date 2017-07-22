@@ -11,6 +11,7 @@
         UserEmailInvalid,
         UserPasswordRequired,
 
+        AccountNameRequired,
         AccountAlreadyExists,
         CantCloseEmptyAccount,
         CantDeleteAccountWithMoves,

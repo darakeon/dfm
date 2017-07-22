@@ -17,14 +17,17 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        private static void validate(Account account)
+        private void validate(Account account)
         {
             checkName(account);
             checkLimits(account);
         }
 
-        private static void checkName(Account account)
+        private void checkName(Account account)
         {
+            if (String.IsNullOrEmpty(account.Name))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
+
             var otherAccount = SelectByName(account.Name, account.User);
 
             var accountExistsForUser = otherAccount != null
@@ -68,11 +71,12 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal static Account SelectByName(String name, User user)
+        internal Account SelectByName(String name, User user)
         {
-            var accountList = user.AccountList
-                .Where(a => a.Name == name)
-                .ToList();
+            var accountList = List(
+                    a => a.Name == name
+                         && a.User.ID == user.ID
+                );
 
             if (accountList.Count > 1)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);

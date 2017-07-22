@@ -13,37 +13,37 @@ namespace DFM.Tests.A.Safe
     public class SafeStep : BaseStep
     {
         #region Variables
-        protected User OtherUser
+        private static User otherUser
         {
             get { return Get<User>("OtherUser"); }
             set { Set("OtherUser", value); }
         }
-        
-        protected String Email
+
+        private static String email
         {
             get { return Get<String>("Email"); }
             set { Set("Email", value); }
         }
 
-        protected String Password
+        private static String password
         {
             get { return Get<String>("Password"); }
             set { Set("Password", value); }
         }
 
-        protected String NewPassword
+        private static String newPassword
         {
             get { return Get<String>("NewPassword"); }
             set { Set("NewPassword", value); }
         }
 
-        protected String Token
+        private static String token
         {
             get { return Get<String>("Token"); }
             set { Set("Token", value); }
         }
 
-        protected SecurityAction Action
+        private static SecurityAction action
         {
             get { return Get<SecurityAction>("Action"); }
             set { Set("Action", value); }
@@ -55,8 +55,8 @@ namespace DFM.Tests.A.Safe
         [Given(@"I have this user to create")]
         public void GivenIHaveThisUserToCreate(Table table)
         {
-            Email = table.Rows[0]["Email"];
-            Password = table.Rows[0]["Password"];
+            email = table.Rows[0]["Email"];
+            password = table.Rows[0]["Password"];
         }
 
         [When(@"I try to save the user")]
@@ -64,7 +64,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SaveUserAndSendVerify(Email, Password);
+                Access.Safe.SaveUserAndSendVerify(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -75,13 +75,13 @@ namespace DFM.Tests.A.Safe
         [Given(@"I already have created this user")]
         public void GivenIAlreadyHaveCreatedThisUser()
         {
-            OtherUser = new User
+            otherUser = new User
                                 {
-                                    Email = Email, 
-                                    Password = Password + "_diff",
+                                    Email = email, 
+                                    Password = password + "_diff",
                                 };
 
-            Access.Safe.SaveUserAndSendVerify(OtherUser.Email, OtherUser.Password);
+            Access.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
         }
 
         [Then(@"the user will not be saved")]
@@ -91,7 +91,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                savedUser = Access.Safe.ValidateAndGet(Email, Password);
+                savedUser = Access.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -104,7 +104,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be changed")]
         public void ThenTheUserWillNotBeChanged()
         {
-            var savedUser = Access.Safe.ValidateAndGet(OtherUser.Email, OtherUser.Password);
+            var savedUser = Access.Safe.ValidateAndGet(otherUser.Email, otherUser.Password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -112,7 +112,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will be saved")]
         public void ThenTheUserWillBeSaved()
         {
-            var savedUser = Access.Safe.ValidateAndGet(Email, Password);
+            var savedUser = Access.Safe.ValidateAndGet(email, password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -128,7 +128,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SendPasswordReset(Email);
+                Access.Safe.SendPasswordReset(email);
             }
             catch (DFMCoreException e)
             {
@@ -143,7 +143,7 @@ namespace DFM.Tests.A.Safe
         {
             Access.Safe.SendPasswordReset(User.Email);
 
-            Token = DBHelper.GetLastTokenForUser(User, SecurityAction.PasswordReset);
+            token = DBHelper.GetLastTokenForUser(User, SecurityAction.PasswordReset);
         }
         
         [When(@"I try to activate the user")]
@@ -151,7 +151,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.ActivateUser(Token);
+                Access.Safe.ActivateUser(token);
             }
             catch (DFMCoreException e)
             {
@@ -180,8 +180,8 @@ namespace DFM.Tests.A.Safe
         [Given(@"I have this user data")]
         public void GivenIHaveThisUserData(Table table)
         {
-            Email = table.Rows[0]["Email"];
-            Password = table.Rows[0]["Password"];
+            email = table.Rows[0]["Email"];
+            password = table.Rows[0]["Password"];
         }
 
         [When(@"I try to get the user")]
@@ -190,7 +190,7 @@ namespace DFM.Tests.A.Safe
             try
             {
                 User = null;
-                User = Access.Safe.ValidateAndGet(Email, Password);
+                User = Access.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -206,7 +206,7 @@ namespace DFM.Tests.A.Safe
             try
             {
                 User = null;
-                User = Access.Safe.SelectUserByEmail(Email);
+                User = Access.Safe.SelectUserByEmail(email);
             }
             catch (DFMCoreException e)
             {
@@ -219,19 +219,19 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass a token of user verification")]
         public void GivenIPassATokenOfUserVerification()
         {
-            Token = DBHelper.GetLastTokenForUser(User, SecurityAction.UserVerification);
+            token = DBHelper.GetLastTokenForUser(User, SecurityAction.UserVerification);
         }
 
         [Given(@"I pass this password: (.*)")]
         public void GivenIPassThisPassword(String password)
         {
-            NewPassword = password;
+            newPassword = password;
         }
 
         [Given(@"I pass no password")]
         public void GivenIPassNoPassword()
         {
-            NewPassword = null;
+            newPassword = null;
         }
         
 
@@ -240,7 +240,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.PasswordReset(Token, NewPassword);
+                Access.Safe.PasswordReset(token, newPassword);
             }
             catch (DFMCoreException e)
             {
@@ -273,7 +273,7 @@ namespace DFM.Tests.A.Safe
             User = null;
             Error = null;
 
-            CentralUserPassword = NewPassword;
+            CentralUserPassword = newPassword;
 
             try
             {
@@ -294,9 +294,9 @@ namespace DFM.Tests.A.Safe
         public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(String strTokenOf, String strAction)
         {
             var tokenOf = (SecurityAction)Enum.Parse(typeof(SecurityAction), strTokenOf);
-            Token = DBHelper.GetLastTokenForUser(User, tokenOf);
+            token = DBHelper.GetLastTokenForUser(User, tokenOf);
 
-            Action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
+            action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
         }
 
         [When(@"I test the token")]
@@ -304,7 +304,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.TestSecurityToken(Token, Action);
+                Access.Safe.TestSecurityToken(token, action);
             }
             catch (DFMCoreException e)
             {
@@ -319,7 +319,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.DeactivateToken(Token);
+                Access.Safe.DeactivateToken(token);
             }
             catch (DFMCoreException e)
             {
@@ -332,7 +332,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.TestSecurityToken(Token, Action);
+                Access.Safe.TestSecurityToken(token, action);
             }
             catch(DFMCoreException e)
             {
@@ -355,26 +355,26 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass an invalid token")]
         public void GivenIPassAnInvalidToken()
         {
-            Token = TK.New();
+            token = TK.New();
         }
 
         [Given(@"I pass an e-mail that doesn't exist")]
         public void GivenIPassAnEMailThatDoesnTExist()
         {
-            Email = "dont_exist@dontflymoney.com";
+            email = "dont_exist@dontflymoney.com";
         }
 
         [Given(@"I pass valid e-mail")]
         public void GivenIPassValidEMail()
         {
-            Email = User.Email;
+            email = User.Email;
         }
 
         [Given(@"I pass a valid ([A-Za-z]+) token")]
         public void GivenIPassTheValidToken(String strAction)
         {
-            Action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
-            Token = DBHelper.GetLastTokenForUser(User, Action);
+            action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
+            token = DBHelper.GetLastTokenForUser(User, action);
         }
 
         [Given(@"I have a token for its actvation")]
@@ -389,7 +389,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SendUserVerify(Email);
+                Access.Safe.SendUserVerify(email);
             }
             catch (DFMCoreException e)
             {
@@ -408,7 +408,7 @@ namespace DFM.Tests.A.Safe
         public void ThenIWillReceiveTheUser()
         {
             Assert.IsNotNull(User);
-            Assert.AreEqual(Email, User.Email);
+            Assert.AreEqual(email, User.Email);
         }
         #endregion
 

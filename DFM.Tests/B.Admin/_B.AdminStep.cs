@@ -1,39 +1,98 @@
-﻿using TechTalk.SpecFlow;
+﻿using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
+using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace DFM.Tests.B.Admin
 {
     [Binding]
     public class AdminStep : BaseStep
     {
+        #region Variables
+        protected Account Account
+        {
+            get { return Get<Account>("Account"); }
+            set { Set("Account", value); }
+        }
+
+        protected Account OlderAccount
+        {
+            get { return Get<Account>("OlderAccount"); }
+            set { Set("OlderAccount", value); }
+        }
+        #endregion
+
         #region SaveAccount
         [Given(@"I have this account to create")]
         public void GivenIHaveThisAccountToCreate(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var accountData = table.Rows[0];
+
+            Account = new Account
+                          {
+                              Name = accountData["Name"],
+                              RedLimit = GetInt(accountData["Red"]),
+                              YellowLimit = GetInt(accountData["Yellow"]),
+                              User = User
+                          };
         }
 
-        [Given(@"I already have created this account")]
-        public void GivenIAlreadyHaveCreatedThisAccount()
+        [Given(@"I already have this account")]
+        public void GivenIAlreadyHaveThisAccount(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var accountData = table.Rows[0];
+
+            OlderAccount = new Account
+            {
+                Name = accountData["Name"],
+                RedLimit = GetInt(accountData["Red"]),
+                YellowLimit = GetInt(accountData["Yellow"]),
+                User = User
+            };
+
+            Access.Admin.SaveOrUpdateAccount(OlderAccount);
         }
 
         [When(@"I try to save the account")]
         public void WhenITryToSaveTheAccount()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Admin.SaveOrUpdateAccount(Account);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"the account will not be changed")]
+        public void ThenTheAccountWillNotBeChanged()
+        {
+            var account = Access.Admin.SelectAccountByName(OlderAccount.Name, User);
+
+            Assert.AreEqual(OlderAccount.Name, account.Name);
+            Assert.AreEqual(OlderAccount.RedLimit, account.RedLimit);
+            Assert.AreEqual(OlderAccount.YellowLimit, account.YellowLimit);
+
+            Assert.AreNotEqual(Account.RedLimit, account.RedLimit);
+            Assert.AreNotEqual(Account.YellowLimit, account.YellowLimit);
         }
 
         [Then(@"the account will not be saved")]
         public void ThenTheAccountWillNotBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            var account = Access.Admin.SelectAccountByName(Account.Name, User);
+
+            Assert.IsNull(account);
         }
 
         [Then(@"the account will be saved")]
         public void ThenTheAccountWillBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            var account = Access.Admin.SelectAccountByName(Account.Name, User);
+
+            Assert.IsNotNull(account);
         }
         #endregion
 

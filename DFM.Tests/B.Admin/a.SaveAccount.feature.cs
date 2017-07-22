@@ -91,10 +91,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Save Account with just yellow limit (E)")]
-        public virtual void _02_SaveAccountWithJustYellowLimitE()
+        [NUnit.Framework.DescriptionAttribute("02. Save Account with red limit bigger than yellow limit (E)")]
+        public virtual void _02_SaveAccountWithRedLimitBiggerThanYellowLimitE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save Account with just yellow limit (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save Account with red limit bigger than yellow limit (E)", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -105,13 +105,13 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Account Ba02",
                         "100",
-                        ""});
+                        "200"});
 #line 15
  testRunner.Given("I have this account to create", ((string)(null)), table2);
 #line 18
  testRunner.When("I try to save the account");
 #line 19
- testRunner.Then("I will receive this error: AccountTwoLimitsRequired");
+ testRunner.Then("I will receive this error: RedLimitAboveYellowLimit");
 #line 20
  testRunner.And("the account will not be saved");
 #line hidden
@@ -119,10 +119,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Save Account with just red limit (E)")]
-        public virtual void _03_SaveAccountWithJustRedLimitE()
+        [NUnit.Framework.DescriptionAttribute("03. Save Account with name that already exists (E)")]
+        public virtual void _03_SaveAccountWithNameThatAlreadyExistsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save Account with just red limit (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save Account with name that already exists (E)", ((string[])(null)));
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -133,53 +133,36 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Account Ba03",
                         "",
-                        "100"});
+                        ""});
 #line 23
  testRunner.Given("I have this account to create", ((string)(null)), table3);
-#line 26
- testRunner.When("I try to save the account");
-#line 27
- testRunner.Then("I will receive this error: AccountTwoLimitsRequired");
-#line 28
- testRunner.And("the account will not be saved");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Save Account with red limit bigger than yellow limit (E)")]
-        public virtual void _04_SaveAccountWithRedLimitBiggerThanYellowLimitE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Save Account with red limit bigger than yellow limit (E)", ((string[])(null)));
-#line 30
-this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
                         "Yellow",
                         "Red"});
             table4.AddRow(new string[] {
-                        "Account Ba04",
-                        "100",
-                        "200"});
-#line 31
- testRunner.Given("I have this account to create", ((string)(null)), table4);
-#line 34
+                        "Account Ba03",
+                        "200",
+                        "100"});
+#line 26
+ testRunner.And("I already have this account", ((string)(null)), table4);
+#line 29
  testRunner.When("I try to save the account");
-#line 35
- testRunner.Then("I will receive this error: RedLimitAboveYellowLimit");
-#line 36
- testRunner.And("the account will not be saved");
+#line 30
+ testRunner.Then("I will receive this error: AccountAlreadyExists");
+#line 31
+ testRunner.And("the account will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Save Account with name that already exists (E)")]
-        public virtual void _05_SaveAccountWithNameThatAlreadyExistsE()
+        [NUnit.Framework.DescriptionAttribute("96. Save Account with info all right (without limits) (S)")]
+        public virtual void _96_SaveAccountWithInfoAllRightWithoutLimitsS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Save Account with name that already exists (E)", ((string[])(null)));
-#line 38
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Save Account with info all right (without limits) (S)", ((string[])(null)));
+#line 33
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -187,29 +170,27 @@ this.ScenarioSetup(scenarioInfo);
                         "Yellow",
                         "Red"});
             table5.AddRow(new string[] {
-                        "Account Ba05",
+                        "Account Ba96",
                         "",
                         ""});
-#line 39
+#line 34
  testRunner.Given("I have this account to create", ((string)(null)), table5);
-#line 42
- testRunner.And("I already have created this account");
-#line 43
+#line 37
  testRunner.When("I try to save the account");
-#line 44
- testRunner.Then("I will receive this error: AccountAlreadyExists");
-#line 45
- testRunner.And("the account will not be saved");
+#line 38
+ testRunner.Then("I will receive no error");
+#line 39
+ testRunner.And("the account will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Save Account with info all right (without limits) (S)")]
-        public virtual void _98_SaveAccountWithInfoAllRightWithoutLimitsS()
+        [NUnit.Framework.DescriptionAttribute("97. Save Account with just yellow limit (S)")]
+        public virtual void _97_SaveAccountWithJustYellowLimitS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save Account with info all right (without limits) (S)", ((string[])(null)));
-#line 47
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Save Account with just yellow limit (S)", ((string[])(null)));
+#line 41
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -217,16 +198,44 @@ this.ScenarioSetup(scenarioInfo);
                         "Yellow",
                         "Red"});
             table6.AddRow(new string[] {
+                        "Account Ba97",
+                        "100",
+                        ""});
+#line 42
+ testRunner.Given("I have this account to create", ((string)(null)), table6);
+#line 45
+ testRunner.When("I try to save the account");
+#line 46
+ testRunner.Then("I will receive no error");
+#line 47
+ testRunner.And("the account will be saved");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Save Account with just red limit (S)")]
+        public virtual void _98_SaveAccountWithJustRedLimitS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save Account with just red limit (S)", ((string[])(null)));
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Yellow",
+                        "Red"});
+            table7.AddRow(new string[] {
                         "Account Ba98",
                         "",
-                        ""});
-#line 48
- testRunner.Given("I have this account to create", ((string)(null)), table6);
-#line 51
- testRunner.When("I try to save the account");
-#line 52
- testRunner.Then("I will receive no error");
+                        "100"});
+#line 50
+ testRunner.Given("I have this account to create", ((string)(null)), table7);
 #line 53
+ testRunner.When("I try to save the account");
+#line 54
+ testRunner.Then("I will receive no error");
+#line 55
  testRunner.And("the account will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -237,24 +246,24 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SaveAccountWithInfoAllRightWithLimitsS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save Account with info all right (with limits) (S)", ((string[])(null)));
-#line 55
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
                         "Yellow",
                         "Red"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Account Ba99",
-                        "100",
-                        "200"});
-#line 56
- testRunner.Given("I have this account to create", ((string)(null)), table7);
-#line 59
- testRunner.When("I try to save the account");
-#line 60
- testRunner.Then("I will receive no error");
+                        "200",
+                        "100"});
+#line 58
+ testRunner.Given("I have this account to create", ((string)(null)), table8);
 #line 61
+ testRunner.When("I try to save the account");
+#line 62
+ testRunner.Then("I will receive no error");
+#line 63
  testRunner.And("the account will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
