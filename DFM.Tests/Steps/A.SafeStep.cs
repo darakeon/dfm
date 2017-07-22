@@ -5,9 +5,8 @@ using DFM.Entities.Enums;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TK = DFM.Generic.Token;
 
-namespace DFM.Tests.A.Safe
+namespace DFM.Tests.Steps
 {
     [Binding]
     public class SafeStep : BaseStep
@@ -264,7 +263,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass an invalid token")]
         public void GivenIPassAnInvalidToken()
         {
-            Token = TK.New();
+            Token = Generic.Token.New();
         }
 
         [Given(@"I pass an e-mail that doesn't exist")]

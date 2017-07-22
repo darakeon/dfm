@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Steps\SafeStep.cs" />
+    <Compile Include="Steps\A.SafeStep.cs" />
     <Compile Include="A.Safe\d.ActivateUser.feature.cs">
       <DependentUpon>d.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -82,7 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="Steps\AdminStep.cs" />
+    <Compile Include="Steps\B.AdminStep.cs" />
     <Compile Include="B.Admin\c.SelectAccountById.feature.cs">
       <DependentUpon>c.SelectAccountById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -139,8 +139,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\MoneyStep.cs" />
-    <Compile Include="Steps\RobotStep.cs" />
+    <Compile Include="Steps\C.MoneyStep.cs" />
+    <Compile Include="Steps\D.RobotStep.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainStep.cs" />
     <Compile Include="D.Robot\b.RunSchedule.feature.cs">

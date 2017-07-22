@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace DFM.Tests.B.Admin
+namespace DFM.Tests.Steps
 {
     [Binding]
     public class AdminStep : BaseStep
