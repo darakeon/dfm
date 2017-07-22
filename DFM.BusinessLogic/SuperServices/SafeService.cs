@@ -87,10 +87,9 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void ActivateUser(String token)
         {
-            var security = securityService.SelectByToken(token);
+            TestSecurityToken(token, SecurityAction.UserVerification);
 
-            if (security.Action != SecurityAction.UserVerification)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+            var security = securityService.SelectByToken(token);
 
             userService.Activate(security.User);
 
@@ -121,7 +120,12 @@ namespace DFM.BusinessLogic.SuperServices
 
         public User SelectUserByEmail(String email)
         {
-            return userService.SelectByEmail(email);
+            var user = userService.SelectByEmail(email);
+
+            if (user == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+
+            return user;
         }
 
         public void DeactivateToken(String token)

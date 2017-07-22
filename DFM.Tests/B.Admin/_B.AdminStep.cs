@@ -258,12 +258,6 @@ namespace DFM.Tests.B.Admin
 
 
         #region MoreThanOne
-        [Given(@"I have an account")]
-        public void GivenIHaveAnAccount()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I pass an id of account that doesn't exist")]
         public void GivenIPassAnIdOfAccountTheDoesnTExist()
         {
@@ -278,13 +272,6 @@ namespace DFM.Tests.B.Admin
 
         [Given(@"I give an id of account with moves")]
         public void GivenIGiveAnIdOfAnAccountWithMoves()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-
-        [Given(@"I have a category")]
-        public void GivenIHaveACategory()
         {
             ScenarioContext.Current.Pending();
         }

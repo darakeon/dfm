@@ -7,96 +7,6 @@ namespace DFM.Tests.C.Money
     public class MoneyStep
     {
         #region SaveMove
-        [Given(@"I have two accounts")]
-        public void GivenIHaveTwoAccounts()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have a category")]
-        public void GivenIHaveACategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I have this move to create")]
-        public void GivenIHaveThisMoveToCreate(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Details")]
-        public void GivenItHasNoDetails()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"the move has this details")]
-        public void GivenTheMoveHasThisDetails(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has a Category")]
-        public void GivenItHasACategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Category")]
-        public void GivenItHasNoCategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an unknown Category")]
-        public void GivenItHasAnUnknownCategory()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an Account Out")]
-        public void GivenItHasAnAccountOut()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Account Out")]
-        public void GivenItHasNoAccountOut()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an unknown Account Out")]
-        public void GivenItHasAnUnknownAccountOut()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an Account In")]
-        public void GivenItHasAnAccountIn()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has no Account In")]
-        public void GivenItHasNoAccountIn()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an unknown Account In")]
-        public void GivenItHasAnUnknownAccountIn()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"it has an Account In equal to Out")]
-        public void GivenItHasAnAccountInEqualToOut()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [When(@"I try to save the move")]
         public void WhenITryToSaveTheMove()
         {
@@ -111,30 +21,6 @@ namespace DFM.Tests.C.Money
 
         [Then(@"the move will be saved")]
         public void ThenTheMoveWillBeSaved()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"the month-category-accountOut value will decrease in (\d+)")]
-        public void ThenTheMonthCategoryAccountOutValueWillDecreaseIn(Double decrease)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"the year-category-accountOut value will decrease in (\d+)")]
-        public void ThenTheYearCategoryAccountOutValueWillDecreaseIn(Double decrease)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"the month-category-accountIn value will increase in (\d+)")]
-        public void ThenTheMonthCategoryAccountInValueWillIncreaseIn(Double increase)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"the year-category-accountIn value will increase in (\d+)")]
-        public void ThenTheYearCategoryAccountInValueWillIncreaseIn(Double increase)
         {
             ScenarioContext.Current.Pending();
         }

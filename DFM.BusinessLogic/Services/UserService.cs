@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Services
 
         internal User SaveOrUpdate(User user)
         {
-            return SaveOrUpdate(user, complete, validate); ;
+            return SaveOrUpdate(user, complete, validate);
         }
 
         private void validate(User user)

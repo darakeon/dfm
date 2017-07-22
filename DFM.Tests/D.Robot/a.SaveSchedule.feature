@@ -16,7 +16,7 @@ Scenario: 01. Save without Description (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                   |
 		| MoveDescriptionRequired |
@@ -33,7 +33,7 @@ Scenario: 02. Save without Date (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error            |
 		| MoveDateRequired |
@@ -50,7 +50,7 @@ Scenario: 03. Save without Category (E)
 	And it has no Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                |
 		| MoveCategoryRequired |
@@ -67,7 +67,7 @@ Scenario: 04. Save with unknown Category (E)
 	And it has an unknown Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error               |
 		| MoveCategoryInvalid |
@@ -86,7 +86,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error        |
 		| OutMoveWrong |
@@ -103,7 +103,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has a Category
 	And it has an Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error        |
 		| OutMoveWrong |
@@ -120,7 +120,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error        |
 		| OutMoveWrong |
@@ -137,7 +137,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	And it has a Category
 	And it has an unknown Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error        |
 		| OutMoveWrong |
@@ -156,7 +156,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error       |
 		| InMoveWrong |
@@ -173,7 +173,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has a Category
 	And it has an Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error       |
 		| InMoveWrong |
@@ -190,7 +190,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error       |
 		| InMoveWrong |
@@ -207,7 +207,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has an unknown Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error       |
 		| InMoveWrong |
@@ -226,7 +226,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| TransferMoveWrong |
@@ -243,7 +243,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has a Category
 	And it has no Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| TransferMoveWrong |
@@ -260,7 +260,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| TransferMoveWrong |
@@ -277,7 +277,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And it has a Category
 	And it has an Account Out
 	And it has an unknown Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| TransferMoveWrong |
@@ -294,7 +294,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And it has a Category
 	And it has an unknown Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| TransferMoveWrong |
@@ -311,7 +311,7 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 	And it has a Category
 	And it has an Account Out
 	And it has an Account In equal to Out
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error             |
 		| MoveCircularTransfer |
@@ -330,7 +330,7 @@ Scenario: 41. Save without Value or Details (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                     |
 		| MoveValueOrDetailRequired |
@@ -347,7 +347,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                     |
 		| MoveValueOrDetailRequired |
@@ -367,7 +367,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                         |
 		| MoveDetailDescriptionRequired |
@@ -387,7 +387,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                    |
 		| MoveDetailAmountRequired |
@@ -407,7 +407,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                   |
 		| MoveDetailValueRequired |
@@ -424,7 +424,7 @@ Scenario: 51. Save without Schedule (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                |
 		| MoveScheduleRequired |
@@ -441,7 +441,7 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive this error
 		| Error                   |
 		| ScheduleTimesCantBeZero |
@@ -460,7 +460,7 @@ Scenario: 91. Save with info all right (Out) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change
@@ -477,7 +477,7 @@ Scenario: 92. Save with info all right (In) (S)
 	And it has a Category
 	And it has no Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountIn value will not change
@@ -494,7 +494,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has an Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change
@@ -513,7 +513,7 @@ Scenario: 94. Save with info all right (value) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change
@@ -533,7 +533,7 @@ Scenario: 95. Save with info all right (details) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change
@@ -550,7 +550,7 @@ Scenario: 96. Save negative (value) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change
@@ -570,7 +570,7 @@ Scenario: 97. Save negative (details) (S)
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
-	When I try to save the move
+	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
 	And the month-category-accountOut value will not change

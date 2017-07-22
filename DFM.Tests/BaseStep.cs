@@ -56,6 +56,9 @@ namespace DFM.Tests
             set { Set("user", value); }
         }
 
+        protected const string CentralUserEmail = "test@dontflymoney.com";
+        protected const string CentralUserPassword = "password";
+
 
     }
 }

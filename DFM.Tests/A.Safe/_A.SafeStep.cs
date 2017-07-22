@@ -5,6 +5,7 @@ using DFM.Entities.Enums;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TK = DFM.Generic.Token;
 
 namespace DFM.Tests.A.Safe
 {
@@ -140,7 +141,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be activated")]
         public void ThenTheUserWillNotBeActivated()
         {
-            User = Access.Safe.ValidateAndGet(User.Email, User.Password);
+            User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
 
             Assert.IsFalse(User.Active);
         }
@@ -148,7 +149,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            User = Access.Safe.ValidateAndGet(User.Email, User.Password);
+            User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
 
             Assert.IsTrue(User.Active);
         }
@@ -161,10 +162,36 @@ namespace DFM.Tests.A.Safe
             Email = table.Rows[0]["Email"];
             Password = table.Rows[0]["Password"];
         }
+
+        [When(@"I try to get the user")]
+        public void WhenITryToGetTheUser()
+        {
+            try
+            {
+                User = null;
+                User = Access.Safe.ValidateAndGet(Email, Password);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
         #endregion
         
         #region SelectUserByEmail
-        /* Use same tests of others */
+        [When(@"I try to get the user without password")]
+        public void WhenITryToGetTheUserWithoutPassword()
+        {
+            try
+            {
+                User = null;
+                User = Access.Safe.SelectUserByEmail(Email);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
         #endregion
 
         #region PasswordReset
@@ -263,7 +290,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass an invalid token")]
         public void GivenIPassAnInvalidToken()
         {
-            Token = Generic.Token.New();
+            Token = TK.New();
         }
 
         [Given(@"I pass an e-mail that doesn't exist")]
@@ -291,20 +318,6 @@ namespace DFM.Tests.A.Safe
         }
 
         
-        [When(@"I try to get the user")]
-        public void WhenITryToGetTheUser()
-        {
-            try
-            {
-                User = null;
-                User = Access.Safe.ValidateAndGet(Email, Password);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-        }
-
         [When(@"I try to send the e-mail of user verify")]
         public void WhenITryToSendTheEMailOfUserVerify()
         {

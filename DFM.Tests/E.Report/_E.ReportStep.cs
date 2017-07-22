@@ -60,12 +60,6 @@ namespace DFM.Tests.E.Report
 
 
         #region MoreThanOne
-        [Given(@"I have an account")]
-        public void GivenIHaveAnAccount()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I have moves of")]
         public void GivenIHaveMovesOf(Table table)
         {

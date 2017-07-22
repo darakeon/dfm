@@ -7,9 +7,6 @@ namespace DFM.Tests
     [Binding]
     public class MainStep : BaseStep
     {
-        const string centralUserEmail = "test@dontflymoney.com";
-        const string centralUserPassword = "password";
-
         [Then(@"I will receive this error")]
         public void ThenIWillReceiveThisError(Table table)
         {
@@ -31,16 +28,28 @@ namespace DFM.Tests
         {
             try
             {
-                User = Access.Safe.ValidateAndGet(centralUserEmail, centralUserPassword);
+                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
             }
             catch (DFMCoreException e)
             {
                 if (e.Type != ExceptionPossibilities.InvalidUser)
                     throw;
 
-                Access.Safe.SaveUserAndSendVerify(centralUserEmail, centralUserPassword);
-                User = Access.Safe.ValidateAndGet(centralUserEmail, centralUserPassword);
+                Access.Safe.SaveUserAndSendVerify(CentralUserEmail, CentralUserPassword);
+                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
             }
+        }
+
+        [Given(@"I have an account")]
+        public void GivenIHaveAnAccount()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"I have a category")]
+        public void GivenIHaveACategory()
+        {
+            ScenarioContext.Current.Pending();
         }
 
 
