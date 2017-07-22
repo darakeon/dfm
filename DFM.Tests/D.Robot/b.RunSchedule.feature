@@ -8,9 +8,7 @@ Background:
 Scenario: 01. Run with unlogged user (E)
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
-	Then I will receive this error
-		| Error        |
-		| Unauthorized |
+	Then I will receive this error: Unauthorized
 	And the user amount money will be kept
 
 

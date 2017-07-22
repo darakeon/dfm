@@ -7,21 +7,18 @@ Background:
 Scenario: 01. Activate user with invalid token (E)
 	Given I pass an invalid token
 	When I try to activate the user
-	Then I will receive this error
-		| Error        |
-		| InvalidToken |
+	Then I will receive this error: InvalidToken
 	And the user will not be activated
 
 Scenario: 02. Activate user with token of reset password (E)
-	Given I pass a token of password reset 
+	Given I pass a valid PasswordReset token
 	When I try to activate the user
-	Then I will receive this error
-		| Error        |
-		| InvalidToken |
+	Then I will receive this error: InvalidToken
 	And the user will not be activated
 
 Scenario: 99. Activate user with info all right (S)
-	Given I pass the valid token
+	Given I pass a valid UserVerification token
 	When I try to activate the user
 	Then I will receive no error
 	And the user will be activated
+	And the token will not be valid anymore

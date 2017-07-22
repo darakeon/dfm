@@ -7,9 +7,7 @@ Background:
 Scenario: 01. Try to get Account with wrong ID (E)
 	Given I pass an id of account that doesn't exist
 	When I try to get the account
-	Then I will receive this error
-		| Error     |
-		| InvalidID |
+	Then I will receive this error: InvalidID
 	And I will receive no account
 
 Scenario: 99. Get the Account by ID (S)

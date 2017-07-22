@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.Services
         {
             return SingleOrDefault(
                 s => s.Token == token 
-                    && s.Active 
+                    && s.Active == true
                     && s.Expire >= DateTime.Now);
         }
 
@@ -98,12 +98,14 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void TestSecurityToken(String token, SecurityAction securityAction)
+        internal Security ValidateAndGet(String token, SecurityAction securityAction)
         {
             var securityToken = SelectByToken(token);
 
             if (securityToken == null || securityToken.Action != securityAction)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+
+            return securityToken;
         }
 
     }

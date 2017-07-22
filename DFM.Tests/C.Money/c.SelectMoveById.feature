@@ -7,9 +7,7 @@ Background:
 Scenario: 01. Try to get Move with wrong ID (E)
 	Given I pass an id of Move that doesn't exist
 	When I try to get the move
-	Then I will receive this error
-		| Error     |
-		| InvalidID |
+	Then I will receive this error: InvalidID
 	And I will receive no move
 
 Scenario: 99. Get the Move by ID (S)

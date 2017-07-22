@@ -7,9 +7,7 @@ Background:
 Scenario: 01. Try to get Category with wrong ID (E)
 	Given I pass an id of Category that doesn't exist
 	When I try to get the category
-	Then I will receive this error
-		| Error     |
-		| InvalidID |
+	Then I will receive this error: InvalidID
 	And I will receive no category
 
 Scenario: 99. Get the Category by ID (S)

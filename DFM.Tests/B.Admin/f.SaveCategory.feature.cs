@@ -78,14 +78,9 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I have this category to create", ((string)(null)), table1);
 #line 10
  testRunner.When("I try to save the category");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table2.AddRow(new string[] {
-                        "CategoryNameRequired"});
 #line 11
- testRunner.Then("I will receive this error", ((string)(null)), table2);
-#line 14
+ testRunner.Then("I will receive this error: CategoryNameRequired");
+#line 12
  testRunner.And("the category will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -96,27 +91,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_SaveCategoryWithNameThatAlreadyExistsE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save Category with name that already exists (E)", ((string[])(null)));
-#line 16
+#line 14
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Category Bf02"});
-#line 17
- testRunner.Given("I have this category to create", ((string)(null)), table3);
-#line 20
+#line 15
+ testRunner.Given("I have this category to create", ((string)(null)), table2);
+#line 18
  testRunner.And("I already have created this category");
-#line 21
+#line 19
  testRunner.When("I try to save the category");
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table4.AddRow(new string[] {
-                        "CategoryAlreadyExists"});
-#line 22
- testRunner.Then("I will receive this error", ((string)(null)), table4);
-#line 25
+#line 20
+ testRunner.Then("I will receive this error: CategoryAlreadyExists");
+#line 21
  testRunner.And("the category will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -127,20 +117,20 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SaveCategoryWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save Category with info all right (S)", ((string[])(null)));
-#line 27
+#line 23
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
-            table5.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "Category Bf99"});
-#line 28
- testRunner.Given("I have this category to create", ((string)(null)), table5);
-#line 31
+#line 24
+ testRunner.Given("I have this category to create", ((string)(null)), table3);
+#line 27
  testRunner.When("I try to save the category");
-#line 32
+#line 28
  testRunner.Then("I will receive no error");
-#line 33
+#line 29
  testRunner.And("the category will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();

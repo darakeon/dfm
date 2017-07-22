@@ -8,9 +8,7 @@ Scenario: 01. Save Account without name (E)
 		| Name | Yellow | Red |
 		|      |        |     |
 	When I try to save the account
-	Then I will receive this error
-		| Error               |
-		| AccountNameRequired |
+	Then I will receive this error: AccountNameRequired
 	And the account will not be saved
 
 Scenario: 02. Save Account with just yellow limit (E)
@@ -18,9 +16,7 @@ Scenario: 02. Save Account with just yellow limit (E)
 		| Name         | Yellow | Red |
 		| Account Ba02 | 100    |     |
 	When I try to save the account
-	Then I will receive this error
-		| Error                    |
-		| AccountTwoLimitsRequired |
+	Then I will receive this error: AccountTwoLimitsRequired
 	And the account will not be saved
 
 Scenario: 03. Save Account with just red limit (E)
@@ -28,9 +24,7 @@ Scenario: 03. Save Account with just red limit (E)
 		| Name         | Yellow | Red |
 		| Account Ba03 |        | 100 |
 	When I try to save the account
-	Then I will receive this error
-		| Error                    |
-		| AccountTwoLimitsRequired |
+	Then I will receive this error: AccountTwoLimitsRequired
 	And the account will not be saved
 
 Scenario: 04. Save Account with red limit bigger than yellow limit (E)
@@ -38,9 +32,7 @@ Scenario: 04. Save Account with red limit bigger than yellow limit (E)
 		| Name         | Yellow | Red |
 		| Account Ba04 | 100    | 200 |
 	When I try to save the account
-	Then I will receive this error
-		| Error                    |
-		| RedLimitAboveYellowLimit |
+	Then I will receive this error: RedLimitAboveYellowLimit
 	And the account will not be saved
 
 Scenario: 05. Save Account with name that already exists (E)
@@ -49,9 +41,7 @@ Scenario: 05. Save Account with name that already exists (E)
 		| Account Ba05 |        |     |
 	And I already have created this account
 	When I try to save the account
-	Then I will receive this error
-		| Error                |
-		| AccountAlreadyExists |
+	Then I will receive this error: AccountAlreadyExists
 	And the account will not be saved
 
 Scenario: 98. Save Account with info all right (without limits) (S)

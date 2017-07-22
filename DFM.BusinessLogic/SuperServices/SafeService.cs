@@ -87,34 +87,57 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void ActivateUser(String token)
         {
-            TestSecurityToken(token, SecurityAction.UserVerification);
+            var transaction = securityService.BeginTransaction();
 
-            var security = securityService.SelectByToken(token);
+            try
+            {
+                var security = securityService.ValidateAndGet(token, SecurityAction.UserVerification);
 
-            userService.Activate(security.User);
+                userService.Activate(security.User);
 
-            securityService.Deactivate(token);
+                securityService.Deactivate(token);
+
+                securityService.CommitTransaction(transaction);
+            }
+            catch (Exception)
+            {
+                securityService.RollbackTransaction(transaction);
+                throw;
+            }
+
         }
 
 
         public void PasswordReset(String token, String password)
         {
-            var security = securityService.SelectByToken(token);
+            if (String.IsNullOrEmpty(password))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
-            if (security.Action != SecurityAction.PasswordReset)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+            var transaction = securityService.BeginTransaction();
 
-            security.User.Password = password;
+            try
+            {
+                var security = securityService.ValidateAndGet(token, SecurityAction.PasswordReset);
 
-            userService.ChangePassword(security.User);
+                security.User.Password = password;
 
-            securityService.Deactivate(token);
+                userService.ChangePassword(security.User);
+
+                securityService.Deactivate(token);
+
+                securityService.CommitTransaction(transaction);
+            }
+            catch (Exception)
+            {
+                securityService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
 
         public void TestSecurityToken(String token, SecurityAction securityAction)
         {
-            securityService.TestSecurityToken(token, securityAction);
+            securityService.ValidateAndGet(token, securityAction);
         }
 
 
@@ -130,7 +153,19 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeactivateToken(String token)
         {
-            securityService.Deactivate(token);
+            var transaction = securityService.BeginTransaction();
+
+            try
+            {
+                securityService.Deactivate(token);
+
+                securityService.CommitTransaction(transaction);
+            }
+            catch (Exception)
+            {
+                securityService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
         public User ValidateAndGet(String email, String password)

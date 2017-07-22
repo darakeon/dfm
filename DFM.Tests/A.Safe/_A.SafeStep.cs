@@ -31,10 +31,22 @@ namespace DFM.Tests.A.Safe
             set { Set("Password", value); }
         }
 
+        protected String NewPassword
+        {
+            get { return Get<String>("NewPassword"); }
+            set { Set("NewPassword", value); }
+        }
+
         protected String Token
         {
             get { return Get<String>("Token"); }
             set { Set("Token", value); }
+        }
+
+        protected SecurityAction Action
+        {
+            get { return Get<SecurityAction>("Action"); }
+            set { Set("Action", value); }
         }
         #endregion
 
@@ -75,7 +87,16 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be saved")]
         public void ThenTheUserWillNotBeSaved()
         {
-            var savedUser = Access.Safe.SelectUserByEmail(Email);
+            User savedUser = null;
+
+            try
+            {
+                savedUser = Access.Safe.ValidateAndGet(Email, Password);
+            }
+            catch (DFMCoreException e)
+            {
+                Assert.AreEqual(ExceptionPossibilities.InvalidUser, e.Type);
+            }
 
             Assert.IsNull(savedUser);
         }
@@ -198,84 +219,128 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass a token of user verification")]
         public void GivenIPassATokenOfUserVerification()
         {
-            ScenarioContext.Current.Pending();
+            Token = DBHelper.GetLastTokenForUser(User, SecurityAction.UserVerification);
+        }
+
+        [Given(@"I pass this password: (.*)")]
+        public void GivenIPassThisPassword(String password)
+        {
+            NewPassword = password;
         }
 
         [Given(@"I pass no password")]
         public void GivenIPassNoPassword()
         {
-            ScenarioContext.Current.Pending();
+            NewPassword = null;
         }
         
 
         [When(@"I try to reset the password")]
         public void WhenITryToResetThePassword()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Safe.PasswordReset(Token, NewPassword);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"the password will not be changed")]
         public void ThenThePasswordWillNotBeChanged()
         {
-            ScenarioContext.Current.Pending();
+            User = null;
+            Error = null;
+
+            try
+            {
+                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNull(Error);
+            Assert.IsNotNull(User);
         }
 
         [Then(@"the password will be changed")]
         public void ThenThePasswordWillBeChanged()
         {
-            ScenarioContext.Current.Pending();
+            User = null;
+            Error = null;
+
+            CentralUserPassword = NewPassword;
+
+            try
+            {
+                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNull(Error);
+            Assert.IsNotNull(User);
         }
         #endregion
 
         #region TestSecurityToken
-        [Given(@"I pass a token of user verification with action password reset")]
-        public void GivenIPassATokenOfUserVerificationWithActionPasswordReset()
+        [Given(@"I pass a token of ([A-Za-z]+) with action ([A-Za-z]+)")]
+        public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(String strTokenOf, String strAction)
         {
-            ScenarioContext.Current.Pending();
-        }
+            var tokenOf = (SecurityAction)Enum.Parse(typeof(SecurityAction), strTokenOf);
+            Token = DBHelper.GetLastTokenForUser(User, tokenOf);
 
-        [Given(@"I pass a token of password reset with action user verification")]
-        public void GivenIPassATokenOfPasswordResetWithActionUserVerification()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I pass a token of user verification with right action")]
-        public void GivenIPassATokenOfUserVerificationWithRightAction()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"I pass a token of password reset with right action")]
-        public void GivenIPassATokenOfPasswordResetWithRightAction()
-        {
-            ScenarioContext.Current.Pending();
+            Action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
         }
 
         [When(@"I test the token")]
         public void WhenITestTheToken()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Safe.TestSecurityToken(Token, Action);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
         #endregion
         
         #region DeactivateToken
-        [Given(@"I pass a valid token")]
-        public void GivenIPassAValidToken()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [When(@"I try do deactivate the token")]
         public void WhenITryDoDeactivateTheToken()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Safe.DeactivateToken(Token);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"the token will not be valid anymore")]
         public void ThenTheTokenWillNotBeValidAnymore()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Safe.TestSecurityToken(Token, Action);
+            }
+            catch(DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.InvalidToken, Error.Type);
         }
         #endregion
 
@@ -284,7 +349,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I have a token for its password reset")]
         public void GivenIHaveATokenForItsPasswordReset()
         {
-            ScenarioContext.Current.Pending();
+            Access.Safe.SendPasswordReset(User.Email);
         }
 
         [Given(@"I pass an invalid token")]
@@ -305,10 +370,11 @@ namespace DFM.Tests.A.Safe
             Email = User.Email;
         }
 
-        [Given(@"I pass the valid token")]
-        public void GivenIPassTheValidToken()
+        [Given(@"I pass a valid ([A-Za-z]+) token")]
+        public void GivenIPassTheValidToken(String strAction)
         {
-            ScenarioContext.Current.Pending();
+            Action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
+            Token = DBHelper.GetLastTokenForUser(User, Action);
         }
 
         [Given(@"I have a token for its actvation")]
@@ -321,7 +387,14 @@ namespace DFM.Tests.A.Safe
         [When(@"I try to send the e-mail of user verify")]
         public void WhenITryToSendTheEMailOfUserVerify()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Safe.SendUserVerify(Email);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
 

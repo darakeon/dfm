@@ -8,9 +8,7 @@ Scenario: 01. Save Category without name (E)
 		| Name |
 		|      |
 	When I try to save the category
-	Then I will receive this error
-		| Error                |
-		| CategoryNameRequired |
+	Then I will receive this error: CategoryNameRequired
 	And the category will not be saved
 
 Scenario: 02. Save Category with name that already exists (E)
@@ -19,9 +17,7 @@ Scenario: 02. Save Category with name that already exists (E)
 		| Category Bf02 |
 	And I already have created this category
 	When I try to save the category
-	Then I will receive this error
-		| Error                 |
-		| CategoryAlreadyExists |
+	Then I will receive this error: CategoryAlreadyExists
 	And the category will not be saved
 
 Scenario: 99. Save Category with info all right (S)

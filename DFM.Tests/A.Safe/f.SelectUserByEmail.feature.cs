@@ -73,14 +73,9 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I pass an e-mail that doesn\'t exist");
 #line 10
  testRunner.When("I try to get the user without password");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Error"});
-            table1.AddRow(new string[] {
-                        "InvalidUser"});
 #line 11
- testRunner.Then("I will receive this error", ((string)(null)), table1);
-#line 14
+ testRunner.Then("I will receive this error: InvalidUser");
+#line 12
  testRunner.And("I will receive no user");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -91,15 +86,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SelectWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Select with info all right (S)", ((string[])(null)));
-#line 16
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 17
+#line 15
  testRunner.Given("I pass valid e-mail");
-#line 18
+#line 16
  testRunner.When("I try to get the user without password");
-#line 19
+#line 17
  testRunner.Then("I will receive no error");
-#line 20
+#line 18
  testRunner.And("I will receive the user");
 #line hidden
             testRunner.CollectScenarioErrors();

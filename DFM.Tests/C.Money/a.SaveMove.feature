@@ -14,9 +14,7 @@ Scenario: 01. Save without Description (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                   |
-		| MoveDescriptionRequired |
+	Then I will receive this error: MoveDescriptionRequired
 	And the move will not be saved
 
 Scenario: 02. Save without Date (E)
@@ -28,9 +26,7 @@ Scenario: 02. Save without Date (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error            |
-		| MoveDateRequired |
+	Then I will receive this error: MoveDateRequired
 	And the move will not be saved
 
 Scenario: 03. Save with future Date (E)
@@ -42,9 +38,7 @@ Scenario: 03. Save with future Date (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error           |
-		| MoveDateInvalid |
+	Then I will receive this error: MoveDateInvalid
 	And the move will not be saved
 
 Scenario: 04. Save without Category (E)
@@ -56,9 +50,7 @@ Scenario: 04. Save without Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                |
-		| MoveCategoryRequired |
+	Then I will receive this error: MoveCategoryRequired
 	And the move will not be saved
 
 Scenario: 05. Save with unknown Category (E)
@@ -70,9 +62,7 @@ Scenario: 05. Save with unknown Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error               |
-		| MoveCategoryInvalid |
+	Then I will receive this error: MoveCategoryInvalid
 	And the move will not be saved
 
 
@@ -86,9 +76,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error        |
-		| OutMoveWrong |
+	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
 
 Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
@@ -100,9 +88,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has an Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error        |
-		| OutMoveWrong |
+	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
 
 Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
@@ -114,9 +100,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has no Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error        |
-		| OutMoveWrong |
+	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
 
 Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
@@ -128,9 +112,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	And it has an unknown Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error        |
-		| OutMoveWrong |
+	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
 
 
@@ -144,9 +126,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error       |
-		| InMoveWrong |
+	Then I will receive this error: InMoveWrong
 	And the move will not be saved
 
 Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
@@ -158,9 +138,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has an Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error       |
-		| InMoveWrong |
+	Then I will receive this error: InMoveWrong
 	And the move will not be saved
 
 Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
@@ -172,9 +150,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error       |
-		| InMoveWrong |
+	Then I will receive this error: InMoveWrong
 	And the move will not be saved
 
 Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
@@ -186,9 +162,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	And it has no Account Out
 	And it has an unknown Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error       |
-		| InMoveWrong |
+	Then I will receive this error: InMoveWrong
 	And the move will not be saved
 
 
@@ -202,9 +176,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| TransferMoveWrong |
+	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
 
 Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
@@ -216,9 +188,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has no Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| TransferMoveWrong |
+	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
 
 Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
@@ -230,9 +200,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| TransferMoveWrong |
+	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
 
 Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
@@ -244,9 +212,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And it has an Account Out
 	And it has an unknown Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| TransferMoveWrong |
+	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
@@ -258,9 +224,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And it has an unknown Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| TransferMoveWrong |
+	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
@@ -272,9 +236,7 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 	And it has an Account Out
 	And it has an Account In equal to Out
 	When I try to save the move
-	Then I will receive this error
-		| Error             |
-		| MoveCircularTransfer |
+	Then I will receive this error: MoveCircularTransfer
 	And the move will not be saved
 
 
@@ -288,9 +250,7 @@ Scenario: 41. Save without Value or Details (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                     |
-		| MoveValueOrDetailRequired |
+	Then I will receive this error: MoveValueOrDetailRequired
 	And the move will not be saved
 
 Scenario: 42. Save with Value zero and no Details (E)
@@ -302,9 +262,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                     |
-		| MoveValueOrDetailRequired |
+	Then I will receive this error: MoveValueOrDetailRequired
 	And the move will not be saved
 
 Scenario: 43. Save without value and without Description in Detail (E)
@@ -319,9 +277,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                         |
-		| MoveDetailDescriptionRequired |
+	Then I will receive this error: MoveDetailDescriptionRequired
 	And the move will not be saved
 
 Scenario: 44. Save without value and with Amount zero in Detail (E)
@@ -336,9 +292,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                    |
-		| MoveDetailAmountRequired |
+	Then I will receive this error: MoveDetailAmountRequired
 	And the move will not be saved
 
 Scenario: 45. Save without value and with Value zero in Detail (E)
@@ -353,9 +307,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error
-		| Error                   |
-		| MoveDetailValueRequired |
+	Then I will receive this error: MoveDetailValueRequired
 	And the move will not be saved
 
 

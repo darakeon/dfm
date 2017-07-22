@@ -1,4 +1,5 @@
-﻿using DFM.BusinessLogic.Exceptions;
+﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -7,13 +8,10 @@ namespace DFM.Tests
     [Binding]
     public class MainStep : BaseStep
     {
-        [Then(@"I will receive this error")]
-        public void ThenIWillReceiveThisError(Table table)
+        [Then(@"I will receive this error: ([A-Za-z]+)")]
+        public void ThenIWillReceiveThisError(String error)
         {
-            var error = table.Rows[0]["Error"];
-
             Assert.IsNotNull(Error);
-
             Assert.AreEqual(error, Error.Type.ToString());
         }
 

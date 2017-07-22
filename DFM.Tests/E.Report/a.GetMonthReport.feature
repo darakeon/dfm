@@ -23,9 +23,7 @@ Scenario: 01. Get with invalid Account ID (E)
 		| Month | Year |
 		| 4     | 2012 |
 	When I try to get the month report
-	Then I will receive this error
-		| Error            |
-		| InvalidAccountID |
+	Then I will receive this error: InvalidAccountID
 	And I will receive no month report
 
 Scenario: 02. Get with Date Year Zero (E)
@@ -34,9 +32,7 @@ Scenario: 02. Get with Date Year Zero (E)
 		| Month | Year |
 		| 4     | 0    |
 	When I try to get the month report
-	Then I will receive this error
-		| Error       |
-		| InvalidYear |
+	Then I will receive this error: InvalidYear
 	And I will receive no month report
 
 Scenario: 03. Get with Date Month less than 1 (E)
@@ -45,9 +41,7 @@ Scenario: 03. Get with Date Month less than 1 (E)
 		| Month | Year |
 		| 0     | 2012 |
 	When I try to get the month report
-	Then I will receive this error
-		| Error        |
-		| InvalidMonth |
+	Then I will receive this error: InvalidMonth
 	And I will receive no month report
 
 Scenario: 04. Get with Date Month more than 12 (E)
@@ -56,9 +50,7 @@ Scenario: 04. Get with Date Month more than 12 (E)
 		| Month | Year |
 		| 13    | 2012 |
 	When I try to get the month report
-	Then I will receive this error
-		| Error        |
-		| InvalidMonth |
+	Then I will receive this error: InvalidMonth
 	And I will receive no month report
 
 
