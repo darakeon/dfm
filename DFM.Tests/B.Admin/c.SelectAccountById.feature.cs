@@ -96,7 +96,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Given("I pass valid ID");
+ testRunner.Given("I pass valid account ID");
 #line 17
  testRunner.When("I try to get the account");
 #line 18

@@ -13,7 +13,7 @@ Scenario: 01. Try to get Account with wrong ID (E)
 	And I will receive no account
 
 Scenario: 99. Get the Account by ID (S)
-	Given I pass valid ID
+	Given I pass valid account ID
 	When I try to get the account
 	Then I will receive no error
 	And I will receive the account

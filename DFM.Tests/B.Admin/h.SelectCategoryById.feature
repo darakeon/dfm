@@ -13,7 +13,7 @@ Scenario: 01. Try to get Category with wrong ID (E)
 	And I will receive no category
 
 Scenario: 99. Get the Category by ID (S)
-	Given I pass valid ID
+	Given I pass valid category ID
 	When I try to get the category
 	Then I will receive no error
 	And I will receive the category

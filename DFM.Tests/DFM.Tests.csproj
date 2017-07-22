@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
+    <Compile Include="B.Admin\AdminStep.cs" />
     <Compile Include="B.Admin\c.SelectAccountById.feature.cs">
       <DependentUpon>c.SelectAccountById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
