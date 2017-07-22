@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to delete the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidID");
+ testRunner.Then("I will receive this error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -89,13 +89,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I delete an account");
+ testRunner.Given("I give an id of the account Be02 without moves");
 #line 14
- testRunner.And("I pass its id to delete again");
+ testRunner.And("I already have deleted the account");
 #line 15
  testRunner.When("I try to delete the account");
 #line 16
- testRunner.Then("I will receive this error: InvalidID");
+ testRunner.Then("I will receive this error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -108,12 +108,14 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.Given("I give an id of account with moves");
+ testRunner.Given("I have a category");
 #line 20
- testRunner.When("I try to delete the account");
+ testRunner.And("I give an id of the account Be03 with moves");
 #line 21
- testRunner.Then("I will receive this error: CantDeleteAccountWithMoves");
+ testRunner.When("I try to delete the account");
 #line 22
+ testRunner.Then("I will receive this error: CantDeleteAccountWithMoves");
+#line 23
  testRunner.And("the account will not be deleted");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -124,15 +126,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_DeleteAnAccountWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete an Account with info all right (S)", ((string[])(null)));
-#line 24
-this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.Given("I give an id of account without moves");
+this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.When("I try to delete the account");
+ testRunner.Given("I give an id of the account Be99 without moves");
 #line 27
- testRunner.Then("I will receive no error");
+ testRunner.When("I try to delete the account");
 #line 28
+ testRunner.Then("I will receive no error");
+#line 29
  testRunner.And("the account will be deleted");
 #line hidden
             testRunner.CollectScenarioErrors();

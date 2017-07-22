@@ -11,7 +11,7 @@ namespace DFM.Entities.Extensions
             return account.YearList.Sum(m => m.Sum());
         }
 
-        public static Boolean Open(this Account account)
+        public static Boolean IsOpen(this Account account)
         {
             return account.EndDate == null;
         }

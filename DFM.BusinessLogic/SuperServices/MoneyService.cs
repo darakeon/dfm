@@ -94,7 +94,7 @@ namespace DFM.BusinessLogic.SuperServices
                 monthService.RemoveMoveFromMonth(move);
                 ajustSummaries(move);
 
-                moveService.Delete(move);
+                moveService.Delete(id);
 
                 moveService.SendEmail(move, "delete");
 

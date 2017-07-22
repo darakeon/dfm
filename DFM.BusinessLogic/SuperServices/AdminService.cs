@@ -20,12 +20,22 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Account SelectAccountById(Int32 id)
         {
-            return accountService.SelectById(id);
+            var account = accountService.SelectById(id);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+            return account;
         }
 
         public Account SelectAccountByName(String name, User user)
         {
-            return accountService.SelectByName(name, user);
+            var account = accountService.SelectByName(name, user);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+            return account;
         }
 
         public void SaveOrUpdateAccount(Account account)
@@ -44,37 +54,108 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        public void CloseAccount(Account account)
+        public void CloseAccount(Int32 id)
         {
-            accountService.Close(account);
+            var transaction = accountService.BeginTransaction();
+
+            try
+            {
+                accountService.Close(id);
+                accountService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                accountService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
-        public void DeleteAccount(Account account)
+        public void DeleteAccount(Int32 id)
         {
-            accountService.Delete(account);
+            var transaction = accountService.BeginTransaction();
+
+            try
+            {
+                accountService.Delete(id);
+                accountService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                accountService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
 
-        
+
         public Category SelectCategoryById(Int32 id)
         {
-            return categoryService.SelectById(id);
+            var category = categoryService.SelectById(id);
+
+            if (category == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+
+            return category;
+        }
+
+        public Category SelectCategoryByName(String name, User user)
+        {
+            var category = categoryService.SelectByName(name, user);
+
+            if (category == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+
+            return category;
         }
 
         public void SaveOrUpdateCategory(Category category)
         {
-            categoryService.SaveOrUpdate(category);
+            var transaction = categoryService.BeginTransaction();
+
+            try
+            {
+                categoryService.SaveOrUpdate(category);
+                categoryService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                categoryService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
-        public void DisableCategory(Category category)
+        public void DisableCategory(Int32 id)
         {
-            categoryService.Disable(category);
+            var transaction = categoryService.BeginTransaction();
+
+            try
+            {
+                categoryService.Disable(id);
+                categoryService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                categoryService.RollbackTransaction(transaction);
+                throw;
+            }
         }
 
-        public void EnableCategory(Category category)
+        public void EnableCategory(Int32 id)
         {
-            categoryService.Enable(category);
+            var transaction = categoryService.BeginTransaction();
+
+            try
+            {
+                categoryService.Enable(id);
+                categoryService.CommitTransaction(transaction);
+            }
+            catch (DFMCoreException)
+            {
+                categoryService.RollbackTransaction(transaction);
+                throw;
+            }
         }
+
 
 
     }

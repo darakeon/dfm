@@ -187,9 +187,10 @@ namespace DFM.Tests.A.Safe
         [When(@"I try to get the user")]
         public void WhenITryToGetTheUser()
         {
+            User = null;
+
             try
             {
-                User = null;
                 User = Access.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
@@ -203,9 +204,10 @@ namespace DFM.Tests.A.Safe
         [When(@"I try to get the user without password")]
         public void WhenITryToGetTheUserWithoutPassword()
         {
+            User = null;
+
             try
             {
-                User = null;
                 User = Access.Safe.SelectUserByEmail(email);
             }
             catch (DFMCoreException e)
@@ -223,9 +225,9 @@ namespace DFM.Tests.A.Safe
         }
 
         [Given(@"I pass this password: (.*)")]
-        public void GivenIPassThisPassword(String password)
+        public void GivenIPassThisPassword(String passedPassword)
         {
-            newPassword = password;
+            newPassword = passedPassword;
         }
 
         [Given(@"I pass no password")]

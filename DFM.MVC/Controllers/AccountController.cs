@@ -106,7 +106,7 @@ namespace DFM.MVC.Controllers
             try
             {
                 if (!isUnauthorized(account))
-                    Services.Admin.CloseAccount(account);
+                    Services.Admin.CloseAccount(id);
                 //else
                 //    account = null;
 
@@ -134,7 +134,7 @@ namespace DFM.MVC.Controllers
             try
             {
                 if (!isUnauthorized(account))
-                    Services.Admin.DeleteAccount(account);
+                    Services.Admin.DeleteAccount(id);
                 //else
                 //    account = null;
 

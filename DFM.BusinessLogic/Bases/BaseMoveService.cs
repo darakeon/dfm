@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -16,9 +17,6 @@ namespace DFM.BusinessLogic.Bases
             //Keep this order, weird errors happen if invert
             return SaveOrUpdate(move, validate, complete);
         }
-
-
-
 
         #region Validate
         private static void validate(BaseMove baseMove)
@@ -62,8 +60,8 @@ namespace DFM.BusinessLogic.Bases
         
         private static void testAccounts(BaseMove baseMove)
         {
-            var moveInClosed = baseMove.AccIn() != null && !baseMove.AccIn().Open();
-            var moveOutClosed = baseMove.AccOut() != null && !baseMove.AccOut().Open();
+            var moveInClosed = baseMove.AccIn() != null && !baseMove.AccIn().IsOpen();
+            var moveOutClosed = baseMove.AccOut() != null && !baseMove.AccOut().IsOpen();
 
             if (moveInClosed || moveOutClosed)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
@@ -81,8 +79,6 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
         }
         #endregion
-
-
 
         #region Complete
         private static void complete(BaseMove baseMove)
@@ -107,6 +103,12 @@ namespace DFM.BusinessLogic.Bases
 
         #endregion
 
+        internal void Delete(Int32 id)
+        {
+            var move = SelectById(id);
+
+            Delete(move);
+        }
 
 
     }

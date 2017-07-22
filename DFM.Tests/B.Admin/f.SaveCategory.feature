@@ -15,10 +15,12 @@ Scenario: 02. Save Category with name that already exists (E)
 	Given I have this category to create
 		| Name          |
 		| Category Bf02 |
-	And I already have created this category
+	And I already have this category
+		| Name          |
+		| Category Bf02 |
 	When I try to save the category
 	Then I will receive this error: CategoryAlreadyExists
-	And the category will not be saved
+	#And the category will not be changed
 
 Scenario: 99. Save Category with info all right (S)
 	Given I have this category to create

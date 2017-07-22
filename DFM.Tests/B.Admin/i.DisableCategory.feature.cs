@@ -72,11 +72,11 @@ namespace DFM.Tests.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of Category that doesn\'t exist");
+ testRunner.Given("I pass an id of category that doesn\'t exist");
 #line 9
  testRunner.When("I try to disable the category");
 #line 10
- testRunner.Then("I will receive this error: InvalidID");
+ testRunner.Then("I will receive this error: InvalidCategory");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -89,9 +89,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I disable a category");
+ testRunner.Given("I give an id of enabled category Bi02");
 #line 14
- testRunner.And("I pass its id to disable again");
+ testRunner.And("I already have disabled the category");
 #line 15
  testRunner.When("I try to disable the category");
 #line 16
@@ -108,7 +108,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.Given("I give an id of enabled category");
+ testRunner.Given("I give an id of enabled category Bi99");
 #line 20
  testRunner.When("I try to disable the category");
 #line 21

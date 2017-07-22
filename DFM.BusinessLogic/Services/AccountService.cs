@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Services
             if (account.BeginDate == DateTime.MinValue)
                 account.BeginDate = oldAccount.BeginDate;
 
-            if (account.EndDate == null)
+            if (account.IsOpen())
                 account.EndDate = oldAccount.EndDate;
 
         }
@@ -107,26 +107,36 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void Close(Account account)
+        internal void Close(Int32 id)
         {
-            if (account == null) return;
+            var account = SelectById(id);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+            if (!account.IsOpen())
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
 
             if (!account.HasMoves())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
 
             account.EndDate = DateTime.Now;
+
             SaveOrUpdate(account);
         }
 
 
-        internal new void Delete(Account account)
+        internal void Delete(Int32 id)
         {
-            if (account == null) return;
+            var account = SelectById(id);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
             if (account.HasMoves())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
 
-            base.Delete(account);
+            Delete(account);
         }
 
     }

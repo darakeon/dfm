@@ -18,20 +18,20 @@ namespace DFM.Tests.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("h. Get Category")]
-    public partial class H_GetCategoryFeature
+    [NUnit.Framework.DescriptionAttribute("b. Get Account by Name")]
+    public partial class B_GetAccountByNameFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "h.SelectCategoryById.feature"
+#line 1 "b.SelectAccountByName.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "h. Get Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Get Account by Name", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,44 +60,44 @@ namespace DFM.Tests.B_Admin
 #line 4
  testRunner.Given("I have an user");
 #line 5
- testRunner.And("I have a category");
+ testRunner.And("I have an account");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to get Category with wrong ID (E)")]
-        public virtual void _01_TryToGetCategoryWithWrongIDE()
+        [NUnit.Framework.DescriptionAttribute("01. Try to get Account with wrong Name (E)")]
+        public virtual void _01_TryToGetAccountWithWrongNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Category with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Account with wrong Name (E)", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of category that doesn\'t exist");
+ testRunner.Given("I pass a name of account that doesn\'t exist");
 #line 9
- testRunner.When("I try to get the category");
+ testRunner.When("I try to get the account by its Name");
 #line 10
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this error: InvalidAccount");
 #line 11
- testRunner.And("I will receive no category");
+ testRunner.And("I will receive no account");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get the Category by ID (S)")]
-        public virtual void _99_GetTheCategoryByIDS()
+        [NUnit.Framework.DescriptionAttribute("99. Get the Account by Name (S)")]
+        public virtual void _99_GetTheAccountByNameS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Category by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Account by Name (S)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I pass valid category ID");
+ testRunner.Given("I pass valid account Name");
 #line 15
- testRunner.When("I try to get the category");
+ testRunner.When("I try to get the account by its Name");
 #line 16
  testRunner.Then("I will receive no error");
 #line 17
- testRunner.And("I will receive the category");
+ testRunner.And("I will receive the account");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

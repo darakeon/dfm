@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Bases
         }
 
         
-        internal void Delete(T entity)
+        protected void Delete(T entity)
         {
             repository.Delete(entity);
         }

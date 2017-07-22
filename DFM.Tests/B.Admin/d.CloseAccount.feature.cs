@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to close the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidID");
+ testRunner.Then("I will receive this error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -89,12 +89,14 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I close an account");
+ testRunner.Given("I have a category");
 #line 14
- testRunner.And("I pass its id to close again");
+ testRunner.And("I give an id of the account Bd02 with moves");
 #line 15
- testRunner.When("I try to close the account");
+ testRunner.And("I already have closed the account");
 #line 16
+ testRunner.When("I try to close the account");
+#line 17
  testRunner.Then("I will receive this error: ClosedAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -105,15 +107,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_CloseAnAccountThatHasNoMovesE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Close an Account that has no moves (E)", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.Given("I give an id of account without moves");
+this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.When("I try to close the account");
+ testRunner.Given("I give an id of the account Bd03 without moves");
 #line 21
- testRunner.Then("I will receive this error: CantCloseEmptyAccount");
+ testRunner.When("I try to close the account");
 #line 22
+ testRunner.Then("I will receive this error: CantCloseEmptyAccount");
+#line 23
  testRunner.And("the account will not be closed");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -124,15 +126,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_CloseAnAccountWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Close an Account with info all right (S)", ((string[])(null)));
-#line 24
-this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.Given("I give an id of account with moves");
+this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.When("I try to close the account");
+ testRunner.Given("I have a category");
 #line 27
- testRunner.Then("I will receive no error");
+ testRunner.And("I give an id of the account Bd99 with moves");
 #line 28
+ testRunner.When("I try to close the account");
+#line 29
+ testRunner.Then("I will receive no error");
+#line 30
  testRunner.And("the account will be closed");
 #line hidden
             testRunner.CollectScenarioErrors();

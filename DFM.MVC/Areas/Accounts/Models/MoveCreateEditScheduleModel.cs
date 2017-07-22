@@ -18,7 +18,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         public MoveCreateEditScheduleModel()
         {
             var transferIsPossible = Current.User.AccountList
-                                        .Where(a => a.Open())
+                                        .Where(a => a.IsOpen())
                                         .Count() > 1;
 
             NatureSelectList = transferIsPossible ?
@@ -108,7 +108,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var accountList = 
                 Current.User.AccountList
-                    .Where(a => a.Open() && a.ID != accountIdToExclude)
+                    .Where(a => a.IsOpen() && a.ID != accountIdToExclude)
                     .ToList();
 
             AccountSelectList = SelectListExtension

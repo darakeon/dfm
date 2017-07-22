@@ -63,7 +63,7 @@ namespace DFM.BusinessLogic.SuperServices
                 var move = futureMove.CastToKill();
 
                 moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
-                futureMoveService.Delete(futureMove);
+                futureMoveService.Delete(futureMove.ID);
 
                 futureMoveService.CommitTransaction(transaction);
             }

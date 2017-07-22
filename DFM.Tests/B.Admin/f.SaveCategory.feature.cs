@@ -100,14 +100,17 @@ this.ScenarioSetup(scenarioInfo);
                         "Category Bf02"});
 #line 15
  testRunner.Given("I have this category to create", ((string)(null)), table2);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table3.AddRow(new string[] {
+                        "Category Bf02"});
 #line 18
- testRunner.And("I already have created this category");
-#line 19
- testRunner.When("I try to save the category");
-#line 20
- testRunner.Then("I will receive this error: CategoryAlreadyExists");
+ testRunner.And("I already have this category", ((string)(null)), table3);
 #line 21
- testRunner.And("the category will not be saved");
+ testRunner.When("I try to save the category");
+#line 22
+ testRunner.Then("I will receive this error: CategoryAlreadyExists");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -117,20 +120,20 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SaveCategoryWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save Category with info all right (S)", ((string[])(null)));
-#line 23
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Category Bf99"});
-#line 24
- testRunner.Given("I have this category to create", ((string)(null)), table3);
-#line 27
- testRunner.When("I try to save the category");
-#line 28
- testRunner.Then("I will receive no error");
+#line 26
+ testRunner.Given("I have this category to create", ((string)(null)), table4);
 #line 29
+ testRunner.When("I try to save the category");
+#line 30
+ testRunner.Then("I will receive no error");
+#line 31
  testRunner.And("the category will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();

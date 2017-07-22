@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -41,13 +42,35 @@ namespace DFM.Tests
         [Given(@"I have an account")]
         public void GivenIHaveAnAccount()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Account = Access.Admin.SelectAccountByName(CentralAccountName, User);
+            }
+            catch (DFMCoreException e)
+            {
+                if (e.Type != ExceptionPossibilities.InvalidAccount)
+                    throw;
+
+                Access.Admin.SaveOrUpdateAccount(new Account {Name = CentralAccountName, User = User});
+                Account = Access.Admin.SelectAccountByName(CentralAccountName, User);
+            }
         }
 
         [Given(@"I have a category")]
         public void GivenIHaveACategory()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Category = Access.Admin.SelectCategoryByName(CentralCategoryName, User);
+            }
+            catch (DFMCoreException e)
+            {
+                if (e.Type != ExceptionPossibilities.InvalidCategory)
+                    throw;
+
+                Access.Admin.SaveOrUpdateCategory(new Category { Name = CentralCategoryName, User = User });
+                Category = Access.Admin.SelectCategoryByName(CentralCategoryName, User);
+            }
         }
 
 

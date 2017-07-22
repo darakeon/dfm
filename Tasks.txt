@@ -131,6 +131,7 @@ VERSÃO 1.0.2.2
 07/04/2012	07/04/2012	Save User deve receber e-mail e senha
 				Criar testes de inserção de move/schedule em Categoria Desabilitada
 				Criar testes de inserção de move/schedule em Conta Fechada
+				Criar testes de nomes muito grandes
 				Verificar cobertura de código
 				Selenium
 				Colocar try-catchs de Commit/Rollback nos superservices
@@ -145,6 +146,8 @@ VERSÃO 1.0.2.3
 
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
+				Substituir SelectByEmail de User por SelectByLogin
+				Substituir SelectById de Account / Category por SelectByName
 				Troca SelectUserByEmail por SelectUserByLogin
 				Fazer ValidateAndGet pegar String de Login
 				Retornar mensagens de erro já traduzidas (do core)

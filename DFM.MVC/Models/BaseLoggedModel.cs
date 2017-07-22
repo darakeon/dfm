@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
             if (Current.IsAuthenticated)
             {
                 LateralAccountList = Current.User.AccountList
-                    .Where(a => a.Open())
+                    .Where(a => a.IsOpen())
                     .OrderBy(a => a.Name)
                     .ToList();
             }
@@ -44,7 +44,7 @@ namespace DFM.MVC.Models
         public bool TooBigMeny(Int32 maxSize)
         {
             var accountNameList = LateralAccountList
-                                    .Where(a => a.Open())
+                                    .Where(a => a.IsOpen())
                                     .Select(a => a.Name)
                                     .ToList();
 

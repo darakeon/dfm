@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to get the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidID");
+ testRunner.Then("I will receive this error: InvalidAccount");
 #line 11
  testRunner.And("I will receive no account");
 #line hidden

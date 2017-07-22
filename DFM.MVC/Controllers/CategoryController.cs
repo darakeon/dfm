@@ -114,7 +114,7 @@ namespace DFM.MVC.Controllers
             var category = Services.Admin.SelectCategoryById(id);
 
             if (!isUnauthorized(category))
-                Services.Admin.DisableCategory(category);
+                Services.Admin.DisableCategory(id);
             //else
             //    category = null;
 
@@ -133,7 +133,7 @@ namespace DFM.MVC.Controllers
             var category =  Services.Admin.SelectCategoryById(id);
 
             if (!isUnauthorized(category))
-                Services.Admin.EnableCategory(category);
+                Services.Admin.EnableCategory(id);
             //else
             //    category = null;
 

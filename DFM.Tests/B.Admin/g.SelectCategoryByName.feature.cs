@@ -18,20 +18,20 @@ namespace DFM.Tests.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Get Account by Name")]
-    public partial class C_GetAccountByNameFeature
+    [NUnit.Framework.DescriptionAttribute("g. Get Category by Name")]
+    public partial class G_GetCategoryByNameFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "k.SelectAccountByName.feature"
+#line 1 "g.SelectCategoryByName.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Get Account by Name", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "g. Get Category by Name", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,44 +60,44 @@ namespace DFM.Tests.B_Admin
 #line 4
  testRunner.Given("I have an user");
 #line 5
- testRunner.And("I have an account");
+ testRunner.And("I have a category");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to get Account with wrong Name (E)")]
-        public virtual void _01_TryToGetAccountWithWrongNameE()
+        [NUnit.Framework.DescriptionAttribute("01. Try to get Category with wrong Name (E)")]
+        public virtual void _01_TryToGetCategoryWithWrongNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Account with wrong Name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Category with wrong Name (E)", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an Name of account that doesn\'t exist");
+ testRunner.Given("I pass a name of category that doesn\'t exist");
 #line 9
- testRunner.When("I try to get the account by its Name");
+ testRunner.When("I try to get the category by its Name");
 #line 10
- testRunner.Then("I will receive this error: InvalidName");
+ testRunner.Then("I will receive this error: InvalidCategory");
 #line 11
- testRunner.And("I will receive no account");
+ testRunner.And("I will receive no category");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get the Account by Name (S)")]
-        public virtual void _99_GetTheAccountByNameS()
+        [NUnit.Framework.DescriptionAttribute("99. Get the Category by Name (S)")]
+        public virtual void _99_GetTheCategoryByNameS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Account by Name (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Category by Name (S)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I pass valid account Name");
+ testRunner.Given("I pass valid category Name");
 #line 15
- testRunner.When("I try to get the account by its Name");
+ testRunner.When("I try to get the category by its Name");
 #line 16
  testRunner.Then("I will receive no error");
 #line 17
- testRunner.And("I will receive the account");
+ testRunner.And("I will receive the category");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

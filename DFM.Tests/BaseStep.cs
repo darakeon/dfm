@@ -65,8 +65,22 @@ namespace DFM.Tests
             set { Set("user", value); }
         }
 
+        protected Account Account
+        {
+            get { return Get<Account>("Account"); }
+            set { Set("Account", value); }
+        }
+
+        protected Category Category
+        {
+            get { return Get<Category>("Category"); }
+            set { Set("Category", value); }
+        }
+
         protected const String CentralUserEmail = "test@dontflymoney.com";
         protected static String CentralUserPassword = "password";
+        protected const String CentralAccountName = "first account";
+        protected const String CentralCategoryName = "first category";
 
     }
 }

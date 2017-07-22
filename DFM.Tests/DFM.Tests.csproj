@@ -82,8 +82,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="B.Admin\k.SelectAccountByName.feature.cs">
-      <DependentUpon>k.SelectAccountByName.feature</DependentUpon>
+    <Compile Include="B.Admin\b.SelectAccountByName.feature.cs">
+      <DependentUpon>b.SelectAccountByName.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="B.Admin\g.SelectCategoryByName.feature.cs">
+      <DependentUpon>g.SelectCategoryByName.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -182,9 +187,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.SelectAccountById.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\k.SelectAccountByName.feature">
+    <None Include="B.Admin\b.SelectAccountByName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>k.SelectAccountByName.feature.cs</LastGenOutput>
+      <LastGenOutput>b.SelectAccountByName.feature.cs</LastGenOutput>
+    </None>
+    <None Include="B.Admin\g.SelectCategoryByName.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>g.SelectCategoryByName.feature.cs</LastGenOutput>
     </None>
     <None Include="B.Admin\d.CloseAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -309,6 +318,10 @@
     <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
       <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
       <Name>DFM.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">
+      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
+      <Name>DFM.Entities.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>

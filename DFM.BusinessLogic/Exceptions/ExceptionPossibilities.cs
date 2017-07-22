@@ -18,11 +18,14 @@
         ClosedAccount,
         DuplicatedAccountName,
         RedLimitAboveYellowLimit,
+        InvalidAccount,
 
+        CategoryNameRequired,
         CategoryAlreadyExists,
         DisabledCategory,
-        InvalidCategory,
+        EnabledCategory,
         DuplicatedCategoryName,
+        InvalidCategory,
 
         InMoveWrong,
         OutMoveWrong,
