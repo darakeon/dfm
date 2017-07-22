@@ -5,7 +5,7 @@ Background:
 	And I have a category
 
 Scenario: 01. Try to get Category with wrong ID (E)
-	Given I pass an id of Account that doesn't exist
+	Given I pass an id of Category that doesn't exist
 	When I try to get the category
 	Then I will receive this error
 		| Error     |

@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Steps\A.SafeStep.cs" />
     <Compile Include="A.Safe\d.ActivateUser.feature.cs">
       <DependentUpon>d.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -82,7 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="Steps\B.AdminStep.cs" />
+    <Compile Include="B.Admin\AdminStep.cs" />
     <Compile Include="B.Admin\c.SelectAccountById.feature.cs">
       <DependentUpon>c.SelectAccountById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -164,6 +163,9 @@
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="A.Safe\SafeStep.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

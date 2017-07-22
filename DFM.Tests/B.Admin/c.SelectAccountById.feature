@@ -5,7 +5,7 @@ Background:
 	And I have an account
 
 Scenario: 01. Try to get Account with wrong ID (E)
-	Given I pass an id of Account that doesn't exist
+	Given I pass an id of account that doesn't exist
 	When I try to get the account
 	Then I will receive this error
 		| Error     |

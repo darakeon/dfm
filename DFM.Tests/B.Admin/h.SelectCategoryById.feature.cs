@@ -72,7 +72,7 @@ namespace DFM.Tests.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of Account that doesn\'t exist");
+ testRunner.Given("I pass an id of Category that doesn\'t exist");
 #line 9
  testRunner.When("I try to get the category");
 #line hidden

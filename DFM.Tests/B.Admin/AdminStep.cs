@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Steps
+namespace DFM.Tests.B.Admin
 {
     [Binding]
     public class AdminStep : BaseStep
@@ -64,12 +64,6 @@ namespace DFM.Tests.Steps
         #endregion
 
         #region CloseAccount
-        [Given(@"I pass an id that doesn't exist")]
-        public void GivenIPassAnIdThatDoesnTExist()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I close an account")]
         public void GivenICloseAnAccount()
         {
@@ -166,6 +160,12 @@ namespace DFM.Tests.Steps
         #endregion
 
         #region SelectCategoryById
+        [Given(@"I pass an id of Category that doesn't exist")]
+        public void GivenIPassAnIdOfCategoryThatDoesnTExist()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
         [Given(@"I pass valid category ID")]
         public void GivenIPassValidCategoryID()
         {
@@ -204,7 +204,7 @@ namespace DFM.Tests.Steps
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I give an id of an enabled category")]
+        [Given(@"I give an id of enabled category")]
         public void GivenIGiveAnIdOfAnEnabledCategory()
         {
             ScenarioContext.Current.Pending();
@@ -236,7 +236,7 @@ namespace DFM.Tests.Steps
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I give an id of an disabled category")]
+        [Given(@"I give an id of disabled category")]
         public void GivenIGiveAnIdOfAnDisabledCategory()
         {
             ScenarioContext.Current.Pending();
@@ -270,13 +270,13 @@ namespace DFM.Tests.Steps
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I give an id of an account without moves")]
+        [Given(@"I give an id of account without moves")]
         public void GivenIGiveAnIdOfAnAccountWithoutMoves()
         {
             ScenarioContext.Current.Pending();
         }
 
-        [Given(@"I give an id of an account with moves")]
+        [Given(@"I give an id of account with moves")]
         public void GivenIGiveAnIdOfAnAccountWithMoves()
         {
             ScenarioContext.Current.Pending();

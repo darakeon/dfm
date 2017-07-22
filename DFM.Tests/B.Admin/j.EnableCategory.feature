@@ -20,7 +20,7 @@ Scenario: 02. Enable a Category already enabled (E)
 		| EnabledCategory |
 
 Scenario: 99. Enable a Category with info all right (S)
-	Given I give an id of an disabled category
+	Given I give an id of disabled category
 	When I try to enable the category
 	Then I will receive no error
 	And the category will be enabled

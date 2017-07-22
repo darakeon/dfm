@@ -72,7 +72,7 @@ namespace DFM.Tests.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of Account that doesn\'t exist");
+ testRunner.Given("I pass an id of account that doesn\'t exist");
 #line 9
  testRunner.When("I try to delete the account");
 #line hidden
@@ -118,7 +118,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 23
- testRunner.Given("I give an id of an account with moves");
+ testRunner.Given("I give an id of account with moves");
 #line 24
  testRunner.When("I try to delete the account");
 #line hidden
@@ -142,7 +142,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 31
- testRunner.Given("I give an id of an account without moves");
+ testRunner.Given("I give an id of account without moves");
 #line 32
  testRunner.When("I try to delete the account");
 #line 33

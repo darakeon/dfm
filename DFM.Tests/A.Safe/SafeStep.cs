@@ -6,7 +6,7 @@ using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Steps
+namespace DFM.Tests.A.Safe
 {
     [Binding]
     public class SafeStep : BaseStep
