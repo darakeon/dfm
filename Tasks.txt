@@ -1,71 +1,71 @@
 VERSÃO 1.0.5.0
 ======================================================================================================
-				Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
-				Recover de conta pelo MISC
-				Categorização múltipla da movimentação
-				"Adivinhar" categoria
+						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
+						Recover de conta pelo MISC
+						Categorização múltipla da movimentação
+						"Adivinhar" categoria
 
-				previsão de gastos (estatística)
-				Mostrar gastos futuros no relatório mensal
-				relatórios de mais de uma conta
-				relatórios anual por categoria
+						previsão de gastos (estatística)
+						Mostrar gastos futuros no relatório mensal
+						relatórios de mais de uma conta
+						relatórios anual por categoria
 	
-				Listar agendamentos para desativar (aparecerá deletar)
-				
-				Procurar TO-DOs no projeto
-				Arrumar tratamento de erro para ir tudo para o cabeçalho
-				Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-				Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
-				Edição de Perfil de usuário
-				Colocar nome (ou apelido) no sign up
-				Separar dados de Conta em Options e User em Config
+						Listar agendamentos para desativar (aparecerá deletar)
+						
+						Procurar TO-DOs no projeto
+						Arrumar tratamento de erro para ir tudo para o cabeçalho
+						Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+						Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
+						Edição de Perfil de usuário
+						Colocar nome (ou apelido) no sign up
+						Separar dados de Conta em Options e User em Config
 
 VERSÃO 1.0.4.0
 ======================================================================================================
-				exportador de CSV
-				exportador de Money
-				exportador de Excel
-				gravador de exportação
-				transformador de exportação
+						exportador de CSV
+						exportador de Money
+						exportador de Excel
+						gravador de exportação
+						transformador de exportação
 
-				transformador de importação
-				gravador de importação
-				importador de CSV
-				importador de Money
-				importador de Excel
+						transformador de importação
+						gravador de importação
+						importador de CSV
+						importador de Money
+						importador de Excel
 
 VERSÃO 1.0.3.1
 ======================================================================================================
-				Tratar FailOnEmailSend em Robot
-			>>>	Mostrar valor da conta com movimentações futuras
-			>>>	Iluminar última movimentação verificada
-			>>>	Criar relatórios por anos
-			>>>	Alterar interface externa para neutra (cores do site)
-			>>>	Rever layout (colocar um símbolo de relógio de parede para agendamento)
-				Colocar hover em TRs de tabela (destacar linha que está em cima)
-				Trocar Extensions Sum para Total
-				Em Move, colocar Value como campo gravado e usar Total para exibição
-				Security desativa os anteriores
-				Retornar mensagens de erro já traduzidas (do core)
-				Fazer ValidateAndGet pegar String de LoginSession
-				Substituir SelectByEmail de User por SelectByLogin
-			>>>	Se for post, fazer login realizar history.go(-2)
+						Tratar FailOnEmailSend em Robot
+					>>>	Mostrar valor da conta com movimentações futuras
+					>>>	Iluminar última movimentação verificada
+					>>>	Criar relatórios por anos
+					>>>	Alterar interface externa para neutra (cores do site)
+					>>>	Rever layout (colocar um símbolo de relógio de parede para agendamento)
+						Colocar hover em TRs de tabela (destacar linha que está em cima)
+						Trocar Extensions Sum para Total
+						Em Move, colocar Value como campo gravado e usar Total para exibição
+						Security desativa os anteriores
+						Retornar mensagens de erro já traduzidas (do core)
+						Fazer ValidateAndGet pegar String de LoginSession
+						Substituir SelectByEmail de User por SelectByLogin
+					>>>	Se for post, fazer login realizar history.go(-2)
 
 VERSÃO 1.0.3.0
 ======================================================================================================
-				Criar App Mobile
-				Criar projeto que retorna UI em Json
-				Criar projeto UI, que será referenciado pelo MVC
+						Criar App Mobile
+						Criar projeto que retorna UI em Json
+						Criar projeto UI, que será referenciado pelo MVC
 
 VERSÃO 1.0.2.3
 ======================================================================================================
-				Transformar FutureMove em parte da Schedule
-				AntiForgeryToken
-				Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
-				Não enviar e-mail caso dê erro ao mexer na movimentação
-				Numerar enums
-				Proteger edição de objeto no core
-				Usar url da conta no MVC
+						Transformar FutureMove em parte da Schedule
+						AntiForgeryToken
+						Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
+						Não enviar e-mail caso dê erro ao mexer na movimentação
+						Numerar enums
+						Proteger edição de objeto no core
+03/03/2013				Usar url da conta no MVC
 03/03/2013	03/03/2013	Possibilitar url escolhida para a conta
 24/02/2013	03/03/2013	Criar edição de nome de Categoria / Conta (incluindo mvc)
 21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName

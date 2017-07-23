@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.BusinessLogic.Exceptions;
@@ -17,13 +18,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     [Authorize]
     public class MoveController : BaseController
     {
-        private String accountname;
+        private Account account;
 
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
 
-            accountname = RouteData.Values["accountname"].ToString();
+            var url = RouteData.Values["accounturl"].ToString();
+            account = Current.User.AccountList.SingleOrDefault(a => a.Url == url);
         }
 
 
@@ -32,7 +34,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditScheduleModel();
             
-            model.Populate(accountname);
+            model.PopulateExcludingAccount(account.Url);
 
             return viewCES(model);
         }
@@ -61,12 +63,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new MoveCreateEditScheduleModel(move);
 
-            if (model.AccountName == accountname)
+            if (model.AccountName == account.Name)
                 return redirectToRightAccount(move);
 
 
 
-            model.Populate(accountname);
+            model.PopulateExcludingAccount(account.Name);
 
             return viewCES(model);
         }
@@ -75,7 +77,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var action = RouteData.Values["action"].ToString();
 
-            RouteData.Values["accountname"] = move.Out.Year.Account.Name;
+            RouteData.Values["accounturl"] = move.Out.Year.Account.Url;
 
             return RedirectToAction(action, RouteData.Values);
         }
@@ -100,7 +102,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditScheduleModel {IsSchedule = true};
 
-            model.Populate(accountname);
+            model.PopulateExcludingAccount(account.Name);
 
             return viewCES(model);
         }
@@ -120,7 +122,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 try
                 {
-                    var selector = new AccountSelector(model.Move.Nature, accountname, model.AccountName);
+                    var selector = new AccountSelector(model.Move.Nature, account.Name, model.AccountName);
 
                     return saveOrUpdateAndRedirect<T>(model.Move, selector, model.CategoryName, model.Schedule);
                 }
@@ -130,7 +132,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.Populate(accountname);
+            model.PopulateExcludingAccount(account.Name);
 
             return viewCES(model);
         }

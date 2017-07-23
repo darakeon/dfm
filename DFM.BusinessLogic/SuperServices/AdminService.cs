@@ -34,6 +34,20 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
+        public Account SelectAccountByUrl(String url)
+        {
+            VerifyUser();
+
+            var account = accountService.SelectByUrl(url, Parent.Current.User);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+            return account;
+        }
+
+
+
         public void CreateAccount(Account account)
         {
             saveOrUpdateAccount(account, OperationType.Creation);

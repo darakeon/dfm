@@ -31,6 +31,7 @@
             @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
 
             <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.AccountUrl)</span>
         </p>
 
         <p>

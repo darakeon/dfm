@@ -39,10 +39,10 @@ else
                     
 
             var monthLabel = String.Format(MultiLanguage.Dictionary["MonthMoves"] + " ({1})", MultiLanguage.GetMonthName(endMonth), endYear);
-            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "ShowMoves", controller = "Report", accountname = account.Name, id = monthReportId });
+            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "ShowMoves", controller = "Report", accounturl = account.Url, id = monthReportId });
                     
             var yearLabel = String.Format(MultiLanguage.Dictionary["YearMoves"], account.EndDate.Value.Year);
-            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SummarizeMonths", controller = "Report", accountname = account.Name, id = endYear });
+            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SummarizeMonths", controller = "Report", accounturl = account.Url, id = endYear });
                         
             <tr>
                 <td>@account.Name </td>

@@ -37,10 +37,10 @@ else
             
             
             var createLabel = MultiLanguage.Dictionary["Create", "Move"];
-            var createUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Create", controller = "Move", accountname = account.Name });
+            var createUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Create", controller = "Move", accounturl = account.Url });
             
             var scheduleLabel = MultiLanguage.Dictionary["Schedule", "Move"];
-            var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accountname = account.Name });
+            var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accounturl = account.Url });
             
             var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
             var editUrl = Url.Action("Edit", "Account", new { id = account.Name });

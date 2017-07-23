@@ -38,7 +38,7 @@
                             {
                                 <li>
                                     @Html.RouteLink(account.Name, RouteNames.Accounts,
-                                        new { controller = item.Controller, action = item.Action, accountname = account.Name },
+                                        new { controller = item.Controller, action = item.Action, accounturl = account.Url },
                                         new { })
                                 </li>
                             }
@@ -58,15 +58,15 @@
         }
         else
         {
-            var accountname = this.ViewContext.RouteData.Values["accountname"] ?? "";
+            var accounturl = this.ViewContext.RouteData.Values["accounturl"] ?? "";
 
             foreach (var account in Model.LateralAccountList)
             {
-                var isChosen = account.Name == accountname;
+                var isChosen = accounturl == account.Url;
                 
                 <div class="higherMenu @if(isChosen) { @("light") }" id="@(account.ID)">
                     @Html.RouteLink(account.Name, RouteNames.Accounts,
-                        new { controller = "Report", action = "Index", accountname = account.Name },
+                        new { controller = "Report", action = "Index", accounturl = account.Url },
                         new { @class = "higherTitle" })
 
                     <div class="reportsMenu" id="Sub@(account.ID)">
@@ -75,7 +75,7 @@
                             {
                                 <li>
                                     @Html.RouteLink(item.Text, RouteNames.Accounts,
-                                        new { action = item.Action, controller = item.Controller, accountname = account.Name }, new { })
+                                        new { action = item.Action, controller = item.Controller, accounturl = account.Url }, new { })
                                 </li>
                             }
                         </ul>

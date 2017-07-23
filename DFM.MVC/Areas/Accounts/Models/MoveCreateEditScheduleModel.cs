@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = baseMove;
 
             AccountName = Move.Nature == MoveNature.Transfer
-                ? Move.AccIn().Name : null;
+                ? Move.AccIn().Url : null;
 
             CategoryName = Move.Category.Name;
         }
@@ -112,7 +112,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         }
 
 
-        public void Populate(String accountName)
+        public void PopulateExcludingAccount(String accountName)
         {
             MakeAccountTransferList(accountName);
 

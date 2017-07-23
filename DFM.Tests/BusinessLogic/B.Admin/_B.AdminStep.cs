@@ -55,6 +55,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             get { return Get<String>("newCategoryName"); }
             set { Set("newCategoryName", value); }
         }
+        
+        private static String accountUrl
+        {
+            get { return Get<String>("accountUrl"); }
+            set { Set("accountUrl", value); }
+        }
         #endregion
 
         #region SaveAccount
@@ -598,6 +604,35 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         }
         #endregion
 
+        #region SelectAccountByUrl
+        [Given(@"I pass an url of account that doesn't exist")]
+        public void GivenIPassAUrlOfAccountThatDoesnTExist()
+        {
+            accountUrl = "Invalid_account_url";
+        }
+
+        [Given(@"I pass a valid account url")]
+        public void GivenIPassAValidAccountUrl()
+        {
+            accountUrl = Account.Url;
+        }
+
+        [When(@"I try to get the account by its url")]
+        public void WhenITryToGetTheAccountByItsUrl()
+        {
+            Account = null;
+
+            try
+            {
+                Account = SA.Admin.SelectAccountByUrl(accountUrl);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+        #endregion
+
 
 
         #region MoreThanOne
@@ -669,7 +704,17 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Assert.IsNotNull(Account);
 
             if (AccountName != null)
+            {
                 Assert.AreEqual(AccountName, Account.Name);
+            }
+            else if (accountUrl != null)
+            {
+                Assert.AreEqual(accountUrl, Account.Url);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
 

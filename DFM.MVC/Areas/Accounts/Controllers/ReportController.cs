@@ -1,22 +1,26 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DFM.Entities;
 using DFM.MVC.Areas.Accounts.Models;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
     [Authorize]
-    public class ReportController : Controller
+    public class ReportController : BaseController
     {
-        private String accountname;
+        private Account account;
 
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
 
-            accountname = RouteData.Values["accountname"].ToString();
+            var url = RouteData.Values["accounturl"].ToString();
+            account = Current.User.AccountList.SingleOrDefault(a => a.Url == url);
         }
 
 
@@ -50,8 +54,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportShowMovesModel
                             {
-                                MoveList = Services.Report.GetMonthReport(accountname, dateMonth, dateYear),
-                                Account = Services.Admin.SelectAccountByName(accountname),
+                                MoveList = Services.Report.GetMonthReport(account.Name, dateMonth, dateYear),
+                                Account = account,
                                 Month = dateMonth,
                                 Year = dateYear,
                             };
@@ -73,7 +77,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSummarizeMonthsModel
                             {
-                                Year =  Services.Report.GetYearReport(accountname, year),
+                                Year =  Services.Report.GetYearReport(account.Name, year),
                             };
 
 
