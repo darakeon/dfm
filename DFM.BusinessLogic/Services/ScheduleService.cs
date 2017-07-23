@@ -27,7 +27,7 @@ namespace DFM.BusinessLogic.Services
             // ReSharper restore InvertIf
             {
                 schedule.Active = true;
-                schedule.Begin = schedule.GetNextRunDate();
+                schedule.Begin = schedule.GetLastRunDate();
                 schedule.User = schedule.GetUser();
             }
         }
@@ -48,26 +48,22 @@ namespace DFM.BusinessLogic.Services
         
         internal IList<Schedule> GetScheduleToRun(User user)
         {
-            var scheduleList = getRunnableAndDisableOthers(user);
-
-            return scheduleList
-                .Where(s => s.CanRunNow())
+            return getRunnableAndDisableOthers(user)
                 .ToList();
         }
 
         private IEnumerable<Schedule> getRunnableAndDisableOthers(User user)
         {
             var scheduleList = 
-                List(
-                    s => s.User == user
-                    && s.Active);
+                List(s => s.User == user
+                        && s.Active);
 
             foreach (var schedule in scheduleList)
             {
-                if (CanRun(schedule))
-                    yield return schedule;
-                else
+                if (!canRun(schedule))
                     deactivate(schedule);
+                else if (canRunNow(schedule))
+                    yield return schedule;
             }
         }
 
@@ -79,7 +75,7 @@ namespace DFM.BusinessLogic.Services
 
         
 
-        internal DateTime GetNextRunDate(Schedule schedule)
+        internal DateTime CalculateNextRunDate(Schedule schedule)
         {
             var move = schedule.FutureMoveList.Last();
 
@@ -88,7 +84,12 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal Boolean CanRun(Schedule schedule)
+        private static Boolean canRunNow(Schedule schedule)
+        {
+            return schedule.GetLastRunDate() <= DateTime.Today;
+        }
+
+        private static Boolean canRun(Schedule schedule)
         {
             if (!schedule.FutureMoveList.Any())
                 return false;

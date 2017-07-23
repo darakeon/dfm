@@ -38,8 +38,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             var futureMoves = scheduleList
                 .SelectMany(s => s.FutureMoveList
-                                .Where(m => m.Schedule != null //NH Shit
-                                    && m.Date <= DateTime.Now)
+                                .Where(m => m.Date <= DateTime.Now)
                                 .ToList()
                             );
 
@@ -168,11 +167,11 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void addNextFutureMove(Schedule schedule)
         {
-            var nextDate = scheduleService.GetNextRunDate(schedule);
+            var nextDate = scheduleService.CalculateNextRunDate(schedule);
 
-            var nextFMove = schedule.FutureMoveList
-                                .Last()
-                                .CloneChangingDate(nextDate);
+            var lastFMove = schedule.FutureMoveList.Last();
+            
+            var nextFMove = lastFMove.CloneChangingDate(nextDate);
 
             schedule.FutureMoveList.Add(nextFMove);
 
