@@ -1,5 +1,5 @@
-VERSÃO 1.0.5.0
-======================================================================================================
+﻿VERSÃO 1.0.5.0
+================================================================================================
 						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
 						Recover de conta pelo MISC
 						Categorização múltipla da movimentação
@@ -22,7 +22,7 @@ VERSÃO 1.0.5.0
 						Transformar FutureMove em parte da Schedule
 
 VERSÃO 1.0.4.0
-======================================================================================================
+================================================================================================
 						exportador de CSV
 						exportador de Money
 						exportador de Excel
@@ -36,7 +36,7 @@ VERSÃO 1.0.4.0
 						importador de Excel
 
 VERSÃO 1.0.3.1
-======================================================================================================
+================================================================================================
 						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Iluminar última movimentação verificada
@@ -48,19 +48,27 @@ VERSÃO 1.0.3.1
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)
-						Fazer ValidateAndGet pegar String de LoginSession
-						Substituir SelectByEmail de User por SelectByLogin
 					>>>	Se for post, fazer login realizar history.go(-2)
+						Matar FutureMove
+						Rever Schedule para ter MoveModel
+						Gravar data de Início e última data rodada em Schedule
 						Travar schedule de conta fechada / deletada
+						Transformar Double em int, usar como centavos
 
 VERSÃO 1.0.3.0
-======================================================================================================
+================================================================================================
+						Colocar modelo de movimentação (Mobile)
+						Criar relatório mensal (Mobile)
+						Criar resumo das contas (Mobile)
+						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile
 						Criar projeto que retorna UI em Json
 						Criar projeto UI, que será referenciado pelo MVC
+						Substituir SelectByEmail de User por SelectByLogin
+						Fazer ValidateAndGet pegar String de LoginSession
 
 VERSÃO 1.0.2.3
-======================================================================================================
+================================================================================================
 07/03/2013	07/03/2013	Proteger edição de hiddens, onde for necessário
 07/03/2013	07/03/2013	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
 07/03/2013	07/03/2013	Não enviar e-mail caso dê erro ao mexer na movimentação
@@ -80,7 +88,7 @@ VERSÃO 1.0.2.3
 17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
 
 VERSÃO 1.0.2.2
-======================================================================================================
+================================================================================================
 20/08/2012	21/08/2012	Testes de Multilanguage
 20/08/2012	20/08/2012	Testar fechar conta e desativar categoria (MVC)
 17/08/2012	17/08/2012	Adicionar configuração de SMTP no web.config
@@ -105,12 +113,12 @@ VERSÃO 1.0.2.2
 18/03/2012	06/04/2012	Escrever BDD
 
 VERSÃO 1.0.2.1
-======================================================================================================
+================================================================================================
 21/03/2012	22/03/2012	Fornecer detalhes do erro no e-mail de report
 20/03/2012	20/03/2012	Refactor Resharper
 
 VERSÃO 1.0.2.0
-======================================================================================================
+================================================================================================
 17/03/2012	17/03/2012	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 16/03/2012	17/03/2012	Testar Elmah com página tratada (Report > SeeYear)
 14/03/2012	16/03/2012	Retirar delegates de Getters para envio de e-mail
@@ -127,8 +135,7 @@ VERSÃO 1.0.2.0
 02/12/2011	05/12/2011	Reorganização primária de camadas
 
 VERSÃO 1.0.1.0
-				Adicionar condição de soma mês/ano não mudar quando dá erro
-======================================================================================================
+================================================================================================
 25/11/2011	30/11/2011	Testes e Publicação
 25/10/2011	25/10/2011	Erros tratados
 25/10/2011	25/10/2011	Proteção para log do Elmah
@@ -136,7 +143,7 @@ VERSÃO 1.0.1.0
 19/10/2011	19/10/2011	Log4Net / Elmah
 
 VERSÃO 1.0.0.4
-======================================================================================================
+================================================================================================
 11/11/2011	11/11/2011	Tornar possível valor ZERO em sinais (vermelho / amarelo)
 09/11/2011	09/11/2011	Verificar se recuperação de senha está desativando usuário
 09/11/2011	22/11/2011	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
@@ -145,14 +152,14 @@ VERSÃO 1.0.0.4
 23/10/2011	23/10/2011	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 
 VERSÃO 1.0.0.3
-======================================================================================================
+================================================================================================
 13/10/2011	14/10/2011	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
 11/10/2011	13/10/2011	Ícones ao invés de palavras nas listagem de contas
 10/10/2011	10/10/2011	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 02/10/2011	09/10/2011	Recuperação de Senha - hashcode
 
 VERSÃO 1.0.0.2
-======================================================================================================
+================================================================================================
 01/10/2011	01/10/2011	Colocar BETA no logo do site
 01/10/2011	01/10/2011	Escurecer mensagem de erro (inverter cor?)
 01/10/2011	01/10/2011	Data de cadastro do usuário
@@ -160,12 +167,12 @@ VERSÃO 1.0.0.2
 25/09/2011	26/09/2011	Conflito de formato de data
 
 VERSÃO 1.0.0.1
-======================================================================================================
+================================================================================================
 24/09/2011	24/09/2011	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 24/09/2011	24/09/2011	Consertar acesso NH no publicado
 
 VERSÃO 1.0.0.0
-======================================================================================================
+================================================================================================
 22/09/2011	22/09/2011	Publicar
 22/09/2011	22/09/2011	Verificar no IE
 21/09/2011	22/09/2011	Limitar tamanhos dos campos de texto
