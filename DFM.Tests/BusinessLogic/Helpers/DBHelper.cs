@@ -5,7 +5,7 @@ using DFM.Entities.Enums;
 using DFM.Repositories;
 using MySql.Data.MySqlClient;
 
-namespace DFM.Tests.Helpers
+namespace DFM.Tests.BusinessLogic.Helpers
 {
     internal class DBHelper
     {

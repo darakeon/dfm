@@ -25,8 +25,7 @@ namespace DFM.Generic
             // ReSharper restore PossibleNullReferenceException
         }
 
-        private static IDictionary<String, String> machine = 
-                   new  Dictionary<String, String>();
+        private static readonly IDictionary<String, String> machine = new  Dictionary<String, String>();
 
 
 

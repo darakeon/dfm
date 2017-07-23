@@ -8,7 +8,7 @@ using DFM.Multilanguage;
 using DFM.Repositories;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests
+namespace DFM.Tests.BusinessLogic
 {
     public abstract class BaseStep
     {

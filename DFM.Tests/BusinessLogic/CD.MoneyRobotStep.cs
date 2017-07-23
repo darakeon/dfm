@@ -5,7 +5,7 @@ using DFM.Entities.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests
+namespace DFM.Tests.BusinessLogic
 {
     [Binding]
     public class MoneyRobotStep : BaseStep

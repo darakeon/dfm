@@ -6,7 +6,7 @@ using DFM.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 
-namespace DFM.Tests.D.Robot
+namespace DFM.Tests.BusinessLogic.D.Robot
 {
     [Binding]
     public class RobotStep : BaseStep

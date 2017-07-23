@@ -3,7 +3,7 @@ using DFM.Repositories;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests
+namespace DFM.Tests.BusinessLogic
 {
     [Binding]
     public class MainStep : BaseStep

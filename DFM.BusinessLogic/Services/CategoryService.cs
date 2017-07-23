@@ -3,7 +3,6 @@ using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Services
 {

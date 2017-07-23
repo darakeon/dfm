@@ -3,12 +3,12 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Tests.Helpers;
+using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TK = DFM.Generic.Token;
 
-namespace DFM.Tests.A.Safe
+namespace DFM.Tests.BusinessLogic.A.Safe
 {
     [Binding]
     public class SafeStep : BaseStep

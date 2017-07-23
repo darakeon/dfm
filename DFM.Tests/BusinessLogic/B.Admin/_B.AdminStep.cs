@@ -6,7 +6,7 @@ using DFM.Entities.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.B.Admin
+namespace DFM.Tests.BusinessLogic.B.Admin
 {
     [Binding]
     public class AdminStep : BaseStep
