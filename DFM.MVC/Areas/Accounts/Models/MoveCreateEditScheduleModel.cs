@@ -6,10 +6,8 @@ using Ak.MVC.Forms;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Authentication;
 using DFM.Entities;
 using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
@@ -51,7 +49,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = baseMove;
 
             AccountName = Move.Nature == MoveNature.Transfer
-                ? Move.AccIn().Url : null;
+                ? Move.AccIn().Name : null;
 
             CategoryName = Move.Category.Name;
         }

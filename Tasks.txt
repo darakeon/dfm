@@ -64,8 +64,8 @@ VERSÃO 1.0.2.3
 						Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
 						Não enviar e-mail caso dê erro ao mexer na movimentação
 						Numerar enums
-						Proteger edição de objeto no core
-03/03/2013				Usar url da conta no MVC
+						Proteger edição de objeto (user) no core
+03/03/2013	07/03/2013	Usar url da conta no MVC
 03/03/2013	03/03/2013	Possibilitar url escolhida para a conta
 24/02/2013	03/03/2013	Criar edição de nome de Categoria / Conta (incluindo mvc)
 21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName
