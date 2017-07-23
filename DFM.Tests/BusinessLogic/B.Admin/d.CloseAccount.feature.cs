@@ -72,7 +72,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of account that doesn\'t exist");
+ testRunner.Given("I pass a name of account that doesn\'t exist");
 #line 9
  testRunner.When("I try to close the account");
 #line 10
@@ -91,7 +91,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("I have a category");
 #line 14
- testRunner.And("I give an id of the account Bd02 with moves");
+ testRunner.And("I give a name of the account Bd02 with moves");
 #line 15
  testRunner.And("I already have closed the account");
 #line 16
@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.Given("I give an id of the account Bd03 without moves");
+ testRunner.Given("I give a name of the account Bd03 without moves");
 #line 21
  testRunner.When("I try to close the account");
 #line 22
@@ -131,7 +131,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 26
  testRunner.Given("I have a category");
 #line 27
- testRunner.And("I give an id of the account Bd99 with moves");
+ testRunner.And("I give a name of the account Bd99 with moves");
 #line 28
  testRunner.When("I try to close the account");
 #line 29

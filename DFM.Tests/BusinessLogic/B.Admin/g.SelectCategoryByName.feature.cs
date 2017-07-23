@@ -74,7 +74,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("I pass a name of category that doesn\'t exist");
 #line 9
- testRunner.When("I try to get the category by its Name");
+ testRunner.When("I try to get the category by its name");
 #line 10
  testRunner.Then("I will receive this core error: InvalidCategory");
 #line 11
@@ -91,9 +91,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I pass valid category Name");
+ testRunner.Given("I pass a valid category name");
 #line 15
- testRunner.When("I try to get the category by its Name");
+ testRunner.When("I try to get the category by its name");
 #line 16
  testRunner.Then("I will receive no core error");
 #line 17

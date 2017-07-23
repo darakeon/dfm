@@ -101,7 +101,7 @@ namespace DFM.BusinessLogic.Services
 
         private void complete(User user)
         {
-            var oldUser = SelectById(user.ID);
+            var oldUser = SelectByEmail(user.Email);
             
             var userIsNew = oldUser == null;
 
@@ -137,7 +137,7 @@ namespace DFM.BusinessLogic.Services
 
         internal void ValidateSecurity(Security security)
         {
-            var currentUser = SelectById(security.User.ID);
+            var currentUser = SelectByEmail(security.User.Email);
 
             if (currentUser == null || currentUser.Email != security.User.Email)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);

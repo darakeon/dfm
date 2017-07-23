@@ -44,7 +44,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
         private static String newCategoryName
         {
-            get { return "new " + CategoryName; }
+            get { return "new " + MainCategoryName; }
         }
 
         private static Double newAccountOutTotal
@@ -125,7 +125,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, MoveCategoryName);
+                SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -300,7 +300,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             var summary = account
                 [(Int16)oldDate.Year]
-                [CategoryName];
+                [MainCategoryName];
 
             Assert.AreEqual(YearCategoryAccountOutTotal + value, summary.Out);
         }
@@ -327,7 +327,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var summary = account
                 [(Int16)oldDate.Year]
                 [(Int16)oldDate.Month]
-                [CategoryName];
+                [MainCategoryName];
 
             Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
         }
@@ -374,7 +374,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             var summary = account
                 [(Int16)oldDate.Year]
-                [CategoryName];
+                [MainCategoryName];
 
             Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
         }
@@ -401,7 +401,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var summary = account
                 [(Int16)oldDate.Year]
                 [(Int16)oldDate.Month]
-                [CategoryName];
+                [MainCategoryName];
 
             Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
         }
@@ -478,9 +478,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Given(@"I have a move with details")]
         public void GivenIHaveAMoveWithDetails()
         {
-            Account = GetOrCreateAccount(AccountName);
+            Account = GetOrCreateAccount(MainAccountName);
 
-            Category = GetOrCreateCategory(CategoryName);
+            Category = GetOrCreateCategory(MainCategoryName);
 
             Move = new Move
             {
@@ -508,7 +508,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Given(@"I pass an id of Detail that doesn't exist")]
-        public void GivenIPassAnIdOdDetailThatDoesnTExist()
+        public void GivenIPassAnIdOfDetailThatDoesnTExist()
         {
             id = 0;
         }
@@ -627,7 +627,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var accountInName = nature == MoveNature.Out
                 ? null : AccountInName;
 
-            Category = GetOrCreateCategory(CategoryName);
+            Category = GetOrCreateCategory(MainCategoryName);
 
             SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, Category.Name);
 

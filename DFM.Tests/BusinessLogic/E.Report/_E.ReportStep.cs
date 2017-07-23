@@ -27,12 +27,6 @@ namespace DFM.Tests.BusinessLogic.E.Report
             set { Set("Year", value); }
         }
 
-        private static String accountName
-        {
-            get { return Get<String>("accountName"); }
-            set { Set("accountName", value); }
-        }
-
         private static IList<Move> monthReport
         {
             get { return Get<IList<Move>>("MonthReport"); }
@@ -52,7 +46,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         {
             try
             {
-                monthReport = SA.Report.GetMonthReport(accountName, month, year);
+                monthReport = SA.Report.GetMonthReport(AccountName, month, year);
             }
             catch (DFMCoreException e)
             {
@@ -95,7 +89,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         {
             try
             {
-                yearReport = SA.Report.GetYearReport(accountName, year);
+                yearReport = SA.Report.GetYearReport(AccountName, year);
             }
             catch (DFMCoreException e)
             {
@@ -134,7 +128,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         [Given(@"I have moves of")]
         public void GivenIHaveMovesOf(Table table)
         {
-            Category = GetOrCreateCategory(CategoryName);
+            Category = GetOrCreateCategory(MainCategoryName);
 
             foreach (var row in table.Rows)
             {
@@ -166,13 +160,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         [Given(@"I pass an invalid account name")]
         public void GivenIPassAnInvalidAccountName()
         {
-            accountName = "invalid";
-        }
-
-        [Given(@"I pass a valid account name")]
-        public void GivenIPassAValidAccountName()
-        {
-            accountName = Account.Name;
+            AccountName = "invalid";
         }
 
         [Given(@"I pass this date")]

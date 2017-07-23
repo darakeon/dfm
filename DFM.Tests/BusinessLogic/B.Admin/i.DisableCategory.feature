@@ -5,7 +5,7 @@ Background:
 	And I have a category
 
 Scenario: 01. Disable a Category that doesn't exist (E)
-	Given I pass an id of category that doesn't exist
+	Given I pass a name of category that doesn't exist
 	When I try to disable the category
 	Then I will receive this core error: InvalidCategory
 

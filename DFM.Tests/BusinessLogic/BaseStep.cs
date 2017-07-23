@@ -219,11 +219,17 @@ namespace DFM.Tests.BusinessLogic
             set { Set("MonthCategoryAccountInTotal", value); }
         }
 
-        
-        protected static String MoveCategoryName
+
+        protected static String AccountName
         {
-            get { return Get<String>("MoveCategoryName"); }
-            set { Set("MoveCategoryName", value); }
+            get { return Get<String>("AccountName"); }
+            set { Set("AccountName", value); }
+        }
+        
+        protected static String CategoryName
+        {
+            get { return Get<String>("CategoryName"); }
+            set { Set("CategoryName", value); }
         }
 
         
@@ -238,8 +244,8 @@ namespace DFM.Tests.BusinessLogic
 
         protected const String UserEmail = "test@dontflymoney.com";
         protected static String UserPassword = "password";
-        protected const String AccountName = "first account";
-        protected const String CategoryName = "first category";
+        protected const String MainAccountName = "first account";
+        protected const String MainCategoryName = "first category";
 
         protected const String AccountOutName = "account out";
         protected const String AccountInName = "account in";

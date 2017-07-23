@@ -161,12 +161,19 @@ VERSÃO 1.0.2.3
 20/02/2013	21/02/2013	Proteção por usuário no Core (verificar active também)
 21/02/2013	21/02/2013	Consertar e-mail de transferência
 21/02/2013	21/02/2013	Passar Accounts / Category como name para a save move
-21/02/2013			Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
+21/02/2013	22/02/2013	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
+21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName
+				Criar edição de nome de Categoria / Conta (incluindo mvc)
+				Possibilitar url escolhida para a conta
 				Proteger edição de objeto no core
+
+======================================================================================================
+
+VERSÃO 1.0.2.4
+
+			>>>	Se for post, fazer login realizar history.go(-2)
 				Substituir SelectByEmail de User por SelectByLogin
-				Substituir SelectById de Account / Category por SelectByName
-				Troca SelectUserByEmail por SelectUserByLogin
-				Fazer ValidateAndGet pegar String de Login
+				Fazer ValidateAndGet pegar String de LoginSession
 				Retornar mensagens de erro já traduzidas (do core)
 				Security desativa os anteriores
 				Em Move, colocar Value como campo gravado e usar Total para exibição
@@ -178,7 +185,6 @@ VERSÃO 1.0.2.3
 			>>>	Iluminar última movimentação verificada
 			>>>	Mostrar valor da conta com movimentações futuras
 				Tratar FailOnEmailSend em Robot
-				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 
 ======================================================================================================
 
@@ -202,23 +208,19 @@ VERSÃO 1.0.3.0
 
 VERSÃO 1.0.4.0
 
-				Possibilitar Apelido e Url escolhida para a conta
-				Rever layout (relógio de parede para agendamento)
+				Rever layout (colocar um símbolo de relógio de parede para agendamento)
 				Follow twitter
 				Criar projeto UI, que será referenciado pelo MVC
 				Criar projeto que retorna UI em Json
 
-				Possibilitar mudar a conta de uma movimentação (decidir ainda se implemento)
 				Colocar nome (ou apelido) no sign up
 				Edição de Perfil de usuário
 				Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
 				Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 				Arrumar tratamento de erro para ir tudo para o cabeçalho
 				Procurar TO-DOs no projeto
-				Account: Adicionar Sigla e opção de Habilitar ou não em Menu
 				
 				Listar agendamentos para desativar (aparecerá deletar)
-				Colocar tooltip (na criação): qual a diferença de cada tipo de conta
 	
 				relatórios anual por categoria
 				relatórios de mais de uma conta
@@ -226,8 +228,7 @@ VERSÃO 1.0.4.0
 				previsão de gastos (estatística)
 
 				"Adivinhar" categoria
-				taggeamento de movimentação
+				Categorização múltipla da movimentação
 				Recover de conta pelo MISC
 				Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
 				Verificar cobertura de código
-				Selenium

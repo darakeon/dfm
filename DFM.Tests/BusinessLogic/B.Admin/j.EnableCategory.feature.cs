@@ -72,7 +72,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of category that doesn\'t exist");
+ testRunner.Given("I pass a name of category that doesn\'t exist");
 #line 9
  testRunner.When("I try to enable the category");
 #line 10

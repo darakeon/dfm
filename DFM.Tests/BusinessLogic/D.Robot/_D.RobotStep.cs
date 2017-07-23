@@ -64,7 +64,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, MoveCategoryName, Schedule);
+                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, CategoryName, Schedule);
             }
             catch (DFMCoreException e)
             {
@@ -116,7 +116,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             var accountOutName = AccountOut == null ? null : AccountOut.Name;
             var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, MoveCategoryName, Schedule);
+            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, CategoryName, Schedule);
         }
 
         [When(@"I try to run the scheduler")]

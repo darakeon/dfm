@@ -43,25 +43,25 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has a Category")]
         public void GivenItHasACategory()
         {
-            MoveCategoryName = Category.Name;
+            CategoryName = Category.Name;
         }
 
         [Given(@"it has no Category")]
         public void GivenItHasNoCategory()
         {
-            MoveCategoryName = null;
+            CategoryName = null;
         }
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
         {
-            MoveCategoryName = "unknown";
+            CategoryName = "unknown";
         }
 
         [Given(@"it has a disabled Category")]
         public void GivenItHasADisabledCategory()
         {
-            MoveCategoryName = "disabled";
+            CategoryName = "disabled";
 
             var moveCategory = new Category { Name = "disabled", User = User };
 

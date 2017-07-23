@@ -5,7 +5,7 @@ Background:
 	And I have a category
 
 Scenario: 01. Enable a Category that doesn't exist (E)
-	Given I pass an id of category that doesn't exist
+	Given I pass a name of category that doesn't exist
 	When I try to enable the category
 	Then I will receive this core error: InvalidCategory
 

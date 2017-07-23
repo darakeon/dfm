@@ -51,13 +51,14 @@ namespace DFM.BusinessLogic.Services
 
         private void complete(Account account)
         {
-            if (account.ID == 0)
+            // TODO: use Current User
+            var oldAccount = SelectByName(account.Name, account.User);
+
+            if (oldAccount == null)
             {
                 account.BeginDate = DateTime.Now;
                 return;
             }
-
-            var oldAccount = SelectById(account.ID);
 
             if (!account.YearList.Any())
                 account.YearList = oldAccount.YearList;

@@ -72,7 +72,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I pass an id of account that doesn\'t exist");
+ testRunner.Given("I pass a name of account that doesn\'t exist");
 #line 9
  testRunner.When("I try to delete the account");
 #line 10
@@ -89,7 +89,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I give an id of the account Be02 without moves");
+ testRunner.Given("I give a name of the account Be02 without moves");
 #line 14
  testRunner.And("I already have deleted the account");
 #line 15
@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.Given("I have a category");
 #line 20
- testRunner.And("I give an id of the account Be03 with moves");
+ testRunner.And("I give a name of the account Be03 with moves");
 #line 21
  testRunner.When("I try to delete the account");
 #line 22
@@ -129,7 +129,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.Given("I give an id of the account Be99 without moves");
+ testRunner.Given("I give a name of the account Be99 without moves");
 #line 27
  testRunner.When("I try to delete the account");
 #line 28
