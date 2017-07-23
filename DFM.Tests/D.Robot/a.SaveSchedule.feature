@@ -163,7 +163,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	And it has an unknown Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: OutMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the schedule will not be saved
 
 
@@ -234,7 +234,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	And it has no Account Out
 	And it has an unknown Account In
 	When I try to save the schedule
-	Then I will receive this error: InMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the schedule will not be saved
 
 
@@ -302,7 +302,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And it has an Account Out
 	And it has an unknown Account In
 	When I try to save the schedule
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -320,7 +320,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And it has an unknown Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the schedule will not be saved
 	And the accountIn value will not change
 	And the month-category-accountIn value will not change

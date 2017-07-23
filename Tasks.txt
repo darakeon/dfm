@@ -140,13 +140,13 @@ VERSÃO 1.0.2.2
 17/06/2012	04/07/2012	Criar testes de edição de Move
 18/07/2012	18/07/2012	Modificar this[] para retornar objeto novo caso não exista o procurado
 18/07/2012	18/07/2012	Criar classe Session para Begin/Commit/Rollback
-18/07/2012			Passar parent para superservices, ao invés de passar todos os services
+18/07/2012	18/07/2012	Passar parent para superservices, ao invés de passar todos os services
 				Colocar dados de Post no e-mail de erro
 				Reorganização da ordem das funções nos serviços
-				Refactor de limpeza geral
 				Colocar robot.txt para google
 				Testar entrar com user não validado ainda
 				Testar fechar conta e desativar categoria
+				Refactor de limpeza geral
 
 ======================================================================================================
 

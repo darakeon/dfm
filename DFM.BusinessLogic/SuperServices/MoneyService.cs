@@ -13,23 +13,19 @@ namespace DFM.BusinessLogic.SuperServices
     {
         private readonly MoveService moveService;
         private readonly DetailService detailService;
-        private readonly CategoryService categoryService;
         private readonly SummaryService summaryService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
-        private readonly AccountService accountService;
         private readonly ScheduleService scheduleService;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, AccountService accountService, ScheduleService scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, SummaryService summaryService, MonthService monthService, YearService yearService, ScheduleService scheduleService)
             : base(serviceAccess)
         {
             this.moveService = moveService;
             this.detailService = detailService;
-            this.categoryService = categoryService;
             this.summaryService = summaryService;
             this.monthService = monthService;
             this.yearService = yearService;
-            this.accountService = accountService;
             this.scheduleService = scheduleService;
         }
 
@@ -73,7 +69,7 @@ namespace DFM.BusinessLogic.SuperServices
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            categoryService.SetCategory(move, category);
+            setCategory(move, category);
 
             ajustOldSummaries(move.ID);
 
@@ -90,6 +86,11 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
+        private void setCategory(BaseMove baseMove, Category category)
+        {
+            if (category != null)
+                baseMove.Category = Parent.Admin.SelectCategoryById(category.ID);
+        }
         #endregion
 
 
@@ -204,7 +205,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         private Month getMonth(BaseMove baseMove, Account account)
         {
-            account = accountService.SelectByName(account.Name, account.User);
+            account = Parent.Admin.SelectAccountByName(account.Name, account.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
