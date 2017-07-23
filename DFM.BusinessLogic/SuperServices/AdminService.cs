@@ -19,18 +19,6 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        //public Account SelectAccountById(Int32 id)
-        //{
-        //    VerifyUser();
-
-        //    var account = accountService.SelectById(id);
-
-        //    if (account == null)
-        //        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
-
-        //    return account;
-        //}
-
         public Account SelectAccountByName(String name)
         {
             VerifyUser();
@@ -98,18 +86,6 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-
-        //public Category SelectCategoryById(Int32 id)
-        //{
-        //    VerifyUser();
-
-        //    var category = categoryService.SelectById(id);
-
-        //    if (category == null)
-        //        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
-
-        //    return category;
-        //}
 
         public Category SelectCategoryByName(String name)
         {
