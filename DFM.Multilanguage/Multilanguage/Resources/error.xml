@@ -8,6 +8,7 @@
     <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
     <CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
     <CategoryAlreadyExists text="Category already exists." />
+    <DuplicatedCategoryName text="Duplicated category." />
     <CategoryNotFound text="Category not found." />
     <CircularTransfer text="The In Account must be different from the Out Account." />
     <ClosedAccount text="Can't insert Moves in Closed Accounts." />
@@ -25,6 +26,7 @@
     <InvalidUser text="User and/or password invalid." />
     <MonthAmbiguousInYear text="Month ambiguous reference. Contact support." />
     <MoveFutureNotScheduled text="To create future Moves use Schedule." />
+    <MoveCircularTransfer text="The account in and out must be different." />
     <OutMoveWrong text="An Out Move need to have an Out Account, and can't have an In Account." />
     <OutOfDateSummary text="Report out of date. Contact support." />
     <RedLimitAboveYellowLimit text="Yellow Limit must be greater or equal to Red Limit." />
@@ -35,10 +37,30 @@
     <SummaryNatureNotFound text="Summary Nature doesn't exist." />
     <TooLargeData text="Field exceeded the characters limit." />
     <TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
+    <Unauthorized text="Not authorized." />
     <UserAlreadyExists text="User already exists." />
-    <UserInvalidEmail text="User e-mail is invalid." />
+    <UserEmailInvalid text="User e-mail is invalid." />
+    <UserPasswordRequired text="Invalid password." />
     <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
+    <AccountNameRequired text="Account name is required." />
+    <CategoryNameRequired text="Category name is required." />
+    <EnabledCategory text="Category is already enabled." />
+    <MoveDescriptionRequired text="Description required." />
+    <MoveDateRequired text="Date required." />
+    <MoveDateInvalid text="Invalid date." />
+    <MoveValueOrDetailRequired text="Move need to have some value, detailed or not." />
+    <InvalidMove text="Invalid move." />
+    <DetailWithoutMove text="Detail lost." />
+    <MoveDetailDescriptionRequired text="Description of detail required. You can add a move without details." />
+    <MoveDetailAmountRequired text="Amount of detail required. You can add a move without details." />
+    <MoveDetailValueRequired text="Value of detail required. You can add a move without details." />
+    <InvalidDetail text="Invalid detail." />
+    <ScheduleRequired text="Schedule required to future moves." />
+    <ScheduleWithNoMoves text="The schedule has no moves." />
+    <ScheduleTimesCantBeZero text="To schedule something, schedule at least once." />
+    <InvalidYear text="Invalid year." />
+    <InvalidMonth text="Invalid month." />
   </en-US>
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
@@ -48,6 +70,7 @@
     <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
     <CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
     <CategoryAlreadyExists text="Categoria já existe." />
+    <DuplicatedCategoryName text="Categoria duplicada." />
     <CategoryNotFound text="Categoria não encontrada." />
     <CircularTransfer text="A Conta de Entrada deve ser diferente da Conta de Saída." />
     <ClosedAccount text="Não é possível inserir Movimentações em Contas fechadas." />
@@ -65,6 +88,7 @@
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
     <MonthAmbiguousInYear text="Referência de mês ambígua. Contate o suporte." />
     <MoveFutureNotScheduled text="Para criar Movimentações futuras, use o Agendamento." />
+    <MoveCircularTransfer text="As contas de entrada e saída devem ser diferentes." />
     <OutMoveWrong text="Uma Movimentação de Saída precisa ter uma Conta de Saída, e não pode ter uma Conta de Entrada." />
     <OutOfDateSummary text="Relatório necessita de atualização. Contate o suporte." />
     <RedLimitAboveYellowLimit text="O Sinal Amarelo deve ter um valor maior ou igual ao Sinal Vermelho." />
@@ -75,9 +99,29 @@
     <SummaryNatureNotFound text="Natureza de Resumo inexistente." />
     <TooLargeData text="O campo excedeu o limite de caracteres." />
     <TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
+    <Unauthorized text="Não autorizado." />
     <UserAlreadyExists text="Usuário já existe." />
-    <UserInvalidEmail text="E-mail inválido." />
+    <UserEmailInvalid text="E-mail inválido." />
+    <UserPasswordRequired text="Senha ínválida." />
     <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
+    <AccountNameRequired text="Nome da conta obrigatório." />
+    <CategoryNameRequired text="Nome da categoria obrigatório." />
+    <EnabledCategory text="A categoria já está habilitada." />
+    <MoveDescriptionRequired text="Descrição obrigatória." />
+    <MoveDateRequired text="Data obrigatória." />
+    <MoveDateInvalid text="Data inválida." />
+    <MoveValueOrDetailRequired text="Uma movimentação precisa ter um valor, detalhado ou não." />
+    <InvalidMove text="Movimentação inválida." />
+    <DetailWithoutMove text="Detalhe perdido." />
+    <MoveDetailDescriptionRequired text="A descrição do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
+    <MoveDetailAmountRequired text="A quantidade do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
+    <MoveDetailValueRequired text="P valor do detalhe é obrigatório. Você pode criar uma movimentação sem detalhes." />
+    <InvalidDetail text="Detalhe inválido." />
+    <ScheduleRequired text="Necessário agendamento para movimentações futuras." />
+    <ScheduleWithNoMoves text="O agendamento não possui movimentações." />
+    <ScheduleTimesCantBeZero text="Para agendar algo, agende para executar ao menos uma vez." />
+    <InvalidYear text="Ano inválido." />
+    <InvalidMonth text="Mês inválido." />
   </pt-BR>
 </error>

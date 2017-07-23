@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using DFM.Multilanguage.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -12,6 +13,12 @@ namespace DFM.Tests.Multilanguage
     [Binding]
     public class MultilanguageStep : ContextHelper
     {
+        public MultilanguageStep()
+        {
+            errors = new StringBuilder();
+        }
+
+
         [Given(@"the dictionary is initialized")]
         public void TheDictionaryIsInitialized()
         {
@@ -54,19 +61,19 @@ namespace DFM.Tests.Multilanguage
         [When(@"I try get the translate")]
         public void WhenITryGetTheTranslate()
         {
-            try
+            foreach (var language in languages)
             {
-                foreach (var language in languages)
+                foreach (var key in keys)
                 {
-                    foreach (var key in keys)
+                    try
                     {
                         var translation = PlainText.Dictionary[key.Section, language, key.Phrase];
                     }
+                    catch (DicException e)
+                    {
+                        errors.AppendLine(e.Message);
+                    }
                 }
-            }
-            catch (DicException e)
-            {
-                error = e;
             }
         }
 
@@ -75,19 +82,19 @@ namespace DFM.Tests.Multilanguage
         [When(@"I try get the layout")]
         public void WhenITryGetTheLayout()
         {
-            try
+            foreach (var language in languages)
             {
-                foreach (var language in languages)
+                foreach (var emailType in emailTypes)
                 {
-                    foreach (var emailType in emailTypes)
+                    try
                     {
                         var layout = PlainText.EmailLayout[language, emailType];
                     }
+                    catch (DicException e)
+                    {
+                        errors.AppendLine(e.Message);
+                    }
                 }
-            }
-            catch (DicException e)
-            {
-                error = e;
             }
         }
 
@@ -96,14 +103,14 @@ namespace DFM.Tests.Multilanguage
         [Then(@"I will receive no multilanguage error")]
         public void ThenIWillReceiveNoMultilanguageError()
         {
-            Assert.IsNull(error);
+            Assert.IsEmpty(errors.ToString());
         }
 
 
-        private static DicException error
+        private static StringBuilder errors
         {
-            get { return Get<DicException>("error"); }
-            set { Set("error", value); }
+            get { return Get<StringBuilder>("errors"); }
+            set { Set("errors", value); }
         }
 
         private static IList<String> languages
