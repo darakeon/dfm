@@ -5,7 +5,8 @@ obj
 *.suo
 *.user
 *dotCover
-log_files
+DFM.MVC/data/log_files
 *.orig
 .hg*
 DFM.MVC/DFM.MVC.Publish.xml
+DFM.MVC/Web.Release.config

@@ -69,6 +69,7 @@
     <Reference Include="Ak.DataAccess">
       <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="FluentNHibernate">
       <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
     </Reference>

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.Repositories;
 using log4net.Config;
+using System.Configuration;
 
 namespace DFM.MVC
 {
@@ -63,13 +66,11 @@ namespace DFM.MVC
         protected void Application_Error()
         // ReSharper restore InconsistentNaming
         {
-            if (isAsset) return;
-
 #if !DEBUG
             ErrorManager.SendEmail();
 #endif
 
-            NHManager.Error();
+            error();
         }
 
 
@@ -80,9 +81,32 @@ namespace DFM.MVC
             if (isAsset) return;
 
             if (DFMCoreException.ErrorCounter > 0)
-                NHManager.Error();
+                error();
 
             NHManager.Close();
+
+            var dirName = Directory.GetCurrentDirectory();
+
+            if (Request["LookFor"] == "Elmah")
+                File.Create(dirName + "/x.txt");
+
+            if (Request["Error"] == "Force")
+                throw new Exception("Forced error.");
+        }
+
+        
+        
+        private static void error()
+        {
+            try
+            {
+                NHManager.Error();
+            }
+            catch (AkException e)
+            {
+                if (e.Message != "Restart the Application.")
+                    throw;
+            }
         }
 
 
