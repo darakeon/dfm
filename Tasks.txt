@@ -130,6 +130,7 @@ VERSÃO 1.0.2.2
 06/04/2012	13/06/2012	Implementar BDD
 07/04/2012	07/04/2012	Save User  deve receber e-mail e senha
 03/06/2012	03/06/2012	Retirar retorno da Transaction no Begin (usar da session)
+				Adicionar condição de soma mês/ano não mudar quando dá erro
 14/06/2012	14/06/2012	Colocar category/schedule como parâmetro na Save da Move
 14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Categoria Desabilitada
 14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Conta Fechada
@@ -219,3 +220,4 @@ VERSÃO 1.0.4.0
 				"Adivinhar" categoria
 				taggeamento de movimentação
 				Recover de conta pelo MISC
+				Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
