@@ -145,7 +145,8 @@ VERSÃO 1.0.2.2
 09/08/2012	09/08/2012	Arrumar configuração de DB no webconfig release
 16/08/2012	16/08/2012	Reorganização da ordem das funções nos serviços
 16/08/2012	16/08/2012	Colocar robot.txt para google
-				Testar entrar com user não validado ainda (MVC)
+16/08/2012	16/08/2012	Testar entrar com user não validado ainda (MVC)
+				Adicionar configuração de SMTP no web.config
 				Testar fechar conta e desativar categoria (MVC)
 				Refactor de limpeza geral
 
