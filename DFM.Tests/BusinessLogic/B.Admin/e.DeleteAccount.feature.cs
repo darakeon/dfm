@@ -122,19 +122,42 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Delete an Account with info all right (S)")]
-        public virtual void _99_DeleteAnAccountWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("98. Delete an Account that had moves (S)")]
+        public virtual void _98_DeleteAnAccountThatHadMovesS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete an Account with info all right (S)", ((string[])(null)));
-#line 25
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Delete an Account that had moves (S)", ((string[])(null)));
 #line 26
- testRunner.Given("I give a name of the account Be99 without moves");
+this.ScenarioSetup(scenarioInfo);
 #line 27
- testRunner.When("I try to delete the account");
+ testRunner.Given("I have a category");
 #line 28
- testRunner.Then("I will receive no core error");
+ testRunner.And("I give a name of the account Be98 with moves");
 #line 29
+ testRunner.And("I delete the moves of Be98");
+#line 30
+ testRunner.When("I try to delete the account");
+#line 31
+ testRunner.Then("I will receive no core error");
+#line 32
+ testRunner.And("the account will be deleted");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Delete an Account without moves (S)")]
+        public virtual void _99_DeleteAnAccountWithoutMovesS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete an Account without moves (S)", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 35
+ testRunner.Given("I give a name of the account Be99 without moves");
+#line 36
+ testRunner.When("I try to delete the account");
+#line 37
+ testRunner.Then("I will receive no core error");
+#line 38
  testRunner.And("the account will be deleted");
 #line hidden
             testRunner.CollectScenarioErrors();

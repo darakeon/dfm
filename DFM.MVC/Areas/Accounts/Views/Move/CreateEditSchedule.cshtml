@@ -27,10 +27,8 @@
 
     @Html.ValidationSummary(true)
     
-    if (Model.IsSchedule)
+    if (Model.Type == DFM.Generic.OperationType.Schedule)
     {
-        @Html.HiddenFor(m => m.IsSchedule)
-
         <div class="createMoveScreenLeft">
             <div>
                 @Html.LabelFor(m => m.Frequency, MultiLanguage.Dictionary["Frequency"])<br />
@@ -119,7 +117,7 @@
             </tr>
         </table>
         
-        @Html.HiddenFor(m => m.Move.DetailList[0].ID)
+        @Html.HiddenFor(m => m.Move.DetailList[0].FakeID)
     </div>
         
     <table class="createMoveScreenRight">

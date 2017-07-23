@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.MoveAddDetailModel
 
 <tr class="moveDetailItem" id="Detail_@(Model.Position)">
-    @Html.HiddenFor(m => m.Move.DetailList[Model.Position].ID)
+    @Html.HiddenFor(m => m.Move.DetailList[Model.Position].FakeID)
 
     <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Description, new { maxlength = MaximumLength.DetailDescription })</td>
     <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Amount, new { @class = "amount" })</td>

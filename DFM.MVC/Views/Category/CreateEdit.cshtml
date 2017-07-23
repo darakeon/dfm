@@ -15,12 +15,6 @@
         )
     {
         @Html.ValidationSummary()
-        @Html.HiddenFor(m => m.Type)
-
-        if (Model.Type == DFM.Generic.OperationType.Update)
-        {
-            @Html.HiddenFor(m => m.Category.Name)
-        }
 
         <p>
             @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"])
@@ -29,7 +23,5 @@
         </p>
     
         <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
-
-        @Html.HiddenFor(m => m.Category.Active)
     }
 </div>

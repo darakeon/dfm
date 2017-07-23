@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Entities.Bases;
+using DFM.Generic;
 
 namespace DFM.Entities
 {
@@ -11,7 +12,7 @@ namespace DFM.Entities
         }
 
         public virtual Int32 ID { get; set; }
-
+        
         public virtual String Description { get; set; }
         public virtual Int16 Amount { get; set; }
         public virtual Double Value { get; set; }
@@ -23,6 +24,21 @@ namespace DFM.Entities
         public override String ToString()
         {
             return String.Format("[{0}] {1}", ID, Description);
+        }
+
+        public virtual Int64 FakeID
+        {
+            get
+            {
+                return ID * Constants.FakeID;
+            }
+            set
+            {
+                if (value % Constants.FakeID != 0)
+                    throw new DFMException("Get back!");
+
+                ID = (Int32)(value / Constants.FakeID);
+            }
         }
 
     }

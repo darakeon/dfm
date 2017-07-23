@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.SuperServices
                 var operationType = 
                     move.ID == 0 
                         ? OperationType.Creation 
-                        : OperationType.Update;
+                        : OperationType.Edit;
 
                 move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 

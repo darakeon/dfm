@@ -131,13 +131,6 @@ namespace DFM.BusinessLogic.Bases
 
         #endregion
 
-        internal void Delete(Int32 id)
-        {
-            var move = SelectById(id);
-
-            Delete(move);
-        }
-
 
     }
 }

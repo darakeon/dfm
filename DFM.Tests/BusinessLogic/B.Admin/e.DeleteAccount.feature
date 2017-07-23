@@ -22,7 +22,16 @@ Scenario: 03. Delete an Account that has moves (E)
 	Then I will receive this core error: CantDeleteAccountWithMoves
 	And the account will not be deleted
 
-Scenario: 99. Delete an Account with info all right (S)
+
+Scenario: 98. Delete an Account that had moves (S)
+	Given I have a category
+	And I give a name of the account Be98 with moves
+	And I delete the moves of Be98
+	When I try to delete the account
+	Then I will receive no core error
+	And the account will be deleted
+
+Scenario: 99. Delete an Account without moves (S)
 	Given I give a name of the account Be99 without moves
 	When I try to delete the account
 	Then I will receive no core error

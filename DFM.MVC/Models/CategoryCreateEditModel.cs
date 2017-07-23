@@ -21,7 +21,7 @@ namespace DFM.MVC.Models
 
         
 
-        public OperationType Type { get; set; }
+        internal OperationType Type { get; set; }
 
         public Category Category { get; set; }
 
@@ -36,7 +36,7 @@ namespace DFM.MVC.Models
                 {
                     case OperationType.Creation:
                         return Category.Name;
-                    case OperationType.Update:
+                    case OperationType.Edit:
                         return name ?? Category.Name;
                     default:
                         throw new NotImplementedException();
@@ -49,7 +49,7 @@ namespace DFM.MVC.Models
                     case OperationType.Creation:
                         Category.Name = value;
                         break;
-                    case OperationType.Update:
+                    case OperationType.Edit:
                         name = value;
                         break;
                     default:

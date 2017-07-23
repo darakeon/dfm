@@ -15,6 +15,7 @@ namespace DFM.Repositories.Mappings
             mapping.Map(d => d.Amount)
                 .Default("1");
 
+            mapping.IgnoreProperty(d => d.FakeID);
 
             mapping.References(d => d.Move)
                 .Nullable();

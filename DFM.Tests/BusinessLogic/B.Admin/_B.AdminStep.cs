@@ -318,6 +318,33 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.DeleteAccount(AccountName);
         }
 
+        [Given(@"I delete the moves of ([\w ]+)")]
+        public void GivenIDeleteTheMovesOf(String givenAccountName)
+        {
+            var account = SA.Admin.SelectAccountByName(givenAccountName);
+
+            for (var y = 0; y < account.YearList.Count; y++)
+            {
+                var year = account.YearList[y];
+
+                for (var m = 0; m < year.MonthList.Count; m++)
+                {
+                    var month = year.MonthList[m];
+
+                    for (var mi = 0; mi < month.InList.Count; mi++)
+                    {
+                        SA.Money.DeleteMove(month.InList[mi].ID);
+                    }
+
+                    for (var mo = 0; mo < month.OutList.Count; mo++)
+                    {
+                        SA.Money.DeleteMove(month.OutList[mo].ID);
+                    }
+                }
+            }
+           
+        }
+
         [When(@"I try to delete the account")]
         public void WhenITryToDeleteTheAccount()
         {
@@ -667,20 +694,20 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountName)
         {
             Account = new Account
-                          {
-                              Name = givenAccountName,
-                              Url = MakeUrlFromName(givenAccountName), 
-                              User = User
-                          };
+            {
+                Name = givenAccountName,
+                Url = MakeUrlFromName(givenAccountName),
+                User = User
+            };
 
             SA.Admin.CreateAccount(Account);
 
             var move = new Move
-                           {
-                               Date = DateTime.Now,
-                               Description = "Move for account test",
-                               Nature = MoveNature.Out
-                           };
+            {
+                Date = DateTime.Now,
+                Description = "Move for account test",
+                Nature = MoveNature.Out
+            };
 
             // TODO: Remove this, put Value
             var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };

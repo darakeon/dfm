@@ -10,12 +10,18 @@ namespace DFM.BusinessLogic.SuperServices
     {
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
+        private readonly YearService yearService;
+        private readonly MonthService monthService;
+        private readonly SummaryService summaryService;
 
-        internal AdminService(ServiceAccess serviceAccess, AccountService accountService, CategoryService categoryService)
+        internal AdminService(ServiceAccess serviceAccess, AccountService accountService, CategoryService categoryService, YearService yearService, MonthService monthService, SummaryService summaryService)
             : base(serviceAccess)
         {
             this.accountService = accountService;
             this.categoryService = categoryService;
+            this.yearService = yearService;
+            this.monthService = monthService;
+            this.summaryService = summaryService;
         }
 
 
@@ -55,7 +61,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void UpdateAccount(Account account, String newName)
         {
-            saveOrUpdateAccount(account, OperationType.Update, newName);
+            saveOrUpdateAccount(account, OperationType.Edit, newName);
         }
 
         private void saveOrUpdateAccount(Account account, OperationType opType, String newName = null)
@@ -68,7 +74,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                if (opType == OperationType.Update)
+                if (opType == OperationType.Edit)
                 {
                     var oldAccount = SelectAccountByName(account.Name);
 
@@ -114,7 +120,30 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
+                var account = SelectAccountByName(name);
+
+                foreach (var year in account.YearList)
+                {
+                    foreach (var month in year.MonthList)
+                    {
+                        foreach (var summary in month.SummaryList)
+                        {
+                            summaryService.Delete(summary);
+                        }
+
+                        monthService.Delete(month);
+                    }
+
+                    foreach (var summary in year.SummaryList)
+                    {
+                        summaryService.Delete(summary);
+                    }
+
+                    yearService.Delete(year);
+                }
+
                 accountService.Delete(name, Parent.Current.User);
+
                 CommitTransaction();
             }
             catch (DFMCoreException)
@@ -145,7 +174,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void UpdateCategory(Category category, String newName)
         {
-            saveOrUpdateCategory(category, OperationType.Update, newName);
+            saveOrUpdateCategory(category, OperationType.Edit, newName);
         }
 
         private void saveOrUpdateCategory(Category category, OperationType opType, String newName = null)
@@ -158,11 +187,12 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                if (opType == OperationType.Update)
+                if (opType == OperationType.Edit)
                 {
                     var oldCategory = SelectCategoryByName(category.Name);
 
                     category.ID = oldCategory.ID;
+                    category.Active = oldCategory.Active;
 
                     if (!String.IsNullOrEmpty(newName))
                         category.Name = newName;

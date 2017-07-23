@@ -3,7 +3,8 @@
     public enum OperationType
     {
         Creation = 0,
-        Update = 1,
+        Edit = 1,
         Delete = 2,
+        Schedule = 3,
     }
 }

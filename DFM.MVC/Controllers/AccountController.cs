@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
@@ -41,6 +39,8 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Create(AccountCreateEditModel model)
         {
+            model.Type = OperationType.Creation;
+
             return createEdit(model);
         }
 
@@ -49,15 +49,15 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new AccountCreateEditModel(OperationType.Update)
+            var model = new AccountCreateEditModel(OperationType.Edit)
             {
                 Account = Services.Admin.SelectAccountByName(id)
             };
 
-            if (isAuthorized(model.Account))
-                return View("CreateEdit", model);
+            if (model.Account == null)
+                return RedirectToAction("Create");
             
-            return RedirectToAction("Create");
+            return View("CreateEdit", model);
         }
 
         [HttpPost]
@@ -65,9 +65,10 @@ namespace DFM.MVC.Controllers
         {
             var oldAccount = Services.Admin.SelectAccountByName(id);
 
-            return isAuthorized(oldAccount)
-                ? createEdit(model)
-                : RedirectToAction("Create");
+            model.Type = OperationType.Edit;
+            model.Account.Name = oldAccount.Name;
+
+            return createEdit(model);
         }
 
         private ActionResult createEdit(AccountCreateEditModel model)
@@ -99,15 +100,12 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Close(String id)
         {
-            var account =  Services.Admin.SelectAccountByName(id);
-
             // TODO: implement messages on page head
             //String message;
 
             try
             {
-                if (isAuthorized(account))
-                    Services.Admin.CloseAccount(id);
+                Services.Admin.CloseAccount(id);
                 //else
                 //    account = null;
 
@@ -127,15 +125,12 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Delete(String id)
         {
-            var account =  Services.Admin.SelectAccountByName(id);
-
             // TODO: implement messages on page head
             //String message;
 
             try
             {
-                if (isAuthorized(account))
-                    Services.Admin.DeleteAccount(id);
+                Services.Admin.DeleteAccount(id);
                 //else
                 //    account = null;
 
@@ -153,12 +148,6 @@ namespace DFM.MVC.Controllers
         }
 
 
-
-        private Boolean isAuthorized(Account account)
-        {
-            return account != null
-                   && account.AuthorizeCRUD(Current.User);
-        }
 
     }
 }

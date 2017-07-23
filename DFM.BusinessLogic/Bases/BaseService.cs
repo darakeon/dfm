@@ -50,9 +50,14 @@ namespace DFM.BusinessLogic.Bases
         }
 
         
-        protected void Delete(T entity)
+        internal void Delete(T entity)
         {
             repository.Delete(entity);
+        }
+
+        internal void Delete(Int32 id)
+        {
+            Delete(SelectById(id));
         }
 
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Ak.Generic.Collection;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -162,7 +161,7 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 case OperationType.Creation:
                     return "create_move";
-                case OperationType.Update:
+                case OperationType.Edit:
                     return "edit";
                 case OperationType.Delete:
                     return "delete";

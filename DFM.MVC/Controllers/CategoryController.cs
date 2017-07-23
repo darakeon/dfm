@@ -36,6 +36,8 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Create(CategoryCreateEditModel model)
         {
+            model.Type = OperationType.Creation;
+
             return createEditForHtmlForm(model);
         }
 
@@ -44,6 +46,8 @@ namespace DFM.MVC.Controllers
         {
             try
             {
+                model.Type = OperationType.Creation;
+
                 var category = createEditForAll(model);
                 var json = new { name = category.Name };
 
@@ -61,27 +65,21 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new CategoryCreateEditModel(OperationType.Update)
+            var model = new CategoryCreateEditModel(OperationType.Edit)
             {
                 Category = Services.Admin.SelectCategoryByName(id)
             };
 
-            if (isUnauthorized(model.Category))
-                return RedirectToAction("Create");
-            
             return View("CreateEdit", model);
         }
 
         [HttpPost]
         public ActionResult Edit(String id, CategoryCreateEditModel model)
         {
+            model.Type = OperationType.Edit;
             model.Category.Name = id;
 
-            var oldCategory = Services.Admin.SelectCategoryByName(id);
-
-            return isUnauthorized(oldCategory)
-                ? RedirectToAction("Create")
-                : createEditForHtmlForm(model);
+            return createEditForHtmlForm(model);
         }
 
 
@@ -107,15 +105,6 @@ namespace DFM.MVC.Controllers
 
         private Category createEditForAll(CategoryCreateEditModel model)
         {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
             model.Category.User = Current.User;
 
             if (model.Type == OperationType.Creation)
@@ -130,10 +119,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Disable(String id)
         {
-            var category = Services.Admin.SelectCategoryByName(id);
-
-            if (!isUnauthorized(category))
-                Services.Admin.DisableCategory(id);
+            Services.Admin.DisableCategory(id);
             //else
             //    category = null;
 
@@ -149,10 +135,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Enable(String id)
         {
-            var category =  Services.Admin.SelectCategoryByName(id);
-
-            if (!isUnauthorized(category))
-                Services.Admin.EnableCategory(id);
+            Services.Admin.EnableCategory(id);
             //else
             //    category = null;
 
@@ -162,14 +145,6 @@ namespace DFM.MVC.Controllers
             //    : String.Format(MultiLanguage.Dictionary["CategoryEnabled"], category.Name);
 
             return RedirectToAction("Index");
-        }
-
-
-
-        private Boolean isUnauthorized(Category category)
-        {
-            return category == null
-                   || !category.AuthorizeCRUD(Current.User);
         }
 
     }

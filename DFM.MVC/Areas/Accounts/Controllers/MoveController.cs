@@ -12,6 +12,7 @@ using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
 using DFM.Repositories;
+using DFM.Generic;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
@@ -32,7 +33,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditScheduleModel();
+            var model = new MoveCreateEditScheduleModel(OperationType.Creation);
             
             model.PopulateExcludingAccount(account.Url);
 
@@ -43,6 +44,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         public ActionResult Create(MoveCreateEditScheduleModel model)
         {
             model.Schedule = null;
+            model.Type = OperationType.Creation;
 
             return createEditSchedule<Move>(model);
         }
@@ -56,17 +58,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var move = Services.Money.SelectMoveById(id.Value);
 
-            if (isUnauthorized(move))
-                return RedirectToAction("Create");
-
-
-
-            var model = new MoveCreateEditScheduleModel(move);
+            var model = new MoveCreateEditScheduleModel(move, OperationType.Edit);
 
             if (model.AccountName == account.Name)
                 return redirectToRightAccount(move);
-
-
 
             model.PopulateExcludingAccount(account.Name);
 
@@ -85,13 +80,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
-            var oldMove =  Services.Money.SelectMoveById(id);
-
-            if (isUnauthorized(oldMove))
-                return RedirectToAction("Create");
+            var oldMove = Services.Money.SelectMoveById(id);
 
             model.Move.ID = id;
             model.Schedule = oldMove.Schedule;
+            model.Type = OperationType.Edit;
 
             return createEditSchedule<Move>(model);
         }
@@ -100,7 +93,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Schedule()
         {
-            var model = new MoveCreateEditScheduleModel {IsSchedule = true};
+            var model = new MoveCreateEditScheduleModel(OperationType.Schedule);
 
             model.PopulateExcludingAccount(account.Name);
 
@@ -110,6 +103,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Schedule(MoveCreateEditScheduleModel model)
         {
+            model.Type = OperationType.Schedule;
+
             return createEditSchedule<FutureMove>(model);
         }
 
@@ -185,8 +180,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var move =  Services.Money.SelectMoveById(id);
 
-            if (!isUnauthorized(move))
-                Services.Money.DeleteMove(id);
+            Services.Money.DeleteMove(id);
             //else
             //    move = null;
 
@@ -205,12 +199,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         private ActionResult viewCES(MoveCreateEditScheduleModel model) 
         {
             return View("CreateEditSchedule", model);
-        }
-
-        private Boolean isUnauthorized(BaseMove baseMove)
-        {
-            return baseMove == null
-                   || !baseMove.AuthorizeCRUD(Current.User);
         }
 
     }

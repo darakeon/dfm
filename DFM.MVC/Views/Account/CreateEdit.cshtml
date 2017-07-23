@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
         
-    if (Model.Type == DFM.Generic.OperationType.Update)
+    if (Model.Type == DFM.Generic.OperationType.Edit)
     {
         ViewBag.Title += " " + Model.Name;
     }
@@ -19,13 +19,7 @@
     @using (Html.BeginForm()) {
 
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(m => m.Type)
 
-        if (Model.Type == DFM.Generic.OperationType.Update)
-        {
-            @Html.HiddenFor(m => m.Account.Name)
-        }
-        
         <p>
             @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
             @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })

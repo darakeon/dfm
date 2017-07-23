@@ -10,10 +10,12 @@ namespace DFM.Repositories.Mappings
         public void Override(AutoMapping<Account> mapping)
         {
             mapping.Map(a => a.Name)
-                .Length(MaximumLength.AccountName);
+                .Length(MaximumLength.AccountName)
+                .UniqueKey("Account_NameUser");
 
             mapping.Map(a => a.Url)
-                .Length(MaximumLength.AccountUrl);
+                .Length(MaximumLength.AccountUrl)
+                .UniqueKey("Account_UrlUser");
 
             mapping.Map(a => a.EndDate)
                 .Nullable();
@@ -28,6 +30,8 @@ namespace DFM.Repositories.Mappings
                 .Cascade.Delete();
 
             mapping.References(a => a.User)
+                .UniqueKey("Account_NameUser")
+                .UniqueKey("Account_UrlUser")
                 .Cascade.None();
         }
     }

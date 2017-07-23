@@ -51,6 +51,7 @@ VERSÃO 1.0.3.1
 						Fazer ValidateAndGet pegar String de LoginSession
 						Substituir SelectByEmail de User por SelectByLogin
 					>>>	Se for post, fazer login realizar history.go(-2)
+						Travar schedule de conta fechada / deletada
 
 VERSÃO 1.0.3.0
 ======================================================================================================
@@ -60,7 +61,7 @@ VERSÃO 1.0.3.0
 
 VERSÃO 1.0.2.3
 ======================================================================================================
-						AntiForgeryToken
+						Proteger edição de hiddens, onde for necessário
 07/03/2013	07/03/2013	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
 07/03/2013	07/03/2013	Não enviar e-mail caso dê erro ao mexer na movimentação
 07/03/2013	07/03/2013	Proteger edição de objeto (user) no core

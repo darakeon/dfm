@@ -27,7 +27,7 @@ namespace DFM.BusinessLogic
             BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
 
             Safe = new SafeService(this, user, security);
-            Admin = new AdminService(this, account, category);
+            Admin = new AdminService(this, account, category, year, month, summary);
             Money = new MoneyService(this, move, detail, month, schedule);
             Robot = new RobotService(this, schedule, futureMove, detail);
             Report = new ReportService(this, account, year, month);

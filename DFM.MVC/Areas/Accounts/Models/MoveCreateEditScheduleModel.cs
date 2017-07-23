@@ -7,6 +7,7 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Entities;
+using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 
@@ -43,8 +44,14 @@ namespace DFM.MVC.Areas.Accounts.Models
                 );
         }
 
-        public MoveCreateEditScheduleModel(BaseMove baseMove)
+        public MoveCreateEditScheduleModel(OperationType type) 
             : this()
+        {
+            Type = type;
+        }
+
+        public MoveCreateEditScheduleModel(BaseMove baseMove, OperationType type)
+            : this(type)
         {
             Move = baseMove;
 
@@ -53,6 +60,9 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             CategoryName = Move.Category.Name;
         }
+
+
+        public OperationType Type { get; set; }
 
 
         public BaseMove Move { get; set; }
@@ -81,9 +91,6 @@ namespace DFM.MVC.Areas.Accounts.Models
 
 
         public Boolean IsDetailed { get; set; }
-
-
-        public Boolean IsSchedule { get; set; }
 
 
         public Schedule Schedule { get; set; }
@@ -116,7 +123,8 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             IsDetailed = Move.HasDetails() && Move.IsDetailed();
 
-            IsSchedule = Move is FutureMove || IsSchedule;
+            if (Move is FutureMove)
+                Type = OperationType.Schedule;
 
             if (!Move.DetailList.Any())
                 Move.AddDetail(new Detail { Amount = 1 });
