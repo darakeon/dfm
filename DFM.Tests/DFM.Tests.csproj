@@ -31,151 +31,151 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="A.Safe\d.ActivateUser.feature.cs">
+    <Compile Include="Services\A.Safe\d.ActivateUser.feature.cs">
       <DependentUpon>d.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\e.ValidateAndGetUser.feature.cs">
+    <Compile Include="Services\A.Safe\e.ValidateAndGetUser.feature.cs">
       <DependentUpon>e.ValidateAndGetUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\f.SelectUserByEmail.feature.cs">
+    <Compile Include="Services\A.Safe\f.SelectUserByEmail.feature.cs">
       <DependentUpon>f.SelectUserByEmail.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\b.SendUserVerify.feature.cs">
+    <Compile Include="Services\A.Safe\b.SendUserVerify.feature.cs">
       <DependentUpon>b.SendUserVerify.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\c.SendPasswordReset.feature.cs">
+    <Compile Include="Services\A.Safe\c.SendPasswordReset.feature.cs">
       <DependentUpon>c.SendPasswordReset.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\g.PasswordReset.feature.cs">
+    <Compile Include="Services\A.Safe\g.PasswordReset.feature.cs">
       <DependentUpon>g.PasswordReset.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\h.TestSecurityToken.feature.cs">
+    <Compile Include="Services\A.Safe\h.TestSecurityToken.feature.cs">
       <DependentUpon>h.TestSecurityToken.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\i.DeactivateToken.feature.cs">
+    <Compile Include="Services\A.Safe\i.DeactivateToken.feature.cs">
       <DependentUpon>i.DeactivateToken.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="A.Safe\a.SaveUserAndSendVerify.feature.cs">
+    <Compile Include="Services\A.Safe\a.SaveUserAndSendVerify.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveUserAndSendVerify.feature</DependentUpon>
     </Compile>
-    <Compile Include="A.Safe\_A.SafeStep.cs" />
-    <Compile Include="B.Admin\a.SaveAccount.feature.cs">
+    <Compile Include="Services\A.Safe\_A.SafeStep.cs" />
+    <Compile Include="Services\B.Admin\a.SaveAccount.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="B.Admin\b.SelectAccountByName.feature.cs">
+    <Compile Include="Services\B.Admin\b.SelectAccountByName.feature.cs">
       <DependentUpon>b.SelectAccountByName.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\g.SelectCategoryByName.feature.cs">
+    <Compile Include="Services\B.Admin\g.SelectCategoryByName.feature.cs">
       <DependentUpon>g.SelectCategoryByName.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\_B.AdminStep.cs" />
-    <Compile Include="B.Admin\c.SelectAccountById.feature.cs">
+    <Compile Include="Services\B.Admin\_B.AdminStep.cs" />
+    <Compile Include="Services\B.Admin\c.SelectAccountById.feature.cs">
       <DependentUpon>c.SelectAccountById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\d.CloseAccount.feature.cs">
+    <Compile Include="Services\B.Admin\d.CloseAccount.feature.cs">
       <DependentUpon>d.CloseAccount.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\e.DeleteAccount.feature.cs">
+    <Compile Include="Services\B.Admin\e.DeleteAccount.feature.cs">
       <DependentUpon>e.DeleteAccount.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\f.SaveCategory.feature.cs">
+    <Compile Include="Services\B.Admin\f.SaveCategory.feature.cs">
       <DependentUpon>f.SaveCategory.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\h.SelectCategoryById.feature.cs">
+    <Compile Include="Services\B.Admin\h.SelectCategoryById.feature.cs">
       <DependentUpon>h.SelectCategoryById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\i.DisableCategory.feature.cs">
+    <Compile Include="Services\B.Admin\i.DisableCategory.feature.cs">
       <DependentUpon>i.DisableCategory.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="B.Admin\j.EnableCategory.feature.cs">
+    <Compile Include="Services\B.Admin\j.EnableCategory.feature.cs">
       <DependentUpon>j.EnableCategory.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BaseStep.cs" />
-    <Compile Include="C.Money\a.SaveMove.feature.cs">
+    <Compile Include="Services\BaseStep.cs" />
+    <Compile Include="Services\C.Money\a.SaveMove.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveMove.feature</DependentUpon>
     </Compile>
-    <Compile Include="C.Money\b.UpdateMove.feature.cs">
+    <Compile Include="Services\C.Money\b.UpdateMove.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>b.UpdateMove.feature</DependentUpon>
     </Compile>
-    <Compile Include="C.Money\_C.MoneyStep.cs" />
-    <Compile Include="C.Money\c.SelectMoveById.feature.cs">
+    <Compile Include="Services\C.Money\_C.MoneyStep.cs" />
+    <Compile Include="Services\C.Money\c.SelectMoveById.feature.cs">
       <DependentUpon>c.SelectMoveById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="C.Money\d.SelectDetailById.feature.cs">
+    <Compile Include="Services\C.Money\d.SelectDetailById.feature.cs">
       <DependentUpon>d.SelectDetailById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="C.Money\e.DeleteMove.feature.cs">
+    <Compile Include="Services\C.Money\e.DeleteMove.feature.cs">
       <DependentUpon>e.DeleteMove.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CD.MoneyRobotStep.cs" />
-    <Compile Include="D.Robot\_D.RobotStep.cs" />
-    <Compile Include="E.Report\_E.ReportStep.cs" />
-    <Compile Include="Helpers\DBHelper.cs" />
-    <Compile Include="MainStep.cs" />
-    <Compile Include="D.Robot\b.RunSchedule.feature.cs">
+    <Compile Include="Services\CD.MoneyRobotStep.cs" />
+    <Compile Include="Services\D.Robot\_D.RobotStep.cs" />
+    <Compile Include="Services\E.Report\_E.ReportStep.cs" />
+    <Compile Include="Services\Helpers\DBHelper.cs" />
+    <Compile Include="Services\MainStep.cs" />
+    <Compile Include="Services\D.Robot\b.RunSchedule.feature.cs">
       <DependentUpon>b.RunSchedule.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="D.Robot\a.SaveSchedule.feature.cs">
+    <Compile Include="Services\D.Robot\a.SaveSchedule.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveSchedule.feature</DependentUpon>
     </Compile>
-    <Compile Include="E.Report\b.GetYearReport.feature.cs">
+    <Compile Include="Services\E.Report\b.GetYearReport.feature.cs">
       <DependentUpon>b.GetYearReport.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="E.Report\a.GetMonthReport.feature.cs">
+    <Compile Include="Services\E.Report\a.GetMonthReport.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
@@ -184,115 +184,115 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="B.Admin\a.SaveAccount.feature">
+    <None Include="Services\B.Admin\a.SaveAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveAccount.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\c.SelectAccountById.feature">
+    <None Include="Services\B.Admin\c.SelectAccountById.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.SelectAccountById.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\b.SelectAccountByName.feature">
+    <None Include="Services\B.Admin\b.SelectAccountByName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.SelectAccountByName.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\g.SelectCategoryByName.feature">
+    <None Include="Services\B.Admin\g.SelectCategoryByName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>g.SelectCategoryByName.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\d.CloseAccount.feature">
+    <None Include="Services\B.Admin\d.CloseAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>d.CloseAccount.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\e.DeleteAccount.feature">
+    <None Include="Services\B.Admin\e.DeleteAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>e.DeleteAccount.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\f.SaveCategory.feature">
+    <None Include="Services\B.Admin\f.SaveCategory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>f.SaveCategory.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\h.SelectCategoryById.feature">
+    <None Include="Services\B.Admin\h.SelectCategoryById.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>h.SelectCategoryById.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\i.DisableCategory.feature">
+    <None Include="Services\B.Admin\i.DisableCategory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>i.DisableCategory.feature.cs</LastGenOutput>
     </None>
-    <None Include="B.Admin\j.EnableCategory.feature">
+    <None Include="Services\B.Admin\j.EnableCategory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>j.EnableCategory.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\a.SaveMove.feature">
+    <None Include="Services\C.Money\a.SaveMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveMove.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\c.SelectMoveById.feature">
+    <None Include="Services\C.Money\c.SelectMoveById.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.SelectMoveById.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\d.SelectDetailById.feature">
+    <None Include="Services\C.Money\d.SelectDetailById.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>d.SelectDetailById.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\e.DeleteMove.feature">
+    <None Include="Services\C.Money\e.DeleteMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>e.DeleteMove.feature.cs</LastGenOutput>
     </None>
-    <None Include="C.Money\b.UpdateMove.feature">
+    <None Include="Services\C.Money\b.UpdateMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.UpdateMove.feature.cs</LastGenOutput>
     </None>
-    <None Include="D.Robot\b.RunSchedule.feature">
+    <None Include="Services\D.Robot\b.RunSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.RunSchedule.feature.cs</LastGenOutput>
     </None>
-    <None Include="E.Report\b.GetYearReport.feature">
+    <None Include="Services\E.Report\b.GetYearReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.GetYearReport.feature.cs</LastGenOutput>
     </None>
-    <None Include="E.Report\a.GetMonthReport.feature">
+    <None Include="Services\E.Report\a.GetMonthReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.GetMonthReport.feature.cs</LastGenOutput>
     </None>
-    <None Include="D.Robot\a.SaveSchedule.feature">
+    <None Include="Services\D.Robot\a.SaveSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveSchedule.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\d.ActivateUser.feature">
+    <None Include="Services\A.Safe\d.ActivateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>d.ActivateUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\e.ValidateAndGetUser.feature">
+    <None Include="Services\A.Safe\e.ValidateAndGetUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>e.ValidateAndGetUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\f.SelectUserByEmail.feature">
+    <None Include="Services\A.Safe\f.SelectUserByEmail.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>f.SelectUserByEmail.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\b.SendUserVerify.feature">
+    <None Include="Services\A.Safe\b.SendUserVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.SendUserVerify.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\c.SendPasswordReset.feature">
+    <None Include="Services\A.Safe\c.SendPasswordReset.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.SendPasswordReset.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\g.PasswordReset.feature">
+    <None Include="Services\A.Safe\g.PasswordReset.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>g.PasswordReset.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\h.TestSecurityToken.feature">
+    <None Include="Services\A.Safe\h.TestSecurityToken.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>h.TestSecurityToken.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\i.DeactivateToken.feature">
+    <None Include="Services\A.Safe\i.DeactivateToken.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>i.DeactivateToken.feature.cs</LastGenOutput>
     </None>
-    <None Include="A.Safe\a.SaveUserAndSendVerify.feature">
+    <None Include="Services\A.Safe\a.SaveUserAndSendVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveUserAndSendVerify.feature.cs</LastGenOutput>
     </None>
