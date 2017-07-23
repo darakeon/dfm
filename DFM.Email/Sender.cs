@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
-using System.Net;
 using DFM.Email.Exceptions;
+using CM = System.Configuration.ConfigurationManager;
+using Smtp = System.Net.Configuration.SmtpSection;
 
 namespace DFM.Email
 {
     public class Sender
     {
-        private static readonly String domain = ConfigurationManager.AppSettings["smtp-domain"];
-        private static readonly String subdomain = ConfigurationManager.AppSettings["smtp-subdomain"];
-
-        private static readonly String sender = ConfigurationManager.AppSettings["email-sender"];
-        private static readonly String receiver = ConfigurationManager.AppSettings["email-receiver"];
-        private static readonly String senderPassword = ConfigurationManager.AppSettings["email-receiver-pass"];
-
-
-        public static readonly String SenderAddress = sender + "@" + domain;
-        private static readonly String @default = receiver + "@" + domain;
-        private static readonly String smtpAddress = subdomain + "." + domain;
-
-
-
-        private String to, subject, body;
+        private String from, to, subject, body;
         private readonly IList<String> files;
 
+        public readonly String @default;
+        
+        public static String SenderAddress
+        {
+            get { return new Sender().from; }
+        }
+        
 
         public Sender()
         {
             files = new List<String>();
+
+            var mailSettings = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
+            
+            if (mailSettings != null)
+                from = mailSettings.From;
+
+            @default = CM.AppSettings["email"];
         }
 
 
@@ -67,12 +67,10 @@ namespace DFM.Email
 
         public void Send()
         {
-            var emailSender = ConfigurationManager.AppSettings["EmailSender"];
+            var emailSender = CM.AppSettings["EmailSender"];
 
             if (emailSender == "DontSend")
                 return;
-
-            var credentials = new NetworkCredential(SenderAddress, senderPassword);
 
             if (String.IsNullOrEmpty(subject))
                 DFMEmailException.WithMessage(ExceptionPossibilities.InvalidSubject);
@@ -83,19 +81,11 @@ namespace DFM.Email
             if (String.IsNullOrEmpty(to))
                 DFMEmailException.WithMessage(ExceptionPossibilities.InvalidAddressee);
 
-            var smtp = new SmtpClient(smtpAddress, 587)
-                            {
-                                EnableSsl = false,
-                                Timeout = 10000,
-                                DeliveryMethod = SmtpDeliveryMethod.Network,
-                                UseDefaultCredentials = false,
-                                Credentials = credentials,
-                            };
+            var smtp = new SmtpClient { Timeout = 10000 };
 
-            var message = new MailMessage(SenderAddress, to, subject, body)
-                            {
-                                IsBodyHtml = true
-                            };
+            var message = 
+                new MailMessage(from, to, subject, body)
+                    { IsBodyHtml = true };
 
 
             var attachments = files.Select(
