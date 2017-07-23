@@ -10,6 +10,7 @@ using DFM.Multilanguage;
 using DFM.Repositories;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
+using System.Text.RegularExpressions;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -46,6 +47,16 @@ namespace DFM.Tests.BusinessLogic
             return String.IsNullOrEmpty(str)
                 ? (Int32?) null
                 : Int32.Parse(str);
+        }
+
+
+
+        protected String MakeUrlFromName(String name)
+        {
+            var regex = new Regex("[^A-Za-z0-9_]");
+            var url = regex.Replace(name, "");
+
+            return url;
         }
 
 
@@ -96,7 +107,14 @@ namespace DFM.Tests.BusinessLogic
                 if (e.Type != ExceptionPossibilities.InvalidAccount)
                     throw;
 
-                SA.Admin.CreateAccount(new Account { Name = accountName, User = User });
+                SA.Admin.CreateAccount(
+                    new Account
+                        {
+                            Name = accountName, 
+                            Url = MakeUrlFromName(accountName), 
+                            User = User
+                        });
+
                 return SA.Admin.SelectAccountByName(accountName);
             }
         }

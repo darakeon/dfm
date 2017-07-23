@@ -16,6 +16,7 @@
     <YellowLimit text="Yellow Limit" />
     <LimitExplanation text="when account goes under this, a sign is shown on account list." />
     <AccountHasLimit text="Account has limits" />
+    <Url text="Url" />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
@@ -33,5 +34,6 @@
     <YellowLimit text="Sinal Amarelo" />
     <LimitExplanation text="quando uma conta fica abaixo do valor, um sinal aparecerá na listagem de contas." />
     <AccountHasLimit text="Mostrar sinalização na Conta" />
+    <Url text="Url" />
   </pt-BR>
 </account>

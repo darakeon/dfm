@@ -5,6 +5,7 @@ namespace DFM.BusinessLogic.Helpers
     public class MaximumLength
     {
         public const Int16 AccountName = 20;
+        public const Int16 AccountUrl = 20;
         public const Int16 CategoryName = 20;
         public const Int16 DetailDescription = 50;
         public const Int16 MoveDescription = 50;

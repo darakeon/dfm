@@ -14,11 +14,15 @@
         UserPasswordRequired,
 
         AccountNameRequired,
+        AccountUrlRequired,
+        AccountUrlInvalid,
         AccountAlreadyExists,
+        AccountUrlAlreadyExists,
         CantCloseEmptyAccount,
         CantDeleteAccountWithMoves,
         ClosedAccount,
         DuplicatedAccountName,
+        DuplicatedAccountUrl,
         RedLimitAboveYellowLimit,
         InvalidAccount,
 

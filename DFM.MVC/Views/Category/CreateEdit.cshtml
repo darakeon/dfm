@@ -17,6 +17,11 @@
         @Html.ValidationSummary()
         @Html.HiddenFor(m => m.Type)
 
+        if (Model.Type == DFM.Generic.OperationType.Update)
+        {
+            @Html.HiddenFor(m => m.Category.Name)
+        }
+
         <p>
             @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"])
             @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.CategoryName })

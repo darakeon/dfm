@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
@@ -21,6 +22,7 @@ namespace DFM.BusinessLogic.Services
         private void validate(Account account)
         {
             checkName(account);
+            checkUrl(account);
             checkLimits(account);
         }
 
@@ -38,6 +40,26 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountAlreadyExists);
         }
 
+        private void checkUrl(Account account)
+        {
+            if (String.IsNullOrEmpty(account.Url))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlRequired);
+
+            var regex = new Regex(@"^[a-z0-9_]*$");
+
+            if (!regex.IsMatch(account.Url))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlInvalid);
+
+
+            var otherAccount = SelectByUrl(account.Url, account.User);
+
+            var accountUrlExistsForUser = otherAccount != null
+                                       && otherAccount.ID != account.ID;
+
+            if (accountUrlExistsForUser)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlAlreadyExists);
+        }
+
         private static void checkLimits(Account account)
         {
             if (account.RedLimit == null || account.YellowLimit == null)
@@ -51,6 +73,9 @@ namespace DFM.BusinessLogic.Services
 
         private void complete(Account account)
         {
+            if (!String.IsNullOrEmpty(account.Url))
+                account.Url = account.Url.ToLower();
+
             // TODO: use Current User
             var oldAccount = SelectById(account.ID);
 
@@ -84,6 +109,21 @@ namespace DFM.BusinessLogic.Services
             catch (NonUniqueResultException)
             {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
+            }
+        }
+
+        internal Account SelectByUrl(String url, User user)
+        {
+            try
+            {
+                return SingleOrDefault(
+                        a => a.Url == url
+                             && a.User.ID == user.ID
+                    );
+            }
+            catch (NonUniqueResultException)
+            {
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
             }
         }
 

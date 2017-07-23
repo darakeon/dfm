@@ -12,6 +12,9 @@ namespace DFM.Repositories.Mappings
             mapping.Map(a => a.Name)
                 .Length(MaximumLength.AccountName);
 
+            mapping.Map(a => a.Url)
+                .Length(MaximumLength.AccountUrl);
+
             mapping.Map(a => a.EndDate)
                 .Nullable();
 

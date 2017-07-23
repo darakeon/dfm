@@ -98,7 +98,12 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has a closed Account Out")]
         public void GivenItHasAClosedAccountOut()
         {
-            AccountOut = new Account { Name = "closed out", User = User };
+            AccountOut = new Account
+            {
+                Name = "closed out",
+                Url = MakeUrlFromName("closed out"),
+                User = User,
+            };
 
             SA.Admin.CreateAccount(AccountOut);
 
@@ -142,13 +147,24 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has an unknown Account In")]
         public void GivenItHasAnUnknownAccountIn()
         {
-            AccountIn = new Account { Name = "unknown", User = User };
+            AccountIn = new Account
+            {
+                Name = "unknown",
+                Url = MakeUrlFromName("unknown"), 
+                User = User,
+            };
         }
 
         [Given(@"it has a closed Account In")]
         public void GivenItHasAClosedAccountIn()
         {
-            AccountIn = new Account { Name = "closed in", User = User };
+            AccountIn = new Account
+            {
+                Name = "closed in",
+                Url = MakeUrlFromName("closed in"),
+                User = User,
+            };
+
             SA.Admin.CreateAccount(AccountIn);
 
             var move = new Move

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
         
-    if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Update)
+    if (Model.Type == DFM.Generic.OperationType.Update)
     {
         ViewBag.Title += " " + Model.Name;
     }
@@ -21,7 +21,7 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(m => m.Type)
 
-        if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Update)
+        if (Model.Type == DFM.Generic.OperationType.Update)
         {
             @Html.HiddenFor(m => m.Account.Name)
         }
@@ -31,6 +31,13 @@
             @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
 
             <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.Account.Url, MultiLanguage.Dictionary["Url"])
+            @Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaximumLength.AccountUrl })
+
+            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountUrl)</span>
         </p>
 
         <p class="radio">

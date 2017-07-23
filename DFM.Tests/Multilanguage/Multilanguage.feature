@@ -1,4 +1,4 @@
-﻿Feature: E-mail sending
+﻿Feature: Translation
 
 Background: 
 	Given the dictionary is initialized
@@ -46,8 +46,7 @@ Scenario: 03. Get translations of Enums
 	When I try get the translate
 	Then I will receive no multilanguage error
 
-
-Scenario: 03. Get translations of Errors
+Scenario: 04. Get translations of Errors
 	Given I have these keys
 		| Section | Phrase                         |
 		| Error   | Unauthorized                   |
@@ -59,11 +58,15 @@ Scenario: 03. Get translations of Errors
 		| Error   | UserEmailInvalid               |
 		| Error   | UserPasswordRequired           |
 		| Error   | AccountNameRequired            |
+		| Error   | AccountUrlRequired             |
+		| Error   | AccountUrlInvalid              |
 		| Error   | AccountAlreadyExists           |
+		| Error   | AccountUrlAlreadyExists        |
 		| Error   | CantCloseEmptyAccount          |
 		| Error   | CantDeleteAccountWithMoves     |
 		| Error   | ClosedAccount                  |
 		| Error   | DuplicatedAccountName          |
+		| Error   | DuplicatedAccountUrl           |
 		| Error   | RedLimitAboveYellowLimit       |
 		| Error   | InvalidAccount                 |
 		| Error   | CategoryNameRequired           |
@@ -97,7 +100,7 @@ Scenario: 03. Get translations of Errors
 	Then I will receive no multilanguage error
 
 
-Scenario: 04. Get translate of Interface (move)
+Scenario: 05. Get translate of Interface (move)
 	Given I have these keys
 		| Section | Phrase          |
 		| Move    | Create          |
@@ -128,7 +131,7 @@ Scenario: 04. Get translate of Interface (move)
 	Then I will receive no multilanguage error
 
 
-Scenario: 05. Get translate of Interface (report)
+Scenario: 06. Get translate of Interface (report)
 	Given I have these keys
 		| Section | Phrase            |
 		| Report  | ShortDateFormat   |
@@ -152,7 +155,7 @@ Scenario: 05. Get translate of Interface (report)
 	Then I will receive no multilanguage error
 
 
-Scenario: 06. Get translate of Interface (account)
+Scenario: 07. Get translate of Interface (account)
 	Given I have these keys
 		| Section | Phrase           |
 		| Account | Create           |
@@ -187,11 +190,12 @@ Scenario: 06. Get translate of Interface (account)
 		| Account | GOTO             |
 		| Account | MonthMoves       |
 		| Account | YearMoves        |
+		| Account | Url              |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 
-Scenario: 07. Get translate of Interface (category)
+Scenario: 08. Get translate of Interface (category)
 	Given I have these keys
 		| Section  | Phrase        |
 		| Category | Create        |
@@ -209,7 +213,7 @@ Scenario: 07. Get translate of Interface (category)
 	Then I will receive no multilanguage error
 
 
-Scenario: 08. Get translate of Interface (token)
+Scenario: 09. Get translate of Interface (token)
 	Given I have these keys
 		| Section | Phrase                  |
 		| Token   | RetypeWrong             |
@@ -237,7 +241,7 @@ Scenario: 08. Get translate of Interface (token)
 	Then I will receive no multilanguage error
 
 
-Scenario: 09. Get translate of Interface (user)
+Scenario: 10. Get translate of Interface (user)
 	Given I have these keys
 		| Section | Phrase                 |
 		| User    | ForgotPassword         |
@@ -277,7 +281,7 @@ Scenario: 09. Get translate of Interface (user)
 	Then I will receive no multilanguage error
 
 
-Scenario: 10. Get translate of Interface (ops)
+Scenario: 11. Get translate of Interface (ops)
 	Given I have these keys
 		| Section | Phrase                 |
 		| Ops     | NotFound               |
@@ -288,7 +292,7 @@ Scenario: 10. Get translate of Interface (ops)
 	Then I will receive no multilanguage error
 
 
-Scenario: 11. Get translate of Interface (general)
+Scenario: 12. Get translate of Interface (general)
 	Given I have these keys
 		| Section | Phrase               |
 		| General | LogOff               |

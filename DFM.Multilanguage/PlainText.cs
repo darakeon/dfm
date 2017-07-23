@@ -132,10 +132,7 @@ namespace DFM.Multilanguage
 
         private static String notFound(String section, String language, String phrase)
         {
-#if DEBUG
             throw new DicException(String.Format("S: {0} /// L: {1} /// P: {2}", section, language, phrase));
-#endif
-            return phrase;
         }
         
 

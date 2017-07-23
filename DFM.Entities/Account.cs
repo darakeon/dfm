@@ -16,6 +16,8 @@ namespace DFM.Entities
         public virtual Int32 ID { get; set; }
 
         public virtual String Name { get; set; }
+        public virtual String Url { get; set; }
+
         public virtual Double? RedLimit { get; set; }
         public virtual Double? YellowLimit { get; set; }
         public virtual DateTime BeginDate { get; set; }

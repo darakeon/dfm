@@ -5,6 +5,9 @@
     
     <AccountAlreadyExists text="Account already exists." />
     <AccountNotFound text="Account not found." />
+    <AccountUrlRequired text="Account url required." />
+    <AccountUrlInvalid text="Account url invalid." />
+    <AccountUrlAlreadyExists text="Account url already exists." />
     <CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
     <CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
     <CategoryAlreadyExists text="Category already exists." />
@@ -16,6 +19,7 @@
     <DetailRequired text="Moves need at least one value." />
     <DisabledCategory text="Can't insert Moves in Disabled Categories." />
     <DuplicatedAccountName text="There are two accounts with same name." />
+    <DuplicatedAccountUrl text="There are two accounts with same url." />
     <DuplicatedName text="There is more than one account with same name." />
     <FailOnEmailSend text="Fail on trying to send. Verify the e-mail address." />
     <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
@@ -67,6 +71,9 @@
 
     <AccountAlreadyExists text="Conta já existe." />
     <AccountNotFound text="Conta não encontrada." />
+    <AccountUrlRequired text="Url da conta obrigatória." />
+    <AccountUrlInvalid text="Url da conta inválida." />
+    <AccountUrlAlreadyExists text="Url da conta já usada." />
     <CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
     <CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
     <CategoryAlreadyExists text="Categoria já existe." />
@@ -78,6 +85,7 @@
     <DetailRequired text="É necessário ter ao menos um valor para uma Movimentação." />
     <DisabledCategory text="Não é possível inserir Movimentações em Categorias desabilitadas." />
     <DuplicatedAccountName text="Há duas contas com o mesmo nome." />
+    <DuplicatedAccountUrl text="Há duas contas com a mesma url." />
     <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
     <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail." />
     <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />

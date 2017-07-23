@@ -66,6 +66,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Account = new Account
                           {
                               Name = accountData["Name"],
+                              Url = accountData["Url"],
                               RedLimit = GetInt(accountData["Red"]),
                               YellowLimit = GetInt(accountData["Yellow"]),
                               User = User
@@ -80,6 +81,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             oldAccount = new Account
             {
                 Name = accountData["Name"],
+                Url = accountData["Url"],
                 RedLimit = GetInt(accountData["Red"]),
                 YellowLimit = GetInt(accountData["Yellow"]),
                 User = User
@@ -109,9 +111,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Assert.AreEqual(oldAccount.Name, account.Name);
             Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
             Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
-
-            Assert.AreNotEqual(Account.RedLimit, account.RedLimit);
-            Assert.AreNotEqual(Account.YellowLimit, account.YellowLimit);
         }
 
         [Then(@"the account will not be saved")]
@@ -169,7 +168,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Account = new Account
             {
                 Name = oldAccountName,
-                User = User
+                Url = accountData["Url"],
+                User = User,
             };
 
             SA.Admin.CreateAccount(Account);
@@ -207,6 +207,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             var accountData = table.Rows[0];
 
             newAccountName = accountData["Name"];
+            Account.Url = accountData["Url"];
         }
 
         [When(@"I try to update the account")]
@@ -225,36 +226,41 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will be changed")]
         public void ThenTheAccountWillBeChanged()
         {
-            Account = null;
+            Account account = null;
             Error = null;
+
+            if (Account.Name != oldAccountName)
+            {
+                try
+                {
+                    account = SA.Admin.SelectAccountByName(oldAccountName);
+                }
+                catch (DFMCoreException e)
+                {
+                    Error = e;
+                }
+
+                Assert.IsNull(account);
+                Assert.IsNotNull(Error);
+                Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidAccount);
+
+                Error = null;
+            }
+
 
             try
             {
-                Account = SA.Admin.SelectAccountByName(oldAccountName);
+                account = SA.Admin.SelectAccountByName(newAccountName);
             }
             catch (DFMCoreException e)
             {
                 Error = e;
             }
 
-            Assert.IsNull(Account);
-            Assert.IsNotNull(Error);
-            Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidAccount);
-
-            Account = null;
-            Error = null;
-
-            try
-            {
-                Account = SA.Admin.SelectAccountByName(newAccountName);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-
-            Assert.IsNotNull(Account);
+            Assert.IsNotNull(account);
             Assert.IsNull(Error);
+
+            Assert.AreEqual(Account.Url, account.Url);
         }
 
         [Then(@"the account value will not change")]
@@ -610,7 +616,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I give a name of the account ([\w ]+) without moves")]
         public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountName)
         {
-            Account = new Account {Name = givenAccountName, User = User};
+            Account = new Account
+                          {
+                              Name = givenAccountName,
+                              Url = MakeUrlFromName(givenAccountName), 
+                              User = User
+                          };
 
             SA.Admin.CreateAccount(Account);
 
@@ -620,7 +631,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I give a name of the account ([\w ]+) with moves")]
         public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountName)
         {
-            Account = new Account { Name = givenAccountName, User = User };
+            Account = new Account
+                          {
+                              Name = givenAccountName,
+                              Url = MakeUrlFromName(givenAccountName), 
+                              User = User
+                          };
+
             SA.Admin.CreateAccount(Account);
 
             var move = new Move

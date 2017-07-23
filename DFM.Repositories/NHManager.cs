@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Ak.DataAccess.NHibernate;
 using Ak.DataAccess.NHibernate.UserPassed;
+using Ak.Generic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Repositories.Mappings;
@@ -51,6 +52,9 @@ namespace DFM.Repositories
 
         public static void Close()
         {
+            if (!IsActive)
+                return;
+
             SessionBuilder.Close(Session);
 
             sessionList.Remove(key);
@@ -66,6 +70,23 @@ namespace DFM.Repositories
         private static String key
         {
             get { return Identity.GetKeyFor("NHManager"); }
+        }
+
+
+
+        public static Boolean IsActive
+        {
+            get
+            {
+                try
+                {
+                    return Session.IsOpen;
+                }
+                catch (AkException)
+                {
+                    return false;
+                }                
+            }
         }
 
 

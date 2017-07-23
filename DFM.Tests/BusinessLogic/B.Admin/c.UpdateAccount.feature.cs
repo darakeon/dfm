@@ -72,10 +72,12 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
+                        "Url",
                         "Yellow",
                         "Red"});
             table1.AddRow(new string[] {
                         "Account Ca01",
+                        "account_ca01",
                         "",
                         ""});
 #line 7
@@ -83,10 +85,12 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
+                        "Url",
                         "Yellow",
                         "Red"});
             table2.AddRow(new string[] {
                         "Ca01 - new name",
+                        "account_ca01",
                         "",
                         ""});
 #line 10
@@ -111,10 +115,12 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
+                        "Url",
                         "Yellow",
                         "Red"});
             table3.AddRow(new string[] {
                         "Account Ca02",
+                        "account_ca02",
                         "",
                         ""});
 #line 18
@@ -124,10 +130,12 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
+                        "Url",
                         "Yellow",
                         "Red"});
             table4.AddRow(new string[] {
                         "Ca02 - new name",
+                        "account_ca02",
                         "",
                         ""});
 #line 22
@@ -140,6 +148,49 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("the account will be changed");
 #line 28
  testRunner.And("the account value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03. Change the url (S)")]
+        public virtual void _03_ChangeTheUrlS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Change the url (S)", ((string[])(null)));
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table5.AddRow(new string[] {
+                        "Account Ca03",
+                        "accountca03",
+                        "",
+                        ""});
+#line 32
+ testRunner.Given("I have this account", ((string)(null)), table5);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table6.AddRow(new string[] {
+                        "Account Ca03",
+                        "accountca03_url",
+                        "",
+                        ""});
+#line 35
+ testRunner.When("make this changes to the account", ((string)(null)), table6);
+#line 38
+ testRunner.And("I try to update the account");
+#line 39
+ testRunner.Then("I will receive no core error");
+#line 40
+ testRunner.And("the account will be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

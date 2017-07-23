@@ -164,7 +164,8 @@ VERSÃO 1.0.2.3
 21/02/2013	22/02/2013	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
 21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName
 24/02/2013	03/03/2013	Criar edição de nome de Categoria / Conta (incluindo mvc)
-				Possibilitar url escolhida para a conta
+03/03/2013	03/03/2013	Possibilitar url escolhida para a conta
+				Usar url da conta no MVC
 				Proteger edição de objeto no core
 				Numerar enums
 				Não enviar e-mail caso dê erro ao mexer na movimentação
