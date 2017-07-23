@@ -22,5 +22,15 @@ namespace DFM.BusinessLogic.Exceptions
         }
 
 
+
+        public static void TestOtherIfTooLarge(Exception e)
+        {
+            if (e.InnerException != null && e.InnerException.Message.StartsWith("Data too long for column"))
+                throw WithMessage(ExceptionPossibilities.TooLargeData);
+
+            throw e;
+        }
+
+
     }
 }

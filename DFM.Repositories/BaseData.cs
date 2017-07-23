@@ -45,9 +45,7 @@ namespace DFM.Repositories
             }
             catch (Exception e)
             {
-                if (e.InnerException != null && e.InnerException.Message.StartsWith("Data too long for column"))
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeData);
-                throw;
+                DFMCoreException.TestOtherIfTooLarge(e);
             }
 
             return entity;

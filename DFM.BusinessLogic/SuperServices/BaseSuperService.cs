@@ -1,4 +1,5 @@
-﻿using DFM.BusinessLogic.Exceptions;
+﻿using System;
+using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -19,7 +20,14 @@ namespace DFM.BusinessLogic.SuperServices
 
         protected void CommitTransaction()
         {
-            Parent.TransactionController.Commit();
+            try
+            {
+                Parent.TransactionController.Commit();
+            }
+            catch (Exception e)
+            {
+                DFMCoreException.TestOtherIfTooLarge(e);
+            }
         }
 
         protected void RollbackTransaction()
