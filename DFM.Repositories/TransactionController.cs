@@ -18,6 +18,11 @@ namespace DFM.Repositories
                 throw new DFMRepositoryException("There's a Transaction opened already.");
 
             Session.BeginTransaction();
+
+            if (Session.Transaction == null
+                    || !Session.Transaction.IsActive)
+                throw new DFMRepositoryException("Transaction not opened.");
+
         }
 
 
@@ -32,9 +37,11 @@ namespace DFM.Repositories
 
         public void Rollback()
         {
-            testTransaction();
-
-            Session.Transaction.Rollback();
+            if (Session.Transaction.IsActive)
+            {
+                testTransaction();
+                Session.Transaction.Rollback();
+            }
 
             Session.Clear();
         }
