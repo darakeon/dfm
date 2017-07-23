@@ -1,15 +1,55 @@
 ﻿using System;
-using TechTalk.SpecFlow;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace DFM.Tests
 {
     [Binding]
     public class MoneyRobotStep : BaseStep
     {
+        #region Variables
+        protected static Double AccountOutTotal
+        {
+            get { return Get<Double>("AccountOutTotal"); }
+            set { Set("AccountOutTotal", value); }
+        }
+
+        protected static Double YearCategoryAccountOutTotal
+        {
+            get { return Get<Double>("YearCategoryAccountOutTotal"); }
+            set { Set("YearCategoryAccountOutTotal", value); }
+        }
+
+        protected static Double MonthCategoryAccountOutTotal
+        {
+            get { return Get<Double>("MonthCategoryAccountOutTotal"); }
+            set { Set("MonthCategoryAccountOutTotal", value); }
+        }
+
+
+        protected static Double AccountInTotal
+        {
+            get { return Get<Double>("AccountInTotal"); }
+            set { Set("AccountInTotal", value); }
+        }
+
+        protected static Double YearCategoryAccountInTotal
+        {
+            get { return Get<Double>("YearCategoryAccountInTotal"); }
+            set { Set("YearCategoryAccountInTotal", value); }
+        }
+
+        protected static Double MonthCategoryAccountInTotal
+        {
+            get { return Get<Double>("MonthCategoryAccountInTotal"); }
+            set { Set("MonthCategoryAccountInTotal", value); }
+        }
+        #endregion
+
+
         [Given(@"I have two accounts")]
         public void GivenIHaveTwoAccounts()
         {
@@ -17,42 +57,10 @@ namespace DFM.Tests
             GetOrCreateAccount(AccountInName);
         }
 
-        [Given(@"I have this move to create")]
-        public void GivenIHaveThisMoveToCreate(Table table)
-        {
-            var moveData = table.Rows[0];
-
-            Move = new Move { Description = moveData["Description"] };
-
-            if (!String.IsNullOrEmpty(moveData["Date"]))
-                Move.Date = DateTime.Parse(moveData["Date"]);
-
-            if (!String.IsNullOrEmpty(moveData["Nature"]))
-                Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
-
-            // TODO: use this, delete above
-            //if (moveData["Value"] != null)
-            //    move.Value = Int32.Parse(moveData["Value"]);
-
-            if (!String.IsNullOrEmpty(moveData["Value"]))
-            {
-                var detail = new Detail
-                    {
-                        Description = Move.Description,
-                        Amount = 1,
-                        Value = Int32.Parse(moveData["Value"])
-                    };
-
-                Move.DetailList.Add(detail);
-            }
-
-        }
-
         [Given(@"it has no Details")]
         public void GivenItHasNoDetails()
         {
             // TODO: empty detaillist
-            Assert.AreEqual(1, Move.DetailList.Count); 
         }
 
         [Given(@"the move has this details")]
@@ -94,6 +102,13 @@ namespace DFM.Tests
         public void GivenItHasAnAccountOut()
         {
             AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            AccountOutTotal = AccountOut.Sum();
+            YearCategoryAccountOutTotal = (year[Category.Name] ?? new Summary()).Out;
+            MonthCategoryAccountOutTotal = (month[Category.Name] ?? new Summary()).Out;
         }
 
         [Given(@"it has no Account Out")]
@@ -112,6 +127,13 @@ namespace DFM.Tests
         public void GivenItHasAnAccountIn()
         {
             AccountIn = GetOrCreateAccount(AccountInName);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            AccountInTotal = AccountIn.Sum();
+            YearCategoryAccountInTotal = (year[Category.Name] ?? new Summary()).In;
+            MonthCategoryAccountInTotal = (month[Category.Name] ?? new Summary()).In;
         }
 
         [Given(@"it has no Account In")]
@@ -133,41 +155,89 @@ namespace DFM.Tests
             AccountIn = AccountOut;
         }
 
-        [Then(@"the month-category-accountOut value will decrease in (\d+)")]
-        public void ThenTheMonthCategoryAccountOutValueWillDecreaseIn(Double decrease)
+
+
+        [Then(@"the accountOut value will decrease in (\d+)")]
+        public void ThenTheAccountOutValueWillDecreaseIn(Double decrease)
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var currentTotal = AccountOut.Sum();
+
+            Assert.AreEqual(AccountOutTotal - decrease, currentTotal);
         }
 
-        [Then(@"the year-category-accountOut value will decrease in (\d+)")]
-        public void ThenTheYearCategoryAccountOutValueWillDecreaseIn(Double decrease)
+        [Then(@"the month-category-accountOut value will change in (\d+)")]
+        public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Double change)
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the month-category-accountOut value will increase in (\d+)")]
-        public void ThenTheMonthCategoryAccountOutValueWillIncreaseIn(Double increase)
+        [Then(@"the year-category-accountOut value will change in (\d+)")]
+        public void ThenTheYearCategoryAccountOutValueWillChangeIn(Double change)
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the year-category-accountOut value will increase in (\d+)")]
-        public void ThenTheYearCategoryAccountOutValueWillIncreaseIn(Double increase)
+
+
+        [Then(@"the accountIn value will decrease in (\d+)")]
+        public void ThenTheAccountInValueWillDecreaseIn(Double decrease)
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = GetOrCreateAccount(AccountInName);
+
+            var currentTotal = AccountIn.Sum();
+
+            Assert.AreEqual(AccountInTotal - decrease, currentTotal);
         }
 
-        [Then(@"the month-category-accountOut value will decrease in (\d+) plus the months until now")]
-        public void ThenTheMonthCategoryAccountOutValueWillDecreaseInPlusTheMonthsUntilNow(Double decrease)
+        [Then(@"the month-category-accountIn value will change in (\d+)")]
+        public void ThenTheMonthCategoryAccountInValueWillChangeIn(Double change)
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = GetOrCreateAccount(AccountInName);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
+
+        [Then(@"the year-category-accountIn value will change in (\d+)")]
+        public void ThenTheYearCategoryAccountInValueWillChangeIn(Double change)
+        {
+            AccountIn = GetOrCreateAccount(AccountInName);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
+        }
+
+
 
         [Then(@"the year-category-accountOut value will decrease in (\d+) plus the months until now")]
         public void ThenTheYearCategoryAccountOutValueWillDecreaseInPlusTheMonthsUntilNow(Double decrease)
         {
             ScenarioContext.Current.Pending();
         }
+
+
 
     }
 }

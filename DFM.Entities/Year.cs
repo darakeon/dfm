@@ -57,5 +57,16 @@ namespace DFM.Entities
             return String.Format("[{0}] {1}", ID, Time);
         }
 
+
+        public virtual Month this[Int32 month]
+        {
+            get { return MonthList.SingleOrDefault(y => y.Time == month); }
+        }
+
+        public virtual Summary this[String name]
+        {
+            get { return SummaryList.SingleOrDefault(s => s.Category.Name == name); }
+        }
+
     }
 }

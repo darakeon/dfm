@@ -156,6 +156,7 @@ VERSÃO 1.0.2.3
 				Retornar mensagens de erro já traduzidas (do core)
 				Security desativa os anteriores
 				Em Move, colocar Value como campo gravado e usar Total para exibição
+				Trocar Extensions Sum para Total
 				Colocar hover em TRs de tabela (destacar linha que está em cima)
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)

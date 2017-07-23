@@ -30,6 +30,15 @@ namespace DFM.BusinessLogic.Services
         {
             if (detail.Move == null && detail.FutureMove == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
+
+            if (String.IsNullOrEmpty(detail.Description))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailDescriptionRequired);
+
+            if (detail.Amount == 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailAmountRequired);
+
+            if (detail.Value == 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailValueRequired);
         }
 
 

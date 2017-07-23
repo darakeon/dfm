@@ -14,7 +14,7 @@ Scenario: 01. Run with unlogged user (E)
 
 
 Scenario: 91. Run with bounded schedule (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -30,7 +30,7 @@ Scenario: 91. Run with bounded schedule (S)
 	And the year-category-accountOut value will decrease in 10
 
 Scenario: 92. Run with boundless schedule (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -47,9 +47,9 @@ Scenario: 92. Run with boundless schedule (S)
 
 
 Scenario: 93. Run schedule that will finish (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    | 10    |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -64,9 +64,9 @@ Scenario: 93. Run schedule that will finish (S)
 	And the year-category-accountOut value will decrease in 30
 
 Scenario: 94. Run schedule that wont finish (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    | 10    |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -82,9 +82,9 @@ Scenario: 94. Run schedule that wont finish (S)
 
 
 Scenario: 95. Run with daily schedule (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    | 10    |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    | 10    |
 	And its Date is 20 days ago
 	And it has no Details
 	And the move has this schedule
@@ -99,9 +99,9 @@ Scenario: 95. Run with daily schedule (S)
 	And the year-category-accountOut value will decrease in 100
 
 Scenario: 96. Run with monthly schedule (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    | 10    |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    | 10    |
 	And its Date is 190 days ago
 	And it has no Details
 	And the move has this schedule
@@ -116,9 +116,9 @@ Scenario: 96. Run with monthly schedule (S)
 	And the year-category-accountOut value will decrease in 60
 
 Scenario: 97. Run with yearly schedule (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    | 10    |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    | 10    |
 	And its Date is 750 days ago
 	And it has no Details
 	And the move has this schedule
@@ -134,9 +134,9 @@ Scenario: 97. Run with yearly schedule (S)
 
 
 Scenario: 98. Run with details in schedule (S)
-	Given I have this move to create
-		| Description | Nature | Value |
-		| Move Ca91   | Out    |       |
+	Given I have this future move to create
+		| Description | Date | Nature | Value |
+		| Move Ca91   |      | Out    |       |
 	And its Date is 10 days ago
 	And the move has this details
 		| Description | Amount | Value |

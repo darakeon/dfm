@@ -56,19 +56,19 @@ namespace DFM.BusinessLogic.Bases
         }
 
 
-        internal object BeginTransaction()
+        internal void BeginTransaction()
         {
-            return repository.BeginTransaction();
+            repository.BeginTransaction();
         }
 
-        internal void CommitTransaction(object transaction)
+        internal void CommitTransaction()
         {
-            repository.CommitTransaction(transaction);
+            repository.CommitTransaction();
         }
 
-        internal void RollbackTransaction(object transaction)
+        internal void RollbackTransaction()
         {
-            repository.RollbackTransaction(transaction);
+            repository.RollbackTransaction();
         }
 
     }

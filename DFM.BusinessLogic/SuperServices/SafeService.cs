@@ -37,21 +37,21 @@ namespace DFM.BusinessLogic.SuperServices
         
         public void SaveUserAndSendVerify(String email, String password)
         {
-            var transaction = userService.BeginTransaction();
+            userService.BeginTransaction();
 
             try
             {
                 var user = new User { Email = email, Password = password };
 
-                user = userService.SaveOrUpdate(user);
+                user = userService.Save(user);
 
                 sendUserVerify(user);
 
-                userService.CommitTransaction(transaction);
+                userService.CommitTransaction();
             }
             catch
             {
-                userService.RollbackTransaction(transaction);
+                userService.RollbackTransaction();
                 throw;
             }
         }
@@ -87,7 +87,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void ActivateUser(String token)
         {
-            var transaction = securityService.BeginTransaction();
+            securityService.BeginTransaction();
 
             try
             {
@@ -97,11 +97,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction(transaction);
+                securityService.CommitTransaction();
             }
             catch (Exception)
             {
-                securityService.RollbackTransaction(transaction);
+                securityService.RollbackTransaction();
                 throw;
             }
 
@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (String.IsNullOrEmpty(password))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
-            var transaction = securityService.BeginTransaction();
+            securityService.BeginTransaction();
 
             try
             {
@@ -125,11 +125,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction(transaction);
+                securityService.CommitTransaction();
             }
-            catch (Exception)
+            catch (DFMCoreException)
             {
-                securityService.RollbackTransaction(transaction);
+                securityService.RollbackTransaction();
                 throw;
             }
         }
@@ -153,17 +153,17 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeactivateToken(String token)
         {
-            var transaction = securityService.BeginTransaction();
+            securityService.BeginTransaction();
 
             try
             {
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction(transaction);
+                securityService.CommitTransaction();
             }
             catch (Exception)
             {
-                securityService.RollbackTransaction(transaction);
+                securityService.RollbackTransaction();
                 throw;
             }
         }

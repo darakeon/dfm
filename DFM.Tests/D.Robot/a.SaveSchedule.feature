@@ -6,7 +6,7 @@ Background:
 	And I have a category
 
 Scenario: 01. Save without Description (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		|             | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -21,7 +21,7 @@ Scenario: 01. Save without Description (E)
 	And the schedule will not be saved
 
 Scenario: 02. Save without Date (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date | Nature | Value |
 		| Move Da02   |      | Out    | 10    |
 	And it has no Details
@@ -36,7 +36,7 @@ Scenario: 02. Save without Date (E)
 	And the schedule will not be saved
 
 Scenario: 03. Save without Category (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da03   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -51,7 +51,7 @@ Scenario: 03. Save without Category (E)
 	And the schedule will not be saved
 
 Scenario: 04. Save with unknown Category (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da04   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -68,7 +68,7 @@ Scenario: 04. Save with unknown Category (E)
 
 
 Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da11   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -83,7 +83,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	And the schedule will not be saved
 
 Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da12   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -98,7 +98,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And the schedule will not be saved
 
 Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da13   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -113,7 +113,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	And the schedule will not be saved
 
 Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da14   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -130,7 +130,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 
 
 Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da21   | 2012-03-31 | In     | 10    |
 	And it has no Details
@@ -145,7 +145,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	And the schedule will not be saved
 
 Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da22   | 2012-03-31 | In     | 10    |
 	And it has no Details
@@ -160,7 +160,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And the schedule will not be saved
 
 Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da23   | 2012-03-31 | In     | 10    |
 	And it has no Details
@@ -175,7 +175,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	And the schedule will not be saved
 
 Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da24   | 2012-03-31 | In     | 10    |
 	And it has no Details
@@ -192,7 +192,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 
 
 Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da31   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -207,7 +207,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	And the schedule will not be saved
 
 Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da32   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -222,7 +222,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	And the schedule will not be saved
 
 Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da33   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -237,7 +237,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	And the schedule will not be saved
 
 Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da34   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -252,7 +252,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And the schedule will not be saved
 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da35   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -267,7 +267,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And the schedule will not be saved
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da36   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -284,7 +284,7 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 
 
 Scenario: 41. Save without Value or Details (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da41   | 2012-03-31 | Out    |       |
 	And it has no Details
@@ -299,7 +299,7 @@ Scenario: 41. Save without Value or Details (E)
 	And the schedule will not be saved
 
 Scenario: 42. Save with Value zero and no Details (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da42   | 2012-03-31 | Out    | 0     |
 	And it has no Details
@@ -314,7 +314,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 	And the schedule will not be saved
 
 Scenario: 43. Save without value and without Description in Detail (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da43   | 2012-03-31 | Out    |       |
 	And the move has this details
@@ -332,7 +332,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	And the schedule will not be saved
 
 Scenario: 44. Save without value and with Amount zero in Detail (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da44   | 2012-03-31 | Out    |       |
 	And the move has this details
@@ -350,7 +350,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	And the schedule will not be saved
 
 Scenario: 45. Save without value and with Value zero in Detail (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da45   | 2012-03-31 | Out    |       |
 	And the move has this details
@@ -370,7 +370,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 
 
 Scenario: 51. Save without Schedule (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da51   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -383,7 +383,7 @@ Scenario: 51. Save without Schedule (E)
 	And the schedule will not be saved
 
 Scenario: 52. Save with Schedule Times zero and bounded (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da52   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -400,7 +400,7 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 
 
 Scenario: 91. Save with info all right (Out) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -417,7 +417,7 @@ Scenario: 91. Save with info all right (Out) (S)
 	And the year-category-accountOut value will not change
 	
 Scenario: 92. Save with info all right (In) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da92   | 2012-03-31 | In     | 10    |
 	And it has no Details
@@ -434,7 +434,7 @@ Scenario: 92. Save with info all right (In) (S)
 	And the year-category-accountIn value will not change
 	
 Scenario: 93. Save with info all right (Transfer) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da93   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -453,7 +453,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	And the year-category-accountIn value will not change
 
 Scenario: 94. Save with info all right (value) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da94   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -470,7 +470,7 @@ Scenario: 94. Save with info all right (value) (S)
 	And the year-category-accountOut value will not change
 	
 Scenario: 95. Save with info all right (details) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da95   | 2012-03-31 | Out    |       |
 	And the move has this details
@@ -490,7 +490,7 @@ Scenario: 95. Save with info all right (details) (S)
 	And the year-category-accountOut value will not change
 
 Scenario: 96. Save negative (value) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da96   | 2012-03-31 | Out    | -10   |
 	And it has no Details
@@ -507,7 +507,7 @@ Scenario: 96. Save negative (value) (S)
 	And the year-category-accountOut value will not change
 
 Scenario: 97. Save negative (details) (S)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da97   | 2012-03-31 | Out    |       |
 	And the move has this details
@@ -527,7 +527,7 @@ Scenario: 97. Save negative (details) (S)
 	And the year-category-accountOut value will not change
 
 Scenario: 98. Save with future Date (E)
-	Given I have this move to create
+	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Da98   | 2099-03-31 | Out    | 10    |
 	And it has no Details

@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -295,10 +296,10 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass a token of ([A-Za-z]+) with action ([A-Za-z]+)")]
         public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(String strTokenOf, String strAction)
         {
-            var tokenOf = (SecurityAction)Enum.Parse(typeof(SecurityAction), strTokenOf);
+            var tokenOf = EnumX.Parse<SecurityAction>(strTokenOf);
             token = DBHelper.GetLastTokenForUser(User, tokenOf);
 
-            action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
+            action = EnumX.Parse<SecurityAction>(strAction);
         }
 
         [When(@"I test the token")]
@@ -375,7 +376,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass a valid ([A-Za-z]+) token")]
         public void GivenIPassTheValidToken(String strAction)
         {
-            action = (SecurityAction)Enum.Parse(typeof(SecurityAction), strAction);
+            action = EnumX.Parse<SecurityAction>(strAction);
             token = DBHelper.GetLastTokenForUser(User, action);
         }
 

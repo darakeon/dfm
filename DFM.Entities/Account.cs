@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.Entities.Bases;
 
 namespace DFM.Entities
@@ -31,6 +32,11 @@ namespace DFM.Entities
             return String.Format("[{0}] {1}", ID, Name);
         }
 
+
+        public virtual Year this[Int32 year]
+        {
+            get { return YearList.SingleOrDefault(y => y.Time == year); }
+        }
 
     }
 }

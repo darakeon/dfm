@@ -3,6 +3,7 @@
 Background:
 	Given I have an user
 	And I have a token for its actvation
+	And I have a token for its password reset
 
 Scenario: 01. Activate user with invalid token (E)
 	Given I pass an invalid token

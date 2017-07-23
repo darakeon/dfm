@@ -1052,9 +1052,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 325
  testRunner.And("the move will be saved");
 #line 326
- testRunner.And("the month-category-accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will decrease in 10");
 #line 327
- testRunner.And("the year-category-accountOut value will decrease in 10");
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 328
+ testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1064,7 +1066,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _92_SaveWithInfoAllRightInS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Save with info all right (In) (S)", ((string[])(null)));
-#line 329
+#line 330
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1077,26 +1079,28 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "In",
                         "10"});
-#line 330
+#line 331
  testRunner.Given("I have this move to create", ((string)(null)), table29);
-#line 333
- testRunner.And("it has no Details");
 #line 334
- testRunner.And("it has a Category");
+ testRunner.And("it has no Details");
 #line 335
- testRunner.And("it has no Account Out");
+ testRunner.And("it has a Category");
 #line 336
- testRunner.And("it has an Account In");
+ testRunner.And("it has no Account Out");
 #line 337
- testRunner.When("I try to save the move");
+ testRunner.And("it has an Account In");
 #line 338
- testRunner.Then("I will receive no error");
+ testRunner.When("I try to save the move");
 #line 339
- testRunner.And("the move will be saved");
+ testRunner.Then("I will receive no error");
 #line 340
- testRunner.And("the month-category-accountIn value will increase in 10");
+ testRunner.And("the move will be saved");
 #line 341
- testRunner.And("the year-category-accountIn value will increase in 10");
+ testRunner.And("the accountIn value will increase in 10");
+#line 342
+ testRunner.And("the month-category-accountIn value will change in 10");
+#line 343
+ testRunner.And("the year-category-accountIn value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1106,7 +1110,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _93_SaveWithInfoAllRightTransferS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Save with info all right (Transfer) (S)", ((string[])(null)));
-#line 343
+#line 345
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1119,30 +1123,34 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 344
+#line 346
  testRunner.Given("I have this move to create", ((string)(null)), table30);
-#line 347
- testRunner.And("it has no Details");
-#line 348
- testRunner.And("it has a Category");
 #line 349
- testRunner.And("it has an Account Out");
+ testRunner.And("it has no Details");
 #line 350
- testRunner.And("it has an Account In");
+ testRunner.And("it has a Category");
 #line 351
- testRunner.When("I try to save the move");
+ testRunner.And("it has an Account Out");
 #line 352
- testRunner.Then("I will receive no error");
+ testRunner.And("it has an Account In");
 #line 353
- testRunner.And("the move will be saved");
+ testRunner.When("I try to save the move");
 #line 354
- testRunner.And("the month-category-accountOut value will decrease in 10");
+ testRunner.Then("I will receive no error");
 #line 355
- testRunner.And("the year-category-accountOut value will decrease in 10");
+ testRunner.And("the move will be saved");
 #line 356
- testRunner.And("the month-category-accountIn value will increase in 10");
+ testRunner.And("the accountOut value will decrease in 10");
 #line 357
- testRunner.And("the year-category-accountIn value will increase in 10");
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 358
+ testRunner.And("the year-category-accountOut value will change in 10");
+#line 359
+ testRunner.And("the accountIn value will increase in 10");
+#line 360
+ testRunner.And("the month-category-accountIn value will change in 10");
+#line 361
+ testRunner.And("the year-category-accountIn value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1152,7 +1160,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _94_SaveWithInfoAllRightValueS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Save with info all right (value) (S)", ((string[])(null)));
-#line 359
+#line 363
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1165,26 +1173,28 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 360
- testRunner.Given("I have this move to create", ((string)(null)), table31);
-#line 363
- testRunner.And("it has no Details");
 #line 364
- testRunner.And("it has a Category");
-#line 365
- testRunner.And("it has an Account Out");
-#line 366
- testRunner.And("it has no Account In");
+ testRunner.Given("I have this move to create", ((string)(null)), table31);
 #line 367
- testRunner.When("I try to save the move");
+ testRunner.And("it has no Details");
 #line 368
- testRunner.Then("I will receive no error");
+ testRunner.And("it has a Category");
 #line 369
- testRunner.And("the move will be saved");
+ testRunner.And("it has an Account Out");
 #line 370
- testRunner.And("the month-category-accountOut value will decrease in 10");
+ testRunner.And("it has no Account In");
 #line 371
- testRunner.And("the year-category-accountOut value will decrease in 10");
+ testRunner.When("I try to save the move");
+#line 372
+ testRunner.Then("I will receive no error");
+#line 373
+ testRunner.And("the move will be saved");
+#line 374
+ testRunner.And("the accountOut value will decrease in 10");
+#line 375
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 376
+ testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1194,7 +1204,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _95_SaveWithInfoAllRightDetailsS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Save with info all right (details) (S)", ((string[])(null)));
-#line 373
+#line 378
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1207,7 +1217,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         ""});
-#line 374
+#line 379
  testRunner.Given("I have this move to create", ((string)(null)), table32);
 #line hidden
             TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1222,24 +1232,26 @@ this.ScenarioSetup(scenarioInfo);
                         "Detail 2",
                         "1",
                         "10"});
-#line 377
- testRunner.And("the move has this details", ((string)(null)), table33);
-#line 381
- testRunner.And("it has a Category");
 #line 382
- testRunner.And("it has an Account Out");
-#line 383
- testRunner.And("it has no Account In");
-#line 384
- testRunner.When("I try to save the move");
-#line 385
- testRunner.Then("I will receive no error");
+ testRunner.And("the move has this details", ((string)(null)), table33);
 #line 386
- testRunner.And("the move will be saved");
+ testRunner.And("it has a Category");
 #line 387
- testRunner.And("the month-category-accountOut value will decrease in 20");
+ testRunner.And("it has an Account Out");
 #line 388
- testRunner.And("the year-category-accountOut value will decrease in 20");
+ testRunner.And("it has no Account In");
+#line 389
+ testRunner.When("I try to save the move");
+#line 390
+ testRunner.Then("I will receive no error");
+#line 391
+ testRunner.And("the move will be saved");
+#line 392
+ testRunner.And("the accountOut value will decrease in 20");
+#line 393
+ testRunner.And("the month-category-accountOut value will change in 20");
+#line 394
+ testRunner.And("the year-category-accountOut value will change in 20");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1249,7 +1261,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _96_SaveNegativeValueS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Save negative (value) (S)", ((string[])(null)));
-#line 390
+#line 396
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1262,26 +1274,28 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         "-10"});
-#line 391
- testRunner.Given("I have this move to create", ((string)(null)), table34);
-#line 394
- testRunner.And("it has no Details");
-#line 395
- testRunner.And("it has a Category");
-#line 396
- testRunner.And("it has an Account Out");
 #line 397
- testRunner.And("it has no Account In");
-#line 398
- testRunner.When("I try to save the move");
-#line 399
- testRunner.Then("I will receive no error");
+ testRunner.Given("I have this move to create", ((string)(null)), table34);
 #line 400
- testRunner.And("the move will be saved");
+ testRunner.And("it has no Details");
 #line 401
- testRunner.And("the month-category-accountOut value will decrease in 10");
+ testRunner.And("it has a Category");
 #line 402
- testRunner.And("the year-category-accountOut value will decrease in 10");
+ testRunner.And("it has an Account Out");
+#line 403
+ testRunner.And("it has no Account In");
+#line 404
+ testRunner.When("I try to save the move");
+#line 405
+ testRunner.Then("I will receive no error");
+#line 406
+ testRunner.And("the move will be saved");
+#line 407
+ testRunner.And("the accountOut value will decrease in 10");
+#line 408
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 409
+ testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -1291,7 +1305,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _97_SaveNegativeDetailsS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Save negative (details) (S)", ((string[])(null)));
-#line 404
+#line 411
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1304,7 +1318,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         ""});
-#line 405
+#line 412
  testRunner.Given("I have this move to create", ((string)(null)), table35);
 #line hidden
             TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1316,27 +1330,29 @@ this.ScenarioSetup(scenarioInfo);
                         "1",
                         "-10"});
             table36.AddRow(new string[] {
-                        "Description2",
-                        "Amount2",
-                        "Value2"});
-#line 408
- testRunner.And("the move has this details", ((string)(null)), table36);
-#line 412
- testRunner.And("it has a Category");
-#line 413
- testRunner.And("it has an Account Out");
-#line 414
- testRunner.And("it has no Account In");
+                        "Detail 2",
+                        "1",
+                        "-10"});
 #line 415
- testRunner.When("I try to save the move");
-#line 416
- testRunner.Then("I will receive no error");
-#line 417
- testRunner.And("the move will be saved");
-#line 418
- testRunner.And("the month-category-accountOut value will decrease in 20");
+ testRunner.And("the move has this details", ((string)(null)), table36);
 #line 419
- testRunner.And("the year-category-accountOut value will decrease in 20");
+ testRunner.And("it has a Category");
+#line 420
+ testRunner.And("it has an Account Out");
+#line 421
+ testRunner.And("it has no Account In");
+#line 422
+ testRunner.When("I try to save the move");
+#line 423
+ testRunner.Then("I will receive no error");
+#line 424
+ testRunner.And("the move will be saved");
+#line 425
+ testRunner.And("the accountOut value will decrease in 20");
+#line 426
+ testRunner.And("the month-category-accountOut value will change in 20");
+#line 427
+ testRunner.And("the year-category-accountOut value will change in 20");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

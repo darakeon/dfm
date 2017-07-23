@@ -2,6 +2,7 @@
 using System.Configuration;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Repositories;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.Helpers
@@ -39,7 +40,17 @@ namespace DFM.Tests.Helpers
                 cmd.Parameters.AddWithValue("action", (Int32)action);
                 cmd.Parameters.AddWithValue("expire", DateTime.Now);
 
-                token = cmd.ExecuteScalar().ToString();
+                var result = cmd.ExecuteScalar();
+
+                if (result == null)
+                {
+                    conn.Close();
+
+                    throw new DFMRepositoryException(
+                        "Bad. bad developer. No token for you. (Don't forget the context next time)");
+                }
+
+                token = result.ToString();
 
                 conn.Close();
             }

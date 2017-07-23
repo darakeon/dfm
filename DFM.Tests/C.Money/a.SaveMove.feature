@@ -323,8 +323,9 @@ Scenario: 91. Save with info all right (Out) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 10
-	And the year-category-accountOut value will decrease in 10
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
 	
 Scenario: 92. Save with info all right (In) (S)
 	Given I have this move to create
@@ -337,8 +338,9 @@ Scenario: 92. Save with info all right (In) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountIn value will increase in 10
-	And the year-category-accountIn value will increase in 10
+	And the accountIn value will increase in 10
+	And the month-category-accountIn value will change in 10
+	And the year-category-accountIn value will change in 10
 	
 Scenario: 93. Save with info all right (Transfer) (S)
 	Given I have this move to create
@@ -351,10 +353,12 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 10
-	And the year-category-accountOut value will decrease in 10
-	And the month-category-accountIn value will increase in 10
-	And the year-category-accountIn value will increase in 10
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
+	And the accountIn value will increase in 10
+	And the month-category-accountIn value will change in 10
+	And the year-category-accountIn value will change in 10
 
 Scenario: 94. Save with info all right (value) (S)
 	Given I have this move to create
@@ -367,8 +371,9 @@ Scenario: 94. Save with info all right (value) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 10
-	And the year-category-accountOut value will decrease in 10
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
 
 Scenario: 95. Save with info all right (details) (S)
 	Given I have this move to create
@@ -384,8 +389,9 @@ Scenario: 95. Save with info all right (details) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 20
-	And the year-category-accountOut value will decrease in 20
+	And the accountOut value will decrease in 20
+	And the month-category-accountOut value will change in 20
+	And the year-category-accountOut value will change in 20
 
 Scenario: 96. Save negative (value) (S)
 	Given I have this move to create
@@ -398,22 +404,24 @@ Scenario: 96. Save negative (value) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 10
-	And the year-category-accountOut value will decrease in 10
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
 
 Scenario: 97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca97   | 2012-03-31 | Out    |       |
 	And the move has this details
-		| Description  | Amount  | Value  |
-		| Detail 1     | 1       | -10    |
-		| Description2 | Amount2 | Value2 |
+		| Description | Amount | Value |
+		| Detail 1    | 1      | -10   |
+		| Detail 2    | 1      | -10   |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the month-category-accountOut value will decrease in 20
-	And the year-category-accountOut value will decrease in 20
+	And the accountOut value will decrease in 20
+	And the month-category-accountOut value will change in 20
+	And the year-category-accountOut value will change in 20

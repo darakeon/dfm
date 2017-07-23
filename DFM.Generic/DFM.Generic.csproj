@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="ConvertToOtherChild.cs" />
     <Compile Include="DFMException.cs" />
+    <Compile Include="EnumExtension.cs" />
     <Compile Include="Identity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token.cs" />

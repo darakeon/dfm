@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Entities.Extensions
+namespace DFM.Generic
 {
     public static class EnumX
     {

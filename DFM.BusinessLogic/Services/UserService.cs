@@ -36,12 +36,12 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal User Update(User user)
+        internal User Save(User user)
         {
-            if (user.ID == 0)
+            if (user.ID != 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-            return SaveOrUpdate(user);
+            return saveOrUpdate(user);
         }
 
 
@@ -49,11 +49,33 @@ namespace DFM.BusinessLogic.Services
         internal void Activate(User user)
         {
             user.Active = true;
-            Update(user);
+
+            update(user, true);
+        }
+
+        internal User ChangePassword(User user)
+        {
+            user.Password = encrypt(user.Password);
+
+            return update(user);
+        }
+
+        private User update(User user, Boolean keepActive = false)
+        {
+            if (user.ID == 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+
+            if (!keepActive && user.Active
+                    && user.HasPendentActivation())
+                user.Active = false;
+
+            return saveOrUpdate(user);
         }
 
 
-        internal User SaveOrUpdate(User user)
+
+
+        private User saveOrUpdate(User user)
         {
             return SaveOrUpdate(user, complete, validate);
         }
@@ -80,35 +102,16 @@ namespace DFM.BusinessLogic.Services
             
             var userIsNew = oldUser == null;
 
-            if (userIsNew)
-            {
-                user.Active = false;
-                user.Language = "pt-BR";
-                user.Creation = DateTime.Now;
-                user.Password = encrypt(user.Password);
-            }
-            else
-            {
-                if (user.Active
-                    && user.HasPendentActivation())
-                {
-                    user.Active = false;
-                }
-            }
+            if (!userIsNew) return;
 
-        }
-
-
-
-        internal User ChangePassword(User user)
-        {
+            user.Active = false;
+            user.Language = "pt-BR";
+            user.Creation = DateTime.Now;
             user.Password = encrypt(user.Password);
-
-            return Update(user);
         }
 
-        
-        
+
+
         private static String encrypt(String password)
         {
             if (String.IsNullOrEmpty(password))

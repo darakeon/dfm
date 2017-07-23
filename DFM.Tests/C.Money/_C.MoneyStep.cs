@@ -1,6 +1,8 @@
-﻿using DFM.BusinessLogic.Exceptions;
+﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Repositories;
+using DFM.Entities.Enums;
+using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -10,6 +12,37 @@ namespace DFM.Tests.C.Money
     public class MoneyStep : BaseStep
     {
         #region SaveMove
+        [Given(@"I have this move to create")]
+        public void GivenIHaveThisMoveToCreate(Table table)
+        {
+            var moveData = table.Rows[0];
+
+            Move = new Move { Description = moveData["Description"] };
+
+            if (!String.IsNullOrEmpty(moveData["Date"]))
+                Move.Date = DateTime.Parse(moveData["Date"]);
+
+            if (!String.IsNullOrEmpty(moveData["Nature"]))
+                Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
+
+            // TODO: use this, delete above
+            //if (moveData["Value"] != null)
+            //    move.Value = Int32.Parse(moveData["Value"]);
+
+            if (!String.IsNullOrEmpty(moveData["Value"]))
+            {
+                var detail = new Detail
+                {
+                    Description = Move.Description,
+                    Amount = 1,
+                    Value = Int32.Parse(moveData["Value"])
+                };
+
+                Move.DetailList.Add(detail);
+            }
+        }
+        
+
         [When(@"I try to save the move")]
         public void WhenITryToSaveTheMove()
         {
@@ -32,7 +65,11 @@ namespace DFM.Tests.C.Money
         [Then(@"the move will be saved")]
         public void ThenTheMoveWillBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreNotEqual(0, Move.ID);
+
+            var newMove = Access.Money.SelectMoveById(Move.ID);
+
+            Assert.IsNotNull(newMove);
         }
         #endregion
 

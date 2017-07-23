@@ -34,9 +34,11 @@
         MoveDescriptionRequired,
         MoveDateRequired,
         MoveDateInvalid,
-
-        DetailRequired,
+        MoveValueOrDetailRequired,
         DetailWithoutMove,
+        MoveDetailDescriptionRequired,
+        MoveDetailAmountRequired,
+        MoveDetailValueRequired,
 
         ScheduleRequired,
         ScheduleFrequencyNotRecognized,

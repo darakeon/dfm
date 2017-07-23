@@ -148,6 +148,8 @@ namespace DFM.Tests
             set { Set("BaseMove", value); }
         }
 
+        
+
 
         protected const String CentralUserEmail = "test@dontflymoney.com";
         protected static String CentralUserPassword = "password";

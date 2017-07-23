@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void transformFutureInMove(FutureMove futureMove)
         {
-            var transaction = futureMoveService.BeginTransaction();
+            futureMoveService.BeginTransaction();
 
             try
             {
@@ -65,11 +65,11 @@ namespace DFM.BusinessLogic.SuperServices
                 moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
                 futureMoveService.Delete(futureMove.ID);
 
-                futureMoveService.CommitTransaction(transaction);
+                futureMoveService.CommitTransaction();
             }
             catch
             {
-                futureMoveService.RollbackTransaction(transaction);
+                futureMoveService.RollbackTransaction();
                 throw;
             }
         }
@@ -81,19 +81,19 @@ namespace DFM.BusinessLogic.SuperServices
             futureMove.Out = accountOut;
             futureMove.In = accountIn;
 
-            var transaction = futureMoveService.BeginTransaction();
+            futureMoveService.BeginTransaction();
 
             try
             {
                 futureMove = saveOrUpdateSchedule(futureMove);
                 
-                futureMoveService.CommitTransaction(transaction);
+                futureMoveService.CommitTransaction();
 
                 return futureMove;
             }
             catch
             {
-                futureMoveService.RollbackTransaction(transaction);
+                futureMoveService.RollbackTransaction();
                 throw;
             }
         }

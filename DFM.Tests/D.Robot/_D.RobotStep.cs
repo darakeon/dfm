@@ -1,12 +1,45 @@
 ﻿using System;
+using DFM.Entities;
+using DFM.Entities.Enums;
+using DFM.Generic;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.D.Robot
 {
     [Binding]
-    public class RobotStep
+    public class RobotStep : BaseStep
     {
         #region SaveSchedule
+        [Given(@"I have this future move to create")]
+        public void GivenIHaveThisMoveToCreate(Table table)
+        {
+            var moveData = table.Rows[0];
+
+            Move = new FutureMove { Description = moveData["Description"] };
+
+            if (!String.IsNullOrEmpty(moveData["Nature"]))
+                Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
+
+            if (!String.IsNullOrEmpty(moveData["Date"]))
+                Move.Date = DateTime.Parse(moveData["Date"]);
+
+            // TODO: use this, delete above
+            //if (moveData["Value"] != null)
+            //    move.Value = Int32.Parse(moveData["Value"]);
+
+            if (!String.IsNullOrEmpty(moveData["Value"]))
+            {
+                var detail = new Detail
+                {
+                    Description = Move.Description,
+                    Amount = 1,
+                    Value = Int32.Parse(moveData["Value"])
+                };
+
+                Move.DetailList.Add(detail);
+            }
+        }
+
         [Given(@"the move has no schedule")]
         public void GivenTheMoveHasNoSchedule()
         {

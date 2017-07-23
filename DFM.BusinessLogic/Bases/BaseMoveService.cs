@@ -23,8 +23,9 @@ namespace DFM.BusinessLogic.Bases
         {
             testDescription(baseMove);
             testDate(baseMove);
-            testDetailList(baseMove);
+            testValue(baseMove);
             testNature(baseMove);
+            testDetailList(baseMove);
             testAccounts(baseMove);
             testCategory(baseMove);
         }
@@ -44,10 +45,11 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
         }
 
-        private static void testDetailList(BaseMove baseMove)
+        private static void testValue(BaseMove baseMove)
         {
-            if (!baseMove.DetailList.Any())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailRequired);
+            // TODO: When create value move move, take off //
+            if (baseMove.Value() == 0) // && !baseMove.DetailList.Any())
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
         private static void testNature(BaseMove baseMove)
@@ -73,6 +75,12 @@ namespace DFM.BusinessLogic.Bases
                     break;
 
             }
+        }
+
+        private static void testDetailList(BaseMove baseMove)
+        {
+            if (!baseMove.DetailList.Any())
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
         
         private static void testAccounts(BaseMove baseMove)

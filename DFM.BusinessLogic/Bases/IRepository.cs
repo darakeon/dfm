@@ -14,8 +14,8 @@ namespace DFM.BusinessLogic.Bases
         void Delete(T entity);
         T SelectOldById(Int32 id);
 
-        object BeginTransaction();
-        void CommitTransaction(object transaction);
-        void RollbackTransaction(object transaction);
+        void BeginTransaction();
+        void CommitTransaction();
+        void RollbackTransaction();
     }
 }

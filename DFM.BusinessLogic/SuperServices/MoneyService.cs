@@ -44,17 +44,19 @@ namespace DFM.BusinessLogic.SuperServices
         #region Save or Update
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn)
         {
-            var transaction = moveService.BeginTransaction();
+            moveService.BeginTransaction();
             
             try
             {
                 move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
 
-                moveService.CommitTransaction(transaction);
+                moveService.CommitTransaction();
             }
             catch
             {
-                moveService.RollbackTransaction(transaction);
+                move.ID = 0;
+
+                moveService.RollbackTransaction();
                 throw;
             }
 
@@ -89,7 +91,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeleteMove(Int32 id)
         {
-            var transaction = moveService.BeginTransaction();
+            moveService.BeginTransaction();
 
             try
             {
@@ -105,11 +107,11 @@ namespace DFM.BusinessLogic.SuperServices
                 move.Schedule.Times--;
                 scheduleService.SaveOrUpdate(move.Schedule);
 
-                moveService.CommitTransaction(transaction);
+                moveService.CommitTransaction();
             }
-            catch
+            catch (DFMCoreException)
             {
-                moveService.RollbackTransaction(transaction);
+                moveService.RollbackTransaction();
                 throw;
             }
 

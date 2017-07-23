@@ -40,48 +40,48 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateAccount(Account account)
         {
-            var transaction = accountService.BeginTransaction();
+            accountService.BeginTransaction();
 
             try
             {
                 accountService.SaveOrUpdate(account);
-                accountService.CommitTransaction(transaction);
+                accountService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction(transaction);
+                accountService.RollbackTransaction();
                 throw;
             }
         }
 
         public void CloseAccount(Int32 id)
         {
-            var transaction = accountService.BeginTransaction();
+            accountService.BeginTransaction();
 
             try
             {
                 accountService.Close(id);
-                accountService.CommitTransaction(transaction);
+                accountService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction(transaction);
+                accountService.RollbackTransaction();
                 throw;
             }
         }
 
         public void DeleteAccount(Int32 id)
         {
-            var transaction = accountService.BeginTransaction();
+            accountService.BeginTransaction();
 
             try
             {
                 accountService.Delete(id);
-                accountService.CommitTransaction(transaction);
+                accountService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction(transaction);
+                accountService.RollbackTransaction();
                 throw;
             }
         }
@@ -110,48 +110,48 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateCategory(Category category)
         {
-            var transaction = categoryService.BeginTransaction();
+            categoryService.BeginTransaction();
 
             try
             {
                 categoryService.SaveOrUpdate(category);
-                categoryService.CommitTransaction(transaction);
+                categoryService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction(transaction);
+                categoryService.RollbackTransaction();
                 throw;
             }
         }
 
         public void DisableCategory(Int32 id)
         {
-            var transaction = categoryService.BeginTransaction();
+            categoryService.BeginTransaction();
 
             try
             {
                 categoryService.Disable(id);
-                categoryService.CommitTransaction(transaction);
+                categoryService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction(transaction);
+                categoryService.RollbackTransaction();
                 throw;
             }
         }
 
         public void EnableCategory(Int32 id)
         {
-            var transaction = categoryService.BeginTransaction();
+            categoryService.BeginTransaction();
 
             try
             {
                 categoryService.Enable(id);
-                categoryService.CommitTransaction(transaction);
+                categoryService.CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction(transaction);
+                categoryService.RollbackTransaction();
                 throw;
             }
         }
