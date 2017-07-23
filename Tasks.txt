@@ -141,7 +141,8 @@ VERSÃO 1.0.2.2
 18/07/2012	18/07/2012	Modificar this[] para retornar objeto novo caso não exista o procurado
 18/07/2012	18/07/2012	Criar classe Session para Begin/Commit/Rollback
 18/07/2012	18/07/2012	Passar parent para superservices, ao invés de passar todos os services
-09/08/2012			Colocar dados de Post no e-mail de erro
+09/08/2012	09/08/2012	Colocar dados de Post no e-mail de erro
+09/08/2012	09/08/2012	Arrumar configuração de DB no webconfig release
 				Reorganização da ordem das funções nos serviços
 				Colocar robot.txt para google
 				Testar entrar com user não validado ainda (MVC)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Ak.Generic.Exceptions;
 
@@ -11,17 +13,20 @@ namespace DFM.Email
         /// </summary>
         /// <param name="exceptions">Errors occured</param>
         /// <param name="url">Current url</param>
+        /// <param name="parameters">Parameters of url (post / get)</param>
         /// <param name="user">Name of current user logged</param>
         /// <returns>Status of e-mail</returns>
-        public static Status SendReport(Exception[] exceptions, String url, String user)
+        public static Status SendReport(Exception[] exceptions, String url, IDictionary<String, String> parameters, String user)
         {
             if (exceptions == null)
                 return Status.Empty;
 
             try
             {
-                var errors = String.Join("<br /><br />", exceptions.Select(format));
-                var body = String.Format("<h4>{0} at {1}</h4>{2}", user, url, errors);
+                var parametersFormatted = String.Join("; ", parameters.Select(format));
+                var exceptionsFormatted = String.Join("<br /><br />", exceptions.Select(format));
+
+                var body = String.Format("<h4>{0} at {1}</h4><h5>{2}</h5>{3}", user, url, parametersFormatted, exceptionsFormatted);
 
                 new Sender()
                     .ToDefault()
@@ -35,6 +40,11 @@ namespace DFM.Email
             {
                 return Status.Error;
             }
+        }
+
+        private static String format(KeyValuePair<String, String> pair)
+        {
+            return String.Format("{0}: {1}", pair.Key, pair.Value);
         }
 
         private static String format(Exception exception)

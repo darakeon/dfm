@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using DFM.Email;
 using DFM.Generic;
@@ -13,9 +14,19 @@ namespace DFM.MVC.Helpers
             var current = HttpContext.Current;
             var user = current.User.Identity;
 
+            var get = current.Request.QueryString;
+            var post = current.Request.Form;
+
+            var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
+            var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
+
+            var parameters = getDictionary.Union(postDictionary)
+                .ToDictionary(p => p.Key, p => p.Value);
+
             // TODO: Use Current here (when its in separate project)
             EmailSent = Error.SendReport(current.AllErrors
                 , current.Request.Url.ToString()
+                , parameters
                 , user.IsAuthenticated ? user.Name : "Off");
 
         }
