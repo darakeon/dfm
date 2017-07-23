@@ -133,7 +133,7 @@ namespace DFM.Tests.E.Report
         [Given(@"I have moves of")]
         public void GivenIHaveMovesOf(Table table)
         {
-            Category = GetOrCreateCategory(CentralCategoryName);
+            Category = GetOrCreateCategory(CategoryName);
 
             foreach (var row in table.Rows)
             {

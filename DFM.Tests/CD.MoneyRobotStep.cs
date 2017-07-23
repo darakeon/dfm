@@ -251,17 +251,17 @@ namespace DFM.Tests
         }
 
         
-        [Then(@"the accountOut value will decrease in (\d+)")]
-        public void ThenTheAccountOutValueWillDecreaseIn(Double decrease)
+        [Then(@"the accountOut value will change in (\-?\d+)")]
+        public void ThenTheAccountOutValueWillDecreaseIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
             var currentTotal = AccountOut.Sum();
 
-            Assert.AreEqual(AccountOutTotal - decrease, currentTotal);
+            Assert.AreEqual(AccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the month-category-accountOut value will change in (\d+)")]
+        [Then(@"the month-category-accountOut value will change in (\-?\d+)")]
         public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
@@ -274,7 +274,7 @@ namespace DFM.Tests
             Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the year-category-accountOut value will change in (\d+)")]
+        [Then(@"the year-category-accountOut value will change in (\-?\d+)")]
         public void ThenTheYearCategoryAccountOutValueWillChangeIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
@@ -285,19 +285,19 @@ namespace DFM.Tests
 
             Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
-        
 
-        [Then(@"the accountIn value will increase in (\d+)")]
-        public void ThenTheAccountInValueWillIncreaseIn(Double increase)
+
+        [Then(@"the accountIn value will change in (\-?\d+)")]
+        public void ThenTheAccountInValueWillIncreaseIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
             var currentTotal = AccountIn.Sum();
 
-            Assert.AreEqual(AccountInTotal + increase, currentTotal);
+            Assert.AreEqual(AccountInTotal + change, currentTotal);
         }
 
-        [Then(@"the month-category-accountIn value will change in (\d+)")]
+        [Then(@"the month-category-accountIn value will change in (\-?\d+)")]
         public void ThenTheMonthCategoryAccountInValueWillChangeIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
@@ -310,7 +310,7 @@ namespace DFM.Tests
             Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
 
-        [Then(@"the year-category-accountIn value will change in (\d+)")]
+        [Then(@"the year-category-accountIn value will change in (\-?\d+)")]
         public void ThenTheYearCategoryAccountInValueWillChangeIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);

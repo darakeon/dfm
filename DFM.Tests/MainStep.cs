@@ -24,19 +24,19 @@ namespace DFM.Tests
         [Given(@"I have an user")]
         public void GivenIHaveAnUser()
         {
-            User = GetOrCreateUser(CentralUserEmail, CentralUserPassword);
+            User = GetOrCreateUser(UserEmail, UserPassword);
         }
 
         [Given(@"I have an account")]
         public void GivenIHaveAnAccount()
         {
-            Account = GetOrCreateAccount(CentralAccountName);
+            Account = GetOrCreateAccount(AccountName);
         }
 
         [Given(@"I have a category")]
         public void GivenIHaveACategory()
         {
-            Category = GetOrCreateCategory(CentralCategoryName);
+            Category = GetOrCreateCategory(CategoryName);
         }
 
         [AfterScenario]

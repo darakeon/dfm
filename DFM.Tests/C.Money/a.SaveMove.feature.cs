@@ -1401,7 +1401,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 464
  testRunner.And("the move will be saved");
 #line 465
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 466
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 467
@@ -1445,7 +1445,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 479
  testRunner.And("the move will be saved");
 #line 480
- testRunner.And("the accountIn value will increase in 10");
+ testRunner.And("the accountIn value will change in 10");
 #line 481
  testRunner.And("the month-category-accountIn value will change in 10");
 #line 482
@@ -1489,13 +1489,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 494
  testRunner.And("the move will be saved");
 #line 495
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 496
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 497
  testRunner.And("the year-category-accountOut value will change in 10");
 #line 498
- testRunner.And("the accountIn value will increase in 10");
+ testRunner.And("the accountIn value will change in 10");
 #line 499
  testRunner.And("the month-category-accountIn value will change in 10");
 #line 500
@@ -1539,7 +1539,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 512
  testRunner.And("the move will be saved");
 #line 513
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 514
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 515
@@ -1596,7 +1596,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 530
  testRunner.And("the move will be saved");
 #line 531
- testRunner.And("the accountOut value will decrease in 20");
+ testRunner.And("the accountOut value will change in -20");
 #line 532
  testRunner.And("the month-category-accountOut value will change in 20");
 #line 533
@@ -1640,7 +1640,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 545
  testRunner.And("the move will be saved");
 #line 546
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 547
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 548
@@ -1697,7 +1697,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 563
  testRunner.And("the move will be saved");
 #line 564
- testRunner.And("the accountOut value will decrease in 20");
+ testRunner.And("the accountOut value will change in -20");
 #line 565
  testRunner.And("the month-category-accountOut value will change in 20");
 #line 566
@@ -1750,7 +1750,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 580
  testRunner.And("the move will be saved");
 #line 581
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 582
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 583
@@ -1794,7 +1794,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 595
  testRunner.And("the move will be saved");
 #line 596
- testRunner.And("the accountOut value will decrease in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 597
  testRunner.And("the month-category-accountOut value will change in 10");
 #line 598

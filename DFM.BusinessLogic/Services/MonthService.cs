@@ -15,7 +15,7 @@ namespace DFM.BusinessLogic.Services
             var newMonth = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.AjustSummaryList(category);
+                newMonth.GetOrCreateSummary(category);
 
             return newMonth;
         }

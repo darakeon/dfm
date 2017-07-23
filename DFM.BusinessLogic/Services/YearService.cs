@@ -15,7 +15,7 @@ namespace DFM.BusinessLogic.Services
             var newYear = getOrCreateYear(account, year);
 
             if (category != null)
-                newYear.AjustSummaryList(category);
+                newYear.GetOrCreateSummary(category);
 
             return newYear;
         }

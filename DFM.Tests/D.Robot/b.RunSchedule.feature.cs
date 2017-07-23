@@ -127,11 +127,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.And("it has no Account In");
 #line 26
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 27
  testRunner.When("I try to run the scheduler");
 #line 28
- testRunner.Then("the accountOut value will decrease in 10");
+ testRunner.Then("the accountOut value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -180,11 +180,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
  testRunner.And("it has no Account In");
 #line 42
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 43
  testRunner.When("I try to run the scheduler");
 #line 44
- testRunner.Then("the accountOut value will decrease in 40");
+ testRunner.Then("the accountOut value will change in -40");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -233,11 +233,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 57
  testRunner.And("it has no Account In");
 #line 58
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 59
  testRunner.When("I try to run the scheduler");
 #line 60
- testRunner.Then("the accountOut value will decrease in 30");
+ testRunner.Then("the accountOut value will change in -30");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -286,11 +286,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 73
  testRunner.And("it has no Account In");
 #line 74
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 75
  testRunner.When("I try to run the scheduler");
 #line 76
- testRunner.Then("the accountOut value will decrease in 60");
+ testRunner.Then("the accountOut value will change in -60");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -339,11 +339,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 89
  testRunner.And("it has no Account In");
 #line 90
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 91
  testRunner.When("I try to run the scheduler");
 #line 92
- testRunner.Then("the accountOut value will decrease in 100");
+ testRunner.Then("the accountOut value will change in -100");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -392,11 +392,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 105
  testRunner.And("it has no Account In");
 #line 106
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 107
  testRunner.When("I try to run the scheduler");
 #line 108
- testRunner.Then("the accountOut value will decrease in 60");
+ testRunner.Then("the accountOut value will change in -60");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -445,11 +445,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 121
  testRunner.And("it has no Account In");
 #line 122
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 123
  testRunner.When("I try to run the scheduler");
 #line 124
- testRunner.Then("the accountOut value will decrease in 20");
+ testRunner.Then("the accountOut value will change in -20");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -511,11 +511,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 140
  testRunner.And("it has no Account In");
 #line 141
- testRunner.And("I save the move");
+ testRunner.And("I save the schedule");
 #line 142
  testRunner.When("I try to run the scheduler");
 #line 143
- testRunner.Then("the accountOut value will decrease in 100");
+ testRunner.Then("the accountOut value will change in -100");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

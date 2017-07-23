@@ -97,19 +97,19 @@ namespace DFM.Tests.D.Robot
             User = null;
         }
 
-        [Given(@"its Date is (\d+) (\w+) ago")]
+        [Given(@"its Date is (\-?\d+) (\w+) ago")]
         public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
         {
             switch (frequency)
             {
-                case "days": Move.Date = DateTime.Today.AddDays(-count); break;
-                case "months": Move.Date = DateTime.Today.AddMonths(-count); break;
-                case "years": Move.Date = DateTime.Today.AddYears(-count); break;
+                case "day": case "days": Move.Date = DateTime.Today.AddDays(-count); break;
+                case "month":case "months": Move.Date = DateTime.Today.AddMonths(-count); break;
+                case "year": case "years": Move.Date = DateTime.Today.AddYears(-count); break;
             }
         }
 
-        [Given(@"I save the move")]
-        public void GivenISaveTheMove()
+        [Given(@"I save the schedule")]
+        public void GivenISaveTheSchedule()
         {
             SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn, MoveCategory, Schedule);
         }

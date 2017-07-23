@@ -134,6 +134,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveMove.feature</DependentUpon>
     </Compile>
+    <Compile Include="C.Money\b.UpdateMove.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>b.UpdateMove.feature</DependentUpon>
+    </Compile>
     <Compile Include="C.Money\_C.MoneyStep.cs" />
     <Compile Include="C.Money\c.SelectMoveById.feature.cs">
       <DependentUpon>c.SelectMoveById.feature</DependentUpon>
@@ -234,6 +239,10 @@
     <None Include="C.Money\e.DeleteMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>e.DeleteMove.feature.cs</LastGenOutput>
+    </None>
+    <None Include="C.Money\b.UpdateMove.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>b.UpdateMove.feature.cs</LastGenOutput>
     </None>
     <None Include="D.Robot\b.RunSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

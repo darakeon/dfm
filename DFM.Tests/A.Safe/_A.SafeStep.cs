@@ -163,7 +163,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be activated")]
         public void ThenTheUserWillNotBeActivated()
         {
-            User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
 
             Assert.IsFalse(User.Active);
         }
@@ -171,7 +171,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
 
             Assert.IsTrue(User.Active);
         }
@@ -259,7 +259,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+                User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
             }
             catch (DFMCoreException e)
             {
@@ -276,11 +276,11 @@ namespace DFM.Tests.A.Safe
             User = null;
             Error = null;
 
-            CentralUserPassword = newPassword;
+            UserPassword = newPassword;
 
             try
             {
-                User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+                User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
             }
             catch (DFMCoreException e)
             {

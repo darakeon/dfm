@@ -11,5 +11,7 @@ namespace DFM.Entities.Bases
         Double CheckUpIn(Category category);
         Double CheckUpOut(Category category);
         Summary AddSummary(Category category);
+
+        Summary this[String categoryName] { get; }
     }
 }

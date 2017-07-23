@@ -64,7 +64,7 @@ namespace DFM.Tests.C_Money
 #line 6
  testRunner.And("I have a category");
 #line 7
- testRunner.And("I have a move");
+ testRunner.And("I have a move with value 10");
 #line hidden
         }
         
@@ -81,6 +81,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I try to delete the move");
 #line 12
  testRunner.Then("I will receive this error: InvalidMove");
+#line 13
+ testRunner.And("the accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -90,16 +92,18 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_DeleteTheMoveByIDS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete the Move by ID (S)", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.Given("I pass valid Move ID");
+this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.When("I try to delete the move");
+ testRunner.Given("I pass valid Move ID");
 #line 17
- testRunner.Then("I will receive no error");
+ testRunner.When("I try to delete the move");
 #line 18
+ testRunner.Then("I will receive no error");
+#line 19
  testRunner.And("the move will be deleted");
+#line 20
+ testRunner.And("the accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

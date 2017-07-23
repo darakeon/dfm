@@ -462,7 +462,7 @@ Scenario: 91. Save with info all right (Out) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 	
@@ -477,7 +477,7 @@ Scenario: 92. Save with info all right (In) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountIn value will increase in 10
+	And the accountIn value will change in 10
 	And the month-category-accountIn value will change in 10
 	And the year-category-accountIn value will change in 10
 	
@@ -492,10 +492,10 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
-	And the accountIn value will increase in 10
+	And the accountIn value will change in 10
 	And the month-category-accountIn value will change in 10
 	And the year-category-accountIn value will change in 10
 
@@ -510,7 +510,7 @@ Scenario: 94. Save with info all right (value) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
@@ -528,7 +528,7 @@ Scenario: 95. Save with info all right (details) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 20
+	And the accountOut value will change in -20
 	And the month-category-accountOut value will change in 20
 	And the year-category-accountOut value will change in 20
 
@@ -543,7 +543,7 @@ Scenario: 96. Save negative (value) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
@@ -561,7 +561,7 @@ Scenario: 97. Save negative (details) (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 20
+	And the accountOut value will change in -20
 	And the month-category-accountOut value will change in 20
 	And the year-category-accountOut value will change in 20
 
@@ -578,7 +578,7 @@ Scenario: 98. Save with exactly length in Description of Detail (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
@@ -593,6 +593,6 @@ Scenario: 99. Save with exactly length in Description (S)
 	When I try to save the move
 	Then I will receive no error
 	And the move will be saved
-	And the accountOut value will decrease in 10
+	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10

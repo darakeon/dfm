@@ -20,8 +20,8 @@ namespace DFM.Entities
 
         public override String ToString()
         {
-            return String.Format("[{0}] {1} - {2}",
-                ID, Category, (ISummarizable) Month ?? Year);
+            return String.Format("[{0}] {1}",
+                ID, In - Out);
         }
 
     }

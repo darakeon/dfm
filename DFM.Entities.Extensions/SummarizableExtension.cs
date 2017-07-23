@@ -11,26 +11,10 @@ namespace DFM.Entities.Extensions
             return summarizable.SummaryList.Sum(s => s.Value());
         }
 
-
-
-        public static Summary AjustSummaryList(this ISummarizable summarizable, Category category)
-        {
-            return summarizable.getSummary(category)
-                ?? summarizable.AddSummary(category);
-        }
-
-
-
         public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
         {
-            return summarizable.getSummary(category)
-                   ?? summarizable.AddSummary(category);
-        }
-
-        private static Summary getSummary(this ISummarizable summarizable, Category category)
-        {
-            return summarizable.SummaryList
-                .SingleOrDefault(s => s.Category == category);
+            return summarizable[category.Name]
+                ?? summarizable.AddSummary(category);
         }
 
     }

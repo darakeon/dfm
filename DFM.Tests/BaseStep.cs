@@ -106,25 +106,25 @@ namespace DFM.Tests
 
 
 
-        protected DFMCoreException Error
+        protected static DFMCoreException Error
         {
             get { return Get<DFMCoreException>("error"); }
             set { Set("error", value); }
         }
 
-        protected User User
+        protected static User User
         {
             get { return Get<User>("user"); }
             set { Set("user", value); }
         }
 
-        protected Account Account
+        protected static Account Account
         {
             get { return Get<Account>("Account"); }
             set { Set("Account", value); }
         }
 
-        protected Category Category
+        protected static Category Category
         {
             get { return Get<Category>("Category"); }
             set { Set("Category", value); }
@@ -181,7 +181,7 @@ namespace DFM.Tests
         }
 
         
-        protected Category MoveCategory
+        protected static Category MoveCategory
         {
             get { return Get<Category>("MoveCategory"); }
             set { Set("MoveCategory", value); }
@@ -197,10 +197,10 @@ namespace DFM.Tests
         
 
 
-        protected const String CentralUserEmail = "test@dontflymoney.com";
-        protected static String CentralUserPassword = "password";
-        protected const String CentralAccountName = "first account";
-        protected const String CentralCategoryName = "first category";
+        protected const String UserEmail = "test@dontflymoney.com";
+        protected static String UserPassword = "password";
+        protected const String AccountName = "first account";
+        protected const String CategoryName = "first category";
 
         protected const String AccountOutName = "account out";
         protected const String AccountInName = "account in";
