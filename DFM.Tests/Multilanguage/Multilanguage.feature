@@ -58,6 +58,7 @@ Scenario: 04. Get translations of Errors
 		| Error   | UserEmailInvalid               |
 		| Error   | UserPasswordRequired           |
 		| Error   | DisabledUser                   |
+		| Error   | InvalidTicket                  |
 		| Error   | AccountNameRequired            |
 		| Error   | AccountUrlRequired             |
 		| Error   | AccountUrlInvalid              |

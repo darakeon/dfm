@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SendUserVerify(String email)
         {
-            var user = SelectUserByEmail(email);
+            var user = userService.SelectByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -141,14 +141,20 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public User SelectUserByEmail(String email)
+        public User SelectUserByTicket(String ticketKey)
         {
-            var user = userService.SelectByEmail(email);
+            var ticket = ticketService.SelectByKey(ticketKey);
 
-            if (user == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+            if (ticket == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
 
-            return user;
+            if (!ticket.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+
+            if (!ticket.User.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+
+            return ticket.User;
         }
 
 
@@ -174,6 +180,8 @@ namespace DFM.BusinessLogic.SuperServices
         public String ValidateUserAndGetTicket(String email, String password)
         {
             var user = userService.ValidateAndGet(email, password);
+
+            ticketService.DeactivateTickets(user);
 
             var ticket = new Ticket {User = user};
 

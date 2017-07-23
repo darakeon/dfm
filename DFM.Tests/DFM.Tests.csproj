@@ -36,13 +36,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BusinessLogic\A.Safe\e.ValidateAndGetTicket.feature.cs">
-      <DependentUpon>e.ValidateAndGetTicket.feature</DependentUpon>
+    <Compile Include="BusinessLogic\A.Safe\e.ValidateUserAndGetTicket.feature.cs">
+      <DependentUpon>e.ValidateUserAndGetTicket.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BusinessLogic\A.Safe\f.SelectUserByEmail.feature.cs">
-      <DependentUpon>f.SelectUserByEmail.feature</DependentUpon>
+    <Compile Include="BusinessLogic\A.Safe\f.SelectUserByTicket.feature.cs">
+      <DependentUpon>f.SelectUserByTicket.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -286,13 +286,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>d.ActivateUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="BusinessLogic\A.Safe\e.ValidateAndGetTicket.feature">
+    <None Include="BusinessLogic\A.Safe\e.ValidateUserAndGetTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>e.ValidateAndGetTicket.feature.cs</LastGenOutput>
+      <LastGenOutput>e.ValidateUserAndGetTicket.feature.cs</LastGenOutput>
     </None>
-    <None Include="BusinessLogic\A.Safe\f.SelectUserByEmail.feature">
+    <None Include="BusinessLogic\A.Safe\f.SelectUserByTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>f.SelectUserByEmail.feature.cs</LastGenOutput>
+      <LastGenOutput>f.SelectUserByTicket.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\A.Safe\b.SendUserVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

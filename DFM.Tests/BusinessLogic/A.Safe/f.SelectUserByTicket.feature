@@ -1,0 +1,24 @@
+﻿Feature: f. Get an user by its ticket
+
+Background:
+	Given I have this user to create and activate
+		| Email                               | Password |
+		| selectuserbyticket@dontflymoney.com | password |
+
+Scenario: 01. Select with ticket that doesn't exist (E)
+	Given I pass a ticket that doesn't exist
+	When I try to get the user
+	Then I will receive this core error: InvalidTicket
+	And I will receive no user
+
+Scenario: 02. Select with ticket that is not active anymore (E)
+	Given I pass a ticket that is already invalid
+	When I try to get the user
+	Then I will receive this core error: InvalidTicket
+	And I will receive no user
+
+Scenario: 99. Select with info all right (S)
+	Given I pass a ticket that exist
+	When I try to get the user
+	Then I will receive no core error
+	And I will receive the user

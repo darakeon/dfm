@@ -86,11 +86,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given("I have this user data", ((string)(null)), table2);
 #line 12
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 13
  testRunner.Then("I will receive this core error: InvalidUser");
 #line 14
- testRunner.And("I will receive no user");
+ testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -112,11 +112,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.Given("I have this user data", ((string)(null)), table3);
 #line 20
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 21
  testRunner.Then("I will receive this core error: InvalidUser");
 #line 22
- testRunner.And("I will receive no user");
+ testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -138,11 +138,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.Given("I have this user data", ((string)(null)), table4);
 #line 28
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 29
  testRunner.Then("I will receive this core error: InvalidUser");
 #line 30
- testRunner.And("I will receive no user");
+ testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -164,20 +164,20 @@ this.ScenarioSetup(scenarioInfo);
 #line 33
  testRunner.Given("I have this user data", ((string)(null)), table5);
 #line 36
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 37
  testRunner.Then("I will receive this core error: InvalidUser");
 #line 38
- testRunner.And("I will receive no user");
+ testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Validate user disabled (S)")]
-        public virtual void _05_ValidateUserDisabledS()
+        [NUnit.Framework.DescriptionAttribute("05. Validate user disabled (E)")]
+        public virtual void _05_ValidateUserDisabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Validate user disabled (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Validate user disabled (E)", ((string[])(null)));
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -190,11 +190,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
  testRunner.Given("I have this user data", ((string)(null)), table6);
 #line 44
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 45
  testRunner.Then("I will receive this core error: DisabledUser");
 #line 46
- testRunner.And("I will receive no user");
+ testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -218,11 +218,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 52
  testRunner.And("I activate the user");
 #line 53
- testRunner.When("I try to get the user");
+ testRunner.When("I try to get the ticket");
 #line 54
  testRunner.Then("I will receive no core error");
 #line 55
- testRunner.And("I will receive the user");
+ testRunner.And("I will receive the ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

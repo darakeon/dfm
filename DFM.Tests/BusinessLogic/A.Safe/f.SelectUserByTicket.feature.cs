@@ -18,20 +18,20 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Get an user by its e-mail")]
-    public partial class F_GetAnUserByItsE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("f. Get an user by its ticket")]
+    public partial class F_GetAnUserByItsTicketFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "f.SelectUserByEmail.feature"
+#line 1 "f.SelectUserByTicket.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get an user by its e-mail", "\r\n* Change to select an user to its ticket", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get an user by its ticket", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -56,33 +56,52 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         
         public virtual void FeatureBackground()
         {
-#line 5
+#line 3
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
             table1.AddRow(new string[] {
-                        "selectuserbyemail@dontflymoney.com",
+                        "selectuserbyticket@dontflymoney.com",
                         "password"});
-#line 6
- testRunner.Given("I have this user to create", ((string)(null)), table1);
+#line 4
+ testRunner.Given("I have this user to create and activate", ((string)(null)), table1);
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Select with email that doesn\'t exist (E)")]
-        public virtual void _01_SelectWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("01. Select with ticket that doesn\'t exist (E)")]
+        public virtual void _01_SelectWithTicketThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Select with email that doesn\'t exist (E)", ((string[])(null)));
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Select with ticket that doesn\'t exist (E)", ((string[])(null)));
+#line 8
 this.ScenarioSetup(scenarioInfo);
+#line 9
+ testRunner.Given("I pass a ticket that doesn\'t exist");
+#line 10
+ testRunner.When("I try to get the user");
 #line 11
- testRunner.Given("I pass an e-mail that doesn\'t exist");
+ testRunner.Then("I will receive this core error: InvalidTicket");
 #line 12
- testRunner.When("I try to get the user without password");
-#line 13
- testRunner.Then("I will receive this core error: InvalidUser");
+ testRunner.And("I will receive no user");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02. Select with ticket that is not active anymore (E)")]
+        public virtual void _02_SelectWithTicketThatIsNotActiveAnymoreE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Select with ticket that is not active anymore (E)", ((string[])(null)));
 #line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.Given("I pass a ticket that is already invalid");
+#line 16
+ testRunner.When("I try to get the user");
+#line 17
+ testRunner.Then("I will receive this core error: InvalidTicket");
+#line 18
  testRunner.And("I will receive no user");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -93,13 +112,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SelectWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Select with info all right (S)", ((string[])(null)));
-#line 16
+#line 20
 this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.When("I try to get the user without password");
-#line 18
+#line 21
+ testRunner.Given("I pass a ticket that exist");
+#line 22
+ testRunner.When("I try to get the user");
+#line 23
  testRunner.Then("I will receive no core error");
-#line 19
+#line 24
  testRunner.And("I will receive the user");
 #line hidden
             testRunner.CollectScenarioErrors();

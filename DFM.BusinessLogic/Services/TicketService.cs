@@ -20,6 +20,26 @@ namespace DFM.BusinessLogic.Services
             return ticket;
         }
 
+        internal Ticket SelectByKey(String key)
+        {
+            return SingleOrDefault(t => t.Key == key);
+        }
+
+
+
+        internal void DeactivateTickets(User user)
+        {
+            var tickets = 
+                List(t => t.User.ID == user.ID
+                    && t.Active);
+
+            foreach (var ticket in tickets)
+            {
+                ticket.Active = false;
+                SaveOrUpdate(ticket);
+            }
+
+        }
 
 
     }

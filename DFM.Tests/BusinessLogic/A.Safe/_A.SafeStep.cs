@@ -25,6 +25,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             get { return Get<String>("Email"); }
             set { Set("Email", value); }
         }
+
+        private static String ticket
+        {
+            get { return Get<String>("ticket"); }
+            set { Set("ticket", value); }
+        }
         
         private static String password
         {
@@ -100,7 +106,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             {
                 SA.Safe.ValidateUserAndGetTicket(email, password);
 
-                savedUser = SA.Safe.SelectUserByEmail(email);
+                savedUser = SA.Safe.SelectUserByTicket(email);
             }
             catch (DFMCoreException e)
             {
@@ -193,15 +199,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            SA.Safe.ValidateUserAndGetTicket(email, password);
+            var ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
             
-            User = SA.Safe.SelectUserByEmail(email);
+            User = SA.Safe.SelectUserByTicket(ticket);
 
             Assert.IsTrue(User.Active);
         }
         #endregion
 
-        #region ValidateAndGetUser
+        #region ValidateUserAndGetTicket
         [Given(@"I activate the user")]
         public void GivenIActivateTheUser()
         {
@@ -212,6 +218,39 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             SA.Safe.ActivateUser(tokenToActivate);
         }
 
+        [When(@"I try to get the ticket")]
+        public void WhenITryToGetTheTicket()
+        {
+            ticket = null;
+
+            try
+            {
+                ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"I will receive no ticket")]
+        public void ThenIWillReceiveNoTicket()
+        {
+            Assert.IsNull(ticket);
+        }
+
+        [Then(@"I will receive the ticket")]
+        public void ThenIWillReceiveTheTicket()
+        {
+            Assert.IsNotNull(ticket);
+
+            var user = SA.Safe.SelectUserByTicket(ticket);
+
+            Assert.AreEqual(email, user.Email);
+        }
+        #endregion
+        
+        #region SelectUserByEmail
         [When(@"I try to get the user")]
         public void WhenITryToGetTheUser()
         {
@@ -219,18 +258,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateUserAndGetTicket(email, password);
-                
-                User = SA.Safe.SelectUserByEmail(email);
+                User = SA.Safe.SelectUserByTicket(ticket);
             }
             catch (DFMCoreException e)
             {
                 Error = e;
             }
         }
-        #endregion
-        
-        #region SelectUserByEmail
+
         [When(@"I try to get the user without password")]
         public void WhenITryToGetTheUserWithoutPassword()
         {
@@ -238,7 +273,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                User = SA.Safe.SelectUserByEmail(email);
+                User = SA.Safe.SelectUserByTicket(email);
             }
             catch (DFMCoreException e)
             {
@@ -383,6 +418,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             CreateUserIfNotExists(email, password);
         }
 
+        [Given(@"I have this user to create and activate")]
+        public void GivenIHaveThisUserToCreateAndActivate(Table table)
+        {
+            email = table.Rows[0]["Email"];
+            password = table.Rows[0]["Password"];
+
+            CreateUserIfNotExists(email, password, true);
+        }
+
         [Given(@"I have a token for its activation")]
         public void GivenIHaveATokenForItsActivation()
         {
@@ -405,6 +449,33 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         public void GivenIPassAnEMailThatDoesnTExist()
         {
             email = "dont_exist@dontflymoney.com";
+        }
+
+        [Given(@"I pass a ticket that doesn't exist")]
+        public void GivenIPassATicketThatDoesnTExist()
+        {
+            ticket = Token.New();
+        }
+
+        [Given(@"I pass a ticket that is already invalid")]
+        public void GivenIPassATicketThatIsAlreadyInvalid()
+        {
+            ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
+
+            //Create new ticket
+            SA.Safe.ValidateUserAndGetTicket(email, password);
+        }
+
+        [Given(@"I pass a ticket that is of this disabled user")]
+        public void GivenIPassATicketThatIsOfThisDisabledUser()
+        {
+            ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
+        }
+
+        [Given(@"I pass a ticket that exist")]
+        public void GivenIPassATicketThatExist()
+        {
+            ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
         }
 
         [Given(@"I pass a valid ([A-Za-z]+) token")]

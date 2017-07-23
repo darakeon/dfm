@@ -35,7 +35,7 @@ namespace DFM.Authentication
                 
                 var username = Authenticate.Username;
 
-                return userService.SelectUserByEmail(username);
+                return userService.SelectUserByTicket(username);
             }
         }
 
@@ -64,9 +64,9 @@ namespace DFM.Authentication
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
-            userService.ValidateUserAndGetTicket(username, password);
+            var ticket = userService.ValidateUserAndGetTicket(username, password);
 
-            userApp = userService.SelectUserByEmail(username);
+            userApp = userService.SelectUserByTicket(ticket);
 
             return userApp;
         }
@@ -80,7 +80,7 @@ namespace DFM.Authentication
 
             Authenticate.Set(username, response, isPersistent);
 
-            return userService.SelectUserByEmail(username);
+            return userService.SelectUserByTicket(username);
         }
 
 

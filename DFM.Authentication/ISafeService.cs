@@ -5,7 +5,7 @@ namespace DFM.Authentication
 {
     public interface ISafeService
     {
-        User SelectUserByEmail(String username);
+        User SelectUserByTicket(String username);
 
         String ValidateUserAndGetTicket(String username, String password);
 
