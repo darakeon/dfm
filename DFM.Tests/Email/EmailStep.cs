@@ -36,6 +36,7 @@ namespace DFM.Tests.Email
         [When(@"I try to send the e-mail")]
         public void WhenITryToSendTheEMail()
         {
+            var emailSenderConfig = ConfigurationManager.AppSettings["EmailSender"];
             ConfigurationManager.AppSettings["EmailSender"] = "";
 
             try
@@ -46,6 +47,8 @@ namespace DFM.Tests.Email
             {
                 error = e;
             }
+
+            ConfigurationManager.AppSettings["EmailSender"] = emailSenderConfig;
         }
 
         

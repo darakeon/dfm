@@ -19,6 +19,7 @@
     <FailOnEmailSend text="Fail on trying to send. Verify the e-mail address." />
     <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
     <InvalidCategory text="Invalid Category" />
+    <InvalidAccount text="Invalid Account" />
     <InvalidEmail text="Invalid E-mail" />
     <InvalidToken text="Invalid Token" />
     <InvalidUser text="User and/or password invalid." />
@@ -58,6 +59,7 @@
     <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail." />
     <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
     <InvalidCategory text="Categoria Inválida" />
+    <InvalidAccount text="Conta Inválida" />
     <InvalidEmail text="E-mail Inválido" />
     <InvalidToken text="Token inválido" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />

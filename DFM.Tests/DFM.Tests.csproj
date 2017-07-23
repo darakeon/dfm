@@ -159,7 +159,6 @@
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
     <Compile Include="BusinessLogic\Helpers\DBHelper.cs" />
-    <Compile Include="BusinessLogic\MainStep.cs" />
     <Compile Include="BusinessLogic\D.Robot\b.RunSchedule.feature.cs">
       <DependentUpon>b.RunSchedule.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -188,6 +187,12 @@
       <DependentUpon>EmailSend.feature</DependentUpon>
     </Compile>
     <Compile Include="Email\EmailStep.cs" />
+    <Compile Include="Multilanguage\Multilanguage.feature.cs">
+      <DependentUpon>Multilanguage.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Multilanguage\MultilanguageStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +312,10 @@
     <None Include="Email\EmailSend.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>EmailSend.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Multilanguage\Multilanguage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Multilanguage.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

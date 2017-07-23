@@ -161,7 +161,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
         {
-            var detail =  Services.Money.SelectDetailById(id);
+            var detail = id == 0
+                ? default(Detail)
+                : Services.Money.SelectDetailById(id);
 
             var model = new MoveAddDetailModel(position, detail);
 
