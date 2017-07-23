@@ -16,9 +16,8 @@ namespace DFM.BusinessLogic.SuperServices
         private readonly DetailService detailService;
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
-        private readonly UserService userService;
         
-        internal RobotService(MoneyService moneyService, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, AccountService accountService, UserService userService)
+        internal RobotService(MoneyService moneyService, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, AccountService accountService)
         {
             this.moneyService = moneyService;
 
@@ -27,7 +26,6 @@ namespace DFM.BusinessLogic.SuperServices
             this.detailService = detailService;
             this.categoryService = categoryService;
             this.accountService = accountService;
-            this.userService = userService;
         }
 
 
@@ -65,10 +63,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var accountOut = futureMove.Out;
                 var accountIn = futureMove.In;
+                var category = futureMove.Category;
 
                 var move = futureMove.CastToKill();
 
-                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
+                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
                 futureMoveService.Delete(futureMove.ID);
 
                 futureMoveService.CommitTransaction();
@@ -82,7 +81,7 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
+        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn, Category category, Schedule schedule)
         {
             futureMove.Out = accountOut == null 
                 ? null 
@@ -96,7 +95,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                futureMove = saveOrUpdateSchedule(futureMove);
+                futureMove = saveOrUpdateSchedule(futureMove, category, schedule);
                 
                 futureMoveService.CommitTransaction();
 
@@ -109,17 +108,17 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        private FutureMove saveOrUpdateSchedule(FutureMove futureMove)
+        private FutureMove saveOrUpdateSchedule(FutureMove futureMove, Category category, Schedule schedule)
         {
-            if (futureMove.Schedule == null)
+            if (schedule == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
 
-            categoryService.SetCategory(futureMove);
+            categoryService.SetCategory(futureMove, category);
 
-            if (!futureMove.Schedule.FutureMoveList.Contains(futureMove))
-                futureMove.Schedule.FutureMoveList.Add(futureMove);
+            if (!schedule.FutureMoveList.Contains(futureMove))
+                schedule.FutureMoveList.Add(futureMove);
 
-            futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule);
+            futureMove = ajustFutureMovesAndGetFirst(schedule);
 
             futureMove = saveMove(futureMove);
 
@@ -129,6 +128,9 @@ namespace DFM.BusinessLogic.SuperServices
         private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule)
         {
             var firstFMove = schedule.FutureMoveList.First();
+
+            firstFMove.Schedule = schedule;
+
 
             if (schedule.Boundless)
             {

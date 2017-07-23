@@ -492,7 +492,6 @@ namespace DFM.Tests.B.Admin
 
             var move = new Move
                            {
-                               Category = Category,
                                Date = DateTime.Now,
                                Description = "Move for account test",
                                Nature = MoveNature.Out
@@ -502,7 +501,7 @@ namespace DFM.Tests.B.Admin
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, Account, null);
+            SA.Money.SaveOrUpdateMove(move, Account, null, Category);
 
             id = Account.ID;
         }

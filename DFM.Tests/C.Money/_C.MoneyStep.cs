@@ -64,7 +64,7 @@ namespace DFM.Tests.C.Money
         {
             try
             {
-                SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn);
+                SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn, MoveCategory);
             }
             catch (DFMCoreException e)
             {
@@ -93,7 +93,7 @@ namespace DFM.Tests.C.Money
         [Given(@"I have a move")]
         public void GivenIHaveAMove()
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            Account = GetOrCreateAccount(CentralAccountName);
 
             Category = GetOrCreateCategory(CentralCategoryName);
 
@@ -102,7 +102,6 @@ namespace DFM.Tests.C.Money
                 Description = "Description",
                 Date = DateTime.Today,
                 Nature = MoveNature.Out,
-                Category = Category,
             };
 
             // TODO: use this, delete above
@@ -117,7 +116,7 @@ namespace DFM.Tests.C.Money
 
             Move.DetailList.Add(detail);
 
-            Move = SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, null);
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, Account, null, Category);
         }
 
         [When(@"I try to get the move")]
@@ -153,7 +152,7 @@ namespace DFM.Tests.C.Money
         [Given(@"I have a move with details")]
         public void GivenIHaveAMoveWithDetails()
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            Account = GetOrCreateAccount(CentralAccountName);
 
             Category = GetOrCreateCategory(CentralCategoryName);
 
@@ -162,7 +161,6 @@ namespace DFM.Tests.C.Money
                 Description = "Description",
                 Date = DateTime.Today,
                 Nature = MoveNature.Out,
-                Category = Category,
             };
 
             for (var d = 0; d < 3; d++)
@@ -177,7 +175,7 @@ namespace DFM.Tests.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, null);
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, Account, null, Category);
 
             detail = Move.DetailList.First();
         }

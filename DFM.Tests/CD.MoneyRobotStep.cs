@@ -42,19 +42,19 @@ namespace DFM.Tests
         [Given(@"it has a Category")]
         public void GivenItHasACategory()
         {
-            Move.Category = Category;
+            MoveCategory = Category;
         }
 
         [Given(@"it has no Category")]
         public void GivenItHasNoCategory()
         {
-            Move.Category = null;
+            MoveCategory = null;
         }
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
         {
-            Move.Category = new Category { Name = "unknown", User = User };
+            MoveCategory = new Category { Name = "unknown", User = User };
         }
 
         [Given(@"it has an Account Out")]

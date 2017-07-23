@@ -11,6 +11,14 @@ namespace DFM.Tests.D.Robot
     [Binding]
     public class RobotStep : BaseStep
     {
+        #region Variables
+        protected Schedule Schedule
+        {
+            get { return Get<Schedule>("Schedule"); }
+            set { Set("Schedule", value); }
+        }
+        #endregion
+
         #region SaveSchedule
         [Given(@"I have this future move to create")]
         public void GivenIHaveThisMoveToCreate(Table table)
@@ -45,7 +53,7 @@ namespace DFM.Tests.D.Robot
         [Given(@"the move has no schedule")]
         public void GivenTheMoveHasNoSchedule()
         {
-            Move.Schedule = null;
+            Schedule = null;
         }
 
         [When(@"I try to save the schedule")]
@@ -53,7 +61,7 @@ namespace DFM.Tests.D.Robot
         {
             try
             {
-                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn);
+                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn, MoveCategory, Schedule);
             }
             catch (DFMCoreException e)
             {
@@ -154,7 +162,7 @@ namespace DFM.Tests.D.Robot
         [Given(@"I save the move")]
         public void GivenISaveTheMove()
         {
-            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn);
+            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn, MoveCategory, Schedule);
         }
 
         [When(@"I try to run the scheduler")]
@@ -177,19 +185,19 @@ namespace DFM.Tests.D.Robot
         {
             var scheduleData = table.Rows[0];
 
-            Move.Schedule = new Schedule();
+            Schedule = new Schedule();
 
             if (!String.IsNullOrEmpty(scheduleData["Times"]))
-                Move.Schedule.Times = Int16.Parse(scheduleData["Times"]);
+                Schedule.Times = Int16.Parse(scheduleData["Times"]);
 
             if (!String.IsNullOrEmpty(scheduleData["Boundless"]))
-                Move.Schedule.Boundless = Boolean.Parse(scheduleData["Boundless"]);
+                Schedule.Boundless = Boolean.Parse(scheduleData["Boundless"]);
 
             if (!String.IsNullOrEmpty(scheduleData["Frequency"]))
-                Move.Schedule.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
+                Schedule.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
 
             if (!String.IsNullOrEmpty(scheduleData["ShowInstallment"]))
-                Move.Schedule.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
+                Schedule.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
         }
         #endregion
 

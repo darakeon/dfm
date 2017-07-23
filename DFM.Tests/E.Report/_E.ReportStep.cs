@@ -144,7 +144,6 @@ namespace DFM.Tests.E.Report
                     Description = "Description",
                     Date = date,
                     Nature = MoveNature.Out,
-                    Category = Category,
                 };
 
 
@@ -159,7 +158,7 @@ namespace DFM.Tests.E.Report
 
                 move.DetailList.Add(detail);
 
-                SA.Money.SaveOrUpdateMove(move, Account, null);
+                SA.Money.SaveOrUpdateMove(move, Account, null, Category);
             }
         }
 

@@ -181,6 +181,13 @@ namespace DFM.Tests
         }
 
         
+        protected Category MoveCategory
+        {
+            get { return Get<Category>("MoveCategory"); }
+            set { Set("MoveCategory", value); }
+        }
+
+        
         protected static BaseMove Move
         {
             get { return Get<BaseMove>("BaseMove"); }

@@ -130,12 +130,13 @@ VERSÃO 1.0.2.2
 06/04/2012	13/06/2012	Implementar BDD
 07/04/2012	07/04/2012	Save User  deve receber e-mail e senha
 03/06/2012	03/06/2012	Retirar retorno da Transaction no Begin (usar da session)
-				Colocar category/schedule como parâmetro na Save da Move
-				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID
+14/06/2012	14/06/2012	Colocar category/schedule como parâmetro na Save da Move
 				Passar Accounts / Category como name para a save move
+				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID
 				Criar testes de inserção de move/schedule em Categoria Desabilitada
 				Criar testes de inserção de move/schedule em Conta Fechada
 				Criar testes de nomes muito grandes
+				Criar testes de edição de Move
 				Verificar cobertura de código
 				Selenium
 				Colocar try-catchs de Commit/Rollback nos superservices
@@ -148,6 +149,7 @@ VERSÃO 1.0.2.2
 
 VERSÃO 1.0.2.3
 
+				Arrumar MVC para passar Category e Scheudule de move separados da move
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
 				Substituir SelectByEmail de User por SelectByLogin

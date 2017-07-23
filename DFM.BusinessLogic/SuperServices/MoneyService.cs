@@ -46,13 +46,13 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Save or Update
-        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn)
+        public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Category category)
         {
             moveService.BeginTransaction();
             
             try
             {
-                move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn);
+                move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
 
                 moveService.CommitTransaction();
             }
@@ -68,11 +68,11 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn)
+        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn, Category category)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            categoryService.SetCategory(move);
+            categoryService.SetCategory(move, category);
 
             ajustOldSummaries(move.ID);
 
