@@ -4,32 +4,6 @@
         <name>Ak.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Forms.HtmlHelperExtension">
-            <summary>
-             
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object,System.Object)">
-            <summary>
-             Create a checkbox
-            </summary>
-            <param name="htmlHelper"></param>
-            <param name="expression">The list which will receive the values in controller</param>
-            <param name="value">The value of this checkbox</param>
-            <param name="htmlAttributes">Optional</param>
-            <typeparam name="TModel">The current Model</typeparam>
-            <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
-        </member>
-        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object)">
-            <summary>
-             Create a checkbox
-            </summary>
-            <param name="htmlHelper"></param>
-            <param name="expression">The list which will receive the values in controller</param>
-            <param name="value">The value of this checkbox</param>
-            <typeparam name="TModel">The current Model</typeparam>
-            <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
-        </member>
         <member name="T:Ak.MVC.Forms.SelectListExtension">
             <summary>
             </summary>
@@ -62,16 +36,6 @@
              Message of expiration of session
             </summary>
         </member>
-        <member name="T:Ak.MVC.Authentication.IRole">
-            <summary>
-             The Interface to paas Roles (permissions) to Authenticate
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Authentication.IRole.Name">
-            <summary>
-             The Name of Permission that will be verified by Authorize decorator (MVC)
-            </summary>
-        </member>
         <member name="T:Ak.MVC.Route.RouteInfo">
             <summary>
              Retrieves the routedata as the property of the controllers
@@ -100,6 +64,16 @@
         <member name="P:Ak.MVC.Route.RouteInfo.Current">
             <summary>
              RouteData of the current Url
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Authentication.IRole">
+            <summary>
+             The Interface to paas Roles (permissions) to Authenticate
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Authentication.IRole.Name">
+            <summary>
+             The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
         </member>
         <member name="T:Ak.MVC.Authentication.Authenticate">
@@ -163,6 +137,32 @@
             <summary>
              Return the username that is logged-in
             </summary>
+        </member>
+        <member name="T:Ak.MVC.Forms.HtmlHelperExtension">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object,System.Object)">
+            <summary>
+             Create a checkbox
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="expression">The list which will receive the values in controller</param>
+            <param name="value">The value of this checkbox</param>
+            <param name="htmlAttributes">Optional</param>
+            <typeparam name="TModel">The current Model</typeparam>
+            <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
+        </member>
+        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object)">
+            <summary>
+             Create a checkbox
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="expression">The list which will receive the values in controller</param>
+            <param name="value">The value of this checkbox</param>
+            <typeparam name="TModel">The current Model</typeparam>
+            <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
         </member>
     </members>
 </doc>

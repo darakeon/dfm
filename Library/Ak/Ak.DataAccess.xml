@@ -4,211 +4,6 @@
         <name>Ak.DataAccess</name>
     </assembly>
     <members>
-        <member name="T:Ak.DataAccess.NHibernate.Helpers.DBMS">
-            <summary>
-            List of accepted DBMSs
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MySQL">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2000">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2005">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2008">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql7">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Postgre">
-            <summary>Doesn't need SERVER property</summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Oracle9">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Oracle10">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.SQLite">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="T:Ak.DataAccess.NHibernate.Helpers.DBAction">
-            <summary>
-             Action for DB when create SessionFactory
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.None">
-            <summary> 
-             Don't even validate the schema.
-             The errors will appear just when the entity is accessed.
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Recreate">
-            <summary>
-             Drop and Create the DB.
-             The saved data will be LOST.
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Update">
-            <summary>
-             Just ajust the DB to match the entities.
-             Can recreate foreign keys.
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Validate">
-            <summary>
-             Verify errors on entities and mapping.
-             Avoid error to just appear when entities are accessed.
-            </summary>
-        </member>
-        <member name="T:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode">
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode.Unspecified">
-            <summary>
-             Special value for unspecified flush mode
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode.Never">
-            <summary>
-             The <c>ISession</c> is never flushed unless <c>Flush()</c> is explicitly
-             called by the application. This mode is very efficient for read only
-             transactions
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode.Commit">
-            <summary>
-             The <c>ISession</c> is flushed when <c>Transaction.Commit()</c> is called
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode.Auto">
-            <summary>
-             The <c>ISession</c> is sometimes flushed before query execution in order to
-             ensure that queries never return stale state. This is the default flush mode.
-            </summary>
-        </member>
-        <member name="F:Ak.DataAccess.NHibernate.UserPassed.NHFlushMode.Always">
-            <summary>
-             The <see cref="T:NHibernate.ISession"/> is flushed before every query. This is
-             almost always unnecessary and inefficient.
-            </summary>
-        </member>
-        <member name="T:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo">
-            <summary>
-            Information to Connect to the Database.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Server">
-            <summary>
-            Server Name. No needed for Postgre and SQLite.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DataBase">
-            <summary>
-            Database name in DBMS. No needed for Oracle and SQLLite.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Login">
-            <summary>
-            Login for the DB.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Password">
-            <summary>
-            Password not encrypted for DB.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ConnectionString">
-            <summary>
-            Just for SQLite.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DBMS">
-            <summary>
-            Database Managment System used.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DBAction">
-            <summary>
-            The Action to be executed when SessionFactory is Created
-            Old CreateDB.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ScriptFileFullName">
-            <summary>
-            The File Full Name for export Script.
-            Just fill if see the script is needed
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DataInitializer">
-            <summary>
-            Data to initialize the DB.
-            </summary>
-        </member>
-        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ShowSQL">
-            <summary>
-            Whether to show SQL in log
-            </summary>
-        </member>
-        <member name="T:Ak.DataAccess.NHibernate.SessionBuilder">
-            <summary>
-            To create NHibernate Session and communicate with DB
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Start``2(Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo,Ak.DataAccess.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
-            <summary>
-             Create Session Factory.
-             To be used at Application_Start.
-            </summary>
-             <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
-             <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
-             <param name="connectionInfo">About database connection</param>
-             <param name="autoMappingInfo">About mappings on the entities</param>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Start``2(Ak.DataAccess.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
-            <summary>
-            Create Session Factory, using the AppSettings.
-            The keys required are the ConnectionInfo class properties.
-            To be used at Application_Start.
-            </summary>
-            <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
-            <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
-            <param name="autoMappingInfo">About mappings on the entities</param>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Open">
-            <summary>
-            Open the NH session.
-            To be used at Application_BeginRequest.
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Close(NHibernate.ISession)">
-            <summary>
-             Disconnect from DB.
-             To be used at Application_EndRequest.
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.End">
-            <summary>
-             Close the SessionFactory.
-             To be used at Application_End.
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Error(NHibernate.ISession)">
-            <summary>
-             Rollback the actions in case of Error.
-             To be used at Application_Error.
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.NhInitialize(NHibernate.ISession,System.Object)">
-            <summary>
-             Force the Initialize of NHibernate objects.
-            </summary>
-        </member>
         <member name="T:Ak.DataAccess.NHibernate.UserPassed.AutoMappingInfo`2">
             <summary>
             Information to use Automapping of Fluent
@@ -230,23 +25,6 @@
             <summary>
             Conventions to configure Fluent
             </summary>
-        </member>
-        <member name="T:Ak.DataAccess.Facebook.Communication">
-            <summary>
-             To Get Data from Facebook
-            </summary>
-        </member>
-        <member name="M:Ak.DataAccess.Facebook.Communication.GetFBData(System.String)">
-            <summary>
-             Get just one Data Node
-            </summary>
-            <param name="page">The path of the page of data</param>
-        </member>
-        <member name="M:Ak.DataAccess.Facebook.Communication.GetFBListOfData(System.String)">
-            <summary>
-             Get a list of Data Nodes
-            </summary>
-            <param name="page">The path of the page of data</param>
         </member>
         <member name="T:Ak.DataAccess.XML.Node">
             <summary>
@@ -359,6 +137,195 @@
             </summary>
             <param name="node">The node position</param>
             <returns>If found, the child node; Else, null</returns>
+        </member>
+        <member name="T:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo">
+            <summary>
+            Information to Connect to the Database.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Server">
+            <summary>
+            Server Name. No needed for Postgre and SQLite.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DataBase">
+            <summary>
+            Database name in DBMS. No needed for Oracle and SQLLite.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Login">
+            <summary>
+            Login for the DB.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.Password">
+            <summary>
+            Password not encrypted for DB.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ConnectionString">
+            <summary>
+            Just for SQLite.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DBMS">
+            <summary>
+            Database Managment System used.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DBAction">
+            <summary>
+            The Action to be executed when SessionFactory is Created
+            Old CreateDB.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ScriptFileFullName">
+            <summary>
+            The File Full Name for export Script.
+            Just fill if see the script is needed
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.DataInitializer">
+            <summary>
+            Data to initialize the DB.
+            </summary>
+        </member>
+        <member name="P:Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo.ShowSQL">
+            <summary>
+            Whether to show SQL in log
+            </summary>
+        </member>
+        <member name="T:Ak.DataAccess.NHibernate.SessionBuilder">
+            <summary>
+            To create NHibernate Session and communicate with DB
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Start``2(Ak.DataAccess.NHibernate.UserPassed.ConnectionInfo,Ak.DataAccess.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+            <summary>
+             Create Session Factory.
+             To be used at Application_Start.
+            </summary>
+             <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
+             <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
+             <param name="connectionInfo">About database connection</param>
+             <param name="autoMappingInfo">About mappings on the entities</param>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Start``2(Ak.DataAccess.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+            <summary>
+            Create Session Factory, using the AppSettings.
+            The keys required are the ConnectionInfo class properties.
+            To be used at Application_Start.
+            </summary>
+            <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
+            <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
+            <param name="autoMappingInfo">About mappings on the entities</param>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Open">
+            <summary>
+            Open the NH session.
+            To be used at Application_BeginRequest.
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Close(NHibernate.ISession)">
+            <summary>
+             Disconnect from DB.
+             To be used at Application_EndRequest.
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.End">
+            <summary>
+             Close the SessionFactory.
+             To be used at Application_End.
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.Error(NHibernate.ISession)">
+            <summary>
+             Rollback the actions in case of Error.
+             To be used at Application_Error.
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.SessionBuilder.NhInitialize(NHibernate.ISession,System.Object)">
+            <summary>
+             Force the Initialize of NHibernate objects.
+            </summary>
+        </member>
+        <member name="T:Ak.DataAccess.NHibernate.Helpers.DBMS">
+            <summary>
+            List of accepted DBMSs
+            </summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MySQL">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2000">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2005">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql2008">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.MsSql7">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Postgre">
+            <summary>Doesn't need SERVER property</summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Oracle9">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.Oracle10">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBMS.SQLite">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="T:Ak.DataAccess.NHibernate.Helpers.DBAction">
+            <summary>
+             Action for DB when create SessionFactory
+            </summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.None">
+            <summary> 
+             Don't even validate the schema.
+             The errors will appear just when the entity is accessed.
+            </summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Recreate">
+            <summary>
+             Drop and Create the DB.
+             The saved data will be LOST.
+            </summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Update">
+            <summary>
+             Just ajust the DB to match the entities.
+             Can recreate foreign keys.
+            </summary>
+        </member>
+        <member name="F:Ak.DataAccess.NHibernate.Helpers.DBAction.Validate">
+            <summary>
+             Verify errors on entities and mapping.
+             Avoid error to just appear when entities are accessed.
+            </summary>
+        </member>
+        <member name="T:Ak.DataAccess.Facebook.Communication">
+            <summary>
+             To Get Data from Facebook
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.Facebook.Communication.GetFBData(System.String)">
+            <summary>
+             Get just one Data Node
+            </summary>
+            <param name="page">The path of the page of data</param>
+        </member>
+        <member name="M:Ak.DataAccess.Facebook.Communication.GetFBListOfData(System.String)">
+            <summary>
+             Get a list of Data Nodes
+            </summary>
+            <param name="page">The path of the page of data</param>
         </member>
         <member name="T:Ak.DataAccess.NHibernate.UserPassed.IDataInitializer">
             <summary>
