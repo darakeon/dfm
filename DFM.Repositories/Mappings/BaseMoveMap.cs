@@ -9,8 +9,6 @@ namespace DFM.Repositories.Mappings
         public static void Override<T>(AutoMapping<T> mapping)
             where T : BaseMove
         {
-            //mapping.Not.LazyLoad();
-
             mapping.Map(m => m.Description)
                 .Length(MaximumLength.MoveDescription);
 
