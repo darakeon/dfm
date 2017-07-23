@@ -2,7 +2,7 @@
 {
     public enum SummaryNature
     {
-        Month,
-        Year,
+        Month = 0,
+        Year = 1,
     }
 }

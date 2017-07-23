@@ -5,7 +5,9 @@
 
 function SetConfirms() {
     $('.withConfirm').click(function (e) {
-        var confirmMessage = $(this).attr("confirm");
+        var confirmMessage = 
+            $(this).attr("confirm")
+                .replace("\\n", "\n");
 
         if (!confirm(confirmMessage)) {
             e.preventDefault();

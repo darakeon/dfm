@@ -2,9 +2,9 @@
 {
     public enum ExceptionPossibilities
     {
-        InvalidSubject,
-        InvalidBody,
-        InvalidAddressee,
+        InvalidSubject = 0,
+        InvalidBody = 1,
+        InvalidAddressee = 2,
     }
 
 }

@@ -73,9 +73,9 @@ namespace DFM.Email
 
         public enum Status
         {
-            Sent,
-            Error,
-            Empty
+            Sent = 0,
+            Error = 1,
+            Empty = 2,
         }
 
     }

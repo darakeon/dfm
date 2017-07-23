@@ -2,9 +2,9 @@
 {
     public enum ScheduleFrequency
     {
-        Daily,
-        Monthly,
-        Yearly,
+        Daily = 0,
+        Monthly = 1,
+        Yearly = 2,
     }
 
 }

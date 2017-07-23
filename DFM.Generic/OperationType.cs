@@ -2,7 +2,7 @@
 {
     public enum OperationType
     {
-        Creation,
-        Update,
+        Creation = 0,
+        Update = 1,
     }
 }

@@ -2,8 +2,8 @@
 {
     public enum AccountSign
     {
-        Red,
-        Yellow,
-        Green,
+        Red = 0,
+        Yellow = 1,
+        Green = 2,
     }
 }

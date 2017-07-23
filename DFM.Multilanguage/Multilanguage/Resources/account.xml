@@ -6,8 +6,8 @@
     <BeginDate text="Begin" />
     <EndDate text="End" />
     <Close text="Close" />
-    <CloseConfirm text="Do you really want to CLOSE Account '{0}'?" />
-    <DeleteConfirm text="Do you really want to DELETE Account '{0}'?" />
+    <CloseConfirm text="Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone." />
+    <DeleteConfirm text="Do you really want to DELETE Account '{0}'?\nThis action cannot be undone." />
     <ClosedAccounts text="Closed Accounts" />
     <AccountClosed text="Account '{0}' closed." />
     <AccountDeleted text="Account '{0}' deleted." />
@@ -25,8 +25,8 @@
     <BeginDate text="Início" />
     <EndDate text="Fim" />
     <Close text="Fechar" />
-    <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?" />
-    <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?" />
+    <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
+    <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
     <ClosedAccounts text="Contas Fechadas" />
     <AccountClosed text="Conta '{0}' fechada." />
     <AccountDeleted text="Conta '{0}' apagada." />

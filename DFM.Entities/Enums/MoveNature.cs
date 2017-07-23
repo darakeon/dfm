@@ -2,14 +2,14 @@
 {
     public enum PrimalMoveNature
     {
-        Out,
-        In,
+        Out = 0,
+        In = 1,
     }
 
     public enum MoveNature
     {
-        Out,
-        In,
-        Transfer,
+        Out = 0,
+        In = 1,
+        Transfer = 2,
     }
 }
