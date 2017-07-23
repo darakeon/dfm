@@ -180,7 +180,7 @@
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogic\MainStep.cs" />
-    <Compile Include="ContextHelper.cs" />
+    <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="Email\EmailSend.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
