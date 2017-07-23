@@ -168,6 +168,18 @@ namespace DFM.Tests.BusinessLogic
             set { Set("AccountInTotal", value); }
         }
 
+        protected static Double YearAccountInTotal
+        {
+            get { return Get<Double>("YearAccountInTotal"); }
+            set { Set("YearAccountInTotal", value); }
+        }
+
+        protected static Double MonthAccountInTotal
+        {
+            get { return Get<Double>("MonthAccountInTotal"); }
+            set { Set("MonthAccountInTotal", value); }
+        }
+
         protected static Double YearCategoryAccountInTotal
         {
             get { return Get<Double>("YearCategoryAccountInTotal"); }
