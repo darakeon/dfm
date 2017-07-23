@@ -17,7 +17,7 @@
     <LimitExplanation text="when account goes under this, a sign is shown on account list." />
     <AccountHasLimit text="Account has limits" />
     <Url text="Url" />
-    <AcceptedUrlCharacters text="Characters accepted: A-Z, 0-9, _" />
+    <AcceptedUrlCharacters text="Accepted characters: A-Z, 0-9, _" />
   </en-US>
   <pt-BR>
     <NoAccounts text="Não há Contas ainda." />
