@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DFM.Multilanguage.Helpers;
+using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using DFM.Multilanguage;

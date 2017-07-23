@@ -6,6 +6,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Multilanguage;
 using DFM.Repositories;
+using DFM.Tests.Helpers;
 
 namespace DFM.Tests.BusinessLogic
 {
