@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
@@ -48,37 +49,39 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new AccountCreateEditModel
+            var model = new AccountCreateEditModel(OperationType.Update)
             {
                 Account = Services.Admin.SelectAccountByName(id)
             };
 
-            if (isUnauthorized(model.Account))
-                return RedirectToAction("Create");
-
-            return View("CreateEdit", model);
+            if (isAuthorized(model.Account))
+                return View("CreateEdit", model);
+            
+            return RedirectToAction("Create");
         }
 
         [HttpPost]
         public ActionResult Edit(String id, AccountCreateEditModel model)
         {
-            model.Account.Name = id;
-
             var oldAccount = Services.Admin.SelectAccountByName(id);
 
-            return isUnauthorized(oldAccount)
-                ? RedirectToAction("Create")
-                : createEdit(model);
+            return isAuthorized(oldAccount)
+                ? createEdit(model, false)
+                : RedirectToAction("Create");
         }
 
-        private ActionResult createEdit(AccountCreateEditModel model)
+        private ActionResult createEdit(AccountCreateEditModel model, Boolean isNew = true)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     model.Account.User = Current.User;
-                    Services.Admin.SaveOrUpdateAccount(model.Account);
+
+                    if (isNew)
+                        Services.Admin.CreateAccount(model.Account);
+                    else
+                        Services.Admin.UpdateAccount(model.Account);
                 }
                 catch (DFMCoreException e)
                 {
@@ -86,9 +89,7 @@ namespace DFM.MVC.Controllers
                 }
 
                 if (ModelState.IsValid)
-                {
                     return RedirectToAction("Index");
-                }
             }
 
             return View("CreateEdit", model);
@@ -105,7 +106,7 @@ namespace DFM.MVC.Controllers
 
             try
             {
-                if (!isUnauthorized(account))
+                if (isAuthorized(account))
                     Services.Admin.CloseAccount(id);
                 //else
                 //    account = null;
@@ -133,7 +134,7 @@ namespace DFM.MVC.Controllers
 
             try
             {
-                if (!isUnauthorized(account))
+                if (isAuthorized(account))
                     Services.Admin.DeleteAccount(id);
                 //else
                 //    account = null;
@@ -153,10 +154,10 @@ namespace DFM.MVC.Controllers
 
 
 
-        private Boolean isUnauthorized(Account account)
+        private Boolean isAuthorized(Account account)
         {
-            return account == null
-                   || !account.AuthorizeCRUD(Current.User);
+            return account != null
+                   && account.AuthorizeCRUD(Current.User);
         }
 
     }

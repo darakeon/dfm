@@ -100,7 +100,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = new Account { Name = "closed out", User = User };
 
-            SA.Admin.SaveOrUpdateAccount(AccountOut);
+            SA.Admin.CreateAccount(AccountOut);
 
             var move = new Move
             {
@@ -149,7 +149,7 @@ namespace DFM.Tests.BusinessLogic
         public void GivenItHasAClosedAccountIn()
         {
             AccountIn = new Account { Name = "closed in", User = User };
-            SA.Admin.SaveOrUpdateAccount(AccountIn);
+            SA.Admin.CreateAccount(AccountIn);
 
             var move = new Move
             {

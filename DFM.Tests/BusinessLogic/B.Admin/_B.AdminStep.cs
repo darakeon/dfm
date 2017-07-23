@@ -77,7 +77,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
                 User = User
             };
 
-            SA.Admin.SaveOrUpdateAccount(oldAccount);
+            SA.Admin.CreateAccount(oldAccount);
         }
 
         [When(@"I try to save the account")]
@@ -85,7 +85,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.SaveOrUpdateAccount(Account);
+                SA.Admin.CreateAccount(Account);
             }
             catch (DFMCoreException e)
             {
@@ -164,7 +164,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
                 User = User
             };
 
-            SA.Admin.SaveOrUpdateAccount(Account);
+            SA.Admin.CreateAccount(Account);
         }
 
         [When(@"make this changes")]
@@ -180,7 +180,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.SaveOrUpdateAccount(Account, newAccountName);
+                SA.Admin.UpdateAccount(Account, newAccountName);
             }
             catch (DFMCoreException e)
             {
@@ -494,11 +494,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         }
 
         [Given(@"I give a name of the account ([\w ]+) without moves")]
-        public void GivenIGiveAnIdOfAnAccountWithoutMoves(String givenAccountName)
+        public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountName)
         {
             Account = new Account {Name = givenAccountName, User = User};
 
-            SA.Admin.SaveOrUpdateAccount(Account);
+            SA.Admin.CreateAccount(Account);
 
             AccountName = Account.Name;
         }
@@ -507,7 +507,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountName)
         {
             Account = new Account { Name = givenAccountName, User = User };
-            SA.Admin.SaveOrUpdateAccount(Account);
+            SA.Admin.CreateAccount(Account);
 
             var move = new Move
                            {

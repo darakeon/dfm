@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
+using DFM.BusinessLogic.Helpers;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -31,7 +32,19 @@ namespace DFM.BusinessLogic.SuperServices
             return account;
         }
 
-        public void SaveOrUpdateAccount(Account account)
+
+
+        public void CreateAccount(Account account)
+        {
+            saveOrUpdateAccount(account, OperationType.Creation);
+        }
+
+        public void UpdateAccount(Account account, String newName = null)
+        {
+            saveOrUpdateAccount(account, OperationType.Update, newName);
+        }
+
+        private void saveOrUpdateAccount(Account account, OperationType opType, String newName = null)
         {
             VerifyUser();
 
@@ -39,7 +52,17 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                accountService.SaveOrUpdate(account);
+                if (opType == OperationType.Update)
+                {
+                    var oldAccount = SelectAccountByName(account.Name);
+
+                    account.ID = oldAccount.ID;
+
+                    if (!String.IsNullOrEmpty(newName))
+                        account.Name = newName;
+                }
+
+                accountService.SaveOrUpdate(account, newName);
                 CommitTransaction();
             }
             catch (DFMCoreException)

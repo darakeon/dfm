@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Bases\BaseMoveService.cs" />
     <Compile Include="Bases\ITransactionController.cs" />
+    <Compile Include="Helpers\OperationType.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Bases\BaseService.cs" />
     <Compile Include="Services\CategoryService.cs" />

@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Services
     {
         internal AccountService(IRepository<Account> repository) : base(repository) { }
 
-        internal Account SaveOrUpdate(Account account)
+        internal Account SaveOrUpdate(Account account, String newName)
         {
             return SaveOrUpdate(account, complete, validate);
         }

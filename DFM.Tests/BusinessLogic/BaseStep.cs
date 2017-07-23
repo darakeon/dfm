@@ -96,7 +96,7 @@ namespace DFM.Tests.BusinessLogic
                 if (e.Type != ExceptionPossibilities.InvalidAccount)
                     throw;
 
-                SA.Admin.SaveOrUpdateAccount(new Account { Name = accountName, User = User });
+                SA.Admin.CreateAccount(new Account { Name = accountName, User = User });
                 return SA.Admin.SelectAccountByName(accountName);
             }
         }

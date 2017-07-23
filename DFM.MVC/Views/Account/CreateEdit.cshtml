@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
         
+    if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Update)
+    {
+        ViewBag.Title += " " + Model.Name;
+    }
+    
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -14,10 +19,20 @@
     @using (Html.BeginForm()) {
 
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.Type)
 
         <p>
-            @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
-            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
+            @if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Creation)
+            {
+                @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
+                @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
+            }
+            else
+            {
+                @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["New", "Name"])
+                @Html.TextBoxFor(m => m.NewName, new { maxlength = MaximumLength.AccountName })
+            }
+
             <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>
 

@@ -1,26 +1,36 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
     public class AccountCreateEditModel : BaseLoggedModel
     {
-        public AccountCreateEditModel()
+        public AccountCreateEditModel() { }
+
+        public AccountCreateEditModel(OperationType type = OperationType.Creation) : this()
         {
+            Type = type;
+
             Account = new Account();
         }
 
 
+
+        public OperationType Type { get; set; }
 
         public Account Account { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String Name
         {
-            get { return Account.Name; } 
+            get { return Account.Name; }
             set { Account.Name = value; }
         }
+
+        [Required(ErrorMessage = "*")]
+        public String NewName { get; set; }
 
 
         public Boolean HasLimit
