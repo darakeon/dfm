@@ -7,7 +7,7 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class RobotService : BaseSuper
+    public class RobotService : BaseSuperService
     {
         private readonly ScheduleService scheduleService;
         private readonly FutureMoveService futureMoveService;
@@ -60,7 +60,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var move = futureMove.CastToKill();
 
-                Parent.Money.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
+                Parent.BaseMove.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
 
                 futureMoveService.Delete(futureMove.ID);
 

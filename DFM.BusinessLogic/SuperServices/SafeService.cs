@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafeService : BaseSuper
+    public class SafeService : BaseSuperService
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;

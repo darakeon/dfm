@@ -23,6 +23,8 @@ namespace DFM.BusinessLogic
 
             TransactionController = resolver.GetTransactionController();
 
+            BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
+
             Safe = new SafeService(this, user, security);
             Admin = new AdminService(this, account, category);
             Money = new MoneyService(this, move, detail, summary, month, year, schedule);
@@ -32,6 +34,8 @@ namespace DFM.BusinessLogic
 
 
         internal ITransactionController TransactionController { get; private set; }
+
+        internal BaseMoveSaverService BaseMove { get; private set; }
 
         public MoneyService Money { get; private set; }
         public ReportService Report { get; private set; }

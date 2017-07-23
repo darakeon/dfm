@@ -1,8 +1,8 @@
 ﻿namespace DFM.BusinessLogic.SuperServices
 {
-    public class BaseSuper
+    public class BaseSuperService
     {
-        protected BaseSuper(ServiceAccess serviceAccess)
+        protected BaseSuperService(ServiceAccess serviceAccess)
         {
             Parent = serviceAccess;
         }

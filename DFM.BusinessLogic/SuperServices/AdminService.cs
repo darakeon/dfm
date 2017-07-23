@@ -5,7 +5,7 @@ using DFM.Entities;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class AdminService : BaseSuper
+    public class AdminService : BaseSuperService
     {
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
