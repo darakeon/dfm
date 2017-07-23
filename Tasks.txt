@@ -62,7 +62,7 @@ VERSÃO 1.0.2.3
 						Transformar FutureMove em parte da Schedule
 						AntiForgeryToken
 						Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
-						Não enviar e-mail caso dê erro ao mexer na movimentação
+07/03/2013	07/03/2013	Não enviar e-mail caso dê erro ao mexer na movimentação
 07/03/2013	07/03/2013	Proteger edição de objeto (user) no core
 07/03/2013	07/03/2013	Numerar enums (segurança para o banco)
 03/03/2013	07/03/2013	Usar url da conta no MVC
