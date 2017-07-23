@@ -34,6 +34,7 @@
     <Compile Include="AccountExtension.cs" />
     <Compile Include="CategoryExtension.cs" />
     <Compile Include="DetailExtension.cs" />
+    <Compile Include="EnumExtension.cs" />
     <Compile Include="FutureMoveExtension.cs" />
     <Compile Include="MonthExtension.cs" />
     <Compile Include="BaseMoveExtension.cs" />

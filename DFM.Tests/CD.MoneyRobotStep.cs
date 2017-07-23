@@ -1,51 +1,116 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using TechTalk.SpecFlow;
+using DFM.Entities;
+using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
+using NUnit.Framework;
+using DFM.Entities.Bases;
 
 namespace DFM.Tests
 {
     [Binding]
-    public class MoneyRobotStep
+    public class MoneyRobotStep : BaseStep
     {
+        private const String accountOutName = "account out";
+        private const String accountInName = "account in";
+
+        private static Account accountOut
+        {
+            get { return Get<Account>("AccountOut"); }
+            set { Set("AccountOut", value); }
+        }
+
+        private static Account accountIn
+        {
+            get { return Get<Account>("AccountIn"); }
+            set { Set("AccountIn", value); }
+        }
+
+        private static BaseMove move
+        {
+            get { return Get<BaseMove>("Move"); }
+            set { Set("Move", value); }
+        }
+
         [Given(@"I have two accounts")]
         public void GivenIHaveTwoAccounts()
         {
-            ScenarioContext.Current.Pending();
+            accountOut = GetOrCreateAccount(accountOutName);
+            accountIn = GetOrCreateAccount(accountInName);
         }
 
         [Given(@"I have this move to create")]
         public void GivenIHaveThisMoveToCreate(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var moveData = table.Rows[0];
+
+            move = new Move { Description = moveData["Description"] };
+
+            if (moveData["Date"] != null)
+                move.Date = DateTime.Parse(moveData["Date"]);
+
+            if (moveData["Nature"] != null)
+                move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
+
+            // TODO: use this, delete above
+            //if (moveData["Value"] != null)
+            //    move.Value = Int32.Parse(moveData["Value"]);
+
+            if (moveData["Value"] != null)
+            {
+                var detail = new Detail
+                    {
+                        Description = move.Description,
+                        Amount = 1,
+                        Value = Int32.Parse(moveData["Value"])
+                    };
+
+                move.DetailList.Add(detail);
+            }
+
         }
 
         [Given(@"it has no Details")]
         public void GivenItHasNoDetails()
         {
-            ScenarioContext.Current.Pending();
+            // TODO: empty detaillist
+            Assert.AreEqual(1, move.DetailList.Count); 
         }
 
         [Given(@"the move has this details")]
         public void GivenTheMoveHasThisDetails(Table table)
         {
-            ScenarioContext.Current.Pending();
+            foreach (var detailData in table.Rows)
+            {
+                var detail = new Detail { Description = detailData["Description"] };
+
+                if (detailData["Value"] != null)
+                    detail.Value = Int32.Parse(detailData["Value"]);
+
+                if (detailData["Amount"] != null)
+                    detail.Amount = Int16.Parse(detailData["Amount"]);
+
+                move.DetailList.Add(detail);
+            }
         }
 
         [Given(@"it has a Category")]
         public void GivenItHasACategory()
         {
-            ScenarioContext.Current.Pending();
+            move.Category = Category;
         }
 
         [Given(@"it has no Category")]
         public void GivenItHasNoCategory()
         {
-            ScenarioContext.Current.Pending();
+            move.Category = null;
         }
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
         {
-            ScenarioContext.Current.Pending();
+            move.Category = new Category { Name = "unknown", User = User };
         }
 
         [Given(@"it has an Account Out")]
@@ -98,6 +163,18 @@ namespace DFM.Tests
 
         [Then(@"the year-category-accountOut value will decrease in (\d+)")]
         public void ThenTheYearCategoryAccountOutValueWillDecreaseIn(Double decrease)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the month-category-accountOut value will increase in (\d+)")]
+        public void ThenTheMonthCategoryAccountOutValueWillIncreaseIn(Double increase)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the year-category-accountOut value will increase in (\d+)")]
+        public void ThenTheYearCategoryAccountOutValueWillIncreaseIn(Double increase)
         {
             ScenarioContext.Current.Pending();
         }

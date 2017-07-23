@@ -53,6 +53,58 @@ namespace DFM.Tests
 
 
 
+        #region
+        protected User GetOrCreateUser(String userEmail, String userPassword)
+        {
+            try
+            {
+                return Access.Safe.ValidateAndGet(userEmail, userPassword);
+            }
+            catch (DFMCoreException e)
+            {
+                if (e.Type != ExceptionPossibilities.InvalidUser)
+                    throw;
+
+                Access.Safe.SaveUserAndSendVerify(userEmail, userPassword);
+                return Access.Safe.ValidateAndGet(userEmail, userPassword);
+            }
+        }
+
+        protected Account GetOrCreateAccount(String accountName)
+        {
+            try
+            {
+                return Access.Admin.SelectAccountByName(accountName, User);
+            }
+            catch (DFMCoreException e)
+            {
+                if (e.Type != ExceptionPossibilities.InvalidAccount)
+                    throw;
+
+                Access.Admin.SaveOrUpdateAccount(new Account { Name = accountName, User = User });
+                return Access.Admin.SelectAccountByName(accountName, User);
+            }
+        }
+
+        protected Category GetOrCreateCategory(String categoryName)
+        {
+            try
+            {
+                return Access.Admin.SelectCategoryByName(categoryName, User);
+            }
+            catch (DFMCoreException e)
+            {
+                if (e.Type != ExceptionPossibilities.InvalidCategory)
+                    throw;
+
+                Access.Admin.SaveOrUpdateCategory(new Category { Name = categoryName, User = User });
+                return Access.Admin.SelectCategoryByName(categoryName, User);
+            }
+        }
+        #endregion
+
+
+
         protected DFMCoreException Error
         {
             get { return Get<DFMCoreException>("error"); }

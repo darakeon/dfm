@@ -25,52 +25,19 @@ namespace DFM.Tests
         [Given(@"I have an user")]
         public void GivenIHaveAnUser()
         {
-            try
-            {
-                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
-            }
-            catch (DFMCoreException e)
-            {
-                if (e.Type != ExceptionPossibilities.InvalidUser)
-                    throw;
-
-                Access.Safe.SaveUserAndSendVerify(CentralUserEmail, CentralUserPassword);
-                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
-            }
+            User = GetOrCreateUser(CentralUserEmail, CentralUserPassword);
         }
 
         [Given(@"I have an account")]
         public void GivenIHaveAnAccount()
         {
-            try
-            {
-                Account = Access.Admin.SelectAccountByName(CentralAccountName, User);
-            }
-            catch (DFMCoreException e)
-            {
-                if (e.Type != ExceptionPossibilities.InvalidAccount)
-                    throw;
-
-                Access.Admin.SaveOrUpdateAccount(new Account {Name = CentralAccountName, User = User});
-                Account = Access.Admin.SelectAccountByName(CentralAccountName, User);
-            }
+            Account = GetOrCreateAccount(CentralAccountName);
         }
 
         [Given(@"I have a category")]
         public void GivenIHaveACategory()
         {
-            try
-            {
-                Category = Access.Admin.SelectCategoryByName(CentralCategoryName, User);
-            }
-            catch (DFMCoreException e)
-            {
-                if (e.Type != ExceptionPossibilities.InvalidCategory)
-                    throw;
-
-                Access.Admin.SaveOrUpdateCategory(new Category { Name = CentralCategoryName, User = User });
-                Category = Access.Admin.SelectCategoryByName(CentralCategoryName, User);
-            }
+            Category = GetOrCreateCategory(CentralCategoryName);
         }
 
 
