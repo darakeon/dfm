@@ -75,7 +75,8 @@ namespace DFM.Tests.E.Report
         [Then(@"its sum value will be equal to its moves sum value")]
         public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
         {
-            var expected = Account[year][month].SummaryList.Sum(s => s.Value());
+            var expected = Account[year][month]
+                .SummaryList.Sum(s => s.Value());
             
             var actual = monthReport.Sum(m => 
                     m.AccOut() != null 

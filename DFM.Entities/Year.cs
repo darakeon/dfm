@@ -58,14 +58,28 @@ namespace DFM.Entities
         }
 
 
-        public virtual Month this[Int32 month]
+        public virtual Month this[Int32 monthDate, Boolean orNew = false]
         {
-            get { return MonthList.SingleOrDefault(y => y.Time == month); }
+            get
+            {
+                var month = MonthList
+                    .SingleOrDefault(y => y.Time == monthDate);
+
+                return orNew && month == null
+                    ? new Month() : month;
+            }
         }
 
-        public virtual Summary this[String name]
+        public virtual Summary this[String categoryName, Boolean orNew = false]
         {
-            get { return SummaryList.SingleOrDefault(s => s.Category.Name == name); }
+            get
+            {
+                var summary = SummaryList
+                    .SingleOrDefault(y => y.Category.Name == categoryName);
+
+                return orNew && summary == null
+                    ? new Summary() : summary;
+            }
         }
 
     }

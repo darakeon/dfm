@@ -12,6 +12,6 @@ namespace DFM.Entities.Bases
         Double CheckUpOut(Category category);
         Summary AddSummary(Category category);
 
-        Summary this[String categoryName] { get; }
+        Summary this[String categoryName, Boolean orNew = false] { get; }
     }
 }

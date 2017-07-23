@@ -142,12 +142,12 @@ namespace DFM.Tests.C.Money
         {
             AccountOut = GetOrCreateAccount(newAccountOutName);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
             newAccountOutTotal = AccountOut.Sum();
-            newYearCategoryAccountOutTotal = (year[Category.Name] ?? new Summary()).Out;
-            newMonthCategoryAccountOutTotal = (month[Category.Name] ?? new Summary()).Out;
+            newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
+            newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
         }
 
         
@@ -251,11 +251,11 @@ namespace DFM.Tests.C.Money
         {
             var account = GetOrCreateAccount(AccountOutName);
 
-            var summary = account
+            var month = account
                 [(Int16)oldDate.Year]
                 [(Int16)oldDate.Month];
 
-            Assert.AreEqual(MonthAccountOutTotal, summary.Sum());
+            Assert.AreEqual(MonthAccountOutTotal, month.Sum());
         }
 
         [Then(@"the year-accountOut value will not change")]
@@ -263,10 +263,10 @@ namespace DFM.Tests.C.Money
         {
             var account = GetOrCreateAccount(AccountOutName);
 
-            var summary = account
+            var year = account
                 [(Int16)oldDate.Year];
 
-            Assert.AreEqual(YearAccountOutTotal, summary.Sum());
+            Assert.AreEqual(YearAccountOutTotal, year.Sum());
         }
         #endregion
 
@@ -453,14 +453,14 @@ namespace DFM.Tests.C.Money
 
             AccountOut = GetOrCreateAccount(AccountOutName);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
             AccountOutTotal = AccountOut.Sum();
             YearAccountOutTotal = year.Sum();
             MonthAccountOutTotal = month.Sum();
-            YearCategoryAccountOutTotal = (year[Category.Name] ?? new Summary()).Out;
-            MonthCategoryAccountOutTotal = (month[Category.Name] ?? new Summary()).Out;
+            YearCategoryAccountOutTotal = year[Category.Name, true].Out;
+            MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
         }
 
 

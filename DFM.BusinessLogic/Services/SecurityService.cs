@@ -68,6 +68,7 @@ namespace DFM.BusinessLogic.Services
 
         internal Security SelectByToken(String token)
         {
+            // TODO: Try refactor here
             return SingleOrDefault(
                 s => s.Token == token 
                     && s.Active == true

@@ -33,9 +33,16 @@ namespace DFM.Entities
         }
 
 
-        public virtual Year this[Int32 year]
+        public virtual Year this[Int32 yearDate, Boolean orNew = false]
         {
-            get { return YearList.SingleOrDefault(y => y.Time == year); }
+            get
+            {
+                var year = YearList
+                    .SingleOrDefault(y => y.Time == yearDate);
+
+                return orNew && year == null
+                    ? new Year() : year;
+            }
         }
 
     }

@@ -73,12 +73,12 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOutName);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
             AccountOutTotal = AccountOut.Sum();
-            YearCategoryAccountOutTotal = (year[Category.Name] ?? new Summary()).Out;
-            MonthCategoryAccountOutTotal = (month[Category.Name] ?? new Summary()).Out;
+            YearCategoryAccountOutTotal = year[Category.Name, true].Out;
+            MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
         }
 
         [Given(@"it has no Account Out")]
@@ -123,12 +123,12 @@ namespace DFM.Tests
         {
             AccountIn = GetOrCreateAccount(AccountInName);
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = (year[Category.Name] ?? new Summary()).In;
-            MonthCategoryAccountInTotal = (month[Category.Name] ?? new Summary()).In;
+            YearCategoryAccountInTotal = year[Category.Name, true].In;
+            MonthCategoryAccountInTotal = month[Category.Name, true].In;
         }
 
         [Given(@"it has no Account In")]
@@ -173,12 +173,12 @@ namespace DFM.Tests
             AccountOut = GetOrCreateAccount(AccountOutName);
             AccountIn = AccountOut;
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = (year[Category.Name] ?? new Summary()).In;
-            MonthCategoryAccountInTotal = (month[Category.Name] ?? new Summary()).In;
+            YearCategoryAccountInTotal = year[Category.Name, true].In;
+            MonthCategoryAccountInTotal = month[Category.Name, true].In;
         }
 
 
@@ -196,10 +196,10 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
-            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
+            var currentTotal = month[Category.Name, true].Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
         }
@@ -209,9 +209,9 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var year = AccountOut[Move.Date.Year, true];
 
-            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
+            var currentTotal = year[Category.Name, true].Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
         }
@@ -230,10 +230,10 @@ namespace DFM.Tests
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
-            var currentTotal = (month[Category.Name] ?? new Summary()).In;
+            var currentTotal = month[Category.Name, true].In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
         }
@@ -243,9 +243,9 @@ namespace DFM.Tests
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var year = AccountIn[Move.Date.Year, true];
 
-            var currentTotal = (year[Category.Name] ?? new Summary()).In;
+            var currentTotal = year[Category.Name, true].In;
 
             Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
         }
@@ -266,10 +266,10 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
-            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
+            var currentTotal = month[Category.Name, true].Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
@@ -279,9 +279,9 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var year = AccountOut[Move.Date.Year, true];
 
-            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
+            var currentTotal = year[Category.Name, true].Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
@@ -302,10 +302,10 @@ namespace DFM.Tests
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
 
-            var currentTotal = (month[Category.Name] ?? new Summary()).In;
+            var currentTotal = month[Category.Name, true].In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
@@ -315,9 +315,9 @@ namespace DFM.Tests
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var year = AccountIn[Move.Date.Year, true];
 
-            var currentTotal = (year[Category.Name] ?? new Summary()).In;
+            var currentTotal = year[Category.Name, true].In;
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }
