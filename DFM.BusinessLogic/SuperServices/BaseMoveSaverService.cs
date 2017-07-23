@@ -35,6 +35,8 @@ namespace DFM.BusinessLogic.SuperServices
 
             SetCategory(move, category);
 
+            resetSchedule(move);
+
             ajustOldSummaries(move.ID);
 
             placeAccountsInMove(move, accountOut, accountIn);
@@ -48,6 +50,16 @@ namespace DFM.BusinessLogic.SuperServices
             moveService.SendEmail(move, sendEmailAction);
 
             return move;
+        }
+
+        private void resetSchedule(Move move)
+        {
+            if (move.ID == 0) return;
+
+            var oldMove = moveService.SelectOldById(move.ID);
+
+            move.Schedule = oldMove == null
+                ? null : oldMove.Schedule;
         }
 
         internal void SetCategory(BaseMove baseMove, Category category)
