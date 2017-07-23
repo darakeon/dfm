@@ -29,10 +29,8 @@ namespace DFM.Entities.Extensions
 
         private static Summary getSummary(this ISummarizable summarizable, Category category)
         {
-            var list = summarizable.SummaryList
-                .Where(s => s.Category == category);
-
-            return list.SingleOrDefault();
+            return summarizable.SummaryList
+                .SingleOrDefault(s => s.Category == category);
         }
 
     }

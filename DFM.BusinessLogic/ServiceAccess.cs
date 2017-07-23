@@ -20,7 +20,7 @@ namespace DFM.BusinessLogic
             var user = new UserService(resolver.Resolve<User>());
             var year = new YearService(resolver.Resolve<Year>());
 
-            Money = new MoneyService(move, detail, category, summary, month, year, schedule);
+            Money = new MoneyService(move, detail, category, summary, month, year, account, schedule);
             Report = new ReportService(account, year, month);
             Safe = new SafeService(user, security);
             Admin = new AdminService(account, category);

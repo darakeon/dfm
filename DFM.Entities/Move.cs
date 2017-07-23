@@ -35,7 +35,7 @@ namespace DFM.Entities
 
 
         //Remove doesn't work because they aren't same object
-        public void RemoveFromIn()
+        public virtual void RemoveFromIn()
         {
             In.InList =
                 In.InList
@@ -44,7 +44,7 @@ namespace DFM.Entities
         }
 
         //Remove doesn't work because they aren't same object
-        public void RemoveFromOut()
+        public virtual void RemoveFromOut()
         {
             Out.OutList =
                 Out.OutList

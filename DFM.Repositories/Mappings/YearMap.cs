@@ -8,7 +8,7 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Year> mapping)
         {
-            mapping.Not.LazyLoad();
+            //mapping.Not.LazyLoad();
 
             mapping.HasMany(y => y.MonthList)
                 .Cascade.Delete();

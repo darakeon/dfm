@@ -24,9 +24,9 @@ namespace DFM.Tests
             PlainText.Initialize(path);
         }
 
+
         public void Dispose()
         {
-            NHManager.Close();
             NHManager.End();
         }
 

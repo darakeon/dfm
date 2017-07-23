@@ -8,7 +8,7 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Summary> mapping)
         {
-            mapping.Not.LazyLoad();
+            //mapping.Not.LazyLoad();
 
             mapping.Map(s => s.In, "In_");
             mapping.Map(s => s.Out, "Out_");

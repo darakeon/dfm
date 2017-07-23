@@ -50,7 +50,7 @@ Scenario: 04. Save without Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error: MoveCategoryRequired
+	Then I will receive this error: InvalidCategory
 	And the move will not be saved
 
 Scenario: 05. Save with unknown Category (E)
@@ -62,7 +62,7 @@ Scenario: 05. Save with unknown Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error: MoveCategoryInvalid
+	Then I will receive this error: InvalidCategory
 	And the move will not be saved
 
 
@@ -112,7 +112,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	And it has an unknown Account Out
 	And it has no Account In
 	When I try to save the move
-	Then I will receive this error: OutMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the move will not be saved
 
 
@@ -162,7 +162,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	And it has no Account Out
 	And it has an unknown Account In
 	When I try to save the move
-	Then I will receive this error: InMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the move will not be saved
 
 
@@ -212,7 +212,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And it has an Account Out
 	And it has an unknown Account In
 	When I try to save the move
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the move will not be saved
 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
@@ -224,13 +224,13 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And it has an unknown Account Out
 	And it has an Account In
 	When I try to save the move
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this error: InvalidAccount
 	And the move will not be saved
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca35   | 2012-03-31 | Transfer | 10    |
+		| Move Ca36   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -359,7 +359,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 Scenario: 94. Save with info all right (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 2012-03-31 | Out    | 10    |
+		| Move Ca94   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -373,7 +373,7 @@ Scenario: 94. Save with info all right (value) (S)
 Scenario: 95. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca94   | 2012-03-31 | Out    |       |
+		| Move Ca95   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		| Detail 1    | 1      | 10    |
@@ -390,7 +390,7 @@ Scenario: 95. Save with info all right (details) (S)
 Scenario: 96. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca95   | 2012-03-31 | Out    | -10   |
+		| Move Ca96   | 2012-03-31 | Out    | -10   |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -404,7 +404,7 @@ Scenario: 96. Save negative (value) (S)
 Scenario: 97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca96   | 2012-03-31 | Out    |       |
+		| Move Ca97   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description  | Amount  | Value  |
 		| Detail 1     | 1       | -10    |

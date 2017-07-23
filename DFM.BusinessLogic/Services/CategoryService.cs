@@ -91,7 +91,8 @@ namespace DFM.BusinessLogic.Services
 
         internal void SetCategory(BaseMove baseMove)
         {
-            baseMove.Category = SelectById(baseMove.Category.ID);
+            if (baseMove.Category != null)
+                baseMove.Category = SelectById(baseMove.Category.ID);
         }
 
     }

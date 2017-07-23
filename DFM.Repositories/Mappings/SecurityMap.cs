@@ -9,7 +9,7 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Security> mapping)
         {
-            mapping.Not.LazyLoad();
+            //mapping.Not.LazyLoad();
 
             mapping.Map(s => s.Token)
                 .Length(MaximumLength.SecurityToken)

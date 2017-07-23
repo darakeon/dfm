@@ -7,7 +7,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
@@ -21,16 +20,12 @@ namespace DFM.BusinessLogic.Services
         #region PlaceAccountsInMove
         internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
-            if (move.Nature != MoveNature.In
-                    && monthOut != null 
-                    && !monthOut.OutContains(move))
+            if (monthOut != null && !monthOut.OutContains(move))
                 monthOut.AddOut(move);
             else
                 move.Out = null;
 
-            if (move.Nature != MoveNature.Out
-                    && monthIn != null
-                    && !monthIn.InContains(move))
+            if (monthIn != null && !monthIn.InContains(move))
                 monthIn.AddIn(move);
             else
                 move.In = null;

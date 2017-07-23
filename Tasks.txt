@@ -129,6 +129,9 @@ VERSÃO 1.0.2.2
 18/03/2012	06/04/2012	Escrever BDD
 06/04/2012			Implementar BDD
 07/04/2012	07/04/2012	Save User deve receber e-mail e senha
+				Retirar retorno na Transaction no Begin (usar da session)
+				Colocar category/schedule como parâmetro na Save da Move
+				Passar Accounts / Category como name para a save move
 				Criar testes de inserção de move/schedule em Categoria Desabilitada
 				Criar testes de inserção de move/schedule em Conta Fechada
 				Criar testes de nomes muito grandes

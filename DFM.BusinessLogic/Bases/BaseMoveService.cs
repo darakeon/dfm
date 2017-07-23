@@ -22,6 +22,7 @@ namespace DFM.BusinessLogic.Bases
         private static void validate(BaseMove baseMove)
         {
             testDescription(baseMove);
+            testDate(baseMove);
             testDetailList(baseMove);
             testNature(baseMove);
             testAccounts(baseMove);
@@ -32,6 +33,15 @@ namespace DFM.BusinessLogic.Bases
         {
             if (String.IsNullOrEmpty(baseMove.Description))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
+        }
+
+        private static void testDate(BaseMove baseMove)
+        {
+            if (baseMove.Date == DateTime.MinValue)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
+
+            if (baseMove.Date > DateTime.Now)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
         }
 
         private static void testDetailList(BaseMove baseMove)

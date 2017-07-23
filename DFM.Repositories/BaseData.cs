@@ -115,11 +115,15 @@ namespace DFM.Repositories
         public void CommitTransaction(object transaction)
         {
             getTransactionAndTest(transaction).Commit();
+
+            Session.Flush();
         }
 
         public void RollbackTransaction(object transaction)
         {
             getTransactionAndTest(transaction).Rollback();
+
+            Session.Clear();
         }
 
         private static ITransaction getTransactionAndTest(object transaction)

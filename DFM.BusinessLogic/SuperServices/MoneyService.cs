@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using Ak.Generic.Collection;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -16,9 +18,10 @@ namespace DFM.BusinessLogic.SuperServices
         private readonly SummaryService summaryService;
         private readonly MonthService monthService;
         private readonly YearService yearService;
+        private readonly AccountService accountService;
         private readonly ScheduleService scheduleService;
 
-        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, ScheduleService scheduleService)
+        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, AccountService accountService, ScheduleService scheduleService)
         {
             this.moveService = moveService;
             this.detailService = detailService;
@@ -26,6 +29,7 @@ namespace DFM.BusinessLogic.SuperServices
             this.summaryService = summaryService;
             this.monthService = monthService;
             this.yearService = yearService;
+            this.accountService = accountService;
             this.scheduleService = scheduleService;
         }
 
@@ -185,6 +189,14 @@ namespace DFM.BusinessLogic.SuperServices
 
         private Month getMonth(BaseMove baseMove, Account account)
         {
+            account = accountService.SelectByName(account.Name, account.User);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+            if (baseMove.Date == DateTime.MinValue)
+                return null;
+
             var year = yearService.GetOrCreateYear((Int16)baseMove.Date.Year, account, baseMove.Category);
             return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, baseMove.Category);
         }

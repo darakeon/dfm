@@ -32,6 +32,8 @@
         TransferMoveWrong,
         MoveCircularTransfer,
         MoveDescriptionRequired,
+        MoveDateRequired,
+        MoveDateInvalid,
 
         DetailRequired,
         DetailWithoutMove,

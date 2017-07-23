@@ -26,15 +26,27 @@ namespace DFM.Entities.Bases
 
         public virtual IList<Detail> DetailList { get; set; }
 
-        public Double Value()
+
+        public virtual Double Value()
         {
             return DetailList.Sum(d => d.Value * d.Amount);
         }
 
-
-        public Boolean Show()
+        public virtual Boolean Show()
         {
             return Date <= DateTime.Now;
+        }
+
+
+        public virtual User User() { throw new NotImplementedException(); }
+        public virtual Account AccOut() { throw new NotImplementedException(); }
+        public virtual Account AccIn() { throw new NotImplementedException(); }
+
+
+        public virtual T CastToChild<T>()
+            where T : BaseMove
+        {
+            return ConvertToChild.Convert<BaseMove, T>(this);
         }
 
 
@@ -45,15 +57,5 @@ namespace DFM.Entities.Bases
         }
 
 
-        public virtual User User() { throw new NotImplementedException(); }
-        public virtual Account AccOut() { throw new NotImplementedException(); }
-        public virtual Account AccIn() { throw new NotImplementedException(); }
-
-
-        public T CastToChild<T>()
-            where T : BaseMove
-        {
-            return ConvertToChild.Convert<BaseMove, T>(this);
-        }
     }
 }
