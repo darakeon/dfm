@@ -134,6 +134,7 @@ VERSÃO 1.0.2.2
 14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Categoria Desabilitada
 14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Conta Fechada
 14/06/2012	14/06/2012	Criar testes de nomes muito grandes
+14/06/2012	14/06/2012	Verificar em testes se summaries não são alterados em caso de erro
 				Criar testes de edição de Move
 				Verificar cobertura de código
 				Selenium

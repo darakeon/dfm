@@ -16,6 +16,9 @@ Scenario: 01. Save without Description (E)
 	When I try to save the move
 	Then I will receive this error: MoveDescriptionRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 02. Save without Date (E)
 	Given I have this move to create
@@ -28,6 +31,9 @@ Scenario: 02. Save without Date (E)
 	When I try to save the move
 	Then I will receive this error: MoveDateRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 03. Save with future Date (E)
 	Given I have this move to create
@@ -40,6 +46,9 @@ Scenario: 03. Save with future Date (E)
 	When I try to save the move
 	Then I will receive this error: MoveDateInvalid
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 04. Save without Category (E)
 	Given I have this move to create
@@ -52,6 +61,9 @@ Scenario: 04. Save without Category (E)
 	When I try to save the move
 	Then I will receive this error: InvalidCategory
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 05. Save with unknown Category (E)
 	Given I have this move to create
@@ -64,6 +76,9 @@ Scenario: 05. Save with unknown Category (E)
 	When I try to save the move
 	Then I will receive this error: InvalidCategory
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 06. Save with Description too large (E)
 	Given I have this move to create
@@ -76,6 +91,9 @@ Scenario: 06. Save with Description too large (E)
 	When I try to save the move
 	Then I will receive this error: TooLargeData
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 
 
@@ -102,6 +120,12 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	When I try to save the move
 	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this move to create
@@ -114,6 +138,9 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	When I try to save the move
 	Then I will receive this error: OutMoveWrong
 	And the move will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	Given I have this move to create
@@ -152,6 +179,12 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	When I try to save the move
 	Then I will receive this error: InMoveWrong
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
@@ -164,6 +197,9 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	When I try to save the move
 	Then I will receive this error: InMoveWrong
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	Given I have this move to create
@@ -202,6 +238,9 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	When I try to save the move
 	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
@@ -214,6 +253,9 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	When I try to save the move
 	Then I will receive this error: TransferMoveWrong
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
 	Given I have this move to create
@@ -226,6 +268,9 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	When I try to save the move
 	Then I will receive this error: InvalidAccount
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
 	Given I have this move to create
@@ -238,6 +283,9 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	When I try to save the move
 	Then I will receive this error: InvalidAccount
 	And the move will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
 	Given I have this move to create
@@ -250,6 +298,12 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 	When I try to save the move
 	Then I will receive this error: MoveCircularTransfer
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 
 
@@ -264,6 +318,9 @@ Scenario: 41. Save without Value or Details (E)
 	When I try to save the move
 	Then I will receive this error: MoveValueOrDetailRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 42. Save with Value zero and no Details (E)
 	Given I have this move to create
@@ -276,6 +333,9 @@ Scenario: 42. Save with Value zero and no Details (E)
 	When I try to save the move
 	Then I will receive this error: MoveValueOrDetailRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 43. Save without value and without Description in Detail (E)
 	Given I have this move to create
@@ -291,6 +351,9 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	When I try to save the move
 	Then I will receive this error: MoveDetailDescriptionRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 44. Save without value and with Amount zero in Detail (E)
 	Given I have this move to create
@@ -306,6 +369,9 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	When I try to save the move
 	Then I will receive this error: MoveDetailAmountRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 45. Save without value and with Value zero in Detail (E)
 	Given I have this move to create
@@ -321,6 +387,9 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	When I try to save the move
 	Then I will receive this error: MoveDetailValueRequired
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 46. Save with Description too large in Detail (E)
 	Given I have this move to create
@@ -335,6 +404,9 @@ Scenario: 46. Save with Description too large in Detail (E)
 	When I try to save the move
 	Then I will receive this error: TooLargeData
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 
 
@@ -349,6 +421,9 @@ Scenario: 51. Save with disabled Category (E)
 	When I try to save the move
 	Then I will receive this error: DisabledCategory
 	And the move will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 52. Save with closed AccountOut (E)
 	Given I have this move to create

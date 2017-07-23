@@ -81,57 +81,6 @@ namespace DFM.Tests.D.Robot
             Assert.AreNotEqual(0, Move.ID);
             Assert.AreNotEqual(0, Move.Schedule.ID);
         }
-
-        [Then(@"the month-category-accountOut value will not change")]
-        public void ThenTheMonthCategoryAccountOutValueWillNotChange()
-        {
-            AccountOut = GetOrCreateAccount(AccountOutName);
-
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
-
-            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
-
-            Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
-        }
-
-        [Then(@"the year-category-accountOut value will not change")]
-        public void ThenTheYearCategoryAccountOutValueWillNotChange()
-        {
-            AccountOut = GetOrCreateAccount(AccountOutName);
-
-            var year = AccountOut[Move.Date.Year] ?? new Year();
-
-            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
-
-            Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
-        }
-
-        [Then(@"the month-category-accountIn value will not change")]
-        public void ThenTheMonthCategoryAccountInValueWillNotChange()
-        {
-            AccountIn = GetOrCreateAccount(AccountInName);
-
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-            var month = year[Move.Date.Month] ?? new Month();
-
-            var currentTotal = (month[Category.Name] ?? new Summary()).In;
-
-            Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
-        }
-
-        [Then(@"the year-category-accountIn value will not change")]
-        public void ThenTheYearCategoryAccountInValueWillNotChange()
-        {
-            AccountIn = GetOrCreateAccount(AccountInName);
-
-            var year = AccountIn[Move.Date.Year] ?? new Year();
-
-            var currentTotal = (year[Category.Name] ?? new Summary()).In;
-
-            Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
-        }
-
         #endregion
 
         #region RunSchedule

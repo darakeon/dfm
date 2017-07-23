@@ -172,14 +172,89 @@ namespace DFM.Tests
         {
             AccountOut = GetOrCreateAccount(AccountOutName);
             AccountIn = AccountOut;
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            AccountInTotal = AccountIn.Sum();
+            YearCategoryAccountInTotal = (year[Category.Name] ?? new Summary()).In;
+            MonthCategoryAccountInTotal = (month[Category.Name] ?? new Summary()).In;
         }
 
 
 
+        [Then(@"the accountOut value will not change")]
+        public void ThenTheAccountOutValueWillNotChange()
+        {
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
+
+            Assert.AreEqual(AccountOutTotal, AccountOut.Sum());
+        }
+
+        [Then(@"the month-category-accountOut value will not change")]
+        public void ThenTheMonthCategoryAccountOutValueWillNotChange()
+        {
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
+        }
+
+        [Then(@"the year-category-accountOut value will not change")]
+        public void ThenTheYearCategoryAccountOutValueWillNotChange()
+        {
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
+        }
+
+
+        [Then(@"the accountIn value will not change")]
+        public void ThenTheAccountInValueWillNotChange()
+        {
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
+
+            Assert.AreEqual(AccountInTotal, AccountIn.Sum());
+        }
+
+        [Then(@"the month-category-accountIn value will not change")]
+        public void ThenTheMonthCategoryAccountInValueWillNotChange()
+        {
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
+        }
+
+        [Then(@"the year-category-accountIn value will not change")]
+        public void ThenTheYearCategoryAccountInValueWillNotChange()
+        {
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
+        }
+
+        
         [Then(@"the accountOut value will decrease in (\d+)")]
         public void ThenTheAccountOutValueWillDecreaseIn(Double decrease)
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
 
             var currentTotal = AccountOut.Sum();
 
@@ -189,7 +264,7 @@ namespace DFM.Tests
         [Then(@"the month-category-accountOut value will change in (\d+)")]
         public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Double change)
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
 
             var year = AccountOut[Move.Date.Year] ?? new Year();
             var month = year[Move.Date.Month] ?? new Month();
@@ -202,7 +277,7 @@ namespace DFM.Tests
         [Then(@"the year-category-accountOut value will change in (\d+)")]
         public void ThenTheYearCategoryAccountOutValueWillChangeIn(Double change)
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountOut = GetOrCreateAccount(AccountOut.Name);
 
             var year = AccountOut[Move.Date.Year] ?? new Year();
 
@@ -210,13 +285,12 @@ namespace DFM.Tests
 
             Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
-
-
+        
 
         [Then(@"the accountIn value will increase in (\d+)")]
         public void ThenTheAccountInValueWillIncreaseIn(Double increase)
         {
-            AccountIn = GetOrCreateAccount(AccountInName);
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
 
             var currentTotal = AccountIn.Sum();
 
@@ -226,7 +300,7 @@ namespace DFM.Tests
         [Then(@"the month-category-accountIn value will change in (\d+)")]
         public void ThenTheMonthCategoryAccountInValueWillChangeIn(Double change)
         {
-            AccountIn = GetOrCreateAccount(AccountInName);
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
 
             var year = AccountIn[Move.Date.Year] ?? new Year();
             var month = year[Move.Date.Month] ?? new Month();
@@ -239,7 +313,7 @@ namespace DFM.Tests
         [Then(@"the year-category-accountIn value will change in (\d+)")]
         public void ThenTheYearCategoryAccountInValueWillChangeIn(Double change)
         {
-            AccountIn = GetOrCreateAccount(AccountInName);
+            AccountIn = GetOrCreateAccount(AccountIn.Name);
 
             var year = AccountIn[Move.Date.Year] ?? new Year();
 
@@ -247,6 +321,12 @@ namespace DFM.Tests
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }
+
+
+
+
+
+
 
 
     }

@@ -113,6 +113,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I will receive this error: MoveDescriptionRequired");
 #line 21
  testRunner.And("the schedule will not be saved");
+#line 22
+ testRunner.And("the accountOut value will not change");
+#line 23
+ testRunner.And("the month-category-accountOut value will not change");
+#line 24
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -122,7 +128,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_SaveWithoutDateE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save without Date (E)", ((string[])(null)));
-#line 23
+#line 26
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -135,9 +141,9 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "Out",
                         "10"});
-#line 24
- testRunner.Given("I have this future move to create", ((string)(null)), table3);
 #line 27
+ testRunner.Given("I have this future move to create", ((string)(null)), table3);
+#line 30
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -150,20 +156,26 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 28
- testRunner.And("the move has this schedule", ((string)(null)), table4);
 #line 31
- testRunner.And("it has a Category");
-#line 32
- testRunner.And("it has an Account Out");
-#line 33
- testRunner.And("it has no Account In");
+ testRunner.And("the move has this schedule", ((string)(null)), table4);
 #line 34
- testRunner.When("I try to save the schedule");
+ testRunner.And("it has a Category");
 #line 35
- testRunner.Then("I will receive this error: MoveDateRequired");
+ testRunner.And("it has an Account Out");
 #line 36
+ testRunner.And("it has no Account In");
+#line 37
+ testRunner.When("I try to save the schedule");
+#line 38
+ testRunner.Then("I will receive this error: MoveDateRequired");
+#line 39
  testRunner.And("the schedule will not be saved");
+#line 40
+ testRunner.And("the accountOut value will not change");
+#line 41
+ testRunner.And("the month-category-accountOut value will not change");
+#line 42
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -173,7 +185,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_SaveWithoutCategoryE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save without Category (E)", ((string[])(null)));
-#line 38
+#line 44
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -186,9 +198,9 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 39
+#line 45
  testRunner.Given("I have this future move to create", ((string)(null)), table5);
-#line 42
+#line 48
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -201,20 +213,26 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 43
- testRunner.And("the move has this schedule", ((string)(null)), table6);
-#line 46
- testRunner.And("it has no Category");
-#line 47
- testRunner.And("it has an Account Out");
-#line 48
- testRunner.And("it has no Account In");
 #line 49
+ testRunner.And("the move has this schedule", ((string)(null)), table6);
+#line 52
+ testRunner.And("it has no Category");
+#line 53
+ testRunner.And("it has an Account Out");
+#line 54
+ testRunner.And("it has no Account In");
+#line 55
  testRunner.When("I try to save the schedule");
-#line 50
+#line 56
  testRunner.Then("I will receive this error: InvalidCategory");
-#line 51
+#line 57
  testRunner.And("the schedule will not be saved");
+#line 58
+ testRunner.And("the accountOut value will not change");
+#line 59
+ testRunner.And("the month-category-accountOut value will not change");
+#line 60
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -224,7 +242,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _04_SaveWithUnknownCategoryE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Save with unknown Category (E)", ((string[])(null)));
-#line 53
+#line 62
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -237,9 +255,9 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 54
+#line 63
  testRunner.Given("I have this future move to create", ((string)(null)), table7);
-#line 57
+#line 66
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -252,30 +270,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 58
+#line 67
  testRunner.And("the move has this schedule", ((string)(null)), table8);
-#line 61
+#line 70
  testRunner.And("it has an unknown Category");
-#line 62
+#line 71
  testRunner.And("it has an Account Out");
-#line 63
+#line 72
  testRunner.And("it has no Account In");
-#line 64
+#line 73
  testRunner.When("I try to save the schedule");
-#line 65
+#line 74
  testRunner.Then("I will receive this error: InvalidCategory");
-#line 66
+#line 75
  testRunner.And("the schedule will not be saved");
+#line 76
+ testRunner.And("the accountOut value will not change");
+#line 77
+ testRunner.And("the month-category-accountOut value will not change");
+#line 78
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)")]
-        public virtual void _11_SaveWithNatureOutAccountOutNoAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("05. Save with Description too large (E)")]
+        public virtual void _05_SaveWithDescriptionTooLargeE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
-#line 70
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Save with Description too large (E)", ((string[])(null)));
+#line 80
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -284,13 +308,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table9.AddRow(new string[] {
-                        "Move Da11",
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy",
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 71
+#line 81
  testRunner.Given("I have this future move to create", ((string)(null)), table9);
-#line 74
+#line 84
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -303,30 +327,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 75
+#line 85
  testRunner.And("the move has this schedule", ((string)(null)), table10);
-#line 78
+#line 88
  testRunner.And("it has a Category");
-#line 79
- testRunner.And("it has no Account Out");
-#line 80
+#line 89
+ testRunner.And("it has an Account Out");
+#line 90
  testRunner.And("it has no Account In");
-#line 81
+#line 91
  testRunner.When("I try to save the schedule");
-#line 82
- testRunner.Then("I will receive this error: OutMoveWrong");
-#line 83
+#line 92
+ testRunner.Then("I will receive this error: TooLargeData");
+#line 93
  testRunner.And("the schedule will not be saved");
+#line 94
+ testRunner.And("the accountOut value will not change");
+#line 95
+ testRunner.And("the month-category-accountOut value will not change");
+#line 96
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)")]
-        public virtual void _12_SaveWithNatureOutAccountOutYesAccountInYesE()
+        [NUnit.Framework.DescriptionAttribute("11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)")]
+        public virtual void _11_SaveWithNatureOutAccountOutNoAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)", ((string[])(null)));
-#line 85
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
+#line 100
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -335,13 +365,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table11.AddRow(new string[] {
-                        "Move Da12",
+                        "Move Da11",
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 86
+#line 101
  testRunner.Given("I have this future move to create", ((string)(null)), table11);
-#line 89
+#line 104
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -354,30 +384,30 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 90
+#line 105
  testRunner.And("the move has this schedule", ((string)(null)), table12);
-#line 93
+#line 108
  testRunner.And("it has a Category");
-#line 94
- testRunner.And("it has an Account Out");
-#line 95
- testRunner.And("it has an Account In");
-#line 96
+#line 109
+ testRunner.And("it has no Account Out");
+#line 110
+ testRunner.And("it has no Account In");
+#line 111
  testRunner.When("I try to save the schedule");
-#line 97
+#line 112
  testRunner.Then("I will receive this error: OutMoveWrong");
-#line 98
+#line 113
  testRunner.And("the schedule will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)")]
-        public virtual void _13_SaveWithNatureOutAccountOutNoAccountInYesE()
+        [NUnit.Framework.DescriptionAttribute("12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)")]
+        public virtual void _12_SaveWithNatureOutAccountOutYesAccountInYesE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)", ((string[])(null)));
-#line 100
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)", ((string[])(null)));
+#line 115
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -386,13 +416,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table13.AddRow(new string[] {
-                        "Move Da13",
+                        "Move Da12",
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 101
+#line 116
  testRunner.Given("I have this future move to create", ((string)(null)), table13);
-#line 104
+#line 119
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -405,30 +435,42 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 105
+#line 120
  testRunner.And("the move has this schedule", ((string)(null)), table14);
-#line 108
+#line 123
  testRunner.And("it has a Category");
-#line 109
- testRunner.And("it has no Account Out");
-#line 110
+#line 124
+ testRunner.And("it has an Account Out");
+#line 125
  testRunner.And("it has an Account In");
-#line 111
+#line 126
  testRunner.When("I try to save the schedule");
-#line 112
+#line 127
  testRunner.Then("I will receive this error: OutMoveWrong");
-#line 113
+#line 128
  testRunner.And("the schedule will not be saved");
+#line 129
+ testRunner.And("the accountOut value will not change");
+#line 130
+ testRunner.And("the month-category-accountOut value will not change");
+#line 131
+ testRunner.And("the year-category-accountOut value will not change");
+#line 132
+ testRunner.And("the accountIn value will not change");
+#line 133
+ testRunner.And("the month-category-accountIn value will not change");
+#line 134
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)")]
-        public virtual void _14_SaveWithNatureOutAccountOutUnknownAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)")]
+        public virtual void _13_SaveWithNatureOutAccountOutNoAccountInYesE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)", ((string[])(null)));
-#line 115
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)", ((string[])(null)));
+#line 136
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -437,13 +479,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table15.AddRow(new string[] {
-                        "Move Da14",
+                        "Move Da13",
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 116
+#line 137
  testRunner.Given("I have this future move to create", ((string)(null)), table15);
-#line 119
+#line 140
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
@@ -456,30 +498,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 120
+#line 141
  testRunner.And("the move has this schedule", ((string)(null)), table16);
-#line 123
+#line 144
  testRunner.And("it has a Category");
-#line 124
- testRunner.And("it has an unknown Account Out");
-#line 125
- testRunner.And("it has no Account In");
-#line 126
+#line 145
+ testRunner.And("it has no Account Out");
+#line 146
+ testRunner.And("it has an Account In");
+#line 147
  testRunner.When("I try to save the schedule");
-#line 127
+#line 148
  testRunner.Then("I will receive this error: OutMoveWrong");
-#line 128
+#line 149
  testRunner.And("the schedule will not be saved");
+#line 150
+ testRunner.And("the accountIn value will not change");
+#line 151
+ testRunner.And("the month-category-accountIn value will not change");
+#line 152
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)")]
-        public virtual void _21_SaveWithNatureInAccountOutNoAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)")]
+        public virtual void _14_SaveWithNatureOutAccountOutUnknownAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
-#line 132
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)", ((string[])(null)));
+#line 154
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
@@ -488,13 +536,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table17.AddRow(new string[] {
-                        "Move Da21",
+                        "Move Da14",
                         "2012-03-31",
-                        "In",
+                        "Out",
                         "10"});
-#line 133
+#line 155
  testRunner.Given("I have this future move to create", ((string)(null)), table17);
-#line 136
+#line 158
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
@@ -507,30 +555,30 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 137
+#line 159
  testRunner.And("the move has this schedule", ((string)(null)), table18);
-#line 140
+#line 162
  testRunner.And("it has a Category");
-#line 141
- testRunner.And("it has no Account Out");
-#line 142
+#line 163
+ testRunner.And("it has an unknown Account Out");
+#line 164
  testRunner.And("it has no Account In");
-#line 143
+#line 165
  testRunner.When("I try to save the schedule");
-#line 144
- testRunner.Then("I will receive this error: InMoveWrong");
-#line 145
+#line 166
+ testRunner.Then("I will receive this error: OutMoveWrong");
+#line 167
  testRunner.And("the schedule will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)")]
-        public virtual void _22_SaveWithNatureInAccountOutYesAccountInYesE()
+        [NUnit.Framework.DescriptionAttribute("21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)")]
+        public virtual void _21_SaveWithNatureInAccountOutNoAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)", ((string[])(null)));
-#line 147
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
+#line 171
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
@@ -539,13 +587,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table19.AddRow(new string[] {
-                        "Move Da22",
+                        "Move Da21",
                         "2012-03-31",
                         "In",
                         "10"});
-#line 148
+#line 172
  testRunner.Given("I have this future move to create", ((string)(null)), table19);
-#line 151
+#line 175
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
@@ -558,30 +606,30 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 152
+#line 176
  testRunner.And("the move has this schedule", ((string)(null)), table20);
-#line 155
+#line 179
  testRunner.And("it has a Category");
-#line 156
- testRunner.And("it has an Account Out");
-#line 157
- testRunner.And("it has an Account In");
-#line 158
+#line 180
+ testRunner.And("it has no Account Out");
+#line 181
+ testRunner.And("it has no Account In");
+#line 182
  testRunner.When("I try to save the schedule");
-#line 159
+#line 183
  testRunner.Then("I will receive this error: InMoveWrong");
-#line 160
+#line 184
  testRunner.And("the schedule will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)")]
-        public virtual void _23_SaveWithNatureInAccountOutYesAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)")]
+        public virtual void _22_SaveWithNatureInAccountOutYesAccountInYesE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)", ((string[])(null)));
-#line 162
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)", ((string[])(null)));
+#line 186
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
@@ -590,13 +638,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table21.AddRow(new string[] {
-                        "Move Da23",
+                        "Move Da22",
                         "2012-03-31",
                         "In",
                         "10"});
-#line 163
+#line 187
  testRunner.Given("I have this future move to create", ((string)(null)), table21);
-#line 166
+#line 190
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
@@ -609,30 +657,42 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 167
+#line 191
  testRunner.And("the move has this schedule", ((string)(null)), table22);
-#line 170
+#line 194
  testRunner.And("it has a Category");
-#line 171
+#line 195
  testRunner.And("it has an Account Out");
-#line 172
- testRunner.And("it has no Account In");
-#line 173
+#line 196
+ testRunner.And("it has an Account In");
+#line 197
  testRunner.When("I try to save the schedule");
-#line 174
+#line 198
  testRunner.Then("I will receive this error: InMoveWrong");
-#line 175
+#line 199
  testRunner.And("the schedule will not be saved");
+#line 200
+ testRunner.And("the accountOut value will not change");
+#line 201
+ testRunner.And("the month-category-accountOut value will not change");
+#line 202
+ testRunner.And("the year-category-accountOut value will not change");
+#line 203
+ testRunner.And("the accountIn value will not change");
+#line 204
+ testRunner.And("the month-category-accountIn value will not change");
+#line 205
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)")]
-        public virtual void _24_SaveWithNatureInAccountOutNoAccountInUnknownE()
+        [NUnit.Framework.DescriptionAttribute("23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)")]
+        public virtual void _23_SaveWithNatureInAccountOutYesAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)", ((string[])(null)));
-#line 177
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)", ((string[])(null)));
+#line 207
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
@@ -641,13 +701,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table23.AddRow(new string[] {
-                        "Move Da24",
+                        "Move Da23",
                         "2012-03-31",
                         "In",
                         "10"});
-#line 178
+#line 208
  testRunner.Given("I have this future move to create", ((string)(null)), table23);
-#line 181
+#line 211
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
@@ -660,30 +720,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 182
+#line 212
  testRunner.And("the move has this schedule", ((string)(null)), table24);
-#line 185
+#line 215
  testRunner.And("it has a Category");
-#line 186
- testRunner.And("it has no Account Out");
-#line 187
- testRunner.And("it has an unknown Account In");
-#line 188
+#line 216
+ testRunner.And("it has an Account Out");
+#line 217
+ testRunner.And("it has no Account In");
+#line 218
  testRunner.When("I try to save the schedule");
-#line 189
+#line 219
  testRunner.Then("I will receive this error: InMoveWrong");
-#line 190
+#line 220
  testRunner.And("the schedule will not be saved");
+#line 221
+ testRunner.And("the accountOut value will not change");
+#line 222
+ testRunner.And("the month-category-accountOut value will not change");
+#line 223
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)")]
-        public virtual void _31_SaveWithNatureTransferAccountOutNoAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)")]
+        public virtual void _24_SaveWithNatureInAccountOutNoAccountInUnknownE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
-#line 194
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)", ((string[])(null)));
+#line 225
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
@@ -692,13 +758,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table25.AddRow(new string[] {
-                        "Move Da31",
+                        "Move Da24",
                         "2012-03-31",
-                        "Transfer",
+                        "In",
                         "10"});
-#line 195
+#line 226
  testRunner.Given("I have this future move to create", ((string)(null)), table25);
-#line 198
+#line 229
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
@@ -711,30 +777,30 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 199
+#line 230
  testRunner.And("the move has this schedule", ((string)(null)), table26);
-#line 202
+#line 233
  testRunner.And("it has a Category");
-#line 203
+#line 234
  testRunner.And("it has no Account Out");
-#line 204
- testRunner.And("it has no Account In");
-#line 205
+#line 235
+ testRunner.And("it has an unknown Account In");
+#line 236
  testRunner.When("I try to save the schedule");
-#line 206
- testRunner.Then("I will receive this error: TransferMoveWrong");
-#line 207
+#line 237
+ testRunner.Then("I will receive this error: InMoveWrong");
+#line 238
  testRunner.And("the schedule will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)")]
-        public virtual void _32_SaveWithNatureTransferAccountOutNoAccountInYesE()
+        [NUnit.Framework.DescriptionAttribute("31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)")]
+        public virtual void _31_SaveWithNatureTransferAccountOutNoAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)", ((string[])(null)));
-#line 209
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)", ((string[])(null)));
+#line 242
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
@@ -743,13 +809,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table27.AddRow(new string[] {
-                        "Move Da32",
+                        "Move Da31",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 210
+#line 243
  testRunner.Given("I have this future move to create", ((string)(null)), table27);
-#line 213
+#line 246
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
@@ -762,30 +828,30 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 214
+#line 247
  testRunner.And("the move has this schedule", ((string)(null)), table28);
-#line 217
+#line 250
  testRunner.And("it has a Category");
-#line 218
+#line 251
  testRunner.And("it has no Account Out");
-#line 219
- testRunner.And("it has an Account In");
-#line 220
+#line 252
+ testRunner.And("it has no Account In");
+#line 253
  testRunner.When("I try to save the schedule");
-#line 221
+#line 254
  testRunner.Then("I will receive this error: TransferMoveWrong");
-#line 222
+#line 255
  testRunner.And("the schedule will not be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)")]
-        public virtual void _33_SaveWithNatureTransferAccountOutYesAccountInNoE()
+        [NUnit.Framework.DescriptionAttribute("32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)")]
+        public virtual void _32_SaveWithNatureTransferAccountOutNoAccountInYesE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)", ((string[])(null)));
-#line 224
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)", ((string[])(null)));
+#line 257
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
@@ -794,13 +860,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table29.AddRow(new string[] {
-                        "Move Da33",
+                        "Move Da32",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 225
+#line 258
  testRunner.Given("I have this future move to create", ((string)(null)), table29);
-#line 228
+#line 261
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
@@ -813,30 +879,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 229
+#line 262
  testRunner.And("the move has this schedule", ((string)(null)), table30);
-#line 232
+#line 265
  testRunner.And("it has a Category");
-#line 233
- testRunner.And("it has an Account Out");
-#line 234
- testRunner.And("it has no Account In");
-#line 235
+#line 266
+ testRunner.And("it has no Account Out");
+#line 267
+ testRunner.And("it has an Account In");
+#line 268
  testRunner.When("I try to save the schedule");
-#line 236
+#line 269
  testRunner.Then("I will receive this error: TransferMoveWrong");
-#line 237
+#line 270
  testRunner.And("the schedule will not be saved");
+#line 271
+ testRunner.And("the accountIn value will not change");
+#line 272
+ testRunner.And("the month-category-accountIn value will not change");
+#line 273
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)")]
-        public virtual void _34_SaveWithNatureTransferAccountOutYesAccountInUnknownE()
+        [NUnit.Framework.DescriptionAttribute("33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)")]
+        public virtual void _33_SaveWithNatureTransferAccountOutYesAccountInNoE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)", ((string[])(null)));
-#line 239
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)", ((string[])(null)));
+#line 275
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
@@ -845,13 +917,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table31.AddRow(new string[] {
-                        "Move Da34",
+                        "Move Da33",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 240
+#line 276
  testRunner.Given("I have this future move to create", ((string)(null)), table31);
-#line 243
+#line 279
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
@@ -864,30 +936,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 244
+#line 280
  testRunner.And("the move has this schedule", ((string)(null)), table32);
-#line 247
+#line 283
  testRunner.And("it has a Category");
-#line 248
+#line 284
  testRunner.And("it has an Account Out");
-#line 249
- testRunner.And("it has an unknown Account In");
-#line 250
+#line 285
+ testRunner.And("it has no Account In");
+#line 286
  testRunner.When("I try to save the schedule");
-#line 251
+#line 287
  testRunner.Then("I will receive this error: TransferMoveWrong");
-#line 252
+#line 288
  testRunner.And("the schedule will not be saved");
+#line 289
+ testRunner.And("the accountOut value will not change");
+#line 290
+ testRunner.And("the month-category-accountOut value will not change");
+#line 291
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)")]
-        public virtual void _35_SaveWithNatureTransferAccountOutUnknownAccountInYesE()
+        [NUnit.Framework.DescriptionAttribute("34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)")]
+        public virtual void _34_SaveWithNatureTransferAccountOutYesAccountInUnknownE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)", ((string[])(null)));
-#line 254
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)", ((string[])(null)));
+#line 293
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
@@ -896,13 +974,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table33.AddRow(new string[] {
-                        "Move Da35",
+                        "Move Da34",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 255
+#line 294
  testRunner.Given("I have this future move to create", ((string)(null)), table33);
-#line 258
+#line 297
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
@@ -915,30 +993,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 259
+#line 298
  testRunner.And("the move has this schedule", ((string)(null)), table34);
-#line 262
+#line 301
  testRunner.And("it has a Category");
-#line 263
- testRunner.And("it has an unknown Account Out");
-#line 264
- testRunner.And("it has an Account In");
-#line 265
+#line 302
+ testRunner.And("it has an Account Out");
+#line 303
+ testRunner.And("it has an unknown Account In");
+#line 304
  testRunner.When("I try to save the schedule");
-#line 266
+#line 305
  testRunner.Then("I will receive this error: TransferMoveWrong");
-#line 267
+#line 306
  testRunner.And("the schedule will not be saved");
+#line 307
+ testRunner.And("the accountOut value will not change");
+#line 308
+ testRunner.And("the month-category-accountOut value will not change");
+#line 309
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)")]
-        public virtual void _36_SaveWithNatureTransferAccountOutYesAccountInEqualToOutE()
+        [NUnit.Framework.DescriptionAttribute("35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)")]
+        public virtual void _35_SaveWithNatureTransferAccountOutUnknownAccountInYesE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)", ((string[])(null)));
-#line 269
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)", ((string[])(null)));
+#line 311
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
@@ -947,13 +1031,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table35.AddRow(new string[] {
-                        "Move Da36",
+                        "Move Da35",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 270
+#line 312
  testRunner.Given("I have this future move to create", ((string)(null)), table35);
-#line 273
+#line 315
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
@@ -966,30 +1050,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 274
+#line 316
  testRunner.And("the move has this schedule", ((string)(null)), table36);
-#line 277
+#line 319
  testRunner.And("it has a Category");
-#line 278
- testRunner.And("it has an Account Out");
-#line 279
- testRunner.And("it has an Account In equal to Out");
-#line 280
+#line 320
+ testRunner.And("it has an unknown Account Out");
+#line 321
+ testRunner.And("it has an Account In");
+#line 322
  testRunner.When("I try to save the schedule");
-#line 281
- testRunner.Then("I will receive this error: MoveCircularTransfer");
-#line 282
+#line 323
+ testRunner.Then("I will receive this error: TransferMoveWrong");
+#line 324
  testRunner.And("the schedule will not be saved");
+#line 325
+ testRunner.And("the accountIn value will not change");
+#line 326
+ testRunner.And("the month-category-accountIn value will not change");
+#line 327
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("41. Save without Value or Details (E)")]
-        public virtual void _41_SaveWithoutValueOrDetailsE()
+        [NUnit.Framework.DescriptionAttribute("36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)")]
+        public virtual void _36_SaveWithNatureTransferAccountOutYesAccountInEqualToOutE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("41. Save without Value or Details (E)", ((string[])(null)));
-#line 286
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)", ((string[])(null)));
+#line 329
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
@@ -998,13 +1088,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table37.AddRow(new string[] {
-                        "Move Da41",
+                        "Move Da36",
                         "2012-03-31",
-                        "Out",
-                        ""});
-#line 287
- testRunner.Given("I have this future move to create", ((string)(null)), table37);
-#line 290
+                        "Transfer",
+                        "10"});
+#line 330
+testRunner.Given("I have this future move to create", ((string)(null)), table37);
+#line 333
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1017,30 +1107,42 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 291
+#line 334
  testRunner.And("the move has this schedule", ((string)(null)), table38);
-#line 294
+#line 337
  testRunner.And("it has a Category");
-#line 295
+#line 338
  testRunner.And("it has an Account Out");
-#line 296
- testRunner.And("it has no Account In");
-#line 297
+#line 339
+ testRunner.And("it has an Account In equal to Out");
+#line 340
  testRunner.When("I try to save the schedule");
-#line 298
- testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
-#line 299
+#line 341
+ testRunner.Then("I will receive this error: MoveCircularTransfer");
+#line 342
  testRunner.And("the schedule will not be saved");
+#line 343
+ testRunner.And("the accountOut value will not change");
+#line 344
+ testRunner.And("the month-category-accountOut value will not change");
+#line 345
+ testRunner.And("the year-category-accountOut value will not change");
+#line 346
+ testRunner.And("the accountIn value will not change");
+#line 347
+ testRunner.And("the month-category-accountIn value will not change");
+#line 348
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("42. Save with Value zero and no Details (E)")]
-        public virtual void _42_SaveWithValueZeroAndNoDetailsE()
+        [NUnit.Framework.DescriptionAttribute("41. Save without Value or Details (E)")]
+        public virtual void _41_SaveWithoutValueOrDetailsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("42. Save with Value zero and no Details (E)", ((string[])(null)));
-#line 301
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("41. Save without Value or Details (E)", ((string[])(null)));
+#line 352
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1049,13 +1151,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table39.AddRow(new string[] {
-                        "Move Da42",
+                        "Move Da41",
                         "2012-03-31",
                         "Out",
-                        "0"});
-#line 302
+                        ""});
+#line 353
  testRunner.Given("I have this future move to create", ((string)(null)), table39);
-#line 305
+#line 356
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1068,30 +1170,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 306
+#line 357
  testRunner.And("the move has this schedule", ((string)(null)), table40);
-#line 309
+#line 360
  testRunner.And("it has a Category");
-#line 310
+#line 361
  testRunner.And("it has an Account Out");
-#line 311
+#line 362
  testRunner.And("it has no Account In");
-#line 312
+#line 363
  testRunner.When("I try to save the schedule");
-#line 313
+#line 364
  testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
-#line 314
+#line 365
  testRunner.And("the schedule will not be saved");
+#line 366
+ testRunner.And("the accountOut value will not change");
+#line 367
+ testRunner.And("the month-category-accountOut value will not change");
+#line 368
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("43. Save without value and without Description in Detail (E)")]
-        public virtual void _43_SaveWithoutValueAndWithoutDescriptionInDetailE()
+        [NUnit.Framework.DescriptionAttribute("42. Save with Value zero and no Details (E)")]
+        public virtual void _42_SaveWithValueZeroAndNoDetailsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("43. Save without value and without Description in Detail (E)", ((string[])(null)));
-#line 316
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("42. Save with Value zero and no Details (E)", ((string[])(null)));
+#line 370
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1100,208 +1208,27 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table41.AddRow(new string[] {
-                        "Move Da43",
+                        "Move Da42",
                         "2012-03-31",
                         "Out",
-                        ""});
-#line 317
+                        "0"});
+#line 371
  testRunner.Given("I have this future move to create", ((string)(null)), table41);
+#line 374
+ testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Amount",
-                        "Value"});
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
             table42.AddRow(new string[] {
-                        "",
-                        "1",
-                        "10"});
-            table42.AddRow(new string[] {
-                        "Detail 2",
-                        "1",
-                        "10"});
-#line 320
- testRunner.And("the move has this details", ((string)(null)), table42);
-#line hidden
-            TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Times",
-                        "Boundless",
-                        "Frequency",
-                        "ShowInstallment"});
-            table43.AddRow(new string[] {
                         "10",
                         "False",
                         "Monthly",
                         "False"});
-#line 324
- testRunner.And("the move has this schedule", ((string)(null)), table43);
-#line 327
- testRunner.And("it has a Category");
-#line 328
- testRunner.And("it has an Account Out");
-#line 329
- testRunner.And("it has no Account In");
-#line 330
- testRunner.When("I try to save the schedule");
-#line 331
- testRunner.Then("I will receive this error: MoveDetailDescriptionRequired");
-#line 332
- testRunner.And("the schedule will not be saved");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("44. Save without value and with Amount zero in Detail (E)")]
-        public virtual void _44_SaveWithoutValueAndWithAmountZeroInDetailE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("44. Save without value and with Amount zero in Detail (E)", ((string[])(null)));
-#line 334
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Date",
-                        "Nature",
-                        "Value"});
-            table44.AddRow(new string[] {
-                        "Move Da44",
-                        "2012-03-31",
-                        "Out",
-                        ""});
-#line 335
- testRunner.Given("I have this future move to create", ((string)(null)), table44);
-#line hidden
-            TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Amount",
-                        "Value"});
-            table45.AddRow(new string[] {
-                        "Detail 1",
-                        "0",
-                        "10"});
-            table45.AddRow(new string[] {
-                        "Detail 2",
-                        "1",
-                        "10"});
-#line 338
- testRunner.And("the move has this details", ((string)(null)), table45);
-#line hidden
-            TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Times",
-                        "Boundless",
-                        "Frequency",
-                        "ShowInstallment"});
-            table46.AddRow(new string[] {
-                        "10",
-                        "False",
-                        "Monthly",
-                        "False"});
-#line 342
- testRunner.And("the move has this schedule", ((string)(null)), table46);
-#line 345
- testRunner.And("it has a Category");
-#line 346
- testRunner.And("it has an Account Out");
-#line 347
- testRunner.And("it has no Account In");
-#line 348
- testRunner.When("I try to save the schedule");
-#line 349
- testRunner.Then("I will receive this error: MoveDetailAmountRequired");
-#line 350
- testRunner.And("the schedule will not be saved");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("45. Save without value and with Value zero in Detail (E)")]
-        public virtual void _45_SaveWithoutValueAndWithValueZeroInDetailE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("45. Save without value and with Value zero in Detail (E)", ((string[])(null)));
-#line 352
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Date",
-                        "Nature",
-                        "Value"});
-            table47.AddRow(new string[] {
-                        "Move Da45",
-                        "2012-03-31",
-                        "Out",
-                        ""});
-#line 353
- testRunner.Given("I have this future move to create", ((string)(null)), table47);
-#line hidden
-            TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Amount",
-                        "Value"});
-            table48.AddRow(new string[] {
-                        "Detail 1",
-                        "1",
-                        "0"});
-            table48.AddRow(new string[] {
-                        "Detail 2",
-                        "1",
-                        "10"});
-#line 356
- testRunner.And("the move has this details", ((string)(null)), table48);
-#line hidden
-            TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Times",
-                        "Boundless",
-                        "Frequency",
-                        "ShowInstallment"});
-            table49.AddRow(new string[] {
-                        "10",
-                        "False",
-                        "Monthly",
-                        "False"});
-#line 360
- testRunner.And("the move has this schedule", ((string)(null)), table49);
-#line 363
- testRunner.And("it has a Category");
-#line 364
- testRunner.And("it has an Account Out");
-#line 365
- testRunner.And("it has no Account In");
-#line 366
- testRunner.When("I try to save the schedule");
-#line 367
- testRunner.Then("I will receive this error: MoveDetailValueRequired");
-#line 368
- testRunner.And("the schedule will not be saved");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("51. Save without Schedule (E)")]
-        public virtual void _51_SaveWithoutScheduleE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("51. Save without Schedule (E)", ((string[])(null)));
-#line 372
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Date",
-                        "Nature",
-                        "Value"});
-            table50.AddRow(new string[] {
-                        "Move Da51",
-                        "2012-03-31",
-                        "Out",
-                        "10"});
-#line 373
- testRunner.Given("I have this future move to create", ((string)(null)), table50);
-#line 376
- testRunner.And("it has no Details");
-#line 377
- testRunner.And("the move has no schedule");
+#line 375
+ testRunner.And("the move has this schedule", ((string)(null)), table42);
 #line 378
  testRunner.And("it has a Category");
 #line 379
@@ -1311,86 +1238,260 @@ this.ScenarioSetup(scenarioInfo);
 #line 381
  testRunner.When("I try to save the schedule");
 #line 382
- testRunner.Then("I will receive this error: ScheduleRequired");
+ testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
 #line 383
  testRunner.And("the schedule will not be saved");
+#line 384
+ testRunner.And("the accountOut value will not change");
+#line 385
+ testRunner.And("the month-category-accountOut value will not change");
+#line 386
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("52. Save with Schedule Times zero and bounded (E)")]
-        public virtual void _52_SaveWithScheduleTimesZeroAndBoundedE()
+        [NUnit.Framework.DescriptionAttribute("43. Save without value and without Description in Detail (E)")]
+        public virtual void _43_SaveWithoutValueAndWithoutDescriptionInDetailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("52. Save with Schedule Times zero and bounded (E)", ((string[])(null)));
-#line 385
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("43. Save without value and without Description in Detail (E)", ((string[])(null)));
+#line 388
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table51.AddRow(new string[] {
-                        "Move Da52",
+            table43.AddRow(new string[] {
+                        "Move Da43",
                         "2012-03-31",
                         "Out",
-                        "10"});
-#line 386
- testRunner.Given("I have this future move to create", ((string)(null)), table51);
+                        ""});
 #line 389
- testRunner.And("it has no Details");
+ testRunner.Given("I have this future move to create", ((string)(null)), table43);
 #line hidden
-            TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table44.AddRow(new string[] {
+                        "",
+                        "1",
+                        "10"});
+            table44.AddRow(new string[] {
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 392
+ testRunner.And("the move has this details", ((string)(null)), table44);
+#line hidden
+            TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table52.AddRow(new string[] {
-                        "0",
+            table45.AddRow(new string[] {
+                        "10",
                         "False",
                         "Monthly",
                         "False"});
-#line 390
- testRunner.And("the move has this schedule", ((string)(null)), table52);
-#line 393
- testRunner.And("it has a Category");
-#line 394
- testRunner.And("it has an Account Out");
-#line 395
- testRunner.And("it has no Account In");
 #line 396
+ testRunner.And("the move has this schedule", ((string)(null)), table45);
+#line 399
+ testRunner.And("it has a Category");
+#line 400
+ testRunner.And("it has an Account Out");
+#line 401
+ testRunner.And("it has no Account In");
+#line 402
  testRunner.When("I try to save the schedule");
-#line 397
- testRunner.Then("I will receive this error: ScheduleTimesCantBeZero");
-#line 398
+#line 403
+ testRunner.Then("I will receive this error: MoveDetailDescriptionRequired");
+#line 404
  testRunner.And("the schedule will not be saved");
+#line 405
+ testRunner.And("the accountOut value will not change");
+#line 406
+ testRunner.And("the month-category-accountOut value will not change");
+#line 407
+ testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Save with info all right (Out) (S)")]
-        public virtual void _91_SaveWithInfoAllRightOutS()
+        [NUnit.Framework.DescriptionAttribute("44. Save without value and with Amount zero in Detail (E)")]
+        public virtual void _44_SaveWithoutValueAndWithAmountZeroInDetailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Save with info all right (Out) (S)", ((string[])(null)));
-#line 402
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("44. Save without value and with Amount zero in Detail (E)", ((string[])(null)));
+#line 409
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table53.AddRow(new string[] {
-                        "Move Da91",
+            table46.AddRow(new string[] {
+                        "Move Da44",
                         "2012-03-31",
                         "Out",
+                        ""});
+#line 410
+ testRunner.Given("I have this future move to create", ((string)(null)), table46);
+#line hidden
+            TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table47.AddRow(new string[] {
+                        "Detail 1",
+                        "0",
                         "10"});
-#line 403
- testRunner.Given("I have this future move to create", ((string)(null)), table53);
-#line 406
- testRunner.And("it has no Details");
+            table47.AddRow(new string[] {
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 413
+ testRunner.And("the move has this details", ((string)(null)), table47);
+#line hidden
+            TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table48.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 417
+ testRunner.And("the move has this schedule", ((string)(null)), table48);
+#line 420
+ testRunner.And("it has a Category");
+#line 421
+ testRunner.And("it has an Account Out");
+#line 422
+ testRunner.And("it has no Account In");
+#line 423
+ testRunner.When("I try to save the schedule");
+#line 424
+ testRunner.Then("I will receive this error: MoveDetailAmountRequired");
+#line 425
+ testRunner.And("the schedule will not be saved");
+#line 426
+ testRunner.And("the accountOut value will not change");
+#line 427
+ testRunner.And("the month-category-accountOut value will not change");
+#line 428
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("45. Save without value and with Value zero in Detail (E)")]
+        public virtual void _45_SaveWithoutValueAndWithValueZeroInDetailE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("45. Save without value and with Value zero in Detail (E)", ((string[])(null)));
+#line 430
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table49.AddRow(new string[] {
+                        "Move Da45",
+                        "2012-03-31",
+                        "Out",
+                        ""});
+#line 431
+ testRunner.Given("I have this future move to create", ((string)(null)), table49);
+#line hidden
+            TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table50.AddRow(new string[] {
+                        "Detail 1",
+                        "1",
+                        "0"});
+            table50.AddRow(new string[] {
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 434
+ testRunner.And("the move has this details", ((string)(null)), table50);
+#line hidden
+            TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table51.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 438
+ testRunner.And("the move has this schedule", ((string)(null)), table51);
+#line 441
+ testRunner.And("it has a Category");
+#line 442
+ testRunner.And("it has an Account Out");
+#line 443
+ testRunner.And("it has no Account In");
+#line 444
+ testRunner.When("I try to save the schedule");
+#line 445
+ testRunner.Then("I will receive this error: MoveDetailValueRequired");
+#line 446
+ testRunner.And("the schedule will not be saved");
+#line 447
+ testRunner.And("the accountOut value will not change");
+#line 448
+ testRunner.And("the month-category-accountOut value will not change");
+#line 449
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("46. Save with Description too large in Detail (E)")]
+        public virtual void _46_SaveWithDescriptionTooLargeInDetailE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("46. Save with Description too large in Detail (E)", ((string[])(null)));
+#line 451
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table52.AddRow(new string[] {
+                        "Move Da46",
+                        "2012-03-31",
+                        "Out",
+                        ""});
+#line 452
+ testRunner.Given("I have this future move to create", ((string)(null)), table52);
+#line hidden
+            TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table53.AddRow(new string[] {
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy",
+                        "1",
+                        "10"});
+#line 455
+ testRunner.And("the move has this details", ((string)(null)), table53);
 #line hidden
             TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
@@ -1402,23 +1503,185 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 407
+#line 458
  testRunner.And("the move has this schedule", ((string)(null)), table54);
-#line 410
+#line 461
  testRunner.And("it has a Category");
-#line 411
+#line 462
  testRunner.And("it has an Account Out");
-#line 412
+#line 463
  testRunner.And("it has no Account In");
-#line 413
+#line 464
  testRunner.When("I try to save the schedule");
-#line 414
- testRunner.Then("I will receive no error");
-#line 415
- testRunner.And("the schedule will be saved");
-#line 416
+#line 465
+ testRunner.Then("I will receive this error: TooLargeData");
+#line 466
+ testRunner.And("the schedule will not be saved");
+#line 467
+ testRunner.And("the accountOut value will not change");
+#line 468
  testRunner.And("the month-category-accountOut value will not change");
-#line 417
+#line 469
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("51. Save without Schedule (E)")]
+        public virtual void _51_SaveWithoutScheduleE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("51. Save without Schedule (E)", ((string[])(null)));
+#line 473
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table55 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table55.AddRow(new string[] {
+                        "Move Da51",
+                        "2012-03-31",
+                        "Out",
+                        "10"});
+#line 474
+ testRunner.Given("I have this future move to create", ((string)(null)), table55);
+#line 477
+ testRunner.And("it has no Details");
+#line 478
+ testRunner.And("the move has no schedule");
+#line 479
+ testRunner.And("it has a Category");
+#line 480
+ testRunner.And("it has an Account Out");
+#line 481
+ testRunner.And("it has no Account In");
+#line 482
+ testRunner.When("I try to save the schedule");
+#line 483
+ testRunner.Then("I will receive this error: ScheduleRequired");
+#line 484
+ testRunner.And("the schedule will not be saved");
+#line 485
+ testRunner.And("the accountOut value will not change");
+#line 486
+ testRunner.And("the month-category-accountOut value will not change");
+#line 487
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("52. Save with Schedule Times zero and bounded (E)")]
+        public virtual void _52_SaveWithScheduleTimesZeroAndBoundedE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("52. Save with Schedule Times zero and bounded (E)", ((string[])(null)));
+#line 489
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table56.AddRow(new string[] {
+                        "Move Da52",
+                        "2012-03-31",
+                        "Out",
+                        "10"});
+#line 490
+ testRunner.Given("I have this future move to create", ((string)(null)), table56);
+#line 493
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table57.AddRow(new string[] {
+                        "0",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 494
+ testRunner.And("the move has this schedule", ((string)(null)), table57);
+#line 497
+ testRunner.And("it has a Category");
+#line 498
+ testRunner.And("it has an Account Out");
+#line 499
+ testRunner.And("it has no Account In");
+#line 500
+ testRunner.When("I try to save the schedule");
+#line 501
+ testRunner.Then("I will receive this error: ScheduleTimesCantBeZero");
+#line 502
+ testRunner.And("the schedule will not be saved");
+#line 503
+ testRunner.And("the accountOut value will not change");
+#line 504
+ testRunner.And("the month-category-accountOut value will not change");
+#line 505
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("91. Save with info all right (Out) (S)")]
+        public virtual void _91_SaveWithInfoAllRightOutS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Save with info all right (Out) (S)", ((string[])(null)));
+#line 509
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table58.AddRow(new string[] {
+                        "Move Da91",
+                        "2012-03-31",
+                        "Out",
+                        "10"});
+#line 510
+ testRunner.Given("I have this future move to create", ((string)(null)), table58);
+#line 513
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table59 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table59.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 514
+ testRunner.And("the move has this schedule", ((string)(null)), table59);
+#line 517
+ testRunner.And("it has a Category");
+#line 518
+ testRunner.And("it has an Account Out");
+#line 519
+ testRunner.And("it has no Account In");
+#line 520
+ testRunner.When("I try to save the schedule");
+#line 521
+ testRunner.Then("I will receive no error");
+#line 522
+ testRunner.And("the schedule will be saved");
+#line 523
+ testRunner.And("the accountOut value will not change");
+#line 524
+ testRunner.And("the month-category-accountOut value will not change");
+#line 525
  testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -1429,51 +1692,53 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _92_SaveWithInfoAllRightInS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Save with info all right (In) (S)", ((string[])(null)));
-#line 419
+#line 527
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table55 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table60 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table55.AddRow(new string[] {
+            table60.AddRow(new string[] {
                         "Move Da92",
                         "2012-03-31",
                         "In",
                         "10"});
-#line 420
- testRunner.Given("I have this future move to create", ((string)(null)), table55);
-#line 423
+#line 528
+ testRunner.Given("I have this future move to create", ((string)(null)), table60);
+#line 531
  testRunner.And("it has no Details");
 #line hidden
-            TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table61 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table56.AddRow(new string[] {
+            table61.AddRow(new string[] {
                         "10",
                         "False",
                         "Monthly",
                         "False"});
-#line 424
- testRunner.And("the move has this schedule", ((string)(null)), table56);
-#line 427
+#line 532
+ testRunner.And("the move has this schedule", ((string)(null)), table61);
+#line 535
  testRunner.And("it has a Category");
-#line 428
+#line 536
  testRunner.And("it has no Account Out");
-#line 429
+#line 537
  testRunner.And("it has an Account In");
-#line 430
+#line 538
  testRunner.When("I try to save the schedule");
-#line 431
+#line 539
  testRunner.Then("I will receive no error");
-#line 432
+#line 540
  testRunner.And("the schedule will be saved");
-#line 433
+#line 541
+ testRunner.And("the accountIn value will not change");
+#line 542
  testRunner.And("the month-category-accountIn value will not change");
-#line 434
+#line 543
  testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -1484,150 +1749,23 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _93_SaveWithInfoAllRightTransferS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Save with info all right (Transfer) (S)", ((string[])(null)));
-#line 436
+#line 545
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table62 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table57.AddRow(new string[] {
+            table62.AddRow(new string[] {
                         "Move Da93",
                         "2012-03-31",
                         "Transfer",
                         "10"});
-#line 437
- testRunner.Given("I have this future move to create", ((string)(null)), table57);
-#line 440
+#line 546
+ testRunner.Given("I have this future move to create", ((string)(null)), table62);
+#line 549
  testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Times",
-                        "Boundless",
-                        "Frequency",
-                        "ShowInstallment"});
-            table58.AddRow(new string[] {
-                        "10",
-                        "False",
-                        "Monthly",
-                        "False"});
-#line 441
- testRunner.And("the move has this schedule", ((string)(null)), table58);
-#line 444
- testRunner.And("it has a Category");
-#line 445
- testRunner.And("it has an Account Out");
-#line 446
- testRunner.And("it has an Account In");
-#line 447
- testRunner.When("I try to save the schedule");
-#line 448
- testRunner.Then("I will receive no error");
-#line 449
- testRunner.And("the schedule will be saved");
-#line 450
- testRunner.And("the month-category-accountOut value will not change");
-#line 451
- testRunner.And("the month-category-accountIn value will not change");
-#line 452
- testRunner.And("the year-category-accountOut value will not change");
-#line 453
- testRunner.And("the year-category-accountIn value will not change");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("94. Save with info all right (value) (S)")]
-        public virtual void _94_SaveWithInfoAllRightValueS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Save with info all right (value) (S)", ((string[])(null)));
-#line 455
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table59 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Date",
-                        "Nature",
-                        "Value"});
-            table59.AddRow(new string[] {
-                        "Move Da94",
-                        "2012-03-31",
-                        "Out",
-                        "10"});
-#line 456
- testRunner.Given("I have this future move to create", ((string)(null)), table59);
-#line 459
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table60 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Times",
-                        "Boundless",
-                        "Frequency",
-                        "ShowInstallment"});
-            table60.AddRow(new string[] {
-                        "10",
-                        "False",
-                        "Monthly",
-                        "False"});
-#line 460
- testRunner.And("the move has this schedule", ((string)(null)), table60);
-#line 463
- testRunner.And("it has a Category");
-#line 464
- testRunner.And("it has an Account Out");
-#line 465
- testRunner.And("it has no Account In");
-#line 466
- testRunner.When("I try to save the schedule");
-#line 467
- testRunner.Then("I will receive no error");
-#line 468
- testRunner.And("the schedule will be saved");
-#line 469
- testRunner.And("the month-category-accountOut value will not change");
-#line 470
- testRunner.And("the year-category-accountOut value will not change");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("95. Save with info all right (details) (S)")]
-        public virtual void _95_SaveWithInfoAllRightDetailsS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Save with info all right (details) (S)", ((string[])(null)));
-#line 472
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table61 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Date",
-                        "Nature",
-                        "Value"});
-            table61.AddRow(new string[] {
-                        "Move Da95",
-                        "2012-03-31",
-                        "Out",
-                        ""});
-#line 473
- testRunner.Given("I have this future move to create", ((string)(null)), table61);
-#line hidden
-            TechTalk.SpecFlow.Table table62 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Amount",
-                        "Value"});
-            table62.AddRow(new string[] {
-                        "Detail 1",
-                        "1",
-                        "10"});
-            table62.AddRow(new string[] {
-                        "Detail 2",
-                        "1",
-                        "10"});
-#line 476
- testRunner.And("the move has this details", ((string)(null)), table62);
 #line hidden
             TechTalk.SpecFlow.Table table63 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
@@ -1639,34 +1777,42 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 480
+#line 550
  testRunner.And("the move has this schedule", ((string)(null)), table63);
-#line 483
+#line 553
  testRunner.And("it has a Category");
-#line 484
+#line 554
  testRunner.And("it has an Account Out");
-#line 485
- testRunner.And("it has no Account In");
-#line 486
+#line 555
+ testRunner.And("it has an Account In");
+#line 556
  testRunner.When("I try to save the schedule");
-#line 487
+#line 557
  testRunner.Then("I will receive no error");
-#line 488
+#line 558
  testRunner.And("the schedule will be saved");
-#line 489
+#line 559
+ testRunner.And("the accountOut value will not change");
+#line 560
  testRunner.And("the month-category-accountOut value will not change");
-#line 490
+#line 561
  testRunner.And("the year-category-accountOut value will not change");
+#line 562
+ testRunner.And("the accountIn value will not change");
+#line 563
+ testRunner.And("the month-category-accountIn value will not change");
+#line 564
+ testRunner.And("the year-category-accountIn value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("96. Save negative (value) (S)")]
-        public virtual void _96_SaveNegativeValueS()
+        [NUnit.Framework.DescriptionAttribute("94. Save with info all right (value) (S)")]
+        public virtual void _94_SaveWithInfoAllRightValueS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Save negative (value) (S)", ((string[])(null)));
-#line 492
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Save with info all right (value) (S)", ((string[])(null)));
+#line 566
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table64 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1675,13 +1821,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table64.AddRow(new string[] {
-                        "Move Da96",
+                        "Move Da94",
                         "2012-03-31",
                         "Out",
-                        "-10"});
-#line 493
+                        "10"});
+#line 567
  testRunner.Given("I have this future move to create", ((string)(null)), table64);
-#line 496
+#line 570
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1694,34 +1840,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 497
+#line 571
  testRunner.And("the move has this schedule", ((string)(null)), table65);
-#line 500
+#line 574
  testRunner.And("it has a Category");
-#line 501
+#line 575
  testRunner.And("it has an Account Out");
-#line 502
+#line 576
  testRunner.And("it has no Account In");
-#line 503
+#line 577
  testRunner.When("I try to save the schedule");
-#line 504
+#line 578
  testRunner.Then("I will receive no error");
-#line 505
+#line 579
  testRunner.And("the schedule will be saved");
-#line 506
+#line 580
+ testRunner.And("the accountOut value will not change");
+#line 581
  testRunner.And("the month-category-accountOut value will not change");
-#line 507
+#line 582
  testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("97. Save negative (details) (S)")]
-        public virtual void _97_SaveNegativeDetailsS()
+        [NUnit.Framework.DescriptionAttribute("95. Save with info all right (details) (S)")]
+        public virtual void _95_SaveWithInfoAllRightDetailsS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Save negative (details) (S)", ((string[])(null)));
-#line 509
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Save with info all right (details) (S)", ((string[])(null)));
+#line 584
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1730,11 +1878,11 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table66.AddRow(new string[] {
-                        "Move Da97",
+                        "Move Da95",
                         "2012-03-31",
                         "Out",
                         ""});
-#line 510
+#line 585
  testRunner.Given("I have this future move to create", ((string)(null)), table66);
 #line hidden
             TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1744,12 +1892,12 @@ this.ScenarioSetup(scenarioInfo);
             table67.AddRow(new string[] {
                         "Detail 1",
                         "1",
-                        "-10"});
+                        "10"});
             table67.AddRow(new string[] {
                         "Detail 2",
                         "1",
                         "10"});
-#line 513
+#line 588
  testRunner.And("the move has this details", ((string)(null)), table67);
 #line hidden
             TechTalk.SpecFlow.Table table68 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1762,34 +1910,36 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 517
+#line 592
  testRunner.And("the move has this schedule", ((string)(null)), table68);
-#line 520
+#line 595
  testRunner.And("it has a Category");
-#line 521
+#line 596
  testRunner.And("it has an Account Out");
-#line 522
+#line 597
  testRunner.And("it has no Account In");
-#line 523
+#line 598
  testRunner.When("I try to save the schedule");
-#line 524
+#line 599
  testRunner.Then("I will receive no error");
-#line 525
+#line 600
  testRunner.And("the schedule will be saved");
-#line 526
+#line 601
+ testRunner.And("the accountOut value will not change");
+#line 602
  testRunner.And("the month-category-accountOut value will not change");
-#line 527
+#line 603
  testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Save with future Date (E)")]
-        public virtual void _98_SaveWithFutureDateE()
+        [NUnit.Framework.DescriptionAttribute("96. Save negative (value) (S)")]
+        public virtual void _96_SaveNegativeValueS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save with future Date (E)", ((string[])(null)));
-#line 529
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Save negative (value) (S)", ((string[])(null)));
+#line 605
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table69 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1798,13 +1948,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table69.AddRow(new string[] {
-                        "Move Da98",
-                        "2099-03-31",
+                        "Move Da96",
+                        "2012-03-31",
                         "Out",
-                        "10"});
-#line 530
+                        "-10"});
+#line 606
  testRunner.Given("I have this future move to create", ((string)(null)), table69);
-#line 533
+#line 609
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table70 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1817,23 +1967,275 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 534
+#line 610
  testRunner.And("the move has this schedule", ((string)(null)), table70);
-#line 537
+#line 613
  testRunner.And("it has a Category");
-#line 538
+#line 614
  testRunner.And("it has an Account Out");
-#line 539
+#line 615
  testRunner.And("it has no Account In");
-#line 540
+#line 616
  testRunner.When("I try to save the schedule");
-#line 541
+#line 617
  testRunner.Then("I will receive no error");
-#line 542
+#line 618
  testRunner.And("the schedule will be saved");
-#line 543
+#line 619
+ testRunner.And("the accountOut value will not change");
+#line 620
  testRunner.And("the month-category-accountOut value will not change");
-#line 544
+#line 621
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("97. Save negative (details) (S)")]
+        public virtual void _97_SaveNegativeDetailsS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Save negative (details) (S)", ((string[])(null)));
+#line 623
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table71.AddRow(new string[] {
+                        "Move Da97",
+                        "2012-03-31",
+                        "Out",
+                        ""});
+#line 624
+ testRunner.Given("I have this future move to create", ((string)(null)), table71);
+#line hidden
+            TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table72.AddRow(new string[] {
+                        "Detail 1",
+                        "1",
+                        "-10"});
+            table72.AddRow(new string[] {
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 627
+ testRunner.And("the move has this details", ((string)(null)), table72);
+#line hidden
+            TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table73.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 631
+ testRunner.And("the move has this schedule", ((string)(null)), table73);
+#line 634
+ testRunner.And("it has a Category");
+#line 635
+ testRunner.And("it has an Account Out");
+#line 636
+ testRunner.And("it has no Account In");
+#line 637
+ testRunner.When("I try to save the schedule");
+#line 638
+ testRunner.Then("I will receive no error");
+#line 639
+ testRunner.And("the schedule will be saved");
+#line 640
+ testRunner.And("the accountOut value will not change");
+#line 641
+ testRunner.And("the month-category-accountOut value will not change");
+#line 642
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Save with future Date (E)")]
+        public virtual void _98_SaveWithFutureDateE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save with future Date (E)", ((string[])(null)));
+#line 644
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table74.AddRow(new string[] {
+                        "Move Da98",
+                        "2099-03-31",
+                        "Out",
+                        "10"});
+#line 645
+ testRunner.Given("I have this future move to create", ((string)(null)), table74);
+#line 648
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table75.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 649
+ testRunner.And("the move has this schedule", ((string)(null)), table75);
+#line 652
+ testRunner.And("it has a Category");
+#line 653
+ testRunner.And("it has an Account Out");
+#line 654
+ testRunner.And("it has no Account In");
+#line 655
+ testRunner.When("I try to save the schedule");
+#line 656
+ testRunner.Then("I will receive no error");
+#line 657
+ testRunner.And("the schedule will be saved");
+#line 658
+ testRunner.And("the accountOut value will not change");
+#line 659
+ testRunner.And("the month-category-accountOut value will not change");
+#line 660
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Save with exactly length in Description of Detail (S)")]
+        public virtual void _99_SaveWithExactlyLengthInDescriptionOfDetailS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save with exactly length in Description of Detail (S)", ((string[])(null)));
+#line 662
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table76.AddRow(new string[] {
+                        "Move Da99",
+                        "2010-03-31",
+                        "Out",
+                        ""});
+#line 663
+ testRunner.Given("I have this future move to create", ((string)(null)), table76);
+#line hidden
+            TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table77.AddRow(new string[] {
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx",
+                        "1",
+                        "10"});
+#line 666
+ testRunner.And("the move has this details", ((string)(null)), table77);
+#line hidden
+            TechTalk.SpecFlow.Table table78 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table78.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 669
+ testRunner.And("the move has this schedule", ((string)(null)), table78);
+#line 672
+ testRunner.And("it has a Category");
+#line 673
+ testRunner.And("it has an Account Out");
+#line 674
+ testRunner.And("it has no Account In");
+#line 675
+ testRunner.When("I try to save the schedule");
+#line 676
+ testRunner.Then("I will receive no error");
+#line 677
+ testRunner.And("the schedule will be saved");
+#line 678
+ testRunner.And("the accountOut value will not change");
+#line 679
+ testRunner.And("the month-category-accountOut value will not change");
+#line 680
+ testRunner.And("the year-category-accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9A. Save with exactly length in Description (S)")]
+        public virtual void _9A_SaveWithExactlyLengthInDescriptionS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Save with exactly length in Description (S)", ((string[])(null)));
+#line 682
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table79 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table79.AddRow(new string[] {
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx",
+                        "2010-03-31",
+                        "Out",
+                        "10"});
+#line 683
+ testRunner.Given("I have this future move to create", ((string)(null)), table79);
+#line 686
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table80 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table80.AddRow(new string[] {
+                        "10",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 687
+ testRunner.And("the move has this schedule", ((string)(null)), table80);
+#line 690
+ testRunner.And("it has a Category");
+#line 691
+ testRunner.And("it has an Account Out");
+#line 692
+ testRunner.And("it has no Account In");
+#line 693
+ testRunner.When("I try to save the schedule");
+#line 694
+ testRunner.Then("I will receive no error");
+#line 695
+ testRunner.And("the schedule will be saved");
+#line 696
+ testRunner.And("the accountOut value will not change");
+#line 697
+ testRunner.And("the month-category-accountOut value will not change");
+#line 698
  testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();

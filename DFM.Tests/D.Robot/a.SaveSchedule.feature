@@ -19,6 +19,9 @@ Scenario: 01. Save without Description (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveDescriptionRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 02. Save without Date (E)
 	Given I have this future move to create
@@ -34,6 +37,9 @@ Scenario: 02. Save without Date (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveDateRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 03. Save without Category (E)
 	Given I have this future move to create
@@ -49,6 +55,9 @@ Scenario: 03. Save without Category (E)
 	When I try to save the schedule
 	Then I will receive this error: InvalidCategory
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 04. Save with unknown Category (E)
 	Given I have this future move to create
@@ -64,6 +73,27 @@ Scenario: 04. Save with unknown Category (E)
 	When I try to save the schedule
 	Then I will receive this error: InvalidCategory
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+
+Scenario: 05. Save with Description too large (E)
+	Given I have this future move to create
+		| Description                                         | Date       | Nature | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the schedule
+	Then I will receive this error: TooLargeData
+	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 
 
@@ -96,6 +126,12 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	When I try to save the schedule
 	Then I will receive this error: OutMoveWrong
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this future move to create
@@ -111,6 +147,9 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	When I try to save the schedule
 	Then I will receive this error: OutMoveWrong
 	And the schedule will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	Given I have this future move to create
@@ -158,6 +197,12 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	When I try to save the schedule
 	Then I will receive this error: InMoveWrong
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this future move to create
@@ -173,6 +218,9 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	When I try to save the schedule
 	Then I will receive this error: InMoveWrong
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	Given I have this future move to create
@@ -220,6 +268,9 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	When I try to save the schedule
 	Then I will receive this error: TransferMoveWrong
 	And the schedule will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this future move to create
@@ -235,6 +286,9 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	When I try to save the schedule
 	Then I will receive this error: TransferMoveWrong
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
 	Given I have this future move to create
@@ -250,6 +304,9 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	When I try to save the schedule
 	Then I will receive this error: TransferMoveWrong
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
 	Given I have this future move to create
@@ -265,9 +322,12 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	When I try to save the schedule
 	Then I will receive this error: TransferMoveWrong
 	And the schedule will not be saved
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
-	Given I have this future move to create
+Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da36   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
@@ -280,6 +340,12 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 	When I try to save the schedule
 	Then I will receive this error: MoveCircularTransfer
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
+	And the year-category-accountIn value will not change
 
 
 
@@ -297,6 +363,9 @@ Scenario: 41. Save without Value or Details (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveValueOrDetailRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 42. Save with Value zero and no Details (E)
 	Given I have this future move to create
@@ -312,6 +381,9 @@ Scenario: 42. Save with Value zero and no Details (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveValueOrDetailRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 43. Save without value and without Description in Detail (E)
 	Given I have this future move to create
@@ -330,6 +402,9 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveDetailDescriptionRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 44. Save without value and with Amount zero in Detail (E)
 	Given I have this future move to create
@@ -348,6 +423,9 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveDetailAmountRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 45. Save without value and with Value zero in Detail (E)
 	Given I have this future move to create
@@ -366,6 +444,29 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	When I try to save the schedule
 	Then I will receive this error: MoveDetailValueRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+
+Scenario: 46. Save with Description too large in Detail (E)
+	Given I have this future move to create
+		| Description | Date       | Nature | Value |
+		| Move Da46   | 2012-03-31 | Out    |       |
+	And the move has this details
+		| Description                                         | Amount | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the schedule
+	Then I will receive this error: TooLargeData
+	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 
 
@@ -381,6 +482,9 @@ Scenario: 51. Save without Schedule (E)
 	When I try to save the schedule
 	Then I will receive this error: ScheduleRequired
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 Scenario: 52. Save with Schedule Times zero and bounded (E)
 	Given I have this future move to create
@@ -396,6 +500,9 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 	When I try to save the schedule
 	Then I will receive this error: ScheduleTimesCantBeZero
 	And the schedule will not be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
 
 
 
@@ -413,9 +520,10 @@ Scenario: 91. Save with info all right (Out) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
-	
+
 Scenario: 92. Save with info all right (In) (S)
 	Given I have this future move to create
 		| Description | Date       | Nature | Value |
@@ -430,6 +538,7 @@ Scenario: 92. Save with info all right (In) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountIn value will not change
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 	
@@ -447,9 +556,11 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
-	And the month-category-accountIn value will not change
 	And the year-category-accountOut value will not change
+	And the accountIn value will not change
+	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
 Scenario: 94. Save with info all right (value) (S)
@@ -466,6 +577,7 @@ Scenario: 94. Save with info all right (value) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 	
@@ -486,6 +598,7 @@ Scenario: 95. Save with info all right (details) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
@@ -503,6 +616,7 @@ Scenario: 96. Save negative (value) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
@@ -523,6 +637,7 @@ Scenario: 97. Save negative (details) (S)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
@@ -540,5 +655,44 @@ Scenario: 98. Save with future Date (E)
 	When I try to save the schedule
 	Then I will receive no error
 	And the schedule will be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+
+Scenario: 99. Save with exactly length in Description of Detail (S)
+	Given I have this future move to create
+		| Description | Date       | Nature | Value |
+		| Move Da99   | 2010-03-31 | Out    |       |
+	And the move has this details
+		| Description                                        | Amount | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the schedule
+	Then I will receive no error
+	And the schedule will be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change
+
+Scenario: 9A. Save with exactly length in Description (S)
+	Given I have this future move to create
+		| Description                                        | Date       | Nature | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2010-03-31 | Out    | 10    |
+	And it has no Details
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the schedule
+	Then I will receive no error
+	And the schedule will be saved
+	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
