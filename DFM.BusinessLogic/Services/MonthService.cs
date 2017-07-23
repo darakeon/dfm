@@ -22,11 +22,10 @@ namespace DFM.BusinessLogic.Services
 
         private Month getOrCreateMonth(Year year, Int16 dateMonth)
         {
-            var monthList = year.MonthList
-                .Where(m => m.Time == dateMonth);
+            var month = year.MonthList
+                .SingleOrDefault(m => m.Time == dateMonth);
 
-            return monthList.SingleOrDefault()
-                ?? createMonth(year, dateMonth);
+            return month ?? createMonth(year, dateMonth);
         }
 
         private Month createMonth(Year year, Int16 month)

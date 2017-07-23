@@ -22,11 +22,10 @@ namespace DFM.BusinessLogic.Services
 
         private Year getOrCreateYear(Account account, Int16 dateYear)
         {
-            var yearList = account.YearList
-                .Where(m => m.Time == dateYear);
+            var year = account.YearList
+                .SingleOrDefault(m => m.Time == dateYear);
 
-                return yearList.SingleOrDefault()
-                    ?? createYear(account, dateYear);
+            return year ?? createYear(account, dateYear);
         }
 
         private Year createYear(Account account, Int16 year)
