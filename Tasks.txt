@@ -163,7 +163,7 @@ VERSÃO 1.0.2.3
 21/02/2013	21/02/2013	Passar Accounts / Category como name para a save move
 21/02/2013	22/02/2013	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
 21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName
-24/02;2013			Criar edição de nome de Categoria / Conta (incluindo mvc)
+24/02/2013			Criar edição de nome de Categoria / Conta (incluindo mvc)
 				Possibilitar url escolhida para a conta
 				Proteger edição de objeto no core
 				Numerar enums
@@ -174,11 +174,16 @@ VERSÃO 1.0.2.3
 
 ======================================================================================================
 
-VERSÃO 1.0.2.4
+VERSÃO 1.0.3.0
 
 				Criar projeto UI, que será referenciado pelo MVC
 				Criar projeto que retorna UI em Json
 				Criar App Mobile
+
+======================================================================================================
+
+VERSÃO 1.0.3.1
+
 				Follow twitter
 			>>>	Se for post, fazer login realizar history.go(-2)
 				Substituir SelectByEmail de User por SelectByLogin
@@ -197,7 +202,7 @@ VERSÃO 1.0.2.4
 
 ======================================================================================================
 
-VERSÃO 1.0.3.0
+VERSÃO 1.0.4.0
 
 				importador de Excel
 				importador de Money
@@ -213,7 +218,7 @@ VERSÃO 1.0.3.0
 
 ======================================================================================================
 
-VERSÃO 1.0.4.0
+VERSÃO 1.0.5.0
 
 				Colocar nome (ou apelido) no sign up
 				Edição de Perfil de usuário
