@@ -159,7 +159,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
                 move.DetailList.Add(detail);
 
-                SA.Money.SaveOrUpdateMove(move, Account, null, Category);
+                SA.Money.SaveOrUpdateMove(move, User, Account.Name, null, Category);
             }
         }
 

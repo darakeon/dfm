@@ -122,7 +122,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn, MoveCategory);
+                var accountOutName = AccountOut == null ? null : AccountOut.Name;
+                var accountInName = AccountIn == null ? null : AccountIn.Name;
+
+                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, MoveCategory);
             }
             catch (DFMCoreException e)
             {
@@ -257,7 +260,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn, Category);
+                var accountOutName = AccountOut == null ? null : AccountOut.Name;
+                var accountInName = AccountIn == null ? null : AccountIn.Name;
+
+                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category);
             }
             catch (DFMCoreException e)
             {
@@ -495,7 +501,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove((Move)Move, Account, null, Category);
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, User, Account.Name, null, Category);
 
             detail = Move.DetailList.First();
         }
@@ -615,18 +621,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             Move.DetailList.Add(newDetail);
             
-            AccountOut = nature == MoveNature.In
-                ? null : GetOrCreateAccount(AccountOutName);
+            var accountOutName = nature == MoveNature.In
+                ? null : AccountOutName;
 
-            AccountIn = nature == MoveNature.Out
-                ? null : GetOrCreateAccount(AccountInName);
+            var accountInName = nature == MoveNature.Out
+                ? null : AccountInName;
 
             Category = GetOrCreateCategory(CategoryName);
 
-            SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn, Category);
+            SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category);
 
-            if (AccountOut != null)
+            if (accountOutName != null)
             {
+                AccountOut = SA.Admin.SelectAccountByName(accountOutName, User); 
+
                 var year = AccountOut[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 
@@ -639,6 +647,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             if (AccountIn != null)
             {
+                AccountIn = SA.Admin.SelectAccountByName(accountInName, User);
+
                 var year = AccountIn[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 

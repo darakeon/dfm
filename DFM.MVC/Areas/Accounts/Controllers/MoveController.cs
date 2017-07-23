@@ -146,7 +146,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOut, selector.AccountIn, category, schedule);
+                Services.Robot.SaveOrUpdateSchedule(futureMove, Current.User, selector.AccountOutName, selector.AccountInName, category, schedule);
 
                 return RedirectToAction("Index", "Report");
             }
@@ -155,7 +155,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn, category);
+                Services.Money.SaveOrUpdateMove(move, Current.User, selector.AccountOutName, selector.AccountInName, category);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }

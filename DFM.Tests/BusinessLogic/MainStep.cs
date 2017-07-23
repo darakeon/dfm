@@ -39,6 +39,7 @@ namespace DFM.Tests.BusinessLogic
             Category = GetOrCreateCategory(CategoryName);
         }
 
+        [AfterStep]
         public static void CloseSession()
         {
             NHManager.Close();

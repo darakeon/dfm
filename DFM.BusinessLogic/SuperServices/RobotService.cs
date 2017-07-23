@@ -45,13 +45,13 @@ namespace DFM.BusinessLogic.SuperServices
 
             foreach (var futureMove in futureMoves)
             {
-                transformFutureInMove(futureMove);
+                transformFutureInMove(futureMove, user);
             }
         }
 
 
 
-        private void transformFutureInMove(FutureMove futureMove)
+        private void transformFutureInMove(FutureMove futureMove, User user)
         {
             BeginTransaction();
 
@@ -65,13 +65,13 @@ namespace DFM.BusinessLogic.SuperServices
                 if (boundless && isLast)
                     addNextFutureMove(futureMove.Schedule);
 
-                var accountOut = futureMove.Out;
-                var accountIn = futureMove.In;
+                var accountOutName = futureMove.Out == null ? null : futureMove.Out.Name;
+                var accountInName = futureMove.In == null ? null : futureMove.In.Name;
                 var category = futureMove.Category;
 
                 var move = futureMove.CastToKill();
 
-                Parent.BaseMove.SaveOrUpdateMove(move, accountOut, accountIn, category);
+                Parent.BaseMove.SaveOrUpdateMove(move, user, accountOutName, accountInName, category);
 
                 futureMoveService.Delete(futureMove.ID);
 
@@ -86,13 +86,13 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn, Category category, Schedule schedule)
+        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, User user, String accountOutName, String accountInName, Category category, Schedule schedule)
         {
             BeginTransaction();
 
             try
             {
-                placeAccountsInMove(futureMove, accountOut, accountIn);
+                placeAccountsInMove(futureMove, user, accountOutName, accountInName);
 
                 futureMove = saveOrUpdateSchedule(futureMove, category, schedule);
                 
@@ -107,13 +107,13 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        private void placeAccountsInMove(FutureMove futureMove, Account accountOut, Account accountIn)
+        private void placeAccountsInMove(FutureMove futureMove, User user, String accountOutName, String accountInName)
         {
-            futureMove.Out = accountOut == null 
-                ? null : Parent.Admin.SelectAccountByName(accountOut.Name, accountOut.User);
+            futureMove.Out = accountOutName == null 
+                ? null : Parent.Admin.SelectAccountByName(accountOutName, user);
 
-            futureMove.In = accountIn == null 
-                ? null : Parent.Admin.SelectAccountByName(accountIn.Name, accountIn.User);
+            futureMove.In = accountInName == null 
+                ? null : Parent.Admin.SelectAccountByName(accountInName, user);
         }
 
         private FutureMove saveOrUpdateSchedule(FutureMove futureMove, Category category, Schedule schedule)

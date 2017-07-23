@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
+using NHibernate;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -70,18 +71,19 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-
         internal Account SelectByName(String name, User user)
         {
-            var accountList = List(
-                    a => a.Name == name
-                         && a.User.ID == user.ID
-                );
-
-            if (accountList.Count > 1)
+            try
+            {
+                return SingleOrDefault(
+                        a => a.Name == name
+                             && a.User.ID == user.ID
+                    );
+            }
+            catch (NonUniqueResultException)
+            {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
-
-            return accountList.SingleOrDefault();
+            }
         }
 
 

@@ -31,14 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ak.DataAccess">
-      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="Ak.Generic">
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
     <Reference Include="Ak.MVC">
-      <HintPath>..\DFM.MVC\Bin\Ak.MVC.dll</HintPath>
+      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -115,6 +112,12 @@
     <Content Include="Multilanguage\Resources\user.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\00 - Lib\Ak\Ak.DataAccess\Ak.DataAccess.csproj">
+      <Project>{DFC0990E-F17C-414B-BB07-10DC86835EC1}</Project>
+      <Name>Ak.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

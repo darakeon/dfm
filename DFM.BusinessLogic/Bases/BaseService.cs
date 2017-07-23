@@ -30,7 +30,13 @@ namespace DFM.BusinessLogic.Bases
         {
             return repository.SelectById(id);
         }
-        
+
+
+        internal Boolean Exists(Expression<Func<T, Boolean>> func)
+        {
+            return repository.Exists(func);
+        }
+
 
         internal T SingleOrDefault(Expression<Func<T, Boolean>> func)
         {

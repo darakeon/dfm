@@ -6,6 +6,7 @@ using DFM.Entities.Bases;
 using DFM.BusinessLogic.Exceptions;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Util;
 
 namespace DFM.Repositories
 {
@@ -17,7 +18,7 @@ namespace DFM.Repositories
         }
 
 
-        protected ICriteria CreateSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
+        private static ICriteria createSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
         {
             return session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
@@ -54,17 +55,24 @@ namespace DFM.Repositories
 
 
 
+        public Boolean Exists(Expression<Func<T, Boolean>> func)
+        {
+            var criteria = createSimpleCriteria(func);
+
+            return criteria.Future<T>().Any();
+
+        }
+
         public T SingleOrDefault(Expression<Func<T, Boolean>> func)
         {
-            var criteria = CreateSimpleCriteria(func);
+            var criteria = createSimpleCriteria(func);
 
             return criteria.UniqueResult<T>();
-
         }
 
         public IList<T> List(Expression<Func<T, Boolean>> func)
         {
-            var criteria = CreateSimpleCriteria(func);
+            var criteria = createSimpleCriteria(func);
 
             return criteria.List<T>();
         }
@@ -101,13 +109,8 @@ namespace DFM.Repositories
 
         internal IList<T> Select()
         {
-            return CreateSimpleCriteria().List<T>();
+            return createSimpleCriteria().List<T>();
         }
-
-
-
-
-
 
         
 

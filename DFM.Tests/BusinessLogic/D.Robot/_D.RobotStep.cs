@@ -61,7 +61,10 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             try
             {
-                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn, MoveCategory, Schedule);
+                var accountOutName = AccountOut == null ? null : AccountOut.Name;
+                var accountInName = AccountIn == null ? null : AccountIn.Name;
+
+                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, User, accountOutName, accountInName, MoveCategory, Schedule);
             }
             catch (DFMCoreException e)
             {
@@ -111,7 +114,10 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [Given(@"I save the schedule")]
         public void GivenISaveTheSchedule()
         {
-            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn, MoveCategory, Schedule);
+            var accountOutName = AccountOut == null ? null : AccountOut.Name;
+            var accountInName = AccountIn == null ? null : AccountIn.Name;
+
+            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, User, accountOutName, accountInName, MoveCategory, Schedule);
         }
 
         [When(@"I try to run the scheduler")]

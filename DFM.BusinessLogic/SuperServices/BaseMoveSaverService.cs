@@ -28,7 +28,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         
         
-        internal Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Category category)
+        internal Move SaveOrUpdateMove(Move move, User user, String accountOutName, String accountInName, Category category)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
@@ -38,7 +38,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             ajustOldSummaries(move.ID);
 
-            placeAccountsInMove(move, accountOut, accountIn);
+            placeAccountsInMove(move, user, accountOutName, accountInName);
 
             move = moveService.SaveOrUpdate(move);
 
@@ -123,10 +123,22 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
+        private void placeAccountsInMove(Move move, User user, String accountOutName, String accountInName)
         {
-            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
-            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
+            var monthOut = (Month) null;
+            var monthIn = (Month) null;
+
+            if (accountOutName != null)
+            {
+                var accountOut = Parent.Admin.SelectAccountByName(accountOutName, user);
+                monthOut = accountOut == null ? null : getMonth(move, accountOut);
+            }
+
+            if (accountInName != null)
+            {
+                var accountIn = Parent.Admin.SelectAccountByName(accountInName, user);
+                monthIn = accountIn == null ? null : getMonth(move, accountIn);
+            }
 
             moveService.PlaceMonthsInMove(move, monthOut, monthIn);
         }

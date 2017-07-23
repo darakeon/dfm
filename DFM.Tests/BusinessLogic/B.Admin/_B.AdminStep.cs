@@ -502,7 +502,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, Account, null, Category);
+            SA.Money.SaveOrUpdateMove(move, User, Account.Name, null, Category);
 
             id = Account.ID;
         }
