@@ -43,28 +43,30 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has a Category")]
         public void GivenItHasACategory()
         {
-            MoveCategory = Category;
+            MoveCategoryName = Category.Name;
         }
 
         [Given(@"it has no Category")]
         public void GivenItHasNoCategory()
         {
-            MoveCategory = null;
+            MoveCategoryName = null;
         }
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
         {
-            MoveCategory = new Category { Name = "unknown", User = User };
+            MoveCategoryName = "unknown";
         }
 
         [Given(@"it has a disabled Category")]
         public void GivenItHasADisabledCategory()
         {
-            MoveCategory = new Category { Name = "disabled", User = User };
+            MoveCategoryName = "disabled";
 
-            SA.Admin.SaveOrUpdateCategory(MoveCategory);
-            SA.Admin.DisableCategory(MoveCategory.ID);
+            var moveCategory = new Category { Name = "disabled", User = User };
+
+            SA.Admin.SaveOrUpdateCategory(moveCategory);
+            SA.Admin.DisableCategory(moveCategory.ID);
         }
 
 
@@ -112,7 +114,7 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, User, AccountOut.Name, null, Category);
+            SA.Money.SaveOrUpdateMove(move, User, AccountOut.Name, null, Category.Name);
 
             SA.Admin.CloseAccount(AccountOut.ID);
         }
@@ -161,7 +163,7 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, User, null, AccountIn.Name, Category);
+            SA.Money.SaveOrUpdateMove(move, User, null, AccountIn.Name, Category.Name);
 
             SA.Admin.CloseAccount(AccountIn.ID);
         }

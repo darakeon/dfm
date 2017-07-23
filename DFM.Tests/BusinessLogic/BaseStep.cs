@@ -194,10 +194,10 @@ namespace DFM.Tests.BusinessLogic
         }
 
         
-        protected static Category MoveCategory
+        protected static String MoveCategoryName
         {
-            get { return Get<Category>("MoveCategory"); }
-            set { Set("MoveCategory", value); }
+            get { return Get<String>("MoveCategoryName"); }
+            set { Set("MoveCategoryName", value); }
         }
 
         

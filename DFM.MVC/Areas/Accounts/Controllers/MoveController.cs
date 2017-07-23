@@ -124,9 +124,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 try
                 {
                     var selector = new AccountSelector(model.Move.Nature, accountname, model.AccountName);
-                    var category = Services.Admin.SelectCategoryByName(model.CategoryName, Current.User);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector, category, model.Schedule);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector, model.CategoryName, model.Schedule);
                 }
                 catch (DFMCoreException e)
                 {
@@ -139,14 +138,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, Category category, Schedule schedule = null)
+        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, String categoryName, Schedule schedule = null)
             where T : BaseMove, new()
         {
             if (typeof(T) == typeof(FutureMove))
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Robot.SaveOrUpdateSchedule(futureMove, Current.User, selector.AccountOutName, selector.AccountInName, category, schedule);
+                Services.Robot.SaveOrUpdateSchedule(futureMove, Current.User, selector.AccountOutName, selector.AccountInName, categoryName, schedule);
 
                 return RedirectToAction("Index", "Report");
             }
@@ -155,7 +154,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, Current.User, selector.AccountOutName, selector.AccountInName, category);
+                Services.Money.SaveOrUpdateMove(move, Current.User, selector.AccountOutName, selector.AccountInName, categoryName);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }

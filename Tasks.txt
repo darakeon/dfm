@@ -156,7 +156,7 @@ VERSÃO 1.0.2.3
 
 17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
 17/10/2012	17/10/2012	Colocar log por visita no site (IP, Data/Hora, Endereço)
-17/10/2012			Arrumar MVC para passar Category e Schedule de move separados da move
+17/10/2012	20/02/2013	Arrumar MVC para passar Category e Schedule de move separados da move
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
 				Passar Accounts / Category como name para a save move
@@ -172,7 +172,6 @@ VERSÃO 1.0.2.3
 				Colocar hover em TRs de tabela (destacar linha que está em cima)
 			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
 			>>>	Alterar interface externa para neutra (cores do site)
-			>>>	Disponibilizar cores para interfaces
 			>>>	Criar relatórios por anos
 			>>>	Iluminar última movimentação verificada
 			>>>	Mostrar valor da conta com movimentações futuras

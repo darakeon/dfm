@@ -125,7 +125,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, MoveCategory);
+                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, MoveCategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -263,7 +263,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category);
+                SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category.Name);
             }
             catch (DFMCoreException e)
             {
@@ -501,7 +501,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove((Move)Move, User, Account.Name, null, Category);
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, User, Account.Name, null, Category.Name);
 
             detail = Move.DetailList.First();
         }
@@ -629,7 +629,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             Category = GetOrCreateCategory(CategoryName);
 
-            SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category);
+            SA.Money.SaveOrUpdateMove((Move)Move, User, accountOutName, accountInName, Category.Name);
 
             if (accountOutName != null)
             {
