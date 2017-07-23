@@ -21,13 +21,13 @@ else
         @foreach (var category in Model.CategoryList)
         {
             var editLabel = MultiLanguage.Dictionary["Edit", "Category"];
-            var editUrl = Url.Action("Edit", "Category", new { id = category.ID });
+            var editUrl = Url.Action("Edit", "Category", new { id = category.Name });
 
             var enableLabel = MultiLanguage.Dictionary["Enable", "Category"];
-            var enableUrl = Url.Action("Enable", new { id = category.ID });
+            var enableUrl = Url.Action("Enable", new { id = category.Name });
 
             var disableLabel = MultiLanguage.Dictionary["Disable", "Category"];
-            var disableUrl = Url.Action("Disable", new { id = category.ID });
+            var disableUrl = Url.Action("Disable", new { id = category.Name });
                         
             <tr>
                 <td>@category.Name </td>

@@ -43,15 +43,15 @@ else
             var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accountname = account.Name });
             
             var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
-            var editUrl = Url.Action("Edit", "Account", new { id = account.ID });
+            var editUrl = Url.Action("Edit", "Account", new { id = account.Name });
 
 
             var closeLabel = MultiLanguage.Dictionary["Close", "Account"];
-            var closeUrl = Url.Action("Close", new { id = account.ID });
+            var closeUrl = Url.Action("Close", new { id = account.Name });
             var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
 
             var deleteLabel = MultiLanguage.Dictionary["Delete", "Account"];
-            var deleteUrl = Url.Action("Delete", new { id = account.ID });
+            var deleteUrl = Url.Action("Delete", new { id = account.Name });
             var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
 
             <tr>
