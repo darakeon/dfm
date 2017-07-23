@@ -65,7 +65,7 @@ namespace DFM.Tests.BusinessLogic
 
             var moveCategory = new Category { Name = "disabled", User = User };
 
-            SA.Admin.SaveOrUpdateCategory(moveCategory);
+            SA.Admin.CreateCategory(moveCategory);
             SA.Admin.DisableCategory(moveCategory.Name);
         }
 

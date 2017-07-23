@@ -1,4 +1,4 @@
-﻿namespace DFM.BusinessLogic.Helpers
+﻿namespace DFM.Generic
 {
     public enum OperationType
     {

@@ -15,10 +15,11 @@
         )
     {
         @Html.ValidationSummary()
+        @Html.HiddenFor(m => m.Type)
 
         <p>
-            @Html.LabelFor(m => m.Category.Name, MultiLanguage.Dictionary["Category"])
-            @Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaximumLength.CategoryName })
+            @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"])
+            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.CategoryName })
             <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CategoryName)</span>
         </p>
     

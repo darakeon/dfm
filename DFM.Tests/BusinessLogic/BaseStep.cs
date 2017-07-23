@@ -112,7 +112,7 @@ namespace DFM.Tests.BusinessLogic
                 if (e.Type != ExceptionPossibilities.InvalidCategory)
                     throw;
 
-                SA.Admin.SaveOrUpdateCategory(new Category { Name = categoryName, User = User });
+                SA.Admin.CreateCategory(new Category { Name = categoryName, User = User });
                 return SA.Admin.SelectCategoryByName(categoryName);
             }
         }

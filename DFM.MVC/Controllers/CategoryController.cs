@@ -4,6 +4,7 @@ using Ak.MVC.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -25,7 +26,7 @@ namespace DFM.MVC.Controllers
         
         public ActionResult Create()
         {
-            var model = new CategoryCreateEditModel();
+            var model = new CategoryCreateEditModel(OperationType.Creation);
 
             model.DefineAction(Request);
 
@@ -60,7 +61,7 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new CategoryCreateEditModel
+            var model = new CategoryCreateEditModel(OperationType.Update)
             {
                 Category = Services.Admin.SelectCategoryByName(id)
             };
@@ -106,19 +107,21 @@ namespace DFM.MVC.Controllers
 
         private Category createEditForAll(CategoryCreateEditModel model)
         {
-            var categoryIdEmpty = model.Category == null
-                                  || String.IsNullOrEmpty(model.Category.Name);
-
-            if (categoryIdEmpty)
+            try
             {
-                ModelState.AddModelError("Category.Name", "");
-                return new Category {ID = 0};
+
             }
-
-
+            catch (Exception)
+            {
+                
+                throw;
+            }
             model.Category.User = Current.User;
 
-            Services.Admin.SaveOrUpdateCategory(model.Category);
+            if (model.Type == OperationType.Creation)
+                Services.Admin.CreateCategory(model.Category);
+            else
+                Services.Admin.UpdateCategory(model.Category, model.Name);
 
             return model.Category;
         }

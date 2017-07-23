@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -33,7 +33,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Create()
         {
-            var model = new AccountCreateEditModel();
+            var model = new AccountCreateEditModel(OperationType.Creation);
 
             return View("CreateEdit", model);
         }
@@ -66,11 +66,11 @@ namespace DFM.MVC.Controllers
             var oldAccount = Services.Admin.SelectAccountByName(id);
 
             return isAuthorized(oldAccount)
-                ? createEdit(model, false)
+                ? createEdit(model)
                 : RedirectToAction("Create");
         }
 
-        private ActionResult createEdit(AccountCreateEditModel model, Boolean isNew = true)
+        private ActionResult createEdit(AccountCreateEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace DFM.MVC.Controllers
                 {
                     model.Account.User = Current.User;
 
-                    if (isNew)
+                    if (model.Type == OperationType.Creation)
                         Services.Admin.CreateAccount(model.Account);
                     else
                         Services.Admin.UpdateAccount(model.Account, model.Name);

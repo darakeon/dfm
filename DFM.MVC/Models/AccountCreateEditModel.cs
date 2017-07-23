@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
+using DFM.Generic;
 
 namespace DFM.MVC.Models
 {
@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
             Account = new Account();
         }
 
-        public AccountCreateEditModel(OperationType type = OperationType.Creation) : this()
+        public AccountCreateEditModel(OperationType type) : this()
         {
             Type = type;
         }

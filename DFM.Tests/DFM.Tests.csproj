@@ -92,6 +92,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="BusinessLogic\B.Admin\h.UpdateCategory.feature.cs">
+      <DependentUpon>h.UpdateCategory.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\B.Admin\g.SelectCategoryByName.feature.cs">
       <DependentUpon>g.SelectCategoryByName.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -203,6 +208,10 @@
     <None Include="BusinessLogic\B.Admin\c.UpdateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.UpdateAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\B.Admin\h.UpdateCategory.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>h.UpdateCategory.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\B.Admin\g.SelectCategoryByName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

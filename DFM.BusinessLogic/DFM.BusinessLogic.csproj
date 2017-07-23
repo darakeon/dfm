@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Bases\BaseMoveService.cs" />
     <Compile Include="Bases\ITransactionController.cs" />
-    <Compile Include="Helpers\OperationType.cs" />
+    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Bases\BaseService.cs" />
     <Compile Include="Services\CategoryService.cs" />
@@ -60,7 +60,6 @@
     <Compile Include="Exceptions\DFMCoreException.cs" />
     <Compile Include="Exceptions\ExceptionPossibilities.cs" />
     <Compile Include="Helpers\Dfm.cs" />
-    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\MaximumLength.cs" />
     <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

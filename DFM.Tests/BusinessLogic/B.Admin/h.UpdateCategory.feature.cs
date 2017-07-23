@@ -18,20 +18,20 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Update of Account")]
-    public partial class C_UpdateOfAccountFeature
+    [NUnit.Framework.DescriptionAttribute("h. Update of Category")]
+    public partial class H_UpdateOfCategoryFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "c.UpdateAccount.feature"
+#line 1 "h.UpdateCategory.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Update of Account", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "h. Update of Category", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,75 +71,24 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name",
-                        "Yellow",
-                        "Red"});
+                        "Name"});
             table1.AddRow(new string[] {
-                        "Account Ca01",
-                        "",
-                        ""});
+                        "Category Ha01"});
 #line 7
- testRunner.Given("I have this account", ((string)(null)), table1);
+ testRunner.Given("I have this category", ((string)(null)), table1);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name",
-                        "Yellow",
-                        "Red"});
+                        "Name"});
             table2.AddRow(new string[] {
-                        "Ca01 - new name",
-                        "",
-                        ""});
+                        "Ca01 - new name"});
 #line 10
- testRunner.When("make this changes to the account", ((string)(null)), table2);
+ testRunner.When("make this changes to the category", ((string)(null)), table2);
 #line 13
- testRunner.And("I try to update the account");
+ testRunner.And("I try to update the category");
 #line 14
  testRunner.Then("I will receive no core error");
 #line 15
- testRunner.And("the account will be changed");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Change the name when there is moves (S)")]
-        public virtual void _02_ChangeTheNameWhenThereIsMovesS()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Change the name when there is moves (S)", ((string[])(null)));
-#line 17
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name",
-                        "Yellow",
-                        "Red"});
-            table3.AddRow(new string[] {
-                        "Account Ca02",
-                        "",
-                        ""});
-#line 18
- testRunner.Given("I have this account", ((string)(null)), table3);
-#line 21
- testRunner.And("this account has moves");
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name",
-                        "Yellow",
-                        "Red"});
-            table4.AddRow(new string[] {
-                        "Ca02 - new name",
-                        "",
-                        ""});
-#line 22
- testRunner.When("make this changes to the account", ((string)(null)), table4);
-#line 25
- testRunner.And("I try to update the account");
-#line 26
- testRunner.Then("I will receive no core error");
-#line 27
- testRunner.And("the account will be changed");
-#line 28
- testRunner.And("the account value will not change");
+ testRunner.And("the category will be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

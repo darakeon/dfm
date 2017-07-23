@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 using DFM.Entities;
+using DFM.Generic;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
@@ -12,7 +14,51 @@ namespace DFM.MVC.Models
             Category = new Category();
         }
 
+        public CategoryCreateEditModel(OperationType type) : this()
+        {
+            Type = type;
+        }
+
+        
+
+        public OperationType Type { get; set; }
+
         public Category Category { get; set; }
+
+        private String name;
+
+        [Required(ErrorMessage = "*")]
+        public String Name
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case OperationType.Creation:
+                        return Category.Name;
+                    case OperationType.Update:
+                        return name ?? Category.Name;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            set
+            {
+                switch (Type)
+                {
+                    case OperationType.Creation:
+                        Category.Name = value;
+                        break;
+                    case OperationType.Update:
+                        name = value;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+        }
+
+
 
         public Boolean IsMoveCRUD { get; private set; }
 
@@ -21,6 +67,7 @@ namespace DFM.MVC.Models
         {
             IsMoveCRUD = request.Path.Contains(RouteNames.Accounts);
         }
+
 
     }
 }

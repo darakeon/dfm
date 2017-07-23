@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
-using DFM.BusinessLogic.Helpers;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -124,7 +124,17 @@ namespace DFM.BusinessLogic.SuperServices
             return category;
         }
 
-        public void SaveOrUpdateCategory(Category category)
+        public void CreateCategory(Category category)
+        {
+            saveOrUpdateCategory(category, OperationType.Creation);
+        }
+
+        public void UpdateCategory(Category category, String newName)
+        {
+            saveOrUpdateCategory(category, OperationType.Update, newName);
+        }
+
+        private void saveOrUpdateCategory(Category category, OperationType opType, String newName = null)
         {
             VerifyUser();
 
@@ -132,6 +142,18 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
+                if (opType == OperationType.Update)
+                {
+                    var oldCategory = SelectCategoryByName(category.Name);
+
+                    category.ID = oldCategory.ID;
+                    // TODO: use Current User
+                    category.User = oldCategory.User;
+
+                    if (!String.IsNullOrEmpty(newName))
+                        category.Name = newName;
+                }
+
                 categoryService.SaveOrUpdate(category);
                 CommitTransaction();
             }

@@ -201,7 +201,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             accountTotal = Account.Sum();
         }
 
-        [When(@"make this changes")]
+        [When(@"make this changes to the account")]
         public void WhenMakeThisChanges(Table table)
         {
             var accountData = table.Rows[0];
@@ -370,7 +370,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
                 User = User
             };
 
-            SA.Admin.SaveOrUpdateCategory(oldCategory);
+            SA.Admin.CreateCategory(oldCategory);
         }
 
         [When(@"I try to save the category")]
@@ -378,7 +378,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.SaveOrUpdateCategory(Category);
+                SA.Admin.CreateCategory(Category);
             }
             catch (DFMCoreException e)
             {
@@ -436,11 +436,85 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         }
         #endregion
 
+        #region UpdateCategory
+        [Given(@"I have this category")]
+        public void GivenIHaveThisCategory(Table table)
+        {
+            var categoryData = table.Rows[0];
+
+            oldCategoryName = categoryData["Name"];
+
+            Category = new Category
+            {
+                Name = oldCategoryName,
+                User = User
+            };
+
+            SA.Admin.CreateCategory(Category);
+        }
+
+        [When(@"make this changes to the category")]
+        public void WhenMakeThisChangesToCategory(Table table)
+        {
+            var categoryData = table.Rows[0];
+
+            newCategoryName = categoryData["Name"];
+        }
+
+        [When(@"I try to update the category")]
+        public void WhenITryToUpdateTheCategory()
+        {
+            try
+            {
+                SA.Admin.UpdateCategory(Category, newCategoryName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"the category will be changed")]
+        public void ThenTheCategoryWillBeChanged()
+        {
+            Category = null;
+            Error = null;
+
+            try
+            {
+                Category = SA.Admin.SelectCategoryByName(oldCategoryName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNull(Category);
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidCategory);
+
+            Category = null;
+            Error = null;
+
+            try
+            {
+                Category = SA.Admin.SelectCategoryByName(newCategoryName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Category);
+            Assert.IsNull(Error);
+        }
+        #endregion
+
         #region DisableCategory
         [Given(@"I give an id of enabled category ([\w ]+)")]
         public void GivenIGiveAnIdOfEnabledCategory(String givenCategoryName)
         {
-            SA.Admin.SaveOrUpdateCategory(
+            SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
             Category = SA.Admin.SelectCategoryByName(givenCategoryName);
@@ -480,7 +554,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I give an id of disabled category ([\w ]+)")]
         public void GivenIGiveAnIdOfDisabledCategory(String givenCategoryName)
         {
-            SA.Admin.SaveOrUpdateCategory(
+            SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
             Category = SA.Admin.SelectCategoryByName(givenCategoryName);
