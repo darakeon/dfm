@@ -26,8 +26,7 @@ namespace DFM.BusinessLogic.SuperServices
         #region Scheduler
         public void RunSchedule()
         {
-            if (Parent.Current.User == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+            VerifyUser();
 
             var scheduleList = scheduleService.GetScheduleToRun(Parent.Current.User);
 
@@ -87,6 +86,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, String accountOutName, String accountInName, String categoryName, Schedule schedule)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try

@@ -25,6 +25,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public IList<Move> GetMonthReport(Int32 accountID, Int16 dateMonth, Int16 dateYear)
         {
+            VerifyUser();
+
             if (dateYear <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
 
@@ -53,6 +55,8 @@ namespace DFM.BusinessLogic.SuperServices
         
         public Year GetYearReport(Int32 accountID, Int16 dateYear)
         {
+            VerifyUser();
+
             if (dateYear <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
 

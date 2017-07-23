@@ -21,6 +21,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Account SelectAccountById(Int32 id)
         {
+            VerifyUser();
+
             var account = accountService.SelectById(id);
 
             if (account == null)
@@ -31,6 +33,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Account SelectAccountByName(String name)
         {
+            VerifyUser();
+
             var account = accountService.SelectByName(name, Parent.Current.User);
 
             if (account == null)
@@ -41,6 +45,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateAccount(Account account)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -57,6 +63,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void CloseAccount(Int32 id)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -73,6 +81,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeleteAccount(Int32 id)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -91,6 +101,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Category SelectCategoryById(Int32 id)
         {
+            VerifyUser();
+
             var category = categoryService.SelectById(id);
 
             if (category == null)
@@ -101,6 +113,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Category SelectCategoryByName(String name)
         {
+            VerifyUser();
+
             var category = categoryService.SelectByName(name, Parent.Current.User);
 
             if (category == null)
@@ -111,6 +125,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateCategory(Category category)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -127,6 +143,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DisableCategory(Int32 id)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -143,6 +161,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void EnableCategory(Int32 id)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try

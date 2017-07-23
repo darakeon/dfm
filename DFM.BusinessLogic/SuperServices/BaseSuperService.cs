@@ -1,4 +1,6 @@
-﻿namespace DFM.BusinessLogic.SuperServices
+﻿using DFM.BusinessLogic.Exceptions;
+
+namespace DFM.BusinessLogic.SuperServices
 {
     public class BaseSuperService
     {
@@ -23,6 +25,12 @@
         protected void RollbackTransaction()
         {
             Parent.TransactionController.Rollback();
+        }
+
+        protected void VerifyUser()
+        {
+            if (Parent.Current.User == null || !Parent.Current.User.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
         }
 
     }

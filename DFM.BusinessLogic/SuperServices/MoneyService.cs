@@ -24,6 +24,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Move SelectMoveById(Int32 id)
         {
+            VerifyUser();
+
             var move = moveService.SelectById(id);
 
             if (move == null)
@@ -36,6 +38,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
         {
+            VerifyUser();
+
             BeginTransaction();
             
             try
@@ -60,6 +64,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeleteMove(Int32 id)
         {
+            VerifyUser();
+
             BeginTransaction();
 
             try
@@ -93,6 +99,8 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Detail SelectDetailById(Int32 id)
         {
+            VerifyUser();
+
             var detail = detailService.SelectById(id);
 
             if (detail == null)
