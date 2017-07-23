@@ -167,11 +167,19 @@ VERSÃO 1.0.2.3
 				Possibilitar url escolhida para a conta
 				Proteger edição de objeto no core
 				Numerar enums
+				Não enviar e-mail caso dê erro ao mexer na movimentação
+				Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
+				AntiForgeryToken
+				Transformar FutureMove em parte da Schedule
 
 ======================================================================================================
 
 VERSÃO 1.0.2.4
 
+				Criar projeto UI, que será referenciado pelo MVC
+				Criar projeto que retorna UI em Json
+				Criar App Mobile
+				Follow twitter
 			>>>	Se for post, fazer login realizar history.go(-2)
 				Substituir SelectByEmail de User por SelectByLogin
 				Fazer ValidateAndGet pegar String de LoginSession
@@ -180,7 +188,7 @@ VERSÃO 1.0.2.4
 				Em Move, colocar Value como campo gravado e usar Total para exibição
 				Trocar Extensions Sum para Total
 				Colocar hover em TRs de tabela (destacar linha que está em cima)
-			>>>	Aumentar tamanho da tela principal (considerar deletar cor do topo)
+			>>>	Rever layout (colocar um símbolo de relógio de parede para agendamento)
 			>>>	Alterar interface externa para neutra (cores do site)
 			>>>	Criar relatórios por anos
 			>>>	Iluminar última movimentação verificada
@@ -192,7 +200,6 @@ VERSÃO 1.0.2.4
 VERSÃO 1.0.3.0
 
 				importador de Excel
-				importador de XML
 				importador de Money
 				importador de CSV
 				gravador de importação
@@ -201,18 +208,12 @@ VERSÃO 1.0.3.0
 				transformador de exportação
 				gravador de exportação
 				exportador de Excel
-				exportador de XML
 				exportador de Money
 				exportador de CSV
 
 ======================================================================================================
 
 VERSÃO 1.0.4.0
-
-				Rever layout (colocar um símbolo de relógio de parede para agendamento)
-				Follow twitter
-				Criar projeto UI, que será referenciado pelo MVC
-				Criar projeto que retorna UI em Json
 
 				Colocar nome (ou apelido) no sign up
 				Edição de Perfil de usuário
@@ -232,4 +233,3 @@ VERSÃO 1.0.4.0
 				Categorização múltipla da movimentação
 				Recover de conta pelo MISC
 				Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
-				Verificar cobertura de código
