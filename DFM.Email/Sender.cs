@@ -65,7 +65,7 @@ namespace DFM.Email
 
             var credentials = new NetworkCredential("no-reply@" + domain, "[some-awful-password]");
 
-            var smtp = new SmtpClient("smtp." + domain, 587)
+            var smtp = new SmtpClient("mail." + domain, 587)
                             {
                                 EnableSsl = false,
                                 Timeout = 10000,
