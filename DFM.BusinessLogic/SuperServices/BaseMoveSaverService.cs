@@ -1,6 +1,5 @@
 ﻿using System;
 using Ak.Generic.Collection;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -134,11 +133,6 @@ namespace DFM.BusinessLogic.SuperServices
 
         private Month getMonth(BaseMove baseMove, Account account)
         {
-            account = Parent.Admin.SelectAccountByName(account.Name, account.User);
-
-            if (account == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
-
             if (baseMove.Date == DateTime.MinValue)
                 return null;
 

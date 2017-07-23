@@ -3,6 +3,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Repositories;
 using DFM.MVC.Authentication;
+using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Helpers.Controllers
 {
@@ -17,10 +18,22 @@ namespace DFM.MVC.Helpers.Controllers
             Account chosenAccount = null;
 
             if (!String.IsNullOrEmpty(currentAccountName))
+            {
                 currentAccount = Services.Admin.SelectAccountByName(currentAccountName, Current.User);
 
+                //TODO: this shouldn't be here
+                if (currentAccount == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+            }
+
             if (!String.IsNullOrEmpty(chosenAccountName))
+            {
                 chosenAccount = Services.Admin.SelectAccountByName(chosenAccountName, Current.User);
+
+                //TODO: this shouldn't be here
+                if (chosenAccount == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+            }
 
             switch (nature)
             {
