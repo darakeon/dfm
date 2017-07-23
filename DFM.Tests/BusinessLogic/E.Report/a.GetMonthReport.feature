@@ -17,8 +17,8 @@ Background:
 		| 2012-04-05 |
 		| 2012-04-06 |
 
-Scenario: 01. Get with invalid Account ID (E)
-	Given I pass an invalid account ID
+Scenario: 01. Get with invalid Account name (E)
+	Given I pass an invalid account name
 	And I pass this date
 		| Month | Year |
 		| 4     | 2012 |
@@ -27,7 +27,7 @@ Scenario: 01. Get with invalid Account ID (E)
 	And I will receive no month report
 
 Scenario: 02. Get with Date Year Zero (E)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Month | Year |
 		| 4     | 0    |
@@ -36,7 +36,7 @@ Scenario: 02. Get with Date Year Zero (E)
 	And I will receive no month report
 
 Scenario: 03. Get with Date Month less than 1 (E)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Month | Year |
 		| 0     | 2012 |
@@ -45,7 +45,7 @@ Scenario: 03. Get with Date Month less than 1 (E)
 	And I will receive no month report
 
 Scenario: 04. Get with Date Month more than 12 (E)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Month | Year |
 		| 13    | 2012 |
@@ -56,7 +56,7 @@ Scenario: 04. Get with Date Month more than 12 (E)
 
 
 Scenario: 99. Get with info all right (S)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Month | Year |
 		| 4     | 2012 |

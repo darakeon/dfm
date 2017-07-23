@@ -17,8 +17,8 @@ Background:
 		| 2012-04-05 |
 		| 2012-04-06 |
 
-Scenario: 01. Get with invalid Account ID (E)
-	Given I pass an invalid account ID
+Scenario: 01. Get with invalid Account name (E)
+	Given I pass an invalid account name
 	And I pass this date
 		| Year |
 		| 2012 |
@@ -27,7 +27,7 @@ Scenario: 01. Get with invalid Account ID (E)
 	And I will receive no year report
 
 Scenario: 02. Get with Date Year Zero (E)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Year |
 		| 0    |
@@ -38,7 +38,7 @@ Scenario: 02. Get with Date Year Zero (E)
 
 
 Scenario: 99. Get with info all right (S)
-	Given I pass a valid account ID
+	Given I pass a valid account name
 	And I pass this date
 		| Year |
 		| 2012 |

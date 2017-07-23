@@ -10,13 +10,13 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     [Authorize]
     public class ReportController : Controller
     {
-        private Int32 accountid;
+        private String accountname;
 
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
 
-            accountid = Int32.Parse(RouteData.Values["accountid"].ToString());
+            accountname = RouteData.Values["accountname"].ToString();
         }
 
 
@@ -50,8 +50,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportShowMovesModel
                             {
-                                MoveList = Services.Report.GetMonthReport(accountid, dateMonth, dateYear),
-                                Account = Services.Admin.SelectAccountById(accountid),
+                                MoveList = Services.Report.GetMonthReport(accountname, dateMonth, dateYear),
+                                Account = Services.Admin.SelectAccountByName(accountname),
                                 Month = dateMonth,
                                 Year = dateYear,
                             };
@@ -73,11 +73,15 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new ReportSummarizeMonthsModel
                             {
-                                Year =  Services.Report.GetYearReport(accountid, year),
+                                Year =  Services.Report.GetYearReport(accountname, year),
                             };
 
 
             return View(model);
         }
+
+
+
+
     }
 }

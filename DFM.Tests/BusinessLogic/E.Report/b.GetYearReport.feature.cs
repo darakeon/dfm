@@ -92,14 +92,14 @@ namespace DFM.Tests.BusinessLogic.E_Report
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get with invalid Account ID (E)")]
-        public virtual void _01_GetWithInvalidAccountIDE()
+        [NUnit.Framework.DescriptionAttribute("01. Get with invalid Account name (E)")]
+        public virtual void _01_GetWithInvalidAccountNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get with invalid Account ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get with invalid Account name (E)", ((string[])(null)));
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
- testRunner.Given("I pass an invalid account ID");
+ testRunner.Given("I pass an invalid account name");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
@@ -125,7 +125,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.Given("I pass a valid account ID");
+ testRunner.Given("I pass a valid account name");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
@@ -151,7 +151,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line 41
- testRunner.Given("I pass a valid account ID");
+ testRunner.Given("I pass a valid account name");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});

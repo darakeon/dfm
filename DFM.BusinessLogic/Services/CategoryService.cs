@@ -61,19 +61,19 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void Disable(Int32 id)
+        internal void Disable(String name, User user)
         {
-            alterActive(id, false);
+            alterActive(name, user, false);
         }
 
-        internal void Enable(Int32 id)
+        internal void Enable(String name, User user)
         {
-            alterActive(id, true);
+            alterActive(name, user, true);
         }
 
-        private void alterActive(Int32 id, Boolean enable)
+        private void alterActive(String name, User user, Boolean enable)
         {
-            var category = SelectById(id);
+            var category = SelectByName(name, user);
 
             if (category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);

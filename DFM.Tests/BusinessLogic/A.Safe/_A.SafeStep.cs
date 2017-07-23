@@ -60,6 +60,20 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             password = table.Rows[0]["Password"];
         }
 
+        [Given(@"I already have created this user")]
+        public void GivenIAlreadyHaveCreatedThisUser()
+        {
+            otherUser = new User
+            {
+                Email = email,
+                Password = password + "_diff",
+            };
+
+            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
+        }
+
+
+
         [When(@"I try to save the user")]
         public void WhenITryToSaveTheUser()
         {
@@ -73,18 +87,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             }
         }
 
-        [Given(@"I already have created this user")]
-        public void GivenIAlreadyHaveCreatedThisUser()
-        {
-            otherUser = new User
-                                {
-                                    Email = email, 
-                                    Password = password + "_diff",
-                                };
-
-            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
-        }
-
+        
+        
         [Then(@"the user will not be saved")]
         public void ThenTheUserWillNotBeSaved()
         {
@@ -349,6 +353,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 
         #region MoreThanOne
+        [Given(@"I have an user")]
+        public void GivenIHaveAnUser()
+        {
+            User = GetOrCreateUser(UserEmail, UserPassword);
+        }
+
         [Given(@"I have a token for its password reset")]
         public void GivenIHaveATokenForItsPasswordReset()
         {

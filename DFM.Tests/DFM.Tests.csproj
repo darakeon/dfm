@@ -93,11 +93,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="BusinessLogic\B.Admin\_B.AdminStep.cs" />
-    <Compile Include="BusinessLogic\B.Admin\c.SelectAccountById.feature.cs">
-      <DependentUpon>c.SelectAccountById.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BusinessLogic\B.Admin\d.CloseAccount.feature.cs">
       <DependentUpon>d.CloseAccount.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -110,11 +105,6 @@
     </Compile>
     <Compile Include="BusinessLogic\B.Admin\f.SaveCategory.feature.cs">
       <DependentUpon>f.SaveCategory.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\h.SelectCategoryById.feature.cs">
-      <DependentUpon>h.SelectCategoryById.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -201,10 +191,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveAccount.feature.cs</LastGenOutput>
     </None>
-    <None Include="BusinessLogic\B.Admin\c.SelectAccountById.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>c.SelectAccountById.feature.cs</LastGenOutput>
-    </None>
     <None Include="BusinessLogic\B.Admin\b.SelectAccountByName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.SelectAccountByName.feature.cs</LastGenOutput>
@@ -224,10 +210,6 @@
     <None Include="BusinessLogic\B.Admin\f.SaveCategory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>f.SaveCategory.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\h.SelectCategoryById.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>h.SelectCategoryById.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\B.Admin\i.DisableCategory.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

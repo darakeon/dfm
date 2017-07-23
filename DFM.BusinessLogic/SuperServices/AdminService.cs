@@ -19,17 +19,17 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Account SelectAccountById(Int32 id)
-        {
-            VerifyUser();
+        //public Account SelectAccountById(Int32 id)
+        //{
+        //    VerifyUser();
 
-            var account = accountService.SelectById(id);
+        //    var account = accountService.SelectById(id);
 
-            if (account == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+        //    if (account == null)
+        //        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
-            return account;
-        }
+        //    return account;
+        //}
 
         public Account SelectAccountByName(String name)
         {
@@ -61,7 +61,7 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        public void CloseAccount(Int32 id)
+        public void CloseAccount(String name)
         {
             VerifyUser();
 
@@ -69,7 +69,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                accountService.Close(id);
+                accountService.Close(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch (DFMCoreException)
@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        public void DeleteAccount(Int32 id)
+        public void DeleteAccount(String name)
         {
             VerifyUser();
 
@@ -87,7 +87,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                accountService.Delete(id);
+                accountService.Delete(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch (DFMCoreException)
@@ -99,17 +99,17 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Category SelectCategoryById(Int32 id)
-        {
-            VerifyUser();
+        //public Category SelectCategoryById(Int32 id)
+        //{
+        //    VerifyUser();
 
-            var category = categoryService.SelectById(id);
+        //    var category = categoryService.SelectById(id);
 
-            if (category == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+        //    if (category == null)
+        //        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
 
-            return category;
-        }
+        //    return category;
+        //}
 
         public Category SelectCategoryByName(String name)
         {
@@ -141,7 +141,7 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        public void DisableCategory(Int32 id)
+        public void DisableCategory(String name)
         {
             VerifyUser();
 
@@ -149,7 +149,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                categoryService.Disable(id);
+                categoryService.Disable(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch (DFMCoreException)
@@ -159,7 +159,7 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        public void EnableCategory(Int32 id)
+        public void EnableCategory(String name)
         {
             VerifyUser();
 
@@ -167,7 +167,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                categoryService.Enable(id);
+                categoryService.Enable(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch (DFMCoreException)

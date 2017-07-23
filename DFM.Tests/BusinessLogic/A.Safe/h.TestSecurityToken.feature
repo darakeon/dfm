@@ -1,9 +1,9 @@
 ﻿Feature: h. Test security token received by e-mail
 
 Background:
-	Given I have an active user
+	Given I have an user
 	And I have a token for its password reset
-	And I have a token for its actvation
+	And I have a token for its activation
 
 Scenario: 01. Test with invalid token (E)
 	Given I pass an invalid token

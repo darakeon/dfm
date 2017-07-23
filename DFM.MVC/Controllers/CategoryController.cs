@@ -55,13 +55,14 @@ namespace DFM.MVC.Controllers
         }
 
 
-        public ActionResult Edit(Int32? id)
+        public ActionResult Edit(String id)
         {
-            if (!id.HasValue) return RedirectToAction("Create");
+            if (String.IsNullOrEmpty(id)) 
+                return RedirectToAction("Create");
 
             var model = new CategoryCreateEditModel
             {
-                Category = Services.Admin.SelectCategoryById(id.Value)
+                Category = Services.Admin.SelectCategoryByName(id)
             };
 
             if (isUnauthorized(model.Category))
@@ -71,11 +72,11 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, CategoryCreateEditModel model)
+        public ActionResult Edit(String id, CategoryCreateEditModel model)
         {
-            model.Category.ID = id;
+            model.Category.Name = id;
 
-            var oldCategory = Services.Admin.SelectCategoryById(id);
+            var oldCategory = Services.Admin.SelectCategoryByName(id);
 
             return isUnauthorized(oldCategory)
                 ? RedirectToAction("Create")
@@ -124,9 +125,9 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Disable(Int32 id)
+        public ActionResult Disable(String id)
         {
-            var category = Services.Admin.SelectCategoryById(id);
+            var category = Services.Admin.SelectCategoryByName(id);
 
             if (!isUnauthorized(category))
                 Services.Admin.DisableCategory(id);
@@ -143,9 +144,9 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Enable(Int32 id)
+        public ActionResult Enable(String id)
         {
-            var category =  Services.Admin.SelectCategoryById(id);
+            var category =  Services.Admin.SelectCategoryByName(id);
 
             if (!isUnauthorized(category))
                 Services.Admin.EnableCategory(id);

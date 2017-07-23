@@ -12,10 +12,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
     public class AdminStep : BaseStep
     {
         #region Variables
-        private static Int32 id
+        private static String name
         {
-            get { return Get<Int32>("ID"); }
-            set { Set("ID", value); }
+            get { return Get<String>("name"); }
+            set { Set("name", value); }
         }
 
         private static String accountName
@@ -160,7 +160,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I pass valid account ID")]
         public void GivenIPassValidAccountID()
         {
-            id = Account.ID;
+            name = Account.Name;
         }
 
         [When(@"I try to get the account")]
@@ -170,7 +170,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Account = SA.Admin.SelectAccountById(id);
+                Account = SA.Admin.SelectAccountByName(name);
             }
             catch (DFMCoreException e)
             {
@@ -183,7 +183,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I already have closed the account")]
         public void GivenICloseTheAccount()
         {
-            SA.Admin.CloseAccount(id);
+            SA.Admin.CloseAccount(name);
         }
 
         [When(@"I try to close the account")]
@@ -191,7 +191,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.CloseAccount(id);
+                SA.Admin.CloseAccount(name);
             }
             catch (DFMCoreException e)
             {
@@ -202,14 +202,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be closed")]
         public void ThenTheAccountWillNotBeClosed()
         {
-            var account = SA.Admin.SelectAccountById(id);
+            var account = SA.Admin.SelectAccountByName(name);
             Assert.IsTrue(account.IsOpen());
         }
 
         [Then(@"the account will be closed")]
         public void ThenTheAccountWillBeClosed()
         {
-            var account = SA.Admin.SelectAccountById(id);
+            var account = SA.Admin.SelectAccountByName(name);
             Assert.IsFalse(account.IsOpen());
         }
         #endregion
@@ -218,7 +218,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I already have deleted the account")]
         public void GivenIDeleteAnAccount()
         {
-            SA.Admin.DeleteAccount(id);
+            SA.Admin.DeleteAccount(name);
         }
 
         [When(@"I try to delete the account")]
@@ -226,7 +226,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.DeleteAccount(id);
+                SA.Admin.DeleteAccount(name);
             }
             catch (DFMCoreException e)
             {
@@ -237,7 +237,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be deleted")]
         public void ThenTheAccountWillNotBeDeleted()
         {
-            Account = SA.Admin.SelectAccountById(id);
+            Account = SA.Admin.SelectAccountByName(name);
             
             Assert.IsNotNull(Account);
         }
@@ -361,7 +361,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I pass valid category ID")]
         public void GivenIPassValidCategoryID()
         {
-            id = Category.ID;
+            name = Category.Name;
         }
 
         [When(@"I try to get the category")]
@@ -371,7 +371,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Category = SA.Admin.SelectCategoryById(id);
+                Category = SA.Admin.SelectCategoryByName(name);
             }
             catch (DFMCoreException e)
             {
@@ -389,13 +389,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Category = SA.Admin.SelectCategoryByName(givenCategoryName);
 
-            id = Category.ID;
+            name = Category.Name;
         }
 
         [Given(@"I already have disabled the category")]
         public void GivenIDisableACategory()
         {
-            SA.Admin.DisableCategory(id);
+            SA.Admin.DisableCategory(name);
         }
 
         [When(@"I try to disable the category")]
@@ -403,7 +403,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.DisableCategory(id);
+                SA.Admin.DisableCategory(name);
             }
             catch (DFMCoreException e)
             {
@@ -414,7 +414,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be disabled")]
         public void ThenTheCategoryWillBeDisabled()
         {
-            Category = SA.Admin.SelectCategoryById(id);
+            Category = SA.Admin.SelectCategoryByName(name);
 
             Assert.IsFalse(Category.Active);
         }
@@ -429,15 +429,15 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Category = SA.Admin.SelectCategoryByName(givenCategoryName);
 
-            id = Category.ID;
+            name = Category.Name;
 
-            SA.Admin.DisableCategory(id);
+            SA.Admin.DisableCategory(name);
         }
 
         [Given(@"I already have enabled the category")]
         public void GivenIEnableACategory()
         {
-            SA.Admin.EnableCategory(id);
+            SA.Admin.EnableCategory(name);
         }
 
         [When(@"I try to enable the category")]
@@ -445,7 +445,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.EnableCategory(id);
+                SA.Admin.EnableCategory(name);
             }
             catch (DFMCoreException e)
             {
@@ -456,7 +456,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be enabled")]
         public void ThenTheCategoryWillBeEnabled()
         {
-            Category = SA.Admin.SelectCategoryById(id);
+            Category = SA.Admin.SelectCategoryByName(name);
 
             Assert.IsTrue(Category.Active);
         }
@@ -468,7 +468,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I pass an id of account that doesn't exist")]
         public void GivenIPassAnIdOfAccountTheDoesnTExist()
         {
-            id = 0;
+            name = "inexistent";
         }
 
         [Given(@"I give an id of the account ([\w ]+) without moves")]
@@ -480,7 +480,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Account = SA.Admin.SelectAccountByName(givenAccountName);
 
-            id = Account.ID;
+            name = Account.Name;
         }
 
         [Given(@"I give an id of the account ([\w ]+) with moves")]
@@ -504,7 +504,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             SA.Money.SaveOrUpdateMove(move, Account.Name, null, Category.Name);
 
-            id = Account.ID;
+            name = Account.Name;
         }
 
         [Then(@"I will receive no account")]
@@ -520,8 +520,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             if (accountName != null)
                 Assert.AreEqual(accountName, Account.Name);
-            else if (id != 0)
-                Assert.AreEqual(id, Account.ID);
         }
 
 
@@ -530,7 +528,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I pass an id of category that doesn't exist")]
         public void GivenIPassAnIdOfCategoryThatDoesnTExist()
         {
-            id = 0;
+            name = "inexistent";
         }
 
         [Then(@"I will receive no category")]
@@ -546,8 +544,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             if (categoryName != null)
                 Assert.AreEqual(categoryName, Category.Name);
-            else if (id != 0)
-                Assert.AreEqual(id, Category.ID);
         }
 
         #endregion

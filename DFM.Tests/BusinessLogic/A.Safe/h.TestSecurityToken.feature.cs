@@ -58,11 +58,11 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user");
+ testRunner.Given("I have an user");
 #line 5
  testRunner.And("I have a token for its password reset");
 #line 6
- testRunner.And("I have a token for its actvation");
+ testRunner.And("I have a token for its activation");
 #line hidden
         }
         

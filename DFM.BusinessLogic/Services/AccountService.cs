@@ -109,9 +109,9 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void Close(Int32 id)
+        internal void Close(String name, User user)
         {
-            var account = SelectById(id);
+            var account = SelectByName(name, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -128,9 +128,9 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void Delete(Int32 id)
+        internal void Delete(String name, User user)
         {
-            var account = SelectById(id);
+            var account = SelectByName(name, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);

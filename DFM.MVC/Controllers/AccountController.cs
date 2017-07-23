@@ -43,13 +43,14 @@ namespace DFM.MVC.Controllers
             return createEdit(model);
         }
 
-        public ActionResult Edit(Int32? id)
+        public ActionResult Edit(String id)
         {
-            if (!id.HasValue) return RedirectToAction("Create");
+            if (String.IsNullOrEmpty(id)) 
+                return RedirectToAction("Create");
 
             var model = new AccountCreateEditModel
             {
-                Account = Services.Admin.SelectAccountById(id.Value)
+                Account = Services.Admin.SelectAccountByName(id)
             };
 
             if (isUnauthorized(model.Account))
@@ -59,12 +60,11 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, AccountCreateEditModel model)
+        public ActionResult Edit(String id, AccountCreateEditModel model)
         {
-            model.Account.ID = id;
+            model.Account.Name = id;
 
-
-            var oldAccount = Services.Admin.SelectAccountById(id);
+            var oldAccount = Services.Admin.SelectAccountByName(id);
 
             return isUnauthorized(oldAccount)
                 ? RedirectToAction("Create")
@@ -96,9 +96,9 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Close(Int32 id)
+        public ActionResult Close(String id)
         {
-            var account =  Services.Admin.SelectAccountById(id);
+            var account =  Services.Admin.SelectAccountByName(id);
 
             // TODO: implement messages on page head
             //String message;
@@ -124,9 +124,9 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Delete(Int32 id)
+        public ActionResult Delete(String id)
         {
-            var account =  Services.Admin.SelectAccountById(id);
+            var account =  Services.Admin.SelectAccountByName(id);
 
             // TODO: implement messages on page head
             //String message;

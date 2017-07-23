@@ -51,11 +51,16 @@ namespace DFM.Tests.BusinessLogic
 
 
         #region Get or Create
-        protected User GetOrCreateUser(String userEmail, String userPassword)
+        protected User GetOrCreateUser(String userEmail, String userPassword, Boolean shouldActivateUser = false)
         {
             try
             {
-                return SA.Safe.ValidateAndGet(userEmail, userPassword);
+                var user = SA.Safe.ValidateAndGet(userEmail, userPassword);
+
+                if (shouldActivateUser && !user.Active)
+                    activateUser(user);
+
+                return user;
             }
             catch (DFMCoreException e)
             {
@@ -66,13 +71,19 @@ namespace DFM.Tests.BusinessLogic
 
                 var user = SA.Safe.SelectUserByEmail(userEmail);
 
-                var token = DBHelper.GetLastTokenForUser(user, SecurityAction.UserVerification);
-                
-                SA.Safe.ActivateUser(token);
+                activateUser(user);
 
                 return SA.Safe.ValidateAndGet(userEmail, userPassword);
             }
         }
+
+        private void activateUser(User user)
+        {
+            var token = DBHelper.GetLastTokenForUser(user, SecurityAction.UserVerification);
+                
+            SA.Safe.ActivateUser(token);
+        }
+
 
         protected Account GetOrCreateAccount(String accountName)
         {

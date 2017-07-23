@@ -58,7 +58,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user");
+ testRunner.Given("I have an user");
 #line hidden
         }
         
@@ -87,7 +87,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.Given("I have a token for its actvation");
+ testRunner.Given("I have a token for its activation");
 #line 13
  testRunner.And("I pass a valid UserVerification token");
 #line 14

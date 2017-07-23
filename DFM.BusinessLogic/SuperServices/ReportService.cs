@@ -23,7 +23,7 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public IList<Move> GetMonthReport(Int32 accountID, Int16 dateMonth, Int16 dateYear)
+        public IList<Move> GetMonthReport(String accountName, Int16 dateMonth, Int16 dateYear)
         {
             VerifyUser();
 
@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (dateMonth <= 0 || dateMonth >= 13)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMonth);
 
-            var account = accountService.SelectById(accountID);
+            var account = accountService.SelectByName(accountName, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -53,14 +53,14 @@ namespace DFM.BusinessLogic.SuperServices
 
         
         
-        public Year GetYearReport(Int32 accountID, Int16 dateYear)
+        public Year GetYearReport(String accountName, Int16 dateYear)
         {
             VerifyUser();
 
             if (dateYear <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
 
-            var account = accountService.SelectById(accountID);
+            var account = accountService.SelectByName(accountName, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);

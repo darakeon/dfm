@@ -160,8 +160,9 @@ VERSÃO 1.0.2.3
 20/02/2013	20/02/2013	Isolar projeto de autenticação
 20/02/2013	21/02/2013	Proteção por usuário no Core (verificar active também)
 21/02/2013	21/02/2013	Consertar e-mail de transferência
-				Passar Accounts / Category como name para a save move
-				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
+21/02/2013	21/02/2013	Passar Accounts / Category como name para a save move
+21/02/2013			Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
+				Proteger edição de objeto no core
 				Substituir SelectByEmail de User por SelectByLogin
 				Substituir SelectById de Account / Category por SelectByName
 				Troca SelectUserByEmail por SelectUserByLogin

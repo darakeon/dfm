@@ -66,7 +66,7 @@ namespace DFM.Tests.BusinessLogic
             var moveCategory = new Category { Name = "disabled", User = User };
 
             SA.Admin.SaveOrUpdateCategory(moveCategory);
-            SA.Admin.DisableCategory(moveCategory.ID);
+            SA.Admin.DisableCategory(moveCategory.Name);
         }
 
 
@@ -116,7 +116,7 @@ namespace DFM.Tests.BusinessLogic
 
             SA.Money.SaveOrUpdateMove(move, AccountOut.Name, null, Category.Name);
 
-            SA.Admin.CloseAccount(AccountOut.ID);
+            SA.Admin.CloseAccount(AccountOut.Name);
         }
 
 
@@ -165,7 +165,7 @@ namespace DFM.Tests.BusinessLogic
 
             SA.Money.SaveOrUpdateMove(move, null, AccountIn.Name, Category.Name);
 
-            SA.Admin.CloseAccount(AccountIn.ID);
+            SA.Admin.CloseAccount(AccountIn.Name);
         }
 
 

@@ -23,9 +23,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             base.Initialize(requestContext);
 
-            var accountid = Int32.Parse(RouteData.Values["accountid"].ToString());
-
-            accountname = Services.Admin.SelectAccountById(accountid).Name;
+            accountname = RouteData.Values["accountname"].ToString();
         }
 
 
@@ -77,7 +75,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var action = RouteData.Values["action"].ToString();
 
-            RouteData.Values["accountid"] = move.Out.Year.Account.ID;
+            RouteData.Values["accountname"] = move.Out.Year.Account.Name;
 
             return RedirectToAction(action, RouteData.Values);
         }
