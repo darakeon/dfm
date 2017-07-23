@@ -30,6 +30,23 @@ Scenario: 03. Save Account with name that already exists (E)
 	Then I will receive this error: AccountAlreadyExists
 	And the account will not be changed
 
+Scenario: 04. Save Account with too big name (E)
+	Given I have this account to create
+		| Name                  | Yellow | Red |
+		| ABCDEFGHIJKLMNOPQRSTU |        |     |
+	When I try to save the account
+	Then I will receive this error: TooLargeData
+	And the account will not be saved
+
+
+Scenario: 95. Save Account with exactly length name (S)
+	Given I have this account to create
+		| Name                 | Yellow | Red |
+		| ABCDEFGHIJKLMNOPQRST |        |     |
+	When I try to save the account
+	Then I will receive no error
+	And the account will be saved
+
 Scenario: 96. Save Account with info all right (without limits) (S)
 	Given I have this account to create
 		| Name         | Yellow | Red |

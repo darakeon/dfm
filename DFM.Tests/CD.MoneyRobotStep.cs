@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -57,6 +58,16 @@ namespace DFM.Tests
             MoveCategory = new Category { Name = "unknown", User = User };
         }
 
+        [Given(@"it has a disabled Category")]
+        public void GivenItHasADisabledCategory()
+        {
+            MoveCategory = new Category { Name = "disabled", User = User };
+
+            SA.Admin.SaveOrUpdateCategory(MoveCategory);
+            SA.Admin.DisableCategory(MoveCategory.ID);
+        }
+
+
         [Given(@"it has an Account Out")]
         public void GivenItHasAnAccountOut()
         {
@@ -82,6 +93,31 @@ namespace DFM.Tests
             AccountOut = new Account { Name = "unknown", User = User };
         }
 
+        [Given(@"it has a closed Account Out")]
+        public void GivenItHasAClosedAccountOut()
+        {
+            AccountOut = new Account { Name = "closed out", User = User };
+
+            SA.Admin.SaveOrUpdateAccount(AccountOut);
+
+            var move = new Move
+            {
+                Date = DateTime.Now,
+                Description = "Description",
+                Nature = MoveNature.Out
+            };
+
+            // TODO: Remove this, put Value
+            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
+
+            move.DetailList.Add(detail);
+
+            SA.Money.SaveOrUpdateMove(move, AccountOut, null, Category);
+
+            SA.Admin.CloseAccount(AccountOut.ID);
+        }
+
+
         [Given(@"it has an Account In")]
         public void GivenItHasAnAccountIn()
         {
@@ -106,6 +142,30 @@ namespace DFM.Tests
         {
             AccountIn = new Account { Name = "unknown", User = User };
         }
+
+        [Given(@"it has a closed Account In")]
+        public void GivenItHasAClosedAccountIn()
+        {
+            AccountIn = new Account { Name = "closed in", User = User };
+            SA.Admin.SaveOrUpdateAccount(AccountIn);
+
+            var move = new Move
+            {
+                Date = DateTime.Now,
+                Description = "Description",
+                Nature = MoveNature.In
+            };
+
+            // TODO: Remove this, put Value
+            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
+
+            move.DetailList.Add(detail);
+
+            SA.Money.SaveOrUpdateMove(move, null, AccountIn, Category);
+
+            SA.Admin.CloseAccount(AccountIn.ID);
+        }
+
 
         [Given(@"it has an Account In equal to Out")]
         public void GivenItHasAnAccountInEqualToOut()

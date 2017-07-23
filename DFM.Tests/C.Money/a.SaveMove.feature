@@ -65,6 +65,18 @@ Scenario: 05. Save with unknown Category (E)
 	Then I will receive this error: InvalidCategory
 	And the move will not be saved
 
+Scenario: 06. Save with Description too large (E)
+	Given I have this move to create
+		| Description                                         | Date       | Nature | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive this error: TooLargeData
+	And the move will not be saved
+
 
 
 Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
@@ -310,6 +322,58 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	Then I will receive this error: MoveDetailValueRequired
 	And the move will not be saved
 
+Scenario: 46. Save with Description too large in Detail (E)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca46   | 2012-03-31 | Out    |       |
+	And the move has this details
+		| Description                                         | Amount | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive this error: TooLargeData
+	And the move will not be saved
+
+
+
+Scenario: 51. Save with disabled Category (E)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca51   | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a disabled Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive this error: DisabledCategory
+	And the move will not be saved
+
+Scenario: 52. Save with closed AccountOut (E)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca52   | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has a closed Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive this error: ClosedAccount
+	And the move will not be saved
+
+Scenario: 53. Save with closed AccountOut (E)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca53   | 2012-03-31 | In     | 10    |
+	And it has no Details
+	And it has a Category
+	And it has no Account Out
+	And it has a closed Account In
+	When I try to save the move
+	Then I will receive this error: ClosedAccount
+	And the move will not be saved
+
 
 
 Scenario: 91. Save with info all right (Out) (S)
@@ -425,3 +489,35 @@ Scenario: 97. Save negative (details) (S)
 	And the accountOut value will decrease in 20
 	And the month-category-accountOut value will change in 20
 	And the year-category-accountOut value will change in 20
+
+Scenario: 98. Save with exactly length in Description of Detail (S)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca98   | 2012-03-31 | Out    |       |
+	And the move has this details
+		| Description                                        | Amount | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no error
+	And the move will be saved
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
+
+Scenario: 99. Save with exactly length in Description (S)
+	Given I have this move to create
+		| Description                                        | Date       | Nature | Value |
+		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no error
+	And the move will be saved
+	And the accountOut value will decrease in 10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10

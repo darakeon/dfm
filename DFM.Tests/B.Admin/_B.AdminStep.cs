@@ -497,7 +497,8 @@ namespace DFM.Tests.B.Admin
                                Nature = MoveNature.Out
                            };
 
-            var detail = new Detail { Amount = 1, Description = "Move for acc test", Value = 10 };
+            // TODO: Remove this, put Value
+            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
 
             move.DetailList.Add(detail);
 

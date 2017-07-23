@@ -131,11 +131,9 @@ VERSÃO 1.0.2.2
 07/04/2012	07/04/2012	Save User  deve receber e-mail e senha
 03/06/2012	03/06/2012	Retirar retorno da Transaction no Begin (usar da session)
 14/06/2012	14/06/2012	Colocar category/schedule como parâmetro na Save da Move
-				Passar Accounts / Category como name para a save move
-				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID
-				Criar testes de inserção de move/schedule em Categoria Desabilitada
-				Criar testes de inserção de move/schedule em Conta Fechada
-				Criar testes de nomes muito grandes
+14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Categoria Desabilitada
+14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Conta Fechada
+14/06/2012	14/06/2012	Criar testes de nomes muito grandes
 				Criar testes de edição de Move
 				Verificar cobertura de código
 				Selenium
@@ -152,6 +150,8 @@ VERSÃO 1.0.2.3
 				Arrumar MVC para passar Category e Scheudule de move separados da move
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
+				Passar Accounts / Category como name para a save move
+				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID
 				Substituir SelectByEmail de User por SelectByLogin
 				Substituir SelectById de Account / Category por SelectByName
 				Troca SelectUserByEmail por SelectUserByLogin
@@ -201,7 +201,7 @@ VERSÃO 1.0.4.0
 				Possibilitar mudar a conta de uma movimentação (decidir ainda se implemento)
 				Colocar nome (ou apelido) no sign up
 				Edição de Perfil de usuário
-				Permitir escolha da língua para usuário logado
+				Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
 				Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 				Arrumar tratamento de erro para ir tudo para o cabeçalho
 				Procurar TO-DOs no projeto
