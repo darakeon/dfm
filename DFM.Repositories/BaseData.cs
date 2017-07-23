@@ -72,7 +72,14 @@ namespace DFM.Repositories
         public T SelectOldById(Int32 id)
         {
             var entity = SelectById(id);
-            if (entity != null) Session.Evict(entity);
+            
+            if (entity != null)
+            {
+                Session.Evict(entity);
+                entity = SelectById(id);
+                Session.Evict(entity);
+            }
+
             return entity;
         }
 
