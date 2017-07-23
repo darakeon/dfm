@@ -8,7 +8,7 @@ Background:
 Scenario: 01. Save without Description (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		|             | 31/03/2012 | Out    | 10    |
+		|             | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -38,7 +38,7 @@ Scenario: 02. Save without Date (E)
 Scenario: 03. Save without Category (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca04   | 31/03/2012 | Out    | 10    |
+		| Move Ca04   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -53,7 +53,7 @@ Scenario: 03. Save without Category (E)
 Scenario: 04. Save with unknown Category (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca05   | 31/03/2012 | Out    | 10    |
+		| Move Ca05   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -70,7 +70,7 @@ Scenario: 04. Save with unknown Category (E)
 Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca11   | 31/03/2012 | Out    | 10    |
+		| Move Ca11   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -85,7 +85,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca12   | 31/03/2012 | Out    | 10    |
+		| Move Ca12   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -100,7 +100,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca13   | 31/03/2012 | Out    | 10    |
+		| Move Ca13   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -115,7 +115,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca14   | 31/03/2012 | Out    | 10    |
+		| Move Ca14   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -132,7 +132,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca21   | 31/03/2012 | In     | 10    |
+		| Move Ca21   | 2012-03-31 | In     | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -147,7 +147,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca22   | 31/03/2012 | In     | 10    |
+		| Move Ca22   | 2012-03-31 | In     | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -162,7 +162,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca23   | 31/03/2012 | In     | 10    |
+		| Move Ca23   | 2012-03-31 | In     | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -177,7 +177,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca24   | 31/03/2012 | In     | 10    |
+		| Move Ca24   | 2012-03-31 | In     | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -194,7 +194,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca31   | 31/03/2012 | Transfer | 10    |
+		| Move Ca31   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -209,7 +209,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca32   | 31/03/2012 | Transfer | 10    |
+		| Move Ca32   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -224,7 +224,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca33   | 31/03/2012 | Transfer | 10    |
+		| Move Ca33   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -239,7 +239,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca34   | 31/03/2012 | Transfer | 10    |
+		| Move Ca34   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -254,7 +254,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca35   | 31/03/2012 | Transfer | 10    |
+		| Move Ca35   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -269,7 +269,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca35   | 31/03/2012 | Transfer | 10    |
+		| Move Ca35   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -286,7 +286,7 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 Scenario: 41. Save without Value or Details (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca41   | 31/03/2012 | Out    |       |
+		| Move Ca41   | 2012-03-31 | Out    |       |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -301,7 +301,7 @@ Scenario: 41. Save without Value or Details (E)
 Scenario: 42. Save with Value zero and no Details (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca42   | 31/03/2012 | Out    | 0     |
+		| Move Ca42   | 2012-03-31 | Out    | 0     |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -316,7 +316,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 Scenario: 43. Save without value and without Description in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca43   | 31/03/2012 | Out    |       |
+		| Move Ca43   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		|             | 1      | 10    |
@@ -334,7 +334,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 Scenario: 44. Save without value and with Amount zero in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca44   | 31/03/2012 | Out    |       |
+		| Move Ca44   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		| Detail 1    | 0      | 10    |
@@ -352,7 +352,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 Scenario: 45. Save without value and with Value zero in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca45   | 31/03/2012 | Out    |       |
+		| Move Ca45   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		| Detail 1    | 1      | 0     |
@@ -372,7 +372,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 Scenario: 51. Save without Schedule (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has no schedule
 	And it has a Category
@@ -385,7 +385,7 @@ Scenario: 51. Save without Schedule (E)
 Scenario: 52. Save with Schedule Times zero and bounded (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -402,7 +402,7 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 Scenario: 91. Save with info all right (Out) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -419,7 +419,7 @@ Scenario: 91. Save with info all right (Out) (S)
 Scenario: 92. Save with info all right (In) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca92   | 31/03/2012 | In     | 10    |
+		| Move Ca92   | 2012-03-31 | In     | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -436,7 +436,7 @@ Scenario: 92. Save with info all right (In) (S)
 Scenario: 93. Save with info all right (Transfer) (S)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
-		| Move Ca93   | 31/03/2012 | Transfer | 10    |
+		| Move Ca93   | 2012-03-31 | Transfer | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -455,7 +455,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 Scenario: 94. Save with info all right (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -472,7 +472,7 @@ Scenario: 94. Save with info all right (value) (S)
 Scenario: 95. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca94   | 31/03/2012 | Out    |       |
+		| Move Ca94   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		| Detail 1    | 1      | 10    |
@@ -492,7 +492,7 @@ Scenario: 95. Save with info all right (details) (S)
 Scenario: 96. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca95   | 31/03/2012 | Out    | -10   |
+		| Move Ca95   | 2012-03-31 | Out    | -10   |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -509,7 +509,7 @@ Scenario: 96. Save negative (value) (S)
 Scenario: 97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca96   | 31/03/2012 | Out    |       |
+		| Move Ca96   | 2012-03-31 | Out    |       |
 	And the move has this details
 		| Description | Amount | Value |
 		| Detail 1    | 1      | -10   |

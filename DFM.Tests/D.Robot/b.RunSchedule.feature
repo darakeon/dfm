@@ -16,7 +16,7 @@ Scenario: 01. Run with unlogged user (E)
 Scenario: 91. Run with bounded schedule (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -32,7 +32,7 @@ Scenario: 91. Run with bounded schedule (S)
 Scenario: 92. Run with boundless schedule (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 31/03/2012 | Out    | 10    |
+		| Move Ca91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |

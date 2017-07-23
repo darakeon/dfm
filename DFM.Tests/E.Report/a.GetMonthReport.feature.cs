@@ -65,27 +65,27 @@ namespace DFM.Tests.E_Report
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Date"});
             table1.AddRow(new string[] {
-                        "27/03/2012"});
+                        "2012-03-27"});
             table1.AddRow(new string[] {
-                        "28/03/2012"});
+                        "2012-03-28"});
             table1.AddRow(new string[] {
-                        "29/03/2012"});
+                        "2012-03-29"});
             table1.AddRow(new string[] {
-                        "30/03/2012"});
+                        "2012-03-30"});
             table1.AddRow(new string[] {
-                        "31/03/2012"});
+                        "2012-03-31"});
             table1.AddRow(new string[] {
-                        "01/04/2012"});
+                        "2012-04-01"});
             table1.AddRow(new string[] {
-                        "02/04/2012"});
+                        "2012-04-02"});
             table1.AddRow(new string[] {
-                        "03/04/2012"});
+                        "2012-04-03"});
             table1.AddRow(new string[] {
-                        "04/04/2012"});
+                        "2012-04-04"});
             table1.AddRow(new string[] {
-                        "05/04/2012"});
+                        "2012-04-05"});
             table1.AddRow(new string[] {
-                        "06/04/2012"});
+                        "2012-04-06"});
 #line 6
  testRunner.And("I have moves of", ((string)(null)), table1);
 #line hidden

@@ -21,10 +21,17 @@ namespace DFM.BusinessLogic.Bases
         #region Validate
         private static void validate(BaseMove baseMove)
         {
+            testDescription(baseMove);
             testDetailList(baseMove);
             testNature(baseMove);
             testAccounts(baseMove);
             testCategory(baseMove);
+        }
+
+        private static void testDescription(BaseMove baseMove)
+        {
+            if (String.IsNullOrEmpty(baseMove.Description))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
         }
 
         private static void testDetailList(BaseMove baseMove)

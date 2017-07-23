@@ -1,22 +1,32 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.C.Money
 {
     [Binding]
-    public class MoneyStep
+    public class MoneyStep : BaseStep
     {
         #region SaveMove
         [When(@"I try to save the move")]
         public void WhenITryToSaveTheMove()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Access.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"the move will not be saved")]
         public void ThenTheMoveWillNotBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(0, Move.ID);
         }
 
         [Then(@"the move will be saved")]

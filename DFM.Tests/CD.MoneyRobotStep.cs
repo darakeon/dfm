@@ -1,43 +1,20 @@
 ﻿using System;
-using DFM.BusinessLogic.Exceptions;
 using TechTalk.SpecFlow;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using NUnit.Framework;
-using DFM.Entities.Bases;
 
 namespace DFM.Tests
 {
     [Binding]
     public class MoneyRobotStep : BaseStep
     {
-        private const String accountOutName = "account out";
-        private const String accountInName = "account in";
-
-        private static Account accountOut
-        {
-            get { return Get<Account>("AccountOut"); }
-            set { Set("AccountOut", value); }
-        }
-
-        private static Account accountIn
-        {
-            get { return Get<Account>("AccountIn"); }
-            set { Set("AccountIn", value); }
-        }
-
-        private static BaseMove move
-        {
-            get { return Get<BaseMove>("Move"); }
-            set { Set("Move", value); }
-        }
-
         [Given(@"I have two accounts")]
         public void GivenIHaveTwoAccounts()
         {
-            accountOut = GetOrCreateAccount(accountOutName);
-            accountIn = GetOrCreateAccount(accountInName);
+            GetOrCreateAccount(AccountOutName);
+            GetOrCreateAccount(AccountInName);
         }
 
         [Given(@"I have this move to create")]
@@ -45,28 +22,28 @@ namespace DFM.Tests
         {
             var moveData = table.Rows[0];
 
-            move = new Move { Description = moveData["Description"] };
+            Move = new Move { Description = moveData["Description"] };
 
-            if (moveData["Date"] != null)
-                move.Date = DateTime.Parse(moveData["Date"]);
+            if (!String.IsNullOrEmpty(moveData["Date"]))
+                Move.Date = DateTime.Parse(moveData["Date"]);
 
-            if (moveData["Nature"] != null)
-                move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
+            if (!String.IsNullOrEmpty(moveData["Nature"]))
+                Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
 
             // TODO: use this, delete above
             //if (moveData["Value"] != null)
             //    move.Value = Int32.Parse(moveData["Value"]);
 
-            if (moveData["Value"] != null)
+            if (!String.IsNullOrEmpty(moveData["Value"]))
             {
                 var detail = new Detail
                     {
-                        Description = move.Description,
+                        Description = Move.Description,
                         Amount = 1,
                         Value = Int32.Parse(moveData["Value"])
                     };
 
-                move.DetailList.Add(detail);
+                Move.DetailList.Add(detail);
             }
 
         }
@@ -75,7 +52,7 @@ namespace DFM.Tests
         public void GivenItHasNoDetails()
         {
             // TODO: empty detaillist
-            Assert.AreEqual(1, move.DetailList.Count); 
+            Assert.AreEqual(1, Move.DetailList.Count); 
         }
 
         [Given(@"the move has this details")]
@@ -85,74 +62,75 @@ namespace DFM.Tests
             {
                 var detail = new Detail { Description = detailData["Description"] };
 
-                if (detailData["Value"] != null)
+                if (!String.IsNullOrEmpty(detailData["Value"]))
                     detail.Value = Int32.Parse(detailData["Value"]);
 
-                if (detailData["Amount"] != null)
+                if (!String.IsNullOrEmpty(detailData["Amount"]))
                     detail.Amount = Int16.Parse(detailData["Amount"]);
 
-                move.DetailList.Add(detail);
+                Move.DetailList.Add(detail);
             }
         }
 
         [Given(@"it has a Category")]
         public void GivenItHasACategory()
         {
-            move.Category = Category;
+            Move.Category = Category;
         }
 
         [Given(@"it has no Category")]
         public void GivenItHasNoCategory()
         {
-            move.Category = null;
+            Move.Category = null;
         }
 
         [Given(@"it has an unknown Category")]
         public void GivenItHasAnUnknownCategory()
         {
-            move.Category = new Category { Name = "unknown", User = User };
+            Move.Category = new Category { Name = "unknown", User = User };
         }
 
         [Given(@"it has an Account Out")]
         public void GivenItHasAnAccountOut()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
         }
 
         [Given(@"it has no Account Out")]
         public void GivenItHasNoAccountOut()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = null;
         }
 
         [Given(@"it has an unknown Account Out")]
         public void GivenItHasAnUnknownAccountOut()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = new Account { Name = "unknown", User = User };
         }
 
         [Given(@"it has an Account In")]
         public void GivenItHasAnAccountIn()
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = GetOrCreateAccount(AccountInName);
         }
 
         [Given(@"it has no Account In")]
         public void GivenItHasNoAccountIn()
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = null;
         }
 
         [Given(@"it has an unknown Account In")]
         public void GivenItHasAnUnknownAccountIn()
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = new Account { Name = "unknown", User = User };
         }
 
         [Given(@"it has an Account In equal to Out")]
         public void GivenItHasAnAccountInEqualToOut()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountIn = AccountOut;
         }
 
         [Then(@"the month-category-accountOut value will decrease in (\d+)")]

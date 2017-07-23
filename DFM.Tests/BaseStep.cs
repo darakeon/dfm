@@ -3,6 +3,7 @@ using System.IO;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Multilanguage;
 using DFM.Repositories;
 using TechTalk.SpecFlow;
@@ -53,7 +54,7 @@ namespace DFM.Tests
 
 
 
-        #region
+        #region Get or Create
         protected User GetOrCreateUser(String userEmail, String userPassword)
         {
             try
@@ -129,10 +130,32 @@ namespace DFM.Tests
             set { Set("Category", value); }
         }
 
+        protected static Account AccountOut
+        {
+            get { return Get<Account>("AccountOut"); }
+            set { Set("AccountOut", value); }
+        }
+
+        protected static Account AccountIn
+        {
+            get { return Get<Account>("AccountIn"); }
+            set { Set("AccountIn", value); }
+        }
+
+        protected static BaseMove Move
+        {
+            get { return Get<BaseMove>("BaseMove"); }
+            set { Set("BaseMove", value); }
+        }
+
+
         protected const String CentralUserEmail = "test@dontflymoney.com";
         protected static String CentralUserPassword = "password";
         protected const String CentralAccountName = "first account";
         protected const String CentralCategoryName = "first category";
+
+        protected const String AccountOutName = "account out";
+        protected const String AccountInName = "account in";
 
     }
 }

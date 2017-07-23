@@ -100,7 +100,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Value"});
             table1.AddRow(new string[] {
                         "Move Ca91",
-                        "31/03/2012",
+                        "2012-03-31",
                         "Out",
                         "10"});
 #line 17
@@ -153,7 +153,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Value"});
             table3.AddRow(new string[] {
                         "Move Ca91",
-                        "31/03/2012",
+                        "2012-03-31",
                         "Out",
                         "10"});
 #line 33
