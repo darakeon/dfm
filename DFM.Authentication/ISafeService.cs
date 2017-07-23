@@ -7,7 +7,7 @@ namespace DFM.Authentication
     {
         User SelectUserByEmail(String username);
 
-        String ValidateAndGet(String username, String password);
+        String ValidateUserAndGetTicket(String username, String password);
 
 
     }

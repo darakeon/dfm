@@ -100,7 +100,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                SA.Safe.ValidateAndGet(userEmail, userPassword);
+                SA.Safe.ValidateUserAndGetTicket(userEmail, userPassword);
                 return null;
             }
             catch (DFMCoreException e)

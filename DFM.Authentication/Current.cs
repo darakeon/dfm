@@ -64,7 +64,7 @@ namespace DFM.Authentication
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
-            userService.ValidateAndGet(username, password);
+            userService.ValidateUserAndGetTicket(username, password);
 
             userApp = userService.SelectUserByEmail(username);
 
@@ -76,7 +76,7 @@ namespace DFM.Authentication
             if (!isWeb)
                 throw DFMAuthException.NotWeb();
 
-            userService.ValidateAndGet(username, password);
+            userService.ValidateUserAndGetTicket(username, password);
 
             Authenticate.Set(username, response, isPersistent);
 

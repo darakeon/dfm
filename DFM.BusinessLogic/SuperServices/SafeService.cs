@@ -171,7 +171,7 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        public String ValidateAndGet(String email, String password)
+        public String ValidateUserAndGetTicket(String email, String password)
         {
             var user = userService.ValidateAndGet(email, password);
 

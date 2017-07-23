@@ -88,7 +88,7 @@ VERSÃO 2.0.0.0
 						Sugerir url para conta
 						Corrigir NullReference quando passa url de conta inexistente
 						Usar Identity (Generic) para guardar usuário logado
-						Substituir SelectByEmail de User por SelectByTicket
+16/03/2013				Substituir SelectByEmail de User por SelectByTicket
 11/03/2013	14/03/2013	Fazer ValidateAndGet pegar String de Ticket
 
 VERSÃO 1.0.2.3

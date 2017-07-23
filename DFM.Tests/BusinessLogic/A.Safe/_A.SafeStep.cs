@@ -98,7 +98,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateUserAndGetTicket(email, password);
 
                 savedUser = SA.Safe.SelectUserByEmail(email);
             }
@@ -113,7 +113,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will not be changed")]
         public void ThenTheUserWillNotBeChanged()
         {
-            var savedUser = SA.Safe.ValidateAndGet(otherUser.Email, otherUser.Password);
+            var savedUser = SA.Safe.ValidateUserAndGetTicket(otherUser.Email, otherUser.Password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -125,7 +125,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             
             SA.Safe.ActivateUser(tokenActivate);
 
-            var savedUser = SA.Safe.ValidateAndGet(email, password);
+            var savedUser = SA.Safe.ValidateUserAndGetTicket(email, password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -179,7 +179,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateUserAndGetTicket(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -193,7 +193,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            SA.Safe.ValidateAndGet(email, password);
+            SA.Safe.ValidateUserAndGetTicket(email, password);
             
             User = SA.Safe.SelectUserByEmail(email);
 
@@ -219,7 +219,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateUserAndGetTicket(email, password);
                 
                 User = SA.Safe.SelectUserByEmail(email);
             }
@@ -287,7 +287,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateUserAndGetTicket(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -305,7 +305,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateAndGet(email, newPassword);
+                SA.Safe.ValidateUserAndGetTicket(email, newPassword);
             }
             catch (DFMCoreException e)
             {

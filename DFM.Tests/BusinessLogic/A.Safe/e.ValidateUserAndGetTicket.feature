@@ -1,4 +1,4 @@
-﻿Feature: e. Get user by its e-mail and password
+﻿Feature: e. Validate User and get Ticket
 
 Background: 
 	Given I have this user to create
