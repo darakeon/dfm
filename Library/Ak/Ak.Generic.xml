@@ -4,6 +4,15 @@
         <name>Ak.Generic</name>
     </assembly>
     <members>
+        <member name="T:Ak.Generic.Collection.IsInExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+            <summary>
+             Whether an object is in a list
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Reflection.Property">
             <summary>
              Helper of PropertyInfo
@@ -19,6 +28,48 @@
              Give a name of a property, to use lambda expression, not strings
             </summary>
         </member>
+        <member name="T:Ak.Generic.Collection.GroupedCollection`2">
+            <summary>
+            Collection Grouped by one of the properties of the original IList
+            </summary>
+            <typeparam name="TI">Type of the Items of the Group</typeparam>
+            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.#ctor">
+            <summary>
+            Collection Grouped by one of the properties of the original IList
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.Add(`0)">
+            <summary>
+             Add an Item to the list, evaluation the Group whether it belongs
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
+            <summary>
+             Add an List of the Item to the list, evaluation the Group whether it belongs
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.ToString">
+            <summary> Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </summary>
+            <returns> A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </returns>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.GetEnumerator">
+            <summary>
+             To make ForEach
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
+            <summary>
+             Return a Group of items
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.GroupedCollection`2.List">
+            <summary>
+             Return the list of Groups and itens
+             Recommended when is needed to use Linq
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Collection.IGroupable`1">
             <summary>
              Interface to use GroupedCollection
@@ -31,14 +82,43 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
+        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
             <summary>
-             Extension for Exception Base Class
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
+        <member name="T:Ak.Generic.Exceptions.ErrorComposedReturn`2">
             <summary>
-             Get the most InnerException
+            Class to return an object composed by the return error and the success return
+            </summary>
+            <typeparam name="TS">Success return Type</typeparam>
+            <typeparam name="TE">Error return Type</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`1)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0,`1)">
+            <summary>
+            Class to return an object composed by the return error and the success return
+            </summary>
+        </member>
+        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Success">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Error">
+            <summary>
             </summary>
         </member>
         <member name="T:Ak.Generic.Enums.Str2Enum">
@@ -51,13 +131,28 @@
             </summary>
             <typeparam name="T">Enum type</typeparam>
         </member>
-        <member name="T:Ak.Generic.Collection.IsInExtension">
+        <member name="T:Ak.Generic.Extensions.StringExtension">
             <summary>
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
             <summary>
-             Whether an object is in a list
+             Puts the first letter in Upper and the rest in Lower
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+             String format with words instead of number (e.g. {data} instead {0})
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
+            <summary>
+             Extension for Exception Base Class
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
+            <summary>
+             Get the most InnerException
             </summary>
         </member>
         <member name="T:Ak.Generic.Collection.ItemGroup`2">
@@ -110,101 +205,6 @@
         <member name="M:Ak.Generic.Exceptions.AkException.#ctor(System.String)">
             <summary>
              Any exception thrown by Ak library
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Exceptions.ErrorComposedReturn`2">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-            <typeparam name="TS">Success return Type</typeparam>
-            <typeparam name="TE">Error return Type</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`1)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Exceptions.ErrorComposedReturn`2.#ctor(`0,`1)">
-            <summary>
-            Class to return an object composed by the return error and the success return
-            </summary>
-        </member>
-        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Success">
-            <summary>
-            </summary>
-        </member>
-        <member name="F:Ak.Generic.Exceptions.ErrorComposedReturn`2.Error">
-            <summary>
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Extensions.StringExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
-            <summary>
-             Puts the first letter in Upper and the rest in Lower
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-             String format with words instead of number (e.g. {data} instead {0})
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Collection.GroupedCollection`2">
-            <summary>
-            Collection Grouped by one of the properties of the original IList
-            </summary>
-            <typeparam name="TI">Type of the Items of the Group</typeparam>
-            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.#ctor">
-            <summary>
-            Collection Grouped by one of the properties of the original IList
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.Add(`0)">
-            <summary>
-             Add an Item to the list, evaluation the Group whether it belongs
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
-            <summary>
-             Add an List of the Item to the list, evaluation the Group whether it belongs
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.ToString">
-            <summary> Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </summary>
-            <returns> A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </returns>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.GetEnumerator">
-            <summary>
-             To make ForEach
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
-            <summary>
-             Return a Group of items
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.List">
-            <summary>
-             Return the list of Groups and itens
-             Recommended when is needed to use Linq
             </summary>
         </member>
     </members>
