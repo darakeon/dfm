@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ak.MVC.Route;
+using DFM.Authentication;
 using DFM.Entities.Extensions;
-using DFM.MVC.Authentication;
 using DFM.Entities;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Views;
 
 namespace DFM.MVC.Models
@@ -16,10 +17,11 @@ namespace DFM.MVC.Models
         {
             if (Current.IsAuthenticated)
             {
-                LateralAccountList = Current.User.AccountList
-                    .Where(a => a.IsOpen())
-                    .OrderBy(a => a.Name)
-                    .ToList();
+                LateralAccountList =
+                    Current.User.AccountList
+                        .Where(a => a.IsOpen())
+                        .OrderBy(a => a.Name)
+                        .ToList();
             }
 
             ActionName = RouteInfo.Current.RouteData == null
@@ -55,5 +57,9 @@ namespace DFM.MVC.Models
 
             return width > maxSize;
         }
+
+
+        protected readonly Current Current = Auth.Current; 
+
     }
 }

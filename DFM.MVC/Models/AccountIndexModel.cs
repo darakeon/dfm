@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Extensions;
-using DFM.MVC.Authentication;
 using DFM.Entities;
+using DFM.MVC.Helpers.Controllers;
+using DFM.Repositories;
 
 namespace DFM.MVC.Models
 {
@@ -11,10 +12,11 @@ namespace DFM.MVC.Models
     {
         public AccountIndexModel(Boolean open = true)
         {
-            AccountList = Current.User.AccountList
-                .Where(a => a.IsOpen() == open)
-                .OrderBy(a => a.Name)
-                .ToList();
+            AccountList = 
+                Current.User.AccountList
+                    .Where(a => a.IsOpen() == open)
+                    .OrderBy(a => a.Name)
+                    .ToList();
         }
 
         public IList<Account> AccountList { get; set; }

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Tests", "DFM.Tests\DFM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.PageLog", "DFM.PageLog\DFM.PageLog.csproj", "{89AD2EC3-8043-453E-9B0D-A9A40F1A3631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Authentication", "DFM.Authentication\DFM.Authentication.csproj", "{84AD52CD-61AA-4F63-B26F-92392493E4DC}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DFM.vsmdi
@@ -134,6 +136,16 @@ Global
 		{89AD2EC3-8043-453E-9B0D-A9A40F1A3631}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{89AD2EC3-8043-453E-9B0D-A9A40F1A3631}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{89AD2EC3-8043-453E-9B0D-A9A40F1A3631}.Release|x86.ActiveCfg = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{84AD52CD-61AA-4F63-B26F-92392493E4DC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

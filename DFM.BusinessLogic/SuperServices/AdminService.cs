@@ -29,9 +29,9 @@ namespace DFM.BusinessLogic.SuperServices
             return account;
         }
 
-        public Account SelectAccountByName(String name, User user)
+        public Account SelectAccountByName(String name)
         {
-            var account = accountService.SelectByName(name, user);
+            var account = accountService.SelectByName(name, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -99,9 +99,9 @@ namespace DFM.BusinessLogic.SuperServices
             return category;
         }
 
-        public Category SelectCategoryByName(String name, User user)
+        public Category SelectCategoryByName(String name)
         {
-            var category = categoryService.SelectByName(name, user);
+            var category = categoryService.SelectByName(name, Parent.Current.User);
 
             if (category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);

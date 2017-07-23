@@ -24,12 +24,12 @@ namespace DFM.BusinessLogic.SuperServices
 
 
         #region Scheduler
-        public void RunSchedule(User user)
+        public void RunSchedule()
         {
-            if (user == null)
+            if (Parent.Current.User == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
 
-            var scheduleList = scheduleService.GetScheduleToRun(user);
+            var scheduleList = scheduleService.GetScheduleToRun(Parent.Current.User);
 
             foreach (var schedule in scheduleList)
             {
@@ -44,13 +44,13 @@ namespace DFM.BusinessLogic.SuperServices
 
             foreach (var futureMove in futureMoves)
             {
-                transformFutureInMove(futureMove, user);
+                transformFutureInMove(futureMove);
             }
         }
 
 
 
-        private void transformFutureInMove(FutureMove futureMove, User user)
+        private void transformFutureInMove(FutureMove futureMove)
         {
             BeginTransaction();
 
@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var move = futureMove.CastToKill();
 
-                Parent.BaseMove.SaveOrUpdateMove(move, user, accountOutName, accountInName, category.Name);
+                Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, category.Name);
 
                 futureMoveService.Delete(futureMove.ID);
 
@@ -85,15 +85,15 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, User user, String accountOutName, String accountInName, String categoryName, Schedule schedule)
+        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, String accountOutName, String accountInName, String categoryName, Schedule schedule)
         {
             BeginTransaction();
 
             try
             {
-                placeAccountsInMove(futureMove, user, accountOutName, accountInName);
+                placeAccountsInMove(futureMove, accountOutName, accountInName);
 
-                futureMove = saveOrUpdateSchedule(futureMove, user, categoryName, schedule);
+                futureMove = saveOrUpdateSchedule(futureMove, categoryName, schedule);
                 
                 CommitTransaction();
 
@@ -106,21 +106,21 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        private void placeAccountsInMove(FutureMove futureMove, User user, String accountOutName, String accountInName)
+        private void placeAccountsInMove(FutureMove futureMove, String accountOutName, String accountInName)
         {
             futureMove.Out = accountOutName == null 
-                ? null : Parent.Admin.SelectAccountByName(accountOutName, user);
+                ? null : Parent.Admin.SelectAccountByName(accountOutName);
 
             futureMove.In = accountInName == null 
-                ? null : Parent.Admin.SelectAccountByName(accountInName, user);
+                ? null : Parent.Admin.SelectAccountByName(accountInName);
         }
 
-        private FutureMove saveOrUpdateSchedule(FutureMove futureMove, User user, String categoryName, Schedule schedule)
+        private FutureMove saveOrUpdateSchedule(FutureMove futureMove, String categoryName, Schedule schedule)
         {
             if (schedule == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
 
-            Parent.BaseMove.SetCategory(futureMove, user, categoryName);
+            Parent.BaseMove.SetCategory(futureMove, categoryName);
 
             if (!schedule.FutureMoveList.Contains(futureMove))
                 schedule.FutureMoveList.Add(futureMove);

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Authentication;
+using DFM.Authentication;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.PageLog;
 using DFM.Repositories;
 using log4net.Config;
-using System.Configuration;
 
 namespace DFM.MVC
 {
@@ -20,6 +19,9 @@ namespace DFM.MVC
 
     public class MvcApplication : HttpApplication
     {
+        private readonly Current current = Auth.Current; 
+
+
         // ReSharper disable InconsistentNaming
         protected void Application_Start()
         // ReSharper restore InconsistentNaming
@@ -55,11 +57,11 @@ namespace DFM.MVC
         {
             if (isAsset) return;
 
-            if (isElmah && !Current.IsAdm)
+            if (isElmah && !current.IsAdm)
                 Response.Redirect("/");
 
-            if (Current.IsAuthenticated)
-                Services.Robot.RunSchedule(Current.User);
+            if (current.IsAuthenticated)
+                Services.Robot.RunSchedule();
         }
 
 

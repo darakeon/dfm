@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Authentication;
 using DFM.Entities;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Models
 {
@@ -9,10 +9,11 @@ namespace DFM.MVC.Models
     {
         public CategoryIndexModel()
         {
-            CategoryList = Current.User.CategoryList
-                .OrderBy(c => c.Name)
-                .OrderByDescending(c => c.Active)
-                .ToList();
+            CategoryList =
+                Current.User.CategoryList
+                    .OrderBy(c => c.Name)
+                    .OrderByDescending(c => c.Active)
+                    .ToList();
         }
 
         public IList<Category> CategoryList;

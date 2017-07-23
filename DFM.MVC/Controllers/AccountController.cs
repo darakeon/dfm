@@ -3,15 +3,15 @@ using System.Web.Mvc;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
-using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         public ActionResult Index()
         {
@@ -153,7 +153,7 @@ namespace DFM.MVC.Controllers
 
 
 
-        private static Boolean isUnauthorized(Account account)
+        private Boolean isUnauthorized(Account account)
         {
             return account == null
                    || !account.AuthorizeCRUD(Current.User);

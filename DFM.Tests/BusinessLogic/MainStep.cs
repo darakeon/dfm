@@ -22,10 +22,12 @@ namespace DFM.Tests.BusinessLogic
             Assert.IsNull(Error);
         }
 
-        [Given(@"I have an user")]
+        [Given(@"I have an active user")]
         public void GivenIHaveAnUser()
         {
             User = GetOrCreateUser(UserEmail, UserPassword);
+
+            Current.Set(UserEmail, UserPassword);
         }
 
         [Given(@"I have an account")]
@@ -40,11 +42,21 @@ namespace DFM.Tests.BusinessLogic
             Category = GetOrCreateCategory(CategoryName);
         }
 
+
+
         [AfterScenarioBlock]
         public static void CloseSession()
         {
             NHManager.Close();
         }
+
+        [AfterScenario]
+        public void Logoff()
+        {
+            Current.Clean();
+        }
+
+
 
     }
 }

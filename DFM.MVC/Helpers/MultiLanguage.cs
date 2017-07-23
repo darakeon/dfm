@@ -4,9 +4,9 @@ using System.IO;
 using Ak.MVC.Route;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
-using DFM.MVC.Authentication;
 using System.Web;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Helpers
 {
@@ -77,7 +77,7 @@ namespace DFM.MVC.Helpers
                         ? request.UserLanguages[0]
                         : null;
 
-                var userLanguage = Current.Language ?? browserLanguage;
+                var userLanguage = Auth.Current.Language ?? browserLanguage;
 
                 if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
                     userLanguage = "en-US";

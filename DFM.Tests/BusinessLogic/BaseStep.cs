@@ -1,21 +1,28 @@
 ﻿using System;
 using System.IO;
+using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using DFM.Multilanguage;
 using DFM.Repositories;
+using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 
 namespace DFM.Tests.BusinessLogic
 {
     public abstract class BaseStep : ContextHelper
     {
-        protected ServiceAccess SA;
+        protected static ServiceAccess SA;
+        protected static Current Current { get { return SA.Current; } }
 
         protected BaseStep()
         {
+            if (SA != null)
+                return;
+
             NHManager.Start();
 
             SA = new ServiceAccess(new Connector());
@@ -56,6 +63,13 @@ namespace DFM.Tests.BusinessLogic
                     throw;
 
                 SA.Safe.SaveUserAndSendVerify(userEmail, userPassword);
+
+                var user = SA.Safe.SelectUserByEmail(userEmail);
+
+                var token = DBHelper.GetLastTokenForUser(user, SecurityAction.UserVerification);
+                
+                SA.Safe.ActivateUser(token);
+
                 return SA.Safe.ValidateAndGet(userEmail, userPassword);
             }
         }
@@ -64,7 +78,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                return SA.Admin.SelectAccountByName(accountName, User);
+                return SA.Admin.SelectAccountByName(accountName);
             }
             catch (DFMCoreException e)
             {
@@ -72,7 +86,7 @@ namespace DFM.Tests.BusinessLogic
                     throw;
 
                 SA.Admin.SaveOrUpdateAccount(new Account { Name = accountName, User = User });
-                return SA.Admin.SelectAccountByName(accountName, User);
+                return SA.Admin.SelectAccountByName(accountName);
             }
         }
 
@@ -80,7 +94,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                return SA.Admin.SelectCategoryByName(categoryName, User);
+                return SA.Admin.SelectCategoryByName(categoryName);
             }
             catch (DFMCoreException e)
             {
@@ -88,13 +102,14 @@ namespace DFM.Tests.BusinessLogic
                     throw;
 
                 SA.Admin.SaveOrUpdateCategory(new Category { Name = categoryName, User = User });
-                return SA.Admin.SelectCategoryByName(categoryName, User);
+                return SA.Admin.SelectCategoryByName(categoryName);
             }
         }
         #endregion
 
 
 
+        #region Context
         protected static DFMCoreException Error
         {
             get { return Get<DFMCoreException>("error"); }
@@ -206,8 +221,8 @@ namespace DFM.Tests.BusinessLogic
             get { return Get<BaseMove>("BaseMove"); }
             set { Set("BaseMove", value); }
         }
+        #endregion
 
-        
 
 
         protected const String UserEmail = "test@dontflymoney.com";

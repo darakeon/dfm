@@ -34,13 +34,13 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Move SaveOrUpdateMove(Move move, User user, String accountOutName, String accountInName, String categoryName)
+        public Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
         {
             BeginTransaction();
             
             try
             {
-                move = Parent.BaseMove.SaveOrUpdateMove(move, user, accountOutName, accountInName, categoryName);
+                move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 
                 CommitTransaction();
             }

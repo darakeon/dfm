@@ -3,10 +3,11 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Authentication;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafeService : BaseSuperService
+    public class SafeService : BaseSuperService, IUserService
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;

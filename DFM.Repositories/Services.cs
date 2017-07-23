@@ -19,6 +19,5 @@ namespace DFM.Repositories
         public static RobotService Robot { get { return getOrCreateAccess().Robot; } }
         public static SafeService Safe { get { return getOrCreateAccess().Safe; } }
 
-
     }
 }

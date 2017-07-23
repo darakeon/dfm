@@ -114,7 +114,7 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, User, AccountOut.Name, null, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, AccountOut.Name, null, Category.Name);
 
             SA.Admin.CloseAccount(AccountOut.ID);
         }
@@ -163,7 +163,7 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, User, null, AccountIn.Name, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, null, AccountIn.Name, Category.Name);
 
             SA.Admin.CloseAccount(AccountIn.ID);
         }

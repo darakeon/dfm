@@ -40,6 +40,10 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DFM.Authentication\DFM.Authentication.csproj">
+      <Project>{84AD52CD-61AA-4F63-B26F-92392493E4DC}</Project>
+      <Name>DFM.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
       <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
       <Name>DFM.BusinessLogic</Name>
@@ -168,6 +172,8 @@
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
+    <Compile Include="Helpers\Auth.cs" />
+    <Compile Include="Helpers\Controllers\BaseController.cs" />
     <Compile Include="Helpers\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
     <Compile Include="Helpers\MultiLanguage.cs" />
@@ -194,7 +200,6 @@
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Authentication\Current.cs" />
     <Compile Include="Models\UserLogOnModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Global.asax.cs">

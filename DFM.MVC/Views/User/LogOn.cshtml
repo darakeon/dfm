@@ -1,7 +1,7 @@
 ﻿@model DFM.MVC.Models.UserLogOnModel
 
 @{
-    var isAuthenticated = DFM.MVC.Authentication.Current.IsAuthenticated;
+    var isAuthenticated = DFM.MVC.Helpers.Auth.Current.IsAuthenticated;
     ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 

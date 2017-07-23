@@ -90,7 +90,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be changed")]
         public void ThenTheAccountWillNotBeChanged()
         {
-            var account = SA.Admin.SelectAccountByName(olderAccount.Name, User);
+            var account = SA.Admin.SelectAccountByName(olderAccount.Name);
 
             Assert.AreEqual(olderAccount.Name, account.Name);
             Assert.AreEqual(olderAccount.RedLimit, account.RedLimit);
@@ -107,7 +107,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectAccountByName(Account.Name, User);
+                SA.Admin.SelectAccountByName(Account.Name);
             }
             catch (DFMCoreException e)
             {
@@ -121,7 +121,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will be saved")]
         public void ThenTheAccountWillBeSaved()
         {
-            Account = SA.Admin.SelectAccountByName(Account.Name, User);
+            Account = SA.Admin.SelectAccountByName(Account.Name);
 
             Assert.IsNotNull(Account);
         }
@@ -147,7 +147,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Account = SA.Admin.SelectAccountByName(accountName, User);
+                Account = SA.Admin.SelectAccountByName(accountName);
             }
             catch (DFMCoreException e)
             {
@@ -249,7 +249,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectAccountByName(Account.Name, User);
+                SA.Admin.SelectAccountByName(Account.Name);
             }
             catch (DFMCoreException e)
             {
@@ -308,7 +308,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectCategoryByName(Category.Name, User);
+                SA.Admin.SelectCategoryByName(Category.Name);
             }
             catch (DFMCoreException e)
             {
@@ -322,7 +322,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be saved")]
         public void ThenTheCategoryWillBeSaved()
         {
-            Category = SA.Admin.SelectCategoryByName(Category.Name, User);
+            Category = SA.Admin.SelectCategoryByName(Category.Name);
 
             Assert.IsNotNull(Category);
         }
@@ -348,7 +348,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Category = SA.Admin.SelectCategoryByName(categoryName, User);
+                Category = SA.Admin.SelectCategoryByName(categoryName);
             }
             catch (DFMCoreException e)
             {
@@ -387,7 +387,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.SaveOrUpdateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = SA.Admin.SelectCategoryByName(givenCategoryName, User);
+            Category = SA.Admin.SelectCategoryByName(givenCategoryName);
 
             id = Category.ID;
         }
@@ -427,7 +427,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.SaveOrUpdateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = SA.Admin.SelectCategoryByName(givenCategoryName, User);
+            Category = SA.Admin.SelectCategoryByName(givenCategoryName);
 
             id = Category.ID;
 
@@ -478,7 +478,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             SA.Admin.SaveOrUpdateAccount(Account);
 
-            Account = SA.Admin.SelectAccountByName(givenAccountName, User);
+            Account = SA.Admin.SelectAccountByName(givenAccountName);
 
             id = Account.ID;
         }
@@ -488,7 +488,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             Account = new Account { Name = givenAccountName, User = User };
             SA.Admin.SaveOrUpdateAccount(Account);
-            Account = SA.Admin.SelectAccountByName(givenAccountName, User);
+            Account = SA.Admin.SelectAccountByName(givenAccountName);
 
             var move = new Move
                            {
@@ -502,7 +502,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, User, Account.Name, null, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, Account.Name, null, Category.Name);
 
             id = Account.ID;
         }

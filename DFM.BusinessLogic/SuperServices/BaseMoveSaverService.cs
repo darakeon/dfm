@@ -28,14 +28,14 @@ namespace DFM.BusinessLogic.SuperServices
 
         
         
-        internal Move SaveOrUpdateMove(Move move, User user, String accountOutName, String accountInName, String categoryName)
+        internal Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            var accountOut = selectAccountByName(accountOutName, user);
-            var accountIn = selectAccountByName(accountInName, user);
+            var accountOut = selectAccountByName(accountOutName);
+            var accountIn = selectAccountByName(accountInName);
 
-            SetCategory(move, user, categoryName);
+            SetCategory(move, categoryName);
 
             resetSchedule(move);
 
@@ -54,11 +54,11 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        private Account selectAccountByName(String accountName, User user)
+        private Account selectAccountByName(String accountName)
         {
             return accountName == null
                        ? null
-                       : Parent.Admin.SelectAccountByName(accountName, user);
+                       : Parent.Admin.SelectAccountByName(accountName);
         }
 
         private void resetSchedule(Move move)
@@ -71,10 +71,10 @@ namespace DFM.BusinessLogic.SuperServices
                 ? null : oldMove.Schedule;
         }
 
-        internal void SetCategory(BaseMove baseMove, User user, String categoryName)
+        internal void SetCategory(BaseMove baseMove, String categoryName)
         {
             if (categoryName != null)
-                baseMove.Category = Parent.Admin.SelectCategoryByName(categoryName, user);
+                baseMove.Category = Parent.Admin.SelectCategoryByName(categoryName);
         }
 
         #region Ajust Summaries

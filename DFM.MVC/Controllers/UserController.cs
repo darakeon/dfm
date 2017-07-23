@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Web.Mvc;
-using Ak.MVC.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using DFM.Entities;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         public ActionResult Index()
         {
@@ -71,7 +71,7 @@ namespace DFM.MVC.Controllers
 
                 try
                 {
-                    user = Services.Safe.ValidateAndGet(model.Email, model.Password);
+                    user = Current.Set(model.Email, model.Password, Response, model.RememberMe);
                 }
                 catch (DFMCoreException e)
                 {
@@ -82,7 +82,9 @@ namespace DFM.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     return user.Active 
-                        ? logOnUser(user, returnUrl, model.RememberMe) 
+                        ? String.IsNullOrEmpty(returnUrl)
+                            ? (ActionResult) RedirectToAction("Index", "Account")
+                            : Redirect(returnUrl)
                         : RedirectToAction("SendVerification", new { id = user.Email });
                 }
             }
@@ -90,15 +92,7 @@ namespace DFM.MVC.Controllers
             return View(model);
         }
 
-        private ActionResult logOnUser(User user, String returnUrl = null, Boolean isPersistent = false)
-        {
-            Authenticate.Set(user.Email, Response, isPersistent);
 
-            if (String.IsNullOrEmpty(returnUrl))
-                return RedirectToAction("Index", "Account");
-
-            return Redirect(returnUrl);
-        }
 
         public ActionResult SendVerification(String id)
         {
@@ -118,7 +112,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult LogOff()
         {
-            Authenticate.Clean(Request);
+            Current.Clean(Request);
 
             return RedirectToAction("Index", "User");
         }

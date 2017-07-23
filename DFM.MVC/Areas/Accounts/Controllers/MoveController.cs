@@ -7,7 +7,6 @@ using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Extensions;
@@ -16,7 +15,7 @@ using DFM.Repositories;
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
     [Authorize]
-    public class MoveController : Controller
+    public class MoveController : BaseController
     {
         private String accountname;
 
@@ -145,7 +144,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Robot.SaveOrUpdateSchedule(futureMove, Current.User, selector.AccountOutName, selector.AccountInName, categoryName, schedule);
+                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOutName, selector.AccountInName, categoryName, schedule);
 
                 return RedirectToAction("Index", "Report");
             }
@@ -154,7 +153,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, Current.User, selector.AccountOutName, selector.AccountInName, categoryName);
+                Services.Money.SaveOrUpdateMove(move, selector.AccountOutName, selector.AccountInName, categoryName);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }
@@ -208,7 +207,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return View("CreateEditSchedule", model);
         }
 
-        private static Boolean isUnauthorized(BaseMove baseMove)
+        private Boolean isUnauthorized(BaseMove baseMove)
         {
             return baseMove == null
                    || !baseMove.AuthorizeCRUD(Current.User);

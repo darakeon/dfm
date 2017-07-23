@@ -1,4 +1,5 @@
-﻿using DFM.BusinessLogic.Services;
+﻿using DFM.Authentication;
+using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.SuperServices;
 using DFM.Entities;
 using DFM.BusinessLogic.Bases;
@@ -30,6 +31,8 @@ namespace DFM.BusinessLogic
             Money = new MoneyService(this, move, detail, month, schedule);
             Robot = new RobotService(this, schedule, futureMove, detail);
             Report = new ReportService(this, account, year, month);
+
+            Current = new Current(Safe);
         }
 
 
@@ -42,6 +45,8 @@ namespace DFM.BusinessLogic
         public SafeService Safe { get; private set; }
         public AdminService Admin { get; private set; }
         public RobotService Robot { get; private set; }
+
+        public Current Current { get; private set; } 
 
     }
 }

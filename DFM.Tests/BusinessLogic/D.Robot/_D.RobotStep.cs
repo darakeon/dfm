@@ -64,7 +64,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, User, accountOutName, accountInName, MoveCategoryName, Schedule);
+                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, MoveCategoryName, Schedule);
             }
             catch (DFMCoreException e)
             {
@@ -90,14 +90,13 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [Given(@"I run the scheduler to cleanup older tests")]
         public void GivenIRunTheSchedulerToCleanupOlderTests()
         {
-            SA.Robot.RunSchedule(User);
+            SA.Robot.RunSchedule();
         }
         
         [Given(@"I have no logged user \(logoff\)")]
         public void GivenIHaveNoLoggedUserLogoff()
         {
-            //TODO: change to logoff
-            User = null;
+            Current.Clean();
         }
 
         [Given(@"its Date is (\-?\d+) (\w+) ago")]
@@ -117,7 +116,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             var accountOutName = AccountOut == null ? null : AccountOut.Name;
             var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, User, accountOutName, accountInName, MoveCategoryName, Schedule);
+            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, MoveCategoryName, Schedule);
         }
 
         [When(@"I try to run the scheduler")]
@@ -125,7 +124,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             try
             {
-                SA.Robot.RunSchedule(User);
+                SA.Robot.RunSchedule();
             }
             catch (DFMCoreException e)
             {
