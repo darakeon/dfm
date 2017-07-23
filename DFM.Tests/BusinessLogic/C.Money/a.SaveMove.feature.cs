@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I try to save the move");
 #line 17
- testRunner.Then("I will receive this error: MoveDescriptionRequired");
+ testRunner.Then("I will receive this core error: MoveDescriptionRequired");
 #line 18
  testRunner.And("the move will not be saved");
 #line 19
@@ -141,7 +141,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 31
  testRunner.When("I try to save the move");
 #line 32
- testRunner.Then("I will receive this error: MoveDateRequired");
+ testRunner.Then("I will receive this core error: MoveDateRequired");
 #line 33
  testRunner.And("the move will not be saved");
 #line 34
@@ -185,7 +185,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 46
  testRunner.When("I try to save the move");
 #line 47
- testRunner.Then("I will receive this error: MoveDateInvalid");
+ testRunner.Then("I will receive this core error: MoveDateInvalid");
 #line 48
  testRunner.And("the move will not be saved");
 #line 49
@@ -229,7 +229,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 61
  testRunner.When("I try to save the move");
 #line 62
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line 63
  testRunner.And("the move will not be saved");
 #line 64
@@ -273,7 +273,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 76
  testRunner.When("I try to save the move");
 #line 77
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line 78
  testRunner.And("the move will not be saved");
 #line 79
@@ -317,7 +317,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 91
  testRunner.When("I try to save the move");
 #line 92
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 93
  testRunner.And("the move will not be saved");
 #line 94
@@ -361,7 +361,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 108
  testRunner.When("I try to save the move");
 #line 109
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 110
  testRunner.And("the move will not be saved");
 #line hidden
@@ -399,7 +399,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 120
  testRunner.When("I try to save the move");
 #line 121
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 122
  testRunner.And("the move will not be saved");
 #line 123
@@ -449,7 +449,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 138
  testRunner.When("I try to save the move");
 #line 139
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 140
  testRunner.And("the move will not be saved");
 #line 141
@@ -493,7 +493,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 153
  testRunner.When("I try to save the move");
 #line 154
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 155
  testRunner.And("the move will not be saved");
 #line hidden
@@ -531,7 +531,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 167
  testRunner.When("I try to save the move");
 #line 168
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 169
  testRunner.And("the move will not be saved");
 #line hidden
@@ -569,7 +569,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 179
  testRunner.When("I try to save the move");
 #line 180
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 181
  testRunner.And("the move will not be saved");
 #line 182
@@ -619,7 +619,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 197
  testRunner.When("I try to save the move");
 #line 198
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 199
  testRunner.And("the move will not be saved");
 #line 200
@@ -663,7 +663,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 212
  testRunner.When("I try to save the move");
 #line 213
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 214
  testRunner.And("the move will not be saved");
 #line hidden
@@ -701,7 +701,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 226
  testRunner.When("I try to save the move");
 #line 227
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 228
  testRunner.And("the move will not be saved");
 #line hidden
@@ -739,7 +739,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 238
  testRunner.When("I try to save the move");
 #line 239
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 240
  testRunner.And("the move will not be saved");
 #line 241
@@ -783,7 +783,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 253
  testRunner.When("I try to save the move");
 #line 254
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 255
  testRunner.And("the move will not be saved");
 #line 256
@@ -827,7 +827,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 268
  testRunner.When("I try to save the move");
 #line 269
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 270
  testRunner.And("the move will not be saved");
 #line 271
@@ -871,7 +871,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 283
  testRunner.When("I try to save the move");
 #line 284
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 285
  testRunner.And("the move will not be saved");
 #line 286
@@ -915,7 +915,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 298
  testRunner.When("I try to save the move");
 #line 299
- testRunner.Then("I will receive this error: MoveCircularTransfer");
+ testRunner.Then("I will receive this core error: MoveCircularTransfer");
 #line 300
  testRunner.And("the move will not be saved");
 #line 301
@@ -965,7 +965,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 318
  testRunner.When("I try to save the move");
 #line 319
- testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
+ testRunner.Then("I will receive this core error: MoveValueOrDetailRequired");
 #line 320
  testRunner.And("the move will not be saved");
 #line 321
@@ -1009,7 +1009,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 333
  testRunner.When("I try to save the move");
 #line 334
- testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
+ testRunner.Then("I will receive this core error: MoveValueOrDetailRequired");
 #line 335
  testRunner.And("the move will not be saved");
 #line 336
@@ -1066,7 +1066,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 351
  testRunner.When("I try to save the move");
 #line 352
- testRunner.Then("I will receive this error: MoveDetailDescriptionRequired");
+ testRunner.Then("I will receive this core error: MoveDetailDescriptionRequired");
 #line 353
  testRunner.And("the move will not be saved");
 #line 354
@@ -1123,7 +1123,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 369
  testRunner.When("I try to save the move");
 #line 370
- testRunner.Then("I will receive this error: MoveDetailAmountRequired");
+ testRunner.Then("I will receive this core error: MoveDetailAmountRequired");
 #line 371
  testRunner.And("the move will not be saved");
 #line 372
@@ -1180,7 +1180,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 387
  testRunner.When("I try to save the move");
 #line 388
- testRunner.Then("I will receive this error: MoveDetailValueRequired");
+ testRunner.Then("I will receive this core error: MoveDetailValueRequired");
 #line 389
  testRunner.And("the move will not be saved");
 #line 390
@@ -1233,7 +1233,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 404
  testRunner.When("I try to save the move");
 #line 405
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 406
  testRunner.And("the move will not be saved");
 #line 407
@@ -1277,7 +1277,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 421
  testRunner.When("I try to save the move");
 #line 422
- testRunner.Then("I will receive this error: DisabledCategory");
+ testRunner.Then("I will receive this core error: DisabledCategory");
 #line 423
  testRunner.And("the move will not be saved");
 #line 424
@@ -1321,7 +1321,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 436
  testRunner.When("I try to save the move");
 #line 437
- testRunner.Then("I will receive this error: ClosedAccount");
+ testRunner.Then("I will receive this core error: ClosedAccount");
 #line 438
  testRunner.And("the move will not be saved");
 #line hidden
@@ -1359,7 +1359,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 448
  testRunner.When("I try to save the move");
 #line 449
- testRunner.Then("I will receive this error: ClosedAccount");
+ testRunner.Then("I will receive this core error: ClosedAccount");
 #line 450
  testRunner.And("the move will not be saved");
 #line hidden
@@ -1397,7 +1397,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 462
  testRunner.When("I try to save the move");
 #line 463
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 464
  testRunner.And("the move will be saved");
 #line 465
@@ -1441,7 +1441,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 477
  testRunner.When("I try to save the move");
 #line 478
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 479
  testRunner.And("the move will be saved");
 #line 480
@@ -1485,7 +1485,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 492
  testRunner.When("I try to save the move");
 #line 493
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 494
  testRunner.And("the move will be saved");
 #line 495
@@ -1535,7 +1535,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 510
  testRunner.When("I try to save the move");
 #line 511
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 512
  testRunner.And("the move will be saved");
 #line 513
@@ -1592,7 +1592,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 528
  testRunner.When("I try to save the move");
 #line 529
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 530
  testRunner.And("the move will be saved");
 #line 531
@@ -1636,7 +1636,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 543
  testRunner.When("I try to save the move");
 #line 544
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 545
  testRunner.And("the move will be saved");
 #line 546
@@ -1693,7 +1693,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 561
  testRunner.When("I try to save the move");
 #line 562
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 563
  testRunner.And("the move will be saved");
 #line 564
@@ -1746,7 +1746,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 578
  testRunner.When("I try to save the move");
 #line 579
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 580
  testRunner.And("the move will be saved");
 #line 581
@@ -1790,7 +1790,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 593
  testRunner.When("I try to save the move");
 #line 594
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 595
  testRunner.And("the move will be saved");
 #line 596

@@ -8,7 +8,7 @@ Scenario: 01. Validate without e-mail (E)
 		| Email | Password |
 		|       | password |
 	When I try to get the user
-	Then I will receive this error: InvalidUser
+	Then I will receive this core error: InvalidUser
 	And I will receive no user
 
 Scenario: 02. Validate without password (E)
@@ -16,7 +16,7 @@ Scenario: 02. Validate without password (E)
 		| Email                 | Password |
 		| test@dontflymoney.com |          |
 	When I try to get the user
-	Then I will receive this error: InvalidUser
+	Then I will receive this core error: InvalidUser
 	And I will receive no user
 
 Scenario: 03. Validate with wrong e-mail (E)
@@ -24,7 +24,7 @@ Scenario: 03. Validate with wrong e-mail (E)
 		| Email                       | Password |
 		| dont_exist@dontflymoney.com | password |
 	When I try to get the user
-	Then I will receive this error: InvalidUser
+	Then I will receive this core error: InvalidUser
 	And I will receive no user
 
 Scenario: 04. Validate with wrong password (E)
@@ -32,7 +32,7 @@ Scenario: 04. Validate with wrong password (E)
 		| Email                 | Password       |
 		| test@dontflymoney.com | password_wrong |
 	When I try to get the user
-	Then I will receive this error: InvalidUser
+	Then I will receive this core error: InvalidUser
 	And I will receive no user
 
 Scenario: 99. Validate with info all right (S)
@@ -40,5 +40,5 @@ Scenario: 99. Validate with info all right (S)
 		| Email                 | Password |
 		| test@dontflymoney.com | password |
 	When I try to get the user
-	Then I will receive no error
+	Then I will receive no core error
 	And I will receive the user

@@ -7,11 +7,11 @@ Background:
 Scenario: 01. Try to get Category with wrong ID (E)
 	Given I pass an id of category that doesn't exist
 	When I try to get the category
-	Then I will receive this error: InvalidCategory
+	Then I will receive this core error: InvalidCategory
 	And I will receive no category
 
 Scenario: 99. Get the Category by ID (S)
 	Given I pass valid category ID
 	When I try to get the category
-	Then I will receive no error
+	Then I will receive no core error
 	And I will receive the category

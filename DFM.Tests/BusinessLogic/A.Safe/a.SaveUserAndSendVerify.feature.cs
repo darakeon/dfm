@@ -72,7 +72,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.When("I try to save the user");
 #line 8
- testRunner.Then("I will receive this error: UserEmailInvalid");
+ testRunner.Then("I will receive this core error: UserEmailInvalid");
 #line 9
  testRunner.And("the user will not be saved");
 #line hidden
@@ -98,7 +98,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I try to save the user");
 #line 16
- testRunner.Then("I will receive this error: UserPasswordRequired");
+ testRunner.Then("I will receive this core error: UserPasswordRequired");
 #line 17
  testRunner.And("the user will not be saved");
 #line hidden
@@ -124,7 +124,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.When("I try to save the user");
 #line 24
- testRunner.Then("I will receive this error: UserEmailInvalid");
+ testRunner.Then("I will receive this core error: UserEmailInvalid");
 #line 25
  testRunner.And("the user will not be saved");
 #line hidden
@@ -152,7 +152,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 32
  testRunner.When("I try to save the user");
 #line 33
- testRunner.Then("I will receive this error: UserAlreadyExists");
+ testRunner.Then("I will receive this core error: UserAlreadyExists");
 #line 34
  testRunner.And("the user will not be changed");
 #line hidden
@@ -178,7 +178,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 40
  testRunner.When("I try to save the user");
 #line 41
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 42
  testRunner.And("the user will not be saved");
 #line hidden
@@ -204,7 +204,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 49
  testRunner.When("I try to save the user");
 #line 50
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 51
  testRunner.And("the user will be saved");
 #line hidden
@@ -230,7 +230,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 57
  testRunner.When("I try to save the user");
 #line 58
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 59
  testRunner.And("the user will be saved");
 #line hidden

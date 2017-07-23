@@ -8,7 +8,7 @@ Scenario: 01. Save Category without name (E)
 		| Name |
 		|      |
 	When I try to save the category
-	Then I will receive this error: CategoryNameRequired
+	Then I will receive this core error: CategoryNameRequired
 	And the category will not be saved
 
 Scenario: 02. Save Category with name that already exists (E)
@@ -19,7 +19,7 @@ Scenario: 02. Save Category with name that already exists (E)
 		| Name          |
 		| Category Bf02 |
 	When I try to save the category
-	Then I will receive this error: CategoryAlreadyExists
+	Then I will receive this core error: CategoryAlreadyExists
 	#And the category will not be changed
 
 Scenario: 03. Save Category with too big name (E)
@@ -27,7 +27,7 @@ Scenario: 03. Save Category with too big name (E)
 		| Name                  |
 		| ABCDEFGHIJKLMNOPQRSTU |
 	When I try to save the category
-	Then I will receive this error: TooLargeData
+	Then I will receive this core error: TooLargeData
 	And the category will not be saved
 
 
@@ -36,7 +36,7 @@ Scenario: 98. Save Category with exactly length name (S)
 		| Name                 |
 		| ABCDEFGHIJKLMNOPQRST |
 	When I try to save the category
-	Then I will receive no error
+	Then I will receive no core error
 	And the category will be saved
 
 Scenario: 99. Save Category with info all right (S)
@@ -44,5 +44,5 @@ Scenario: 99. Save Category with info all right (S)
 		| Name          |
 		| Category Bf99 |
 	When I try to save the category
-	Then I will receive no error
+	Then I will receive no core error
 	And the category will be saved

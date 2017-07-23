@@ -5,7 +5,7 @@ Scenario: 01. Save user without e-mail (E)
 		| Email | Password |
 		|       | password |
 	When I try to save the user
-	Then I will receive this error: UserEmailInvalid
+	Then I will receive this core error: UserEmailInvalid
 	And the user will not be saved
 
 Scenario: 02. Save user without password (E)
@@ -13,7 +13,7 @@ Scenario: 02. Save user without password (E)
 		| Email                 | Password |
 		| test@dontflymoney.com |          |
 	When I try to save the user
-	Then I will receive this error: UserPasswordRequired
+	Then I will receive this core error: UserPasswordRequired
 	And the user will not be saved
 
 Scenario: 03. Save user with invalid e-mail (E)
@@ -21,7 +21,7 @@ Scenario: 03. Save user with invalid e-mail (E)
 		| Email | Password |
 		| test  | password |
 	When I try to save the user
-	Then I will receive this error: UserEmailInvalid
+	Then I will receive this core error: UserEmailInvalid
 	And the user will not be saved
 	
 Scenario: 04. Save user with repeated e-mail (E)
@@ -30,7 +30,7 @@ Scenario: 04. Save user with repeated e-mail (E)
 		| repeated@dontflymoney.com | password |
 	And I already have created this user
 	When I try to save the user
-	Then I will receive this error: UserAlreadyExists
+	Then I will receive this core error: UserAlreadyExists
 	And the user will not be changed
 
 Scenario: 05. Save user too large e-mail (E)
@@ -38,7 +38,7 @@ Scenario: 05. Save user too large e-mail (E)
 		| Email                                               | Password |
 		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh@dontflymoney.com | password |
 	When I try to save the user
-	Then I will receive this error: TooLargeData
+	Then I will receive this core error: TooLargeData
 	And the user will not be saved
 
 
@@ -47,7 +47,7 @@ Scenario: 98. Save user with exactly length e-mail (S)
 		| Email                                              | Password |
 		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com | password |
 	When I try to save the user
-	Then I will receive no error
+	Then I will receive no core error
 	And the user will be saved
 
 Scenario: 99. Save user with info all right (S)
@@ -55,5 +55,5 @@ Scenario: 99. Save user with info all right (S)
 		| Email                 | Password |
 		| test@dontflymoney.com | password |
 	When I try to save the user
-	Then I will receive no error
+	Then I will receive no core error
 	And the user will be saved

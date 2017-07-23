@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I try to run the scheduler");
 #line 12
- testRunner.Then("I will receive this error: Unauthorized");
+ testRunner.Then("I will receive this core error: Unauthorized");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -99,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table1.AddRow(new string[] {
-                        "Move Ca91",
+                        "Move Db91",
                         "2012-03-31",
                         "Out",
                         "10"});
@@ -150,7 +150,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table3.AddRow(new string[] {
-                        "Move Ca92",
+                        "Move Db92",
                         "",
                         "Out",
                         "10"});
@@ -203,7 +203,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table5.AddRow(new string[] {
-                        "Move Ca93",
+                        "Move Db93",
                         "",
                         "Out",
                         "10"});
@@ -256,7 +256,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table7.AddRow(new string[] {
-                        "Move Ca94",
+                        "Move Db94",
                         "",
                         "Out",
                         "10"});
@@ -309,7 +309,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table9.AddRow(new string[] {
-                        "Move Ca95",
+                        "Move Db95",
                         "",
                         "Out",
                         "10"});
@@ -362,7 +362,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table11.AddRow(new string[] {
-                        "Move Ca96",
+                        "Move Db96",
                         "",
                         "Out",
                         "10"});
@@ -415,7 +415,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table13.AddRow(new string[] {
-                        "Move Ca97",
+                        "Move Db97",
                         "",
                         "Out",
                         "10"});
@@ -468,7 +468,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table15.AddRow(new string[] {
-                        "Move Ca98",
+                        "Move Db98",
                         "",
                         "Out",
                         ""});

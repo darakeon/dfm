@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.When("I try to save the schedule");
 #line 20
- testRunner.Then("I will receive this error: MoveDescriptionRequired");
+ testRunner.Then("I will receive this core error: MoveDescriptionRequired");
 #line 21
  testRunner.And("the schedule will not be saved");
 #line 22
@@ -167,7 +167,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 37
  testRunner.When("I try to save the schedule");
 #line 38
- testRunner.Then("I will receive this error: MoveDateRequired");
+ testRunner.Then("I will receive this core error: MoveDateRequired");
 #line 39
  testRunner.And("the schedule will not be saved");
 #line 40
@@ -224,7 +224,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 55
  testRunner.When("I try to save the schedule");
 #line 56
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line 57
  testRunner.And("the schedule will not be saved");
 #line 58
@@ -281,7 +281,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 73
  testRunner.When("I try to save the schedule");
 #line 74
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line 75
  testRunner.And("the schedule will not be saved");
 #line 76
@@ -338,7 +338,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 91
  testRunner.When("I try to save the schedule");
 #line 92
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 93
  testRunner.And("the schedule will not be saved");
 #line 94
@@ -395,7 +395,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 111
  testRunner.When("I try to save the schedule");
 #line 112
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 113
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -446,7 +446,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 126
  testRunner.When("I try to save the schedule");
 #line 127
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 128
  testRunner.And("the schedule will not be saved");
 #line 129
@@ -509,7 +509,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 147
  testRunner.When("I try to save the schedule");
 #line 148
- testRunner.Then("I will receive this error: OutMoveWrong");
+ testRunner.Then("I will receive this core error: OutMoveWrong");
 #line 149
  testRunner.And("the schedule will not be saved");
 #line 150
@@ -566,7 +566,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 165
  testRunner.When("I try to save the schedule");
 #line 166
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 167
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -617,7 +617,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 182
  testRunner.When("I try to save the schedule");
 #line 183
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 184
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -668,7 +668,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 197
  testRunner.When("I try to save the schedule");
 #line 198
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 199
  testRunner.And("the schedule will not be saved");
 #line 200
@@ -731,7 +731,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 218
  testRunner.When("I try to save the schedule");
 #line 219
- testRunner.Then("I will receive this error: InMoveWrong");
+ testRunner.Then("I will receive this core error: InMoveWrong");
 #line 220
  testRunner.And("the schedule will not be saved");
 #line 221
@@ -788,7 +788,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 236
  testRunner.When("I try to save the schedule");
 #line 237
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 238
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -839,7 +839,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 253
  testRunner.When("I try to save the schedule");
 #line 254
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 255
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -890,7 +890,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 268
  testRunner.When("I try to save the schedule");
 #line 269
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 270
  testRunner.And("the schedule will not be saved");
 #line 271
@@ -947,7 +947,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 286
  testRunner.When("I try to save the schedule");
 #line 287
- testRunner.Then("I will receive this error: TransferMoveWrong");
+ testRunner.Then("I will receive this core error: TransferMoveWrong");
 #line 288
  testRunner.And("the schedule will not be saved");
 #line 289
@@ -1004,7 +1004,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 304
  testRunner.When("I try to save the schedule");
 #line 305
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 306
  testRunner.And("the schedule will not be saved");
 #line 307
@@ -1061,7 +1061,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 322
  testRunner.When("I try to save the schedule");
 #line 323
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 324
  testRunner.And("the schedule will not be saved");
 #line 325
@@ -1118,7 +1118,7 @@ testRunner.Given("I have this future move to create", ((string)(null)), table37)
 #line 340
  testRunner.When("I try to save the schedule");
 #line 341
- testRunner.Then("I will receive this error: MoveCircularTransfer");
+ testRunner.Then("I will receive this core error: MoveCircularTransfer");
 #line 342
  testRunner.And("the schedule will not be saved");
 #line 343
@@ -1181,7 +1181,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 363
  testRunner.When("I try to save the schedule");
 #line 364
- testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
+ testRunner.Then("I will receive this core error: MoveValueOrDetailRequired");
 #line 365
  testRunner.And("the schedule will not be saved");
 #line 366
@@ -1238,7 +1238,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 381
  testRunner.When("I try to save the schedule");
 #line 382
- testRunner.Then("I will receive this error: MoveValueOrDetailRequired");
+ testRunner.Then("I will receive this core error: MoveValueOrDetailRequired");
 #line 383
  testRunner.And("the schedule will not be saved");
 #line 384
@@ -1308,7 +1308,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 402
  testRunner.When("I try to save the schedule");
 #line 403
- testRunner.Then("I will receive this error: MoveDetailDescriptionRequired");
+ testRunner.Then("I will receive this core error: MoveDetailDescriptionRequired");
 #line 404
  testRunner.And("the schedule will not be saved");
 #line 405
@@ -1378,7 +1378,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 423
  testRunner.When("I try to save the schedule");
 #line 424
- testRunner.Then("I will receive this error: MoveDetailAmountRequired");
+ testRunner.Then("I will receive this core error: MoveDetailAmountRequired");
 #line 425
  testRunner.And("the schedule will not be saved");
 #line 426
@@ -1448,7 +1448,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 444
  testRunner.When("I try to save the schedule");
 #line 445
- testRunner.Then("I will receive this error: MoveDetailValueRequired");
+ testRunner.Then("I will receive this core error: MoveDetailValueRequired");
 #line 446
  testRunner.And("the schedule will not be saved");
 #line 447
@@ -1514,7 +1514,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 464
  testRunner.When("I try to save the schedule");
 #line 465
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 466
  testRunner.And("the schedule will not be saved");
 #line 467
@@ -1560,7 +1560,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 482
  testRunner.When("I try to save the schedule");
 #line 483
- testRunner.Then("I will receive this error: ScheduleRequired");
+ testRunner.Then("I will receive this core error: ScheduleRequired");
 #line 484
  testRunner.And("the schedule will not be saved");
 #line 485
@@ -1617,7 +1617,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 500
  testRunner.When("I try to save the schedule");
 #line 501
- testRunner.Then("I will receive this error: ScheduleTimesCantBeZero");
+ testRunner.Then("I will receive this core error: ScheduleTimesCantBeZero");
 #line 502
  testRunner.And("the schedule will not be saved");
 #line 503
@@ -1674,7 +1674,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 520
  testRunner.When("I try to save the schedule");
 #line 521
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 522
  testRunner.And("the schedule will be saved");
 #line 523
@@ -1731,7 +1731,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 538
  testRunner.When("I try to save the schedule");
 #line 539
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 540
  testRunner.And("the schedule will be saved");
 #line 541
@@ -1788,7 +1788,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 556
  testRunner.When("I try to save the schedule");
 #line 557
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 558
  testRunner.And("the schedule will be saved");
 #line 559
@@ -1851,7 +1851,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 577
  testRunner.When("I try to save the schedule");
 #line 578
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 579
  testRunner.And("the schedule will be saved");
 #line 580
@@ -1921,7 +1921,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 598
  testRunner.When("I try to save the schedule");
 #line 599
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 600
  testRunner.And("the schedule will be saved");
 #line 601
@@ -1978,7 +1978,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 616
  testRunner.When("I try to save the schedule");
 #line 617
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 618
  testRunner.And("the schedule will be saved");
 #line 619
@@ -2048,7 +2048,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 637
  testRunner.When("I try to save the schedule");
 #line 638
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 639
  testRunner.And("the schedule will be saved");
 #line 640
@@ -2105,7 +2105,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 655
  testRunner.When("I try to save the schedule");
 #line 656
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 657
  testRunner.And("the schedule will be saved");
 #line 658
@@ -2171,7 +2171,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 675
  testRunner.When("I try to save the schedule");
 #line 676
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 677
  testRunner.And("the schedule will be saved");
 #line 678
@@ -2228,7 +2228,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 693
  testRunner.When("I try to save the schedule");
 #line 694
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 695
  testRunner.And("the schedule will be saved");
 #line 696

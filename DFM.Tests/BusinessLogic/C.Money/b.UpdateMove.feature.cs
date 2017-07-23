@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I update the move");
 #line 12
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 13
  testRunner.And("the accountOut value will not change");
 #line 14
@@ -103,7 +103,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.When("I update the move");
 #line 20
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 21
  testRunner.And("the accountOut value will not change");
 #line 22
@@ -128,7 +128,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.When("I update the move");
 #line 29
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 30
  testRunner.And("the accountOut value will not change");
 #line 31
@@ -155,7 +155,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 39
  testRunner.When("I update the move");
 #line 40
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 41
  testRunner.And("the accountOut value will not change");
 #line 42
@@ -186,7 +186,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 52
  testRunner.When("I update the move");
 #line 53
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 54
  testRunner.And("the new-accountOut value will change in -10");
 #line 55

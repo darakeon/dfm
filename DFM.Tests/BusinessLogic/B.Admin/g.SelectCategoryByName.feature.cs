@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to get the category by its Name");
 #line 10
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line 11
  testRunner.And("I will receive no category");
 #line hidden
@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I try to get the category by its Name");
 #line 16
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 17
  testRunner.And("I will receive the category");
 #line hidden

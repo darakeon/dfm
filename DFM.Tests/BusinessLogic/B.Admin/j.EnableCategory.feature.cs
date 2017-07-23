@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to enable the category");
 #line 10
- testRunner.Then("I will receive this error: InvalidCategory");
+ testRunner.Then("I will receive this core error: InvalidCategory");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I try to enable the category");
 #line 16
- testRunner.Then("I will receive this error: EnabledCategory");
+ testRunner.Then("I will receive this core error: EnabledCategory");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -112,7 +112,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.When("I try to enable the category");
 #line 21
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 22
  testRunner.And("the category will be enabled");
 #line hidden

@@ -8,7 +8,7 @@ Scenario: 01. Save Account without name (E)
 		| Name | Yellow | Red |
 		|      |        |     |
 	When I try to save the account
-	Then I will receive this error: AccountNameRequired
+	Then I will receive this core error: AccountNameRequired
 	And the account will not be saved
 
 Scenario: 02. Save Account with red limit bigger than yellow limit (E)
@@ -16,7 +16,7 @@ Scenario: 02. Save Account with red limit bigger than yellow limit (E)
 		| Name         | Yellow | Red |
 		| Account Ba02 | 100    | 200 |
 	When I try to save the account
-	Then I will receive this error: RedLimitAboveYellowLimit
+	Then I will receive this core error: RedLimitAboveYellowLimit
 	And the account will not be saved
 
 Scenario: 03. Save Account with name that already exists (E)
@@ -27,7 +27,7 @@ Scenario: 03. Save Account with name that already exists (E)
 		| Name         | Yellow | Red |
 		| Account Ba03 | 200    | 100 |
 	When I try to save the account
-	Then I will receive this error: AccountAlreadyExists
+	Then I will receive this core error: AccountAlreadyExists
 	And the account will not be changed
 
 Scenario: 04. Save Account with too big name (E)
@@ -35,7 +35,7 @@ Scenario: 04. Save Account with too big name (E)
 		| Name                  | Yellow | Red |
 		| ABCDEFGHIJKLMNOPQRSTU |        |     |
 	When I try to save the account
-	Then I will receive this error: TooLargeData
+	Then I will receive this core error: TooLargeData
 	And the account will not be saved
 
 
@@ -44,7 +44,7 @@ Scenario: 95. Save Account with exactly length name (S)
 		| Name                 | Yellow | Red |
 		| ABCDEFGHIJKLMNOPQRST |        |     |
 	When I try to save the account
-	Then I will receive no error
+	Then I will receive no core error
 	And the account will be saved
 
 Scenario: 96. Save Account with info all right (without limits) (S)
@@ -52,7 +52,7 @@ Scenario: 96. Save Account with info all right (without limits) (S)
 		| Name         | Yellow | Red |
 		| Account Ba96 |        |     |
 	When I try to save the account
-	Then I will receive no error
+	Then I will receive no core error
 	And the account will be saved
 
 Scenario: 97. Save Account with just yellow limit (S)
@@ -60,7 +60,7 @@ Scenario: 97. Save Account with just yellow limit (S)
 		| Name         | Yellow | Red |
 		| Account Ba97 | 100    |     |
 	When I try to save the account
-	Then I will receive no error
+	Then I will receive no core error
 	And the account will be saved
 
 Scenario: 98. Save Account with just red limit (S)
@@ -68,7 +68,7 @@ Scenario: 98. Save Account with just red limit (S)
 		| Name         | Yellow | Red |
 		| Account Ba98 |        | 100 |
 	When I try to save the account
-	Then I will receive no error
+	Then I will receive no core error
 	And the account will be saved
 
 Scenario: 99. Save Account with info all right (with limits) (S)
@@ -76,5 +76,5 @@ Scenario: 99. Save Account with info all right (with limits) (S)
 		| Name         | Yellow | Red |
 		| Account Ba99 | 200    | 100 |
 	When I try to save the account
-	Then I will receive no error
+	Then I will receive no core error
 	And the account will be saved

@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I test the token");
 #line 11
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I test the token");
 #line 16
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -112,7 +112,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.When("I test the token");
 #line 21
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -129,7 +129,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.When("I test the token");
 #line 26
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -146,7 +146,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 30
  testRunner.When("I test the token");
 #line 31
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

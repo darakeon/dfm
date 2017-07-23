@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I try to reset the password");
 #line 12
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line 13
  testRunner.And("the password will not be changed");
 #line hidden
@@ -101,7 +101,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
  testRunner.When("I try to reset the password");
 #line 19
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line 20
  testRunner.And("the password will not be changed");
 #line hidden
@@ -122,7 +122,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.When("I try to reset the password");
 #line 26
- testRunner.Then("I will receive this error: UserPasswordRequired");
+ testRunner.Then("I will receive this core error: UserPasswordRequired");
 #line 27
  testRunner.And("the password will not be changed");
 #line hidden
@@ -143,7 +143,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 32
  testRunner.When("I try to reset the password");
 #line 33
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 34
  testRunner.And("the password will be changed");
 #line 35

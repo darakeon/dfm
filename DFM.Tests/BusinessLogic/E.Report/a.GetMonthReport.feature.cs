@@ -112,7 +112,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.When("I try to get the month report");
 #line 26
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 27
  testRunner.And("I will receive no month report");
 #line hidden
@@ -140,7 +140,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
  testRunner.When("I try to get the month report");
 #line 35
- testRunner.Then("I will receive this error: InvalidYear");
+ testRunner.Then("I will receive this core error: InvalidYear");
 #line 36
  testRunner.And("I will receive no month report");
 #line hidden
@@ -168,7 +168,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 43
  testRunner.When("I try to get the month report");
 #line 44
- testRunner.Then("I will receive this error: InvalidMonth");
+ testRunner.Then("I will receive this core error: InvalidMonth");
 #line 45
  testRunner.And("I will receive no month report");
 #line hidden
@@ -196,7 +196,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 52
  testRunner.When("I try to get the month report");
 #line 53
- testRunner.Then("I will receive this error: InvalidMonth");
+ testRunner.Then("I will receive this core error: InvalidMonth");
 #line 54
  testRunner.And("I will receive no month report");
 #line hidden
@@ -224,7 +224,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 63
  testRunner.When("I try to get the month report");
 #line 64
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 65
  testRunner.And("I will receive the month report");
 #line 66

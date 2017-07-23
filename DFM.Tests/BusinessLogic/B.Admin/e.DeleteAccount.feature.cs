@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to delete the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I try to delete the account");
 #line 16
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -114,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
  testRunner.When("I try to delete the account");
 #line 22
- testRunner.Then("I will receive this error: CantDeleteAccountWithMoves");
+ testRunner.Then("I will receive this core error: CantDeleteAccountWithMoves");
 #line 23
  testRunner.And("the account will not be deleted");
 #line hidden
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.When("I try to delete the account");
 #line 28
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 29
  testRunner.And("the account will be deleted");
 #line hidden

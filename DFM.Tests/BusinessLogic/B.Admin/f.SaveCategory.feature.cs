@@ -79,7 +79,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I try to save the category");
 #line 11
- testRunner.Then("I will receive this error: CategoryNameRequired");
+ testRunner.Then("I will receive this core error: CategoryNameRequired");
 #line 12
  testRunner.And("the category will not be saved");
 #line hidden
@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
  testRunner.When("I try to save the category");
 #line 22
- testRunner.Then("I will receive this error: CategoryAlreadyExists");
+ testRunner.Then("I will receive this core error: CategoryAlreadyExists");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -132,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.When("I try to save the category");
 #line 30
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 31
  testRunner.And("the category will not be saved");
 #line hidden
@@ -156,7 +156,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.When("I try to save the category");
 #line 39
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 40
  testRunner.And("the category will be saved");
 #line hidden
@@ -180,7 +180,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 46
  testRunner.When("I try to save the category");
 #line 47
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 48
  testRunner.And("the category will be saved");
 #line hidden

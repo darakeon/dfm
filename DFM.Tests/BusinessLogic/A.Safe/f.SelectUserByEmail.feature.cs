@@ -74,7 +74,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I try to get the user without password");
 #line 11
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line 12
  testRunner.And("I will receive no user");
 #line hidden
@@ -93,7 +93,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I try to get the user without password");
 #line 17
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 18
  testRunner.And("I will receive the user");
 #line hidden

@@ -23,7 +23,7 @@ Scenario: 01. Get with invalid Account ID (E)
 		| Year |
 		| 2012 |
 	When I try to get the year report
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And I will receive no year report
 
 Scenario: 02. Get with Date Year Zero (E)
@@ -32,7 +32,7 @@ Scenario: 02. Get with Date Year Zero (E)
 		| Year |
 		| 0    |
 	When I try to get the year report
-	Then I will receive this error: InvalidYear
+	Then I will receive this core error: InvalidYear
 	And I will receive no year report
 
 
@@ -43,6 +43,6 @@ Scenario: 99. Get with info all right (S)
 		| Year |
 		| 2012 |
 	When I try to get the year report
-	Then I will receive no error
+	Then I will receive no core error
 	And I will receive the year report
 	And its sum value will be equal to its months sum value

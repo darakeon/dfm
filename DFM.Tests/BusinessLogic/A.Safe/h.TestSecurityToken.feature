@@ -8,24 +8,24 @@ Background:
 Scenario: 01. Test with invalid token (E)
 	Given I pass an invalid token
 	When I test the token
-	Then I will receive this error: InvalidToken
+	Then I will receive this core error: InvalidToken
 
 Scenario: 02. Test with token of UV with action PS (E)
 	Given I pass a token of UserVerification with action PasswordReset
 	When I test the token
-	Then I will receive this error: InvalidToken
+	Then I will receive this core error: InvalidToken
 
 Scenario: 03. Test with token of PS with action UV (E)
 	Given I pass a token of PasswordReset with action UserVerification
 	When I test the token
-	Then I will receive this error: InvalidToken
+	Then I will receive this core error: InvalidToken
 
 Scenario: 98. Test with token of UV with action UV (S)
 	Given I pass a token of UserVerification with action UserVerification
 	When I test the token
-	Then I will receive no error
+	Then I will receive no core error
 
 Scenario: 99. Test with token of PS with action PS (S)
 	Given I pass a token of PasswordReset with action PasswordReset
 	When I test the token
-	Then I will receive no error
+	Then I will receive no core error

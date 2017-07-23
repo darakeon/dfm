@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I try to delete the move");
 #line 12
- testRunner.Then("I will receive this error: InvalidMove");
+ testRunner.Then("I will receive this core error: InvalidMove");
 #line 13
  testRunner.And("the accountOut value will not change");
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.When("I try to delete the move");
 #line 18
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 19
  testRunner.And("the move will be deleted");
 #line 20

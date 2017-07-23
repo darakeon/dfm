@@ -83,7 +83,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I try to save the account");
 #line 11
- testRunner.Then("I will receive this error: AccountNameRequired");
+ testRunner.Then("I will receive this core error: AccountNameRequired");
 #line 12
  testRunner.And("the account will not be saved");
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
  testRunner.When("I try to save the account");
 #line 19
- testRunner.Then("I will receive this error: RedLimitAboveYellowLimit");
+ testRunner.Then("I will receive this core error: RedLimitAboveYellowLimit");
 #line 20
  testRunner.And("the account will not be saved");
 #line hidden
@@ -150,7 +150,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.When("I try to save the account");
 #line 30
- testRunner.Then("I will receive this error: AccountAlreadyExists");
+ testRunner.Then("I will receive this core error: AccountAlreadyExists");
 #line 31
  testRunner.And("the account will not be changed");
 #line hidden
@@ -178,7 +178,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 37
  testRunner.When("I try to save the account");
 #line 38
- testRunner.Then("I will receive this error: TooLargeData");
+ testRunner.Then("I will receive this core error: TooLargeData");
 #line 39
  testRunner.And("the account will not be saved");
 #line hidden
@@ -206,7 +206,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 46
  testRunner.When("I try to save the account");
 #line 47
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 48
  testRunner.And("the account will be saved");
 #line hidden
@@ -234,7 +234,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 54
  testRunner.When("I try to save the account");
 #line 55
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 56
  testRunner.And("the account will be saved");
 #line hidden
@@ -262,7 +262,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 62
  testRunner.When("I try to save the account");
 #line 63
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 64
  testRunner.And("the account will be saved");
 #line hidden
@@ -290,7 +290,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 70
  testRunner.When("I try to save the account");
 #line 71
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 72
  testRunner.And("the account will be saved");
 #line hidden
@@ -318,7 +318,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 78
  testRunner.When("I try to save the account");
 #line 79
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 80
  testRunner.And("the account will be saved");
 #line hidden

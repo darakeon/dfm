@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I try to activate the user");
 #line 11
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line 12
  testRunner.And("the user will not be activated");
 #line hidden
@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I try to activate the user");
 #line 17
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line 18
  testRunner.And("the user will not be activated");
 #line hidden
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 22
  testRunner.When("I try to activate the user");
 #line 23
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 24
  testRunner.And("the user will be activated");
 #line 25

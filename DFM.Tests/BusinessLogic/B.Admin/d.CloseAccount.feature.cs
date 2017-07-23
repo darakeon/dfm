@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to close the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("I try to close the account");
 #line 17
- testRunner.Then("I will receive this error: ClosedAccount");
+ testRunner.Then("I will receive this core error: ClosedAccount");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -114,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
  testRunner.When("I try to close the account");
 #line 22
- testRunner.Then("I will receive this error: CantCloseEmptyAccount");
+ testRunner.Then("I will receive this core error: CantCloseEmptyAccount");
 #line 23
  testRunner.And("the account will not be closed");
 #line hidden
@@ -135,7 +135,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.When("I try to close the account");
 #line 29
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 30
  testRunner.And("the account will be closed");
 #line hidden

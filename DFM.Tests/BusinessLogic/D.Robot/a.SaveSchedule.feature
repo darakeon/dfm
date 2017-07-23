@@ -17,7 +17,7 @@ Scenario: 01. Save without Description (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveDescriptionRequired
+	Then I will receive this core error: MoveDescriptionRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -35,7 +35,7 @@ Scenario: 02. Save without Date (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveDateRequired
+	Then I will receive this core error: MoveDateRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -53,7 +53,7 @@ Scenario: 03. Save without Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidCategory
+	Then I will receive this core error: InvalidCategory
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -71,7 +71,7 @@ Scenario: 04. Save with unknown Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidCategory
+	Then I will receive this core error: InvalidCategory
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -89,7 +89,7 @@ Scenario: 05. Save with Description too large (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: TooLargeData
+	Then I will receive this core error: TooLargeData
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -109,7 +109,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: OutMoveWrong
+	Then I will receive this core error: OutMoveWrong
 	And the schedule will not be saved
 
 Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
@@ -124,7 +124,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has an Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: OutMoveWrong
+	Then I will receive this core error: OutMoveWrong
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -145,7 +145,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has no Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: OutMoveWrong
+	Then I will receive this core error: OutMoveWrong
 	And the schedule will not be saved
 	And the accountIn value will not change
 	And the month-category-accountIn value will not change
@@ -163,7 +163,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	And it has an unknown Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And the schedule will not be saved
 
 
@@ -180,7 +180,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: InMoveWrong
+	Then I will receive this core error: InMoveWrong
 	And the schedule will not be saved
 
 Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
@@ -195,7 +195,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And it has an Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: InMoveWrong
+	Then I will receive this core error: InMoveWrong
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -216,7 +216,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: InMoveWrong
+	Then I will receive this core error: InMoveWrong
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -234,7 +234,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	And it has no Account Out
 	And it has an unknown Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And the schedule will not be saved
 
 
@@ -251,7 +251,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	And it has no Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this core error: TransferMoveWrong
 	And the schedule will not be saved
 
 Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
@@ -266,7 +266,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	And it has no Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this core error: TransferMoveWrong
 	And the schedule will not be saved
 	And the accountIn value will not change
 	And the month-category-accountIn value will not change
@@ -284,7 +284,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: TransferMoveWrong
+	Then I will receive this core error: TransferMoveWrong
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -302,7 +302,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And it has an Account Out
 	And it has an unknown Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -320,7 +320,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And it has an unknown Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And the schedule will not be saved
 	And the accountIn value will not change
 	And the month-category-accountIn value will not change
@@ -338,7 +338,7 @@ Given I have this future move to create
 	And it has an Account Out
 	And it has an Account In equal to Out
 	When I try to save the schedule
-	Then I will receive this error: MoveCircularTransfer
+	Then I will receive this core error: MoveCircularTransfer
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -361,7 +361,7 @@ Scenario: 41. Save without Value or Details (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveValueOrDetailRequired
+	Then I will receive this core error: MoveValueOrDetailRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -379,7 +379,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveValueOrDetailRequired
+	Then I will receive this core error: MoveValueOrDetailRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -400,7 +400,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveDetailDescriptionRequired
+	Then I will receive this core error: MoveDetailDescriptionRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -421,7 +421,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveDetailAmountRequired
+	Then I will receive this core error: MoveDetailAmountRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -442,7 +442,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveDetailValueRequired
+	Then I will receive this core error: MoveDetailValueRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -462,7 +462,7 @@ Scenario: 46. Save with Description too large in Detail (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: TooLargeData
+	Then I will receive this core error: TooLargeData
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -480,7 +480,7 @@ Scenario: 51. Save without Schedule (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: ScheduleRequired
+	Then I will receive this core error: ScheduleRequired
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -498,7 +498,7 @@ Scenario: 52. Save with Schedule Times zero and bounded (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: ScheduleTimesCantBeZero
+	Then I will receive this core error: ScheduleTimesCantBeZero
 	And the schedule will not be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -518,7 +518,7 @@ Scenario: 91. Save with info all right (Out) (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -536,7 +536,7 @@ Scenario: 92. Save with info all right (In) (S)
 	And it has no Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountIn value will not change
 	And the month-category-accountIn value will not change
@@ -554,7 +554,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	And it has an Account Out
 	And it has an Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -575,7 +575,7 @@ Scenario: 94. Save with info all right (value) (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -596,7 +596,7 @@ Scenario: 95. Save with info all right (details) (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -614,7 +614,7 @@ Scenario: 96. Save negative (value) (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -635,7 +635,7 @@ Scenario: 97. Save negative (details) (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -653,7 +653,7 @@ Scenario: 98. Save with future Date (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -673,7 +673,7 @@ Scenario: 99. Save with exactly length in Description of Detail (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -691,7 +691,7 @@ Scenario: 9A. Save with exactly length in Description (S)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive no error
+	Then I will receive no core error
 	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change

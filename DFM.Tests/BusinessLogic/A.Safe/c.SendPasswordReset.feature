@@ -6,9 +6,9 @@ Background:
 Scenario: 01. Send with email that doesn't exist (E)
 	Given I pass an e-mail that doesn't exist
 	When I try to send the e-mail of password reset
-	Then I will receive this error: InvalidUser
+	Then I will receive this core error: InvalidUser
 
 Scenario: 99. Send with info all right (S)
 	Given I pass valid e-mail
 	When I try to send the e-mail of password reset
-	Then I will receive no error
+	Then I will receive no core error

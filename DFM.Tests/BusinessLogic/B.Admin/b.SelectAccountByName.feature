@@ -7,11 +7,11 @@ Background:
 Scenario: 01. Try to get Account with wrong Name (E)
 	Given I pass a name of account that doesn't exist
 	When I try to get the account by its Name
-	Then I will receive this error: InvalidAccount
+	Then I will receive this core error: InvalidAccount
 	And I will receive no account
 
 Scenario: 99. Get the Account by Name (S)
 	Given I pass valid account Name
 	When I try to get the account by its Name
-	Then I will receive no error
+	Then I will receive no core error
 	And I will receive the account

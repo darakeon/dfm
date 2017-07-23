@@ -8,14 +8,14 @@ namespace DFM.Tests.BusinessLogic
     [Binding]
     public class MainStep : BaseStep
     {
-        [Then(@"I will receive this error: ([A-Za-z]+)")]
+        [Then(@"I will receive this core error: ([A-Za-z]+)")]
         public void ThenIWillReceiveThisError(String error)
         {
             Assert.IsNotNull(Error);
             Assert.AreEqual(error, Error.Type.ToString());
         }
 
-        [Then(@"I will receive no error")]
+        [Then(@"I will receive no core error")]
         public void ThenIWillReceiveNoError()
         {
             Assert.IsNull(Error);
@@ -39,7 +39,6 @@ namespace DFM.Tests.BusinessLogic
             Category = GetOrCreateCategory(CategoryName);
         }
 
-        [AfterScenario]
         public static void CloseSession()
         {
             NHManager.Close();

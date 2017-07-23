@@ -74,7 +74,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.When("I try to send the e-mail of user verify");
 #line 9
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -91,7 +91,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.When("I try to send the e-mail of user verify");
 #line 14
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

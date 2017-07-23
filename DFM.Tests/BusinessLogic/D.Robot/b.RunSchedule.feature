@@ -9,13 +9,13 @@ Background:
 Scenario: 01. Run with unlogged user (E)
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
-	Then I will receive this error: Unauthorized
+	Then I will receive this core error: Unauthorized
 
 
 Scenario: 91. Run with bounded schedule (S)
 	Given I have this future move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca91   | 2012-03-31 | Out    | 10    |
+		| Move Db91   | 2012-03-31 | Out    | 10    |
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -30,7 +30,7 @@ Scenario: 91. Run with bounded schedule (S)
 Scenario: 92. Run with boundless schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca92   |      | Out    | 10    |
+		| Move Db92   |      | Out    | 10    |
 	And its Date is 3 months ago
 	And it has no Details
 	And the move has this schedule
@@ -46,7 +46,7 @@ Scenario: 92. Run with boundless schedule (S)
 Scenario: 93. Run schedule that will finish (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca93   |      | Out    | 10    |
+		| Move Db93   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -62,7 +62,7 @@ Scenario: 93. Run schedule that will finish (S)
 Scenario: 94. Run schedule that wont finish (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca94   |      | Out    | 10    |
+		| Move Db94   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -78,7 +78,7 @@ Scenario: 94. Run schedule that wont finish (S)
 Scenario: 95. Run with daily schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca95   |      | Out    | 10    |
+		| Move Db95   |      | Out    | 10    |
 	And its Date is 20 days ago
 	And it has no Details
 	And the move has this schedule
@@ -94,7 +94,7 @@ Scenario: 95. Run with daily schedule (S)
 Scenario: 96. Run with monthly schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca96   |      | Out    | 10    |
+		| Move Db96   |      | Out    | 10    |
 	And its Date is 7 months ago
 	And it has no Details
 	And the move has this schedule
@@ -110,7 +110,7 @@ Scenario: 96. Run with monthly schedule (S)
 Scenario: 97. Run with yearly schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca97   |      | Out    | 10    |
+		| Move Db97   |      | Out    | 10    |
 	And its Date is 2 years ago
 	And it has no Details
 	And the move has this schedule
@@ -126,7 +126,7 @@ Scenario: 97. Run with yearly schedule (S)
 Scenario: 98. Run with details in schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca98   |      | Out    |       |
+		| Move Db98   |      | Out    |       |
 	And its Date is 10 days ago
 	And the move has this details
 		| Description | Amount | Value |

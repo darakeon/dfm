@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.When("I try to get the year report");
 #line 26
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 27
  testRunner.And("I will receive no year report");
 #line hidden
@@ -136,7 +136,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
  testRunner.When("I try to get the year report");
 #line 35
- testRunner.Then("I will receive this error: InvalidYear");
+ testRunner.Then("I will receive this core error: InvalidYear");
 #line 36
  testRunner.And("I will receive no year report");
 #line hidden
@@ -162,7 +162,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 45
  testRunner.When("I try to get the year report");
 #line 46
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 47
  testRunner.And("I will receive the year report");
 #line 48

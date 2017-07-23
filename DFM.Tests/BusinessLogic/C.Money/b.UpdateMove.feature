@@ -9,7 +9,7 @@ Background:
 Scenario: 01. Update the move date in 1 day
 	Given I change the move date in -1 day
 	When I update the move
-	Then I will receive no error
+	Then I will receive no core error
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
@@ -17,7 +17,7 @@ Scenario: 01. Update the move date in 1 day
 Scenario: 02. Update the move date in 1 month
 	Given I change the move date in -1 month
 	When I update the move
-	Then I will receive no error
+	Then I will receive no core error
 	And the accountOut value will not change
 	And the new-month-category-accountOut value will change in 10
 	And the old-month-category-accountOut value will change in -10
@@ -26,7 +26,7 @@ Scenario: 02. Update the move date in 1 month
 Scenario: 03. Update the move date in 1 year
 	Given I change the move date in -1 year
 	When I update the move
-	Then I will receive no error
+	Then I will receive no core error
 	And the accountOut value will not change
 	And the new-month-category-accountOut value will change in 10
 	And the old-month-category-accountOut value will change in -10
@@ -37,7 +37,7 @@ Scenario: 03. Update the move date in 1 year
 Scenario: 04. Update the move Category
 	Given I change the category of the move
 	When I update the move
-	Then I will receive no error
+	Then I will receive no core error
 	And the accountOut value will not change
 	And the month-accountOut value will not change
 	And the new-month-category-accountOut value will change in 10
@@ -50,7 +50,7 @@ Scenario: 04. Update the move Category
 Scenario: 05. Update the move Account
 	Given I change the account out of the move
 	When I update the move
-	Then I will receive no error
+	Then I will receive no core error
 	And the new-accountOut value will change in -10
 	And the old-accountOut value will change in 10
 	And the new-month-category-accountOut value will change in 10

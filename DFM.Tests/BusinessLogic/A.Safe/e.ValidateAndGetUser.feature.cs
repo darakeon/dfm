@@ -81,7 +81,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I try to get the user");
 #line 11
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line 12
  testRunner.And("I will receive no user");
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
  testRunner.When("I try to get the user");
 #line 19
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line 20
  testRunner.And("I will receive no user");
 #line hidden
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 26
  testRunner.When("I try to get the user");
 #line 27
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line 28
  testRunner.And("I will receive no user");
 #line hidden
@@ -159,7 +159,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
  testRunner.When("I try to get the user");
 #line 35
- testRunner.Then("I will receive this error: InvalidUser");
+ testRunner.Then("I will receive this core error: InvalidUser");
 #line 36
  testRunner.And("I will receive no user");
 #line hidden
@@ -185,7 +185,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 42
  testRunner.When("I try to get the user");
 #line 43
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 44
  testRunner.And("I will receive the user");
 #line hidden

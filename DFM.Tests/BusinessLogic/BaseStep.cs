@@ -6,11 +6,10 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Multilanguage;
 using DFM.Repositories;
-using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic
 {
-    public abstract class BaseStep
+    public abstract class BaseStep : ContextHelper
     {
         protected ServiceAccess SA;
 
@@ -31,17 +30,6 @@ namespace DFM.Tests.BusinessLogic
         }
 
 
-        protected static T Get<T>(String key)
-        {
-            return ScenarioContext.Current.ContainsKey(key)
-                ? (T)ScenarioContext.Current[key]
-                : default(T);
-        }
-
-        protected static void Set(String key, object value)
-        {
-            ScenarioContext.Current[key] = value;
-        }
 
 
 

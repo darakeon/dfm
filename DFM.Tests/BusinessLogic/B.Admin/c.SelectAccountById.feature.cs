@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I try to get the account");
 #line 10
- testRunner.Then("I will receive this error: InvalidAccount");
+ testRunner.Then("I will receive this core error: InvalidAccount");
 #line 11
  testRunner.And("I will receive no account");
 #line hidden
@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When("I try to get the account");
 #line 16
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 17
  testRunner.And("I will receive the account");
 #line hidden

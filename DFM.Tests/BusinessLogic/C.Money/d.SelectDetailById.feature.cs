@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I try to get the detail");
 #line 12
- testRunner.Then("I will receive this error: InvalidDetail");
+ testRunner.Then("I will receive this core error: InvalidDetail");
 #line 13
  testRunner.And("I will receive no detail");
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.When("I try to get the detail");
 #line 18
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 19
  testRunner.And("I will receive the detail");
 #line hidden

@@ -74,7 +74,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.When("I try do deactivate the token");
 #line 9
- testRunner.Then("I will receive this error: InvalidToken");
+ testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -93,7 +93,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When("I try do deactivate the token");
 #line 15
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 16
  testRunner.And("the token will not be valid anymore");
 #line hidden
@@ -114,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
  testRunner.When("I try do deactivate the token");
 #line 22
- testRunner.Then("I will receive no error");
+ testRunner.Then("I will receive no core error");
 #line 23
  testRunner.And("the token will not be valid anymore");
 #line hidden
