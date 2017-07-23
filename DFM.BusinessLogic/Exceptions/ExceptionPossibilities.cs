@@ -2,6 +2,8 @@
 {
     public enum ExceptionPossibilities
     {
+        Unauthorized,
+
         FailOnEmailSend,
         TooLargeData,
 
@@ -49,7 +51,8 @@
 
         SummaryNatureNotFound,
 
-        Unauthorized,
+        InvalidYear,
+        InvalidMonth,
     }
 
 }

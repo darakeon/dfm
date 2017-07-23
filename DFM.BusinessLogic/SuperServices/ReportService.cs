@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Extensions;
@@ -23,8 +24,16 @@ namespace DFM.BusinessLogic.SuperServices
 
         public IList<Move> GetMonthReport(Int32 accountID, Int16 dateMonth, Int16 dateYear)
         {
+            if (dateYear <= 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
+
+            if (dateMonth <= 0 || dateMonth >= 13)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMonth);
+
             var account = accountService.SelectById(accountID);
 
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
             var year = yearService.GetOrCreateYear(dateYear, account);
 
@@ -43,7 +52,13 @@ namespace DFM.BusinessLogic.SuperServices
         
         public Year GetYearReport(Int32 accountID, Int16 dateYear)
         {
+            if (dateYear <= 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
+
             var account = accountService.SelectById(accountID);
+
+            if (account == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
             var year = yearService.GetOrCreateYear(dateYear, account);
 

@@ -23,7 +23,7 @@ Scenario: 01. Get with invalid Account ID (E)
 		| Year |
 		| 2012 |
 	When I try to get the year report
-	Then I will receive this error: InvalidAccountID
+	Then I will receive this error: InvalidAccount
 	And I will receive no year report
 
 Scenario: 02. Get with Date Year Zero (E)
