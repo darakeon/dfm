@@ -32,13 +32,16 @@ namespace DFM.BusinessLogic.SuperServices
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
+            var accountOut = selectAccountByName(accountOutName, user);
+            var accountIn = selectAccountByName(accountInName, user);
+
             SetCategory(move, category);
 
             resetSchedule(move);
 
             ajustOldSummaries(move.ID);
 
-            placeAccountsInMove(move, user, accountOutName, accountInName);
+            placeAccountsInMove(move, accountOut, accountIn);
 
             move = moveService.SaveOrUpdate(move);
 
@@ -49,6 +52,13 @@ namespace DFM.BusinessLogic.SuperServices
             moveService.SendEmail(move, sendEmailAction);
 
             return move;
+        }
+
+        private Account selectAccountByName(String accountName, User user)
+        {
+            return accountName == null
+                       ? null
+                       : Parent.Admin.SelectAccountByName(accountName, user);
         }
 
         private void resetSchedule(Move move)
@@ -123,22 +133,10 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        private void placeAccountsInMove(Move move, User user, String accountOutName, String accountInName)
+        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
         {
-            var monthOut = (Month) null;
-            var monthIn = (Month) null;
-
-            if (accountOutName != null)
-            {
-                var accountOut = Parent.Admin.SelectAccountByName(accountOutName, user);
-                monthOut = accountOut == null ? null : getMonth(move, accountOut);
-            }
-
-            if (accountInName != null)
-            {
-                var accountIn = Parent.Admin.SelectAccountByName(accountInName, user);
-                monthIn = accountIn == null ? null : getMonth(move, accountIn);
-            }
+            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
             moveService.PlaceMonthsInMove(move, monthOut, monthIn);
         }
