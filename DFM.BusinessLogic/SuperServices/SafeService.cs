@@ -27,11 +27,6 @@ namespace DFM.BusinessLogic.SuperServices
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-            sendPasswordReset(user);
-        }
-
-        private void sendPasswordReset(User user)
-        {
             createAndSendToken(user, SecurityAction.PasswordReset);
         }
       
@@ -142,6 +137,7 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
+
         public User SelectUserByEmail(String email)
         {
             var user = userService.SelectByEmail(email);
@@ -151,6 +147,8 @@ namespace DFM.BusinessLogic.SuperServices
 
             return user;
         }
+
+
 
         public void DeactivateToken(String token)
         {
@@ -168,6 +166,7 @@ namespace DFM.BusinessLogic.SuperServices
                 throw;
             }
         }
+
 
         public User ValidateAndGet(String email, String password)
         {

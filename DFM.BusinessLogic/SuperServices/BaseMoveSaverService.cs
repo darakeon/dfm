@@ -29,11 +29,11 @@ namespace DFM.BusinessLogic.SuperServices
 
         
         
-        internal Move SaveOrUpdateMoveWithOpenTransaction(Move move, Account accountOut, Account accountIn, Category category)
+        internal Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Category category)
         {
             var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
 
-            setCategory(move, category);
+            SetCategory(move, category);
 
             ajustOldSummaries(move.ID);
 
@@ -50,7 +50,7 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        private void setCategory(BaseMove baseMove, Category category)
+        internal void SetCategory(BaseMove baseMove, Category category)
         {
             if (category != null)
                 baseMove.Category = Parent.Admin.SelectCategoryById(category.ID);

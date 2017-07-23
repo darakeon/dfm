@@ -22,6 +22,8 @@ namespace DFM.BusinessLogic.Services
             return SingleOrDefault(u => u.Email == email);
         }
 
+
+
         internal User ValidateAndGet(String email, String password)
         {
             var user = SelectByEmail(email);
@@ -32,7 +34,6 @@ namespace DFM.BusinessLogic.Services
 
             return user;
         }
-
 
 
 
@@ -53,12 +54,14 @@ namespace DFM.BusinessLogic.Services
             update(user, true);
         }
 
+
         internal User ChangePassword(User user)
         {
             user.Password = encrypt(user.Password);
 
             return update(user);
         }
+
 
         private User update(User user, Boolean keepActive = false)
         {
@@ -105,6 +108,7 @@ namespace DFM.BusinessLogic.Services
             if (!userIsNew) return;
 
             user.Active = false;
+            // TODO: update this to set the person browser language
             user.Language = "pt-BR";
             user.Creation = DateTime.Now;
             user.Password = encrypt(user.Password);
@@ -138,6 +142,8 @@ namespace DFM.BusinessLogic.Services
             if (currentUser == null || currentUser.Email != security.User.Email)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
         }
+
+
 
     }
 }

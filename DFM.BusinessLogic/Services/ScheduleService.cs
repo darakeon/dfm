@@ -13,11 +13,39 @@ namespace DFM.BusinessLogic.Services
     {
         internal ScheduleService(IRepository<Schedule> repository) : base(repository) { }
 
+
+
         internal void SaveOrUpdate(Schedule schedule)
         {
             SaveOrUpdate(schedule, complete, validate);
         }
 
+        private static void complete(Schedule schedule)
+        {
+            // ReSharper disable InvertIf
+            if (schedule.ID == 0)
+            // ReSharper restore InvertIf
+            {
+                schedule.Active = true;
+                schedule.Begin = schedule.GetNextRunDate();
+                schedule.User = schedule.GetUser();
+            }
+        }
+
+        private static void validate(Schedule schedule)
+        {
+            var isCreating = schedule.ID == 0;
+            var hasNoFuture = !schedule.FutureMoveList.Any();
+
+            if (isCreating && hasNoFuture)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
+
+            if (schedule.Times <= 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
+        }
+
+
+        
         internal IList<Schedule> GetScheduleToRun(User user)
         {
             var scheduleList = getRunnableAndDisableOthers(user);
@@ -47,32 +75,6 @@ namespace DFM.BusinessLogic.Services
         }
 
         
-        private static void complete(Schedule schedule)
-        {
-            // ReSharper disable InvertIf
-            if (schedule.ID == 0)
-            // ReSharper restore InvertIf
-            {
-                schedule.Active = true;
-                schedule.Begin = schedule.GetNextRunDate();
-                schedule.User = schedule.GetUser();
-            }
-        }
-
-        private static void validate(Schedule schedule)
-        {
-            var isCreating = schedule.ID == 0;
-            var hasNoFuture = !schedule.FutureMoveList.Any();
-
-            if (isCreating && hasNoFuture)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
-
-            if (schedule.Times <= 0)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
-        }
-
-
-
 
         internal DateTime GetNextRunDate(Schedule schedule)
         {

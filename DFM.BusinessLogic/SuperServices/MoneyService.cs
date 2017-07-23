@@ -40,7 +40,7 @@ namespace DFM.BusinessLogic.SuperServices
             
             try
             {
-                move = Parent.BaseMove.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
+                move = Parent.BaseMove.SaveOrUpdateMove(move, accountOut, accountIn, category);
 
                 CommitTransaction();
             }

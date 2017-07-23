@@ -60,7 +60,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var move = futureMove.CastToKill();
 
-                Parent.BaseMove.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
+                Parent.BaseMove.SaveOrUpdateMove(move, accountOut, accountIn, category);
 
                 futureMoveService.Delete(futureMove.ID);
 
@@ -77,18 +77,12 @@ namespace DFM.BusinessLogic.SuperServices
 
         public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn, Category category, Schedule schedule)
         {
-            futureMove.Out = accountOut == null 
-                ? null 
-                : Parent.Admin.SelectAccountByName(accountOut.Name, accountOut.User);
-
-            futureMove.In = accountIn == null 
-                ? null 
-                : Parent.Admin.SelectAccountByName(accountIn.Name, accountIn.User);
-
             BeginTransaction();
 
             try
             {
+                placeAccountsInMove(futureMove, accountOut, accountIn);
+
                 futureMove = saveOrUpdateSchedule(futureMove, category, schedule);
                 
                 CommitTransaction();
@@ -102,12 +96,21 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
+        private void placeAccountsInMove(FutureMove futureMove, Account accountOut, Account accountIn)
+        {
+            futureMove.Out = accountOut == null 
+                ? null : Parent.Admin.SelectAccountByName(accountOut.Name, accountOut.User);
+
+            futureMove.In = accountIn == null 
+                ? null : Parent.Admin.SelectAccountByName(accountIn.Name, accountIn.User);
+        }
+
         private FutureMove saveOrUpdateSchedule(FutureMove futureMove, Category category, Schedule schedule)
         {
             if (schedule == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
 
-            setCategory(futureMove, category);
+            Parent.BaseMove.SetCategory(futureMove, category);
 
             if (!schedule.FutureMoveList.Contains(futureMove))
                 schedule.FutureMoveList.Add(futureMove);
@@ -117,12 +120,6 @@ namespace DFM.BusinessLogic.SuperServices
             futureMove = saveMove(futureMove);
 
             return futureMove;
-        }
-
-        private void setCategory(FutureMove futureMove, Category category)
-        {
-            if (category != null)
-                futureMove.Category = Parent.Admin.SelectCategoryById(category.ID);
         }
 
         private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule)

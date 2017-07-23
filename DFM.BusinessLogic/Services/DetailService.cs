@@ -11,7 +11,15 @@ namespace DFM.BusinessLogic.Services
     {
         internal DetailService(IRepository<Detail> repository) : base(repository) { }
 
-        internal Detail SaveOrUpdate(Detail detail, BaseMove baseMove)
+        internal void SaveDetails(BaseMove baseMove)
+        {
+            foreach (var detail in baseMove.DetailList)
+            {
+                saveOrUpdate(detail, baseMove);
+            }
+        }
+
+        private void saveOrUpdate(Detail detail, BaseMove baseMove)
         {
             try
             {
@@ -22,7 +30,7 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
             }
 
-            return SaveOrUpdate(detail, validate);
+            SaveOrUpdate(detail, validate);
         }
 
 
@@ -42,13 +50,6 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void SaveDetails(BaseMove baseMove)
-        {
-            foreach (var detail in baseMove.DetailList)
-            {
-                SaveOrUpdate(detail, baseMove);
-            }
-        }
 
     }
 }

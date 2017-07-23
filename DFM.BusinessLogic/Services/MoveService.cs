@@ -42,8 +42,8 @@ namespace DFM.BusinessLogic.Services
 
             if (!user.SendMoveEmail) return;
 
-            var accountInName = accountName(move.AccIn());
-            var accountOutName = accountName(move.AccOut());
+            var accountInName = getAccountName(move.AccIn());
+            var accountOutName = getAccountName(move.AccOut());
 
             var format = new Format(user.Language, move.Nature);
 
@@ -97,11 +97,10 @@ namespace DFM.BusinessLogic.Services
             return details.ToString();
         }
 
-        private static String accountName(Account account)
+        private static String getAccountName(Account account)
         {
             return account == null
-                       ? null
-                       : account.Name;
+                ? null : account.Name;
         }
         #endregion
 
