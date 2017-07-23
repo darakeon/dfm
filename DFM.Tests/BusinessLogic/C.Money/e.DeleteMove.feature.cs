@@ -64,7 +64,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
 #line 6
  testRunner.And("I have a category");
 #line 7
- testRunner.And("I have a move with value 10");
+ testRunner.And("I have a move with value 10 (Out)");
 #line hidden
         }
         

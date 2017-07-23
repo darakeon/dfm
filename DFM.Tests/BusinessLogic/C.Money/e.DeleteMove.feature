@@ -4,7 +4,7 @@ Background:
 	Given I have an user
 	And I have two accounts
 	And I have a category
-	And I have a move with value 10
+	And I have a move with value 10 (Out)
 
 Scenario: 01. Try to delete Move with wrong ID (E)
 	Given I pass an id of Move that doesn't exist

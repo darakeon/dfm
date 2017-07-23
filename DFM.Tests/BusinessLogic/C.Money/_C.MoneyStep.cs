@@ -37,6 +37,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
             get { return "new " + AccountOutName; }
         }
 
+        private static String newAccountInName
+        {
+            get { return "new " + AccountInName; }
+        }
+
         private static String newCategoryName
         {
             get { return "new " + CategoryName; }
@@ -58,6 +63,24 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             get { return Get<Double>("NewMonthCategoryAccountOutTotal"); }
             set { Set("NewMonthCategoryAccountOutTotal", value); }
+        }
+
+        private static Double newAccountInTotal
+        {
+            get { return Get<Double>("NewAccountInTotal"); }
+            set { Set("NewAccountInTotal", value); }
+        }
+
+        private static Double newYearCategoryAccountInTotal
+        {
+            get { return Get<Double>("NewYearCategoryAccountInTotal"); }
+            set { Set("NewYearCategoryAccountInTotal", value); }
+        }
+
+        private static Double newMonthCategoryAccountInTotal
+        {
+            get { return Get<Double>("NewMonthCategoryAccountInTotal"); }
+            set { Set("NewMonthCategoryAccountInTotal", value); }
         }
         #endregion
 
@@ -136,7 +159,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             }
         }
 
-        
+
         [Given(@"I change the account out of the move")]
         public void GivenIChangeTheAccountOutOfTheMove()
         {
@@ -148,6 +171,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
             newAccountOutTotal = AccountOut.Sum();
             newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
             newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+        }
+
+
+        [Given(@"I change the account in of the move")]
+        public void GivenIChangeTheAccountInOfTheMove()
+        {
+            AccountIn = GetOrCreateAccount(newAccountInName);
+
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
+
+            newAccountInTotal = AccountIn.Sum();
+            newYearCategoryAccountInTotal = year[Category.Name, true].In;
+            newMonthCategoryAccountInTotal = month[Category.Name, true].In;
         }
 
         
@@ -228,7 +265,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 [(Int16)oldDate.Year]
                 [(Int16)oldDate.Month]
                 [CategoryName];
-            
+
             Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
         }
 
@@ -243,6 +280,80 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 [Category.Name];
 
             Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
+        }
+
+
+        [Then(@"the old-accountIn value will change in (\-?\d+)")]
+        public void ThenTheOldAccountInValueWillChangeIn(Double value)
+        {
+            var account = GetOrCreateAccount(AccountInName);
+
+            var currentTotal = account.Sum();
+
+            Assert.AreEqual(AccountInTotal + value, currentTotal);
+        }
+
+        [Then(@"the new-accountIn value will change in (\-?\d+)")]
+        public void ThenTheNewAccountInValueWillChangeIn(Double value)
+        {
+            var account = GetOrCreateAccount(AccountIn.Name);
+
+            var currentTotal = account.Sum();
+
+            Assert.AreEqual(newAccountInTotal + value, currentTotal);
+        }
+
+
+        [Then(@"the old-year-category-accountIn value will change in (\-?\d+)")]
+        public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Double value)
+        {
+            var account = GetOrCreateAccount(AccountInName);
+
+            var summary = account
+                [(Int16)oldDate.Year]
+                [CategoryName];
+
+            Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
+        }
+
+        [Then(@"the new-year-category-accountIn value will change in (\-?\d+)")]
+        public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Double value)
+        {
+
+            var account = GetOrCreateAccount(AccountIn.Name);
+
+            var summary = account
+                [(Int16)Move.Date.Year]
+                [Category.Name];
+
+            Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
+        }
+
+
+        [Then(@"the old-month-category-accountIn value will change in (\-?\d+)")]
+        public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Double value)
+        {
+            var account = GetOrCreateAccount(AccountInName);
+
+            var summary = account
+                [(Int16)oldDate.Year]
+                [(Int16)oldDate.Month]
+                [CategoryName];
+
+            Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
+        }
+
+        [Then(@"the new-month-category-accountIn value will change in (\-?\d+)")]
+        public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Double value)
+        {
+            var account = GetOrCreateAccount(AccountIn.Name);
+
+            var summary = account
+                [(Int16)Move.Date.Year]
+                [(Int16)Move.Date.Month]
+                [Category.Name];
+
+            Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
         }
 
 
@@ -416,13 +527,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
             makeMove(10);
         }
 
-        [Given(@"I have a move with value (\-?\d+)")]
-        public void GivenIHaveAMoveWithValue(Double value)
+        [Given(@"I have a move with value (\-?\d+) \((\w+)\)")]
+        public void GivenIHaveAMoveWithValue(Double value, String nature)
         {
-            makeMove(value);
+            var moveNature = EnumX.Parse<MoveNature>(nature);
+
+            makeMove(value, moveNature);
         }
 
-        private void makeMove(Double value)
+        private void makeMove(Double value, MoveNature nature = MoveNature.Out)
         {
             oldDate = DateTime.Today;
 
@@ -430,7 +543,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             {
                 Description = "Description",
                 Date = oldDate,
-                Nature = MoveNature.Out,
+                Nature = nature,
             };
 
             // TODO: use this, delete above
@@ -445,22 +558,39 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             Move.DetailList.Add(newDetail);
             
-            AccountOut = GetOrCreateAccount(AccountOutName);
-            AccountIn = null;
+            AccountOut = nature == MoveNature.In
+                ? null : GetOrCreateAccount(AccountOutName);
+
+            AccountIn = nature == MoveNature.Out
+                ? null : GetOrCreateAccount(AccountInName);
+
             Category = GetOrCreateCategory(CategoryName);
 
             SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn, Category);
 
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            if (AccountOut != null)
+            {
+                var year = AccountOut[Move.Date.Year, true];
+                var month = year[Move.Date.Month, true];
 
-            var year = AccountOut[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+                AccountOutTotal = AccountOut.Sum();
+                YearAccountOutTotal = year.Sum();
+                MonthAccountOutTotal = month.Sum();
+                YearCategoryAccountOutTotal = year[Category.Name, true].Out;
+                MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            }
 
-            AccountOutTotal = AccountOut.Sum();
-            YearAccountOutTotal = year.Sum();
-            MonthAccountOutTotal = month.Sum();
-            YearCategoryAccountOutTotal = year[Category.Name, true].Out;
-            MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            if (AccountIn != null)
+            {
+                var year = AccountIn[Move.Date.Year, true];
+                var month = year[Move.Date.Month, true];
+
+                AccountInTotal = AccountIn.Sum();
+                //YearAccountInTotal = year.Sum();
+                //MonthAccountInTotal = month.Sum();
+                YearCategoryAccountInTotal = year[Category.Name, true].In;
+                MonthCategoryAccountInTotal = month[Category.Name, true].In;
+            }
         }
 
 
