@@ -1,5 +1,6 @@
 ﻿using System;
 using Ak.Generic.Collection;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -93,9 +94,7 @@ namespace DFM.BusinessLogic.SuperServices
             AjustSummaries(oldMove);
         }
 
-        // ReSharper disable SuggestBaseTypeForParameter
         internal void AjustSummaries(Move move)
-        // ReSharper restore SuggestBaseTypeForParameter
         {
             if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
                 ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccIn());
@@ -151,6 +150,7 @@ namespace DFM.BusinessLogic.SuperServices
             return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, baseMove.Category);
         }
 
-    
+
+
     }
 }

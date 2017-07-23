@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -40,6 +41,17 @@ namespace DFM.BusinessLogic.SuperServices
             if (Parent.Current.User == null || !Parent.Current.User.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
         }
+
+        protected void VerifyMove(BaseMove move)
+        {
+            if (move == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+
+            if (move.User() != Parent.Current.User)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+        }
+
+    
 
     }
 }

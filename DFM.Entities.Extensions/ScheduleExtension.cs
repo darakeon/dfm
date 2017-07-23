@@ -24,11 +24,6 @@ namespace DFM.Entities.Extensions
                 .Min(m => m.Date);
         }
 
-        public static User GetUser(this Schedule schedule)
-        {
-            return schedule.FutureMoveList.FirstOrDefault().User();
-        }
-
 
         public static DateTime LastDate(this Schedule schedule)
         {

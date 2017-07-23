@@ -62,6 +62,8 @@ namespace DFM.BusinessLogic.SuperServices
         {
             VerifyUser();
 
+            account.User = Parent.Current.User;
+
             BeginTransaction();
 
             try
@@ -71,8 +73,6 @@ namespace DFM.BusinessLogic.SuperServices
                     var oldAccount = SelectAccountByName(account.Name);
 
                     account.ID = oldAccount.ID;
-                    // TODO: use Current User
-                    account.User = oldAccount.User;
 
                     if (!String.IsNullOrEmpty(newName))
                         account.Name = newName;
@@ -152,6 +152,8 @@ namespace DFM.BusinessLogic.SuperServices
         {
             VerifyUser();
 
+            category.User = Parent.Current.User;
+
             BeginTransaction();
 
             try
@@ -161,8 +163,6 @@ namespace DFM.BusinessLogic.SuperServices
                     var oldCategory = SelectCategoryByName(category.Name);
 
                     category.ID = oldCategory.ID;
-                    // TODO: use Current User
-                    category.User = oldCategory.User;
 
                     if (!String.IsNullOrEmpty(newName))
                         category.Name = newName;

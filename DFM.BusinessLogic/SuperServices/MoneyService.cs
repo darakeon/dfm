@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -28,12 +29,10 @@ namespace DFM.BusinessLogic.SuperServices
 
             var move = moveService.SelectById(id);
 
-            if (move == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+            VerifyMove(move);
 
             return move;
         }
-
 
 
         public Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
@@ -72,6 +71,9 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 var move = SelectMoveById(id);
 
+                VerifyMove(move);
+
+
                 monthService.RemoveMoveFromMonth(move);
                 Parent.BaseMove.AjustSummaries(move);
 
@@ -105,6 +107,11 @@ namespace DFM.BusinessLogic.SuperServices
 
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
+
+            if (detail.Move == null)
+                VerifyMove(detail.FutureMove);
+            else
+                VerifyMove(detail.Move);
 
             return detail;
         }

@@ -63,7 +63,7 @@ VERSÃO 1.0.2.3
 						AntiForgeryToken
 						Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
 						Não enviar e-mail caso dê erro ao mexer na movimentação
-						Proteger edição de objeto (user) no core
+07/03/2013	07/03/2013	Proteger edição de objeto (user) no core
 07/03/2013	07/03/2013	Numerar enums (segurança para o banco)
 03/03/2013	07/03/2013	Usar url da conta no MVC
 03/03/2013	03/03/2013	Possibilitar url escolhida para a conta
