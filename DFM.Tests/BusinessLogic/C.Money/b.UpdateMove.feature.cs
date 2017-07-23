@@ -76,9 +76,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Given("I have a move with value 10 (Out)");
 #line 10
- testRunner.And("I change the move date in -1 day");
+ testRunner.When("I change the move date in -1 day");
 #line 11
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 12
  testRunner.Then("I will receive no core error");
 #line 13
@@ -101,9 +101,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
  testRunner.Given("I have a move with value 10 (Out)");
 #line 19
- testRunner.And("I change the move date in -1 month");
+ testRunner.When("I change the move date in -1 month");
 #line 20
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 21
  testRunner.Then("I will receive no core error");
 #line 22
@@ -128,9 +128,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.Given("I have a move with value 10 (Out)");
 #line 29
- testRunner.And("I change the move date in -1 year");
+ testRunner.When("I change the move date in -1 year");
 #line 30
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 31
  testRunner.Then("I will receive no core error");
 #line 32
@@ -157,9 +157,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 40
  testRunner.Given("I have a move with value 10 (Out)");
 #line 41
- testRunner.And("I change the category of the move");
+ testRunner.When("I change the category of the move");
 #line 42
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 43
  testRunner.Then("I will receive no core error");
 #line 44
@@ -190,9 +190,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 54
  testRunner.Given("I have a move with value 10 (Out)");
 #line 55
- testRunner.And("I change the account out of the move");
+ testRunner.When("I change the account out of the move");
 #line 56
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 57
  testRunner.Then("I will receive no core error");
 #line 58
@@ -221,9 +221,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 67
  testRunner.Given("I have a move with value 10 (In)");
 #line 68
- testRunner.And("I change the account in of the move");
+ testRunner.When("I change the account in of the move");
 #line 69
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 70
  testRunner.Then("I will receive no core error");
 #line 71
@@ -252,9 +252,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 80
  testRunner.Given("I have a move with value 10 (Transfer)");
 #line 81
- testRunner.And("I change the account out of the move");
+ testRunner.When("I change the account out of the move");
 #line 82
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 83
  testRunner.Then("I will receive no core error");
 #line 84
@@ -283,9 +283,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 93
  testRunner.Given("I have a move with value 10 (Transfer)");
 #line 94
- testRunner.And("I change the account in of the move");
+ testRunner.When("I change the account in of the move");
 #line 95
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 96
  testRunner.Then("I will receive no core error");
 #line 97
@@ -314,11 +314,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 106
  testRunner.Given("I have a move with value 10 (Transfer)");
 #line 107
- testRunner.And("I change the account out of the move");
+ testRunner.When("I change the account out of the move");
 #line 108
  testRunner.And("I change the account in of the move");
 #line 109
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 110
  testRunner.Then("I will receive no core error");
 #line 111
@@ -359,9 +359,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 126
  testRunner.Given("I have a move with value 10 (Out)");
 #line 127
- testRunner.And("I change the move out to in");
+ testRunner.When("I change the move out to in");
 #line 128
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 129
  testRunner.Then("I will receive no core error");
 #line 130
@@ -390,9 +390,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 139
  testRunner.Given("I have a move with value 10 (In)");
 #line 140
- testRunner.And("I change the move in to out");
+ testRunner.When("I change the move in to out");
 #line 141
- testRunner.When("I update the move");
+ testRunner.And("I update the move");
 #line 142
  testRunner.Then("I will receive no core error");
 #line 143

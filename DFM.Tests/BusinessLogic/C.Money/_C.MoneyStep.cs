@@ -151,7 +151,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         #endregion
 
         #region UpdateMove
-        [Given(@"I change the move date in (\-?\d+) (\w+)")]
+        [When(@"I change the move date in (\-?\d+) (\w+)")]
         public void GivenIChangeTheMoveDateIn1Day(Int32 count, String frequency)
         {
             switch (frequency)
@@ -183,14 +183,14 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Given(@"I change the category of the move")]
+        [When(@"I change the category of the move")]
         public void GivenIChangeTheCategoryOfTheMove()
         {
             Category = GetOrCreateCategory(newCategoryName);
         }
 
 
-        [Given(@"I change the account out of the move")]
+        [When(@"I change the account out of the move")]
         public void GivenIChangeTheAccountOutOfTheMove()
         {
             AccountOut = GetOrCreateAccount(newAccountOutName);
@@ -204,7 +204,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Given(@"I change the account in of the move")]
+        [When(@"I change the account in of the move")]
         public void GivenIChangeTheAccountInOfTheMove()
         {
             AccountIn = GetOrCreateAccount(newAccountInName);
@@ -218,7 +218,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Given(@"I change the move out to in")]
+        [When(@"I change the move out to in")]
         public void GivenIChangeTheMoveOutToIn()
         {
             Move.Nature = MoveNature.In;
@@ -236,7 +236,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Given(@"I change the move in to out")]
+        [When(@"I change the move in to out")]
         public void GivenIChangeTheMoveInToOut()
         {
             Move.Nature = MoveNature.Out;
