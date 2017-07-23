@@ -100,20 +100,21 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will not be saved")]
         public void ThenTheUserWillNotBeSaved()
         {
-            User savedUser = null;
+            ticket = null;
+            Error = null;
 
             try
             {
-                SA.Safe.ValidateUserAndGetTicket(email, password);
-
-                savedUser = SA.Safe.SelectUserByTicket(email);
+                ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
             }
             catch (DFMCoreException e)
             {
-                Assert.AreEqual(ExceptionPossibilities.InvalidUser, e.Type);
+                Error = e;
             }
 
-            Assert.IsNull(savedUser);
+            Assert.IsNull(ticket);
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.InvalidUser, Error.Type);
         }
 
         [Then(@"the user will not be changed")]
@@ -250,7 +251,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         }
         #endregion
         
-        #region SelectUserByEmail
+        #region SelectUserByTicket
         [When(@"I try to get the user")]
         public void WhenITryToGetTheUser()
         {
@@ -259,21 +260,6 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             try
             {
                 User = SA.Safe.SelectUserByTicket(ticket);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-        }
-
-        [When(@"I try to get the user without password")]
-        public void WhenITryToGetTheUserWithoutPassword()
-        {
-            User = null;
-
-            try
-            {
-                User = SA.Safe.SelectUserByTicket(email);
             }
             catch (DFMCoreException e)
             {

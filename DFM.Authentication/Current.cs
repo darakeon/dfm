@@ -33,9 +33,9 @@ namespace DFM.Authentication
                 if (!Authenticate.IsAuthenticated)
                     return null;
                 
-                var username = Authenticate.Username;
+                var ticket = Authenticate.Username;
 
-                return userService.SelectUserByTicket(username);
+                return userService.SelectUserByTicket(ticket);
             }
         }
 
@@ -76,11 +76,11 @@ namespace DFM.Authentication
             if (!isWeb)
                 throw DFMAuthException.NotWeb();
 
-            userService.ValidateUserAndGetTicket(username, password);
+            var ticket = userService.ValidateUserAndGetTicket(username, password);
 
-            Authenticate.Set(username, response, isPersistent);
+            Authenticate.Set(ticket, response, isPersistent);
 
-            return userService.SelectUserByTicket(username);
+            return userService.SelectUserByTicket(ticket);
         }
 
 
@@ -100,11 +100,6 @@ namespace DFM.Authentication
 
             Authenticate.Clean(request);
         }
-
-
-
-
-
 
 
 
