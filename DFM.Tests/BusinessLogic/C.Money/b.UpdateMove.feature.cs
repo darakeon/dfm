@@ -348,6 +348,68 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("10. Update the move Out to In")]
+        public virtual void _10_UpdateTheMoveOutToIn()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10. Update the move Out to In", ((string[])(null)));
+#line 125
+this.ScenarioSetup(scenarioInfo);
+#line 126
+ testRunner.Given("I have a move with value 10 (Out)");
+#line 127
+ testRunner.And("I change the move out to in");
+#line 128
+ testRunner.When("I update the move");
+#line 129
+ testRunner.Then("I will receive no core error");
+#line 130
+ testRunner.And("the old-accountOut value will change in 10");
+#line 131
+ testRunner.And("the new-accountIn value will change in 10");
+#line 132
+ testRunner.And("the old-month-category-accountOut value will change in -10");
+#line 133
+ testRunner.And("the new-month-category-accountIn value will change in 10");
+#line 134
+ testRunner.And("the old-year-category-accountOut value will change in -10");
+#line 135
+ testRunner.And("the new-year-category-accountIn value will change in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("11. Update the move In to Out")]
+        public virtual void _11_UpdateTheMoveInToOut()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Update the move In to Out", ((string[])(null)));
+#line 138
+this.ScenarioSetup(scenarioInfo);
+#line 139
+ testRunner.Given("I have a move with value 10 (In)");
+#line 140
+ testRunner.And("I change the move in to out");
+#line 141
+ testRunner.When("I update the move");
+#line 142
+ testRunner.Then("I will receive no core error");
+#line 143
+ testRunner.And("the old-accountIn value will change in -10");
+#line 144
+ testRunner.And("the new-accountOut value will change in -10");
+#line 145
+ testRunner.And("the old-month-category-accountIn value will change in -10");
+#line 146
+ testRunner.And("the new-month-category-accountOut value will change in 10");
+#line 147
+ testRunner.And("the old-year-category-accountIn value will change in -10");
+#line 148
+ testRunner.And("the new-year-category-accountOut value will change in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

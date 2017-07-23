@@ -120,3 +120,29 @@ Scenario: 09. Update the move Account Transfer (Both)
 	And the old-month-category-accountIn value will change in -10
 	And the new-year-category-accountIn value will change in 10
 	And the old-year-category-accountIn value will change in -10
+
+
+Scenario: 10. Update the move Out to In
+	Given I have a move with value 10 (Out)
+	And I change the move out to in
+	When I update the move
+	Then I will receive no core error
+	And the old-accountOut value will change in 10
+	And the new-accountIn value will change in 10
+	And the old-month-category-accountOut value will change in -10
+	And the new-month-category-accountIn value will change in 10
+	And the old-year-category-accountOut value will change in -10
+	And the new-year-category-accountIn value will change in 10
+
+
+Scenario: 11. Update the move In to Out
+	Given I have a move with value 10 (In)
+	And I change the move in to out
+	When I update the move
+	Then I will receive no core error
+	And the old-accountIn value will change in -10
+	And the new-accountOut value will change in -10
+	And the old-month-category-accountIn value will change in -10
+	And the new-month-category-accountOut value will change in 10
+	And the old-year-category-accountIn value will change in -10
+	And the new-year-category-accountOut value will change in 10

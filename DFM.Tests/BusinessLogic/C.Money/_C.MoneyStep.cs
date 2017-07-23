@@ -160,6 +160,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
+        [Given(@"I change the category of the move")]
+        public void GivenIChangeTheCategoryOfTheMove()
+        {
+            Category = GetOrCreateCategory(newCategoryName);
+        }
+
+
         [Given(@"I change the account out of the move")]
         public void GivenIChangeTheAccountOutOfTheMove()
         {
@@ -187,13 +194,43 @@ namespace DFM.Tests.BusinessLogic.C.Money
             newMonthCategoryAccountInTotal = month[Category.Name, true].In;
         }
 
-        
-        [Given(@"I change the category of the move")]
-        public void GivenIChangeTheCategoryOfTheMove()
+
+        [Given(@"I change the move out to in")]
+        public void GivenIChangeTheMoveOutToIn()
         {
-            Category = GetOrCreateCategory(newCategoryName);
+            Move.Nature = MoveNature.In;
+
+            AccountOut = null;
+
+            AccountIn = GetOrCreateAccount(newAccountInName);
+
+            var year = AccountIn[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
+
+            newAccountInTotal = AccountIn.Sum();
+            newYearCategoryAccountInTotal = year[Category.Name, true].In;
+            newMonthCategoryAccountInTotal = month[Category.Name, true].In;
         }
-        
+
+
+        [Given(@"I change the move in to out")]
+        public void GivenIChangeTheMoveInToOut()
+        {
+            Move.Nature = MoveNature.Out;
+
+            AccountIn = null;
+
+            AccountOut = GetOrCreateAccount(newAccountOutName);
+
+            var year = AccountOut[Move.Date.Year, true];
+            var month = year[Move.Date.Month, true];
+
+            newAccountOutTotal = AccountOut.Sum();
+            newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
+            newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+        }
+
+
         
         [When(@"I update the move")]
         public void WhenIUpdateTheMove()
