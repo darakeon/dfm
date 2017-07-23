@@ -327,7 +327,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And the year-category-accountIn value will not change
 
 Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
-Given I have this future move to create
+	Given I have this future move to create
 		| Description | Date       | Nature   | Value |
 		| Move Da36   | 2012-03-31 | Transfer | 10    |
 	And it has no Details

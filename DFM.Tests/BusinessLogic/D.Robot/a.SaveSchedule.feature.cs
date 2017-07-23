@@ -1093,7 +1093,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Transfer",
                         "10"});
 #line 330
-testRunner.Given("I have this future move to create", ((string)(null)), table37);
+ testRunner.Given("I have this future move to create", ((string)(null)), table37);
 #line 333
  testRunner.And("it has no Details");
 #line hidden
