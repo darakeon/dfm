@@ -645,7 +645,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
             }
 
-            if (AccountIn != null)
+            if (accountInName != null)
             {
                 AccountIn = SA.Admin.SelectAccountByName(accountInName, User);
 
