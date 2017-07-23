@@ -11,7 +11,7 @@ namespace DFM.Repositories
 {
     public class BaseData<T> : IRepository<T> where T : class, IEntity
     {
-        protected static ISession Session
+        private static ISession session
         {
             get { return NHManager.Session; }
         }
@@ -19,7 +19,7 @@ namespace DFM.Repositories
 
         protected ICriteria CreateSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
         {
-            return Session.CreateCriteria<T>().Add(Restrictions.Where(expression));
+            return session.CreateCriteria<T>().Add(Restrictions.Where(expression));
         }
 
 
@@ -37,10 +37,10 @@ namespace DFM.Repositories
         {
             try
             {
-                if (entity.ID == 0 || Session.Contains(entity))
-                    Session.SaveOrUpdate(entity);
+                if (entity.ID == 0 || session.Contains(entity))
+                    session.SaveOrUpdate(entity);
                 else
-                    Session.Merge(entity);
+                    session.Merge(entity);
             }
             catch (Exception e)
             {
@@ -75,9 +75,9 @@ namespace DFM.Repositories
             
             if (entity != null)
             {
-                Session.Evict(entity);
+                session.Evict(entity);
                 entity = SelectById(id);
-                Session.Evict(entity);
+                session.Evict(entity);
             }
 
             return entity;
@@ -88,13 +88,13 @@ namespace DFM.Repositories
         public void Delete(T obj)
         {
             if (obj != null)
-                Session.Delete(obj);
+                session.Delete(obj);
         }
 
 
         public T SelectById(Int32 id)
         {
-            return Session.Get<T>(id);
+            return session.Get<T>(id);
         }
 
 
@@ -109,39 +109,7 @@ namespace DFM.Repositories
 
 
 
-        public void BeginTransaction()
-        {
-            if (Session.Transaction != null 
-                    && Session.Transaction.IsActive)
-                throw new DFMRepositoryException("There's a Transaction opened already.");
-
-            Session.BeginTransaction();
-        }
-
-
-        public void CommitTransaction()
-        {
-            testTransaction();
-            
-            Session.Transaction.Commit();
-
-            Session.Flush();
-        }
-
-        public void RollbackTransaction()
-        {
-            testTransaction();
-            
-            Session.Transaction.Rollback();
-
-            Session.Clear();
-        }
-
-        private static void testTransaction()
-        {
-            if (Session.Transaction.WasCommitted || Session.Transaction.WasRolledBack)
-                throw new AccessViolationException("There's a Transaction opened already.");
-        }
+        
 
     }
 }

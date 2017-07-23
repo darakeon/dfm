@@ -6,12 +6,13 @@ using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafeService
+    public class SafeService : BaseSuper
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;
 
-        internal SafeService(UserService userService, SecurityService securityService)
+        internal SafeService(ServiceAccess serviceAccess, UserService userService, SecurityService securityService)
+            : base(serviceAccess)
         {
             this.userService = userService;
             this.securityService = securityService;
@@ -37,7 +38,7 @@ namespace DFM.BusinessLogic.SuperServices
         
         public void SaveUserAndSendVerify(String email, String password)
         {
-            userService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
@@ -47,11 +48,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 sendUserVerify(user);
 
-                userService.CommitTransaction();
+                CommitTransaction();
             }
             catch
             {
-                userService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
@@ -87,7 +88,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void ActivateUser(String token)
         {
-            securityService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
@@ -97,11 +98,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction();
+                CommitTransaction();
             }
             catch (Exception)
             {
-                securityService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
 
@@ -113,7 +114,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (String.IsNullOrEmpty(password))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
-            securityService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
@@ -125,11 +126,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                securityService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
@@ -153,17 +154,17 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeactivateToken(String token)
         {
-            securityService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 securityService.Deactivate(token);
 
-                securityService.CommitTransaction();
+                CommitTransaction();
             }
             catch (Exception)
             {
-                securityService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }

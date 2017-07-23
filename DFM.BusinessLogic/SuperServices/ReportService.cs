@@ -7,13 +7,14 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class ReportService
+    public class ReportService : BaseSuper
     {
         private readonly AccountService accountService;
         private readonly YearService yearService;
         private readonly MonthService monthService;
 
-        internal ReportService(AccountService accountService, YearService yearService, MonthService monthService)
+        internal ReportService(ServiceAccess serviceAccess, AccountService accountService, YearService yearService, MonthService monthService)
+            : base(serviceAccess)
         {
             this.accountService = accountService;
             this.monthService = monthService;

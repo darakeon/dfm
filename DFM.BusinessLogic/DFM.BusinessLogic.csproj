@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bases\BaseMoveService.cs" />
+    <Compile Include="Bases\ITransactionController.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Bases\BaseService.cs" />
     <Compile Include="Services\CategoryService.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuperServices\AdminService.cs" />
+    <Compile Include="SuperServices\BaseSuper.cs" />
     <Compile Include="SuperServices\MoneyService.cs" />
     <Compile Include="SuperServices\ReportService.cs" />
     <Compile Include="SuperServices\RobotService.cs" />

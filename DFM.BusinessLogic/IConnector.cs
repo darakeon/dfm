@@ -6,5 +6,8 @@ namespace DFM.BusinessLogic
     public interface IConnector
     {
         IRepository<T> Resolve<T>() where T : class, IEntity;
+        ITransactionController GetTransactionController();
+
     }
+
 }

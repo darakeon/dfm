@@ -5,12 +5,13 @@ using DFM.Entities;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class AdminService
+    public class AdminService : BaseSuper
     {
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
 
-        internal AdminService(AccountService accountService, CategoryService categoryService)
+        internal AdminService(ServiceAccess serviceAccess, AccountService accountService, CategoryService categoryService)
+            : base(serviceAccess)
         {
             this.accountService = accountService;
             this.categoryService = categoryService;
@@ -40,48 +41,48 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateAccount(Account account)
         {
-            accountService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 accountService.SaveOrUpdate(account);
-                accountService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
 
         public void CloseAccount(Int32 id)
         {
-            accountService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 accountService.Close(id);
-                accountService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
 
         public void DeleteAccount(Int32 id)
         {
-            accountService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 accountService.Delete(id);
-                accountService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                accountService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
@@ -110,48 +111,48 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SaveOrUpdateCategory(Category category)
         {
-            categoryService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 categoryService.SaveOrUpdate(category);
-                categoryService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
 
         public void DisableCategory(Int32 id)
         {
-            categoryService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 categoryService.Disable(id);
-                categoryService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
 
         public void EnableCategory(Int32 id)
         {
-            categoryService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 categoryService.Enable(id);
-                categoryService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                categoryService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }

@@ -11,5 +11,10 @@ namespace DFM.Repositories
             return new BaseData<T>();
         }
 
+        public ITransactionController GetTransactionController()
+        {
+            return new TransactionController();
+        }
+
     }
 }

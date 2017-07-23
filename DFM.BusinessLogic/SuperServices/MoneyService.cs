@@ -9,7 +9,7 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class MoneyService
+    public class MoneyService : BaseSuper
     {
         private readonly MoveService moveService;
         private readonly DetailService detailService;
@@ -20,7 +20,8 @@ namespace DFM.BusinessLogic.SuperServices
         private readonly AccountService accountService;
         private readonly ScheduleService scheduleService;
 
-        internal MoneyService(MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, AccountService accountService, ScheduleService scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, CategoryService categoryService, SummaryService summaryService, MonthService monthService, YearService yearService, AccountService accountService, ScheduleService scheduleService)
+            : base(serviceAccess)
         {
             this.moveService = moveService;
             this.detailService = detailService;
@@ -48,19 +49,19 @@ namespace DFM.BusinessLogic.SuperServices
         #region Save or Update
         public Move SaveOrUpdateMove(Move move, Account accountOut, Account accountIn, Category category)
         {
-            moveService.BeginTransaction();
+            BeginTransaction();
             
             try
             {
                 move = SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
 
-                moveService.CommitTransaction();
+                CommitTransaction();
             }
             catch
             {
                 move.ID = 0;
 
-                moveService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
 
@@ -95,7 +96,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DeleteMove(Int32 id)
         {
-            moveService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
@@ -114,11 +115,11 @@ namespace DFM.BusinessLogic.SuperServices
                     scheduleService.SaveOrUpdate(move.Schedule);
                 }
 
-                moveService.CommitTransaction();
+                CommitTransaction();
             }
             catch (DFMCoreException)
             {
-                moveService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
 

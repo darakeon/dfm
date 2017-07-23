@@ -1,6 +1,7 @@
 ﻿using DFM.BusinessLogic.Services;
 using DFM.BusinessLogic.SuperServices;
 using DFM.Entities;
+using DFM.BusinessLogic.Bases;
 
 namespace DFM.BusinessLogic
 {
@@ -20,13 +21,17 @@ namespace DFM.BusinessLogic
             var user = new UserService(resolver.Resolve<User>());
             var year = new YearService(resolver.Resolve<Year>());
 
-            Money = new MoneyService(move, detail, category, summary, month, year, account, schedule);
-            Report = new ReportService(account, year, month);
-            Safe = new SafeService(user, security);
-            Admin = new AdminService(account, category);
-            Robot = new RobotService(Money, schedule, futureMove, detail, category, account);
+            TransactionController = resolver.GetTransactionController();
+
+            Safe = new SafeService(this, user, security);
+            Admin = new AdminService(this, account, category);
+            Money = new MoneyService(this, move, detail, category, summary, month, year, account, schedule);
+            Robot = new RobotService(this, schedule, futureMove, detail, category, account);
+            Report = new ReportService(this, account, year, month);
         }
 
+
+        internal ITransactionController TransactionController { get; private set; }
 
         public MoneyService Money { get; private set; }
         public ReportService Report { get; private set; }

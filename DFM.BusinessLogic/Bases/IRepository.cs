@@ -13,9 +13,5 @@ namespace DFM.BusinessLogic.Bases
         IList<T> List(Expression<Func<T, Boolean>> func);
         void Delete(T entity);
         T SelectOldById(Int32 id);
-
-        void BeginTransaction();
-        void CommitTransaction();
-        void RollbackTransaction();
     }
 }

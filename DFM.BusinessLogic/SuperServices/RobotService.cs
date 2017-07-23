@@ -7,20 +7,17 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class RobotService
+    public class RobotService : BaseSuper
     {
-        private readonly MoneyService moneyService;
-
         private readonly ScheduleService scheduleService;
         private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
         
-        internal RobotService(MoneyService moneyService, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, AccountService accountService)
+        internal RobotService(ServiceAccess serviceAccess, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, AccountService accountService)
+            : base(serviceAccess)
         {
-            this.moneyService = moneyService;
-
             this.scheduleService = scheduleService;
             this.futureMoveService = futureMoveService;
             this.detailService = detailService;
@@ -50,7 +47,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void transformFutureInMove(FutureMove futureMove)
         {
-            futureMoveService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
@@ -67,14 +64,15 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var move = futureMove.CastToKill();
 
-                moneyService.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
+                Parent.Money.SaveOrUpdateMoveWithOpenTransaction(move, accountOut, accountIn, category);
+
                 futureMoveService.Delete(futureMove.ID);
 
-                futureMoveService.CommitTransaction();
+                CommitTransaction();
             }
             catch
             {
-                futureMoveService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }
@@ -91,19 +89,19 @@ namespace DFM.BusinessLogic.SuperServices
                 ? null 
                 : accountService.SelectByName(accountIn.Name, accountIn.User);
 
-            futureMoveService.BeginTransaction();
+            BeginTransaction();
 
             try
             {
                 futureMove = saveOrUpdateSchedule(futureMove, category, schedule);
                 
-                futureMoveService.CommitTransaction();
+                CommitTransaction();
 
                 return futureMove;
             }
             catch
             {
-                futureMoveService.RollbackTransaction();
+                RollbackTransaction();
                 throw;
             }
         }

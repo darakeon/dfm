@@ -55,21 +55,5 @@ namespace DFM.BusinessLogic.Bases
             return repository.SelectOldById(id);
         }
 
-
-        internal void BeginTransaction()
-        {
-            repository.BeginTransaction();
-        }
-
-        internal void CommitTransaction()
-        {
-            repository.CommitTransaction();
-        }
-
-        internal void RollbackTransaction()
-        {
-            repository.RollbackTransaction();
-        }
-
     }
 }
