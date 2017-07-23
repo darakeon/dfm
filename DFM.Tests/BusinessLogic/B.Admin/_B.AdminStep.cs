@@ -12,16 +12,40 @@ namespace DFM.Tests.BusinessLogic.B.Admin
     public class AdminStep : BaseStep
     {
         #region Variables
-        private static Account olderAccount
+        private static Account oldAccount
         {
-            get { return Get<Account>("OlderAccount"); }
-            set { Set("OlderAccount", value); }
+            get { return Get<Account>("oldAccount"); }
+            set { Set("oldAccount", value); }
         }
 
-        private static Category olderCategory
+        private static String oldAccountName
         {
-            get { return Get<Category>("OlderCategory"); }
-            set { Set("OlderCategory", value); }
+            get { return Get<String>("oldAccountName"); }
+            set { Set("oldAccountName", value); }
+        }
+
+        private static String newAccountName
+        {
+            get { return Get<String>("newAccountName"); }
+            set { Set("newAccountName", value); }
+        }
+
+        private static Category oldCategory
+        {
+            get { return Get<Category>("oldCategory"); }
+            set { Set("oldCategory", value); }
+        }
+
+        private static String oldCategoryName
+        {
+            get { return Get<String>("oldCategoryName"); }
+            set { Set("oldCategoryName", value); }
+        }
+
+        private static String newCategoryName
+        {
+            get { return Get<String>("newCategoryName"); }
+            set { Set("newCategoryName", value); }
         }
         #endregion
 
@@ -45,7 +69,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             var accountData = table.Rows[0];
 
-            olderAccount = new Account
+            oldAccount = new Account
             {
                 Name = accountData["Name"],
                 RedLimit = GetInt(accountData["Red"]),
@@ -53,7 +77,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
                 User = User
             };
 
-            SA.Admin.SaveOrUpdateAccount(olderAccount);
+            SA.Admin.SaveOrUpdateAccount(oldAccount);
         }
 
         [When(@"I try to save the account")]
@@ -72,11 +96,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be changed")]
         public void ThenTheAccountWillNotBeChanged()
         {
-            var account = SA.Admin.SelectAccountByName(olderAccount.Name);
+            var account = SA.Admin.SelectAccountByName(oldAccount.Name);
 
-            Assert.AreEqual(olderAccount.Name, account.Name);
-            Assert.AreEqual(olderAccount.RedLimit, account.RedLimit);
-            Assert.AreEqual(olderAccount.YellowLimit, account.YellowLimit);
+            Assert.AreEqual(oldAccount.Name, account.Name);
+            Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
+            Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
 
             Assert.AreNotEqual(Account.RedLimit, account.RedLimit);
             Assert.AreNotEqual(Account.YellowLimit, account.YellowLimit);
@@ -123,6 +147,80 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             {
                 Error = e;
             }
+        }
+        #endregion
+
+        #region UpdateAccount
+        [Given(@"I have this account")]
+        public void GivenIHaveThisAccount(Table table)
+        {
+            var accountData = table.Rows[0];
+
+            oldAccountName = accountData["Name"];
+
+            Account = new Account
+            {
+                Name = oldAccountName,
+                User = User
+            };
+
+            SA.Admin.SaveOrUpdateAccount(Account);
+        }
+
+        [When(@"make this changes")]
+        public void WhenMakeThisChanges(Table table)
+        {
+            var accountData = table.Rows[0];
+
+            newAccountName = accountData["Name"];
+        }
+
+        [When(@"I try to update the account")]
+        public void WhenITryToUpdateTheAccount()
+        {
+            try
+            {
+                SA.Admin.SaveOrUpdateAccount(Account, newAccountName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"the account will be changed")]
+        public void ThenTheAccountWillBeChanged()
+        {
+            Account = null;
+            Error = null;
+
+            try
+            {
+                Account = SA.Admin.SelectAccountByName(oldAccountName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNull(Account);
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidAccount);
+
+            Account = null;
+            Error = null;
+
+            try
+            {
+                Account = SA.Admin.SelectAccountByName(newAccountName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Account);
+            Assert.IsNull(Error);
         }
         #endregion
 
@@ -226,13 +324,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             var categoryData = table.Rows[0];
 
-            olderCategory = new Category
+            oldCategory = new Category
             {
                 Name = categoryData["Name"],
                 User = User
             };
 
-            SA.Admin.SaveOrUpdateCategory(olderCategory);
+            SA.Admin.SaveOrUpdateCategory(oldCategory);
         }
 
         [When(@"I try to save the category")]
