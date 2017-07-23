@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Repositories;
+using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -39,7 +40,7 @@ namespace DFM.Tests.BusinessLogic
             Category = GetOrCreateCategory(CategoryName);
         }
 
-        [AfterStep]
+        [AfterScenarioBlock]
         public static void CloseSession()
         {
             NHManager.Close();
