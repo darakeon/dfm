@@ -25,7 +25,8 @@ Scenario: 91. Run with bounded schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -10
+	Then I will receive no core error
+	And the accountOut value will change in -10
 
 Scenario: 92. Run with boundless schedule (S)
 	Given I have this future move to create
@@ -41,7 +42,8 @@ Scenario: 92. Run with boundless schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -40
+	Then I will receive no core error
+	And the accountOut value will change in -40
 
 Scenario: 93. Run schedule that will finish (S)
 	Given I have this future move to create
@@ -57,7 +59,8 @@ Scenario: 93. Run schedule that will finish (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -30
+	Then I will receive no core error
+	And the accountOut value will change in -30
 
 Scenario: 94. Run schedule that wont finish (S)
 	Given I have this future move to create
@@ -73,7 +76,8 @@ Scenario: 94. Run schedule that wont finish (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -60
+	Then I will receive no core error
+	And the accountOut value will change in -60
 
 Scenario: 95. Run with daily schedule (S)
 	Given I have this future move to create
@@ -89,7 +93,8 @@ Scenario: 95. Run with daily schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -100
+	Then I will receive no core error
+	And the accountOut value will change in -100
 
 Scenario: 96. Run with monthly schedule (S)
 	Given I have this future move to create
@@ -105,7 +110,8 @@ Scenario: 96. Run with monthly schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -60
+	Then I will receive no core error
+	And the accountOut value will change in -60
 
 Scenario: 97. Run with yearly schedule (S)
 	Given I have this future move to create
@@ -121,7 +127,8 @@ Scenario: 97. Run with yearly schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -20
+	Then I will receive no core error
+	And the accountOut value will change in -20
 
 Scenario: 98. Run with details in schedule (S)
 	Given I have this future move to create
@@ -140,4 +147,5 @@ Scenario: 98. Run with details in schedule (S)
 	And it has no Account In
 	And I save the schedule
 	When I try to run the scheduler
-	Then the accountOut value will change in -100
+	Then I will receive no core error
+	And the accountOut value will change in -100
