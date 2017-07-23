@@ -31,6 +31,11 @@ namespace DFM.BusinessLogic.SuperServices
 
             var scheduleList = scheduleService.GetScheduleToRun(user);
 
+            foreach (var schedule in scheduleList)
+            {
+                ajustFutureMovesAndGetFirst(schedule);
+            }
+
             var futureMoves = scheduleList
                 .SelectMany(s => s.FutureMoveList
                                 .Where(m => m.Schedule != null //NH Shit
@@ -43,6 +48,8 @@ namespace DFM.BusinessLogic.SuperServices
                 transformFutureInMove(futureMove);
             }
         }
+
+
 
         private void transformFutureInMove(FutureMove futureMove)
         {

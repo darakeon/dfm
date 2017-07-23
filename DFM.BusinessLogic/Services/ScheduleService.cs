@@ -57,7 +57,10 @@ namespace DFM.BusinessLogic.Services
 
         private IEnumerable<Schedule> getRunnableAndDisableOthers(User user)
         {
-            var scheduleList = List(s => s.User == user);
+            var scheduleList = 
+                List(
+                    s => s.User == user
+                    && s.Active);
 
             foreach (var schedule in scheduleList)
             {
