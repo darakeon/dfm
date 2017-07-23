@@ -136,6 +136,7 @@ VERSÃO 1.0.2.2
 14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Conta Fechada
 14/06/2012	14/06/2012	Criar testes de nomes muito grandes
 14/06/2012	14/06/2012	Verificar em testes se summaries não são alterados em caso de erro
+17/06/2012			Adicionar Assert para ver se de soma mês/ano não mudar quando dá erro (moneyservice)
 17/06/2012			Criar testes de edição de Move
 				Verificar cobertura de código
 				Selenium
@@ -144,6 +145,8 @@ VERSÃO 1.0.2.2
 				Reorganização da ordem das funções nos serviços
 				Refactor de limpeza geral
 				Colocar robot.txt para google
+				Testar entrar com user não validado ainda
+				Testar fechar conta e desativar categoria
 
 ======================================================================================================
 
