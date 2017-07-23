@@ -1,11 +1,7 @@
 ﻿using System;
-using Ak.Generic.Collection;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
-using DFM.Entities.Bases;
-using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -13,19 +9,15 @@ namespace DFM.BusinessLogic.SuperServices
     {
         private readonly MoveService moveService;
         private readonly DetailService detailService;
-        private readonly SummaryService summaryService;
         private readonly MonthService monthService;
-        private readonly YearService yearService;
         private readonly ScheduleService scheduleService;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, SummaryService summaryService, MonthService monthService, YearService yearService, ScheduleService scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, MonthService monthService, ScheduleService scheduleService)
             : base(serviceAccess)
         {
             this.moveService = moveService;
             this.detailService = detailService;
-            this.summaryService = summaryService;
             this.monthService = monthService;
-            this.yearService = yearService;
             this.scheduleService = scheduleService;
         }
 
