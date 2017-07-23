@@ -143,8 +143,8 @@ VERSÃO 1.0.2.2
 18/07/2012	18/07/2012	Passar parent para superservices, ao invés de passar todos os services
 09/08/2012	09/08/2012	Colocar dados de Post no e-mail de erro
 09/08/2012	09/08/2012	Arrumar configuração de DB no webconfig release
-				Reorganização da ordem das funções nos serviços
-				Colocar robot.txt para google
+16/08/2012	16/08/2012	Reorganização da ordem das funções nos serviços
+16/08/2012	16/08/2012	Colocar robot.txt para google
 				Testar entrar com user não validado ainda (MVC)
 				Testar fechar conta e desativar categoria (MVC)
 				Refactor de limpeza geral

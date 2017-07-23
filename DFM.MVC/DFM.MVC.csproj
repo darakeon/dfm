@@ -232,6 +232,7 @@
     <Content Include="Assets\Script\Pages\MoveCreateEditSchedule.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Css\Table.css" />
+    <Content Include="robots.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
