@@ -6,6 +6,7 @@ using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -31,8 +32,6 @@ namespace DFM.BusinessLogic.SuperServices
         
         internal Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
         {
-            var sendEmailAction = move.ID == 0 ? "create_move" : "edit";
-
             var accountOut = selectAccountByName(accountOutName);
             var accountIn = selectAccountByName(accountInName);
 
@@ -49,8 +48,6 @@ namespace DFM.BusinessLogic.SuperServices
             detailService.SaveDetails(move);
 
             AjustSummaries(move);
-
-            moveService.SendEmail(move, sendEmailAction);
 
             return move;
         }
@@ -148,6 +145,15 @@ namespace DFM.BusinessLogic.SuperServices
             var year = yearService.GetOrCreateYear((Int16)baseMove.Date.Year, account, baseMove.Category);
 
             return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, baseMove.Category);
+        }
+
+
+
+        internal void SendEmail(Move move, OperationType operationType)
+        {
+            var sendEmailAction = operationType == OperationType.Creation ? "create_move" : "edit";
+            
+            moveService.SendEmail(move, sendEmailAction);
         }
 
 

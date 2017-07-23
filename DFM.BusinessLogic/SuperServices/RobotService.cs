@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -74,6 +75,8 @@ namespace DFM.BusinessLogic.SuperServices
                 futureMoveService.Delete(futureMove.ID);
 
                 CommitTransaction();
+
+                Parent.BaseMove.SendEmail(move, OperationType.Creation);
             }
             catch
             {

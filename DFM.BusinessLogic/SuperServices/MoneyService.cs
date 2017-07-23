@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -43,9 +44,16 @@ namespace DFM.BusinessLogic.SuperServices
             
             try
             {
+                var operationType = 
+                    move.ID == 0 
+                        ? OperationType.Creation 
+                        : OperationType.Update;
+
                 move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 
                 CommitTransaction();
+
+                Parent.BaseMove.SendEmail(move, operationType);
             }
             catch
             {
