@@ -3,11 +3,11 @@ using DFM.Entities;
 
 namespace DFM.Authentication
 {
-    public interface IUserService
+    public interface ISafeService
     {
         User SelectUserByEmail(String username);
 
-        User ValidateAndGet(String username, String password);
+        String ValidateAndGet(String username, String password);
 
 
     }

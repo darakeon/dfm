@@ -55,6 +55,7 @@
     <Compile Include="Services\ScheduleService.cs" />
     <Compile Include="Services\SecurityService.cs" />
     <Compile Include="Services\SummaryService.cs" />
+    <Compile Include="Services\TicketService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\YearService.cs" />
     <Compile Include="Exceptions\DFMCoreException.cs" />

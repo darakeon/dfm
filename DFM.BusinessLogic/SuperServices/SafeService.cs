@@ -7,16 +7,18 @@ using DFM.Authentication;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafeService : BaseSuperService, IUserService
+    public class SafeService : BaseSuperService, ISafeService
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;
+        private readonly TicketService ticketService;
 
-        internal SafeService(ServiceAccess serviceAccess, UserService userService, SecurityService securityService)
+        internal SafeService(ServiceAccess serviceAccess, UserService userService, SecurityService securityService, TicketService ticketService)
             : base(serviceAccess)
         {
             this.userService = userService;
             this.securityService = securityService;
+            this.ticketService = ticketService;
         }
 
 
@@ -169,9 +171,15 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        public User ValidateAndGet(String email, String password)
+        public String ValidateAndGet(String email, String password)
         {
-            return userService.ValidateAndGet(email, password);
+            var user = userService.ValidateAndGet(email, password);
+
+            var ticket = new Ticket {User = user};
+
+            ticket = ticketService.Create(ticket);
+
+            return ticket.Key;
         }
 
 

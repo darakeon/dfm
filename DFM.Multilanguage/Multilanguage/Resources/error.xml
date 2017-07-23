@@ -45,6 +45,7 @@
     <UserAlreadyExists text="User already exists." />
     <UserEmailInvalid text="User e-mail is invalid." />
     <UserPasswordRequired text="Invalid password." />
+    <DisabledUser text="User is disabled." />
     <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
     <AccountNameRequired text="Account name is required." />
@@ -111,6 +112,7 @@
     <UserAlreadyExists text="Usuário já existe." />
     <UserEmailInvalid text="E-mail inválido." />
     <UserPasswordRequired text="Senha ínválida." />
+    <DisabledUser text="Usuário desabilitado." />
     <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
     <AccountNameRequired text="Nome da conta obrigatório." />

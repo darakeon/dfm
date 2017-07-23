@@ -62,37 +62,51 @@ namespace DFM.Tests.BusinessLogic
 
 
         #region Get or Create
-        protected User GetOrCreateUser(String userEmail, String userPassword, Boolean shouldActivateUser = false)
+        protected void CreateUserIfNotExists(String userEmail, String userPassword, Boolean shouldActivateUser = false)
         {
-            try
+            var userError = verifyUser(userEmail, userPassword);
+
+            if (userError == null)
+                return;
+
+            switch (userError.Type)
             {
-                var user = SA.Safe.ValidateAndGet(userEmail, userPassword);
+                case ExceptionPossibilities.InvalidUser:
 
-                if (shouldActivateUser && !user.Active)
-                    activateUser(user);
+                    SA.Safe.SaveUserAndSendVerify(userEmail, userPassword);
 
-                return user;
-            }
-            catch (DFMCoreException e)
-            {
-                if (e.Type != ExceptionPossibilities.InvalidUser)
-                    throw;
+                    if (shouldActivateUser)
+                    {
+                        var token = DBHelper.GetLastTokenForUser(userEmail, userPassword, SecurityAction.UserVerification);
 
-                SA.Safe.SaveUserAndSendVerify(userEmail, userPassword);
+                        SA.Safe.ActivateUser(token);
+                    }
 
-                var user = SA.Safe.SelectUserByEmail(userEmail);
+                    return;
 
-                activateUser(user);
+                case ExceptionPossibilities.DisabledUser:
+                        
+                    if (!shouldActivateUser)
+                        return;
 
-                return SA.Safe.ValidateAndGet(userEmail, userPassword);
+                    break;
+
+                default:
+                    throw userError;
             }
         }
 
-        private void activateUser(User user)
+        private DFMCoreException verifyUser(string userEmail, string userPassword)
         {
-            var token = DBHelper.GetLastTokenForUser(user, SecurityAction.UserVerification);
-                
-            SA.Safe.ActivateUser(token);
+            try
+            {
+                SA.Safe.ValidateAndGet(userEmail, userPassword);
+                return null;
+            }
+            catch (DFMCoreException e)
+            {
+                return e;
+            }
         }
 
 

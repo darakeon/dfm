@@ -57,8 +57,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureBackground()
         {
 #line 3
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table1.AddRow(new string[] {
+                        "deactivatetoken@dontflymoney.com",
+                        "password"});
 #line 4
- testRunner.Given("I have an user");
+ testRunner.Given("I have this user to create", ((string)(null)), table1);
 #line hidden
         }
         
@@ -67,13 +74,13 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_DeactivateWithInvalidTokenE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Deactivate with invalid token (E)", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("I pass an invalid token");
 #line 8
- testRunner.When("I try do deactivate the token");
+this.ScenarioSetup(scenarioInfo);
 #line 9
+ testRunner.Given("I pass an invalid token");
+#line 10
+ testRunner.When("I try do deactivate the token");
+#line 11
  testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -84,17 +91,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _98_DeactivateUVWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Deactivate UV with info all right (S)", ((string[])(null)));
-#line 11
-this.ScenarioSetup(scenarioInfo);
-#line 12
- testRunner.Given("I have a token for its activation");
 #line 13
- testRunner.And("I pass a valid UserVerification token");
+this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.When("I try do deactivate the token");
+ testRunner.Given("I have a token for its activation");
 #line 15
- testRunner.Then("I will receive no core error");
+ testRunner.And("I pass a valid UserVerification token");
 #line 16
+ testRunner.When("I try do deactivate the token");
+#line 17
+ testRunner.Then("I will receive no core error");
+#line 18
  testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -105,17 +112,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_DeactivatePRWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Deactivate PR with info all right (S)", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
-#line 19
- testRunner.Given("I have a token for its password reset");
 #line 20
- testRunner.And("I pass a valid PasswordReset token");
+this.ScenarioSetup(scenarioInfo);
 #line 21
- testRunner.When("I try do deactivate the token");
+ testRunner.Given("I have a token for its password reset");
 #line 22
- testRunner.Then("I will receive no core error");
+ testRunner.And("I pass a valid PasswordReset token");
 #line 23
+ testRunner.When("I try do deactivate the token");
+#line 24
+ testRunner.Then("I will receive no core error");
+#line 25
  testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();

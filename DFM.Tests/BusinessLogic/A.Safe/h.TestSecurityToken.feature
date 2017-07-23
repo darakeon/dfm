@@ -1,7 +1,9 @@
 ﻿Feature: h. Test security token received by e-mail
 
 Background:
-	Given I have an user
+	Given I have this user to create
+		| Email                              | Password |
+		| testsecuritytoken@dontflymoney.com | password |
 	And I have a token for its password reset
 	And I have a token for its activation
 

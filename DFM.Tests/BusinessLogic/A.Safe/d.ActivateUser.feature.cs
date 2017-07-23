@@ -57,11 +57,18 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureBackground()
         {
 #line 3
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table1.AddRow(new string[] {
+                        "activateuser@dontflymoney.com",
+                        "password"});
 #line 4
- testRunner.Given("I have an user");
-#line 5
+ testRunner.Given("I have this user to create", ((string)(null)), table1);
+#line 7
  testRunner.And("I have a token for its activation");
-#line 6
+#line 8
  testRunner.And("I have a token for its password reset");
 #line hidden
         }
@@ -71,15 +78,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_ActivateUserWithInvalidTokenE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Activate user with invalid token (E)", ((string[])(null)));
-#line 8
-this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.Given("I pass an invalid token");
 #line 10
- testRunner.When("I try to activate the user");
+this.ScenarioSetup(scenarioInfo);
 #line 11
- testRunner.Then("I will receive this core error: InvalidToken");
+ testRunner.Given("I pass an invalid token");
 #line 12
+ testRunner.When("I try to activate the user");
+#line 13
+ testRunner.Then("I will receive this core error: InvalidToken");
+#line 14
  testRunner.And("the user will not be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -90,15 +97,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_ActivateUserWithTokenOfResetPasswordE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Activate user with token of reset password (E)", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
-#line 15
- testRunner.Given("I pass a valid PasswordReset token");
 #line 16
- testRunner.When("I try to activate the user");
+this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Then("I will receive this core error: InvalidToken");
+ testRunner.Given("I pass a valid PasswordReset token");
 #line 18
+ testRunner.When("I try to activate the user");
+#line 19
+ testRunner.Then("I will receive this core error: InvalidToken");
+#line 20
  testRunner.And("the user will not be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -109,17 +116,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_ActivateUserWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Activate user with info all right (S)", ((string[])(null)));
-#line 20
-this.ScenarioSetup(scenarioInfo);
-#line 21
- testRunner.Given("I pass a valid UserVerification token");
 #line 22
- testRunner.When("I try to activate the user");
+this.ScenarioSetup(scenarioInfo);
 #line 23
- testRunner.Then("I will receive no core error");
+ testRunner.Given("I pass a valid UserVerification token");
 #line 24
- testRunner.And("the user will be activated");
+ testRunner.When("I try to activate the user");
 #line 25
+ testRunner.Then("I will receive no core error");
+#line 26
+ testRunner.And("the user will be activated");
+#line 27
  testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();

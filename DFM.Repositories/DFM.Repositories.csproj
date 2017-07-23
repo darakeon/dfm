@@ -37,6 +37,7 @@
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\BaseMoveMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\TicketMap.cs" />
     <Compile Include="Mappings\FutureMoveMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
     <Compile Include="Mappings\MonthMap.cs" />

@@ -57,8 +57,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureBackground()
         {
 #line 3
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table1.AddRow(new string[] {
+                        "sendpasswordreset@dontflymoney.com",
+                        "password"});
 #line 4
- testRunner.Given("I have an user");
+ testRunner.Given("I have this user to create", ((string)(null)), table1);
 #line hidden
         }
         
@@ -67,13 +74,13 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_SendWithEmailThatDoesnTExistE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Send with email that doesn\'t exist (E)", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("I pass an e-mail that doesn\'t exist");
 #line 8
- testRunner.When("I try to send the e-mail of password reset");
+this.ScenarioSetup(scenarioInfo);
 #line 9
+ testRunner.Given("I pass an e-mail that doesn\'t exist");
+#line 10
+ testRunner.When("I try to send the e-mail of password reset");
+#line 11
  testRunner.Then("I will receive this core error: InvalidUser");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -84,13 +91,11 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SendWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Send with info all right (S)", ((string[])(null)));
-#line 11
-this.ScenarioSetup(scenarioInfo);
-#line 12
- testRunner.Given("I pass valid e-mail");
 #line 13
- testRunner.When("I try to send the e-mail of password reset");
+this.ScenarioSetup(scenarioInfo);
 #line 14
+ testRunner.When("I try to send the e-mail of password reset");
+#line 15
  testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();

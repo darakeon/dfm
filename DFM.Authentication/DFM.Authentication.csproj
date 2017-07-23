@@ -47,7 +47,7 @@
     <Compile Include="Current.cs" />
     <Compile Include="DFMAuthException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="ISafeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">

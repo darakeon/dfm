@@ -1,7 +1,9 @@
 ﻿Feature: i. Deactivate the user
 
 Background:
-	Given I have an user
+	Given I have this user to create
+		| Email                            | Password |
+		| deactivatetoken@dontflymoney.com | password |
 
 Scenario: 01. Deactivate with invalid token (E)
 	Given I pass an invalid token

@@ -57,6 +57,7 @@ Scenario: 04. Get translations of Errors
 		| Error   | UserAlreadyExists              |
 		| Error   | UserEmailInvalid               |
 		| Error   | UserPasswordRequired           |
+		| Error   | DisabledUser                   |
 		| Error   | AccountNameRequired            |
 		| Error   | AccountUrlRequired             |
 		| Error   | AccountUrlInvalid              |

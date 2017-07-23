@@ -28,8 +28,9 @@ namespace DFM.Entities
         public virtual IList<Account> AccountList { get; set; }
         public virtual IList<Category> CategoryList { get; set; }
         public virtual IList<Schedule> ScheduleList { get; set; }
-        
+
         public virtual IList<Security> SecurityList { get; set; }
+        public virtual IList<Ticket> TicketList { get; set; }
 
 
         public override String ToString()

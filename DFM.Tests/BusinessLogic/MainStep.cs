@@ -11,7 +11,7 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"I have an active user")]
         public void GivenIHaveAnUser()
         {
-            User = GetOrCreateUser(UserEmail, UserPassword, true);
+            CreateUserIfNotExists(UserEmail, UserPassword, true);
 
             Current.Set(UserEmail, UserPassword);
         }

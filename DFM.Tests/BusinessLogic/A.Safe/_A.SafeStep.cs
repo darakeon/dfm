@@ -25,7 +25,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             get { return Get<String>("Email"); }
             set { Set("Email", value); }
         }
-
+        
         private static String password
         {
             get { return Get<String>("Password"); }
@@ -53,8 +53,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 
         #region SaveUserAndSendVerify
-        [Given(@"I have this user to create")]
-        public void GivenIHaveThisUserToCreate(Table table)
+        [Given(@"I have this user data")]
+        public void GivenIHaveThisUserData(Table table)
         {
             email = table.Rows[0]["Email"];
             password = table.Rows[0]["Password"];
@@ -70,6 +70,10 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             };
 
             SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
+
+            var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
+
+            SA.Safe.ActivateUser(tokenActivate);
         }
 
 
@@ -86,8 +90,6 @@ namespace DFM.Tests.BusinessLogic.A.Safe
                 Error = e;
             }
         }
-
-        
         
         [Then(@"the user will not be saved")]
         public void ThenTheUserWillNotBeSaved()
@@ -96,7 +98,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                savedUser = SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateAndGet(email, password);
+
+                savedUser = SA.Safe.SelectUserByEmail(email);
             }
             catch (DFMCoreException e)
             {
@@ -117,6 +121,10 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will be saved")]
         public void ThenTheUserWillBeSaved()
         {
+            var tokenActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
+            
+            SA.Safe.ActivateUser(tokenActivate);
+
             var savedUser = SA.Safe.ValidateAndGet(email, password);
 
             Assert.IsNotNull(savedUser);
@@ -148,7 +156,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             SA.Safe.SendPasswordReset(User.Email);
 
-            token = DBHelper.GetLastTokenForUser(User, SecurityAction.PasswordReset);
+            token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.PasswordReset);
         }
         
         [When(@"I try to activate the user")]
@@ -167,26 +175,41 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will not be activated")]
         public void ThenTheUserWillNotBeActivated()
         {
-            User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
+            Error = null;
 
-            Assert.IsFalse(User.Active);
+            try
+            {
+                SA.Safe.ValidateAndGet(email, password);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;                
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.DisabledUser, Error.Type);
         }
 
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
+            SA.Safe.ValidateAndGet(email, password);
+            
+            User = SA.Safe.SelectUserByEmail(email);
 
             Assert.IsTrue(User.Active);
         }
         #endregion
 
         #region ValidateAndGetUser
-        [Given(@"I have this user data")]
-        public void GivenIHaveThisUserData(Table table)
+        [Given(@"I activate the user")]
+        public void GivenIActivateTheUser()
         {
-            email = table.Rows[0]["Email"];
-            password = table.Rows[0]["Password"];
+            SA.Safe.SendUserVerify(email);
+            
+            var tokenToActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
+
+            SA.Safe.ActivateUser(tokenToActivate);
         }
 
         [When(@"I try to get the user")]
@@ -196,7 +219,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                User = SA.Safe.ValidateAndGet(email, password);
+                SA.Safe.ValidateAndGet(email, password);
+                
+                User = SA.Safe.SelectUserByEmail(email);
             }
             catch (DFMCoreException e)
             {
@@ -226,7 +251,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I pass a token of user verification")]
         public void GivenIPassATokenOfUserVerification()
         {
-            token = DBHelper.GetLastTokenForUser(User, SecurityAction.UserVerification);
+            token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.UserVerification);
         }
 
         [Given(@"I pass this password: (.*)")]
@@ -258,41 +283,37 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the password will not be changed")]
         public void ThenThePasswordWillNotBeChanged()
         {
-            User = null;
             Error = null;
 
             try
             {
-                User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
+                SA.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
             {
-                Error = e;
+                if (e.Type != ExceptionPossibilities.DisabledUser)
+                    Error = e;
             }
 
             Assert.IsNull(Error);
-            Assert.IsNotNull(User);
         }
 
         [Then(@"the password will be changed")]
         public void ThenThePasswordWillBeChanged()
         {
-            User = null;
             Error = null;
-
-            UserPassword = newPassword;
 
             try
             {
-                User = SA.Safe.ValidateAndGet(UserEmail, UserPassword);
+                SA.Safe.ValidateAndGet(email, newPassword);
             }
             catch (DFMCoreException e)
             {
-                Error = e;
+                if (e.Type != ExceptionPossibilities.DisabledUser)
+                    Error = e;
             }
 
             Assert.IsNull(Error);
-            Assert.IsNotNull(User);
         }
         #endregion
 
@@ -301,7 +322,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(String strTokenOf, String strAction)
         {
             var tokenOf = EnumX.Parse<SecurityAction>(strTokenOf);
-            token = DBHelper.GetLastTokenForUser(User, tokenOf);
+            token = DBHelper.GetLastTokenForUser(email, password, tokenOf);
 
             action = EnumX.Parse<SecurityAction>(strAction);
         }
@@ -353,16 +374,25 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 
         #region MoreThanOne
-        [Given(@"I have an user")]
-        public void GivenIHaveAnUser()
+        [Given(@"I have this user to create")]
+        public void GivenIHaveThisUserToCreate(Table table)
         {
-            User = GetOrCreateUser(UserEmail, UserPassword);
+            email = table.Rows[0]["Email"];
+            password = table.Rows[0]["Password"];
+
+            CreateUserIfNotExists(email, password);
+        }
+
+        [Given(@"I have a token for its activation")]
+        public void GivenIHaveATokenForItsActivation()
+        {
+            SA.Safe.SendUserVerify(email);
         }
 
         [Given(@"I have a token for its password reset")]
         public void GivenIHaveATokenForItsPasswordReset()
         {
-            SA.Safe.SendPasswordReset(User.Email);
+            SA.Safe.SendPasswordReset(email);
         }
 
         [Given(@"I pass an invalid token")]
@@ -377,23 +407,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             email = "dont_exist@dontflymoney.com";
         }
 
-        [Given(@"I pass valid e-mail")]
-        public void GivenIPassValidEMail()
-        {
-            email = User.Email;
-        }
-
         [Given(@"I pass a valid ([A-Za-z]+) token")]
         public void GivenIPassTheValidToken(String strAction)
         {
             action = EnumX.Parse<SecurityAction>(strAction);
-            token = DBHelper.GetLastTokenForUser(User, action);
-        }
-
-        [Given(@"I have a token for its activation")]
-        public void GivenIHaveATokenForItsActivation()
-        {
-            SA.Safe.SendUserVerify(User.Email);
+            token = DBHelper.GetLastTokenForUser(email, password, action);
         }
 
         

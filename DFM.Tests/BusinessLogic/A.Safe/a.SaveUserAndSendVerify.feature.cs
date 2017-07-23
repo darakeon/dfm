@@ -68,7 +68,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "password"});
 #line 4
- testRunner.Given("I have this user to create", ((string)(null)), table1);
+ testRunner.Given("I have this user data", ((string)(null)), table1);
 #line 7
  testRunner.When("I try to save the user");
 #line 8
@@ -91,10 +91,10 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table2.AddRow(new string[] {
-                        "test@dontflymoney.com",
+                        "saveuser@dontflymoney.com",
                         ""});
 #line 12
- testRunner.Given("I have this user to create", ((string)(null)), table2);
+ testRunner.Given("I have this user data", ((string)(null)), table2);
 #line 15
  testRunner.When("I try to save the user");
 #line 16
@@ -117,10 +117,10 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table3.AddRow(new string[] {
-                        "test",
+                        "saveuser",
                         "password"});
 #line 20
- testRunner.Given("I have this user to create", ((string)(null)), table3);
+ testRunner.Given("I have this user data", ((string)(null)), table3);
 #line 23
  testRunner.When("I try to save the user");
 #line 24
@@ -146,7 +146,7 @@ this.ScenarioSetup(scenarioInfo);
                         "repeated@dontflymoney.com",
                         "password"});
 #line 28
- testRunner.Given("I have this user to create", ((string)(null)), table4);
+ testRunner.Given("I have this user data", ((string)(null)), table4);
 #line 31
  testRunner.And("I already have created this user");
 #line 32
@@ -174,7 +174,7 @@ this.ScenarioSetup(scenarioInfo);
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh@dontflymoney.com",
                         "password"});
 #line 37
- testRunner.Given("I have this user to create", ((string)(null)), table5);
+ testRunner.Given("I have this user data", ((string)(null)), table5);
 #line 40
  testRunner.When("I try to save the user");
 #line 41
@@ -200,7 +200,7 @@ this.ScenarioSetup(scenarioInfo);
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com",
                         "password"});
 #line 46
- testRunner.Given("I have this user to create", ((string)(null)), table6);
+ testRunner.Given("I have this user data", ((string)(null)), table6);
 #line 49
  testRunner.When("I try to save the user");
 #line 50
@@ -223,10 +223,10 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table7.AddRow(new string[] {
-                        "test@dontflymoney.com",
+                        "saveuser@dontflymoney.com",
                         "password"});
 #line 54
- testRunner.Given("I have this user to create", ((string)(null)), table7);
+ testRunner.Given("I have this user data", ((string)(null)), table7);
 #line 57
  testRunner.When("I try to save the user");
 #line 58

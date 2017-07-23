@@ -8,9 +8,9 @@ namespace DFM.Authentication
 {
     public class Current
     {
-        private IUserService userService { get; set; }
+        private ISafeService userService { get; set; }
 
-        public Current(IUserService userService)
+        public Current(ISafeService userService)
         {
             this.userService = userService;
         }
@@ -64,12 +64,11 @@ namespace DFM.Authentication
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
-            var user = userService.ValidateAndGet(username, password);
+            userService.ValidateAndGet(username, password);
 
-            if (user.Active)
-                userApp = user;
+            userApp = userService.SelectUserByEmail(username);
 
-            return user;
+            return userApp;
         }
 
         public User Set(String username, String password, HttpResponseBase response, Boolean isPersistent)
@@ -77,12 +76,11 @@ namespace DFM.Authentication
             if (!isWeb)
                 throw DFMAuthException.NotWeb();
 
-            var user = userService.ValidateAndGet(username, password);
+            userService.ValidateAndGet(username, password);
 
-            if (user.Active)
-                Authenticate.Set(username, response, isPersistent);
+            Authenticate.Set(username, response, isPersistent);
 
-            return user;
+            return userService.SelectUserByEmail(username);
         }
 
 

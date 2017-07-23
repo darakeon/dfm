@@ -32,6 +32,9 @@ namespace DFM.BusinessLogic.Services
             if (user == null || user.Password != password)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
+            if (!user.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+
             return user;
         }
 

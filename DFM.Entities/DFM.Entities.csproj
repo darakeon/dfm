@@ -51,6 +51,7 @@
     <Compile Include="Schedule.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="Summary.cs" />
+    <Compile Include="Ticket.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Year.cs" />
   </ItemGroup>

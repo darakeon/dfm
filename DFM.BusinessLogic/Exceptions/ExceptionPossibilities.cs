@@ -12,6 +12,7 @@
         UserAlreadyExists = 203,
         UserEmailInvalid = 204,
         UserPasswordRequired = 205,
+        DisabledUser = 206,
 
         AccountNameRequired = 301,
         AccountUrlRequired = 302,
