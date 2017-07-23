@@ -59,6 +59,19 @@ div#Belt {
 
 
 
+div#Advertising 
+{
+    margin-top: 50px;
+    text-align: left;
+}
+
+div#Advertising a
+{
+    margin: 20px;
+}
+
+
+
 h2 {
 	color: #550;
 	font-size: 20px;
