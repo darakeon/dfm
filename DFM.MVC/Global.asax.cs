@@ -8,6 +8,7 @@ using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Authentication;
 using DFM.MVC.Helpers;
+using DFM.PageLog;
 using DFM.Repositories;
 using log4net.Config;
 using System.Configuration;
@@ -85,10 +86,7 @@ namespace DFM.MVC
 
             NHManager.Close();
 
-            var dirName = Directory.GetCurrentDirectory();
-
-            if (Request["LookFor"] == "Elmah")
-                File.Create(dirName + "/x.txt");
+            PageLogger.Record(Context);
 
             if (Request["Error"] == "Force")
                 throw new Exception("Forced error.");

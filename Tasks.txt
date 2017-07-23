@@ -155,7 +155,7 @@ VERSÃO 1.0.2.2
 VERSÃO 1.0.2.3
 
 17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
-				Colocar log por visita no site (IP, Data/Hora, Endereço)
+17/10/2012	17/10/2012	Colocar log por visita no site (IP, Data/Hora, Endereço)
 				Arrumar MVC para passar Category e Scheudule de move separados da move
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
