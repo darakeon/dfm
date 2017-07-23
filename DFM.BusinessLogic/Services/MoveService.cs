@@ -6,8 +6,10 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -71,7 +73,7 @@ namespace DFM.BusinessLogic.Services
                     .Body(fileContent)
                     .Send();
             }
-            catch (Sender.DFMEmailException)
+            catch (DFMEmailException)
             {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
             }

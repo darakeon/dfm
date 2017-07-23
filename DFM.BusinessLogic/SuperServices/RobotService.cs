@@ -33,7 +33,10 @@ namespace DFM.BusinessLogic.SuperServices
 
             var futureMoves = scheduleList
                 .SelectMany(s => s.FutureMoveList
-                                .Where(m => m.Date <= DateTime.Now).ToList());
+                                .Where(m => m.Schedule != null //NH Shit
+                                    && m.Date <= DateTime.Now)
+                                .ToList()
+                            );
 
             foreach (var futureMove in futureMoves)
             {
@@ -48,6 +51,7 @@ namespace DFM.BusinessLogic.SuperServices
             try
             {
                 var schedule = futureMove.Schedule;
+
                 var boundless = schedule.Boundless;
                 var isLast = futureMove.ID == schedule.FutureMoveList.Last().ID;
 

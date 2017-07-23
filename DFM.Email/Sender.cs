@@ -4,15 +4,24 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using System.Net;
+using DFM.Email.Exceptions;
 
 namespace DFM.Email
 {
     public class Sender
     {
-        private const String domain = "dontflymoney.com";
+        private static readonly String domain = ConfigurationManager.AppSettings["smtp-domain"];
+        private static readonly String subdomain = ConfigurationManager.AppSettings["smtp-subdomain"];
 
-        public const String SenderAddress = "no-reply@" + domain;
-        private const String @default = "[some default sender here]";
+        private static readonly String sender = ConfigurationManager.AppSettings["email-sender"];
+        private static readonly String receiver = ConfigurationManager.AppSettings["email-receiver"];
+        private static readonly String senderPassword = ConfigurationManager.AppSettings["email-receiver-pass"];
+
+
+        public static readonly String SenderAddress = sender + "@" + domain;
+        private static readonly String @default = receiver + "@" + domain;
+        private static readonly String smtpAddress = subdomain + "." + domain;
+
 
 
         private String to, subject, body;
@@ -63,9 +72,18 @@ namespace DFM.Email
             if (emailSender == "DontSend")
                 return;
 
-            var credentials = new NetworkCredential("no-reply@" + domain, "[some-awful-password]");
+            var credentials = new NetworkCredential(SenderAddress, senderPassword);
 
-            var smtp = new SmtpClient("mail." + domain, 587)
+            if (String.IsNullOrEmpty(subject))
+                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidSubject);
+
+            if (String.IsNullOrEmpty(body))
+                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidBody);
+
+            if (String.IsNullOrEmpty(to))
+                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidAddressee);
+
+            var smtp = new SmtpClient(smtpAddress, 587)
                             {
                                 EnableSsl = false,
                                 Timeout = 10000,
@@ -98,14 +116,6 @@ namespace DFM.Email
                 throw new DFMEmailException(e);
             }
 
-        }
-
-
-
-        public class DFMEmailException : Exception
-        {
-            public DFMEmailException(Exception e) 
-                : base("Exception on sending e-mail", e) { }
         }
 
 

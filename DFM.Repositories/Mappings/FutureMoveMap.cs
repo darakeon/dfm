@@ -21,6 +21,7 @@ namespace DFM.Repositories.Mappings
             mapping.HasMany(m => m.DetailList)
                 .Cascade.None()
                 .Not.LazyLoad();
+
         }
     }
 }

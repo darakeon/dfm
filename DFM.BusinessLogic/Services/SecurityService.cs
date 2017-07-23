@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Ak.Generic.Extensions;
 using DFM.BusinessLogic.Bases;
 using DFM.Email;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
+using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -55,7 +57,7 @@ namespace DFM.BusinessLogic.Services
                     .Body(fileContent)
                     .Send();
             }
-            catch (Sender.DFMEmailException)
+            catch (DFMEmailException)
             {
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
             }

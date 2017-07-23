@@ -180,6 +180,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\MainStep.cs" />
+    <Compile Include="ContextHelper.cs" />
+    <Compile Include="Email\EmailSend.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailSend.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Email\EmailStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +304,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveUserAndSendVerify.feature.cs</LastGenOutput>
     </None>
+    <None Include="Email\EmailSend.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EmailSend.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -327,6 +339,10 @@
     <ProjectReference Include="..\DFM.BusinessLogic\DFM.BusinessLogic.csproj">
       <Project>{E749C813-2963-49E6-9D0A-7E6F165EF929}</Project>
       <Name>DFM.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+      <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
+      <Name>DFM.Email</Name>
     </ProjectReference>
     <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">
       <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
