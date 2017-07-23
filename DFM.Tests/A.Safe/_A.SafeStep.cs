@@ -65,7 +65,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SaveUserAndSendVerify(email, password);
+                SA.Safe.SaveUserAndSendVerify(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -82,7 +82,7 @@ namespace DFM.Tests.A.Safe
                                     Password = password + "_diff",
                                 };
 
-            Access.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
+            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
         }
 
         [Then(@"the user will not be saved")]
@@ -92,7 +92,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                savedUser = Access.Safe.ValidateAndGet(email, password);
+                savedUser = SA.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -105,7 +105,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be changed")]
         public void ThenTheUserWillNotBeChanged()
         {
-            var savedUser = Access.Safe.ValidateAndGet(otherUser.Email, otherUser.Password);
+            var savedUser = SA.Safe.ValidateAndGet(otherUser.Email, otherUser.Password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -113,7 +113,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will be saved")]
         public void ThenTheUserWillBeSaved()
         {
-            var savedUser = Access.Safe.ValidateAndGet(email, password);
+            var savedUser = SA.Safe.ValidateAndGet(email, password);
 
             Assert.IsNotNull(savedUser);
         }
@@ -129,7 +129,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SendPasswordReset(email);
+                SA.Safe.SendPasswordReset(email);
             }
             catch (DFMCoreException e)
             {
@@ -142,7 +142,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I pass a token of password reset")]
         public void GivenIPassATokenOfPasswordReset()
         {
-            Access.Safe.SendPasswordReset(User.Email);
+            SA.Safe.SendPasswordReset(User.Email);
 
             token = DBHelper.GetLastTokenForUser(User, SecurityAction.PasswordReset);
         }
@@ -152,7 +152,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.ActivateUser(token);
+                SA.Safe.ActivateUser(token);
             }
             catch (DFMCoreException e)
             {
@@ -163,7 +163,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will not be activated")]
         public void ThenTheUserWillNotBeActivated()
         {
-            User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
 
             Assert.IsFalse(User.Active);
         }
@@ -171,7 +171,7 @@ namespace DFM.Tests.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+            User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
 
             Assert.IsTrue(User.Active);
         }
@@ -192,7 +192,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                User = Access.Safe.ValidateAndGet(email, password);
+                User = SA.Safe.ValidateAndGet(email, password);
             }
             catch (DFMCoreException e)
             {
@@ -209,7 +209,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                User = Access.Safe.SelectUserByEmail(email);
+                User = SA.Safe.SelectUserByEmail(email);
             }
             catch (DFMCoreException e)
             {
@@ -243,7 +243,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.PasswordReset(token, newPassword);
+                SA.Safe.PasswordReset(token, newPassword);
             }
             catch (DFMCoreException e)
             {
@@ -259,7 +259,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+                User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
             }
             catch (DFMCoreException e)
             {
@@ -280,7 +280,7 @@ namespace DFM.Tests.A.Safe
 
             try
             {
-                User = Access.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
+                User = SA.Safe.ValidateAndGet(CentralUserEmail, CentralUserPassword);
             }
             catch (DFMCoreException e)
             {
@@ -307,7 +307,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.TestSecurityToken(token, action);
+                SA.Safe.TestSecurityToken(token, action);
             }
             catch (DFMCoreException e)
             {
@@ -322,7 +322,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.DeactivateToken(token);
+                SA.Safe.DeactivateToken(token);
             }
             catch (DFMCoreException e)
             {
@@ -335,7 +335,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.TestSecurityToken(token, action);
+                SA.Safe.TestSecurityToken(token, action);
             }
             catch(DFMCoreException e)
             {
@@ -352,7 +352,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I have a token for its password reset")]
         public void GivenIHaveATokenForItsPasswordReset()
         {
-            Access.Safe.SendPasswordReset(User.Email);
+            SA.Safe.SendPasswordReset(User.Email);
         }
 
         [Given(@"I pass an invalid token")]
@@ -383,7 +383,7 @@ namespace DFM.Tests.A.Safe
         [Given(@"I have a token for its actvation")]
         public void GivenIHaveATokenForItsActvation()
         {
-            Access.Safe.SendUserVerify(User.Email);
+            SA.Safe.SendUserVerify(User.Email);
         }
 
         
@@ -392,7 +392,7 @@ namespace DFM.Tests.A.Safe
         {
             try
             {
-                Access.Safe.SendUserVerify(email);
+                SA.Safe.SendUserVerify(email);
             }
             catch (DFMCoreException e)
             {

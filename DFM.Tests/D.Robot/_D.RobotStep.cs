@@ -1,8 +1,10 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using TechTalk.SpecFlow;
+using NUnit.Framework;
 
 namespace DFM.Tests.D.Robot
 {
@@ -43,88 +45,129 @@ namespace DFM.Tests.D.Robot
         [Given(@"the move has no schedule")]
         public void GivenTheMoveHasNoSchedule()
         {
-            ScenarioContext.Current.Pending();
+            Move.Schedule = null;
         }
 
         [When(@"I try to save the schedule")]
-        public void WhenITryToSaveTheMove()
+        public void WhenITryToSaveTheSchedule()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"the schedule will not be saved")]
         public void ThenTheScheduleWillNotBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(0, Move.ID);
         }
 
         [Then(@"the schedule will be saved")]
         public void ThenTheScheduleWillBeSaved()
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreNotEqual(0, Move.ID);
+            Assert.AreNotEqual(0, Move.Schedule.ID);
         }
 
         [Then(@"the month-category-accountOut value will not change")]
         public void ThenTheMonthCategoryAccountOutValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
         }
 
         [Then(@"the year-category-accountOut value will not change")]
         public void ThenTheYearCategoryAccountOutValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            var year = AccountOut[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).Out;
+
+            Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
         }
 
         [Then(@"the month-category-accountIn value will not change")]
         public void ThenTheMonthCategoryAccountInValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = GetOrCreateAccount(AccountInName);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+            var month = year[Move.Date.Month] ?? new Month();
+
+            var currentTotal = (month[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
         }
 
         [Then(@"the year-category-accountIn value will not change")]
         public void ThenTheYearCategoryAccountInValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            AccountIn = GetOrCreateAccount(AccountInName);
+
+            var year = AccountIn[Move.Date.Year] ?? new Year();
+
+            var currentTotal = (year[Category.Name] ?? new Summary()).In;
+
+            Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
         }
 
         #endregion
 
         #region RunSchedule
+        [Given(@"I run the scheduler to cleanup older tests")]
+        public void GivenIRunTheSchedulerToCleanupOlderTests()
+        {
+            SA.Robot.RunSchedule(User);
+        }
+        
         [Given(@"I have no logged user \(logoff\)")]
         public void GivenIHaveNoLoggedUserLogoff()
         {
-            ScenarioContext.Current.Pending();
+            //TODO: change to logoff
+            User = null;
         }
 
-        [When(@"I try to run the scheduler")]
-        public void WhenITryToRunTheScheduler()
+        [Given(@"its Date is (\d+) (\w+) ago")]
+        public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"the user amount money will be kept")]
-        public void ThenTheUserAmountMoneyWillBeKept()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"its Date is (\d+) days ago")]
-        public void GivenItsDateIsDaysAgo(Int32 days)
-        {
-            ScenarioContext.Current.Pending();
+            switch (frequency)
+            {
+                case "days": Move.Date = DateTime.Today.AddDays(-count); break;
+                case "months": Move.Date = DateTime.Today.AddMonths(-count); break;
+                case "years": Move.Date = DateTime.Today.AddYears(-count); break;
+            }
         }
 
         [Given(@"I save the move")]
         public void GivenISaveTheMove()
         {
-            ScenarioContext.Current.Pending();
+            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, AccountOut, AccountIn);
         }
 
-        [When(@"I run the scheduler")]
-        public void WhenIRunTheScheduler()
+        [When(@"I try to run the scheduler")]
+        public void WhenITryToRunTheScheduler()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                SA.Robot.RunSchedule(User);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
         #endregion
 
@@ -132,7 +175,21 @@ namespace DFM.Tests.D.Robot
         [Given(@"the move has this schedule")]
         public void GivenTheMoveHasThisSchedule(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var scheduleData = table.Rows[0];
+
+            Move.Schedule = new Schedule();
+
+            if (!String.IsNullOrEmpty(scheduleData["Times"]))
+                Move.Schedule.Times = Int16.Parse(scheduleData["Times"]);
+
+            if (!String.IsNullOrEmpty(scheduleData["Boundless"]))
+                Move.Schedule.Boundless = Boolean.Parse(scheduleData["Boundless"]);
+
+            if (!String.IsNullOrEmpty(scheduleData["Frequency"]))
+                Move.Schedule.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
+
+            if (!String.IsNullOrEmpty(scheduleData["ShowInstallment"]))
+                Move.Schedule.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
         }
         #endregion
 

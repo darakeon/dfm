@@ -2,13 +2,14 @@
 
 Background:
 	Given I have an user
-	And I have a move
-	And I have a detail
+	And I have two accounts
+	And I have a category
+	And I have a move with details
 
 Scenario: 01. Try to get Detail with wrong ID (E)
-	Given I pass an id od Detail that doesn't exist
+	Given I pass an id of Detail that doesn't exist
 	When I try to get the detail
-	Then I will receive this error: InvalidID
+	Then I will receive this error: InvalidDetail
 	And I will receive no detail
 
 Scenario: 99. Get the Detail by ID (S)

@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.Entities;
-using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -10,46 +9,6 @@ namespace DFM.Tests
     [Binding]
     public class MoneyRobotStep : BaseStep
     {
-        #region Variables
-        protected static Double AccountOutTotal
-        {
-            get { return Get<Double>("AccountOutTotal"); }
-            set { Set("AccountOutTotal", value); }
-        }
-
-        protected static Double YearCategoryAccountOutTotal
-        {
-            get { return Get<Double>("YearCategoryAccountOutTotal"); }
-            set { Set("YearCategoryAccountOutTotal", value); }
-        }
-
-        protected static Double MonthCategoryAccountOutTotal
-        {
-            get { return Get<Double>("MonthCategoryAccountOutTotal"); }
-            set { Set("MonthCategoryAccountOutTotal", value); }
-        }
-
-
-        protected static Double AccountInTotal
-        {
-            get { return Get<Double>("AccountInTotal"); }
-            set { Set("AccountInTotal", value); }
-        }
-
-        protected static Double YearCategoryAccountInTotal
-        {
-            get { return Get<Double>("YearCategoryAccountInTotal"); }
-            set { Set("YearCategoryAccountInTotal", value); }
-        }
-
-        protected static Double MonthCategoryAccountInTotal
-        {
-            get { return Get<Double>("MonthCategoryAccountInTotal"); }
-            set { Set("MonthCategoryAccountInTotal", value); }
-        }
-        #endregion
-
-
         [Given(@"I have two accounts")]
         public void GivenIHaveTwoAccounts()
         {
@@ -194,14 +153,14 @@ namespace DFM.Tests
 
 
 
-        [Then(@"the accountIn value will decrease in (\d+)")]
-        public void ThenTheAccountInValueWillDecreaseIn(Double decrease)
+        [Then(@"the accountIn value will increase in (\d+)")]
+        public void ThenTheAccountInValueWillIncreaseIn(Double increase)
         {
             AccountIn = GetOrCreateAccount(AccountInName);
 
             var currentTotal = AccountIn.Sum();
 
-            Assert.AreEqual(AccountInTotal - decrease, currentTotal);
+            Assert.AreEqual(AccountInTotal + increase, currentTotal);
         }
 
         [Then(@"the month-category-accountIn value will change in (\d+)")]
@@ -228,15 +187,6 @@ namespace DFM.Tests
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }
-
-
-
-        [Then(@"the year-category-accountOut value will decrease in (\d+) plus the months until now")]
-        public void ThenTheYearCategoryAccountOutValueWillDecreaseInPlusTheMonthsUntilNow(Double decrease)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
 
 
     }

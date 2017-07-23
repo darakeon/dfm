@@ -71,7 +71,7 @@ namespace DFM.Tests.B.Admin
                 User = User
             };
 
-            Access.Admin.SaveOrUpdateAccount(olderAccount);
+            SA.Admin.SaveOrUpdateAccount(olderAccount);
         }
 
         [When(@"I try to save the account")]
@@ -79,7 +79,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.SaveOrUpdateAccount(Account);
+                SA.Admin.SaveOrUpdateAccount(Account);
             }
             catch (DFMCoreException e)
             {
@@ -90,7 +90,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the account will not be changed")]
         public void ThenTheAccountWillNotBeChanged()
         {
-            var account = Access.Admin.SelectAccountByName(olderAccount.Name, User);
+            var account = SA.Admin.SelectAccountByName(olderAccount.Name, User);
 
             Assert.AreEqual(olderAccount.Name, account.Name);
             Assert.AreEqual(olderAccount.RedLimit, account.RedLimit);
@@ -107,7 +107,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Access.Admin.SelectAccountByName(Account.Name, User);
+                SA.Admin.SelectAccountByName(Account.Name, User);
             }
             catch (DFMCoreException e)
             {
@@ -121,7 +121,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the account will be saved")]
         public void ThenTheAccountWillBeSaved()
         {
-            Account = Access.Admin.SelectAccountByName(Account.Name, User);
+            Account = SA.Admin.SelectAccountByName(Account.Name, User);
 
             Assert.IsNotNull(Account);
         }
@@ -147,7 +147,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Account = Access.Admin.SelectAccountByName(accountName, User);
+                Account = SA.Admin.SelectAccountByName(accountName, User);
             }
             catch (DFMCoreException e)
             {
@@ -170,7 +170,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Account = Access.Admin.SelectAccountById(id);
+                Account = SA.Admin.SelectAccountById(id);
             }
             catch (DFMCoreException e)
             {
@@ -183,7 +183,7 @@ namespace DFM.Tests.B.Admin
         [Given(@"I already have closed the account")]
         public void GivenICloseTheAccount()
         {
-            Access.Admin.CloseAccount(id);
+            SA.Admin.CloseAccount(id);
         }
 
         [When(@"I try to close the account")]
@@ -191,7 +191,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.CloseAccount(id);
+                SA.Admin.CloseAccount(id);
             }
             catch (DFMCoreException e)
             {
@@ -202,14 +202,14 @@ namespace DFM.Tests.B.Admin
         [Then(@"the account will not be closed")]
         public void ThenTheAccountWillNotBeClosed()
         {
-            var account = Access.Admin.SelectAccountById(id);
+            var account = SA.Admin.SelectAccountById(id);
             Assert.IsTrue(account.IsOpen());
         }
 
         [Then(@"the account will be closed")]
         public void ThenTheAccountWillBeClosed()
         {
-            var account = Access.Admin.SelectAccountById(id);
+            var account = SA.Admin.SelectAccountById(id);
             Assert.IsFalse(account.IsOpen());
         }
         #endregion
@@ -218,7 +218,7 @@ namespace DFM.Tests.B.Admin
         [Given(@"I already have deleted the account")]
         public void GivenIDeleteAnAccount()
         {
-            Access.Admin.DeleteAccount(id);
+            SA.Admin.DeleteAccount(id);
         }
 
         [When(@"I try to delete the account")]
@@ -226,7 +226,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.DeleteAccount(id);
+                SA.Admin.DeleteAccount(id);
             }
             catch (DFMCoreException e)
             {
@@ -237,7 +237,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the account will not be deleted")]
         public void ThenTheAccountWillNotBeDeleted()
         {
-            Account = Access.Admin.SelectAccountById(id);
+            Account = SA.Admin.SelectAccountById(id);
             
             Assert.IsNotNull(Account);
         }
@@ -249,7 +249,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Access.Admin.SelectAccountByName(Account.Name, User);
+                SA.Admin.SelectAccountByName(Account.Name, User);
             }
             catch (DFMCoreException e)
             {
@@ -285,7 +285,7 @@ namespace DFM.Tests.B.Admin
                 User = User
             };
 
-            Access.Admin.SaveOrUpdateCategory(olderCategory);
+            SA.Admin.SaveOrUpdateCategory(olderCategory);
         }
 
         [When(@"I try to save the category")]
@@ -293,7 +293,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.SaveOrUpdateCategory(Category);
+                SA.Admin.SaveOrUpdateCategory(Category);
             }
             catch (DFMCoreException e)
             {
@@ -308,7 +308,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Access.Admin.SelectCategoryByName(Category.Name, User);
+                SA.Admin.SelectCategoryByName(Category.Name, User);
             }
             catch (DFMCoreException e)
             {
@@ -322,7 +322,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the category will be saved")]
         public void ThenTheCategoryWillBeSaved()
         {
-            Category = Access.Admin.SelectCategoryByName(Category.Name, User);
+            Category = SA.Admin.SelectCategoryByName(Category.Name, User);
 
             Assert.IsNotNull(Category);
         }
@@ -348,7 +348,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Category = Access.Admin.SelectCategoryByName(categoryName, User);
+                Category = SA.Admin.SelectCategoryByName(categoryName, User);
             }
             catch (DFMCoreException e)
             {
@@ -371,7 +371,7 @@ namespace DFM.Tests.B.Admin
 
             try
             {
-                Category = Access.Admin.SelectCategoryById(id);
+                Category = SA.Admin.SelectCategoryById(id);
             }
             catch (DFMCoreException e)
             {
@@ -384,10 +384,10 @@ namespace DFM.Tests.B.Admin
         [Given(@"I give an id of enabled category ([\w ]+)")]
         public void GivenIGiveAnIdOfEnabledCategory(String givenCategoryName)
         {
-            Access.Admin.SaveOrUpdateCategory(
+            SA.Admin.SaveOrUpdateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = Access.Admin.SelectCategoryByName(givenCategoryName, User);
+            Category = SA.Admin.SelectCategoryByName(givenCategoryName, User);
 
             id = Category.ID;
         }
@@ -395,7 +395,7 @@ namespace DFM.Tests.B.Admin
         [Given(@"I already have disabled the category")]
         public void GivenIDisableACategory()
         {
-            Access.Admin.DisableCategory(id);
+            SA.Admin.DisableCategory(id);
         }
 
         [When(@"I try to disable the category")]
@@ -403,7 +403,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.DisableCategory(id);
+                SA.Admin.DisableCategory(id);
             }
             catch (DFMCoreException e)
             {
@@ -414,7 +414,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the category will be disabled")]
         public void ThenTheCategoryWillBeDisabled()
         {
-            Category = Access.Admin.SelectCategoryById(id);
+            Category = SA.Admin.SelectCategoryById(id);
 
             Assert.IsFalse(Category.Active);
         }
@@ -424,20 +424,20 @@ namespace DFM.Tests.B.Admin
         [Given(@"I give an id of disabled category ([\w ]+)")]
         public void GivenIGiveAnIdOfDisabledCategory(String givenCategoryName)
         {
-            Access.Admin.SaveOrUpdateCategory(
+            SA.Admin.SaveOrUpdateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = Access.Admin.SelectCategoryByName(givenCategoryName, User);
+            Category = SA.Admin.SelectCategoryByName(givenCategoryName, User);
 
             id = Category.ID;
 
-            Access.Admin.DisableCategory(id);
+            SA.Admin.DisableCategory(id);
         }
 
         [Given(@"I already have enabled the category")]
         public void GivenIEnableACategory()
         {
-            Access.Admin.EnableCategory(id);
+            SA.Admin.EnableCategory(id);
         }
 
         [When(@"I try to enable the category")]
@@ -445,7 +445,7 @@ namespace DFM.Tests.B.Admin
         {
             try
             {
-                Access.Admin.EnableCategory(id);
+                SA.Admin.EnableCategory(id);
             }
             catch (DFMCoreException e)
             {
@@ -456,7 +456,7 @@ namespace DFM.Tests.B.Admin
         [Then(@"the category will be enabled")]
         public void ThenTheCategoryWillBeEnabled()
         {
-            Category = Access.Admin.SelectCategoryById(id);
+            Category = SA.Admin.SelectCategoryById(id);
 
             Assert.IsTrue(Category.Active);
         }
@@ -476,9 +476,9 @@ namespace DFM.Tests.B.Admin
         {
             Account = new Account {Name = givenAccountName, User = User};
 
-            Access.Admin.SaveOrUpdateAccount(Account);
+            SA.Admin.SaveOrUpdateAccount(Account);
 
-            Account = Access.Admin.SelectAccountByName(givenAccountName, User);
+            Account = SA.Admin.SelectAccountByName(givenAccountName, User);
 
             id = Account.ID;
         }
@@ -487,8 +487,8 @@ namespace DFM.Tests.B.Admin
         public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountName)
         {
             Account = new Account { Name = givenAccountName, User = User };
-            Access.Admin.SaveOrUpdateAccount(Account);
-            Account = Access.Admin.SelectAccountByName(givenAccountName, User);
+            SA.Admin.SaveOrUpdateAccount(Account);
+            Account = SA.Admin.SelectAccountByName(givenAccountName, User);
 
             var move = new Move
                            {
@@ -502,7 +502,7 @@ namespace DFM.Tests.B.Admin
 
             move.DetailList.Add(detail);
 
-            Access.Money.SaveOrUpdateMove(move, Account, null);
+            SA.Money.SaveOrUpdateMove(move, Account, null);
 
             id = Account.ID;
         }

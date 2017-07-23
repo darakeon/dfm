@@ -35,16 +35,21 @@
         MoveDateRequired,
         MoveDateInvalid,
         MoveValueOrDetailRequired,
+        InvalidMove,
         DetailWithoutMove,
         MoveDetailDescriptionRequired,
         MoveDetailAmountRequired,
         MoveDetailValueRequired,
+        InvalidDetail,
 
         ScheduleRequired,
         ScheduleFrequencyNotRecognized,
         ScheduleWithNoMoves,
+        ScheduleTimesCantBeZero,
 
         SummaryNatureNotFound,
+
+        Unauthorized,
     }
 
 }

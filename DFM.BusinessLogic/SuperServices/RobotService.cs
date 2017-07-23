@@ -9,21 +9,25 @@ namespace DFM.BusinessLogic.SuperServices
 {
     public class RobotService
     {
+        private readonly MoneyService moneyService;
+
         private readonly ScheduleService scheduleService;
         private readonly FutureMoveService futureMoveService;
         private readonly DetailService detailService;
         private readonly CategoryService categoryService;
+        private readonly AccountService accountService;
+        private readonly UserService userService;
         
-        private readonly MoneyService moneyService;
-
-        internal RobotService(MoneyService moneyService, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService)
+        internal RobotService(MoneyService moneyService, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService, CategoryService categoryService, AccountService accountService, UserService userService)
         {
+            this.moneyService = moneyService;
+
             this.scheduleService = scheduleService;
             this.futureMoveService = futureMoveService;
             this.detailService = detailService;
             this.categoryService = categoryService;
-
-            this.moneyService = moneyService;
+            this.accountService = accountService;
+            this.userService = userService;
         }
 
 
@@ -31,12 +35,14 @@ namespace DFM.BusinessLogic.SuperServices
         #region Scheduler
         public void RunSchedule(User user)
         {
+            if (user == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+
             var scheduleList = scheduleService.GetScheduleToRun(user);
 
             var futureMoves = scheduleList
-                .Select(s => s.FutureMoveList
-                                .Where(m => m.Date <= DateTime.Now).ToList())
-                .SelectMany(moves => moves);
+                .SelectMany(s => s.FutureMoveList
+                                .Where(m => m.Date <= DateTime.Now).ToList());
 
             foreach (var futureMove in futureMoves)
             {
@@ -78,8 +84,13 @@ namespace DFM.BusinessLogic.SuperServices
 
         public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, Account accountOut, Account accountIn)
         {
-            futureMove.Out = accountOut;
-            futureMove.In = accountIn;
+            futureMove.Out = accountOut == null 
+                ? null 
+                : accountService.SelectByName(accountOut.Name, accountOut.User);
+
+            futureMove.In = accountIn == null 
+                ? null 
+                : accountService.SelectByName(accountIn.Name, accountIn.User);
 
             futureMoveService.BeginTransaction();
 
@@ -110,6 +121,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             futureMove = ajustFutureMovesAndGetFirst(futureMove.Schedule);
 
+            futureMove = saveMove(futureMove);
 
             return futureMove;
         }
@@ -154,9 +166,18 @@ namespace DFM.BusinessLogic.SuperServices
 
             schedule.FutureMoveList.Add(nextFMove);
 
-            futureMoveService.SaveOrUpdate(nextFMove);
+            saveMove(nextFMove);
+        }
 
-            detailService.SaveDetails(nextFMove);
+
+
+        private FutureMove saveMove(FutureMove futureMove)
+        {
+            futureMove = futureMoveService.SaveOrUpdate(futureMove);
+
+            detailService.SaveDetails(futureMove);
+
+            return futureMove;
         }
 
         #endregion

@@ -6,7 +6,7 @@ namespace DFM.Generic
     {
         public static T Parse<T>(String value)
         {
-            return (T)Enum.Parse(typeof (T), value);
+            return (T)Enum.Parse(typeof (T), value, true);
         }
     }
 }

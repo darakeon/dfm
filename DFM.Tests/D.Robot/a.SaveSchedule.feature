@@ -47,7 +47,7 @@ Scenario: 03. Save without Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveCategoryRequired
+	Then I will receive this error: InvalidCategory
 	And the schedule will not be saved
 
 Scenario: 04. Save with unknown Category (E)
@@ -62,7 +62,7 @@ Scenario: 04. Save with unknown Category (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveCategoryInvalid
+	Then I will receive this error: InvalidCategory
 	And the schedule will not be saved
 
 
@@ -379,7 +379,7 @@ Scenario: 51. Save without Schedule (E)
 	And it has an Account Out
 	And it has no Account In
 	When I try to save the schedule
-	Then I will receive this error: MoveScheduleRequired
+	Then I will receive this error: ScheduleRequired
 	And the schedule will not be saved
 
 Scenario: 52. Save with Schedule Times zero and bounded (E)

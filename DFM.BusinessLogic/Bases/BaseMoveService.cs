@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -41,14 +42,16 @@ namespace DFM.BusinessLogic.Bases
             if (baseMove.Date == DateTime.MinValue)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
 
-            if (baseMove.Date > DateTime.Now)
+            if (baseMove.Date > DateTime.Now 
+                    && baseMove.GetType() != typeof(FutureMove))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
         }
 
         private static void testValue(BaseMove baseMove)
         {
-            // TODO: When create value move move, take off //
-            if (baseMove.Value() == 0) // && !baseMove.DetailList.Any())
+            // TODO: When create value move move, use the other if
+            if (!baseMove.IsDetailed() && baseMove.Value() == 0)
+            // if (!baseMove.IsDetailed() && baseMove.Value == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 

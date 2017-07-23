@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic
             Report = new ReportService(account, year, month);
             Safe = new SafeService(user, security);
             Admin = new AdminService(account, category);
-            Robot = new RobotService(Money, schedule, futureMove, detail, category);
+            Robot = new RobotService(Money, schedule, futureMove, detail, category, account, user);
         }
 
 

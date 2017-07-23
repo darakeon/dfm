@@ -4,13 +4,12 @@ Background:
 	Given I have an user
 	And I have two accounts
 	And I have a category
+	And I run the scheduler to cleanup older tests
 
 Scenario: 01. Run with unlogged user (E)
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
 	Then I will receive this error: Unauthorized
-	And the user amount money will be kept
-
 
 
 Scenario: 91. Run with bounded schedule (S)
@@ -25,14 +24,14 @@ Scenario: 91. Run with bounded schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 10
-	And the year-category-accountOut value will decrease in 10
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 10
 
 Scenario: 92. Run with boundless schedule (S)
 	Given I have this future move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca91   | 2012-03-31 | Out    | 10    |
+		| Description | Date | Nature | Value |
+		| Move Ca92   |      | Out    | 10    |
+	And its Date is 3 months ago
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -41,15 +40,13 @@ Scenario: 92. Run with boundless schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 10 plus the months until now
-	And the year-category-accountOut value will decrease in 10 plus the months until now
-
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 40
 
 Scenario: 93. Run schedule that will finish (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    | 10    |
+		| Move Ca93   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -59,14 +56,13 @@ Scenario: 93. Run schedule that will finish (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 30
-	And the year-category-accountOut value will decrease in 30
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 30
 
 Scenario: 94. Run schedule that wont finish (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    | 10    |
+		| Move Ca94   |      | Out    | 10    |
 	And its Date is 5 days ago
 	And it has no Details
 	And the move has this schedule
@@ -76,15 +72,13 @@ Scenario: 94. Run schedule that wont finish (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 5
-	And the year-category-accountOut value will decrease in 5
-
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 60
 
 Scenario: 95. Run with daily schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    | 10    |
+		| Move Ca95   |      | Out    | 10    |
 	And its Date is 20 days ago
 	And it has no Details
 	And the move has this schedule
@@ -94,15 +88,14 @@ Scenario: 95. Run with daily schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 100
-	And the year-category-accountOut value will decrease in 100
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 100
 
 Scenario: 96. Run with monthly schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    | 10    |
-	And its Date is 190 days ago
+		| Move Ca96   |      | Out    | 10    |
+	And its Date is 7 months ago
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -111,15 +104,14 @@ Scenario: 96. Run with monthly schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 60
-	And the year-category-accountOut value will decrease in 60
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 60
 
 Scenario: 97. Run with yearly schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    | 10    |
-	And its Date is 750 days ago
+		| Move Ca97   |      | Out    | 10    |
+	And its Date is 2 years ago
 	And it has no Details
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
@@ -128,15 +120,13 @@ Scenario: 97. Run with yearly schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 20
-	And the year-category-accountOut value will decrease in 20
-
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 20
 
 Scenario: 98. Run with details in schedule (S)
 	Given I have this future move to create
 		| Description | Date | Nature | Value |
-		| Move Ca91   |      | Out    |       |
+		| Move Ca98   |      | Out    |       |
 	And its Date is 10 days ago
 	And the move has this details
 		| Description | Amount | Value |
@@ -149,7 +139,5 @@ Scenario: 98. Run with details in schedule (S)
 	And it has an Account Out
 	And it has no Account In
 	And I save the move
-	When I run the scheduler
-	Then the month-category-accountOut value will decrease in 100
-	And the year-category-accountOut value will decrease in 100
-	
+	When I try to run the scheduler
+	Then the accountOut value will decrease in 100

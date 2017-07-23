@@ -20,15 +20,17 @@ namespace DFM.BusinessLogic.Services
 
         internal IList<Schedule> GetScheduleToRun(User user)
         {
-            var scheduleList = getRunnableAndDisableOthers(user.ScheduleList);
+            var scheduleList = getRunnableAndDisableOthers(user);
 
             return scheduleList
                 .Where(s => s.CanRunNow())
                 .ToList();
         }
 
-        private IEnumerable<Schedule> getRunnableAndDisableOthers(IEnumerable<Schedule> scheduleList)
+        private IEnumerable<Schedule> getRunnableAndDisableOthers(User user)
         {
+            var scheduleList = List(s => s.User == user);
+
             foreach (var schedule in scheduleList)
             {
                 if (CanRun(schedule))
@@ -64,6 +66,9 @@ namespace DFM.BusinessLogic.Services
 
             if (isCreating && hasNoFuture)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
+
+            if (schedule.Times <= 0)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
         }
 
 

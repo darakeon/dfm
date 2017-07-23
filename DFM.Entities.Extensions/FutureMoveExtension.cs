@@ -38,6 +38,10 @@ namespace DFM.Entities.Extensions
 
             var move = futureMove.CastToChild<Move>();
 
+            //In case of NH try to save,
+            //it causes issues on being null
+            futureMove.Category = category;
+
             move.Schedule = schedule;
             move.Category = category;
             move.DetailList = detailList;

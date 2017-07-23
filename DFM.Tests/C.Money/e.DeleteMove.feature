@@ -1,13 +1,18 @@
 ﻿Feature: e. Delete of Moves
 
+Background:
+	Given I have an user
+	And I have two accounts
+	And I have a category
+	And I have a move
+
 Scenario: 01. Try to delete Move with wrong ID (E)
 	Given I pass an id of Move that doesn't exist
 	When I try to delete the move
-	Then I will receive this error: InvalidID
-	And the move will not be deleted
+	Then I will receive this error: InvalidMove
 
 Scenario: 99. Delete the Move by ID (S)
-	Given I pass valid Detail ID
+	Given I pass valid Move ID
 	When I try to delete the move
 	Then I will receive no error
 	And the move will be deleted

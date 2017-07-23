@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -11,6 +12,21 @@ namespace DFM.Tests.C.Money
     [Binding]
     public class MoneyStep : BaseStep
     {
+        #region Variables
+        private static Int32 id
+        {
+            get { return Get<Int32>("ID"); }
+            set { Set("ID", value); }
+        }
+
+        private static Detail detail
+        {
+            get { return Get<Detail>("Detail"); }
+            set { Set("Detail", value); }
+        }
+        #endregion
+
+
         #region SaveMove
         [Given(@"I have this move to create")]
         public void GivenIHaveThisMoveToCreate(Table table)
@@ -31,14 +47,14 @@ namespace DFM.Tests.C.Money
 
             if (!String.IsNullOrEmpty(moveData["Value"]))
             {
-                var detail = new Detail
+                var newDetail = new Detail
                 {
                     Description = Move.Description,
                     Amount = 1,
                     Value = Int32.Parse(moveData["Value"])
                 };
 
-                Move.DetailList.Add(detail);
+                Move.DetailList.Add(newDetail);
             }
         }
         
@@ -48,7 +64,7 @@ namespace DFM.Tests.C.Money
         {
             try
             {
-                Access.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn);
+                SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, AccountIn);
             }
             catch (DFMCoreException e)
             {
@@ -67,67 +83,144 @@ namespace DFM.Tests.C.Money
         {
             Assert.AreNotEqual(0, Move.ID);
 
-            var newMove = Access.Money.SelectMoveById(Move.ID);
+            var newMove = SA.Money.SelectMoveById(Move.ID);
 
             Assert.IsNotNull(newMove);
         }
         #endregion
 
         #region SelectMoveById
+        [Given(@"I have a move")]
+        public void GivenIHaveAMove()
+        {
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            Category = GetOrCreateCategory(CentralCategoryName);
+
+            Move = new Move
+            {
+                Description = "Description",
+                Date = DateTime.Today,
+                Nature = MoveNature.Out,
+                Category = Category,
+            };
+
+            // TODO: use this, delete above
+            //    move.Value = 10;
+
+            var detail = new Detail
+            {
+                Description = Move.Description,
+                Amount = 1,
+                Value = 10,
+            };
+
+            Move.DetailList.Add(detail);
+
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, null);
+        }
+
         [When(@"I try to get the move")]
         public void WhenITryToGetTheMove()
         {
-            ScenarioContext.Current.Pending();
+            Move = null;
+            Error = null;
+
+            try
+            {
+                Move = SA.Money.SelectMoveById(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"I will receive no move")]
         public void ThenIWillReceiveNoMove()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsNull(Move);
         }
 
         [Then(@"I will receive the move")]
         public void ThenIWillReceiveTheMove()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsNotNull(Move);
         }
         #endregion
 
         #region SelectDetailById
-        [Given(@"I have a detail")]
-        public void GivenIHaveADetail()
+        [Given(@"I have a move with details")]
+        public void GivenIHaveAMoveWithDetails()
         {
-            ScenarioContext.Current.Pending();
+            AccountOut = GetOrCreateAccount(AccountOutName);
+
+            Category = GetOrCreateCategory(CentralCategoryName);
+
+            Move = new Move
+            {
+                Description = "Description",
+                Date = DateTime.Today,
+                Nature = MoveNature.Out,
+                Category = Category,
+            };
+
+            for (var d = 0; d < 3; d++)
+            {
+                var newDetail = new Detail
+                {
+                    Description = "Detail " + d,
+                    Amount = 1,
+                    Value = 10,
+                };
+
+                Move.DetailList.Add(newDetail);
+            }
+
+            Move = SA.Money.SaveOrUpdateMove((Move)Move, AccountOut, null);
+
+            detail = Move.DetailList.First();
         }
 
-        [Given(@"I pass an id od Detail that doesn't exist")]
+
+        [Given(@"I pass an id of Detail that doesn't exist")]
         public void GivenIPassAnIdOdDetailThatDoesnTExist()
         {
-            ScenarioContext.Current.Pending();
+            id = 0;
         }
 
         [Given(@"I pass valid Detail ID")]
         public void GivenIPassValidDetailID()
         {
-            ScenarioContext.Current.Pending();
+            id = detail.ID;
         }
 
         [When(@"I try to get the detail")]
         public void WhenITryToGetTheDetail()
         {
-            ScenarioContext.Current.Pending();
+            detail = null;
+            Error = null;
+
+            try
+            {
+                detail = SA.Money.SelectDetailById(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"I will receive no detail")]
         public void ThenIWillReceiveNoDetail()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsNull(detail);
         }
 
         [Then(@"I will receive the detail")]
         public void ThenIWillReceiveTheDetail()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsNotNull(detail);
         }
         #endregion
 
@@ -135,41 +228,48 @@ namespace DFM.Tests.C.Money
         [When(@"I try to delete the move")]
         public void WhenITryToDeleteTheMove()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                SA.Money.DeleteMove(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
         }
 
         [Then(@"the move will be deleted")]
         public void ThenTheMoveWillBeDeleted()
         {
-            ScenarioContext.Current.Pending();
-        }
+            Error = null;
 
-        [Then(@"the move will not be deleted")]
-        public void ThenTheMoveWillNotBeDeleted()
-        {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                SA.Money.SelectMoveById(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.InvalidMove, Error.Type);
         }
         #endregion
 
 
 
         #region MoreThanOne
-        [Given(@"I have a move")]
-        public void GivenIHaveAMove()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Given(@"I pass an id of Move that doesn't exist")]
         public void GivenIPassAnIdOfMoveThatDoesnTExist()
         {
-            ScenarioContext.Current.Pending();
+            id = 0;
         }
 
         [Given(@"I pass valid Move ID")]
         public void GivenIPassValidMoveID()
         {
-            ScenarioContext.Current.Pending();
+            id = Move.ID;
         }
         #endregion
 

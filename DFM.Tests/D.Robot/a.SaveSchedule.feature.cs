@@ -212,7 +212,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 49
  testRunner.When("I try to save the schedule");
 #line 50
- testRunner.Then("I will receive this error: MoveCategoryRequired");
+ testRunner.Then("I will receive this error: InvalidCategory");
 #line 51
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -263,7 +263,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 64
  testRunner.When("I try to save the schedule");
 #line 65
- testRunner.Then("I will receive this error: MoveCategoryInvalid");
+ testRunner.Then("I will receive this error: InvalidCategory");
 #line 66
  testRunner.And("the schedule will not be saved");
 #line hidden
@@ -1311,7 +1311,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 381
  testRunner.When("I try to save the schedule");
 #line 382
- testRunner.Then("I will receive this error: MoveScheduleRequired");
+ testRunner.Then("I will receive this error: ScheduleRequired");
 #line 383
  testRunner.And("the schedule will not be saved");
 #line hidden

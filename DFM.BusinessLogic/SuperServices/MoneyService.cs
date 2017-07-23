@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Ak.Generic.Collection;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
@@ -36,7 +35,12 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Move SelectMoveById(Int32 id)
         {
-            return moveService.SelectById(id);
+            var move = moveService.SelectById(id);
+
+            if (move == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+
+            return move;
         }
 
 
@@ -104,8 +108,11 @@ namespace DFM.BusinessLogic.SuperServices
 
                 moveService.SendEmail(move, "delete");
 
-                move.Schedule.Times--;
-                scheduleService.SaveOrUpdate(move.Schedule);
+                if (move.Schedule != null)
+                {
+                    move.Schedule.Times--;
+                    scheduleService.SaveOrUpdate(move.Schedule);
+                }
 
                 moveService.CommitTransaction();
             }
@@ -121,7 +128,12 @@ namespace DFM.BusinessLogic.SuperServices
 
         public Detail SelectDetailById(Int32 id)
         {
-            return detailService.SelectById(id);
+            var detail = detailService.SelectById(id);
+
+            if (detail == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
+
+            return detail;
         }
 
 

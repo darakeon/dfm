@@ -12,13 +12,13 @@ namespace DFM.Tests
 {
     public abstract class BaseStep
     {
-        protected ServiceAccess Access;
+        protected ServiceAccess SA;
 
         protected BaseStep()
         {
             NHManager.Start();
 
-            Access = new ServiceAccess(new Connector());
+            SA = new ServiceAccess(new Connector());
 
             var path = Directory.GetCurrentDirectory();
             PlainText.Initialize(path);
@@ -59,15 +59,15 @@ namespace DFM.Tests
         {
             try
             {
-                return Access.Safe.ValidateAndGet(userEmail, userPassword);
+                return SA.Safe.ValidateAndGet(userEmail, userPassword);
             }
             catch (DFMCoreException e)
             {
                 if (e.Type != ExceptionPossibilities.InvalidUser)
                     throw;
 
-                Access.Safe.SaveUserAndSendVerify(userEmail, userPassword);
-                return Access.Safe.ValidateAndGet(userEmail, userPassword);
+                SA.Safe.SaveUserAndSendVerify(userEmail, userPassword);
+                return SA.Safe.ValidateAndGet(userEmail, userPassword);
             }
         }
 
@@ -75,15 +75,15 @@ namespace DFM.Tests
         {
             try
             {
-                return Access.Admin.SelectAccountByName(accountName, User);
+                return SA.Admin.SelectAccountByName(accountName, User);
             }
             catch (DFMCoreException e)
             {
                 if (e.Type != ExceptionPossibilities.InvalidAccount)
                     throw;
 
-                Access.Admin.SaveOrUpdateAccount(new Account { Name = accountName, User = User });
-                return Access.Admin.SelectAccountByName(accountName, User);
+                SA.Admin.SaveOrUpdateAccount(new Account { Name = accountName, User = User });
+                return SA.Admin.SelectAccountByName(accountName, User);
             }
         }
 
@@ -91,15 +91,15 @@ namespace DFM.Tests
         {
             try
             {
-                return Access.Admin.SelectCategoryByName(categoryName, User);
+                return SA.Admin.SelectCategoryByName(categoryName, User);
             }
             catch (DFMCoreException e)
             {
                 if (e.Type != ExceptionPossibilities.InvalidCategory)
                     throw;
 
-                Access.Admin.SaveOrUpdateCategory(new Category { Name = categoryName, User = User });
-                return Access.Admin.SelectCategoryByName(categoryName, User);
+                SA.Admin.SaveOrUpdateCategory(new Category { Name = categoryName, User = User });
+                return SA.Admin.SelectCategoryByName(categoryName, User);
             }
         }
         #endregion
@@ -130,11 +130,31 @@ namespace DFM.Tests
             set { Set("Category", value); }
         }
 
+
         protected static Account AccountOut
         {
             get { return Get<Account>("AccountOut"); }
             set { Set("AccountOut", value); }
         }
+
+        protected static Double AccountOutTotal
+        {
+            get { return Get<Double>("AccountOutTotal"); }
+            set { Set("AccountOutTotal", value); }
+        }
+
+        protected static Double YearCategoryAccountOutTotal
+        {
+            get { return Get<Double>("YearCategoryAccountOutTotal"); }
+            set { Set("YearCategoryAccountOutTotal", value); }
+        }
+
+        protected static Double MonthCategoryAccountOutTotal
+        {
+            get { return Get<Double>("MonthCategoryAccountOutTotal"); }
+            set { Set("MonthCategoryAccountOutTotal", value); }
+        }
+
 
         protected static Account AccountIn
         {
@@ -142,6 +162,25 @@ namespace DFM.Tests
             set { Set("AccountIn", value); }
         }
 
+        protected static Double AccountInTotal
+        {
+            get { return Get<Double>("AccountInTotal"); }
+            set { Set("AccountInTotal", value); }
+        }
+
+        protected static Double YearCategoryAccountInTotal
+        {
+            get { return Get<Double>("YearCategoryAccountInTotal"); }
+            set { Set("YearCategoryAccountInTotal", value); }
+        }
+
+        protected static Double MonthCategoryAccountInTotal
+        {
+            get { return Get<Double>("MonthCategoryAccountInTotal"); }
+            set { Set("MonthCategoryAccountInTotal", value); }
+        }
+
+        
         protected static BaseMove Move
         {
             get { return Get<BaseMove>("BaseMove"); }
