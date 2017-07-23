@@ -1,4 +1,4 @@
-#hiddenNewCategory, #AccountID {
+#hiddenNewCategory, .accountForTransfer {
     display: none;
 }
 
@@ -26,13 +26,20 @@
 
 
 
+.CRUDCategory {
+	width: 200px !important;
+}
+
 .CRUDCategory button {
 	margin-top: 5px;
 }
 
-.CRUDCategory {
-	width: 200px !important;
+.CRUDCategory .validation-summary-errors {
+	display: none;
 }
+
+
+
 
 #moveCreateButton {
     clear: both;

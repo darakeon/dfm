@@ -156,11 +156,11 @@ VERSÃO 1.0.2.3
 
 17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
 17/10/2012	17/10/2012	Colocar log por visita no site (IP, Data/Hora, Endereço)
-				Arrumar MVC para passar Category e Scheudule de move separados da move
+17/10/2012			Arrumar MVC para passar Category e Schedule de move separados da move
 				Isolar projeto de autenticação
 				Proteção por usuário no Core (verificar active também)
 				Passar Accounts / Category como name para a save move
-				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID
+				Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
 				Substituir SelectByEmail de User por SelectByLogin
 				Substituir SelectById de Account / Category por SelectByName
 				Troca SelectUserByEmail por SelectUserByLogin
@@ -177,6 +177,7 @@ VERSÃO 1.0.2.3
 			>>>	Iluminar última movimentação verificada
 			>>>	Mostrar valor da conta com movimentações futuras
 				Tratar FailOnEmailSend em Robot
+				Modificar Authorize para gravar última requisição da pessoa incluindo dados de POST
 
 ======================================================================================================
 

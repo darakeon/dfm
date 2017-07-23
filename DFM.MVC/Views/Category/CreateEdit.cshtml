@@ -14,6 +14,7 @@
                 : Html.BeginForm()
         )
     {
+        @Html.ValidationSummary()
 
         <p>
             @Html.LabelFor(m => m.Category.Name, MultiLanguage.Dictionary["Category"])

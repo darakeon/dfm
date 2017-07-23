@@ -18,13 +18,15 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     [Authorize]
     public class MoveController : Controller
     {
-        private Int32 accountid;
+        private String accountname;
 
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
 
-            accountid = Int32.Parse(RouteData.Values["accountid"].ToString());
+            var accountid = Int32.Parse(RouteData.Values["accountid"].ToString());
+
+            accountname = Services.Admin.SelectAccountById(accountid).Name;
         }
 
 
@@ -33,7 +35,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditScheduleModel();
             
-            model.Populate(accountid);
+            model.Populate(accountname);
 
             return viewCES(model);
         }
@@ -41,6 +43,8 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Create(MoveCreateEditScheduleModel model)
         {
+            model.Schedule = null;
+
             return createEditSchedule<Move>(model);
         }
 
@@ -60,12 +64,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new MoveCreateEditScheduleModel(move);
 
-            if (model.AccountID == accountid)
+            if (model.AccountName == accountname)
                 return redirectToRightAccount(move);
 
 
 
-            model.Populate(accountid);
+            model.Populate(accountname);
 
             return viewCES(model);
         }
@@ -88,7 +92,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 return RedirectToAction("Create");
 
             model.Move.ID = id;
-            model.Move.Schedule = oldMove.Schedule;
+            model.Schedule = oldMove.Schedule;
 
             return createEditSchedule<Move>(model);
         }
@@ -97,9 +101,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Schedule()
         {
-            var model = new MoveCreateEditScheduleModel {IsSchedule = true };
+            var model = new MoveCreateEditScheduleModel {IsSchedule = true};
 
-            model.Populate(accountid);
+            model.Populate(accountname);
 
             return viewCES(model);
         }
@@ -119,9 +123,10 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 try
                 {
-                    var selector = new AccountSelector(model.Move.Nature, accountid, model.AccountID);
+                    var selector = new AccountSelector(model.Move.Nature, accountname, model.AccountName);
+                    var category = Services.Admin.SelectCategoryByName(model.CategoryName, Current.User);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector);
+                    return saveOrUpdateAndRedirect<T>(model.Move, selector, category, model.Schedule);
                 }
                 catch (DFMCoreException e)
                 {
@@ -129,19 +134,19 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.Populate(accountid);
+            model.Populate(accountname);
 
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector)
+        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, Category category, Schedule schedule = null)
             where T : BaseMove, new()
         {
             if (typeof(T) == typeof(FutureMove))
             {
                 var futureMove = baseMove.CastToChild<FutureMove>();
 
-                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOut, selector.AccountIn, futureMove.Category, futureMove.Schedule);
+                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOut, selector.AccountIn, category, schedule);
 
                 return RedirectToAction("Index", "Report");
             }
@@ -150,7 +155,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             {
                 var move = baseMove.CastToChild<Move>();
 
-                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn, move.Category);
+                Services.Money.SaveOrUpdateMove(move, selector.AccountOut, selector.AccountIn, category);
 
                 return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
             }

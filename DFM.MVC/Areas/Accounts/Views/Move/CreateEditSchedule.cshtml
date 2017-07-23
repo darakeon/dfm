@@ -77,9 +77,9 @@
     
     <div class="createMoveScreenRight">
         <div>
-            @Html.LabelFor(m => m.Move.Category.ID, MultiLanguage.Dictionary["Category"]) 
-            @Html.ValidationMessageFor(m => m.Move.Category.ID)<br />
-            @Html.DropDownListFor(m => m.Move.Category.ID, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+            @Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"]) 
+            @Html.ValidationMessageFor(m => m.CategoryName)<br />
+            @Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
 
             <a href="#" type="button" id="newCategoryCaller">@MultiLanguage.Dictionary["Create", "Category"]</a>
         </div>
@@ -88,22 +88,22 @@
             @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
 
             @Html.ValidationMessageFor(m => m.Nature)
-            @Html.ValidationMessageFor(m => m.AccountID)<br />
+            @Html.ValidationMessageFor(m => m.AccountName)<br />
         
-            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList)
-            @Html.DropDownListFor(m => m.AccountID, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
+            @Html.DropDownListFor(m => m.AccountName, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
         </div>
     </div>
     
     <div class="divRowForm"><hr /></div>
     
     <div class="createMoveScreenLeft">
-        @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "DetailLevel" })
+        @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "detailLevel" })
         @MultiLanguage.Dictionary["JustOneValue"]
     </div> 
         
     <div class="createMoveScreenRight">
-        @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "DetailLevel" })
+        @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "detailLevel" })
         @MultiLanguage.Dictionary["Detailed"]
         
         <a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>

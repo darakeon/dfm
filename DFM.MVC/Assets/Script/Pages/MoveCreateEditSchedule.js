@@ -1,40 +1,33 @@
 $(document).ready(function () {
     ActiveDatePicker();
 
-    $('#newCategoryCaller').click(function () {
-        if ($('#TopRightDiv').html() == "") {
-            
-            var html = $("#hiddenNewCategory").html();
-            $('#TopRightDiv').html(html);
-
-        } else {
-            $('#TopRightDiv').html("");
-        }
-    });
+    SetNewCategoryCaller();
 
     $(".boundlessRadio").change(function () {
         ToggleBoundless(this);
     });
 
 
-    $('#Nature').change(function () {
+    $('.natureSelect').change(function () {
         ShowAccountList(this);
     });
 
 
-    $('.DetailLevel').click(function () {
+    $('.detailLevel').click(function () {
         ChangeDetailLevel(valueToBoolean(this));
     });
 
 
     SetDetailLevel();
 
-    var nature = $("#Nature option:selected");
+    var nature = $(".natureSelect option:selected");
     ShowAccountList(nature);
 
-    var boundless = $("#Boundless:checked");
+    var boundless = $(".boundlessRadio:checked");
     ToggleBoundless(boundless);
 });
+
+var inputErrorClass = "input-validation-error";
 
 
 function ActiveDatePicker() {
@@ -47,16 +40,34 @@ function ActiveDatePicker() {
 }
 
 
+function SetNewCategoryCaller() {
+    $('#newCategoryCaller').click(function () {
+        if ($('#TopRightDiv').html() == "") {
+
+            $("#hiddenNewCategory ." + inputErrorClass)
+                .removeClass(inputErrorClass);
+
+            var html = $("#hiddenNewCategory").html();
+            $('#TopRightDiv').html(html);
+
+        } else {
+            $('#TopRightDiv').html("");
+        }
+
+        return false;
+    });
+}
+
+
 function InsertCategoryOnDropDown(data) {
-    var id = data["id"];
     var name = data["name"];
 
-    if (id == "0") {
-        alert("Fill the Category Name.");
+    if (name == null) {
+        $("#Category_Name").addClass(inputErrorClass);
     }
     else {
-        var op = new Option(name, id, true);
-        $("#Move_Category_ID").append(op);
+        var op = new Option(name, name, true);
+        $("#CategoryName").append(op);
 
         $('#newCategory form')[0].reset();
         $('#TopRightDiv').html("");
@@ -68,7 +79,7 @@ function ShowAccountList(obj) {
     $.post(whetherShowAccountListPage,
             { nature: $(obj).val() },
             function (show) {
-                $('#AccountID').toggle(toBoolean(show));
+                $('.accountForTransfer').toggle(toBoolean(show));
             }
         );
 }
@@ -127,7 +138,7 @@ function ChangeDetailLevel(detailed) {
 
 
 function SetDetailLevel() {
-    var first = $('.DetailLevel')[0];
+    var first = $('.detailLevel')[0];
     var firstIsDetailed = valueToBoolean(first);
     var firstIsChecked = first.checked;
 

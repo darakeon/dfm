@@ -5,15 +5,17 @@ function AjaxFail(html) {
 
     error = error.substr(1, error.length - 3);
 
+    error = decodeHtml(error);
+
     alert(error);
+
     EndAjaxPost()
 
     if (error.match(/session expired/i))
         SafeReload()
 }
-
 function TellResultAndReload(data) {
-    alert(data.message);
+    alert(decodeHtml(data.message));
     SafeReload();
 }
 
@@ -22,7 +24,7 @@ function BeginAjaxPost() {
 }
 
 function EndAjaxPost() {
-    $("*").css("cursor", "default");
+    $("*").css("cursor", "");
 }
 
 function SafeReload() {
@@ -31,4 +33,10 @@ function SafeReload() {
     $("form").submit(function (e) { e.preventDefault(); });
     
     location.reload();
+}
+
+
+
+function decodeHtml(str) {
+    return $("<div/>").html(str).text();
 }

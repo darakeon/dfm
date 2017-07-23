@@ -2,6 +2,7 @@
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Repositories;
+using DFM.MVC.Authentication;
 
 namespace DFM.MVC.Helpers.Controllers
 {
@@ -10,18 +11,16 @@ namespace DFM.MVC.Helpers.Controllers
         public Account AccountIn { get; set; }
         public Account AccountOut { get; set; }
 
-        public AccountSelector(MoveNature nature, Int32 currentAccountID, Int32? chosenAccountID)
+        public AccountSelector(MoveNature nature, String currentAccountName, String chosenAccountName)
         {
             Account currentAccount = null;
             Account chosenAccount = null;
 
-            if (currentAccountID != 0)
-                currentAccount = Services.Admin.SelectAccountById(currentAccountID);
+            if (!String.IsNullOrEmpty(currentAccountName))
+                currentAccount = Services.Admin.SelectAccountByName(currentAccountName, Current.User);
 
-            chosenAccountID = chosenAccountID ?? 0;
-
-            if (chosenAccountID != 0)
-                chosenAccount = Services.Admin.SelectAccountById(chosenAccountID.Value);
+            if (!String.IsNullOrEmpty(chosenAccountName))
+                chosenAccount = Services.Admin.SelectAccountByName(chosenAccountName, Current.User);
 
             switch (nature)
             {

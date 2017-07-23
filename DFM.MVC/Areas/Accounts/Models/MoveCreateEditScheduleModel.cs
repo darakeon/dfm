@@ -21,6 +21,14 @@ namespace DFM.MVC.Areas.Accounts.Models
                                         .Where(a => a.IsOpen())
                                         .Count() > 1;
 
+            populateDropDowns(transferIsPossible);
+
+            Move = new BaseMove();
+            Date = DateTime.Today;
+        }
+
+        private void populateDropDowns(Boolean transferIsPossible)
+        {
             NatureSelectList = transferIsPossible ?
                 SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>()) :
                 SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
@@ -28,13 +36,11 @@ namespace DFM.MVC.Areas.Accounts.Models
             FrequencySelectList =
                 SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());
 
-            CategorySelectList = SelectListExtension.CreateSelect(
-                        Current.User.CategoryList.Where(c => c.Active).ToList(),
-                        mv => mv.ID, mv => mv.Name
-                    );
+            var categoryList = Current.User.CategoryList.Where(c => c.Active).ToList();
 
-            Move = new BaseMove();
-            Date = DateTime.Today;
+            CategorySelectList = SelectListExtension.CreateSelect(
+                    categoryList, mv => mv.Name, mv => mv.Name
+                );
         }
 
         public MoveCreateEditScheduleModel(BaseMove baseMove)
@@ -42,8 +48,10 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             Move = baseMove;
 
-            AccountID = Move.Nature == MoveNature.Transfer
-                ? Move.AccIn().ID : (Int32?)null;
+            AccountName = Move.Nature == MoveNature.Transfer
+                ? Move.AccIn().Name : null;
+
+            CategoryName = Move.Category.Name;
         }
 
 
@@ -65,10 +73,11 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         [Required(ErrorMessage = "*")]
         public SelectList CategorySelectList { get; set; }
+        public String CategoryName { get; set; }
 
 
-        public Int32? AccountID { get; set; }
         public SelectList AccountSelectList { get; set; }
+        public String AccountName { get; set; }
 
 
         public Boolean IsDetailed { get; set; }
@@ -77,48 +86,33 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsSchedule { get; set; }
 
 
+        public Schedule Schedule { get; set; }
+        private Schedule schedule { get { return Schedule ?? new Schedule(); } }
 
-        private Schedule schedule
-        {
-            get
-            {
-                return !IsSchedule
-                    ? new Schedule()
-                    : Move.Schedule
-                        ?? (Move.Schedule = new Schedule());
-            }
-        }
-
-        [Required]
-        public Boolean Boundless { get { return schedule.Boundless; } set { schedule.Boundless = value; } }
-        [Required]
-        public Int16 Times { get { return schedule.Times; } set { schedule.Times = value; } }
-        [Required]
-        public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
-
+        [Required] public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
+        [Required] public Boolean Boundless { get { return schedule.Boundless; } set { schedule.Boundless = value; } }
+        [Required] public Int16 Times { get { return schedule.Times; } set { schedule.Times = value; } }
         public Boolean ShowInstallment { get { return schedule.ShowInstallment; } set { schedule.ShowInstallment = value; } }
-
-
 
         public SelectList FrequencySelectList { get; set; }
 
 
 
-        public void MakeAccountTransferList(Int32 accountIdToExclude)
+        public void MakeAccountTransferList(String accountNameToExclude)
         {
             var accountList = 
                 Current.User.AccountList
-                    .Where(a => a.IsOpen() && a.ID != accountIdToExclude)
+                    .Where(a => a.IsOpen() && a.Name != accountNameToExclude)
                     .ToList();
 
             AccountSelectList = SelectListExtension
-                .CreateSelect(accountList, a => a.ID, a => a.Name);
+                .CreateSelect(accountList, a => a.Name, a => a.Name);
         }
 
 
-        public void Populate(Int32 accountID)
+        public void Populate(String accountName)
         {
-            MakeAccountTransferList(accountID);
+            MakeAccountTransferList(accountName);
 
             IsDetailed = Move.HasDetails() && Move.IsDetailed();
 

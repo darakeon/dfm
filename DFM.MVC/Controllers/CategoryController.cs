@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using Ak.MVC.Authentication;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.MVC.Authentication;
+using DFM.MVC.Helpers;
 using DFM.MVC.Models;
 using DFM.Repositories;
 
@@ -39,10 +41,17 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public JsonResult CreateAjax(CategoryCreateEditModel model)
         {
-            var category = createEditForAll(model);
-            var json = new { id = category.ID, name = category.Name };
+            try
+            {
+                var category = createEditForAll(model);
+                var json = new { name = category.Name };
 
-            return new JsonResult { Data = json };
+                return new JsonResult { Data = json };
+            }
+            catch (DFMCoreException e)
+            {
+                throw new Exception(MultiLanguage.Dictionary[e]);
+            }
         }
 
 
@@ -77,11 +86,17 @@ namespace DFM.MVC.Controllers
 
         private ActionResult createEditForHtmlForm(CategoryCreateEditModel model)
         {
-            var category = createEditForAll(model);
+            try
+            {
+                createEditForAll(model);
 
-            if (category.ID != 0)
-                return RedirectToAction("Index");
-
+                if (ModelState.IsValid)
+                    return RedirectToAction("Index");
+            }
+            catch (DFMCoreException e)
+            {
+                ModelState.AddModelError("Category.Name", MultiLanguage.Dictionary[e]);
+            }
 
             model.DefineAction(Request);
 
