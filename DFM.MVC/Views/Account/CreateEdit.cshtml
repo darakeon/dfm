@@ -21,17 +21,14 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(m => m.Type)
 
+        if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Update)
+        {
+            @Html.HiddenFor(m => m.Account.Name)
+        }
+        
         <p>
-            @if (Model.Type == DFM.BusinessLogic.Helpers.OperationType.Creation)
-            {
-                @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
-                @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
-            }
-            else
-            {
-                @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["New", "Name"])
-                @Html.TextBoxFor(m => m.NewName, new { maxlength = MaximumLength.AccountName })
-            }
+            @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
+            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
 
             <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>

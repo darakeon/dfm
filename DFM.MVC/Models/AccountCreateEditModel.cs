@@ -7,13 +7,14 @@ namespace DFM.MVC.Models
 {
     public class AccountCreateEditModel : BaseLoggedModel
     {
-        public AccountCreateEditModel() { }
+        public AccountCreateEditModel()
+        {
+            Account = new Account();
+        }
 
         public AccountCreateEditModel(OperationType type = OperationType.Creation) : this()
         {
             Type = type;
-
-            Account = new Account();
         }
 
 
@@ -22,15 +23,40 @@ namespace DFM.MVC.Models
 
         public Account Account { get; set; }
 
+
+        private String name;
+
         [Required(ErrorMessage = "*")]
         public String Name
         {
-            get { return Account.Name; }
-            set { Account.Name = value; }
+            get
+            {
+                switch (Type)
+                {
+                    case OperationType.Creation:
+                        return Account.Name;
+                    case OperationType.Update:
+                        return name ?? Account.Name;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            set
+            {
+                switch (Type)
+                {
+                    case OperationType.Creation:
+                        Account.Name = value;
+                        break;
+                    case OperationType.Update:
+                        name = value;
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
         }
 
-        [Required(ErrorMessage = "*")]
-        public String NewName { get; set; }
 
 
         public Boolean HasLimit
@@ -38,6 +64,7 @@ namespace DFM.MVC.Models
             get { return Account.RedLimit != null || Account.YellowLimit != null; }
             set { setLimit(value); }
         }
+
 
 
         private void setLimit(Boolean hasLimit)
@@ -56,6 +83,8 @@ namespace DFM.MVC.Models
                 Account.YellowLimit = null;
             }
         }
+
+
 
     }
 }

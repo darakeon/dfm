@@ -26,9 +26,17 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
         private static String newAccountName
         {
-            get { return Get<String>("newAccountName"); }
+            get { return Get<String>("newAccountName"); } 
             set { Set("newAccountName", value); }
         }
+
+        private static Double accountTotal
+        {
+            get { return Get<Double>("accountTotal"); } 
+            set { Set("accountTotal", value); }
+        }
+
+
 
         private static Category oldCategory
         {
@@ -167,6 +175,32 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.CreateAccount(Account);
         }
 
+        [Given(@"this account has moves")]
+        public void ThisAccountHasMoves()
+        {
+            Move = new Move
+            {
+                Description = "Description",
+                Date = DateTime.Now,
+                Nature = MoveNature.Out,
+            };
+
+            var newDetail = new Detail
+            {
+                Description = Move.Description,
+                Amount = 1,
+                Value = 10,
+            };
+
+            Move.DetailList.Add(newDetail);
+
+            Category = GetOrCreateCategory(MainCategoryName);
+
+            SA.Money.SaveOrUpdateMove((Move)Move, Account.Name, null, Category.Name);
+
+            accountTotal = Account.Sum();
+        }
+
         [When(@"make this changes")]
         public void WhenMakeThisChanges(Table table)
         {
@@ -221,6 +255,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Assert.IsNotNull(Account);
             Assert.IsNull(Error);
+        }
+
+        [Then(@"the account value will not change")]
+        public void TheAccountValueWillNotChange()
+        {
+            Assert.AreEqual(accountTotal, Account.Sum());
         }
         #endregion
 

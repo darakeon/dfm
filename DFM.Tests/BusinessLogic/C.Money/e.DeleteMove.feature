@@ -4,17 +4,35 @@ Background:
 	Given I have an active user
 	And I have two accounts
 	And I have a category
-	And I have a move with value 10 (Out)
 
 Scenario: 01. Try to delete Move with wrong ID (E)
-	Given I pass an id of Move that doesn't exist
+	Given I have a move with value 10 (Out)
+	And I pass an id of Move that doesn't exist
 	When I try to delete the move
 	Then I will receive this core error: InvalidMove
 	And the accountOut value will not change
 
-Scenario: 99. Delete the Move by ID (S)
-	Given I pass valid Move ID
+Scenario: 97. Delete the Move Out by ID (S)
+	Given I have a move with value 10 (Out)
+	And I pass valid Move ID
 	When I try to delete the move
 	Then I will receive no core error
 	And the move will be deleted
 	And the accountOut value will change in 10
+
+Scenario: 98. Delete the Move In by ID (S)
+	Given I have a move with value 10 (In)
+	And I pass valid Move ID
+	When I try to delete the move
+	Then I will receive no core error
+	And the move will be deleted
+	And the accountIn value will change in -10
+
+Scenario: 99. Delete the Move Transfer by ID (S)
+	Given I have a move with value 10 (Transfer)
+	And I pass valid Move ID
+	When I try to delete the move
+	Then I will receive no core error
+	And the move will be deleted
+	And the accountOut value will change in 10
+	And the accountIn value will change in -10

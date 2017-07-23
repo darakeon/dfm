@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Services
     {
         internal AccountService(IRepository<Account> repository) : base(repository) { }
 
-        internal Account SaveOrUpdate(Account account, String newName)
+        internal Account SaveOrUpdate(Account account)
         {
             return SaveOrUpdate(account, complete, validate);
         }
@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.Services
         private void complete(Account account)
         {
             // TODO: use Current User
-            var oldAccount = SelectByName(account.Name, account.User);
+            var oldAccount = SelectById(account.ID);
 
             if (oldAccount == null)
             {

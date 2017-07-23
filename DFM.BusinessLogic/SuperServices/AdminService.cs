@@ -39,7 +39,7 @@ namespace DFM.BusinessLogic.SuperServices
             saveOrUpdateAccount(account, OperationType.Creation);
         }
 
-        public void UpdateAccount(Account account, String newName = null)
+        public void UpdateAccount(Account account, String newName)
         {
             saveOrUpdateAccount(account, OperationType.Update, newName);
         }
@@ -57,12 +57,14 @@ namespace DFM.BusinessLogic.SuperServices
                     var oldAccount = SelectAccountByName(account.Name);
 
                     account.ID = oldAccount.ID;
+                    // TODO: use Current User
+                    account.User = oldAccount.User;
 
                     if (!String.IsNullOrEmpty(newName))
                         account.Name = newName;
                 }
 
-                accountService.SaveOrUpdate(account, newName);
+                accountService.SaveOrUpdate(account);
                 CommitTransaction();
             }
             catch (DFMCoreException)

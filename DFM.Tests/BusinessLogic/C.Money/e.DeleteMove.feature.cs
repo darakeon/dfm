@@ -63,8 +63,6 @@ namespace DFM.Tests.BusinessLogic.C_Money
  testRunner.And("I have two accounts");
 #line 6
  testRunner.And("I have a category");
-#line 7
- testRunner.And("I have a move with value 10 (Out)");
 #line hidden
         }
         
@@ -73,10 +71,12 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void _01_TryToDeleteMoveWithWrongIDE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to delete Move with wrong ID (E)", ((string[])(null)));
-#line 9
+#line 8
 this.ScenarioSetup(scenarioInfo);
+#line 9
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 10
- testRunner.Given("I pass an id of Move that doesn\'t exist");
+ testRunner.And("I pass an id of Move that doesn\'t exist");
 #line 11
  testRunner.When("I try to delete the move");
 #line 12
@@ -88,22 +88,72 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Delete the Move by ID (S)")]
-        public virtual void _99_DeleteTheMoveByIDS()
+        [NUnit.Framework.DescriptionAttribute("97. Delete the Move Out by ID (S)")]
+        public virtual void _97_DeleteTheMoveOutByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete the Move by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Delete the Move Out by ID (S)", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Given("I pass valid Move ID");
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 17
- testRunner.When("I try to delete the move");
+ testRunner.And("I pass valid Move ID");
 #line 18
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to delete the move");
 #line 19
- testRunner.And("the move will be deleted");
+ testRunner.Then("I will receive no core error");
 #line 20
+ testRunner.And("the move will be deleted");
+#line 21
  testRunner.And("the accountOut value will change in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Delete the Move In by ID (S)")]
+        public virtual void _98_DeleteTheMoveInByIDS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Delete the Move In by ID (S)", ((string[])(null)));
+#line 23
+this.ScenarioSetup(scenarioInfo);
+#line 24
+ testRunner.Given("I have a move with value 10 (In)");
+#line 25
+ testRunner.And("I pass valid Move ID");
+#line 26
+ testRunner.When("I try to delete the move");
+#line 27
+ testRunner.Then("I will receive no core error");
+#line 28
+ testRunner.And("the move will be deleted");
+#line 29
+ testRunner.And("the accountIn value will change in -10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Delete the Move Transfer by ID (S)")]
+        public virtual void _99_DeleteTheMoveTransferByIDS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete the Move Transfer by ID (S)", ((string[])(null)));
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line 32
+ testRunner.Given("I have a move with value 10 (Transfer)");
+#line 33
+ testRunner.And("I pass valid Move ID");
+#line 34
+ testRunner.When("I try to delete the move");
+#line 35
+ testRunner.Then("I will receive no core error");
+#line 36
+ testRunner.And("the move will be deleted");
+#line 37
+ testRunner.And("the accountOut value will change in 10");
+#line 38
+ testRunner.And("the accountIn value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

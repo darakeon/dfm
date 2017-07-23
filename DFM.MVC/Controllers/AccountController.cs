@@ -81,7 +81,7 @@ namespace DFM.MVC.Controllers
                     if (isNew)
                         Services.Admin.CreateAccount(model.Account);
                     else
-                        Services.Admin.UpdateAccount(model.Account);
+                        Services.Admin.UpdateAccount(model.Account, model.Name);
                 }
                 catch (DFMCoreException e)
                 {

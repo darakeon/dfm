@@ -100,6 +100,49 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02. Change the name when there is moves (S)")]
+        public virtual void _02_ChangeTheNameWhenThereIsMovesS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Change the name when there is moves (S)", ((string[])(null)));
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Yellow",
+                        "Red"});
+            table3.AddRow(new string[] {
+                        "Account Ca02",
+                        "",
+                        ""});
+#line 18
+ testRunner.Given("I have this account", ((string)(null)), table3);
+#line 21
+ testRunner.And("this account has moves");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Yellow",
+                        "Red"});
+            table4.AddRow(new string[] {
+                        "Ca02 - new name",
+                        "",
+                        ""});
+#line 22
+ testRunner.When("make this changes", ((string)(null)), table4);
+#line 25
+ testRunner.And("I try to update the account");
+#line 26
+ testRunner.Then("I will receive no core error");
+#line 27
+ testRunner.And("the account will be changed");
+#line 28
+ testRunner.And("the account value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion
