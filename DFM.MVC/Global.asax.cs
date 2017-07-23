@@ -69,9 +69,8 @@ namespace DFM.MVC
         protected void Application_Error()
         // ReSharper restore InconsistentNaming
         {
-#if !DEBUG
-            ErrorManager.SendEmail();
-#endif
+            if (!isLocal)
+                ErrorManager.SendEmail();
 
             error();
         }
