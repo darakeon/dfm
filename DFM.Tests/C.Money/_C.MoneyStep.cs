@@ -185,7 +185,7 @@ namespace DFM.Tests.C.Money
         [Then(@"the new-accountOut value will change in (\-?\d+)")]
         public void ThenTheNewAccountOutValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(newAccountOutName);
+            var account = GetOrCreateAccount(AccountOut.Name);
 
             var currentTotal = account.Sum();
 
@@ -209,10 +209,10 @@ namespace DFM.Tests.C.Money
         public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Double value)
         {
 
-            var account = GetOrCreateAccount(newAccountOutName);
+            var account = GetOrCreateAccount(AccountOut.Name);
 
             var summary = account
-                [(Int16)oldDate.Year]
+                [(Int16)Move.Date.Year]
                 [CategoryName];
 
             Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
@@ -235,11 +235,11 @@ namespace DFM.Tests.C.Money
         [Then(@"the new-month-category-accountOut value will change in (\-?\d+)")]
         public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(newAccountOutName);
+            var account = GetOrCreateAccount(AccountOut.Name);
 
             var summary = account
-                [(Int16)oldDate.Year]
-                [(Int16)oldDate.Month]
+                [(Int16)Move.Date.Year]
+                [(Int16)Move.Date.Month]
                 [CategoryName];
 
             Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
