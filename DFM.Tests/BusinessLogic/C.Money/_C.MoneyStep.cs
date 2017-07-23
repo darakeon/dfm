@@ -157,6 +157,26 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 case "month": case "months": Move.Date = Move.Date.AddMonths(count); break;
                 case "year": case "years": Move.Date = Move.Date.AddYears(count); break;
             }
+
+            if (AccountOut != null)
+            {
+                var year = AccountOut[Move.Date.Year, true];
+                var month = year[Move.Date.Month, true];
+
+                newAccountOutTotal = AccountOut.Sum();
+                newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
+                newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            }
+
+            if (AccountIn != null)
+            {
+                var year = AccountIn[Move.Date.Year, true];
+                var month = year[Move.Date.Month, true];
+
+                newAccountInTotal = AccountIn.Sum();
+                newYearCategoryAccountInTotal = year[Category.Name, true].In;
+                newMonthCategoryAccountInTotal = month[Category.Name, true].In;
+            }
         }
 
 
@@ -623,8 +643,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var month = year[Move.Date.Month, true];
 
                 AccountInTotal = AccountIn.Sum();
-                //YearAccountInTotal = year.Sum();
-                //MonthAccountInTotal = month.Sum();
+                YearAccountInTotal = year.Sum();
+                MonthAccountInTotal = month.Sum();
                 YearCategoryAccountInTotal = year[Category.Name, true].In;
                 MonthCategoryAccountInTotal = month[Category.Name, true].In;
             }
