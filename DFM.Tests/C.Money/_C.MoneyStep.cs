@@ -213,7 +213,7 @@ namespace DFM.Tests.C.Money
 
             var summary = account
                 [(Int16)Move.Date.Year]
-                [CategoryName];
+                [Category.Name];
 
             Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
         }
@@ -240,7 +240,7 @@ namespace DFM.Tests.C.Money
             var summary = account
                 [(Int16)Move.Date.Year]
                 [(Int16)Move.Date.Month]
-                [CategoryName];
+                [Category.Name];
 
             Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
         }
@@ -249,13 +249,24 @@ namespace DFM.Tests.C.Money
         [Then(@"the month-accountOut value will not change")]
         public void ThenTheMonthAccountOutValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            var account = GetOrCreateAccount(AccountOutName);
+
+            var summary = account
+                [(Int16)oldDate.Year]
+                [(Int16)oldDate.Month];
+
+            Assert.AreEqual(MonthAccountOutTotal, summary.Sum());
         }
 
         [Then(@"the year-accountOut value will not change")]
         public void ThenTheYearAccountOutValueWillNotChange()
         {
-            ScenarioContext.Current.Pending();
+            var account = GetOrCreateAccount(AccountOutName);
+
+            var summary = account
+                [(Int16)oldDate.Year];
+
+            Assert.AreEqual(YearAccountOutTotal, summary.Sum());
         }
         #endregion
 
@@ -446,6 +457,8 @@ namespace DFM.Tests.C.Money
             var month = year[Move.Date.Month] ?? new Month();
 
             AccountOutTotal = AccountOut.Sum();
+            YearAccountOutTotal = year.Sum();
+            MonthAccountOutTotal = month.Sum();
             YearCategoryAccountOutTotal = (year[Category.Name] ?? new Summary()).Out;
             MonthCategoryAccountOutTotal = (month[Category.Name] ?? new Summary()).Out;
         }

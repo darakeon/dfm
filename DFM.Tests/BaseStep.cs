@@ -143,6 +143,18 @@ namespace DFM.Tests
             set { Set("AccountOutTotal", value); }
         }
 
+        protected static Double YearAccountOutTotal
+        {
+            get { return Get<Double>("YearAccountOutTotal"); }
+            set { Set("YearAccountOutTotal", value); }
+        }
+
+        protected static Double MonthAccountOutTotal
+        {
+            get { return Get<Double>("MonthAccountOutTotal"); }
+            set { Set("MonthAccountOutTotal", value); }
+        }
+
         protected static Double YearCategoryAccountOutTotal
         {
             get { return Get<Double>("YearCategoryAccountOutTotal"); }
