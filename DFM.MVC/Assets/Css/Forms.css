@@ -35,7 +35,7 @@ button {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
 }
 
-.max {
+.input-ps {
 	font-size: 80%;
 	color: #999;
 	display: block;

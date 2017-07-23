@@ -69,11 +69,11 @@ input.amount {
     border: none;
 }
 
-.max {
+.input-ps {
 	display: inline;
 }
 
-#details .max {
+#details .input-ps {
 	color: #CCC;
 	float: right;
 	margin-top: 2px;

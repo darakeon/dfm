@@ -13,7 +13,7 @@
         <p>
             @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"])
             @Html.TextBoxFor(m => m.Email, new { maxlength = MaximumLength.UserEmail })
-            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.UserEmail)</span>
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.UserEmail)</span>
         </p>
 
         <p>

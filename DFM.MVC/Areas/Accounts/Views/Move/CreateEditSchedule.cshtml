@@ -65,7 +65,7 @@
             @Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"]) 
             @Html.ValidationMessageFor(m => m.Description)<br />
             @Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MoveDescription })
-            <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
         </div>
 
         <div>
@@ -127,7 +127,7 @@
             <tr>
                 <th>
                     @MultiLanguage.Dictionary["Description"]
-                    <span class='max'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
+                    <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
                 </th>
                 <th>@MultiLanguage.Dictionary["Amount"]</th>
                 <th>@MultiLanguage.Dictionary["Value"]</th>
