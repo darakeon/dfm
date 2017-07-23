@@ -38,7 +38,7 @@ namespace DFM.BusinessLogic.Services
             if (isCreating && hasNoFuture)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
 
-            if (schedule.Times <= 0)
+            if (!schedule.Boundless && schedule.Times <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
         }
 

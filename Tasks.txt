@@ -19,6 +19,7 @@ VERSÃO 1.0.5.0
 						Edição de Perfil de usuário
 						Colocar nome (ou apelido) no sign up
 						Separar dados de Conta em Options e User em Config
+						Transformar FutureMove em parte da Schedule
 
 VERSÃO 1.0.4.0
 ======================================================================================================
@@ -59,9 +60,8 @@ VERSÃO 1.0.3.0
 
 VERSÃO 1.0.2.3
 ======================================================================================================
-						Transformar FutureMove em parte da Schedule
 						AntiForgeryToken
-						Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
+07/03/2013	07/03/2013	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
 07/03/2013	07/03/2013	Não enviar e-mail caso dê erro ao mexer na movimentação
 07/03/2013	07/03/2013	Proteger edição de objeto (user) no core
 07/03/2013	07/03/2013	Numerar enums (segurança para o banco)

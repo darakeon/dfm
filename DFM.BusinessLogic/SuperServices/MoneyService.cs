@@ -2,7 +2,6 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
@@ -87,8 +86,6 @@ namespace DFM.BusinessLogic.SuperServices
 
                 moveService.Delete(id);
 
-                moveService.SendEmail(move, "delete");
-
                 if (move.Schedule != null)
                 {
                     move.Schedule.Times--;
@@ -96,6 +93,9 @@ namespace DFM.BusinessLogic.SuperServices
                 }
 
                 CommitTransaction();
+
+                Parent.BaseMove.SendEmail(move, OperationType.Delete);
+
             }
             catch (DFMCoreException)
             {

@@ -151,12 +151,24 @@ namespace DFM.BusinessLogic.SuperServices
 
         internal void SendEmail(Move move, OperationType operationType)
         {
-            var sendEmailAction = operationType == OperationType.Creation ? "create_move" : "edit";
-            
-            moveService.SendEmail(move, sendEmailAction);
+            var emailAction = getEmailAction(operationType);
+
+            moveService.SendEmail(move, emailAction);
         }
 
-
-
+        private static string getEmailAction(OperationType operationType)
+        {
+            switch (operationType)
+            {
+                case OperationType.Creation:
+                    return "create_move";
+                case OperationType.Update:
+                    return "edit";
+                case OperationType.Delete:
+                    return "delete";
+                default:
+                    throw new NotImplementedException();
+            }
+        }
     }
 }
