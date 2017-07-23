@@ -221,6 +221,7 @@ VERSÃO 1.0.4.0
 
 VERSÃO 1.0.5.0
 
+				Separar dados de Conta em Options e User em Config
 				Colocar nome (ou apelido) no sign up
 				Edição de Perfil de usuário
 				Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
