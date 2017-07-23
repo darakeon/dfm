@@ -166,6 +166,7 @@ VERSÃO 1.0.2.3
 24/02;2013			Criar edição de nome de Categoria / Conta (incluindo mvc)
 				Possibilitar url escolhida para a conta
 				Proteger edição de objeto no core
+				Numerar enums
 
 ======================================================================================================
 
