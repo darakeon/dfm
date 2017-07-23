@@ -1,7 +1,7 @@
 ﻿Feature: i. Disable of Category
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have a category
 
 Scenario: 01. Disable a Category that doesn't exist (E)

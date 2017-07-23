@@ -1,7 +1,7 @@
 ﻿Feature: b. Run the schedules for an user
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have two accounts
 	And I have a category
 	And I run the scheduler to cleanup older tests

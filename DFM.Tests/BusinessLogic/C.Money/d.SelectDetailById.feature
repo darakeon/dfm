@@ -1,7 +1,7 @@
 ﻿Feature: d. Get Detail
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have two accounts
 	And I have a category
 	And I have a move with details

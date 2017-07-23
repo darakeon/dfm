@@ -1,7 +1,7 @@
 ﻿Feature: a. Creation of Move
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have two accounts
 	And I have a category
 

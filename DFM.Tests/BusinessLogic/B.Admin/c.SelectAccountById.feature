@@ -1,7 +1,7 @@
 ﻿Feature: c. Get Account
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have an account
 
 Scenario: 01. Try to get Account with wrong ID (E)

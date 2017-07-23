@@ -1,7 +1,7 @@
 ﻿Feature: g. Reset password of user
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have a token for its password reset
 	And I have a token for its actvation
 

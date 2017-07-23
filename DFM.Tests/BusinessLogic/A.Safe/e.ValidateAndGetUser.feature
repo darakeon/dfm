@@ -1,7 +1,7 @@
 ﻿Feature: e. Get user by its e-mail and password
 
 Background: 
-	Given I have an user
+	Given I have an active user
 
 Scenario: 01. Validate without e-mail (E)
 	Given I have this user data

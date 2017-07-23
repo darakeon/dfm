@@ -1,7 +1,7 @@
 ﻿Feature: c. Send a password reset token to user
 
 Background:
-	Given I have an user
+	Given I have an active user
 
 Scenario: 01. Send with email that doesn't exist (E)
 	Given I pass an e-mail that doesn't exist

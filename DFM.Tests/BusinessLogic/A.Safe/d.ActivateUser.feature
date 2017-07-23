@@ -1,8 +1,8 @@
 ﻿Feature: d. Activate the user
 
 Background:
-	Given I have an user
-	And I have a token for its actvation
+	Given I have an active user
+	And I have a token for its activation
 	And I have a token for its password reset
 
 Scenario: 01. Activate user with invalid token (E)

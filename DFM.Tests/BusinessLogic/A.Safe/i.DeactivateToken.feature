@@ -1,7 +1,7 @@
 ﻿Feature: i. Deactivate the user
 
 Background:
-	Given I have an user
+	Given I have an active user
 
 Scenario: 01. Deactivate with invalid token (E)
 	Given I pass an invalid token

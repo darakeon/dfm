@@ -380,8 +380,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             token = DBHelper.GetLastTokenForUser(User, action);
         }
 
-        [Given(@"I have a token for its actvation")]
-        public void GivenIHaveATokenForItsActvation()
+        [Given(@"I have a token for its activation")]
+        public void GivenIHaveATokenForItsActivation()
         {
             SA.Safe.SendUserVerify(User.Email);
         }

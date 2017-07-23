@@ -1,7 +1,7 @@
 ﻿Feature: a. Creation of Account
 
 Background:
-	Given I have an user
+	Given I have an active user
 
 Scenario: 01. Save Account without name (E)
 	Given I have this account to create

@@ -1,7 +1,7 @@
 ﻿Feature: j. Enable Category
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have a category
 
 Scenario: 01. Enable a Category that doesn't exist (E)

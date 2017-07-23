@@ -58,7 +58,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an user");
+ testRunner.Given("I have an active user");
 #line hidden
         }
         

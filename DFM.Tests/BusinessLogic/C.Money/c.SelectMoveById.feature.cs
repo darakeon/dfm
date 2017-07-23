@@ -58,7 +58,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         {
 #line 3
 #line 4
- testRunner.Given("I have an user");
+ testRunner.Given("I have an active user");
 #line 5
  testRunner.And("I have two accounts");
 #line 6

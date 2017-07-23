@@ -1,7 +1,7 @@
 ﻿Feature: g. Get Category by Name
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have a category
 
 Scenario: 01. Try to get Category with wrong Name (E)

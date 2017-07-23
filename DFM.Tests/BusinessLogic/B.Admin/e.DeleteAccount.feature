@@ -1,7 +1,7 @@
 ﻿Feature: e. Delete Account
 
 Background:
-	Given I have an user
+	Given I have an active user
 	And I have an account
 
 Scenario: 01. Delete an Account that doesn't exist (E)
