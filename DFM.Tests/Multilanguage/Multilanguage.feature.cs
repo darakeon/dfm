@@ -195,7 +195,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Phrase"});
             table5.AddRow(new string[] {
                         "Error",
-                        "UnDFMAuthorized"});
+                        "Unauthorized"});
             table5.AddRow(new string[] {
                         "Error",
                         "FailOnEmailSend"});
