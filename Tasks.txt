@@ -51,6 +51,8 @@ VERSÃO 2.1.0.0
 						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
+					>>> Criar Market - agrupamento de movimentações, cada uma de uma categoria,
+							possibilitando a inserção de várias moves quando se está fazendo compras
 
 VERSÃO 2.0.1.0
 ================================================================================================
