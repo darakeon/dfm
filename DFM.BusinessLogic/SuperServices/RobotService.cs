@@ -145,7 +145,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             if (schedule.Boundless)
             {
-                while(schedule.LastDate() < DateTime.Today)
+                while (schedule.LastDate() < DateTime.Today)
                 {
                     addNextFutureMove(schedule);
                 }
@@ -160,9 +160,7 @@ namespace DFM.BusinessLogic.SuperServices
                 }
             }
 
-
             scheduleService.SaveOrUpdate(schedule);
-
 
             return firstFMove;
         }

@@ -44,6 +44,11 @@ namespace DFM.Repositories
         {
             try
             {
+                //TODO
+                //if (entity.ID == 0)
+                //    session.Save(entity);
+                //else if (session.Contains(entity))
+                //    session.Update(entity);
                 if (entity.ID == 0 || session.Contains(entity))
                     session.SaveOrUpdate(entity);
                 else
