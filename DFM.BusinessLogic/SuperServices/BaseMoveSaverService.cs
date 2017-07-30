@@ -39,14 +39,15 @@ namespace DFM.BusinessLogic.SuperServices
 
             resetSchedule(move);
 
+            var oldMove = getOldAndRemoveFromMonths(move);
+
             placeAccountsInMove(move, accountOut, accountIn);
 
             move = moveService.SaveOrUpdate(move);
 
             detailService.SaveDetails(move);
 
-            RemoveFromSummaries(move);
-            //TODO: THIS JUST WORKS WHEN IT WANTS!!!
+            ajustSummaries(oldMove, move.Date);
             ajustSummaries(move);
 
             return move;
@@ -99,25 +100,48 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void RemoveFromSummaries(Move move)
         {
+            var oldMove = getOldAndRemoveFromMonths(move);
+            ajustSummaries(oldMove);
+        }
+
+        private Move getOldAndRemoveFromMonths(Move move)
+        {
             var oldMove = moveService.SelectOldById(move.ID);
 
             monthService.RemoveMoveFromMonth(oldMove);
 
-            ajustSummaries(oldMove);
+            return oldMove;
         }
 
-        private void ajustSummaries(Move move)
+        private void ajustSummaries(Move move, DateTime? currentDate = null)
         {
+            var checkUpYear = true;
+
+            if (currentDate.HasValue)
+            {
+                checkUpYear = move.Date.Year != currentDate.Value.Year;
+                
+                var checkUpMonth = move.Date.Month != currentDate.Value.Month;
+                var checkUp = checkUpYear || checkUpMonth;
+
+                if (!checkUp)
+                    return;
+            }
+
             if (move.Nature != MoveNature.Out)
             {
                 summaryService.AjustValue(move.In[move.Category.Name]);
-                summaryService.AjustValue(move.In.Year[move.Category.Name]);
+                
+                if (checkUpYear)
+                    summaryService.AjustValue(move.In.Year[move.Category.Name]);
             }
 
             if (move.Nature != MoveNature.In)
             {
                 summaryService.AjustValue(move.Out[move.Category.Name]);
-                summaryService.AjustValue(move.Out.Year[move.Category.Name]);
+
+                if (checkUpYear)
+                    summaryService.AjustValue(move.Out.Year[move.Category.Name]);
             }
         }
 
