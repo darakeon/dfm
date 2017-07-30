@@ -55,9 +55,7 @@ namespace DFM.BusinessLogic.Services
                 SaveOrUpdate(move.In);
             }
 
-            // ReSharper disable InvertIf
             if (move.Out != null)
-            // ReSharper restore InvertIf
             {
                 move.Out.OutList.Remove(move);
                 SaveOrUpdate(move.Out);

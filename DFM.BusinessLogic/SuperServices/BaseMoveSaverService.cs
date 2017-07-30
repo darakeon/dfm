@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Ak.Generic.Collection;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
@@ -38,15 +39,15 @@ namespace DFM.BusinessLogic.SuperServices
 
             resetSchedule(move);
 
-            ajustOldSummaries(move.ID);
-
             placeAccountsInMove(move, accountOut, accountIn);
 
             move = moveService.SaveOrUpdate(move);
 
             detailService.SaveDetails(move);
 
-            AjustSummaries(move);
+            RemoveFromSummaries(move);
+            //TODO: THIS JUST WORKS WHEN IT WANTS!!!
+            ajustSummaries(move);
 
             return move;
         }
@@ -58,6 +59,12 @@ namespace DFM.BusinessLogic.SuperServices
                        : Parent.Admin.SelectAccountByName(accountName);
         }
 
+        internal void SetCategory(BaseMove baseMove, String categoryName)
+        {
+            if (categoryName != null)
+                baseMove.Category = Parent.Admin.SelectCategoryByName(categoryName);
+        }
+
         private void resetSchedule(Move move)
         {
             if (move.ID == 0) return;
@@ -67,64 +74,6 @@ namespace DFM.BusinessLogic.SuperServices
             move.Schedule = oldMove == null
                 ? null : oldMove.Schedule;
         }
-
-        internal void SetCategory(BaseMove baseMove, String categoryName)
-        {
-            if (categoryName != null)
-                baseMove.Category = Parent.Admin.SelectCategoryByName(categoryName);
-        }
-
-        #region Ajust Summaries
-        private void ajustOldSummaries(Int32 moveID)
-        {
-            var oldMove = moveService.SelectOldById(moveID);
-
-            if (oldMove == null) return;
-
-            if (oldMove.Nature != MoveNature.Out)
-                oldMove.RemoveFromIn();
-
-            if (oldMove.Nature != MoveNature.In)
-                oldMove.RemoveFromOut();
-
-            AjustSummaries(oldMove);
-        }
-
-        internal void AjustSummaries(Move move)
-        {
-            if (move.Nature.IsIn(MoveNature.In, MoveNature.Transfer))
-                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccIn());
-
-            if (move.Nature.IsIn(MoveNature.Out, MoveNature.Transfer))
-                ajustSummary((Int16)move.Date.Month, (Int16)move.Date.Year, move.Category, move.AccOut());
-        }
-
-        private void ajustSummary(Int16 monthDate, Int16 yearDate, Category category, Account account)
-        {
-            ajustMonth(monthDate, yearDate, category, account);
-            ajustYear(yearDate, category, account);
-        }
-
-        private void ajustMonth(Int16 monthDate, Int16 yearDate, Category category, Account account)
-        {
-            var year = yearService.GetOrCreateYear(yearDate, account);
-            var month = monthService.GetOrCreateMonth(monthDate, year);
-
-            var summaryMonth = month.GetOrCreateSummary(category);
-
-            summaryService.AjustValue(summaryMonth);
-        }
-
-        private void ajustYear(Int16 yearDate, Category category, Account account)
-        {
-            var year = yearService.GetOrCreateYear(yearDate, account);
-
-            var summaryYear = year.GetOrCreateSummary(category);
-
-            summaryService.AjustValue(summaryYear);
-        }
-        #endregion
-
 
 
 
@@ -148,6 +97,32 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
+        public void RemoveFromSummaries(Move move)
+        {
+            var oldMove = moveService.SelectOldById(move.ID);
+
+            monthService.RemoveMoveFromMonth(oldMove);
+
+            ajustSummaries(oldMove);
+        }
+
+        private void ajustSummaries(Move move)
+        {
+            if (move.Nature != MoveNature.Out)
+            {
+                summaryService.AjustValue(move.In[move.Category.Name]);
+                summaryService.AjustValue(move.In.Year[move.Category.Name]);
+            }
+
+            if (move.Nature != MoveNature.In)
+            {
+                summaryService.AjustValue(move.Out[move.Category.Name]);
+                summaryService.AjustValue(move.Out.Year[move.Category.Name]);
+            }
+        }
+
+
+        
         internal void SendEmail(Move move, OperationType operationType)
         {
             var emailAction = getEmailAction(operationType);

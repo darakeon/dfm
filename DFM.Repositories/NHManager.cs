@@ -71,8 +71,6 @@ namespace DFM.Repositories
         public static void Close()
         {
             close(IsActive, Session, key);
-
-            SessionOld.Clear();
             close(isActiveOld, SessionOld, keyOld);
         }
 

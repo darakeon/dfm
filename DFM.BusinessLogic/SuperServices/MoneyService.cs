@@ -81,8 +81,8 @@ namespace DFM.BusinessLogic.SuperServices
                 VerifyMove(move);
 
 
-                monthService.RemoveMoveFromMonth(move);
-                Parent.BaseMove.AjustSummaries(move);
+                Parent.BaseMove.RemoveFromSummaries(move);
+
 
                 moveService.Delete(id);
 

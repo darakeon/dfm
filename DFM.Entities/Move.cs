@@ -33,26 +33,5 @@ namespace DFM.Entities
 
 
 
-
-        //Remove doesn't work because they aren't same object
-        public virtual void RemoveFromIn()
-        {
-            In.InList =
-                In.InList
-                    .Where(m => m.ID != ID)
-                    .ToList();
-        }
-
-        //Remove doesn't work because they aren't same object
-        public virtual void RemoveFromOut()
-        {
-            Out.OutList =
-                Out.OutList
-                    .Where(m => m.ID != ID)
-                    .ToList();
-        }
-
-
-
     }
 }
