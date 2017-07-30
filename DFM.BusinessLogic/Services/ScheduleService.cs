@@ -59,13 +59,13 @@ namespace DFM.BusinessLogic.Services
             foreach (var schedule in scheduleList)
             {
                 if (!canRun(schedule))
-                    deactivate(schedule);
+                    disable(schedule);
                 else if (canRunNow(schedule))
                     yield return schedule;
             }
         }
 
-        private void deactivate(Schedule schedule)
+        private void disable(Schedule schedule)
         {
             schedule.Active = false;
             SaveOrUpdate(schedule);

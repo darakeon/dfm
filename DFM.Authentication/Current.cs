@@ -16,7 +16,7 @@ namespace DFM.Authentication
         }
 
 
-        private User userApp;
+        private String ticket;
 
         private Boolean isWeb
         {
@@ -28,12 +28,12 @@ namespace DFM.Authentication
             get
             {
                 if (!isWeb)
-                    return userApp;
+                    return userService.SelectUserByTicket(ticket);
 
                 if (!Authenticate.IsAuthenticated)
                     return null;
                 
-                var ticket = Authenticate.Username;
+                ticket = Authenticate.Username;
 
                 return userService.SelectUserByTicket(ticket);
             }
@@ -64,11 +64,9 @@ namespace DFM.Authentication
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
-            var ticket = userService.ValidateUserAndGetTicket(username, password);
+            ticket = userService.ValidateUserAndGetTicket(username, password);
 
-            userApp = userService.SelectUserByTicket(ticket);
-
-            return userApp;
+            return userService.SelectUserByTicket(ticket);
         }
 
         public User Set(String username, String password, HttpResponseBase response, Boolean isPersistent)
@@ -90,13 +88,17 @@ namespace DFM.Authentication
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
-            userApp = null;
+            userService.DisableTicket(ticket);
+
+            ticket = null;
         }
 
         public void Clean(HttpRequestBase request)
         {
             if (!isWeb)
                 throw DFMAuthException.NotWeb();
+
+            userService.DisableTicket(Authenticate.Username);
 
             Authenticate.Clean(request);
         }

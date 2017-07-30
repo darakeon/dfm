@@ -18,20 +18,20 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Get an user by its ticket")]
-    public partial class F_GetAnUserByItsTicketFeature
+    [NUnit.Framework.DescriptionAttribute("i. Disable the token")]
+    public partial class I_DisableTheTokenFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "f.SelectUserByTicket.feature"
+#line 1 "i.DisableToken.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get an user by its ticket", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "i. Disable the token", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,68 +62,68 @@ namespace DFM.Tests.BusinessLogic.A_Safe
                         "Email",
                         "Password"});
             table1.AddRow(new string[] {
-                        "selectuserbyticket@dontflymoney.com",
+                        "disabletoken@dontflymoney.com",
                         "password"});
 #line 4
- testRunner.Given("I have this user to create and activate", ((string)(null)), table1);
-#line 7
- testRunner.And("I have a ticket of this user");
+ testRunner.Given("I have this user to create", ((string)(null)), table1);
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Select with ticket that doesn\'t exist (E)")]
-        public virtual void _01_SelectWithTicketThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("01. Disable invalid token (E)")]
+        public virtual void _01_DisableInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Select with ticket that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Disable invalid token (E)", ((string[])(null)));
+#line 8
+this.ScenarioSetup(scenarioInfo);
 #line 9
-this.ScenarioSetup(scenarioInfo);
+ testRunner.Given("I pass an invalid token");
 #line 10
- testRunner.Given("I pass a ticket that doesn\'t exist");
+ testRunner.When("I try do disable the token");
 #line 11
- testRunner.When("I try to get the user");
-#line 12
- testRunner.Then("I will receive this core error: InvalidTicket");
+ testRunner.Then("I will receive this core error: InvalidToken");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Disable UV with info all right (S)")]
+        public virtual void _98_DisableUVWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Disable UV with info all right (S)", ((string[])(null)));
 #line 13
- testRunner.And("I will receive no user");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Select with ticket that is not active anymore (E)")]
-        public virtual void _02_SelectWithTicketThatIsNotActiveAnymoreE()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Select with ticket that is not active anymore (E)", ((string[])(null)));
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I have a token for its activation");
 #line 15
-this.ScenarioSetup(scenarioInfo);
+ testRunner.And("I pass a valid UserVerification token");
 #line 16
- testRunner.Given("I pass a ticket that is already disabled");
+ testRunner.When("I try do disable the token");
 #line 17
- testRunner.When("I try to get the user");
+ testRunner.Then("I will receive no core error");
 #line 18
- testRunner.Then("I will receive this core error: InvalidTicket");
-#line 19
- testRunner.And("I will receive no user");
+ testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Select with info all right (S)")]
-        public virtual void _99_SelectWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("99. Disable PR with info all right (S)")]
+        public virtual void _99_DisablePRWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Select with info all right (S)", ((string[])(null)));
-#line 21
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Disable PR with info all right (S)", ((string[])(null)));
+#line 20
 this.ScenarioSetup(scenarioInfo);
+#line 21
+ testRunner.Given("I have a token for its password reset");
 #line 22
- testRunner.Given("I pass a ticket that exist");
+ testRunner.And("I pass a valid PasswordReset token");
 #line 23
- testRunner.When("I try to get the user");
+ testRunner.When("I try do disable the token");
 #line 24
  testRunner.Then("I will receive no core error");
 #line 25
- testRunner.And("I will receive the user");
+ testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

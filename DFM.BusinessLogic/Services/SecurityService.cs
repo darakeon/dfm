@@ -86,7 +86,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void Deactivate(String token)
+        internal void Disable(String token)
         {
             var security = SelectByToken(token);
 

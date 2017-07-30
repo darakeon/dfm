@@ -32,7 +32,6 @@ namespace DFM.BusinessLogic.SuperServices
 
             createAndSendToken(user, SecurityAction.PasswordReset);
         }
-      
         
         public void SaveUserAndSendVerify(String email, String password)
         {
@@ -70,7 +69,6 @@ namespace DFM.BusinessLogic.SuperServices
             createAndSendToken(user, SecurityAction.UserVerification);
         }
 
-
         private void createAndSendToken(User user, SecurityAction action)
         {
             var security = new Security { Action = action, User = user };
@@ -80,7 +78,6 @@ namespace DFM.BusinessLogic.SuperServices
 
             securityService.SendEmail(security);
         }
-
 
 
 
@@ -94,7 +91,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 userService.Activate(security.User);
 
-                securityService.Deactivate(token);
+                securityService.Disable(token);
 
                 CommitTransaction();
             }
@@ -105,7 +102,6 @@ namespace DFM.BusinessLogic.SuperServices
             }
 
         }
-
 
         public void PasswordReset(String token, String password)
         {
@@ -122,7 +118,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 userService.ChangePassword(security.User);
 
-                securityService.Deactivate(token);
+                securityService.Disable(token);
 
                 CommitTransaction();
             }
@@ -139,33 +135,13 @@ namespace DFM.BusinessLogic.SuperServices
             securityService.ValidateAndGet(token, securityAction);
         }
 
-
-
-        public User SelectUserByTicket(String ticketKey)
-        {
-            var ticket = ticketService.SelectByKey(ticketKey);
-
-            if (ticket == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
-
-            if (!ticket.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
-
-            if (!ticket.User.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
-
-            return ticket.User;
-        }
-
-
-
-        public void DeactivateToken(String token)
+        public void DisableToken(String token)
         {
             BeginTransaction();
 
             try
             {
-                securityService.Deactivate(token);
+                securityService.Disable(token);
 
                 CommitTransaction();
             }
@@ -177,22 +153,51 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
+        public User SelectUserByTicket(String ticketKey)
+        {
+            var ticket = selectTicketByKey(ticketKey);
+
+            if (!ticket.User.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+
+            return ticket.User;
+        }
+
         public String ValidateUserAndGetTicket(String email, String password)
         {
             var user = userService.ValidateAndGet(email, password);
 
-            ticketService.DeactivateTickets(user);
-
-            var ticket = new Ticket {User = user};
+            var ticket = new Ticket
+            {
+                User = user,
+            };
 
             ticket = ticketService.Create(ticket);
 
             return ticket.Key;
         }
 
+        public void DisableTicket(String ticketKey)
+        {
+            var ticket = selectTicketByKey(ticketKey);
 
+            ticket.Active = false;
+            ticket.Expiration = DateTime.Now;
 
+            ticketService.Disable(ticket);
+        }
 
+        private Ticket selectTicketByKey(String ticketKey)
+        {
+            var ticket = ticketService.SelectByKey(ticketKey);
+
+            if (ticket == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+
+            if (!ticket.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+            return ticket;
+        }
 
 
     }

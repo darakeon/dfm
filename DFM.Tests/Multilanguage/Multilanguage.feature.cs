@@ -717,10 +717,10 @@ this.ScenarioSetup(scenarioInfo);
                         "NotRecognizedAction"});
             table10.AddRow(new string[] {
                         "Token",
-                        "TokenDeactivate"});
+                        "TokenDisable"});
             table10.AddRow(new string[] {
                         "Token",
-                        "TokenDeactivateSuccess"});
+                        "TokenDisableSuccess"});
             table10.AddRow(new string[] {
                         "Token",
                         "TokenInvalid"});
@@ -858,7 +858,7 @@ this.ScenarioSetup(scenarioInfo);
                         "TokenReceivedByEmail"});
             table11.AddRow(new string[] {
                         "User",
-                        "LogonDeactivated"});
+                        "LogonDisabled"});
             table11.AddRow(new string[] {
                         "User",
                         "FollowEmailIntructions"});

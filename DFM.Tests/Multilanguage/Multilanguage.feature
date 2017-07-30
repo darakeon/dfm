@@ -223,8 +223,8 @@ Scenario: 09. Get translate of Interface (token)
 		| Token   | NotRecognizedAction     |
 		| Token   | RetypeWrong             |
 		| Token   | NotRecognizedAction     |
-		| Token   | TokenDeactivate         |
-		| Token   | TokenDeactivateSuccess  |
+		| Token   | TokenDisable            |
+		| Token   | TokenDisableSuccess     |
 		| Token   | TokenInvalid            |
 		| Token   | TokenInvalidMessage     |
 		| Token   | PasswordReset           |
@@ -270,7 +270,7 @@ Scenario: 10. Get translate of Interface (user)
 		| User    | RememberMe             |
 		| User    | ForgotPassword         |
 		| User    | TokenReceivedByEmail   |
-		| User    | LogonDeactivated       |
+		| User    | LogonDisabled          |
 		| User    | FollowEmailIntructions |
 		| User    | SignUp                 |
 		| User    | Email                  |

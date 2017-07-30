@@ -82,11 +82,11 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Deactivate(String id)
+        public ActionResult Disable(String id)
         {
             try
             {
-                Services.Safe.DeactivateToken(id);
+                Services.Safe.DisableToken(id);
             }
             catch (DFMCoreException)
             {

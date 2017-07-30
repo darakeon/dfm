@@ -9,10 +9,16 @@ namespace DFM.Entities
 
         public virtual String Key { get; set; }
         public virtual DateTime Creation { get; set; }
-        public virtual DateTime Expiration { get; set; }
+        public virtual DateTime? Expiration { get; set; }
         public virtual Boolean Active { get; set; }
 
         public virtual User User { get; set; }
+
+
+        public Ticket()
+        {
+            Active = true;
+        }
 
     }
 }

@@ -362,13 +362,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         }
         #endregion
         
-        #region DeactivateToken
-        [When(@"I try do deactivate the token")]
-        public void WhenITryDoDeactivateTheToken()
+        #region DisableToken
+        [When(@"I try do disable the token")]
+        public void WhenITryDoDisableTheToken()
         {
             try
             {
-                SA.Safe.DeactivateToken(token);
+                SA.Safe.DisableToken(token);
             }
             catch (DFMCoreException e)
             {
@@ -392,6 +392,40 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             Assert.AreEqual(ExceptionPossibilities.InvalidToken, Error.Type);
         }
         #endregion
+
+        #region Disable Ticket
+        [When(@"I try to disable the ticket")]
+        public void WhenITryToDisableTheTicket()
+        {
+            try
+            {
+                SA.Safe.DisableTicket(ticket);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"the ticket will not be valid anymore")]
+        public void ThenTheTicketWillNotBeValidAnymore()
+        {
+            Error = null;
+
+            try
+            {
+                SA.Safe.SelectUserByTicket(ticket);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.InvalidTicket, Error.Type);
+        }
+        #endregion
+
 
 
         #region MoreThanOne
@@ -443,13 +477,10 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             ticket = Token.New();
         }
 
-        [Given(@"I pass a ticket that is already invalid")]
+        [Given(@"I pass a ticket that is already disabled")]
         public void GivenIPassATicketThatIsAlreadyInvalid()
         {
-            ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
-
-            //Create new ticket
-            SA.Safe.ValidateUserAndGetTicket(email, password);
+            SA.Safe.DisableTicket(ticket);
         }
 
         [Given(@"I pass a ticket that is of this disabled user")]
@@ -469,6 +500,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             action = EnumX.Parse<SecurityAction>(strAction);
             token = DBHelper.GetLastTokenForUser(email, password, action);
+        }
+
+        [Given(@"I have a ticket of this user")]
+        public void GivenIHaveATicketOfThisUser()
+        {
+            ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
         }
 
         

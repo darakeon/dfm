@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <token>
   <en-US>
-    <TokenDeactivate text="Token Deactivate" />
-    <TokenDeactivateSuccess text="Token successfuly deactivated." />
+    <TokenDisable text="Token disable" />
+    <TokenDisableSuccess text="Token successfuly disabled." />
     <TokenInvalid text="Token Invalid" />
     <TokenInvalidMessage text="The Token is invalid." />
     <Password text="Password" />
@@ -18,8 +18,8 @@
     <SecurityAction text="Action" />
   </en-US>
   <pt-BR>
-    <TokenDeactivate text="Desativação de Token" />
-    <TokenDeactivateSuccess text="Token desativado com sucesso." />
+    <TokenDisable text="Desativação de Token" />
+    <TokenDisableSuccess text="Token desativado com sucesso." />
     <TokenInvalid text="Token Inválido" />
     <TokenInvalidMessage text="Este Token é inválido." />
     <Password text="Senha" />

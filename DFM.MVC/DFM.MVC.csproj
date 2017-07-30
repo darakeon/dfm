@@ -278,7 +278,7 @@
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\ForgotPasswordSuccess.cshtml" />
-    <Content Include="Views\Token\Deactivate.cshtml" />
+    <Content Include="Views\Token\Disable.cshtml" />
     <Content Include="Views\Token\PasswordReset.cshtml" />
     <Content Include="Views\Token\Invalid.cshtml" />
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />

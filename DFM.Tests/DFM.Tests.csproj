@@ -31,6 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\A.Safe\j.DisableTicket.feature.cs">
+      <DependentUpon>j.DisableTicket.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\d.ActivateUser.feature.cs">
       <DependentUpon>d.ActivateUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -66,8 +71,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BusinessLogic\A.Safe\i.DeactivateToken.feature.cs">
-      <DependentUpon>i.DeactivateToken.feature</DependentUpon>
+    <Compile Include="BusinessLogic\A.Safe\i.DisableToken.feature.cs">
+      <DependentUpon>i.DisableToken.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -202,6 +207,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>j.DisableTicket.feature.cs</LastGenOutput>
+    </None>
     <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveAccount.feature.cs</LastGenOutput>
@@ -310,9 +319,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>h.TestSecurityToken.feature.cs</LastGenOutput>
     </None>
-    <None Include="BusinessLogic\A.Safe\i.DeactivateToken.feature">
+    <None Include="BusinessLogic\A.Safe\i.DisableToken.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>i.DeactivateToken.feature.cs</LastGenOutput>
+      <LastGenOutput>i.DisableToken.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\A.Safe\a.SaveUserAndSendVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

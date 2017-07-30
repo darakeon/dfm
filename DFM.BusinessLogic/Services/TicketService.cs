@@ -15,9 +15,7 @@ namespace DFM.BusinessLogic.Services
             ticket.Creation = DateTime.Now;
             ticket.Active = true;
 
-            ticket = SaveOrUpdate(ticket);
-
-            return ticket;
+            return SaveOrUpdate(ticket);
         }
 
         internal Ticket SelectByKey(String key)
@@ -25,22 +23,11 @@ namespace DFM.BusinessLogic.Services
             return SingleOrDefault(t => t.Key == key);
         }
 
-
-
-        internal void DeactivateTickets(User user)
+        internal void Disable(Ticket ticket)
         {
-            var tickets = 
-                List(t => t.User.ID == user.ID
-                    && t.Active);
-
-            foreach (var ticket in tickets)
-            {
-                ticket.Active = false;
-                SaveOrUpdate(ticket);
-            }
-
+            ticket.Active = false;
+            SaveOrUpdate(ticket);
         }
-
 
     }
 
