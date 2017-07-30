@@ -25,7 +25,7 @@ VERSÃO 3.1.0.0
 					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
 					>>>	Edição de Perfil de usuário
 					>>>	Colocar nome (ou apelido) no sign up
-						Separar dados de Conta em Options e User em Config
+						Separar dados adicionais de Conta em Options e User em Config
 
 VERSÃO 3.0.0.0
 ================================================================================================
@@ -51,14 +51,14 @@ VERSÃO 2.1.0.0
 						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
-					>>> Criar Market - agrupamento de movimentações, cada uma de uma categoria,
+					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
 							possibilitando a inserção de várias moves quando se está fazendo compras
 
 VERSÃO 2.0.1.0
 ================================================================================================
 					>>>	Iluminar última movimentação verificada
 					>>>	Remover fundo do site
-					>>>	Rever layout (colocar um símbolo de relógio de parede para agendamento)
+					>>>	Rever layout (http://goodui.org/)
 						Colocar hover em TRs de tabela (destacar linha que está em cima)
 
 VERSÃO 2.0.0.2
@@ -68,6 +68,8 @@ VERSÃO 2.0.0.2
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)
 					>>>	Se for post, fazer login realizar history.go(-2)
+						Colocar combo das duas accounts
+						Trocar seleção de Out / In / Transfer por desenhos
 
 VERSÃO 2.0.0.1
 ================================================================================================
@@ -102,9 +104,8 @@ VERSÃO
 						Criar SessionOld para usar em GetByIdOld
 						http://www.dontflymoney.com/Token/ (put Index)
 						http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
-						http://www.dontflymoney.com/Accounts/19/Report/ShowMoves (NullReference)
 24/03/2013	24/03/2013	Sugerir url para conta
-24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente
+24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
 18/03/2013	24/03/2013	Usar Identity (Generic) para guardar usuário logado
 18/03/2013	18/03/2013	Tirar retorno de setter do Authentication
 17/03/2013	17/03/2013	Fazer logout de ticket
