@@ -90,7 +90,7 @@ VERSÃO 2.0.0.0
 						Criar App Mobile
 						Criar área Json
 
-VERSÃO 
+VERSÃO 1.0.3.0 (Little change)
 ================================================================================================
 						Mover área Account para comum
 						Criar Controllers pai (se necessário)
@@ -109,7 +109,7 @@ VERSÃO
 16/03/2013	17/03/2013	Substituir SelectByEmail de User por SelectByTicket
 11/03/2013	14/03/2013	Fazer ValidateAndGet pegar String de Ticket
 
-VERSÃO 1.0.2.3
+VERSÃO 1.0.2.3 (System)
 ================================================================================================
 07/03/2013	07/03/2013	Proteger edição de hiddens, onde for necessário
 07/03/2013	07/03/2013	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
@@ -129,7 +129,7 @@ VERSÃO 1.0.2.3
 17/10/2012	17/10/2012	Colocar log por visita no site (IP, Data/Hora, Endereço)
 17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
 
-VERSÃO 1.0.2.2
+VERSÃO 1.0.2.2 (System)
 ================================================================================================
 20/08/2012	21/08/2012	Testes de Multilanguage
 20/08/2012	20/08/2012	Testar fechar conta e desativar categoria (MVC)
@@ -154,12 +154,12 @@ VERSÃO 1.0.2.2
 06/04/2012	13/06/2012	Implementar BDD
 18/03/2012	06/04/2012	Escrever BDD
 
-VERSÃO 1.0.2.1
+VERSÃO 1.0.2.1 (System)
 ================================================================================================
 21/03/2012	22/03/2012	Fornecer detalhes do erro no e-mail de report
 20/03/2012	20/03/2012	Refactor Resharper
 
-VERSÃO 1.0.2.0
+VERSÃO 1.0.2.0 (Little change)
 ================================================================================================
 17/03/2012	17/03/2012	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 16/03/2012	17/03/2012	Testar Elmah com página tratada (Report > SeeYear)
@@ -176,7 +176,7 @@ VERSÃO 1.0.2.0
 ----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
 02/12/2011	05/12/2011	Reorganização primária de camadas
 
-VERSÃO 1.0.1.0
+VERSÃO 1.0.1.0 (Little change)
 ================================================================================================
 25/11/2011	30/11/2011	Testes e Publicação
 25/10/2011	25/10/2011	Erros tratados
@@ -184,7 +184,7 @@ VERSÃO 1.0.1.0
 24/10/2011	25/10/2011	Tentativa de passar Log4Net / Elmah para MySql: FAIL
 19/10/2011	19/10/2011	Log4Net / Elmah
 
-VERSÃO 1.0.0.4
+VERSÃO 1.0.0.4 (System)
 ================================================================================================
 11/11/2011	11/11/2011	Tornar possível valor ZERO em sinais (vermelho / amarelo)
 09/11/2011	09/11/2011	Verificar se recuperação de senha está desativando usuário
@@ -193,14 +193,14 @@ VERSÃO 1.0.0.4
 08/11/2011	08/11/2011	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 23/10/2011	23/10/2011	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 
-VERSÃO 1.0.0.3
+VERSÃO 1.0.0.3 (System)
 ================================================================================================
 13/10/2011	14/10/2011	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
 11/10/2011	13/10/2011	Ícones ao invés de palavras nas listagem de contas
 10/10/2011	10/10/2011	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 02/10/2011	09/10/2011	Recuperação de Senha - hashcode
 
-VERSÃO 1.0.0.2
+VERSÃO 1.0.0.2 (System)
 ================================================================================================
 01/10/2011	01/10/2011	Colocar BETA no logo do site
 01/10/2011	01/10/2011	Escurecer mensagem de erro (inverter cor?)
@@ -208,12 +208,12 @@ VERSÃO 1.0.0.2
 28/09/2011	01/10/2011	Confirmação de senha
 25/09/2011	26/09/2011	Conflito de formato de data
 
-VERSÃO 1.0.0.1
+VERSÃO 1.0.0.1 (System)
 ================================================================================================
 24/09/2011	24/09/2011	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 24/09/2011	24/09/2011	Consertar acesso NH no publicado
 
-VERSÃO 1.0.0.0
+VERSÃO 1.0.0.0 (All new)
 ================================================================================================
 22/09/2011	22/09/2011	Publicar
 22/09/2011	22/09/2011	Verificar no IE
