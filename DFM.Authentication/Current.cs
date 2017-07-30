@@ -59,26 +59,22 @@ namespace DFM.Authentication
 
 
 
-        public User Set(String username, String password)
+        public void Set(String username, String password)
         {
             if (isWeb)
                 throw DFMAuthException.IsWeb();
 
             ticket = userService.ValidateUserAndGetTicket(username, password);
-
-            return userService.SelectUserByTicket(ticket);
         }
 
-        public User Set(String username, String password, HttpResponseBase response, Boolean isPersistent)
+        public void Set(String username, String password, HttpResponseBase response, Boolean isPersistent)
         {
             if (!isWeb)
                 throw DFMAuthException.NotWeb();
 
-            var ticket = userService.ValidateUserAndGetTicket(username, password);
+            ticket = userService.ValidateUserAndGetTicket(username, password);
 
             Authenticate.Set(ticket, response, isPersistent);
-
-            return userService.SelectUserByTicket(ticket);
         }
 
 

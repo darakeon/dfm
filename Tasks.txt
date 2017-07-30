@@ -88,8 +88,7 @@ VERSÃO 2.0.0.0
 						Sugerir url para conta
 						Corrigir NullReference quando passa url de conta inexistente
 						Usar Identity (Generic) para guardar usuário logado
-						Trocar "I have an active user" para "I have this active user"
-						Tirar retorno de setter do Authentication
+18/03/2013	18/03/2013	Tirar retorno de setter do Authentication
 17/03/2013	17/03/2013	Fazer logout de ticket
 16/03/2013	17/03/2013	Substituir SelectByEmail de User por SelectByTicket
 11/03/2013	14/03/2013	Fazer ValidateAndGet pegar String de Ticket

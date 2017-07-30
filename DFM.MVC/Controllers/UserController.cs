@@ -66,26 +66,24 @@ namespace DFM.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User();
-
-
                 try
                 {
-                    user = Current.Set(model.Email, model.Password, Response, model.RememberMe);
+                    Current.Set(model.Email, model.Password, Response, model.RememberMe);
                 }
                 catch (DFMCoreException e)
                 {
+                    if (e.Type == ExceptionPossibilities.DisabledUser)
+                        return RedirectToAction("SendVerification", new {id = model.Email});
+
                     ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
                 }
 
 
                 if (ModelState.IsValid)
                 {
-                    return user.Active 
-                        ? String.IsNullOrEmpty(returnUrl)
-                            ? (ActionResult) RedirectToAction("Index", "Account")
-                            : Redirect(returnUrl)
-                        : RedirectToAction("SendVerification", new { id = user.Email });
+                    return String.IsNullOrEmpty(returnUrl)
+                        ? (ActionResult) RedirectToAction("Index", "Account")
+                        : Redirect(returnUrl);
                 }
             }
 
