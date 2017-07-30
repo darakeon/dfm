@@ -70,16 +70,16 @@ namespace DFM.Repositories
 
         public static void Close()
         {
-            close(IsActive, Session, key);
-            close(isActiveOld, SessionOld, keyOld);
+            close(IsActive, key);
+            close(isActiveOld, keyOld);
         }
 
-        private static void close(bool isActive, ISession session, string sessionKey)
+        private static void close(bool isActive, string sessionKey)
         {
             if (!isActive)
                 return;
 
-            SessionBuilder.Close(session);
+            SessionBuilder.Close(getSession(sessionKey));
             sessionList.Remove(sessionKey);
         }
 
@@ -106,19 +106,19 @@ namespace DFM.Repositories
 
         public static Boolean IsActive
         {
-            get { return isActive(Session); }
+            get { return isActive(key); }
         }
 
         private static Boolean isActiveOld
         {
-            get { return isActive(SessionOld); }
+            get { return isActive(keyOld); }
         }
 
-        private static Boolean isActive(ISession session)
+        private static Boolean isActive(String sessionKey)
         {
             try
             {
-                return session.IsOpen;
+                return getSession(sessionKey).IsOpen;
             }
             catch (AkException)
             {
