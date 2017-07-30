@@ -35,20 +35,27 @@ namespace DFM.BusinessLogic.SuperServices
             var accountOut = selectAccountByName(accountOutName);
             var accountIn = selectAccountByName(accountInName);
 
+            
             SetCategory(move, categoryName);
 
             resetSchedule(move);
 
+            
             var oldMove = getOldAndRemoveFromMonths(move);
 
             placeAccountsInMove(move, accountOut, accountIn);
 
+            
             move = moveService.SaveOrUpdate(move);
 
             detailService.SaveDetails(move);
 
-            ajustSummaries(oldMove, move.Date);
+            
+            if (oldMove != null)
+                ajustSummaries(oldMove, move.Date);
+
             ajustSummaries(move);
+
 
             return move;
         }
