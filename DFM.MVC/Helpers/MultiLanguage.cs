@@ -60,11 +60,21 @@ namespace DFM.MVC.Helpers
         {
             get
             {
-                return RouteInfo.Current == null
-                        || RouteInfo.Current.RouteData == null
-                    ? "Ops"
-                    : RouteInfo.Current.RouteData
-                        .Values["controller"].ToString().ToLower();
+                var current = RouteInfo.Current;
+
+                if (current == null && current.RouteData == null)
+                    return "Ops";
+
+                var controller = current.RouteData.Values["controller"].ToString().ToLower();
+
+                if (controller.StartsWith("?"))
+                {
+                    var defaults = ((System.Web.Routing.Route) current.RouteData.Route).Defaults;
+
+                    controller = defaults["controller"].ToString().ToLower();
+                }
+
+                return controller;
             }
         }
 

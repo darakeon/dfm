@@ -103,7 +103,7 @@ VERSÃO
 						Trocar Select por Get
 						Criar SessionOld para usar em GetByIdOld
 						http://www.dontflymoney.com/Token/ (put Index)
-						http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
+15/07/2013	15/07/2013	http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
 24/03/2013	24/03/2013	Sugerir url para conta
 24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
 18/03/2013	24/03/2013	Usar Identity (Generic) para guardar usuário logado
