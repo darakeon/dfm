@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Web;
-using Ak.MVC.Authentication;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.Authentication
 {
@@ -16,26 +15,25 @@ namespace DFM.Authentication
         }
 
 
-        private String ticket;
-
-        private Boolean isWeb
-        {
-            get { return HttpContext.Current != null; }
-        }
+        private const String keyName = "UserTicket";
 
         public User User
         {
             get
             {
-                if (!isWeb)
-                    return userService.SelectUserByTicket(ticket);
-
-                if (!Authenticate.IsAuthenticated)
+                if (!Identity.Exists(keyName))
                     return null;
-                
-                ticket = Authenticate.Username;
 
-                return userService.SelectUserByTicket(ticket);
+                try
+                {
+                    var ticket = Identity.GetKeyFor(keyName);
+
+                    return userService.SelectUserByTicket(ticket);
+                }
+                catch (DFMException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -61,44 +59,28 @@ namespace DFM.Authentication
 
         public void Set(String username, String password)
         {
-            if (isWeb)
-                throw DFMAuthException.IsWeb();
+            var ticket = userService.ValidateUserAndGetTicket(username, password);
 
-            ticket = userService.ValidateUserAndGetTicket(username, password);
+            Identity.SetKeyFor(keyName, ticket);
         }
 
-        public void Set(String username, String password, HttpResponseBase response, Boolean isPersistent)
+        public void Reset(String username, String password)
         {
-            if (!isWeb)
-                throw DFMAuthException.NotWeb();
-
-            ticket = userService.ValidateUserAndGetTicket(username, password);
-
-            Authenticate.Set(ticket, response, isPersistent);
+            Clean();
+            Set(username, password);
         }
-
-
 
         public void Clean()
         {
-            if (isWeb)
-                throw DFMAuthException.IsWeb();
+            if (!Identity.Exists(keyName))
+                return;
+
+            var ticket = Identity.GetKeyFor(keyName);
 
             userService.DisableTicket(ticket);
 
-            ticket = null;
+            Identity.KillKeyFor(keyName);
         }
-
-        public void Clean(HttpRequestBase request)
-        {
-            if (!isWeb)
-                throw DFMAuthException.NotWeb();
-
-            userService.DisableTicket(Authenticate.Username);
-
-            Authenticate.Clean(request);
-        }
-
 
 
     }

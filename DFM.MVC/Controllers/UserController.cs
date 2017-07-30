@@ -68,7 +68,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Current.Set(model.Email, model.Password, Response, model.RememberMe);
+                    Current.Set(model.Email, model.Password);
                 }
                 catch (DFMCoreException e)
                 {
@@ -110,7 +110,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult LogOff()
         {
-            Current.Clean(Request);
+            Current.Clean();
 
             return RedirectToAction("Index", "User");
         }

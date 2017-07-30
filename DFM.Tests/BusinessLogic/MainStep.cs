@@ -13,7 +13,7 @@ namespace DFM.Tests.BusinessLogic
         {
             CreateUserIfNotExists(UserEmail, UserPassword, true);
 
-            Current.Set(UserEmail, UserPassword);
+            Current.Reset(UserEmail, UserPassword);
         }
 
         [Given(@"I have an account")]
@@ -59,7 +59,8 @@ namespace DFM.Tests.BusinessLogic
         [AfterScenario]
         public void Logoff()
         {
-            Current.Clean();
+            if (Current.IsAuthenticated)
+                Current.Clean();
         }
 
 

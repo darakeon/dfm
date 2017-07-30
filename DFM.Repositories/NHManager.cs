@@ -69,7 +69,7 @@ namespace DFM.Repositories
 
         private static String key
         {
-            get { return Identity.GetKeyFor("NHManager"); }
+            get { return Identity.GetGeneratedKeyFor("NHManager"); }
         }
 
 

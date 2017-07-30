@@ -65,7 +65,7 @@ namespace DFM.MVC.Helpers
 
         private static String key
         {
-            get { return Identity.GetKeyFor("ErrorManager"); }
+            get { return Identity.GetGeneratedKeyFor("ErrorManager"); }
         }
 
 
