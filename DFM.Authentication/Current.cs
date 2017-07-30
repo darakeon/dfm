@@ -60,7 +60,7 @@ namespace DFM.Authentication
 
         public void Set(String username, String password)
         {
-            var ticket = userService.ValidateUserAndGetTicket(username, password);
+            var ticket = userService.ValidateUserAndCreateTicket(username, password);
 
             Identity.SetKeyFor(keyName, ticket);
         }

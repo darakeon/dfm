@@ -163,18 +163,25 @@ namespace DFM.BusinessLogic.SuperServices
             return ticket.User;
         }
 
-        public String ValidateUserAndGetTicket(String email, String password)
+        public String ValidateUserAndCreateTicket(String email, String password)
         {
-            var user = userService.ValidateAndGet(email, password);
-
-            var ticket = new Ticket
+            BeginTransaction();
+            
+            try
             {
-                User = user,
-            };
+                var user = userService.ValidateAndGet(email, password);
 
-            ticket = ticketService.Create(ticket);
+                var ticket = ticketService.Create(user);
 
-            return ticket.Key;
+                CommitTransaction();
+
+                return ticket.Key;
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
         }
 
         public void DisableTicket(String ticketKey)

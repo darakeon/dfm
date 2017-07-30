@@ -7,7 +7,7 @@ namespace DFM.Authentication
     {
         User GetUserByTicket(String ticket);
 
-        String ValidateUserAndGetTicket(String username, String password);
+        String ValidateUserAndCreateTicket(String username, String password);
 
         void DisableTicket(String ticket);
 

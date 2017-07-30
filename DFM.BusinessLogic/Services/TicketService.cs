@@ -9,11 +9,17 @@ namespace DFM.BusinessLogic.Services
     {
         internal TicketService(IRepository<Ticket> repository) : base(repository) { }
 
-        internal Ticket Create(Ticket ticket)
+        internal Ticket Create(User user)
         {
-            ticket.Key = Token.New();
-            ticket.Creation = DateTime.Now;
-            ticket.Active = true;
+            var ticket = 
+                new Ticket
+                    {
+                        ID = 0,
+                        Key = Token.New(),
+                        Creation = DateTime.Now,
+                        Active = true,
+                        User = user,
+                    };
 
             return SaveOrUpdate(ticket);
         }
