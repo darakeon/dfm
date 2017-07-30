@@ -186,7 +186,7 @@
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\OpsCodeModel.cs" />
-    <Compile Include="Models\TokenReceivedModel.cs" />
+    <Compile Include="Models\TokenIndexModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
@@ -285,7 +285,7 @@
     <Content Include="Views\Token\PasswordReset.cshtml" />
     <Content Include="Views\Token\Invalid.cshtml" />
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />
-    <Content Include="Views\Token\Received.cshtml" />
+    <Content Include="Views\Token\Index.cshtml" />
     <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\User\SendVerification.cshtml" />
     <Content Include="Views\Token\UserVerification.cshtml" />

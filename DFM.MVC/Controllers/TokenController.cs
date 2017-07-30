@@ -10,6 +10,47 @@ namespace DFM.MVC.Controllers
 {
     public class TokenController : Controller
     {
+        public ActionResult Index()
+        {
+            var model = new TokenIndexModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(TokenIndexModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            model.Token = model.Token.Trim();
+
+            try
+            {
+                Services.Safe.TestSecurityToken(model.Token, model.SecurityAction);
+            }
+            catch (DFMCoreException e)
+            {
+                ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
+                return View(model);
+            }
+
+
+            switch (model.SecurityAction)
+            {
+                case SecurityAction.PasswordReset:
+                    return RedirectToAction("PasswordReset", new { id = model.Token });
+                case SecurityAction.UserVerification:
+                    return RedirectToAction("UserVerification", new { id = model.Token });
+                default:
+                    ModelState.AddModelError("", MultiLanguage.Dictionary["NotRecognizedAction"]);
+                    return View(model);
+            }
+
+        }
+
+
+
         public ActionResult PasswordReset(String id)
         {
             try
@@ -98,51 +139,12 @@ namespace DFM.MVC.Controllers
 
 
 
-        public ActionResult Received()
-        {
-            var model = new TokenReceivedModel();
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Received(TokenReceivedModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            model.Token = model.Token.Trim();
-
-            try
-            {
-                Services.Safe.TestSecurityToken(model.Token, model.SecurityAction);
-            }
-            catch (DFMCoreException e)
-            {
-                ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                return View(model);
-            }
-
-
-            switch (model.SecurityAction)
-            {
-                case SecurityAction.PasswordReset:
-                    return RedirectToAction("PasswordReset", new { id = model.Token } );
-                case SecurityAction.UserVerification:
-                    return RedirectToAction("UserVerification", new { id = model.Token });
-                default:
-                    ModelState.AddModelError("", MultiLanguage.Dictionary["NotRecognizedAction"]);
-                    return View(model);
-            }
-
-        }
-
-
 
         private ActionResult invalidTokenAction()
         {
             return View("Invalid");
         }
+
 
     }
 }

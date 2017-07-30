@@ -102,7 +102,7 @@ VERSÃO
 						Usar apenas um cookie para pegar tudo no servidor
 						Trocar Select por Get
 						Criar SessionOld para usar em GetByIdOld
-						http://www.dontflymoney.com/Token/ (put Index)
+15/07/2013	15/07/2013	http://www.dontflymoney.com/Token/ (put Index)
 15/07/2013	15/07/2013	http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
 24/03/2013	24/03/2013	Sugerir url para conta
 24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)

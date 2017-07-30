@@ -7,9 +7,9 @@ using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
-    public class TokenReceivedModel
+    public class TokenIndexModel
     {
-        public TokenReceivedModel()
+        public TokenIndexModel()
         {
             SecurityActionList = SelectListExtension.CreateSelect(
                                     MultiLanguage.GetEnumNames<SecurityAction>());
