@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             
             if (oldMove != null)
-                ajustSummaries(oldMove, move.Date);
+                ajustSummaries(oldMove, move);
 
             ajustSummaries(move);
 
@@ -120,19 +120,26 @@ namespace DFM.BusinessLogic.SuperServices
             return oldMove;
         }
 
-        private void ajustSummaries(Move move, DateTime? currentDate = null)
+        private void ajustSummaries(Move move, Move changedMove = null)
         {
             var checkUpYear = true;
 
-            if (currentDate.HasValue)
+            if (changedMove != null)
             {
-                checkUpYear = move.Date.Year != currentDate.Value.Year;
+                var changedCategory = move.Category.Name != changedMove.Category.Name;
                 
-                var checkUpMonth = move.Date.Month != currentDate.Value.Month;
-                var checkUp = checkUpYear || checkUpMonth;
+                var changedMonth = move.Date.Month != changedMove.Date.Month;
 
-                if (!checkUp)
+                var changedYear = move.Date.Year != changedMove.Date.Year;
+
+                var changedAccounts = testChangedAccounts(move, changedMove);
+
+                var changed = changedYear || changedMonth || changedCategory || changedAccounts;
+
+                if (!changed)
                     return;
+
+                checkUpYear = changedCategory || changedYear || changedAccounts;
             }
 
             if (move.Nature != MoveNature.Out)
@@ -150,6 +157,23 @@ namespace DFM.BusinessLogic.SuperServices
                 if (checkUpYear)
                     summaryService.AjustValue(move.Out.Year[move.Category.Name]);
             }
+
+        }
+
+        private Boolean testChangedAccounts(Move move, Move changedMove)
+        {
+            if (move.Nature != changedMove.Nature)
+                return true;
+
+            var changed = false;
+
+            if (move.Nature != MoveNature.Out)
+                changed |= move.AccIn().ID != changedMove.AccIn().ID;
+
+            if (move.Nature != MoveNature.In)
+                changed |= move.AccOut().ID != changedMove.AccOut().ID;
+
+            return changed;
         }
 
 
