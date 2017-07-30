@@ -19,7 +19,7 @@ namespace DFM.MVC.Models
 
 
 
-        internal OperationType Type { get; set; }
+        public OperationType Type { get; set; }
 
         public Account Account { get; set; }
 

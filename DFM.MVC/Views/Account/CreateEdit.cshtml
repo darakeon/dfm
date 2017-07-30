@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
-        
+    
     if (Model.Type == DFM.Generic.OperationType.Edit)
     {
         ViewBag.Title += " " + Model.Name;
@@ -22,14 +22,14 @@
 
         <p>
             @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Name"])
-            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName })
+            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.AccountName, @class = "suggest-name" })
 
             <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
         </p>
 
         <p>
             @Html.LabelFor(m => m.Account.Url, MultiLanguage.Dictionary["Url"])
-            @Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaximumLength.AccountUrl })
+            @Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaximumLength.AccountUrl, @class = "suggest-url" })
 
             <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountUrl)</span>
             <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.AccountUrl)</span>

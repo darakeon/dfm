@@ -4,6 +4,12 @@
     if (Model.IsMoveCRUD) { Model.ActionName = "Create"; }
     
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
+
+    if (Model.Type == DFM.Generic.OperationType.Edit)
+    {
+        ViewBag.Title += " " + Model.Name;
+    }
+    
     Layout = Model.IsMoveCRUD ? null : "~/Views/Shared/Inner/_Layout.cshtml";
 }
 

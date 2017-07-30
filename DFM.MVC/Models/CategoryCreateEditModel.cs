@@ -21,7 +21,7 @@ namespace DFM.MVC.Models
 
         
 
-        internal OperationType Type { get; set; }
+        public OperationType Type { get; set; }
 
         public Category Category { get; set; }
 
