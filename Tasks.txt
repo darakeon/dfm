@@ -85,7 +85,7 @@ VERSÃO 2.0.0.0
 						Criar App Mobile
 						Criar projeto que retorna UI em Json
 						Criar projeto UI, que será referenciado pelo MVC
-24/03/2013				Sugerir url para conta
+24/03/2013	24/03/2013	Sugerir url para conta
 24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente
 18/03/2013	24/03/2013	Usar Identity (Generic) para guardar usuário logado
 18/03/2013	18/03/2013	Tirar retorno de setter do Authentication
