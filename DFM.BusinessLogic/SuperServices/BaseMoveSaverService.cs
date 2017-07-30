@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
-using Ak.Generic.Collection;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
@@ -35,15 +32,15 @@ namespace DFM.BusinessLogic.SuperServices
             var accountOut = getAccountByName(accountOutName);
             var accountIn = getAccountByName(accountInName);
 
-            
-            SetCategory(move, categoryName);
+            var category = Parent.Admin.GetCategoryByName(categoryName);
+
 
             resetSchedule(move);
 
             
             var oldMove = getOldAndRemoveFromMonths(move);
 
-            placeAccountsInMove(move, accountOut, accountIn);
+            linkEntities(move, accountOut, accountIn, category);
 
             
             move = moveService.SaveOrUpdate(move);
@@ -67,12 +64,6 @@ namespace DFM.BusinessLogic.SuperServices
                        : Parent.Admin.GetAccountByName(accountName);
         }
 
-        internal void SetCategory(BaseMove baseMove, String categoryName)
-        {
-            if (categoryName != null)
-                baseMove.Category = Parent.Admin.GetCategoryByName(categoryName);
-        }
-
         private void resetSchedule(Move move)
         {
             if (move.ID == 0) return;
@@ -85,22 +76,24 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        private void placeAccountsInMove(Move move, Account accountOut, Account accountIn)
+        private void linkEntities(Move move, Account accountOut, Account accountIn, Category category)
         {
+            move.Category = category;
+
             var monthOut = accountOut == null ? null : getMonth(move, accountOut);
             var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
             moveService.PlaceMonthsInMove(move, monthOut, monthIn);
         }
 
-        private Month getMonth(BaseMove baseMove, Account account)
+        private Month getMonth(Move move, Account account)
         {
-            if (baseMove.Date == DateTime.MinValue)
+            if (move.Date == DateTime.MinValue)
                 return null;
 
-            var year = yearService.GetOrCreateYear((Int16)baseMove.Date.Year, account, baseMove.Category);
+            var year = yearService.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
 
-            return monthService.GetOrCreateMonth((Int16)baseMove.Date.Month, year, baseMove.Category);
+            return monthService.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
         }
 
 

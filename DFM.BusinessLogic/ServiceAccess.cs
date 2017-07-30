@@ -13,7 +13,6 @@ namespace DFM.BusinessLogic
             var account = new AccountService(resolver.Resolve<Account>());
             var category = new CategoryService(resolver.Resolve<Category>());
             var detail = new DetailService(resolver.Resolve<Detail>());
-            var futureMove = new FutureMoveService(resolver.Resolve<FutureMove>());
             var month = new MonthService(resolver.Resolve<Month>());
             var move = new MoveService(resolver.Resolve<Move>());
             var schedule = new ScheduleService(resolver.Resolve<Schedule>());
@@ -30,7 +29,7 @@ namespace DFM.BusinessLogic
             Safe = new SafeService(this, user, security, ticket);
             Admin = new AdminService(this, account, category, year, month, summary);
             Money = new MoneyService(this, move, detail, month, schedule);
-            Robot = new RobotService(this, schedule, futureMove, detail);
+            Robot = new RobotService(this, schedule, detail);
             Report = new ReportService(this, account, year, month);
 
             Current = new Current(Safe);

@@ -36,7 +36,7 @@ namespace DFM.Tests.BusinessLogic
                 if (!String.IsNullOrEmpty(detailData["Amount"]))
                     detail.Amount = Int16.Parse(detailData["Amount"]);
 
-                Move.DetailList.Add(detail);
+                DetailList.Add(detail);
             }
         }
 
@@ -75,8 +75,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOutName);
 
-            var year = AccountOut[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountOut[Date.Year, true];
+            var month = year[Date.Month, true];
 
             AccountOutTotal = AccountOut.Sum();
             YearCategoryAccountOutTotal = year[Category.Name, true].Out;
@@ -130,8 +130,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountInName);
 
-            var year = AccountIn[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountIn[Date.Year, true];
+            var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
             YearCategoryAccountInTotal = year[Category.Name, true].In;
@@ -191,8 +191,8 @@ namespace DFM.Tests.BusinessLogic
             AccountOut = GetOrCreateAccount(AccountOutName);
             AccountIn = AccountOut;
 
-            var year = AccountIn[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountIn[Date.Year, true];
+            var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
             YearCategoryAccountInTotal = year[Category.Name, true].In;
@@ -214,8 +214,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountOut[Date.Year, true];
+            var month = year[Date.Month, true];
 
             var currentTotal = month[Category.Name, true].Out;
 
@@ -227,7 +227,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year, true];
+            var year = AccountOut[Date.Year, true];
 
             var currentTotal = year[Category.Name, true].Out;
 
@@ -248,8 +248,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountIn[Date.Year, true];
+            var month = year[Date.Month, true];
 
             var currentTotal = month[Category.Name, true].In;
 
@@ -261,7 +261,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year, true];
+            var year = AccountIn[Date.Year, true];
 
             var currentTotal = year[Category.Name, true].In;
 
@@ -284,8 +284,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountOut[Date.Year, true];
+            var month = year[Date.Month, true];
 
             var currentTotal = month[Category.Name, true].Out;
 
@@ -297,7 +297,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var year = AccountOut[Move.Date.Year, true];
+            var year = AccountOut[Date.Year, true];
 
             var currentTotal = year[Category.Name, true].Out;
 
@@ -320,8 +320,8 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year, true];
-            var month = year[Move.Date.Month, true];
+            var year = AccountIn[Date.Year, true];
+            var month = year[Date.Month, true];
 
             var currentTotal = month[Category.Name, true].In;
 
@@ -333,7 +333,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var year = AccountIn[Move.Date.Year, true];
+            var year = AccountIn[Date.Year, true];
 
             var currentTotal = year[Category.Name, true].In;
 

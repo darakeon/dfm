@@ -9,6 +9,11 @@ namespace DFM.Entities
     {
         public Account()
         {
+            init();
+        }
+
+        private void init()
+        {
             YearList = new List<Year>();
         }
 

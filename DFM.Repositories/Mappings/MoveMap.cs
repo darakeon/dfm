@@ -1,4 +1,5 @@
-﻿using DFM.Entities;
+﻿using DFM.BusinessLogic.Helpers;
+using DFM.Entities;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
@@ -8,7 +9,15 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Move> mapping)
         {
-            BaseMoveMap.Override(mapping);
+            mapping.Map(m => m.Description)
+                .Length(MaximumLength.MoveDescription);
+
+            mapping.References(m => m.Schedule)
+                .Cascade.None()
+                .Nullable();
+
+            mapping.References(m => m.Category)
+                .Cascade.None();
 
             mapping.References(m => m.In)
                 .Cascade.None()

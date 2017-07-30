@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities;
 using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.SuperServices
@@ -42,7 +43,7 @@ namespace DFM.BusinessLogic.SuperServices
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
         }
 
-        protected void VerifyMove(BaseMove move)
+        protected void VerifyMove(Move move)
         {
             if (move == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);

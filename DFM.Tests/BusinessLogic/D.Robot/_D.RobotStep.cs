@@ -25,13 +25,13 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             var moveData = table.Rows[0];
 
-            Move = new FutureMove { Description = moveData["Description"] };
+            Schedule = new Schedule() { Description = moveData["Description"] };
 
             if (!String.IsNullOrEmpty(moveData["Nature"]))
-                Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
+                Schedule.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
 
             if (!String.IsNullOrEmpty(moveData["Date"]))
-                Move.Date = DateTime.Parse(moveData["Date"]);
+                Schedule.Date = DateTime.Parse(moveData["Date"]);
 
             // TODO: use this, delete above
             //if (moveData["Value"] != null)
@@ -41,12 +41,12 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             {
                 var detail = new Detail
                 {
-                    Description = Move.Description,
+                    Description = Schedule.Description,
                     Amount = 1,
                     Value = Int32.Parse(moveData["Value"])
                 };
 
-                Move.DetailList.Add(detail);
+                Schedule.DetailList.Add(detail);
             }
         }
 
@@ -64,7 +64,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, CategoryName, Schedule);
+                SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -75,7 +75,8 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [Then(@"the schedule will not be saved")]
         public void ThenTheScheduleWillNotBeSaved()
         {
-            Assert.AreEqual(0, Move.ID);
+            if (Schedule != null)
+                Assert.AreEqual(0, Schedule.ID);
         }
 
         [Then(@"the schedule will be saved")]
@@ -104,9 +105,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             switch (frequency)
             {
-                case "day": case "days": Move.Date = DateTime.Today.AddDays(-count); break;
-                case "month":case "months": Move.Date = DateTime.Today.AddMonths(-count); break;
-                case "year": case "years": Move.Date = DateTime.Today.AddYears(-count); break;
+                case "day": case "days": Schedule.Date = DateTime.Today.AddDays(-count); break;
+                case "month":case "months": Schedule.Date = DateTime.Today.AddMonths(-count); break;
+                case "year": case "years": Schedule.Date = DateTime.Today.AddYears(-count); break;
             }
         }
 
@@ -116,7 +117,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             var accountOutName = AccountOut == null ? null : AccountOut.Name;
             var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-            SA.Robot.SaveOrUpdateSchedule((FutureMove)Move, accountOutName, accountInName, CategoryName, Schedule);
+            SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
         }
 
         [When(@"I try to run the scheduler")]
@@ -138,8 +139,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         public void GivenTheMoveHasThisSchedule(Table table)
         {
             var scheduleData = table.Rows[0];
-
-            Schedule = new Schedule();
 
             if (!String.IsNullOrEmpty(scheduleData["Times"]))
                 Schedule.Times = Int16.Parse(scheduleData["Times"]);

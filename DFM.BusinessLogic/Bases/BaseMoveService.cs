@@ -2,65 +2,63 @@
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Bases
 {
-    public class BaseMoveService<T> : BaseService<T> where T : BaseMove
+    public class BaseMoveService : BaseService<Move>
     {
-        internal BaseMoveService(IRepository<T> repository) : base(repository) { }
+        internal BaseMoveService(IRepository<Move> repository) : base(repository) { }
 
 
-        internal T SaveOrUpdate(T move)
+        internal Move SaveOrUpdate(Move move)
         {
             //Keep this order, weird errors happen if invert
             return SaveOrUpdate(move, validate, complete);
         }
 
         #region Validate
-        private static void validate(BaseMove baseMove)
+        private static void validate(Move move)
         {
-            testDescription(baseMove);
-            testDate(baseMove);
-            testValue(baseMove);
-            testNature(baseMove);
-            testDetailList(baseMove);
-            testAccounts(baseMove);
-            testCategory(baseMove);
+            testDescription(move);
+            testDate(move);
+            testValue(move);
+            testNature(move);
+            testDetailList(move);
+            testAccounts(move);
+            testCategory(move);
         }
 
-        private static void testDescription(BaseMove baseMove)
+        private static void testDescription(Move move)
         {
-            if (String.IsNullOrEmpty(baseMove.Description))
+            if (String.IsNullOrEmpty(move.Description))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
         }
 
-        private static void testDate(BaseMove baseMove)
+        private static void testDate(Move move)
         {
-            if (baseMove.Date == DateTime.MinValue)
+            if (move.Date == DateTime.MinValue)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
 
-            if (baseMove.Date > DateTime.Now 
-                    && baseMove.GetType() != typeof(FutureMove))
+            if (move.Date > DateTime.Now)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
         }
 
-        private static void testValue(BaseMove baseMove)
+        private static void testValue(Move move)
         {
-            // TODO: When create value move move, use the other if
-            if (!baseMove.IsDetailed() && baseMove.Value() == 0)
+            // TODO: When create value move, use the other if
+            if (!move.IsDetailed() && move.Value() == 0)
             // if (!baseMove.IsDetailed() && baseMove.Value == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
-        private static void testNature(BaseMove baseMove)
+        private static void testNature(Move move)
         {
-            var hasIn = baseMove.AccIn() != null;
-            var hasOut = baseMove.AccOut() != null;
+            var hasIn = move.AccIn() != null;
+            var hasOut = move.AccOut() != null;
 
-            switch (baseMove.Nature)
+            switch (move.Nature)
             {
                 case MoveNature.In:
                     if (!hasIn || hasOut)
@@ -80,49 +78,49 @@ namespace DFM.BusinessLogic.Bases
             }
         }
 
-        private static void testDetailList(BaseMove baseMove)
+        private static void testDetailList(Move move)
         {
-            if (!baseMove.DetailList.Any())
+            if (!move.DetailList.Any())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
-        
-        private static void testAccounts(BaseMove baseMove)
+
+        private static void testAccounts(Move move)
         {
-            var moveInClosed = baseMove.AccIn() != null && !baseMove.AccIn().IsOpen();
-            var moveOutClosed = baseMove.AccOut() != null && !baseMove.AccOut().IsOpen();
+            var moveInClosed = move.AccIn() != null && !move.AccIn().IsOpen();
+            var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
 
             if (moveInClosed || moveOutClosed)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
 
-            if (baseMove.AccIn() != null && baseMove.AccOut() != null && baseMove.AccIn().ID == baseMove.AccOut().ID)
+            if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        private static void testCategory(BaseMove baseMove)
+        private static void testCategory(Move move)
         {
-            if (baseMove.Category == null)
+            if (move.Category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
 
-            if (!baseMove.Category.Active)
+            if (!move.Category.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
         }
         #endregion
 
         #region Complete
-        private static void complete(BaseMove baseMove)
+        private static void complete(Move move)
         {
-            ajustDetailList(baseMove);
+            ajustDetailList(move);
         }
-        
-        private static void ajustDetailList(BaseMove baseMove)
+
+        private static void ajustDetailList(Move move)
         {
-            if (!baseMove.IsDetailed())
+            if (!move.IsDetailed())
             {
-                baseMove.DetailList[0].Description = baseMove.Description;
-                baseMove.DetailList[0].Amount = 1;
+                move.DetailList[0].Description = move.Description;
+                move.DetailList[0].Amount = 1;
             }
 
-            foreach (var detail in baseMove.DetailList
+            foreach (var detail in move.DetailList
                                     .Where(detail => detail.Value < 0))
             {
                 detail.Value = -detail.Value;

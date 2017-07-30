@@ -20,8 +20,8 @@ namespace DFM.Entities.Extensions
         {
             var list = new List<Move>();
 
-            list.AddRange(month.OutList.Where(m => m.Show()));
-            list.AddRange(month.InList.Where(m => m.Show()));
+            list.AddRange(month.OutList);
+            list.AddRange(month.InList);
 
             return list.OrderBy(m => m.ID).ToList();
         }

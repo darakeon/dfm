@@ -15,9 +15,9 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal void SaveOrUpdate(Schedule schedule)
+        internal Schedule SaveOrUpdate(Schedule schedule)
         {
-            SaveOrUpdate(schedule, complete, validate);
+            return SaveOrUpdate(schedule, complete, validate);
         }
 
         private static void complete(Schedule schedule)
@@ -25,19 +25,11 @@ namespace DFM.BusinessLogic.Services
             if (schedule.ID == 0)
             {
                 schedule.Active = true;
-                schedule.Begin = schedule.GetLastRunDate();
-                schedule.User = schedule.FutureMoveList.First().User();
             }
         }
 
         private static void validate(Schedule schedule)
         {
-            var isCreating = schedule.ID == 0;
-            var hasNoFuture = !schedule.FutureMoveList.Any();
-
-            if (isCreating && hasNoFuture)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleWithNoMoves);
-
             if (!schedule.Boundless && schedule.Times <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
         }
@@ -58,9 +50,9 @@ namespace DFM.BusinessLogic.Services
 
             foreach (var schedule in scheduleList)
             {
-                if (!canRun(schedule))
+                if (!schedule.CanRun())
                     disable(schedule);
-                else if (canRunNow(schedule))
+                else if (schedule.CanRunNow())
                     yield return schedule;
             }
         }
@@ -73,33 +65,7 @@ namespace DFM.BusinessLogic.Services
 
         
 
-        internal DateTime CalculateNextRunDate(Schedule schedule)
-        {
-            var move = schedule.FutureMoveList.Last();
-
-            return schedule.Frequency.Next(move.Date);
-        }
-
-
-
-        private static Boolean canRunNow(Schedule schedule)
-        {
-            return schedule.GetLastRunDate() <= DateTime.Today;
-        }
-
-        private static Boolean canRun(Schedule schedule)
-        {
-            if (!schedule.FutureMoveList.Any())
-                return false;
-
-            var doneMoves = schedule.AppliedTimes();
-
-            var doneAll = doneMoves >= schedule.Times;
-            var boundless = schedule.Boundless;
-
-            return schedule.Active &&
-                (boundless || !doneAll);
-        }
+        
 
 
 

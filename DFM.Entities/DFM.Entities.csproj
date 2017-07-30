@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="Bases\BaseMove.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Bases\IEntity.cs" />
     <Compile Include="Bases\IMove.cs" />
@@ -44,7 +43,6 @@
     <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SecurityAction.cs" />
     <Compile Include="Enums\SummaryNature.cs" />
-    <Compile Include="FutureMove.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

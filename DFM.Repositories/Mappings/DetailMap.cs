@@ -20,7 +20,7 @@ namespace DFM.Repositories.Mappings
             mapping.References(d => d.Move)
                 .Nullable();
 
-            mapping.References(d => d.FutureMove)
+            mapping.References(d => d.Schedule)
                 .Nullable();
 
         }

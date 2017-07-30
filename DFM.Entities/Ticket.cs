@@ -17,6 +17,11 @@ namespace DFM.Entities
 
         public Ticket()
         {
+            init();
+        }
+
+        private void init()
+        {
             Active = true;
         }
 

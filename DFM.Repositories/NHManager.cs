@@ -44,10 +44,7 @@ namespace DFM.Repositories
 
         public static void Start()
         {
-            var mapInfo = new AutoMappingInfo<UserMap, User>
-                              {
-                                  EntityBase = typeof (BaseMove)
-                              };
+            var mapInfo = new AutoMappingInfo<UserMap, User>();
 
             SessionBuilder.Start(mapInfo);
         }

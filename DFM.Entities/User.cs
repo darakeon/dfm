@@ -8,6 +8,11 @@ namespace DFM.Entities
     {
         public User()
         {
+            init();
+        }
+
+        private void init()
+        {
             AccountList = new List<Account>();
             CategoryList = new List<Category>();
             ScheduleList = new List<Schedule>();

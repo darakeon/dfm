@@ -48,7 +48,6 @@
     <Compile Include="Bases\BaseService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="ServiceAccess.cs" />
-    <Compile Include="Services\FutureMoveService.cs" />
     <Compile Include="Services\DetailService.cs" />
     <Compile Include="IConnector.cs" />
     <Compile Include="Bases\IRepository.cs" />

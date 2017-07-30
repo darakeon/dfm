@@ -1,53 +1,77 @@
 ﻿using System;
 using System.Linq;
-using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions
 {
     public static class ScheduleExtension
     {
-        public static Boolean Contains(this Schedule schedule, FutureMove futureMove)
+        public static Move GetNewMove(this Schedule schedule)
         {
-            return schedule.FutureMoveList.Contains(futureMove);
+            var dateTime = schedule.LastDateRun();
+
+            return new Move
+            {
+                Date = dateTime,
+                Description = schedule.Description,
+                Nature = schedule.Nature,
+                DetailList = schedule.DetailList
+                                .Select(d => d.Clone())
+                                .ToList(),
+                Schedule = schedule,
+            };
         }
 
 
-        public static void AddMove(this Schedule schedule, FutureMove futureMove)
+        public static Int32 ExecutedMoves(this Schedule schedule)
         {
-            futureMove.Schedule = schedule;
-            schedule.FutureMoveList.Add(futureMove);
-        }
-
-        public static DateTime GetLastRunDate(this Schedule schedule)
-        {
-            return schedule.FutureMoveList
-                .Min(m => m.Date);
+            return schedule.MoveList.Count;
         }
 
 
-        public static DateTime LastDate(this Schedule schedule)
+        public static DateTime LastDateRun(this Schedule schedule)
         {
-            return schedule.FutureMoveList.Max(f => f.Date);
+            switch (schedule.Frequency)
+            {
+                case ScheduleFrequency.Monthly:
+                    return schedule.Date.AddMonths(schedule.LastRun);
+                case ScheduleFrequency.Yearly:
+                    return schedule.Date.AddYears(schedule.LastRun);
+                case ScheduleFrequency.Daily:
+                    return schedule.Date.AddDays(schedule.LastRun);
+                default:
+                    throw new ArgumentException("schedule");
+            }
         }
 
 
 
-        public static Int32 TotalMoves(this Schedule schedule)
+        public static Boolean CanRun(this Schedule schedule)
         {
-            return schedule.MoveList.Count
-                   + schedule.FutureMoveList.Count;
+            return canRun(schedule, false);
         }
 
-        public static Int32 ExecutedMoves(this Schedule schedule, BaseMove baseMove)
+        public static Boolean CanRunNow(this Schedule schedule)
         {
-            return baseMove.GetType() == typeof (Move)
-                    
-                    ? schedule.MoveList
-                        .Count(m => m.Date <= baseMove.Date)
-                    
-                    : schedule.MoveList.Count
-                        + schedule.FutureMoveList
-                            .Count(m => m.Date <= baseMove.Date);
+            return canRun(schedule, true);
         }
+
+        private static Boolean canRun(this Schedule schedule, Boolean now)
+        {
+            if (!schedule.Active)
+                return false;
+
+            var lastDate = schedule.LastDateRun();
+
+            if (now && lastDate >= DateTime.Now)
+                return false;
+
+            if (schedule.Boundless)
+                return true;
+
+            return schedule.LastRun < schedule.Times;
+        }
+
+
     }
 }

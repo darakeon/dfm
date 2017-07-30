@@ -116,10 +116,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
 
-            if (detail.Move == null)
-                VerifyMove(detail.FutureMove);
-            else
-                VerifyMove(detail.Move);
+            VerifyMove(detail.Move);
 
             return detail;
         }

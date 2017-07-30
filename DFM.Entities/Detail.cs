@@ -8,6 +8,11 @@ namespace DFM.Entities
     {
         public Detail()
         {
+            init();
+        }
+
+        private void init()
+        {
             Amount = 1;
         }
 
@@ -18,7 +23,7 @@ namespace DFM.Entities
         public virtual Double Value { get; set; }
 
         public virtual Move Move { get; set; }
-        public virtual FutureMove FutureMove { get; set; }
+        public virtual Schedule Schedule { get; set; }
 
 
         public override String ToString()

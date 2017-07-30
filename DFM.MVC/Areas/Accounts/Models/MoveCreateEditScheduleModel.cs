@@ -3,7 +3,6 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Entities;
@@ -24,7 +23,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             populateDropDowns(transferIsPossible);
 
-            Move = new BaseMove();
+            Move = new Move();
             Date = DateTime.Today;
         }
 
@@ -50,10 +49,10 @@ namespace DFM.MVC.Areas.Accounts.Models
             Type = type;
         }
 
-        public MoveCreateEditScheduleModel(BaseMove baseMove, OperationType type)
+        public MoveCreateEditScheduleModel(Move move, OperationType type)
             : this(type)
         {
-            Move = baseMove;
+            Move = move;
 
             AccountName = Move.Nature == MoveNature.Transfer
                 ? Move.AccIn().Name : null;
@@ -65,7 +64,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         public OperationType Type { get; set; }
 
 
-        public BaseMove Move { get; set; }
+        public Move Move { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String Description { get { return Move.Description; } set { Move.Description = value; } }
@@ -122,9 +121,6 @@ namespace DFM.MVC.Areas.Accounts.Models
             MakeAccountTransferList(accountName);
 
             IsDetailed = Move.HasDetails() && Move.IsDetailed();
-
-            if (Move is FutureMove)
-                Type = OperationType.Schedule;
 
             if (!Move.DetailList.Any())
                 Move.AddDetail(new Detail { Amount = 1 });

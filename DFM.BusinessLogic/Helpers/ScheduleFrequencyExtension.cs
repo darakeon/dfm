@@ -32,7 +32,7 @@ namespace DFM.BusinessLogic.Helpers
 
 
             var frequency = schedule.Frequency;
-            var firstDate = schedule.Begin;
+            var firstDate = schedule.Date;
             var lastDate = lastRunMove.Date;
 
             var months = lastDate.Month - firstDate.Month;

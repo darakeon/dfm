@@ -1,30 +1,23 @@
 ﻿using System;
-using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
     public class RobotService : BaseSuperService
     {
         private readonly ScheduleService scheduleService;
-        private readonly FutureMoveService futureMoveService;
-        private readonly DetailService detailService;
         
-        internal RobotService(ServiceAccess serviceAccess, ScheduleService scheduleService, FutureMoveService futureMoveService, DetailService detailService)
+        internal RobotService(ServiceAccess serviceAccess, ScheduleService scheduleService, DetailService detailService)
             : base(serviceAccess)
         {
             this.scheduleService = scheduleService;
-            this.futureMoveService = futureMoveService;
-            this.detailService = detailService;
         }
 
 
 
-        #region Scheduler
         public void RunSchedule()
         {
             VerifyUser();
@@ -33,61 +26,31 @@ namespace DFM.BusinessLogic.SuperServices
 
             foreach (var schedule in scheduleList)
             {
-                ajustFutureMovesAndGetFirst(schedule);
-            }
+                var accountOutName = schedule.Out == null ? null : schedule.Out.Name;
+                var accountInName = schedule.In == null ? null : schedule.In.Name;
+                var categoryName = schedule.Category.Name;
 
-            var futureMoves = scheduleList
-                .SelectMany(s => s.FutureMoveList
-                                .Where(m => m.Date <= DateTime.Now)
-                                .ToList()
-                            );
-
-            foreach (var futureMove in futureMoves)
-            {
-                transformFutureInMove(futureMove);
+                addNewMoves(schedule, accountOutName, accountInName, categoryName);
             }
         }
 
-
-
-        private void transformFutureInMove(FutureMove futureMove)
+        private void addNewMoves(Schedule schedule, String accountOutName, String accountInName, String categoryName)
         {
-            BeginTransaction();
-
-            try
+            while (schedule.CanRun())
             {
-                var schedule = futureMove.Schedule;
+                var newMove = schedule.GetNewMove();
 
-                var boundless = schedule.Boundless;
-                var isLast = futureMove.ID == schedule.FutureMoveList.Last().ID;
+                schedule.LastRun++;
 
-                if (boundless && isLast)
-                    addNextFutureMove(futureMove.Schedule);
+                Parent.BaseMove.SaveOrUpdateMove(newMove, accountOutName, accountInName, categoryName);
 
-                var accountOutName = futureMove.Out == null ? null : futureMove.Out.Name;
-                var accountInName = futureMove.In == null ? null : futureMove.In.Name;
-                var category = futureMove.Category;
-
-                var move = futureMove.CastToKill();
-
-                Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, category.Name);
-
-                futureMoveService.Delete(futureMove.ID);
-
-                CommitTransaction();
-
-                Parent.BaseMove.SendEmail(move, OperationType.Creation);
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
+                schedule.MoveList.Add(newMove);
             }
         }
 
 
 
-        public FutureMove SaveOrUpdateSchedule(FutureMove futureMove, String accountOutName, String accountInName, String categoryName, Schedule schedule)
+        public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutName, String accountInName, String categoryName)
         {
             VerifyUser();
 
@@ -95,13 +58,16 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                placeAccountsInMove(futureMove, accountOutName, accountInName);
+                if (schedule == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
 
-                futureMove = saveOrUpdateSchedule(futureMove, categoryName, schedule);
-                
+                linkToEntities(schedule, accountOutName, accountInName, categoryName);
+
+                schedule = scheduleService.SaveOrUpdate(schedule);
+
                 CommitTransaction();
 
-                return futureMove;
+                return schedule;
             }
             catch
             {
@@ -110,88 +76,18 @@ namespace DFM.BusinessLogic.SuperServices
             }
         }
 
-        private void placeAccountsInMove(FutureMove futureMove, String accountOutName, String accountInName)
+        private void linkToEntities(Schedule schedule, String accountOutName, String accountInName, String categoryName)
         {
-            futureMove.Out = accountOutName == null 
+            schedule.Out = accountOutName == null
                 ? null : Parent.Admin.GetAccountByName(accountOutName);
 
-            futureMove.In = accountInName == null 
+            schedule.In = accountInName == null
                 ? null : Parent.Admin.GetAccountByName(accountInName);
+
+            schedule.Category = Parent.Admin.GetCategoryByName(categoryName);
+
+            schedule.User = Parent.Current.User;
         }
-
-        private FutureMove saveOrUpdateSchedule(FutureMove futureMove, String categoryName, Schedule schedule)
-        {
-            if (schedule == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
-
-            Parent.BaseMove.SetCategory(futureMove, categoryName);
-
-            if (!schedule.FutureMoveList.Contains(futureMove))
-                schedule.FutureMoveList.Add(futureMove);
-
-            futureMove = ajustFutureMovesAndGetFirst(schedule);
-
-            futureMove = saveMove(futureMove);
-
-            return futureMove;
-        }
-
-        private FutureMove ajustFutureMovesAndGetFirst(Schedule schedule)
-        {
-            var firstFMove = schedule.FutureMoveList.First();
-
-            firstFMove.Schedule = schedule;
-
-
-            if (schedule.Boundless)
-            {
-                while (schedule.LastDate() < DateTime.Today)
-                {
-                    addNextFutureMove(schedule);
-                }
-            }
-            else
-            {
-                var addedFMoveCount = schedule.FutureMoveList.Count;
-
-                for (var fm = addedFMoveCount; fm < schedule.Times; fm++)
-                {
-                    addNextFutureMove(schedule);
-                }
-            }
-
-            scheduleService.SaveOrUpdate(schedule);
-
-            return firstFMove;
-        }
-
-
-
-        private void addNextFutureMove(Schedule schedule)
-        {
-            var nextDate = scheduleService.CalculateNextRunDate(schedule);
-
-            var lastFMove = schedule.FutureMoveList.Last();
-            
-            var nextFMove = lastFMove.CloneChangingDate(nextDate);
-
-            schedule.FutureMoveList.Add(nextFMove);
-
-            saveMove(nextFMove);
-        }
-
-
-
-        private FutureMove saveMove(FutureMove futureMove)
-        {
-            futureMove = futureMoveService.SaveOrUpdate(futureMove);
-
-            detailService.SaveDetails(futureMove);
-
-            return futureMove;
-        }
-
-        #endregion
 
 
     }

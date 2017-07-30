@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities.Bases;
 
 namespace DFM.Entities.Extensions
 {
-    public static class BaseMoveExtension
+    public static class MoveExtension
     {
-        public static String Month(this BaseMove move)
+        public static String Month(this Move move)
         {
             return move.Date.ToString("MMMM");
         }
@@ -15,29 +14,29 @@ namespace DFM.Entities.Extensions
 
 
 
-        public static void AddDetail(this BaseMove move, Detail detail)
+        public static void AddDetail(this Move move, Detail detail)
         {
             move.DetailList.Add(detail);
         }
 
 
-        public static Boolean HasDetails(this BaseMove move)
+        public static Boolean HasDetails(this Move move)
         {
             return move.DetailList.Any();
         }
 
-        public static Boolean IsDetailed(this BaseMove move)
+        public static Boolean IsDetailed(this Move move)
         {
             return !move.hasJustOneDetail()
                     || move.hasFirstDetailDescription();
         }
 
-        private static Boolean hasJustOneDetail(this BaseMove move)
+        private static Boolean hasJustOneDetail(this Move move)
         {
             return move.DetailList.Count == 1;
         }
 
-        private static Boolean hasFirstDetailDescription(this BaseMove move)
+        private static Boolean hasFirstDetailDescription(this Move move)
         {
             var detail = move.DetailList.First();
 
@@ -47,7 +46,7 @@ namespace DFM.Entities.Extensions
 
 
 
-        public static void MakePseudoDetail(this BaseMove move, Double value)
+        public static void MakePseudoDetail(this Move move, Double value)
         {
             var id = (move.DetailList.FirstOrDefault() ?? new Detail()).ID;
 
@@ -60,7 +59,7 @@ namespace DFM.Entities.Extensions
 
 
 
-        public static Boolean AuthorizeCRUD(this BaseMove move, User user)
+        public static Boolean AuthorizeCRUD(this Move move, User user)
         {
             return move.User() == user;
         }
@@ -68,24 +67,24 @@ namespace DFM.Entities.Extensions
 
 
 
-        public static String GetDescriptionDetailed(this BaseMove baseMove)
+        public static String GetDescriptionDetailed(this Move move)
         {
             const string boundlessFormat = "{0} [{1}]";
             const string boundedFormat = "{0} [{1}/{2}]";
-            var schedule = baseMove.Schedule;
+            var schedule = move.Schedule;
 
             if (schedule == null || !schedule.ShowInstallment)
-                return baseMove.Description;
+                return move.Description;
 
             
-            var total = schedule.TotalMoves();
-            var executed = schedule.ExecutedMoves(baseMove);
+            var total = schedule.Times;
+            var executed = schedule.ExecutedMoves();
                 
             var format = schedule.Boundless
                              ? boundlessFormat
                              : boundedFormat;
 
-            return String.Format(format, baseMove.Description, executed, total);
+            return String.Format(format, move.Description, executed, total);
         }
 
 

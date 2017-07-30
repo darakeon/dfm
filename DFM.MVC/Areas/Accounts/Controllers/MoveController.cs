@@ -32,7 +32,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             model.Schedule = null;
             model.Type = OperationType.Creation;
 
-            return createEditSchedule<Move>(model);
+            return createEditSchedule(model);
         }
 
 
@@ -72,7 +72,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             model.Schedule = oldMove.Schedule;
             model.Type = OperationType.Edit;
 
-            return createEditSchedule<Move>(model);
+            return createEditSchedule(model);
         }
 
 
@@ -91,13 +91,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             model.Type = OperationType.Schedule;
 
-            return createEditSchedule<FutureMove>(model);
+            return createEditSchedule(model);
         }
 
 
 
-        private ActionResult createEditSchedule<T>(MoveCreateEditScheduleModel model) 
-            where T : BaseMove, new()
+        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +104,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 {
                     var selector = new AccountSelector(model.Move.Nature, Account.Name, model.AccountName);
 
-                    return saveOrUpdateAndRedirect<T>(model.Move, selector, model.CategoryName, model.Schedule);
+                    return saveOrUpdateAndRedirect(model.Move, selector, model.CategoryName);
                 }
                 catch (DFMCoreException e)
                 {
@@ -118,28 +117,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             return viewCES(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect<T>(BaseMove baseMove, AccountSelector selector, String categoryName, Schedule schedule = null)
-            where T : BaseMove, new()
+        private ActionResult saveOrUpdateAndRedirect(Move move, AccountSelector selector, String categoryName)
         {
-            if (typeof(T) == typeof(FutureMove))
-            {
-                var futureMove = baseMove.CastToChild<FutureMove>();
+            Services.Money.SaveOrUpdateMove(move, selector.AccountOutName, selector.AccountInName, categoryName);
 
-                Services.Robot.SaveOrUpdateSchedule(futureMove, selector.AccountOutName, selector.AccountInName, categoryName, schedule);
-
-                return RedirectToAction("Index", "Report");
-            }
-            
-            if (typeof(T) == typeof(Move))
-            {
-                var move = baseMove.CastToChild<Move>();
-
-                Services.Money.SaveOrUpdateMove(move, selector.AccountOutName, selector.AccountInName, categoryName);
-
-                return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
-            }
-            
-            throw new Exception("Not known type of Move");
+            return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
         }
 
 

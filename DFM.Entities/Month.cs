@@ -10,6 +10,11 @@ namespace DFM.Entities
     {
         public Month()
         {
+            init();
+        }
+
+        private void init()
+        {
             SummaryList = new List<Summary>();
             InList = new List<Move>();
             OutList = new List<Move>();
@@ -47,7 +52,7 @@ namespace DFM.Entities
         private static Double sum(IEnumerable<Move> moveList, Category category)
         {
             return moveList
-                .Where(m => m.Show() && m.Category == category)
+                .Where(m => m.Category == category)
                 .Sum(m => m.Value());
         }
 

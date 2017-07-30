@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using DFM.Authentication;
 using DFM.BusinessLogic;
@@ -264,11 +265,50 @@ namespace DFM.Tests.BusinessLogic
             set { Set("CategoryName", value); }
         }
 
-        
-        protected static BaseMove Move
+
+
+        protected static Move Move
         {
-            get { return Get<BaseMove>("BaseMove"); }
-            set { Set("BaseMove", value); }
+            get { return Get<Move>("Move"); }
+            set { Set("Move", value); }
+        }
+
+        protected static Schedule Schedule
+        {
+            get { return Get<Schedule>("Schedule"); }
+            set { Set("Schedule", value); }
+        }
+
+        protected static DateTime Date
+        {
+            get
+            {
+                return Move == null 
+                    ? Schedule == null 
+                        ? DateTime.MinValue 
+                        : Schedule.Date 
+                    : Move.Date;
+            }
+            set
+            {
+                Set("Date", value);
+            }
+        }
+
+        protected static IList<Detail> DetailList
+        {
+            get
+            {
+                return Move == null
+                    ? Schedule == null 
+                        ? new List<Detail>() 
+                        : Schedule.DetailList 
+                    : Move.DetailList;
+            }
+            set
+            {
+                Set("DetailList", value);
+            }
         }
         #endregion
 

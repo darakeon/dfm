@@ -13,7 +13,7 @@ using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibiliti
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class MoveService : BaseMoveService<Move>
+    internal class MoveService : BaseMoveService
     {
         internal MoveService(IRepository<Move> repository) : base(repository) { }
 
@@ -79,9 +79,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        // ReSharper disable SuggestBaseTypeForParameter
         private static String detailsHTML(Move move)
-        // ReSharper restore SuggestBaseTypeForParameter
         {
             var details = new StringBuilder();
             var language = move.User().Language;
@@ -105,6 +103,7 @@ namespace DFM.BusinessLogic.Services
                 ? null : account.Name;
         }
         #endregion
+
 
     }
 }

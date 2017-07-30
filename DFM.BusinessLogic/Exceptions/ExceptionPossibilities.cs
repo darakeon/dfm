@@ -52,7 +52,7 @@
 
         ScheduleRequired = 601,
         ScheduleFrequencyNotRecognized = 602,
-        ScheduleWithNoMoves = 603,
+        //ScheduleWithNoMoves = 603,
         ScheduleTimesCantBeZero = 604,
 
         SummaryNatureNotFound = 701,

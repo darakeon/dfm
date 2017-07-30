@@ -10,6 +10,11 @@ namespace DFM.Entities
     {
         public Year()
         {
+            init();
+        }
+
+        private void init()
+        {
             MonthList = new List<Month>();
             SummaryList = new List<Summary>();
         }

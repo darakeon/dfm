@@ -7,6 +7,11 @@ namespace DFM.Entities
     {
         public Category()
         {
+            init();
+        }
+
+        private void init()
+        {
             Active = true;
         }
 
