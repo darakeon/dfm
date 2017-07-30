@@ -17,20 +17,29 @@ namespace DFM.Repositories
 
         public static ISession Session
         {
-            get
-            {
-                if (!sessionList.ContainsKey(key))
-                {
-                    var session = SessionBuilder.Open();
-
-                    if (!sessionList.ContainsKey(key))
-                        sessionList.Add(key, session);
-                }
-
-                return sessionList[key];
-            }
+            get { return getSession(key); }
         }
 
+        public static ISession SessionOld
+        {
+            get { return getSession(keyOld); }
+        }
+
+        private static ISession getSession(String sessionKey)
+        {
+            if (!sessionList.ContainsKey(sessionKey))
+            {
+                var session = SessionBuilder.Open();
+
+                try
+                {
+                    sessionList.Add(sessionKey, session);
+                }
+                catch (ArgumentException) { }
+            }
+
+            return sessionList[sessionKey];
+        }
 
 
         public static void Start()
@@ -43,22 +52,40 @@ namespace DFM.Repositories
             SessionBuilder.Start(mapInfo);
         }
 
+
+
         public static void Error()
         {
-            SessionBuilder.Error(Session);
-
-            sessionList.Remove(key);
+            error(Session, key);
+            error(SessionOld, keyOld);
         }
+
+        private static void error(ISession session, string sessionKey)
+        {
+            SessionBuilder.Error(session);
+            sessionList.Remove(sessionKey);
+        }
+
+
 
         public static void Close()
         {
-            if (!IsActive)
+            close(IsActive, Session, key);
+
+            SessionOld.Clear();
+            close(isActiveOld, SessionOld, keyOld);
+        }
+
+        private static void close(bool isActive, ISession session, string sessionKey)
+        {
+            if (!isActive)
                 return;
 
-            SessionBuilder.Close(Session);
-
-            sessionList.Remove(key);
+            SessionBuilder.Close(session);
+            sessionList.Remove(sessionKey);
         }
+
+
 
         public static void End()
         {
@@ -72,20 +99,32 @@ namespace DFM.Repositories
             get { return Identity.GetGeneratedKeyFor("NHManager"); }
         }
 
+        private static String keyOld
+        {
+            get { return key + "_old"; }
+        }
+
 
 
         public static Boolean IsActive
         {
-            get
+            get { return isActive(Session); }
+        }
+
+        private static Boolean isActiveOld
+        {
+            get { return isActive(SessionOld); }
+        }
+
+        private static Boolean isActive(ISession session)
+        {
+            try
             {
-                try
-                {
-                    return Session.IsOpen;
-                }
-                catch (AkException)
-                {
-                    return false;
-                }                
+                return session.IsOpen;
+            }
+            catch (AkException)
+            {
+                return false;
             }
         }
 

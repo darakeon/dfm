@@ -17,6 +17,12 @@ namespace DFM.Repositories
             get { return NHManager.Session; }
         }
 
+        private static ISession sessionOld
+        {
+            get { return NHManager.SessionOld; }
+        }
+
+
 
         private static ICriteria createSimpleCriteria(Expression<Func<T, Boolean>> expression = null)
         {
@@ -77,16 +83,7 @@ namespace DFM.Repositories
 
         public T SelectOldById(Int32 id)
         {
-            var entity = SelectById(id);
-            
-            if (entity != null)
-            {
-                session.Evict(entity);
-                entity = SelectById(id);
-                session.Evict(entity);
-            }
-
-            return entity;
+            return sessionOld.Get<T>(id);
         }
 
 
