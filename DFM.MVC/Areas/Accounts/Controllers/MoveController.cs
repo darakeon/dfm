@@ -42,7 +42,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Create");
 
-            var move = Services.Money.SelectMoveById(id.Value);
+            var move = Services.Money.GetMoveById(id.Value);
 
             var model = new MoveCreateEditScheduleModel(move, OperationType.Edit);
 
@@ -66,7 +66,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
         {
-            var oldMove = Services.Money.SelectMoveById(id);
+            var oldMove = Services.Money.GetMoveById(id);
 
             model.Move.ID = id;
             model.Schedule = oldMove.Schedule;
@@ -147,7 +147,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var detail = id == 0
                 ? default(Detail)
-                : Services.Money.SelectDetailById(id);
+                : Services.Money.GetDetailById(id);
 
             var model = new MoveAddDetailModel(position, detail);
 
@@ -164,7 +164,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var move =  Services.Money.SelectMoveById(id);
+            var move =  Services.Money.GetMoveById(id);
 
             Services.Money.DeleteMove(id);
             //else

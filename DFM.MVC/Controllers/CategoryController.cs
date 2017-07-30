@@ -66,7 +66,7 @@ namespace DFM.MVC.Controllers
 
             var model = new CategoryCreateEditModel(OperationType.Edit)
             {
-                Category = Services.Admin.SelectCategoryByName(id)
+                Category = Services.Admin.GetCategoryByName(id)
             };
 
             return View("CreateEdit", model);

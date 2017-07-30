@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (dateMonth <= 0 || dateMonth >= 13)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMonth);
 
-            var account = accountService.SelectByName(accountName, Parent.Current.User);
+            var account = accountService.GetByName(accountName, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -60,7 +60,7 @@ namespace DFM.BusinessLogic.SuperServices
             if (dateYear <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
 
-            var account = accountService.SelectByName(accountName, Parent.Current.User);
+            var account = accountService.GetByName(accountName, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);

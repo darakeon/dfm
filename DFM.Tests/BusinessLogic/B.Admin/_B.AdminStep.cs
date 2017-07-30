@@ -112,7 +112,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be changed")]
         public void ThenTheAccountWillNotBeChanged()
         {
-            var account = SA.Admin.SelectAccountByName(oldAccount.Name);
+            var account = SA.Admin.GetAccountByName(oldAccount.Name);
 
             Assert.AreEqual(oldAccount.Name, account.Name);
             Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
@@ -126,7 +126,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectAccountByName(Account.Name);
+                SA.Admin.GetAccountByName(Account.Name);
             }
             catch (DFMCoreException e)
             {
@@ -140,13 +140,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will be saved")]
         public void ThenTheAccountWillBeSaved()
         {
-            Account = SA.Admin.SelectAccountByName(Account.Name);
+            Account = SA.Admin.GetAccountByName(Account.Name);
 
             Assert.IsNotNull(Account);
         }
         #endregion
 
-        #region SelectAccountByName
+        #region GetAccountByName
         [When(@"I try to get the account by its name")]
         public void WhenITryToGetTheAccountByItsName()
         {
@@ -154,7 +154,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Account = SA.Admin.SelectAccountByName(AccountName);
+                Account = SA.Admin.GetAccountByName(AccountName);
             }
             catch (DFMCoreException e)
             {
@@ -239,7 +239,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             {
                 try
                 {
-                    account = SA.Admin.SelectAccountByName(oldAccountName);
+                    account = SA.Admin.GetAccountByName(oldAccountName);
                 }
                 catch (DFMCoreException e)
                 {
@@ -256,7 +256,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                account = SA.Admin.SelectAccountByName(newAccountName);
+                account = SA.Admin.GetAccountByName(newAccountName);
             }
             catch (DFMCoreException e)
             {
@@ -299,14 +299,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be closed")]
         public void ThenTheAccountWillNotBeClosed()
         {
-            var account = SA.Admin.SelectAccountByName(AccountName);
+            var account = SA.Admin.GetAccountByName(AccountName);
             Assert.IsTrue(account.IsOpen());
         }
 
         [Then(@"the account will be closed")]
         public void ThenTheAccountWillBeClosed()
         {
-            var account = SA.Admin.SelectAccountByName(AccountName);
+            var account = SA.Admin.GetAccountByName(AccountName);
             Assert.IsFalse(account.IsOpen());
         }
         #endregion
@@ -321,7 +321,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I delete the moves of ([\w ]+)")]
         public void GivenIDeleteTheMovesOf(String givenAccountName)
         {
-            var account = SA.Admin.SelectAccountByName(givenAccountName);
+            var account = SA.Admin.GetAccountByName(givenAccountName);
 
             for (var y = 0; y < account.YearList.Count; y++)
             {
@@ -361,7 +361,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be deleted")]
         public void ThenTheAccountWillNotBeDeleted()
         {
-            Account = SA.Admin.SelectAccountByName(AccountName);
+            Account = SA.Admin.GetAccountByName(AccountName);
             
             Assert.IsNotNull(Account);
         }
@@ -373,7 +373,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectAccountByName(Account.Name);
+                SA.Admin.GetAccountByName(Account.Name);
             }
             catch (DFMCoreException e)
             {
@@ -432,7 +432,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.SelectCategoryByName(Category.Name);
+                SA.Admin.GetCategoryByName(Category.Name);
             }
             catch (DFMCoreException e)
             {
@@ -446,13 +446,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be saved")]
         public void ThenTheCategoryWillBeSaved()
         {
-            Category = SA.Admin.SelectCategoryByName(Category.Name);
+            Category = SA.Admin.GetCategoryByName(Category.Name);
 
             Assert.IsNotNull(Category);
         }
         #endregion
 
-        #region SelectCategoryByName
+        #region GetCategoryByName
         [Given(@"I pass a valid category name")]
         public void GivenIPassValidCategoryName()
         {
@@ -466,7 +466,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Category = SA.Admin.SelectCategoryByName(CategoryName);
+                Category = SA.Admin.GetCategoryByName(CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -521,7 +521,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Category = SA.Admin.SelectCategoryByName(oldCategoryName);
+                Category = SA.Admin.GetCategoryByName(oldCategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -537,7 +537,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Category = SA.Admin.SelectCategoryByName(newCategoryName);
+                Category = SA.Admin.GetCategoryByName(newCategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -556,7 +556,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = SA.Admin.SelectCategoryByName(givenCategoryName);
+            Category = SA.Admin.GetCategoryByName(givenCategoryName);
 
             CategoryName = Category.Name;
         }
@@ -583,7 +583,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be disabled")]
         public void ThenTheCategoryWillBeDisabled()
         {
-            Category = SA.Admin.SelectCategoryByName(CategoryName);
+            Category = SA.Admin.GetCategoryByName(CategoryName);
 
             Assert.IsFalse(Category.Active);
         }
@@ -596,7 +596,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });
 
-            Category = SA.Admin.SelectCategoryByName(givenCategoryName);
+            Category = SA.Admin.GetCategoryByName(givenCategoryName);
 
             CategoryName = Category.Name;
 
@@ -625,13 +625,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the category will be enabled")]
         public void ThenTheCategoryWillBeEnabled()
         {
-            Category = SA.Admin.SelectCategoryByName(CategoryName);
+            Category = SA.Admin.GetCategoryByName(CategoryName);
 
             Assert.IsTrue(Category.Active);
         }
         #endregion
 
-        #region SelectAccountByUrl
+        #region GetAccountByUrl
         [Given(@"I pass an url of account that doesn't exist")]
         public void GivenIPassAUrlOfAccountThatDoesnTExist()
         {
@@ -651,7 +651,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Account = SA.Admin.SelectAccountByUrl(accountUrl);
+                Account = SA.Admin.GetAccountByUrl(accountUrl);
             }
             catch (DFMCoreException e)
             {

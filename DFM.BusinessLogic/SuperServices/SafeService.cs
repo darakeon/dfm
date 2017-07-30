@@ -25,7 +25,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SendPasswordReset(String email)
         {
-            var user = userService.SelectByEmail(email);
+            var user = userService.GetByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -56,7 +56,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void SendUserVerify(String email)
         {
-            var user = userService.SelectByEmail(email);
+            var user = userService.GetByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -153,9 +153,9 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        public User SelectUserByTicket(String ticketKey)
+        public User GetUserByTicket(String ticketKey)
         {
-            var ticket = selectTicketByKey(ticketKey);
+            var ticket = getTicketByKey(ticketKey);
 
             if (!ticket.User.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
@@ -179,7 +179,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DisableTicket(String ticketKey)
         {
-            var ticket = selectTicketByKey(ticketKey);
+            var ticket = getTicketByKey(ticketKey);
 
             ticket.Active = false;
             ticket.Expiration = DateTime.Now;
@@ -187,9 +187,9 @@ namespace DFM.BusinessLogic.SuperServices
             ticketService.Disable(ticket);
         }
 
-        private Ticket selectTicketByKey(String ticketKey)
+        private Ticket getTicketByKey(String ticketKey)
         {
-            var ticket = ticketService.SelectByKey(ticketKey);
+            var ticket = ticketService.GetByKey(ticketKey);
 
             if (ticket == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);

@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var url = RouteData.Values["accounturl"].ToString();
 
-            Account = Services.Admin.SelectAccountByUrl(url);
+            Account = Services.Admin.GetAccountByUrl(url);
         }
 
     }

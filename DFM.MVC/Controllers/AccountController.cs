@@ -52,7 +52,7 @@ namespace DFM.MVC.Controllers
 
             var model = new AccountCreateEditModel(OperationType.Edit)
             {
-                Account = Services.Admin.SelectAccountByName(id)
+                Account = Services.Admin.GetAccountByName(id)
             };
 
             if (model.Account == null)
@@ -64,7 +64,7 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(String id, AccountCreateEditModel model)
         {
-            var oldAccount = Services.Admin.SelectAccountByName(id);
+            var oldAccount = Services.Admin.GetAccountByName(id);
 
             model.Type = OperationType.Edit;
             model.Account.Name = oldAccount.Name;

@@ -27,7 +27,7 @@ namespace DFM.BusinessLogic.Services
             if (String.IsNullOrEmpty(category.Name))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoryNameRequired);
 
-            var otherCategory = SelectByName(category.Name, category.User);
+            var otherCategory = GetByName(category.Name, category.User);
 
             var categoryExistsForUser = otherCategory != null
                                        && otherCategory.ID != category.ID;
@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal Category SelectByName(String name, User user)
+        internal Category GetByName(String name, User user)
         {
             var categoryList = List(
                     a => a.Name == name
@@ -73,7 +73,7 @@ namespace DFM.BusinessLogic.Services
 
         private void alterActive(String name, User user, Boolean enable)
         {
-            var category = SelectByName(name, user);
+            var category = GetByName(name, user);
 
             if (category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);

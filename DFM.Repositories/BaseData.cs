@@ -74,14 +74,14 @@ namespace DFM.Repositories
             return criteria.UniqueResult<T>();
         }
 
-        public IList<T> List(Expression<Func<T, Boolean>> func)
+        public IList<T> GetWhere(Expression<Func<T, Boolean>> func)
         {
             var criteria = createSimpleCriteria(func);
 
             return criteria.List<T>();
         }
 
-        public T SelectOldById(Int32 id)
+        public T GetOldById(Int32 id)
         {
             return sessionOld.Get<T>(id);
         }
@@ -95,14 +95,14 @@ namespace DFM.Repositories
         }
 
 
-        public T SelectById(Int32 id)
+        public T GetById(Int32 id)
         {
             return session.Get<T>(id);
         }
 
 
 
-        internal IList<T> Select()
+        internal IList<T> GetAll()
         {
             return createSimpleCriteria().List<T>();
         }

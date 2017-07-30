@@ -114,7 +114,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                return SA.Admin.SelectAccountByName(accountName);
+                return SA.Admin.GetAccountByName(accountName);
             }
             catch (DFMCoreException e)
             {
@@ -129,7 +129,7 @@ namespace DFM.Tests.BusinessLogic
                             User = User
                         });
 
-                return SA.Admin.SelectAccountByName(accountName);
+                return SA.Admin.GetAccountByName(accountName);
             }
         }
 
@@ -137,7 +137,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                return SA.Admin.SelectCategoryByName(categoryName);
+                return SA.Admin.GetCategoryByName(categoryName);
             }
             catch (DFMCoreException e)
             {
@@ -145,7 +145,7 @@ namespace DFM.Tests.BusinessLogic
                     throw;
 
                 SA.Admin.CreateCategory(new Category { Name = categoryName, User = User });
-                return SA.Admin.SelectCategoryByName(categoryName);
+                return SA.Admin.GetCategoryByName(categoryName);
             }
         }
         #endregion

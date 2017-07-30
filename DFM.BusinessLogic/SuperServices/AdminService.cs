@@ -26,11 +26,11 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Account SelectAccountByName(String name)
+        public Account GetAccountByName(String name)
         {
             VerifyUser();
 
-            var account = accountService.SelectByName(name, Parent.Current.User);
+            var account = accountService.GetByName(name, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -40,11 +40,11 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Account SelectAccountByUrl(String url)
+        public Account GetAccountByUrl(String url)
         {
             VerifyUser();
 
-            var account = accountService.SelectByUrl(url, Parent.Current.User);
+            var account = accountService.GetByUrl(url, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 if (opType == OperationType.Edit)
                 {
-                    var oldAccount = SelectAccountByName(account.Name);
+                    var oldAccount = GetAccountByName(account.Name);
 
                     account.ID = oldAccount.ID;
 
@@ -120,7 +120,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                var account = SelectAccountByName(name);
+                var account = GetAccountByName(name);
 
                 foreach (var year in account.YearList)
                 {
@@ -155,11 +155,11 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Category SelectCategoryByName(String name)
+        public Category GetCategoryByName(String name)
         {
             VerifyUser();
 
-            var category = categoryService.SelectByName(name, Parent.Current.User);
+            var category = categoryService.GetByName(name, Parent.Current.User);
 
             if (category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
@@ -189,7 +189,7 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 if (opType == OperationType.Edit)
                 {
-                    var oldCategory = SelectCategoryByName(category.Name);
+                    var oldCategory = GetCategoryByName(category.Name);
 
                     category.ID = oldCategory.ID;
                     category.Active = oldCategory.Active;

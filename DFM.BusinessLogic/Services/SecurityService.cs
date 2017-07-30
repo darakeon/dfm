@@ -68,7 +68,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal Security SelectByToken(String token)
+        internal Security GetByToken(String token)
         {
             // TODO: Try refactor here
             return SingleOrDefault(
@@ -81,14 +81,14 @@ namespace DFM.BusinessLogic.Services
         
         internal Boolean TokenExist(String token)
         {
-            return SelectByToken(token) != null;
+            return GetByToken(token) != null;
         }
 
 
 
         internal void Disable(String token)
         {
-            var security = SelectByToken(token);
+            var security = GetByToken(token);
 
             if (security == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
@@ -103,7 +103,7 @@ namespace DFM.BusinessLogic.Services
 
         internal Security ValidateAndGet(String token, SecurityAction securityAction)
         {
-            var securityToken = SelectByToken(token);
+            var securityToken = GetByToken(token);
 
             if (securityToken == null || securityToken.Action != securityAction)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);

@@ -26,9 +26,9 @@ namespace DFM.BusinessLogic.Bases
         }
 
 
-        internal T SelectById(Int32 id)
+        internal T GetById(Int32 id)
         {
-            return repository.SelectById(id);
+            return repository.GetById(id);
         }
 
 
@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.Bases
 
         internal IList<T> List(Expression<Func<T, Boolean>> func)
         {
-            return repository.List(func);
+            return repository.GetWhere(func);
         }
 
         
@@ -57,13 +57,13 @@ namespace DFM.BusinessLogic.Bases
 
         internal void Delete(Int32 id)
         {
-            Delete(SelectById(id));
+            Delete(GetById(id));
         }
 
 
-        internal T SelectOldById(Int32 id)
+        internal T GetOldById(Int32 id)
         {
-            return repository.SelectOldById(id);
+            return repository.GetOldById(id);
         }
 
     }

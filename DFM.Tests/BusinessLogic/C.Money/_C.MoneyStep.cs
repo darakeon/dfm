@@ -144,7 +144,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             Assert.AreNotEqual(0, Move.ID);
 
-            var newMove = SA.Money.SelectMoveById(Move.ID);
+            var newMove = SA.Money.GetMoveById(Move.ID);
 
             Assert.IsNotNull(newMove);
         }
@@ -444,7 +444,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
         #endregion
 
-        #region SelectMoveById
+        #region GetMoveById
         [When(@"I try to get the move")]
         public void WhenITryToGetTheMove()
         {
@@ -453,7 +453,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             try
             {
-                Move = SA.Money.SelectMoveById(id);
+                Move = SA.Money.GetMoveById(id);
             }
             catch (DFMCoreException e)
             {
@@ -474,7 +474,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
         #endregion
 
-        #region SelectDetailById
+        #region GetDetailById
         [Given(@"I have a move with details")]
         public void GivenIHaveAMoveWithDetails()
         {
@@ -527,7 +527,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             try
             {
-                detail = SA.Money.SelectDetailById(id);
+                detail = SA.Money.GetDetailById(id);
             }
             catch (DFMCoreException e)
             {
@@ -569,7 +569,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             try
             {
-                SA.Money.SelectMoveById(id);
+                SA.Money.GetMoveById(id);
             }
             catch (DFMCoreException e)
             {
@@ -633,7 +633,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             if (accountOutName != null)
             {
-                AccountOut = SA.Admin.SelectAccountByName(accountOutName); 
+                AccountOut = SA.Admin.GetAccountByName(accountOutName); 
 
                 var year = AccountOut[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
@@ -647,7 +647,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             if (accountInName != null)
             {
-                AccountIn = SA.Admin.SelectAccountByName(accountInName);
+                AccountIn = SA.Admin.GetAccountByName(accountInName);
 
                 var year = AccountIn[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];

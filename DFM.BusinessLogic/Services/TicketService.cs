@@ -18,7 +18,7 @@ namespace DFM.BusinessLogic.Services
             return SaveOrUpdate(ticket);
         }
 
-        internal Ticket SelectByKey(String key)
+        internal Ticket GetByKey(String key)
         {
             return SingleOrDefault(t => t.Key == key);
         }

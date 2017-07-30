@@ -17,7 +17,7 @@ namespace DFM.BusinessLogic.Services
         
         
         
-        internal User SelectByEmail(String email)
+        internal User GetByEmail(String email)
         {
             return SingleOrDefault(u => u.Email == email);
         }
@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Services
 
         internal User ValidateAndGet(String email, String password)
         {
-            var user = SelectByEmail(email);
+            var user = GetByEmail(email);
             password = encrypt(password);
 
             if (user == null || user.Password != password)
@@ -96,7 +96,7 @@ namespace DFM.BusinessLogic.Services
             if (!regex.Match(user.Email).Success)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserEmailInvalid);
 
-            var userByEmail = SelectByEmail(user.Email);
+            var userByEmail = GetByEmail(user.Email);
 
             if (userByEmail != null && userByEmail.ID != user.ID)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserAlreadyExists);
@@ -104,7 +104,7 @@ namespace DFM.BusinessLogic.Services
 
         private void complete(User user)
         {
-            var oldUser = SelectByEmail(user.Email);
+            var oldUser = GetByEmail(user.Email);
             
             var userIsNew = oldUser == null;
 
@@ -140,7 +140,7 @@ namespace DFM.BusinessLogic.Services
 
         internal void ValidateSecurity(Security security)
         {
-            var currentUser = SelectByEmail(security.User.Email);
+            var currentUser = GetByEmail(security.User.Email);
 
             if (currentUser == null || currentUser.Email != security.User.Email)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);

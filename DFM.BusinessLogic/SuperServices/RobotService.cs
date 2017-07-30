@@ -113,10 +113,10 @@ namespace DFM.BusinessLogic.SuperServices
         private void placeAccountsInMove(FutureMove futureMove, String accountOutName, String accountInName)
         {
             futureMove.Out = accountOutName == null 
-                ? null : Parent.Admin.SelectAccountByName(accountOutName);
+                ? null : Parent.Admin.GetAccountByName(accountOutName);
 
             futureMove.In = accountInName == null 
-                ? null : Parent.Admin.SelectAccountByName(accountInName);
+                ? null : Parent.Admin.GetAccountByName(accountInName);
         }
 
         private FutureMove saveOrUpdateSchedule(FutureMove futureMove, String categoryName, Schedule schedule)

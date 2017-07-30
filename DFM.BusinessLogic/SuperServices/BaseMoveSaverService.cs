@@ -32,8 +32,8 @@ namespace DFM.BusinessLogic.SuperServices
         
         internal Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
         {
-            var accountOut = selectAccountByName(accountOutName);
-            var accountIn = selectAccountByName(accountInName);
+            var accountOut = getAccountByName(accountOutName);
+            var accountIn = getAccountByName(accountInName);
 
             
             SetCategory(move, categoryName);
@@ -60,24 +60,24 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        private Account selectAccountByName(String accountName)
+        private Account getAccountByName(String accountName)
         {
             return accountName == null
                        ? null
-                       : Parent.Admin.SelectAccountByName(accountName);
+                       : Parent.Admin.GetAccountByName(accountName);
         }
 
         internal void SetCategory(BaseMove baseMove, String categoryName)
         {
             if (categoryName != null)
-                baseMove.Category = Parent.Admin.SelectCategoryByName(categoryName);
+                baseMove.Category = Parent.Admin.GetCategoryByName(categoryName);
         }
 
         private void resetSchedule(Move move)
         {
             if (move.ID == 0) return;
 
-            var oldMove = moveService.SelectOldById(move.ID);
+            var oldMove = moveService.GetOldById(move.ID);
 
             move.Schedule = oldMove == null
                 ? null : oldMove.Schedule;
@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         private Move getOldAndRemoveFromMonths(Move move)
         {
-            var oldMove = moveService.SelectOldById(move.ID);
+            var oldMove = moveService.GetOldById(move.ID);
 
             monthService.RemoveMoveFromMonth(oldMove);
 

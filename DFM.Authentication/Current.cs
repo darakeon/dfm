@@ -29,7 +29,7 @@ namespace DFM.Authentication
                 {
                     var ticket = Identity.GetKeyFor(keyName);
 
-                    return userService.SelectUserByTicket(ticket);
+                    return userService.GetUserByTicket(ticket);
                 }
                 catch (DFMException)
                 {

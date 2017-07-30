@@ -23,11 +23,11 @@ namespace DFM.BusinessLogic.SuperServices
         }
 
 
-        public Move SelectMoveById(Int32 id)
+        public Move GetMoveById(Int32 id)
         {
             VerifyUser();
 
-            var move = moveService.SelectById(id);
+            var move = moveService.GetById(id);
 
             VerifyMove(move);
 
@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             try
             {
-                var move = SelectMoveById(id);
+                var move = GetMoveById(id);
 
                 VerifyMove(move);
 
@@ -107,11 +107,11 @@ namespace DFM.BusinessLogic.SuperServices
 
 
 
-        public Detail SelectDetailById(Int32 id)
+        public Detail GetDetailById(Int32 id)
         {
             VerifyUser();
 
-            var detail = detailService.SelectById(id);
+            var detail = detailService.GetById(id);
 
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);

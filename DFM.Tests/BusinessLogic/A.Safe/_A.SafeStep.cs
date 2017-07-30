@@ -202,7 +202,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             var ticket = SA.Safe.ValidateUserAndGetTicket(email, password);
             
-            User = SA.Safe.SelectUserByTicket(ticket);
+            User = SA.Safe.GetUserByTicket(ticket);
 
             Assert.IsTrue(User.Active);
         }
@@ -245,13 +245,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             Assert.IsNotNull(ticket);
 
-            var user = SA.Safe.SelectUserByTicket(ticket);
+            var user = SA.Safe.GetUserByTicket(ticket);
 
             Assert.AreEqual(email, user.Email);
         }
         #endregion
         
-        #region SelectUserByTicket
+        #region GetUserByTicket
         [When(@"I try to get the user")]
         public void WhenITryToGetTheUser()
         {
@@ -259,7 +259,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                User = SA.Safe.SelectUserByTicket(ticket);
+                User = SA.Safe.GetUserByTicket(ticket);
             }
             catch (DFMCoreException e)
             {
@@ -414,7 +414,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.SelectUserByTicket(ticket);
+                SA.Safe.GetUserByTicket(ticket);
             }
             catch (DFMCoreException e)
             {

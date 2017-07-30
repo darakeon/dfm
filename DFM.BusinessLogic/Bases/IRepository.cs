@@ -8,11 +8,11 @@ namespace DFM.BusinessLogic.Bases
     public interface IRepository<T> where T : IEntity
     {
         T SaveOrUpdate(T entity, params BaseService<T>.DelegateAction[] actions);
-        T SelectById(Int32 id);
+        T GetById(Int32 id);
         Boolean Exists(Expression<Func<T, Boolean>> func);
         T SingleOrDefault(Expression<Func<T, Boolean>> func);
-        IList<T> List(Expression<Func<T, Boolean>> func);
+        IList<T> GetWhere(Expression<Func<T, Boolean>> func);
         void Delete(T entity);
-        T SelectOldById(Int32 id);
+        T GetOldById(Int32 id);
     }
 }

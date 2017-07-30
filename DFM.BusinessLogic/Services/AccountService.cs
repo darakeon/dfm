@@ -31,7 +31,7 @@ namespace DFM.BusinessLogic.Services
             if (String.IsNullOrEmpty(account.Name))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
 
-            var otherAccount = SelectByName(account.Name, account.User);
+            var otherAccount = GetByName(account.Name, account.User);
 
             var accountExistsForUser = otherAccount != null
                                        && otherAccount.ID != account.ID;
@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Services
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlInvalid);
 
 
-            var otherAccount = SelectByUrl(account.Url, account.User);
+            var otherAccount = GetByUrl(account.Url, account.User);
 
             var accountUrlExistsForUser = otherAccount != null
                                        && otherAccount.ID != account.ID;
@@ -77,7 +77,7 @@ namespace DFM.BusinessLogic.Services
                 account.Url = account.Url.ToLower();
 
             // TODO: use Current User
-            var oldAccount = SelectById(account.ID);
+            var oldAccount = GetById(account.ID);
 
             if (oldAccount == null)
             {
@@ -97,7 +97,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal Account SelectByName(String name, User user)
+        internal Account GetByName(String name, User user)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        internal Account SelectByUrl(String url, User user)
+        internal Account GetByUrl(String url, User user)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace DFM.BusinessLogic.Services
 
         internal void Close(String name, User user)
         {
-            var account = SelectByName(name, user);
+            var account = GetByName(name, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -171,7 +171,7 @@ namespace DFM.BusinessLogic.Services
 
         internal void Delete(String name, User user)
         {
-            var account = SelectByName(name, user);
+            var account = GetByName(name, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
