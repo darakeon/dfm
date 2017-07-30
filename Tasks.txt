@@ -10,7 +10,7 @@ VERSÃO 3.1.3.0
 VERSÃO 3.1.2.0
 ================================================================================================
 						relatórios de mais de uma conta
-						relatórios anual por categoria
+						relatórios anual por categoria (http://www.chartjs.org/)
 
 VERSÃO 3.1.1.0
 ================================================================================================
@@ -85,6 +85,10 @@ VERSÃO 2.0.0.0
 						Criar App Mobile
 						Criar projeto que retorna UI em Json
 						Criar projeto UI, que será referenciado pelo MVC
+						Guardar cookies no banco em App_End, e pegar de volta no App_Start
+						Usar apenas um cookie para pegar tudo no servidor
+						Trocar Select por Get
+						Criar SessionOld para usar em GetByIdOld
 24/03/2013	24/03/2013	Sugerir url para conta
 24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente
 18/03/2013	24/03/2013	Usar Identity (Generic) para guardar usuário logado
