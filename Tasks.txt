@@ -72,7 +72,7 @@ VERSÃO 2.0.0.2
 VERSÃO 2.0.0.1
 ================================================================================================
 						Matar FutureMove
-						Rever Schedule para ter MoveModel
+						Rever Schedule para ter Template
 						Gravar data de Início e última data rodada em Schedule
 						Travar schedule de conta fechada / deletada
 						Transformar Double em int, usar como centavos
@@ -81,17 +81,26 @@ VERSÃO 2.0.0.1
 VERSÃO 2.0.0.0
 ================================================================================================
 						Colocar modelo de movimentação (Mobile)
+						Criar Template
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile
-						Criar projeto que retorna UI em Json
-						Criar projeto UI, que será referenciado pelo MVC
+						Criar área Json
+
+VERSÃO 
+================================================================================================
+						Mover área Account para comum
+						Criar Controllers pai (se necessário)
+						Mover lógica dos Controllers para os Models
 						Guardar cookies no banco em App_End, e pegar de volta no App_Start
+
+VERSÃO 
+================================================================================================
 						Usar apenas um cookie para pegar tudo no servidor
 						Trocar Select por Get
 						Criar SessionOld para usar em GetByIdOld
-						 http://www.dontflymoney.com/Token/ (put Index)
+						http://www.dontflymoney.com/Token/ (put Index)
 						http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
 						http://www.dontflymoney.com/Accounts/19/Report/ShowMoves (NullReference)
 24/03/2013	24/03/2013	Sugerir url para conta
