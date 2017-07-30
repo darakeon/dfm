@@ -158,6 +158,7 @@
       <Private>True</Private>
     </Reference>
     <Compile Include="AreaRegistration.cs" />
+    <Compile Include="Areas\Accounts\Controllers\BaseAccountsController.cs" />
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
     <Content Include="Assets\Css\IE.css" />
     <Content Include="Assets\Image\advertising\darakeon.gif" />
@@ -171,8 +172,10 @@
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
+    <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
+    <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
-    <Compile Include="Helpers\Auth.cs" />
+    <Compile Include="Helpers\Authorize\Auth.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
     <Compile Include="Helpers\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />

@@ -6,7 +6,7 @@ using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
 using System.Web;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Helpers
 {

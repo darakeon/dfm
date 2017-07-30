@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using DFM.Authentication;
+using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Helpers.Controllers
 {

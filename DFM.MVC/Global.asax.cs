@@ -7,7 +7,7 @@ using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Authentication;
 using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Authorize;
 using DFM.PageLog;
 using DFM.Repositories;
 using log4net.Config;
@@ -87,7 +87,7 @@ namespace DFM.MVC
 
             NHManager.Close();
 
-            PageLogger.Record(Context);
+            PageLogger.Record(Context, Services.Safe);
 
             if (Request["Error"] == "Force")
                 throw new Exception("Forced error.");

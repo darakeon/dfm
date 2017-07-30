@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
-using DFM.Entities;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers

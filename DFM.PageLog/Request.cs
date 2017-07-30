@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using DFM.Authentication;
 
 namespace DFM.PageLog
 {
@@ -10,14 +11,15 @@ namespace DFM.PageLog
         public String User { get; private set; }
         public String IP { get; private set; }
 
-        public Request(HttpContext context)
+        public Request(HttpContext context, ISafeService safeService)
         {
-            var user = context.User.Identity;
+            var current = new Current(safeService);
+
             var request = context.Request;
 
             Url = request.Url.ToString();
             Date = DateTime.Now;
-            User = user.IsAuthenticated ? user.Name : "Off";
+            User = current.IsAuthenticated ? current.User.Email : "Off";
             IP = pegarIP(request);
         }
 

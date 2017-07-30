@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Accounts
         {
             get
             {
-                return "Accounts";
+                return RouteNames.Accounts;
             }
         }
 

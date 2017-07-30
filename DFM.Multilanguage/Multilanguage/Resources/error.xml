@@ -27,6 +27,7 @@
     <InvalidAccount text="Invalid Account" />
     <InvalidEmail text="Invalid E-mail" />
     <InvalidToken text="Invalid Token" />
+    <InvalidTicket text="Invalid Ticket" />
     <InvalidUser text="User and/or password invalid." />
     <MonthAmbiguousInYear text="Month ambiguous reference. Contact support." />
     <MoveFutureNotScheduled text="To create future Moves use Schedule." />
@@ -91,9 +92,10 @@
     <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail." />
     <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
     <InvalidCategory text="Categoria Inválida" />
-    <InvalidAccount text="Conta Inválida" />
-    <InvalidEmail text="E-mail Inválido" />
+    <InvalidAccount text="Conta inválida" />
+    <InvalidEmail text="E-mail inválido" />
     <InvalidToken text="Token inválido" />
+    <InvalidTicket text="Ticket inválido" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
     <MonthAmbiguousInYear text="Referência de mês ambígua. Contate o suporte." />
     <MoveFutureNotScheduled text="Para criar Movimentações futuras, use o Agendamento." />

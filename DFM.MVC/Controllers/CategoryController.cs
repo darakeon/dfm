@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Web.Mvc;
-using Ak.MVC.Authentication;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
-    [AjaxAuthorize]
+    [DFMAjaxAuthorize]
     public class CategoryController : BaseController
     {
         public ActionResult Index()

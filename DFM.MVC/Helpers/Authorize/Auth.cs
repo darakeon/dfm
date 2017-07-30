@@ -1,7 +1,7 @@
 ﻿using DFM.Authentication;
 using DFM.Repositories;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Authorize
 {
     public class Auth
     {

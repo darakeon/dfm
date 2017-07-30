@@ -2,6 +2,7 @@
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
+using DFM.Generic.UniqueIdentity;
 
 namespace DFM.Authentication
 {

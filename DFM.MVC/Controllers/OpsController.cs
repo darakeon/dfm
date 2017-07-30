@@ -23,9 +23,7 @@ namespace DFM.MVC.Controllers
             var model = new OpsCodeModel();
 
             if (id == 500)
-            {
                 model.EmailSent = ErrorManager.EmailSent;
-            }
 
 
             // ReSharper disable Asp.NotResolved

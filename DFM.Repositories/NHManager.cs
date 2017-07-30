@@ -5,9 +5,9 @@ using Ak.DataAccess.NHibernate.UserPassed;
 using Ak.Generic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Generic.UniqueIdentity;
 using DFM.Repositories.Mappings;
 using NHibernate;
-using DFM.Generic;
 
 namespace DFM.Repositories
 {

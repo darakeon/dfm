@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I try to run the scheduler");
 #line 12
- testRunner.Then("I will receive this core error: Unauthorized");
+ testRunner.Then("I will receive this core error: UnDFMAuthorized");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

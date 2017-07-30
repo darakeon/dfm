@@ -1,5 +1,5 @@
 ﻿@{
-    var isAuthenticated = DFM.MVC.Helpers.Auth.Current.IsAuthenticated;
+    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
 
     var routeValues = isAuthenticated
         ? new { controller = "Account", action = "Index" }
