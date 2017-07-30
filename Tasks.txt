@@ -97,6 +97,7 @@ VERSÃO 1.0.3.0 (Little change)
 						Mover lógica dos Controllers para os Models
 						Guardar cookies no banco em App_End, e pegar de volta no App_Start
 						Usar apenas um cookie para pegar tudo no servidor
+						Adicionar link para tela de login na tela de User Verification
 						Trocar Select por Get
 15/07/2013	16/07/2013	Criar SessionOld para usar em GetByIdOld
 15/07/2013	15/07/2013	http://www.dontflymoney.com/Token/ (put Index)
