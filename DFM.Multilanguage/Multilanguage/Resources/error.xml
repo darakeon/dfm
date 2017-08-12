@@ -57,7 +57,7 @@
     <MoveDateInvalid text="Invalid date." />
     <MoveValueOrDetailRequired text="Move need to have some value, detailed or not." />
     <InvalidMove text="Invalid move." />
-    <DetailWithoutMove text="Detail lost." />
+    <DetailWithoutParent text="Detail lost." />
     <MoveDetailDescriptionRequired text="Description of detail required. You can add a move without details." />
     <MoveDetailAmountRequired text="Amount of detail required. You can add a move without details." />
     <MoveDetailValueRequired text="Value of detail required. You can add a move without details." />
@@ -125,7 +125,7 @@
     <MoveDateInvalid text="Data inválida." />
     <MoveValueOrDetailRequired text="Uma movimentação precisa ter um valor, detalhado ou não." />
     <InvalidMove text="Movimentação inválida." />
-    <DetailWithoutMove text="Detalhe perdido." />
+    <DetailWithoutParent text="Detalhe perdido." />
     <MoveDetailDescriptionRequired text="A descrição do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
     <MoveDetailAmountRequired text="A quantidade do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
     <MoveDetailValueRequired text="P valor do detalhe é obrigatório. Você pode criar uma movimentação sem detalhes." />

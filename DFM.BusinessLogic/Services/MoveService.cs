@@ -13,10 +13,16 @@ using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibiliti
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class MoveService : BaseMoveService
+    internal class MoveService : GenericMoveService<Move, Month>
     {
         internal MoveService(IRepository<Move> repository) : base(repository) { }
 
+
+        internal Move SaveOrUpdate(Move move)
+        {
+            //Keep this order, weird errors happen if invert
+            return SaveOrUpdate(move, Validate, Complete);
+        }
 
 
         #region PlaceAccountsInMove

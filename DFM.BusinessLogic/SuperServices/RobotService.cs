@@ -9,11 +9,13 @@ namespace DFM.BusinessLogic.SuperServices
     public class RobotService : BaseSuperService
     {
         private readonly ScheduleService scheduleService;
+        private readonly DetailService detailService;
         
         internal RobotService(ServiceAccess serviceAccess, ScheduleService scheduleService, DetailService detailService)
             : base(serviceAccess)
         {
             this.scheduleService = scheduleService;
+            this.detailService = detailService;
         }
 
 
@@ -63,7 +65,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 linkToEntities(schedule, accountOutName, accountInName, categoryName);
 
-                schedule = scheduleService.SaveOrUpdate(schedule);
+                schedule = saveOrUpdate(schedule);
 
                 CommitTransaction();
 
@@ -74,6 +76,15 @@ namespace DFM.BusinessLogic.SuperServices
                 RollbackTransaction();
                 throw;
             }
+        }
+
+        private Schedule saveOrUpdate(Schedule schedule)
+        {
+            scheduleService.SaveOrUpdate(schedule);
+
+            detailService.SaveDetails(schedule);
+
+            return schedule;
         }
 
         private void linkToEntities(Schedule schedule, String accountOutName, String accountInName, String categoryName)

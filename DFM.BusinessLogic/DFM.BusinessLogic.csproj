@@ -41,7 +41,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bases\BaseMoveService.cs" />
+    <Compile Include="Bases\GenericMoveService.cs" />
     <Compile Include="Bases\ITransactionController.cs" />
     <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Services\AccountService.cs" />

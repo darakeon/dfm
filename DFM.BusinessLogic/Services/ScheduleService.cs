@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class ScheduleService : BaseService<Schedule>
+    internal class ScheduleService : GenericMoveService<Schedule, Account>
     {
         internal ScheduleService(IRepository<Schedule> repository) : base(repository) { }
 
@@ -22,6 +20,8 @@ namespace DFM.BusinessLogic.Services
 
         private static void complete(Schedule schedule)
         {
+            Complete(schedule);
+
             if (schedule.ID == 0)
             {
                 schedule.Active = true;
@@ -30,6 +30,8 @@ namespace DFM.BusinessLogic.Services
 
         private static void validate(Schedule schedule)
         {
+            Validate(schedule);
+
             if (!schedule.Boundless && schedule.Times <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
         }

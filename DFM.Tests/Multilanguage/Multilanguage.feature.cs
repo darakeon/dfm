@@ -306,7 +306,7 @@ this.ScenarioSetup(scenarioInfo);
                         "InvalidMove"});
             table5.AddRow(new string[] {
                         "Error",
-                        "DetailWithoutMove"});
+                        "DetailWithoutParent"});
             table5.AddRow(new string[] {
                         "Error",
                         "MoveDetailDescriptionRequired"});

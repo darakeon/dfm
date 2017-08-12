@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Move : IEntity, IMove<Month>
+    public class Move : IMove<Month>
     {
         public Move()
         {
@@ -31,12 +31,6 @@ namespace DFM.Entities
         public virtual IList<Detail> DetailList { get; set; }
 
 
-        public virtual Double Value()
-        {
-            return DetailList.Sum(d => d.Value * d.Amount);
-        }
-
-
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
         
@@ -56,6 +50,11 @@ namespace DFM.Entities
         public virtual Account AccIn()
         {
             return getAccount(In);
+        }
+
+        public virtual Double Value()
+        {
+            return DetailList.Sum(d => d.Value * d.Amount);
         }
 
         private static Account getAccount(Month month)

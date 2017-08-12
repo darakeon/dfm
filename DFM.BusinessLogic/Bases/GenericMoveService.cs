@@ -2,24 +2,21 @@
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Bases
 {
-    public class BaseMoveService : BaseService<Move>
+    public class GenericMoveService<T, TA> : BaseService<T>
+        where T : IEntity, IMove<TA>
     {
-        internal BaseMoveService(IRepository<Move> repository) : base(repository) { }
+        internal GenericMoveService(IRepository<T> repository) : base(repository) { }
 
 
-        internal Move SaveOrUpdate(Move move)
-        {
-            //Keep this order, weird errors happen if invert
-            return SaveOrUpdate(move, validate, complete);
-        }
 
         #region Validate
-        private static void validate(Move move)
+        protected static void Validate(T move)
         {
             testDescription(move);
             testDate(move);
@@ -30,13 +27,13 @@ namespace DFM.BusinessLogic.Bases
             testCategory(move);
         }
 
-        private static void testDescription(Move move)
+        private static void testDescription(T move)
         {
             if (String.IsNullOrEmpty(move.Description))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
         }
 
-        private static void testDate(Move move)
+        private static void testDate(T move)
         {
             if (move.Date == DateTime.MinValue)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
@@ -45,7 +42,7 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
         }
 
-        private static void testValue(Move move)
+        private static void testValue(T move)
         {
             // TODO: When create value move, use the other if
             if (!move.IsDetailed() && move.Value() == 0)
@@ -53,7 +50,7 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
-        private static void testNature(Move move)
+        private static void testNature(T move)
         {
             var hasIn = move.AccIn() != null;
             var hasOut = move.AccOut() != null;
@@ -78,13 +75,13 @@ namespace DFM.BusinessLogic.Bases
             }
         }
 
-        private static void testDetailList(Move move)
+        private static void testDetailList(T move)
         {
             if (!move.DetailList.Any())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
-        private static void testAccounts(Move move)
+        private static void testAccounts(T move)
         {
             var moveInClosed = move.AccIn() != null && !move.AccIn().IsOpen();
             var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
@@ -96,7 +93,7 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        private static void testCategory(Move move)
+        private static void testCategory(T move)
         {
             if (move.Category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
@@ -107,12 +104,12 @@ namespace DFM.BusinessLogic.Bases
         #endregion
 
         #region Complete
-        private static void complete(Move move)
+        protected static void Complete(T move)
         {
             ajustDetailList(move);
         }
 
-        private static void ajustDetailList(Move move)
+        private static void ajustDetailList(T move)
         {
             if (!move.IsDetailed())
             {
@@ -126,7 +123,6 @@ namespace DFM.BusinessLogic.Bases
                 detail.Value = -detail.Value;
             }
         }
-
         #endregion
 
 

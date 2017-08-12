@@ -64,6 +64,7 @@ VERSÃO 2.0.1.0
 VERSÃO 2.0.0.2
 ================================================================================================
 						Trocar Extensions Sum para Total
+						Remover entidade Year
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)

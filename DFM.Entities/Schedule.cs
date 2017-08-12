@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Schedule : IEntity, IMove<Account>
+    public class Schedule : IMove<Account>
     {
         public Schedule()
         {
@@ -63,16 +64,20 @@ namespace DFM.Entities
 
 
 
-        //public Account AccOut()
-        //{
-        //    return In;
-        //}
+        public virtual Account AccOut()
+        {
+            return Out;
+        }
 
-        //public Account AccIn()
-        //{
-        //    return Out;
-        //}
+        public virtual Account AccIn()
+        {
+            return In;
+        }
 
+        public virtual Double Value()
+        {
+            return DetailList.Sum(d => d.Value * d.Amount);
+        }
 
 
     }

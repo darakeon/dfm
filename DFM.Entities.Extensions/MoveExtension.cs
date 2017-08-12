@@ -25,24 +25,6 @@ namespace DFM.Entities.Extensions
             return move.DetailList.Any();
         }
 
-        public static Boolean IsDetailed(this Move move)
-        {
-            return !move.hasJustOneDetail()
-                    || move.hasFirstDetailDescription();
-        }
-
-        private static Boolean hasJustOneDetail(this Move move)
-        {
-            return move.DetailList.Count == 1;
-        }
-
-        private static Boolean hasFirstDetailDescription(this Move move)
-        {
-            var detail = move.DetailList.First();
-
-            return !String.IsNullOrEmpty(detail.Description)
-                && detail.Description != move.Description;
-        }
 
 
 

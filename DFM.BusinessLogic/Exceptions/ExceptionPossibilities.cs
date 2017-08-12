@@ -44,7 +44,7 @@
         MoveDateInvalid = 507,
         MoveValueOrDetailRequired = 508,
         InvalidMove = 509,
-        DetailWithoutMove = 510,
+        DetailWithoutParent = 510,
         MoveDetailDescriptionRequired = 511,
         MoveDetailAmountRequired = 512,
         MoveDetailValueRequired = 513,

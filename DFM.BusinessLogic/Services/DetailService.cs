@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -13,22 +14,35 @@ namespace DFM.BusinessLogic.Services
         {
             foreach (var detail in move.DetailList)
             {
-                saveOrUpdate(detail, move);
+                detail.Move = move;
             }
+
+            saveDetails(move);
         }
 
-        private void saveOrUpdate(Detail detail, Move move)
+        internal void SaveDetails(Schedule schedule)
         {
-            detail.Move = move;
+            foreach (var detail in schedule.DetailList)
+            {
+                detail.Schedule = schedule;
+            }
 
-            SaveOrUpdate(detail, validate);
+            saveDetails(schedule);
+        }
+
+        private void saveDetails<T>(IMove<T> move)
+        {
+            foreach (var detail in move.DetailList)
+            {
+                SaveOrUpdate(detail, validate);
+            }
         }
 
 
         private static void validate(Detail detail)
         {
-            if (detail.Move == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutMove);
+            if (detail.Move == null && detail.Schedule == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutParent);
 
             if (String.IsNullOrEmpty(detail.Description))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailDescriptionRequired);

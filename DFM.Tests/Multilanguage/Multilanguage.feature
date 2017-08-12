@@ -86,7 +86,7 @@ Scenario: 04. Get translations of Errors
 		| Error   | MoveDateInvalid                |
 		| Error   | MoveValueOrDetailRequired      |
 		| Error   | InvalidMove                    |
-		| Error   | DetailWithoutMove              |
+		| Error   | DetailWithoutParent            |
 		| Error   | MoveDetailDescriptionRequired  |
 		| Error   | MoveDetailAmountRequired       |
 		| Error   | MoveDetailValueRequired        |
