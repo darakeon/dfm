@@ -86,7 +86,7 @@ VERSÃO 2.0.0.0
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
-						Criar App Mobile
+						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
 
 VERSÃO 1.0.3.0 (Little change)
