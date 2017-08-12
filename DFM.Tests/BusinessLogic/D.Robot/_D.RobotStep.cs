@@ -82,8 +82,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [Then(@"the schedule will be saved")]
         public void ThenTheScheduleWillBeSaved()
         {
-            Assert.AreNotEqual(0, Move.ID);
-            Assert.AreNotEqual(0, Move.Schedule.ID);
+            Assert.AreNotEqual(0, Schedule.ID);
         }
         #endregion
 

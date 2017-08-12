@@ -40,14 +40,14 @@ namespace DFM.BusinessLogic.SuperServices
             VerifyUser();
 
             BeginTransaction();
-            
+
+            var operationType =
+                move.ID == 0
+                    ? OperationType.Creation
+                    : OperationType.Edit;
+
             try
             {
-                var operationType = 
-                    move.ID == 0 
-                        ? OperationType.Creation 
-                        : OperationType.Edit;
-
                 move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 
                 CommitTransaction();
@@ -56,7 +56,8 @@ namespace DFM.BusinessLogic.SuperServices
             }
             catch
             {
-                move.ID = 0;
+                if (operationType == OperationType.Creation)
+                    move.ID = 0;
 
                 RollbackTransaction();
                 throw;

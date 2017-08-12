@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
@@ -38,7 +39,7 @@ namespace DFM.BusinessLogic.SuperServices
 
         private void addNewMoves(Schedule schedule, String accountOutName, String accountInName, String categoryName)
         {
-            while (schedule.CanRun())
+            while (schedule.CanRunNow())
             {
                 var newMove = schedule.GetNewMove();
 
@@ -58,11 +59,16 @@ namespace DFM.BusinessLogic.SuperServices
 
             BeginTransaction();
 
+            if (schedule == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+
+            var operationType =
+                schedule.ID == 0
+                    ? OperationType.Creation
+                    : OperationType.Edit;
+
             try
             {
-                if (schedule == null)
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
-
                 linkToEntities(schedule, accountOutName, accountInName, categoryName);
 
                 schedule = saveOrUpdate(schedule);
@@ -73,6 +79,9 @@ namespace DFM.BusinessLogic.SuperServices
             }
             catch
             {
+                if (operationType == OperationType.Creation)
+                    schedule.ID = 0;
+
                 RollbackTransaction();
                 throw;
             }
