@@ -29,6 +29,7 @@ VERSÃO 3.1.0.0
 
 VERSÃO 3.0.0.0
 ================================================================================================
+						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 						Rever layout						
 
 VERSÃO 2.2.0.0
