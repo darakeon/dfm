@@ -30,7 +30,7 @@ VERSÃO 3.1.0.0
 VERSÃO 3.0.0.0
 ================================================================================================
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
-						Rever layout						
+					>>>	Rever layout (http://goodui.org/)
 
 VERSÃO 2.2.0.0
 ================================================================================================
@@ -59,7 +59,7 @@ VERSÃO 2.0.1.0
 ================================================================================================
 					>>>	Iluminar última movimentação verificada
 					>>>	Remover fundo do site
-					>>>	Rever layout (http://goodui.org/)
+					>>> Tirar listra de menu do ambiente logado
 						Colocar hover em TRs de tabela (destacar linha que está em cima)
 
 VERSÃO 2.0.0.2
@@ -80,6 +80,9 @@ VERSÃO 2.0.0.1
 						Transformar Double em int, usar como centavos
 						Tirar complete / validate de SaveOrUpdate
 						Desativar user a cada 5 senhas erradas
+						Remover GetOrCreate
+						Criar teste unitário para deletar todas as movimentações de um agendamento
+						Criar teste unitário agendamento meio antes / meio depois
 
 VERSÃO 2.0.0.0
 ================================================================================================
@@ -90,18 +93,12 @@ VERSÃO 2.0.0.0
 						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
-						Criar teste unitário para deletar todas as movimentações de um agendamento
-						Criar teste unitário agendamento meio antes / meio depois
+						Mover lógica dos Controllers para os Models
 
 VERSÃO 1.0.3.0 (Little change)
 ================================================================================================
-						Tirar listra de menu do ambiente logado
-						Tirar fundo de nuvens
-						Mover lógica dos Controllers para os Models
-						Guardar cookies no banco em App_End, e pegar de volta no App_Start
-						Remover GetOrCreate
-18/08/2013				Colocar Broken em summary, e usar RobotService para consertar
-09/08/2013				Resolver problema da atualização de Summaries em caso de mudança de valor
+18/08/2013	22/08/2013	Colocar Broken em summary, e usar RobotService para consertar
+09/08/2013	22/08/2013	Resolver problema da atualização de Summaries em caso de mudança de valor
 06/08/2013	09/08/2013	Usar apenas um cookie para pegar tudo no servidor
 05/08/2013	06/08/2013	Adicionar link para tela de login na tela de User Verification
 02/08/2013	02/08/2013	Separar Controller Move em Move / Schedule / Detail
