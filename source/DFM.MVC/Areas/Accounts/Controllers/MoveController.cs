@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.MVC.Helpers;
