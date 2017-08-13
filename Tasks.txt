@@ -78,6 +78,7 @@ VERSÃO 2.0.0.1
 						Travar schedule de conta fechada / deletada
 						Transformar Double em int, usar como centavos
 						Tirar complete / validate de SaveOrUpdate
+						Desativar user a cada 5 senhas erradas
 
 VERSÃO 2.0.0.0
 ================================================================================================
@@ -98,9 +99,9 @@ VERSÃO 1.0.3.0 (Little change)
 						Mover lógica dos Controllers para os Models
 						Guardar cookies no banco em App_End, e pegar de volta no App_Start
 						Usar apenas um cookie para pegar tudo no servidor
-						Adicionar link para tela de login na tela de User Verification
-						Separar Controller Move em Move / Schedule / Detail
-22/07/2013				Rever Schedule para ser IMove / Matar FutureMove
+05/08/2013	06/08/2013	Adicionar link para tela de login na tela de User Verification
+02/08/2013	02/08/2013	Separar Controller Move em Move / Schedule / Detail
+22/07/2013	01/08/2013	Rever Schedule para ser IMove / Matar FutureMove
 17/07/2013	30/07/2013	Consertar testes
 16/07/2013	16/07/2013	Trocar Select por Get
 15/07/2013	16/07/2013	Criar SessionOld para usar em GetByIdOld

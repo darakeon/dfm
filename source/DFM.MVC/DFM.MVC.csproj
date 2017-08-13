@@ -253,7 +253,7 @@
     <Content Include="Views\Token\PasswordReset.cshtml" />
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />
     <Content Include="Views\Token\Index.cshtml" />
-    <Content Include="Views\Token\UserVerification.cshtml" />
+    <Content Include="Views\Token\UserVerificationSuccess.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\ForgotPasswordSuccess.cshtml" />
     <Content Include="Views\User\Index.cshtml" />

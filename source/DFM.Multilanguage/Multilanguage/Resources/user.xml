@@ -9,7 +9,6 @@
 		<SignUpSuccess text="Sign up succeded." />
 		<LogonDisabled text="Your user is not active." />
 		<RememberMe text="Remember" />
-		<Logon text="Logon" />
 		<ForgotPassword text="Forgot my password" />
 		<FollowEmailIntructions text="Follow the instructions in the e-mail sent. Pay attention to the sender address: must be {0}." />
 		<PasswordReset text="Password Reset" />
@@ -25,7 +24,6 @@
 		<SignUpSuccess text="Cadastro efetuado com sucesso." />
 		<LogonDisabled text="Seu usuário não foi ativado." />
 		<RememberMe text="Lembrar" />
-		<Logon text="Entrar" />
 		<ForgotPassword text="Esqueci minha senha" />
 		<FollowEmailIntructions text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
 		<PasswordReset text="Recuperação de Senha" />
