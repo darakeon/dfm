@@ -10,14 +10,14 @@ namespace DFM.BusinessLogic.Services
     {
         internal YearService(IRepository<Year> repository) : base(repository) { }
 
-        internal Year GetOrCreateYear(Int16 year, Account account, Category category = null)
+        internal Year GetOrCreateYear(Int16 dateYear, Account account, Category category = null)
         {
-            var newYear = getOrCreateYear(account, year);
+            var year = getOrCreateYear(account, dateYear);
 
             if (category != null)
-                newYear.GetOrCreateSummary(category);
+                year.GetOrCreateSummary(category);
 
-            return newYear;
+            return year;
         }
 
         private Year getOrCreateYear(Account account, Int16 dateYear)

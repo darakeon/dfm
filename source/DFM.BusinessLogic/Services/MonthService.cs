@@ -12,12 +12,12 @@ namespace DFM.BusinessLogic.Services
 
         internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
         {
-            var newMonth = getOrCreateMonth(year, dateMonth);
+            var month = getOrCreateMonth(year, dateMonth);
 
             if (category != null)
-                newMonth.GetOrCreateSummary(category);
+                month.GetOrCreateSummary(category);
 
-            return newMonth;
+            return month;
         }
 
         private Month getOrCreateMonth(Year year, Int16 dateMonth)
