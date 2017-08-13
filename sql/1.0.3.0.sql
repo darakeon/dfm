@@ -1,5 +1,5 @@
 use dfm;
-/*
+
 Alter Table detail
     add Schedule_ID int null,
     add index (Schedule_ID), 
@@ -83,4 +83,4 @@ Alter Table Schedule
     modify Category_ID int not null,
     modify Nature int not null,
     change Begin Date datetime not null;
-*/
+
