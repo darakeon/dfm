@@ -153,7 +153,7 @@ Scenario: 12. Update the move value
 	When I change the move value to 20
 	And I update the move
 	Then I will receive no core error
-	And the old-accountIn value will change in -10
-	And the old-month-category-accountIn value will change in 10
-	And the old-year-category-accountIn value will change in 10
+	And the old-accountOut value will change in -10
+	And the old-month-category-accountOut value will change in 10
+	And the old-year-category-accountOut value will change in 10
 

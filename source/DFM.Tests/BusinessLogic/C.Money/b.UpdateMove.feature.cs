@@ -427,11 +427,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 155
  testRunner.Then("I will receive no core error");
 #line 156
- testRunner.And("the old-accountIn value will change in -10");
+ testRunner.And("the old-accountOut value will change in -10");
 #line 157
- testRunner.And("the old-month-category-accountIn value will change in 10");
+ testRunner.And("the old-month-category-accountOut value will change in 10");
 #line 158
- testRunner.And("the old-year-category-accountIn value will change in 10");
+ testRunner.And("the old-year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
