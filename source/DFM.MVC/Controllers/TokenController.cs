@@ -116,7 +116,7 @@ namespace DFM.MVC.Controllers
                 return invalidTokenAction();
             }
 
-            //Services.Safe.ActivateUser(id);
+            Services.Safe.ActivateUser(id);
 
             return View("UserVerificationSuccess");
         }
