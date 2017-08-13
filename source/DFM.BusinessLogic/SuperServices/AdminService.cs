@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
@@ -6,7 +7,7 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class AdminService : BaseSuperService
+    public class AdminService : BaseService
     {
         private readonly CategoryService categoryService;
         private readonly AccountService accountService;
@@ -87,7 +88,7 @@ namespace DFM.BusinessLogic.SuperServices
                 accountService.SaveOrUpdate(account);
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -105,7 +106,7 @@ namespace DFM.BusinessLogic.SuperServices
                 accountService.Close(name, Parent.Current.User);
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -146,7 +147,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -201,7 +202,7 @@ namespace DFM.BusinessLogic.SuperServices
                 categoryService.SaveOrUpdate(category);
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -219,7 +220,7 @@ namespace DFM.BusinessLogic.SuperServices
                 categoryService.Disable(name, Parent.Current.User);
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -237,13 +238,18 @@ namespace DFM.BusinessLogic.SuperServices
                 categoryService.Enable(name, Parent.Current.User);
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
             }
         }
 
+
+        internal IList<Account> GetAccountsByUser(User user)
+        {
+            return accountService.List(a => a.User.ID == user.ID);
+        }
 
 
     }
