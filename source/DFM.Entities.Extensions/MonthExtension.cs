@@ -44,12 +44,14 @@ namespace DFM.Entities.Extensions
 
         public static Boolean OutContains(this Month month, Move move)
         {
-            return month.OutList.Contains(move);
+            return month.OutList
+                .Any(m => m.ID == move.ID);
         }
 
         public static Boolean InContains(this Month month, Move move)
         {
-            return month.InList.Contains(move);
+            return month.InList
+                .Any(m => m.ID == move.ID);
         }
 
     }

@@ -52,7 +52,7 @@ namespace DFM.Entities
         private static Double sum(IEnumerable<Move> moveList, Category category)
         {
             return moveList
-                .Where(m => m.Category == category)
+                .Where(m => m.Category.ID == category.ID)
                 .Sum(m => m.Value());
         }
 
