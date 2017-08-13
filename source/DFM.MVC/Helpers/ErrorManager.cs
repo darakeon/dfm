@@ -66,7 +66,7 @@ namespace DFM.MVC.Helpers
 
         private static String key
         {
-            get { return Identity.GetGeneratedKeyFor("ErrorManager"); }
+            get { return MyCookie.Get(); }
         }
 
 

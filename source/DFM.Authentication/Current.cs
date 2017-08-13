@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
@@ -16,20 +17,19 @@ namespace DFM.Authentication
         }
 
 
-        private const String keyName = "UserTicket";
+        readonly static Identity<String> identity = new Identity<String>();
+
 
         public User User
         {
             get
             {
-                if (!Identity.Exists(keyName))
+                if (!identity.Exists)
                     return null;
 
                 try
                 {
-                    var ticket = Identity.GetKeyFor(keyName);
-
-                    return userService.GetUserByTicket(ticket);
+                    return userService.GetUserByTicket(identity.ID);
                 }
                 catch (DFMException)
                 {
@@ -62,7 +62,7 @@ namespace DFM.Authentication
         {
             var ticket = userService.ValidateUserAndCreateTicket(username, password);
 
-            Identity.SetKeyFor(keyName, ticket);
+            identity.Add(ticket);
         }
 
         public void Reset(String username, String password)
@@ -73,14 +73,12 @@ namespace DFM.Authentication
 
         public void Clean()
         {
-            if (!Identity.Exists(keyName))
+            if (!identity.Exists)
                 return;
 
-            var ticket = Identity.GetKeyFor(keyName);
+            userService.DisableTicket(identity.ID);
 
-            userService.DisableTicket(ticket);
-
-            Identity.KillKeyFor(keyName);
+            identity.Kill();
         }
 
 

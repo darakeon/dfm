@@ -3,50 +3,36 @@ using System.Collections.Generic;
 
 namespace DFM.Generic.UniqueIdentity
 {
-    public class Identity
+    public class Identity<T>
     {
-        public static String GetGeneratedKeyFor(String name)
+        private static String cookie
         {
-            if (!Exists(name))
-                keys.Add(name, Token.New());
-
-            return GetKeyFor(name);
+            get { return MyCookie.Get(); }
         }
 
-        public static String GetKeyFor(String name)
-        {
-            if (!Exists(name))
-                throw new DFMException(String.Format("Key [{0}] doesn't exists", name));
+        private IDictionary<String, T> tickets =
+            new Dictionary<String, T>();
 
-            return keys[name];
+
+
+        public Boolean Exists
+        {
+            get { return tickets.ContainsKey(cookie); }
         }
 
-        public static void SetKeyFor(String name, String value)
+        public T ID
         {
-            KillKeyFor(name);
-
-            keys.Add(name, value);
+            get { return tickets[cookie]; }
         }
 
-        public static void KillKeyFor(String name)
+        public void Kill()
         {
-            if (Exists(name))
-                keys.Remove(name);
+            tickets.Remove(cookie);
         }
 
-        public static Boolean Exists(String name)
+        public void Add(T value)
         {
-            return keys.ContainsKey(name);
+            tickets.Add(cookie, value);
         }
-
-
-
-        private static readonly IDictionary<String, String> keys = 
-            CookieCollection.Exists
-                ? (IDictionary<String, String>) new CookieCollection()
-                : new Dictionary<String, String>();
-
-
-
     }
 }

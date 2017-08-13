@@ -91,7 +91,7 @@ namespace DFM.Repositories
 
         private static String key
         {
-            get { return Identity.GetGeneratedKeyFor("NHManager"); }
+            get { return MyCookie.Get(); }
         }
 
         private static String keyOld
