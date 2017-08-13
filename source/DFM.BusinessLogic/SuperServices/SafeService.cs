@@ -7,7 +7,7 @@ using DFM.Authentication;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class SafeService : BaseSuperService, ISafeService
+    public class SafeService : BaseService, ISafeService
     {
         private readonly UserService userService;
         private readonly SecurityService securityService;
@@ -95,7 +95,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 CommitTransaction();
             }
-            catch (Exception)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -122,7 +122,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 CommitTransaction();
             }
-            catch (DFMCoreException)
+            catch
             {
                 RollbackTransaction();
                 throw;
@@ -145,7 +145,7 @@ namespace DFM.BusinessLogic.SuperServices
 
                 CommitTransaction();
             }
-            catch (Exception)
+            catch
             {
                 RollbackTransaction();
                 throw;

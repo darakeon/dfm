@@ -7,7 +7,7 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class ReportService : BaseSuperService
+    public class ReportService : BaseService
     {
         private readonly AccountService accountService;
         private readonly YearService yearService;

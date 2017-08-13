@@ -6,11 +6,19 @@ namespace DFM.Entities
 {
     public class Summary : IEntity
     {
+        public Summary()
+        {
+            Broken = true;
+        }
+
+
         public virtual Int32 ID { get; set; }
 
         public virtual Double In { get; set; }
         public virtual Double Out { get; set; }
         public virtual SummaryNature Nature { get; set; }
+
+        public virtual Boolean Broken { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual Month Month { get; set; }
@@ -23,6 +31,8 @@ namespace DFM.Entities
             return String.Format("[{0}] {1}",
                 ID, In - Out);
         }
+
+
 
     }
 }

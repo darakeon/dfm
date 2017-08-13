@@ -85,3 +85,7 @@ Alter Table Schedule
     modify Nature int not null,
     change Begin Date datetime not null;
 
+
+	
+Alter table Summary
+	add Broken bit not null default(0)

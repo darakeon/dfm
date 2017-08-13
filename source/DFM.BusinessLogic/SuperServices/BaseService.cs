@@ -5,9 +5,9 @@ using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class BaseSuperService
+    public class BaseService
     {
-        protected BaseSuperService(ServiceAccess serviceAccess)
+        protected BaseService(ServiceAccess serviceAccess)
         {
             Parent = serviceAccess;
         }

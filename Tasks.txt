@@ -98,6 +98,9 @@ VERSÃO 1.0.3.0 (Little change)
 						Tirar fundo de nuvens
 						Mover lógica dos Controllers para os Models
 						Guardar cookies no banco em App_End, e pegar de volta no App_Start
+						Remover GetOrCreate
+18/08/2013				Colocar Broken em summary, e usar RobotService para consertar
+09/08/2013				Resolver problema da atualização de Summaries em caso de mudança de valor
 06/08/2013	09/08/2013	Usar apenas um cookie para pegar tudo no servidor
 05/08/2013	06/08/2013	Adicionar link para tela de login na tela de User Verification
 02/08/2013	02/08/2013	Separar Controller Move em Move / Schedule / Detail
