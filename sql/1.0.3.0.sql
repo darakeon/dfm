@@ -88,4 +88,4 @@ Alter Table Schedule
 
 	
 Alter table Summary
-	add Broken bit not null default(0)
+	add Broken tinyint(1) not null default(0)
