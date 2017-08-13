@@ -28,17 +28,17 @@ namespace DFM.BusinessLogic.Services
         #region PlaceAccountsInMove
         internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
         {
-            if (monthOut != null && !monthOut.OutContains(move))
-                monthOut.AddOut(move);
-            else
+            if (monthOut == null)
                 move.Out = null;
+            else if (!monthOut.OutContains(move))
+                monthOut.AddOut(move);
 
-            if (monthIn != null && !monthIn.InContains(move))
-                monthIn.AddIn(move);
-            else
+            if (monthIn == null)
                 move.In = null;
-
+            else if (!monthIn.InContains(move))
+                monthIn.AddIn(move);
         }
+
         #endregion
 
 
