@@ -47,8 +47,6 @@ namespace DFM.BusinessLogic.Services
 
         internal void RemoveMoveFromMonth(Move move)
         {
-            if (move == null) return;
-
             if (move.In != null)
             {
                 move.In.InList.Remove(move);
