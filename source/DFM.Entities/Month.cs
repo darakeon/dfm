@@ -77,15 +77,12 @@ namespace DFM.Entities
         }
 
 
-        public virtual Summary this[String categoryName, Boolean orNew = false]
+        public virtual Summary this[String categoryName]
         {
             get
             {
-                var summary = SummaryList
+                return SummaryList
                     .SingleOrDefault(y => y.Category.Name == categoryName);
-
-                return orNew && summary == null
-                    ? new Summary() : summary;
             }
         }
 

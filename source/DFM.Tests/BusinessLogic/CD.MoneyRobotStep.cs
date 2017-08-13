@@ -79,8 +79,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountOutTotal = AccountOut.Sum();
-            YearCategoryAccountOutTotal = year[Category.Name, true].Out;
-            MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            YearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
+            MonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
         }
 
         [Given(@"it has no Account Out")]
@@ -134,8 +134,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = year[Category.Name, true].In;
-            MonthCategoryAccountInTotal = month[Category.Name, true].In;
+            YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+            MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
         }
 
         [Given(@"it has no Account In")]
@@ -195,8 +195,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = year[Category.Name, true].In;
-            MonthCategoryAccountInTotal = month[Category.Name, true].In;
+            YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+            MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
         }
 
 
@@ -217,7 +217,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month[Category.Name, true].Out;
+            var currentTotal = month.GetOrCreateSummary(Category).Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
         }
@@ -229,7 +229,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountOut[Date.Year, true];
 
-            var currentTotal = year[Category.Name, true].Out;
+            var currentTotal = year.GetOrCreateSummary(Category).Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
         }
@@ -251,7 +251,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month[Category.Name, true].In;
+            var currentTotal = month.GetOrCreateSummary(Category).In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
         }
@@ -263,7 +263,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountIn[Date.Year, true];
 
-            var currentTotal = year[Category.Name, true].In;
+            var currentTotal = year.GetOrCreateSummary(Category).In;
 
             Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
         }
@@ -287,7 +287,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month[Category.Name, true].Out;
+            var currentTotal = month.GetOrCreateSummary(Category).Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
@@ -299,7 +299,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountOut[Date.Year, true];
 
-            var currentTotal = year[Category.Name, true].Out;
+            var currentTotal = year.GetOrCreateSummary(Category).Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
@@ -323,7 +323,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month[Category.Name, true].In;
+            var currentTotal = month.GetOrCreateSummary(Category).In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
@@ -335,7 +335,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountIn[Date.Year, true];
 
-            var currentTotal = year[Category.Name, true].In;
+            var currentTotal = year.GetOrCreateSummary(Category).In;
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }

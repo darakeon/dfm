@@ -167,8 +167,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var month = year[Move.Date.Month, true];
 
                 newAccountOutTotal = AccountOut.Sum();
-                newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
-                newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+                newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
+                newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
             }
 
             if (AccountIn != null)
@@ -177,8 +177,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var month = year[Move.Date.Month, true];
 
                 newAccountInTotal = AccountIn.Sum();
-                newYearCategoryAccountInTotal = year[Category.Name, true].In;
-                newMonthCategoryAccountInTotal = month[Category.Name, true].In;
+                newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+                newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
             }
         }
 
@@ -199,8 +199,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountOutTotal = AccountOut.Sum();
-            newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
-            newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
+            newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
         }
 
 
@@ -213,8 +213,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountInTotal = AccountIn.Sum();
-            newYearCategoryAccountInTotal = year[Category.Name, true].In;
-            newMonthCategoryAccountInTotal = month[Category.Name, true].In;
+            newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+            newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
         }
 
 
@@ -231,8 +231,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountInTotal = AccountIn.Sum();
-            newYearCategoryAccountInTotal = year[Category.Name, true].In;
-            newMonthCategoryAccountInTotal = month[Category.Name, true].In;
+            newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+            newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
         }
 
 
@@ -249,8 +249,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountOutTotal = AccountOut.Sum();
-            newYearCategoryAccountOutTotal = year[Category.Name, true].Out;
-            newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+            newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
+            newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
         }
 
         [When(@"I change the move value to (\d+)")]
@@ -648,8 +648,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 AccountOutTotal = AccountOut.Sum();
                 YearAccountOutTotal = year.Sum();
                 MonthAccountOutTotal = month.Sum();
-                YearCategoryAccountOutTotal = year[Category.Name, true].Out;
-                MonthCategoryAccountOutTotal = month[Category.Name, true].Out;
+                YearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
+                MonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
             }
 
             if (accountInName != null)
@@ -662,8 +662,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 AccountInTotal = AccountIn.Sum();
                 YearAccountInTotal = year.Sum();
                 MonthAccountInTotal = month.Sum();
-                YearCategoryAccountInTotal = year[Category.Name, true].In;
-                MonthCategoryAccountInTotal = month[Category.Name, true].In;
+                YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
+                MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
             }
         }
 
