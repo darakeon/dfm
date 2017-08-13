@@ -71,11 +71,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         [HttpPost]
         public ActionResult Edit(Int32 id, MoveCreateEditModel model)
         {
-            var oldMove = Services.Money.GetMoveById(id);
-
             model.Move.ID = id;
-            model.Move.Schedule = oldMove.Schedule;
-            model.Type = OperationType.Edit;
 
             return CreateEditSchedule(model);
         }
