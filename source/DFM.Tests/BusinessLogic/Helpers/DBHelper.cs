@@ -11,16 +11,18 @@ namespace DFM.Tests.BusinessLogic.Helpers
 {
     internal class DBHelper
     {
+        static readonly String server = ConfigurationManager.AppSettings["Server"];
+        static readonly String database = ConfigurationManager.AppSettings["DataBase"];
+        static readonly String login = ConfigurationManager.AppSettings["Login"];
+        static readonly String passwordDB = ConfigurationManager.AppSettings["Password"];
+        
+        static readonly String connStr = 
+            String.Format("Server={0};Database={1};Uid={2};Pwd={3};", server, database, login, passwordDB);
+
+
         public static String GetLastTokenForUser(String email, String password, SecurityAction action)
         {
             String token;
-
-            var server = ConfigurationManager.AppSettings["Server"];
-            var database = ConfigurationManager.AppSettings["DataBase"];
-            var login = ConfigurationManager.AppSettings["Login"];
-            var passwordDB = ConfigurationManager.AppSettings["Password"];
-
-            var connStr = String.Format("Server={0};Database={1};Uid={2};Pwd={3};", server, database, login, passwordDB);
 
             using(var conn = new MySqlConnection(connStr))
             {
@@ -63,6 +65,51 @@ namespace DFM.Tests.BusinessLogic.Helpers
             return token;
         }
 
+
+
+        internal static String GetLastTicketForUser(String email, String password)
+        {
+            String ticket;
+
+            using (var conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                var query =
+                    @"Select Key_
+                        from Ticket T
+                            inner join User U
+                                on T.User_ID = U.ID
+                       where U.Email = @email
+                         and U.Password = @password
+                         and T.Expiration is null
+                    order by T.ID desc
+                       limit 1";
+
+                var cmd = new MySqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("email", email);
+                cmd.Parameters.AddWithValue("password", encrypt(password));
+
+                var result = cmd.ExecuteScalar();
+
+                if (result == null)
+                {
+                    conn.Close();
+
+                    throw new DFMRepositoryException("Bad, bad developer. No ticket for you.");
+                }
+
+                ticket = result.ToString();
+
+                conn.Close();
+            }
+
+            return ticket;
+        }
+        
+
+
         private static String encrypt(String password)
         {
             if (String.IsNullOrEmpty(password))
@@ -79,6 +126,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
             return hexCode;
         }
+
 
     }
 }

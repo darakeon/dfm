@@ -155,7 +155,10 @@ namespace DFM.BusinessLogic.SuperServices
 
         public User GetUserByTicket(String ticketKey)
         {
-            var ticket = getTicketByKey(ticketKey);
+            var ticket = ticketService.GetByKey(ticketKey);
+
+            if (ticket == null || !ticket.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
 
             if (!ticket.User.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
@@ -163,7 +166,7 @@ namespace DFM.BusinessLogic.SuperServices
             return ticket.User;
         }
 
-        public String ValidateUserAndCreateTicket(String email, String password)
+        public String ValidateUserAndCreateTicket(String email, String password, String ticketKey)
         {
             BeginTransaction();
             
@@ -171,7 +174,16 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 var user = userService.ValidateAndGet(email, password);
 
-                var ticket = ticketService.Create(user);
+                var ticket = ticketService.GetByKey(ticketKey);
+
+                if (ticket == null)
+                {
+                    ticket = ticketService.Create(user, ticketKey);
+                }
+                else if (ticket.User.Email != email)
+                {
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+                }
 
                 CommitTransaction();
 
@@ -186,24 +198,16 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DisableTicket(String ticketKey)
         {
-            var ticket = getTicketByKey(ticketKey);
+            var ticket = ticketService.GetByKey(ticketKey);
 
+            if (ticket == null || !ticket.Active)
+                return;
+                
+            ticket.Key += DateTime.Now.ToString("yyyyMMddHHmmssffffff");
             ticket.Active = false;
             ticket.Expiration = DateTime.Now;
 
             ticketService.Disable(ticket);
-        }
-
-        private Ticket getTicketByKey(String ticketKey)
-        {
-            var ticket = ticketService.GetByKey(ticketKey);
-
-            if (ticket == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
-
-            if (!ticket.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
-            return ticket;
         }
 
 

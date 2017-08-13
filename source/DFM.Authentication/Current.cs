@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
-using DFM.Generic.UniqueIdentity;
 
 namespace DFM.Authentication
 {
@@ -17,19 +15,18 @@ namespace DFM.Authentication
         }
 
 
-        readonly static Identity<String> identity = new Identity<String>();
-
+        public String Ticket
+        {
+            get { return MyCookie.Get(); }
+        }
 
         public User User
         {
             get
             {
-                if (!identity.Exists)
-                    return null;
-
                 try
                 {
-                    return userService.GetUserByTicket(identity.ID);
+                    return userService.GetUserByTicket(Ticket);
                 }
                 catch (DFMException)
                 {
@@ -60,9 +57,7 @@ namespace DFM.Authentication
 
         public void Set(String username, String password)
         {
-            var ticket = userService.ValidateUserAndCreateTicket(username, password);
-
-            identity.Add(ticket);
+            userService.ValidateUserAndCreateTicket(username, password, Ticket);
         }
 
         public void Reset(String username, String password)
@@ -73,13 +68,9 @@ namespace DFM.Authentication
 
         public void Clean()
         {
-            if (!identity.Exists)
-                return;
-
-            userService.DisableTicket(identity.ID);
-
-            identity.Kill();
+            userService.DisableTicket(Ticket);
         }
+
 
 
     }

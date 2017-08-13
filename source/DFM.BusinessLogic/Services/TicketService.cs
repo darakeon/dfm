@@ -1,7 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -9,13 +8,13 @@ namespace DFM.BusinessLogic.Services
     {
         internal TicketService(IRepository<Ticket> repository) : base(repository) { }
 
-        internal Ticket Create(User user)
+        internal Ticket Create(User user, String ticketKey)
         {
             var ticket = 
                 new Ticket
                     {
                         ID = 0,
-                        Key = Token.New(),
+                        Key = ticketKey,
                         Creation = DateTime.Now,
                         Active = true,
                         User = user,

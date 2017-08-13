@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace DFM.Generic.UniqueIdentity
+namespace DFM.Generic
 {
     public static class MyCookie
     {

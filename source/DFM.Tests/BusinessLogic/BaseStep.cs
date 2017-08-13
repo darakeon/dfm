@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Multilanguage;
 using DFM.Repositories;
 using DFM.Tests.BusinessLogic.Helpers;
@@ -101,7 +102,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword);
+                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, Token.New());
                 return null;
             }
             catch (DFMCoreException e)
@@ -148,6 +149,15 @@ namespace DFM.Tests.BusinessLogic
                 SA.Admin.CreateCategory(new Category { Name = categoryName, User = User });
                 return SA.Admin.GetCategoryByName(categoryName);
             }
+        }
+
+        protected User GetSavedUser(String email, String password)
+        {
+            var ticketKey = Token.New();
+
+            SA.Safe.ValidateUserAndCreateTicket(email, password, ticketKey);
+
+            return SA.Safe.GetUserByTicket(ticketKey);
         }
         #endregion
 
@@ -321,6 +331,12 @@ namespace DFM.Tests.BusinessLogic
 
         protected const String AccountOutName = "account out";
         protected const String AccountInName = "account in";
+
+
+
+
+
+
 
     }
 }
