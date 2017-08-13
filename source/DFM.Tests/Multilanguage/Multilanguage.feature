@@ -34,15 +34,15 @@ Scenario: 02. Get layouts of e-mails
 
 Scenario: 03. Get translations of Enums
 	Given I have these keys
-		| Section | Phrase           |
-		| Move    | In               |
-		| Move    | Out              |
-		| Move    | Transfer         |
-		| Move    | Daily            |
-		| Move    | Monthly          |
-		| Move    | Yearly           |
-		| Token   | UserVerification |
-		| Token   | PasswordReset    |
+		| Section  | Phrase           |
+		| Move     | In               |
+		| Move     | Out              |
+		| Move     | Transfer         |
+		| Schedule | Daily            |
+		| Schedule | Monthly          |
+		| Schedule | Yearly           |
+		| Token    | UserVerification |
+		| Token    | PasswordReset    |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -107,14 +107,8 @@ Scenario: 05. Get translate of Interface (move)
 		| Section | Phrase          |
 		| Move    | Create          |
 		| Move    | Edit            |
-		| Move    | Schedule        |
 		| Move    | Move            |
 		| Move    | DayNames        |
-		| Move    | Frequency       |
-		| Move    | Boundless       |
-		| Move    | Repeat          |
-		| Move    | Times           |
-		| Move    | ShowInstallment |
 		| Move    | Description     |
 		| Move    | CharactersMax   |
 		| Move    | Date            |
@@ -307,5 +301,36 @@ Scenario: 12. Get translate of Interface (general)
 		| General | Categories           |
 		| General | Accounts             |
 		| General | WeirdMenuExplanation |
+	When I try get the translate
+	Then I will receive no multilanguage error
+
+
+Scenario: 13. Get translate of Interface (schedule)
+	Given I have these keys
+		| Section  | Phrase          |
+		| Schedule | Create          |
+		| Schedule | Edit            |
+		| Schedule | Schedule        |
+		| Schedule | Move            |
+		| Schedule | DayNames        |
+		| Schedule | Frequency       |
+		| Schedule | Boundless       |
+		| Schedule | Repeat          |
+		| Schedule | Times           |
+		| Schedule | ShowInstallment |
+		| Schedule | Description     |
+		| Schedule | CharactersMax   |
+		| Schedule | Date            |
+		| Schedule | Category        |
+		| Schedule | Select          |
+		| Schedule | Create          |
+		| Schedule | Category        |
+		| Schedule | Nature          |
+		| Schedule | JustOneValue    |
+		| Schedule | Detailed        |
+		| Schedule | Add             |
+		| Schedule | Detail          |
+		| Schedule | Value           |
+		| Schedule | Amount          |
 	When I try get the translate
 	Then I will receive no multilanguage error
