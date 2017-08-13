@@ -42,6 +42,28 @@ namespace DFM.Entities.Extensions
 
 
 
+        public static void UpdateOut(this Month month, Move move)
+        {
+            var oldMove = month.OutList
+                .Single(m => m.ID == move.ID);
+
+            month.OutList.Remove(oldMove);
+
+            month.AddOut(move);
+        }
+
+        public static void UpdateIn(this Month month, Move move)
+        {
+            var oldMove = month.InList
+                .Single(m => m.ID == move.ID);
+
+            month.InList.Remove(oldMove);
+
+            month.AddIn(move);
+        }
+
+
+
         public static Boolean OutContains(this Month month, Move move)
         {
             return month.OutList

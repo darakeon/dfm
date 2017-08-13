@@ -33,14 +33,14 @@ namespace DFM.BusinessLogic.Services
             else if (!monthOut.OutContains(move))
                 monthOut.AddOut(move);
             else
-                move.Out = monthOut;
+                monthOut.UpdateOut(move);
 
             if (monthIn == null)
                 move.In = null;
             else if (!monthIn.InContains(move))
                 monthIn.AddIn(move);
             else
-                move.In = monthIn;
+                monthIn.UpdateIn(move);
         }
 
         #endregion
