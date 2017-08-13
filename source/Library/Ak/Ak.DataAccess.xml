@@ -338,5 +338,18 @@
             Fill the Database.
             </summary>
         </member>
+        <member name="T:Ak.DataAccess.NHibernate.AutoMapping.AutoMappingOne2One">
+            <summary>
+             Extensions to relation 1:1
+            </summary>
+        </member>
+        <member name="M:Ak.DataAccess.NHibernate.AutoMapping.AutoMappingOne2One.IsWeakEntity``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+             Used on weak entity of 1:1.
+             Use HasOne on the strong entity mapping.
+            </summary>
+            <param name="mapping">Object received in AutoMappingOverride</param>
+            <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
+        </member>
     </members>
 </doc>
