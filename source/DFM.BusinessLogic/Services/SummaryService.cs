@@ -1,4 +1,6 @@
-﻿using DFM.BusinessLogic.Bases;
+﻿using System;
+using System.Linq;
+using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities;
@@ -11,7 +13,47 @@ namespace DFM.BusinessLogic.Services
         internal SummaryService(IRepository<Summary> repository) : base(repository) { }
 
 
-        internal void AjustValue(Summary summary)
+
+        internal void Break(Year year, Category category)
+        {
+            var summary = SingleOrDefault(
+                s => s.Year.ID == year.ID
+                     && s.Category.ID == category.ID);
+
+            @break(summary);
+        }
+
+        internal void Break(Month month, Category category)
+        {
+            var summary = SingleOrDefault(
+                s => s.Month.ID == month.ID
+                     && s.Category.ID == category.ID);
+
+            @break(summary);
+        }
+
+        private void @break(Summary summary)
+        {
+            summary.Broken = true;
+
+            SaveOrUpdate(summary);
+        }
+
+
+        public void Fix(ISummarizable summarizable)
+        {
+            var summaryList = 
+                summarizable
+                    .SummaryList
+                    .Where(s => s.Broken);
+
+            foreach (var summary in summaryList)
+            {
+                fix(summary);
+            }
+        }
+
+        private void fix(Summary summary)
         {
             ISummarizable summarizable;
 
@@ -32,6 +74,7 @@ namespace DFM.BusinessLogic.Services
 
             SaveOrUpdate(summary);
         }
+
 
     }
 }
