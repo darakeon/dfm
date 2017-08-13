@@ -1,0 +1,29 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.ScheduleCreateModel
+
+<div class="createMoveScreenLeft">
+    <div>
+        @Html.LabelFor(m => m.Frequency, MultiLanguage.Dictionary["Frequency"])<br />
+        @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
+    </div>
+</div>
+    
+<div class="createMoveScreenRight">
+    <div>
+        @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio" }) @(" ")
+        @Html.LabelFor(m => m.Boundless, MultiLanguage.Dictionary["Boundless"])<br />
+
+        @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio" }) @(" ")
+        @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Repeat"])
+        @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
+        @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Times"])
+    </div>
+</div>
+    
+<div class="divRowForm">
+    @Html.CheckBoxFor(m => m.ShowInstallment)
+    @Html.LabelFor(m => m.ShowInstallment, MultiLanguage.Dictionary["ShowInstallment"])
+</div>
+    
+<div class="divRowForm">
+    <hr />
+</div>

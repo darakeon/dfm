@@ -11,6 +11,7 @@ Alter Table Schedule
     add Description varchar(50) null,
     add Nature int null,
     add LastRun smallint not null default 0,
+	add Deleted smallint not null default 0,
     add In_ID int null,
     add index (In_ID), 
     add constraint FK_Schedule_In

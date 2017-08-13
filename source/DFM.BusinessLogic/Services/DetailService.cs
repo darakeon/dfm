@@ -30,7 +30,7 @@ namespace DFM.BusinessLogic.Services
             saveDetails(schedule);
         }
 
-        private void saveDetails<T>(IMove<T> move)
+        private void saveDetails(IMove move)
         {
             foreach (var detail in move.DetailList)
             {

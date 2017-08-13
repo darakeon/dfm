@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Schedule : IMove<Account>
+    public class Schedule : IMove
     {
         public Schedule()
         {
@@ -36,8 +36,9 @@ namespace DFM.Entities
 
         
         public virtual DateTime Date { get; set; }
-        
+
         public virtual Int16 LastRun { get; set; }
+        public virtual Int16 Deleted { get; set; }
         public virtual Int16 Times { get; set; }
 
         public virtual ScheduleFrequency Frequency { get; set; }
@@ -72,6 +73,13 @@ namespace DFM.Entities
         public virtual Account AccIn()
         {
             return In;
+        }
+
+        public virtual void AddDetail(Detail detail)
+        {
+            DetailList.Add(detail);
+
+            detail.Schedule = this;
         }
 
         public virtual Double Value()

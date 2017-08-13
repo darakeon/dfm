@@ -16,22 +16,28 @@ namespace DFM.MVC.Areas.Accounts.Controllers
     [DFMAuthorize]
     public class MoveController : BaseAccountsController
     {
+        public ActionResult Index()
+        {
+            return RedirectToAction("Create");
+        }
+
+
+
         public ActionResult Create()
         {
-            var model = new MoveCreateEditScheduleModel(OperationType.Creation);
+            var model = new MoveCreateEditModel(OperationType.Creation);
             
             model.PopulateExcludingAccount(Account.Url);
 
-            return viewCES(model);
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditScheduleModel model)
+        public ActionResult Create(MoveCreateEditModel model)
         {
-            model.Schedule = null;
             model.Type = OperationType.Creation;
 
-            return createEditSchedule(model);
+            return CreateEditSchedule(model);
         }
 
 
@@ -43,14 +49,14 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var move = Services.Money.GetMoveById(id.Value);
 
-            var model = new MoveCreateEditScheduleModel(move, OperationType.Edit);
+            var model = new MoveCreateEditModel(move, OperationType.Edit);
 
             if (model.AccountName == Account.Name)
                 return redirectToRightAccount(move);
 
             model.PopulateExcludingAccount(Account.Name);
 
-            return viewCES(model);
+            return View(model);
         }
 
         private ActionResult redirectToRightAccount(Move move)
@@ -63,77 +69,18 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditScheduleModel model)
+        public ActionResult Edit(Int32 id, MoveCreateEditModel model)
         {
             var oldMove = Services.Money.GetMoveById(id);
 
             model.Move.ID = id;
-            model.Schedule = oldMove.Schedule;
+            model.Move.Schedule = oldMove.Schedule;
             model.Type = OperationType.Edit;
 
-            return createEditSchedule(model);
+            return CreateEditSchedule(model);
         }
 
 
-
-        public ActionResult Schedule()
-        {
-            var model = new MoveCreateEditScheduleModel(OperationType.Schedule);
-
-            model.PopulateExcludingAccount(Account.Name);
-
-            return viewCES(model);
-        }
-
-        [HttpPost]
-        public ActionResult Schedule(MoveCreateEditScheduleModel model)
-        {
-            model.Type = OperationType.Schedule;
-
-            return createEditSchedule(model);
-        }
-
-
-
-        private ActionResult createEditSchedule(MoveCreateEditScheduleModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var selector = new AccountSelector(model.Move.Nature, Account.Name, model.AccountName);
-
-                    return saveOrUpdateAndRedirect(model.Move, selector, model.CategoryName);
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
-            }
-
-            model.PopulateExcludingAccount(Account.Name);
-
-            return viewCES(model);
-        }
-
-        private ActionResult saveOrUpdateAndRedirect(Move move, AccountSelector selector, String categoryName)
-        {
-            Services.Money.SaveOrUpdateMove(move, selector.AccountOutName, selector.AccountInName, categoryName);
-
-            return RedirectToAction("ShowMoves", "Report", new { id = (move.Out ?? move.In).Url() } );
-        }
-
-
-        public ActionResult AddDetail(Int32 position = 0, Int32 id = 0)
-        {
-            var detail = id == 0
-                ? default(Detail)
-                : Services.Money.GetDetailById(id);
-
-            var model = new MoveAddDetailModel(position, detail);
-
-            return View(model);
-        }
 
         [HttpPost]
         public Boolean ShowAccountList(MoveNature nature)
@@ -163,10 +110,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
 
 
-        private ActionResult viewCES(MoveCreateEditScheduleModel model) 
-        {
-            return View("CreateEditSchedule", model);
-        }
 
     }
 }

@@ -8,8 +8,8 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Bases
 {
-    public class GenericMoveService<T, TA> : BaseService<T>
-        where T : IEntity, IMove<TA>
+    public class GenericMoveService<T> : BaseService<T>
+        where T : IEntity, IMove
     {
         internal GenericMoveService(IRepository<T> repository) : base(repository) { }
 

@@ -88,15 +88,18 @@ VERSÃO 2.0.0.0
 						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
+						Criar teste unitário para deletar todas as movimentações de um agendamento
+						Criar teste unitário agendamento meio antes / meio depois
 
 VERSÃO 1.0.3.0 (Little change)
 ================================================================================================
-						Mover área Account para comum
-						Criar Controllers pai (se necessário)
+						Tirar listra de menu do ambiente logado
+						Tirar fundo de nuvens
 						Mover lógica dos Controllers para os Models
 						Guardar cookies no banco em App_End, e pegar de volta no App_Start
 						Usar apenas um cookie para pegar tudo no servidor
 						Adicionar link para tela de login na tela de User Verification
+						Separar Controller Move em Move / Schedule / Detail
 22/07/2013				Rever Schedule para ser IMove / Matar FutureMove
 17/07/2013	30/07/2013	Consertar testes
 16/07/2013	16/07/2013	Trocar Select por Get

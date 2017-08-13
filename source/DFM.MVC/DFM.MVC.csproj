@@ -113,12 +113,16 @@
     <Compile Include="AreaRegistration.cs" />
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
     <Compile Include="Areas\Accounts\Controllers\BaseAccountsController.cs" />
+    <Compile Include="Areas\Accounts\Controllers\DetailController.cs" />
     <Compile Include="Areas\Accounts\Controllers\MoveController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Accounts\Controllers\ScheduleController.cs" />
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
-    <Compile Include="Areas\Accounts\Models\MoveCreateEditScheduleModel.cs" />
+    <Compile Include="Areas\Accounts\Models\GenericMoveModel.cs" />
+    <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
+    <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
@@ -223,11 +227,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Accounts\Views\Shared\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Move\AddDetail.cshtml" />
-    <Content Include="Areas\Accounts\Views\Move\CreateEditSchedule.cshtml" />
+    <Content Include="Areas\Accounts\Views\Detail\Add.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditSchedule.cshtml" />
     <Content Include="Areas\Accounts\Views\Report\ShowMoves.cshtml" />
     <Content Include="Areas\Accounts\Views\Report\SummarizeMonths.cshtml" />
     <Content Include="Areas\Accounts\Views\Web.config" />
@@ -299,6 +300,24 @@
       <Project>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</Project>
       <Name>DFM.Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Move\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Schedule\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Schedule\OtherFields.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleJs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleCss.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

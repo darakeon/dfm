@@ -13,7 +13,7 @@ using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibiliti
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class MoveService : GenericMoveService<Move, Month>
+    internal class MoveService : GenericMoveService<Move>
     {
         internal MoveService(IRepository<Move> repository) : base(repository) { }
 

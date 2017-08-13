@@ -1,20 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditScheduleModel : BaseLoggedModel
+    public abstract class GenericMoveModel : BaseLoggedModel
     {
-        public MoveCreateEditScheduleModel()
+        protected GenericMoveModel(IMove iMove, OperationType type)
+            : this(iMove)
+        {
+            Type = type;
+        }
+
+        protected GenericMoveModel(IMove iMove)
+            : this()
+        {
+            GenericMove = iMove;
+
+            Date = DateTime.Today;
+
+            AccountName = iMove.Nature == MoveNature.Transfer
+                ? iMove.AccIn().Name : null;
+
+            if (iMove.Category != null)
+                CategoryName = iMove.Category.Name;
+
+        }
+
+        private GenericMoveModel()
         {
             var transferIsPossible =
                 Current.User.AccountList
@@ -22,9 +46,6 @@ namespace DFM.MVC.Areas.Accounts.Models
                     .Count() > 1;
 
             populateDropDowns(transferIsPossible);
-
-            Move = new Move();
-            Date = DateTime.Today;
         }
 
         private void populateDropDowns(Boolean transferIsPossible)
@@ -33,9 +54,6 @@ namespace DFM.MVC.Areas.Accounts.Models
                 SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>()) :
                 SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
 
-            FrequencySelectList =
-                SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());
-
             var categoryList = Current.User.CategoryList.Where(c => c.Active).ToList();
 
             CategorySelectList = SelectListExtension.CreateSelect(
@@ -43,39 +61,44 @@ namespace DFM.MVC.Areas.Accounts.Models
                 );
         }
 
-        public MoveCreateEditScheduleModel(OperationType type) 
-            : this()
-        {
-            Type = type;
-        }
 
-        public MoveCreateEditScheduleModel(Move move, OperationType type)
-            : this(type)
-        {
-            Move = move;
-
-            AccountName = Move.Nature == MoveNature.Transfer
-                ? Move.AccIn().Name : null;
-
-            CategoryName = Move.Category.Name;
-        }
-
-
+        
         public OperationType Type { get; set; }
 
 
-        public Move Move { get; set; }
+        protected internal IMove GenericMove { get; set; }
+
+
+        public IList<Detail> DetailList
+        {
+            get { return GenericMove.DetailList; }
+            set { GenericMove.DetailList = value; }
+        }
+
 
         [Required(ErrorMessage = "*")]
-        public String Description { get { return Move.Description; } set { Move.Description = value; } }
+        public String Description
+        {
+            get { return GenericMove.Description; } 
+            set { GenericMove.Description = value; }
+        }
 
         
         [Required(ErrorMessage = "*")]
-        public DateTime Date { get { return Move.Date; } set { Move.Date = value; } }
+        public DateTime Date
+        {
+            get { return GenericMove.Date; } 
+            set { GenericMove.Date = value; }
+        }
 
 
         [Required(ErrorMessage = "*")]
-        public MoveNature Nature { get { return Move.Nature; } set { Move.Nature = value; } }
+        public MoveNature Nature
+        {
+            get { return GenericMove.Nature; } 
+            set { GenericMove.Nature = value; }
+        }
+
         public SelectList NatureSelectList { get; set; }
 
         
@@ -84,7 +107,6 @@ namespace DFM.MVC.Areas.Accounts.Models
         public SelectList CategorySelectList { get; set; }
         public String CategoryName { get; set; }
 
-
         public SelectList AccountSelectList { get; set; }
         public String AccountName { get; set; }
 
@@ -92,15 +114,6 @@ namespace DFM.MVC.Areas.Accounts.Models
         public Boolean IsDetailed { get; set; }
 
 
-        public Schedule Schedule { get; set; }
-        private Schedule schedule { get { return Schedule ?? new Schedule(); } }
-
-        [Required] public ScheduleFrequency Frequency { get { return schedule.Frequency; } set { schedule.Frequency = value; } }
-        [Required] public Boolean Boundless { get { return schedule.Boundless; } set { schedule.Boundless = value; } }
-        [Required] public Int16 Times { get { return schedule.Times; } set { schedule.Times = value; } }
-        public Boolean ShowInstallment { get { return schedule.ShowInstallment; } set { schedule.ShowInstallment = value; } }
-
-        public SelectList FrequencySelectList { get; set; }
 
 
 
@@ -120,11 +133,16 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             MakeAccountTransferList(accountName);
 
-            IsDetailed = Move.HasDetails() && Move.IsDetailed();
+            IsDetailed = GenericMove.HasDetails() && GenericMove.IsDetailed();
 
-            if (!Move.DetailList.Any())
-                Move.AddDetail(new Detail { Amount = 1 });
+            if (!GenericMove.DetailList.Any())
+                GenericMove.AddDetail(new Detail { Amount = 1 });
         }
+
+
+
+        internal abstract void SaveOrUpdate(AccountSelector selector);
+
 
 
     }

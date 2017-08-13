@@ -50,9 +50,9 @@ namespace DFM.BusinessLogic.SuperServices
             {
                 move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 
-                CommitTransaction();
-
                 Parent.BaseMove.SendEmail(move, operationType);
+
+                CommitTransaction();
             }
             catch
             {
@@ -89,13 +89,14 @@ namespace DFM.BusinessLogic.SuperServices
 
                 if (move.Schedule != null)
                 {
-                    move.Schedule.Times--;
+                    move.Schedule.Deleted++;
+
                     scheduleService.SaveOrUpdate(move.Schedule);
                 }
 
-                CommitTransaction();
-
                 Parent.BaseMove.SendEmail(move, OperationType.Delete);
+
+                CommitTransaction();
 
             }
             catch (DFMCoreException)

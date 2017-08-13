@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Move : IMove<Month>
+    public class Move : IMove
     {
         public Move()
         {
@@ -50,6 +50,13 @@ namespace DFM.Entities
         public virtual Account AccIn()
         {
             return getAccount(In);
+        }
+
+        public virtual void AddDetail(Detail detail)
+        {
+            DetailList.Add(detail);
+
+            detail.Move = this;
         }
 
         public virtual Double Value()

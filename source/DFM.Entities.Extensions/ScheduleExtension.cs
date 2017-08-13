@@ -10,22 +10,21 @@ namespace DFM.Entities.Extensions
         {
             var dateTime = schedule.LastDateRun();
 
-            return new Move
+            var move =
+                new Move
+                    {
+                        Date = dateTime,
+                        Description = schedule.Description,
+                        Nature = schedule.Nature,
+                        Schedule = schedule,
+                    };
+
+            foreach (var detail in schedule.DetailList)
             {
-                Date = dateTime,
-                Description = schedule.Description,
-                Nature = schedule.Nature,
-                DetailList = schedule.DetailList
-                                .Select(d => d.Clone())
-                                .ToList(),
-                Schedule = schedule,
-            };
-        }
+                move.AddDetail(detail.Clone());
+            }
 
-
-        public static Int32 ExecutedMoves(this Schedule schedule)
-        {
-            return schedule.MoveList.Count;
+            return move;
         }
 
 

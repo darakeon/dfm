@@ -7,7 +7,7 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class ScheduleService : GenericMoveService<Schedule, Account>
+    internal class ScheduleService : GenericMoveService<Schedule>
     {
         internal ScheduleService(IRepository<Schedule> repository) : base(repository) { }
 

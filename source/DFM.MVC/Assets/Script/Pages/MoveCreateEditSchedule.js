@@ -31,12 +31,12 @@ var inputErrorClass = "input-validation-error";
 
 
 function ActiveDatePicker() {
-    $("#Move_Date").datepicker({
+    $("#Date").datepicker({
         dateFormat: "dd/mm/yy",
         dayNamesMin: dayNames
     });
 
-    $("#Move_Date").attr("disabled", false);
+    $("#Date").attr("disabled", false);
 }
 
 

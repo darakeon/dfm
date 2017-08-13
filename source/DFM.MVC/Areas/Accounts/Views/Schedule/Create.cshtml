@@ -1,0 +1,28 @@
+﻿@model DFM.MVC.Areas.Accounts.Models.ScheduleCreateModel
+
+@{
+    ViewBag.Title = MultiLanguage.Dictionary["Schedule", "Moves"];
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@section HtmlHeadCss { 
+    @Html.Partial("CreateEditScheduleCss")
+}
+
+@section HtmlFooterJs {
+    @Html.Partial("CreateEditScheduleJs")
+}
+
+@Html.Partial("NewCategoryBox")
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.Partial("OtherFields")
+
+    @Html.Partial("CreateEditSchedule")
+}
+

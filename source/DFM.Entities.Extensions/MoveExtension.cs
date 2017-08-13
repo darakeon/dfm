@@ -14,20 +14,6 @@ namespace DFM.Entities.Extensions
 
 
 
-        public static void AddDetail(this Move move, Detail detail)
-        {
-            move.DetailList.Add(detail);
-        }
-
-
-        public static Boolean HasDetails(this Move move)
-        {
-            return move.DetailList.Any();
-        }
-
-
-
-
         public static void MakePseudoDetail(this Move move, Double value)
         {
             var id = (move.DetailList.FirstOrDefault() ?? new Detail()).ID;
@@ -60,7 +46,7 @@ namespace DFM.Entities.Extensions
 
             
             var total = schedule.Times;
-            var executed = schedule.ExecutedMoves();
+            var executed = move.PositionInSchedule();
                 
             var format = schedule.Boundless
                              ? boundlessFormat

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schedule>
+  <en-US>
+    <Amount text="Amount" />
+    <JustOneValue text="Just one value" />
+    <Detailed text="Detailed" />
+    <Moves text="Moves" />
+    <Daily text="Daily" />
+    <Monthly text="Monthly" />
+    <Yearly text="Yearly" />
+    <Frequency text="Frequency" />
+    <Boundless text="Boundless" />
+    <Times text="times" />
+    <Repeat text="Repeat" />
+    <ShowInstallment text="Show number of installment on Move description" />
+  </en-US>
+  <pt-BR>
+    <Amount text="Qte" />
+    <JustOneValue text="Valor único" />
+    <Detailed text="Detalhado" />
+    <Moves text="Movimentações" />
+    <Daily text="Diária" />
+    <Monthly text="Mensal" />
+    <Yearly text="Anual" />
+    <Frequency text="Frequência" />
+    <Boundless text="Ilimitado" />
+    <Times text="vezes" />
+    <Repeat text="Repetir" />
+    <ShowInstallment text="Exibir número da parcela na descrição da Movimentação" />
+  </pt-BR>
+</schedule>
