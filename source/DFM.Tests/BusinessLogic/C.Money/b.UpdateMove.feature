@@ -146,3 +146,14 @@ Scenario: 11. Update the move In to Out
 	And the new-month-category-accountOut value will change in 10
 	And the old-year-category-accountIn value will change in -10
 	And the new-year-category-accountOut value will change in 10
+
+
+Scenario: 12. Update the move value
+	Given I have a move with value 10 (Out)
+	When I change the move value to 20
+	And I update the move
+	Then I will receive no core error
+	And the old-accountIn value will change in -10
+	And the old-month-category-accountIn value will change in 10
+	And the old-year-category-accountIn value will change in 10
+

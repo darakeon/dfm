@@ -125,7 +125,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, CategoryName);
+                SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -253,6 +253,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
             newMonthCategoryAccountOutTotal = month[Category.Name, true].Out;
         }
 
+        [When(@"I change the move value to (\d+)")]
+        public void WhenIChangeTheMoveValueTo(Int32 value)
+        {
+            // TODO change to value of move
+            Move.DetailList[0].Value = value;
+        }
+
 
         
         [When(@"I update the move")]
@@ -263,7 +270,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutName = AccountOut == null ? null : AccountOut.Name;
                 var accountInName = AccountIn == null ? null : AccountIn.Name;
 
-                SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, Category.Name);
+                SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, Category.Name);
             }
             catch (DFMCoreException e)
             {
@@ -501,7 +508,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove((Move)Move, Account.Name, null, Category.Name);
+            Move = SA.Money.SaveOrUpdateMove(Move, Account.Name, null, Category.Name);
 
             detail = Move.DetailList.First();
         }
@@ -629,7 +636,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             Category = GetOrCreateCategory(MainCategoryName);
 
-            SA.Money.SaveOrUpdateMove((Move)Move, accountOutName, accountInName, Category.Name);
+            SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, Category.Name);
 
             if (accountOutName != null)
             {
