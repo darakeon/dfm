@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
@@ -37,9 +38,9 @@ namespace DFM.BusinessLogic.SuperServices
             resetSchedule(move);
 
             
-            var oldMove = getOldAndRemoveFromMonths(move);
-
             linkEntities(move, accountOut, accountIn, category);
+
+            var oldMove = getOldAndRemoveFromMonths(move, true);
 
             
             move = moveService.SaveOrUpdate(move);
@@ -99,13 +100,37 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void RemoveFromSummaries(Move move)
         {
-            var oldMove = getOldAndRemoveFromMonths(move);
+            var oldMove = getOldAndRemoveFromMonths(move, false);
+
             ajustSummaries(oldMove);
         }
 
-        private Move getOldAndRemoveFromMonths(Move move)
+        private Move getOldAndRemoveFromMonths(Move move, Boolean verifyBeforeRemove)
         {
             var oldMove = moveService.GetOldById(move.ID);
+
+            if (oldMove == null)
+                return null;
+
+            if (verifyBeforeRemove)
+            {
+                var changedCategory = move.Category.Name != oldMove.Category.Name;
+
+                var changedMonth = move.Date.Month != oldMove.Date.Month;
+
+                var changedYear = move.Date.Year != oldMove.Date.Year;
+
+                var changedAccounts = testChangedAccounts(move, oldMove);
+
+                var changedParent = changedAccounts || changedYear || changedMonth;
+                var changed = changedParent || changedCategory;
+
+                if (!changed)
+                    return null;
+
+                if (!changedParent)
+                    return oldMove;
+            }
 
             monthService.RemoveMoveFromMonth(oldMove);
 
@@ -126,28 +151,28 @@ namespace DFM.BusinessLogic.SuperServices
 
                 var changedAccounts = testChangedAccounts(move, changedMove);
 
-                var changed = changedYear || changedMonth || changedCategory || changedAccounts;
+                var changed = changedAccounts || changedYear || changedMonth || changedCategory;
 
                 if (!changed)
                     return;
 
-                checkUpYear = changedCategory || changedYear || changedAccounts;
+                checkUpYear = changedAccounts || changedYear || changedCategory;
             }
 
             if (move.Nature != MoveNature.Out)
             {
-                summaryService.AjustValue(move.In[move.Category.Name]);
+                summaryService.AjustValue(move.In.GetOrCreateSummary(move.Category));
                 
                 if (checkUpYear)
-                    summaryService.AjustValue(move.In.Year[move.Category.Name]);
+                    summaryService.AjustValue(move.In.Year.GetOrCreateSummary(move.Category));
             }
 
             if (move.Nature != MoveNature.In)
             {
-                summaryService.AjustValue(move.Out[move.Category.Name]);
+                summaryService.AjustValue(move.Out.GetOrCreateSummary(move.Category));
 
                 if (checkUpYear)
-                    summaryService.AjustValue(move.Out.Year[move.Category.Name]);
+                    summaryService.AjustValue(move.Out.Year.GetOrCreateSummary(move.Category));
             }
 
         }
