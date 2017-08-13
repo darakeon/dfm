@@ -64,7 +64,7 @@ Update Schedule s
             group by Schedule_ID
     ) m
         on s.ID = m.Schedule_ID
-    set s.LastRun = m.Qte
+    set s.LastRun = m.Qte;
 
 
 
@@ -88,9 +88,22 @@ Alter Table Schedule
 
 	
 Alter table Summary
-	add Broken tinyint(1) not null default(0);
+	add Broken tinyint(1) not null default 0;
 	
 	
 	
-Alter table Ticket 
-    change Key_ Key_ VARCHAR(52) NOT NULL;
+CREATE TABLE ticket (
+	ID int(11) NOT NULL AUTO_INCREMENT,
+	Key_ varchar(52) NOT NULL,
+	Active tinyint(1) NOT NULL DEFAULT 1,
+	Expiration datetime DEFAULT NULL,
+	Creation datetime NOT NULL,
+	User_ID int(11) NOT NULL,
+	PRIMARY KEY (ID),
+	UNIQUE KEY Key_ (Key_),
+	KEY User_ID (User_ID),
+	CONSTRAINT FK_Ticket_User 
+		FOREIGN KEY (User_ID) 
+		REFERENCES user (ID)
+)
+
