@@ -16,21 +16,33 @@ namespace DFM.BusinessLogic.Services
 
         internal void Break(Year year, Category category)
         {
-            var summary = SingleOrDefault(
-                s => s.Year.ID == year.ID
-                     && s.Category.ID == category.ID);
+            var summary = getByYearAndCategory(year, category);
 
             @break(summary);
         }
+
+        private Summary getByYearAndCategory(Year year, Category category)
+        {
+            return SingleOrDefault(
+                s => s.Year.ID == year.ID
+                     && s.Category.ID == category.ID);
+        }
+
 
         internal void Break(Month month, Category category)
         {
-            var summary = SingleOrDefault(
-                s => s.Month.ID == month.ID
-                     && s.Category.ID == category.ID);
+            var summary = getByMonthAndCategory(month, category);
 
             @break(summary);
         }
+
+        private Summary getByMonthAndCategory(Month month, Category category)
+        {
+            return SingleOrDefault(
+                s => s.Month.ID == month.ID
+                     && s.Category.ID == category.ID);
+        }
+
 
         private void @break(Summary summary)
         {
@@ -38,6 +50,7 @@ namespace DFM.BusinessLogic.Services
 
             SaveOrUpdate(summary);
         }
+
 
 
         public void Fix(ISummarizable summarizable)
@@ -73,6 +86,34 @@ namespace DFM.BusinessLogic.Services
             summary.Out = summarizable.CheckUpOut(summary.Category);
 
             SaveOrUpdate(summary);
+        }
+
+
+
+        internal void CreateIfNotExists(Month month, Category category)
+        {
+            if (month == null)
+                return;
+
+
+            var summaryMonth = getByMonthAndCategory(month, category);
+
+            if (summaryMonth == null)
+            {
+                summaryMonth = new Summary(month, category);
+
+                SaveOrUpdate(summaryMonth);
+            }
+
+
+            var summaryYear = getByYearAndCategory(month.Year, category);
+
+            if (summaryYear == null)
+            {
+                summaryYear = new Summary(month.Year, category);
+
+                SaveOrUpdate(summaryYear);
+            }
         }
 
 

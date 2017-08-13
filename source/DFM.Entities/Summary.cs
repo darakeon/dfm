@@ -11,6 +11,22 @@ namespace DFM.Entities
             Broken = true;
         }
 
+        public Summary(Month month, Category category)
+            : this()
+        {
+            Month = month;
+            Category = category;
+            Nature = SummaryNature.Month;
+        }
+
+        public Summary(Year year, Category category)
+        {
+            Year = year;
+            Category = category;
+            Nature = SummaryNature.Year;
+        }
+
+
 
         public virtual Int32 ID { get; set; }
 

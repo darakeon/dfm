@@ -7,7 +7,7 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class RobotService : BaseSuperService
+    public class RobotService : BaseService
     {
         private readonly ScheduleService scheduleService;
         private readonly DetailService detailService;
@@ -35,6 +35,8 @@ namespace DFM.BusinessLogic.SuperServices
 
                 addNewMoves(schedule, accountOutName, accountInName, categoryName);
             }
+
+            Parent.BaseMove.FixSummaries();
         }
 
         private void addNewMoves(Schedule schedule, String accountOutName, String accountInName, String categoryName)

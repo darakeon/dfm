@@ -6,7 +6,7 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.SuperServices
 {
-    public class MoneyService : BaseSuperService
+    public class MoneyService : BaseService
     {
         private readonly MoveService moveService;
         private readonly DetailService detailService;
@@ -39,6 +39,15 @@ namespace DFM.BusinessLogic.SuperServices
         {
             VerifyUser();
 
+            move = saveOrUpdate(move, accountOutName, accountInName, categoryName);
+
+            Parent.BaseMove.FixSummaries();
+
+            return move;
+        }
+
+        private Move saveOrUpdate(Move move, string accountOutName, string accountInName, string categoryName)
+        {
             BeginTransaction();
 
             var operationType =
@@ -63,16 +72,19 @@ namespace DFM.BusinessLogic.SuperServices
                 throw;
             }
 
-
             return move;
         }
-
 
 
         public void DeleteMove(Int32 id)
         {
             VerifyUser();
 
+            deleteMove(id);
+        }
+
+        private void deleteMove(int id)
+        {
             BeginTransaction();
 
             try
@@ -81,11 +93,9 @@ namespace DFM.BusinessLogic.SuperServices
 
                 VerifyMove(move);
 
-
-                Parent.BaseMove.RemoveFromSummaries(move);
-
-
                 moveService.Delete(id);
+
+                Parent.BaseMove.BreakSummaries(move);
 
                 if (move.Schedule != null)
                 {
@@ -105,6 +115,7 @@ namespace DFM.BusinessLogic.SuperServices
                 throw;
             }
 
+            Parent.BaseMove.FixSummaries();
         }
 
 
@@ -122,6 +133,7 @@ namespace DFM.BusinessLogic.SuperServices
 
             return detail;
         }
+
 
 
     }
