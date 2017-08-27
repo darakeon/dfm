@@ -9,6 +9,7 @@ using DFM.Email;
 using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Multilanguage.Helpers;
 using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
 namespace DFM.BusinessLogic.Repositories
