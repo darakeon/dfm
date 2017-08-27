@@ -88,6 +88,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Criar Template (Move)
 						Remover GetOrCreate
 						Colocar menu ao clicar e segurar em Account (mobile)
+						Colocar frase de rodar robot no final de testes de create schedule
 
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
