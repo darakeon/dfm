@@ -19,6 +19,7 @@ import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.entities.Constants;
+import com.dontflymoney.entities.Detail;
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.viewhelper.AfterTextWatcher;
 import com.dontflymoney.viewhelper.DetailBox;
@@ -28,8 +29,7 @@ public class MoveActivity extends SmartActivity {
 	DatePickerDialog dialog;
 	ScrollView window;
 
-	Move move;
-
+	static Move move;
 	static boolean useCategories;
 	static JSONArray categoryList;
 	static JSONArray natureList;
@@ -39,7 +39,6 @@ public class MoveActivity extends SmartActivity {
 	
 	public MoveActivity() {
 		init(R.layout.activity_move, R.menu.move);
-		move = new Move();
 	}
 
 	@Override
@@ -54,6 +53,7 @@ public class MoveActivity extends SmartActivity {
 			{
 				populateCategoryAndNature();
 				setControls();
+				populateOldData();
 			}
 			catch (JSONException e)
 			{
@@ -62,7 +62,69 @@ public class MoveActivity extends SmartActivity {
 		}
 		else
 		{
+			move = new Move();
 			populateScreen();
+		}
+	}
+	
+	private void populateOldData() throws NumberFormatException, JSONException
+	{
+		if (move != null)
+		{
+			for(int c = 0; c < categoryList.length(); c++)
+			{
+				JSONObject category = categoryList.getJSONObject(c);
+				String value = category.getString("Value");
+				
+				if (value == move.Category)
+				{
+					String text = category.getString("Text");
+					form.setValue(R.id.category, text);
+					break;
+				}
+			}
+			
+			form.setValue(R.id.date, move.DateString());
+
+			for(int n = 0; n < natureList.length(); n++)
+			{
+				JSONObject nature = natureList.getJSONObject(n);
+				int comparValue = nature.getInt("Value");
+				
+				if (comparValue == move.Nature)
+				{
+					String text = nature.getString("Text");
+					String value = nature.getString("Value");
+					setNature(text, value);
+					break;
+				}
+			}
+
+			for(int n = 0; n < accountList.length(); n++)
+			{
+				JSONObject account = accountList.getJSONObject(n);
+				String value = account.getString("Value");
+				
+				if (value == move.OtherAccount)
+				{
+					String text = account.getString("Text");
+					form.setValue(R.id.account, text);
+					break;
+				}
+			}
+			
+			
+			if (move.Details.size() > 0)
+			{
+				for(int d = 0; d < move.Details.size(); d++)
+				{
+					Detail detail = move.Details.get(d); 
+					
+					addViewDetail(move, detail.Description, detail.Amount, detail.Value);
+				}
+				
+				useDetailed();
+			}
 		}
 	}
 
@@ -75,9 +137,6 @@ public class MoveActivity extends SmartActivity {
 		setCurrentDate();
 		setControls();
 	}
-
-	
-	
 
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
@@ -123,10 +182,12 @@ public class MoveActivity extends SmartActivity {
 			findViewById(R.id.category_box).setVisibility(View.GONE);
 		}
 		
-		JSONObject firstNature = natureList.getJSONObject(0);
-		
-		form.setValue(R.id.nature, firstNature.getString("Text"));
-		move.Nature = firstNature.getInt("Value");
+		if (move.Nature == 0)
+		{
+			JSONObject firstNature = natureList.getJSONObject(0);
+			form.setValue(R.id.nature, firstNature.getString("Text"));
+			move.Nature = firstNature.getInt("Value");
+		}
 	}
 
 	
@@ -187,7 +248,6 @@ public class MoveActivity extends SmartActivity {
 		public void onDateSet(DatePicker view, int year, int month, int day)
 		{
 			move.Date.set(year, month, day);
-
 			form.setValue(R.id.date, move.DateString());
 			dialog.hide();
 		}
@@ -232,16 +292,7 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void setResult(String text, String value)
 		{
-			form.setValue(R.id.nature, text);
-			move.Nature = Integer.parseInt(value);
-			
-			int accountVisibility =
-				move.Nature == Constants.MoveNatureTransfer
-					? View.VISIBLE : View.GONE;
-			
-			findViewById(R.id.account).setVisibility(accountVisibility);
-			findViewById(R.id.account_label).setVisibility(accountVisibility);
-				
+			setNature(text, value);
 		}
 
 		@Override
@@ -249,6 +300,19 @@ public class MoveActivity extends SmartActivity {
 		{
 			message.alertError(R.string.error_convert_result);
 		}
+	}
+
+	public void setNature(String text, String value)
+	{
+		form.setValue(R.id.nature, text);
+		move.Nature = Integer.parseInt(value);
+		
+		int accountVisibility =
+			move.Nature == Constants.MoveNatureTransfer
+				? View.VISIBLE : View.GONE;
+		
+		findViewById(R.id.account).setVisibility(accountVisibility);
+		findViewById(R.id.account_label).setVisibility(accountVisibility);
 	}
 
 	
@@ -296,6 +360,10 @@ public class MoveActivity extends SmartActivity {
 	
 	
 	
+	public void useDetailed() {
+		useDetailed(null);
+	}
+	
 	public void useDetailed(View view) {
 		findViewById(R.id.simple_value).setVisibility(View.GONE);
 		findViewById(R.id.detailed_value).setVisibility(View.VISIBLE);
@@ -333,13 +401,17 @@ public class MoveActivity extends SmartActivity {
 
 		move.Add(description, amount, value);
 
-		DetailBox row = new DetailBox(this, move, description, amount, value);
-		LinearLayout list = (LinearLayout) findViewById(R.id.details);
-		list.addView(row);
+		addViewDetail(move, description, amount, value);
 		
 		scrollToTheEnd();
 	}
 	
+	private void addViewDetail(Move move, String description, int amount, double value)
+	{
+		DetailBox row = new DetailBox(this, move, description, amount, value);
+		LinearLayout list = (LinearLayout) findViewById(R.id.details);
+		list.addView(row);
+	}
 	
 	
 	public void save(View view)

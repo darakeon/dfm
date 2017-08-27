@@ -109,6 +109,10 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Escrever Termos de Uso
 						Fazer licença do google impedir o usuário de continuar caso dê negativo
 
+VERSÃO 2.0.0.1 (System) - 1
+================================================================================================
+2014-06-01	2014-06-02	Ajustar perda de dados da movimentação quando muda a orientação
+
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
 2014-05-28				Colocar o link do play no site
