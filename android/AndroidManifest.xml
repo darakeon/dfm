@@ -8,8 +8,10 @@
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
+        android:protectionLevel="signature" />
 
     <application
         android:allowBackup="true"
