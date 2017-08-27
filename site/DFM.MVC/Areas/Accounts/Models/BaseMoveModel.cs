@@ -28,7 +28,8 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             GenericMove = iMove;
 
-            Date = DateTime.Today;
+            if (Date == DateTime.MinValue)
+                Date = DateTime.Today;
 
             AccountName = iMove.Nature == MoveNature.Transfer
                 ? iMove.AccIn().Name : null;
