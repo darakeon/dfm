@@ -108,6 +108,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Criar produto no google play
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
+						Deletar PageLog
 						Arrumar tabela em caso de texto grande
 						Exibir apenas dois dígitos nos centavos no mobile
 						Trocar língua antes de renderizar a tela
