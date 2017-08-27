@@ -25,6 +25,20 @@
             comeToBegin ? max :
             current + add;
 
+        var parentInput = $(navigatorID).attr("parent");
+
+        if ($(parentInput).length) {
+            var old = $(parentInput).val() * 1;
+
+            if (comeToEnd) {
+                $(parentInput).val(old + 1);
+            }
+
+            if (comeToBegin) {
+                $(parentInput).val(old - 1);
+            }
+        }
+
     });
 
     $("button#NavGo").click(function () {

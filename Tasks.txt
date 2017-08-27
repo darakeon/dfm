@@ -102,7 +102,7 @@ VERSÃO 2.0.1.0 (Little Change)
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 F						Disponibilizar Task list no site
-F						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
+2014-12-07	2014-12-07	Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 2014-12-07	2014-12-07	Procurar TO-DOs no projeto
 2014-12-07	2014-12-07	Refactor em controllers e areas, inverter plural
 2014-12-07	2014-12-07	Trocar Extensions Sum para Total
