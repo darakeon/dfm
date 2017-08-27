@@ -2,6 +2,7 @@
 {
 	float: right;
 	margin-top: 0px;
+	white-space: nowrap;
 }
 
 .menu-topo li
@@ -30,6 +31,7 @@
     float: left;
     margin: -20px 0 0 -20px;
     padding: 0;
+	white-space: nowrap;
 }
 
 h2
@@ -49,6 +51,11 @@ h2
 	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
 	background: -moz-linear-gradient(top,  #999,  #333);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
+}
+
+.menu-baixo li:first-child
+{
+	border-radius: 10px 0 15px 15px;
 }
 
 .menu-baixo li a

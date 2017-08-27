@@ -38,7 +38,7 @@ div#Main {
 	min-height: 500px;
 	width: 910px;
 	padding: 20px;
-	border-radius: 0 0 50px 0;
+	border-radius: 10px 0 50px 0;
     box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.7);
 }
 

@@ -30,6 +30,7 @@
     <Account text="Account" />
     <Accounts text="Accounts" />
     <Move text="Move" />
+    <Moves text="Moves" />
     <Category text="Category" />
     <Categories text="Categories" />
     <Detail text="Detail" />
@@ -93,6 +94,7 @@
     <Account text="Conta" />
     <Accounts text="Contas" />
     <Move text="Movimentação" />
+    <Moves text="Movimentações" />
     <Category text="Categoria" />
     <Categories text="Categorias" />
     <Detail text="Detalhe" />

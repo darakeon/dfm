@@ -4,7 +4,6 @@
     <Amount text="Amount" />
     <JustOneValue text="Just one value" />
     <Detailed text="Detailed" />
-    <Moves text="Moves" />
     <Daily text="Daily" />
     <Monthly text="Monthly" />
     <Yearly text="Yearly" />
@@ -18,7 +17,6 @@
     <Amount text="Qte" />
     <JustOneValue text="Valor único" />
     <Detailed text="Detalhado" />
-    <Moves text="Movimentações" />
     <Daily text="Diária" />
     <Monthly text="Mensal" />
     <Yearly text="Anual" />
