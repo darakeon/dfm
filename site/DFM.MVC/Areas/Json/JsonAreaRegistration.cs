@@ -18,7 +18,7 @@ namespace DFM.MVC.Areas.Json
             context.MapRoute(
                 RouteNames.Json,
                 "Json/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "User", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

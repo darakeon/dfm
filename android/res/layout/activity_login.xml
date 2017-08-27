@@ -10,13 +10,19 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <EditText 
-        android:id="@+id/username"
+    <TextView 
+        android:id="@+id/error_message"
  		android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/error_message" />
 
+    <EditText 
+        android:id="@+id/email"
+ 		android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+    
     <EditText 
         android:id="@+id/password"
  		android:layout_width="fill_parent"
@@ -25,6 +31,7 @@
         android:inputType="textPassword" />
 
     <Button
+        android:id="@+id/login_button"
  		android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter"

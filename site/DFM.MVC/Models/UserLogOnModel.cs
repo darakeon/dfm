@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {

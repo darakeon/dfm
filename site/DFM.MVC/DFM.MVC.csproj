@@ -125,6 +125,8 @@
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
+    <Compile Include="Areas\Json\Controllers\BaseJsonController.cs" />
+    <Compile Include="Areas\Json\Controllers\UserController.cs" />
     <Compile Include="Areas\Json\JsonAreaRegistration.cs" />
     <Compile Include="Areas\Json\Jsons\AccountJson.cs" />
     <Compile Include="Areas\Json\Jsons\CategoryJson.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Areas\Json\Jsons\SummaryJson.cs" />
     <Compile Include="Areas\Json\Jsons\TicketJson.cs" />
     <Compile Include="Areas\Json\Jsons\YearJson.cs" />
+    <Compile Include="Areas\Json\Models\UserLogOnModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
@@ -331,8 +334,6 @@
     <Content Include="Areas\Json\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Json\Controllers\" />
-    <Folder Include="Areas\Json\Models\" />
     <Folder Include="Areas\Json\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
