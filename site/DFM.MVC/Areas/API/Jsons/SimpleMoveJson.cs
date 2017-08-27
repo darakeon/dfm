@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.MVC.Areas.API.Helpers;
 
 namespace DFM.MVC.Areas.API.Jsons
 {
@@ -9,7 +10,7 @@ namespace DFM.MVC.Areas.API.Jsons
         public Int64 FakeID { get; set; }
         
         public String Description { get; set; }
-        public DateTime Date { get; set; }
+        public DFMDate Date { get; set; }
         public MoveNature Nature { get; set; }
 
         public Double Total { get; set; }
@@ -19,7 +20,7 @@ namespace DFM.MVC.Areas.API.Jsons
             FakeID = move.FakeID;
 
             Description = move.Description;
-            Date = move.Date;
+            Date = new DFMDate(move.Date);
 
             var accountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
 

@@ -131,6 +131,7 @@
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Helpers\Debug.cs" />
+    <Compile Include="Areas\API\Helpers\DFMDate.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
     <Compile Include="Areas\API\Jsons\AccountJson.cs" />
     <Compile Include="Areas\API\Jsons\DetailJson.cs" />

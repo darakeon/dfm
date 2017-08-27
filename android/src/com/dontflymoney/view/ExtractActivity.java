@@ -1,6 +1,7 @@
 ﻿package com.dontflymoney.view;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -11,6 +12,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -158,6 +161,23 @@ public class ExtractActivity extends SmartActivity
 		String description = move.getString("Description");
 		row.addView(createText(description, Gravity.LEFT));
 
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+		{
+			JSONObject date = move.getJSONObject("Date");
+			
+			Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, date.getInt("Year"));
+			calendar.set(Calendar.MONTH, date.getInt("Month"));
+            calendar.set(Calendar.DAY_OF_MONTH, date.getInt("Day"));
+            
+            DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
+			
+            TextView cell = createText(format.format(calendar.getTime()), Gravity.CENTER);
+            cell.setPadding(20, 20, 200, 20);
+            
+			row.addView(cell);
+		}
+
 		double total = move.getDouble("Total");
 		row.addView(createText(total, Gravity.RIGHT));
 		
@@ -165,6 +185,9 @@ public class ExtractActivity extends SmartActivity
 
 		main.addView(row);
 	}
+	
+	
+	
 	
 	private void setRowClick(TableRow row)
 	{
