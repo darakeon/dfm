@@ -40,11 +40,8 @@
     </a>
 </div>
 
-@if (DateTime.Now > new DateTime(2014, 6, 1) || Request["Android"] == "1")
-{
-    <a href="http://play.google.com/store/apps/details?id=com.dontflymoney.view" target="_blank" class="android-link"></a>
+<a href="http://play.google.com/store/apps/details?id=com.dontflymoney.view" target="_blank" class="android-link"></a>
 
-    @section Ps { 
-        @MultiLanguage.Dictionary["AndroidRobotLicenseText"]
-    }
+@section Ps { 
+    @MultiLanguage.Dictionary["AndroidRobotLicenseText"]
 }
