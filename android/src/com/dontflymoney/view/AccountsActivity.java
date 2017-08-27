@@ -15,6 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Site;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
@@ -44,15 +45,16 @@ public class AccountsActivity extends SmartActivity
 		getMain();
 		getAccounts();
 		
-		/*
-		Intent intent = new Intent(this, MoveActivity.class);
-		
-		intent.putExtra("accounturl", "x");
-		intent.putExtra("year", 2014);
-		intent.putExtra("month", 1);
-		
-		startActivity(intent);
-		*/
+		if (Site.IsLocal())
+		{
+			Intent intent = new Intent(this, MoveActivity.class);
+			
+			intent.putExtra("accounturl", "x");
+			intent.putExtra("year", 2014);
+			intent.putExtra("month", 1);
+			
+			startActivity(intent);
+		}
 	}
 	
 	private void getMain()

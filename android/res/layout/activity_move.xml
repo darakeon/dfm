@@ -7,6 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
@@ -37,22 +38,13 @@
 	        android:layout_height="wrap_content"
 	        android:hint="@string/date" />
    	    
-   	    <LinearLayout
+   	    <Button 
+   	        android:text="@string/pick"
 	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	   	    <EditText 
-		 		android:layout_width="0dp"
-		 		android:layout_weight="1"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/date"
-		        android:inputType="date" />
-	   	    <Button 
-	   	        android:text="@string/pick"
-	   	        android:textSize="12sp"
-		 		android:layout_width="wrap_content"
-		 		android:layout_height="wrap_content"
-		        android:onClick="showDatePicker" />
-   	    </LinearLayout>
+	        android:layout_height="wrap_content"
+	        android:id="@+id/date"
+	        android:onClick="showDatePicker" />
+   	    
    	    
    	    	 
    	    <View
@@ -66,22 +58,12 @@
 	        android:layout_height="wrap_content"
 	        android:text="@string/category" />
 	
-	   	<LinearLayout
+   	    <Button 
+   	        android:text="@string/pick"
+	        android:id="@+id/category"
 	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	   	    <EditText 
-		 		android:layout_width="0dp"
-		 		android:layout_weight="1"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/category"
-		        android:inputType="text" />
-	   	    <Button 
-	   	        android:text="@string/pick"
-	   	        android:textSize="12sp"
-		 		android:layout_width="wrap_content"
-		 		android:layout_height="wrap_content"
-		        android:onClick="changeCategory" />
-   	    </LinearLayout>
+	 		android:layout_height="wrap_content"
+	        android:onClick="changeCategory" />
    	    
    	    	 
    	    <View
@@ -89,26 +71,42 @@
 		    android:layout_height="35dp" />
 	   		    
 	   	
-	    <TextView
-	        android:id="@+id/nature_label"
-	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/nature" />
-
    	    <LinearLayout
 	 		android:layout_width="fill_parent"
 	        android:layout_height="wrap_content">
-		    <Spinner
+	   	    <TextView
+		        android:id="@+id/nature_label"
+		 		android:layout_width="0dp"
+		 		android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/nature" />
+	   	    <TextView
+		        android:id="@+id/account_label"
+		 		android:layout_width="0dp"
+		 		android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/account"
+		        android:visibility="gone" />
+	    </LinearLayout>
+	   	    
+   	    <LinearLayout
+	 		android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+		    <Button
+   	        	android:text="@string/pick"
 		        android:id="@+id/nature"
 		 		android:layout_width="0dp"
 		 		android:layout_weight="1"
-		        android:layout_height="wrap_content" />
+		        android:layout_height="wrap_content"
+	        	android:onClick="changeNature" />
 		    
-		    <Spinner
+		    <Button
+   	        	android:text="@string/pick"
 		        android:id="@+id/account"
 		 		android:layout_width="0dp"
 		 		android:layout_weight="1"
 		        android:layout_height="wrap_content"
+	        	android:onClick="changeAccount"
 		        android:visibility="gone" />
 	    </LinearLayout>
 	    	    	    
@@ -150,13 +148,6 @@
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:visibility="gone">
-	   	    
-	   	    <Button 
-	   	        android:text="@string/use_simple"
-	   	        android:textSize="12sp"
-		 		android:layout_width="fill_parent"
-		 		android:layout_height="wrap_content"
-		        android:onClick="useSimple" />
 	   	    
 	   	    <LinearLayout
 		 		android:layout_width="fill_parent"
@@ -223,7 +214,21 @@
 			        android:onClick="addDetail" />
 		   	    
 	   	    </LinearLayout>
-	   	    	   	    
+	   	    
+	   	    <LinearLayout
+	   	        android:id="@+id/details"
+	   	        android:orientation="vertical"
+		 		android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+	   	    </LinearLayout>
+	   	    
+	   	    <Button 
+	   	        android:text="@string/use_simple"
+	   	        android:textSize="12sp"
+		 		android:layout_width="fill_parent"
+		 		android:layout_height="wrap_content"
+		        android:onClick="useSimple" />
+	   	    	   	    	   	    
    	    </LinearLayout>
    	    	    
 	    	    

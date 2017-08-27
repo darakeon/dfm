@@ -37,10 +37,10 @@ public class Move
 			if (detail.Equals(description, amount, value))
 			{
 				Details.remove(detail);
-				break;
+				return;
 			}
 		}
 		
 	}
-    
+	
 }

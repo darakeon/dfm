@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.entities.Constants;
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
 import com.dontflymoney.viewhelper.LinearLayoutDetail;
@@ -73,18 +74,18 @@ public class MoveActivity extends SmartActivity {
 
 			try {
 				switch (step) {
-				case Populate: {
-					populateScreen(result);
-					break;
-				}
-				case Recording: {
-					backToExtract();
-					break;
-				}
-				default: {
-					alertError(getString(R.string.this_is_not_happening));
-					break;
-				}
+					case Populate: {
+						populateScreen(result);
+						break;
+					}
+					case Recording: {
+						backToExtract();
+						break;
+					}
+					default: {
+						alertError(getString(R.string.this_is_not_happening));
+						break;
+					}
 				}
 			} catch (JSONException e) {
 				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
@@ -128,9 +129,12 @@ public class MoveActivity extends SmartActivity {
 		public void onDateSet(DatePicker view, int year, int month, int day) {
 			Calendar date = Calendar.getInstance();
 			date.set(year, month, day);
-			SimpleDateFormat formatter = new SimpleDateFormat("DD/MM/yyyy",
-					Locale.getDefault());
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 			String dateInFull = formatter.format(date.getTime());
+			
+			MoveActivity.this.year = year;
+			MoveActivity.this.month = month;
+			MoveActivity.this.day = day;
 
 			setValue(R.id.date, dateInFull);
 			dialog.hide();
@@ -141,8 +145,7 @@ public class MoveActivity extends SmartActivity {
 	
 	public void changeCategory(View view) throws JSONException
 	{
-		showChangeList(categoryList, R.string.category, 
-				new DialogCategory(categoryList));
+		showChangeList(categoryList, R.string.category, new DialogCategory(categoryList));
 	}
 
 	class DialogCategory extends DialogSelectClickListener
@@ -165,36 +168,9 @@ public class MoveActivity extends SmartActivity {
 
 	
 	
-	public void changeAccount(View view) throws JSONException
-	{
-		showChangeList(accountList, R.string.account, 
-				new DialogAccount(accountList));
-	}
-
-	class DialogAccount extends DialogSelectClickListener
-	{
-		public DialogAccount(JSONArray list) { super(list); }
-
-		@Override
-		public void setResult(String text, String value)
-		{
-			setValue(R.id.account, text);
-			account = value;
-		}
-
-		@Override
-		public void handleError(JSONException exception)
-		{
-			alertError(R.string.error_convert_result);
-		}
-	}
-
-	
-	
 	public void changeNature(View view) throws JSONException
 	{
-		showChangeList(natureList, R.string.nature, 
-				new DialogNature(natureList));
+		showChangeList(natureList, R.string.nature, new DialogNature(natureList));
 	}
 
 	class DialogNature extends DialogSelectClickListener
@@ -206,6 +182,39 @@ public class MoveActivity extends SmartActivity {
 		{
 			setValue(R.id.nature, text);
 			nature = value;
+			
+			int accountVisibility =
+				value.equals(Constants.MoveNatureTransfer)
+					? View.VISIBLE : View.GONE;
+			
+			findViewById(R.id.account).setVisibility(accountVisibility);
+			findViewById(R.id.account_label).setVisibility(accountVisibility);
+				
+		}
+
+		@Override
+		public void handleError(JSONException exception)
+		{
+			alertError(R.string.error_convert_result);
+		}
+	}
+
+	
+	
+	public void changeAccount(View view) throws JSONException
+	{
+		showChangeList(accountList, R.string.account, new DialogAccount(accountList));
+	}
+
+	class DialogAccount extends DialogSelectClickListener
+	{
+		public DialogAccount(JSONArray list) { super(list); }
+
+		@Override
+		public void setResult(String text, String value)
+		{
+			setValue(R.id.account, text);
+			account = value;
 		}
 
 		@Override
@@ -236,18 +245,23 @@ public class MoveActivity extends SmartActivity {
 			alertError(getString(R.string.fill_all));
 			return;
 		}
+		
+		setValue(R.id.detail_description, "");
+		setValue(R.id.detail_amount, "");
+		setValue(R.id.detail_value, "");
 
 		int amount = Integer.parseInt(amountStr);
 		double value = Double.parseDouble(valueStr);
 
 		move.Add(description, amount, value);
 
-		LinearLayoutDetail row = new LinearLayoutDetail(this, move,
-				description, amount, value);
-		LinearLayout list = (LinearLayout) view.getParent().getParent();
+		LinearLayoutDetail row = new LinearLayoutDetail(this, move, description, amount, value);
+		LinearLayout list = (LinearLayout) findViewById(R.id.details);
 		list.addView(row);
 	}
-
+	
+	
+	
 	public void refresh(MenuItem menuItem) {
 		populateScreen();
 	}
