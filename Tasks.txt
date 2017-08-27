@@ -1,23 +1,23 @@
-﻿VERSÃO 3.1.4.0
+﻿VERSÃO 3.1.4.0 (Little change) - 1?
 ================================================================================================
 						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
 
-VERSÃO 3.1.3.0
+VERSÃO 3.1.3.0 (Little change) - 2?
 ================================================================================================
 						Categorização múltipla da movimentação
 						"Adivinhar" categoria
 
-VERSÃO 3.1.2.0
+VERSÃO 3.1.2.0 (Little change) - 2?
 ================================================================================================
 						relatórios de mais de uma conta
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 3.1.1.0
+VERSÃO 3.1.1.0 (Little change) - 2?
 ================================================================================================
 						Listar agendamentos para desativar (aparecerá deletar)
 						Mostrar gastos futuros no relatório mensal
 
-VERSÃO 3.1.0.0
+VERSÃO 3.1.0.0 (Big change) - 7?
 ================================================================================================
 						Procurar TO-DOs no projeto
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
@@ -27,7 +27,7 @@ VERSÃO 3.1.0.0
 					>>>	Colocar nome (ou apelido) no sign up
 						Separar dados adicionais de Conta em Options e User em Config
 
-VERSÃO 3.0.0.0
+VERSÃO 3.0.0.0 (All new) - 8?
 ================================================================================================
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 						Colocar soma de todas as contas
@@ -38,21 +38,20 @@ VERSÃO 3.0.0.0
 						Relatório mensal: selecione para mostrar soma
 						Relatório Período: com filtro por início e fim
 
-VERSÃO 2.2.0.0
+VERSÃO 2.2.0.0 (Big change) - 10?
 ================================================================================================
 					>>>	exportador de CSV
 					>>>	exportador de Money
 					>>>	exportador de Excel
 					>>>	gravador de exportação
 					>>>	transformador de exportação
-
 					>>>	transformador de importação
 					>>>	gravador de importação
 					>>>	importador de CSV
 					>>>	importador de Money
 					>>>	importador de Excel
 
-VERSÃO 2.1.0.0
+VERSÃO 2.1.0.0 (Big change) - 4?
 ================================================================================================
 						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
@@ -60,14 +59,14 @@ VERSÃO 2.1.0.0
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
 							possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.2.0
+VERSÃO 2.0.2.0 (Little change) - 4?
 ================================================================================================
 					>>>	Iluminar última movimentação verificada
 					>>>	Remover fundo do site
 					>>> Tirar listra de menu do ambiente logado
 						Colocar hover em TRs de tabela (destacar linha que está em cima)
 
-VERSÃO 2.0.1.0
+VERSÃO 2.0.1.0 (Little change) - 7?
 ================================================================================================
 						Trocar Extensions Sum para Total
 						Em Move, colocar Value como campo gravado e usar Total para exibição
@@ -77,7 +76,7 @@ VERSÃO 2.0.1.0
 					>>> Colocar combo das duas accounts
 						Trocar seleção de Out / In / Transfer por desenhos
 
-VERSÃO 2.0.0.1
+VERSÃO 2.0.0.1 (System) - 11?
 ================================================================================================
 						Travar schedule de conta fechada / deletada
 						Transformar Double em int, usar como centavos
@@ -91,7 +90,7 @@ VERSÃO 2.0.0.1
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
 
-VERSÃO 2.0.0.0
+VERSÃO 2.0.0.0 (All new) - 15?
 ================================================================================================
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
@@ -109,7 +108,7 @@ VERSÃO 2.0.0.0
 2013-09-28	2013-10-02	Rever layout (http://goodui.org/)
 2013-09-02	2013-09-02	Criar área Json
 
-VERSÃO 1.1.0.0 (Big change)
+VERSÃO 1.1.0.0 (Big change) - 5
 ================================================================================================
 2013-09-28	2013-09-28	Impedir datepicker de preencher hoje em edição
 2013-09-28	2013-09-28	Consertar datepicker no chrome
@@ -117,17 +116,17 @@ VERSÃO 1.1.0.0 (Big change)
 2013-09-27	2013-09-27	Colocar Categorias / Contas / Sair como botões no topo (interno)
 2013-09-27	2013-09-27	Remover topo do usuário logado
 
-VERSÃO 1.0.4.0 (Little change)
+VERSÃO 1.0.4.0 (Little change) - 2
 ================================================================================================
 2013-09-26	2013-09-27	Consertar inserção de movimentação detalhada
 2013-09-26	2013-09-26	Colocar ponto em milhar
 
-VERSÃO 1.0.3.1 (System)
+VERSÃO 1.0.3.1 (System) - 2
 ================================================================================================
 2013-08-30	2013-08-30	http://www.dontflymoney.com/Token/Received
 2013-08-24	2013-08-30	Mover lógica dos Controllers para os Models
 
-VERSÃO 1.0.3.0 (Little change)
+VERSÃO 1.0.3.0 (Little change) - 18
 ================================================================================================
 2013-08-18	2013-08-22	Colocar Broken em summary, e usar RobotService para consertar
 2013-08-09	2013-08-22	Resolver problema da atualização de Summaries em caso de mudança de valor
@@ -148,7 +147,7 @@ VERSÃO 1.0.3.0 (Little change)
 2013-03-16	2013-03-17	Substituir SelectByEmail de User por SelectByTicket
 2013-03-11	2013-03-14	Fazer ValidateAndGet pegar String de Ticket
 
-VERSÃO 1.0.2.3 (System)
+VERSÃO 1.0.2.3 (System) - 17
 ================================================================================================
 2013-03-07	2013-03-07	Proteger edição de hiddens, onde for necessário
 2013-03-07	2013-03-07	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
@@ -168,7 +167,7 @@ VERSÃO 1.0.2.3 (System)
 2012-10-17	2012-10-17	Colocar log por visita no site (IP, Data/Hora, Endereço)
 2012-10-17	2012-10-17	Arrumar configuração de e-mail para usar direito web.config
 
-VERSÃO 1.0.2.2 (System)
+VERSÃO 1.0.2.2 (System) - 22
 ================================================================================================
 2012-08-20	2012-08-21	Testes de Multilanguage
 2012-08-20	2012-08-20	Testar fechar conta e desativar categoria (MVC)
@@ -193,12 +192,12 @@ VERSÃO 1.0.2.2 (System)
 2012-04-06	2012-06-13	Implementar BDD
 2012-03-18	2012-04-06	Escrever BDD
 
-VERSÃO 1.0.2.1 (System)
+VERSÃO 1.0.2.1 (System) - 2
 ================================================================================================
 2012-03-21	2012-03-22	Fornecer detalhes do erro no e-mail de report
 2012-03-20	2012-03-20	Refactor Resharper
 
-VERSÃO 1.0.2.0 (Little change)
+VERSÃO 1.0.2.0 (Little change) - 13
 ================================================================================================
 2012-03-17	2012-03-17	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
 2012-03-16	2012-03-17	Testar Elmah com página tratada (Report > SeeYear)
@@ -212,10 +211,9 @@ VERSÃO 1.0.2.0 (Little change)
 2012-01-04	2012-01-27	Mudar Scheduler para usar FutureMove
 2011-12-28	2012-01-03	Criar superServices e migrar uso para ele
 2011-12-05	2011-12-19	Separar BusinessLogic de NHibernate
-----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
 2011-12-02	2011-12-05	Reorganização primária de camadas
 
-VERSÃO 1.0.1.0 (Little change)
+VERSÃO 1.0.1.0 (Little change) - 5
 ================================================================================================
 2011-11-25	2011-11-30	Testes e Publicação
 2011-10-25	2011-10-25	Erros tratados
@@ -223,7 +221,7 @@ VERSÃO 1.0.1.0 (Little change)
 2011-10-24	2011-10-25	Tentativa de passar Log4Net / Elmah para MySql: FAIL
 2011-10-19	2011-10-19	Log4Net / Elmah
 
-VERSÃO 1.0.0.4 (System)
+VERSÃO 1.0.0.4 (System) - 6
 ================================================================================================
 2011-11-11	2011-11-11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
 2011-11-09	2011-11-09	Verificar se recuperação de senha está desativando usuário
@@ -232,14 +230,14 @@ VERSÃO 1.0.0.4 (System)
 2011-11-08	2011-11-08	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 2011-10-23	2011-10-23	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 
-VERSÃO 1.0.0.3 (System)
+VERSÃO 1.0.0.3 (System) - 4
 ================================================================================================
 2011-10-13	2011-10-14	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
 2011-10-11	2011-10-13	Ícones ao invés de palavras nas listagem de contas
 2011-10-10	2011-10-10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 2011-10-02	2011-10-09	Recuperação de Senha - hashcode
 
-VERSÃO 1.0.0.2 (System)
+VERSÃO 1.0.0.2 (System) - 5
 ================================================================================================
 2011-10-01	2011-10-01	Colocar BETA no logo do site
 2011-10-01	2011-10-01	Escurecer mensagem de erro (inverter cor?)
@@ -247,12 +245,12 @@ VERSÃO 1.0.0.2 (System)
 2011-09-28	2011-10-01	Confirmação de senha
 2011-09-25	2011-09-26	Conflito de formato de data
 
-VERSÃO 1.0.0.1 (System)
+VERSÃO 1.0.0.1 (System) - 2
 ================================================================================================
 2011-09-24	2011-09-24	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 2011-09-24	2011-09-24	Consertar acesso NH no publicado
 
-VERSÃO 1.0.0.0 (All new)
+VERSÃO 1.0.0.0 (All new) - 52
 ================================================================================================
 2011-09-22	2011-09-22	Publicar
 2011-09-22	2011-09-22	Verificar no IE
