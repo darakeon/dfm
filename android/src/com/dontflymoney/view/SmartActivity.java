@@ -2,6 +2,10 @@ package com.dontflymoney.view;
 
 import java.text.DecimalFormat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
 public abstract class SmartActivity extends Activity
 {
@@ -153,6 +158,22 @@ public abstract class SmartActivity extends Activity
 	    	.setTitle("Ops!")
 	    	.setMessage(message)
 	    	.show();
+	}
+	
+	protected void showChangeList(JSONArray list, int titleId, DialogSelectClickListener selectList)
+		throws JSONException
+	{
+		CharSequence[] adapter = new CharSequence[list.length()];
+
+		for (int c = 0; c < list.length(); c++) {
+			JSONObject item = list.getJSONObject(c);
+			adapter[c] = item.getString("Text");
+		}
+
+		String title = getString(titleId);
+
+		new AlertDialog.Builder(this).setTitle(title)
+				.setItems(adapter, selectList).show();
 	}
 	
 	

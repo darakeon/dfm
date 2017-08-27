@@ -46,9 +46,10 @@
     <string name="date">date</string>
     <string name="category">category</string>
     <string name="nature">nature</string>
+    <string name="account">account</string>
     <string name="value">value</string>
     <string name="amount">qty</string>
-    <string name="pick_date">pick date</string>
+    <string name="pick">pick</string>
     <string name="use_detailed">details</string>
     <string name="use_simple">simple view</string>
     <string name="add_detail">+</string>

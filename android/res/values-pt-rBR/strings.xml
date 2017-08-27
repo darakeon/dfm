@@ -15,7 +15,7 @@
     <string name="u_r_offline">Sem conexão com a internet</string>
     <string name="error_set_parameters">Error ao setar parâmetros</string>
     <string name="error_post">Erro ao chamar site</string>
-    <string name="error_convert_eesult">Erro ao converter resultado</string>
+    <string name="error_convert_result">Erro ao converter resultado</string>
     <string name="error_contact_url">Erro ao chamar url</string>
     <string name="error_file_write">Erro ao tentar gravar arquivo</string>
 	<string name="error_file_not_found">Arquivo não encontrado</string>
@@ -46,9 +46,10 @@
     <string name="date">data</string>
     <string name="category">categoria</string>
     <string name="nature">natureza</string>
+    <string name="account">conta</string>
     <string name="value">valor</string>
     <string name="amount">qte</string>
-    <string name="pick_date">escolher</string>
+    <string name="pick">escolher</string>
     <string name="use_detailed">detalhes</string>
     <string name="use_simple">apenas valor</string>
     <string name="add_detail">+</string>

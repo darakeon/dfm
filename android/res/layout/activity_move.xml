@@ -45,9 +45,9 @@
 		 		android:layout_weight="1"
 		        android:layout_height="wrap_content"
 		        android:id="@+id/date"
-		        android:inputType="date"/>
+		        android:inputType="date" />
 	   	    <Button 
-	   	        android:text="@string/pick_date"
+	   	        android:text="@string/pick"
 	   	        android:textSize="12sp"
 		 		android:layout_width="wrap_content"
 		 		android:layout_height="wrap_content"
@@ -66,10 +66,22 @@
 	        android:layout_height="wrap_content"
 	        android:text="@string/category" />
 	
-	   	<Spinner
-	        android:id="@+id/category"
+	   	<LinearLayout
 	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content">
+	   	    <EditText 
+		 		android:layout_width="0dp"
+		 		android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/category"
+		        android:inputType="text" />
+	   	    <Button 
+	   	        android:text="@string/pick"
+	   	        android:textSize="12sp"
+		 		android:layout_width="wrap_content"
+		 		android:layout_height="wrap_content"
+		        android:onClick="changeCategory" />
+   	    </LinearLayout>
    	    
    	    	 
    	    <View
