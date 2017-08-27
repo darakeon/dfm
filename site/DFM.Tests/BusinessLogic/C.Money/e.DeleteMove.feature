@@ -58,7 +58,7 @@ Scenario: 9B. Delete with e-mail sender system ok
 	And the accountOut value will change in 10
 	And the accountIn value will change in -10
 
-Scenario: 9C. Delete move from schedule without Category
+Scenario: 9C. Delete move from schedule with Category
 	Given I have this future move to create
 		| Description | Date       | Nature | Value |
 		| Move Ce9C   | 2014-03-23 | Out    | 10    |

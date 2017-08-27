@@ -215,10 +215,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9C. Delete move from schedule without Category")]
-        public virtual void _9C_DeleteMoveFromScheduleWithoutCategory()
+        [NUnit.Framework.DescriptionAttribute("9C. Delete move from schedule with Category")]
+        public virtual void _9C_DeleteMoveFromScheduleWithCategory()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9C. Delete move from schedule without Category", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9C. Delete move from schedule with Category", ((string[])(null)));
 #line 61
 this.ScenarioSetup(scenarioInfo);
 #line hidden
