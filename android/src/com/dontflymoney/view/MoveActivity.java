@@ -239,7 +239,8 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void textChanged(String text)
 		{
-			move.Value = Double.parseDouble(text);
+			try { move.Value = Double.parseDouble(text); }
+			catch (NumberFormatException e) { }
 		}
 	}
 	
