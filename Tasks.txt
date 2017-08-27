@@ -108,6 +108,13 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Criar produto no google play
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
+						Exibir apenas dois dígitos nos centavos no mobile
+						Gravar a língua localmente, trocar antes de renderizar a tela
+						Arrumar tradução de nature
+						Colocar valores em inteiro no banco
+						Fazer activity só chamar porquinho se não foi só mudança de orientation
+						Fazer valor zero aparecer como azul
+						Arrumar layout e-mail para não ficar com marca de link
 2014-04-14	2014-04-14	Arrumar quando vira tela, que dá erro
 2014-04-14	2014-04-14	Listar logins para derrubar
 2014-04-14	2014-04-14	Colocar língua padrão do usuário como língua do browser dele
