@@ -58,6 +58,7 @@ public class MoveActivity extends SmartActivity {
 		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
 		
 		move.Date.set(year, month, day);
+		setValue(R.id.date, move.DateString());
 		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
 		
 		setDescriptionListener();
@@ -92,6 +93,11 @@ public class MoveActivity extends SmartActivity {
 		categoryList = data.getJSONArray("CategoryList");
 		accountList = data.getJSONArray("AccountList");
 		natureList = data.getJSONArray("NatureList");
+		
+		JSONObject firstNature = natureList.getJSONObject(0);
+		
+		setValue(R.id.nature, firstNature.getString("Text"));
+		move.Nature = firstNature.getInt("Value");
 	}
 
 	
