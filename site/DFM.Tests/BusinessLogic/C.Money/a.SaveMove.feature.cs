@@ -1995,6 +1995,103 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9E. Save with decimals")]
+        public virtual void _9E_SaveWithDecimals()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9E. Save with decimals", ((string[])(null)));
+#line 668
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table51.AddRow(new string[] {
+                        "Move Ca9E",
+                        "2014-12-30",
+                        "Out",
+                        "9.45"});
+#line 669
+ testRunner.Given("I have this move to create", ((string)(null)), table51);
+#line 672
+ testRunner.And("it has no Details");
+#line 673
+ testRunner.And("it has a Category");
+#line 674
+ testRunner.And("it has an Account Out");
+#line 675
+ testRunner.And("it has no Account In");
+#line 676
+ testRunner.When("I try to save the move");
+#line 677
+ testRunner.Then("I will receive no core error");
+#line 678
+ testRunner.And("the move will be saved");
+#line 679
+ testRunner.And("the accountOut value will change in -9.45");
+#line 680
+ testRunner.And("the month-category-accountOut value will change in 9.45");
+#line 681
+ testRunner.And("the year-category-accountOut value will change in 9.45");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9F. Save with decimals in details")]
+        public virtual void _9F_SaveWithDecimalsInDetails()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9F. Save with decimals in details", ((string[])(null)));
+#line 683
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table52.AddRow(new string[] {
+                        "Move Ca9F",
+                        "2014-12-30",
+                        "Out",
+                        ""});
+#line 684
+ testRunner.Given("I have this move to create", ((string)(null)), table52);
+#line hidden
+            TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table53.AddRow(new string[] {
+                        "Detail Ca9F",
+                        "1",
+                        "9.45"});
+#line 687
+ testRunner.And("the move has this details", ((string)(null)), table53);
+#line 690
+ testRunner.And("it has a Category");
+#line 691
+ testRunner.And("it has an Account Out");
+#line 692
+ testRunner.And("it has no Account In");
+#line 693
+ testRunner.When("I try to save the move");
+#line 694
+ testRunner.Then("I will receive no core error");
+#line 695
+ testRunner.And("the move will be saved");
+#line 696
+ testRunner.And("the accountOut value will change in -9.45");
+#line 697
+ testRunner.And("the month-category-accountOut value will change in 9.45");
+#line 698
+ testRunner.And("the year-category-accountOut value will change in 9.45");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

@@ -83,7 +83,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             Current.Clean();
         }
 
-        [Given(@"its Date is (\-?\d+) (\w+) ago")]
+        [Given(@"its Date is (\-?\d+\.?\d*) (\w+) ago")]
         public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
         {
             switch (frequency)

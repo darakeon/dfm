@@ -109,7 +109,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
 
 			if (!String.IsNullOrEmpty(moveData["Value"]))
-			    Move.Value = Int32.Parse(moveData["Value"]);
+			    Move.Value = Double.Parse(moveData["Value"]);
         }
         
 
@@ -234,7 +234,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         #endregion
 
         #region UpdateMove
-        [When(@"I change the move date in (\-?\d+) (\w+)")]
+        [When(@"I change the move date in (\-?\d+\.?\d*) (\w+)")]
         public void GivenIChangeTheMoveDateIn1Day(Int32 count, String frequency)
         {
             switch (frequency)
@@ -374,7 +374,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-accountOut value will change in (\-?\d+)")]
+        [Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldAccountOutValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
@@ -384,7 +384,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(AccountOutTotal + value, currentTotal);
         }
 
-        [Then(@"the new-accountOut value will change in (\-?\d+)")]
+        [Then(@"the new-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewAccountOutValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountOut.Name);
@@ -395,7 +395,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-year-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the old-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
@@ -407,7 +407,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(YearCategoryAccountOutTotal + value, summary.Out);
         }
 
-        [Then(@"the new-year-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Double value)
         {
 
@@ -421,7 +421,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-month-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the old-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
@@ -434,7 +434,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
         }
 
-        [Then(@"the new-month-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the new-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountOut.Name);
@@ -448,7 +448,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-accountIn value will change in (\-?\d+)")]
+        [Then(@"the old-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldAccountInValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
@@ -458,7 +458,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(AccountInTotal + value, currentTotal);
         }
 
-        [Then(@"the new-accountIn value will change in (\-?\d+)")]
+        [Then(@"the new-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewAccountInValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountIn.Name);
@@ -469,7 +469,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-year-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the old-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
@@ -481,7 +481,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
         }
 
-        [Then(@"the new-year-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Double value)
         {
 
@@ -495,7 +495,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
 
-        [Then(@"the old-month-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the old-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
@@ -508,7 +508,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
         }
 
-        [Then(@"the new-month-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the new-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Double value)
         {
             var account = GetOrCreateAccount(AccountIn.Name);
@@ -772,7 +772,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             makeMove(details, moveNature);
         }
 
-        [Given(@"I have a move with value (\-?\d+) \((\w+)\)")]
+        [Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)")]
         public void GivenIHaveAMoveWithValue(Double value, String nature)
         {
             var moveNature = EnumX.Parse<MoveNature>(nature);

@@ -262,8 +262,8 @@ namespace DFM.Tests.BusinessLogic
             Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
         }
 
-        
-        [Then(@"the accountOut value will change in (\-?\d+)")]
+
+        [Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheAccountOutValueWillDecreaseIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
@@ -273,7 +273,7 @@ namespace DFM.Tests.BusinessLogic
             Assert.AreEqual(AccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the month-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
@@ -286,7 +286,7 @@ namespace DFM.Tests.BusinessLogic
             Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
 
-        [Then(@"the year-category-accountOut value will change in (\-?\d+)")]
+        [Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
         public void ThenTheYearCategoryAccountOutValueWillChangeIn(Double change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
@@ -299,7 +299,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
 
-        [Then(@"the accountIn value will change in (\-?\d+)")]
+        [Then(@"the accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheAccountInValueWillIncreaseIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
@@ -309,7 +309,7 @@ namespace DFM.Tests.BusinessLogic
             Assert.AreEqual(AccountInTotal + change, currentTotal);
         }
 
-        [Then(@"the month-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheMonthCategoryAccountInValueWillChangeIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
@@ -322,7 +322,7 @@ namespace DFM.Tests.BusinessLogic
             Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
 
-        [Then(@"the year-category-accountIn value will change in (\-?\d+)")]
+        [Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
         public void ThenTheYearCategoryAccountInValueWillChangeIn(Double change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);

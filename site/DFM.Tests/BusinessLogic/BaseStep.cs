@@ -347,7 +347,7 @@ namespace DFM.Tests.BusinessLogic
             var newDetail = new Detail { Description = detailData["Description"] };
 
             if (!String.IsNullOrEmpty(detailData["Value"]))
-                newDetail.Value = Int32.Parse(detailData["Value"]);
+                newDetail.Value = Double.Parse(detailData["Value"]);
 
             if (!String.IsNullOrEmpty(detailData["Amount"]))
                 newDetail.Amount = Int16.Parse(detailData["Amount"]);

@@ -662,4 +662,37 @@ Scenario: 9D. Save with e-mail sender system ok and without category
 	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
-	
+
+
+
+Scenario: 9E. Save with decimals
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9E   | 2014-12-30 | Out    | 9.45  |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+	And the move will be saved
+	And the accountOut value will change in -9.45
+	And the month-category-accountOut value will change in 9.45
+	And the year-category-accountOut value will change in 9.45
+
+Scenario: 9F. Save with decimals in details
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9F   | 2014-12-30 | Out    |       |
+	And the move has this details
+		| Description | Amount | Value |
+		| Detail Ca9F | 1      | 9.45  |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+	And the move will be saved
+	And the accountOut value will change in -9.45
+	And the month-category-accountOut value will change in 9.45
+	And the year-category-accountOut value will change in 9.45
