@@ -17,15 +17,14 @@ public class License
 	LicenseChecker checker;
 	DfmLicenseCheckerCallback callback;
 		
-	public License(SmartActivity activity)
+	public License(SmartActivity activity, Message message)
 	{
 		AESObfuscator obfuscator = new AESObfuscator(SALT, activity.getPackageName(), Unique.GetKey());
 		ServerManagedPolicy policy = new ServerManagedPolicy(activity, obfuscator); 
 		String appKey = activity.getString(R.string.license_key);
 		
 		checker = new LicenseChecker(activity, policy, appKey);		
-
-		callback = new DfmLicenseCheckerCallback(activity);			
+		callback = new DfmLicenseCheckerCallback(activity, message);			
 	}
 	
 	public void Check()

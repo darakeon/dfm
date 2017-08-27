@@ -23,7 +23,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected Authentication Authentication;
 	
 	protected Form form;
-	public Message message;
+	protected Message message;
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
 	protected License license;
@@ -60,7 +60,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 		message = new Message(this);
 		navigation = new Navigation(this, Authentication);
 		resultHandler = new ResultHandler(this, message, navigation);
-		license = new License(this);
+		license = new License(this, message);
 	}
 
 	@Override

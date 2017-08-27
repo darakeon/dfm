@@ -3,6 +3,7 @@ package com.dontflymoney.viewhelper;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.dontflymoney.baseactivity.Message;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -11,10 +12,12 @@ import com.google.android.vending.licensing.Policy;
 public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 {
 	SmartActivity activity;
+	Message message;
 	
-	public DfmLicenseCheckerCallback(SmartActivity activity)
+	public DfmLicenseCheckerCallback(SmartActivity activity, Message message)
 	{
 		this.activity = activity;
+		this.message = message;
 	}
 	
     public void allow(int reason)
@@ -27,11 +30,11 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 
         if (reason == Policy.RETRY)
         {
-        	activity.message.alertRetryLicense();
+        	message.alertRetryLicense();
         }
         else
         {
-            activity.message.alertError("Allow");
+            message.alertError("Allow");
         }
     }
 
@@ -43,11 +46,11 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
             return;
         }
 
-        activity.message.alertError("dont_allow");
+        message.alertError("dont_allow");
         
         if (reason == Policy.RETRY)
         {
-        	activity.message.alertRetryLicense();
+        	message.alertRetryLicense();
         }
         else
         {
@@ -69,7 +72,7 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
         String genericMessage = activity.getString(R.string.license_error);
         String specificMessage = String.format(genericMessage, errorCode);
         
-        activity.message.alertError(specificMessage);
+        message.alertError(specificMessage);
 	}
 	
 }
