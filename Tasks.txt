@@ -25,6 +25,7 @@ VERSÃO 3.1.0.0 (Big change) - 6?
 					>>>	Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
 					>>>	Colocar nome (ou apelido) no sign up
+						Limitar o datepicker
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
 
 VERSÃO 3.0.0.0 (All new) - 8?
@@ -37,6 +38,7 @@ VERSÃO 3.0.0.0 (All new) - 8?
 						Possibilitar reabrir conta
 						Relatório mensal: selecione para mostrar soma
 						Relatório Período: com filtro por início e fim
+						Enviar e-mail se a move está abaixo dos limites amarelo e vermelho
 
 VERSÃO 2.2.0.0 (Big change) - 10?
 ================================================================================================
@@ -92,16 +94,25 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Remover GetOrCreate
 						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
+						Explicar url e sinalização da conta
+						Tirar descrição de transferência entre contas.
+						Arrumar agendamento detalhado
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-13)
 ================================================================================================
 						Criar produto no google play
+							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
+						Impedir de abrir o dfm em iframe / X-frame-options
+						HTTPS!!!
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
 						Colocar língua padrão do usuário como língua do browser dele
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Listar schedule / permitir parar ("deletar") schedule
+						Label do limite de agendamento
+						Label do detalhado
+						Mostrar data da move em modo paisagem
 2014-04-08				Trocar língua do mobile para língua do usuário
 2014-04-07	2014-04-07	Criar tela de configuração para usuário (Web)
 2014-04-07	2014-04-07	Redirecionar, após criar move, para tela de extrato do mês daquela move
