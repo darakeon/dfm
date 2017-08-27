@@ -119,7 +119,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Consertar edit da movimentação transfer
 						Handle differentely EConnReset
 						Remover Release do versionamento, mudar nome do db, usuário e senha
-						Retirar dados do post se forem senhas ou valores
+2014-05-11	2014-05-11	Retirar dados do post se forem senhas ou valores
 2014-05-10	2014-05-11	Consertar lentidão no server
 2014-05-04	2014-05-04	Deletar PageLog
 2014-05-04	2014-05-04	Consertar problema de salvar língua

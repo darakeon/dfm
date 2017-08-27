@@ -20,7 +20,12 @@ namespace DFM.MVC.Helpers.Global
             var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
             var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
 
+            Double value;
             var parameters = getDictionary.Union(postDictionary)
+                .Where(
+                    p => !p.Key.Contains("Password")
+                        && !Double.TryParse(p.Value, out value)
+                )
                 .ToDictionary(p => p.Key, p => p.Value);
 
             // TODO: Use Current here (when its in separate project)
