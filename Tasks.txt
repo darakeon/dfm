@@ -102,6 +102,7 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Tirar descrição de transferência entre contas.
 						Arrumar agendamento detalhado
 						Colocar valores em inteiro (double > int) no banco
+						Setar conta quando edita move transfer
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
