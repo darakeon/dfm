@@ -116,7 +116,7 @@ VERSÃO 2.0.1.0 (Little Change)
 						Atualizar projeto: MVC 5
 						Atualizar projeto: .NET 4.5
 						Atualizar projeto: VS 2013
-						Fix transform for rewrite
+2014-06-09	2014-06-09	Fix transform for rewrite
 2014-06-05				Review rotate logic
 2014-06-04	2014-06-05	Handle differentely EConnReset
 2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
