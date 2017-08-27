@@ -96,5 +96,13 @@ namespace DFM.MVC.Controllers
         }
 
 
+
+        public ActionResult Received()
+        {
+            return RedirectToActionPermanent("Index");
+        }
+
+
+
     }
 }
