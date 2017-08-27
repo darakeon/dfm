@@ -20,8 +20,8 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.entities.Constants;
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.viewhelper.AfterTextWatcher;
-import com.dontflymoney.viewhelper.DialogSelectClickListener;
 import com.dontflymoney.viewhelper.DetailBox;
+import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
 public class MoveActivity extends SmartActivity {
 	DatePickerDialog dialog;
@@ -80,7 +80,7 @@ public class MoveActivity extends SmartActivity {
 				break;
 			}
 			default: {
-				alertError(getString(R.string.this_is_not_happening));
+				alertError(R.string.this_is_not_happening);
 				break;
 			}
 		}
@@ -261,7 +261,7 @@ public class MoveActivity extends SmartActivity {
 		String valueStr = getValue(R.id.detail_value);
 
 		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty()) {
-			alertError(getString(R.string.fill_all));
+			alertError(R.string.fill_all);
 			return;
 		}
 		

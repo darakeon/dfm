@@ -138,6 +138,16 @@ public abstract class SmartActivity extends Activity
 		alertError(message.toString());
 	}
 	
+	protected void alertError(int resourceId, Exception e)
+	{
+		alertError(getString(resourceId)+ ": " + e.getLocalizedMessage());
+	}
+	
+	protected void alertError(int resourceId)
+	{
+		alertError(getString(resourceId));
+	}
+	
 	protected void alertError(String message)
 	{
 		View view = (View)activity.getWindow().getDecorView().findViewById(android.R.id.content);
@@ -222,7 +232,7 @@ public abstract class SmartActivity extends Activity
 		}
 		catch (JSONException e)
 		{
-			alertError(getString(R.string.error_activity_json) + ": " + e.getLocalizedMessage());
+			alertError(R.string.error_activity_json, e);
 		}
 	}
 
