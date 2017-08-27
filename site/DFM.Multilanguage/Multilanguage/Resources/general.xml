@@ -4,6 +4,7 @@
     
     <!--Actions-->
     <Enter text="Enter" />
+    <Login text="Login" />
     <SignUp text="Sign up" />
     <Create text="Create" />
     <Edit text="Edit" />
@@ -64,6 +65,7 @@
     
     <!--Actions-->
     <Enter text="Entrar" />
+    <Login text="Entrar" />
     <SignUp text="Cadastrar-se" />
     <Create text="Criar" />
     <Edit text="Editar" />

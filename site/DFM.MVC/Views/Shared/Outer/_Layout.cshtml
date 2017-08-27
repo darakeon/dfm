@@ -22,7 +22,7 @@
         }
         else
         {
-            <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "LogOn", controller = "User" }, new { @class = "fixItem" })</li>
+            <li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.Default, new { action = "LogOn", controller = "User" }, new { @class = "fixItem" })</li>
             <li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.Default, new { action = "SignUp", controller = "User" }, new { @class = "fixItem" })</li>
             <li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Token")</li>
         }
