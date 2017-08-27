@@ -1,6 +1,8 @@
 package com.dontflymoney.view;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,9 +10,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.dontflymoney.android.R;
-import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.site.Action;
 import com.dontflymoney.site.Controller;
 import com.dontflymoney.site.IRequestCaller;
@@ -40,7 +43,7 @@ public class Accounts extends Activity implements IRequestCaller {
 	SmartView form;
 	private void getAccounts()
 	{
-		form = new SmartView(button);
+		form = new SmartView(getWindow());
 
 		Request task = new Request(this, Controller.User, Action.Index);
 		task.execute();
@@ -64,15 +67,12 @@ public class Accounts extends Activity implements IRequestCaller {
 			
 			if (firstKey.equals("data"))
 			{
-				String ticket = json.get("data").toString();
-				Authentication.Set(getApplicationContext(), ticket);
-
-				callAccounts();
+				populateAccounts(json);
 				
 				return;
 			}
 
-			form.SetText(R.id.error_message, "Ticket not found.");
+			form.SetText(R.id.error_message, "Problem on response.");
 		}
 		catch (JSONException e)
 		{
@@ -82,6 +82,30 @@ public class Accounts extends Activity implements IRequestCaller {
 	}
 
 	
+	private void populateAccounts(JSONObject json) throws JSONException
+	{
+		JSONObject data = null;
+		
+		data = (JSONObject)json.get("data");
+		
+        Iterator<?> keys = data.keys();
+
+		List<String> myStringArray = new ArrayList<String>();
+
+		while( keys.hasNext() )
+        {
+    		
+        }
+		
+		
+		ArrayAdapter<String> adapter = 
+			new ArrayAdapter<String>(this, 
+		        android.R.layout.activity_list_item, myStringArray);
+		
+		ListView listView = (ListView) findViewById(R.id.listview);
+		listView.setAdapter(adapter);		
+	}
+
 	@Override
 	public void Error(Exception exception)
 	{

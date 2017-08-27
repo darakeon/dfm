@@ -29,8 +29,10 @@ public class Login extends Activity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		verifyLogin();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -42,9 +44,20 @@ public class Login extends Activity
 	
 	SmartView form;
 	
+	private void verifyLogin()
+	{
+		String ticket = Authentication.Get(getApplicationContext());
+		
+		if (ticket != null)
+		{
+			callAccounts();
+		}
+		
+	}
+	
 	public void login(View button)
 	{
-		form = new SmartView(button);
+		form = new SmartView(getWindow());
 		
 		
 		String email = form.GetValue(R.id.email);

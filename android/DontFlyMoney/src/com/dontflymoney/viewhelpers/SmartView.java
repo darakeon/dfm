@@ -1,6 +1,7 @@
 package com.dontflymoney.viewhelpers;
 
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -9,12 +10,12 @@ public class SmartView
 	View view;
 	
 	
-	public SmartView(View button)
+	public SmartView(Window window)
 	{
-		view = (View)button.getParent();  
+		view = (View)window.getDecorView().findViewById(android.R.id.content);  
 	}
-	
-	
+
+
 	@SuppressWarnings("unchecked")
 	private <T extends View> T getField(int id)
 	{

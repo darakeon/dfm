@@ -14,7 +14,7 @@ public class Authentication
 		ticketFile.WriteToFile(ticket);
 	}
 	
-	public static String Get(Context context, String ticket)
+	public static String Get(Context context)
 	{
 		File ticketFile = new File(context, FileNames.Ticket);
 		
