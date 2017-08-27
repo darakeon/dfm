@@ -48,12 +48,12 @@ public class LoginActivity extends SmartActivity
 			
 			if (result.has("error"))
 			{
-				String error = result.get("error").toString();
+				String error = result.getString("error");
 				AlertError(error);
 			}
 			else
 			{
-				String ticket = result.get("data").toString();
+				String ticket = result.getString("data");
 				Authentication.Set(ticket);
 				
 				Redirect(AccountsActivity.class);

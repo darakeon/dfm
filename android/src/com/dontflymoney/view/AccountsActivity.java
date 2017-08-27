@@ -1,17 +1,14 @@
 package com.dontflymoney.view;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.dontflymoney.api.Request;
-import com.dontflymoney.auth.Authentication;
-
 import android.os.Bundle;
-import android.provider.Settings.Secure;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.dontflymoney.api.Request;
 
 public class AccountsActivity extends SmartActivity
 {
@@ -71,7 +68,21 @@ public class AccountsActivity extends SmartActivity
 		}
 		else
 		{
-			Object data = result.get("data");
+			JSONObject data = result.getJSONObject("data");
+			JSONArray accountList = data.getJSONArray("AccountList"); 
+			
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+			        android.R.layout.simple_list_item_1);
+			
+			for(int a = 0; a < accountList.length(); a++)
+			{
+				JSONObject account = accountList.getJSONObject(a);
+				
+				adapter.add(account.getString("Name"));
+			}
+
+			ListView listView = (ListView) findViewById(R.id.accountlist);
+			listView.setAdapter(adapter);
 		}
 	}	
 	
