@@ -65,7 +65,7 @@ namespace DFM.MVC.Helpers.Global
 
         private static String key
         {
-            get { return MyCookie.Get(); }
+            get { return MyCookie.Get().Key; }
         }
 
 

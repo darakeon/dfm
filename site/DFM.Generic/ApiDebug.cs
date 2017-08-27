@@ -2,13 +2,13 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace DFM.MVC.Areas.API.Helpers
+namespace DFM.Generic
 {
-    public class Debug
+    public class ApiDebug
     {
         private const String filename = "../../pseudo-debug.txt";
 
-        internal static void Log(object obj)
+        public static void Log(object obj)
         {
             File.AppendAllText(filename, "\n" + JsonConvert.SerializeObject(obj));
         }

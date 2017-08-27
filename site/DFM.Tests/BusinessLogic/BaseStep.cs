@@ -100,7 +100,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, Token.New());
+                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, MyCookie.Get());
                 return null;
             }
             catch (DFMCoreException e)
@@ -151,11 +151,9 @@ namespace DFM.Tests.BusinessLogic
 
         protected User GetSavedUser(String email, String password)
         {
-            var ticketKey = Token.New();
+            var key = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
 
-            SA.Safe.ValidateUserAndCreateTicket(email, password, ticketKey);
-
-            return SA.Safe.GetUserByTicket(ticketKey);
+            return SA.Safe.GetUserByTicket(key);
         }
         #endregion
 

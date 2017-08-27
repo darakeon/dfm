@@ -28,6 +28,6 @@
     <Repeat text="Repetir" />
     <ShowInstallment text="Exibir número da parcela na descrição da Movimentação" />
     <NoSchedules text="Não há agendamentos" />
-    <ConfirmDeleteSchedule text="Realmente deseja APAGAR a o Agendamento '{0}'?" />
+    <ConfirmDeleteSchedule text="Realmente deseja APAGAR o Agendamento '{0}'?" />
   </pt-BR>
 </schedule>

@@ -15,7 +15,7 @@ namespace DFM.Authentication
         }
 
 
-        public String Ticket
+        public PseudoTicket Ticket
         {
             get { return MyCookie.Get(); }
         }
@@ -26,7 +26,7 @@ namespace DFM.Authentication
             {
                 try
                 {
-                    return userService.GetUserByTicket(Ticket);
+                    return userService.GetUserByTicket(Ticket.Key);
                 }
                 catch (DFMException)
                 {
@@ -69,7 +69,7 @@ namespace DFM.Authentication
 
         public void Clean()
         {
-            userService.DisableTicket(Ticket);
+            userService.DisableTicket(Ticket.Key);
         }
         
 

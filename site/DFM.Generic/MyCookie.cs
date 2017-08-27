@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web;
 using Ak.MVC.Route;
 
@@ -6,25 +7,32 @@ namespace DFM.Generic
 {
     public static class MyCookie
     {
-        public static String Get()
+        public static PseudoTicket Get()
         {
             if (context == null)
-                return local ?? (local = Token.New());
+            {
+                var ticket = local ?? (local = Token.New());
+                return new PseudoTicket(ticket, TicketType.Local);
+            }
 
             var routeData = new RouteInfo().RouteData;
 
-            if (routeData != null)
-            {
-                var ticket = routeData.Values["ticket"];
+            var routeTicket = routeData.Values["ticket"];
 
-                if (ticket != null)
-                    return ticket.ToString();
-            }
+            if (routeTicket != null)
+                return new PseudoTicket(routeTicket.ToString(), TicketType.Cellphone);
 
             if (get() == null)
                 add(Token.New());
 
-            return get();
+            var isApi = context.Request.Url.AbsolutePath
+                .StartsWith("/API", StringComparison.InvariantCultureIgnoreCase);
+
+            var type = isApi
+                ? TicketType.Cellphone 
+                : TicketType.Browser;
+
+            return new PseudoTicket(get(), type);
         }
 
 

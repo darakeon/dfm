@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
+using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
@@ -23,7 +24,18 @@ namespace DFM.MVC.Areas.API.Controllers
             if (result != null)
                 return JsonGetError(MultiLanguage.Dictionary[result]);
 
-            return JsonGet(new { ticket = Current.Ticket });
+            return JsonGet(new { ticket = Current.Ticket.Key });
+        }
+
+
+
+        public ActionResult Logout()
+        {
+            var model = new SafeModel();
+
+            model.LogOff();
+
+            return JsonGet(new { success = true });
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
@@ -55,6 +56,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             get { return Get<SecurityAction>("Action"); }
             set { Set("Action", value); }
+        }
+
+        private static IList<Ticket> logins
+        {
+            get { return Get<IList<Ticket>>("logins"); }
+            set { Set("logins", value); }
         }
         #endregion
 
@@ -201,9 +208,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            var ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+            var ticketKey = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
             
-            User = SA.Safe.GetUserByTicket(ticket);
+            User = SA.Safe.GetUserByTicket(ticketKey);
 
             Assert.IsTrue(User.Active);
         }
@@ -227,7 +234,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Token.New());
+                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
             }
             catch (DFMCoreException e)
             {
@@ -427,6 +434,53 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         }
         #endregion
 
+        #region ListLogins
+        [Given(@"I login the user")]
+        public void GivenILoginTheUser()
+        {
+            Current.Set(UserEmail, UserPassword);
+        }
+
+        [Given(@"I logoff the user")]
+        public void GivenILogoffTheUser()
+        {
+            Current.Clean();
+        }
+
+        [When(@"I ask for current active logins")]
+        public void WhenIAskForCurrentActiveLogins()
+        {
+            try
+            {
+                logins = SA.Safe.ListLogins();
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"they will be active")]
+        public void ThenTheyWillBeActive()
+        {
+            foreach (var login in logins)
+            {
+                Assert.IsTrue(login.Active);
+            }
+        }
+        
+        [Then(@"they will not have sensible information")]
+        public void ThenTheyWillNotHaveSensibleInformation()
+        {
+            foreach (var login in logins)
+            {
+                Assert.AreEqual(Defaults.TicketShowedPart, login.Key.Length);
+                Assert.AreEqual(0, login.ID);
+                Assert.IsNull(login.User);
+            }
+        }
+        #endregion
+
 
 
         #region MoreThanOne
@@ -506,7 +560,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I have a ticket of this user")]
         public void GivenIHaveATicketOfThisUser()
         {
-            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Token.New());
+            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
         }
 
         

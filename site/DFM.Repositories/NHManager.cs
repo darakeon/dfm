@@ -104,7 +104,7 @@ namespace DFM.Repositories
 
         private static String key
         {
-            get { return MyCookie.Get(); }
+            get { return MyCookie.Get().Key; }
         }
 
         private static String keyOld

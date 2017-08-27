@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -174,7 +178,7 @@ namespace DFM.BusinessLogic.Services
             return ticket.User;
         }
 
-        public String ValidateUserAndCreateTicket(String email, String password, String ticketKey)
+        public String ValidateUserAndCreateTicket(String email, String password, PseudoTicket pseudoTicket)
         {
             BeginTransaction();
             
@@ -182,11 +186,11 @@ namespace DFM.BusinessLogic.Services
             {
                 var user = userRepository.ValidateAndGet(email, password);
 
-                var ticket = ticketRepository.GetByKey(ticketKey);
+                var ticket = ticketRepository.GetByKey(pseudoTicket.Key);
 
                 if (ticket == null)
                 {
-                    ticket = ticketRepository.Create(user, ticketKey);
+                    ticket = ticketRepository.Create(user, pseudoTicket);
                 }
                 else if (ticket.User.Email != email)
                 {
@@ -210,14 +214,12 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var ticket = ticketRepository.GetByKey(ticketKey);
+                var ticket = ticketKey.Length == Defaults.TicketShowedPart
+                    ? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
+                    : ticketRepository.GetByKey(ticketKey);
 
                 if (ticket != null && ticket.Active)
                 {
-                    ticket.Key += DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff");
-                    ticket.Active = false;
-                    ticket.Expiration = DateTime.UtcNow;
-
                     ticketRepository.Disable(ticket);
                 }
 
@@ -237,6 +239,34 @@ namespace DFM.BusinessLogic.Services
             if (Parent.Current.User == null || !Parent.Current.User.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
         }
+
+
+
+        public IList<Ticket> ListLogins()
+        {
+            var user = Parent.Current.User;
+
+            var tickets = ticketRepository.List(user);
+
+            var logins = new List<Ticket>();
+
+            foreach (var ticket in tickets)
+            {
+                var login = new Ticket
+                {
+                    Active = ticket.Active,
+                    Creation = ticket.Creation,
+                    Expiration = ticket.Expiration,
+                    Key = ticket.Key.Substring(0, Defaults.TicketShowedPart),
+                    Type = ticket.Type,
+                };
+
+                logins.Add(login);
+            }
+
+            return logins;
+        }
+
 
     }
 }

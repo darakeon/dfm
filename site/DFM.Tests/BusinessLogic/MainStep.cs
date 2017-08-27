@@ -9,7 +9,7 @@ namespace DFM.Tests.BusinessLogic
     public class MainStep : BaseStep
     {
         [Given(@"I have an active user")]
-        public void GivenIHaveAnUser()
+        public void GivenIHaveAnActiveUser()
         {
             CreateUserIfNotExists(UserEmail, UserPassword, true);
 

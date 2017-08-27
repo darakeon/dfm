@@ -42,6 +42,7 @@
     <Nature text="Nature" />
     <TheSchedule text="Schedule" />
     <Schedules text="Schedules" />
+    <Logins text="Logins" />
 
     <!--Enums-->
     <In text="In" />
@@ -104,6 +105,7 @@
     <Nature text="Natureza" />
     <TheSchedule text="Agendamento" />
     <Schedules text="Agendamentos" />
+    <Logins text="Logins" />
 
     <!--Enums-->
     <In text="Entrada" />

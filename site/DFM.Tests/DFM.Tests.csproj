@@ -81,6 +81,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveUserAndSendVerify.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\k.ListLogins.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>k.ListLogins.feature</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\_A.SafeStep.cs" />
     <Compile Include="BusinessLogic\B.Admin\a.SaveAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -216,6 +221,10 @@
     <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>j.DisableTicket.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\k.ListLogins.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>k.ListLogins.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

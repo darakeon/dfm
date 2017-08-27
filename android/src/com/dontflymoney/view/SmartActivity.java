@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.language.Language;
@@ -201,7 +202,12 @@ public abstract class SmartActivity extends Activity
 	
 	protected void logout()
 	{
+		Request request = new Request(this, "Users/Logout");
+		request.AddParameter("ticket", Authentication.Get());
+		request.Post();
+
 		Authentication.Clear();
+
 		redirect(LoginActivity.class);
 	}
 	
@@ -250,7 +256,8 @@ public abstract class SmartActivity extends Activity
 				
 				alertError(error);
 
-				if (error.contains(getString(R.string.uninvited)))
+				if (error.contains(getString(R.string.uninvited))
+					|| error.contains("uninvited"))
 				{
 					logout();
 				}				

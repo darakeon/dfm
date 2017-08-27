@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Entities;
+using DFM.Generic;
 
 namespace DFM.Authentication
 {
@@ -7,7 +8,7 @@ namespace DFM.Authentication
     {
         User GetUserByTicket(String ticket);
 
-        String ValidateUserAndCreateTicket(String username, String password, String ticket);
+        String ValidateUserAndCreateTicket(String username, String password, PseudoTicket ticket);
 
         void DisableTicket(String ticket);
 

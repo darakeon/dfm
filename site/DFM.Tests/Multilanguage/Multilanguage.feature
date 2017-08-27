@@ -314,6 +314,7 @@ Scenario: 12. Get translate of Interface (general)
 		| General | Total       |
 		| General | Schedules   |
 		| General | TheSchedule |
+		| General | Logins      |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -352,8 +353,22 @@ Scenario: 13. Get translate of Interface (schedule)
 	Then I will receive no multilanguage error
 
 
+Scenario: 14. Get translate of Interface (logins)
+	Given I have these keys
+		| Section | Phrase             |
+		| Logins  | Creation           |
+		| Logins  | Expiration         |
+		| Logins  | Type               |
+		| Logins  | Cellphone          |
+		| Logins  | Browser            |
+		| Logins  | ConfirmDeleteLogin |
+		| Logins  | LoginRegister      |
+	When I try get the translate
+	Then I will receive no multilanguage error
 
-Scenario: 14. Get translations of E-mail Stati
+
+
+Scenario: 15. Get translations of E-mail Stati
 	Given I have these keys
 		| Section | Phrase         |
 		| Email   | EmailDisabled  |

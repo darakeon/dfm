@@ -9,5 +9,7 @@ namespace DFM.BusinessLogic.Helpers
         public const Boolean ConfigSendMoveEmail = false;
         public const Boolean ConfigUseCategories = true;
 
+        public const Int32 TicketShowedPart = 5;
+
     }
 }

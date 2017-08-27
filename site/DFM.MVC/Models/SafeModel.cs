@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.MVC.Models
 {
@@ -44,6 +45,14 @@ namespace DFM.MVC.Models
         {
             Current.Clean();
         }
+
+
+
+        internal void DisableLogin(String key)
+        {
+            Safe.DisableTicket(key);
+        }
+
 
     }
 }
