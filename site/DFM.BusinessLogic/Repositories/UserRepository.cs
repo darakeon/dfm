@@ -113,8 +113,6 @@ namespace DFM.BusinessLogic.Repositories
 
             user.Active = false;
             
-            // TODO: update this to set the person browser language
-            user.Config.Language = Defaults.ConfigLanguage;
             user.Config.TimeZone = Defaults.ConfigTimeZone;
             user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
             user.Config.UseCategories = Defaults.ConfigUseCategories;

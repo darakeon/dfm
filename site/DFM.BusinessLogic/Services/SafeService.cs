@@ -33,13 +33,21 @@ namespace DFM.BusinessLogic.Services
             createAndSendToken(user, SecurityAction.PasswordReset);
         }
         
-        public void SaveUserAndSendVerify(String email, String password)
+        public void SaveUserAndSendVerify(String email, String password, String language)
         {
             BeginTransaction();
 
             try
             {
-                var user = new User { Email = email, Password = password };
+                var user = new User
+                {
+                    Email = email, 
+                    Password = password,
+                    Config = new Config
+                    {
+                        Language = language
+                    }
+                };
 
                 user = userRepository.Save(user);
 

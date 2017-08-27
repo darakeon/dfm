@@ -4,6 +4,7 @@ using System.IO;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -76,7 +77,7 @@ namespace DFM.Tests.BusinessLogic
             {
                 case ExceptionPossibilities.InvalidUser:
 
-                    SA.Safe.SaveUserAndSendVerify(userEmail, userPassword);
+                    SA.Safe.SaveUserAndSendVerify(userEmail, userPassword, Defaults.ConfigLanguage);
 
                     if (shouldActivateUser)
                     {

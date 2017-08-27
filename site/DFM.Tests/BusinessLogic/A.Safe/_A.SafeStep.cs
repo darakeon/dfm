@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -75,7 +76,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
                 Password = password + "_diff",
             };
 
-            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password);
+            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.ConfigLanguage);
 
             var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
 
@@ -89,7 +90,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             try
             {
-                SA.Safe.SaveUserAndSendVerify(email, password);
+                SA.Safe.SaveUserAndSendVerify(email, password, Defaults.ConfigLanguage);
             }
             catch (DFMCoreException e)
             {

@@ -11,32 +11,11 @@ namespace DFM.MVC.Models
 {
     public class UserSignUpModel : BaseModel
     {
-        public UserSignUpModel()
-        {
-            User = new User
-            {
-                Config = new Config
-                {
-                    Language = MultiLanguage.Language
-                }
-            };
-        }
-
-        public User User { get; set; }
+        [Required(ErrorMessage = "*")]
+        public String Email { get; set; }
 
         [Required(ErrorMessage = "*")]
-        public String Email
-        {
-            get { return User.Email; }
-            set { User.Email = value; }
-        }
-
-        [Required(ErrorMessage = "*")]
-        public String Password
-        {
-            get { return User.Password; }
-            set { User.Password = value; }
-        }
+        public String Password { get; set; }
 
         [Required(ErrorMessage = "*")]
         public String RetypePassword { get; set; }
@@ -54,7 +33,7 @@ namespace DFM.MVC.Models
             {
                 try
                 {
-                    Safe.SaveUserAndSendVerify(User.Email, User.Password);
+                    Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language);
                 }
                 catch (DFMCoreException e)
                 {
