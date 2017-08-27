@@ -79,12 +79,8 @@ public class Request
 			return;
 		}
 		
-		HttpClient client = new DefaultHttpClient();
-		
 		String completeUrl = getUrl();
-		
 		HttpPost post = new HttpPost(completeUrl);
-
 	    List<NameValuePair> nameValuePairs = getParameters();
 
 	    try
@@ -97,6 +93,7 @@ public class Request
 			return;
 		}
 
+		HttpClient client = new DefaultHttpClient();
 	    HttpResponse response = getResponse(client, post);
 
 	    if (response != null)

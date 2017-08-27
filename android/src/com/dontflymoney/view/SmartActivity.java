@@ -110,6 +110,7 @@ public class SmartActivity extends Activity
 		field.setGravity(gravity);
 		//TODO: put this on config
 		field.setTextSize(17);
+		field.setPadding(20, 20, 20, 20);
 		field.setTextColor(Color.BLACK);
 		
 		return field;
