@@ -89,16 +89,18 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Remover GetOrCreate
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Colocar frase de rodar robot no final de testes de create schedule
+						Corrigir para que movimentação sem categoria conserte realmente os summaries
 
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
-						Colocar botão de sair no mobile
 						Criar produto no google play
+						Resolver problema de tab na tela de criação de Move
+						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar lista de Categorias / Contas no combo em ordem alfabética
+						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Colocar Saldo Atual na tela de Extrato
 						Trocar botão de Contas por imagem de Home, botão de Sair por imagem de logout
-						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
-						Resolver problema de tab na tela de criação de Move
+						Colocar botão de sair no mobile
 						Consertar esquema de session do NH
 						Consertar problema dos testes de não mudar os summaries quando não tem categoria
 2014-03-16	2014-03-23	Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
