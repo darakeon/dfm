@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using DFM.Email.Exceptions;
@@ -10,10 +11,10 @@ namespace DFM.Email
 {
     public class Sender
     {
-        private String from, to, subject, body;
+        private readonly String from;
+        private String to, subject, body;
         private readonly IList<String> files;
-
-        public readonly String @default;
+        private readonly String @default;
         
         public static String SenderAddress
         {
@@ -81,29 +82,35 @@ namespace DFM.Email
             if (String.IsNullOrEmpty(to))
                 DFMEmailException.WithMessage(ExceptionPossibilities.InvalidAddressee);
 
-            var smtp = new SmtpClient { Timeout = 10000 };
+            var all = CM.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var net = (Smtp)all.GetSection("system.net/mailSettings/smtp");
+            var host = net.Network.Host;
 
-            var message = 
-                new MailMessage(from, to, subject, body)
-                    { IsBodyHtml = true };
-
-
-            var attachments = files.Select(
-                fileFullName => new Attachment(fileFullName));
-
-            foreach (var attachment in attachments)
+            using (var smtp = new SmtpClient(host) {Timeout = 10000})
             {
-                message.Attachments.Add(attachment);
-            }
-            
 
-            try
-            {
-                smtp.Send(message);
-            }
-            catch (Exception e)
-            {
-                throw new DFMEmailException(e);
+                try
+                {
+                    var message =
+                        new MailMessage(from, to, subject, body)
+                        {IsBodyHtml = true};
+
+
+                    var attachments = files.Select(
+                        fileFullName => new Attachment(fileFullName));
+
+                    foreach (var attachment in attachments)
+                    {
+                        message.Attachments.Add(attachment);
+                    }
+
+
+                    smtp.Send(message);
+                }
+                catch (Exception e)
+                {
+                    throw new DFMEmailException(e);
+                }
             }
 
         }

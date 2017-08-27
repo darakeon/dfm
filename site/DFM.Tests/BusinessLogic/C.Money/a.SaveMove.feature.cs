@@ -1859,10 +1859,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9B. Save with e-mail sender system fail")]
-        public virtual void _9B_SaveWithE_MailSenderSystemFail()
+        [NUnit.Framework.DescriptionAttribute("9B. Save with e-mail sender system out")]
+        public virtual void _9B_SaveWithE_MailSenderSystemOut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Save with e-mail sender system fail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Save with e-mail sender system out", ((string[])(null)));
 #line 618
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -1889,9 +1889,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 626
  testRunner.When("I try to save the move with e-mail system out");
 #line 627
- testRunner.Then("I will receive the notification");
+ testRunner.Then("I will receive no core error");
 #line 628
- testRunner.And("I will receive no core error");
+ testRunner.And("I will receive the notification");
 #line 629
  testRunner.And("the move will be saved");
 #line 630
@@ -1935,9 +1935,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 642
  testRunner.When("I try to save the move with e-mail system ok");
 #line 643
- testRunner.Then("I will receive no notification");
+ testRunner.Then("I will receive no core error");
 #line 644
- testRunner.And("I will receive no core error");
+ testRunner.And("I will receive no notification");
 #line 645
  testRunner.And("the move will be saved");
 #line 646

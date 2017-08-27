@@ -15,31 +15,31 @@ namespace DFM.Tests.BusinessLogic.Helpers
     class ConfigHelper
     {
         private static readonly Node configFile = new Node(@"DFM.Tests.dll.config");
-        private static String password;
+        private static String host;
 
         public static void BreakTheEmailSystem()
         {
-            changePassword(String.Empty);
+            changeHost(false);
         }
 
         internal static void FixTheEmailSystem()
         {
-            changePassword(password);
+            changeHost(true);
         }
 
-        private static void changePassword(String newPassword)
+        private static void changeHost(Boolean makeItWork)
         {
             var all = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var net = (SmtpSection)all.GetSection("system.net/mailSettings/smtp");
             var network = net.Network;
 
-            if (newPassword == String.Empty)
-                password = network.Password;
-            
-            network.Password = newPassword;
+            host = network.Host;
+
+            network.Host = makeItWork
+                ? network.Host.Replace("dont_work", String.Empty)
+                : "dont_work" + network.Host;
 
             all.Save();
-
             ConfigurationManager.RefreshSection("system.net/mailSettings/smtp");
         }
 

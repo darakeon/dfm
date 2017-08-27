@@ -147,7 +147,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
                 var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
-
                 EmailError = result.Error;
             }
             catch (DFMCoreException e)
@@ -171,7 +170,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
                 var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
-                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+                var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+                EmailError = result.Error;
             }
             catch (DFMCoreException e)
             {

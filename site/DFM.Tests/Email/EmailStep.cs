@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using DFM.Email;
 using DFM.Email.Exceptions;
 using DFM.Tests.BusinessLogic.Helpers;
