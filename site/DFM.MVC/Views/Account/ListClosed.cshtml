@@ -18,8 +18,8 @@ else
             <th>@MultiLanguage.Dictionary["Name"]</th>
             <th>@MultiLanguage.Dictionary["BeginDate"]</th>
             <th>@MultiLanguage.Dictionary["EndDate"]</th>
-            <th>@MultiLanguage.Dictionary["Value"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["GOTO"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
+            <!--th>@MultiLanguage.Dictionary["TODO"]</th-->
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -36,23 +36,26 @@ else
             var value = (negative ? -movesSum : movesSum).ToMoney(language);
 
             var sign = account.Sign();
-                    
 
-            var monthLabel = String.Format(MultiLanguage.Dictionary["MonthMoves"]);
-            var monthUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "ShowMoves", controller = "Report", accounturl = account.Url, id = monthReportId });
-                    
-            var yearLabel = String.Format(MultiLanguage.Dictionary["YearMoves"]);
-            var yearUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "SummarizeMonths", controller = "Report", accounturl = account.Url, id = endYear });
+            var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
+            var reopenUrl = Url.Action("Reopen", new { id = account.Name });
                         
             <tr>
-                <td>@account.Name </td>
-                <td>@account.BeginDate.ToShortDateString() </td>
-                <td>@account.EndDate.Value.ToShortDateString() </td>
+                <td>
+                    @Html.RouteLink(account.Name, RouteNames.Accounts, new { accounturl = account.Url, controller = "" })
+                </td>
+
+                <td>@account.BeginDate.ToShortDateString()</td>
+                <td>@account.EndDate.Value.ToShortDateString()</td>
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
+                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
 
-                <td class="image"><a href="@monthUrl"><img src="/Assets/image/month.gif" alt="@monthLabel" title="@monthLabel" /></a></td>
-                <td class="image"><a href="@yearUrl"><img src="/Assets/image/year.gif" alt="@yearLabel" title="@yearLabel" /></a></td>
+                <!--td class="image">
+                    <a href="@reopenUrl">
+                        <img src="/Assets/image/close.gif" alt="@reopenLabel" title="@reopenLabel" />
+                    </a>
+                </td-->
             </tr>
 
         } 

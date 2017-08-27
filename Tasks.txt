@@ -98,6 +98,9 @@ VERSÃO 2.0.0.0
 						Criar área Json
 2013-09-04				Criar DTOs
 2013-09-02				Criar App Mobile
+2013-10-02	2013-10-02	Ocultar Mover e Agendar da conta fechada
+2013-10-02	2013-10-02	Alterar contas fechadas para ficar igual abertas, mas sem edição
+						Consertar agendamento com detalhes
 2013-09-27			>>>	Rever layout (http://goodui.org/) (MERGE DAS TELAS INDEX / SIGN UP / LOGIN)
 
 VERSÃO 1.1.0.0 (Big change)

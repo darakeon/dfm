@@ -17,9 +17,6 @@ else
         <tr>
             <th width="500px">@MultiLanguage.Dictionary["Name"]</th>
             <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
-            <!--
-            <th colspan="2">@MultiLanguage.Dictionary["Move"]</th>
-            -->
             <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
@@ -35,19 +32,11 @@ else
             var sign = account.Sign();
             
             
-            var createLabel = MultiLanguage.Dictionary["Create", "Move"];
-            var createUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Create", controller = "Move", accounturl = account.Url });
-            
-            var scheduleLabel = MultiLanguage.Dictionary["Schedule", "Move"];
-            var scheduleUrl = Url.RouteUrl(RouteNames.Accounts, new { action = "Schedule", controller = "Move", accounturl = account.Url });
-            
             var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
             var editUrl = Url.Action("Edit", "Account", new { id = account.Name });
 
-
             var closeLabel = MultiLanguage.Dictionary["Close", "Account"];
             var closeUrl = Url.Action("Close", new { id = account.Name });
-            var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
 
             var deleteLabel = MultiLanguage.Dictionary["Delete", "Account"];
             var deleteUrl = Url.Action("Delete", new { id = account.Name });
@@ -62,17 +51,12 @@ else
                     
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
 
-                <!--
-                <td class="image"><a href="@createUrl"><img src="/Assets/image/create_move.gif" alt="@createLabel" title="@createLabel" /></a></td>
-                <td class="image"><a href="@scheduleUrl"><img src="/Assets/image/schedule_move.gif" alt="@scheduleLabel" title="@scheduleLabel" /></a></td>
-                -->
-
                 <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     @if (account.HasMoves())
                     {
-                        <a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
+                        <a href="@closeUrl">
                             <img src="/Assets/image/close.gif" alt="@closeLabel" title="@closeLabel" />
                         </a>
                     }
