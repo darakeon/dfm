@@ -11,7 +11,7 @@ class SafeTicket
 	
 	public SafeTicket(Context context)
 	{
-		String machineId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
+		String machineId = Secure.getString(context.getContentResolver(), Unique.GetKey());
 		
 		long factor = Long.parseLong(machineId, 16) * 27;
 		key = Long.toHexString(factor);

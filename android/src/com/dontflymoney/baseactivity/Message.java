@@ -1,6 +1,5 @@
 package com.dontflymoney.baseactivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -9,9 +8,9 @@ import com.dontflymoney.view.R;
 
 public class Message
 {
-	Activity activity;
+	SmartActivity activity;
 	
-	Message(Activity activity)
+	Message(SmartActivity activity)
 	{
 		this.activity = activity;
 	}
@@ -27,22 +26,37 @@ public class Message
 		alertError(activity.getString(resourceId)+ ": " + e.getLocalizedMessage());
 	}
 	
-	protected void alertError(int resourceId)
+	private void alertError(String message)
 	{
-		alertError(activity.getString(resourceId));
+		alertError(message, new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+    	});
 	}
 	
-	protected void alertError(String message)
+	private void alertError(String message, OnClickListener clickListener)
 	{
 		new AlertDialog.Builder(activity)
-			.setTitle(R.string.alert_title)
+			.setTitle(R.string.error_title)
 			.setMessage(message)
-			.setPositiveButton(R.string.alert_button, new OnClickListener(){
+			.setPositiveButton(R.string.ok_button, clickListener)
+    		.show();
+	}
+	
+	public void alertRetryLicense()
+	{
+		alertError(activity.getString(R.string.license_retry),
+			new OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.cancel();
+					activity.refresh();
 				}
-	    	})
-    		.show();
+	    	}
+		);
 	}
+	
+	
 }

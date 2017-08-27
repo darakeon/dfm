@@ -17,19 +17,21 @@ public class LoginActivity extends SmartActivity
 	{
 		init(R.layout.activity_login, R.menu.login);
 	}
-	
-	
-	
-	
+
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+
 		if (Authentication.IsLoggedIn())
 		{
 			navigation.redirect(AccountsActivity.class);
 		}
+		
+		license.Check();
 	}	
 
 	

@@ -11,9 +11,11 @@
     <string name="save">save</string>
 
     <!-- Alert dialog -->
-    <string name="alert_title">Ops!</string>
-    <string name="alert_button">OK</string>
-
+    <string name="error_title">Ops!</string>
+    <string name="ok_button">OK</string>
+    <string name="license_retry">Could not get app license. Verify your internet connection and try again.</string>
+    <string name="license_error">Error on getting license: %d. Contact us.</string>
+    
     <!-- Wait dialog -->
     <string name="wait_title">Wait!</string>
     <string name="wait_text">Calling the Pig&#8230;</string>

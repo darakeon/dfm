@@ -23,9 +23,10 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected Authentication Authentication;
 	
 	protected Form form;
-	protected Message message;
+	public Message message;
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
+	protected License license;
 	
 	
 	
@@ -59,6 +60,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 		message = new Message(this);
 		navigation = new Navigation(this, Authentication);
 		resultHandler = new ResultHandler(this, message, navigation);
+		license = new License(this);
 	}
 
 	@Override
@@ -67,6 +69,13 @@ public abstract class SmartActivity extends FixOrientationActivity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(menuResource, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		license.Destroy();
 	}
 
 	/**

@@ -16,6 +16,7 @@ android/.metadata/.plugins/org.eclipse.cdt.core/.log
 *.suo
 Web.Release.config
 pseudo-debug.txt
+android/res/values/license.xml
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
 ^(.*[\\/])?bin[\\/].*

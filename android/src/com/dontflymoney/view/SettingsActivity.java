@@ -98,7 +98,7 @@ public class SettingsActivity extends SmartActivity
 		new AlertDialog.Builder(this)
 			.setTitle(R.string.title_activity_settings)
 			.setMessage(R.string.settings_saved)
-			.setPositiveButton(R.string.alert_button, new OnClickListener(){
+			.setPositiveButton(R.string.ok_button, new OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					navigation.redirect(parent);

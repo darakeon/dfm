@@ -11,9 +11,11 @@
     <string name="save">salvar</string>
     
     <!-- Alert dialog -->
-    <string name="alert_title">Ops!</string>
-    <string name="alert_button">OK</string>
-
+    <string name="error_title">Ops!</string>
+    <string name="ok_button">OK</string>
+    <string name="license_retry">Não foi possível checar a licença do aplicativo. Verifique sua conexão de internet e tente novamente.</string>
+    <string name="license_error">Erro ao verificar licença: %d. Entre em contato conosco.</string>
+    
     <!-- Wait dialog -->
     <string name="wait_title">Um segundo!</string>
     <string name="wait_text">Chamando o porquinho&#8230;</string>

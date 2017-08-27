@@ -15,11 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.stati.Internet;
 import com.dontflymoney.view.R;
 
 public class Request
@@ -125,11 +123,7 @@ public class Request
 
 	private boolean isOffline()
 	{
-		ConnectivityManager conMgr =  
-			(ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-		return conMgr.getNetworkInfo(0).getState() != NetworkInfo.State.CONNECTED 
-			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTED;
+		return Internet.isOffline(activity);
 	}
 
 	private String getUrl()
