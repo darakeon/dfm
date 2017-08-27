@@ -265,8 +265,10 @@ public class MoveActivity extends SmartActivity {
 			return;
 		}
 		
+		int amountDefault = getResources().getInteger(R.integer.amount_default);
+		
 		setValue(R.id.detail_description, "");
-		setValue(R.id.detail_amount, getResources().getInteger(R.integer.amount_default));
+		setValue(R.id.detail_amount, amountDefault);
 		setValue(R.id.detail_value, "");
 
 		int amount = Integer.parseInt(amountStr);
