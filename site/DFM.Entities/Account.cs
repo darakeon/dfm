@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Ak.Generic.DB;
 
 namespace DFM.Entities
@@ -10,11 +9,6 @@ namespace DFM.Entities
         public Account()
         {
             init();
-        }
-
-        private void init()
-        {
-            YearList = new List<Year>();
         }
 
 
@@ -35,23 +29,7 @@ namespace DFM.Entities
 
 
 
-        public override String ToString()
-        {
-            return String.Format("[{0}] {1}", ID, Name);
-        }
-
-
-        public virtual Year this[Int32 yearDate, Boolean orNew = false]
-        {
-            get
-            {
-                var year = YearList
-                    .SingleOrDefault(y => y.Time == yearDate);
-
-                return orNew && year == null
-                    ? new Year() : year;
-            }
-        }
+        
 
     }
 }

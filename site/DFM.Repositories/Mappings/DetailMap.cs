@@ -9,6 +9,8 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Detail> mapping)
         {
+	        mapping.IgnoreProperty(d => d.Value);
+
             mapping.Map(d => d.Description)
                 .Length(MaximumLength.DetailDescription);
 

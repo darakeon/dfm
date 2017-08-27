@@ -1,4 +1,4 @@
-Use dontflymon;
+Use dfm;
 
     alter table Detail 
         add column FutureMove_ID INTEGER;

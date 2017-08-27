@@ -4,16 +4,11 @@ using Ak.MVC.Cookies;
 
 namespace DFM.Entities
 {
-    public class Ticket : IEntity
+    public partial class Ticket : IEntity
     {
         public Ticket()
         {
             init();
-        }
-
-        private void init()
-        {
-            Active = true;
         }
 
 

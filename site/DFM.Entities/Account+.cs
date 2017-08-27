@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -7,7 +8,30 @@ namespace DFM.Entities
 {
     public partial class Account
     {
-        public virtual Double Sum()
+		private void init()
+		{
+			YearList = new List<Year>();
+		}
+		
+		public override String ToString()
+		{
+			return String.Format("[{0}] {1}", ID, Name);
+		}
+
+
+		public virtual Year this[Int32 yearDate, Boolean orNew = false]
+		{
+			get
+			{
+				var year = YearList
+					.SingleOrDefault(y => y.Time == yearDate);
+
+				return orNew && year == null
+					? new Year() : year;
+			}
+		}
+		
+		public virtual Double Sum()
         {
             return YearList.Sum(m => m.Sum());
         }

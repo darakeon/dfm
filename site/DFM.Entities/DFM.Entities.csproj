@@ -37,6 +37,8 @@
     <Compile Include="Account.cs" />
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
+    <Compile Include="Config+.cs" />
+    <Compile Include="Ticket+.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Bases\IMove.cs" />
     <Compile Include="Bases\ISummarizable.cs" />

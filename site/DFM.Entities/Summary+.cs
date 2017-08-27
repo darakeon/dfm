@@ -1,11 +1,51 @@
 ﻿using System;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.Entities
 {
     public partial class Summary
     {
+		private void init()
+		{
+			Broken = true;
+		}
+
+		private void init(Month month, Category category)
+		{
+			Month = month;
+			Category = category;
+			Nature = SummaryNature.Month;
+		}
+
+		private void init(Year year, Category category)
+		{
+			Year = year;
+			Category = category;
+			Nature = SummaryNature.Year;
+		}
+
+
+		public virtual Double In
+		{
+			get { return InCents.ToVisual(); }
+			set { InCents = value.ToCents(); }
+		}
+
+		public virtual Double Out
+		{
+			get { return OutCents.ToVisual(); }
+			set { OutCents = value.ToCents(); }
+		}
+
+
+	    public override String ToString()
+		{
+			return String.Format("[{0}] {1}", ID, In - Out);
+		}
+
+
         public virtual Double Value()
         {
             return Math.Round(In - Out, 2);

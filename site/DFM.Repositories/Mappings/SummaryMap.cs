@@ -8,8 +8,8 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Summary> mapping)
         {
-            mapping.Map(s => s.In, "In_");
-            mapping.Map(s => s.Out, "Out_");
+            mapping.IgnoreProperty(s => s.In);
+            mapping.IgnoreProperty(s => s.Out);
 
             mapping.References(s => s.Month)
                 .UniqueKey("Summary_CategoryTime")

@@ -1,12 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
     public partial class Month
     {
-        public virtual User User()
+		private void init()
+		{
+			SummaryList = new List<Summary>();
+			InList = new List<Move>();
+			OutList = new List<Move>();
+		}
+
+		public override String ToString()
+		{
+			return String.Format("[{0}] {1}", ID, Time);
+		}
+
+		public virtual Summary AddSummary(Category category)
+		{
+			var summary = new Summary
+			{
+				Category = category,
+				Month = this,
+				Nature = SummaryNature.Month,
+			};
+
+			SummaryList.Add(summary);
+
+			return summary;
+		}
+
+		public virtual Summary this[String categoryName]
+		{
+			get
+			{
+				return String.IsNullOrEmpty(categoryName)
+				   ? SummaryList.SingleOrDefault(m => m.Category == null)
+				   : SummaryList.SingleOrDefault(m => m.Category != null && m.Category.Name == categoryName);
+			}
+		}
+		
+		public virtual User User()
         {
             return Account().User;
         }

@@ -69,7 +69,7 @@ Update Schedule s
 
 
 Alter Table Detail
-    DROP FOREIGN KEY fk_Detail_FutureMove;
+    DROP FOREIGN KEY FK321CBF8F90E5CDC4;
 
 Alter Table Detail
     DROP COLUMN FutureMove_ID,

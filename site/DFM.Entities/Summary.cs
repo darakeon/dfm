@@ -11,22 +11,9 @@ namespace DFM.Entities
             init();
         }
 
-        private void init()
-        {
-            Broken = true;
-        }
-
-        public Summary(Month month, Category category)
-            : this()
+        public Summary(Month month, Category category) : this()
         {
             init(month, category);
-        }
-
-        private void init(Month month, Category category)
-        {
-            Month = month;
-            Category = category;
-            Nature = SummaryNature.Month;
         }
 
         public Summary(Year year, Category category)
@@ -34,19 +21,12 @@ namespace DFM.Entities
             init(year, category);
         }
 
-        private void init(Year year, Category category)
-        {
-            Year = year;
-            Category = category;
-            Nature = SummaryNature.Year;
-        }
-
 
 
         public virtual Int32 ID { get; set; }
 
-        public virtual Double In { get; set; }
-        public virtual Double Out { get; set; }
+        public virtual Int32 InCents { get; set; }
+        public virtual Int32 OutCents { get; set; }
         public virtual SummaryNature Nature { get; set; }
 
         public virtual Boolean Broken { get; set; }
@@ -56,14 +36,6 @@ namespace DFM.Entities
         public virtual Year Year { get; set; }
 
 
-
-        public override String ToString()
-        {
-            return String.Format("[{0}] {1}",
-                ID, In - Out);
-        }
-
-
-
+		
     }
 }

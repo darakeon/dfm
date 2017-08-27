@@ -8,7 +8,21 @@ namespace DFM.Entities
 {
     public partial class User
     {
-        public virtual Boolean IsAdm()
+		private void init()
+		{
+			Config = new Config();
+			AccountList = new List<Account>();
+			CategoryList = new List<Category>();
+			ScheduleList = new List<Schedule>();
+			SecurityList = new List<Security>();
+		}
+		public override String ToString()
+		{
+			return String.Format("[{0}] {1}", ID, Email);
+		}
+		
+		
+		public virtual Boolean IsAdm()
         {
             return Email == "{admin-email}";
         }

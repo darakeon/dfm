@@ -1,10 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
     public partial class Schedule
     {
+		private void init()
+		{
+			Times = 1;
+
+			MoveList = new List<Move>();
+			DetailList = new List<Detail>();
+
+			Active = true;
+			Frequency = ScheduleFrequency.Monthly;
+		}
+
+		public override string ToString()
+		{
+			return String.Format("[{0}] {1} x {2}",
+				ID, Frequency, Description);
+		}
+
+
+
+		public virtual Account AccOut()
+		{
+			return Out;
+		}
+
+		public virtual Account AccIn()
+		{
+			return In;
+		}
+
+		public virtual void AddDetail(Detail detail)
+		{
+			DetailList.Add(detail);
+
+			detail.Schedule = this;
+		}
+
+		public virtual Double Value()
+		{
+			return DetailList.Sum(d => d.Value * d.Amount);
+		}
+
         public virtual Move GetNewMove()
         {
             var dateTime = LastDateRun();

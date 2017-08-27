@@ -1,6 +1,8 @@
+use dfm;
+
 ALTER TABLE PageLog CHANGE COLUMN IP IP VARCHAR(50) NOT NULL;
 
---PRE-PUBLISH
+/*PRE-PUBLISH*/
 CREATE TABLE Config
 (
 	ID INT NOT NULL AUTO_INCREMENT,
@@ -14,7 +16,7 @@ CREATE TABLE Config
 );
 
 INSERT INTO Config (Language, TimeZone, SendMoveEmail, User_ID)
-	SELECT Language, TimeZone, SendMoveEmail, ID
+	SELECT Language, 'E. South America Standard Time', SendMoveEmail, ID
 		FROM User;
 	
 ALTER TABLE User
@@ -37,9 +39,6 @@ ALTER TABLE User
 	REFERENCES Config (ID);
 
 ALTER TABLE Config
-	DROP FOREIGN KEY FK_Config_User;
-
-ALTER TABLE Config
 	DROP COLUMN User_ID,
 	DROP INDEX User_ID;
 	
@@ -48,10 +47,9 @@ ALTER TABLE Ticket
 	
 	
 	
---POS-PUBLISH
+/*POS-PUBLISH*/
 ALTER TABLE User
 	DROP Language,
-	DROP TimeZone,
 	DROP SendMoveEmail;
 	
 ALTER TABLE Move
@@ -62,22 +60,21 @@ ALTER TABLE Summary
 
 ALTER TABLE Schedule
 	MODIFY COLUMN Category_ID INTEGER NULL;
-	
-	
-	
---FIX FKS
-SELECT CONCAT('ALTER TABLE ', table_schema, '.', table_name, '\nDROP FOREIGN KEY ', Constraint_Name, ';')
+
+
+/*FIX FKS*/
+SELECT CONCAT('ALTER TABLE ', table_schema, '.', table_name, '\nDROP FOREIGN KEY ', Constraint_Name, ';') as query
     FROM information_schema.key_column_usage
     WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL
         AND Constraint_Schema = 'dfm';
 
-SELECT table_name, column_name,
+SELECT table_name, column_name,REPLACE(column_name, '_ID', '') as parent_entity,
     CONCAT(
         'ALTER TABLE ', table_name, '\n',
         '   ADD CONSTRAINT FK_', UPPER(SUBSTRING(table_name, 1, 1)), LOWER(SUBSTRING(table_name, 2, 100)), '_', REPLACE(column_name, '_ID', ''), '\n',
         '       FOREIGN KEY (', column_name, ')\n',
         '       REFERENCES ',  
-            CASE REPLACE(column_name, '\_ID', '')
+            CASE REPLACE(column_name, '_ID', '')
                 WHEN 'In' THEN 
                     (CASE table_name
                         WHEN 'Schedule' THEN 'Account'
@@ -91,7 +88,7 @@ SELECT table_name, column_name,
                 ELSE REPLACE(column_name, '_ID', '')
             END,
             ' (ID);'
-    )
+    ) as query
     FROM information_schema.columns
     WHERE Table_Schema = 'dfm'
-        AND column_name LIKE '%\_ID';
+        AND column_name LIKE '%_ID';

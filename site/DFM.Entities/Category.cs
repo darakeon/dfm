@@ -10,13 +10,6 @@ namespace DFM.Entities
             init();
         }
 
-        private void init()
-        {
-            Active = true;
-        }
-
-
-
         public virtual Int32 ID { get; set; }
 
         public virtual String Name { get; set; }
@@ -25,10 +18,7 @@ namespace DFM.Entities
         public virtual User User { get; set; }
 
 
-        public override String ToString()
-        {
-            return String.Format("[{0}] {1}", ID, Name);
-        }
+        
 
 
 

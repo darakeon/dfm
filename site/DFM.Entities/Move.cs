@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Generic;
 
 namespace DFM.Entities
 {
@@ -14,11 +12,7 @@ namespace DFM.Entities
             init();
         }
 
-        private void init()
-        {
-            DetailList = new List<Detail>();
-        }
-
+        
         
         public virtual Int32 ID { get; set; }
 
@@ -37,67 +31,7 @@ namespace DFM.Entities
 
 
 
-        public virtual Int64 FakeID
-        {
-            get
-            {
-                return ID * Constants.FakeID;
-            }
-            set
-            {
-                if (value % Constants.FakeID != 0)
-                    throw new DFMException("Get back!");
-
-                ID = (Int32)(value / Constants.FakeID);
-            }
-        }
-
         
-
-        public virtual User User
-        {
-            get
-            {
-                var month = (Out ?? In);
-
-                return month == null
-                    ? null
-                    : month.Year.Account.User;
-            }
-        }
-
-        public virtual Account AccOut()
-        {
-            return getAccount(Out);
-        }
-
-        public virtual Account AccIn()
-        {
-            return getAccount(In);
-        }
-
-        public virtual void AddDetail(Detail detail)
-        {
-            DetailList.Add(detail);
-
-            detail.Move = this;
-        }
-
-        public virtual Double Value()
-        {
-            return DetailList.Sum(d => d.Value * d.Amount);
-        }
-
-        private static Account getAccount(Month month)
-        {
-            return month == null ? null : month.Year.Account;
-        }
-
-
-        public override String ToString()
-        {
-            return Description;
-        }
 
 
     }

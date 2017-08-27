@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
@@ -12,13 +10,6 @@ namespace DFM.Entities
         {
             init();
         }
-
-        private void init()
-        {
-            MonthList = new List<Month>();
-            SummaryList = new List<Summary>();
-        }
-
 
 
         public virtual Int32 ID { get; set; }
@@ -30,49 +21,7 @@ namespace DFM.Entities
         public virtual IList<Month> MonthList { get; set; }
         public virtual IList<Summary> SummaryList { get; set; }
 
-
-
-        public virtual Summary AddSummary(Category category)
-        {
-            var summary = new Summary
-            {
-                Category = category,
-                Year = this,
-                Nature = SummaryNature.Year,
-            };
-
-            SummaryList.Add(summary);
-
-            return summary;
-        }
-
-        public override String ToString()
-        {
-            return String.Format("[{0}] {1}", ID, Time);
-        }
-
-
-        public virtual Month this[Int32 monthDate, Boolean orNew = false]
-        {
-            get
-            {
-                var month = MonthList
-                    .SingleOrDefault(y => y.Time == monthDate);
-
-                return orNew && month == null
-                    ? new Month() : month;
-            }
-        }
-
-        public virtual Summary this[String categoryName]
-        {
-            get
-            {
-                return String.IsNullOrEmpty(categoryName)
-                    ? SummaryList.SingleOrDefault(y => y.Category == null)
-                    : SummaryList.SingleOrDefault(y => y.Category != null && y.Category.Name == categoryName);
-            }
-        }
+		
 
     }
 }

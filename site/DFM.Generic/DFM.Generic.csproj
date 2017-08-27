@@ -40,6 +40,7 @@
     <Compile Include="ApiDebug.cs" />
     <Compile Include="DFMException.cs" />
     <Compile Include="EnumExtension.cs" />
+    <Compile Include="NumericExtension.cs" />
     <Compile Include="OperationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

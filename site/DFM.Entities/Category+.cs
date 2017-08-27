@@ -4,7 +4,17 @@ namespace DFM.Entities
 {
     public partial class Category
     {
-        public virtual Boolean AuthorizeCRUD(User user)
+		private void init()
+		{
+			Active = true;
+		}
+
+		public override String ToString()
+		{
+			return String.Format("[{0}] {1}", ID, Name);
+		}
+		
+		public virtual Boolean AuthorizeCRUD(User user)
         {
             return User == user;
         }

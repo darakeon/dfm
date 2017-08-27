@@ -11,15 +11,6 @@ namespace DFM.Entities
             init();
         }
 
-        private void init()
-        {
-            Config = new Config();
-            AccountList = new List<Account>();
-            CategoryList = new List<Category>();
-            ScheduleList = new List<Schedule>();
-            SecurityList = new List<Security>();
-        }
-
 
         public virtual Int32 ID { get; set; }
 
@@ -38,10 +29,7 @@ namespace DFM.Entities
         public virtual IList<Security> SecurityList { get; set; }
 
 
-        public override String ToString()
-        {
-            return String.Format("[{0}] {1}", ID, Email);
-        }
 
+		
     }
 }
