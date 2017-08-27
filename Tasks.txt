@@ -106,12 +106,16 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Remover GetOrCreate
 						Arrumar testes
 						Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+						Fazer licença do google funcionar
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
-						Colocar o link do play no site
-2014-05-28				Criar produto no google play
-2014-05-25				HTTPS!!!
+2014-05-28				Colocar o link do play no site
+2014-05-31	2014-05-31	Forçar acessar apenas por HTTPS
+2014-05-31	2014-05-31	Remover BETA
+2014-05-28	2014-05-28	Colocar o link do play no site
+2014-05-25	2014-05-31	Criar produto no google play
+2014-05-25	2014-05-28	HTTPS!!!
 2014-05-19	2014-05-19	Mudança de orientação na move deve setar funções dos campos
 2014-05-19	2014-05-19	Mudança de orientação nos relatórios deve manter filtro de tempo
 2014-05-19	2014-05-19	Scroll nos detalhes da move

@@ -13,7 +13,7 @@ public class License
 {
 	final byte[] SALT = new byte[] {
 			-21, +84, -38, +79, -81, -74, -98, +73, -14, +93,
-			-27, -94, -87, -29, +57, +42, +62, -78, -54, -29, 
+			-27, -94, -87, -32, +57, +42, +62, -78, -54, -29, 
 		};
 	
 	SmartActivity activity;
@@ -25,13 +25,13 @@ public class License
 	{
 		this.activity = activity;
 		progress = activity.getMessage().getWaitDialog();
+
+		callback = new DfmLicenseCheckerCallback(activity, progress);			
 		
-		AESObfuscator obfuscator = new AESObfuscator(SALT, activity.getPackageName(), Unique.GetKey());
+		AESObfuscator obfuscator = new AESObfuscator(SALT, activity.getPackageName(), Unique.GetKey(activity));
 		ServerManagedPolicy policy = new ServerManagedPolicy(activity, obfuscator); 
 		String appKey = activity.getString(R.string.license_key);
-		
 		checker = new LicenseChecker(activity, policy, appKey);
-		callback = new DfmLicenseCheckerCallback(activity, progress);			
 	}
 	
 	public void Check()

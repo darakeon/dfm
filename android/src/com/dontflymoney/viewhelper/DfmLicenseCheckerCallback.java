@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.dontflymoney.api.Site;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -75,10 +76,13 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
             return;
         }
 
-        String genericMessage = activity.getString(R.string.license_error);
-        String specificMessage = String.format(genericMessage, errorCode);
-        
-        activity.getMessage().alertError(specificMessage);
+        if (Site.IsLocal())
+        {
+	        String genericMessage = activity.getString(R.string.license_error);
+	        String specificMessage = String.format(genericMessage, errorCode);
+	        
+	        activity.getMessage().alertError(specificMessage);
+        }
 	}
 	
 }

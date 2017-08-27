@@ -3,7 +3,6 @@
 import java.util.Locale;
 
 import android.content.Context;
-import android.provider.Settings.Secure;
 
 class SafeTicket
 {
@@ -11,7 +10,7 @@ class SafeTicket
 	
 	public SafeTicket(Context context)
 	{
-		String machineId = Secure.getString(context.getContentResolver(), Unique.GetKey());
+		String machineId = Unique.GetKey(context);
 		
 		long factor = Long.parseLong(machineId, 16) * 27;
 		key = Long.toHexString(factor);
