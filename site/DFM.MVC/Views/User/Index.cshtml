@@ -5,13 +5,6 @@
     var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
 }
 
-@if (!isAuthenticated)
-{
-    @section TopRightDiv {
-        @Html.Partial("LogOn", new DFM.MVC.Models.UserLogOnModel())
-    }
-}
-
 @section HtmlHeadCss {
     <link href="/Assets/css/Pages/user-index.css" rel="stylesheet" type="text/css" />
 }
@@ -48,8 +41,4 @@
 
 <p>
 	@MultiLanguage.Dictionary["Index_Close"]
-</p>
-			
-<p>
-	@Html.ActionLink(MultiLanguage.Dictionary["Index_Finish"], "SignUp")
 </p>

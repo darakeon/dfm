@@ -14,14 +14,20 @@
 
 
 @section MenuTopo {
-    @if (isAuthenticated)
-    {
-        <ul class="menu menu-topo">
+    <ul class="menu menu-topo">
+        @if (isAuthenticated)
+        {
             <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })</li>
             <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User" }, new { @class = "fixItem" })</li>
-        </ul>
-    }
-}
+        }
+        else
+        {
+            <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "LogOn", controller = "User" }, new { @class = "fixItem" })</li>
+            <li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.Default, new { action = "SignUp", controller = "User" }, new { @class = "fixItem" })</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Token")</li>
+        }
+    </ul>
+        }
 
 
 

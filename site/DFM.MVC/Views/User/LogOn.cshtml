@@ -27,15 +27,12 @@
 
         <button type="submit">@MultiLanguage.Dictionary["Enter"]</button>
 
-        
-        <button type="button" id="ForgotPass" href="@Url.Action("ForgotPassword")">
-            @MultiLanguage.Dictionary["ForgotPassword"]
-        </button>
-        
-        <div id="TokenReceived">
-            <a href="@Url.Action("Index", "Token")">@MultiLanguage.Dictionary["TokenReceivedByEmail"]</a>
-        </div>
-
     }
 
 </div>
+
+
+@section PS
+{
+    @Html.ActionLink(MultiLanguage.Dictionary["ForgotPassword"], "ForgotPassword")
+}

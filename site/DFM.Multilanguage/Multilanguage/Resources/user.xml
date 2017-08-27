@@ -4,8 +4,6 @@
 		<Email text="E-mail" />
 		<Password text="Password" />
 		<RetypePassword text="Retype password" />
-		<Enter text="Enter" />
-		<SignUp text="Sign up" />
 		<SignUpSuccess text="Sign up succeded." />
 		<LogonDisabled text="Your user is not active." />
 		<RememberMe text="Remember" />
@@ -19,8 +17,6 @@
 		<Email text="E-mail" />
 		<Password text="Senha" />
 		<RetypePassword text="Redigite a senha" />
-		<Enter text="Entrar" />
-		<SignUp text="Cadastrar-se" />
 		<SignUpSuccess text="Cadastro efetuado com sucesso." />
 		<LogonDisabled text="Seu usuário não foi ativado." />
 		<RememberMe text="Lembrar" />

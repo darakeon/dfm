@@ -65,10 +65,15 @@ div#Head {
         {
             background: none;
         }
-        div#Head .logo img:first-child
+        
+        div#Head .logo img:hover
         {
-            margin-right: 10px;
+            background: none;
         }
+            div#Head .logo img:first-child
+            {
+                margin-right: 10px;
+            }
         
 
 
