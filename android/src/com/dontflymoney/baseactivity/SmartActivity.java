@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.language.Language;
 import com.dontflymoney.view.AccountsActivity;
 
 public abstract class SmartActivity extends FixOrientationActivity
@@ -45,7 +46,10 @@ public abstract class SmartActivity extends FixOrientationActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		Language.ChangeFromSaved(this);
+
 		super.onCreate(savedInstanceState);
+		
 		setContentView(contentView);
 		setupActionBar();
 

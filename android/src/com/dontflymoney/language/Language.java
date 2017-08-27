@@ -30,6 +30,15 @@ public class Language
 		activity.refresh();
 	}
 	
+	public static void ChangeFromSaved(Activity activity)
+	{
+		File file = new File(activity, FileNames.Language);
+		
+		String language = file.ReadFromFile();
+		
+		change(activity, language);
+	}
+
 	private static void change(Activity activity, String language)
 	{
 		Resources resources = activity.getResources();
