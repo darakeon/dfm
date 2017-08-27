@@ -8,6 +8,7 @@
     <Close text="Close" />
     <Reopen text="Reopen" />
     <DeleteConfirm text="Do you really want to DELETE Account '{0}'?\nThis action cannot be undone." />
+    <CloseConfirm text="Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone and this\naccount schedules will be stopped." />
     <ClosedAccounts text="Closed Accounts" />
     <AccountClosed text="Account '{0}' closed." />
     <AccountDeleted text="Account '{0}' deleted." />
@@ -27,6 +28,7 @@
     <Close text="Fechar" />
     <Reopen text="Reabrir" />
     <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
+    <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida e\nos agendamentos serão parados." />
     <ClosedAccounts text="Contas Fechadas" />
     <AccountClosed text="Conta '{0}' fechada." />
     <AccountDeleted text="Conta '{0}' apagada." />

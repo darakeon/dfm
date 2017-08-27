@@ -184,6 +184,7 @@ Scenario: 07. Get translate of Interface (account)
 		| Account | Delete                |
 		| Account | Close                 |
 		| Account | DeleteConfirm         |
+		| Account | CloseConfirm          |
 		| Account | ClosedAccounts        |
 		| Account | NoClosedAccounts      |
 		| Account | Name                  |
