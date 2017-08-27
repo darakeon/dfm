@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
@@ -188,12 +187,5 @@ public class SummaryActivity extends SmartActivity
 	}
 	
 	
-	public void refresh(MenuItem menuItem)
-	{
-		getSummary();
-	}
-	
-	
-
 
 }

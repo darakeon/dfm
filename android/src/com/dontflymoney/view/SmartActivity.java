@@ -56,7 +56,7 @@ public abstract class SmartActivity extends Activity
 		setContentView(contentView);
 		setupActionBar();
 
-		Authentication = new Authentication(getApplicationContext());
+		Authentication = new Authentication(this);
 	}
 
 	@Override
@@ -204,6 +204,12 @@ public abstract class SmartActivity extends Activity
 		redirect(LoginActivity.class);
 	}
 	
+	public void refresh()
+	{
+		finish();
+		startActivity(getIntent());
+	}
+	
 
 	
 	public void logout(MenuItem menuItem)
@@ -211,6 +217,11 @@ public abstract class SmartActivity extends Activity
 		logout();
 	}
 	
+	public void refresh(MenuItem menuItem)
+	{
+		refresh();
+	}
+		
 	public void goToAccounts(MenuItem menuItem)
 	{
 		redirect(AccountsActivity.class);

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableLayout;
@@ -25,14 +24,6 @@ public class AccountsActivity extends SmartActivity
 	public AccountsActivity()
 	{
 		init(this, R.layout.activity_accounts, R.menu.accounts);
-	}
-	
-	
-	
-	public void refresh(MenuItem menuItem)
-	{
-		main.removeAllViews();
-		getAccounts();
 	}
 
 	

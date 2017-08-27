@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -312,9 +311,5 @@ public class MoveActivity extends SmartActivity {
 	}
 
 	
-	
-	public void refresh(MenuItem menuItem) {
-		populateScreen();
-	}
 
 }

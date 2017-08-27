@@ -7,7 +7,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -104,9 +103,5 @@ public class SettingsActivity extends SmartActivity
 	}
 	
 	
-	
-	public void refresh(MenuItem menuItem) {
-		populateScreen();
-	}	
 	
 }

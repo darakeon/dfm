@@ -184,10 +184,6 @@ public class ExtractActivity extends SmartActivity
 	}
 	
 	
-	public void refresh(MenuItem menuItem)
-	{
-		getExtract();
-	}
 	
 	public void goToSummary(MenuItem item)
 	{
