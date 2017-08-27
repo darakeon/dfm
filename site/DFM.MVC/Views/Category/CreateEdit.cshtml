@@ -14,6 +14,7 @@
 }
 
 <div class="half-screen CRUDCategory">
+
     @using (
             Model.IsMoveCRUD
                 ? Ajax.BeginForm("CreateAjax", "Category", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })

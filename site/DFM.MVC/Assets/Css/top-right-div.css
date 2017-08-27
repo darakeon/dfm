@@ -7,14 +7,9 @@
 
 div#top-right-div {
 	float: right;
-	background: #EEFFEE;
 	padding: 9px 7px 13px 13px;
 	margin: -20px -20px 10px 10px;
-	border-radius: 0px 0px 0px 50px;
 	z-index: 1;
-	box-shadow: inset 3px -3px 5px #AA3A3A;
-	border-left: 10px solid #fff;
-	border-bottom: 10px solid #fff;
 }
 
 div#top-right-div input {

@@ -14,11 +14,11 @@ table.List {
     }
 
     tr:nth-child(2n+1) td {
-	    background: #FFEEEE;
+	    background: #F7EEDD;
     }
 
     th {
-	    background: #3AAA3A;
+	    background: #DDCFAA;
 	    color: #FFF;
 	    margin: 0;
 	    border-radius: 7px 7px 0 0;
@@ -43,8 +43,12 @@ td.image {
 }
 
 td.image img {
-	margin: 4px;
-}
+	padding: 4px;
+    }
+
+    td.image a:hover {
+	    background: none;
+    }
 
 
 table.Mini {

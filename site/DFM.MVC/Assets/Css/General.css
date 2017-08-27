@@ -1,13 +1,13 @@
 /*
-Texts: #AA3A3A
+Texts: #AA8E55
 Alternative Background: #FFEEEE
-Background: #ABFFAB
+Background: #558EAA
 Light Background: #EEFFEE
-Warning: #3AAA3A
+Warning: #558EAA
 */
 
 body {
-	background: #EEFFEE url("/assets/image/clouds.gif");
+	background: url("/assets/image/clouds.gif");
 	text-align: justify;
 	margin: 0;
 }
@@ -22,24 +22,28 @@ img {
 }
 
 h2 {
-	color: #AA3A3A;
+	color: #AA8E55;
 	font-size: 20px;
-	border-bottom: #AA3A3A 2px solid;
+	border-bottom: #AA8E55 2px solid;
 	margin: 0 0 40px 0;
 }
 
 a {
 	text-decoration: none;
 	cursor: pointer;
-	color: #AA3A3A;
+	color: #558EAA;
 	white-space: nowrap;
 	padding: 0 3px;
 }
 
+    a:hover {
+	    color: #FFF;
+	    background: #AA8E55;
+    }
 
-a:hover {
-	background: #3AAA3A;
-}
+    img:hover {
+	    background: #AA8E55;
+    }
 
 #ui-datepicker-div a
 {
@@ -81,7 +85,7 @@ div#Main {
 div#PS {
 	width: 890px;
 	padding: 10px;
-	color: #AA3A3A;
+	color: #AA8E55;
 	font-size: 80%;
 	margin-top: 50px;
 }
@@ -89,7 +93,7 @@ div#PS {
 div#Footer {
 	padding: 30px 0px;
 	margin: 0 auto;
-	color: #AA3A3A;
+	color: #AA8E55;
 	text-align: center;
 	width: 950px;
 }

@@ -170,6 +170,7 @@
     <Content Include="Assets\css\ieca.css" />
     <Content Include="Assets\css\libraries\datepicker.css" />
     <Content Include="Assets\css\menu.css" />
+    <Content Include="Assets\css\modal.css" />
     <Content Include="Assets\css\mvc.css" />
     <Content Include="Assets\css\navigation.css" />
     <Content Include="Assets\css\pages\move-create-edit-schedule.css" />
@@ -179,17 +180,16 @@
     <Content Include="Assets\image\advertising\darakeon.gif" />
     <Content Include="Assets\image\advertising\pea.jpg" />
     <Content Include="Assets\image\close.gif" />
-    <Content Include="Assets\image\clouds_AA3A3A_ABFFAB.gif" />
+    <Content Include="Assets\image\clouds.gif" />
     <Content Include="Assets\image\create_move.gif" />
     <Content Include="Assets\image\datepicker\ui-icons_ffffff_256x240.png" />
     <Content Include="Assets\image\delete.gif" />
     <Content Include="Assets\image\edit.gif" />
     <Content Include="Assets\image\green_sign.gif" />
-    <Content Include="Assets\image\logo_email.gif" />
-    <Content Include="Assets\image\logo_AA3A3A_ABFFAB.gif" />
+    <Content Include="Assets\image\logo.gif" />
     <Content Include="Assets\image\month.gif" />
     <Content Include="Assets\image\open.gif" />
-    <Content Include="Assets\image\pig_AA3A3A_ABFFAB.gif" />
+    <Content Include="Assets\image\pig.gif" />
     <Content Include="Assets\image\pig.ico" />
     <Content Include="Assets\image\red_sign.gif" />
     <Content Include="Assets\image\schedule_move.gif" />
@@ -317,9 +317,6 @@
     <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleCss.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

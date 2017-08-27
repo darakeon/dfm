@@ -1,7 +1,7 @@
 $(document).ready(function () {
     ActiveDatePicker();
 
-    SetNewCategoryCaller();
+    makeCategoryModal();
 
     $(".boundlessRadio").change(function () {
         ToggleBoundless(this);
@@ -27,7 +27,6 @@ $(document).ready(function () {
     ToggleBoundless(boundless);
 });
 
-var inputErrorClass = "input-validation-error";
 
 
 function ActiveDatePicker() {
@@ -40,22 +39,25 @@ function ActiveDatePicker() {
 }
 
 
-function SetNewCategoryCaller() {
-    $('#newCategoryCaller').click(function () {
-        if ($('#top-right-div').html() == "") {
-
-            $("#hiddenNewCategory ." + inputErrorClass)
-                .removeClass(inputErrorClass);
-
-            var html = $("#hiddenNewCategory").html();
-            $('#top-right-div').html(html);
-
-        } else {
-            $('#top-right-div').html("");
+function makeCategoryModal() {
+    $("#hidden-new-category").dialog({
+        autoOpen: false,
+        resizable: false,
+        draggable: false,
+        modal: true,
+        width: 490,
+        title: "x",
+        open: function () {
+            $('.ui-widget-overlay').bind('click', function () {
+                $('#hidden-new-category').dialog('close');
+            })
         }
-
-        return false;
     });
+
+    $('#new-category-caller').click(function () {
+        $("#hidden-new-category").dialog("open");
+    });
+
 }
 
 
@@ -63,25 +65,27 @@ function InsertCategoryOnDropDown(data) {
     var name = data["name"];
 
     if (name == null) {
-        $("#Category_Name").addClass(inputErrorClass);
+        $("#Category_Name").addClass("input-validation-error");
     }
     else {
         var op = new Option(name, name, true);
         $("#CategoryName").append(op);
 
-        $('#newCategory form')[0].reset();
-        $('#top-right-div').html("");
+        $('#hidden-new-category form').reset();
+        $("#hidden-new-category").dialog("close");
+
+        $("#Category_Name").removeClass("input-validation-error");
     }
 }
 
 
 function ShowAccountList(obj) {
     $.post(whetherShowAccountListPage,
-            { nature: $(obj).val() },
-            function (show) {
-                $('.accountForTransfer').toggle(toBoolean(show));
-            }
-        );
+        { nature: $(obj).val() },
+        function (show) {
+            $('.accountForTransfer').toggle(toBoolean(show));
+        }
+    );
 }
 
 
@@ -154,3 +158,4 @@ function ToggleBoundless(obj) {
     if (isBoundless != null)
         $('#Times').attr("disabled", isBoundless);
 }
+

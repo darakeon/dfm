@@ -29,12 +29,12 @@ button
 	padding: 1px 5px 2px 5px;
 	cursor: pointer;
 	border: none;
-	color: #AA3A3A;
-    background: #ABFFAB;
+	color: #FFF;
+    background: #558EAA;
 }
     button:hover
     {
-	    background: #3AAA3A;
+	    background: #AA8E55;
     }
 
 

@@ -16,7 +16,7 @@
 @section MenuTopo {
     @if (isAuthenticated)
     {
-        <ul class="menu-topo">
+        <ul class="menu menu-topo">
             <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })</li>
             <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User" }, new { @class = "fixItem" })</li>
         </ul>

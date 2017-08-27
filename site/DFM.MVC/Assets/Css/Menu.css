@@ -1,25 +1,38 @@
-.menu-topo
+.menu
 {
-	float: right;
-	margin-top: 0px;
 	white-space: nowrap;
 }
 
-.menu-topo li
-{
-	vertical-align: top;
-	padding: 2px 10px 5px 10px;
-	margin-left: 10px; 
-	border-radius: 0 0 15px 15px;
-	list-style: none;
-	float: left;
-    background: #ABFFAB;
-}
-    .menu-topo li:hover
+    .menu li
     {
-	    background: #3AAA3A;
+        background: #558EAA;
+	    list-style: none;
+	    float: left;
+	    border-radius: 0 0 15px 15px;
+	    vertical-align: top;
+	    padding: 2px 10px 5px 10px;
     }
+        .menu li:hover
+        {
+	        background: #AA8E55;
+        }
 
+        .menu li a
+        {
+	        color: #FFF;
+        }
+
+
+.menu-topo
+{
+	float: right;
+	margin-top: 0;
+}
+
+    .menu-topo li
+    {
+	    margin-left: 10px; 
+    }
 
 
 h2
@@ -32,24 +45,13 @@ h2
     float: left;
     margin: -20px 0 0 -20px;
     padding: 0;
-	white-space: nowrap;
 }
 
     .menu-baixo li
     {
-	    vertical-align: top;
-	    padding: 2px 10px 5px 10px;
 	    margin: 0 10px 20px 0; 
-	    border-radius: 0 0 15px 15px;
-	    list-style: none;
-	    float: left;
-        background: #ABFFAB;
     }
         .menu-baixo li:first-child
         {
 	        border-radius: 10px 0 15px 15px;
-        }
-        .menu-baixo li:hover
-        {
-	        background: #3AAA3A;
         }

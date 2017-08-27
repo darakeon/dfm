@@ -1,7 +1,11 @@
-#hiddenNewCategory, .accountForTransfer {
+.accountForTransfer {
     display: none;
 }
 
+#hidden-new-category .input-ps
+{
+    display: block;
+}
 
 
 .createMoveScreenLeft, .createMoveScreenRight
@@ -63,7 +67,7 @@ input.amount {
 
 .divRowForm hr
 {
-    background-color: #AA3A3A;
+    background-color: #AA8E55;
     height: 1px;
     width: 95%;
     border: none;
