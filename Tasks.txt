@@ -30,6 +30,8 @@ VERSÃO 3.1.0.0
 VERSÃO 3.0.0.0
 ================================================================================================
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
+						Colocar soma de todas as contas
+						Permitir limite de conta negativo
 					>>>	Rever layout (http://goodui.org/)
 						Relacionar Conta e Categoria (combo)
 						Unir Categorias
@@ -94,6 +96,12 @@ VERSÃO 2.0.0.0
 						Criar área Json
 2013-09-04				Criar DTOs
 2013-09-02				Criar App Mobile
+
+
+VERSÃO 1.0.4.0 (Little change)
+================================================================================================
+2013-09-26				Consertar inserção de movimentação detalhada
+2013-09-26	2013-09-26	Colocar ponto em milhar
 
 VERSÃO 1.0.3.1 (System)
 ================================================================================================
