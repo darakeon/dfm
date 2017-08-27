@@ -23,12 +23,12 @@ namespace DFM.MVC.Helpers.Global
 
         internal static void SaveCurrent()
         {
-            save(Get());
+            save("\"" + Get() + "\"");
         }
 
         internal static void SaveOnline()
         {
-            save("beta.dontflymoney.com");
+            save("publicDomain");
         }
 
         private static void save(String address)
@@ -48,7 +48,7 @@ namespace DFM.MVC.Helpers.Global
             {
                 if (lines[l].StartsWith(domainDeclaration))
                 {
-                    lines[l] = domainDeclaration + address + "\";";
+                    lines[l] = domainDeclaration + address + ";";
                     break;
                 }
             }
@@ -56,7 +56,7 @@ namespace DFM.MVC.Helpers.Global
             File.WriteAllLines(path, lines);
         }
 
-        const string domainDeclaration = "	public static final String Domain = \"";
+        const string domainDeclaration = "	public static final String Domain = ";
 
 
 

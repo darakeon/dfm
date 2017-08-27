@@ -2,11 +2,12 @@ package com.dontflymoney.api;
 
 public class Site
 {
-	public static final String Domain = "beta.dontflymoney.com";
+	private static final String publicDomain = "https://dontflymoney.com";
+	public static final String Domain = publicDomain;
 	
 	//TODO: DELETE IT
 	public static Boolean IsLocal()
 	{
-		return Domain != "beta.dontflymoney.com";
+		return Domain != publicDomain;
 	}
 }
