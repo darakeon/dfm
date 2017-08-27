@@ -1,12 +1,17 @@
 package com.dontflymoney.view;
 
+import java.text.DecimalFormat;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.Gravity;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
 
@@ -71,19 +76,67 @@ public class AccountsActivity extends SmartActivity
 			JSONObject data = result.getJSONObject("data");
 			JSONArray accountList = data.getJSONArray("AccountList"); 
 			
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-			        android.R.layout.simple_list_item_1);
+			TableLayout main = (TableLayout)findViewById(R.id.main_table);
 			
 			for(int a = 0; a < accountList.length(); a++)
 			{
-				JSONObject account = accountList.getJSONObject(a);
+				TableRow row = new TableRow(getApplicationContext());
 				
-				adapter.add(account.getString("Name"));
+				JSONObject account = accountList.getJSONObject(a);
+
+				String name = account.getString("Name");
+				row.addView(createText(name, Gravity.LEFT));
+
+				double sum = account.getDouble("Sum");
+				String sumStr = new DecimalFormat("#0.00").format(sum);
+				row.addView(createText(sumStr, Gravity.RIGHT));
+				
+				boolean hasRed = account.getString("RedLimit") != "null";
+				boolean hasYellow = account.getString("YellowLimit") != "null";
+				TextView flag;
+				
+				if (hasYellow || hasRed)
+				{
+					double yellow = hasYellow ? account.getDouble("YellowLimit") : sum;
+					double red = hasRed ? account.getDouble("RedLimit") : sum;
+
+					if (sum < red)
+						flag = createText("     ", Gravity.CENTER, Color.RED);
+					else if (sum < yellow)
+						flag = createText("     ", Gravity.CENTER, Color.YELLOW);
+					else
+						flag = createText("     ", Gravity.CENTER, Color.GREEN);
+				}
+				else
+				{
+					flag = createText(" ", Gravity.CENTER);
+				}
+				
+				row.addView(flag);
+				
+				main.addView(row);
 			}
 
-			ListView listView = (ListView) findViewById(R.id.accountlist);
-			listView.setAdapter(adapter);
 		}
+	}
+
+	private TextView createText(String text, int gravity)
+	{
+		TextView field = new TextView(getApplicationContext());
+		
+		field.setText(text);
+		field.setGravity(gravity);
+		
+		return field;
+	}	
+	
+	private TextView createText(String text, int gravity, int color)
+	{
+		TextView field = createText(text, gravity);
+		
+		field.setBackgroundColor(color);
+		
+		return field;
 	}	
 	
 	

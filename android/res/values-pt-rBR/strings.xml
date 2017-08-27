@@ -8,5 +8,6 @@
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
-
+    <string name="title_activity_accounts">DFM - Contas</string>
+    
 </resources>
