@@ -11,6 +11,7 @@
 	    border-radius: 0 0 15px 15px;
 	    vertical-align: top;
 	    padding: 2px 10px 5px 10px;
+        cursor: pointer;
     }
         .menu li:hover
         {
@@ -21,7 +22,35 @@
         {
 	        color: #FFF;
         }
-
+    
+        .menu-topo li.icon
+        {
+            width: 15px;
+        }
+    
+        .menu-topo li.logoff
+        {
+            background-image: url("/Assets/image/icons/logoff.gif");
+            background-position: center 4px;
+            background-repeat: no-repeat;
+        }
+    
+            .menu-topo li.logoff:hover
+            {
+                background-image: url("/Assets/image/icons/logoff_active.gif");
+            }
+    
+        .menu-topo li.home
+        {
+            background-image: url("/Assets/image/icons/home.gif");
+            background-position: center 4px;
+            background-repeat: no-repeat;
+        }
+    
+            .menu-topo li.home:hover
+            {
+                background-image: url("/Assets/image/icons/home_active.gif");
+            }
 
 .menu-topo
 {
@@ -40,18 +69,4 @@ h2
     clear: left;
 }
 
-.menu-baixo
-{
-    float: left;
-    margin: -20px 0 0 -20px;
-    padding: 0;
-}
 
-    .menu-baixo li
-    {
-	    margin: 0 10px 20px 0; 
-    }
-        .menu-baixo li:first-child
-        {
-	        border-radius: 10px 0 15px 15px;
-        }

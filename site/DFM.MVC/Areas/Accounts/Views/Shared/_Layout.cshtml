@@ -23,7 +23,7 @@
     }
     <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Report")</li>
     <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Report")</li>
-    <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new {action = "Index", controller = "Account"}, new {@class = "fixItem"})</li>
+    <li class="icon home">@Html.RouteLink(" ", RouteNames.Default, new {action = "Index", controller = "Account"})</li>
 }
 
 

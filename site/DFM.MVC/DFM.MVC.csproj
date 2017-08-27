@@ -211,6 +211,10 @@
     <Content Include="Assets\image\icons\delete.gif" />
     <Content Include="Assets\image\icons\edit.gif" />
     <Content Include="Assets\image\icons\green_sign.gif" />
+    <Content Include="Assets\image\icons\home.gif" />
+    <Content Include="Assets\image\icons\home_active.gif" />
+    <Content Include="Assets\image\icons\logoff.gif" />
+    <Content Include="Assets\image\icons\logoff_active.gif" />
     <Content Include="Assets\image\icons\red_sign.gif" />
     <Content Include="Assets\image\icons\reopen.gif" />
     <Content Include="Assets\image\icons\yellow_sign.gif" />
