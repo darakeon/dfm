@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -25,6 +26,7 @@ import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
 public class MoveActivity extends SmartActivity {
 	DatePickerDialog dialog;
+	ScrollView window;
 
 	Move move;
 
@@ -44,6 +46,7 @@ public class MoveActivity extends SmartActivity {
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		window = (ScrollView) findViewById(R.id.window);
 		
 		if (rotated)
 		{
@@ -165,7 +168,8 @@ public class MoveActivity extends SmartActivity {
 		dialog.show();
 	}
 
-	private class PickDate implements DatePickerDialog.OnDateSetListener {
+	private class PickDate implements DatePickerDialog.OnDateSetListener
+	{
 		@Override
 		public void onDateSet(DatePicker view, int year, int month, int day)
 		{
@@ -282,14 +286,20 @@ public class MoveActivity extends SmartActivity {
 	public void useDetailed(View view) {
 		findViewById(R.id.simple_value).setVisibility(View.GONE);
 		findViewById(R.id.detailed_value).setVisibility(View.VISIBLE);
+		
+		scrollToTheEnd();
 	}
 
-	public void useSimple(View view) {
+	public void useSimple(View view)
+	{
 		findViewById(R.id.simple_value).setVisibility(View.VISIBLE);
 		findViewById(R.id.detailed_value).setVisibility(View.GONE);
+		
+		scrollToTheEnd();
 	}
 
-	public void addDetail(View view) {
+	public void addDetail(View view)
+	{
 		String description = form.getValue(R.id.detail_description);
 		String amountStr = form.getValue(R.id.detail_amount);
 		String valueStr = form.getValue(R.id.detail_value);
@@ -313,6 +323,8 @@ public class MoveActivity extends SmartActivity {
 		DetailBox row = new DetailBox(this, move, description, amount, value);
 		LinearLayout list = (LinearLayout) findViewById(R.id.details);
 		list.addView(row);
+		
+		scrollToTheEnd();
 	}
 	
 	
@@ -335,6 +347,17 @@ public class MoveActivity extends SmartActivity {
 		startActivity(intent);
 	}
 
+
+	
+	private void scrollToTheEnd()
+	{
+		window.postDelayed(new Runnable() {
+	        @Override
+	        public void run() {
+	            window.fullScroll(ScrollView.FOCUS_DOWN);
+	        }
+	    }, 100);
+	}
 	
 
 }
