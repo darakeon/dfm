@@ -35,6 +35,7 @@ VERSÃO 3.0.0.0
 					>>>	Rever layout (http://goodui.org/)
 						Relacionar Conta e Categoria (combo)
 						Unir Categorias
+						Possibilitar reabrir conta
 
 VERSÃO 2.2.0.0
 ================================================================================================
@@ -97,6 +98,10 @@ VERSÃO 2.0.0.0
 2013-09-04				Criar DTOs
 2013-09-02				Criar App Mobile
 
+VERSÃO 1.0.4.1 (System)
+================================================================================================
+						Impedir datepicker de preencher hoje em edição
+						Colocar datepicker na língua do usuário
 
 VERSÃO 1.0.4.0 (Little change)
 ================================================================================================
