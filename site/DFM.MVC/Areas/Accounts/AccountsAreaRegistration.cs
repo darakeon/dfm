@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.MVC.Areas.Accounts.Controllers;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.Accounts
@@ -19,7 +20,8 @@ namespace DFM.MVC.Areas.Accounts
             context.MapRoute(
                 RouteNames.Accounts,
                 "Accounts/{accounturl}/{controller}/{action}/{id}",
-                new { controller = "Report", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Report", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(ReportController).Namespace }
             );
         }
     }

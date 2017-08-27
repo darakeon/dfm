@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using DFM.MVC.Areas.Json.Controllers;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.Json
@@ -18,7 +19,8 @@ namespace DFM.MVC.Areas.Json
             context.MapRoute(
                 RouteNames.Json,
                 "Json/{controller}/{action}/{id}",
-                new { controller = "User", action = "Index", id = UrlParameter.Optional }
+                new { controller = "User", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(UserController).Namespace }
             );
         }
     }
