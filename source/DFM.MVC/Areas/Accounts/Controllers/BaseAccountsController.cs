@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
-using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
@@ -15,7 +15,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             if (!Current.IsAuthenticated)
                 return;
-
         }
 
 
@@ -24,32 +23,24 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    var selector = new AccountSelector(model.GenericMove.Nature, model.Account.Name, model.AccountName);
+                var errors = model.CreateEditSchedule();
 
-                    return saveOrUpdateAndRedirect(model, selector);
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
+                AddErrors(errors);
             }
 
-            model.PopulateExcludingAccount(model.Account.Name);
+            if (ModelState.IsValid)
+                return RedirectToAction("ShowMoves", "Report", new { id = model.Account.Url });
 
             return View(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect(BaseMoveModel model, AccountSelector selector)
+
+        
+        [HttpPost]
+        public Boolean ShowAccountList(MoveNature nature)
         {
-            model.SaveOrUpdate(selector);
-
-            var account = model.GenericMove.AccOut() ?? model.GenericMove.AccIn();
-
-            return RedirectToAction("ShowMoves", "Report", new { id = account.Url });
+            return nature == MoveNature.Transfer;
         }
-
 
     }
 }

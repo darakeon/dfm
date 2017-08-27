@@ -4,6 +4,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -35,6 +36,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             if (iMove.Category != null)
                 CategoryName = iMove.Category.Name;
 
+            arrangeDetails();
         }
 
         private BaseMoveModel()
@@ -49,15 +51,61 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         private void populateDropDowns(Boolean transferIsPossible)
         {
-            NatureSelectList = transferIsPossible ?
-                SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>()) :
-                SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
+            if (GenericMove == null)
+                GenericMove = initIMove();
 
+            makeNatureList(transferIsPossible);
+
+            makeCategoryList();
+
+            makeAccountTransferList();
+
+            arrangeDetails();
+        }
+
+        private IMove initIMove()
+        {
+            if (GetType() == typeof(ScheduleCreateModel))
+                return new Schedule();
+
+            return new Move();
+        }
+
+        private void makeNatureList(bool transferIsPossible)
+        {
+            NatureSelectList = 
+                transferIsPossible
+                    ? SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>())
+                    : SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
+        }
+
+        private void makeCategoryList()
+        {
             var categoryList = Current.User.CategoryList.Where(c => c.Active).ToList();
 
             CategorySelectList = SelectListExtension.CreateSelect(
-                    categoryList, mv => mv.Name, mv => mv.Name
+                categoryList, mv => mv.Name, mv => mv.Name
                 );
+        }
+
+        private void makeAccountTransferList()
+        {
+            var accountList =
+                Current.User.AccountList
+                    .Where(a => a.IsOpen() && a.Name != Account.Name)
+                    .ToList();
+
+            AccountSelectList = SelectListExtension
+                .CreateSelect(accountList, a => a.Name, a => a.Name);
+        }
+
+        private void arrangeDetails()
+        {
+            //TODO: Fix here when put Value in move
+            if (!GenericMove.HasDetails())
+                GenericMove.AddDetail(new Detail { Amount = 1 });
+
+            IsDetailed = GenericMove.IsDetailed();
         }
 
 
@@ -112,36 +160,28 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         public Boolean IsDetailed { get; set; }
 
-
-
-
-
-        public void MakeAccountTransferList(String accountNameToExclude)
-        {
-            var accountList = 
-                Current.User.AccountList
-                    .Where(a => a.IsOpen() && a.Name != accountNameToExclude)
-                    .ToList();
-
-            AccountSelectList = SelectListExtension
-                .CreateSelect(accountList, a => a.Name, a => a.Name);
-        }
-
-
-        public void PopulateExcludingAccount(String accountName)
-        {
-            MakeAccountTransferList(accountName);
-
-            IsDetailed = GenericMove.HasDetails() && GenericMove.IsDetailed();
-
-            if (!GenericMove.DetailList.Any())
-                GenericMove.AddDetail(new Detail { Amount = 1 });
-        }
-
-
+        
 
         internal abstract void SaveOrUpdate(AccountSelector selector);
 
+
+        public IList<String> CreateEditSchedule()
+        {
+            var errors = new List<String>();
+
+            try
+            {
+                var selector = new AccountSelector(GenericMove.Nature, Account.Name, AccountName);
+
+                SaveOrUpdate(selector);
+            }
+            catch (DFMCoreException e)
+            {
+                errors.Add(MultiLanguage.Dictionary[e]);
+            }
+
+            return errors;
+        }
 
 
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.Entities;
-using DFM.Entities.Enums;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.Generic;
@@ -22,8 +21,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditModel(OperationType.Creation);
             
-            model.PopulateExcludingAccount(model.Account.Url);
-
             return View(model);
         }
 
@@ -47,8 +44,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (model.AccountName == model.Account.Name)
                 return redirectToRightAccount(model.Move);
 
-            model.PopulateExcludingAccount(model.Account.Name);
-
             return View(model);
         }
 
@@ -67,14 +62,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             model.Move.ID = id;
 
             return CreateEditSchedule(model);
-        }
-
-
-
-        [HttpPost]
-        public Boolean ShowAccountList(MoveNature nature)
-        {
-            return nature == MoveNature.Transfer;
         }
 
 

@@ -19,8 +19,6 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new ScheduleCreateModel();
 
-            model.PopulateExcludingAccount(model.Account.Name);
-
             return View("Create", model);
         }
 
