@@ -95,7 +95,8 @@ VERSÃO 2.0.0.0 (All new) - 23?
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
 						Criar tela de configuração para usuário (Mobile)
-2014-01-25				Possibilitar gravar movimentação (Mobile)
+						Possibilitar gravar movimentação (Mobile)
+2014-01-25	2014-02-23	Criar tela para gravar movimentação (Mobile)
 2014-01-25	2014-01-25	Criar resumo das contas (Mobile)
 2014-01-25	2014-01-25	Colocar scroll e loading
 2014-01-23	2014-01-23	Tornar chamada ao site assíncrona
