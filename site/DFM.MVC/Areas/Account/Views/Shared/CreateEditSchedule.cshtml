@@ -72,14 +72,12 @@
 <div id="oneValue" class="createMoveScreenLeft">
     <table class="List">
         <tr>
-            <th>@Html.LabelFor(m => m.DetailList[0].Value, MultiLanguage.Dictionary["Value"])</th>
+            <th>@Html.LabelFor(m => m.Value, MultiLanguage.Dictionary["Value"])</th>
         </tr>
         <tr>
-            <td>@Html.TextBoxFor(m => m.DetailList[0].Value, new { @class = "money" })</td>
+            <td>@Html.TextBoxFor(m => m.Value, new { @class = "money" })</td>
         </tr>
     </table>
-        
-    @Html.HiddenFor(m => m.DetailList[0].FakeID)
 </div>
         
 <table class="createMoveScreenRight">

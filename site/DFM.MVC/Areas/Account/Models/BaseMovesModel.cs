@@ -99,9 +99,6 @@ namespace DFM.MVC.Areas.Account.Models
 
         private void arrangeDetails()
         {
-            if (!GenericMove.HasDetails())
-                GenericMove.AddDetail(new Detail { Amount = 1 });
-
             IsDetailed = GenericMove.HasDetails();
         }
 
@@ -157,7 +154,13 @@ namespace DFM.MVC.Areas.Account.Models
 
         public Boolean IsDetailed { get; set; }
 
-        
+
+		public Double? Value
+		{
+			get { return GenericMove.Value; }
+			set { GenericMove.Value = value; }
+		}
+
 
         internal abstract void SaveOrUpdate(AccountSelector selector);
 
