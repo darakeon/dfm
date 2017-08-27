@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Helpers
 {
@@ -22,7 +23,10 @@ namespace DFM.MVC.Areas.API.Helpers
         public static SelectItem<String, Int32> SelectItem<TEnum>(this TEnum value)
             where TEnum : IConvertible
         {
-            return new SelectItem<String, Int32>(value.ToString(), Convert.ToInt32(value));
+            return new SelectItem<String, Int32>(
+                MultiLanguage.Dictionary[value.ToString()],
+                Convert.ToInt32(value)
+            );
         }
 
         public static IList<SelectItem<String, Int32>> SelectItem<TEnum>()

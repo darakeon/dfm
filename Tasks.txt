@@ -110,9 +110,10 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						HTTPS!!!
 						Arrumar tabela em caso de texto grande
 						Exibir apenas dois dígitos nos centavos no mobile
-						Gravar a língua localmente, trocar antes de renderizar a tela
-						Arrumar tradução de nature
+						Trocar língua antes de renderizar a tela
+						Gravar a língua localmente
 						Fazer activity só chamar porquinho se não foi só mudança de orientation
+2014-04-18	2014-04-18	Arrumar tradução de nature
 2014-04-18	2014-04-18	Fazer valor zero aparecer como azul
 2014-04-18	2014-04-18	Arrumar layout e-mail para não ficar com marca de link
 2014-04-14	2014-04-14	Arrumar quando vira tela, que dá erro
