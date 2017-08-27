@@ -102,7 +102,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-13)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Listar schedule / permitir parar ("deletar") schedule
-						Ocultar escolha de língua
+2014-04-08				Trocar língua do mobile para língua do usuário
 2014-04-07	2014-04-07	Criar tela de configuração para usuário (Web)
 2014-04-07	2014-04-07	Redirecionar, após criar move, para tela de extrato do mês daquela move
 2014-03-31	2014-03-31	Ordenar Moves por ID também
