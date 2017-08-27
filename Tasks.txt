@@ -96,11 +96,12 @@ VERSÃO 2.0.0.1 (System) - 11?
 
 VERSÃO 2.0.0.0 (All new) - 15?
 ================================================================================================
+						Colocar menu ao clicar e segurar em Account
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
-						Possibilitar gravar movimentação (Mobile)
 						Criar tela de configuração para usuário (Mobile)
-2014-01-25				Criar resumo das contas (Mobile)
+						Possibilitar gravar movimentação (Mobile)
+2014-01-25	2014-01-25	Criar resumo das contas (Mobile)
 2014-01-25	2014-01-25	Colocar scroll e loading
 2014-01-23	2014-01-23	Tornar chamada ao site assíncrona
 2014-01-06	2014-01-06	Mover strings para resource
