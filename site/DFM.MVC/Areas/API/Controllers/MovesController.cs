@@ -69,5 +69,20 @@ namespace DFM.MVC.Areas.API.Controllers
             }
         }
 
+		[HttpPost]
+		public ActionResult Delete(Int32 id)
+		{
+			try
+			{
+				MovesDeleteModel.Delete(id);
+
+				return JsonPostSuccess();
+			}
+			catch (DFMCoreException e)
+			{
+				return JsonGetError(MultiLanguage.Dictionary[e]);
+			}
+		}
+
     }
 }

@@ -194,6 +194,7 @@
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
+    <Compile Include="Areas\API\Controllers\MovesDeleteModel.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\Helpers\DFMDate.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
