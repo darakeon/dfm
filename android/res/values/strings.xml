@@ -7,10 +7,14 @@
     <string name="action_logout">Logout</string>
     <string name="action_refresh">Refresh</string>
 
+    <!-- Alert dialog -->
+    <string name="alert_title">Ops!</string>
+    <string name="alert_button">OK</string>
+
     <!-- Wait dialog -->
     <string name="wait_title">Wait!</string>
-    <string name="wait_text">Contacting the Pig&#8230;</string>
-
+    <string name="wait_text">Calling the Pig&#8230;</string>
+    
     <!-- Errors -->
     <string name="u_r_offline">You\'re current offline</string>
     <string name="error_set_parameters">Error on set parameters</string>

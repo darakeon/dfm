@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -141,9 +143,15 @@ public abstract class SmartActivity extends Activity
 		View view = (View)activity.getWindow().getDecorView().findViewById(android.R.id.content);
 
 		new AlertDialog.Builder(view.getContext())
-	    	.setTitle("Ops!")
-	    	.setMessage(message)
-	    	.show();
+			.setTitle(R.string.alert_title)
+			.setMessage(message)
+			.setPositiveButton(R.string.alert_button, new OnClickListener(){
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+	    	})
+    		.show();
 	}
 	
 	protected void showChangeList(JSONArray list, int titleId, DialogSelectClickListener selectList)

@@ -7,9 +7,13 @@
     <string name="action_logout">Sair</string>
     <string name="action_refresh">Atualizar</string>
     
+    <!-- Alert dialog -->
+    <string name="alert_title">Ops!</string>
+    <string name="alert_button">OK</string>
+
     <!-- Wait dialog -->
     <string name="wait_title">Um segundo!</string>
-    <string name="wait_text">Falando com o porquinho&#8230;</string>
+    <string name="wait_text">Chamando o porquinho&#8230;</string>
     
     <!-- Errors -->
     <string name="u_r_offline">Sem conexão com a internet</string>

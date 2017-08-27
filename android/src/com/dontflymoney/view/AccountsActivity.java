@@ -15,7 +15,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
-import com.dontflymoney.api.Site;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
