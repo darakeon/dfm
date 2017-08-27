@@ -74,6 +74,7 @@ VERSÃO 2.0.2.0 (Little change) - 9?
 						Busca por movimentação
 						Atualizar versão do SpecFlow
 F						Implementar necessidade de assinar TERMO
+S						Arrumar para web usar fakeId, não id
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 
@@ -101,7 +102,6 @@ F						Colocar Captcha no registro de usuário
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
-R						Arrumar para web usar fakeId, não id
 2014-12-21	2014-12-25	Colocar delete de move (mobile)
 2014-12-07	2014-12-07	Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 2014-12-07	2014-12-07	Procurar TO-DOs no projeto

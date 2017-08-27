@@ -235,7 +235,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		double total = move.getDouble("Total");
 		row.addView(form.createText(total, Gravity.RIGHT));
 		
-		int id = move.has("FakeID") ? move.getInt("FakeID") : 0;
+		int id = move.getInt("ID");
 
 		setRowClick(row, description, id);
 
@@ -249,28 +249,25 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	{
 		row.setClickable(true);
 		
-		if (moveId != 0)
-		{
-			final ExtractActivity activity = this;
-			
-			row.setOnLongClickListener(new OnLongClickListener(){
+		final ExtractActivity activity = this;
+		
+		row.setOnLongClickListener(new OnLongClickListener(){
 
-				@Override
-				public boolean onLongClick(View v) {
-					
-					String messageText = getString(R.string.sure_to_delete);
-					
-					messageText = String.format(messageText, moveDescription);
-					
-					activity.moveId = moveId; 
-					
-					message.alertYesNo(messageText, activity);
-
-					return false;
-				}
+			@Override
+			public boolean onLongClick(View v) {
 				
-			});
-		}
+				String messageText = getString(R.string.sure_to_delete);
+				
+				messageText = String.format(messageText, moveDescription);
+				
+				activity.moveId = moveId; 
+				
+				message.alertYesNo(messageText, activity);
+
+				return false;
+			}
+			
+		});
 		
 		row.setOnClickListener(new OnClickListener()
 		{

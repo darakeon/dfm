@@ -7,7 +7,7 @@ namespace DFM.MVC.Areas.API.Jsons
 {
     internal class SimpleMoveJson
     {
-        public Int64 FakeID { get; set; }
+        public Int64 ID { get; set; }
         
         public String Description { get; set; }
         public DFMDate Date { get; set; }
@@ -17,7 +17,7 @@ namespace DFM.MVC.Areas.API.Jsons
 
         public SimpleMoveJson(Move move, String accountUrl)
         {
-            FakeID = move.FakeID;
+            ID = move.ID;
 
             Description = move.Description;
             Date = new DFMDate(move.Date);

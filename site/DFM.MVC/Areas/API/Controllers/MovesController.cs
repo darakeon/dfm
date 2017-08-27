@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
-using file = System.IO.File;
 
 namespace DFM.MVC.Areas.API.Controllers
 {

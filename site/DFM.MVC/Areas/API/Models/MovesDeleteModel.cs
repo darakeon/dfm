@@ -6,7 +6,7 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public static void Delete(Int32 id)
 		{
-			Money.DeleteMoveByFakeId(id);
+			Money.DeleteMove(id);
 		}
 	}
 }
