@@ -17,13 +17,13 @@ namespace DFM.MVC.Models
                 ?? (access = new ServiceAccess(new Connector()));
         }
 
-        internal static AdminService Admin { get { return getOrCreateAccess().Admin; } }
-        internal static MoneyService Money { get { return getOrCreateAccess().Money; } }
-        internal static ReportService Report { get { return getOrCreateAccess().Report; } }
-        internal static RobotService Robot { get { return getOrCreateAccess().Robot; } }
-        internal static SafeService Safe { get { return getOrCreateAccess().Safe; } }
+        protected static AdminService Admin { get { return getOrCreateAccess().Admin; } }
+        protected static MoneyService Money { get { return getOrCreateAccess().Money; } }
+        protected static ReportService Report { get { return getOrCreateAccess().Report; } }
+        protected static RobotService Robot { get { return getOrCreateAccess().Robot; } }
+        protected static SafeService Safe { get { return getOrCreateAccess().Safe; } }
 
-        internal static Current Current { get { return getOrCreateAccess().Current; } }
+        protected static Current Current { get { return getOrCreateAccess().Current; } }
 
         public DateTime Today
         {
