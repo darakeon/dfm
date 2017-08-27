@@ -1,4 +1,4 @@
-package com.dontflymoney.viewhelper;
+﻿package com.dontflymoney.viewhelper;
 
 import java.text.DecimalFormat;
 
@@ -13,14 +13,14 @@ import com.dontflymoney.entities.Move;
 import com.dontflymoney.view.R;
 
 @SuppressLint("ViewConstructor")
-public class LinearLayoutDetail extends LinearLayout 
+public class DetailBox extends LinearLayout 
 {
 	Move move;
 	String description;
 	int amount;
 	double value;
 	
-	public LinearLayoutDetail(Context context, Move move, String description, int amount, double value)
+	public DetailBox(Context context, Move move, String description, int amount, double value)
 	{
 		super(context);
 		

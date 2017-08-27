@@ -43,9 +43,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         private BaseMoveModel()
         {
             var transferIsPossible =
-                Current.User.AccountList
-                    .Where(a => a.IsOpen())
-                    .Count() > 1;
+                Current.User.VisibleAccountList().Count() > 1;
 
             populateDropDowns(transferIsPossible);
         }
@@ -82,7 +80,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         private void makeCategoryList()
         {
-            var categoryList = Current.User.CategoryList.Where(c => c.Active).ToList();
+            var categoryList = Current.User.VisibleCategoryList();
 
             CategorySelectList = SelectListExtension.CreateSelect(
                 categoryList, mv => mv.Name, mv => mv.Name
@@ -92,8 +90,8 @@ namespace DFM.MVC.Areas.Accounts.Models
         private void makeAccountTransferList()
         {
             var accountList =
-                Current.User.AccountList
-                    .Where(a => a.IsOpen() && a.Name != Account.Name)
+                Current.User.VisibleAccountList()
+                    .Where(a => a.Name != Account.Name)
                     .ToList();
 
             AccountSelectList = SelectListExtension

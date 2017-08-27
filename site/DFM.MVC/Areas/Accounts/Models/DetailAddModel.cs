@@ -5,14 +5,14 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveAddDetailModel : BaseModel
+    public class DetailAddModel : BaseModel
     {
-        public MoveAddDetailModel()
+        public DetailAddModel()
         {
             DetailList = new List<Detail>();
         }
 
-        public MoveAddDetailModel(Int32 position)
+        public DetailAddModel(Int32 position)
             : this()
         {
             Position = position;
@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             }
         }
 
-        public MoveAddDetailModel(Detail detail, Int32 position)
+        public DetailAddModel(Detail detail, Int32 position)
             : this(position)
         {
             DetailList[position] = detail;

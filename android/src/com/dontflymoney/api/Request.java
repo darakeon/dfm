@@ -1,4 +1,4 @@
-package com.dontflymoney.api;
+﻿package com.dontflymoney.api;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class Request
 
 	    try
 	    {
-	    	post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	    	post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
@@ -165,12 +165,17 @@ public class Request
 	    
 	    for(Map.Entry<String, Object> parameter : parameters.entrySet())
 	    {
-	    	String key = parameter.getKey();
-	    	String value = parameter.getValue().toString();
+	    	Object rawValue = parameter.getValue();
 	    	
-	    	BasicNameValuePair pair = new BasicNameValuePair(key, value); 
-	    	
-	    	nameValuePairs.add(pair);
+	    	if (rawValue != null)
+	    	{
+		    	String key = parameter.getKey();
+		    	String value = rawValue.toString();
+		    	
+		    	BasicNameValuePair pair = new BasicNameValuePair(key, value); 
+		    	
+		    	nameValuePairs.add(pair);
+	    	}
 	    }
 	    
 		return nameValuePairs;

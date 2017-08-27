@@ -1,8 +1,12 @@
-package com.dontflymoney.entities;
+﻿package com.dontflymoney.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+
+import com.dontflymoney.api.Request;
 
 public class Move
 {
@@ -61,20 +65,31 @@ public class Move
 	{
 		return Date.get(Calendar.YEAR);
 	}
-	
-	public void setDay(int day)
+
+	public void setParameters(Request request)
 	{
-		Date.set(Calendar.DAY_OF_MONTH, day);
+		request.AddParameter("Description", Description);
+		request.AddParameter("Date", DateString());
+		request.AddParameter("Category", Category);
+		request.AddParameter("PrimaryAccount", PrimaryAccount);
+		request.AddParameter("OtherAccount", OtherAccount);
+		request.AddParameter("Nature", Nature);
+		request.AddParameter("Value", Value);
+		
+		for(Detail detail : Details)
+		{
+			int position = Details.lastIndexOf(detail);
+			
+			request.AddParameter("Details[" + position + "].Description", detail.Description);
+			request.AddParameter("Details[" + position + "].Amount", detail.Amount);
+			request.AddParameter("Details[" + position + "].Value", detail.Value);
+		}		
 	}
-	
-	public void setMonth(int month)
-	{
-		Date.set(Calendar.MONTH, month);
-	}
-	
-	public void setYear(int year)
-	{
-		Date.set(Calendar.YEAR, year);
+
+	public String DateString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+		
+		return formatter.format(Date.getTime());
 	}
 	
 	

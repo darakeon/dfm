@@ -55,5 +55,6 @@
     <string name="add_detail">+</string>
     <string name="remove_detail">–</string>
     <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
+    <string name="save">salvar</string>
     
 </resources>

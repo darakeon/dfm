@@ -10,8 +10,7 @@ namespace DFM.MVC.Areas.API.Models
         public AccountsListModel()
         {
             AccountList = 
-                Current.User.AccountList
-                    .Where(a => a.IsOpen())
+                Current.User.VisibleAccountList()
                     .OrderBy(a => a.Name)
                     .Select(a => new AccountJson(a))
                     .ToList();

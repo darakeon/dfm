@@ -1,4 +1,4 @@
-package com.dontflymoney.view;
+﻿package com.dontflymoney.view;
 
 import java.text.DecimalFormat;
 
@@ -202,7 +202,7 @@ public abstract class SmartActivity extends Activity
 				
 				alertError(error);
 
-				if (error.contains("You are uninvited"))
+				if (error.contains(getString(R.string.uninvited)))
 				{
 					logout();
 				}				

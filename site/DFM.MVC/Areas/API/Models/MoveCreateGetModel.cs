@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 using DFM.MVC.Areas.API.Helpers;
 
 namespace DFM.MVC.Areas.API.Models
@@ -10,12 +11,12 @@ namespace DFM.MVC.Areas.API.Models
     {
         public MoveCreateGetModel(String accountUrl)
         {
-            AccountList = Current.User.AccountList
+            AccountList = Current.User.VisibleAccountList()
                 .Where(a => a.Url != accountUrl)
                 .Select(a => new SelectItem<String, String>(a.Name, a.Url))
                 .ToList();
 
-            CategoryList = Current.User.CategoryList
+            CategoryList = Current.User.VisibleCategoryList()
                 .Select(a => new SelectItem<String, String>(a.Name, a.Name))
                 .ToList();
 

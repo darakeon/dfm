@@ -1,8 +1,6 @@
-package com.dontflymoney.view;
+﻿package com.dontflymoney.view;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,14 +12,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.entities.Constants;
 import com.dontflymoney.entities.Move;
+import com.dontflymoney.viewhelper.AfterTextWatcher;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
-import com.dontflymoney.viewhelper.LinearLayoutDetail;
+import com.dontflymoney.viewhelper.DetailBox;
 
 public class MoveActivity extends SmartActivity {
 	DatePickerDialog dialog;
@@ -53,12 +53,19 @@ public class MoveActivity extends SmartActivity {
 		request.Get(Step.Populate);
 
 		Calendar today = Calendar.getInstance();
-		move.setDay(getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH)));
-		move.setMonth(getIntent().getIntExtra("month", today.get(Calendar.MONTH)));
-		move.setYear(getIntent().getIntExtra("year", today.get(Calendar.YEAR)));
-		move.OtherAccount = getIntent().getStringExtra("accounturl");
+		int day = getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH));
+		int month = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
+		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
+		
+		move.Date.set(year, month, day);
+		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
+		
+		setDescriptionListener();
+		setValueListener();
 	}
 
+	
+	
 	@Override
 	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
 	{
@@ -89,16 +96,21 @@ public class MoveActivity extends SmartActivity {
 
 	
 	
-	private void backToExtract()
+	private void setDescriptionListener()
 	{
-		Intent intent = new Intent(this, ExtractActivity.class);
-		intent.putExtra("accounturl", move.OtherAccount);
-		intent.putExtra("month", move.getMonth());
-		intent.putExtra("year", move.getYear());
-
-		startActivity(intent);
+		EditText textMessage = (EditText) findViewById(R.id.description);
+	    textMessage.addTextChangedListener(new DescriptionWatcher());
 	}
-
+	
+	private class DescriptionWatcher extends AfterTextWatcher
+	{
+		@Override
+		public void textChanged(String text)
+		{
+			move.Description = text;
+		}
+	}
+	
 	
 	
 	public void showDatePicker(View view)
@@ -116,17 +128,11 @@ public class MoveActivity extends SmartActivity {
 
 	private class PickDate implements DatePickerDialog.OnDateSetListener {
 		@Override
-		public void onDateSet(DatePicker view, int year, int month, int day) {
-			Calendar date = Calendar.getInstance();
-			date.set(year, month, day);
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-			String dateInFull = formatter.format(date.getTime());
-			
-			MoveActivity.this.move.setYear(year);
-			MoveActivity.this.move.setMonth(month);
-			MoveActivity.this.move.setDay(day);
+		public void onDateSet(DatePicker view, int year, int month, int day)
+		{
+			move.Date.set(year, month, day);
 
-			setValue(R.id.date, dateInFull);
+			setValue(R.id.date, move.DateString());
 			dialog.hide();
 		}
 	}
@@ -216,6 +222,23 @@ public class MoveActivity extends SmartActivity {
 
 	
 	
+	private void setValueListener()
+	{
+		EditText textMessage = (EditText) findViewById(R.id.value);
+	    textMessage.addTextChangedListener(new ValueWatcher());
+	}
+	
+	private class ValueWatcher extends AfterTextWatcher
+	{
+		@Override
+		public void textChanged(String text)
+		{
+			move.Value = Double.parseDouble(text);
+		}
+	}
+	
+	
+	
 	public void useDetailed(View view) {
 		findViewById(R.id.simple_value).setVisibility(View.GONE);
 		findViewById(R.id.detailed_value).setVisibility(View.VISIBLE);
@@ -245,11 +268,31 @@ public class MoveActivity extends SmartActivity {
 
 		move.Add(description, amount, value);
 
-		LinearLayoutDetail row = new LinearLayoutDetail(this, move, description, amount, value);
+		DetailBox row = new DetailBox(this, move, description, amount, value);
 		LinearLayout list = (LinearLayout) findViewById(R.id.details);
 		list.addView(row);
 	}
 	
+	
+	
+	public void save(View view)
+	{
+		Request request = new Request(this, "Moves/Create");
+		request.AddParameter("ticket", Authentication.Get());
+		move.setParameters(request);
+		request.Post(Step.Recording);
+	}
+	
+	private void backToExtract()
+	{
+		Intent intent = new Intent(this, ExtractActivity.class);
+		intent.putExtra("accounturl", move.PrimaryAccount);
+		intent.putExtra("month", move.getMonth());
+		intent.putExtra("year", move.getYear());
+
+		startActivity(intent);
+	}
+
 	
 	
 	public void refresh(MenuItem menuItem) {

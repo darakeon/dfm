@@ -1,4 +1,4 @@
-package com.dontflymoney.viewhelper;
+﻿package com.dontflymoney.viewhelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

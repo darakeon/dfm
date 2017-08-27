@@ -1,4 +1,4 @@
-package com.dontflymoney.view;
+﻿package com.dontflymoney.view;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;

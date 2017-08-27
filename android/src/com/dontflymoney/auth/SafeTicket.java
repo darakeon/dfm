@@ -1,4 +1,4 @@
-package com.dontflymoney.auth;
+﻿package com.dontflymoney.auth;
 
 import java.util.Locale;
 

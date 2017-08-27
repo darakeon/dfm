@@ -1,4 +1,4 @@
-package com.dontflymoney.view;
+﻿package com.dontflymoney.view;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +51,7 @@ public class AccountsActivity extends SmartActivity
 			
 			intent.putExtra("accounturl", "x");
 			intent.putExtra("year", 2014);
-			intent.putExtra("month", 1);
+			intent.putExtra("month", 2);
 			
 			startActivity(intent);
 		}

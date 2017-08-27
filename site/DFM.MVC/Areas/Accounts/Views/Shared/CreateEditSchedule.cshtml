@@ -79,12 +79,12 @@
         {
             for (var d = 0; d < Model.DetailList.Count; d++)
             {
-                @Html.Partial("../Detail/Add", new MoveAddDetailModel(Model.DetailList[d], d));
+                @Html.Partial("../Detail/Add", new DetailAddModel(Model.DetailList[d], d));
             }
         }
         else
         { 
-            @Html.Partial("../Detail/Add", new MoveAddDetailModel(new Detail(), 0));
+            @Html.Partial("../Detail/Add", new DetailAddModel(new Detail(), 0));
         }
     </tbody>
 </table>

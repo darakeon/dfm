@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Text;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Areas.API.Helpers;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
+using Newtonsoft.Json;
+using file = System.IO.File;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
@@ -54,17 +58,17 @@ namespace DFM.MVC.Areas.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreatePostModel model)
+        public ActionResult Create(MoveCreatePostModel move)
         {
             try
             {
-                //var model = new MovesSummaryModel(accounturl, id);
+                move.Save();
 
-                return JsonGet(model);
+                return JsonGet(move);
             }
             catch (DFMCoreException e)
             {
-                return JsonGetError(MultiLanguage.Dictionary[e]);
+                return JsonPostError(MultiLanguage.Dictionary[e]);
             }
         }
 

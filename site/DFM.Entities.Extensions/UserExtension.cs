@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -23,6 +24,16 @@ namespace DFM.Entities.Extensions
                 .Any(s => s.Action == SecurityAction.UserVerification
                      && s.Expire >= user.Now()
                      && s.Active);
+        }
+
+        public static IList<Category> VisibleCategoryList(this User user)
+        {
+            return user.CategoryList.Where(c => c.Active).ToList();
+        }
+
+        public static IList<Account> VisibleAccountList(this User user)
+        {
+            return user.AccountList.Where(c => c.IsOpen()).ToList();
         }
 
     }

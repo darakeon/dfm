@@ -118,7 +118,7 @@
     <Compile Include="Areas\Accounts\Controllers\ReportController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ScheduleController.cs" />
     <Compile Include="Areas\Accounts\Models\BaseAccountsModel.cs" />
-    <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
+    <Compile Include="Areas\Accounts\Models\DetailAddModel.cs" />
     <Compile Include="Areas\Accounts\Models\BaseMoveModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoneyModel.cs" />
@@ -130,6 +130,7 @@
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
+    <Compile Include="Areas\API\Helpers\Debug.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
     <Compile Include="Areas\API\Jsons\AccountJson.cs" />
     <Compile Include="Areas\API\Jsons\DetailJson.cs" />

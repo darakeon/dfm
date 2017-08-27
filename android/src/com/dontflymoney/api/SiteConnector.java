@@ -1,4 +1,4 @@
-package com.dontflymoney.api;
+﻿package com.dontflymoney.api;
 
 import java.io.IOException;
 
