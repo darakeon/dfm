@@ -83,12 +83,14 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Criar teste unitário agendamento meio antes / meio depois
 						Configurar max request length 
 
-VERSÃO 2.0.0.1 (System) - 10?
+VERSÃO 2.0.0.2 (System) - 10?
 ================================================================================================
+						Arrumar testes
 						Parar request no Destroy da Activity
 						Mudar campos para usar campos que firefox e chrome personalizam
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
+						Colocar tela de lista de funcionalidades
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
 						Travar schedule de conta fechada / deletada
@@ -104,10 +106,10 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Refactor em controllers e areas, inverter plural
 						Handle differentely EConnReset
 						Remover GetOrCreate
-						Arrumar testes
-						Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
-						Escrever Termos de Uso
 						Fazer licença do google impedir o usuário de continuar caso dê negativo
+						Implementar necessidade de assinar TERMO
+2014-06-01				Escrever Termos de Uso
+2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 
 VERSÃO 2.0.0.1 (System) - 1
 ================================================================================================
