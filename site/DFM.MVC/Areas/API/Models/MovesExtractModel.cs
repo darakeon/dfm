@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities.Extensions;
 using DFM.MVC.Areas.API.Jsons;
 using DFM.MVC.Helpers.Models;
 
@@ -16,10 +17,18 @@ namespace DFM.MVC.Areas.API.Models
             MoveList =
                 Report.GetMonthReport(accountUrl, monthDate, yearDate)
                     .Select(m => new SimpleMoveJson(m, accountUrl))
+                    .OrderByDescending(m => m.Date)
                     .ToList();
+
+            var account = Admin.GetAccountByUrl(accountUrl);
+
+            Name = account.Name;
+            Total = account.Sum();
         }
 
         public IList<SimpleMoveJson> MoveList { get; private set; }
+        public String Name { get; private set; }
+        public Double Total { get; private set; }
 
     }
 }

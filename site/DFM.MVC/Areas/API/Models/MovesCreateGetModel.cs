@@ -7,9 +7,9 @@ using DFM.MVC.Areas.API.Helpers;
 
 namespace DFM.MVC.Areas.API.Models
 {
-    internal class MoveCreateGetModel : BaseApiModel
+    internal class MovesCreateGetModel : BaseApiModel
     {
-        public MoveCreateGetModel(String accountUrl)
+        public MovesCreateGetModel(String accountUrl)
         {
             AccountList = Current.User.VisibleAccountList()
                 .Where(a => a.Url != accountUrl)

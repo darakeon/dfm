@@ -131,6 +131,8 @@ public class SummaryActivity extends SmartActivity
 		}
 		else
 		{
+			addTotal(main, data.getString("Name"), data.getDouble("Total"));
+
 			for(int a = 0; a < monthList.length(); a++)
 			{
 				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;

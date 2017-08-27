@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities.Extensions;
 using DFM.MVC.Areas.API.Jsons;
 using DFM.MVC.Helpers.Models;
 
@@ -26,10 +27,19 @@ namespace DFM.MVC.Areas.API.Models
                 }
             }
 
-            MonthList = MonthList.OrderBy(m => m.Number).ToList();
+            MonthList = MonthList
+                .OrderByDescending(m => m.Number)
+                .ToList();
+
+            var account = Admin.GetAccountByUrl(accountUrl);
+
+            Name = account.Name;
+            Total = account.Sum();
         }
 
         public IList<SimpleMonthJson> MonthList { get; private set; }
+        public String Name { get; private set; }
+        public Double Total { get; private set; }
 
     }
 }

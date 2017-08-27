@@ -44,7 +44,7 @@ namespace DFM.MVC.Areas.API.Controllers
         {
             try
             {
-                var model = new MoveCreateGetModel(accounturl);
+                var model = new MovesCreateGetModel(accounturl);
 
                 return JsonGet(model);
             }
@@ -55,7 +55,7 @@ namespace DFM.MVC.Areas.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreatePostModel move)
+        public ActionResult Create(MovesCreatePostModel move)
         {
             try
             {

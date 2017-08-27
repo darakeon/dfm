@@ -15,10 +15,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dontflymoney.api.Step;
@@ -87,6 +90,18 @@ public abstract class SmartActivity extends Activity
 		return field.getText().toString();
 	}
 
+
+	
+	protected void setValue(int id, double value)
+	{
+		TextView field = getField(id);
+		
+		field.setText(Double.toString(value));
+
+		int color = value < 0 ? Color.RED : Color.BLUE;
+		field.setTextColor(color);
+	}
+
 	protected void setValue(int id, Object text)
 	{
 		setValue(id, text.toString());
@@ -119,7 +134,7 @@ public abstract class SmartActivity extends Activity
 	
 	protected TextView createText(String text, int gravity)
 	{
-		TextView field = new TextView(getApplicationContext());
+		TextView field = new TextView(this);
 		
 		field.setText(text);
 		field.setGravity(gravity);
@@ -129,6 +144,41 @@ public abstract class SmartActivity extends Activity
 		field.setTextColor(Color.BLACK);
 		
 		return field;
+	}	
+	
+
+
+	protected void addTotal(TableLayout parent, String name, double total)
+	{
+		addEmpty(parent);
+		
+		TableRow row = new TableRow(this);
+		
+		int color = getResources().getColor(R.color.highlight);
+		row.setBackgroundColor(color);
+		
+		String title = String.format(getString(R.string.total), name);
+		
+		row.addView(createText(title, Gravity.LEFT));
+		row.addView(createText(total, Gravity.RIGHT));
+		
+		parent.addView(row);
+
+		addEmpty(parent);
+	}
+	
+	private void addEmpty(TableLayout table)
+	{
+		TextView field = new TextView(this);
+		
+		field.setText(" ");
+		//TODO: put this on config
+		field.setTextSize(10);
+		
+		TableRow row = new TableRow(this);
+		row.addView(field);
+		
+		table.addView(row);
 	}	
 	
 

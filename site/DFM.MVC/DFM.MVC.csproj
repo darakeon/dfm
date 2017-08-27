@@ -139,8 +139,8 @@
     <Compile Include="Areas\API\Models\AccountsListModel.cs" />
     <Compile Include="Areas\API\Models\BaseApiModel.cs" />
     <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
-    <Compile Include="Areas\API\Models\MoveCreateGetModel.cs" />
-    <Compile Include="Areas\API\Models\MoveCreatePostModel.cs" />
+    <Compile Include="Areas\API\Models\MovesCreateGetModel.cs" />
+    <Compile Include="Areas\API\Models\MovesCreatePostModel.cs" />
     <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\MovesExtractModel.cs" />
     <Compile Include="Areas\API\Models\UserGetConfigModel.cs" />
@@ -346,9 +346,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\API\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />

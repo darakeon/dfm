@@ -45,7 +45,8 @@
     <string name="title_activity_summary">Resumo anual</string>
    	<string name="no_extract">Não há movimentações neste mês</string>
    	<string name="no_summary">Não há movimentações neste ano</string>
-  	<string name="change_date">mudar</string>
+    <string name="total">Saldo de %s</string>
+ 	<string name="change_date">mudar</string>
     
     <!-- Move -->
     <string name="title_activity_move">Mover</string>

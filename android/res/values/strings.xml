@@ -45,6 +45,7 @@
     <string name="title_activity_summary">Year summary</string>
     <string name="no_extract">There is no moves for this month</string>
     <string name="no_summary">There is no moves for this year</string>
+    <string name="total">%s total</string>
     <string name="change_date">change</string>
 
     <!-- Move -->

@@ -84,7 +84,7 @@ public class AccountsActivity extends SmartActivity
 	{
 		String url = account.getString("Url");
 
-		TableRowWithExtra<String> row = new TableRowWithExtra<String>(getApplicationContext(), url);
+		TableRowWithExtra<String> row = new TableRowWithExtra<String>(this, url);
 		row.setBackgroundColor(color);
 		
 		String name = account.getString("Name");

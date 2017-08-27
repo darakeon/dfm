@@ -98,7 +98,7 @@ VERSÃO 2.0.0.0 (All new) - 29?
 						Colocar botão de sair (mobile)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
-						Colocar Saldo Atual na tela de Extrato
+2014-03-23	2014-03-24	Colocar Saldo Atual na tela de Extrato
 2014-03-23	2014-03-23	Colocar lista de Categorias / Contas no combo em ordem alfabética
 2014-03-23	2014-03-23	Trocar botão de Contas por imagem de Home, botão de Sair por imagem de logout
 2014-03-23	2014-03-23	Consertar esquema de session do NH

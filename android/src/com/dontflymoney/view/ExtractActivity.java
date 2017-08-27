@@ -137,6 +137,8 @@ public class ExtractActivity extends SmartActivity
 		}
 		else
 		{
+			addTotal(main, data.getString("Name"), data.getDouble("Total"));
+
 			for(int a = 0; a < moveList.length(); a++)
 			{
 				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
@@ -158,12 +160,12 @@ public class ExtractActivity extends SmartActivity
 		double total = move.getDouble("Total");
 		row.addView(createText(total, Gravity.RIGHT));
 		
-		setClick(row);
+		setRowClick(row);
 
 		main.addView(row);
 	}
 	
-	private void setClick(TableRow row)
+	private void setRowClick(TableRow row)
 	{
 		row.setClickable(true);
 		

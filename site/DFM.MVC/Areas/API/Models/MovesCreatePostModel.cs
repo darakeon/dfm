@@ -8,9 +8,9 @@ using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.API.Models
 {
-    public class MoveCreatePostModel : BaseApiModel
+    public class MovesCreatePostModel : BaseApiModel
     {
-        public MoveCreatePostModel()
+        public MovesCreatePostModel()
         {
             DetailList = new List<DetailJson>();
         }
