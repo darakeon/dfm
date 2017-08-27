@@ -16,6 +16,11 @@ namespace DFM.MVC.Areas.API.Controllers
             return Json(new { error = result }, JsonRequestBehavior.AllowGet);
         }
 
+        protected JsonResult JsonPostSuccess()
+        {
+            return JsonPost( new { success = true });
+        }
+
         protected JsonResult JsonPost(object result)
         {
             return Json(new { data = result });

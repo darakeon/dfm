@@ -120,9 +120,8 @@ public class SummaryActivity extends SmartActivity
 	}
 	
 	@Override
-	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
+	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
-		JSONObject data = result.getJSONObject("data");
 		JSONArray monthList = data.getJSONArray("MonthList");
 		
 		if (monthList.length() == 0)

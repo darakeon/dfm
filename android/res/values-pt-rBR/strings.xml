@@ -7,6 +7,9 @@
     <string name="action_logout">Sair</string>
     <string name="action_refresh">Atualizar</string>
     
+    <!-- Buttons -->
+    <string name="save">salvar</string>
+    
     <!-- Alert dialog -->
     <string name="alert_title">Ops!</string>
     <string name="alert_button">OK</string>
@@ -59,6 +62,11 @@
     <string name="add_detail">+</string>
     <string name="remove_detail">–</string>
     <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
-    <string name="save">salvar</string>
     
+    <!-- Settings -->
+    <string name="title_activity_settings">Configurações</string>
+    <string name="settings_warning">Estas configurações são para celular e site</string>
+    <string name="use_categories">Usar categorias</string>
+    <string name="settings_saved">Configurações salvas!</string>
+
 </resources>

@@ -27,9 +27,7 @@
 	        android:inputType="text" />
    	    
    	    	 
-   	    <View
-		    android:layout_width="fill_parent"
-		    android:layout_height="35dp" />
+		<View android:layout_width="fill_parent" android:layout_height="35dp" />
 
 
    	    <TextView
@@ -52,9 +50,7 @@
 		    android:orientation="vertical"
 		    android:id="@+id/category_box">
 	
-		    <View
-			    android:layout_width="fill_parent"
-			    android:layout_height="35dp" />
+			<View android:layout_width="fill_parent" android:layout_height="35dp" />
 	   	    	    
 	   	    <TextView 
 		        android:id="@+id/category_label"
@@ -71,9 +67,7 @@
    	    </LinearLayout>
    	    
    	    	 
-   	    <View
-		    android:layout_width="fill_parent"
-		    android:layout_height="35dp" />
+		<View android:layout_width="fill_parent" android:layout_height="35dp" />
 	   		    
 	   	
    	    <LinearLayout
@@ -116,9 +110,7 @@
 	    </LinearLayout>
 	    	    	    
    	    	 
-   	    <View
-		    android:layout_width="fill_parent"
-		    android:layout_height="35dp" />
+		<View android:layout_width="fill_parent" android:layout_height="35dp" />
 	    
 
    	    <LinearLayout

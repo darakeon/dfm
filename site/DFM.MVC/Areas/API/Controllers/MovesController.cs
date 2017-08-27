@@ -61,7 +61,7 @@ namespace DFM.MVC.Areas.API.Controllers
             {
                 move.Save();
 
-                return JsonGet(move);
+                return JsonPostSuccess();
             }
             catch (DFMCoreException e)
             {

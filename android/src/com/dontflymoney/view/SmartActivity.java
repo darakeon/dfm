@@ -27,7 +27,7 @@ import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
 public abstract class SmartActivity extends Activity
 {
-	protected Activity activity;
+    protected Activity activity;
 	protected int contentView;
 	protected int menuResource;
 	private boolean hasParent;
@@ -150,9 +150,7 @@ public abstract class SmartActivity extends Activity
 	
 	protected void alertError(String message)
 	{
-		View view = (View)activity.getWindow().getDecorView().findViewById(android.R.id.content);
-
-		new AlertDialog.Builder(view.getContext())
+		new AlertDialog.Builder(this)
 			.setTitle(R.string.alert_title)
 			.setMessage(message)
 			.setPositiveButton(R.string.alert_button, new OnClickListener(){
@@ -207,8 +205,16 @@ public abstract class SmartActivity extends Activity
 	}
 	
 	
+	public void goToSettings(MenuItem menuItem)
+	{
+		Intent intent = new Intent(this, SettingsActivity.class);
+		intent.putExtra("parent", getClass());
+		startActivity(intent);
+	}
 	
-	protected abstract void HandleSuccess(JSONObject response, Step step) throws JSONException;
+	
+	
+	protected abstract void HandleSuccess(JSONObject data, Step step) throws JSONException;
 	
 	public void HandlePostResult(JSONObject result, Step step)
 	{
@@ -216,7 +222,7 @@ public abstract class SmartActivity extends Activity
 		{
 			if (result.has("error"))
 			{
-				String error = result.get("error").toString();
+				String error = result.getString("error");
 				
 				alertError(error);
 
@@ -227,7 +233,7 @@ public abstract class SmartActivity extends Activity
 			}
 			else
 			{
-				HandleSuccess(result, step);
+				HandleSuccess(result.getJSONObject("data"), step);
 			}
 		}
 		catch (JSONException e)

@@ -58,10 +58,9 @@ public class AccountsActivity extends SmartActivity
 	}
 
 	@Override
-	protected void HandleSuccess(JSONObject result, Step step)
+	protected void HandleSuccess(JSONObject data, Step step)
 		throws JSONException
 	{
-		JSONObject data = result.getJSONObject("data");
 		JSONArray accountList = data.getJSONArray("AccountList"); 
 		
 		if (accountList.length() == 0)

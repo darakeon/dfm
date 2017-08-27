@@ -68,11 +68,11 @@ public class MoveActivity extends SmartActivity {
 	
 	
 	@Override
-	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
+	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
 		switch (step) {
 			case Populate: {
-				populateScreen(result);
+				populateScreen(data);
 				break;
 			}
 			case Recording: {
@@ -86,15 +86,14 @@ public class MoveActivity extends SmartActivity {
 		}
 	}
 
-	private void populateScreen(JSONObject result) throws JSONException
+	private void populateScreen(JSONObject data) throws JSONException
 	{
-		JSONObject data = result.getJSONObject("data");
-
 		boolean useCategories = data.getBoolean("UseCategories");
 		
 		if (useCategories)
 		{
 			categoryList = data.getJSONArray("CategoryList");
+			findViewById(R.id.category_box).setVisibility(View.VISIBLE);
 		}
 		else
 		{

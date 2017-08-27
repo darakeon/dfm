@@ -197,21 +197,29 @@ public class Request
 		{
 			response = new Response(errorMessage);
 		}
-		else if (json.startsWith("<"))
-    	{
-			response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
-    	}
-		else 
+		else
 		{
-	    	try
-	    	{
-	    		response = new Response(new JSONObject(json));
-	    	}
-	        catch (JSONException e)
-	        {
-	        	response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
+			while(json.startsWith("\n") || json.startsWith("\r"))
+			{
+				json = json.substring(1);
 			}
-    	}
+			
+			if (json.startsWith("<"))
+	    	{
+				response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
+	    	}
+			else 
+			{
+		    	try
+		    	{
+		    		response = new Response(new JSONObject(json));
+		    	}
+		        catch (JSONException e)
+		        {
+		        	response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
+				}
+	    	}
+		}
     	
 		progress.dismiss();
 		

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
@@ -22,7 +23,7 @@ namespace DFM.MVC.Areas.API.Controllers
             if (result != null)
                 return JsonGetError(MultiLanguage.Dictionary[result]);
 
-            return JsonGet(Current.Ticket);
+            return JsonGet(new { ticket = Current.Ticket });
         }
 
 
@@ -30,6 +31,35 @@ namespace DFM.MVC.Areas.API.Controllers
         public ActionResult Uninvited()
         {
             return JsonGetError(MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited]);
+        }
+
+
+        //[DFMApiAuthorize, HttpGet]
+        public ActionResult GetConfig()
+        {
+            try
+            {
+                return JsonGet(new UserGetConfigModel());
+            }
+            catch (DFMCoreException e)
+            {
+                return JsonGetError(MultiLanguage.Dictionary[e]);
+            }
+        }
+
+        [DFMApiAuthorize, HttpPost]
+        public ActionResult SaveConfig(UserSaveConfigModel model)
+        {
+            try
+            {
+                model.Save();
+
+                return JsonPostSuccess();
+            }
+            catch (DFMCoreException e)
+            {
+                return JsonPostError(MultiLanguage.Dictionary[e]);
+            }
         }
 
 

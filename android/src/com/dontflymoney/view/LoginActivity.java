@@ -44,9 +44,9 @@ public class LoginActivity extends SmartActivity
 	}
 	
 	@Override
-	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
+	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
-		String ticket = result.getString("data");
+		String ticket = data.getString("ticket");
 		Authentication.Set(ticket);
 		
 		redirect(AccountsActivity.class);

@@ -41,6 +41,10 @@
             android:name="com.dontflymoney.view.MoveActivity"
             android:label="@string/title_activity_move" >
         </activity>
+        <activity
+            android:name="com.dontflymoney.view.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

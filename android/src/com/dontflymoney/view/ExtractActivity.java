@@ -126,9 +126,8 @@ public class ExtractActivity extends SmartActivity
 	}
 	
 	@Override
-	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
+	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
-		JSONObject data = result.getJSONObject("data");
 		JSONArray moveList = data.getJSONArray("MoveList");
 		
 		if (moveList.length() == 0)
