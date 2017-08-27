@@ -17,6 +17,7 @@ namespace DFM.Repositories.Mappings
             mapping.References(y => y.Account)
                 .UniqueKey("Year_TimeAccount")
                 .Cascade.None()
+				.Not.Update()
                 .Nullable();
 
             mapping.HasMany(y => y.SummaryList)

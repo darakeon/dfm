@@ -20,6 +20,7 @@ namespace DFM.Repositories.Mappings
             mapping.References(m => m.Year)
                 .UniqueKey("Month_TimeYear")
                 .Cascade.SaveUpdate()
+				.Not.Update()
                 .Nullable();
 
             mapping.HasMany(m => m.SummaryList)
