@@ -16,9 +16,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dontflymoney.api.Request;
 import com.dontflymoney.auth.Authentication;
 
-public class SmartActivity extends Activity
+public abstract class SmartActivity extends Activity
 {
 	protected Activity activity;
 	protected int contentView;
@@ -179,5 +180,8 @@ public class SmartActivity extends Activity
 		redirect(AccountsActivity.class);
 	}
 	
+	
+	
+	public abstract void HandlePost(Request request);
 	
 }

@@ -1,41 +1,31 @@
 package com.dontflymoney.api;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.StrictMode;
-import android.os.StrictMode.ThreadPolicy;
 
 import com.dontflymoney.view.R;
+import com.dontflymoney.view.SmartActivity;
 
 public class Request
 {
 	private String domain;
 	private String site;
 	
-	private Context context;
+	SmartActivity activity;
 	private String url;
 	private HashMap<String, Object> parameters;
 
@@ -44,9 +34,9 @@ public class Request
 	
 	
 	
-	public Request(Activity context, String url)
+	public Request(SmartActivity activity, String url)
 	{
-		this.context = context;
+		this.activity = activity;
 		this.url = url;
 		this.parameters = new HashMap<String, Object>();
 		
@@ -75,7 +65,7 @@ public class Request
 		
 		if (isOffline())
 		{
-			error = context.getString(R.string.UROffline);
+			error = activity.getString(R.string.UROffline);
 			return;
 		}
 		
@@ -89,21 +79,19 @@ public class Request
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
-			error = context.getString(R.string.ErrorSetParameters) + e.getMessage();
+			error = activity.getString(R.string.ErrorSetParameters) + e.getMessage();
 			return;
 		}
 
-		HttpClient client = new DefaultHttpClient();
-	    HttpResponse response = getResponse(client, post);
-
-	    if (response != null)
-	    	handleResponse(response);
+		SiteConnector site = new SiteConnector(post, this);
+		
+		site.execute();
 	}
 
 	private boolean isOffline()
 	{
 		ConnectivityManager conMgr =  
-			(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			(ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		return conMgr.getNetworkInfo(0).getState() != NetworkInfo.State.CONNECTED 
 			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTED;
@@ -152,67 +140,20 @@ public class Request
 	    
 		return nameValuePairs;
 	}
-
-	private HttpResponse getResponse(HttpClient client, HttpPost post)
-	{
-		try
-		{
-			HttpResponse response;
-
-			// TODO: make it asynchronous
-	    	ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
-	    	ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
-	    	
-	    	StrictMode.setThreadPolicy(policy);
-			response = client.execute(post);
-	    	StrictMode.setThreadPolicy(oldPolicy);
-	    	
-	    	return response;
-		}
-		catch (ClientProtocolException e)
-		{
-			error = context.getString(R.string.ErrorPost) + ": [client] " + e.getMessage();
-		}
-		catch (IOException e)
-		{
-			error = context.getString(R.string.ErrorPost) + ": [io] " + e.getMessage();
-		}
-		catch (Exception e)
-		{
-			error = context.getString(R.string.ErrorPost) + ": [" + e.getClass() + "] " + e.getMessage();
-		}
-		
-		return null;
-	}
 	
-	private void handleResponse(HttpResponse response)
+	
+	
+	void HandleResponse(String json, String errorMessage)
 	{
-		if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
-        {
-            error = response.getStatusLine().getReasonPhrase();
-            return;
-        }
-        
-		String json;
+		if (errorMessage != null)
+		{
+			error = errorMessage;
+			return;
+		}
 		
-        try
-        {
-        	json = EntityUtils.toString(response.getEntity()); 
-		}
-        catch (ParseException e)
-        {
-			error = context.getString(R.string.ErrorConvertResult) + ": [parse] " + e.getMessage();
-			return;
-		}
-        catch (IOException e)
-        {
-			error = context.getString(R.string.ErrorConvertResult) + ": [io] " + e.getMessage();
-			return;
-		}
-    	
     	if (json.startsWith("<"))
     	{
-    		error = context.getString(R.string.ErrorContactUrl) + " " + response.getLastHeader("Location").getValue();
+    		error = activity.getString(R.string.ErrorContactUrl) + " " + this.url;
     		return;
     	}
     	
@@ -222,10 +163,14 @@ public class Request
     	}
         catch (JSONException e)
         {
-			error = context.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
+			error = activity.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
 			return;
 		}
+    	
+    	activity.HandlePost(this);
 	}
+	
+	
 	
 	
 	

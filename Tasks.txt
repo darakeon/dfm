@@ -99,6 +99,7 @@ VERSÃO 2.0.0.0 (All new) - 15?
 						Criar Template (Move)
 						Possibilitar gravar movimentação (Mobile)
 						Criar resumo das contas (Mobile)
+2013-01-23	2014-01-23	Tornar chamada ao site assíncrona
 2014-01-06	2014-01-06	Mover strings para resource
 2014-01-01	2014-01-06	Criar relatório mensal (Mobile)
 2013-12-30	2014-01-01	Colocar lista de contas (Mobile)

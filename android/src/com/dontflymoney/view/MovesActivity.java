@@ -108,7 +108,7 @@ public class MovesActivity extends SmartActivity
 	    public void onDateSet(DatePicker view, int year, int month, int day)
 	    {
 	        activity.setDate(month, year); 
-			getMoves();	        
+			getMoves();
 	        dialog.hide();
 	    }
 	    
@@ -127,7 +127,11 @@ public class MovesActivity extends SmartActivity
 		request.AddParameter("id", year * 100 + month + 1);
 		
 		request.Post();
-		
+	}
+	
+	@Override
+	public void HandlePost(Request request)
+	{
 		if (request.IsSuccess())
 		{
 			JSONObject result = request.GetResult();
@@ -146,7 +150,7 @@ public class MovesActivity extends SmartActivity
 			alertError(request.GetError());
 		}
 	}
-
+	
 	private void handleResult(JSONObject result) throws JSONException
 	{
 		if (result.has("error"))
@@ -243,5 +247,6 @@ public class MovesActivity extends SmartActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 
 }

@@ -56,7 +56,11 @@ public class AccountsActivity extends SmartActivity
 		Request request = new Request(this, "Accounts/List");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Post();
-		
+	}
+
+	@Override
+	public void HandlePost(Request request)
+	{
 		if (request.IsSuccess())
 		{
 			JSONObject result = request.GetResult();
@@ -155,6 +159,9 @@ public class AccountsActivity extends SmartActivity
 		
 		row.setOnClickListener(listener);
 	}
+
+
+
 
 	
 	

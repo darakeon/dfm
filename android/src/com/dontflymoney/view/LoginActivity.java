@@ -32,7 +32,7 @@ public class LoginActivity extends SmartActivity
 
 	
 	
-	public void login(View view) throws JSONException
+	public void login(View view)
 	{
 		Request request = new Request(this, "Users/Login");
 		
@@ -40,22 +40,33 @@ public class LoginActivity extends SmartActivity
 		request.AddParameter("password", getValue(R.id.password));
 		
 		request.Post();
-		
+	}
+	
+	@Override
+	public void HandlePost(Request request)
+	{
 		if (request.IsSuccess())
 		{
 			JSONObject result = request.GetResult();
-			
-			if (result.has("error"))
+
+			try
 			{
-				String error = result.getString("error");
-				alertError(error);
+				if (result.has("error"))
+				{
+					String error = result.getString("error");
+					alertError(error);
+				}
+				else
+				{
+					String ticket = result.getString("data");
+					Authentication.Set(ticket);
+					
+					redirect(AccountsActivity.class);
+				}
 			}
-			else
+			catch (JSONException e)
 			{
-				String ticket = result.getString("data");
-				Authentication.Set(ticket);
-				
-				redirect(AccountsActivity.class);
+				alertError(e.getLocalizedMessage());
 			}
 		}
 		else
