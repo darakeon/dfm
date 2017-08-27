@@ -58,7 +58,7 @@ public class MovesActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				alertError("Activity json error: " + e.getMessage());
+				alertError(getString(R.string.ErrorActivityJson) + ": " + e.getMessage());
 			}
 		}
 		else
@@ -87,7 +87,7 @@ public class MovesActivity extends SmartActivity
 			
 			if (moveList.length() == 0)
 			{
-				View empty = createText("There is no moves for this month", Gravity.CENTER, Color.BLACK);
+				View empty = createText(getString(R.string.NoMoves), Gravity.CENTER, Color.BLACK);
 				main.addView(empty);
 			}
 			else

@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import com.dontflymoney.view.R;
+
 import android.content.Context;
 
 public class File
@@ -44,7 +46,7 @@ public class File
 	    }
 	    catch (IOException e)
 	    {
-	        status = "File write failed: " + e.toString();
+	        status = context.getString(R.string.ErrorFileWrite) + ": " + e.toString();
 	    } 
 	}
 
@@ -77,11 +79,11 @@ public class File
 	    }
 	    catch (FileNotFoundException e)
 	    {
-	        status = "File not found: " + e.toString();
+	        status = context.getString(R.string.ErrorFileNotFound) + ": " + e.toString();
 	    } 
 	    catch (IOException e) 
 	    {
-	        status = "Can not read file: " + e.toString();
+	        status = context.getString(R.string.ErrorFileRead) + ": " + e.toString();
 	    }
 
 	    return result;

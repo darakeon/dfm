@@ -5,6 +5,18 @@
     <string name="action_logout">Logout</string>
     <string name="action_accounts">Accounts</string>
     
+    <!-- Errors -->
+    <string name="UROffline">You\'re current offline</string>
+    <string name="ErrorSetParameters">Error on set parameters</string>
+    <string name="ErrorPost">Error on requesting site</string>
+    <string name="ErrorConvertResult">Error on converting result</string>
+    <string name="ErrorContactUrl">Error on contacting service on url</string>
+    <string name="ErrorFileWrite">File write failed</string>
+	<string name="ErrorFileNotFound">File not found</string>
+	<string name="ErrorFileRead">Can not read file</string>
+	<string name="ErrorActivityJson">Activity json error</string>
+	<string name="Uninvited">You are uninvited</string>
+    
     <!-- Login -->
     <string name="email">E-mail</string>
     <string name="password">Password</string>
@@ -12,8 +24,10 @@
     
     <!-- Accounts -->
     <string name="title_activity_accounts">Accounts</string>
+	<string name="NoAccounts">There is no accounts</string>
     
     <!-- Moves -->
     <string name="title_activity_moves">Extrato</string>
-
+	<string name="NoMoves">There is no moves for this month</string>
+    
 </resources>

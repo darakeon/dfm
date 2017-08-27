@@ -4,7 +4,19 @@
     <string name="app_name">Don\'t fly Money</string>
     <string name="action_logout">Sair</string>
     <string name="action_accounts">Contas</string>
-
+    
+    <!-- Errors -->
+    <string name="UROffline">Sem conexão com a internet</string>
+    <string name="ErrorSetParameters">Error ao setar parâmetros</string>
+    <string name="ErrorPost">Erro ao chamar site</string>
+    <string name="ErrorConvertResult">Erro ao converter resultado</string>
+    <string name="ErrorContactUrl">Erro ao chamar url</string>
+    <string name="ErrorFileWrite">Erro ao tentar gravar arquivo</string>
+	<string name="ErrorFileNotFound">Arquivo não encontrado</string>
+	<string name="ErrorFileRead">Erro ao tentar ler arquivo</string>
+	<string name="ErrorActivityJson">Erro ao ler resultado</string>
+	<string name="Uninvited">Sua sessão expirou</string>
+    
     <!-- Login -->
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
@@ -12,8 +24,10 @@
     
     <!-- Accounts -->
     <string name="title_activity_accounts">Contas</string>
-    
+	<string name="NoAccounts">Não há contas</string>
+        
     <!-- Moves -->
     <string name="title_activity_moves">Extrato</string>
-    
+   	<string name="NoMoves">Não há movimentações neste mês</string>
+   
 </resources>

@@ -54,7 +54,7 @@ public class AccountsActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				alertError("Activity json error: " + e.getMessage());
+				alertError(getString(R.string.ErrorActivityJson) + ": " + e.getMessage());
 			}
 		}
 		else
@@ -70,12 +70,12 @@ public class AccountsActivity extends SmartActivity
 		{
 			String error = result.get("error").toString();
 			
-			if (error.contains("You are uninvited"))
+			alertError(error);
+
+			if (error.contains(getString(R.string.Uninvited)))
 			{
 				logout();
-			}
-			
-			alertError(error);
+			}			
 		}
 		else
 		{
@@ -84,7 +84,7 @@ public class AccountsActivity extends SmartActivity
 			
 			if (accountList.length() == 0)
 			{
-				View empty = createText("There is no accounts", Gravity.CENTER, Color.BLACK);
+				View empty = createText(getString(R.string.NoAccounts), Gravity.CENTER, Color.BLACK);
 				main.addView(empty);
 			}
 			else

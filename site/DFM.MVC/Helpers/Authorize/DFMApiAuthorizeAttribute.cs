@@ -7,7 +7,7 @@ namespace DFM.MVC.Helpers.Authorize
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            var route = new RouteValueDictionary(new { controller = "User", action = "Uninvited" });
+            var route = new RouteValueDictionary(new { controller = "Users", action = "Uninvited" });
 
             filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
         }

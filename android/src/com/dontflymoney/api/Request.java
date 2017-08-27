@@ -21,11 +21,14 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
+
+import com.dontflymoney.view.R;
 
 public class Request
 {
@@ -41,7 +44,7 @@ public class Request
 	
 	
 	
-	public Request(Context context, String url)
+	public Request(Activity context, String url)
 	{
 		this.context = context;
 		this.url = url;
@@ -72,7 +75,7 @@ public class Request
 		
 		if (isOffline())
 		{
-			error = "You're current offline";
+			error = context.getString(R.string.UROffline);
 			return;
 		}
 		
@@ -90,7 +93,7 @@ public class Request
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
-			error = "Error on set parameters: " + e.getMessage();
+			error = context.getString(R.string.ErrorSetParameters) + e.getMessage();
 			return;
 		}
 
@@ -163,15 +166,15 @@ public class Request
 		}
 		catch (ClientProtocolException e)
 		{
-			error = "Error on posting: [client] " + e.getMessage();
+			error = context.getString(R.string.ErrorPost) + ": [client] " + e.getMessage();
 		}
 		catch (IOException e)
 		{
-			error = "Error on posting: [io] " + e.getMessage();
+			error = context.getString(R.string.ErrorPost) + ": [io] " + e.getMessage();
 		}
 		catch (Exception e)
 		{
-			error = "Error on posting: [" + e.getClass() + "] " + e.getMessage();
+			error = context.getString(R.string.ErrorPost) + ": [" + e.getClass() + "] " + e.getMessage();
 		}
 		
 		return null;
@@ -193,18 +196,18 @@ public class Request
 		}
         catch (ParseException e)
         {
-			error = "Error on converting result: [parse] " + e.getMessage();
+			error = context.getString(R.string.ErrorConvertResult) + ": [parse] " + e.getMessage();
 			return;
 		}
         catch (IOException e)
         {
-			error = "Error on converting result: [io] " + e.getMessage();
+			error = context.getString(R.string.ErrorConvertResult) + ": [io] " + e.getMessage();
 			return;
 		}
     	
     	if (json.startsWith("<"))
     	{
-    		error = "Error on contacting service on url " + response.getLastHeader("Location").getValue();
+    		error = context.getString(R.string.ErrorContactUrl) + " " + response.getLastHeader("Location").getValue();
     		return;
     	}
     	
@@ -214,7 +217,7 @@ public class Request
     	}
         catch (JSONException e)
         {
-			error = "Error on converting result: [json] " + e.getMessage();
+			error = context.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
 			return;
 		}
 	}
