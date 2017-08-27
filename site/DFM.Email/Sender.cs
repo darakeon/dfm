@@ -72,6 +72,9 @@ namespace DFM.Email
             if (emailSender == "DontSend")
                 return;
 
+            if (emailSender == "MakeError")
+                DFMEmailException.WithMessage(EmailStatus.EmailNotSent);
+
             if (String.IsNullOrEmpty(subject))
                 DFMEmailException.WithMessage(EmailStatus.InvalidSubject);
 
@@ -81,10 +84,7 @@ namespace DFM.Email
             if (String.IsNullOrEmpty(to))
                 DFMEmailException.WithMessage(EmailStatus.InvalidAddress);
 
-            var net = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
-            var host = net.Network.Host;
-
-            using (var smtp = new SmtpClient(host) {Timeout = 3000})
+            using (var smtp = new SmtpClient {Timeout = 3000})
             {
                 try
                 {

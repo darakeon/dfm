@@ -111,7 +111,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [When(@"I try to run the scheduler with e-mail system out")]
         public void WhenITryToRunTheSchedulerWithEMailSystemOut()
         {
-            ConfigHelper.ActivateEmailSystem();
             ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
@@ -126,7 +125,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 
             ConfigHelper.FixTheEmailSystem();
             ConfigHelper.DeactivateMoveEmailForUser(SA);
-            ConfigHelper.DeactivateEmailSystem();
         }
 
         [When(@"I try to run the scheduler with e-mail system ok")]

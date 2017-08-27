@@ -116,9 +116,8 @@ S						Security desativa os anteriores
 S						Desativar user a cada 5 senhas erradas
 B						Tratar erro ao enviar e-mail (Security)
 B						Consertar problema ao pedir relatório que ainda não tem Month/Year
-B						Arrumar testes
 B						Corrigir para que movimentação sem categoria conserte realmente os summaries
-B						Colocar frase de limpar schedules no final de testes de create schedule
+2014-06-29	2014-06-29	Arrumar testes de e-mail falhando
 2014-06-26	2014-06-26	Arrumar agendamento detalhado
 
 VERSÃO 2.0.0.2 (System) - 10

@@ -138,7 +138,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [When(@"I try to save the move with e-mail system out")]
         public void WhenITryToSaveTheMoveWithEMailSystemOut()
         {
-            ConfigHelper.ActivateEmailSystem();
             ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
@@ -157,7 +156,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             ConfigHelper.FixTheEmailSystem();
             ConfigHelper.DeactivateMoveEmailForUser(SA);
-            ConfigHelper.DeactivateEmailSystem();
         }
 
         [When(@"I try to save the move with e-mail system ok")]
@@ -696,7 +694,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [When(@"I try to delete the move with e-mail system out")]
         public void WhenITryToDeleteTheMoveWithEMailSystemOut()
         {
-            ConfigHelper.ActivateEmailSystem();
             ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
@@ -712,7 +709,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             ConfigHelper.FixTheEmailSystem();
             ConfigHelper.DeactivateMoveEmailForUser(SA);
-            ConfigHelper.DeactivateEmailSystem();
         }
 
         [Given(@"I run the scheduler and get the move")]

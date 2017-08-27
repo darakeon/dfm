@@ -1,46 +1,23 @@
 ﻿using System;
 using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Configuration;
-using System.Net.Mail;
-using System.Runtime.InteropServices;
-using Ak.XML;
 using DFM.BusinessLogic;
-using DFM.Email;
-using NUnit.Framework;
 
 namespace DFM.Tests.BusinessLogic.Helpers
 {
     class ConfigHelper
     {
-        private static readonly Node configFile = new Node(@"DFM.Tests.dll.config");
-        private static String host;
+        private static String oldEmailConfig;
 
         public static void BreakTheEmailSystem()
         {
-            changeHost(false);
+            oldEmailConfig = ConfigurationManager.AppSettings["EmailSender"];
+            ConfigurationManager.AppSettings["EmailSender"] = "MakeError";
         }
 
         internal static void FixTheEmailSystem()
         {
-            changeHost(true);
-        }
-
-        private static void changeHost(Boolean makeItWork)
-        {
-            var all = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var net = (SmtpSection)all.GetSection("system.net/mailSettings/smtp");
-            var network = net.Network;
-
-            host = network.Host;
-
-            network.Host = makeItWork
-                ? network.Host.Replace("dont_work", String.Empty)
-                : "dont_work" + network.Host;
-
-            all.Save();
-            ConfigurationManager.RefreshSection("system.net/mailSettings/smtp");
+            ConfigurationManager.AppSettings["EmailSender"] = oldEmailConfig;
+            oldEmailConfig = "";
         }
 
 
@@ -54,6 +31,8 @@ namespace DFM.Tests.BusinessLogic.Helpers
         {
             ConfigurationManager.AppSettings["EmailSender"] = "DontSend";
         }
+
+
 
         internal static void ActivateMoveEmailForUser(ServiceAccess sa)
         {
@@ -74,6 +53,8 @@ namespace DFM.Tests.BusinessLogic.Helpers
         {
             sa.Admin.UpdateConfig(null, null, null, false);
         }
+
+
 
     }
 }
