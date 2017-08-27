@@ -15,7 +15,6 @@ android/.metadata/.plugins/org.eclipse.cdt.core/.log
 *.ap_
 *.suo
 Web.Release.config
-
 pseudo-debug.txt
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
