@@ -2,7 +2,7 @@
 {
     public enum ExceptionPossibilities
     {
-        Unauthorized = 1,
+        Unauthorized = 0,
 
         FailOnEmailSend = 101,
         TooLargeData = 102,
@@ -27,6 +27,7 @@
         DuplicatedAccountUrl = 310,
         RedLimitAboveYellowLimit = 311,
         InvalidAccount = 312,
+        CategoriesDisabled = 313,
 
         CategoryNameRequired = 401,
         CategoryAlreadyExists = 402,

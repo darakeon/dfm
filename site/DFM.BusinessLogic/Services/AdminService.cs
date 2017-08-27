@@ -9,20 +9,22 @@ namespace DFM.BusinessLogic.Services
 {
     public class AdminService : BaseService
     {
-        private readonly CategoryRepository categoryService;
-        private readonly AccountRepository accountService;
-        private readonly YearRepository yearService;
-        private readonly MonthRepository monthService;
-        private readonly SummaryRepository summaryService;
+        private readonly AccountRepository accountRepository;
+        private readonly CategoryRepository categoryRepository;
+        private readonly YearRepository yearRepository;
+        private readonly MonthRepository monthRepository;
+        private readonly SummaryRepository summaryRepository;
+        private readonly ConfigRepository configRepository;
 
-        internal AdminService(ServiceAccess serviceAccess, AccountRepository accountService, CategoryRepository categoryService, YearRepository yearService, MonthRepository monthService, SummaryRepository summaryService)
+        internal AdminService(ServiceAccess serviceAccess, AccountRepository accountRepository, CategoryRepository categoryRepository, YearRepository yearRepository, MonthRepository monthRepository, SummaryRepository summaryRepository, ConfigRepository configRepository)
             : base(serviceAccess)
         {
-            this.accountService = accountService;
-            this.categoryService = categoryService;
-            this.yearService = yearService;
-            this.monthService = monthService;
-            this.summaryService = summaryService;
+            this.accountRepository = accountRepository;
+            this.categoryRepository = categoryRepository;
+            this.yearRepository = yearRepository;
+            this.monthRepository = monthRepository;
+            this.summaryRepository = summaryRepository;
+            this.configRepository = configRepository;
         }
 
 
@@ -31,15 +33,13 @@ namespace DFM.BusinessLogic.Services
         {
             VerifyUser();
 
-            var account = accountService.GetByUrl(url, Parent.Current.User);
+            var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
             return account;
         }
-
-
 
         public void CreateAccount(Account account)
         {
@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.Services
                         account.Url = newUrl;
                 }
 
-                accountService.SaveOrUpdate(account);
+                accountRepository.SaveOrUpdate(account);
                 CommitTransaction();
             }
             catch
@@ -89,7 +89,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                accountService.Close(url, Parent.Current.User);
+                accountRepository.Close(url, Parent.Current.User);
                 CommitTransaction();
             }
             catch
@@ -115,21 +115,21 @@ namespace DFM.BusinessLogic.Services
                     {
                         foreach (var summary in month.SummaryList)
                         {
-                            summaryService.Delete(summary);
+                            summaryRepository.Delete(summary);
                         }
 
-                        monthService.Delete(month);
+                        monthRepository.Delete(month);
                     }
 
                     foreach (var summary in year.SummaryList)
                     {
-                        summaryService.Delete(summary);
+                        summaryRepository.Delete(summary);
                     }
 
-                    yearService.Delete(year);
+                    yearRepository.Delete(year);
                 }
 
-                accountService.Delete(url, Parent.Current.User);
+                accountRepository.Delete(url, Parent.Current.User);
 
                 CommitTransaction();
             }
@@ -140,13 +140,18 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
+        internal IList<Account> GetAccounts()
+        {
+            return accountRepository.List(a => a.User.ID == Parent.Current.User.ID);
+        }
+
 
 
         public Category GetCategoryByName(String name)
         {
             VerifyUser();
 
-            var category = categoryService.GetByName(name, Parent.Current.User);
+            var category = categoryRepository.GetByName(name, Parent.Current.User);
 
             if (category == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
@@ -185,7 +190,7 @@ namespace DFM.BusinessLogic.Services
                         category.Name = newName;
                 }
 
-                categoryService.SaveOrUpdate(category);
+                categoryRepository.SaveOrUpdate(category);
                 CommitTransaction();
             }
             catch
@@ -203,7 +208,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                categoryService.Disable(name, Parent.Current.User);
+                categoryRepository.Disable(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch
@@ -221,7 +226,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                categoryService.Enable(name, Parent.Current.User);
+                categoryRepository.Enable(name, Parent.Current.User);
                 CommitTransaction();
             }
             catch
@@ -232,11 +237,27 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal IList<Account> GetAccountsByUser(User user)
-        {
-            return accountService.List(a => a.User.ID == user.ID);
-        }
 
+        public void UpdateConfig(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories)
+        {
+            VerifyUser();
+
+            var config = Parent.Current.User.Config;
+
+            if (!String.IsNullOrEmpty(language))
+                config.Language = language;
+
+            if (!String.IsNullOrEmpty(timeZone))
+                config.TimeZone = timeZone;
+
+            if (sendMoveEmail.HasValue)
+                config.SendMoveEmail = sendMoveEmail.Value;
+
+            if (useCategories.HasValue)
+                config.UseCategories = useCategories.Value;
+
+            configRepository.Update(config);
+        }
 
     }
 }

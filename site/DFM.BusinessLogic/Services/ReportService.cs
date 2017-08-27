@@ -9,16 +9,16 @@ namespace DFM.BusinessLogic.Services
 {
     public class ReportService : BaseService
     {
-        private readonly AccountRepository accountService;
-        private readonly YearRepository yearService;
-        private readonly MonthRepository monthService;
+        private readonly AccountRepository accountRepository;
+        private readonly YearRepository yearRepository;
+        private readonly MonthRepository monthRepository;
 
-        internal ReportService(ServiceAccess serviceAccess, AccountRepository accountService, YearRepository yearService, MonthRepository monthService)
+        internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, YearRepository yearRepository, MonthRepository monthRepository)
             : base(serviceAccess)
         {
-            this.accountService = accountService;
-            this.monthService = monthService;
-            this.yearService = yearService;
+            this.accountRepository = accountRepository;
+            this.monthRepository = monthRepository;
+            this.yearRepository = yearRepository;
         }
 
 
@@ -33,18 +33,18 @@ namespace DFM.BusinessLogic.Services
             if (dateMonth <= 0 || dateMonth >= 13)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMonth);
 
-            var account = accountService.GetByUrl(accountUrl, Parent.Current.User);
+            var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
-            var year = yearService.GetOrCreateYear(dateYear, account);
+            var year = yearRepository.GetOrCreateYear(dateYear, account);
 
             if (year == null)
                 return new List<Move>();
 
 
-            var month = monthService.GetOrCreateMonth(dateMonth, year);
+            var month = monthRepository.GetOrCreateMonth(dateMonth, year);
 
             return month == null
                 ? new List<Move>()
@@ -60,14 +60,14 @@ namespace DFM.BusinessLogic.Services
             if (dateYear <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidYear);
 
-            var account = accountService.GetByUrl(accountUrl, Parent.Current.User);
+            var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
-            var year = yearService.GetOrCreateYear(dateYear, account);
+            var year = yearRepository.GetOrCreateYear(dateYear, account);
 
-            return accountService.NonFuture(year);
+            return accountRepository.NonFuture(year);
         }
 
 

@@ -23,7 +23,8 @@ namespace DFM.Repositories.Mappings
 
             mapping.References(s => s.Category)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.None();
+                .Cascade.None()
+                .Nullable();
         }
 
     }

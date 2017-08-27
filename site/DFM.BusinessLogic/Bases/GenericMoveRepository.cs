@@ -100,11 +100,19 @@ namespace DFM.BusinessLogic.Bases
 
         private static void testCategory(T move)
         {
-            if (move.Category == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+            if (move.User.Config.UseCategories)
+            {
+                if (move.Category == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
 
-            if (!move.Category.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
+                if (!move.Category.Active)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
+            }
+            else
+            {
+                if (move.Category != null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+            }
         }
         #endregion
 

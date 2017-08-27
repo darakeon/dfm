@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.Entities.Bases;
 
 namespace DFM.Entities
@@ -25,11 +26,11 @@ namespace DFM.Entities
         public virtual User User { get; set; }
 
 
-
         public override String ToString()
         {
             return String.Format("[{0}] {1}", ID, Name);
         }
-        
+
+
     }
 }

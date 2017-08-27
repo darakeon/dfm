@@ -8,16 +8,16 @@ namespace DFM.BusinessLogic.Services
 {
     public class MoneyService : BaseService
     {
-        private readonly MoveRepository moveService;
-        private readonly DetailRepository detailService;
-        private readonly ScheduleRepository scheduleService;
+        private readonly MoveRepository moveRepository;
+        private readonly DetailRepository detailRepository;
+        private readonly ScheduleRepository scheduleRepository;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, ScheduleRepository scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, ScheduleRepository scheduleRepository)
             : base(serviceAccess)
         {
-            this.moveService = moveService;
-            this.detailService = detailService;
-            this.scheduleService = scheduleService;
+            this.moveRepository = moveRepository;
+            this.detailRepository = detailRepository;
+            this.scheduleRepository = scheduleRepository;
         }
 
 
@@ -25,7 +25,7 @@ namespace DFM.BusinessLogic.Services
         {
             VerifyUser();
 
-            var move = moveService.GetById(id);
+            var move = moveRepository.GetById(id);
 
             VerifyMove(move);
 
@@ -92,7 +92,7 @@ namespace DFM.BusinessLogic.Services
 
                 VerifyMove(move);
 
-                moveService.Delete(id);
+                moveRepository.Delete(id);
 
                 Parent.BaseMove.BreakSummaries(move);
 
@@ -100,7 +100,7 @@ namespace DFM.BusinessLogic.Services
                 {
                     move.Schedule.Deleted++;
 
-                    scheduleService.SaveOrUpdate(move.Schedule);
+                    scheduleRepository.SaveOrUpdate(move.Schedule);
                 }
 
                 Parent.BaseMove.SendEmail(move, OperationType.Delete);
@@ -123,7 +123,7 @@ namespace DFM.BusinessLogic.Services
         {
             VerifyUser();
 
-            var detail = detailService.GetById(id);
+            var detail = detailRepository.GetById(id);
 
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Ak.DataAccess.XML;
+using Ak.XML;
 
 namespace DFM.Multilanguage.Helpers
 {

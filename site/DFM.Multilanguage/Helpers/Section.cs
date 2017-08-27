@@ -1,5 +1,5 @@
 ﻿using System;
-using Ak.DataAccess.XML;
+using Ak.XML;
 
 namespace DFM.Multilanguage.Helpers
 {

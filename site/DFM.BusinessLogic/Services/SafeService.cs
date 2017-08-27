@@ -9,23 +9,23 @@ namespace DFM.BusinessLogic.Services
 {
     public class SafeService : BaseService, ISafeService
     {
-        private readonly UserRepository userService;
-        private readonly SecurityRepository securityService;
-        private readonly TicketRepository ticketService;
+        private readonly UserRepository userRepository;
+        private readonly SecurityRepository securityRepository;
+        private readonly TicketRepository ticketRepository;
 
-        internal SafeService(ServiceAccess serviceAccess, UserRepository userService, SecurityRepository securityService, TicketRepository ticketService)
+        internal SafeService(ServiceAccess serviceAccess, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository)
             : base(serviceAccess)
         {
-            this.userService = userService;
-            this.securityService = securityService;
-            this.ticketService = ticketService;
+            this.userRepository = userRepository;
+            this.securityRepository = securityRepository;
+            this.ticketRepository = ticketRepository;
         }
 
 
 
         public void SendPasswordReset(String email)
         {
-            var user = userService.GetByEmail(email);
+            var user = userRepository.GetByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -41,7 +41,7 @@ namespace DFM.BusinessLogic.Services
             {
                 var user = new User { Email = email, Password = password };
 
-                user = userService.Save(user);
+                user = userRepository.Save(user);
 
                 sendUserVerify(user);
 
@@ -56,7 +56,7 @@ namespace DFM.BusinessLogic.Services
 
         public void SendUserVerify(String email)
         {
-            var user = userService.GetByEmail(email);
+            var user = userRepository.GetByEmail(email);
 
             if (user == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
@@ -73,10 +73,10 @@ namespace DFM.BusinessLogic.Services
         {
             var security = new Security { Action = action, User = user };
 
-            userService.ValidateSecurity(security);
-            security = securityService.SaveOrUpdate(security);
+            userRepository.ValidateSecurity(security);
+            security = securityRepository.SaveOrUpdate(security);
 
-            securityService.SendEmail(security);
+            securityRepository.SendEmail(security);
         }
 
 
@@ -87,11 +87,11 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var security = securityService.ValidateAndGet(token, SecurityAction.UserVerification);
+                var security = securityRepository.ValidateAndGet(token, SecurityAction.UserVerification);
 
-                userService.Activate(security.User);
+                userRepository.Activate(security.User);
 
-                securityService.Disable(token);
+                securityRepository.Disable(token);
 
                 CommitTransaction();
             }
@@ -112,13 +112,13 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var security = securityService.ValidateAndGet(token, SecurityAction.PasswordReset);
+                var security = securityRepository.ValidateAndGet(token, SecurityAction.PasswordReset);
 
                 security.User.Password = password;
 
-                userService.ChangePassword(security.User);
+                userRepository.ChangePassword(security.User);
 
-                securityService.Disable(token);
+                securityRepository.Disable(token);
 
                 CommitTransaction();
             }
@@ -132,7 +132,7 @@ namespace DFM.BusinessLogic.Services
 
         public void TestSecurityToken(String token, SecurityAction securityAction)
         {
-            securityService.ValidateAndGet(token, securityAction);
+            securityRepository.ValidateAndGet(token, securityAction);
         }
 
         public void DisableToken(String token)
@@ -141,7 +141,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                securityService.Disable(token);
+                securityRepository.Disable(token);
 
                 CommitTransaction();
             }
@@ -155,7 +155,7 @@ namespace DFM.BusinessLogic.Services
 
         public User GetUserByTicket(String ticketKey)
         {
-            var ticket = ticketService.GetByKey(ticketKey);
+            var ticket = ticketRepository.GetByKey(ticketKey);
 
             if (ticket == null || !ticket.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
@@ -172,13 +172,13 @@ namespace DFM.BusinessLogic.Services
             
             try
             {
-                var user = userService.ValidateAndGet(email, password);
+                var user = userRepository.ValidateAndGet(email, password);
 
-                var ticket = ticketService.GetByKey(ticketKey);
+                var ticket = ticketRepository.GetByKey(ticketKey);
 
                 if (ticket == null)
                 {
-                    ticket = ticketService.Create(user, ticketKey);
+                    ticket = ticketRepository.Create(user, ticketKey);
                 }
                 else if (ticket.User.Email != email)
                 {
@@ -202,7 +202,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var ticket = ticketService.GetByKey(ticketKey);
+                var ticket = ticketRepository.GetByKey(ticketKey);
 
                 if (ticket != null && ticket.Active)
                 {
@@ -210,7 +210,7 @@ namespace DFM.BusinessLogic.Services
                     ticket.Active = false;
                     ticket.Expiration = DateTime.UtcNow;
 
-                    ticketService.Disable(ticket);
+                    ticketRepository.Disable(ticket);
                 }
 
                 CommitTransaction();

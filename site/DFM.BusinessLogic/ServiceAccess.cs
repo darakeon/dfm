@@ -12,6 +12,7 @@ namespace DFM.BusinessLogic
         {
             var account = new AccountRepository(resolver.Resolve<Account>());
             var category = new CategoryRepository(resolver.Resolve<Category>());
+            var config = new ConfigRepository(resolver.Resolve<Config>());
             var detail = new DetailRepository(resolver.Resolve<Detail>());
             var month = new MonthRepository(resolver.Resolve<Month>());
             var move = new MoveRepository(resolver.Resolve<Move>());
@@ -27,7 +28,7 @@ namespace DFM.BusinessLogic
             BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
 
             Safe = new SafeService(this, user, security, ticket);
-            Admin = new AdminService(this, account, category, year, month, summary);
+            Admin = new AdminService(this, account, category, year, month, summary, config);
             Money = new MoneyService(this, move, detail, schedule);
             Robot = new RobotService(this, schedule, detail);
             Report = new ReportService(this, account, year, month);
@@ -46,7 +47,7 @@ namespace DFM.BusinessLogic
         public AdminService Admin { get; private set; }
         public RobotService Robot { get; private set; }
 
-        public Current Current { get; private set; } 
+        public Current Current { get; private set; }
 
     }
 }

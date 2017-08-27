@@ -21,9 +21,9 @@ namespace DFM.BusinessLogic.Repositories
 
         private Summary getByYearAndCategory(Year year, Category category)
         {
-            return SingleOrDefault(
-                s => s.Year.ID == year.ID
-                     && s.Category.ID == category.ID);
+            return List(s => s.Year.ID == year.ID)
+                .SingleOrDefault(s => s.Category == category
+                    || s.Category.ID == category.ID);
         }
 
 
@@ -36,9 +36,9 @@ namespace DFM.BusinessLogic.Repositories
 
         private Summary getByMonthAndCategory(Month month, Category category)
         {
-            return SingleOrDefault(
-                s => s.Month.ID == month.ID
-                     && s.Category.ID == category.ID);
+            return List(s => s.Month.ID == month.ID)
+                .SingleOrDefault(s => s.Category == category
+                    || s.Category.ID == category.ID);
         }
 
 
@@ -56,7 +56,8 @@ namespace DFM.BusinessLogic.Repositories
             var summaryList = 
                 summarizable
                     .SummaryList
-                    .Where(s => s.Broken);
+                    .Where(s => s.Broken)
+                    .ToList();
 
             if (!summaryList.Any())
                 return;

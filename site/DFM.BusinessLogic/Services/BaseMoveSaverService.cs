@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -9,48 +10,41 @@ namespace DFM.BusinessLogic.Services
 {
     internal class BaseMoveSaverService : BaseService
     {
-        private readonly MoveRepository moveService;
-        private readonly DetailRepository detailService;
-        private readonly SummaryRepository summaryService;
-        private readonly MonthRepository monthService;
-        private readonly YearRepository yearService;
+        private readonly MoveRepository moveRepository;
+        private readonly DetailRepository detailRepository;
+        private readonly SummaryRepository summaryRepository;
+        private readonly MonthRepository monthRepository;
+        private readonly YearRepository yearRepository;
 
-        internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, SummaryRepository summaryService, MonthRepository monthService, YearRepository yearService)
+        internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, MonthRepository monthRepository, YearRepository yearRepository)
             : base(serviceAccess)
         {
-            this.moveService = moveService;
-            this.detailService = detailService;
-            this.summaryService = summaryService;
-            this.monthService = monthService;
-            this.yearService = yearService;
+            this.moveRepository = moveRepository;
+            this.detailRepository = detailRepository;
+            this.summaryRepository = summaryRepository;
+            this.monthRepository = monthRepository;
+            this.yearRepository = yearRepository;
         }
 
 
 
         internal Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            var accountOut = getAccountByUrl(accountOutUrl);
-            var accountIn = getAccountByUrl(accountInUrl);
-
-            var category = Parent.Admin.GetCategoryByName(categoryName);
-
-
             resetSchedule(move);
 
-            
-            linkEntities(move, accountOut, accountIn, category);
+            linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
-            var oldMove = moveService.GetOldById(move.ID);
+            var oldMove = moveRepository.GetOldById(move.ID);
 
             if (move.ID == 0 || !move.IsDetailed())
             {
-                move = moveService.SaveOrUpdate(move);
-                detailService.SaveDetails(move);
+                move = moveRepository.SaveOrUpdate(move);
+                detailRepository.SaveDetails(move);
             }
             else
             {
-                detailService.SaveDetails(move);
-                move = moveService.SaveOrUpdate(move);
+                detailRepository.SaveDetails(move);
+                move = moveRepository.SaveOrUpdate(move);
             }
 
 
@@ -63,18 +57,29 @@ namespace DFM.BusinessLogic.Services
             return move;
         }
 
-        private Account getAccountByUrl(String accountUrl)
+        internal Account GetAccountByUrl(String accountUrl)
         {
             return accountUrl == null
-                       ? null
-                       : Parent.Admin.GetAccountByUrl(accountUrl);
+                ? null
+                : Parent.Admin.GetAccountByUrl(accountUrl);
+        }
+
+        internal Category GetCategoryByName(String categoryName)
+        {
+            if (Parent.Current.User.Config.UseCategories)
+                return Parent.Admin.GetCategoryByName(categoryName);
+
+            if (!String.IsNullOrEmpty(categoryName))
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+
+            return null;
         }
 
         private void resetSchedule(Move move)
         {
             if (move.ID == 0) return;
 
-            var oldMove = moveService.GetOldById(move.ID);
+            var oldMove = moveRepository.GetOldById(move.ID);
 
             move.Schedule = oldMove == null
                 ? null : oldMove.Schedule;
@@ -82,14 +87,17 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        private void linkEntities(Move move, Account accountOut, Account accountIn, Category category)
+        private void linkEntities(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            move.Category = category;
+            move.Category = GetCategoryByName(categoryName);
 
+            var accountOut = GetAccountByUrl(accountOutUrl);
             var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+
+            var accountIn = GetAccountByUrl(accountInUrl);
             var monthIn = accountIn == null ? null : getMonth(move, accountIn);
 
-            moveService.PlaceMonthsInMove(move, monthOut, monthIn);
+            moveRepository.PlaceMonthsInMove(move, monthOut, monthIn);
         }
 
         private Month getMonth(Move move, Account account)
@@ -97,16 +105,16 @@ namespace DFM.BusinessLogic.Services
             if (move.Date == DateTime.MinValue)
                 return null;
 
-            var year = yearService.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
+            var year = yearRepository.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
 
-            return monthService.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
+            return monthRepository.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
         }
 
 
 
         public void BreakSummaries(Move move)
         {
-            var oldMove = moveService.GetOldById(move.ID);
+            var oldMove = moveRepository.GetOldById(move.ID);
 
             breakSummaries(oldMove);
         }
@@ -115,18 +123,18 @@ namespace DFM.BusinessLogic.Services
         {
             if (move.Nature != MoveNature.Out)
             {
-                summaryService.CreateIfNotExists(move.In, move.Category);
+                summaryRepository.CreateIfNotExists(move.In, move.Category);
 
-                summaryService.Break(move.In, move.Category);
-                summaryService.Break(move.In.Year, move.Category);
+                summaryRepository.Break(move.In, move.Category);
+                summaryRepository.Break(move.In.Year, move.Category);
             }
 
             if (move.Nature != MoveNature.In)
             {
-                summaryService.CreateIfNotExists(move.Out, move.Category);
+                summaryRepository.CreateIfNotExists(move.Out, move.Category);
 
-                summaryService.Break(move.Out, move.Category);
-                summaryService.Break(move.Out.Year, move.Category);
+                summaryRepository.Break(move.Out, move.Category);
+                summaryRepository.Break(move.Out.Year, move.Category);
             }
 
         }
@@ -136,7 +144,7 @@ namespace DFM.BusinessLogic.Services
         {
             var emailAction = getEmailAction(operationType);
 
-            moveService.SendEmail(move, emailAction);
+            moveRepository.SendEmail(move, emailAction);
         }
 
         private static string getEmailAction(OperationType operationType)
@@ -162,17 +170,17 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var accounts = Parent.Admin.GetAccountsByUser(Parent.Current.User);
+                var accounts = Parent.Admin.GetAccounts();
 
                 foreach (var account in accounts)
                 {
                     foreach (var year in account.YearList)
                     {
-                        summaryService.Fix(year);
+                        summaryRepository.Fix(year);
 
                         foreach (var month in year.MonthList)
                         {
-                            summaryService.Fix(month);
+                            summaryRepository.Fix(month);
                         }
 
                     }

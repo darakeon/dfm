@@ -186,7 +186,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             accountTotal = Account.Sum();
         }
-
+        
         [When(@"make this changes to the account")]
         public void WhenMakeThisChanges(Table table)
         {
@@ -232,7 +232,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
                 Error = null;
             }
-
 
             try
             {
@@ -303,26 +302,21 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             var account = SA.Admin.GetAccountByUrl(givenAccountUrl);
 
-            for (var y = 0; y < account.YearList.Count; y++)
+            foreach (var year in account.YearList)
             {
-                var year = account.YearList[y];
-
-                for (var m = 0; m < year.MonthList.Count; m++)
+                foreach (var month in year.MonthList)
                 {
-                    var month = year.MonthList[m];
-
-                    for (var mi = 0; mi < month.InList.Count; mi++)
+                    foreach (var move in month.InList)
                     {
-                        SA.Money.DeleteMove(month.InList[mi].ID);
+                        SA.Money.DeleteMove(move.ID);
                     }
 
-                    for (var mo = 0; mo < month.OutList.Count; mo++)
+                    foreach (var move in month.OutList)
                     {
-                        SA.Money.DeleteMove(month.OutList[mo].ID);
+                        SA.Money.DeleteMove(move.ID);
                     }
                 }
             }
-           
         }
 
         [When(@"I try to delete the account")]
@@ -636,6 +630,23 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             }
         }
         #endregion
+
+        #region UpdateConfig
+
+        [Given(@"I disable Categories use")]
+        public void GivenIDisableCategoryForThisUser()
+        {
+            SA.Admin.UpdateConfig(null, null, null, false);
+        }
+
+        [Given(@"I enable Categories use")]
+        public void GivenIEnableCategoryForThisUser()
+        {
+            SA.Admin.UpdateConfig(null, null, null, true);
+        }
+
+        #endregion
+
 
 
 

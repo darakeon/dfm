@@ -13,7 +13,8 @@ namespace DFM.Repositories.Mappings
                 .Length(MaximumLength.MoveDescription);
 
             mapping.References(m => m.Category)
-                .Cascade.None();
+                .Cascade.None()
+                .Nullable();
 
             mapping.Map(s => s.Active)
                 .Default("1");

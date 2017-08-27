@@ -47,6 +47,7 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Bases\BaseRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\ConfigRepository.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />
     <Compile Include="IConnector.cs" />

@@ -21,7 +21,8 @@ namespace DFM.Repositories.Mappings
             mapping.IgnoreProperty(m => m.User);
 
             mapping.References(m => m.Category)
-                .Cascade.None();
+                .Cascade.None()
+                .Nullable();
 
             mapping.References(m => m.In)
                 .Cascade.None()

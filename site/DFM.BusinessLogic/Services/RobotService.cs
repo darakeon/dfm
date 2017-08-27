@@ -9,14 +9,14 @@ namespace DFM.BusinessLogic.Services
 {
     public class RobotService : BaseService
     {
-        private readonly ScheduleRepository scheduleService;
-        private readonly DetailRepository detailService;
+        private readonly ScheduleRepository scheduleRepository;
+        private readonly DetailRepository detailRepository;
         
-        internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleService, DetailRepository detailService)
+        internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleRepository, DetailRepository detailRepository)
             : base(serviceAccess)
         {
-            this.scheduleService = scheduleService;
-            this.detailService = detailService;
+            this.scheduleRepository = scheduleRepository;
+            this.detailRepository = detailRepository;
         }
 
 
@@ -25,7 +25,7 @@ namespace DFM.BusinessLogic.Services
         {
             VerifyUser();
 
-            var scheduleList = scheduleService.GetScheduleToRun(Parent.Current.User);
+            var scheduleList = scheduleRepository.GetScheduleToRun(Parent.Current.User);
 
             foreach (var schedule in scheduleList)
             {
@@ -109,13 +109,13 @@ namespace DFM.BusinessLogic.Services
         {
             if (schedule.ID == 0 || !schedule.IsDetailed())
             {
-                scheduleService.SaveOrUpdate(schedule);
-                detailService.SaveDetails(schedule);
+                scheduleRepository.SaveOrUpdate(schedule);
+                detailRepository.SaveDetails(schedule);
             }
             else
             {
-                detailService.SaveDetails(schedule);
-                scheduleService.SaveOrUpdate(schedule);
+                detailRepository.SaveDetails(schedule);
+                scheduleRepository.SaveOrUpdate(schedule);
             }
 
             return schedule;
@@ -123,14 +123,9 @@ namespace DFM.BusinessLogic.Services
 
         private void linkToEntities(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            schedule.Out = accountOutUrl == null
-                ? null : Parent.Admin.GetAccountByUrl(accountOutUrl);
-
-            schedule.In = accountInUrl == null
-                ? null : Parent.Admin.GetAccountByUrl(accountInUrl);
-
-            schedule.Category = Parent.Admin.GetCategoryByName(categoryName);
-
+            schedule.Out = Parent.BaseMove.GetAccountByUrl(accountOutUrl);
+            schedule.In = Parent.BaseMove.GetAccountByUrl(accountInUrl);
+            schedule.Category = Parent.BaseMove.GetCategoryByName(categoryName);
             schedule.User = Parent.Current.User;
         }
 

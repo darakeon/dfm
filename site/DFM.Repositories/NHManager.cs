@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ak.DataAccess.NHibernate;
-using Ak.DataAccess.NHibernate.UserPassed;
+using Ak.NHibernate;
+using Ak.NHibernate.UserPassed;
 using Ak.Generic.Exceptions;
 using DFM.Entities;
 using DFM.Generic;

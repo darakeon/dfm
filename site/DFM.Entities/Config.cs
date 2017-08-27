@@ -1,8 +1,9 @@
 ﻿using System;
+using DFM.Entities.Bases;
 
 namespace DFM.Entities
 {
-    public class Config
+    public class Config : IEntity
     {
         public virtual Int32 ID { get; set; }
 

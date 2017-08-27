@@ -31,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ak.DataAccess">
-      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="Ak.Generic">
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
     <Reference Include="Ak.MVC">
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.XML">
+      <HintPath>..\Library\Ak\Ak.XML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
