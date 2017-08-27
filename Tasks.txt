@@ -89,6 +89,7 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Tirar complete / validate de SaveOrUpdate
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
+						Configurar max request length 
 
 VERSÃO 2.0.0.1 (System) - 10?
 ================================================================================================
