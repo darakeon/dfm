@@ -22,7 +22,6 @@ import com.dontflymoney.view.R;
 
 public class Request
 {
-	private String domain;
 	private String site;
 	
 	public SmartActivity activity;
@@ -44,8 +43,7 @@ public class Request
 	
 	private void setMainUrl()
 	{
-		domain = Site.Domain;
-		site = "http://" + domain + "/Api";		
+		site = Site.GetProtocol() + "://" + Site.Domain + "/Api";		
 	}
 
 
