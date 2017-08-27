@@ -89,7 +89,7 @@ public abstract class SmartActivity extends Activity
 
 
 	
-	protected void setValue(int id, double value)
+	protected void setValueColored(int id, double value)
 	{
 		TextView field = getField(id);
 		

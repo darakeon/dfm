@@ -127,7 +127,7 @@ public class SummaryActivity extends SmartActivity
 		JSONArray monthList = data.getJSONArray("MonthList");
 		
 		setValue(R.id.totalTitle, data.getString("Name"));
-		setValue(R.id.totalValue, data.getDouble("Total"));
+		setValueColored(R.id.totalValue, data.getDouble("Total"));
 		
 		if (monthList.length() == 0)
 		{

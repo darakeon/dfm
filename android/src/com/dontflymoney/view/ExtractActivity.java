@@ -131,7 +131,7 @@ public class ExtractActivity extends SmartActivity
 		JSONArray moveList = data.getJSONArray("MoveList");
 		
 		setValue(R.id.totalTitle, data.getString("Name"));
-		setValue(R.id.totalValue, data.getDouble("Total"));
+		setValueColored(R.id.totalValue, data.getDouble("Total"));
 		
 		if (moveList.length() == 0)
 		{
