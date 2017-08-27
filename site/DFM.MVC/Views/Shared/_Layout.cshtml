@@ -4,8 +4,6 @@
     Layout = isAuthenticated
         ? "~/Views/Shared/Inner/_Layout.cshtml"
         : "~/Views/Shared/Outer/_Layout.cshtml";
-
-    ViewBag.Buttons = isAuthenticated ? "in" : "out";
 }
 
 
@@ -19,8 +17,12 @@
     <script type="text/javascript" src="http://sawpf.com/1.0.js"></script>
 }
 
+
+
 @section PS {
     @RenderSection("PS", required: false)
 }
+
+
 
 @RenderBody()

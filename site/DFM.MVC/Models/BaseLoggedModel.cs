@@ -36,27 +36,6 @@ namespace DFM.MVC.Models
 
         public String ActionName { get; set; }
 
-    
-        
-        public Menu MenuWith(String id, String text, String action, String controller)
-        {
-            return new Menu(id, text, action, controller);
-        }
-
-        public bool TooBigMeny(Int32 maxSize)
-        {
-            var accountNameList = LateralAccountList
-                                    .Where(a => a.IsOpen())
-                                    .Select(a => a.Name)
-                                    .ToList();
-
-            var width = (accountNameList.Count - 1) * 20
-                + accountNameList.Sum(
-                    accountName => accountName.Length
-                ) * 15;
-
-            return width > maxSize;
-        }
 
 
 

@@ -15,6 +15,8 @@ div#TopRightDiv {
 	border-radius: 0px 0px 0px 50px;
 	z-index: 1;
 	box-shadow: inset 3px -3px 5px #CC6;
+	border-left: 10px solid #fff;
+	border-bottom: 10px solid #fff;
 }
 
 div#TopRightDiv input {

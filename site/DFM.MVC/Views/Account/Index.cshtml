@@ -55,8 +55,11 @@ else
             var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
 
             <tr>
-                <td>@account.Name </td>
-                <td>@account.BeginDate.ToShortDateString() </td>
+                <td>
+                    @Html.RouteLink(account.Name, RouteNames.Accounts, new { accounturl = account.Url, controller = "" })
+                </td>
+                
+                <td>@account.BeginDate.ToShortDateString()</td>
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                     

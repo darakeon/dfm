@@ -1,11 +1,21 @@
 ﻿@{
     ViewBag.Title = MultiLanguage.Dictionary["Welcome"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
+
+    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
 }
 
-@section TopRightDiv {
-    @Html.Partial("LogOn", new DFM.MVC.Models.UserLogOnModel())
+@if (!isAuthenticated)
+{
+    @section TopRightDiv {
+        @Html.Partial("LogOn", new DFM.MVC.Models.UserLogOnModel())
+    }
 }
+
+@section HtmlHeadCss {
+    <link href="/Assets/Css/Pages/user-index.css" rel="stylesheet" type="text/css" />
+}
+
 
 <p>
     @MultiLanguage.Dictionary["Index_Introdution"]

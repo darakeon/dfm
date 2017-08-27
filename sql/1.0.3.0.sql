@@ -83,7 +83,7 @@ Alter Table Schedule
     modify Description varchar(50) not null,
     modify Category_ID int not null,
     modify Nature int not null,
-    change Date Begin datetime not null;
+    change Begin Date datetime not null;
 
 
 	

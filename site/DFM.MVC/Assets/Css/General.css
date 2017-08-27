@@ -38,23 +38,22 @@ div#Main {
 	min-height: 500px;
 	width: 910px;
 	padding: 20px;
+	border-radius: 0 0 50px 0;
+    box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.7);
 }
 
 div#PS {
-	width: 930px;
+	width: 890px;
 	padding: 10px;
 	color: #990;
 	font-size: 80%;
+	margin-top: 50px;
 }
 
 div#Footer {
 	padding: 30px 0px;
 	color: #660;
 	text-align: center;
-}
-
-div#Belt {
-    background: #AA7;
 }
 
 
@@ -75,12 +74,8 @@ div#Advertising a
 h2 {
 	color: #550;
 	font-size: 20px;
-}
-
-hr.underTitle {
-    background-color: #770;
-    border: none;
-    height: 2px;
+	border-bottom: #770 2px solid;
+	margin: 0 0 40px 0;
 }
 
 a {
@@ -94,3 +89,4 @@ a {
 a:hover {
 	color: #990;
 }
+

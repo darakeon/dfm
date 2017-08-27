@@ -1,47 +1,41 @@
 ﻿@model DFM.MVC.Models.UserLogOnModel
 
 @{
-    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
     ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 
 <div class="HalfScreen">
-    @if (isAuthenticated)
+
+    @using (Html.BeginForm("LogOn", "User", new { returnUrl = Request.QueryString["returnUrl"] }))
     {
-        <button class="topRightMoreSpace" href='@Url.Action("Index", "Account")'>@MultiLanguage.Dictionary["Enter"]</button>
+        @Html.ValidationSummary(true)
+        
+        <p>
+            @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
+            @Html.TextBoxFor(m => m.Email) 
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"] + ":")
+            @Html.PasswordFor(m => m.Password)
+        </p>
+
+        <div id="Remember">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
+        </div>
+
+        <button type="submit">@MultiLanguage.Dictionary["Enter"]</button>
+
+        
+        <button type="button" id="ForgotPass" href="@Url.Action("ForgotPassword")">
+            @MultiLanguage.Dictionary["ForgotPassword"]
+        </button>
+        
+        <div id="TokenReceived">
+            <a href="@Url.Action("Index", "Token")">@MultiLanguage.Dictionary["TokenReceivedByEmail"]</a>
+        </div>
+
     }
-    else
-    {
-        using (Html.BeginForm("LogOn", "User", new { returnUrl = Request.QueryString["returnUrl"] }))
-        {
-            @Html.ValidationSummary(true)
-        
-            <p>
-                @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
-                @Html.TextBoxFor(m => m.Email) 
-            </p>
 
-            <p>
-                @Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"] + ":")
-                @Html.PasswordFor(m => m.Password)
-            </p>
-
-            <div id="Remember">
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
-            </div>
-
-            <button type="submit">@MultiLanguage.Dictionary["Enter"]</button>
-
-        
-            <button type="button" id="ForgotPass" href="@Url.Action("ForgotPassword")">
-                @MultiLanguage.Dictionary["ForgotPassword"]
-            </button>
-        
-            <div id="TokenReceived">
-                <a href="@Url.Action("Index", "Token")">@MultiLanguage.Dictionary["TokenReceivedByEmail"]</a>
-            </div>
-
-        }
-    }
 </div>

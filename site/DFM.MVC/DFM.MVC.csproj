@@ -145,7 +145,6 @@
     <Compile Include="Helpers\MultiLanguage.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
-    <Compile Include="Helpers\Views\Menu.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Models\AccountCreateEditModel.cs" />
     <Compile Include="Models\AccountIndexModel.cs" />
@@ -165,17 +164,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Css\Forms.css" />
-    <Content Include="Assets\Css\General.css" />
+    <Content Include="Assets\Css\forms.css" />
+    <Content Include="Assets\Css\general.css" />
     <Content Include="Assets\Css\HalfScreen.css" />
     <Content Include="Assets\Css\IE.css" />
     <Content Include="Assets\Css\Libraries\datepicker.css" />
-    <Content Include="Assets\Css\Menu.css" />
+    <Content Include="Assets\Css\menu.css" />
     <Content Include="Assets\Css\MVC.css" />
-    <Content Include="Assets\Css\Navigation.css" />
+    <Content Include="Assets\Css\navigation.css" />
     <Content Include="Assets\Css\Pages\MoveCreateEditSchedule.css" />
-    <Content Include="Assets\Css\SystemIn.css" />
-    <Content Include="Assets\Css\SystemOut.css" />
+    <Content Include="Assets\Css\Pages\user-index.css" />
     <Content Include="Assets\Css\Table.css" />
     <Content Include="Assets\Css\TopRightDiv.css" />
     <Content Include="Assets\Image\advertising\darakeon.gif" />
@@ -188,13 +186,8 @@
     <Content Include="Assets\Image\edit.gif" />
     <Content Include="Assets\Image\green_sign.gif" />
     <Content Include="Assets\Image\logo_email.gif" />
-    <Content Include="Assets\Image\logo_in.gif" />
-    <Content Include="Assets\Image\logo_out.gif" />
+    <Content Include="Assets\Image\logo.gif" />
     <Content Include="Assets\Image\month.gif" />
-    <Content Include="Assets\Image\off_in.gif" />
-    <Content Include="Assets\Image\off_in_hover.gif" />
-    <Content Include="Assets\Image\off_out.gif" />
-    <Content Include="Assets\Image\off_out_hover.gif" />
     <Content Include="Assets\Image\open.gif" />
     <Content Include="Assets\Image\pig.gif" />
     <Content Include="Assets\Image\pig.ico" />
@@ -251,7 +244,6 @@
     <Content Include="Views\Ops\500.cshtml" />
     <Content Include="Views\Ops\Error.cshtml" />
     <Content Include="Views\Ops\Index.cshtml" />
-    <Content Include="Views\Shared\Inner\Menu.cshtml" />
     <Content Include="Views\Shared\Inner\_Layout.cshtml" />
     <Content Include="Views\Shared\Outer\_Layout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -337,6 +329,9 @@
     <Folder Include="Areas\Json\Controllers\" />
     <Folder Include="Areas\Json\Models\" />
     <Folder Include="Areas\Json\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,7 +21,7 @@ select
 
 button {
 	margin-top: 20px;
-	border-radius: 10px 0px;
+	border-radius: 0 0 10px 0;
 	color: #FFF;
 	font-weight: bold;
 	font-size: 12px;

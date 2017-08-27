@@ -1,11 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Master.cshtml";
-    ViewBag.Buttons = "out";
+    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
 }
 
 @section HtmlHeadCss {
-    <link href="/Assets/Css/SystemOut.css" rel="stylesheet" type="text/css" />
-
     @RenderSection("HtmlHeadCss", required: false)
 }
 
@@ -13,13 +11,32 @@
     @RenderSection("HtmlFooterJs", required: false)
 }
 
+
+
+@section MenuTopo {
+    @if (isAuthenticated)
+    {
+        <ul class="menu-topo">
+            <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })</li>
+            <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User" }, new { @class = "fixItem" })</li>
+        </ul>
+    }
+}
+
+
+
 @{/* Made without spaces to hide when empty */}
 @section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
 
-@RenderBody()
+
 
 @section PS {
-    &nbsp;
-
     @RenderSection("PS", required: false)
 }
+
+
+
+@RenderBody()
+
+
+

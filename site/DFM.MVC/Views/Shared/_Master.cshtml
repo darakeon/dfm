@@ -5,10 +5,6 @@
         ? new { controller = "Account", action = "Index" }
         : new { controller = "User", action = "Index" };
 
-    string normalLogOutButton = "/Assets/Image/off_" + ViewBag.Buttons + ".gif";
-    string hoverLogOutButton = "/Assets/Image/off_" + ViewBag.Buttons + "_hover.gif";
-
-    string logo = "/Assets/Image/logo_" + ViewBag.Buttons + ".gif";
 }
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,6 +20,7 @@
     <link href="/Assets/Css/HalfScreen.css" rel="stylesheet" type="text/css" />
     <link href="/Assets/Css/Forms.css" rel="stylesheet" type="text/css" />
     <link href="/Assets/Css/TopRightDiv.css" rel="stylesheet" type="text/css" />
+    <link href="/Assets/Css/menu.css" rel="stylesheet" type="text/css" />
 
     <link href="/Assets/Css/IE.css" rel="stylesheet" type="text/css" />
 
@@ -40,40 +37,34 @@
 <body>
 	<div id="Head">
 
-        @if (isAuthenticated)
-        {
-            <a href="@Url.RouteUrl(RouteNames.Default, new { action = "LogOff", controller = "User" })">
-                
-
-                <img id="Out" alt="@MultiLanguage.Dictionary["LogOff"]" src="@normalLogOutButton"
-                    onmouseover="this.src='@hoverLogOutButton'"
-                    onmouseout="this.src='@normalLogOutButton'" />
-            </a>
-        }
-        
         <a id="Logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
             <img alt="DFM" src="/Assets/Image/pig.gif" />
-            <img alt="DFM" src="@logo" />
+            <img alt="DFM" src="/Assets/Image/logo.gif" />
         </a>
+
+        @RenderSection("MenuTopo")
+
 	</div>
 
-    <div id="Belt">
-        @RenderSection("Menu", required: false)
-    </div>
-
     <div id="Body">
+
         <div id="Main">
+
+            @RenderSection("MenuBaixo", required: false)
+
             @{/* Made without spaces to hide when empty */}
             <div id="TopRightDiv">@RenderSection("TopRightDiv", required: false)</div>
 
-            <h2>@ViewBag.Title<hr class="underTitle" /></h2>
+            <h2>@ViewBag.Title</h2>
 
             @RenderBody()
+
+            <div id="PS">
+                @RenderSection("PS", required: false)
+            </div>
+
         </div>
 
-        <div id="PS">
-            @RenderSection("PS", required: false)
-        </div>
     </div>
 
     <div id="Footer">

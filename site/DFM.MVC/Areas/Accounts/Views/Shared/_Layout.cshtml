@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+}
+
+@section HtmlHeadCss {
+    @RenderSection("HtmlHeadCss", required: false)
+}
+
+@section HtmlFooterJs {
+    @RenderSection("HtmlFooterJs", required: false)
+}
+
+
+
+@section MenuBaixo {
+    @{
+        String currentMonthReport = String.Format(MultiLanguage.Dictionary["MonthMoves"], Model.CurrentMonth);
+        String currentYearReport = String.Format(MultiLanguage.Dictionary["YearMoves"], Model.CurrentYear);
+
+        <ul class="menu-baixo">
+            <li>@Html.ActionLink(currentMonthReport, "ShowMoves", "Report")</li>
+            <li>@Html.ActionLink(currentYearReport, "SummarizeMonths", "Report")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["Create", "Move"], "Create", "Move")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule", "Move"], "Create", "Schedule")</li>
+        </ul>
+        
+        
+    }
+}
+
+
+
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
+
+
+
+@section PS {
+    @RenderSection("PS", required: false)
+}
+
+
+
+@RenderBody()
+
