@@ -10,7 +10,6 @@
 		<ForgotPassword text="Forgot my password" />
 		<FollowEmailIntructions text="Follow the instructions in the e-mail sent. Pay attention to the sender address: must be {0}." />
 		<PasswordReset text="Password Reset" />
-		<TokenReceivedByEmail text="Token received by e-mail" />
 		<UserVerification text="User Verification" />
 	</en-US>
 	<pt-BR>
@@ -23,7 +22,6 @@
 		<ForgotPassword text="Esqueci minha senha" />
 		<FollowEmailIntructions text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
 		<PasswordReset text="Recuperação de Senha" />
-		<TokenReceivedByEmail text="Token recebido via e-mail" />
 		<UserVerification text="Verificação de Usuário" />
 	</pt-BR>
 </user>

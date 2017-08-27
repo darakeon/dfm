@@ -11,7 +11,6 @@
     <Reset text="Reset" />
     <PasswordResetSuccess text="Password successfuly reset." />
     <Token text="Token" />
-    <TokenReceivedByEmail text="Token received by e-mail" />
     <NotRecognizedAction text="Action not recognized. Please, contact us." />
     <UserVerification text="User Verification" />
     <UserVerificationSuccess text="User successfuly verified." />
@@ -28,7 +27,6 @@
     <Reset text="Redefinir" />
     <PasswordResetSuccess text="Senha redefinida com sucesso." />
     <Token text="Token" />
-    <TokenReceivedByEmail text="Token recebido via e-mail" />
     <NotRecognizedAction text="Ação não reconhecida. Por favor, contate-nos." />
     <UserVerification text="Verificação de Usuário" />
     <UserVerificationSuccess text="Usuário verificado com sucesso." />
