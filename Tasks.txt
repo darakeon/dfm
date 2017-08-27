@@ -111,7 +111,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						HTTPS!!!
 						Consertar problema de salvar língua
 						Deletar PageLog
-						Arrumar tabela em caso de texto grande
+2014-05-04	2014-05-04	Arrumar tabela em caso de texto grande
 2014-05-04	2014-05-04	Exibir apenas dois dígitos nos centavos no mobile
 2014-05-04	2014-05-04	Trocar língua antes de renderizar a tela
 2014-05-04	2014-05-04	Gravar a língua localmente
