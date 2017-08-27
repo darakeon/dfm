@@ -15,7 +15,7 @@ CREATE TABLE Config
 
 INSERT INTO Config (Language, TimeZone, SendMoveEmail, User_ID)
 	SELECT Language, TimeZone, SendMoveEmail, ID
-		FROM User
+		FROM User;
 	
 ALTER TABLE User
 	ADD Config_ID INTEGER NULL,
