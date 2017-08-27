@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
@@ -178,20 +179,14 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var accounts = Parent.Admin.GetAccounts();
+                var summaryList = 
+                    summaryRepository
+                        .List(s => s.Broken)
+                        .Where(s => s.User() == Parent.Current.User);
 
-                foreach (var account in accounts)
+                foreach (var summary in summaryList)
                 {
-                    foreach (var year in account.YearList)
-                    {
-                        summaryRepository.Fix(year);
-
-                        foreach (var month in year.MonthList)
-                        {
-                            summaryRepository.Fix(month);
-                        }
-
-                    }
+                    summaryRepository.Fix(summary);
                 }
 
                 CommitTransaction();

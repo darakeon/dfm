@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions
@@ -26,6 +28,36 @@ namespace DFM.Entities.Extensions
             var categoryID = category == null ? 0 : category.ID;
 
             return String.Format("{0}_{1}_{2}", yearID, monthID, categoryID);
+        }
+
+
+
+        public static ISummarizable Parent(this Summary summary)
+        {
+            switch (summary.Nature)
+            {
+                case SummaryNature.Year:
+                    return summary.Year;
+                case SummaryNature.Month:
+                    return summary.Month;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+
+
+        public static User User(this Summary summary)
+        {
+            switch (summary.Nature)
+            {
+                case SummaryNature.Year:
+                    return summary.Year.User();
+                case SummaryNature.Month:
+                    return summary.Month.User();
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
 

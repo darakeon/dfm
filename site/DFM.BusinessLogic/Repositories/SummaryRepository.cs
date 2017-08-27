@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.Entities;
-using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
@@ -27,7 +25,6 @@ namespace DFM.BusinessLogic.Repositories
                 .SingleOrDefault(s => s.Category.Is(category));
         }
 
-
         internal void Break(Month month, Category category)
         {
             var summary = getByMonthAndCategory(month, category);
@@ -41,7 +38,6 @@ namespace DFM.BusinessLogic.Repositories
                 .SingleOrDefault(s => s.Category.Is(category));
         }
 
-
         private void @break(Summary summary)
         {
             summary.Broken = true;
@@ -51,78 +47,15 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-        public void Fix(ISummarizable summarizable)
+        public void Fix(Summary summary)
         {
-            var summaryList = 
-                summarizable
-                    .SummaryList
-                    .Where(s => s.Broken)
-                    .ToList();
+            var summarizable = summary.Parent();
 
-            //NH POG
-            if (!summaryList.Any())
-            {
-                var summariesNHIgnored = getRealSummaryList(summarizable);
-
-                if (summariesNHIgnored.Any())
-                {
-                    summariesNHIgnored.ToList()
-                        .ForEach(summarizable.SummaryList.Add);
-
-                    Fix(summarizable);
-                }
-
-                return;
-            }
-
-            removeRepeated(summarizable);
-
-            foreach (var summary in summaryList)
-            {
-                fix(summary, summarizable);
-            }
-        }
-
-        private IList<Summary> getRealSummaryList(ISummarizable summarizable)
-        {
-            return summarizable is Year
-                ? List(s => s.Broken && s.Nature == SummaryNature.Year && s.Year.ID == summarizable.ID)
-                : List(s => s.Broken && s.Nature == SummaryNature.Month && s.Month.ID == summarizable.ID);
-        }
-
-        private void fix(Summary summary, ISummarizable summarizable)
-        {
             summary.In = summarizable.CheckUpIn(summary.Category);
             summary.Out = summarizable.CheckUpOut(summary.Category);
             summary.Broken = false;
 
             SaveOrUpdate(summary);
-        }
-
-        private void removeRepeated(ISummarizable summarizable)
-        {
-            var grouped = summarizable.SummaryList
-                .GroupBy(s => s.UniqueID());
-
-            foreach (var group in grouped)
-            {
-                if (group.Count() > 1)
-                {
-                    var firstSummary = group.First();
-
-                    firstSummary.Broken = true;
-                    
-                    var otherSummaries = group.Skip(1);
-
-                    foreach (var summary in otherSummaries)
-                    {
-                        summarizable.SummaryList.Remove(summary);
-
-                        Delete(summary);
-                    }
-                }
-            }
-
         }
 
 
@@ -132,6 +65,12 @@ namespace DFM.BusinessLogic.Repositories
             if (month == null)
                 return;
 
+            createForMonthIfNotExists(month, category);
+            createForYearIfNotExists(month.Year, category);
+        }
+
+        private void createForMonthIfNotExists(Month month, Category category)
+        {
             var summaryMonth = getByMonthAndCategory(month, category);
 
             if (summaryMonth == null)
@@ -140,17 +79,20 @@ namespace DFM.BusinessLogic.Repositories
 
                 SaveOrUpdate(summaryMonth);
             }
+        }
 
-
-            var summaryYear = getByYearAndCategory(month.Year, category);
+        private void createForYearIfNotExists(Year year, Category category)
+        {
+            var summaryYear = getByYearAndCategory(year, category);
 
             if (summaryYear == null)
             {
-                summaryYear = new Summary(month.Year, category);
+                summaryYear = new Summary(year, category);
 
                 SaveOrUpdate(summaryYear);
             }
         }
+
 
 
     }
