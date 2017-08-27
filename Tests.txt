@@ -39,3 +39,9 @@ Report > SummarizeMonths
 
 Account > Close
 Account > ListClosed
+
+Schedules > Index
+Schedules > Delete
+
+Logins > Index
+Logins > Delete
