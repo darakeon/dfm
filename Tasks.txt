@@ -54,7 +54,6 @@ VERSÃO 2.2.0.0 (Big change) - 10?
 
 VERSÃO 2.1.0.0 (Big change) - 4?
 ================================================================================================
-						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
@@ -77,7 +76,6 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Transformar Double em int, usar como centavos
 						Tirar complete / validate de SaveOrUpdate
 						Desativar user a cada 5 senhas erradas
-						Remover GetOrCreate
 						Colocar botão de pânico (enviar dados de post para o desenv)
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -89,6 +87,9 @@ VERSÃO 2.0.0.1 (System) - 11?
 
 VERSÃO 2.0.0.0 (All new) - 23?
 ================================================================================================
+						Consertar esquema de session do NH
+						Tratar FailOnEmailSend em Robot
+						Remover GetOrCreate
 						Criar tela de configuração para usuário (Web)
 						Colocar menu ao clicar e segurar em Account
 						Colocar modelo de movimentação (Mobile)
