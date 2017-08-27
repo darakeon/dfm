@@ -24,6 +24,7 @@ VERSÃO 3.1.0.0 (Big change) - 7?
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
+						Criar tela de configuração para usuário (Web)
 					>>>	Colocar nome (ou apelido) no sign up
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
 
@@ -83,19 +84,18 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Colocar língua padrão do usuário como língua do browser dele
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Guardar dados localmente, para quando está sem internet (Mobile)
+						Colocar modelo de movimentação (Mobile)
+						Criar Template (Move)
 
 VERSÃO 2.0.0.0 (All new) - 30?
 ================================================================================================
 						Consertar esquema de session do NH
 						Tratar FailOnEmailSend em Robot
 						Remover GetOrCreate
-						Criar tela de configuração para usuário (Web)
 						Colocar menu ao clicar e segurar em Account
-						Colocar modelo de movimentação (Mobile)
-						Criar Template (Move)
 						Criar tela de configuração para usuário (Mobile)
 						Possibilitar não escolher categoria
-						Separar dados adicionais de User em Config
+2014-03-04	2014-03-04	Separar dados adicionais de User em Config
 2014-03-04	2014-03-04	Corrigir erro ao virar tela de inserção de movimentação (Mobile)
 2014-03-04	2014-03-04	Colocar amount default 1 (Mobile)
 2014-03-03	2014-03-03	Colocar ok no alert de erro (Mobile)
