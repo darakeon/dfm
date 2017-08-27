@@ -15,15 +15,15 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public abstract class BaseMoveModel : BaseAccountsModel
+    public abstract class BaseMovesModel : BaseAccountModel
     {
-        protected BaseMoveModel(IMove iMove, OperationType type)
+        protected BaseMovesModel(IMove iMove, OperationType type)
             : this(iMove)
         {
             Type = type;
         }
 
-        protected BaseMoveModel(IMove iMove)
+        protected BaseMovesModel(IMove iMove)
             : this()
         {
             GenericMove = iMove;
@@ -40,7 +40,7 @@ namespace DFM.MVC.Areas.Account.Models
             arrangeDetails();
         }
 
-        private BaseMoveModel()
+        private BaseMovesModel()
         {
             var transferIsPossible =
                 Current.User.VisibleAccountList().Count() > 1;
@@ -64,7 +64,7 @@ namespace DFM.MVC.Areas.Account.Models
 
         private IMove initIMove()
         {
-            if (GetType() == typeof(ScheduleCreateModel))
+            if (GetType() == typeof(SchedulesCreateModel))
                 return new Schedule();
 
             return new Move();

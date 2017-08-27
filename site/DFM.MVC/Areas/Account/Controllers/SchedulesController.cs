@@ -17,13 +17,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 
         public ActionResult Create()
         {
-            var model = new ScheduleCreateModel();
+            var model = new SchedulesCreateModel();
 
             return View("Create", model);
         }
 
         [HttpPost]
-        public ActionResult Create(ScheduleCreateModel model)
+        public ActionResult Create(SchedulesCreateModel model)
         {
             model.Type = OperationType.Schedule;
 

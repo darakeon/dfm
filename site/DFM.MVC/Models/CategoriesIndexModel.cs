@@ -4,14 +4,14 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-    public class CategoryIndexModel : BaseLoggedModel
+    public class CategoriesIndexModel : BaseLoggedModel
     {
-        public CategoryIndexModel()
+        public CategoriesIndexModel()
         {
             CategoryList =
                 Current.User.CategoryList
                     .OrderBy(c => c.Name)
-                    .OrderByDescending(c => c.Active)
+                    .ThenByDescending(c => c.Active)
                     .ToList();
         }
 

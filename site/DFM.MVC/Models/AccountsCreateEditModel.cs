@@ -8,19 +8,19 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class AccountCreateEditModel : BaseLoggedModel
+    public class AccountsCreateEditModel : BaseLoggedModel
     {
-        public AccountCreateEditModel()
+        public AccountsCreateEditModel()
         {
             Account = new Account();
         }
 
-        public AccountCreateEditModel(OperationType type) : this()
+        public AccountsCreateEditModel(OperationType type) : this()
         {
             Type = type;
         }
 
-        public AccountCreateEditModel(OperationType type, String id) : this(type)
+        public AccountsCreateEditModel(OperationType type, String id) : this(type)
         {
             Account = Admin.GetAccountByUrl(id);
         }

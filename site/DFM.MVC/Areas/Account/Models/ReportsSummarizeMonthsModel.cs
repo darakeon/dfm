@@ -5,9 +5,9 @@ using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class ReportSummarizeMonthsModel : BaseAccountsModel
+    public class ReportsSummarizeMonthsModel : BaseAccountModel
     {
-        public ReportSummarizeMonthsModel(Int16? id)
+        public ReportsSummarizeMonthsModel(Int16? id)
         {
             var year = DateFromInt.GetDateYear(id, Today);
 

@@ -11,7 +11,7 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View(new ScheduleIndexModel());
+            return View(new SchedulesIndexModel());
         }
 
         public ActionResult Delete(Int32 id)

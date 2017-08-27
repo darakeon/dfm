@@ -1,4 +1,4 @@
-﻿@model BaseMoveModel
+﻿@model BaseMovesModel
 
 @using DFM.Entities;
 
@@ -97,12 +97,12 @@
         {
             for (var d = 0; d < Model.DetailList.Count; d++)
             {
-                @Html.Partial("../Details/Add", new DetailAddModel(Model.DetailList[d], d))
+                @Html.Partial("../Details/Add", new DetailsAddModel(Model.DetailList[d], d))
             }
         }
         else
         { 
-            @Html.Partial("../Details/Add", new DetailAddModel(new Detail(), 0))
+            @Html.Partial("../Details/Add", new DetailsAddModel(new Detail(), 0))
         }
     </tbody>
 </table>

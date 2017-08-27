@@ -8,7 +8,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class UserSignUpModel : BaseModel
+    public class UsersSignUpModel : BaseModel
     {
         [Required(ErrorMessage = "*")]
         public String Email { get; set; }

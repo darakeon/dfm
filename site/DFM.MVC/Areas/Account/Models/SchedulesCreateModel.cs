@@ -10,12 +10,12 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class ScheduleCreateModel : BaseMoveModel
+    public class SchedulesCreateModel : BaseMovesModel
     {
-        public ScheduleCreateModel()
+        public SchedulesCreateModel()
             : this(new Schedule()) { }
 
-        public ScheduleCreateModel(Schedule schedule)
+        public SchedulesCreateModel(Schedule schedule)
             : base(schedule, OperationType.Schedule)
         {
             FrequencySelectList =

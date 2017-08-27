@@ -12,14 +12,14 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            var model = new AccountIndexModel();
+            var model = new AccountsIndexModel();
 
             return View(model);
         }
 
         public ActionResult ListClosed()
         {
-            var model = new AccountIndexModel(false);
+            var model = new AccountsIndexModel(false);
 
             return View(model);
         }
@@ -29,13 +29,13 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Create()
         {
-            var model = new AccountCreateEditModel(OperationType.Creation);
+            var model = new AccountsCreateEditModel(OperationType.Creation);
 
             return View("CreateEdit", model);
         }
 
         [HttpPost]
-        public ActionResult Create(AccountCreateEditModel model)
+        public ActionResult Create(AccountsCreateEditModel model)
         {
             model.Type = OperationType.Creation;
 
@@ -47,7 +47,7 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new AccountCreateEditModel(OperationType.Edit, id);
+            var model = new AccountsCreateEditModel(OperationType.Edit, id);
 
             if (model.Account == null)
                 return RedirectToAction("Create");
@@ -56,14 +56,14 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(String id, AccountCreateEditModel model)
+        public ActionResult Edit(String id, AccountsCreateEditModel model)
         {
             model.ResetAccountUrl(OperationType.Edit, id);
 
             return createEdit(model);
         }
 
-        private ActionResult createEdit(AccountCreateEditModel model)
+        private ActionResult createEdit(AccountsCreateEditModel model)
         {
             if (ModelState.IsValid)
             {

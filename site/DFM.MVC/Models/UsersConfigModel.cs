@@ -10,9 +10,9 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class UserConfigModel : BaseModel
+    public class UsersConfigModel : BaseModel
     {
-        public UserConfigModel()
+        public UsersConfigModel()
         {
             var languageDictionary = 
                 PlainText.AcceptedLanguage()

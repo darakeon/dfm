@@ -13,7 +13,7 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            var model = new CategoryIndexModel();
+            var model = new CategoriesIndexModel();
 
             return View(model);
         }
@@ -22,7 +22,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Create()
         {
-            var model = new CategoryCreateEditModel(OperationType.Creation);
+            var model = new CategoriesCreateEditModel(OperationType.Creation);
 
             model.DefineAction(Request);
 
@@ -30,7 +30,7 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CategoryCreateEditModel model)
+        public ActionResult Create(CategoriesCreateEditModel model)
         {
             model.Type = OperationType.Creation;
 
@@ -38,7 +38,7 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateAjax(CategoryCreateEditModel model)
+        public JsonResult CreateAjax(CategoriesCreateEditModel model)
         {
             model.Type = OperationType.Creation;
 
@@ -58,13 +58,13 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new CategoryCreateEditModel(OperationType.Edit, id);
+            var model = new CategoriesCreateEditModel(OperationType.Edit, id);
 
             return View("CreateEdit", model);
         }
 
         [HttpPost]
-        public ActionResult Edit(String id, CategoryCreateEditModel model)
+        public ActionResult Edit(String id, CategoriesCreateEditModel model)
         {
             model.Type = OperationType.Edit;
             model.Category.Name = id;
@@ -74,7 +74,7 @@ namespace DFM.MVC.Controllers
 
 
 
-        private ActionResult createEditForHtmlForm(CategoryCreateEditModel model)
+        private ActionResult createEditForHtmlForm(CategoriesCreateEditModel model)
         {
             if (ModelState.IsValid)
             {

@@ -18,13 +18,13 @@ namespace DFM.MVC.Controllers
         
         public ActionResult SignUp()
         {
-            var model = new UserSignUpModel();
+            var model = new UsersSignUpModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult SignUp(UserSignUpModel model)
+        public ActionResult SignUp(UsersSignUpModel model)
         {
             if (ModelState.IsValid)
             {
@@ -42,13 +42,13 @@ namespace DFM.MVC.Controllers
 
         public ActionResult LogOn(String returnUrl)
         {
-            var model = new UserLogOnModel();
+            var model = new UsersLogOnModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult LogOn(UserLogOnModel model, String returnUrl)
+        public ActionResult LogOn(UsersLogOnModel model, String returnUrl)
         {
             var logOnError = model.LogOn();
 
@@ -84,13 +84,13 @@ namespace DFM.MVC.Controllers
 
         public ActionResult ForgotPassword()
         {
-            var model = new UserForgotPasswordModel();
+            var model = new UsersForgotPasswordModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult ForgotPassword(UserForgotPasswordModel model)
+        public ActionResult ForgotPassword(UsersForgotPasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -108,11 +108,11 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Config()
         {
-            return View(new UserConfigModel());
+            return View(new UsersConfigModel());
         }
 
         [HttpPost]
-        public ActionResult Config(UserConfigModel model)
+        public ActionResult Config(UsersConfigModel model)
         {
             if (ModelState.IsValid)
             {

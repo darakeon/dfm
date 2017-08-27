@@ -4,9 +4,9 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-    public class ScheduleIndexModel : BaseLoggedModel
+    public class SchedulesIndexModel : BaseLoggedModel
     {
-        public ScheduleIndexModel()
+        public SchedulesIndexModel()
         {
             ScheduleList = 
                 Current.User.ScheduleList

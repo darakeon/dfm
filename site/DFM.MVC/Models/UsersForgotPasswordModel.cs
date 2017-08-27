@@ -6,7 +6,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class UserForgotPasswordModel : BaseModel
+    public class UsersForgotPasswordModel : BaseModel
     {
         [Required(ErrorMessage = "*")]
         public String Email { get; set; }

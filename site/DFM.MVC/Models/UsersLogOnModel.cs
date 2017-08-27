@@ -4,7 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Models
 {
-    public class UserLogOnModel : BaseModel
+    public class UsersLogOnModel : BaseModel
     {
         [Required(ErrorMessage = "*")]
         public String Email { get; set; }

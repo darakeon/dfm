@@ -8,19 +8,19 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class CategoryCreateEditModel : BaseLoggedModel
+    public class CategoriesCreateEditModel : BaseLoggedModel
     {
-        public CategoryCreateEditModel()
+        public CategoriesCreateEditModel()
         {
             Category = new Category();
         }
 
-        public CategoryCreateEditModel(OperationType type) : this()
+        public CategoriesCreateEditModel(OperationType type) : this()
         {
             Type = type;
         }
 
-        public CategoryCreateEditModel(OperationType type, String categoryName) : this(type)
+        public CategoriesCreateEditModel(OperationType type, String categoryName) : this(type)
         {
             Category = Admin.GetCategoryByName(categoryName);
         }

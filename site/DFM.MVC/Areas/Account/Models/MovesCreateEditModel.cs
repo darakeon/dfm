@@ -7,15 +7,15 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class MoveCreateEditModel : BaseMoveModel
+    public class MovesCreateEditModel : BaseMovesModel
     {
-        public MoveCreateEditModel() 
+        public MovesCreateEditModel() 
             : base(new Move())  { }
 
-        public MoveCreateEditModel(OperationType type) 
+        public MovesCreateEditModel(OperationType type) 
             : base(new Move(), type) { }
 
-        public MoveCreateEditModel(Int32 id, OperationType type) 
+        public MovesCreateEditModel(Int32 id, OperationType type) 
             : base(Money.GetMoveById(id), type) { }
 
 

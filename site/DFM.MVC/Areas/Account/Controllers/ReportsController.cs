@@ -17,7 +17,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 
         public ActionResult ShowMoves(Int32? id)
         {
-            var model = new ReportShowMovesModel(id);
+            var model = new ReportsShowMovesModel(id);
 
             return View(model);
         }
@@ -26,7 +26,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 
         public ActionResult SummarizeMonths(Int16? id)
         {
-            var model = new ReportSummarizeMonthsModel(id);
+            var model = new ReportsSummarizeMonthsModel(id);
 
             return View(model);
         }

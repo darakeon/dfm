@@ -5,9 +5,9 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-    public class AccountIndexModel : BaseLoggedModel
+    public class AccountsIndexModel : BaseLoggedModel
     {
-        public AccountIndexModel(Boolean open = true)
+        public AccountsIndexModel(Boolean open = true)
         {
             AccountList = 
                 Current.User.AccountList

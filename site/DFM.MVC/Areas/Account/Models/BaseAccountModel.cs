@@ -4,9 +4,9 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class BaseAccountsModel : BaseLoggedModel
+    public class BaseAccountModel : BaseLoggedModel
     {
-        public BaseAccountsModel()
+        public BaseAccountModel()
         {
             var routeInfo = new RouteInfo();
 

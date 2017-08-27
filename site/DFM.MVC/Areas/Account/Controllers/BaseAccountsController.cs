@@ -8,7 +8,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 {
     public class BaseAccountsController : BaseController
     {
-        protected ActionResult CreateEditSchedule(BaseMoveModel model)
+        protected ActionResult CreateEditSchedule(BaseMovesModel model)
         {
             if (ModelState.IsValid)
             {

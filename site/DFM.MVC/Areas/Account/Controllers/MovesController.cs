@@ -19,13 +19,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 
         public ActionResult Create()
         {
-            var model = new MoveCreateEditModel(OperationType.Creation);
+            var model = new MovesCreateEditModel(OperationType.Creation);
             
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(MoveCreateEditModel model)
+        public ActionResult Create(MovesCreateEditModel model)
         {
             model.Type = OperationType.Creation;
 
@@ -39,7 +39,7 @@ namespace DFM.MVC.Areas.Account.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Create");
 
-            var model = new MoveCreateEditModel(id.Value, OperationType.Edit);
+            var model = new MovesCreateEditModel(id.Value, OperationType.Edit);
 
             if (model.ChosenAccountUrl == model.CurrentAccountUrl)
                 return redirectToRightAccount(model.Move);
@@ -57,7 +57,7 @@ namespace DFM.MVC.Areas.Account.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Int32 id, MoveCreateEditModel model)
+        public ActionResult Edit(Int32 id, MovesCreateEditModel model)
         {
             model.Move.ID = id;
 

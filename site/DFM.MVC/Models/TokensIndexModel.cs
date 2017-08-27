@@ -9,9 +9,9 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class TokenIndexModel : BaseModel
+    public class TokensIndexModel : BaseModel
     {
-        public TokenIndexModel()
+        public TokensIndexModel()
         {
             SecurityActionList = SelectListExtension.CreateSelect(
                                     MultiLanguage.GetEnumNames<SecurityAction>());

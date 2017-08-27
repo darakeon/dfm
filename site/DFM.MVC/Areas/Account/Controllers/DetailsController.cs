@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Account.Controllers
     {
         public ActionResult Add(Int32 position = 0)
         {
-            var model = new DetailAddModel(position);
+            var model = new DetailsAddModel(position);
 
             return View(model);
         }

@@ -9,13 +9,13 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            var model = new TokenIndexModel();
+            var model = new TokensIndexModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(TokenIndexModel model)
+        public ActionResult Index(TokensIndexModel model)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +40,7 @@ namespace DFM.MVC.Controllers
 
         public ActionResult PasswordReset(String id)
         {
-            var model = new TokenPasswordResetModel();
+            var model = new TokensPasswordResetModel();
 
             var isValid = model.TestToken(id);
 
@@ -50,7 +50,7 @@ namespace DFM.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult PasswordReset(String id, TokenPasswordResetModel model)
+        public ActionResult PasswordReset(String id, TokensPasswordResetModel model)
         {
             var isValid = model.TestToken(id);
 
