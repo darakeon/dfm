@@ -14,12 +14,17 @@
 <div class="introduction">
     <p>@MultiLanguage.Dictionary["Index_Introdution"]</p>
     
-    <p>@MultiLanguage.Dictionary["Index_Explanation"]</p>
+    <p>
+        @Html.Raw(String.Format(
+            MultiLanguage.Dictionary["Index_Explanation"],
+            "<a href='" + Url.Action("SignUp", "User") + "'>", "</a>"
+        ))
+    </p>
     
     <p>
         @Html.Raw(String.Format(
             MultiLanguage.Dictionary["Index_Close"],
-            "<a href='https://twitter.com/dfm_grunt' target='_blank'>@dfm_grunt</a>"
+            "dfm@dontflymoney.com"
         ))
     </p>
 </div>

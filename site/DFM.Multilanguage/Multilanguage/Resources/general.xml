@@ -52,8 +52,8 @@
     <!--Index-->
     <Index_Welcome text="Welcome!" />
     <Index_Introdution text="Dont fly Money is a personal financial management system. It is made thinking in the most generic way to manage money." />
-    <Index_Explanation text="To sign up you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account." />
-    <Index_Close text="Follow us on twitter: {0}. Continuously, new features will come." />
+    <Index_Explanation text="To {0}sign up{1} you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account." />
+    <Index_Close text="Any doubt? Contact us: {0}" />
 
     <TokenReceivedByEmail text="Token received by e-mail" />
 
@@ -115,8 +115,8 @@
     <!--Index-->
     <Index_Welcome text="Bem-vindo!" />
     <Index_Introdution text="O Dont fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa." />
-    <Index_Explanation text="Para se cadastrar, basta fornecer um e-mail válido e uma senha. Então você poderá criar contas e registrar movimentações, ver extratos mensais e resumos anuais de cada conta." />
-    <Index_Close text="Siga-nos no twitter: {0}. Continuamente, implementaremos novas funcionalidades." />
+    <Index_Explanation text="Para {0}se cadastrar{1}, basta fornecer um e-mail válido e uma senha. Então você poderá criar contas e registrar movimentações, ver extratos mensais e resumos anuais de cada conta." />
+    <Index_Close text="Dúvidas? Entre em contato: {0}" />
 
     <TokenReceivedByEmail text="Token recebido via e-mail" />
 
