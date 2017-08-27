@@ -1,7 +1,7 @@
 ﻿Feature: i. Disable the token
 
 Background:
-	Given I have this user to create
+	Given I have this user created
 		| Email                         | Password |
 		| disabletoken@dontflymoney.com | password |
 

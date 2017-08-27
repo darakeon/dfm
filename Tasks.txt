@@ -112,7 +112,7 @@ T						Criar teste unitário para deletar todas as movimentações de um agendam
 T						Criar teste unitário agendamento meio antes / meio depois
 H						Travar schedule de conta fechada / deletada
 S						Security desativa os anteriores
-S						Desativar user a cada 5 senhas erradas
+2014-07-06				Desativar user a cada 5 senhas erradas
 2014-07-06	2014-07-06	Verificar se password reset inativa usuário
 2014-07-06	2014-07-06	Tratar erro ao enviar e-mail (Security)
 2014-07-06	2014-07-06	Consertar problema ao pedir relatório que ainda não tem Month/Year

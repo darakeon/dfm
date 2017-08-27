@@ -1,7 +1,7 @@
 ﻿Feature: j. Disable Ticket
 
 Background:
-	Given I have this user to create and activate
+	Given I have this user created and activated
 		| Email                          | Password |
 		| disableticket@dontflymoney.com | password |
 	And I have a ticket of this user

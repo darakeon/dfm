@@ -1,7 +1,7 @@
 ﻿Feature: d. Activate the user
 
 Background:
-	Given I have this user to create
+	Given I have this user created
 		| Email                         | Password |
 		| activateuser@dontflymoney.com | password |
 	And I have a token for its activation

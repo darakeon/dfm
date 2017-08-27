@@ -1,7 +1,7 @@
 ﻿Feature: c. Send a password reset token to user
 
 Background:
-	Given I have this user to create
+	Given I have this user created
 		| Email                              | Password |
 		| sendpasswordreset@dontflymoney.com | password |
 

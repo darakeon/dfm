@@ -243,6 +243,27 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             }
         }
 
+        [When(@"I try to get the ticket (\d+) times")]
+        public void WhenITryToGetTheTicketSomeTimes(Int32 times)
+        {
+            ticket = null;
+
+            for (var t = 1; t < times; t++)
+            {
+                try { SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get()); }
+                catch (DFMCoreException) { }
+            }
+
+            try
+            {
+                SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
         [Then(@"I will receive no ticket")]
         public void ThenIWillReceiveNoTicket()
         {
@@ -485,7 +506,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 
         #region MoreThanOne
-        [Given(@"I have this user to create")]
+        [Given(@"I have this user created")]
         public void GivenIHaveThisUserToCreate(Table table)
         {
             email = table.Rows[0]["Email"];
@@ -494,7 +515,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             CreateUserIfNotExists(email, password);
         }
 
-        [Given(@"I have this user to create and activate")]
+        [Given(@"I have this user created and activated")]
         public void GivenIHaveThisUserToCreateAndActivate(Table table)
         {
             email = table.Rows[0]["Email"];

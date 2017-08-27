@@ -65,7 +65,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
                         "validate@dontflymoney.com",
                         "password"});
 #line 4
- testRunner.Given("I have this user to create", ((string)(null)), table1);
+ testRunner.Given("I have this user created", ((string)(null)), table1);
 #line hidden
         }
         
@@ -200,10 +200,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Validate with info all right (S)")]
-        public virtual void _99_ValidateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("06. Disable user by excessive trying (E)")]
+        public virtual void _06_DisableUserByExcessiveTryingE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Validate with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Disable user by excessive trying (E)", ((string[])(null)));
 #line 48
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -217,11 +217,48 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I have this user data", ((string)(null)), table7);
 #line 52
  testRunner.And("I activate the user");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table8.AddRow(new string[] {
+                        "lost@dontflymoney.com",
+                        "password_wrong"});
 #line 53
+ testRunner.And("I have this user data", ((string)(null)), table8);
+#line 56
+ testRunner.When("I try to get the ticket 5 times");
+#line 57
+ testRunner.Then("I will receive this core error: DisabledUser");
+#line 58
+ testRunner.And("I will receive no ticket");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Validate with info all right (S)")]
+        public virtual void _99_ValidateWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Validate with info all right (S)", ((string[])(null)));
+#line 60
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table9.AddRow(new string[] {
+                        "validate@dontflymoney.com",
+                        "password"});
+#line 61
+ testRunner.Given("I have this user data", ((string)(null)), table9);
+#line 64
+ testRunner.And("I activate the user");
+#line 65
  testRunner.When("I try to get the ticket");
-#line 54
+#line 66
  testRunner.Then("I will receive no core error");
-#line 55
+#line 67
  testRunner.And("I will receive the ticket");
 #line hidden
             testRunner.CollectScenarioErrors();

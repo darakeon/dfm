@@ -1,7 +1,7 @@
 ﻿Feature: g. Reset password of user
 
 Background:
-	Given I have this user to create
+	Given I have this user created
 		| Email                          | Password |
 		| passwordreset@dontflymoney.com | password |
 	And I have a token for its password reset

@@ -1,7 +1,7 @@
 ﻿Feature: f. Get an user by its ticket
 
 Background:
-	Given I have this user to create and activate
+	Given I have this user created and activated
 		| Email                               | Password |
 		| selectuserbyticket@dontflymoney.com | password |
 	And I have a ticket of this user

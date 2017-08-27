@@ -65,7 +65,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
                         "activateuser@dontflymoney.com",
                         "password"});
 #line 4
- testRunner.Given("I have this user to create", ((string)(null)), table1);
+ testRunner.Given("I have this user created", ((string)(null)), table1);
 #line 7
  testRunner.And("I have a token for its activation");
 #line 8

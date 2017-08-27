@@ -1,7 +1,7 @@
 ﻿Feature: b. Send user verify token to user
 
 Background:
-	Given I have this user to create
+	Given I have this user created
 		| Email                       | Password |
 		| userverify@dontflymoney.com | password |
 

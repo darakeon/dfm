@@ -1,7 +1,7 @@
 ﻿Feature: e. Validate User and get Ticket
 
 Background: 
-	Given I have this user to create
+	Given I have this user created
 		| Email                     | Password |
 		| validate@dontflymoney.com | password |
 
@@ -42,6 +42,18 @@ Scenario: 05. Validate user disabled (E)
 		| Email                     | Password |
 		| validate@dontflymoney.com | password |
 	When I try to get the ticket
+	Then I will receive this core error: DisabledUser
+	And I will receive no ticket
+
+Scenario: 06. Disable user by excessive trying (E)
+	Given I have this user data
+		| Email                 | Password |
+		| validate@dontflymoney.com | password |
+	And I activate the user
+	And I have this user data
+		| Email                 | Password       |
+		| lost@dontflymoney.com | password_wrong |
+	When I try to get the ticket 5 times
 	Then I will receive this core error: DisabledUser
 	And I will receive no ticket
 

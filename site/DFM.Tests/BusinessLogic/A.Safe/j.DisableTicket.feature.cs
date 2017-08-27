@@ -65,7 +65,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
                         "disableticket@dontflymoney.com",
                         "password"});
 #line 4
- testRunner.Given("I have this user to create and activate", ((string)(null)), table1);
+ testRunner.Given("I have this user created and activated", ((string)(null)), table1);
 #line 7
  testRunner.And("I have a ticket of this user");
 #line hidden
