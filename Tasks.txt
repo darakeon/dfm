@@ -104,13 +104,13 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Handle differentely EConnReset
 						Remover GetOrCreate
 						Arrumar testes
+						Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
 						Colocar o link do play no site
-						Criar produto no google play
-							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
-						HTTPS!!!
+2014-05-28				Criar produto no google play
+2014-05-25				HTTPS!!!
 2014-05-19	2014-05-19	Mudança de orientação na move deve setar funções dos campos
 2014-05-19	2014-05-19	Mudança de orientação nos relatórios deve manter filtro de tempo
 2014-05-19	2014-05-19	Scroll nos detalhes da move
