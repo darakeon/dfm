@@ -25,7 +25,7 @@ public class AccountsActivity extends SmartActivity
 	
 	public AccountsActivity()
 	{
-		init(this, R.layout.activity_accounts, R.menu.accounts);
+		init(R.layout.activity_accounts, R.menu.accounts);
 	}
 
 	

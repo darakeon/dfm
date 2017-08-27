@@ -36,7 +36,7 @@ public class MoveActivity extends SmartActivity {
 
 	
 	public MoveActivity() {
-		init(this, R.layout.activity_move, R.menu.move);
+		init(R.layout.activity_move, R.menu.move);
 		move = new Move();
 	}
 

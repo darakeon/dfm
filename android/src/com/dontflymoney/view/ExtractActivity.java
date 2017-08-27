@@ -44,7 +44,7 @@ public class ExtractActivity extends SmartActivity
 	
 	public ExtractActivity()
 	{
-		init(this, R.layout.activity_extract, R.menu.extract);
+		init(R.layout.activity_extract, R.menu.extract);
 	}
 	
 	@Override

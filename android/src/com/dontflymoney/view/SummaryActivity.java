@@ -37,7 +37,7 @@ public class SummaryActivity extends SmartActivity
 	
 	public SummaryActivity()
 	{
-		init(this, R.layout.activity_summary, R.menu.summary);
+		init(R.layout.activity_summary, R.menu.summary);
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ public class LoginActivity extends SmartActivity
 {
 	public LoginActivity()
 	{
-		init(this, R.layout.activity_login, R.menu.login);
+		init(R.layout.activity_login, R.menu.login);
 	}
 	
 	

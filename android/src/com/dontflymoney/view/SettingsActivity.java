@@ -21,7 +21,7 @@ public class SettingsActivity extends SmartActivity
 	
 	public SettingsActivity()
 	{
-		init(this, R.layout.activity_settings, R.menu.settings);
+		init(R.layout.activity_settings, R.menu.settings);
 	}
 	
 	@Override

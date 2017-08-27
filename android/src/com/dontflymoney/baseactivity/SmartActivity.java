@@ -28,21 +28,16 @@ public abstract class SmartActivity extends FixOrientationActivity
 	
 	
 	
-	public void init(SmartActivity activity, int contentView, int menuResource)
+	public void init(int contentView, int menuResource)
 	{
-		init(activity, contentView, menuResource, false);
+		init(contentView, menuResource, false);
 	}
 	
-	public void init(SmartActivity activity, int contentView, int menuResource, boolean hasParent)
+	public void init(int contentView, int menuResource, boolean hasParent)
 	{
 		this.contentView = contentView;
 		this.menuResource = menuResource;
 		this.hasParent = hasParent;
-		
-		form = new Form(activity);
-		message = new Message(activity);
-		navigation = new Navigation(activity, Authentication);
-		resultHandler = new ResultHandler(activity, message, navigation);
 	}
 
 	
@@ -55,6 +50,11 @@ public abstract class SmartActivity extends FixOrientationActivity
 		setupActionBar();
 
 		Authentication = new Authentication(this);
+		
+		form = new Form(this);
+		message = new Message(this);
+		navigation = new Navigation(this, Authentication);
+		resultHandler = new ResultHandler(this, message, navigation);
 	}
 
 	@Override
