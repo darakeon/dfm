@@ -24,7 +24,6 @@ VERSÃO 3.1.0.0 (Big change) - 7?
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
-						Criar tela de configuração para usuário (Web)
 					>>>	Colocar nome (ou apelido) no sign up
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
 
@@ -81,7 +80,6 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Colocar linha de Total no Resumo Anual
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
-						Colocar língua padrão do usuário como língua do browser dele
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Guardar dados localmente, para quando está sem internet (Mobile)
 						Colocar modelo de movimentação (Mobile)
@@ -93,11 +91,13 @@ VERSÃO 2.0.0.1 (System) - 11?
 
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
+						Colocar língua padrão do usuário como língua do browser dele
 						Criar produto no google play
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
+						Criar tela de configuração para usuário (Web)
 2014-03-23	2014-03-24	Colocar Saldo Atual na tela de Extrato
 2014-03-23	2014-03-23	Colocar lista de Categorias / Contas no combo em ordem alfabética
 2014-03-23	2014-03-23	Trocar botão de Contas por imagem de Home, botão de Sair por imagem de logout
