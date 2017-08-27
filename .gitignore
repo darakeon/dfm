@@ -14,7 +14,8 @@ android/.metadata/.plugins/org.eclipse.cdt.core/.log
 *.dex
 *.ap_
 *.suo
- 
+
+pseudo-debug.txt
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
 ^(.*[\\/])?bin[\\/].*
