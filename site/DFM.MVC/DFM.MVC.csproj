@@ -266,8 +266,8 @@
     <Content Include="Views\Ops\500.cshtml" />
     <Content Include="Views\Ops\Error.cshtml" />
     <Content Include="Views\Ops\Index.cshtml" />
-    <Content Include="Views\Shared\Inner\_Layout.cshtml" />
-    <Content Include="Views\Shared\Outer\_Layout.cshtml" />
+    <Content Include="Views\Shared\_InnerLayout.cshtml" />
+    <Content Include="Views\Shared\_OuterLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Token\Disable.cshtml" />
@@ -344,12 +344,14 @@
   <ItemGroup>
     <Content Include="Areas\API\Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_NoAreaLayout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

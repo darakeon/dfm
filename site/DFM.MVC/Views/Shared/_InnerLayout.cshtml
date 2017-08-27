@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@section HtmlHeadCss {
+    <link href="/Assets/css/Table.css" rel="stylesheet" type="text/css" />
+    <link href="/Assets/css/Navigation.css" rel="stylesheet" type="text/css" />
+
+    @RenderSection("HtmlHeadCss", false)
+}
+
+@section HtmlFooterJs {
+    @RenderSection("HtmlFooterJs", false)
+}
+
+
+
+@section MenuTopo {
+    <ul class="menu menu-topo">
+        @RenderSection("MenuTopo", false)
+
+        <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new {action = "LogOff", controller = "User"}, new {@class = "fixItem"})</li>
+    </ul>
+}
+
+
+
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", false)}
+
+
+
+@section PS {
+    @RenderSection("PS", false)
+}
+
+
+
+@RenderBody()
+

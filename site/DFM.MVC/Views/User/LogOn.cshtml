@@ -8,8 +8,6 @@
 
     @using (Html.BeginForm("LogOn", "User", new { returnUrl = Request.QueryString["returnUrl"] }))
     {
-        @Html.ValidationSummary(true)
-        
         <p>
             @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
             @Html.TextBoxFor(m => m.Email) 

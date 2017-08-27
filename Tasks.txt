@@ -92,8 +92,9 @@ VERSÃO 2.0.0.1 (System) - 11?
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
 						Criar produto no google play
-						Tratar FailOnEmailSend em Robot
 						Consertar esquema de session do NH
+						Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
+2014-03-05	2014-03-05	Criar box de avisos
 2014-03-05	2014-03-05	Criar tela de configuração para usuário (Mobile)
 2014-03-05	2014-03-05	Ocultar categoria quando usuário não quiser usar categoria
 2014-03-04	2014-03-05	Possibilitar não escolher categoria

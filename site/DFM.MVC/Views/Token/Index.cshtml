@@ -7,8 +7,6 @@
 <div class="half-screen">
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(true)
-        
         <p>
             @Html.LabelFor(m => m.Token, MultiLanguage.Dictionary["Token"])
             @Html.TextBoxFor(m => m.Token) 

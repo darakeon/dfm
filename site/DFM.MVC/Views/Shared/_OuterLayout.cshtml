@@ -27,17 +27,17 @@
             <li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Token")</li>
         }
     </ul>
-        }
+}
 
 
 
 @{/* Made without spaces to hide when empty */}
-@section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
+@section TopRightDiv {@RenderSection("TopRightDiv", false)}
 
 
 
 @section PS {
-    @RenderSection("PS", required: false)
+    @RenderSection("PS", false)
 }
 
 

@@ -2,7 +2,7 @@
            
 @{
     ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), ViewBag.Title);
-    Layout = "~/Views/Shared/Inner/_Layout.cshtml";
+    Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
 @section HtmlHeadCss {
@@ -15,29 +15,26 @@
 
 
 
-@section MenuBaixo {
-    @{
-        <ul class="menu menu-baixo">
-            @if (Model.Account.IsOpen())
-            {
-                <li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Move")</li>
-                <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedule")</li>
-            }
-            <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Report")</li>
-            <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Report")</li>
-        </ul>
+@section MenuTopo {
+    @if (Model.Account.IsOpen())
+    {
+        <li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Move")</li>
+        <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedule")</li>
     }
+    <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Report")</li>
+    <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Report")</li>
+    <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new {action = "Index", controller = "Account"}, new {@class = "fixItem"})</li>
 }
 
 
 
 @{/* Made without spaces to hide when empty */}
-@section TopRightDiv {@RenderSection("TopRightDiv", required: false)}
+@section TopRightDiv {@RenderSection("TopRightDiv", false)}
 
 
 
 @section PS {
-    @RenderSection("PS", required: false)
+    @RenderSection("PS", false)
 }
 
 

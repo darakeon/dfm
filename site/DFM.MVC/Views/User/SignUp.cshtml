@@ -2,14 +2,12 @@
 
 @{
     ViewBag.Title = MultiLanguage.Dictionary["SignUp"];
-    Layout = "~/Views/Shared/Outer/_Layout.cshtml";
+    Layout = "~/Views/Shared/_OuterLayout.cshtml";
 }
 
 <div class="half-screen">
-    @using (Html.BeginForm()) { 
-
-        @Html.ValidationSummary(true)
-
+    @using (Html.BeginForm())
+    { 
         <p>
             @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"])
             @Html.TextBoxFor(m => m.Email, new { maxlength = MaximumLength.UserEmail })

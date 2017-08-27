@@ -2,8 +2,8 @@
     var isAuthenticated = Auth.Current.IsAuthenticated;
 
     Layout = isAuthenticated
-        ? "~/Views/Shared/Inner/_Layout.cshtml"
-        : "~/Views/Shared/Outer/_Layout.cshtml";
+        ? "~/Views/Shared/_NoAreaLayout.cshtml"
+        : "~/Views/Shared/_OuterLayout.cshtml";
 }
 
 

@@ -25,7 +25,7 @@ h2 {
 	color: #AA8E55;
 	font-size: 20px;
 	border-bottom: #AA8E55 2px solid;
-	margin: 0 0 40px 0;
+	margin: 7px 0 40px 0;
 }
 
 a {
@@ -52,32 +52,48 @@ a {
 
 
 
-div#Head {
+div#head {
 	margin: 0 auto;
 	width: 950px;
 }
-    div#Head .logo
+    div#head .logo
     {
         margin: 20px;
         display: inline-block;
     }
-        div#Head .logo:hover
+        div#head .logo:hover
         {
             background: none;
         }
         
-        div#Head .logo img:hover
+        div#head .logo img:hover
         {
             background: none;
         }
-            div#Head .logo img:first-child
+            div#head .logo img:first-child
             {
                 margin-right: 10px;
             }
-        
 
+div#shadow-bound {
+    overflow-x: hidden;
+}
 
-div#Main {
+div#warning {
+    color: #447D99;
+    font-style: italic;
+    text-align: center;
+    margin: 0 -5px;
+    padding: 6px 15px 12px 15px;
+    background: #E3D5B0;
+    box-shadow: 0 -4px 4px 1px 
+        rgba(110, 103, 85, 0.3) inset;
+}
+    div#warning * {
+        font-size: 20px;
+    }
+
+div#main {
 	min-height: 500px;
 	width: 910px;
 	padding: 20px;
@@ -108,7 +124,7 @@ div#Footer {
 div#Advertising 
 {
     margin-top: 50px;
-    text-align: left;
+    text-align: center;
 }
 
 div#Advertising a

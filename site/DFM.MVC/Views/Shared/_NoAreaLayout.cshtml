@@ -1,0 +1,40 @@
+﻿@model DFM.MVC.Models.BaseModel
+           
+@{
+    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+}
+
+@section HtmlHeadCss {
+    @RenderSection("HtmlHeadCss", false)
+}
+
+@section HtmlFooterJs {
+    @RenderSection("HtmlFooterJs", false)
+}
+
+
+
+@section MenuTopo {
+    <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new {action = "Index", controller = "Account"}, new {@class = "fixItem"})</li>
+        
+    @if (Auth.Current.User.Config.UseCategories)
+    {
+        <li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new {action = "Index", controller = "Category"}, new {@class = "fixItem"})</li>
+    }
+}
+
+
+
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", false)}
+
+
+
+@section PS {
+    @RenderSection("PS", false)
+}
+
+
+
+@RenderBody()
+
