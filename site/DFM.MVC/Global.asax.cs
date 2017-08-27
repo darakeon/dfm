@@ -11,6 +11,7 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Generic;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories;
@@ -140,7 +141,7 @@ namespace DFM.MVC
 
         private static Uri url { get { return HttpContext.Current.Request.Url; } }
         private static Boolean isAsset { get { return url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/"); } }
-        private static Boolean isLocal { get { return ConfigurationManager.AppSettings["isLocal"] == "1"; } }
+        private static Boolean isLocal { get { return Cfg.IsLocal; } }
         private static Boolean isElmah { get { return url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd"); } }
 
     }

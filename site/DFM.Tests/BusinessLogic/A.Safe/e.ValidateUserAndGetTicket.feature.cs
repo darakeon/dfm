@@ -58,15 +58,6 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         {
 #line 3
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Email",
-                        "Password"});
-            table1.AddRow(new string[] {
-                        "validate@dontflymoney.com",
-                        "password"});
-#line 4
- testRunner.Given("I have this user created", ((string)(null)), table1);
-#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -74,8 +65,17 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_ValidateWithoutE_MailE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Validate without e-mail (E)", ((string[])(null)));
-#line 8
+#line 5
 this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table1.AddRow(new string[] {
+                        "Ae01@dontflymoney.com",
+                        "password"});
+#line 6
+ testRunner.Given("I have this user created", ((string)(null)), table1);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "password"});
 #line 9
- testRunner.Given("I have this user data", ((string)(null)), table2);
+ testRunner.And("I have this user data", ((string)(null)), table2);
 #line 12
  testRunner.When("I try to get the ticket");
 #line 13
@@ -107,15 +107,24 @@ this.ScenarioSetup(scenarioInfo);
                         "Email",
                         "Password"});
             table3.AddRow(new string[] {
-                        "validate@dontflymoney.com",
-                        ""});
+                        "Ae02@dontflymoney.com",
+                        "password"});
 #line 17
- testRunner.Given("I have this user data", ((string)(null)), table3);
+ testRunner.Given("I have this user created", ((string)(null)), table3);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table4.AddRow(new string[] {
+                        "Ae02@dontflymoney.com",
+                        ""});
 #line 20
+ testRunner.And("I have this user data", ((string)(null)), table4);
+#line 23
  testRunner.When("I try to get the ticket");
-#line 21
+#line 24
  testRunner.Then("I will receive this core error: InvalidUser");
-#line 22
+#line 25
  testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -126,22 +135,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_ValidateWithWrongE_MailE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Validate with wrong e-mail (E)", ((string[])(null)));
-#line 24
+#line 27
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "dont_exist@dontflymoney.com",
                         "password"});
-#line 25
- testRunner.Given("I have this user data", ((string)(null)), table4);
 #line 28
+ testRunner.Given("I have this user data", ((string)(null)), table5);
+#line 31
  testRunner.When("I try to get the ticket");
-#line 29
+#line 32
  testRunner.Then("I will receive this core error: InvalidUser");
-#line 30
+#line 33
  testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -152,22 +161,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _04_ValidateWithWrongPasswordE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Validate with wrong password (E)", ((string[])(null)));
-#line 32
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table5.AddRow(new string[] {
-                        "validate@dontflymoney.com",
-                        "password_wrong"});
-#line 33
- testRunner.Given("I have this user data", ((string)(null)), table5);
+            table6.AddRow(new string[] {
+                        "Ae04@dontflymoney.com",
+                        "password"});
 #line 36
+ testRunner.Given("I have this user created", ((string)(null)), table6);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table7.AddRow(new string[] {
+                        "Ae04@dontflymoney.com",
+                        "password_wrong"});
+#line 39
+ testRunner.And("I have this user data", ((string)(null)), table7);
+#line 42
  testRunner.When("I try to get the ticket");
-#line 37
+#line 43
  testRunner.Then("I will receive this core error: InvalidUser");
-#line 38
+#line 44
  testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -178,22 +196,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _05_ValidateUserDisabledE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Validate user disabled (E)", ((string[])(null)));
-#line 40
+#line 46
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table6.AddRow(new string[] {
-                        "validate@dontflymoney.com",
+            table8.AddRow(new string[] {
+                        "Ae05@dontflymoney.com",
                         "password"});
-#line 41
- testRunner.Given("I have this user data", ((string)(null)), table6);
-#line 44
+#line 47
+ testRunner.Given("I have this user created", ((string)(null)), table8);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table9.AddRow(new string[] {
+                        "Ae05@dontflymoney.com",
+                        "password"});
+#line 50
+ testRunner.And("I have this user data", ((string)(null)), table9);
+#line 53
  testRunner.When("I try to get the ticket");
-#line 45
+#line 54
  testRunner.Then("I will receive this core error: DisabledUser");
-#line 46
+#line 55
  testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -204,61 +231,184 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _06_DisableUserByExcessiveTryingE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Disable user by excessive trying (E)", ((string[])(null)));
-#line 48
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table7.AddRow(new string[] {
-                        "validate@dontflymoney.com",
+            table10.AddRow(new string[] {
+                        "Ae06@dontflymoney.com",
                         "password"});
-#line 49
- testRunner.Given("I have this user data", ((string)(null)), table7);
-#line 52
- testRunner.And("I activate the user");
+#line 58
+ testRunner.Given("I have this user created and activated", ((string)(null)), table10);
 #line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table8.AddRow(new string[] {
-                        "lost@dontflymoney.com",
+            table11.AddRow(new string[] {
+                        "Ae06@dontflymoney.com",
                         "password_wrong"});
-#line 53
- testRunner.And("I have this user data", ((string)(null)), table8);
-#line 56
+#line 61
+ testRunner.And("I have this user data", ((string)(null)), table11);
+#line 64
  testRunner.When("I try to get the ticket 5 times");
-#line 57
+#line 65
  testRunner.Then("I will receive this core error: DisabledUser");
-#line 58
+#line 66
  testRunner.And("I will receive no ticket");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Validate with info all right (S)")]
-        public virtual void _99_ValidateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("90. Validate with info all right (S)")]
+        public virtual void _90_ValidateWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Validate with info all right (S)", ((string[])(null)));
-#line 60
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("90. Validate with info all right (S)", ((string[])(null)));
+#line 68
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
                         "Password"});
-            table9.AddRow(new string[] {
-                        "validate@dontflymoney.com",
+            table12.AddRow(new string[] {
+                        "Ae90@dontflymoney.com",
                         "password"});
-#line 61
- testRunner.Given("I have this user data", ((string)(null)), table9);
-#line 64
+#line 69
+ testRunner.Given("I have this user created", ((string)(null)), table12);
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table13.AddRow(new string[] {
+                        "Ae90@dontflymoney.com",
+                        "password"});
+#line 72
+ testRunner.And("I have this user data", ((string)(null)), table13);
+#line 75
  testRunner.And("I activate the user");
-#line 65
+#line 76
  testRunner.When("I try to get the ticket");
-#line 66
+#line 77
  testRunner.Then("I will receive no core error");
-#line 67
+#line 78
+ testRunner.And("I will receive the ticket");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("91. Enable user let login again (S)")]
+        public virtual void _91_EnableUserLetLoginAgainS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Enable user let login again (S)", ((string[])(null)));
+#line 80
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table14.AddRow(new string[] {
+                        "Ae91@dontflymoney.com",
+                        "password"});
+#line 81
+ testRunner.Given("I have this user created and activated", ((string)(null)), table14);
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table15.AddRow(new string[] {
+                        "Ae91@dontflymoney.com",
+                        "password_wrong"});
+#line 84
+ testRunner.And("I have this user data", ((string)(null)), table15);
+#line 87
+ testRunner.And("I tried to get the ticket 5 times");
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table16.AddRow(new string[] {
+                        "Ae91@dontflymoney.com",
+                        "password"});
+#line 88
+ testRunner.And("I have this user data", ((string)(null)), table16);
+#line 91
+ testRunner.And("I activate the user");
+#line 92
+ testRunner.When("I try to get the ticket");
+#line 93
+ testRunner.Then("I will receive no core error");
+#line 94
+ testRunner.And("I will receive the ticket");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("92. Enable user resets the password trial times (S)")]
+        public virtual void _92_EnableUserResetsThePasswordTrialTimesS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Enable user resets the password trial times (S)", ((string[])(null)));
+#line 96
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table17.AddRow(new string[] {
+                        "Ae92@dontflymoney.com",
+                        "password"});
+#line 97
+ testRunner.Given("I have this user created and activated", ((string)(null)), table17);
+#line hidden
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table18.AddRow(new string[] {
+                        "Ae92@dontflymoney.com",
+                        "password_wrong"});
+#line 100
+ testRunner.And("I have this user data", ((string)(null)), table18);
+#line 103
+ testRunner.And("I tried to get the ticket 5 times");
+#line hidden
+            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table19.AddRow(new string[] {
+                        "Ae92@dontflymoney.com",
+                        "password"});
+#line 104
+ testRunner.And("I have this user data", ((string)(null)), table19);
+#line 107
+ testRunner.And("I activate the user");
+#line hidden
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table20.AddRow(new string[] {
+                        "Ae92@dontflymoney.com",
+                        "password_wrong"});
+#line 108
+ testRunner.And("I have this user data", ((string)(null)), table20);
+#line 111
+ testRunner.And("I tried to get the ticket 1 times");
+#line hidden
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password"});
+            table21.AddRow(new string[] {
+                        "Ae92@dontflymoney.com",
+                        "password"});
+#line 112
+ testRunner.And("I have this user data", ((string)(null)), table21);
+#line 115
+ testRunner.When("I try to get the ticket");
+#line 116
+ testRunner.Then("I will receive no core error");
+#line 117
  testRunner.And("I will receive the ticket");
 #line hidden
             testRunner.CollectScenarioErrors();

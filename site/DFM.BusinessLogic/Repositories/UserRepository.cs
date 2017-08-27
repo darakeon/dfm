@@ -51,6 +51,7 @@ namespace DFM.BusinessLogic.Repositories
         internal void Activate(User user)
         {
             user.Active = true;
+            user.WrongLogin = 0;
 
             update(user);
         }

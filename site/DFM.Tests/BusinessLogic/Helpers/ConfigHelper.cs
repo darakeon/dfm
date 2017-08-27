@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using DFM.BusinessLogic;
+using DFM.Generic;
 
 namespace DFM.Tests.BusinessLogic.Helpers
 {
@@ -10,13 +11,13 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
         public static void BreakTheEmailSystem()
         {
-            oldEmailConfig = ConfigurationManager.AppSettings["EmailSender"];
-            ConfigurationManager.AppSettings["EmailSender"] = "MakeError";
+            oldEmailConfig = Cfg.EmailSender;
+            Cfg.EmailSender = "MakeError";
         }
 
         internal static void FixTheEmailSystem()
         {
-            ConfigurationManager.AppSettings["EmailSender"] = oldEmailConfig;
+            Cfg.EmailSender = oldEmailConfig;
             oldEmailConfig = "";
         }
 
@@ -24,12 +25,12 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
         internal static void ActivateEmailSystem()
         {
-            ConfigurationManager.AppSettings["EmailSender"] = "";
+            Cfg.EmailSender = "";
         }
 
         internal static void DeactivateEmailSystem()
         {
-            ConfigurationManager.AppSettings["EmailSender"] = "DontSend";
+            Cfg.EmailSender = "DontSend";
         }
 
 

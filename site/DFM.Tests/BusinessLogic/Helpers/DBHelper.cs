@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using DFM.Repositories;
 using MySql.Data.MySqlClient;
 
@@ -10,10 +10,10 @@ namespace DFM.Tests.BusinessLogic.Helpers
 {
     internal class DBHelper
     {
-        static readonly String server = ConfigurationManager.AppSettings["Server"];
-        static readonly String database = ConfigurationManager.AppSettings["DataBase"];
-        static readonly String login = ConfigurationManager.AppSettings["Login"];
-        static readonly String passwordDB = ConfigurationManager.AppSettings["Password"];
+        static readonly String server = Cfg.Get("Server");
+        static readonly String database = Cfg.Get("DataBase");
+        static readonly String login = Cfg.Get("Login");
+        static readonly String passwordDB = Cfg.Get("Password");
         
         static readonly String connStr = 
             String.Format("Server={0};Database={1};Uid={2};Pwd={3};", server, database, login, passwordDB);

@@ -42,5 +42,12 @@ namespace DFM.Entities.Extensions
                 .ToList();
         }
 
+        public static Boolean WrongPassExceeded(this User user)
+        {
+            return user.WrongLogin >= Cfg.PasswordErrorLimit;
+        }
+
+
+
     }
 }

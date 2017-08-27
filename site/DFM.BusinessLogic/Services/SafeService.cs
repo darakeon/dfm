@@ -7,6 +7,8 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
+using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -203,8 +205,39 @@ namespace DFM.BusinessLogic.Services
             catch
             {
                 RollbackTransaction();
+                addPasswordError(email);
                 throw;
             }
+        }
+
+        private void addPasswordError(String email)
+        {
+            var user = userRepository.GetByEmail(email);
+
+            if (user == null)
+                return;
+
+            BeginTransaction();
+
+            try
+            {
+                user.WrongLogin++;
+
+                if (user.WrongPassExceeded())
+                    user.Active = false;
+
+                userRepository.SaveOrUpdate(user);
+
+                CommitTransaction();
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
+
+            if (user.WrongPassExceeded())
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
         }
 
         public void DisableTicket(String ticketKey)

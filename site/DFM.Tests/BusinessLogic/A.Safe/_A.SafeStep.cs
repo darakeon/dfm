@@ -222,7 +222,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         public void GivenIActivateTheUser()
         {
             SA.Safe.SendUserVerify(email);
-            
+
             var tokenToActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
 
             SA.Safe.ActivateUser(tokenToActivate);
@@ -232,6 +232,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         public void WhenITryToGetTheTicket()
         {
             ticket = null;
+            Error = null;
 
             try
             {
@@ -243,6 +244,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             }
         }
 
+        [Given(@"I tried to get the ticket (\d+) times")]
         [When(@"I try to get the ticket (\d+) times")]
         public void WhenITryToGetTheTicketSomeTimes(Int32 times)
         {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
+using DFM.Generic;
 using CM = System.Configuration.ConfigurationManager;
 using Smtp = System.Net.Configuration.SmtpSection;
 
@@ -30,7 +30,7 @@ namespace DFM.Email
             if (mailSettings != null)
                 from = mailSettings.From;
 
-            @default = CM.AppSettings["email"];
+            @default = Cfg.Email;
         }
 
 
@@ -67,7 +67,7 @@ namespace DFM.Email
 
         public void Send()
         {
-            var emailSender = CM.AppSettings["EmailSender"];
+            var emailSender = Cfg.EmailSender;
 
             if (emailSender == "DontSend")
                 return;
