@@ -32,7 +32,6 @@ VERSÃO 3.0.0.0
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 						Colocar soma de todas as contas
 						Permitir limite de conta negativo
-					>>>	Rever layout (http://goodui.org/)
 						Relacionar Conta e Categoria (combo)
 						Unir Categorias
 						Possibilitar reabrir conta
@@ -85,6 +84,7 @@ VERSÃO 2.0.0.1
 						Tirar complete / validate de SaveOrUpdate
 						Desativar user a cada 5 senhas erradas
 						Remover GetOrCreate
+						Mostrar naturezas em botões, não dropdowns
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
 
@@ -98,6 +98,7 @@ VERSÃO 2.0.0.0
 						Criar área Json
 2013-09-04				Criar DTOs
 2013-09-02				Criar App Mobile
+2013-09-27			>>>	Rever layout (http://goodui.org/) (MERGE DAS TELAS INDEX / SIGN UP / LOGIN)
 
 VERSÃO 1.1.0.0 (Big change)
 ================================================================================================
