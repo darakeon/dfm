@@ -46,24 +46,29 @@
 	        android:onClick="showDatePicker" />
    	    
    	    
-   	    	 
-   	    <View
-		    android:layout_width="fill_parent"
-		    android:layout_height="35dp" />
-
-   	    	    
-   	    <TextView 
-	        android:id="@+id/category_label"
-	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/category" />
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:id="@+id/category_box">
 	
-   	    <Button 
-   	        android:text="@string/pick"
-	        android:id="@+id/category"
-	 		android:layout_width="fill_parent"
-	 		android:layout_height="wrap_content"
-	        android:onClick="changeCategory" />
+		    <View
+			    android:layout_width="fill_parent"
+			    android:layout_height="35dp" />
+	   	    	    
+	   	    <TextView 
+		        android:id="@+id/category_label"
+		 		android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/category" />
+		
+	   	    <Button 
+	   	        android:text="@string/pick"
+		        android:id="@+id/category"
+		 		android:layout_width="fill_parent"
+		 		android:layout_height="wrap_content"
+		        android:onClick="changeCategory" />
+   	    </LinearLayout>
    	    
    	    	 
    	    <View

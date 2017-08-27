@@ -94,7 +94,7 @@ VERSÃO 2.0.0.0 (All new) - 30?
 						Remover GetOrCreate
 						Colocar menu ao clicar e segurar em Account
 						Criar tela de configuração para usuário (Mobile)
-2014-03-05				Ocultar categoria quando usuário não quiser usar categoria
+2014-03-05	2014-03-05	Ocultar categoria quando usuário não quiser usar categoria
 2014-03-04	2014-03-05	Possibilitar não escolher categoria
 2014-03-04	2014-03-04	Separar dados adicionais de User em Config
 2014-03-04	2014-03-04	Corrigir erro ao virar tela de inserção de movimentação (Mobile)

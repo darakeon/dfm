@@ -16,14 +16,21 @@ namespace DFM.MVC.Areas.API.Models
                 .Select(a => new SelectItem<String, String>(a.Name, a.Url))
                 .ToList();
 
-            CategoryList = Current.User.VisibleCategoryList()
-                .Select(a => new SelectItem<String, String>(a.Name, a.Name))
-                .ToList();
+            UseCategories = Current.User.Config.UseCategories;
+
+            if (UseCategories)
+            {
+                CategoryList = Current.User.VisibleCategoryList()
+                    .Select(a => new SelectItem<String, String>(a.Name, a.Name))
+                    .ToList();
+            }
 
             NatureList = AccountList.Any() 
                 ? SelectItemEnum.SelectItem<MoveNature>() 
                 : SelectItemEnum.SelectItem<PrimalMoveNature>();
         }
+
+        public Boolean UseCategories { get; set; }
 
         public IList<SelectItem<String, String>> AccountList { get; set; }
         public IList<SelectItem<String, String>> CategoryList { get; set; }

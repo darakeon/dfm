@@ -29,8 +29,8 @@ public class MoveActivity extends SmartActivity {
 	Move move;
 
 	JSONArray categoryList;
-	JSONArray accountList;
 	JSONArray natureList;
+	JSONArray accountList;
 
 
 	
@@ -90,9 +90,19 @@ public class MoveActivity extends SmartActivity {
 	{
 		JSONObject data = result.getJSONObject("data");
 
-		categoryList = data.getJSONArray("CategoryList");
-		accountList = data.getJSONArray("AccountList");
+		boolean useCategories = data.getBoolean("UseCategories");
+		
+		if (useCategories)
+		{
+			categoryList = data.getJSONArray("CategoryList");
+		}
+		else
+		{
+			findViewById(R.id.category_box).setVisibility(View.GONE);
+		}
+		
 		natureList = data.getJSONArray("NatureList");
+		accountList = data.getJSONArray("AccountList");
 		
 		JSONObject firstNature = natureList.getJSONObject(0);
 		
