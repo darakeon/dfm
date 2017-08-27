@@ -9,11 +9,7 @@ namespace DFM.Console4Tests
         {
             var path = @"Tasks.txt";
 
-            var lines = File.ReadLines(path);
-
-            var newLines = lines.Reverse().ToList();
-
-            File.WriteAllLines(path, newLines);
+            
         }
     }
 }
