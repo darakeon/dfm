@@ -1,26 +1,23 @@
-﻿div#top-right-div, div#top-right-div input, div#top-right-div button {
-	font-size: 80%;
-}
-
-div#top-right-div div.half-screen {
-	text-align: right;
-}
-
-div#top-right-div button {
-	margin-top: 0px;
-}
-
-div#TokenReceived {
-    padding-top: 5px;
-}
-
-div#TokenReceived a {
-    font-size: 85%;
-}
-
-hr.Text {
+﻿hr.Text {
     background-color: #AA8E55;
     border: none;
     height: 1px;
     width: 25%;
 }
+
+.android-link
+{
+    float: right;
+    width: 70px;
+    height: 80px;
+    background: url('/Assets/image/android.gif');
+    padding: 0;
+    margin: 10px;
+    display: none;
+}
+
+    .android-link:hover
+    {
+        background: url('/Assets/image/android.gif');
+        background-position: 70px;
+    }

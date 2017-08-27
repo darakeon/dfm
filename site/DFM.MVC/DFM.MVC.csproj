@@ -189,6 +189,7 @@
     <Content Include="Assets\css\top-right-div.css" />
     <Content Include="Assets\image\advertising\darakeon.gif" />
     <Content Include="Assets\image\advertising\pea.jpg" />
+    <Content Include="Assets\image\android.gif" />
     <Content Include="Assets\image\clouds.gif" />
     <Content Include="Assets\image\datepicker\ui-icons_ffffff_256x240.png" />
     <Content Include="Assets\image\icons\close.gif" />
