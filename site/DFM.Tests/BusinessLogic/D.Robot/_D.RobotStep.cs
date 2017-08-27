@@ -4,6 +4,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Generic;
+using DFM.Tests.BusinessLogic.Helpers;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 
@@ -134,6 +135,46 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             {
                 Error = e;
             }
+        }
+
+        [When(@"I try to run the scheduler with e-mail system out")]
+        public void WhenITryToRunTheSchedulerWithEMailSystemOut()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.BreakTheEmailSystem();
+
+            try
+            {
+                CurrentEmailStatus = SA.Robot.RunSchedule();
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.FixTheEmailSystem();
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
+        }
+
+        [When(@"I try to run the scheduler with e-mail system ok")]
+        public void WhenITryToRunTheSchedulerWithEMailSystemOk()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+
+            try
+            {
+                CurrentEmailStatus = SA.Robot.RunSchedule();
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
         }
         #endregion
 

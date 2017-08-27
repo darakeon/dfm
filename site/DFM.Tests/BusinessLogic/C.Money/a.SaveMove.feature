@@ -618,7 +618,7 @@ Scenario: 9A. Save with details with same description (S)
 Scenario: 9B. Save with e-mail sender system out
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca9B   | 2012-03-31 | Out    | 10    |
+		| Move Ca9B   | 2014-03-22 | Out    | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out
@@ -634,7 +634,7 @@ Scenario: 9B. Save with e-mail sender system out
 Scenario: 9C. Save with e-mail sender system ok
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca9C   | 2012-03-31 | Out    | 10    |
+		| Move Ca9C   | 2014-03-22 | Out    | 10    |
 	And it has no Details
 	And it has a Category
 	And it has an Account Out

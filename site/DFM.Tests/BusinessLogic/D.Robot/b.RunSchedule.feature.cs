@@ -537,6 +537,112 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Run with e-mail system out (S)")]
+        public virtual void _99_RunWithE_MailSystemOutS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Run with e-mail system out (S)", ((string[])(null)));
+#line 156
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table18.AddRow(new string[] {
+                        "Move Db99",
+                        "2014-03-22",
+                        "Out",
+                        "10"});
+#line 157
+ testRunner.Given("I have this future move to create", ((string)(null)), table18);
+#line 160
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table19.AddRow(new string[] {
+                        "1",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 161
+ testRunner.And("the move has this schedule", ((string)(null)), table19);
+#line 164
+ testRunner.And("it has a Category");
+#line 165
+ testRunner.And("it has an Account Out");
+#line 166
+ testRunner.And("it has no Account In");
+#line 167
+ testRunner.And("I save the schedule");
+#line 168
+ testRunner.When("I try to run the scheduler with e-mail system out");
+#line 169
+ testRunner.Then("I will receive no core error");
+#line 170
+ testRunner.And("the accountOut value will change in -10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9A. Run with e-mail system ok (S)")]
+        public virtual void _9A_RunWithE_MailSystemOkS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Run with e-mail system ok (S)", ((string[])(null)));
+#line 172
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table20.AddRow(new string[] {
+                        "Move Db9A",
+                        "2014-03-22",
+                        "Out",
+                        "10"});
+#line 173
+ testRunner.Given("I have this future move to create", ((string)(null)), table20);
+#line 176
+ testRunner.And("it has no Details");
+#line hidden
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table21.AddRow(new string[] {
+                        "1",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 177
+ testRunner.And("the move has this schedule", ((string)(null)), table21);
+#line 180
+ testRunner.And("it has a Category");
+#line 181
+ testRunner.And("it has an Account Out");
+#line 182
+ testRunner.And("it has no Account In");
+#line 183
+ testRunner.And("I save the schedule");
+#line 184
+ testRunner.When("I try to run the scheduler with e-mail system ok");
+#line 185
+ testRunner.Then("I will receive no core error");
+#line 186
+ testRunner.And("the accountOut value will change in -10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

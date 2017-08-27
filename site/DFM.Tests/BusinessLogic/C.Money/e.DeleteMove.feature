@@ -48,7 +48,7 @@ Scenario: 9A. Delete with e-mail sender system out
 	And the accountOut value will change in 10
 	And the accountIn value will change in -10
 
-Scenario: 9A. Delete with e-mail sender system ok
+Scenario: 9B. Delete with e-mail sender system ok
 	Given I have a move with value 10 (Transfer)
 	And I pass valid Move ID
 	When I try to delete the move with e-mail system ok

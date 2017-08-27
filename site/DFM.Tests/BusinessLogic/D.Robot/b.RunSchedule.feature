@@ -150,3 +150,37 @@ Scenario: 98. Run with details in schedule (S)
 	When I try to run the scheduler
 	Then I will receive no core error
 	And the accountOut value will change in -100
+
+
+
+Scenario: 99. Run with e-mail system out (S)
+	Given I have this future move to create
+		| Description | Date       | Nature | Value |
+		| Move Db99   | 2014-03-22 | Out    | 10    |
+	And it has no Details
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 1     | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	And I save the schedule
+	When I try to run the scheduler with e-mail system out
+	Then I will receive no core error
+	And the accountOut value will change in -10
+
+Scenario: 9A. Run with e-mail system ok (S)
+	Given I have this future move to create
+		| Description | Date       | Nature | Value |
+		| Move Db9A   | 2014-03-22 | Out    | 10    |
+	And it has no Details
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 1     | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	And I save the schedule
+	When I try to run the scheduler with e-mail system ok
+	Then I will receive no core error
+	And the accountOut value will change in -10

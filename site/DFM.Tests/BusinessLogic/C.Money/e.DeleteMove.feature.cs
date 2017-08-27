@@ -188,10 +188,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9A. Delete with e-mail sender system ok")]
-        public virtual void _9A_DeleteWithE_MailSenderSystemOk()
+        [NUnit.Framework.DescriptionAttribute("9B. Delete with e-mail sender system ok")]
+        public virtual void _9B_DeleteWithE_MailSenderSystemOk()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Delete with e-mail sender system ok", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Delete with e-mail sender system ok", ((string[])(null)));
 #line 51
 this.ScenarioSetup(scenarioInfo);
 #line 52
