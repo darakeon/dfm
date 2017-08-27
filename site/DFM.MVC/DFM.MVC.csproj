@@ -220,6 +220,7 @@
     <Content Include="Assets\script\pages\account-create-edit.js" />
     <Content Include="Assets\script\pages\move-create-edit-schedule.js" />
     <Content Include="Assets\script\starter.js" />
+    <Content Include="Assets\script\twitter.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="robots.txt" />

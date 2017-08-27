@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = MultiLanguage.Dictionary["Welcome"];
+    ViewBag.Title = MultiLanguage.Dictionary["Index_Welcome"];
     Layout = "~/Views/Shared/Outer/_Layout.cshtml";
 
     var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
@@ -9,38 +9,33 @@
     <link href="/Assets/css/Pages/user-index.css" rel="stylesheet" type="text/css" />
 }
 
+@section HtmlFooterJs { 
+    <script src="/Assets/script/twitter.js" type="text/javascript"></script>
+}
 
-<p>
-    @MultiLanguage.Dictionary["Index_Introdution"]
-</p>
+<div class="introduction">
+    <p>@MultiLanguage.Dictionary["Index_Introdution"]</p>
+    
+    <p>@MultiLanguage.Dictionary["Index_Explanation"]</p>
+    
+    <p>
+        @Html.Raw(String.Format(
+            MultiLanguage.Dictionary["Index_Close"],
+            "<a href='https://twitter.com/dfm_grunt' target='_blank'>@dfm_grunt</a>"
+        ))
+    </p>
+</div>
 
-<hr class="Text" />
+<div class="twitter">
+    <a class="twitter-timeline" 
+            href="https://twitter.com/dfm_grunt" 
+            width="300px" height="400px" target="_blank"
+            data-widget-id="386678992192806915">
 
-<p>
-    @MultiLanguage.Dictionary["Index_PossibleNowADays"]
-</p>
-			
-<ul>
-	<li>@MultiLanguage.Dictionary["Index_Moves"]</li>
-	<li>@MultiLanguage.Dictionary["Index_Transfer"]</li>
-	<li>@MultiLanguage.Dictionary["Index_Categories"]</li>
-</ul>
+        Tweets by @("@")dfm_grunt
 
-<hr class="Text" />
+    </a>
+</div>
 
-<p>
-	@MultiLanguage.Dictionary["Index_Reports"]
-</p>
-			
-<ul>
-	<li>@MultiLanguage.Dictionary["Index_ReportMonth"]</li>
-	<li>@MultiLanguage.Dictionary["Index_ReportYear"]</li>
-</ul>
-
-<hr class="Text" />
-
-<p>
-	@MultiLanguage.Dictionary["Index_Close"]
-</p>
-
+<a href="#" class="twitter-link"></a>
 <a href="#" class="android-link"></a>

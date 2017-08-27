@@ -1,8 +1,13 @@
-﻿hr.Text {
-    background-color: #AA8E55;
-    border: none;
-    height: 1px;
-    width: 25%;
+﻿.introduction {
+    float: left;
+    width: 590px;
+    margin-right: 20px;
+}
+
+.twitter 
+{
+    float: right;
+    margin-top: -15px;
 }
 
 .android-link
