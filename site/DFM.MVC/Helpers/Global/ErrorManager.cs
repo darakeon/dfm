@@ -5,7 +5,7 @@ using System.Web;
 using DFM.Email;
 using DFM.Generic;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Global
 {
     public class ErrorManager
     {

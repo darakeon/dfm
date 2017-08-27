@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using DFM.MVC.Areas.API.Controllers;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API
 {

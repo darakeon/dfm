@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.MVC.Controllers;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC
 {

@@ -1,9 +1,10 @@
-﻿@model DFM.MVC.Models.AccountCreateEditModel
+﻿@using DFM.Generic
+@model AccountCreateEditModel
 
 @{
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
     
-    if (Model.Type == DFM.Generic.OperationType.Edit)
+    if (Model.Type == OperationType.Edit)
     {
         ViewBag.Title += " " + Model.Account.Name;
     }

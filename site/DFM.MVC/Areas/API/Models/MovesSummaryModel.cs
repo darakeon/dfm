@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.MVC.Areas.API.Jsons;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.API.Models
 {

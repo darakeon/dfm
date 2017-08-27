@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Areas.API.Models;
-using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Controllers
 {

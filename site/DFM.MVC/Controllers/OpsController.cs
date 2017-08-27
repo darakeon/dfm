@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Ak.Generic.Collection;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers

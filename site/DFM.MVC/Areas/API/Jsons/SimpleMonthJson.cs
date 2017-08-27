@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.Entities.Extensions;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Jsons
 {

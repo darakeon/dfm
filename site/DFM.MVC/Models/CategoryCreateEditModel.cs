@@ -4,7 +4,7 @@ using System.Web;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Generic;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {

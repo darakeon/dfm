@@ -10,8 +10,8 @@ using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Entities;
 using DFM.Generic;
-using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Global
 {
     public class IP
     {

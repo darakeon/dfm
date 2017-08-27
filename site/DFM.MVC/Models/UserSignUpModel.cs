@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -42,7 +43,7 @@ namespace DFM.MVC.Models
 
 
 
-        internal IList<String> ValidateAndSendVerify(System.Web.Mvc.ModelStateDictionary modelState)
+        internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
         {
             var errors = new List<String>();
 

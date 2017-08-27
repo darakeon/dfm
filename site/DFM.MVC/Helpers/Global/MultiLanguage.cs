@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
+using System.Web.Routing;
 using Ak.MVC.Route;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
-using System.Web;
-using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Authorize;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Global
 {
     public class MultiLanguage
     {
@@ -74,7 +75,7 @@ namespace DFM.MVC.Helpers
 
                 if (controller.StartsWith("?"))
                 {
-                    var defaults = ((System.Web.Routing.Route) current.RouteData.Route).Defaults;
+                    var defaults = ((Route) current.RouteData.Route).Defaults;
 
                     controller = defaults["controller"].ToString().ToLower();
                 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.MVC.Helpers
+namespace DFM.MVC.Helpers.Global
 {
     public class RouteNames
     {

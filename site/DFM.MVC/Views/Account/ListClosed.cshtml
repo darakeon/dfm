@@ -1,4 +1,4 @@
-﻿@model DFM.MVC.Models.AccountIndexModel
+﻿@model AccountIndexModel
 
 @{
     ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
@@ -37,12 +37,12 @@ else
 
             var sign = account.Sign();
 
-            var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
-            var reopenUrl = Url.Action("Reopen", new { id = account.Name });
+            //var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
+            //var reopenUrl = Url.Action("Reopen", new { id = account.Name });
                         
             <tr>
                 <td>
-                    @Html.RouteLink(account.Name, RouteNames.Accounts, new { accounturl = account.Url, controller = "" })
+                    @Html.RouteLink(account.Name, RouteNames.Accounts, new { accounturl = account.Url, controller = "Report", action = "ShowMoves", id = monthReportId })
                 </td>
 
                 <td>@account.BeginDate.ToShortDateString()</td>
@@ -50,12 +50,13 @@ else
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
-
-                <!--td class="image">
+                @*
+                <td class="image">
                     <a href="@reopenUrl">
                         <img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
                     </a>
-                </td-->
+                </td>
+                *@
             </tr>
 
         } 

@@ -1,11 +1,12 @@
-﻿@model DFM.MVC.Models.CategoryCreateEditModel
+﻿@using DFM.Generic
+@model CategoryCreateEditModel
 
 @{
     if (Model.IsMoveCRUD) { Model.ActionName = "Create"; }
     
     ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
 
-    if (Model.Type == DFM.Generic.OperationType.Edit)
+    if (Model.Type == OperationType.Edit)
     {
         ViewBag.Title += " " + Model.Name;
     }

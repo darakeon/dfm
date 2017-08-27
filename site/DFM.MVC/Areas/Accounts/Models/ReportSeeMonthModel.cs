@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.Entities;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
+using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {

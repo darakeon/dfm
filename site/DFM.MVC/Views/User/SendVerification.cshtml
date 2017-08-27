@@ -1,9 +1,10 @@
-﻿@{
+﻿@using DFM.Email
+@{
     ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 
 <div class="half-screen">
     @String.Format(
         MultiLanguage.Dictionary["LogonDisabled", "FollowEmailIntructions"],
-        DFM.Email.Sender.SenderAddress)
+        Sender.SenderAddress)
 </div>
