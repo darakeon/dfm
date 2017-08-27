@@ -1,19 +1,19 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Generic;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class MoneyService : BaseService
     {
-        private readonly MoveService moveService;
-        private readonly DetailService detailService;
-        private readonly MonthService monthService;
-        private readonly ScheduleService scheduleService;
+        private readonly MoveRepository moveService;
+        private readonly DetailRepository detailService;
+        private readonly MonthRepository monthService;
+        private readonly ScheduleRepository scheduleService;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, MonthService monthService, ScheduleService scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, MonthRepository monthService, ScheduleRepository scheduleService)
             : base(serviceAccess)
         {
             this.moveService = moveService;

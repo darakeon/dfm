@@ -11,11 +11,11 @@ using DFM.Entities;
 using DFM.Entities.Extensions;
 using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class MoveService : GenericMoveService<Move>
+    internal class MoveRepository : GenericMoveRepository<Move>
     {
-        internal MoveService(IRepository<Move> repository) : base(repository) { }
+        internal MoveRepository(IData<Move> repository) : base(repository) { }
 
 
         internal Move SaveOrUpdate(Move move)

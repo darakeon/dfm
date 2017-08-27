@@ -1,6 +1,6 @@
 ﻿using DFM.Authentication;
 using DFM.BusinessLogic;
-using DFM.BusinessLogic.SuperServices;
+using DFM.BusinessLogic.Services;
 using DFM.Repositories;
 
 namespace DFM.MVC.Models

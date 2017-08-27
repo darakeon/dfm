@@ -7,11 +7,11 @@ using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class UserService : BaseService<User>
+    internal class UserRepository : BaseRepository<User>
     {
-        internal UserService(IRepository<User> repository) : base(repository) { }
+        internal UserRepository(IData<User> repository) : base(repository) { }
 
         private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
         

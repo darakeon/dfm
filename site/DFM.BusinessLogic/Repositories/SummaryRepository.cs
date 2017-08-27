@@ -1,17 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 using DFM.Entities;
-using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class SummaryService : BaseService<Summary>
+    internal class SummaryRepository : BaseRepository<Summary>
     {
-        internal SummaryService(IRepository<Summary> repository) : base(repository) { }
+        internal SummaryRepository(IData<Summary> repository) : base(repository) { }
 
 
 

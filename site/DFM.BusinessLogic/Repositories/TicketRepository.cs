@@ -2,11 +2,11 @@
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class TicketService : BaseService<Ticket>
+    internal class TicketRepository : BaseRepository<Ticket>
     {
-        internal TicketService(IRepository<Ticket> repository) : base(repository) { }
+        internal TicketRepository(IData<Ticket> repository) : base(repository) { }
 
         internal Ticket Create(User user, String ticketKey)
         {

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Generic;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class AdminService : BaseService
     {
-        private readonly CategoryService categoryService;
-        private readonly AccountService accountService;
-        private readonly YearService yearService;
-        private readonly MonthService monthService;
-        private readonly SummaryService summaryService;
+        private readonly CategoryRepository categoryService;
+        private readonly AccountRepository accountService;
+        private readonly YearRepository yearService;
+        private readonly MonthRepository monthService;
+        private readonly SummaryRepository summaryService;
 
-        internal AdminService(ServiceAccess serviceAccess, AccountService accountService, CategoryService categoryService, YearService yearService, MonthService monthService, SummaryService summaryService)
+        internal AdminService(ServiceAccess serviceAccess, AccountRepository accountService, CategoryRepository categoryService, YearRepository yearService, MonthRepository monthService, SummaryRepository summaryService)
             : base(serviceAccess)
         {
             this.accountService = accountService;

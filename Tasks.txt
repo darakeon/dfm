@@ -90,7 +90,8 @@ VERSÃO 2.0.0.0
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
 						Criar área Json
-						Criar App Mobile (http://haxe.org/ ?)
+2013-09-04				Criar DTOs
+2013-09-02				Criar App Mobile
 
 VERSÃO 1.0.3.1 (System)
 ================================================================================================

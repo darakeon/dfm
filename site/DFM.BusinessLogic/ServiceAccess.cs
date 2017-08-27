@@ -1,6 +1,6 @@
 ﻿using DFM.Authentication;
+using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
-using DFM.BusinessLogic.SuperServices;
 using DFM.Entities;
 using DFM.BusinessLogic.Bases;
 
@@ -10,17 +10,17 @@ namespace DFM.BusinessLogic
     {
         public ServiceAccess(IConnector resolver)
         {
-            var account = new AccountService(resolver.Resolve<Account>());
-            var category = new CategoryService(resolver.Resolve<Category>());
-            var detail = new DetailService(resolver.Resolve<Detail>());
-            var month = new MonthService(resolver.Resolve<Month>());
-            var move = new MoveService(resolver.Resolve<Move>());
-            var schedule = new ScheduleService(resolver.Resolve<Schedule>());
-            var security = new SecurityService(resolver.Resolve<Security>());
-            var summary = new SummaryService(resolver.Resolve<Summary>());
-            var ticket = new TicketService(resolver.Resolve<Ticket>());
-            var user = new UserService(resolver.Resolve<User>());
-            var year = new YearService(resolver.Resolve<Year>());
+            var account = new AccountRepository(resolver.Resolve<Account>());
+            var category = new CategoryRepository(resolver.Resolve<Category>());
+            var detail = new DetailRepository(resolver.Resolve<Detail>());
+            var month = new MonthRepository(resolver.Resolve<Month>());
+            var move = new MoveRepository(resolver.Resolve<Move>());
+            var schedule = new ScheduleRepository(resolver.Resolve<Schedule>());
+            var security = new SecurityRepository(resolver.Resolve<Security>());
+            var summary = new SummaryRepository(resolver.Resolve<Summary>());
+            var ticket = new TicketRepository(resolver.Resolve<Ticket>());
+            var user = new UserRepository(resolver.Resolve<User>());
+            var year = new YearRepository(resolver.Resolve<Year>());
 
             TransactionController = resolver.GetTransactionController();
 

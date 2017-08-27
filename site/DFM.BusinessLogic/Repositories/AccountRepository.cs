@@ -7,11 +7,11 @@ using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using NHibernate;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class AccountService : BaseService<Account>
+    internal class AccountRepository : BaseRepository<Account>
     {
-        internal AccountService(IRepository<Account> repository) : base(repository) { }
+        internal AccountRepository(IData<Account> repository) : base(repository) { }
 
         internal Account SaveOrUpdate(Account account)
         {

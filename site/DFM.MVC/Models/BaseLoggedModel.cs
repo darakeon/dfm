@@ -59,9 +59,6 @@ namespace DFM.MVC.Models
         }
 
 
-        protected readonly Current Current = Auth.Current;
-
-
 
     }
 }

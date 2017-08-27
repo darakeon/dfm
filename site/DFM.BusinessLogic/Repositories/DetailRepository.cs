@@ -4,11 +4,11 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class DetailService : BaseService<Detail>
+    internal class DetailRepository : BaseRepository<Detail>
     {
-        internal DetailService(IRepository<Detail> repository) : base(repository) { }
+        internal DetailRepository(IData<Detail> repository) : base(repository) { }
 
         internal void SaveDetails(Move move)
         {

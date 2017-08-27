@@ -6,7 +6,7 @@ namespace DFM.Repositories
 {
     public class Connector : IConnector
     {
-        public IRepository<T> Resolve<T>() where T : class, IEntity
+        public IData<T> Resolve<T>() where T : class, IEntity
         {
             return new BaseData<T>();
         }

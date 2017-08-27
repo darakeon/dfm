@@ -4,11 +4,11 @@ using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class YearService : BaseService<Year>
+    internal class YearRepository : BaseRepository<Year>
     {
-        internal YearService(IRepository<Year> repository) : base(repository) { }
+        internal YearRepository(IData<Year> repository) : base(repository) { }
 
         internal Year GetOrCreateYear(Int16 dateYear, Account account, Category category = null)
         {

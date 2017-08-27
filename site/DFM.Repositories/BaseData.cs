@@ -10,7 +10,7 @@ using NHibernate.Util;
 
 namespace DFM.Repositories
 {
-    public class BaseData<T> : IRepository<T> where T : class, IEntity
+    public class BaseData<T> : IData<T> where T : class, IEntity
     {
         private static ISession session
         {
@@ -30,7 +30,7 @@ namespace DFM.Repositories
         }
 
 
-        public T SaveOrUpdate(T entity, params BaseService<T>.DelegateAction[] actions)
+        public T SaveOrUpdate(T entity, params BaseRepository<T>.DelegateAction[] actions)
         {
             foreach (var delegateAction in actions)
             {

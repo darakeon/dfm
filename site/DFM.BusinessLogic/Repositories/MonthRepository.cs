@@ -4,11 +4,11 @@ using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class MonthService : BaseService<Month>
+    internal class MonthRepository : BaseRepository<Month>
     {
-        protected internal MonthService(IRepository<Month> repository) : base(repository) { }
+        protected internal MonthRepository(IData<Month> repository) : base(repository) { }
 
         internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
         {

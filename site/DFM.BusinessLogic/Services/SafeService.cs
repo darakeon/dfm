@@ -1,19 +1,19 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class SafeService : BaseService, ISafeService
     {
-        private readonly UserService userService;
-        private readonly SecurityService securityService;
-        private readonly TicketService ticketService;
+        private readonly UserRepository userService;
+        private readonly SecurityRepository securityService;
+        private readonly TicketRepository ticketService;
 
-        internal SafeService(ServiceAccess serviceAccess, UserService userService, SecurityService securityService, TicketService ticketService)
+        internal SafeService(ServiceAccess serviceAccess, UserRepository userService, SecurityRepository securityService, TicketRepository ticketService)
             : base(serviceAccess)
         {
             this.userService = userService;

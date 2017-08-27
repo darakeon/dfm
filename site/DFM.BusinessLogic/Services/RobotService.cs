@@ -1,18 +1,18 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class RobotService : BaseService
     {
-        private readonly ScheduleService scheduleService;
-        private readonly DetailService detailService;
+        private readonly ScheduleRepository scheduleService;
+        private readonly DetailRepository detailService;
         
-        internal RobotService(ServiceAccess serviceAccess, ScheduleService scheduleService, DetailService detailService)
+        internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleService, DetailRepository detailService)
             : base(serviceAccess)
         {
             this.scheduleService = scheduleService;

@@ -11,11 +11,11 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class SecurityService : BaseService<Security>
+    internal class SecurityRepository : BaseRepository<Security>
     {
-        internal SecurityService(IRepository<Security> repository) : base(repository) { }
+        internal SecurityRepository(IData<Security> repository) : base(repository) { }
 
 
 

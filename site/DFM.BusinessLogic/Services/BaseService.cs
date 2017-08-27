@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class BaseService
     {

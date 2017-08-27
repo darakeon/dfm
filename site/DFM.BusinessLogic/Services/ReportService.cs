@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     public class ReportService : BaseService
     {
-        private readonly AccountService accountService;
-        private readonly YearService yearService;
-        private readonly MonthService monthService;
+        private readonly AccountRepository accountService;
+        private readonly YearRepository yearService;
+        private readonly MonthRepository monthService;
 
-        internal ReportService(ServiceAccess serviceAccess, AccountService accountService, YearService yearService, MonthService monthService)
+        internal ReportService(ServiceAccess serviceAccess, AccountRepository accountService, YearRepository yearService, MonthRepository monthService)
             : base(serviceAccess)
         {
             this.accountService = accountService;

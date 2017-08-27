@@ -5,11 +5,11 @@ using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Bases
 {
-    public class BaseService<T> where T : IEntity
+    public class BaseRepository<T> where T : IEntity
     {
-        private readonly IRepository<T> repository;
+        private readonly IData<T> repository;
 
-        protected BaseService(IRepository<T> repository)
+        protected BaseRepository(IData<T> repository)
         {
             this.repository = repository;
         }

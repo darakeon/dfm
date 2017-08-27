@@ -5,11 +5,11 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
-namespace DFM.BusinessLogic.Services
+namespace DFM.BusinessLogic.Repositories
 {
-    internal class ScheduleService : GenericMoveService<Schedule>
+    internal class ScheduleRepository : GenericMoveRepository<Schedule>
     {
-        internal ScheduleService(IRepository<Schedule> repository) : base(repository) { }
+        internal ScheduleRepository(IData<Schedule> repository) : base(repository) { }
 
 
 

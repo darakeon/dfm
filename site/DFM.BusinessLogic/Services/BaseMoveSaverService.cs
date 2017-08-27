@@ -1,21 +1,20 @@
 ﻿using System;
-using DFM.BusinessLogic.Services;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 
-namespace DFM.BusinessLogic.SuperServices
+namespace DFM.BusinessLogic.Services
 {
     internal class BaseMoveSaverService : BaseService
     {
-        private readonly MoveService moveService;
-        private readonly DetailService detailService;
-        private readonly SummaryService summaryService;
-        private readonly MonthService monthService;
-        private readonly YearService yearService;
+        private readonly MoveRepository moveService;
+        private readonly DetailRepository detailService;
+        private readonly SummaryRepository summaryService;
+        private readonly MonthRepository monthService;
+        private readonly YearRepository yearService;
 
-        internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveService moveService, DetailService detailService, SummaryService summaryService, MonthService monthService, YearService yearService)
+        internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, SummaryRepository summaryService, MonthRepository monthService, YearRepository yearService)
             : base(serviceAccess)
         {
             this.moveService = moveService;
