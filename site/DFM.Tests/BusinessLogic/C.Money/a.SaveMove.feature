@@ -596,3 +596,20 @@ Scenario: 99. Save with exactly length in Description (S)
 	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
+
+Scenario: 9A. Save with details with same description (S)
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9A   | 2012-03-31 | Out    |       |
+	And the move has this details
+		| Description | Amount | Value |
+		| Move Ca9A   | 1      | 10    |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+	And the move will be saved
+	And the accountOut value will change in -10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10

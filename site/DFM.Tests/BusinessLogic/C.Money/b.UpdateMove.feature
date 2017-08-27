@@ -157,3 +157,18 @@ Scenario: 12. Update the move value
 	And the old-month-category-accountOut value will change in 10
 	And the old-year-category-accountOut value will change in 10
 
+
+
+Scenario: 13. Add details to the move
+	Given I have a move with these details (Out)
+		| Description | Amount | Value |
+		| Move Cb13a  | 1      | 10    |
+	When I add these details to the move
+		| Description | Amount | Value |
+		| Move Cb13b  | 1      | 10    |
+	And I update the move
+	Then I will receive no core error
+	And the old-accountOut value will change in -10
+	And the old-month-category-accountOut value will change in 10
+	And the old-year-category-accountOut value will change in 10
+

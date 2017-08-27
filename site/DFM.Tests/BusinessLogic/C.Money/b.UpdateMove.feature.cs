@@ -435,6 +435,49 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("13. Add details to the move")]
+        public virtual void _13_AddDetailsToTheMove()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Add details to the move", ((string[])(null)));
+#line 162
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table1.AddRow(new string[] {
+                        "Move Cb13a",
+                        "1",
+                        "10"});
+#line 163
+ testRunner.Given("I have a move with these details (Out)", ((string)(null)), table1);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table2.AddRow(new string[] {
+                        "Move Cb13b",
+                        "1",
+                        "10"});
+#line 166
+ testRunner.When("I add these details to the move", ((string)(null)), table2);
+#line 169
+ testRunner.And("I update the move");
+#line 170
+ testRunner.Then("I will receive no core error");
+#line 171
+ testRunner.And("the old-accountOut value will change in -10");
+#line 172
+ testRunner.And("the old-month-category-accountOut value will change in 10");
+#line 173
+ testRunner.And("the old-year-category-accountOut value will change in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion
