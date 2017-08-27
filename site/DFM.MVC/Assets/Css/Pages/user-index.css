@@ -7,7 +7,10 @@
 .twitter 
 {
     float: right;
+    text-align: right;
     margin-top: -15px;
+    width: 300px;
+    height: 400px;
 }
 
 .android-link
@@ -17,8 +20,7 @@
     height: 80px;
     background: url('/Assets/image/android.gif');
     padding: 0;
-    margin: 185px 10px 10px 10px;
-    display: none;
+    margin: 175px 10px 10px 10px;
 }
 
     .android-link:hover
