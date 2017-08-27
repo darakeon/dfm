@@ -15,12 +15,11 @@
 
 
 
-@section MenuTopo {
-    <ul class="menu menu-topo">
-        @RenderSection("MenuTopo", false)
+@section MenuTopo
+{
+    @RenderSection("MenuTopo", false)
 
-        <li class="icon logoff">@Html.RouteLink(" ", RouteNames.Default, new { action = "LogOff", controller = "User" })</li>
-    </ul>
+    <li class="icon logoff">@Html.RouteLink(" ", RouteNames.Default, new { action = "LogOff", controller = "User" })</li>
 }
 
 
