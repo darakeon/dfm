@@ -87,6 +87,7 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Tirar descrição de transferência entre contas
 						Aumentar versão da API Android de acordo com downloads do DFM
 						Arrumar clique do menu (clique botões direito e meio do mouse)
+						Colocar botão CANCEL em Settings e Move (mobile)
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
@@ -96,7 +97,6 @@ VERSÃO 2.0.1.0 (Little Change)
 						Procurar TO-DOs no projeto
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 						Security desativa os anteriores
-						Parar request no Destroy da Activity
 						Desativar user a cada 5 senhas erradas
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Criar teste unitário para deletar todas as movimentações de um agendamento
@@ -113,11 +113,12 @@ VERSÃO 2.0.1.0 (Little Change)
 						Arrumar agendamento detalhado
 						Refactor em controllers e areas, inverter plural
 						Remover GetOrCreate
-						Atualizar projeto: MVC 5
+						Parar request no Destroy da Activity
+2014-06-11				Atualizar projeto: MVC 5
 2014-06-09	2014-06-09	Atualizar projeto: .NET 4.5
 2014-06-09	2014-06-09	Atualizar projeto: VS 2013
 2014-06-09	2014-06-09	Fix transform for rewrite
-2014-06-05				Review rotate logic
+2014-06-05	2014-06-16	Review rotate logic
 2014-06-04	2014-06-05	Handle differentely EConnReset
 2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
 

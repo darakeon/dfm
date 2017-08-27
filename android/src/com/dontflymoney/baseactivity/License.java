@@ -36,6 +36,7 @@ public class License
 	
 	public void Check()
 	{
+		activity.Reset();
 		checker.checkAccess(callback);
 		progress.show();
 	}

@@ -28,7 +28,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected ResultHandler resultHandler;
 	protected License license;
 	
-	protected boolean succeded = false;
+	protected static boolean succeded = false;
 	
 	
 	public void init(int contentView, int menuResource)
@@ -148,6 +148,11 @@ public abstract class SmartActivity extends FixOrientationActivity
 	public void EnableScreen()
 	{
 		succeded = true;
+	}
+
+	public void Reset()
+	{
+		succeded = false;
 	}
 	
 	

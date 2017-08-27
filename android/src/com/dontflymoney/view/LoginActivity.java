@@ -31,7 +31,7 @@ public class LoginActivity extends SmartActivity
 		{
 			navigation.redirect(AccountsActivity.class);
 		}
-		else if (rotated)
+		else if (rotated && succeded)
 		{
 			EnableScreen();
 		}
