@@ -98,12 +98,12 @@ VERSÃO 2.0.0.0
 						Possibilitar gravar movimentação (Mobile)
 						Criar área Json
 						Criar App Mobile
-2013-09-04				Criar DTOs (Simple*)
+2013-09-04	2013-10-04	Decidir sobre passagem de objetos para externo
 2013-10-03	2013-10-03	Consertar bug ao adicionar detalhes a uma movimentação existente
 2013-10-03	2013-10-03	Consertar agendamento com detalhes
 2013-10-02	2013-10-02	Ocultar Mover e Agendar da conta fechada
 2013-10-02	2013-10-02	Alterar contas fechadas para ficar igual abertas, mas sem edição
-2013-09-27	2013-10-02	Rever layout (http://goodui.org/)
+2013-09-28	2013-10-02	Rever layout (http://goodui.org/)
 
 VERSÃO 1.1.0.0 (Big change)
 ================================================================================================
