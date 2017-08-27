@@ -125,6 +125,7 @@
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
+    <Compile Include="Areas\Json\JsonAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
@@ -328,6 +329,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Json\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Json\Controllers\" />
+    <Folder Include="Areas\Json\Models\" />
+    <Folder Include="Areas\Json\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
