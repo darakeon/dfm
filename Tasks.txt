@@ -92,6 +92,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
+						Colocar lista de Categorias / Contas no combo em ordem alfabética
 						Criar produto no google play
 						Colocar Saldo Atual na tela de Extrato
 						Trocar botão e Contas por imagem de Home, Botão de Sair por imagem de logout
