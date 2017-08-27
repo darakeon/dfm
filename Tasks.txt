@@ -89,7 +89,6 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Aumentar versão da API Android de acordo com downloads do DFM
 						Arrumar clique do menu (clique botões direito e meio do mouse)
 						Colocar botão CANCEL em Settings e Move (mobile)
-						Colocar link de logon no password reset
 						Verificar se password reset inativa usuário
 						Rever layout empty table
 						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
@@ -124,7 +123,8 @@ VERSÃO 2.0.1.0 (Little Change)
 
 VERSÃO 2.0.0.2 (System)
 ================================================================================================
-2014-06-19	2014-06-19	Colocar versão no rodapé
+						Colocar versão no rodapé
+2014-06-20	2014-06-20	Colocar link de logon no password reset
 2014-06-18	2014-06-19	Parar request no Destroy da Activity
 2014-06-11	2014-06-17	Atualizar projeto: MVC 5
 2014-06-09	2014-06-09	Atualizar projeto: .NET 4.5
