@@ -130,15 +130,6 @@
     <Compile Include="Areas\Android\Controllers\UserController.cs" />
     <Compile Include="Areas\Android\AndroidAreaRegistration.cs" />
     <Compile Include="Areas\Android\Jsons\AccountJson.cs" />
-    <Compile Include="Areas\Android\Jsons\CategoryJson.cs" />
-    <Compile Include="Areas\Android\Jsons\DetailJson.cs" />
-    <Compile Include="Areas\Android\Jsons\MonthJson.cs" />
-    <Compile Include="Areas\Android\Jsons\MoveJson.cs" />
-    <Compile Include="Areas\Android\Jsons\ScheduleJson.cs" />
-    <Compile Include="Areas\Android\Jsons\SecurityJson.cs" />
-    <Compile Include="Areas\Android\Jsons\SummaryJson.cs" />
-    <Compile Include="Areas\Android\Jsons\TicketJson.cs" />
-    <Compile Include="Areas\Android\Jsons\YearJson.cs" />
     <Compile Include="Areas\Android\Models\AccountListModel.cs" />
     <Compile Include="Areas\Android\Models\BaseJsonModel.cs" />
     <Compile Include="Areas\Android\Models\UserLogOnModel.cs" />

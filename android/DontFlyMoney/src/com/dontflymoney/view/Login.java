@@ -15,6 +15,8 @@ import android.view.View;
 
 import com.dontflymoney.android.R;
 import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.site.Action;
+import com.dontflymoney.site.Controller;
 import com.dontflymoney.site.IRequestCaller;
 import com.dontflymoney.site.Request;
 import com.dontflymoney.viewhelpers.SmartView;
@@ -23,30 +25,22 @@ import com.dontflymoney.viewhelpers.SmartView;
 public class Login extends Activity
 				   implements IRequestCaller
 {
-	SmartView form;
-	
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_login);
 	}
-
-	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
-		
 		return true;
 	}
 	
 	
+	
+	SmartView form;
 	
 	public void login(View button)
 	{
@@ -63,7 +57,7 @@ public class Login extends Activity
 		parameters.put("password", password);
 
 		
-		Request task = new Request(this, "User", "Index", parameters);
+		Request task = new Request(this, Controller.User, Action.Index, parameters);
 		
 		task.execute();
 	}
@@ -90,7 +84,7 @@ public class Login extends Activity
 				String ticket = json.get("data").toString();
 				Authentication.Set(getApplicationContext(), ticket);
 
-				callActivity();
+				callAccounts();
 				
 				return;
 			}
@@ -112,7 +106,7 @@ public class Login extends Activity
 
 
 
-	private void callActivity()
+	private void callAccounts()
 	{
 		Intent intent = new Intent(this, Accounts.class);
 		
