@@ -28,13 +28,7 @@ namespace DFM.Tests.BusinessLogic
         {
             foreach (var detailData in table.Rows)
             {
-                var detail = new Detail { Description = detailData["Description"] };
-
-                if (!String.IsNullOrEmpty(detailData["Value"]))
-                    detail.Value = Int32.Parse(detailData["Value"]);
-
-                if (!String.IsNullOrEmpty(detailData["Amount"]))
-                    detail.Amount = Int16.Parse(detailData["Amount"]);
+                var detail = GetDetailFromTable(detailData);
 
                 DetailList.Add(detail);
             }
@@ -339,12 +333,7 @@ namespace DFM.Tests.BusinessLogic
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }
-
-
-
-
-
-
+        
 
 
     }

@@ -260,6 +260,18 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Move.DetailList[0].Value = value;
         }
 
+        [When(@"I add these details to the move")]
+        public void WhenIAddTheseDetailsToTheMove(Table details)
+        {
+            foreach (var detailData in details.Rows)
+            {
+                var newDetail = GetDetailFromTable(detailData);
+
+                Move.DetailList.Add(newDetail);
+            }
+
+        }
+
 
         
         [When(@"I update the move")]
@@ -597,6 +609,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
             makeMove(10);
         }
 
+
+        [Given(@"I have a move with these details \((\w+)\)")]
+        public void GivenIHaveAMoveWithTheseDetails(String nature, Table details)
+        {
+            var moveNature = EnumX.Parse<MoveNature>(nature);
+
+            makeMove(details, moveNature);
+        }
+
         [Given(@"I have a move with value (\-?\d+) \((\w+)\)")]
         public void GivenIHaveAMoveWithValue(Double value, String nature)
         {
@@ -605,16 +626,23 @@ namespace DFM.Tests.BusinessLogic.C.Money
             makeMove(value, moveNature);
         }
 
+        private void makeMove(Table details, MoveNature nature)
+        {
+            makeJustMove(nature);
+
+            foreach (var detailData in details.Rows)
+            {
+                var newDetail = GetDetailFromTable(detailData);
+
+                Move.DetailList.Add(newDetail);
+            }
+
+            setMoveExternals(nature);
+        }
+
         private void makeMove(Double value, MoveNature nature = MoveNature.Out)
         {
-            oldDate = DateTime.Today;
-
-            Move = new Move
-            {
-                Description = "Description",
-                Date = oldDate,
-                Nature = nature,
-            };
+            makeJustMove(nature);
 
             // TODO: use this, delete above
             //    move.Value = value;
@@ -628,11 +656,28 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             Move.DetailList.Add(newDetail);
             
+            setMoveExternals(nature);
+        }
+
+        private void makeJustMove(MoveNature nature)
+        {
+            oldDate = DateTime.Today;
+
+            Move = new Move
+            {
+                Description = "Description",
+                Date = oldDate,
+                Nature = nature,
+            };
+        }
+
+        private void setMoveExternals(MoveNature nature)
+        {
             var accountOutName = nature == MoveNature.In
-                ? null : AccountOutName;
+                                     ? null : AccountOutName;
 
             var accountInName = nature == MoveNature.Out
-                ? null : AccountInName;
+                                    ? null : AccountInName;
 
             Category = GetOrCreateCategory(MainCategoryName);
 
@@ -666,6 +711,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
             }
         }
+
 
 
         [Given(@"I pass an id of Move that doesn't exist")]

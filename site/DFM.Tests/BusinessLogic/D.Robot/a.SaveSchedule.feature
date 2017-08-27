@@ -696,3 +696,24 @@ Scenario: 9A. Save with exactly length in Description (S)
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
+	
+Scenario: 9A. Save with details with same description (S)
+	Given I have this future move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9A   | 2012-03-31 | Out    |       |
+	And the move has this details
+		| Description | Amount | Value |
+		| Move Ca9A   | 1      | 10    |
+		| Detail 2    | 1      | 10    |
+	And the move has this schedule
+		| Times | Boundless | Frequency | ShowInstallment |
+		| 10    | False     | Monthly   | False           |
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the schedule
+	Then I will receive no core error
+	And the move will be saved
+	And the accountOut value will not change
+	And the month-category-accountOut value will not change
+	And the year-category-accountOut value will not change

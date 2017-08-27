@@ -12,6 +12,7 @@ using DFM.Repositories;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
+using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -335,6 +336,19 @@ namespace DFM.Tests.BusinessLogic
 
 
 
+        #region Helpers
+        protected Detail GetDetailFromTable(TableRow detailData)
+        {
+            var newDetail = new Detail { Description = detailData["Description"] };
+
+            if (!String.IsNullOrEmpty(detailData["Value"]))
+                newDetail.Value = Int32.Parse(detailData["Value"]);
+
+            if (!String.IsNullOrEmpty(detailData["Amount"]))
+                newDetail.Amount = Int16.Parse(detailData["Amount"]);
+            return newDetail;
+        }
+        #endregion
 
 
     }
