@@ -35,7 +35,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
                        where U.Email = @email
                          and U.Password = @password
                          and S.Action = @action
-                         and S.Active = 1
                          and S.Expire >= @expire
                     order by S.ID desc, S.Expire desc
                        limit 1";
