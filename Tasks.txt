@@ -50,6 +50,7 @@ VERSÃO 2.2.0.0 (Big change) - 10?
 					>>>	importador de CSV
 					>>>	importador de Money
 					>>>	importador de Excel
+S						Configurar max request length 
 
 VERSÃO 2.1.0.0 (Big change) - 3?
 ================================================================================================
@@ -57,13 +58,13 @@ VERSÃO 2.1.0.0 (Big change) - 3?
 					>>>	Criar relatórios por anos
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.2.0 (Little change) - 7?
+VERSÃO 2.0.3.0 (Little change) - 7?
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
 
-VERSÃO 2.0.1.0 (Little change) - 9?
+VERSÃO 2.0.2.0 (Little change) - 9?
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -73,7 +74,7 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Busca por movimentação
 						Atualizar versão do SpecFlow
 
-VERSÃO 2.0.0.2 (System) - 10?
+VERSÃO 2.0.1.1 (System) - 10?
 ================================================================================================
 						Mudar campos para usar campos que firefox e chrome personalizam
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
@@ -99,29 +100,28 @@ VERSÃO 2.0.0.2 (System) - 10?
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
-						Disponibilizar Task list no site
-						Tratar erro ao enviar e-mail (Security)
-						Procurar TO-DOs no projeto
-						Remover acesso direto de Month e Year a Summary (refactor em Summary)
-						Security desativa os anteriores
-						Desativar user a cada 5 senhas erradas
-						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
-						Criar teste unitário para deletar todas as movimentações de um agendamento
-						Criar teste unitário agendamento meio antes / meio depois
-						Configurar max request length 
-						Consertar problema ao pedir relatório que ainda não tem Month/Year
-						Travar schedule de conta fechada / deletada
-						Arrumar testes
-						Corrigir para que movimentação sem categoria conserte realmente os summaries
-						Colocar frase de limpar schedules no final de testes de create schedule
-						Trocar Extensions Sum para Total
-						Em Move, colocar Value como campo gravado e usar Total para exibição
-						Colocar valores em inteiro (double > int) no banco
-						Arrumar agendamento detalhado
-						Refactor em controllers e areas, inverter plural
-						Remover GetOrCreate
+D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
+D						Remover GetOrCreate
+F						Disponibilizar Task list no site
+F						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
+R						Procurar TO-DOs no projeto
+R						Refactor em controllers e areas, inverter plural
+R						Trocar Extensions Sum para Total
+R						Em Move, colocar Value como campo gravado e usar Total para exibição
+R						Colocar valores em inteiro (double > int) no banco
+T						Criar teste unitário para deletar todas as movimentações de um agendamento
+T						Criar teste unitário agendamento meio antes / meio depois
+H						Travar schedule de conta fechada / deletada
+S						Security desativa os anteriores
+S						Desativar user a cada 5 senhas erradas
+B						Tratar erro ao enviar e-mail (Security)
+B						Consertar problema ao pedir relatório que ainda não tem Month/Year
+B						Arrumar testes
+B						Corrigir para que movimentação sem categoria conserte realmente os summaries
+B						Colocar frase de limpar schedules no final de testes de create schedule
+B						Arrumar agendamento detalhado
 
-VERSÃO 2.0.0.2 (System)
+VERSÃO 2.0.0.2 (System) - 10
 ================================================================================================
 2014-06-20	2014-06-20	Colocar versão no rodapé
 2014-06-20	2014-06-20	Colocar link de logon no password reset
