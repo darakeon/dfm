@@ -54,7 +54,6 @@ VERSÃO 2.2.0.0
 
 VERSÃO 2.1.0.0
 ================================================================================================
-						Colocar dados de entrada todos nas features
 						Tratar FailOnEmailSend em Robot
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
@@ -87,6 +86,8 @@ VERSÃO 2.0.0.1
 						Remover GetOrCreate
 						Colocar botão de pânico (enviar dados de post para o desenv)
 						Mostrar naturezas em botões, não dropdowns
+						Colocar Negativo / Positivo / Total no Resumo anual
+						Colocar linha de Total no Resumo Anual
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
 

@@ -31,10 +31,12 @@ public final class R {
         public static final int password=0x7f080002;
     }
     public static final class layout {
-        public static final int activity_login=0x7f030000;
+        public static final int activity_accounts=0x7f030000;
+        public static final int activity_login=0x7f030001;
     }
     public static final class menu {
-        public static final int login=0x7f070000;
+        public static final int accounts=0x7f070000;
+        public static final int login=0x7f070001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -42,7 +44,9 @@ public final class R {
         public static final int email=0x7f050003;
         public static final int enter=0x7f050002;
         public static final int error_message=0x7f050005;
+        public static final int hello_world=0x7f050007;
         public static final int password=0x7f050004;
+        public static final int title_activity_accounts=0x7f050006;
     }
     public static final class style {
         /** 

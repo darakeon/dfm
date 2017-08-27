@@ -8,11 +8,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
 import com.dontflymoney.android.R;
+import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.site.IRequestCaller;
 import com.dontflymoney.site.Request;
 import com.dontflymoney.viewhelpers.SmartView;
@@ -79,7 +81,6 @@ public class Login extends Activity
 			if (firstKey.equals("error"))
 			{
 				Object error = json.get("error");
-				
 				form.SetText(R.id.error_message, error.toString());
 				return;
 			}
@@ -87,7 +88,10 @@ public class Login extends Activity
 			if (firstKey.equals("data"))
 			{
 				String ticket = json.get("data").toString();
-				form.SetText(R.id.error_message, ticket);
+				Authentication.Set(getApplicationContext(), ticket);
+
+				callActivity();
+				
 				return;
 			}
 
@@ -96,9 +100,17 @@ public class Login extends Activity
 		catch (JSONException e)
 		{
 			form.SetText(R.id.error_message, e.getMessage());
-			return;
 		}
 		
+	}
+
+
+
+	private void callActivity()
+	{
+		Intent intent = new Intent(this, Accounts.class);
+		
+		startActivity(intent);		
 	}
 	
 	
