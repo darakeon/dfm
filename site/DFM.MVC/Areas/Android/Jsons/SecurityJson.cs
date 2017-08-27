@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.Areas.Json.Jsons
+namespace DFM.MVC.Areas.Android.Jsons
 {
     internal class SecurityJson
     {

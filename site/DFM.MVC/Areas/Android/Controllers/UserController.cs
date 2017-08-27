@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.MVC.Areas.Json.Models;
+using DFM.MVC.Areas.Android.Models;
 using DFM.MVC.Helpers;
 
-namespace DFM.MVC.Areas.Json.Controllers
+namespace DFM.MVC.Areas.Android.Controllers
 {
     public class UserController : BaseJsonController
     {

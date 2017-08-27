@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using DFM.MVC.Areas.Json.Controllers;
+using DFM.MVC.Areas.Android.Controllers;
 using DFM.MVC.Helpers;
 
-namespace DFM.MVC.Areas.Json
+namespace DFM.MVC.Areas.Android
 {
     public class JsonAreaRegistration : AreaRegistration
     {
@@ -18,7 +18,14 @@ namespace DFM.MVC.Areas.Json
         {
             context.MapRoute(
                 RouteNames.Json,
-                "Json/{controller}/{action}/{id}",
+                "Android/{controller}/{action}/{id}",
+                new { controller = "User", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(UserController).Namespace }
+            );
+
+            context.MapRoute(
+                RouteNames.Json,
+                "Json{ticket}/{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );

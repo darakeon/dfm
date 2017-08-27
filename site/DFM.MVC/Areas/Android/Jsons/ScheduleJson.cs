@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.Areas.Json.Jsons
+namespace DFM.MVC.Areas.Android.Jsons
 {
     internal class ScheduleJson
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.MVC.Areas.Json.Jsons
+namespace DFM.MVC.Areas.Android.Jsons
 {
     internal class CategoryJson
     {
