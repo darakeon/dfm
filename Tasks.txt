@@ -32,6 +32,7 @@ VERSÃO 3.0.0.0
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 					>>>	Rever layout (http://goodui.org/)
 						Relacionar Conta e Categoria (combo)
+						Unir Categorias
 
 VERSÃO 2.2.0.0
 ================================================================================================
