@@ -712,7 +712,7 @@ Scenario: 9B. Save with details with same description (S)
 	And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the move will be saved
+	And the schedule will be saved
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change

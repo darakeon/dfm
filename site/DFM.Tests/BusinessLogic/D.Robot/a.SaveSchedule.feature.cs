@@ -2296,7 +2296,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 714
  testRunner.Then("I will receive no core error");
 #line 715
- testRunner.And("the move will be saved");
+ testRunner.And("the schedule will be saved");
 #line 716
  testRunner.And("the accountOut value will not change");
 #line 717
