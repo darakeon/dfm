@@ -96,7 +96,8 @@ VERSÃO 2.0.0.0
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
-						Criar App Mobile
+2013-10-04				Fazer login por ticket no site
+2013-10-04	2013-10-04	Criar App Mobile
 2013-09-04	2013-10-04	Decidir sobre passagem de objetos para externo
 2013-10-03	2013-10-03	Consertar bug ao adicionar detalhes a uma movimentação existente
 2013-10-03	2013-10-03	Consertar agendamento com detalhes
