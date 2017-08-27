@@ -45,7 +45,7 @@ public class Accounts extends Activity implements IRequestCaller {
 	{
 		form = new SmartView(getWindow());
 
-		Request task = new Request(this, Controller.User, Action.Index);
+		Request task = new Request(this, getApplicationContext(), Controller.User, Action.Index);
 		task.execute();
 	}
 
@@ -96,7 +96,6 @@ public class Accounts extends Activity implements IRequestCaller {
         {
     		
         }
-		
 		
 		ArrayAdapter<String> adapter = 
 			new ArrayAdapter<String>(this, 

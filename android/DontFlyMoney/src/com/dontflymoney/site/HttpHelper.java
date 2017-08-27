@@ -20,56 +20,56 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpHelper
 {
-	private static String domain = "192.168.1.32";
+	private static String domain = "http://beta.dontflymoney.com";
 	private static String url = String.format("http://{0}/Json", domain);
+
 	
-	
-	
-	public static String doGet(String controller) 
+
+	public static String Get(String controller) 
 			throws ClientProtocolException, IOException
 	{
-		return doGet(controller, null);		
+		return Get(controller, null);		
 	}
 	
 	
 	
-	public static String doGet(String controller, String action) 
+	public static String Get(String controller, String action) 
 			throws ClientProtocolException, IOException
 	{
-		return doGet(controller, action, null);		
+		return Get(controller, action, null);		
 	}
 	
 	
 	
-	public static String doGet(String controller, String action, String id) 
+	public static String Get(String controller, String action, String id) 
 			throws ClientProtocolException, IOException
 	{
 		String urlGet = getUrl(controller, action, id);
 		
 		HttpGet get = new HttpGet(urlGet);
 
-		return doRequest(get);
+		return request(get);
 	}
 
 
 
-	public static String doPost(String controller) 
+	public static String Post(String controller) 
 			throws ClientProtocolException, IOException
 	{
-		return doPost(controller, null);		
+		return Post(controller, null);		
 	}
 	
 	
 	
-	public static String doPost(String controller, String action) 
+	public static String Post(String controller, String action) 
 			throws ClientProtocolException, IOException
 	{
-		return doPost(controller, action, null);		
+		return Post(controller, action, null);		
 	}
 	
 	
 	
-	public static String doPost(String controller, String action, Map<String, String> parameters) 
+	public static String Post(String controller, String action, Map<String, String> parameters) 
 			throws ClientProtocolException, IOException
 	{
 		String urlPost = getUrl(controller, action, null);
@@ -85,7 +85,7 @@ public class HttpHelper
 			post.setEntity(urlEntity);
 		}
 
-		return doRequest(post);
+		return request(post);
 	}
 	
 	
@@ -128,7 +128,7 @@ public class HttpHelper
 
 	
 	
-	private static String doRequest(HttpUriRequest request)
+	private static String request(HttpUriRequest request)
 			throws ClientProtocolException, IOException
 	{
 
@@ -140,6 +140,8 @@ public class HttpHelper
 		
 		return EntityUtils.toString(entity);
 	}
+	
+
 	
 	
 }

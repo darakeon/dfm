@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.view.Menu;
 import android.view.View;
 
@@ -64,13 +65,16 @@ public class Login extends Activity
 		String password = form.GetValue(R.id.password);
 		
 		
+		String android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID); 
+		
+		
 		Map<String, String> parameters = new HashMap<String, String>();
 		
 		parameters.put("email", email);
 		parameters.put("password", password);
-
+		parameters.put("machineId", android_id);
 		
-		Request task = new Request(this, Controller.User, Action.Index, parameters);
+		Request task = new Request(this, getApplicationContext(), Controller.User, Action.Index, parameters);
 		
 		task.execute();
 	}

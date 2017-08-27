@@ -7,25 +7,28 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 public class Request extends AsyncTask<Void, Void, HttpResult>
 {
 	IRequestCaller activity;
+	Context context;
 	Controller controller;
 	Action action;
 	Map<String, String> parameters;
 	
-	public Request(IRequestCaller activity, Controller controller, Action action)
+	public Request(IRequestCaller activity, Context context, Controller controller, Action action)
 	{
 		this.activity = activity;
+		this.context = context;
 		this.controller = controller;
 		this.action = action;
 	}
 	
-	public Request(IRequestCaller activity, Controller controller, Action action, Map<String, String> parameters)
+	public Request(IRequestCaller activity, Context context, Controller controller, Action action, Map<String, String> parameters)
 	{
-		this(activity, controller, action);
+		this(activity, context, controller, action);
 		this.parameters = parameters;
 	}
 	
@@ -35,7 +38,7 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 	{			
 		try
 		{
-			String result = HttpHelper.doPost(controller.toString(), action.toString(), parameters);
+			String result = HttpHelper.Post(controller.toString(), action.toString(), parameters);
 			
 		    return new HttpResult(result);
 		}
