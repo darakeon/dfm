@@ -91,12 +91,11 @@ VERSÃO 2.0.0.0
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
-						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
+						Criar App Mobile (http://haxe.org/ ?)
 
 VERSÃO 1.0.3.1 (System)
 ================================================================================================
-						Inserir Year e Month antes de inserir a movimentação
 2013-08-30	2013-08-30	http://www.dontflymoney.com/Token/Received
 2013-08-24	2013-08-30	Mover lógica dos Controllers para os Models
 
