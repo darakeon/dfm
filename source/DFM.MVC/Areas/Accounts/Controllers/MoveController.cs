@@ -87,8 +87,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             return RedirectToAction("ShowMoves", "Report", new { id = model.ReportUrl });
         }
-
-
+        
 
 
     }

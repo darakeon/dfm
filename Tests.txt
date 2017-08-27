@@ -7,21 +7,35 @@ Token > PasswordReset
 Token > Disable
 User > LogOn (verified)
 User > LogOff
+
 Account > Index
 Account > Create
 Account > Edit
 Account > Delete
+
 Category > Index
 Category > Create
 Category > Edit
 Category > Disable
 Category > Enable
-Ops
 
+Ops > Index
+Ops > Code
+Ops > Error
 
-
+Move > Index
+Schedule > Index
+Move > Create
+Detail > Add
 Category > CreateAjax
+Move > Edit
+Schedule > Create
+BaseMove > ShowAccountList
+Move > Delete
 
+Report > Index
+Report > ShowMoves
+Report > SummarizeMonths
 
 Account > Close
 Account > ListClosed
