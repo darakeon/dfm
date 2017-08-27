@@ -98,7 +98,8 @@ VERSÃO 2.0.0.0 (All new) - 29? (2014-04-13)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Criar tela de configuração para usuário (Web)
-						Redirecionar, após criar move, para tela de extrato do mês daquela move
+						Arrumar o erro que aparece com o login errado
+2014-04-07	2014-04-07	Redirecionar, após criar move, para tela de extrato do mês daquela move
 2014-03-31	2014-03-31	Ordenar Moves por ID também
 2014-03-31	2014-03-31	Arrumar amount default de tela de move
 2014-03-23	2014-03-24	Colocar Saldo Atual na tela de Extrato
