@@ -6,8 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +19,8 @@ import com.dontflymoney.api.Request;
 
 public class AccountsActivity extends SmartActivity
 {
+	TableLayout main;
+	
 	public AccountsActivity()
 	{
 		init(this, R.layout.activity_accounts, R.menu.accounts);
@@ -32,6 +37,8 @@ public class AccountsActivity extends SmartActivity
 	
 	public void getAccounts()
 	{
+		main = (TableLayout)findViewById(R.id.main_table);
+		
 		Request request = new Request("Account/List");
 		
 		request.AddParameter("ticket", Authentication.Get());
@@ -75,25 +82,31 @@ public class AccountsActivity extends SmartActivity
 			JSONObject data = result.getJSONObject("data");
 			JSONArray accountList = data.getJSONArray("AccountList"); 
 			
-			TableLayout main = (TableLayout)findViewById(R.id.main_table);
-			
 			for(int a = 0; a < accountList.length(); a++)
 			{
-				TableRow row = new TableRow(getApplicationContext());
-				
-				JSONObject account = accountList.getJSONObject(a);
-
-				String name = account.getString("Name");
-				row.addView(createText(name, Gravity.LEFT));
-
-				double sum = account.getDouble("Sum");
-				String sumStr = new DecimalFormat("#0.00").format(sum);
-				row.addView(createText(sumStr, Gravity.RIGHT));
-			
-				main.addView(row);
+				getAccount(accountList.getJSONObject(a));
 			}
 
 		}
+	}
+
+
+
+	private void getAccount(JSONObject account)
+			throws JSONException
+	{
+		TableRow row = new TableRow(getApplicationContext());
+		
+		String name = account.getString("Name");
+		row.addView(createText(name, Gravity.LEFT));
+
+		double sum = account.getDouble("Sum");
+		String sumStr = new DecimalFormat("#,##0.00").format(sum);
+		row.addView(createText(sumStr, Gravity.RIGHT));
+		
+		setClick(row);
+
+		main.addView(row);
 	}
 
 	private TextView createText(String text, int gravity)
@@ -102,10 +115,28 @@ public class AccountsActivity extends SmartActivity
 		
 		field.setText(text);
 		field.setGravity(gravity);
+		field.setTextSize(17);
 		
 		return field;
 	}	
 	
+	private void setClick(TableRow row)
+	{
+		row.setClickable(true);
+		
+		row.setOnClickListener(new OnClickListener()
+		{
+		    public void onClick(View row)
+		    {
+		        row.setBackgroundColor(Color.argb(255, 255, 170, 170));
+
+		        TableRow tablerow = (TableRow)row;
+		        TextView sample = (TextView) tablerow.getChildAt(0);
+		        alertError(sample.getText().toString());
+		    }
+		});
+	}
+
 	
 	
 }
