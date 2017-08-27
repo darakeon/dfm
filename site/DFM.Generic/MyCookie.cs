@@ -11,11 +11,15 @@ namespace DFM.Generic
             if (context == null)
                 return local ?? (local = Token.New());
 
-            var route = new RouteInfo();
-            var ticket = route.RouteData.Values["ticket"];
+            var routeData = new RouteInfo().RouteData;
 
-            if (ticket != null)
-                return ticket.ToString();
+            if (routeData != null)
+            {
+                var ticket = routeData.Values["ticket"];
+
+                if (ticket != null)
+                    return ticket.ToString();
+            }
 
             if (get() == null)
                 add(Token.New());
