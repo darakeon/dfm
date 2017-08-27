@@ -26,13 +26,11 @@
 
 } else {
 
-    var language = Model.Year.User().Config.Language;
-
     <table class="List Mini">
 
         <tr>
             <th>@MultiLanguage.Dictionary["Month"]</th>
-            <th>@MultiLanguage.Dictionary["Value"]</th>
+            <th>@MultiLanguage.Dictionary["Total"]</th>
         </tr>
 
         @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
@@ -49,10 +47,12 @@
                         @MultiLanguage.GetMonthName(month.Time)
                     </a>
                 </td>
-                <td class="numeric @sign">@sum.ToMoney(language) </td>
+                <td class="numeric @sign">@sum.ToMoney(Model.Language) </td>
             </tr>
 
         } 
 
     </table>
 } 
+
+@Html.Partial("Total")

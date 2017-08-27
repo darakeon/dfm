@@ -25,40 +25,66 @@ table.List {
     }
 
 
-
-td.numeric {
-	text-align: right;
-}
-
-td.in {
-	color: #00C;
-}
-
-td.out {
-	color: #C00;
-}
-
-td.image {
-	text-align: center;
-}
-
-td.image img {
-	padding: 4px;
+    td.numeric {
+	    text-align: right;
     }
 
-    td.image a:hover {
-	    background: none;
+    td.in, .saldo .in {
+	    color: #00C;
     }
+
+    td.out, .saldo .out {
+	    color: #C00;
+    }
+
+    td.image {
+	    text-align: center;
+    }
+
+    td.image img {
+	    padding: 4px;
+        }
+
+        td.image a:hover {
+	        background: none;
+        }
     
-th.todo-column
-{
-    width: 15%;
-}
+    th.todo-column
+    {
+        width: 15%;
+    }
 
 
 table.Mini {
 	width: 40%;
 }
+
+
+
+.saldo {
+    margin: 50px 25px 0 0;
+    text-align: right;
+}
+
+    .saldo span {
+        padding: 5px 10px;
+        font-size: 17px;
+    }
+
+        .saldo span.title {
+	        background: #DDCFAA;
+	        color: #FFF;
+	        margin: 0;
+	        border-radius: 7px 0 0 7px;
+            font-weight: bold;
+        }
+
+        .saldo span.value {
+	        background: #F7EEDD;
+	        margin: 0;
+	        border-radius: 0 7px 7px 0;
+        }
+
 
 
 .account_sign {

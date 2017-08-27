@@ -24,6 +24,7 @@
     <!--Nouns-->
     <Name text="Name" />
     <Value text="Value" />
+    <Total text="Total" />
     <Description text="Description" />
     <Date text="Date" />
     <and text="and" />
@@ -87,6 +88,7 @@
     <!--Nouns-->
     <Name text="Nome" />
     <Value text="Valor" />
+    <Total text="Saldo" />
     <Description text="Descrição" />
     <Date text="Data" />
     <and text="e" />

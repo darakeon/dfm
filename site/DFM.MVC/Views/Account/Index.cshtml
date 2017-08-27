@@ -16,18 +16,16 @@ else
 
         <tr>
             <th width="500px">@MultiLanguage.Dictionary["Name"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Total"]</th>
             <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var account in Model.AccountList)
         {
-            var language = account.User.Config.Language;
-            
             var movesSum = account.Sum();
 
             var negative = movesSum < 0;
-            var value = (negative ? -movesSum : movesSum).ToMoney(language);
+            var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
 
             var sign = account.Sign();
             

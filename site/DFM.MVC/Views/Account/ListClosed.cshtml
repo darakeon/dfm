@@ -18,14 +18,12 @@ else
             <th>@MultiLanguage.Dictionary["Name"]</th>
             <th>@MultiLanguage.Dictionary["BeginDate"]</th>
             <th>@MultiLanguage.Dictionary["EndDate"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Total"]</th>
             <!--th class="todo-column">@MultiLanguage.Dictionary["TODO"]</th-->
         </tr>
 
         @foreach (var account in Model.AccountList)
         {
-            var language = account.User.Config.Language;
-
             var endMonth = account.EndDate.Value.Month;
             var endYear = account.EndDate.Value.Year;
             var monthReportId = endYear * 100 + endMonth;
@@ -33,7 +31,7 @@ else
             
             var movesSum = account.Sum();
             var negative = movesSum < 0;
-            var value = (negative ? -movesSum : movesSum).ToMoney(language);
+            var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
 
             var sign = account.Sign();
 

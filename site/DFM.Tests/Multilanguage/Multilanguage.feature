@@ -300,6 +300,7 @@ Scenario: 12. Get translate of Interface (general)
 		| General | Categories  |
 		| General | Accounts    |
 		| General | ScheduleRun |
+		| General | Total       |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

@@ -25,7 +25,10 @@ namespace DFM.MVC.Models
 
         public String ActionName { get; set; }
 
-        
+        public String Language
+        {
+            get { return Current.Language; }
+        }
 
 
     }

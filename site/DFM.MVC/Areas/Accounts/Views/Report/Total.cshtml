@@ -1,0 +1,14 @@
+﻿@model BaseAccountsModel
+
+@{
+    var value = Model.Account.Sum();
+    var signClass = value < 0 ? "out" : "in";
+
+    value *= (value < 0 ? -1 : 1);
+    var valueToShow = value.ToMoney(Model.Language);
+}
+
+<div class="saldo">
+    <span class="title">@MultiLanguage.Dictionary["Total"]</span>
+    <span class="@signClass value">@valueToShow</span>
+</div>
