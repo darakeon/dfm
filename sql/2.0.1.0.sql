@@ -1,7 +1,6 @@
 use dfm;
 
 /* before publish */
-/*
 alter table Detail
 	add ValueCents int null;
 
@@ -34,7 +33,6 @@ alter table Move
 
 alter table Schedule
 	add ValueCents int null;
-*/
 
 update move m
 	inner join detail d
@@ -61,7 +59,6 @@ delete from detail
     
 
 /* after publish */
-/*
 alter table detail
 	drop Value;
 
@@ -70,4 +67,3 @@ alter table Summary
 
 alter table Summary
 	drop Out_;
-*/
