@@ -71,6 +71,7 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Criar Template (Move)
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Busca por movimentação
+						Atualizar versão do SpecFlow
 
 VERSÃO 2.0.0.2 (System) - 10?
 ================================================================================================
