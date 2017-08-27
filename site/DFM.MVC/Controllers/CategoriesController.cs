@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Generic;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
@@ -44,10 +45,9 @@ namespace DFM.MVC.Controllers
 
             var error = model.CreateEdit();
 
-            if (error != null)
-                throw new Exception(MultiLanguage.Dictionary[error]);
-
-            var json = new { name = model.Category.Name };
+            var json = error == null
+				? new { name = model.Category.Name, error = String.Empty }
+				: new { name = String.Empty, error = MultiLanguage.Dictionary[error] };
 
             return new JsonResult { Data = json };
         }

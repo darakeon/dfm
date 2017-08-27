@@ -102,11 +102,10 @@ F						Rever layout empty table
 F						Colocar Captcha no registro de usuário
 R						Aumentar versão da API Android de acordo com downloads do DFM
 H						Arrumar clique do menu (clique botões direito e meio do mouse)
-B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
+2015-01-11	2015-01-11	Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 
-VERSÃO 2.0.1.2 (System) - 1
+VERSÃO 2.0.1.2 (System) - 2
 ================================================================================================
-						Arrumar erro ao editar movimentação
 2015-01-11	2015-01-11	Arrumar lista de contas fechadas
 2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
 

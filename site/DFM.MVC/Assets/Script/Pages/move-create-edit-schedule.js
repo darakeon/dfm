@@ -48,9 +48,9 @@ function makeCategoryModal() {
         width: 490,
         title: "x",
         open: function () {
-            $('.ui-widget-overlay').bind('click', function () {
+            $('.ui-widget-overlay').bind('click', function() {
                 $('#hidden-new-category').dialog('close');
-            })
+            });
         }
     });
 
@@ -63,18 +63,35 @@ function makeCategoryModal() {
 
 function InsertCategoryOnDropDown(data) {
     var name = data["name"];
+    var error = data["error"];
 
-    if (name == null) {
-        $("#Category_Name").addClass("input-validation-error");
+    if (!name && !error) {
+        location.reload();
+    }
+    else if (error) {
+        $(".CRUDCategory #Name").addClass("input-validation-error");
+        $(".CRUDCategory .field-validation-valid").html(error);
+        $(".CRUDCategory .field-validation-valid").addClass("field-validation-error");
+        $(".CRUDCategory .field-validation-valid").removeClass("field-validation-valid");
+    }
+    else if (!name) {
+        $(".CRUDCategory #Name").addClass("input-validation-error");
     }
     else {
-        var op = new Option(name, name, true);
-        $("#CategoryName").append(op);
+
+        var alreadyInDropDown = $("#CategoryName option[value='" + name + "']");
+
+        if (alreadyInDropDown.length) {
+            $("#CategoryName").val(name);
+        } else {
+            var op = new Option(name, name, true);
+            $("#CategoryName").append(op);
+        }
 
         $('#hidden-new-category form')[0].reset();
         $("#hidden-new-category").dialog("close");
 
-        $("#Category_Name").removeClass("input-validation-error");
+        $(".CRUDCategory #Name").removeClass("input-validation-error");
     }
 }
 

@@ -1,6 +1,6 @@
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error,
+.field-validation-error
 {
     font-weight: bold;
     color: #AA8E55;

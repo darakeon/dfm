@@ -180,7 +180,7 @@ namespace DFM.BusinessLogic.Services
                 }
 
                 categoryRepository.SaveOrUpdate(category);
-});
+			});
         }
 
         public void DisableCategory(String name)
