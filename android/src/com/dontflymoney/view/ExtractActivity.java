@@ -196,7 +196,7 @@ public class ExtractActivity extends SmartActivity
 			
 			Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.YEAR, date.getInt("Year"));
-			calendar.set(Calendar.MONTH, date.getInt("Month"));
+			calendar.set(Calendar.MONTH, date.getInt("Month") - 1);
             calendar.set(Calendar.DAY_OF_MONTH, date.getInt("Day"));
             
             DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
