@@ -3,6 +3,14 @@
 	margin-top: 20px;
 }
 
+.zero-items {
+    color: #558eaa;
+    font-size: 18px;
+    font-style: italic;
+    margin: auto;
+    width: 95%;
+}
+
 table.List {
 	width: 95%;
 	padding: 0;
