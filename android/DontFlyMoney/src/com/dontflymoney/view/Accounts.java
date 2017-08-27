@@ -3,6 +3,7 @@ package com.dontflymoney.view;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +46,7 @@ public class Accounts extends Activity implements IRequestCaller {
 	{
 		form = new SmartView(getWindow());
 
-		Request task = new Request(this, getApplicationContext(), Controller.User, Action.Index);
+		Request task = new Request(this, getApplicationContext(), Controller.Account, Action.Index);
 		task.execute();
 	}
 
@@ -61,7 +62,9 @@ public class Accounts extends Activity implements IRequestCaller {
 			if (firstKey.equals("error"))
 			{
 				Object error = json.get("error");
-				form.SetText(R.id.error_message, error.toString());
+
+				form.AlertError(error.toString());
+				
 				return;
 			}
 			
@@ -72,11 +75,15 @@ public class Accounts extends Activity implements IRequestCaller {
 				return;
 			}
 
-			form.SetText(R.id.error_message, "Problem on response.");
+			form.AlertError("Problem on response.");
+		}
+		catch (NoSuchElementException e)
+		{
+			form.AlertError(e.getMessage());
 		}
 		catch (JSONException e)
 		{
-			form.SetText(R.id.error_message, e.getMessage());
+			form.AlertError(e.getMessage());
 		}
 		
 	}
@@ -84,6 +91,8 @@ public class Accounts extends Activity implements IRequestCaller {
 	
 	private void populateAccounts(JSONObject json) throws JSONException
 	{
+		form.AlertError("FUCK YEAH!");
+		
 		JSONObject data = null;
 		
 		data = (JSONObject)json.get("data");
@@ -108,7 +117,13 @@ public class Accounts extends Activity implements IRequestCaller {
 	@Override
 	public void Error(Exception exception)
 	{
-		form.SetText(R.id.error_message, exception.getMessage());
+		form.AlertError(exception.getMessage());
+	}
+
+	@Override
+	public void Error(String errorScreen)
+	{
+		form.AlertError(errorScreen);
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.dontflymoney.viewhelpers;
 
+import android.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -36,6 +37,15 @@ public class SmartView
 		TextView field = getField(id);
 		
 		field.setText(text);
+	}
+
+
+	public void AlertError(String message)
+	{
+		new AlertDialog.Builder(view.getContext())
+	    	.setTitle("Ops!")
+	    	.setMessage(message)
+	    	.show();
 	}
 	
 	

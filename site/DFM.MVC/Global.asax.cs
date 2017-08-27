@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -124,7 +125,7 @@ namespace DFM.MVC
 
         private static Uri url { get { return HttpContext.Current.Request.Url; } }
         private static Boolean isAsset { get { return url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/"); } }
-        private static Boolean isLocal { get { return url.Host == "localhost"; } }
+        private static Boolean isLocal { get { return ConfigurationManager.AppSettings["isLocal"] == "1"; } }
         private static Boolean isElmah { get { return url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd"); } }
 
     }

@@ -1,9 +1,7 @@
 package com.dontflymoney.site;
 
-import java.io.IOException;
 import java.util.Map;
 
-import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,15 +36,11 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 	{			
 		try
 		{
-			String result = HttpHelper.Post(controller.toString(), action.toString(), parameters);
+			String result = HttpHelper.Post(context, controller, action, parameters);
 			
 		    return new HttpResult(result);
 		}
-		catch (ClientProtocolException e)
-		{
-			return new HttpResult(e);
-		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			return new HttpResult(e);
 		}
@@ -56,24 +50,26 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 	@Override
     protected void onPostExecute(HttpResult result)
 	{
-		JSONObject json;
-
 		if (!result.IsSucceded())
 		{
 			activity.Error(result.GetErrorResult());
 			return;
 		}
 		
+
+		String normalResult = result.GetNormalResult();
+
 		try
 		{
-			json = new JSONObject(result.GetNormalResult());
+			JSONObject json = new JSONObject(normalResult);
+			
+			activity.DoOnReturn(json);
 		}
 		catch (JSONException e)
 		{
-			json = new JSONObject();
+			activity.Error(normalResult);
 		}
 		
-		activity.DoOnReturn(json);
 	}
 	
 	

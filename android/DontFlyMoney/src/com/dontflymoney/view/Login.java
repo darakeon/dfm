@@ -121,6 +121,12 @@ public class Login extends Activity
 		form.SetText(R.id.error_message, exception.getMessage());
 	}
 
+	@Override
+	public void Error(String errorScreen)
+	{
+		form.SetText(R.id.error_message, errorScreen);
+	}
+
 
 
 	private void callAccounts()

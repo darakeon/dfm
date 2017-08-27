@@ -28,7 +28,7 @@ namespace DFM.MVC.Helpers
 
         internal static void SaveOnline()
         {
-            save("http://beta.dontflymoney.com");
+            save("beta.dontflymoney.com");
         }
 
         private static void save(String address)

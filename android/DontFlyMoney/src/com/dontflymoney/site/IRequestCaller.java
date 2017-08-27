@@ -8,4 +8,6 @@ public interface IRequestCaller
 
 	void Error(Exception exception);
 
+	void Error(String errorScreen);
+
 }

@@ -18,63 +18,86 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import android.content.Context;
+
+import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.generic.DFMException;
+
 public class HttpHelper
 {
-	private static String domain = "http://beta.dontflymoney.com";
-	private static String url = String.format("http://{0}/Json", domain);
+	private static String domain = "beta.dontflymoney.com";
+	private static String url = String.format("http://%s/API", domain);
 
 	
 
-	public static String Get(String controller) 
-			throws ClientProtocolException, IOException
+	public static String Get(Context context, Controller controller) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		return Get(controller, null);		
+		return Get(context, controller, null);		
 	}
 	
 	
 	
-	public static String Get(String controller, String action) 
-			throws ClientProtocolException, IOException
+	public static String Get(Context context, Controller controller, Action action) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		return Get(controller, action, null);		
+		return Get(context, controller, action, null);		
 	}
 	
 	
 	
-	public static String Get(String controller, String action, String id) 
-			throws ClientProtocolException, IOException
+	public static String Get(Context context, Controller controller, Action action, String id) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		String urlGet = getUrl(controller, action, id);
+		String urlGet = getUrl(context, controller, action, id);
 		
-		HttpGet get = new HttpGet(urlGet);
-
+		HttpGet get;
+		
+		try
+		{
+			get = new HttpGet(urlGet);
+		}
+		catch(Exception e)
+		{
+			throw new DFMException(String.format("Url not found: %s", urlGet)); 
+		}
+		
 		return request(get);
 	}
 
 
 
-	public static String Post(String controller) 
-			throws ClientProtocolException, IOException
+	public static String Post(Context context, Controller controller) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		return Post(controller, null);		
+		return Post(context, controller, null);		
 	}
 	
 	
 	
-	public static String Post(String controller, String action) 
-			throws ClientProtocolException, IOException
+	public static String Post(Context context, Controller controller, Action action) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		return Post(controller, action, null);		
+		return Post(context, controller, action, null);		
 	}
 	
 	
 	
-	public static String Post(String controller, String action, Map<String, String> parameters) 
-			throws ClientProtocolException, IOException
+	public static String Post(Context context, Controller controller, Action action, Map<String, String> parameters) 
+			throws ClientProtocolException, IOException, DFMException
 	{
-		String urlPost = getUrl(controller, action, null);
+		String urlPost = getUrl(context, controller, action, null);
 		
-		HttpPost post = new HttpPost(urlPost);
+		HttpPost post;
+		
+		try
+		{
+			post = new HttpPost(urlPost);
+		}
+		catch(Exception e)
+		{
+			throw new DFMException(String.format("Url not found: %s", urlPost)); 
+		}
 		
 		if (parameters != null)
 		{
@@ -104,9 +127,16 @@ public class HttpHelper
 
 
 
-	private static String getUrl(String controller, String action, String id)
+	private static String getUrl(Context context, Controller controller, Action action, String id)
 	{
-		String newUrl = url; 
+		String newUrl = url;
+		
+		String ticket = Authentication.Get(context);
+		
+		if (ticket != null && ticket != "")
+		{
+			newUrl += "-" + ticket;
+		}
 		
 		if (controller != null)
 		{

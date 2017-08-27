@@ -3,7 +3,7 @@ using System.Web.Routing;
 
 namespace DFM.MVC.Helpers.Authorize
 {
-    public class DFMJsonAuthorizeAttribute : DFMAuthorizeAttribute
+    public class DFMApiAuthorizeAttribute : DFMAuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
