@@ -53,6 +53,7 @@ public class MoveActivity extends SmartActivity {
 			try
 			{
 				populateCategoryAndNature();
+				setControls();
 			}
 			catch (JSONException e)
 			{
@@ -71,21 +72,13 @@ public class MoveActivity extends SmartActivity {
 		request.AddParameter("ticket", Authentication.Get());
 		request.Get(Step.Populate);
 
-		Calendar today = Calendar.getInstance();
-		int day = getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH));
-		int month = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
-		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
-		
-		move.Date.set(year, month, day);
-		form.setValue(R.id.date, move.DateString());
-		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
-		
-		setDescriptionListener();
-		setValueListener();
+		setCurrentDate();
+		setControls();
 	}
 
 	
 	
+
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
@@ -136,6 +129,26 @@ public class MoveActivity extends SmartActivity {
 		move.Nature = firstNature.getInt("Value");
 	}
 
+	
+
+	private void setCurrentDate()
+	{
+		Calendar today = Calendar.getInstance();
+		int day = getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH));
+		int month = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
+		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
+		move.Date.set(year, month, day);
+	}
+	
+	private void setControls()
+	{
+		form.setValue(R.id.date, move.DateString());
+		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
+		
+		setDescriptionListener();
+		setValueListener();
+	}
+	
 	
 	
 	private void setDescriptionListener()
