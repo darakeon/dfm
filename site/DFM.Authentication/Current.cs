@@ -56,15 +56,15 @@ namespace DFM.Authentication
 
 
 
-        public void Set(String username, String password, String machineId)
+        public void Set(String username, String password)
         {
-            userService.ValidateUserAndCreateTicket(username, password, machineId, Ticket);
+            userService.ValidateUserAndCreateTicket(username, password, Ticket);
         }
 
-        public void Reset(String username, String password, String machineID)
+        public void Reset(String username, String password)
         {
             Clean();
-            Set(username, password, machineID);
+            Set(username, password);
         }
 
         public void Clean()

@@ -16,9 +16,6 @@ namespace DFM.Repositories.Mappings
             mapping.Map(t => t.Active)
                 .Default("'1'");
 
-            mapping.Map(t => t.MachineId)
-                .Nullable();
-
             mapping.Map(t => t.Expiration)
                 .Nullable();
 

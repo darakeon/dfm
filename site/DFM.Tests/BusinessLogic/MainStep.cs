@@ -13,7 +13,7 @@ namespace DFM.Tests.BusinessLogic
         {
             CreateUserIfNotExists(UserEmail, UserPassword, true);
 
-            Current.Reset(UserEmail, UserPassword, null);
+            Current.Reset(UserEmail, UserPassword);
         }
 
         [Given(@"I have an account")]

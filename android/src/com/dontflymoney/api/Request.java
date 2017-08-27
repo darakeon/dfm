@@ -120,8 +120,7 @@ public class Request
 	private boolean isOffline()
 	{
 		ConnectivityManager conMgr =  
-			(ConnectivityManager)
-				context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		return conMgr.getNetworkInfo(0).getState() != NetworkInfo.State.CONNECTED 
 			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTED;

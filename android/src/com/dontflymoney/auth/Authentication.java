@@ -5,24 +5,30 @@ import android.content.Context;
 public class Authentication
 {
 	Context context;
+	SafeTicket safe;
 	
 	public Authentication(Context context)
 	{
 		this.context = context;
+		safe = new SafeTicket(this.context);
 	}
 	
 	public void Set(String ticket)
 	{
 		File ticketFile = new File(context, File.Ticket);
 		
-		ticketFile.WriteToFile(ticket);
+		String encryptedTicket = safe.Encrypt(ticket);
+		
+		ticketFile.WriteToFile(encryptedTicket);
 	}
 	
 	public String Get()
 	{
 		File ticketFile = new File(context, File.Ticket);
 		
-		return ticketFile.ReadFromFile();
+		String encryptedTicket = ticketFile.ReadFromFile();
+		
+		return safe.Decrypt(encryptedTicket);
 	}
 
 	public boolean IsLoggedIn()

@@ -8,17 +8,13 @@ namespace DFM.MVC.Areas.API.Controllers
 {
     public class UserController : BaseJsonController
     {
-        public ActionResult Index(String id, String email, String password)
+        public ActionResult Index(String email, String password)
         {
-            if (String.IsNullOrEmpty(id))
-                return RedirectToAction("Uninvited");
-
             var model =
                 new UserLogOnJsonModel
                 {
                     Email = email,
                     Password = password,
-                    MachineId = id
                 };
 
             var result = model.LogOn();

@@ -9,10 +9,7 @@ namespace DFM.Generic
         public static String Get()
         {
             if (context == null)
-            {
-                return local
-                    ?? (local = Token.New());
-            }
+                return local ?? (local = Token.New());
 
             var route = new RouteInfo();
             var ticket = route.RouteData.Values["ticket"];
@@ -21,9 +18,7 @@ namespace DFM.Generic
                 return ticket.ToString();
 
             if (get() == null)
-            {
                 add(Token.New());
-            }
 
             return get();
         }

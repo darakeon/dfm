@@ -33,9 +33,9 @@ namespace DFM.MVC.Models
             return null;
         }
 
-        protected virtual void SetLogOn()
+        protected void SetLogOn()
         {
-            Current.Set(Email, Password, null);
+            Current.Set(Email, Password);
         }
 
 

@@ -36,7 +36,6 @@ public class LoginActivity extends SmartActivity
 	{
 		Request request = new Request(this, "User/Index");
 		
-		request.AddParameter("id", machineId);
 		request.AddParameter("email", getValue(R.id.email));
 		request.AddParameter("password", getValue(R.id.password));
 		

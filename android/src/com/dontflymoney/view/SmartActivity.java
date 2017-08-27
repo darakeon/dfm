@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings.Secure;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +21,6 @@ public class SmartActivity extends Activity
 	protected int menuResource;
 	private boolean hasParent;
 
-	protected String machineId;
 	protected Authentication Authentication;
 	
 	public void init(Activity activity, int contentView, int menuResource)
@@ -48,7 +46,6 @@ public class SmartActivity extends Activity
 		setupActionBar();
 
 		Authentication = new Authentication(getApplicationContext());
-		machineId = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ namespace DFM.BusinessLogic.Repositories
     {
         internal TicketRepository(IData<Ticket> repository) : base(repository) { }
 
-        internal Ticket Create(User user, String machineId, String ticketKey)
+        internal Ticket Create(User user, String ticketKey)
         {
             var ticket = 
                 new Ticket
@@ -19,7 +19,6 @@ namespace DFM.BusinessLogic.Repositories
                         Creation = user.Now(),
                         Active = true,
                         User = user,
-                        MachineId = machineId,
                     };
 
             return SaveOrUpdate(ticket);
