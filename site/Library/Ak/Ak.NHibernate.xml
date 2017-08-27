@@ -4,27 +4,18 @@
         <name>Ak.NHibernate</name>
     </assembly>
     <members>
-        <member name="T:Ak.NHibernate.UserPassed.AutoMappingInfo`2">
+        <member name="T:Ak.NHibernate.AutoMapping.AutoMappingOne2One">
             <summary>
-            Information to use Automapping of Fluent
-            </summary>
-            <typeparam name="TM">Some of the AutoMaps, just for reference</typeparam>
-            <typeparam name="TE">Some of the Entities, just for reference</typeparam>
-        </member>
-        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.EntityBase">
-            <summary>
-            EntityBase, if it exists, to be ignored on mapping
+             Extensions to relation 1:1
             </summary>
         </member>
-        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.SuperEntities">
+        <member name="M:Ak.NHibernate.AutoMapping.AutoMappingOne2One.IsWeakEntity``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            Classes which subclasses use its table
+             Used on weak entity of 1:1.
+             Use HasOne on the strong entity mapping.
             </summary>
-        </member>
-        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.Conventions">
-            <summary>
-            Conventions to configure Fluent
-            </summary>
+            <param name="mapping">Object received in AutoMappingOverride</param>
+            <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
         </member>
         <member name="T:Ak.NHibernate.Helpers.DBMS">
             <summary>
@@ -87,19 +78,6 @@
              Avoid error to just appear when entities are accessed.
             </summary>
         </member>
-        <member name="T:Ak.NHibernate.AutoMapping.AutoMappingOne2One">
-            <summary>
-             Extensions to relation 1:1
-            </summary>
-        </member>
-        <member name="M:Ak.NHibernate.AutoMapping.AutoMappingOne2One.IsWeakEntity``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-             Used on weak entity of 1:1.
-             Use HasOne on the strong entity mapping.
-            </summary>
-            <param name="mapping">Object received in AutoMappingOverride</param>
-            <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
-        </member>
         <member name="T:Ak.NHibernate.SessionBuilder">
             <summary>
             To create NHibernate Session and communicate with DB
@@ -154,15 +132,26 @@
              Force the Initialize of NHibernate objects.
             </summary>
         </member>
-        <member name="T:Ak.NHibernate.UserPassed.IDataInitializer">
+        <member name="T:Ak.NHibernate.UserPassed.AutoMappingInfo`2">
             <summary>
-            Inherit this class and pass yours to ConnectionInfo class to fill the DB after create.
-            The property CreateDB need to be TRUE.
+            Information to use Automapping of Fluent
+            </summary>
+            <typeparam name="TM">Some of the AutoMaps, just for reference</typeparam>
+            <typeparam name="TE">Some of the Entities, just for reference</typeparam>
+        </member>
+        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.EntityBase">
+            <summary>
+            EntityBase, if it exists, to be ignored on mapping
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.UserPassed.IDataInitializer.Initialize">
+        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.SuperEntities">
             <summary>
-            Fill the Database.
+            Classes which subclasses use its table
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.UserPassed.AutoMappingInfo`2.Conventions">
+            <summary>
+            Conventions to configure Fluent
             </summary>
         </member>
         <member name="T:Ak.NHibernate.UserPassed.ConnectionInfo">
@@ -220,6 +209,17 @@
         <member name="P:Ak.NHibernate.UserPassed.ConnectionInfo.ShowSQL">
             <summary>
             Whether to show SQL in log
+            </summary>
+        </member>
+        <member name="T:Ak.NHibernate.UserPassed.IDataInitializer">
+            <summary>
+            Inherit this class and pass yours to ConnectionInfo class to fill the DB after create.
+            The property CreateDB need to be TRUE.
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.UserPassed.IDataInitializer.Initialize">
+            <summary>
+            Fill the Database.
             </summary>
         </member>
     </members>

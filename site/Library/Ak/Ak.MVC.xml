@@ -4,28 +4,6 @@
         <name>Ak.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Forms.SelectListExtension">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
-            <summary>
-             Create a SelectList from List of objects
-            </summary>
-            <param name="list">The list that will fill the SelectList</param>
-            <param name="value">The property the will fill the values of the options</param>
-            <param name="text">The property the will fill the text that appears in options</param>
-        </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
-            <summary>
-             Create a SelectList from a Enum, using the text.
-             Can't use the number value, MVC don't recognize to assign selected.
-            </summary>
-            <param name="texts">
-             The texts that will appear for the user.
-             key = value of enum // value = text to appear
-             </param>
-        </member>
         <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
             <summary>
              To Force error when the user is not logged-in
@@ -34,46 +12,6 @@
         <member name="F:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
             <summary>
              Message of expiration of session
-            </summary>
-        </member>
-        <member name="T:Ak.MVC.Route.RouteInfo">
-            <summary>
-             Retrieves the routedata as the property of the controllers
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor">
-            <summary>
-             RouteData of the current Url
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri)">
-            <summary>
-             RouteData of a specific Url
-            </summary>
-        </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri,System.String)">
-            <summary>
-             RouteData of a specific Url, cutting the subfolder
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Route.RouteInfo.RouteData">
-            <summary>
-             Encapsulates information about the Url
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Route.RouteInfo.Current">
-            <summary>
-             RouteData of the current Url
-            </summary>
-        </member>
-        <member name="T:Ak.MVC.Authentication.IRole">
-            <summary>
-             The Interface to paas Roles (permissions) to Authenticate
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Authentication.IRole.Name">
-            <summary>
-             The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
         </member>
         <member name="T:Ak.MVC.Authentication.Authenticate">
@@ -138,6 +76,16 @@
              Return the username that is logged-in
             </summary>
         </member>
+        <member name="T:Ak.MVC.Authentication.IRole">
+            <summary>
+             The Interface to paas Roles (permissions) to Authenticate
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Authentication.IRole.Name">
+            <summary>
+             The Name of Permission that will be verified by Authorize decorator (MVC)
+            </summary>
+        </member>
         <member name="T:Ak.MVC.Forms.HtmlHelperExtension">
             <summary>
              
@@ -163,6 +111,58 @@
             <param name="value">The value of this checkbox</param>
             <typeparam name="TModel">The current Model</typeparam>
             <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
+        </member>
+        <member name="T:Ak.MVC.Forms.SelectListExtension">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
+            <summary>
+             Create a SelectList from List of objects
+            </summary>
+            <param name="list">The list that will fill the SelectList</param>
+            <param name="value">The property the will fill the values of the options</param>
+            <param name="text">The property the will fill the text that appears in options</param>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
+            <summary>
+             Create a SelectList from a Enum, using the text.
+             Can't use the number value, MVC don't recognize to assign selected.
+            </summary>
+            <param name="texts">
+             The texts that will appear for the user.
+             key = value of enum // value = text to appear
+             </param>
+        </member>
+        <member name="T:Ak.MVC.Route.RouteInfo">
+            <summary>
+             Retrieves the routedata as the property of the controllers
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Route.RouteInfo.#ctor">
+            <summary>
+             RouteData of the current Url
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri)">
+            <summary>
+             RouteData of a specific Url
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri,System.String)">
+            <summary>
+             RouteData of a specific Url, cutting the subfolder
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Route.RouteInfo.RouteData">
+            <summary>
+             Encapsulates information about the Url
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Route.RouteInfo.Current">
+            <summary>
+             RouteData of the current Url
+            </summary>
         </member>
     </members>
 </doc>

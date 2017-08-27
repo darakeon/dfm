@@ -47,7 +47,11 @@
     <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ak.MVC">
+    <Reference Include="Ak.Generic">
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
