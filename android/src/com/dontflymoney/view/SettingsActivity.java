@@ -30,7 +30,7 @@ public class SettingsActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		getFields();
 		
-		if (rotated)
+		if (rotated && succeded)
 		{
 			useCategoriesField.setChecked(useCategories);
 		}

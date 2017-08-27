@@ -28,6 +28,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected ResultHandler resultHandler;
 	protected License license;
 	
+	protected boolean succeded = false;
 	
 	
 	public void init(int contentView, int menuResource)
@@ -133,18 +134,20 @@ public abstract class SmartActivity extends FixOrientationActivity
 	
 	public void HandlePostResult(JSONObject result, Step step)
 	{
+		succeded = true;
 		resultHandler.HandlePostResult(result, step);
 	}
 
 	public void HandlePostError(String error, Step step)
 	{
+		succeded = false;
 		resultHandler.HandlePostError(error, step);
 	}
 
 	
 	public void EnableScreen()
 	{
-		
+		succeded = true;
 	}
 	
 	

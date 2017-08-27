@@ -113,8 +113,8 @@ VERSÃO 2.0.1.0 (Little Change)
 						Arrumar agendamento detalhado
 						Refactor em controllers e areas, inverter plural
 						Remover GetOrCreate
-						Review rotate logic
 						Fix transform for rewrite
+2014-06-05				Review rotate logic
 2014-06-04	2014-06-05	Handle differentely EConnReset
 2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
 

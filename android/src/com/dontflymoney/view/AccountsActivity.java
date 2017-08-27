@@ -36,7 +36,7 @@ public class AccountsActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		getMain();
 		
-		if (rotated)
+		if (rotated && succeded)
 		{
 			try
 			{

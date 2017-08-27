@@ -31,6 +31,10 @@ public class LoginActivity extends SmartActivity
 		{
 			navigation.redirect(AccountsActivity.class);
 		}
+		else if (rotated)
+		{
+			EnableScreen();
+		}
 		else
 		{
 			license.Check();
@@ -61,6 +65,7 @@ public class LoginActivity extends SmartActivity
 	@Override
 	public void EnableScreen()
 	{
+		super.EnableScreen();
 		Button button = (Button)findViewById(R.id.login_button);
 		button.setEnabled(true);
 	}

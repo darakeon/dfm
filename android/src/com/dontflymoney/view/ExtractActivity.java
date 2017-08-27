@@ -53,7 +53,7 @@ public class ExtractActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		setCurrentInfo();
 
-		if (rotated)
+		if (rotated && succeded)
 		{
 			setDateFromLast();
 			

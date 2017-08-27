@@ -47,7 +47,7 @@ public class MoveActivity extends SmartActivity {
 		super.onCreate(savedInstanceState);
 		window = (ScrollView) findViewById(R.id.window);
 		
-		if (rotated)
+		if (rotated && succeded)
 		{
 			try
 			{

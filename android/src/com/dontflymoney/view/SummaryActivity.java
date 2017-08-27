@@ -46,7 +46,7 @@ public class SummaryActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		setCurrentInfo();
 		
-		if (rotated)
+		if (rotated && succeded)
 		{
 			setDateFromLast();
 
