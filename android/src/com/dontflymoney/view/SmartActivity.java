@@ -15,13 +15,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dontflymoney.api.Step;
@@ -144,41 +141,6 @@ public abstract class SmartActivity extends Activity
 		field.setTextColor(Color.BLACK);
 		
 		return field;
-	}	
-	
-
-
-	protected void addTotal(TableLayout parent, String name, double total)
-	{
-		addEmpty(parent);
-		
-		TableRow row = new TableRow(this);
-		
-		int color = getResources().getColor(R.color.highlight);
-		row.setBackgroundColor(color);
-		
-		String title = String.format(getString(R.string.total), name);
-		
-		row.addView(createText(title, Gravity.LEFT));
-		row.addView(createText(total, Gravity.RIGHT));
-		
-		parent.addView(row);
-
-		addEmpty(parent);
-	}
-	
-	private void addEmpty(TableLayout table)
-	{
-		TextView field = new TextView(this);
-		
-		field.setText(" ");
-		//TODO: put this on config
-		field.setTextSize(10);
-		
-		TableRow row = new TableRow(this);
-		row.addView(field);
-		
-		table.addView(row);
 	}	
 	
 

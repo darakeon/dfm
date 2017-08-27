@@ -130,6 +130,9 @@ public class ExtractActivity extends SmartActivity
 	{
 		JSONArray moveList = data.getJSONArray("MoveList");
 		
+		setValue(R.id.totalTitle, data.getString("Name"));
+		setValue(R.id.totalValue, data.getDouble("Total"));
+		
 		if (moveList.length() == 0)
 		{
 			View empty = createText(getString(R.string.no_extract), Gravity.CENTER);
@@ -137,8 +140,6 @@ public class ExtractActivity extends SmartActivity
 		}
 		else
 		{
-			addTotal(main, data.getString("Name"), data.getDouble("Total"));
-
 			for(int a = 0; a < moveList.length(); a++)
 			{
 				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;

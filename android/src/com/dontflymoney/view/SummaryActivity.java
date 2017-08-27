@@ -63,7 +63,7 @@ public class SummaryActivity extends SmartActivity
 	private void setDate(int year)
 	{
 		this.year = year;
-	    setValue(R.id.reportDate, year);
+	    setValue(R.id.reportDate, Integer.toString(year));
 	}
 	
     public void changeDate(View v)
@@ -78,12 +78,14 @@ public class SummaryActivity extends SmartActivity
 		        pickerField.setAccessible(true);
 		        DatePicker datePicker = (DatePicker) pickerField.get(dialog);
 	            
-	            Field field = datePicker.getClass().getDeclaredField("mDaySpinner");
-	            field.setAccessible(true);
-
-	            Object dayPicker = field.get(datePicker);
+	            Field dayField = datePicker.getClass().getDeclaredField("mDaySpinner");
+	            dayField.setAccessible(true);
+	            Object dayPicker = dayField.get(datePicker);
 	            ((View) dayPicker).setVisibility(View.GONE);
-	            Object monthPicker = field.get(datePicker);
+	            
+	            Field monthField = datePicker.getClass().getDeclaredField("mMonthSpinner");
+	            monthField.setAccessible(true);
+	            Object monthPicker = monthField.get(datePicker);
 	            ((View) monthPicker).setVisibility(View.GONE);
 		    } 
 		    catch (Exception e) { }
@@ -124,6 +126,9 @@ public class SummaryActivity extends SmartActivity
 	{
 		JSONArray monthList = data.getJSONArray("MonthList");
 		
+		setValue(R.id.totalTitle, data.getString("Name"));
+		setValue(R.id.totalValue, data.getDouble("Total"));
+		
 		if (monthList.length() == 0)
 		{
 			View empty = createText(getString(R.string.no_summary), Gravity.CENTER);
@@ -131,8 +136,6 @@ public class SummaryActivity extends SmartActivity
 		}
 		else
 		{
-			addTotal(main, data.getString("Name"), data.getDouble("Total"));
-
 			for(int a = 0; a < monthList.length(); a++)
 			{
 				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
