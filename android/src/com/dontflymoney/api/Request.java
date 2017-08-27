@@ -155,24 +155,22 @@ public class Request
 		if (errorMessage != null)
 		{
 			error = errorMessage;
-			return;
 		}
-		
-    	if (json.startsWith("<"))
+		else if (json.startsWith("<"))
     	{
     		error = activity.getString(R.string.ErrorContactUrl) + " " + this.url;
-    		return;
     	}
-    	
-    	try
-    	{
-    		result = new JSONObject(json);
+		else 
+		{
+	    	try
+	    	{
+	    		result = new JSONObject(json);
+	    	}
+	        catch (JSONException e)
+	        {
+				error = activity.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
+			}
     	}
-        catch (JSONException e)
-        {
-			error = activity.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
-			return;
-		}
     	
 		progress.dismiss();
     	activity.HandlePost(this);

@@ -20,7 +20,7 @@ namespace DFM.MVC.Models
         {
             try
             {
-                SetLogOn();
+                Current.Set(Email, Password);
             }
             catch (DFMCoreException e)
             {
@@ -31,11 +31,6 @@ namespace DFM.MVC.Models
             }
 
             return null;
-        }
-
-        protected void SetLogOn()
-        {
-            Current.Set(Email, Password);
         }
 
 

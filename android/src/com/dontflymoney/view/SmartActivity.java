@@ -1,7 +1,6 @@
 package com.dontflymoney.view;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.DecimalFormat;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -81,6 +80,11 @@ public abstract class SmartActivity extends Activity
 		return field.getText().toString();
 	}
 
+	protected void setValue(int id, Object text)
+	{
+		setValue(id, text.toString());
+	}
+	
 	protected void setValue(int id, String text)
 	{
 		TextView field = getField(id);
@@ -94,10 +98,13 @@ public abstract class SmartActivity extends Activity
 		return (T)activity.findViewById(id);
 	}
 
-	protected TextView createText(String text, int gravity, int color)
+	protected TextView createText(Double value, int gravity)
 	{
+		String text = new DecimalFormat("#,##0.00").format(value);
+
 		TextView field = createText(text, gravity);
-		
+
+		int color = value < 0 ? Color.RED : Color.BLUE;
 		field.setTextColor(color);
 		
 		return field;
@@ -117,15 +124,20 @@ public abstract class SmartActivity extends Activity
 		return field;
 	}	
 	
+
+
+	/*
 	protected TextView createHidden(String text)
 	{
 		TextView field = new TextView(getApplicationContext());
 		
 		field.setText(text);
-		field.setTextSize(0);
+		field.setVisibility(View.GONE);
+		field.setWidth(0);
 		
 		return field;
 	}
+	*/
 	
 	protected void alertError(Object message)
 	{
@@ -152,21 +164,7 @@ public abstract class SmartActivity extends Activity
 	
 	protected void redirect(Class<?> activityClass)
 	{
-		redirect(activityClass, new HashMap<String, Object>());
-	}
-	
-	protected void redirect(Class<?> activityClass, HashMap<String, Object> parameters)
-	{
 		Intent intent = new Intent(this, activityClass);
-		
-		for(Map.Entry<String, Object> parameter : parameters.entrySet())
-	    {
-	    	String key = parameter.getKey();
-	    	String value = parameter.getValue().toString();
-	    	
-			intent.putExtra(key, value);
-	    }
-		
 		startActivity(intent);
 	}
 	

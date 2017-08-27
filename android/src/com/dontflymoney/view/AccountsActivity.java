@@ -1,12 +1,10 @@
 package com.dontflymoney.view;
 
-import java.text.DecimalFormat;
-import java.util.HashMap;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -15,9 +13,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.viewhelper.TableRowWithExtra;
 
 public class AccountsActivity extends SmartActivity
 {
@@ -101,7 +99,7 @@ public class AccountsActivity extends SmartActivity
 			
 			if (accountList.length() == 0)
 			{
-				View empty = createText(getString(R.string.NoAccounts), Gravity.CENTER, Color.BLACK);
+				View empty = createText(getString(R.string.NoAccounts), Gravity.CENTER);
 				main.addView(empty);
 			}
 			else
@@ -120,19 +118,16 @@ public class AccountsActivity extends SmartActivity
 	private void getAccount(JSONObject account, int color)
 		throws JSONException
 	{
-		TableRow row = new TableRow(getApplicationContext());
+		String url = account.getString("Url");
+
+		TableRowWithExtra<String> row = new TableRowWithExtra<String>(getApplicationContext(), url);
 		row.setBackgroundColor(color);
 		
 		String name = account.getString("Name");
 		row.addView(createText(name, Gravity.LEFT));
 
-		String url = account.getString("Url");
-		row.addView(createHidden(url));
-
 		double total = account.getDouble("Total");
-		int textColor = total < 0 ? Color.RED : Color.BLUE;
-		String totalStr = new DecimalFormat("#,##0.00").format(total);
-		row.addView(createText(totalStr, Gravity.RIGHT, textColor));
+		row.addView(createText(total, Gravity.RIGHT));
 		
 		setClick(row);
 
@@ -147,13 +142,13 @@ public class AccountsActivity extends SmartActivity
 		{
 		    public void onClick(View row)
 		    {
-		        TableRow tablerow = (TableRow)row;
-		        TextView url = (TextView) tablerow.getChildAt(1);
+		    	@SuppressWarnings("unchecked")
+		    	TableRowWithExtra<String> tablerow = (TableRowWithExtra<String>)row;
+		        String url = tablerow.getExtra();
 		        
-		        HashMap<String, Object> parameters = new HashMap<String, Object>();
-		        parameters.put("accounturl", url.getText());
-		        
-		        redirect(MovesActivity.class, parameters);
+				Intent intent = new Intent(activity, ExtractActivity.class);
+				intent.putExtra("accounturl", url);
+				startActivity(intent);
 		    }
 		};		
 		

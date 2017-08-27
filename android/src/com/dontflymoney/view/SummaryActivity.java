@@ -1,19 +1,16 @@
 package com.dontflymoney.view;
 
 import java.lang.reflect.Field;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,60 +20,56 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.viewhelper.TableRowWithExtra;
 
-public class MovesActivity extends SmartActivity
+public class SummaryActivity extends SmartActivity
 {
+
 	TableLayout main;
+	String accounturl;
+
 	DatePickerDialog dialog;
-	private int month;
 	private int year;
 	
-	public MovesActivity()
+	public SummaryActivity()
 	{
-		init(this, R.layout.activity_moves, R.menu.moves, true);
+		init(this, R.layout.activity_summary, R.menu.summary);
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		getMain();
+		setCurrentInfo();
 		setDate();
-		getMoves();
+		getSummary();
 	}
 	
-	private void getMain()
+	private void setCurrentInfo()
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
+		accounturl = getIntent().getStringExtra("accounturl");
 	}
 	
 	private void setDate()
 	{
 		Calendar today = Calendar.getInstance();
-		setDate(today.get(Calendar.MONTH), today.get(Calendar.YEAR));
+
+		int startYear = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
+		setDate(startYear);
 	}
 
-	@SuppressLint("SimpleDateFormat")
-	private void setDate(int month, int year)
+	private void setDate(int year)
 	{
-		this.month = month;
 		this.year = year;
-		
-		Calendar date = Calendar.getInstance();
-	    date.set(Calendar.MONTH, month);
-	    date.set(Calendar.YEAR, year);
-	    
-	    SimpleDateFormat formatter = new SimpleDateFormat("MMM/yyyy");
-	    String dateInFull = formatter.format(date.getTime());
-		
-	    setValue(R.id.reportDate, dateInFull);
+	    setValue(R.id.reportDate, year);
 	}
 	
     public void changeDate(View v)
     {
 		if(dialog == null)
 		{
-			dialog = new DatePickerDialog(this, new PickDate(this), year, month, 1);
+			dialog = new DatePickerDialog(this, new PickDate(), year, 1, 1);
 
 			try
 			{
@@ -86,8 +79,11 @@ public class MovesActivity extends SmartActivity
 	            
 	            Field field = datePicker.getClass().getDeclaredField("mDaySpinner");
 	            field.setAccessible(true);
-	            Object yearPicker = field.get(datePicker);
-	            ((View) yearPicker).setVisibility(View.GONE);
+
+	            Object dayPicker = field.get(datePicker);
+	            ((View) dayPicker).setVisibility(View.GONE);
+	            Object monthPicker = field.get(datePicker);
+	            ((View) monthPicker).setVisibility(View.GONE);
 		    } 
 		    catch (Exception e) { }
 		}
@@ -97,34 +93,27 @@ public class MovesActivity extends SmartActivity
 	
 	private class PickDate implements DatePickerDialog.OnDateSetListener
 	{
-		MovesActivity activity;
-		
-	    public PickDate(MovesActivity activity)
-	    {
-    		this.activity = activity;
-		}
-
 	    @Override
 	    public void onDateSet(DatePicker view, int year, int month, int day)
 	    {
-	        activity.setDate(month, year); 
-			getMoves();
+	        setDate(year); 
+			getSummary();
 	        dialog.hide();
 	    }
 	    
 	}
 	
-	private void getMoves()
+	private void getSummary()
 	{
 		String accounturl = getIntent().getStringExtra("accounturl");
 		
 		main.removeAllViews();
 		
-		Request request = new Request(this, "Moves/List");
+		Request request = new Request(this, "Moves/Summary");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accounturl", accounturl);
-		request.AddParameter("id", year * 100 + month + 1);
+		request.AddParameter("id", year);
 		
 		request.Post();
 	}
@@ -167,40 +156,40 @@ public class MovesActivity extends SmartActivity
 		else
 		{
 			JSONObject data = result.getJSONObject("data");
-			JSONArray moveList = data.getJSONArray("MoveList");
+			JSONArray monthList = data.getJSONArray("MonthList");
 			
-			if (moveList.length() == 0)
+			if (monthList.length() == 0)
 			{
-				View empty = createText(getString(R.string.NoMoves), Gravity.CENTER, Color.BLACK);
+				View empty = createText(getString(R.string.NoMoves), Gravity.CENTER);
 				main.addView(empty);
 			}
 			else
 			{
-				for(int a = 0; a < moveList.length(); a++)
+				for(int a = 0; a < monthList.length(); a++)
 				{
 					int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
 					
-					getMove(moveList.getJSONObject(a), color);
+					getMonth(monthList.getJSONObject(a), color);
 				}
 			}
 
 		}
 	}
 
-	private void getMove(JSONObject move, int color)
+	private void getMonth(JSONObject move, int color)
 			throws JSONException
 	{
-		TableRow row = new TableRow(this);
+		int number = move.getInt("Number");
+		
+		TableRowWithExtra<Integer> row = new TableRowWithExtra<Integer>(this, number);
 		row.setBackgroundColor(color);
 		
-		String description = move.getString("Description");
+		String description = move.getString("Name");
 		row.addView(createText(description, Gravity.LEFT));
 
 		double total = move.getDouble("Total");
-		int textColor = total < 0 ? Color.RED : Color.BLUE;
-		String totalStr = new DecimalFormat("#,##0.00").format(total);
-		row.addView(createText(totalStr, Gravity.RIGHT, textColor));
-		
+		row.addView(createText(total, Gravity.RIGHT));
+
 		setClick(row);
 
 		main.addView(row);
@@ -214,11 +203,17 @@ public class MovesActivity extends SmartActivity
 		{
 		    public void onClick(View row)
 		    {
-		        //TableRow tablerow = (TableRow)row;
-		        //TextView sample = (TextView) tablerow.getChildAt(0);
-		        //alertError(sample.getText().toString());
-		        
-		        //redirect(MovesActivity.class);
+		    	@SuppressWarnings("unchecked")
+				TableRowWithExtra<Integer> tablerow = (TableRowWithExtra<Integer>)row;
+		        int monthNumber = tablerow.getExtra();
+
+				Intent intent = new Intent(activity, ExtractActivity.class);
+				
+		        intent.putExtra("accounturl", accounturl);
+				intent.putExtra("year", year);
+				intent.putExtra("month", monthNumber-1);
+				
+				startActivity(intent);
 		    }
 		});
 	}
@@ -226,27 +221,10 @@ public class MovesActivity extends SmartActivity
 	
 	public void refresh(MenuItem menuItem)
 	{
-		getMoves();
+		getSummary();
 	}
 	
 	
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 
 }
