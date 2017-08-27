@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.MVC.Helpers;
 
@@ -33,10 +36,28 @@ namespace DFM.MVC.Models
 
 
 
-        internal void SaveUserAndSendVerify()
+        internal IList<String> ValidateAndSendVerify(System.Web.Mvc.ModelStateDictionary modelState)
         {
-            Safe.SaveUserAndSendVerify(User.Email, User.Password);
+            var errors = new List<String>();
+
+            if (Password != RetypePassword)
+                errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
+
+            if (!errors.Any())
+            {
+                try
+                {
+                    Safe.SaveUserAndSendVerify(User.Email, User.Password);
+                }
+                catch (DFMCoreException e)
+                {
+                    errors.Add(MultiLanguage.Dictionary[e]);
+                }
+            }
+
+            return errors;
         }
+
 
 
     }

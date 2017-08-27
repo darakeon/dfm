@@ -1,18 +1,9 @@
-User
-	Create
-	Activate
-	Recover Password
-
-Account
-	Create
-	Edit
-
-Category
-	Create
-	Edit
-
-Move
-	Create
-	Edit
-	Schedule
-	Reports
+User > SignUp
+User > LogOn (not verified)
+Token > UserVerification
+User > ForgotPassword
+Token > Index
+Token > PasswordReset
+Token > Disable
+User > LogOn (verified)
+User > LogOff

@@ -14,7 +14,7 @@ namespace DFM.MVC.Controllers
             return View();
         }
 
-
+        
         
         public ActionResult SignUp()
         {
@@ -26,28 +26,13 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult SignUp(UserSignUpModel model)
         {
-            if (model.Password != model.RetypePassword)
-                ModelState.AddModelError("", MultiLanguage.Dictionary["RetypeWrong"]);
+            var errors = model.ValidateAndSendVerify(ModelState);
 
+            AddErrors(errors);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.SaveUserAndSendVerify();
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
-
-                if (ModelState.IsValid)
-                {
-                    return View("SignUpSuccess");
-                }
-            }
-
-            return View(model);
+            return ModelState.IsValid
+                ? View("SignUpSuccess")
+                : View(model);
         }
 
 
@@ -62,55 +47,32 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult LogOn(UserLogOnModel model, String returnUrl)
         {
-            if (ModelState.IsValid)
+            var logOnError = model.LogOn();
+
+            if (logOnError == null)
             {
-                try
-                {
-                    Current.Set(model.Email, model.Password);
-                }
-                catch (DFMCoreException e)
-                {
-                    if (e.Type == ExceptionPossibilities.DisabledUser)
-                        return RedirectToAction("SendVerification", new {id = model.Email});
-
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
-
-
-                if (ModelState.IsValid)
-                {
-                    return String.IsNullOrEmpty(returnUrl)
-                        ? (ActionResult) RedirectToAction("Index", "Account")
-                        : Redirect(returnUrl);
-                }
+                return String.IsNullOrEmpty(returnUrl)
+                    ? (ActionResult)RedirectToAction("Index", "Account")
+                    : Redirect(returnUrl);
             }
+
+            if (logOnError.Type == ExceptionPossibilities.DisabledUser)
+            {
+                return View("SendVerification");
+            }
+
+            ModelState.AddModelError("", MultiLanguage.Dictionary[logOnError]);
 
             return View(model);
         }
 
 
 
-        public ActionResult SendVerification(String id)
+        public ActionResult LogOff()
         {
             var model = new SafeModel();
 
-            try
-            {
-                model.SendUserVerify(id);
-            }
-            catch (DFMCoreException e)
-            {
-                return RedirectToAction("Error", "Ops", new { id = e.Type });
-            }
-
-            return View();
-        }
-
-
-
-        public ActionResult LogOff()
-        {
-            Current.Clean();
+            model.LogOff();
 
             return RedirectToAction("Index", "User");
         }
@@ -120,30 +82,20 @@ namespace DFM.MVC.Controllers
         public ActionResult ForgotPassword()
         {
             var model = new UserForgotPasswordModel();
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult ForgotPassword(UserForgotPasswordModel model)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.SendPasswordReset();
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
+            var errors = model.SendPasswordReset();
 
-                if (ModelState.IsValid)
-                {
-                    return View("ForgotPasswordSuccess");
-                }
-            }
+            AddErrors(errors);
 
-            return View(model);
+            return ModelState.IsValid
+                ? View("ForgotPasswordSuccess")
+                : View(model);
         }
 
 

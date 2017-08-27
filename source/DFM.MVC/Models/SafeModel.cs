@@ -1,31 +1,49 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
 {
     public class SafeModel : BaseModel
     {
-        internal void Disable(String token)
+        internal Boolean Disable(String token)
         {
-            Safe.DisableToken(token);
+            try
+            {
+                Safe.DisableToken(token);
+            }
+            catch (DFMCoreException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        internal void TestUserVerificationToken(String token)
-        {
-            Safe.TestSecurityToken(token, SecurityAction.UserVerification);
-        }
 
-        internal void ActivateUser(String token)
+
+        internal Boolean TestAndActivate(String token)
         {
+            try
+            {
+                Safe.TestSecurityToken(token, SecurityAction.UserVerification);
+            }
+            catch (DFMCoreException)
+            {
+                return false;
+            }
+
             Safe.ActivateUser(token);
+
+            return true;
         }
 
-        internal void SendUserVerify(String email)
+
+
+        internal void LogOff()
         {
-            Safe.SendUserVerify(email);
+            Current.Clean();
         }
-
-
 
     }
 }

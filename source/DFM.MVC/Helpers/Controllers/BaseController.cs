@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using DFM.Authentication;
 using DFM.MVC.Helpers.Authorize;
 
@@ -6,7 +8,17 @@ namespace DFM.MVC.Helpers.Controllers
 {
     public class BaseController : Controller
     {
-        protected readonly Current Current = Auth.Current; 
+        protected readonly Current Current = Auth.Current;
+
+
+        protected void AddErrors(IList<String> errors)
+        {
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
 
     }
 

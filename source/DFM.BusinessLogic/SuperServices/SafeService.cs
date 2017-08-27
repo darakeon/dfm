@@ -198,16 +198,28 @@ namespace DFM.BusinessLogic.SuperServices
 
         public void DisableTicket(String ticketKey)
         {
-            var ticket = ticketService.GetByKey(ticketKey);
+            BeginTransaction();
 
-            if (ticket == null || !ticket.Active)
-                return;
-                
-            ticket.Key += DateTime.Now.ToString("yyyyMMddHHmmssffffff");
-            ticket.Active = false;
-            ticket.Expiration = DateTime.Now;
+            try
+            {
+                var ticket = ticketService.GetByKey(ticketKey);
 
-            ticketService.Disable(ticket);
+                if (ticket != null && ticket.Active)
+                {
+                    ticket.Key += DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+                    ticket.Active = false;
+                    ticket.Expiration = DateTime.Now;
+
+                    ticketService.Disable(ticket);
+                }
+
+                CommitTransaction();
+            }
+            catch (Exception)
+            {
+                RollbackTransaction();
+                throw;
+            }
         }
 
 

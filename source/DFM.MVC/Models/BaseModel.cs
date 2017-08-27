@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.SuperServices;
 using DFM.Repositories;
@@ -23,6 +20,8 @@ namespace DFM.MVC.Models
         public static ReportService Report { get { return getOrCreateAccess().Report; } }
         public static RobotService Robot { get { return getOrCreateAccess().Robot; } }
         public static SafeService Safe { get { return getOrCreateAccess().Safe; } }
+
+        public static Current Current { get { return getOrCreateAccess().Current; } }
 
 
     }

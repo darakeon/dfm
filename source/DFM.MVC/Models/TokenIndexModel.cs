@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 
@@ -17,8 +19,15 @@ namespace DFM.MVC.Models
 
 
 
+        private String token;
+
         [Required(ErrorMessage = "*")]
-        public String Token { get; set; }
+        public String Token
+        {
+            get { return token; }
+            set { token = (value ?? "").Trim(); }
+        }
+
 
         [Required(ErrorMessage = "*")]
         public SecurityAction SecurityAction { get; set; }
@@ -26,9 +35,26 @@ namespace DFM.MVC.Models
         public SelectList SecurityActionList { get; set; }
 
 
-        internal void Test()
+        internal IList<String> Test()
         {
-            Safe.TestSecurityToken(Token, SecurityAction);
+            var errors = new List<String>();
+
+            try
+            {
+                Safe.TestSecurityToken(Token, SecurityAction);
+            }
+            catch (DFMCoreException e)
+            {
+                errors.Add(MultiLanguage.Dictionary[e]);
+            }
+
+            if (SecurityAction != SecurityAction.PasswordReset 
+                && SecurityAction != SecurityAction.UserVerification)
+            {
+                errors.Add(MultiLanguage.Dictionary["NotRecognizedAction"]);
+            }
+
+            return errors;
         }
 
 

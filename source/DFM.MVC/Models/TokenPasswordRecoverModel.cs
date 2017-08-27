@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
+using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
@@ -13,14 +17,42 @@ namespace DFM.MVC.Models
         public String RetypePassword { get; set; }
 
 
-        internal void TestSecurityToken(String token)
+        internal Boolean TestToken(String token)
         {
-            Safe.TestSecurityToken(token, SecurityAction.PasswordReset);
+            try
+            {
+                Safe.TestSecurityToken(token, SecurityAction.PasswordReset);
+            }
+            catch (DFMCoreException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        internal void PasswordReset(String token)
+        internal IList<String> PasswordReset(String token)
         {
-            Safe.PasswordReset(token, Password);
+            var errors = new List<String>();
+
+            if (Password != RetypePassword)
+            {
+                errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
+            }
+
+            if (!errors.Any())
+            {
+                try
+                {
+                    Safe.PasswordReset(token, Password);
+                }
+                catch (DFMCoreException e)
+                {
+                    errors.Add(MultiLanguage.Dictionary[e]);
+                }
+            }
+
+            return errors;
         }
 
 

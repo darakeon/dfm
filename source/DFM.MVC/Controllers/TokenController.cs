@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Enums;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-    public class TokenController : Controller
+    public class TokenController : BaseController
     {
         public ActionResult Index()
         {
@@ -19,32 +17,17 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Index(TokenIndexModel model)
         {
+            var errors = model.Test();
+
+            AddErrors(errors);
+
             if (!ModelState.IsValid)
                 return View(model);
 
-            model.Token = model.Token.Trim();
-
-            try
-            {
-                model.Test();
-            }
-            catch (DFMCoreException e)
-            {
-                ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                return View(model);
-            }
-
-
-            switch (model.SecurityAction)
-            {
-                case SecurityAction.PasswordReset:
-                    return RedirectToAction("PasswordReset", new { id = model.Token });
-                case SecurityAction.UserVerification:
-                    return RedirectToAction("UserVerification", new { id = model.Token });
-                default:
-                    ModelState.AddModelError("", MultiLanguage.Dictionary["NotRecognizedAction"]);
-                    return View(model);
-            }
+            return RedirectToAction(
+                model.SecurityAction.ToString(),
+                new { id = model.Token }
+            );
 
         }
 
@@ -54,52 +37,28 @@ namespace DFM.MVC.Controllers
         {
             var model = new TokenPasswordResetModel();
 
-            try
-            {
-                model.TestSecurityToken(id);
-            }
-            catch (DFMCoreException)
-            {
-                return invalidTokenAction();
-            }
+            var isValid = model.TestToken(id);
 
-            return View(model);
+            return isValid
+                ? View(model)
+                : View("Invalid");
         }
 
         [HttpPost]
         public ActionResult PasswordReset(String id, TokenPasswordResetModel model)
         {
-            try
-            {
-                model.TestSecurityToken(id);
-            }
-            catch (DFMCoreException)
-            {
-                return invalidTokenAction();
-            }
+            var isValid = model.TestToken(id);
 
+            if (!isValid)
+                return View("Invalid");
 
-            if (model.Password != model.RetypePassword)
-                ModelState.AddModelError("", MultiLanguage.Dictionary["RetypeWrong"]);
+            var errors = model.PasswordReset(id);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.PasswordReset(id);
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
+            AddErrors(errors);
 
-                if (ModelState.IsValid)
-                {
-                    return View("PasswordResetSuccess");
-                }
-            }
-
-            return View(model);
+            return ModelState.IsValid 
+                ? View("PasswordResetSuccess") 
+                : View(model);
         }
 
 
@@ -108,18 +67,11 @@ namespace DFM.MVC.Controllers
         {
             var model = new SafeModel();
 
-            try
-            {
-                model.TestUserVerificationToken(id);
-            }
-            catch (DFMCoreException)
-            {
-                return invalidTokenAction();
-            }
+            var isValid = model.TestAndActivate(id);
 
-            model.ActivateUser(id);
-
-            return View("UserVerificationSuccess");
+            return isValid
+                ? View("UserVerificationSuccess")
+                : View("Invalid");
         }
 
 
@@ -128,24 +80,11 @@ namespace DFM.MVC.Controllers
         {
             var model = new SafeModel();
 
-            try
-            {
-                model.Disable(id);
-            }
-            catch (DFMCoreException)
-            {
-                return invalidTokenAction();
-            }
+            var isValid = model.Disable(id);
 
-            return View();
-        }
-
-
-
-
-        private ActionResult invalidTokenAction()
-        {
-            return View("Invalid");
+            return isValid
+                ? View()
+                : View("Invalid");
         }
 
 
