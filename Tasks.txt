@@ -70,6 +70,7 @@ VERSÃO 2.0.2.0 (Little change) - 7?
 
 VERSÃO 2.0.1.0 (Little change) - 9?
 ================================================================================================
+						Parar request no Destroy da Activity
 						Desativar user a cada 5 senhas erradas
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -86,13 +87,15 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 VERSÃO 2.0.0.2 (System) - 10?
 ================================================================================================
 						Arrumar testes
-						Parar request no Destroy da Activity
 						Mudar campos para usar campos que firefox e chrome personalizam
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Colocar tela de lista de funcionalidades
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
+						Colocar edição de movimentação (mobile)
+						Colocar criação de conta (mobile)
+						Colocar criação de categoria (mobile)
 						Travar schedule de conta fechada / deletada
 						Guardar dados localmente, para quando está sem internet (Mobile)
 						Colocar frase de rodar robot no final de testes de create schedule
