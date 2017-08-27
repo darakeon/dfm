@@ -75,13 +75,13 @@ namespace DFM.MVC
             {
                 var emailsStatus = access.Robot.RunSchedule();
 
-                if (emailsStatus.Wrong())
+                if (emailsStatus.IsWrong())
                 {
                     var message = MultiLanguage.Dictionary["ScheduleRun"];
                     var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
                     var final = String.Format(message, error);
                     
-                    ErrorAlert.Add(final);
+                    ErrorAlert.AddTranslated(final);
                 }
             }
         }

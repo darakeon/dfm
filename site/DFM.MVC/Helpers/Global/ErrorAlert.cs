@@ -32,6 +32,11 @@ namespace DFM.MVC.Helpers.Global
         private static readonly SessionList<String> texts =
             new SessionList<String>("texts");
 
+        public static void AddTranslated(String text)
+        {
+            texts.List.Add(MultiLanguage.Dictionary[text]);
+        }
+
         public static void Add(String text)
         {
             texts.List.Add(text);

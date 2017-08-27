@@ -56,6 +56,10 @@ namespace DFM.BusinessLogic.Repositories
             var accountInName = getAccountName(move.AccIn());
             var accountOutName = getAccountName(move.AccOut());
 
+            var categoryName = move.Category == null
+                ? "---"
+                : move.Category.Name;
+
             var format = new Format(user.Config.Language, move.Nature);
 
             var dic = new Dictionary<String, String>
@@ -64,7 +68,7 @@ namespace DFM.BusinessLogic.Repositories
                                 { "AccountIn", accountInName },
                                 { "AccountOut", accountOutName },
                                 { "Date", move.Date.ToShortDateString() },
-                                { "Category", move.Category.Name },
+                                { "Category", categoryName },
                                 { "Description", move.Description },
                                 { "Value", move.Value().ToMoney(user.Config.Language) },
                                 { "Details", detailsHTML(move) },

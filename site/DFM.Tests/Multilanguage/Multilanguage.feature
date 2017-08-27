@@ -104,27 +104,30 @@ Scenario: 04. Get translations of Errors
 
 Scenario: 05. Get translate of Interface (move)
 	Given I have these keys
-		| Section | Phrase        |
-		| Move    | Create        |
-		| Move    | Edit          |
-		| Move    | Move          |
-		| Move    | DayNames      |
-		| Move    | Description   |
-		| Move    | CharactersMax |
-		| Move    | Date          |
-		| Move    | Category      |
-		| Move    | Select        |
-		| Move    | Create        |
-		| Move    | Category      |
-		| Move    | Nature        |
-		| Move    | JustOneValue  |
-		| Move    | Detailed      |
-		| Move    | Add           |
-		| Move    | Detail        |
-		| Move    | Value         |
-		| Move    | Amount        |
-		| Move    | ToMove        |
-		| Move    | MoveSave      |
+		| Section | Phrase                  |
+		| Move    | Create                  |
+		| Move    | Edit                    |
+		| Move    | Move                    |
+		| Move    | DayNames                |
+		| Move    | Description             |
+		| Move    | CharactersMax           |
+		| Move    | Date                    |
+		| Move    | Category                |
+		| Move    | Select                  |
+		| Move    | Create                  |
+		| Move    | Category                |
+		| Move    | Nature                  |
+		| Move    | JustOneValue            |
+		| Move    | Detailed                |
+		| Move    | Add                     |
+		| Move    | Detail                  |
+		| Move    | Value                   |
+		| Move    | Amount                  |
+		| Move    | ToMove                  |
+		| Move    | MoveSave                |
+		| Move    | MoveNotFound            |
+		| Move    | MoveDeleted             |
+		| Move    | MoveDeletedWithoutEmail |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

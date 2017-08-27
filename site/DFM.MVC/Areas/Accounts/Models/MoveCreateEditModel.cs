@@ -23,13 +23,13 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var result = Money.SaveOrUpdateMove(Move, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
 
-            if (result.Error.Wrong())
+            if (result.Error.IsWrong())
             {
                 var message = MultiLanguage.Dictionary["MoveSave"];
                 var error = MultiLanguage.Dictionary[result.Error].ToLower();
                 var final = String.Format(message, error);
 
-                ErrorAlert.Add(final);
+                ErrorAlert.AddTranslated(final);
             }
         }
 

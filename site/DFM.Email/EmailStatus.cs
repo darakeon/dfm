@@ -15,7 +15,7 @@ namespace DFM.Email
 
     public static class EmailStatusExtension
     {
-        public static Boolean Wrong(this EmailStatus emailStatus)
+        public static Boolean IsWrong(this EmailStatus emailStatus)
         {
             return emailStatus > EmailStatus.EmailSent;
         }
