@@ -34,12 +34,12 @@ namespace DFM.MVC.Helpers.Global
 
         public static void AddTranslated(String text)
         {
-            texts.List.Add(MultiLanguage.Dictionary[text]);
+            texts.List.Add(text);
         }
 
         public static void Add(String text)
         {
-            texts.List.Add(text);
+            texts.List.Add(MultiLanguage.Dictionary[text]);
         }
 
 
