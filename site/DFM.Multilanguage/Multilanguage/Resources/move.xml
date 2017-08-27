@@ -7,6 +7,7 @@
     <MoveNotFound text="Move not found." />
     <MoveDeleted text="Move '{0}' deleted." />
     <ScheduleRequired text="Schedule not found." />
+    <MoveSave text="Move: {0}, but the data was saved successfuly"/>
   </en-US>
   <pt-BR>
     <Amount text="Qte" />
@@ -15,5 +16,6 @@
     <MoveNotFound text="Movimentação não encontrada." />
     <MoveDeleted text="Movimentação '{0}' apagada." />
     <ScheduleRequired text="Agendamento não encontrado." />
+    <MoveSave text="Movimentação: {0}, mas os dados foram salvos sucesso"/>
   </pt-BR>
 </move>

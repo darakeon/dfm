@@ -75,7 +75,7 @@ namespace DFM.MVC
             {
                 var emailsStatus = access.Robot.RunSchedule();
 
-                if (emailsStatus > EmailStatus.EmailSent)
+                if (emailsStatus.Wrong())
                 {
                     var message = MultiLanguage.Dictionary["ScheduleRun"];
                     var error = MultiLanguage.Dictionary[emailsStatus].ToLower();

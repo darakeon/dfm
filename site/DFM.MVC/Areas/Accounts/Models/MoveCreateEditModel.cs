@@ -1,7 +1,9 @@
 ﻿using System;
+using DFM.Email;
 using DFM.Generic;
 using DFM.Entities;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -19,7 +21,16 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         internal override void SaveOrUpdate(AccountSelector selector)
         {
-            Money.SaveOrUpdateMove(Move, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
+            var result = Money.SaveOrUpdateMove(Move, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
+
+            if (result.Error.Wrong())
+            {
+                var message = MultiLanguage.Dictionary["MoveSave"];
+                var error = MultiLanguage.Dictionary[result.Error].ToLower();
+                var final = String.Format(message, error);
+
+                ErrorAlert.Add(final);
+            }
         }
 
 

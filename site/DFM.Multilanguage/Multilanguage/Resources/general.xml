@@ -19,7 +19,7 @@
     <Send text="Send" />
     <New text="New" />
     <Logon text="Logon" />
-    <ScheduleRun text="Schedule: {0}, but the moves was inserted successfuly"/>
+    <ScheduleRun text="Schedule: {0}, but the moves were inserted successfuly"/>
 
     <!--Nouns-->
     <Name text="Name" />

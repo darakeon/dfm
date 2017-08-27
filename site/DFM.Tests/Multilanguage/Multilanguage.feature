@@ -124,6 +124,7 @@ Scenario: 05. Get translate of Interface (move)
 		| Move    | Value         |
 		| Move    | Amount        |
 		| Move    | ToMove        |
+		| Move    | MoveSave      |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

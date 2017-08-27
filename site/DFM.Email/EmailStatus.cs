@@ -13,4 +13,12 @@ namespace DFM.Email
         EmailNotSent = 16,
     }
 
+    public static class EmailStatusExtension
+    {
+        public static Boolean Wrong(this EmailStatus emailStatus)
+        {
+            return emailStatus > EmailStatus.EmailSent;
+        }
+    }
+
 }
