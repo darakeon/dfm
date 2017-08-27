@@ -25,10 +25,7 @@
     <!-- Accounts -->
     <string name="title_activity_accounts">Contas</string>
 	<string name="NoAccounts">Não há contas</string>
-	<string name="name">Nome</string>
-	<string name="url">Endereço</string>
-	<string name="total">Total</string>
-			
+        
     <!-- Moves -->
     <string name="title_activity_moves">Extrato</string>
    	<string name="NoMoves">Não há movimentações neste mês</string>

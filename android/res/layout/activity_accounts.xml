@@ -10,27 +10,6 @@
     android:stretchColumns="0"
     android:id="@+id/main_table" >
 	
-    <TableRow android:background="@color/table_head">
-        <TextView 
-            android:text="@string/name"
-            android:gravity="left"
-            android:textSize="17sp"
-            android:padding="11dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white">
-        </TextView>
-        <TextView
-            android:text="@string/url"
-           	android:visibility="invisible">
-        </TextView>
-        <TextView
-            android:text="@string/total"
-            android:gravity="center"
-            android:textSize="17sp"
-            android:padding="11dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white">
-        </TextView>
-    </TableRow>
-		
+        
+    
 </TableLayout>

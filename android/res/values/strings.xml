@@ -25,12 +25,9 @@
     <!-- Accounts -->
     <string name="title_activity_accounts">Accounts</string>
 	<string name="NoAccounts">There is no accounts</string>
-	<string name="name">Name</string>
-	<string name="url">Url</string>
-	<string name="total">Total</string>
-	
+    
     <!-- Moves -->
-    <string name="title_activity_moves">Extract</string>
+    <string name="title_activity_moves">Extrato</string>
 	<string name="NoMoves">There is no moves for this month</string>
     
 </resources>
