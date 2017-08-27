@@ -13,6 +13,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -29,6 +30,7 @@ public class Request
 	private String url;
 	private HashMap<String, Object> parameters;
 
+	private ProgressDialog progress;
 	private JSONObject result;
 	private String error;
 	
@@ -86,6 +88,11 @@ public class Request
 		SiteConnector site = new SiteConnector(post, this);
 		
 		site.execute();
+
+		progress = new ProgressDialog(activity);
+		progress.setTitle(activity.getString(R.string.wait_title));
+		progress.setMessage(activity.getString(R.string.wait_text));
+		progress.show();
 	}
 
 	private boolean isOffline()
@@ -167,6 +174,7 @@ public class Request
 			return;
 		}
     	
+		progress.dismiss();
     	activity.HandlePost(this);
 	}
 	

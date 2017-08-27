@@ -169,7 +169,7 @@ public abstract class SmartActivity extends Activity
 		
 		startActivity(intent);
 	}
-		
+	
 	public void logout(MenuItem menuItem)
 	{
 		logout();

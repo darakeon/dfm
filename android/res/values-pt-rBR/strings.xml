@@ -2,9 +2,14 @@
 <resources>
 
     <string name="app_name">Don\'t fly Money</string>
+
+    <!-- Actions -->
     <string name="action_logout">Sair</string>
     <string name="action_refresh">Atualizar</string>
-    <string name="action_accounts">Contas</string>
+    
+    <!-- Wait dialog -->
+    <string name="wait_title">Um segundo!</string>
+    <string name="wait_text">Falando com o porquinho&#8230;</string>
     
     <!-- Errors -->
     <string name="UROffline">Sem conexão com a internet</string>
@@ -27,8 +32,9 @@
     <string name="title_activity_accounts">Contas</string>
 	<string name="NoAccounts">Não há contas</string>
         
-    <!-- Moves -->
-    <string name="title_activity_moves">Extrato</string>
+    <!-- Reports -->
+    <string name="title_activity_extract">Extrato</string>
+    <string name="title_activity_summary">Resumo anual</string>
    	<string name="NoMoves">Não há movimentações neste mês</string>
 	<string name="changeDate">mudar</string>
    	
