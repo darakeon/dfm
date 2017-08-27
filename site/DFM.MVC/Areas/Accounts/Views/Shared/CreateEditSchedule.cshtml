@@ -1,4 +1,5 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.BaseMoveModel
+@using DFM.MVC.Areas.Accounts.Models;
 
 <div class="createMoveScreenLeft">
     <div>
@@ -75,7 +76,7 @@
 
         @for (var d = 0; d < Model.DetailList.Count; d++)
         {
-            @Html.Action("Add", "Detail", new { position = d, id = Model.DetailList[d].ID });
+            @Html.Partial("../Detail/Add", new MoveAddDetailModel(Model.DetailList[d], d));
         }
     </tbody>
 </table>

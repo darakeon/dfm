@@ -3,9 +3,20 @@
 <tr class="moveDetailItem" id="Detail_@(Model.Position)">
     @Html.HiddenFor(m => m.Move.DetailList[Model.Position].FakeID)
 
-    <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Description, new { maxlength = MaximumLength.DetailDescription })</td>
-    <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Amount, new { @class = "amount" })</td>
-    <td>@Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Value, new { @class = "money" })</td>
+    <td>
+        @Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Description, new { maxlength = MaximumLength.DetailDescription })
+        @Html.ValidationMessageFor(m => m.Move.DetailList[Model.Position].Description, "*")
+    </td>
+    
+    <td>
+        @Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Amount, new { @class = "amount" })
+        @Html.ValidationMessageFor(m => m.Move.DetailList[Model.Position].Amount, "*")
+    </td>
+    
+    <td>
+        @Html.TextBoxFor(m => m.Move.DetailList[Model.Position].Value, new { @class = "money" })
+        @Html.ValidationMessageFor(m => m.Move.DetailList[Model.Position].Value, "*")
+    </td>
 
     @if (Model.Position > 0)
     {

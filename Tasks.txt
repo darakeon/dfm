@@ -100,7 +100,7 @@ VERSÃO 2.0.0.0
 
 VERSÃO 1.0.4.0 (Little change)
 ================================================================================================
-2013-09-26				Consertar inserção de movimentação detalhada
+2013-09-26	2013-09-27	Consertar inserção de movimentação detalhada
 2013-09-26	2013-09-26	Colocar ponto em milhar
 
 VERSÃO 1.0.3.1 (System)

@@ -6,6 +6,11 @@
     color: #995;
 }
 
+tr:nth-child(2n+1) .field-validation-error
+{
+    color: #550;
+}
+
 .field-validation-error
 {
     padding: 2px;

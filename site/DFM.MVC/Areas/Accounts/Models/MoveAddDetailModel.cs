@@ -11,21 +11,21 @@ namespace DFM.MVC.Areas.Accounts.Models
             Move = new Move();
         }
 
-        public MoveAddDetailModel(Int32 position, Int32 id)
+        public MoveAddDetailModel(Int32 position)
             : this()
         {
-            var detail = id == 0
-                ? default(Detail)
-                : Money.GetDetailById(id);
-
             Position = position;
 
             for (var d = 0; d <= position; d++)
             {
                 Move.AddDetail(new Detail());
             }
+        }
 
-            Move.DetailList[position] = detail ?? new Detail();
+        public MoveAddDetailModel(Detail detail, Int32 position)
+            : this(position)
+        {
+            Move.DetailList[position] = detail;
         }
 
         public Int32 Position { get; set; }

@@ -1,4 +1,13 @@
-﻿function valueToBoolean(obj) {
+﻿$(document).ready(function () {
+
+    $(".validation-summary-errors:visible").each(function () {
+        if ($(this).find("li:visible").length == 0) {
+            $(this).remove();
+        }
+    });
+});
+
+function valueToBoolean(obj) {
     var value = obj.value;
 
     if (value == undefined) value = obj.val();

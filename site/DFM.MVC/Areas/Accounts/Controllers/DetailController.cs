@@ -6,9 +6,9 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 {
     public class DetailController : Controller
     {
-        public ActionResult Add(Int32 position = 0, Int32 id = 0)
+        public ActionResult Add(Int32 position = 0)
         {
-            var model = new MoveAddDetailModel(position, id);
+            var model = new MoveAddDetailModel(position);
 
             return View(model);
         }
