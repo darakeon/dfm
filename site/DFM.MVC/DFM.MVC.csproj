@@ -122,8 +122,8 @@
     <Compile Include="Areas\Accounts\Models\BaseMoveModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoneyModel.cs" />
-    <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
-    <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
+    <Compile Include="Areas\Accounts\Models\ReportShowMovesModel.cs" />
+    <Compile Include="Areas\Accounts\Models\ReportSummarizeMonthsModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\ScheduleIndexModel.cs" />
     <Compile Include="Models\OpsModel.cs" />
     <Compile Include="Models\SafeModel.cs" />
     <Compile Include="Models\OpsCodeModel.cs" />
@@ -365,6 +367,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Config.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Schedule\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

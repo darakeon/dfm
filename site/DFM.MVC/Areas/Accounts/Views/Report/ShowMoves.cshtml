@@ -39,7 +39,7 @@ else
             <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
-        @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
+        @foreach (var move in Model.MoveList)
         {
             <tr>
                 <td>@move.GetDescriptionDetailed() </td>

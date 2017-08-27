@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
@@ -46,9 +47,12 @@ namespace DFM.BusinessLogic.Services
 
             var month = monthRepository.GetOrCreateMonth(dateMonth, year);
 
-            return month == null
-                ? new List<Move>()
-                : month.MoveList();
+            if (month == null)
+                return new List<Move>();
+
+            return month.MoveList()
+                .OrderBy(m => m.Date)
+                .ToList();
         }
 
         
