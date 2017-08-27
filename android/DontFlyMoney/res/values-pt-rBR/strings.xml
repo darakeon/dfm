@@ -2,12 +2,12 @@
 <resources>
 
     <string name="app_name">Dont fly Money</string>
-    <string name="action_settings">Settings</string>
-    <string name="login">Login</string>
+    <string name="action_settings">Configurações</string>
+    <string name="login">Entrar</string>
     <string name="email">E-mail</string>
-    <string name="password">Password</string>
+    <string name="password">Senha</string>
     <string name="error_message"></string>
-    <string name="title_activity_accounts">Accounts</string>
+    <string name="title_activity_accounts">Contas</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

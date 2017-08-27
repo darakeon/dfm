@@ -6,4 +6,6 @@ public interface IRequestCaller
 {
 	void DoOnReturn(JSONObject json);
 
+	void Error(Exception exception);
+
 }

@@ -20,7 +20,8 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpHelper
 {
-	private static String url = "http://beta.dontflymoney.com/Json";
+	private static String domain = "192.168.1.32";
+	private static String url = String.format("http://{0}/Json", domain);
 	
 	
 	

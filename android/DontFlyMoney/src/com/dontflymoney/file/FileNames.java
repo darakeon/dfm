@@ -2,5 +2,9 @@ package com.dontflymoney.file;
 
 public class FileNames
 {
-	public static final String Ticket = "ticket.d59";
+	private static final String extension = ".d59";
+	
+	public static final String Ticket = "ticket" + extension;
+	
+	
 }

@@ -138,6 +138,8 @@
     <Compile Include="Areas\Json\Jsons\SummaryJson.cs" />
     <Compile Include="Areas\Json\Jsons\TicketJson.cs" />
     <Compile Include="Areas\Json\Jsons\YearJson.cs" />
+    <Compile Include="Areas\Json\Models\AccountListModel.cs" />
+    <Compile Include="Areas\Json\Models\BaseJsonModel.cs" />
     <Compile Include="Areas\Json\Models\UserLogOnModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />

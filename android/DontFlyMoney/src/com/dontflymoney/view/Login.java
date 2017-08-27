@@ -104,6 +104,12 @@ public class Login extends Activity
 		
 	}
 
+	@Override
+	public void Error(Exception exception)
+	{
+		form.SetText(R.id.error_message, exception.getMessage());
+	}
+
 
 
 	private void callActivity()
@@ -112,6 +118,9 @@ public class Login extends Activity
 		
 		startActivity(intent);		
 	}
+
+
+
 	
 	
 	

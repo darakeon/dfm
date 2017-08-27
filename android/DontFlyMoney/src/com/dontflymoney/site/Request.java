@@ -9,9 +9,7 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-
-
-public class Request extends AsyncTask<Void, Void, String>
+public class Request extends AsyncTask<Void, Void, HttpResult>
 {
 	IRequestCaller activity;
 	String controller;
@@ -28,33 +26,39 @@ public class Request extends AsyncTask<Void, Void, String>
 	
 	
 	@Override
-	protected String doInBackground(Void... params)
+	protected HttpResult doInBackground(Void... params)
 	{			
 		try
 		{
-		    return HttpHelper.doPost(controller, action, parameters);
+			String result = HttpHelper.doPost(controller, action, parameters);
+			
+		    return new HttpResult(result);
 		}
 		catch (ClientProtocolException e)
 		{
-		    // TODO Auto-generated catch block
+			return new HttpResult(e);
 		}
 		catch (IOException e)
 		{
-		    // TODO Auto-generated catch block
+			return new HttpResult(e);
 		}
-		
-		return null;
 	}
 
 	
 	@Override
-    protected void onPostExecute(String result)
+    protected void onPostExecute(HttpResult result)
 	{
 		JSONObject json;
+
+		if (!result.IsSucceded())
+		{
+			activity.Error(result.GetErrorResult());
+			return;
+		}
 		
 		try
 		{
-			json = new JSONObject(result);
+			json = new JSONObject(result.GetNormalResult());
 		}
 		catch (JSONException e)
 		{
