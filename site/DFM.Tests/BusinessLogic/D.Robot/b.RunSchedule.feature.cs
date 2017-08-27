@@ -593,6 +593,56 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9B. Run with schedule start in past and end in future (S)")]
+        public virtual void _9B_RunWithScheduleStartInPastAndEndInFutureS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Run with schedule start in past and end in future (S)", ((string[])(null)));
+#line 160
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value",
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table12.AddRow(new string[] {
+                        "Move Db9B",
+                        "",
+                        "Out",
+                        "10",
+                        "5",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 161
+ testRunner.Given("I have this schedule to create", ((string)(null)), table12);
+#line 164
+ testRunner.And("its Date is 2 months ago");
+#line 165
+ testRunner.And("it has no Details");
+#line 166
+ testRunner.And("it has a Category");
+#line 167
+ testRunner.And("it has an Account Out");
+#line 168
+ testRunner.And("it has no Account In");
+#line 169
+ testRunner.And("I save the schedule");
+#line 170
+ testRunner.When("I try to run the scheduler");
+#line 171
+ testRunner.Then("I will receive no core error");
+#line 172
+ testRunner.And("the accountOut value will change in -30");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

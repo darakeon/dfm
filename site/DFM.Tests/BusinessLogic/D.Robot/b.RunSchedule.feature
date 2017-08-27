@@ -154,3 +154,19 @@ Scenario: 9A. Run with e-mail system ok (S)
 	When I try to run the scheduler with e-mail system ok
 	Then I will receive no core error
 	And the accountOut value will change in -10
+
+
+
+Scenario: 9B. Run with schedule start in past and end in future (S)
+	Given I have this schedule to create
+		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Move Db9B   |      | Out    | 10    | 5     | False     | Monthly   | False           |
+	And its Date is 2 months ago
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	And I save the schedule
+	When I try to run the scheduler
+	Then I will receive no core error
+	And the accountOut value will change in -30
