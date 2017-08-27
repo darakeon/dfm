@@ -114,9 +114,9 @@ namespace DFM.BusinessLogic.Services
             if (move.Date == DateTime.MinValue)
                 return null;
 
-            var year = yearRepository.GetOrCreateYear((Int16)move.Date.Year, account, move.Category);
+            var year = yearRepository.GetOrCreateYearWithSummary((Int16)move.Date.Year, account, move.Category);
 
-            return monthRepository.GetOrCreateMonth((Int16)move.Date.Month, year, move.Category);
+            return monthRepository.GetOrCreateMonthWithSummary((Int16)move.Date.Month, year, move.Category);
         }
 
 

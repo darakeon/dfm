@@ -10,16 +10,16 @@ namespace DFM.BusinessLogic.Repositories
     {
         protected internal MonthRepository(IData<Month> repository) : base(repository) { }
 
-        internal Month GetOrCreateMonth(Int16 dateMonth, Year year, Category category = null)
+        internal Month GetOrCreateMonthWithSummary(Int16 dateMonth, Year year, Category category)
         {
-            var month = getOrCreateMonth(year, dateMonth);
+            var month = GetOrCreateMonth(dateMonth, year);
 
             month.GetOrCreateSummary(category);
 
             return month;
         }
 
-        private Month getOrCreateMonth(Year year, Int16 dateMonth)
+        internal Month GetOrCreateMonth(Int16 dateMonth, Year year)
         {
             var month = year.MonthList
                 .SingleOrDefault(m => m.Time == dateMonth);

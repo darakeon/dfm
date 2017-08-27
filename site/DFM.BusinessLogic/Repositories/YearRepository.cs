@@ -10,16 +10,16 @@ namespace DFM.BusinessLogic.Repositories
     {
         internal YearRepository(IData<Year> repository) : base(repository) { }
 
-        internal Year GetOrCreateYear(Int16 dateYear, Account account, Category category = null)
+        internal Year GetOrCreateYearWithSummary(Int16 dateYear, Account account, Category category)
         {
-            var year = getOrCreateYear(account, dateYear);
+            var year = GetOrCreateYear(dateYear, account);
 
             year.GetOrCreateSummary(category);
 
             return year;
         }
 
-        private Year getOrCreateYear(Account account, Int16 dateYear)
+        internal Year GetOrCreateYear(Int16 dateYear, Account account)
         {
             var year = account.YearList
                 .SingleOrDefault(m => m.Time == dateYear);
