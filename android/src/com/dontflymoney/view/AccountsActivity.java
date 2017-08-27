@@ -44,17 +44,6 @@ public class AccountsActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		getMain();
 		getAccounts();
-		
-		if (Site.IsLocal())
-		{
-			Intent intent = new Intent(this, MoveActivity.class);
-			
-			intent.putExtra("accounturl", "x");
-			intent.putExtra("year", 2014);
-			intent.putExtra("month", 2);
-			
-			startActivity(intent);
-		}
 	}
 	
 	private void getMain()

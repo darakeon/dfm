@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.MVC.Areas.API.Helpers;
 using DFM.MVC.Areas.API.Jsons;
 using DFM.MVC.Helpers.Controllers;
 
@@ -28,6 +29,11 @@ namespace DFM.MVC.Areas.API.Models
         internal void Save()
         {
             var move = convertToEntity();
+
+            //TODO: fix this shit
+            PrimaryAccount = Admin.GetAccountByUrl(PrimaryAccount).Name;
+            if (OtherAccount != null)
+                OtherAccount = Admin.GetAccountByUrl(OtherAccount).Name;
 
             var accountSelector = new AccountSelector(Nature, PrimaryAccount, OtherAccount);
 
