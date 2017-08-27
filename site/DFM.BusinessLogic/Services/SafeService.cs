@@ -79,12 +79,24 @@ namespace DFM.BusinessLogic.Services
 
         public void SendUserVerify(String email)
         {
-            var user = userRepository.GetByEmail(email);
+            BeginTransaction();
 
-            if (user == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+            try
+            {
+                var user = userRepository.GetByEmail(email);
 
-            sendUserVerify(user);
+                if (user == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+
+                sendUserVerify(user);
+
+                CommitTransaction();
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
         }
 
         private void sendUserVerify(User user)
