@@ -159,6 +159,60 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9A. Delete with e-mail sender system out")]
+        public virtual void _9A_DeleteWithE_MailSenderSystemOut()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Delete with e-mail sender system out", ((string[])(null)));
+#line 41
+this.ScenarioSetup(scenarioInfo);
+#line 42
+ testRunner.Given("I have a move with value 10 (Transfer)");
+#line 43
+ testRunner.And("I pass valid Move ID");
+#line 44
+ testRunner.When("I try to delete the move with e-mail system out");
+#line 45
+ testRunner.Then("I will receive no core error");
+#line 46
+ testRunner.And("I will receive the notification");
+#line 47
+ testRunner.And("the move will be deleted");
+#line 48
+ testRunner.And("the accountOut value will change in 10");
+#line 49
+ testRunner.And("the accountIn value will change in -10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9A. Delete with e-mail sender system ok")]
+        public virtual void _9A_DeleteWithE_MailSenderSystemOk()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Delete with e-mail sender system ok", ((string[])(null)));
+#line 51
+this.ScenarioSetup(scenarioInfo);
+#line 52
+ testRunner.Given("I have a move with value 10 (Transfer)");
+#line 53
+ testRunner.And("I pass valid Move ID");
+#line 54
+ testRunner.When("I try to delete the move with e-mail system ok");
+#line 55
+ testRunner.Then("I will receive no core error");
+#line 56
+ testRunner.And("I will receive no notification");
+#line 57
+ testRunner.And("the move will be deleted");
+#line 58
+ testRunner.And("the accountOut value will change in 10");
+#line 59
+ testRunner.And("the accountIn value will change in -10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

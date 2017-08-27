@@ -172,7 +172,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table4.AddRow(new string[] {
-                        "Category Bf99"});
+                        "Category Bk03"});
 #line 39
  testRunner.And("I have this category to create", ((string)(null)), table4);
 #line 42
@@ -214,7 +214,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
- testRunner.Given("I give the enabled category Bi99");
+ testRunner.Given("I give the enabled category Bk05");
 #line 55
  testRunner.And("I disable Categories use");
 #line 56
@@ -233,7 +233,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 60
- testRunner.Given("I give the disabled category Bj99");
+ testRunner.Given("I give the disabled category Bk06");
 #line 61
  testRunner.And("I disable Categories use");
 #line 62

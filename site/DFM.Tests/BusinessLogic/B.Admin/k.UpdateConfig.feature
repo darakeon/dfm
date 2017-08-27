@@ -38,7 +38,7 @@ Scenario: 03. Disable categories use and create a category (E)
 	Given I disable Categories use
 	And I have this category to create
 		| Name          |
-		| Category Bf99 |
+		| Category Bk03 |
 	When I try to save the category
 	Then I will receive this core error: CategoriesDisabled
 	And the category will not be saved
@@ -51,13 +51,13 @@ Scenario: 04. Disable categories use and select a category (E)
 	And I will receive no category
 
 Scenario: 05. Disable categories use and disable a category (E)
-	Given I give the enabled category Bi99
+	Given I give the enabled category Bk05
 	And I disable Categories use
 	When I try to disable the category
 	Then I will receive this core error: CategoriesDisabled
 	
 Scenario: 06. Disable categories use and enable a category (E)
-	Given I give the disabled category Bj99
+	Given I give the disabled category Bk06
 	And I disable Categories use
 	When I try to enable the category
 	Then I will receive this core error: CategoriesDisabled

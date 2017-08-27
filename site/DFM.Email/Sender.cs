@@ -74,13 +74,13 @@ namespace DFM.Email
                 return;
 
             if (String.IsNullOrEmpty(subject))
-                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidSubject);
+                DFMEmailException.WithMessage(EmailStatus.InvalidSubject);
 
             if (String.IsNullOrEmpty(body))
-                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidBody);
+                DFMEmailException.WithMessage(EmailStatus.InvalidBody);
 
             if (String.IsNullOrEmpty(to))
-                DFMEmailException.WithMessage(ExceptionPossibilities.InvalidAddressee);
+                DFMEmailException.WithMessage(EmailStatus.InvalidAddress);
 
             var all = CM.OpenExeConfiguration(ConfigurationUserLevel.None);
             var net = (Smtp)all.GetSection("system.net/mailSettings/smtp");
@@ -104,12 +104,11 @@ namespace DFM.Email
                         message.Attachments.Add(attachment);
                     }
 
-
                     smtp.Send(message);
                 }
                 catch (Exception e)
                 {
-                    throw new DFMEmailException(e);
+                    DFMEmailException.WithMessage(e);
                 }
             }
 

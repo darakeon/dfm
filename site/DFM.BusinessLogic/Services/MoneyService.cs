@@ -2,6 +2,7 @@
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Generic;
 
@@ -34,7 +35,7 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public ErrorComposedReturn<Move, Boolean> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        public ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             Parent.Safe.VerifyUser();
 
@@ -45,14 +46,14 @@ namespace DFM.BusinessLogic.Services
             return result;
         }
 
-        private ErrorComposedReturn<Move, Boolean> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        private ComposedResult<Move, EmailStatus> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             var operationType =
                 move.ID == 0
                     ? OperationType.Creation
                     : OperationType.Edit;
 
-            ErrorComposedReturn<Move, Boolean> result;
+            ComposedResult<Move, EmailStatus> result;
 
             BeginTransaction();
 
@@ -75,38 +76,18 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public void DeleteMove(Int32 id)
+        public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
         {
+            ComposedResult<Boolean, EmailStatus> result;
+
             Parent.Safe.VerifyUser();
 
-            deleteMove(id);
-        }
-
-        private void deleteMove(int id)
-        {
             BeginTransaction();
 
             try
             {
-                var move = GetMoveById(id);
-
-                verifyMove(move);
-
-                moveRepository.Delete(id);
-
-                Parent.BaseMove.BreakSummaries(move);
-
-                if (move.Schedule != null)
-                {
-                    move.Schedule.Deleted++;
-
-                    scheduleRepository.SaveOrUpdate(move.Schedule);
-                }
-
-                Parent.BaseMove.SendEmail(move, OperationType.Delete);
-
+                result = deleteMove(id);
                 CommitTransaction();
-
             }
             catch (DFMCoreException)
             {
@@ -115,6 +96,29 @@ namespace DFM.BusinessLogic.Services
             }
 
             Parent.BaseMove.FixSummaries();
+
+            return result;
+        }
+
+        private ComposedResult<Boolean, EmailStatus> deleteMove(int id)
+        {
+            var move = GetMoveById(id);
+
+            verifyMove(move);
+
+            moveRepository.Delete(id);
+
+            Parent.BaseMove.BreakSummaries(move);
+
+            if (move.Schedule != null)
+            {
+                move.Schedule.Deleted++;
+
+                scheduleRepository.SaveOrUpdate(move.Schedule);
+            }
+
+            var emailStatus = Parent.BaseMove.SendEmail(move, OperationType.Delete);
+            return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
         }
 
 

@@ -338,7 +338,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
     <Reference Include="Ak.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Castle.Core">
       <HintPath>..\Library\NHibernate\Castle.Core.dll</HintPath>

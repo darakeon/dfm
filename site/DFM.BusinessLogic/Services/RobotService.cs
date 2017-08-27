@@ -4,6 +4,7 @@ using System.Linq;
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
@@ -24,7 +25,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public Boolean RunSchedule()
+        public EmailStatus RunSchedule()
         {
             Parent.Safe.VerifyUser();
 
@@ -38,7 +39,7 @@ namespace DFM.BusinessLogic.Services
             return emailsSent;
         }
 
-        private Boolean runScheduleEqualConfig(Boolean useCategories)
+        private EmailStatus runScheduleEqualConfig(Boolean useCategories)
         {
             var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
@@ -48,14 +49,14 @@ namespace DFM.BusinessLogic.Services
             return runSchedule(sameConfigList);
         }
 
-        private Boolean runScheduleDiffConfig(Boolean useCategories)
+        private EmailStatus runScheduleDiffConfig(Boolean useCategories)
         {
             var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
             var diffConfigList = scheduleList
                 .Where(s => s.HasCategory() != useCategories);
 
-            Boolean emailsSent;
+            EmailStatus emailsSent;
 
             try
             {
@@ -70,9 +71,9 @@ namespace DFM.BusinessLogic.Services
             return emailsSent;
         }
 
-        private Boolean runSchedule(IEnumerable<Schedule> scheduleList)
+        private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
         {
-            var emailsSent = true;
+            var emailsSent = EmailStatus.Ok;
 
             foreach (var schedule in scheduleList)
             {
@@ -82,15 +83,15 @@ namespace DFM.BusinessLogic.Services
                 var category = schedule.Category;
                 var categoryName = category == null ? null : schedule.Category.Name;
 
-                emailsSent &= addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
+                emailsSent |= addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
             }
 
             return emailsSent;
         }
 
-        private Boolean addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
+        private EmailStatus addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            var emailsSent = true;
+            var emailsSent = EmailStatus.Ok;
 
             while (schedule.CanRunNow())
             {
@@ -98,7 +99,7 @@ namespace DFM.BusinessLogic.Services
 
                 schedule.LastRun++;
 
-                emailsSent &= saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
+                emailsSent |= saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
 
                 schedule.MoveList.Add(newMove);
             }
@@ -106,9 +107,9 @@ namespace DFM.BusinessLogic.Services
             return emailsSent;
         }
 
-        private Boolean saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        private EmailStatus saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            ErrorComposedReturn<Move, Boolean> result;
+            ComposedResult<Move, EmailStatus> result;
 
             BeginTransaction();
 
@@ -123,7 +124,7 @@ namespace DFM.BusinessLogic.Services
                 throw;
             }
 
-            return !result.Error;
+            return result.Error;
         }
 
 

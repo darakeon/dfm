@@ -2,6 +2,7 @@
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -29,7 +30,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal ErrorComposedReturn<Move, Boolean> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             var operationType =
                 move.ID == 0
@@ -59,22 +60,9 @@ namespace DFM.BusinessLogic.Services
 
             breakSummaries(move);
 
+            var emailStatus = SendEmail(move, operationType);
 
-            try
-            {
-                if (Parent.Current.User.Config.SendMoveEmail)
-                    SendEmail(move, operationType);
-            }
-            catch (DFMCoreException exception)
-            {
-                if (exception.Type == ExceptionPossibilities.FailOnEmailSend)
-                    return new ErrorComposedReturn<Move, Boolean>(move, true);
-
-                throw;
-            }
-
-
-            return new ErrorComposedReturn<Move, Boolean>(move);
+            return new ComposedResult<Move, EmailStatus>(move, emailStatus);
         }
 
         internal Account GetAccountByUrl(String accountUrl)
@@ -160,11 +148,11 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        internal void SendEmail(Move move, OperationType operationType)
+        internal EmailStatus SendEmail(Move move, OperationType operationType)
         {
             var emailAction = getEmailAction(operationType);
 
-            moveRepository.SendEmail(move, emailAction);
+            return moveRepository.SendEmail(move, emailAction);
         }
 
         private static string getEmailAction(OperationType operationType)

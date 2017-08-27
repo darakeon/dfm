@@ -8,6 +8,7 @@ using Ak.Generic.Exceptions;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Authentication;
+using DFM.Email.Exceptions;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
 using DFM.PageLog;
@@ -67,7 +68,7 @@ namespace DFM.MVC
             {
                 var emailsSent = access.Robot.RunSchedule();
 
-                if (!emailsSent)
+                if (emailsSent <= EmailStatus.Ok)
                 {
                     ErrorAlert.Add("EmailsNotSent");
                 }

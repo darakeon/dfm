@@ -4,6 +4,7 @@ using System.IO;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -273,10 +274,10 @@ namespace DFM.Tests.BusinessLogic
 
 
 
-        protected static Boolean EmailError
+        protected static EmailStatus? CurrentEmailStatus
         {
-            get { return Get<Boolean>("EmailError"); }
-            set { Set("EmailError", value); }
+            get { return Get<EmailStatus?>("CurrentEmailStatus"); }
+            set { Set("CurrentEmailStatus", value); }
         }
 
         protected static Move Move

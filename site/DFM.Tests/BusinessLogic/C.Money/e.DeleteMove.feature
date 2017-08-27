@@ -37,3 +37,23 @@ Scenario: 99. Delete the Move Transfer by ID (S)
 	And the move will be deleted
 	And the accountOut value will change in 10
 	And the accountIn value will change in -10
+
+Scenario: 9A. Delete with e-mail sender system out
+	Given I have a move with value 10 (Transfer)
+	And I pass valid Move ID
+	When I try to delete the move with e-mail system out
+	Then I will receive no core error
+	And I will receive the notification
+	And the move will be deleted
+	And the accountOut value will change in 10
+	And the accountIn value will change in -10
+
+Scenario: 9A. Delete with e-mail sender system ok
+	Given I have a move with value 10 (Transfer)
+	And I pass valid Move ID
+	When I try to delete the move with e-mail system ok
+	Then I will receive no core error
+	And I will receive no notification
+	And the move will be deleted
+	And the accountOut value will change in 10
+	And the accountIn value will change in -10

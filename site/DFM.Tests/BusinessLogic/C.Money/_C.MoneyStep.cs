@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -147,7 +148,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
                 var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
-                EmailError = result.Error;
+                CurrentEmailStatus = result.Error;
             }
             catch (DFMCoreException e)
             {
@@ -171,7 +172,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
                 var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
-                EmailError = result.Error;
+                CurrentEmailStatus = result.Error;
             }
             catch (DFMCoreException e)
             {
@@ -203,13 +204,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"I will receive the notification")]
         public void ThenIWillReceiveTheNotification()
         {
-            Assert.IsTrue(EmailError);
+            Assert.IsTrue(CurrentEmailStatus.HasValue);
+            Assert.AreEqual(EmailStatus.EmailNotSent, CurrentEmailStatus.Value);
         }
 
         [Then(@"I will receive no notification")]
         public void ThenIWillReceiveNoNotification()
         {
-            Assert.IsFalse(EmailError);
+            Assert.IsTrue(CurrentEmailStatus.HasValue);
+            Assert.AreEqual(EmailStatus.Ok, CurrentEmailStatus.Value);
         }
         #endregion
 
@@ -643,6 +646,48 @@ namespace DFM.Tests.BusinessLogic.C.Money
             {
                 Error = e;
             }
+        }
+
+        [When(@"I try to delete the move with e-mail system ok")]
+        public void WhenITryToDeleteTheMoveWithEMailSystemOk()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+
+            try
+            {
+                var result = SA.Money.DeleteMove(id);
+                CurrentEmailStatus = result.Error;
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
+        }
+
+        [When(@"I try to delete the move with e-mail system out")]
+        public void WhenITryToDeleteTheMoveWithEMailSystemOut()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.BreakTheEmailSystem();
+
+            try
+            {
+                var result = SA.Money.DeleteMove(id);
+                CurrentEmailStatus = result.Error;
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.FixTheEmailSystem();
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
         }
 
         [Then(@"the move will be deleted")]

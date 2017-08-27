@@ -49,11 +49,12 @@ namespace DFM.BusinessLogic.Repositories
 
 
         #region SendEmail
-        internal void SendEmail(Move move, String action)
+        internal EmailStatus SendEmail(Move move, String action)
         {
             var user = move.User;
 
-            if (!user.Config.SendMoveEmail) return;
+            if (!user.Config.SendMoveEmail)
+                return EmailStatus.EmailDisabled;
 
             var accountInName = getAccountName(move.AccIn());
             var accountOutName = getAccountName(move.AccOut());
@@ -83,10 +84,12 @@ namespace DFM.BusinessLogic.Repositories
                     .Subject(format.Subject)
                     .Body(fileContent)
                     .Send();
+
+                return EmailStatus.Ok;
             }
-            catch (DFMEmailException)
+            catch (DFMEmailException e)
             {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+                return e.Type;
             }
         }
 
