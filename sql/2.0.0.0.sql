@@ -69,7 +69,7 @@ ALTER TABLE Schedule
 SELECT CONCAT('ALTER TABLE ', table_schema, '.', table_name, '\nDROP FOREIGN KEY ', Constraint_Name, ';')
     FROM information_schema.key_column_usage
     WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL
-        AND Constraint_Schema = "dfm";
+        AND Constraint_Schema = 'dfm';
 
 SELECT table_name, column_name,
     CONCAT(
