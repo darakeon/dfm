@@ -1,6 +1,7 @@
 ﻿package com.dontflymoney.api;
 
 import java.io.IOException;
+import java.net.SocketException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -40,10 +41,10 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 
 	protected String doInBackground(Void... urls)
 	{
+	    HttpClient client = new DefaultHttpClient();
+
 		try
 		{
-			HttpClient client = new DefaultHttpClient();
-
 			HttpResponse response =
 					post != null
 					? client.execute(post)
@@ -72,6 +73,22 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 		catch (ClientProtocolException e)
 		{
 			error = request.activity.getString(R.string.error_post) + ": [client] " + e.getMessage();
+		}
+		catch (SocketException e)
+		{
+			String message = e.getMessage().toLowerCase();
+			
+			boolean tookTooLong = message.contains("econnreset")
+					|| message.contains("etimeout");
+			
+			if (tookTooLong)
+			{
+				error = String.format(request.activity.getString(R.string.error_slow_internet), post.getURI().getPath());
+			}
+			else
+			{
+				error = request.activity.getString(R.string.error_post) + ": [socket] " + e.getMessage();
+			}
 		}
 		catch (IOException e)
 		{

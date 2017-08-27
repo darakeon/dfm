@@ -84,9 +84,9 @@ public class Request
 			return;
 		}
 
-		SiteConnector site = new SiteConnector(post, this, step);
+		SiteConnector connector = new SiteConnector(post, this, step);
 		
-		site.execute();
+		connector.execute();
 
 		progress = activity.getMessage().showWaitDialog();
 	}
@@ -110,9 +110,9 @@ public class Request
 		String completeUrl = getUrl();
 		HttpGet get = new HttpGet(completeUrl);
 
-		SiteConnector site = new SiteConnector(get, this, step);
+		SiteConnector connector = new SiteConnector(get, this, step);
 		
-		site.execute();
+		connector.execute();
 
 		progress = activity.getMessage().showWaitDialog();
 	}

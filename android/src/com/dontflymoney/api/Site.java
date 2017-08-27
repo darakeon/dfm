@@ -10,7 +10,6 @@ public class Site
 		return IsLocal() ? "http" : "https";
 	}
 	
-	//TODO: DELETE IT
 	public static Boolean IsLocal()
 	{
 		return Domain != publicDomain;

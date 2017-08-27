@@ -32,6 +32,7 @@
     <string name="error_file_not_found">File not found</string>
     <string name="error_file_read">Can not read file</string>
     <string name="error_activity_json">Activity json error</string>
+    <string name="error_slow_internet">Page %s is slow, contact us</string>
     <string name="uninvited">You are uninvited!</string>
     <string name="this_is_not_happening">You should not be here. Contact us.</string>
 
