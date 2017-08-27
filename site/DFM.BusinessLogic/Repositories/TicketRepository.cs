@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities;
+using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -15,7 +16,7 @@ namespace DFM.BusinessLogic.Repositories
                     {
                         ID = 0,
                         Key = ticketKey,
-                        Creation = DateTime.Now,
+                        Creation = user.Now(),
                         Active = true,
                         User = user,
                     };

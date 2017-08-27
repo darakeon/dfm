@@ -55,14 +55,14 @@ namespace DFM.Entities.Extensions
             return canRun(schedule, true);
         }
 
-        private static Boolean canRun(this Schedule schedule, Boolean now)
+        private static Boolean canRun(this Schedule schedule, Boolean tryNow)
         {
             if (!schedule.Active)
                 return false;
 
             var lastDate = schedule.LastDateRun();
 
-            if (now && lastDate >= DateTime.Now)
+            if (tryNow && lastDate >= schedule.User.Now())
                 return false;
 
             if (schedule.Boundless)

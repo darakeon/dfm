@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConvertToOtherChild.cs" />
+    <Compile Include="DateTimeGMT.cs" />
     <Compile Include="DFMException.cs" />
     <Compile Include="EnumExtension.cs" />
     <Compile Include="MyCookie.cs" />

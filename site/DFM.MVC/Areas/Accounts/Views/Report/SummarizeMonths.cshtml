@@ -13,7 +13,7 @@
 
 @section TopRightDiv {
     @{
-        @Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, DateTime.Today.Year))
+        @Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, Model.Today.Year))
         <button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
     }
 }

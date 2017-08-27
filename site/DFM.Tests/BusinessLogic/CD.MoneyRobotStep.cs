@@ -96,14 +96,13 @@ namespace DFM.Tests.BusinessLogic
             {
                 Name = "closed out",
                 Url = MakeUrlFromName("closed out"),
-                User = User,
             };
 
             SA.Admin.CreateAccount(AccountOut);
 
             var move = new Move
             {
-                Date = DateTime.Now,
+                Date = Current.User.Now(),
                 Description = "Description",
                 Nature = MoveNature.Out
             };
@@ -156,14 +155,13 @@ namespace DFM.Tests.BusinessLogic
             {
                 Name = "closed in",
                 Url = MakeUrlFromName("closed in"),
-                User = User,
             };
 
             SA.Admin.CreateAccount(AccountIn);
 
             var move = new Move
             {
-                Date = DateTime.Now,
+                Date = Current.User.Now(),
                 Description = "Description",
                 Nature = MoveNature.In
             };

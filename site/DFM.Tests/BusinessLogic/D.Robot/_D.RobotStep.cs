@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 using DFM.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
@@ -107,9 +108,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             switch (frequency)
             {
-                case "day": case "days": Schedule.Date = DateTime.Today.AddDays(-count); break;
-                case "month":case "months": Schedule.Date = DateTime.Today.AddMonths(-count); break;
-                case "year": case "years": Schedule.Date = DateTime.Today.AddYears(-count); break;
+                case "day": case "days": Schedule.Date = Current.User.Now().AddDays(-count); break;
+                case "month":case "months": Schedule.Date = Current.User.Now().AddMonths(-count); break;
+                case "year": case "years": Schedule.Date = Current.User.Now().AddYears(-count); break;
             }
         }
 

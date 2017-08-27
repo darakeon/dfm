@@ -25,9 +25,10 @@ namespace DFM.Entities
         public virtual String Password { get; set; }
         public virtual String Email { get; set; }
         public virtual DateTime Creation { get; set; }
+        public virtual Boolean Active { get; set; }
 
         public virtual String Language { get; set; }
-        public virtual Boolean Active { get; set; }
+        public virtual String TimeZone { get; set; }
         public virtual Boolean SendMoveEmail { get; set; }
 
         public virtual IList<Account> AccountList { get; set; }

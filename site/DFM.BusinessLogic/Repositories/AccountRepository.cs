@@ -81,7 +81,7 @@ namespace DFM.BusinessLogic.Repositories
 
             if (oldAccount == null)
             {
-                account.BeginDate = DateTime.Now;
+                account.BeginDate = account.User.Now();
                 return;
             }
 
@@ -132,15 +132,17 @@ namespace DFM.BusinessLogic.Repositories
 
 
         internal Year NonFuture(Year year)
-        {         
-            if (year.Time >= DateTime.Today.Year)
+        {
+            var now = year.User().Now();
+
+            if (year.Time >= now.Year)
             {
                 //prevent from saving and destroying the original element
                 var currentYear = year.Clone();
 
                 currentYear.MonthList =
                     currentYear.MonthList
-                        .Where(m => m.Time <= DateTime.Today.Month)
+                        .Where(m => m.Time <= now.Month)
                         .ToList();
 
                 return currentYear;
@@ -163,7 +165,7 @@ namespace DFM.BusinessLogic.Repositories
             if (!account.HasMoves())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
 
-            account.EndDate = DateTime.Now;
+            account.EndDate = account.User.Now();
 
             SaveOrUpdate(account);
         }

@@ -504,7 +504,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Move = new Move
             {
                 Description = "Description",
-                Date = DateTime.Today,
+                Date = Current.User.Now(),
                 Nature = MoveNature.Out,
             };
 
@@ -661,7 +661,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
         private void makeJustMove(MoveNature nature)
         {
-            oldDate = DateTime.Today;
+            oldDate = Current.User.Now();
 
             Move = new Move
             {

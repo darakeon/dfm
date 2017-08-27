@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.Entities.Extensions
 {
@@ -11,11 +12,16 @@ namespace DFM.Entities.Extensions
             return user.Email == "[some admin e-mail here]";
         }
 
+        public static DateTime Now(this User user)
+        {
+            return DateTimeGMT.Now(user.TimeZone);
+        }
+
         public static Boolean HasPendentActivation(this User user)
         {
             return user.SecurityList
                 .Any(s => s.Action == SecurityAction.UserVerification
-                     && s.Expire >= DateTime.Now 
+                     && s.Expire >= user.Now()
                      && s.Active);
         }
 

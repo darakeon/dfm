@@ -57,6 +57,10 @@
       <Project>{84AD52CD-61AA-4F63-B26F-92392493E4DC}</Project>
       <Name>DFM.Authentication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">
+      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
+      <Name>DFM.Entities.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
       <Name>DFM.Entities</Name>

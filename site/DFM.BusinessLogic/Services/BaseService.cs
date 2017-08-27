@@ -47,7 +47,7 @@ namespace DFM.BusinessLogic.Services
             if (move == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
 
-            if (move.User().Email != Parent.Current.User.Email)
+            if (move.User.Email != Parent.Current.User.Email)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
         }
 

@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Extensions;
@@ -112,8 +113,9 @@ namespace DFM.BusinessLogic.Repositories
 
             user.Active = false;
             // TODO: update this to set the person browser language
-            user.Language = "pt-BR";
-            user.Creation = DateTime.Now;
+            user.Language = Defaults.UserLanguage;
+            user.TimeZone = Defaults.UserTimeZone;
+            user.Creation = DateTime.UtcNow;
             user.Password = encrypt(user.Password);
         }
 

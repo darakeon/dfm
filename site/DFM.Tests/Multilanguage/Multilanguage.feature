@@ -286,16 +286,15 @@ Scenario: 11. Get translate of Interface (ops)
 
 Scenario: 12. Get translate of Interface (general)
 	Given I have these keys
-		| Section | Phrase               |
-		| General | LogOff               |
-		| General | MonthMoves           |
-		| General | YearMoves            |
-		| General | Create               |
-		| General | Schedule             |
-		| General | Move                 |
-		| General | Categories           |
-		| General | Accounts             |
-		| General | WeirdMenuExplanation |
+		| Section | Phrase     |
+		| General | LogOff     |
+		| General | MonthMoves |
+		| General | YearMoves  |
+		| General | Create     |
+		| General | Schedule   |
+		| General | Move       |
+		| General | Categories |
+		| General | Accounts   |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

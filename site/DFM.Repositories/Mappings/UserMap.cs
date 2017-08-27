@@ -18,10 +18,13 @@ namespace DFM.Repositories.Mappings
 
             mapping.Map(u => u.Language)
                 .Length(MaximumLength.UserLanguage)
-                .Default("'pt-BR'");
+                .Default("'" + Defaults.UserLanguage + "'");
 
             mapping.Map(u => u.Creation)
                 .Default("'2011-09-21'");
+
+            mapping.Map(u => u.TimeZone)
+                .Default("'" + Defaults.UserLanguage + "'");
 
             mapping.HasMany(u => u.AccountList)
                 .Cascade.None()

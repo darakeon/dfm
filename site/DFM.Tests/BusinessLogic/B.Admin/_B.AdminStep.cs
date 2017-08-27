@@ -182,7 +182,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             {
                 Name = oldAccountName,
                 Url = accountData["Url"],
-                User = User,
             };
 
             SA.Admin.CreateAccount(Account);
@@ -194,7 +193,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Move = new Move
             {
                 Description = "Description",
-                Date = DateTime.Now,
+                Date = Current.User.Now(),
                 Nature = MoveNature.Out,
             };
 
@@ -686,11 +685,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountName)
         {
             Account = new Account
-                          {
-                              Name = givenAccountName,
-                              Url = MakeUrlFromName(givenAccountName), 
-                              User = User
-                          };
+            {
+                Name = givenAccountName,
+                Url = MakeUrlFromName(givenAccountName), 
+            };
 
             SA.Admin.CreateAccount(Account);
 
@@ -704,14 +702,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             {
                 Name = givenAccountName,
                 Url = MakeUrlFromName(givenAccountName),
-                User = User
             };
 
             SA.Admin.CreateAccount(Account);
 
             var move = new Move
             {
-                Date = DateTime.Now,
+                Date = Current.User.Now(),
                 Description = "Move for account test",
                 Nature = MoveNature.Out
             };

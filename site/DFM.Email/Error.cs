@@ -66,7 +66,7 @@ namespace DFM.Email
 
         private static String subject
         {
-            get { return DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss´fff"); }
+            get { return DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss´fff"); }
         }
 
 

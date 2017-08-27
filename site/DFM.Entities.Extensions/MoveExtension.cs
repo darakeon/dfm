@@ -29,7 +29,7 @@ namespace DFM.Entities.Extensions
 
         public static Boolean AuthorizeCRUD(this Move move, User user)
         {
-            return move.User() == user;
+            return move.User == user;
         }
 
 

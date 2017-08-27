@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using DFM.Authentication;
+using DFM.Entities.Extensions;
 
 namespace DFM.PageLog
 {
@@ -18,7 +19,7 @@ namespace DFM.PageLog
             var request = context.Request;
 
             Url = request.Url.ToString();
-            Date = DateTime.Now;
+            Date = current.IsAuthenticated ? current.User.Now() : DateTime.UtcNow;
             User = current.IsAuthenticated ? current.User.Email : "Off";
             IP = pegarIP(request);
         }

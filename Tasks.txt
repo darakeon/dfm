@@ -98,6 +98,7 @@ VERSÃO 2.0.0.0 (All new) - 15?
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
 						Colocar lista de contas (Mobile)
+2013-11-08	2013-11-08	Arrumar data e hora de limite de inserção de movimentação
 2013-10-04	2013-10-16	Fazer login por ticket no site
 2013-10-04	2013-10-04	Criar App Mobile
 2013-09-04	2013-10-04	Decidir sobre passagem de objetos para externo

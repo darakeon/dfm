@@ -18,6 +18,8 @@ namespace DFM.Repositories.Mappings
 
             mapping.IgnoreProperty(m => m.FakeID);
 
+            mapping.IgnoreProperty(m => m.User);
+
             mapping.References(m => m.Category)
                 .Cascade.None();
 

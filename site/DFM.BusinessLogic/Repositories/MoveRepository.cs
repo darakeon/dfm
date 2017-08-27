@@ -51,7 +51,7 @@ namespace DFM.BusinessLogic.Repositories
         #region SendEmail
         internal void SendEmail(Move move, String action)
         {
-            var user = move.User();
+            var user = move.User;
 
             if (!user.SendMoveEmail) return;
 
@@ -93,7 +93,7 @@ namespace DFM.BusinessLogic.Repositories
         private static String detailsHTML(Move move)
         {
             var details = new StringBuilder();
-            var language = move.User().Language;
+            var language = move.User.Language;
 
             foreach (var detail in move.DetailList)
             {

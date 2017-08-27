@@ -14,6 +14,7 @@ namespace DFM.Entities.Bases
 
         void AddDetail(Detail detail);
         Double Value();
+        User User { get; }
         Account AccIn();
         Account AccOut();
 

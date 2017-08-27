@@ -206,9 +206,9 @@ namespace DFM.BusinessLogic.Services
 
                 if (ticket != null && ticket.Active)
                 {
-                    ticket.Key += DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+                    ticket.Key += DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff");
                     ticket.Active = false;
-                    ticket.Expiration = DateTime.Now;
+                    ticket.Expiration = DateTime.UtcNow;
 
                     ticketService.Disable(ticket);
                 }

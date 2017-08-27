@@ -54,10 +54,16 @@ namespace DFM.Entities
 
         
 
-        public virtual User User()
+        public virtual User User
         {
-            return (In ?? Out)
-                .Year.Account.User;
+            get
+            {
+                var month = (Out ?? In);
+
+                return month == null
+                    ? null
+                    : month.Year.Account.User;
+            }
         }
 
         public virtual Account AccOut()

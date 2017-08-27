@@ -29,7 +29,7 @@ namespace DFM.BusinessLogic.Repositories
             if (security.ID != 0) return;
 
             security.Active = true;
-            security.Expire = DateTime.Now.AddMonths(1);
+            security.Expire = security.User.Now().AddMonths(1);
             security.CreateToken();
         }
 
@@ -70,11 +70,13 @@ namespace DFM.BusinessLogic.Repositories
 
         internal Security GetByToken(String token)
         {
-            // TODO: Try refactor here
-            return SingleOrDefault(
-                s => s.Token == token 
-                    && s.Active == true
-                    && s.Expire >= DateTime.Now);
+            var security = SingleOrDefault(s => s.Token == token);
+            
+            return security != null
+                    && security.Active
+                    && security.Expire >= security.User.Now()
+                ? security
+                : null;
         }
 
 

@@ -75,7 +75,7 @@ namespace DFM.Generic
             var cookie = new HttpCookie(name)
             {
                 Value = value,
-                Expires = DateTime.Now.AddDays(7)
+                Expires = DateTime.UtcNow.AddDays(7)
             };
 
             requestCookies.Add(cookie);
@@ -89,11 +89,11 @@ namespace DFM.Generic
         {
             if (requestCookies[name] != null)
                 requestCookies[name].Expires =
-                    DateTime.Now.AddMilliseconds(-1);
+                    DateTime.UtcNow.AddDays(-1);
 
             if (responseCookies[name] != null)
                 responseCookies[name].Expires =
-                    DateTime.Now.AddMilliseconds(-1);
+                    DateTime.UtcNow.AddDays(-1);
         }
 
         

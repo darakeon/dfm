@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.Accounts.Models
     {
         public ReportShowMovesModel(Int32? id)
         {
-            var currentMonth = (Int16)DateTime.Today.Month;
+            var currentMonth = (Int16)Today.Month;
 
             var dateMonth = id.HasValue
                 ? (Int16)(id.Value % 100)
@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             dateMonth = dateMonth.ForceBetween(1, 12);
 
 
-            var currentYear = (Int16)DateTime.Today.Year;
+            var currentYear = (Int16)Today.Year;
 
             var dateYear = id.HasValue
                 ? (Int16)(id.Value / 100)
