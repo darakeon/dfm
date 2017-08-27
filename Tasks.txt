@@ -73,35 +73,35 @@ VERSÃO 2.0.2.0 (Little change) - 9?
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Busca por movimentação
 						Atualizar versão do SpecFlow
-
-VERSÃO 2.0.1.1 (System) - 10?
-================================================================================================
-						Mudar campos para usar campos que firefox e chrome personalizam
-						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
-						Colocar tela de lista de funcionalidades
-						Resolver problema de tab na tela de criação de Move (mobile)
-						Colocar botão de sair (mobile)
-						Colocar edição de movimentação (mobile)
-						Colocar criação de conta (mobile)
-						Colocar criação de categoria (mobile)
-						Guardar dados localmente, para quando está sem internet (Mobile)
-						Explicar url e sinalização da conta
-						Tirar descrição de transferência entre contas
-						Aumentar versão da API Android de acordo com downloads do DFM
-						Arrumar clique do menu (clique botões direito e meio do mouse)
-						Colocar botão CANCEL em Settings e Move (mobile)
-						Rever layout empty table
-						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
-						Implementar necessidade de assinar TERMO
+F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
-						Colocar Captcha no registro de usuário
 
-VERSÃO 2.0.1.0 (Little Change)
+VERSÃO 2.0.1.1 (System) - 10?
 ================================================================================================
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 F						Disponibilizar Task list no site
+F						Mudar campos para usar campos que firefox e chrome personalizam
+F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
+F						Colocar tela de lista de funcionalidades
+F						Resolver problema de tab na tela de criação de Move (mobile)
+F						Colocar botão de sair (mobile)
+F						Colocar edição de movimentação (mobile)
+F						Colocar criação de conta (mobile)
+F						Colocar criação de categoria (mobile)
+F						Guardar dados localmente, para quando está sem internet (Mobile)
+F						Explicar url e sinalização da conta
+R						Aumentar versão da API Android de acordo com downloads do DFM
+H						Arrumar clique do menu (clique botões direito e meio do mouse)
+F						Colocar botão CANCEL em Settings e Move (mobile)
+F						Rever layout empty table
+B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
+F						Colocar Captcha no registro de usuário
+
+VERSÃO 2.0.1.0 (Little Change)
+================================================================================================
+2014-12-21	2014-12-21	Colocar delete de move (mobile)
 2014-12-07	2014-12-07	Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 2014-12-07	2014-12-07	Procurar TO-DOs no projeto
 2014-12-07	2014-12-07	Refactor em controllers e areas, inverter plural
