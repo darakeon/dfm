@@ -31,8 +31,8 @@ namespace DFM.MVC.Areas.Accounts.Models
             if (Date == DateTime.MinValue)
                 Date = Today;
 
-            ChosenAccountUrl = iMove.Nature == MoveNature.Transfer
-                ? iMove.AccIn().Name : null;
+            if (iMove.Nature == MoveNature.Transfer)
+                ChosenAccountUrl = iMove.AccIn().Url;
 
             if (iMove.Category != null)
                 CategoryName = iMove.Category.Name;

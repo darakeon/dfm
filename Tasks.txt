@@ -119,7 +119,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Scroll nos detalhes da move
 						Corrigir mês e ano do extract mobile nas movimentações
 						Handle differentely EConnReset
-						Consertar edit da movimentação transfer
+2014-05-19	2014-05-19	Consertar edit da movimentação transfer
 2014-05-18	2014-05-19	Revisar texto de introdução
 2014-05-12	2014-05-16	Remover Release do versionamento, mudar nome do db, usuário e senha
 2014-05-11	2014-05-11	Retirar dados do post se forem senhas ou valores
