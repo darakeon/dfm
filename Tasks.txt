@@ -118,6 +118,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Corrigir mês e ano do extract nas movimentações
 						Consertar edit da movimentação transfer
 						Handle differentely EConnReset
+						Remover Release do versionamento, mudar nome do db, usuário e senha
 						Retirar dados do post se forem senhas ou valores
 						Consertar lentidão no server
 2014-05-04	2014-05-04	Deletar PageLog
