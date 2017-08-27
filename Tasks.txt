@@ -89,15 +89,16 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Colocar linha de Total no Resumo Anual
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
+						Colocar língua padrão do usuário como língua do browser dele
 
 VERSÃO 2.0.0.0 (All new) - 15?
 ================================================================================================
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
-						Criar relatório mensal (Mobile)
-						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
-2013-12-30				Colocar lista de contas (Mobile)
+						Criar resumo das contas (Mobile)
+2014-01-01				Criar relatório mensal (Mobile)
+2013-12-30	2014-01-01	Colocar lista de contas (Mobile)
 2013-12-28	2013-12-31	Refazer app
 2013-11-08	2013-11-08	Arrumar data e hora de limite de inserção de movimentação
 2013-10-04	2013-10-16	Fazer login por ticket no site

@@ -29,6 +29,14 @@
             android:name="com.dontflymoney.view.AccountsActivity"
             android:label="@string/title_activity_accounts" >
         </activity>
+        <activity
+            android:name="com.dontflymoney.view.MovesActivity"
+            android:label="@string/title_activity_moves"
+            android:parentActivityName="com.dontflymoney.view.AccountsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dontflymoney.view.AccountsActivity" />
+        </activity>
     </application>
 
 </manifest>

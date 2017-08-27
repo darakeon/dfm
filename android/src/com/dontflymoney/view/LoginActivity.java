@@ -34,7 +34,7 @@ public class LoginActivity extends SmartActivity
 	
 	public void login(View view) throws JSONException
 	{
-		Request request = new Request("User/Index");
+		Request request = new Request(this, "User/Index");
 		
 		request.AddParameter("id", machineId);
 		request.AddParameter("email", getValue(R.id.email));

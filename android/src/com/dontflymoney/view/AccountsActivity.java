@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -39,7 +38,7 @@ public class AccountsActivity extends SmartActivity
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
 		
-		Request request = new Request("Account/List");
+		Request request = new Request(this, "Account/List");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		
@@ -128,11 +127,11 @@ public class AccountsActivity extends SmartActivity
 		{
 		    public void onClick(View row)
 		    {
-		        row.setBackgroundColor(Color.argb(255, 255, 170, 170));
-
 		        TableRow tablerow = (TableRow)row;
 		        TextView sample = (TextView) tablerow.getChildAt(0);
 		        alertError(sample.getText().toString());
+		        
+		        redirect(MovesActivity.class);
 		    }
 		});
 	}

@@ -3,11 +3,17 @@
 
     <string name="app_name">Don\'t fly Money</string>
     <string name="action_logout">Sair</string>
+    <string name="action_accounts">Contas</string>
 
     <!-- Login -->
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
-    <string name="title_activity_accounts">DFM - Contas</string>
+    
+    <!-- Accounts -->
+    <string name="title_activity_accounts">Contas</string>
+    
+    <!-- Moves -->
+    <string name="title_activity_moves">Extrato</string>
     
 </resources>

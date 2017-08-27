@@ -21,14 +21,18 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 
-public class Request implements Runnable
+public class Request
 {
 	private String domain = "beta.dontflymoney.com";
 	private String site = "http://" + domain + "/Api";
 	
+	private Context context;
 	private String url;
 	private HashMap<String, Object> parameters;
 
@@ -37,8 +41,9 @@ public class Request implements Runnable
 	
 	
 	
-	public Request(String url)
+	public Request(Context context, String url)
 	{
+		this.context = context;
 		this.url = url;
 		this.parameters = new HashMap<String, Object>();
 	}
@@ -52,36 +57,14 @@ public class Request implements Runnable
 	
 	
 	
-	public void PostAsync()
-	{
-		Thread thread = new Thread(this);
-		
-		thread.start();
-		
-		try
-		{
-			synchronized (thread)
-			{
-				thread.wait();
-			}
-		}
-		catch (Exception e)
-		{
-			error = "Error on thread: [" + e.getClass() + "] " + e.getMessage();
-			return;
-		}
-	}
-	
-	
-	
-	@Override
-	public void run()
-	{
-		Post();
-	}
-	
 	public void Post()
 	{
+		if (isOffline())
+		{
+			error = "You're current offline";
+			return;
+		}
+		
 		result = null;
 		error = null;
 		
@@ -133,6 +116,18 @@ public class Request implements Runnable
 
         handleResponse(response);
 	}
+
+	private boolean isOffline()
+	{
+		ConnectivityManager conMgr =  
+				(ConnectivityManager)
+					context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		return conMgr.getNetworkInfo(0).getState() != NetworkInfo.State.CONNECTED 
+			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTING;
+	}
+
+
 
 	private String getUrl()
 	{
