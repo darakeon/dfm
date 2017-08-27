@@ -98,10 +98,10 @@ VERSÃO 2.0.0.0
 2013-09-04				Criar DTOs
 2013-09-02				Criar App Mobile
 
-VERSÃO 1.1.0.0 (System)
+VERSÃO 1.1.0.0 (Big change)
 ================================================================================================
-						Impedir datepicker de preencher hoje em edição
-						Colocar datepicker na língua do usuário
+2013-09-28	2013-09-28	Impedir datepicker de preencher hoje em edição
+2013-09-28	2013-09-28	Consertar datepicker no chrome
 2013-09-27	2013-09-27	Colocar Entrar / Sair como botões no topo (externo)
 2013-09-27	2013-09-27	Colocar Categorias / Contas / Sair como botões no topo (interno)
 2013-09-27	2013-09-27	Remover topo do usuário logado
