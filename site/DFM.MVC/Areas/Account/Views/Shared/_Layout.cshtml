@@ -16,14 +16,16 @@
 
 
 @section MenuTopo {
+    
     @if (Model.Account.IsOpen())
     {
-        <li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")</li>
-        <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")</li>
+        @Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")
+        @Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")
     }
-    <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")</li>
-    <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
-    <li class="icon home">@Html.RouteLink(" ", RouteNames.Default, new {action = "Index", controller = "Accounts"})</li>
+
+    @Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")
+    @Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")
+    @Html.RouteLink(" ", RouteNames.Default, new {action = "Index", controller = "Accounts"}, new { @class = "icon home" })
 }
 
 

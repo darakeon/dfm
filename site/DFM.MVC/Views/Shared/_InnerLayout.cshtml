@@ -19,8 +19,8 @@
 {
     @RenderSection("MenuTopo", false)
 
-    <li class="icon settings">@Html.RouteLink(" ", RouteNames.Default, new { action = "Config", controller = "Users" })</li>
-    <li class="icon logoff">@Html.RouteLink(" ", RouteNames.Default, new { action = "LogOff", controller = "Users" })</li>
+    @Html.RouteLink(" ", RouteNames.Default, new { action = "Config", controller = "Users" }, new { @class = "icon settings" })
+    @Html.RouteLink(" ", RouteNames.Default, new { action = "LogOff", controller = "Users" }, new { @class = "icon logoff" })
 }
 
 

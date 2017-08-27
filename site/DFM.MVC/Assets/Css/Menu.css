@@ -5,68 +5,59 @@
 	margin-top: 0;
 }
 
-    .menu li
+    .menu a
     {
         background: #558EAA;
-	    list-style: none;
 	    float: left;
 	    border-radius: 0 0 15px 15px;
 	    vertical-align: top;
 	    padding: 2px 10px 5px 10px;
         cursor: pointer;
 	    margin-left: 10px; 
+	    color: #FFF;
+        height: 20px;
     }
     
-        .menu li:hover
+        .menu a:hover
         {
 	        background: #AA8E55;
         }
     
-        .menu li.icon
+        .menu a.icon
         {
             width: 15px;
             background-position: center 4px;
             background-repeat: no-repeat;
         }
     
-        .menu li.logoff
+        .menu a.logoff
         {
             background-image: url("/Assets/image/icons/logoff.gif");
         }
     
-            .menu li.logoff:hover
+            .menu a.logoff:hover
             {
                 background-image: url("/Assets/image/icons/logoff_active.gif");
             }
     
-        .menu li.settings
+        .menu a.settings
         {
             background-image: url("/Assets/image/icons/settings.gif");
         }
     
-            .menu li.settings:hover
+            .menu a.settings:hover
             {
                 background-image: url("/Assets/image/icons/settings_active.gif");
             }
     
-        .menu li.home
+        .menu a.home
         {
             background-image: url("/Assets/image/icons/home.gif");
         }
     
-            .menu li.home:hover
+            .menu a.home:hover
             {
                 background-image: url("/Assets/image/icons/home_active.gif");
-            }
-
-        .menu li a
-        {
-	        color: #FFF;
-        }
-
-            .menu li a:hover
-            {
-                background: transparent;
             }
 
 h2

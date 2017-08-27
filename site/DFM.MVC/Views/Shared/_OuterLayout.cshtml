@@ -16,14 +16,14 @@
 @section MenuTopo {
     @if (isAuthenticated)
     {
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "Index", controller = "Accounts" })</li>
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "Users" })</li>
+        @Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.Default, new { action = "Index", controller = "Accounts" })
+        @Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "Users" })
     }
     else
     {
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.Default, new { action = "LogOn", controller = "Users" })</li>
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.Default, new { action = "SignUp", controller = "Users" })</li>
-        <li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
+        @Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.Default, new { action = "LogOn", controller = "Users" })
+        @Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.Default, new { action = "SignUp", controller = "Users" })
+        @Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")
     }
 }
 
