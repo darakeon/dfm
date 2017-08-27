@@ -22,14 +22,14 @@ public class Message
 		alertError(message.toString());
 	}
 	
-	public void alertError(int resourceId, Exception e)
+	public void alertError(int resMessage, Exception e)
 	{
-		alertError(activity.getString(resourceId)+ ": " + e.getLocalizedMessage());
+		alertError(activity.getString(resMessage)+ ": " + e.getLocalizedMessage());
 	}
 	
 	private void alertError(String message)
 	{
-		alertError(message, new OnClickListener(){
+		alertError(message, R.string.ok_button, false, new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
@@ -37,26 +37,33 @@ public class Message
     	});
 	}
 	
-	private void alertError(String message, OnClickListener clickListener)
+	private void alertError(String message, int resOkButton, boolean hasCancelButton, OnClickListener clickListener)
 	{
-		new AlertDialog.Builder(activity)
-			.setTitle(R.string.error_title)
-			.setMessage(message)
-			.setPositiveButton(R.string.ok_button, clickListener)
-    		.show();
+		AlertDialog.Builder builder = 
+			new AlertDialog.Builder(activity)
+				.setTitle(R.string.error_title)
+				.setMessage(message);
+		
+		if (resOkButton != 0)
+			builder.setPositiveButton(resOkButton, clickListener);
+		
+		if (hasCancelButton)
+			builder.setNegativeButton(R.string.cancel_button, clickListener);
+			
+		builder.show();
 	}
 	
 	public void alertRetryLicense()
 	{
-		alertError(activity.getString(R.string.license_retry),
-			new OnClickListener(){
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					activity.refresh();
-				}
-	    	}
-		);
+		String message = activity.getString(R.string.license_retry);
+		
+		alertError(message, R.string.try_again, true, new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				activity.refresh();
+			}
+    	});
 	}
 	
 	

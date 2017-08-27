@@ -140,5 +140,13 @@ public abstract class SmartActivity extends FixOrientationActivity
 	{
 		resultHandler.HandlePostError(error, step);
 	}
+
+	
+	public void EnableScreen()
+	{
+		
+	}
+	
+	
 	
 }

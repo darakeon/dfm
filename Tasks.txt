@@ -85,6 +85,13 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Guardar dados localmente, para quando está sem internet (Mobile)
 						Explicar url e sinalização da conta
 						Tirar descrição de transferência entre contas
+						Aumentar versão da API Android de acordo com downloads do DFM
+
+VERSÃO 2.0.2.0 (Little Change)
+================================================================================================
+						Implementar necessidade de assinar TERMO
+2014-06-01				Escrever Termos de Uso
+2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
@@ -108,12 +115,9 @@ VERSÃO 2.0.1.0 (Little Change)
 						Colocar valores em inteiro (double > int) no banco
 						Arrumar agendamento detalhado
 						Refactor em controllers e areas, inverter plural
-						Handle differentely EConnReset
 						Remover GetOrCreate
-						Fazer licença do google impedir o usuário de continuar caso dê negativo
-						Implementar necessidade de assinar TERMO
-2014-06-01				Escrever Termos de Uso
-2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+						Handle differentely EConnReset
+2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
 
 VERSÃO 2.0.0.1 (System) - 1
 ================================================================================================

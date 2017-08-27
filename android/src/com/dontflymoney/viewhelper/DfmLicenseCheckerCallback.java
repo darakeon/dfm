@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.dontflymoney.api.Site;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -37,10 +36,17 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
         }
         else
         {
-        	activity.getMessage().alertError("Allow");
+            activity.runOnUiThread(new Runnable()
+            {
+			    @Override
+		        public void run()
+		        {
+			        activity.EnableScreen();
+		        }
+	        });
         }
     }
-
+    
     public void dontAllow(int reason)
     {
         progress.dismiss();
@@ -51,8 +57,6 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
             return;
         }
 
-        activity.getMessage().alertError("dont_allow");
-        
         if (reason == Policy.RETRY)
         {
         	activity.getMessage().alertRetryLicense();
@@ -76,13 +80,10 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
             return;
         }
 
-        if (Site.IsLocal())
-        {
-	        String genericMessage = activity.getString(R.string.license_error);
-	        String specificMessage = String.format(genericMessage, errorCode);
-	        
-	        activity.getMessage().alertError(specificMessage);
-        }
+        String genericMessage = activity.getString(R.string.license_error);
+        String specificMessage = String.format(genericMessage, errorCode);
+        
+		activity.getMessage().alertError(specificMessage);
 	}
 	
 }

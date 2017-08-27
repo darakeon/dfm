@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -30,8 +31,10 @@ public class LoginActivity extends SmartActivity
 		{
 			navigation.redirect(AccountsActivity.class);
 		}
-		
-		license.Check();
+		else
+		{
+			license.Check();
+		}
 	}	
 
 	
@@ -51,9 +54,17 @@ public class LoginActivity extends SmartActivity
 	{
 		String ticket = data.getString("ticket");
 		Authentication.Set(ticket);
-		
 		navigation.redirect(AccountsActivity.class);
 	}
+	
+	
+	@Override
+	public void EnableScreen()
+	{
+		Button button = (Button)findViewById(R.id.login_button);
+		button.setEnabled(true);
+	}
+	
 	
 
 }
