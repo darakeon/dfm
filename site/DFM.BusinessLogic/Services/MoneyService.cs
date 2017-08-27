@@ -100,7 +100,7 @@ namespace DFM.BusinessLogic.Services
             return result;
         }
 
-        private ComposedResult<Boolean, EmailStatus> deleteMove(int id)
+        private ComposedResult<Boolean, EmailStatus> deleteMove(Int32 id)
         {
             var move = GetMoveById(id);
 
@@ -112,15 +112,36 @@ namespace DFM.BusinessLogic.Services
 
             if (move.Schedule != null)
             {
-                move.Schedule.Deleted++;
-
-                scheduleRepository.SaveOrUpdate(move.Schedule);
+                updateScheduleDeleted(move.Schedule);
             }
 
             var emailStatus = Parent.BaseMove.SendEmail(move, OperationType.Delete);
             return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
         }
 
+        private void updateScheduleDeleted(Schedule schedule)
+        {
+            schedule.Deleted++;
+
+            var useCategories = schedule.User.Config.UseCategories;
+
+            if (schedule.Category == null && useCategories)
+            {
+                Parent.Admin.UpdateConfig(null, null, null, false);
+            }
+
+            if (schedule.Category != null && !useCategories)
+            {
+                Parent.Admin.UpdateConfig(null, null, null, true);
+            }
+
+            scheduleRepository.SaveOrUpdate(schedule);
+
+            if (schedule.User.Config.UseCategories != useCategories)
+            {
+                Parent.Admin.UpdateConfig(null, null, null, useCategories);
+            }
+        }
 
 
         public Detail GetDetailById(Int32 id)
