@@ -120,23 +120,23 @@ namespace DFM.BusinessLogic.Repositories
         }
         #endregion
 
-	    
-		
-		internal Double GetIn(Month month, Category category)
+
+
+        internal Decimal GetIn(Month month, Category category)
 		{
 			var query = NewQuery().Filter(m => m.In.ID == month.ID);
 
 			return get(query, category);
 		}
 
-	    internal Double GetOut(Month month, Category category)
+        internal Decimal GetOut(Month month, Category category)
 		{
 			var query = NewQuery().Filter(m => m.Out.ID == month.ID);
 
 			return get(query, category);
 		}
 
-		private Double get(Query<Move> query, Category category)
+        private Decimal get(Query<Move> query, Category category)
 		{
 			query = category == null
 				? query.Filter(m => m.Category == null)

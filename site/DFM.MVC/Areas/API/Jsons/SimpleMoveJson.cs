@@ -13,7 +13,7 @@ namespace DFM.MVC.Areas.API.Jsons
         public DFMDate Date { get; set; }
         public MoveNature Nature { get; set; }
 
-        public Double Total { get; set; }
+        public Decimal Total { get; set; }
 
         public SimpleMoveJson(Move move, String accountUrl)
         {

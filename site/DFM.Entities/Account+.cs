@@ -31,7 +31,7 @@ namespace DFM.Entities
 			}
 		}
 		
-		public virtual Double Total()
+		public virtual Decimal Total()
         {
             return YearList.Sum(m => m.Total());
         }

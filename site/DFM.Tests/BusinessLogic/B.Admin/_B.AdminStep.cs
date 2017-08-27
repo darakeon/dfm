@@ -29,9 +29,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             set { Set("newAccountUrl", value); }
         }
 
-        private static Double accountTotal
+        private static Decimal accountTotal
         {
-            get { return Get<Double>("accountTotal"); } 
+            get { return Get<Decimal>("accountTotal"); } 
             set { Set("accountTotal", value); }
         }
 

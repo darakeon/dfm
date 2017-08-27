@@ -27,13 +27,13 @@ namespace DFM.Entities
 		}
 
 
-		public virtual Double In
+        public virtual Decimal In
 		{
 			get { return InCents.ToVisual(); }
 			set { InCents = value.ToCents(); }
 		}
 
-		public virtual Double Out
+        public virtual Decimal Out
 		{
 			get { return OutCents.ToVisual(); }
 			set { OutCents = value.ToCents(); }
@@ -46,7 +46,7 @@ namespace DFM.Entities
 		}
 
 
-        public virtual Double Value()
+        public virtual Decimal Value()
         {
             return Math.Round(In - Out, 2);
         }

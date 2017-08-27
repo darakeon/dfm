@@ -7,7 +7,7 @@ namespace DFM.MVC.Areas.API.Jsons
     {
         public String Description { get; set; }
         public Int16 Amount { get; set; }
-        public Double Value { get; set; }
+        public Decimal Value { get; set; }
 
         public Detail ConvertToEntity()
         {

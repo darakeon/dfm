@@ -56,39 +56,39 @@ namespace DFM.Tests.BusinessLogic.C.Money
             get { return "new " + MainCategoryName; }
         }
 
-        private static Double newAccountOutTotal
+        private static Decimal newAccountOutTotal
         {
-            get { return Get<Double>("NewAccountOutTotal"); }
+            get { return Get<Decimal>("NewAccountOutTotal"); }
             set { Set("NewAccountOutTotal", value); }
         }
 
-        private static Double newYearCategoryAccountOutTotal
+        private static Decimal newYearCategoryAccountOutTotal
         {
-            get { return Get<Double>("NewYearCategoryAccountOutTotal"); }
+            get { return Get<Decimal>("NewYearCategoryAccountOutTotal"); }
             set { Set("NewYearCategoryAccountOutTotal", value); }
         }
 
-        private static Double newMonthCategoryAccountOutTotal
+        private static Decimal newMonthCategoryAccountOutTotal
         {
-            get { return Get<Double>("NewMonthCategoryAccountOutTotal"); }
+            get { return Get<Decimal>("NewMonthCategoryAccountOutTotal"); }
             set { Set("NewMonthCategoryAccountOutTotal", value); }
         }
 
-        private static Double newAccountInTotal
+        private static Decimal newAccountInTotal
         {
-            get { return Get<Double>("NewAccountInTotal"); }
+            get { return Get<Decimal>("NewAccountInTotal"); }
             set { Set("NewAccountInTotal", value); }
         }
 
-        private static Double newYearCategoryAccountInTotal
+        private static Decimal newYearCategoryAccountInTotal
         {
-            get { return Get<Double>("NewYearCategoryAccountInTotal"); }
+            get { return Get<Decimal>("NewYearCategoryAccountInTotal"); }
             set { Set("NewYearCategoryAccountInTotal", value); }
         }
 
-        private static Double newMonthCategoryAccountInTotal
+        private static Decimal newMonthCategoryAccountInTotal
         {
-            get { return Get<Double>("NewMonthCategoryAccountInTotal"); }
+            get { return Get<Decimal>("NewMonthCategoryAccountInTotal"); }
             set { Set("NewMonthCategoryAccountInTotal", value); }
         }
         #endregion
@@ -109,7 +109,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
 
 			if (!String.IsNullOrEmpty(moveData["Value"]))
-			    Move.Value = Double.Parse(moveData["Value"]);
+                Move.Value = Decimal.Parse(moveData["Value"]);
         }
         
 
@@ -375,7 +375,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldAccountOutValueWillChangeIn(Double value)
+        public void ThenTheOldAccountOutValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
 
@@ -385,7 +385,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewAccountOutValueWillChangeIn(Double value)
+        public void ThenTheNewAccountOutValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountOut.Name);
 
@@ -396,7 +396,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Double value)
+        public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
 
@@ -408,7 +408,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Double value)
+        public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Decimal value)
         {
 
             var account = GetOrCreateAccount(AccountOut.Name);
@@ -422,7 +422,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Double value)
+        public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountOutUrl);
 
@@ -435,7 +435,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Double value)
+        public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountOut.Name);
 
@@ -449,7 +449,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldAccountInValueWillChangeIn(Double value)
+        public void ThenTheOldAccountInValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
 
@@ -459,7 +459,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewAccountInValueWillChangeIn(Double value)
+        public void ThenTheNewAccountInValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountIn.Name);
 
@@ -470,7 +470,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Double value)
+        public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
 
@@ -482,7 +482,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Double value)
+        public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
         {
 
             var account = GetOrCreateAccount(AccountIn.Name);
@@ -496,7 +496,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Then(@"the old-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Double value)
+        public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountInUrl);
 
@@ -509,7 +509,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
 
         [Then(@"the new-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Double value)
+        public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Decimal value)
         {
             var account = GetOrCreateAccount(AccountIn.Name);
 
@@ -765,19 +765,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
         [Given(@"I have a move with these details \((\w+)\)")]
-        public void GivenIHaveAMoveWithTheseDetails(String nature, Table details)
+        public void GivenIHaveAMoveWithTheseDetails(MoveNature nature, Table details)
         {
-            var moveNature = EnumX.Parse<MoveNature>(nature);
-
-            makeMove(details, moveNature);
+            makeMove(details, nature);
         }
 
         [Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)")]
-        public void GivenIHaveAMoveWithValue(Double value, String nature)
+        public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature)
         {
-            var moveNature = EnumX.Parse<MoveNature>(nature);
-
-            makeMove(value, moveNature);
+            makeMove(value, nature);
         }
 
         private void makeMove(Table details, MoveNature nature)
@@ -794,7 +790,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             setMoveExternals(nature);
         }
 
-        private void makeMove(Double value, MoveNature nature = MoveNature.Out)
+        private void makeMove(Decimal value, MoveNature nature = MoveNature.Out)
         {
             makeJustMove(nature);
 
@@ -805,7 +801,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
         private void makeJustMove(MoveNature nature)
         {
-            oldDate = Current.User.Now();
+            oldDate = new DateTime(2014, 12, 31);
 
             Move = new Move
             {

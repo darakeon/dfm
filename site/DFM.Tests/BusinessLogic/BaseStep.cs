@@ -192,33 +192,33 @@ namespace DFM.Tests.BusinessLogic
             set { Set("AccountOut", value); }
         }
 
-        protected static Double AccountOutTotal
+        protected static Decimal AccountOutTotal
         {
-            get { return Get<Double>("AccountOutTotal"); }
+            get { return Get<Decimal>("AccountOutTotal"); }
             set { Set("AccountOutTotal", value); }
         }
 
-        protected static Double YearAccountOutTotal
+        protected static Decimal YearAccountOutTotal
         {
-            get { return Get<Double>("YearAccountOutTotal"); }
+            get { return Get<Decimal>("YearAccountOutTotal"); }
             set { Set("YearAccountOutTotal", value); }
         }
 
-        protected static Double MonthAccountOutTotal
+        protected static Decimal MonthAccountOutTotal
         {
-            get { return Get<Double>("MonthAccountOutTotal"); }
+            get { return Get<Decimal>("MonthAccountOutTotal"); }
             set { Set("MonthAccountOutTotal", value); }
         }
 
-        protected static Double YearCategoryAccountOutTotal
+        protected static Decimal YearCategoryAccountOutTotal
         {
-            get { return Get<Double>("YearCategoryAccountOutTotal"); }
+            get { return Get<Decimal>("YearCategoryAccountOutTotal"); }
             set { Set("YearCategoryAccountOutTotal", value); }
         }
 
-        protected static Double MonthCategoryAccountOutTotal
+        protected static Decimal MonthCategoryAccountOutTotal
         {
-            get { return Get<Double>("MonthCategoryAccountOutTotal"); }
+            get { return Get<Decimal>("MonthCategoryAccountOutTotal"); }
             set { Set("MonthCategoryAccountOutTotal", value); }
         }
 
@@ -229,33 +229,33 @@ namespace DFM.Tests.BusinessLogic
             set { Set("AccountIn", value); }
         }
 
-        protected static Double AccountInTotal
+        protected static Decimal AccountInTotal
         {
-            get { return Get<Double>("AccountInTotal"); }
+            get { return Get<Decimal>("AccountInTotal"); }
             set { Set("AccountInTotal", value); }
         }
 
-        protected static Double YearAccountInTotal
+        protected static Decimal YearAccountInTotal
         {
-            get { return Get<Double>("YearAccountInTotal"); }
+            get { return Get<Decimal>("YearAccountInTotal"); }
             set { Set("YearAccountInTotal", value); }
         }
 
-        protected static Double MonthAccountInTotal
+        protected static Decimal MonthAccountInTotal
         {
-            get { return Get<Double>("MonthAccountInTotal"); }
+            get { return Get<Decimal>("MonthAccountInTotal"); }
             set { Set("MonthAccountInTotal", value); }
         }
 
-        protected static Double YearCategoryAccountInTotal
+        protected static Decimal YearCategoryAccountInTotal
         {
-            get { return Get<Double>("YearCategoryAccountInTotal"); }
+            get { return Get<Decimal>("YearCategoryAccountInTotal"); }
             set { Set("YearCategoryAccountInTotal", value); }
         }
 
-        protected static Double MonthCategoryAccountInTotal
+        protected static Decimal MonthCategoryAccountInTotal
         {
-            get { return Get<Double>("MonthCategoryAccountInTotal"); }
+            get { return Get<Decimal>("MonthCategoryAccountInTotal"); }
             set { Set("MonthCategoryAccountInTotal", value); }
         }
 
@@ -347,7 +347,7 @@ namespace DFM.Tests.BusinessLogic
             var newDetail = new Detail { Description = detailData["Description"] };
 
             if (!String.IsNullOrEmpty(detailData["Value"]))
-                newDetail.Value = Double.Parse(detailData["Value"]);
+                newDetail.Value = Decimal.Parse(detailData["Value"]);
 
             if (!String.IsNullOrEmpty(detailData["Amount"]))
                 newDetail.Amount = Int16.Parse(detailData["Amount"]);

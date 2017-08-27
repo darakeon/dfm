@@ -2,9 +2,9 @@
 
 namespace DFM.Multilanguage.Helpers
 {
-    public static class DoubleToMoneyExtension
+    public static class DecimalToMoneyExtension
     {
-        public static String ToMoney(this Double number, String language)
+        public static String ToMoney(this Decimal number, String language)
         {
             return number.ToString("#,###0.00", PlainText.GetNumberFormat(language));
         }

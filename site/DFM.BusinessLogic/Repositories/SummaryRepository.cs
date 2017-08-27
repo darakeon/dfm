@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-		public void Fix(Summary summary, Double @in, Double @out)
+        public void Fix(Summary summary, Decimal @in, Decimal @out)
         {
             summary.In = @in;
             summary.Out = @out;

@@ -11,7 +11,7 @@ namespace DFM.Entities
 			Amount = 1;
 		}
 
-		public virtual Double Value
+        public virtual Decimal Value
 		{
 			get { return ValueCents.ToVisual(); }
 			set { ValueCents = value.ToCents(); }

@@ -8,9 +8,9 @@ namespace DFM.MVC.Areas.API.Jsons
         public String Name { get; set; }
         public String Url { get; set; }
 
-        public Double Total { get; set; }
-        public Double? RedLimit { get; set; }
-        public Double? YellowLimit { get; set; }
+        public Decimal Total { get; set; }
+        public Decimal? RedLimit { get; set; }
+        public Decimal? YellowLimit { get; set; }
 
         public AccountJson(account account)
         {

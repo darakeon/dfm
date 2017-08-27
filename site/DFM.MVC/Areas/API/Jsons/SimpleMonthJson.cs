@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.API.Jsons
 
         public Int16 Number { get; set; }
         public String Name { get; set; }
-        public Double Total { get; set; }
+        public Decimal Total { get; set; }
 
     }
 }

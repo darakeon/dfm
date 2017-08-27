@@ -264,7 +264,7 @@ namespace DFM.Tests.BusinessLogic
 
 
         [Then(@"the accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheAccountOutValueWillDecreaseIn(Double change)
+        public void ThenTheAccountOutValueWillDecreaseIn(Decimal change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
@@ -274,7 +274,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [Then(@"the month-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Double change)
+        public void ThenTheMonthCategoryAccountOutValueWillChangeIn(Decimal change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
@@ -287,7 +287,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [Then(@"the year-category-accountOut value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheYearCategoryAccountOutValueWillChangeIn(Double change)
+        public void ThenTheYearCategoryAccountOutValueWillChangeIn(Decimal change)
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
@@ -300,7 +300,7 @@ namespace DFM.Tests.BusinessLogic
 
 
         [Then(@"the accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheAccountInValueWillIncreaseIn(Double change)
+        public void ThenTheAccountInValueWillIncreaseIn(Decimal change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
@@ -310,7 +310,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [Then(@"the month-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheMonthCategoryAccountInValueWillChangeIn(Double change)
+        public void ThenTheMonthCategoryAccountInValueWillChangeIn(Decimal change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
@@ -323,7 +323,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [Then(@"the year-category-accountIn value will change in (\-?\d+\.?\d*)")]
-        public void ThenTheYearCategoryAccountInValueWillChangeIn(Double change)
+        public void ThenTheYearCategoryAccountInValueWillChangeIn(Decimal change)
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 

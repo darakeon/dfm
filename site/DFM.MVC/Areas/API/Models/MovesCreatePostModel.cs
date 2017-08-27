@@ -21,7 +21,7 @@ namespace DFM.MVC.Areas.API.Models
         public MoveNature Nature { get; set; }
         public String PrimaryAccount { get; set; }
         public String OtherAccount { get; set; }
-        public Double Value { get; set; }
+        public Decimal Value { get; set; }
 
         public IList<DetailJson> DetailList { get; set; }
 

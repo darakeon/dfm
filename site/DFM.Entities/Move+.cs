@@ -19,13 +19,13 @@ namespace DFM.Entities
 			return Description;
 		}
 
-		public virtual Double? Value
+        public virtual Decimal? Value
 		{
 			get { return ValueCents.ToVisual(); }
 			set { ValueCents = value.ToCents(); }
 		}
 
-		public virtual Double Total()
+        public virtual Decimal Total()
 		{
 			return Value ??
 				DetailList.Sum(d => d.Value * d.Amount);

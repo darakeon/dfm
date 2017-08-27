@@ -155,7 +155,7 @@ namespace DFM.MVC.Areas.Account.Models
         public Boolean IsDetailed { get; set; }
 
 
-		public Double? Value
+        public Decimal? Value
 		{
 			get { return GenericMove.Value; }
 			set { GenericMove.Value = value; }

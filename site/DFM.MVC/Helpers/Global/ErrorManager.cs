@@ -20,11 +20,11 @@ namespace DFM.MVC.Helpers.Global
             var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
             var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
 
-            Double value;
+            Decimal value;
             var parameters = getDictionary.Union(postDictionary)
                 .Where(
                     p => !p.Key.Contains("Password")
-                        && !Double.TryParse(p.Value, out value)
+                        && !Decimal.TryParse(p.Value, out value)
                 )
                 .ToDictionary(p => p.Key, p => p.Value);
 

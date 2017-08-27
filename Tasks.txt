@@ -1,4 +1,4 @@
-﻿VERSÃO 3.1.4.0 (Little change) - 1?
+﻿VERSÃO 3.1.4.0 (Little change) - 5?
 ================================================================================================
 						APACHE (http://mono-project.com/Mod_mono)
 						Revenge.css
@@ -17,11 +17,11 @@ VERSÃO 3.1.2.0 (Little change) - 3?
 						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 3.1.1.0 (Little change) - 2?
+VERSÃO 3.1.1.0 (Little change) - 1?
 ================================================================================================
 						Mostrar gastos futuros no relatório mensal
 
-VERSÃO 3.1.0.0 (Big change) - 6?
+VERSÃO 3.1.0.0 (Big change) - 3?
 ================================================================================================
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Colocar nome (ou apelido) no sign up
@@ -38,7 +38,7 @@ VERSÃO 3.0.0.0 (All new) - 8?
 						Relatório Período: com filtro por início e fim
 						Enviar e-mail se a move está abaixo dos limites amarelo e vermelho
 
-VERSÃO 2.2.0.0 (Big change) - 10?
+VERSÃO 2.2.0.0 (Big change) - 11?
 ================================================================================================
 					>>>	exportador de CSV
 					>>>	exportador de Money
@@ -58,13 +58,13 @@ VERSÃO 2.1.0.0 (Big change) - 3?
 					>>>	Criar relatórios por anos
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.3.0 (Little change) - 7?
+VERSÃO 2.0.3.0 (Little change) - 3?
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
 
-VERSÃO 2.0.2.0 (Little change) - 9?
+VERSÃO 2.0.2.0 (Little change) - 11?
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -78,7 +78,7 @@ S						Arrumar para web usar fakeId, não id
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 
-VERSÃO 2.0.1.1 (System) - 10?
+VERSÃO 2.0.1.2 (System) - 19?
 ================================================================================================
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
@@ -99,10 +99,12 @@ F						Colocar botão CANCEL em Settings e Move (mobile)
 F						Rever layout empty table
 B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 F						Colocar Captcha no registro de usuário
-R						Trocar YellowLimit e RedLimit para Cents
+						Tratar erro que acontece no robot para avisar usuário, não estourar
 
-VERSÃO 2.0.1.1 (System) - 10?
+VERSÃO 2.0.1.1 (System) - 4?
 ================================================================================================
+2015-01-01	2015-01-03	Fix test errors
+2015-01-03	2015-01-03	Trocar YellowLimit e RedLimit para Cents
 2015-01-01				Fix error on mobile detailed move
 2014-12-30	2014-12-31	Fix move error with decimal value
 2014-12-30	2014-12-30	Fix login redirect bug

@@ -59,12 +59,12 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-		internal Double GetIn(Year year, Category category)
+		internal Decimal GetIn(Year year, Category category)
 		{
 			return get(year, category).Sum(m => m.In);
 		}
 
-	    internal Double GetOut(Year year, Category category)
+        internal Decimal GetOut(Year year, Category category)
 		{
 			return get(year, category).Sum(m => m.Out);
 		}

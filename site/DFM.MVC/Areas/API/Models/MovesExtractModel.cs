@@ -27,7 +27,7 @@ namespace DFM.MVC.Areas.API.Models
 
         public IList<SimpleMoveJson> MoveList { get; private set; }
         public String Name { get; private set; }
-        public Double Total { get; private set; }
+        public Decimal Total { get; private set; }
 
     }
 }
