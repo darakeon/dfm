@@ -22,7 +22,7 @@ namespace DFM.MVC.Models
 
         public AccountCreateEditModel(OperationType type, String id) : this(type)
         {
-            Account = Admin.GetAccountByName(id);
+            Account = Admin.GetAccountByUrl(id);
         }
 
 
@@ -32,10 +32,10 @@ namespace DFM.MVC.Models
         public Account Account { get; set; }
 
 
-        private String name;
+        private String url;
 
         [Required(ErrorMessage = "*")]
-        public String Name
+        public String Url
         {
             get
             {
@@ -44,17 +44,17 @@ namespace DFM.MVC.Models
                     case OperationType.Creation:
                         return Account.Name;
                     case OperationType.Edit:
-                        return name ?? Account.Name;
+                        return url ?? Account.Url;
                     default:
                         throw new NotImplementedException();
                 }
             }
             set
             {
-                name = value;
+                url = value;
 
                 if (Type == OperationType.Creation)
-                    Account.Name = value;
+                    Account.Url = value;
             }
         }
 
@@ -87,12 +87,12 @@ namespace DFM.MVC.Models
 
         
 
-        internal void ResetAccountName(OperationType type, string id)
+        internal void ResetAccountUrl(OperationType type, string id)
         {
-            var oldAccount = Admin.GetAccountByName(id);
+            var oldAccount = Admin.GetAccountByUrl(id);
 
             Type = type;
-            Account.Name = oldAccount.Name;
+            Account.Url = oldAccount.Url;
         }
 
         
@@ -108,7 +108,7 @@ namespace DFM.MVC.Models
                 if (Type == OperationType.Creation)
                     Admin.CreateAccount(Account);
                 else
-                    Admin.UpdateAccount(Account, Name);
+                    Admin.UpdateAccount(Account, Url);
             }
             catch (DFMCoreException e)
             {

@@ -31,13 +31,13 @@ namespace DFM.BusinessLogic.Repositories
             if (String.IsNullOrEmpty(account.Name))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
 
-            var otherAccount = GetByName(account.Name, account.User);
+            var otherAccount = getByName(account.Name, account.User);
 
             var accountExistsForUser = otherAccount != null
                                        && otherAccount.ID != account.ID;
 
             if (accountExistsForUser)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountAlreadyExists);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameAlreadyExists);
         }
 
         private void checkUrl(Account account)
@@ -97,7 +97,7 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-        internal Account GetByName(String name, User user)
+        private Account getByName(String name, User user)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace DFM.BusinessLogic.Repositories
             }
             catch (NonUniqueResultException)
             {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
             }
         }
 
@@ -152,9 +152,9 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-        internal void Close(String name, User user)
+        internal void Close(String url, User user)
         {
-            var account = GetByName(name, user);
+            var account = GetByUrl(url, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
@@ -171,9 +171,9 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-        internal void Delete(String name, User user)
+        internal void Delete(String url, User user)
         {
-            var account = GetByName(name, user);
+            var account = GetByUrl(url, user);
 
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);

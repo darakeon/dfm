@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         internal override void SaveOrUpdate(AccountSelector selector)
         {
-            Money.SaveOrUpdateMove(Move, selector.AccountOutName, selector.AccountInName, CategoryName);
+            Money.SaveOrUpdateMove(Move, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
         }
 
 

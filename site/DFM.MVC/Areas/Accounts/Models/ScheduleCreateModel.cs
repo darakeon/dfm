@@ -26,7 +26,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         internal override void SaveOrUpdate(AccountSelector selector)
         {
-            Robot.SaveOrUpdateSchedule(Schedule, selector.AccountOutName, selector.AccountInName, CategoryName);
+            Robot.SaveOrUpdateSchedule(Schedule, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
         }
 
 

@@ -32,14 +32,14 @@ namespace DFM.Tests.BusinessLogic.C.Money
             set { Set("OldDate", value); }
         }
 
-        private static String newAccountOutName
+        private static String newAccountOutUrl
         {
-            get { return "new " + AccountOutName; }
+            get { return "new_" + AccountOutUrl; }
         }
 
-        private static String newAccountInName
+        private static String newAccountInUrl
         {
-            get { return "new " + AccountInName; }
+            get { return "new_" + AccountInUrl; }
         }
 
         private static String newCategoryName
@@ -122,10 +122,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                var accountOutName = AccountOut == null ? null : AccountOut.Name;
-                var accountInName = AccountIn == null ? null : AccountIn.Name;
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
-                SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, CategoryName);
+                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -193,7 +193,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [When(@"I change the account out of the move")]
         public void GivenIChangeTheAccountOutOfTheMove()
         {
-            AccountOut = GetOrCreateAccount(newAccountOutName);
+            AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
             var year = AccountOut[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
@@ -207,7 +207,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [When(@"I change the account in of the move")]
         public void GivenIChangeTheAccountInOfTheMove()
         {
-            AccountIn = GetOrCreateAccount(newAccountInName);
+            AccountIn = GetOrCreateAccount(newAccountInUrl);
 
             var year = AccountIn[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
@@ -225,7 +225,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             AccountOut = null;
 
-            AccountIn = GetOrCreateAccount(newAccountInName);
+            AccountIn = GetOrCreateAccount(newAccountInUrl);
 
             var year = AccountIn[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
@@ -243,7 +243,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             AccountIn = null;
 
-            AccountOut = GetOrCreateAccount(newAccountOutName);
+            AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
             var year = AccountOut[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
@@ -279,10 +279,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                var accountOutName = AccountOut == null ? null : AccountOut.Name;
-                var accountInName = AccountIn == null ? null : AccountIn.Name;
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
-                SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, Category.Name);
+                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, Category.Name);
             }
             catch (DFMCoreException e)
             {
@@ -294,7 +294,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-accountOut value will change in (\-?\d+)")]
         public void ThenTheOldAccountOutValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountOutName);
+            var account = GetOrCreateAccount(AccountOutUrl);
 
             var currentTotal = account.Sum();
 
@@ -315,7 +315,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-year-category-accountOut value will change in (\-?\d+)")]
         public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountOutName);
+            var account = GetOrCreateAccount(AccountOutUrl);
 
             var summary = account
                 [(Int16)oldDate.Year]
@@ -341,7 +341,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-month-category-accountOut value will change in (\-?\d+)")]
         public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountOutName);
+            var account = GetOrCreateAccount(AccountOutUrl);
 
             var summary = account
                 [(Int16)oldDate.Year]
@@ -368,7 +368,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-accountIn value will change in (\-?\d+)")]
         public void ThenTheOldAccountInValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountInName);
+            var account = GetOrCreateAccount(AccountInUrl);
 
             var currentTotal = account.Sum();
 
@@ -389,7 +389,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-year-category-accountIn value will change in (\-?\d+)")]
         public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountInName);
+            var account = GetOrCreateAccount(AccountInUrl);
 
             var summary = account
                 [(Int16)oldDate.Year]
@@ -415,7 +415,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the old-month-category-accountIn value will change in (\-?\d+)")]
         public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Double value)
         {
-            var account = GetOrCreateAccount(AccountInName);
+            var account = GetOrCreateAccount(AccountInUrl);
 
             var summary = account
                 [(Int16)oldDate.Year]
@@ -442,7 +442,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the month-accountOut value will not change")]
         public void ThenTheMonthAccountOutValueWillNotChange()
         {
-            var account = GetOrCreateAccount(AccountOutName);
+            var account = GetOrCreateAccount(AccountOutUrl);
 
             var month = account
                 [(Int16)oldDate.Year]
@@ -454,7 +454,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Then(@"the year-accountOut value will not change")]
         public void ThenTheYearAccountOutValueWillNotChange()
         {
-            var account = GetOrCreateAccount(AccountOutName);
+            var account = GetOrCreateAccount(AccountOutUrl);
 
             var year = account
                 [(Int16)oldDate.Year];
@@ -497,7 +497,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [Given(@"I have a move with details")]
         public void GivenIHaveAMoveWithDetails()
         {
-            Account = GetOrCreateAccount(MainAccountName);
+            Account = GetOrCreateAccount(MainAccountUrl);
 
             Category = GetOrCreateCategory(MainCategoryName);
 
@@ -520,7 +520,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove(Move, Account.Name, null, Category.Name);
+            Move = SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 
             detail = Move.DetailList.First();
         }
@@ -673,19 +673,19 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
         private void setMoveExternals(MoveNature nature)
         {
-            var accountOutName = nature == MoveNature.In
-                                     ? null : AccountOutName;
+            var accountOutUrl = nature == MoveNature.In
+                                     ? null : AccountOutUrl;
 
-            var accountInName = nature == MoveNature.Out
-                                    ? null : AccountInName;
+            var accountInUrl = nature == MoveNature.Out
+                                    ? null : AccountInUrl;
 
             Category = GetOrCreateCategory(MainCategoryName);
 
-            SA.Money.SaveOrUpdateMove(Move, accountOutName, accountInName, Category.Name);
+            SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, Category.Name);
 
-            if (accountOutName != null)
+            if (accountOutUrl != null)
             {
-                AccountOut = SA.Admin.GetAccountByName(accountOutName); 
+                AccountOut = SA.Admin.GetAccountByUrl(accountOutUrl); 
 
                 var year = AccountOut[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
@@ -697,9 +697,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 MonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
             }
 
-            if (accountInName != null)
+            if (accountInUrl != null)
             {
-                AccountIn = SA.Admin.GetAccountByName(accountInName);
+                AccountIn = SA.Admin.GetAccountByUrl(accountInUrl);
 
                 var year = AccountIn[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];

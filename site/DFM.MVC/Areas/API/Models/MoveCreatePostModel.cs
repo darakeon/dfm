@@ -30,14 +30,9 @@ namespace DFM.MVC.Areas.API.Models
         {
             var move = convertToEntity();
 
-            //TODO: fix this shit
-            PrimaryAccount = Admin.GetAccountByUrl(PrimaryAccount).Name;
-            if (OtherAccount != null)
-                OtherAccount = Admin.GetAccountByUrl(OtherAccount).Name;
-
             var accountSelector = new AccountSelector(Nature, PrimaryAccount, OtherAccount);
 
-            Money.SaveOrUpdateMove(move, accountSelector.AccountOutName, accountSelector.AccountInName, Category);
+            Money.SaveOrUpdateMove(move, accountSelector.AccountOutUrl, accountSelector.AccountInUrl, Category);
         }
 
         private Move convertToEntity()

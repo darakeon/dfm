@@ -18,16 +18,16 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             set { Set("oldAccount", value); }
         }
 
-        private static String oldAccountName
+        private static String oldAccountUrl
         {
-            get { return Get<String>("oldAccountName"); }
-            set { Set("oldAccountName", value); }
+            get { return Get<String>("oldAccountUrl"); }
+            set { Set("oldAccountUrl", value); }
         }
 
-        private static String newAccountName
+        private static String newAccountUrl
         {
-            get { return Get<String>("newAccountName"); } 
-            set { Set("newAccountName", value); }
+            get { return Get<String>("newAccountUrl"); } 
+            set { Set("newAccountUrl", value); }
         }
 
         private static Double accountTotal
@@ -54,12 +54,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             get { return Get<String>("newCategoryName"); }
             set { Set("newCategoryName", value); }
-        }
-        
-        private static String accountUrl
-        {
-            get { return Get<String>("accountUrl"); }
-            set { Set("accountUrl", value); }
         }
         #endregion
 
@@ -112,9 +106,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be changed")]
         public void ThenTheAccountWillNotBeChanged()
         {
-            var account = SA.Admin.GetAccountByName(oldAccount.Name);
+            var account = SA.Admin.GetAccountByUrl(oldAccount.Url);
 
             Assert.AreEqual(oldAccount.Name, account.Name);
+            Assert.AreEqual(oldAccount.Url, account.Url);
             Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
             Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
         }
@@ -123,23 +118,19 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void ThenTheAccountWillNotBeSaved()
         {
             Error = null;
+            var accountUrl = Account.Url;
+            Account = null;
 
             try
             {
-                if (String.IsNullOrEmpty(Account.Name))
-                {
-                    SA.Admin.GetAccountByUrl(Account.Url);
-                }
-                else
-                {
-                    SA.Admin.GetAccountByName(Account.Name);
-                }
+                SA.Admin.GetAccountByUrl(accountUrl);
             }
             catch (DFMCoreException e)
             {
                 Error = e;
             }
 
+            Assert.IsNull(Account);
             Assert.IsNotNull(Error);
             Assert.AreEqual(ExceptionPossibilities.InvalidAccount, Error.Type);
         }
@@ -147,26 +138,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will be saved")]
         public void ThenTheAccountWillBeSaved()
         {
-            Account = SA.Admin.GetAccountByName(Account.Name);
+            Account = SA.Admin.GetAccountByUrl(Account.Url);
 
             Assert.IsNotNull(Account);
-        }
-        #endregion
-
-        #region GetAccountByName
-        [When(@"I try to get the account by its name")]
-        public void WhenITryToGetTheAccountByItsName()
-        {
-            Account = null;
-
-            try
-            {
-                Account = SA.Admin.GetAccountByName(AccountName);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
         }
         #endregion
 
@@ -176,12 +150,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             var accountData = table.Rows[0];
 
-            oldAccountName = accountData["Name"];
+            oldAccountUrl = accountData["Url"];
 
             Account = new Account
             {
-                Name = oldAccountName,
-                Url = accountData["Url"],
+                Name = accountData["Name"],
+                Url = oldAccountUrl,
             };
 
             SA.Admin.CreateAccount(Account);
@@ -208,7 +182,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Category = GetOrCreateCategory(MainCategoryName);
 
-            SA.Money.SaveOrUpdateMove((Move)Move, Account.Name, null, Category.Name);
+            SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 
             accountTotal = Account.Sum();
         }
@@ -218,8 +192,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             var accountData = table.Rows[0];
 
-            newAccountName = accountData["Name"];
-            Account.Url = accountData["Url"];
+            newAccountUrl = accountData["Url"];
+            Account.Name = accountData["Name"];
         }
 
         [When(@"I try to update the account")]
@@ -227,7 +201,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.UpdateAccount(Account, newAccountName);
+                SA.Admin.UpdateAccount(Account, newAccountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -241,11 +215,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             Account account = null;
             Error = null;
 
-            if (Account.Name != oldAccountName)
+            if (Account.Url != oldAccountUrl)
             {
                 try
                 {
-                    account = SA.Admin.GetAccountByName(oldAccountName);
+                    account = SA.Admin.GetAccountByUrl(oldAccountUrl);
                 }
                 catch (DFMCoreException e)
                 {
@@ -262,7 +236,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                account = SA.Admin.GetAccountByName(newAccountName);
+                account = SA.Admin.GetAccountByUrl(newAccountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -286,7 +260,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I already have closed the account")]
         public void GivenICloseTheAccount()
         {
-            SA.Admin.CloseAccount(AccountName);
+            SA.Admin.CloseAccount(AccountUrl);
         }
 
         [When(@"I try to close the account")]
@@ -294,7 +268,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.CloseAccount(AccountName);
+                SA.Admin.CloseAccount(AccountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -305,14 +279,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be closed")]
         public void ThenTheAccountWillNotBeClosed()
         {
-            var account = SA.Admin.GetAccountByName(AccountName);
+            var account = SA.Admin.GetAccountByUrl(AccountUrl);
             Assert.IsTrue(account.IsOpen());
         }
 
         [Then(@"the account will be closed")]
         public void ThenTheAccountWillBeClosed()
         {
-            var account = SA.Admin.GetAccountByName(AccountName);
+            var account = SA.Admin.GetAccountByUrl(AccountUrl);
             Assert.IsFalse(account.IsOpen());
         }
         #endregion
@@ -321,13 +295,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I already have deleted the account")]
         public void GivenIDeleteAnAccount()
         {
-            SA.Admin.DeleteAccount(AccountName);
+            SA.Admin.DeleteAccount(AccountUrl);
         }
 
         [Given(@"I delete the moves of ([\w ]+)")]
-        public void GivenIDeleteTheMovesOf(String givenAccountName)
+        public void GivenIDeleteTheMovesOf(String givenAccountUrl)
         {
-            var account = SA.Admin.GetAccountByName(givenAccountName);
+            var account = SA.Admin.GetAccountByUrl(givenAccountUrl);
 
             for (var y = 0; y < account.YearList.Count; y++)
             {
@@ -356,7 +330,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             try
             {
-                SA.Admin.DeleteAccount(AccountName);
+                SA.Admin.DeleteAccount(AccountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -367,7 +341,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account will not be deleted")]
         public void ThenTheAccountWillNotBeDeleted()
         {
-            Account = SA.Admin.GetAccountByName(AccountName);
+            Account = SA.Admin.GetAccountByUrl(AccountUrl);
             
             Assert.IsNotNull(Account);
         }
@@ -376,16 +350,19 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void ThenTheAccountWillBeDeleted()
         {
             Error = null;
+            var accountUrl = Account.Url;
+            Account = null;
 
             try
             {
-                SA.Admin.GetAccountByName(Account.Name);
+                Account = SA.Admin.GetAccountByUrl(accountUrl);
             }
             catch (DFMCoreException e)
             {
                 Error = e;
             }
 
+            Assert.IsNull(Account);
             Assert.IsNotNull(Error);
             Assert.AreEqual(ExceptionPossibilities.InvalidAccount, Error.Type);
         }
@@ -641,13 +618,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Given(@"I pass an url of account that doesn't exist")]
         public void GivenIPassAUrlOfAccountThatDoesnTExist()
         {
-            accountUrl = "Invalid_account_url";
-        }
-
-        [Given(@"I pass a valid account url")]
-        public void GivenIPassAValidAccountUrl()
-        {
-            accountUrl = Account.Url;
+            AccountUrl = "Invalid_account_url";
         }
 
         [When(@"I try to get the account by its url")]
@@ -657,7 +628,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                Account = SA.Admin.GetAccountByUrl(accountUrl);
+                Account = SA.Admin.GetAccountByUrl(AccountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -669,10 +640,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 
         #region MoreThanOne
-        [Given(@"I pass a name of account that doesn't exist")]
+        [Given(@"I pass a url of account that doesn't exist")]
         public void GivenIPassAnNameOfAccountThatDoesnTExist()
         {
-            AccountName = "Invalid account";
+            AccountUrl = "account_that_doesnt_exist";
         }
 
         [Given(@"I pass a name of category that doesn't exist")]
@@ -681,27 +652,27 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             CategoryName = "Invalid category";
         }
 
-        [Given(@"I give a name of the account ([\w ]+) without moves")]
-        public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountName)
+        [Given(@"I give a url of the account ([\w ]+) without moves")]
+        public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountUrl)
         {
             Account = new Account
             {
-                Name = givenAccountName,
-                Url = MakeUrlFromName(givenAccountName), 
+                Name = givenAccountUrl,
+                Url = givenAccountUrl, 
             };
 
             SA.Admin.CreateAccount(Account);
 
-            AccountName = Account.Name;
+            AccountUrl = Account.Url;
         }
 
-        [Given(@"I give a name of the account ([\w ]+) with moves")]
-        public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountName)
+        [Given(@"I give a url of the account ([\w ]+) with moves")]
+        public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountUrl)
         {
             Account = new Account
             {
-                Name = givenAccountName,
-                Url = MakeUrlFromName(givenAccountName),
+                Name = givenAccountUrl,
+                Url = givenAccountUrl,
             };
 
             SA.Admin.CreateAccount(Account);
@@ -718,9 +689,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, Account.Name, null, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
 
-            AccountName = Account.Name;
+            AccountUrl = Account.Url;
         }
 
         [Then(@"I will receive no account")]
@@ -734,13 +705,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             Assert.IsNotNull(Account);
 
-            if (AccountName != null)
+            if (AccountUrl != null)
             {
-                Assert.AreEqual(AccountName, Account.Name);
-            }
-            else if (accountUrl != null)
-            {
-                Assert.AreEqual(accountUrl, Account.Url);
+                Assert.AreEqual(AccountUrl, Account.Url);
             }
             else
             {

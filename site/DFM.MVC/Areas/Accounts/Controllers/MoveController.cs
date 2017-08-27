@@ -41,7 +41,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
             var model = new MoveCreateEditModel(id.Value, OperationType.Edit);
 
-            if (model.AccountName == model.Account.Name)
+            if (model.ChosenAccountUrl == model.CurrentAccountUrl)
                 return redirectToRightAccount(model.Move);
 
             return View(model);

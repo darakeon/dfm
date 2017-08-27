@@ -27,20 +27,6 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public Account GetAccountByName(String name)
-        {
-            VerifyUser();
-
-            var account = accountService.GetByName(name, Parent.Current.User);
-
-            if (account == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
-
-            return account;
-        }
-
-
-
         public Account GetAccountByUrl(String url)
         {
             VerifyUser();
@@ -60,12 +46,12 @@ namespace DFM.BusinessLogic.Services
             saveOrUpdateAccount(account, OperationType.Creation);
         }
 
-        public void UpdateAccount(Account account, String newName)
+        public void UpdateAccount(Account account, String newUrl)
         {
-            saveOrUpdateAccount(account, OperationType.Edit, newName);
+            saveOrUpdateAccount(account, OperationType.Edit, newUrl);
         }
 
-        private void saveOrUpdateAccount(Account account, OperationType opType, String newName = null)
+        private void saveOrUpdateAccount(Account account, OperationType opType, String newUrl = null)
         {
             VerifyUser();
 
@@ -77,12 +63,12 @@ namespace DFM.BusinessLogic.Services
             {
                 if (opType == OperationType.Edit)
                 {
-                    var oldAccount = GetAccountByName(account.Name);
+                    var oldAccount = GetAccountByUrl(account.Url);
 
                     account.ID = oldAccount.ID;
 
-                    if (!String.IsNullOrEmpty(newName))
-                        account.Name = newName;
+                    if (!String.IsNullOrEmpty(newUrl))
+                        account.Url = newUrl;
                 }
 
                 accountService.SaveOrUpdate(account);
@@ -95,7 +81,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        public void CloseAccount(String name)
+        public void CloseAccount(String url)
         {
             VerifyUser();
 
@@ -103,7 +89,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                accountService.Close(name, Parent.Current.User);
+                accountService.Close(url, Parent.Current.User);
                 CommitTransaction();
             }
             catch
@@ -113,7 +99,7 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
-        public void DeleteAccount(String name)
+        public void DeleteAccount(String url)
         {
             VerifyUser();
 
@@ -121,7 +107,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var account = GetAccountByName(name);
+                var account = GetAccountByUrl(url);
 
                 foreach (var year in account.YearList)
                 {
@@ -143,7 +129,7 @@ namespace DFM.BusinessLogic.Services
                     yearService.Delete(year);
                 }
 
-                accountService.Delete(name, Parent.Current.User);
+                accountService.Delete(url, Parent.Current.User);
 
                 CommitTransaction();
             }

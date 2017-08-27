@@ -18,7 +18,7 @@
         AccountNameRequired = 301,
         AccountUrlRequired = 302,
         AccountUrlInvalid = 303,
-        AccountAlreadyExists = 304,
+        AccountNameAlreadyExists = 304,
         AccountUrlAlreadyExists = 305,
         CantCloseEmptyAccount = 306,
         CantDeleteAccountWithMoves = 307,

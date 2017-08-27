@@ -25,12 +25,12 @@ namespace DFM.BusinessLogic.Services
             this.yearService = yearService;
         }
 
-        
-        
-        internal Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
+
+
+        internal Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            var accountOut = getAccountByName(accountOutName);
-            var accountIn = getAccountByName(accountInName);
+            var accountOut = getAccountByUrl(accountOutUrl);
+            var accountIn = getAccountByUrl(accountInUrl);
 
             var category = Parent.Admin.GetCategoryByName(categoryName);
 
@@ -63,11 +63,11 @@ namespace DFM.BusinessLogic.Services
             return move;
         }
 
-        private Account getAccountByName(String accountName)
+        private Account getAccountByUrl(String accountUrl)
         {
-            return accountName == null
+            return accountUrl == null
                        ? null
-                       : Parent.Admin.GetAccountByName(accountName);
+                       : Parent.Admin.GetAccountByUrl(accountUrl);
         }
 
         private void resetSchedule(Move move)

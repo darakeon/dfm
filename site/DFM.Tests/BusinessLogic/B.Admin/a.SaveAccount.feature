@@ -27,7 +27,7 @@ Scenario: 03. Save Account with name that already exists (E)
 		| Name         | Url          | Yellow | Red |
 		| Account Ba03 | account_ba03 | 200    | 100 |
 	When I try to save the account
-	Then I will receive this core error: AccountAlreadyExists
+	Then I will receive this core error: AccountNameAlreadyExists
 	And the account will not be changed
 
 Scenario: 04. Save Account with too big name (E)

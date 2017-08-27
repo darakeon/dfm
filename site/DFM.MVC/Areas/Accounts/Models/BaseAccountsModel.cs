@@ -11,12 +11,12 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var routeInfo = new RouteInfo();
 
-            AccountUrl = routeInfo.RouteData.Values["accounturl"].ToString();
+            CurrentAccountUrl = routeInfo.RouteData.Values["accounturl"].ToString();
 
-            Account = Admin.GetAccountByUrl(AccountUrl);
+            Account = Admin.GetAccountByUrl(CurrentAccountUrl);
         }
 
-        public String AccountUrl { get; private set; }
+        public String CurrentAccountUrl { get; private set; }
         public Account Account { get; private set; }
 
     }

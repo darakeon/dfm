@@ -85,7 +85,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 2.0.0.0 (All new) - 23?
+VERSÃO 2.0.0.0 (All new) - 30?
 ================================================================================================
 						Consertar esquema de session do NH
 						Tratar FailOnEmailSend em Robot
@@ -95,7 +95,9 @@ VERSÃO 2.0.0.0 (All new) - 23?
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
 						Criar tela de configuração para usuário (Mobile)
-						Trocar [busca por nome] por [busca por url] da conta
+						Colocar amount default 1
+						Colocar ok no alert de erro
+2014-03-03	2014-03-03	Trocar [busca por nome] por [busca por url] da conta
 2014-02-25	2014-03-03	Possibilitar gravar movimentação (Mobile)
 2014-01-25	2014-02-23	Criar tela para gravar movimentação (Mobile)
 2014-01-25	2014-01-25	Criar resumo das contas (Mobile)

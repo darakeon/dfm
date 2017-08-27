@@ -46,7 +46,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         {
             try
             {
-                monthReport = SA.Report.GetMonthReport(AccountName, month, year);
+                monthReport = SA.Report.GetMonthReport(AccountUrl, month, year);
             }
             catch (DFMCoreException e)
             {
@@ -89,7 +89,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         {
             try
             {
-                yearReport = SA.Report.GetYearReport(AccountName, year);
+                yearReport = SA.Report.GetYearReport(AccountUrl, year);
             }
             catch (DFMCoreException e)
             {
@@ -153,14 +153,14 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
                 move.DetailList.Add(detail);
 
-                SA.Money.SaveOrUpdateMove(move, Account.Name, null, Category.Name);
+                SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
             }
         }
 
-        [Given(@"I pass an invalid account name")]
+        [Given(@"I pass an invalid account url")]
         public void GivenIPassAnInvalidAccountName()
         {
-            AccountName = "invalid";
+            AccountUrl = "invalid";
         }
 
         [Given(@"I pass this date")]

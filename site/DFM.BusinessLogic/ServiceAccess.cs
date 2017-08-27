@@ -28,7 +28,7 @@ namespace DFM.BusinessLogic
 
             Safe = new SafeService(this, user, security, ticket);
             Admin = new AdminService(this, account, category, year, month, summary);
-            Money = new MoneyService(this, move, detail, month, schedule);
+            Money = new MoneyService(this, move, detail, schedule);
             Robot = new RobotService(this, schedule, detail);
             Report = new ReportService(this, account, year, month);
 

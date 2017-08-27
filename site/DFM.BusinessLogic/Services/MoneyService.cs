@@ -10,15 +10,13 @@ namespace DFM.BusinessLogic.Services
     {
         private readonly MoveRepository moveService;
         private readonly DetailRepository detailService;
-        private readonly MonthRepository monthService;
         private readonly ScheduleRepository scheduleService;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, MonthRepository monthService, ScheduleRepository scheduleService)
+        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveService, DetailRepository detailService, ScheduleRepository scheduleService)
             : base(serviceAccess)
         {
             this.moveService = moveService;
             this.detailService = detailService;
-            this.monthService = monthService;
             this.scheduleService = scheduleService;
         }
 
@@ -35,18 +33,18 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public Move SaveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
+        public Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             VerifyUser();
 
-            move = saveOrUpdate(move, accountOutName, accountInName, categoryName);
+            move = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
 
             Parent.BaseMove.FixSummaries();
 
             return move;
         }
 
-        private Move saveOrUpdate(Move move, String accountOutName, String accountInName, string categoryName)
+        private Move saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, string categoryName)
         {
             BeginTransaction();
 
@@ -57,7 +55,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
+                move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
 
                 if (Parent.Current.User.SendMoveEmail)
                     Parent.BaseMove.SendEmail(move, operationType);

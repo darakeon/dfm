@@ -1,4 +1,5 @@
-﻿@model DFM.MVC.Areas.Accounts.Models.BaseMoveModel
+﻿@model BaseMoveModel
+
 @using DFM.Entities;
 @using DFM.MVC.Areas.Accounts.Models;
 
@@ -30,10 +31,10 @@
         @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
 
         @Html.ValidationMessageFor(m => m.Nature)
-        @Html.ValidationMessageFor(m => m.AccountName)<br />
+        @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
         
         @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
-        @Html.DropDownListFor(m => m.AccountName, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
+        @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
     </div>
 </div>
     
@@ -79,12 +80,12 @@
         {
             for (var d = 0; d < Model.DetailList.Count; d++)
             {
-                @Html.Partial("../Detail/Add", new DetailAddModel(Model.DetailList[d], d));
+                @Html.Partial("../Detail/Add", new DetailAddModel(Model.DetailList[d], d))
             }
         }
         else
         { 
-            @Html.Partial("../Detail/Add", new DetailAddModel(new Detail(), 0));
+            @Html.Partial("../Detail/Add", new DetailAddModel(new Detail(), 0))
         }
     </tbody>
 </table>

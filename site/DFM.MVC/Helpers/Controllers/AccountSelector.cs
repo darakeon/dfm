@@ -5,24 +5,24 @@ namespace DFM.MVC.Helpers.Controllers
 {
     public class AccountSelector
     {
-        public String AccountInName { get; set; }
-        public String AccountOutName { get; set; }
+        public String AccountInUrl { get; set; }
+        public String AccountOutUrl { get; set; }
 
-        public AccountSelector(MoveNature nature, String currentAccountName, String chosenAccountName)
+        public AccountSelector(MoveNature nature, String currentAccountUrl, String chosenAccountUrl)
         {
             switch (nature)
             {
                 case MoveNature.In:
-                    AccountInName = currentAccountName; 
+                    AccountInUrl = currentAccountUrl; 
                     break;
                 
                 case MoveNature.Out:
-                    AccountOutName = currentAccountName; 
+                    AccountOutUrl = currentAccountUrl; 
                     break;
 
                 case MoveNature.Transfer:
-                    AccountOutName = currentAccountName;
-                    AccountInName = chosenAccountName;
+                    AccountOutUrl = currentAccountUrl;
+                    AccountInUrl = chosenAccountUrl;
                     break;
             }
         }

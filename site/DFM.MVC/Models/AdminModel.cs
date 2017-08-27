@@ -5,11 +5,11 @@ namespace DFM.MVC.Models
 {
     public class AdminModel : BaseModel
     {
-        internal void CloseAccount(String name)
+        internal void CloseAccount(String url)
         {
             try
             {
-                Admin.CloseAccount(name);
+                Admin.CloseAccount(url);
             }
             catch (DFMCoreException)// e)
             {
@@ -26,14 +26,14 @@ namespace DFM.MVC.Models
 
 
         
-        internal void Delete(String name)
+        internal void Delete(String url)
         {
             // TODO: implement messages on page head
             //String message;
 
             try
             {
-                Admin.DeleteAccount(name);
+                Admin.DeleteAccount(url);
                 //else
                 //    account = null;
 

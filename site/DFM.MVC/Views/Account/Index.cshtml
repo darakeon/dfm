@@ -33,13 +33,13 @@ else
             
             
             var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
-            var editUrl = Url.Action("Edit", "Account", new { id = account.Name });
+            var editUrl = Url.Action("Edit", "Account", new { id = account.Url });
 
             var closeLabel = MultiLanguage.Dictionary["Close", "Account"];
-            var closeUrl = Url.Action("Close", new { id = account.Name });
+            var closeUrl = Url.Action("Close", new { id = account.Url });
 
             var deleteLabel = MultiLanguage.Dictionary["Delete", "Account"];
-            var deleteUrl = Url.Action("Delete", new { id = account.Name });
+            var deleteUrl = Url.Action("Delete", new { id = account.Url });
             var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
 
             <tr>

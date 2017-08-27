@@ -53,7 +53,7 @@ namespace DFM.Tests.BusinessLogic
 
 
 
-        protected String MakeUrlFromName(String name)
+        protected static String MakeUrlFromName(String name)
         {
             var regex = new Regex("[^A-Za-z0-9_]");
             var url = regex.Replace(name, "");
@@ -87,11 +87,7 @@ namespace DFM.Tests.BusinessLogic
                     return;
 
                 case ExceptionPossibilities.DisabledUser:
-                        
-                    if (!shouldActivateUser)
-                        return;
-
-                    break;
+                    return;
 
                 default:
                     throw userError;
@@ -112,11 +108,11 @@ namespace DFM.Tests.BusinessLogic
         }
 
 
-        protected Account GetOrCreateAccount(String accountName)
+        protected Account GetOrCreateAccount(String accountUrl)
         {
             try
             {
-                return SA.Admin.GetAccountByName(accountName);
+                return SA.Admin.GetAccountByUrl(accountUrl);
             }
             catch (DFMCoreException e)
             {
@@ -126,12 +122,12 @@ namespace DFM.Tests.BusinessLogic
                 SA.Admin.CreateAccount(
                     new Account
                         {
-                            Name = accountName, 
-                            Url = MakeUrlFromName(accountName), 
+                            Name = accountUrl, 
+                            Url = accountUrl, 
                             User = User
                         });
 
-                return SA.Admin.GetAccountByName(accountName);
+                return SA.Admin.GetAccountByUrl(accountUrl);
             }
         }
 
@@ -263,12 +259,12 @@ namespace DFM.Tests.BusinessLogic
         }
 
 
-        protected static String AccountName
+        protected static String AccountUrl
         {
-            get { return Get<String>("AccountName"); }
-            set { Set("AccountName", value); }
+            get { return Get<String>("AccountUrl"); }
+            set { Set("AccountUrl", value); }
         }
-        
+
         protected static String CategoryName
         {
             get { return Get<String>("CategoryName"); }
@@ -326,11 +322,13 @@ namespace DFM.Tests.BusinessLogic
 
         protected const String UserEmail = "test@dontflymoney.com";
         protected static String UserPassword = "password";
-        protected const String MainAccountName = "first account";
+        protected const String MainAccountUrl = "first_account";
         protected const String MainCategoryName = "first category";
 
-        protected const String AccountOutName = "account out";
-        protected const String AccountInName = "account in";
+        protected const String AccountOutName = "Account Out";
+        protected const String AccountInName = "Account In";
+        protected static String AccountOutUrl = MakeUrlFromName(AccountOutName);
+        protected static String AccountInUrl = MakeUrlFromName(AccountInName);
 
 
 

@@ -12,7 +12,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             var dateMonth = DateFromInt.GetDateMonth(id, Today);
             var dateYear = DateFromInt.GetDateYear(id, Today);
 
-            MoveList = Report.GetMonthReport(AccountUrl, dateMonth, dateYear);
+            MoveList = Report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
             
             Month = dateMonth;
             Year = dateYear;

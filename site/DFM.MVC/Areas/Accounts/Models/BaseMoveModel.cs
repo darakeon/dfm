@@ -31,7 +31,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             if (Date == DateTime.MinValue)
                 Date = Today;
 
-            AccountName = iMove.Nature == MoveNature.Transfer
+            ChosenAccountUrl = iMove.Nature == MoveNature.Transfer
                 ? iMove.AccIn().Name : null;
 
             if (iMove.Category != null)
@@ -82,20 +82,19 @@ namespace DFM.MVC.Areas.Accounts.Models
         {
             var categoryList = Current.User.VisibleCategoryList();
 
-            CategorySelectList = SelectListExtension.CreateSelect(
-                categoryList, mv => mv.Name, mv => mv.Name
-                );
+            CategorySelectList = SelectListExtension
+                .CreateSelect(categoryList, mv => mv.Name, mv => mv.Name);
         }
 
         private void makeAccountTransferList()
         {
             var accountList =
                 Current.User.VisibleAccountList()
-                    .Where(a => a.Name != Account.Name)
+                    .Where(a => a.Url != CurrentAccountUrl)
                     .ToList();
 
             AccountSelectList = SelectListExtension
-                .CreateSelect(accountList, a => a.Name, a => a.Name);
+                .CreateSelect(accountList, a => a.Url, a => a.Name);
         }
 
         private void arrangeDetails()
@@ -154,7 +153,7 @@ namespace DFM.MVC.Areas.Accounts.Models
         public String CategoryName { get; set; }
 
         public SelectList AccountSelectList { get; set; }
-        public String AccountName { get; set; }
+        public String ChosenAccountUrl { get; set; }
 
 
         public Boolean IsDetailed { get; set; }
@@ -170,7 +169,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             try
             {
-                var selector = new AccountSelector(GenericMove.Nature, Account.Name, AccountName);
+                var selector = new AccountSelector(GenericMove.Nature, CurrentAccountUrl, ChosenAccountUrl);
 
                 SaveOrUpdate(selector);
             }

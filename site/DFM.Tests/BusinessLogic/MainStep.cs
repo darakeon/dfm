@@ -19,7 +19,7 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"I have an account")]
         public void GivenIHaveAnAccount()
         {
-            Account = GetOrCreateAccount(MainAccountName);
+            Account = GetOrCreateAccount(MainAccountUrl);
         }
 
         [Given(@"I have a category")]
@@ -28,10 +28,10 @@ namespace DFM.Tests.BusinessLogic
             Category = GetOrCreateCategory(MainCategoryName);
         }
 
-        [Given(@"I pass a valid account name")]
+        [Given(@"I pass a valid account url")]
         public void GivenIPassValidAccountName()
         {
-            AccountName = Account.Name;
+            AccountUrl = Account.Url;
         }
 
         

@@ -58,7 +58,7 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(String id, AccountCreateEditModel model)
         {
-            model.ResetAccountName(OperationType.Edit, id);
+            model.ResetAccountUrl(OperationType.Edit, id);
 
             return createEdit(model);
         }

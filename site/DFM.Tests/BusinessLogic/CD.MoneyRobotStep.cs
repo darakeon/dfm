@@ -13,8 +13,8 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"I have two accounts")]
         public void GivenIHaveTwoAccounts()
         {
-            GetOrCreateAccount(AccountOutName);
-            GetOrCreateAccount(AccountInName);
+            GetOrCreateAccount(AccountOutUrl);
+            GetOrCreateAccount(AccountInUrl);
         }
 
         [Given(@"it has no Details")]
@@ -67,7 +67,7 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has an Account Out")]
         public void GivenItHasAnAccountOut()
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountOut = GetOrCreateAccount(AccountOutUrl);
 
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
@@ -86,7 +86,12 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"it has an unknown Account Out")]
         public void GivenItHasAnUnknownAccountOut()
         {
-            AccountOut = new Account { Name = "unknown", User = User };
+            AccountOut = new Account
+            {
+                Name = "unknown",
+                Url = "unknown",
+                User = User
+            };
         }
 
         [Given(@"it has a closed Account Out")]
@@ -112,16 +117,16 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, AccountOut.Name, null, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
 
-            SA.Admin.CloseAccount(AccountOut.Name);
+            SA.Admin.CloseAccount(AccountOut.Url);
         }
 
 
         [Given(@"it has an Account In")]
         public void GivenItHasAnAccountIn()
         {
-            AccountIn = GetOrCreateAccount(AccountInName);
+            AccountIn = GetOrCreateAccount(AccountInUrl);
 
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
@@ -143,8 +148,8 @@ namespace DFM.Tests.BusinessLogic
             AccountIn = new Account
             {
                 Name = "unknown",
-                Url = MakeUrlFromName("unknown"), 
-                User = User,
+                Url = "unknown",
+                User = User
             };
         }
 
@@ -171,16 +176,16 @@ namespace DFM.Tests.BusinessLogic
 
             move.DetailList.Add(detail);
 
-            SA.Money.SaveOrUpdateMove(move, null, AccountIn.Name, Category.Name);
+            SA.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
 
-            SA.Admin.CloseAccount(AccountIn.Name);
+            SA.Admin.CloseAccount(AccountIn.Url);
         }
 
 
         [Given(@"it has an Account In equal to Out")]
         public void GivenItHasAnAccountInEqualToOut()
         {
-            AccountOut = GetOrCreateAccount(AccountOutName);
+            AccountOut = GetOrCreateAccount(AccountOutUrl);
             AccountIn = AccountOut;
 
             var year = AccountIn[Date.Year, true];

@@ -65,10 +65,10 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             try
             {
-                var accountOutName = AccountOut == null ? null : AccountOut.Name;
-                var accountInName = AccountIn == null ? null : AccountIn.Name;
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
-                SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
+                SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
             }
             catch (DFMCoreException e)
             {

@@ -29,17 +29,17 @@ namespace DFM.BusinessLogic.Services
 
             foreach (var schedule in scheduleList)
             {
-                var accountOutName = schedule.Out == null ? null : schedule.Out.Name;
-                var accountInName = schedule.In == null ? null : schedule.In.Name;
+                var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
+                var accountInUrl = schedule.In == null ? null : schedule.In.Url;
                 var categoryName = schedule.Category.Name;
 
-                addNewMoves(schedule, accountOutName, accountInName, categoryName);
+                addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
             }
 
             Parent.BaseMove.FixSummaries();
         }
 
-        private void addNewMoves(Schedule schedule, String accountOutName, String accountInName, String categoryName)
+        private void addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
             while (schedule.CanRunNow())
             {
@@ -47,19 +47,19 @@ namespace DFM.BusinessLogic.Services
 
                 schedule.LastRun++;
 
-                saveOrUpdateMove(newMove, accountOutName, accountInName, categoryName);
+                saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
 
                 schedule.MoveList.Add(newMove);
             }
         }
 
-        private void saveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
+        private void saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             BeginTransaction();
 
             try
             {
-                Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
+                Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
                 CommitTransaction();
             }
             catch (Exception)
@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutName, String accountInName, String categoryName)
+        public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
             VerifyUser();
 
@@ -87,7 +87,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                linkToEntities(schedule, accountOutName, accountInName, categoryName);
+                linkToEntities(schedule, accountOutUrl, accountInUrl, categoryName);
 
                 schedule = saveOrUpdate(schedule);
 
@@ -121,13 +121,13 @@ namespace DFM.BusinessLogic.Services
             return schedule;
         }
 
-        private void linkToEntities(Schedule schedule, String accountOutName, String accountInName, String categoryName)
+        private void linkToEntities(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            schedule.Out = accountOutName == null
-                ? null : Parent.Admin.GetAccountByName(accountOutName);
+            schedule.Out = accountOutUrl == null
+                ? null : Parent.Admin.GetAccountByUrl(accountOutUrl);
 
-            schedule.In = accountInName == null
-                ? null : Parent.Admin.GetAccountByName(accountInName);
+            schedule.In = accountInUrl == null
+                ? null : Parent.Admin.GetAccountByUrl(accountInUrl);
 
             schedule.Category = Parent.Admin.GetCategoryByName(categoryName);
 
