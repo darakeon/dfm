@@ -1,5 +1,8 @@
 package com.dontflymoney.view;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.view.View;
 
 import com.dontflymoney.api.Request;
@@ -14,7 +17,7 @@ public class LoginActivity extends SmartActivity
 	
 	
 	
-	public void login(View view)
+	public void login(View view) throws JSONException
 	{
 		Request request = new Request("User/Index");
 		
@@ -25,21 +28,26 @@ public class LoginActivity extends SmartActivity
 		
 		if (request.IsSuccess())
 		{
-			goToAccounts();
+			JSONObject result = request.GetResult();
+			
+			if (result.has("error"))
+			{
+				Object error = result.get("error");
+				
+				AlertError(error.toString());
+			}
+			else
+			{
+				Object data = result.get("data");
+				
+				AlertError(data.toString());
+			}
 		}
 		else
 		{
 			AlertError(request.GetError());
 		}
-	}
-
-
-
-	private void goToAccounts()
-	{
-		AlertError("FUCK YEAH!!!");
-	}
-	
+	}	
 	
 
 }

@@ -18,6 +18,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
@@ -30,7 +32,7 @@ public class Request implements Runnable
 	private String url;
 	private HashMap<String, Object> parameters;
 
-	private String result;
+	private JSONObject result;
 	private String error;
 	
 	
@@ -152,17 +154,37 @@ public class Request implements Runnable
             return;
         }
         
+		String json;
+		
         try
         {
-			result = EntityUtils.toString(response.getEntity());
+        	json = EntityUtils.toString(response.getEntity()); 
 		}
         catch (ParseException e)
         {
 			error = "Error on converting result: [parse] " + e.getMessage();
+			return;
 		}
         catch (IOException e)
         {
 			error = "Error on converting result: [io] " + e.getMessage();
+			return;
+		}
+    	
+    	if (json.startsWith("<"))
+    	{
+    		error = "Error on contacting service on url " + response.getLastHeader("Location").getValue();
+    		return;
+    	}
+    	
+    	try
+    	{
+    		result = new JSONObject(json);
+    	}
+        catch (JSONException e)
+        {
+			error = "Error on converting result: [json] " + e.getMessage();
+			return;
 		}
 	}
 	
@@ -173,7 +195,7 @@ public class Request implements Runnable
 		return error == null;
 	}
 	
-	public String GetResult()
+	public JSONObject GetResult()
 	{
 		return result;
 	}
