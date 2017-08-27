@@ -7,7 +7,7 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-    public class Move : IMove
+    public partial class Move : IMove
     {
         public Move()
         {

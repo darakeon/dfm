@@ -4,7 +4,6 @@ using Ak.Generic.Extensions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;

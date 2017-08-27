@@ -74,6 +74,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -101,9 +106,6 @@
     </Reference>
     <Reference Include="System.Web.Helpers">
       <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -327,10 +329,6 @@
     <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
       <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
       <Name>DFM.Email</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">
-      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
-      <Name>DFM.Entities.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>

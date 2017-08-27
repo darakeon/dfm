@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities.Extensions;
 using DFM.Entities;
 
 namespace DFM.MVC.Models

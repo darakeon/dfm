@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Schedule : IMove
+    public partial class Schedule : IMove
     {
         public Schedule()
         {

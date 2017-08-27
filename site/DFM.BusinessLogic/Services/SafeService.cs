@@ -7,7 +7,6 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {

@@ -4,7 +4,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Summary : IEntity
+    public partial class Summary : IEntity
     {
         public Summary()
         {

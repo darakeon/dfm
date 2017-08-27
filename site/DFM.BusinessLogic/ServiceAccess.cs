@@ -1,8 +1,6 @@
 ﻿using DFM.Authentication;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
-using DFM.Entities;
-using DFM.BusinessLogic.Bases;
 
 namespace DFM.BusinessLogic
 {

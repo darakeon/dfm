@@ -1,7 +1,7 @@
 ﻿using System;
 using Ak.Generic.DB;
 
-namespace DFM.Entities.Bases
+namespace DFM.Entities.Extensions
 {
     public static class EntityExtension
     {

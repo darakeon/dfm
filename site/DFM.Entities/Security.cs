@@ -4,7 +4,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Security : IEntity
+    public partial class Security : IEntity
     {
         public virtual Int32 ID { get; set; }
         

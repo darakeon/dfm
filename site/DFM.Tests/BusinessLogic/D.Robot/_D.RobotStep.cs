@@ -2,7 +2,6 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using TechTalk.SpecFlow;

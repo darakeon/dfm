@@ -5,7 +5,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions
 {
-    public static class GenericMoveExtension
+    public static class MoveExtension
     {
         public static Boolean IsDetailed(this IMove move)
         {

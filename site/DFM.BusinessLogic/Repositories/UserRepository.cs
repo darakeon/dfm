@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {

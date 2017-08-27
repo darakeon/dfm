@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Ak.MVC.Cookies;
 using DFM.Entities;
-using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {

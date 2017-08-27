@@ -6,7 +6,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public class Year : ISummarizable
+    public partial class Year : ISummarizable
     {
         public Year()
         {

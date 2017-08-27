@@ -2,7 +2,6 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

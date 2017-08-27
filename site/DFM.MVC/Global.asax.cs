@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +13,6 @@ using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
-using DFM.Repositories;
 using DFM.Repositories.Mappings;
 using log4net.Config;
 

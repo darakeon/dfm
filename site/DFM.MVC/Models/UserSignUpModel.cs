@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models

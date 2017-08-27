@@ -35,27 +35,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
-    <Compile Include="Bases\EntityExtension.cs" />
+    <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Bases\IMove.cs" />
     <Compile Include="Bases\ISummarizable.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Category+.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Detail.cs" />
+    <Compile Include="Detail+.cs" />
     <Compile Include="Enums\AccountSign.cs" />
     <Compile Include="Enums\MoveNature.cs" />
     <Compile Include="Enums\ScheduleFrequency.cs" />
     <Compile Include="Enums\SecurityAction.cs" />
     <Compile Include="Enums\SummaryNature.cs" />
+    <Compile Include="Extensions\MoveExtension.cs" />
     <Compile Include="Month.cs" />
+    <Compile Include="Month+.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Move+.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule.cs" />
+    <Compile Include="Schedule+.cs" />
     <Compile Include="Security.cs" />
+    <Compile Include="Security+.cs" />
+    <Compile Include="Extensions\SummarizableExtension.cs" />
     <Compile Include="Summary.cs" />
+    <Compile Include="Summary+.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="User+.cs" />
     <Compile Include="Year.cs" />
+    <Compile Include="Year+.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

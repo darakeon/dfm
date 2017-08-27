@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 
 namespace DFM.Entities
 {
-    public class Month : ISummarizable
+    public partial class Month : ISummarizable
     {
         public Month()
         {

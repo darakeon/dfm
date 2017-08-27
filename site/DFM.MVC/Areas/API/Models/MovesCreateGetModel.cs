@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.MVC.Areas.API.Helpers;
 
 namespace DFM.MVC.Areas.API.Models

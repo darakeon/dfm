@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities", "DFM.Entities\DFM.Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities.Extensions", "DFM.Entities.Extensions\DFM.Entities.Extensions.csproj", "{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Email", "DFM.Email\DFM.Email.csproj", "{B586AB4F-74BD-4E49-B584-57F624522C45}"
 EndProject
@@ -31,9 +31,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = DFM.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -53,16 +50,6 @@ Global
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Release|x86.ActiveCfg = Release|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}.Release|x86.ActiveCfg = Release|Any CPU
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B586AB4F-74BD-4E49-B584-57F624522C45}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -156,5 +143,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DFM.vsmdi
 	EndGlobalSection
 EndGlobal

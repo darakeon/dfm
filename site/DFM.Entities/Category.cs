@@ -3,7 +3,7 @@ using Ak.Generic.DB;
 
 namespace DFM.Entities
 {
-    public class Category : IEntity
+    public partial class Category : IEntity
     {
         public Category()
         {

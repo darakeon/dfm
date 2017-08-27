@@ -411,10 +411,6 @@
       <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
       <Name>DFM.Email</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Entities.Extensions\DFM.Entities.Extensions.csproj">
-      <Project>{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}</Project>
-      <Name>DFM.Entities.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
       <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
       <Name>DFM.Entities</Name>

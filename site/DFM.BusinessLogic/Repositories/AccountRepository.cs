@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using DFM.Entities;
-using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
 using NHibernate;
 

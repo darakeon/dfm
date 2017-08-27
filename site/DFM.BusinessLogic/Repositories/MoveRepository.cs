@@ -6,8 +6,6 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Entities.Extensions;
-using DFM.Generic;
 using DFM.Multilanguage.Helpers;
 
 namespace DFM.BusinessLogic.Repositories

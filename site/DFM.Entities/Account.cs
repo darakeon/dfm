@@ -5,7 +5,7 @@ using Ak.Generic.DB;
 
 namespace DFM.Entities
 {
-    public class Account : IEntity
+    public partial class Account : IEntity
     {
         public Account()
         {

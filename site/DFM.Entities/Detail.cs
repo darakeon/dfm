@@ -5,7 +5,7 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-    public class Detail : IEntity
+    public partial class Detail : IEntity
     {
         public Detail()
         {

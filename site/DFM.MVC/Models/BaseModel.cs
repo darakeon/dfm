@@ -2,7 +2,6 @@
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
-using DFM.Entities.Extensions;
 
 namespace DFM.MVC.Models
 {

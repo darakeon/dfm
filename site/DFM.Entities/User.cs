@@ -4,7 +4,7 @@ using Ak.Generic.DB;
 
 namespace DFM.Entities
 {
-    public class User : IEntity
+    public partial class User : IEntity
     {
         public User()
         {
