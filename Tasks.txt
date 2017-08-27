@@ -36,6 +36,7 @@ VERSÃO 3.0.0.0
 						Relacionar Conta e Categoria (combo)
 						Unir Categorias
 						Possibilitar reabrir conta
+						Relatório mensal: selecione para mostrar soma
 
 VERSÃO 2.2.0.0
 ================================================================================================
