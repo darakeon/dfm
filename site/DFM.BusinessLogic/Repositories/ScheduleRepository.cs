@@ -33,6 +33,9 @@ namespace DFM.BusinessLogic.Repositories
         {
             Validate(schedule);
 
+            if (schedule.Active)
+                TestCategory(schedule);
+
             if (!schedule.Boundless && schedule.Times <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
         }

@@ -19,9 +19,14 @@ namespace DFM.BusinessLogic.Repositories
         internal Move SaveOrUpdate(Move move)
         {
             //Keep this order, weird errors happen if invert
-            return SaveOrUpdate(move, Validate, Complete);
+            return SaveOrUpdate(move, validate, Complete);
         }
 
+        private static void validate(Move move)
+        {
+            Validate(move);
+            TestCategory(move);
+        }
 
         #region PlaceAccountsInMove
         internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)

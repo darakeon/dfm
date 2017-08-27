@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.Repositories;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -57,10 +58,19 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [AfterScenario]
-        public void Logoff()
+        public void CleanSchedulesAndLogoff()
         {
-            if (Current.IsAuthenticated)
-                Current.Clean();
+            if (!Current.IsAuthenticated)
+                return;
+
+            var pendentSchedules = Current.User.ScheduleList.Where(s => s.Active);
+
+            foreach (var pendentSchedule in pendentSchedules)
+            {
+                SA.Robot.DisableSchedule(pendentSchedule.ID);
+            }
+
+            Current.Clean();
         }
 
 

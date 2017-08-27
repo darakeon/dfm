@@ -24,7 +24,6 @@ namespace DFM.BusinessLogic.Bases
             testNature(move);
             testDetailList(move);
             testAccounts(move);
-            testCategory(move);
         }
 
         private static void testDescription(T move)
@@ -98,7 +97,7 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        private static void testCategory(T move)
+        protected static void TestCategory(T move)
         {
             if (move.User.Config.UseCategories)
             {
