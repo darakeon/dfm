@@ -1,4 +1,48 @@
 ALTER TABLE PageLog CHANGE COLUMN IP IP VARCHAR(50) NOT NULL;
 
+--USER
+CREATE TABLE Config
+(
+	ID INT NOT NULL AUTO_INCREMENT,
+	Language VARCHAR(5) DEFAULT 'pt-BR' NOT NULL,
+	TimeZone VARCHAR(200) NOT NULL DEFAULT 'E. South America Standard Time',
+	SendMoveEmail TINYINT(1) NOT NULL DEFAULT 0,
+	UseCategories TINYINT(1) NOT NULL DEFAULT 1,
+	User_ID INTEGER NOT NULL,
+	PRIMARY KEY (ID),
+	UNIQUE (User_ID)
+);
+
+INSERT INTO Config (Language, TimeZone, SendMoveEmail, User_ID)
+	SELECT Language, TimeZone, SendMoveEmail, ID
+		FROM User
+	
 ALTER TABLE User
-	Add TimeZone varchar(200) not null default 'E. South America Standard Time'
+	DROP Language,
+	DROP TimeZone,
+	DROP SendMoveEmail,
+	ADD Config_ID INTEGER NULL,
+	ADD UNIQUE (Config_ID);
+
+UPDATE User
+	INNER JOIN Config
+	SET User.Config_ID = Config.ID
+	WHERE User.ID = Config.User_ID
+		AND User.Config_ID IS NULL;
+
+ALTER TABLE User
+	MODIFY COLUMN Config_ID INTEGER NOT NULL;
+
+ALTER TABLE User
+	ADD INDEX (Config_ID), 
+	ADD CONSTRAINT FK_User_Config
+	FOREIGN KEY (Config_ID)
+	REFERENCES Config (ID);
+
+ALTER TABLE Config
+	DROP FOREIGN KEY FK_Config_User;
+
+ALTER TABLE Config
+	DROP COLUMN User_ID,
+	DROP INDEX User_ID;
+

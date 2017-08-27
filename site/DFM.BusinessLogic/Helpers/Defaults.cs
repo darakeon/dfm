@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DFM.BusinessLogic.Helpers
 {
     public static class Defaults
     {
-        public const String UserLanguage = "pt-BR";
-        public const String UserTimeZone = "E. South America Standard Time";
+        public const String ConfigLanguage = "pt-BR";
+        public const String ConfigTimeZone = "E. South America Standard Time";
+        public const Boolean ConfigSendMoveEmail = false;
+        public const Boolean ConfigUseCategories = true;
+
     }
 }

@@ -37,6 +37,7 @@
     <Compile Include="Bases\IMove.cs" />
     <Compile Include="Bases\ISummarizable.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Detail.cs" />
     <Compile Include="Enums\AccountSign.cs" />
     <Compile Include="Enums\MoveNature.cs" />

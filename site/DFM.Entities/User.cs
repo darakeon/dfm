@@ -13,6 +13,7 @@ namespace DFM.Entities
 
         private void init()
         {
+            Config = new Config();
             AccountList = new List<Account>();
             CategoryList = new List<Category>();
             ScheduleList = new List<Schedule>();
@@ -27,9 +28,7 @@ namespace DFM.Entities
         public virtual DateTime Creation { get; set; }
         public virtual Boolean Active { get; set; }
 
-        public virtual String Language { get; set; }
-        public virtual String TimeZone { get; set; }
-        public virtual Boolean SendMoveEmail { get; set; }
+        public virtual Config Config { get; set; }
 
         public virtual IList<Account> AccountList { get; set; }
         public virtual IList<Category> CategoryList { get; set; }

@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Helpers
         public const Int16 TicketKey = 52;
         public const Int16 UserPassword = 50;
         public const Int16 UserEmail = 50;
-        public const Int16 UserLanguage = 5;
+        public const Int16 ConfigLanguage = 5;
 
     }
 }

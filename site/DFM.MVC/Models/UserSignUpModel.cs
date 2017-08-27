@@ -12,7 +12,13 @@ namespace DFM.MVC.Models
     {
         public UserSignUpModel()
         {
-            User = new User { Language = MultiLanguage.Language };
+            User = new User
+            {
+                Config = new Config
+                {
+                    Language = MultiLanguage.Language
+                }
+            };
         }
 
         public User User { get; set; }

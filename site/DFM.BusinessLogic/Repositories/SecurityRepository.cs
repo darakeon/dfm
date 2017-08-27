@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Repositories
                                 { "Date", security.Expire.AddDays(-1).ToShortDateString() }
                             };
 
-            var format = new Format(security.User.Language, security.Action);
+            var format = new Format(security.User.Config.Language, security.Action);
             
 
             var fileContent = format.Layout.Format(dic);

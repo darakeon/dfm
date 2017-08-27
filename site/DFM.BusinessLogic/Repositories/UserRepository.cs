@@ -112,9 +112,13 @@ namespace DFM.BusinessLogic.Repositories
             if (!userIsNew) return;
 
             user.Active = false;
+            
             // TODO: update this to set the person browser language
-            user.Language = Defaults.UserLanguage;
-            user.TimeZone = Defaults.UserTimeZone;
+            user.Config.Language = Defaults.ConfigLanguage;
+            user.Config.TimeZone = Defaults.ConfigTimeZone;
+            user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
+            user.Config.UseCategories = Defaults.ConfigUseCategories;
+
             user.Creation = DateTime.UtcNow;
             user.Password = encrypt(user.Password);
         }

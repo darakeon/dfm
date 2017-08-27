@@ -24,7 +24,7 @@ else
 
         @foreach (var account in Model.AccountList)
         {
-            var language = account.User.Language;
+            var language = account.User.Config.Language;
 
             var endMonth = account.EndDate.Value.Month;
             var endYear = account.EndDate.Value.Year;

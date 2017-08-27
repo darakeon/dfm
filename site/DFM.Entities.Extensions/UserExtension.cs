@@ -15,7 +15,7 @@ namespace DFM.Entities.Extensions
 
         public static DateTime Now(this User user)
         {
-            return DateTimeGMT.Now(user.TimeZone);
+            return DateTimeGMT.Now(user.Config.TimeZone);
         }
 
         public static Boolean HasPendentActivation(this User user)

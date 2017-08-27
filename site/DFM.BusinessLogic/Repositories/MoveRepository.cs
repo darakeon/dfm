@@ -53,12 +53,12 @@ namespace DFM.BusinessLogic.Repositories
         {
             var user = move.User;
 
-            if (!user.SendMoveEmail) return;
+            if (!user.Config.SendMoveEmail) return;
 
             var accountInName = getAccountName(move.AccIn());
             var accountOutName = getAccountName(move.AccOut());
 
-            var format = new Format(user.Language, move.Nature);
+            var format = new Format(user.Config.Language, move.Nature);
 
             var dic = new Dictionary<String, String>
                             {
@@ -68,7 +68,7 @@ namespace DFM.BusinessLogic.Repositories
                                 { "Date", move.Date.ToShortDateString() },
                                 { "Category", move.Category.Name },
                                 { "Description", move.Description },
-                                { "Value", move.Value().ToMoney(user.Language) },
+                                { "Value", move.Value().ToMoney(user.Config.Language) },
                                 { "Details", detailsHTML(move) },
                                 { "Action", action }
                             };
@@ -93,7 +93,7 @@ namespace DFM.BusinessLogic.Repositories
         private static String detailsHTML(Move move)
         {
             var details = new StringBuilder();
-            var language = move.User.Language;
+            var language = move.User.Config.Language;
 
             foreach (var detail in move.DetailList)
             {

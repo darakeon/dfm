@@ -38,7 +38,7 @@ else
 
         @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
         {
-            var language = move.User.Language;
+            var language = move.User.Config.Language;
             
             <tr>
                 <td>@move.GetDescriptionDetailed() </td>
