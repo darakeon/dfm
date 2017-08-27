@@ -2,9 +2,10 @@
 
 @{
     var value = Model.Account.Sum();
-    var signClass = value < 0 ? "out" : "in";
+    var negative = value.IsNegative();
+    var signClass = negative ? "out" : "in";
 
-    value *= (value < 0 ? -1 : 1);
+    value *= negative ? -1 : 1;
     var valueToShow = value.ToMoney(Model.Language);
 }
 

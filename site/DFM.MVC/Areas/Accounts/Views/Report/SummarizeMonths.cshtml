@@ -36,10 +36,11 @@
         @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
         {
             var sum = month.Sum();
-            
-            var sign = sum < 0 ? "out" : "in";
-            
-            sum = sum > 0 ? sum : -sum;
+
+            var negative = sum.IsNegative();
+            var sign = negative ? "out" : "in";
+
+            sum *= negative ? -1 : 1;
             
             <tr>
                 <td>

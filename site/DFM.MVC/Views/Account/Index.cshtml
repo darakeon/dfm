@@ -24,7 +24,7 @@ else
         {
             var movesSum = account.Sum();
 
-            var negative = movesSum < 0;
+            var negative = movesSum.IsNegative();
             var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
 
             var sign = account.Sign();
