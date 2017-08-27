@@ -4,7 +4,7 @@ using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.Android
 {
-    public class JsonAreaRegistration : AreaRegistration
+    public class APIAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
