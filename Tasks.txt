@@ -26,6 +26,7 @@ VERSÃO 3.1.0.0 (Big change) - 7?
 					>>>	Edição de Perfil de usuário
 					>>>	Colocar nome (ou apelido) no sign up
 						Separar dados adicionais de Conta em Options e User em Config
+						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
 
 VERSÃO 3.0.0.0 (All new) - 8?
 ================================================================================================
