@@ -43,11 +43,19 @@ namespace DFM.BusinessLogic.Repositories
 
             var fileContent = format.Layout.Format(dic);
 
-            new Sender()
+            var sender = new Sender()
                 .To(security.User.Email)
                 .Subject(format.Subject)
-                .Body(fileContent)
-                .Send();
+                .Body(fileContent);
+
+            try
+            {
+                sender.Send();
+            }
+            catch (DFMEmailException)
+            {
+                DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+            }
 
             security.Sent = true;
             SaveOrUpdate(security);

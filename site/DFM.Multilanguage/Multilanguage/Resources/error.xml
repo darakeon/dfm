@@ -20,7 +20,7 @@
     <DuplicatedAccountName text="There are two accounts with same name." />
     <DuplicatedAccountUrl text="There are two accounts with same url." />
     <DuplicatedName text="There is more than one account with same name." />
-    <FailOnEmailSend text="Fail on trying to send. Verify the e-mail address." />
+    <FailOnEmailSend text="Fail on trying to send. Verify the e-mail address. If the error persists, contact us or try again later." />
     <InMoveWrong text="An In Move need to have an In Account, and can't have an Out Account." />
     <InvalidCategory text="Invalid Category" />
     <InvalidAccount text="Invalid Account" />
@@ -90,7 +90,7 @@
     <DuplicatedAccountName text="Há duas contas com o mesmo nome." />
     <DuplicatedAccountUrl text="Há duas contas com a mesma url." />
     <DuplicatedName text="Há mais de uma Conta com o mesmo nome." />
-    <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail." />
+    <FailOnEmailSend text="Falha ao tentar enviar. Verifique o endereço de e-mail. Se o erro persistir, entre em contato conosco ou tente novamente mais tarde." />
     <InMoveWrong text="Uma Movimentação de Entrada precisa ter uma Conta de Entrada, e não pode ter uma Conta de Saída." />
     <InvalidCategory text="Categoria Inválida" />
     <InvalidAccount text="Conta inválida" />

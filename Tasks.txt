@@ -90,7 +90,6 @@ VERSÃO 2.0.1.1 (System) - 10?
 						Aumentar versão da API Android de acordo com downloads do DFM
 						Arrumar clique do menu (clique botões direito e meio do mouse)
 						Colocar botão CANCEL em Settings e Move (mobile)
-						Verificar se password reset inativa usuário
 						Rever layout empty table
 						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 						Implementar necessidade de assinar TERMO
@@ -114,7 +113,8 @@ T						Criar teste unitário agendamento meio antes / meio depois
 H						Travar schedule de conta fechada / deletada
 S						Security desativa os anteriores
 S						Desativar user a cada 5 senhas erradas
-B						Tratar erro ao enviar e-mail (Security)
+S						Verificar se password reset inativa usuário
+2014-07-06	2014-07-06	Tratar erro ao enviar e-mail (Security)
 2014-07-06	2014-07-06	Consertar problema ao pedir relatório que ainda não tem Month/Year
 2014-07-05	2014-07-06	Mover itens genéricos para a Ak
 2014-06-29	2014-06-29	Corrigir para que movimentação sem categoria conserte realmente os summaries

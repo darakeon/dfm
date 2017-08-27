@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -25,7 +27,9 @@ namespace DFM.MVC.Models
             catch (DFMCoreException e)
             {
                 if (e.Type == ExceptionPossibilities.DisabledUser)
-                    Safe.SendUserVerify(Email);
+                {
+                    e = sendUserVerify() ?? e;
+                }
 
                 return e;
             }
@@ -33,7 +37,18 @@ namespace DFM.MVC.Models
             return null;
         }
 
+        private DFMCoreException sendUserVerify()
+        {
+            try
+            {
+                Safe.SendUserVerify(Email);
+            }
+            catch (DFMCoreException e)
+            {
+                return e;
+            }
 
-
+            return null;
+        }
     }
 }
