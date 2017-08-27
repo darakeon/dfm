@@ -65,9 +65,29 @@ namespace DFM.BusinessLogic.Repositories
             SaveOrUpdate(schedule);
         }
 
-        
 
-        
+
+        internal void Disable(int id, User user)
+        {
+            var schedule = getById(id, user);
+
+            if (schedule == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
+
+            if (!schedule.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledSchedule);
+
+            schedule.Active = false;
+            SaveOrUpdate(schedule);
+        }
+
+        private Schedule getById(Int32 id, User user)
+        {
+            return SingleOrDefault(
+                    a => a.ID == id
+                         && a.User.ID == user.ID
+                );
+        }
 
 
 

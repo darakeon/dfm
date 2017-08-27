@@ -226,48 +226,43 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table1.AddRow(new string[] {
-                        "Move Ce9C",
-                        "2014-03-23",
-                        "Out",
-                        "10"});
-#line 62
- testRunner.Given("I have this future move to create", ((string)(null)), table1);
-#line 65
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table2.AddRow(new string[] {
+            table1.AddRow(new string[] {
+                        "Move Ce9C",
+                        "2014-03-23",
+                        "Out",
+                        "10",
                         "1",
                         "False",
                         "Monthly",
                         "False"});
+#line 62
+ testRunner.Given("I have this schedule to create", ((string)(null)), table1);
+#line 65
+ testRunner.And("it has no Details");
 #line 66
- testRunner.And("the move has this schedule", ((string)(null)), table2);
-#line 69
  testRunner.And("it has a Category");
-#line 70
+#line 67
  testRunner.And("it has an Account Out");
-#line 71
+#line 68
  testRunner.And("it has no Account In");
-#line 72
+#line 69
  testRunner.And("I enable Categories use");
-#line 73
+#line 70
  testRunner.And("I save the schedule");
-#line 74
+#line 71
  testRunner.And("I run the scheduler and get the move");
-#line 75
+#line 72
  testRunner.And("I disable Categories use");
-#line 76
+#line 73
  testRunner.When("I try to delete the move");
-#line 77
+#line 74
  testRunner.Then("I will receive no core error");
-#line 78
+#line 75
  testRunner.And("the accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -278,55 +273,50 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _9D_DeleteMoveFromScheduleWithoutCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9D. Delete move from schedule without Category", ((string[])(null)));
-#line 80
+#line 77
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table3.AddRow(new string[] {
-                        "Move Ce9D",
-                        "2014-03-23",
-                        "Out",
-                        "10"});
-#line 81
- testRunner.Given("I have this future move to create", ((string)(null)), table3);
-#line 84
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table4.AddRow(new string[] {
+            table2.AddRow(new string[] {
+                        "Move Ce9D",
+                        "2014-03-23",
+                        "Out",
+                        "10",
                         "1",
                         "False",
                         "Monthly",
                         "False"});
-#line 85
- testRunner.And("the move has this schedule", ((string)(null)), table4);
-#line 88
+#line 78
+ testRunner.Given("I have this schedule to create", ((string)(null)), table2);
+#line 81
+ testRunner.And("it has no Details");
+#line 82
  testRunner.And("it has no Category");
-#line 89
+#line 83
  testRunner.And("it has an Account Out");
-#line 90
+#line 84
  testRunner.And("it has no Account In");
-#line 91
+#line 85
  testRunner.And("I disable Categories use");
-#line 92
+#line 86
  testRunner.And("I save the schedule");
-#line 93
+#line 87
  testRunner.And("I run the scheduler and get the move");
-#line 94
+#line 88
  testRunner.And("I enable Categories use");
-#line 95
+#line 89
  testRunner.When("I try to delete the move");
-#line 96
+#line 90
  testRunner.Then("I will receive no core error");
-#line 97
+#line 91
  testRunner.And("the accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();

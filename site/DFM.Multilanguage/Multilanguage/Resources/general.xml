@@ -40,15 +40,13 @@
     <Categories text="Categories" />
     <Detail text="Detail" />
     <Nature text="Nature" />
+    <Schedule text="Schedule" />
+    <Schedules text="Schedules" />
 
     <!--Enums-->
     <In text="In" />
     <Out text="Out" />
     <Transfer text="Transfer" />
-    <Home text="Home" />
-    <Bank text="Bank" />
-    <Card text="Card" />
-    <Debt text="Debt" />
 
     <!--Index-->
     <Index_Welcome text="Welcome!" />
@@ -104,15 +102,13 @@
     <Categories text="Categorias" />
     <Detail text="Detalhe" />
     <Nature text="Natureza" />
+    <Schedule text="Schedule" />
+    <Schedules text="Schedules" />
 
     <!--Enums-->
     <In text="Entrada" />
     <Out text="Saída" />
     <Transfer text="Transferência" />
-    <Home text="Casa" />
-    <Bank text="Banco" />
-    <Card text="Cartão" />
-    <Debt text="Dívida" />
 
     <!--Index-->
     <Index_Welcome text="Bem-vindo!" />

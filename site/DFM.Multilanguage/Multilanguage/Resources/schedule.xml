@@ -12,6 +12,8 @@
     <Times text="times" />
     <Repeat text="Repeat" />
     <ShowInstallment text="Show number of installment on Move description" />
+    <NoSchedules text="There is no schedules" />
+    <ConfirmDeleteSchedule text="Do you really want to DELETE Schedule '{0}'?" />
   </en-US>
   <pt-BR>
     <Amount text="Qte" />
@@ -25,5 +27,7 @@
     <Times text="vezes" />
     <Repeat text="Repetir" />
     <ShowInstallment text="Exibir número da parcela na descrição da Movimentação" />
+    <NoSchedules text="Não há agendamentos" />
+    <ConfirmDeleteSchedule text="Realmente deseja APAGAR a o Agendamento '{0}'?" />
   </pt-BR>
 </schedule>

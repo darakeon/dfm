@@ -55,6 +55,8 @@
         ScheduleFrequencyNotRecognized = 602,
         //ScheduleWithNoMoves = 603,
         ScheduleTimesCantBeZero = 604,
+        InvalidSchedule = 605,
+        DisabledSchedule = 606,
 
         SummaryNatureNotFound = 701,
 

@@ -201,5 +201,26 @@ namespace DFM.BusinessLogic.Services
         }
 
 
+
+        public void DisableSchedule(Int32 id)
+        {
+            Parent.Safe.VerifyUser();
+
+            BeginTransaction();
+
+            try
+            {
+                scheduleRepository.Disable(id, Parent.Current.User);
+                CommitTransaction();
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
+        }
+
+
+
     }
 }

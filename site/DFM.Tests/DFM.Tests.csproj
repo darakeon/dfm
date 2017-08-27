@@ -166,6 +166,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="BusinessLogic\CD.MoneyRobotStep.cs" />
+    <Compile Include="BusinessLogic\D.Robot\c.DisableSchedule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>c.DisableSchedule.feature</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
     <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
@@ -279,6 +284,10 @@
     <None Include="BusinessLogic\D.Robot\b.RunSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.RunSchedule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\D.Robot\c.DisableSchedule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>c.DisableSchedule.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\E.Report\b.GetYearReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

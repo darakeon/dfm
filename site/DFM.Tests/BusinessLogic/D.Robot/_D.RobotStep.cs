@@ -13,38 +13,18 @@ namespace DFM.Tests.BusinessLogic.D.Robot
     [Binding]
     public class RobotStep : BaseStep
     {
-        #region SaveSchedule
-        [Given(@"I have this future move to create")]
-        public void GivenIHaveThisMoveToCreate(Table table)
+        #region Variables
+        private static Int32 id
         {
-            var moveData = table.Rows[0];
-
-            Schedule = new Schedule { Description = moveData["Description"] };
-
-            if (!String.IsNullOrEmpty(moveData["Nature"]))
-                Schedule.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
-
-            if (!String.IsNullOrEmpty(moveData["Date"]))
-                Schedule.Date = DateTime.Parse(moveData["Date"]);
-
-            // TODO: use this, delete above
-            //if (moveData["Value"] != null)
-            //    move.Value = Int32.Parse(moveData["Value"]);
-
-            if (!String.IsNullOrEmpty(moveData["Value"]))
-            {
-                var detail = new Detail
-                {
-                    Description = Schedule.Description,
-                    Amount = 1,
-                    Value = Int32.Parse(moveData["Value"])
-                };
-
-                Schedule.DetailList.Add(detail);
-            }
+            get { return Get<Int32>("ID"); }
+            set { Set("ID", value); }
         }
+        #endregion
 
-        [Given(@"the future move has this details")]
+
+
+        #region SaveSchedule
+        [Given(@"the schedule has this details")]
         public void GivenTheFutureMoveHasThisDetails(Table table)
         {
             foreach (var detailData in table.Rows)
@@ -55,8 +35,8 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             }
         }
 
-        [Given(@"the move has no schedule")]
-        public void GivenTheMoveHasNoSchedule()
+        [Given(@"I have no schedule")]
+        public void GivenIHaveNoSchedule()
         {
             Schedule = null;
         }
@@ -115,15 +95,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             }
         }
 
-        [Given(@"I save the schedule")]
-        public void GivenISaveTheSchedule()
-        {
-            var accountOutName = AccountOut == null ? null : AccountOut.Name;
-            var accountInName = AccountIn == null ? null : AccountIn.Name;
-
-            SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
-        }
-
         [When(@"I try to run the scheduler")]
         public void WhenITryToRunTheScheduler()
         {
@@ -178,11 +149,82 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         }
         #endregion
 
+        #region DisableSchedule
+        [Given(@"I pass an id of Schedule that doesn't exist")]
+        public void GivenIPassAnIdOfScheduleThatDoesnTExist()
+        {
+            id = 0;
+        }
+
+        [Given(@"I already have disabled the Schedule")]
+        public void GivenIAlreadyHaveDisabledTheSchedule()
+        {
+            SA.Robot.DisableSchedule(id);
+        }
+
+        [When(@"I try to disable the Schedule")]
+        public void WhenITryToDisableTheSchedule()
+        {
+            try
+            {
+                SA.Robot.DisableSchedule(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+        }
+
+        [Then(@"the Schedule will be disabled")]
+        public void ThenTheScheduleWillBeDisabled()
+        {
+            Error = null;
+
+            try
+            {
+                SA.Robot.DisableSchedule(id);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(ExceptionPossibilities.DisabledSchedule, Error.Type);
+        }
+        #endregion
+
+
+
         #region MoreThanOne
-        [Given(@"the move has this schedule")]
-        public void GivenTheMoveHasThisSchedule(Table table)
+        [Given(@"I have this schedule to create")]
+        public void GivenIHaveThisMoveToCreate(Table table)
         {
             var scheduleData = table.Rows[0];
+
+            Schedule = new Schedule { Description = scheduleData["Description"] };
+
+            if (!String.IsNullOrEmpty(scheduleData["Nature"]))
+                Schedule.Nature = EnumX.Parse<MoveNature>(scheduleData["Nature"]);
+
+            if (!String.IsNullOrEmpty(scheduleData["Date"]))
+                Schedule.Date = DateTime.Parse(scheduleData["Date"]);
+
+            // TODO: use this, delete above
+            //if (moveData["Value"] != null)
+            //    move.Value = Int32.Parse(moveData["Value"]);
+
+            if (!String.IsNullOrEmpty(scheduleData["Value"]))
+            {
+                var detail = new Detail
+                {
+                    Description = Schedule.Description,
+                    Amount = 1,
+                    Value = Int32.Parse(scheduleData["Value"])
+                };
+
+                Schedule.DetailList.Add(detail);
+            }
 
             if (!String.IsNullOrEmpty(scheduleData["Times"]))
                 Schedule.Times = Int16.Parse(scheduleData["Times"]);
@@ -195,6 +237,17 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 
             if (!String.IsNullOrEmpty(scheduleData["ShowInstallment"]))
                 Schedule.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
+        }
+
+        [Given(@"I save the schedule")]
+        public void GivenISaveTheSchedule()
+        {
+            var accountOutName = AccountOut == null ? null : AccountOut.Name;
+            var accountInName = AccountIn == null ? null : AccountIn.Name;
+
+            var schedule = SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
+
+            id = schedule.ID;
         }
         #endregion
 

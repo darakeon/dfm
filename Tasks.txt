@@ -110,7 +110,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Colocar língua padrão do usuário como língua do browser dele
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
-						Listar schedule / permitir parar ("deletar") schedule
+2014-04-14	2014-04-14	Listar schedule / permitir parar ("deletar") schedule
 2014-04-14	2014-04-14	Label do limite de agendamento / Label do detalhado
 2014-04-14	2014-04-14	Mostrar data da move em modo paisagem
 2014-04-08	2014-04-14	Trocar língua do mobile para língua do usuário

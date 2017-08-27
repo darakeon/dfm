@@ -59,13 +59,10 @@ Scenario: 9B. Delete with e-mail sender system ok
 	And the accountIn value will change in -10
 
 Scenario: 9C. Delete move from schedule with Category
-	Given I have this future move to create
-		| Description | Date       | Nature | Value |
-		| Move Ce9C   | 2014-03-23 | Out    | 10    |
+	Given I have this schedule to create
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Move Ce9C   | 2014-03-23 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details
-	And the move has this schedule
-		| Times | Boundless | Frequency | ShowInstallment |
-		| 1     | False     | Monthly   | False           |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -78,13 +75,10 @@ Scenario: 9C. Delete move from schedule with Category
 	And the accountOut value will not change
 
 Scenario: 9D. Delete move from schedule without Category
-	Given I have this future move to create
-		| Description | Date       | Nature | Value |
-		| Move Ce9D   | 2014-03-23 | Out    | 10    |
+	Given I have this schedule to create
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Move Ce9D   | 2014-03-23 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details
-	And the move has this schedule
-		| Times | Boundless | Frequency | ShowInstallment |
-		| 1     | False     | Monthly   | False           |
 	And it has no Category
 	And it has an Account Out
 	And it has no Account In

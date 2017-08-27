@@ -20,13 +20,10 @@ Scenario: 01. Disable categories use and save move with category (E)
 
 Scenario: 02. Disable categories use and save schedule with category (E)
 	Given I disable Categories use
-	And I have this future move to create
-		| Description   | Date       | Nature | Value |
-		| Schedule Bk02 | 2014-03-04 | Out    | 10    |
+	And I have this schedule to create
+		| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Schedule Bk02 | 2014-03-04 | Out    | 10    | 10    | False     | Monthly   | False           |
 	And it has no Details
-	And the move has this schedule
-		| Times | Boundless | Frequency | ShowInstallment |
-		| 10    | False     | Monthly   | False           |
 	And it has a Category
 	And it has an Account Out
 	And it has no Account In
@@ -82,13 +79,10 @@ Scenario: 91. Disable categories use and save move without category (S)
 
 Scenario: 92. Disable categories use and save schedule without category (S)
 	Given I disable Categories use
-	And I have this future move to create
-		| Description   | Date       | Nature | Value |
-		| Schedule Bk92 | 2012-03-31 | Out    | 10    |
+	And I have this schedule to create
+		| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Schedule Bk92 | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 	And it has no Details
-	And the move has this schedule
-		| Times | Boundless | Frequency | ShowInstallment |
-		| 10    | False     | Monthly   | False           |
 	And it has no Category
 	And it has an Account Out
 	And it has no Account In

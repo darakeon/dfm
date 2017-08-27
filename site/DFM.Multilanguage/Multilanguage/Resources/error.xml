@@ -64,9 +64,11 @@
     <InvalidDetail text="Invalid detail." />
     <ScheduleRequired text="Schedule required to future moves." />
     <ScheduleWithNoMoves text="The schedule has no moves." />
-    <ScheduleTimesCantBeZero text="To schedule something, schedule at least once." />
-    <InvalidYear text="Invalid year." />
-    <InvalidMonth text="Invalid month." />
+    <ScheduleTimesCantBeZero text="To schedule something, schedule at least once" />
+    <InvalidYear text="Invalid year" />
+    <InvalidMonth text="Invalid month" />
+    <InvalidSchedule text="Invalid schedule" />
+    <DisabledSchedule text="Schedule already disabled" />
   </en-US>
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
@@ -135,5 +137,7 @@
     <ScheduleTimesCantBeZero text="Para agendar algo, agende para executar ao menos uma vez." />
     <InvalidYear text="Ano inválido." />
     <InvalidMonth text="Mês inválido." />
+    <InvalidSchedule text="Agendamento inexistente" />
+    <DisabledSchedule text="Agendamento já desabilitado" />
   </pt-BR>
 </error>

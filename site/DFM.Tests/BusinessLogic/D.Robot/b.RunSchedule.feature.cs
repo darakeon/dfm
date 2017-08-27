@@ -99,42 +99,37 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table1.AddRow(new string[] {
-                        "Move Db91",
-                        "2012-03-31",
-                        "Out",
-                        "10"});
-#line 17
- testRunner.Given("I have this future move to create", ((string)(null)), table1);
-#line 20
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table2.AddRow(new string[] {
+            table1.AddRow(new string[] {
+                        "Move Db91",
+                        "2012-03-31",
+                        "Out",
+                        "10",
                         "1",
                         "False",
                         "Monthly",
                         "False"});
+#line 17
+ testRunner.Given("I have this schedule to create", ((string)(null)), table1);
+#line 20
+ testRunner.And("it has no Details");
 #line 21
- testRunner.And("the move has this schedule", ((string)(null)), table2);
-#line 24
  testRunner.And("it has a Category");
-#line 25
+#line 22
  testRunner.And("it has an Account Out");
-#line 26
+#line 23
  testRunner.And("it has no Account In");
-#line 27
+#line 24
  testRunner.And("I save the schedule");
-#line 28
+#line 25
  testRunner.When("I try to run the scheduler");
-#line 29
+#line 26
  testRunner.Then("I will receive no core error");
-#line 30
+#line 27
  testRunner.And("the accountOut value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -145,51 +140,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _92_RunWithBoundlessScheduleS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Run with boundless schedule (S)", ((string[])(null)));
-#line 32
+#line 29
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table3.AddRow(new string[] {
-                        "Move Db92",
-                        "",
-                        "Out",
-                        "10"});
-#line 33
- testRunner.Given("I have this future move to create", ((string)(null)), table3);
-#line 36
- testRunner.And("its Date is 3 months ago");
-#line 37
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table4.AddRow(new string[] {
+            table2.AddRow(new string[] {
+                        "Move Db92",
+                        "",
+                        "Out",
+                        "10",
                         "",
                         "True",
                         "Monthly",
                         "False"});
-#line 38
- testRunner.And("the move has this schedule", ((string)(null)), table4);
-#line 41
+#line 30
+ testRunner.Given("I have this schedule to create", ((string)(null)), table2);
+#line 33
+ testRunner.And("its Date is 3 months ago");
+#line 34
+ testRunner.And("it has no Details");
+#line 35
  testRunner.And("it has a Category");
-#line 42
+#line 36
  testRunner.And("it has an Account Out");
-#line 43
+#line 37
  testRunner.And("it has no Account In");
-#line 44
+#line 38
  testRunner.And("I save the schedule");
-#line 45
+#line 39
  testRunner.When("I try to run the scheduler");
-#line 46
+#line 40
  testRunner.Then("I will receive no core error");
-#line 47
+#line 41
  testRunner.And("the accountOut value will change in -40");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -200,51 +190,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _93_RunScheduleThatWillFinishS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Run schedule that will finish (S)", ((string[])(null)));
-#line 49
+#line 43
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table5.AddRow(new string[] {
-                        "Move Db93",
-                        "",
-                        "Out",
-                        "10"});
-#line 50
- testRunner.Given("I have this future move to create", ((string)(null)), table5);
-#line 53
- testRunner.And("its Date is 5 days ago");
-#line 54
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table6.AddRow(new string[] {
+            table3.AddRow(new string[] {
+                        "Move Db93",
+                        "",
+                        "Out",
+                        "10",
                         "3",
                         "False",
                         "Daily",
                         "False"});
-#line 55
- testRunner.And("the move has this schedule", ((string)(null)), table6);
-#line 58
+#line 44
+ testRunner.Given("I have this schedule to create", ((string)(null)), table3);
+#line 47
+ testRunner.And("its Date is 5 days ago");
+#line 48
+ testRunner.And("it has no Details");
+#line 49
  testRunner.And("it has a Category");
-#line 59
+#line 50
  testRunner.And("it has an Account Out");
-#line 60
+#line 51
  testRunner.And("it has no Account In");
-#line 61
+#line 52
  testRunner.And("I save the schedule");
-#line 62
+#line 53
  testRunner.When("I try to run the scheduler");
-#line 63
+#line 54
  testRunner.Then("I will receive no core error");
-#line 64
+#line 55
  testRunner.And("the accountOut value will change in -30");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -255,51 +240,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _94_RunScheduleThatWontFinishS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Run schedule that wont finish (S)", ((string[])(null)));
-#line 66
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table7.AddRow(new string[] {
-                        "Move Db94",
-                        "",
-                        "Out",
-                        "10"});
-#line 67
- testRunner.Given("I have this future move to create", ((string)(null)), table7);
-#line 70
- testRunner.And("its Date is 5 days ago");
-#line 71
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table8.AddRow(new string[] {
+            table4.AddRow(new string[] {
+                        "Move Db94",
+                        "",
+                        "Out",
+                        "10",
                         "7",
                         "False",
                         "Daily",
                         "False"});
-#line 72
- testRunner.And("the move has this schedule", ((string)(null)), table8);
-#line 75
+#line 58
+ testRunner.Given("I have this schedule to create", ((string)(null)), table4);
+#line 61
+ testRunner.And("its Date is 5 days ago");
+#line 62
+ testRunner.And("it has no Details");
+#line 63
  testRunner.And("it has a Category");
-#line 76
+#line 64
  testRunner.And("it has an Account Out");
-#line 77
+#line 65
  testRunner.And("it has no Account In");
-#line 78
+#line 66
  testRunner.And("I save the schedule");
-#line 79
+#line 67
  testRunner.When("I try to run the scheduler");
-#line 80
+#line 68
  testRunner.Then("I will receive no core error");
-#line 81
+#line 69
  testRunner.And("the accountOut value will change in -60");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -310,51 +290,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _95_RunWithDailyScheduleS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Run with daily schedule (S)", ((string[])(null)));
-#line 83
+#line 71
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table9.AddRow(new string[] {
-                        "Move Db95",
-                        "",
-                        "Out",
-                        "10"});
-#line 84
- testRunner.Given("I have this future move to create", ((string)(null)), table9);
-#line 87
- testRunner.And("its Date is 20 days ago");
-#line 88
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table10.AddRow(new string[] {
+            table5.AddRow(new string[] {
+                        "Move Db95",
+                        "",
+                        "Out",
+                        "10",
                         "10",
                         "False",
                         "Daily",
                         "False"});
-#line 89
- testRunner.And("the move has this schedule", ((string)(null)), table10);
-#line 92
+#line 72
+ testRunner.Given("I have this schedule to create", ((string)(null)), table5);
+#line 75
+ testRunner.And("its Date is 20 days ago");
+#line 76
+ testRunner.And("it has no Details");
+#line 77
  testRunner.And("it has a Category");
-#line 93
+#line 78
  testRunner.And("it has an Account Out");
-#line 94
+#line 79
  testRunner.And("it has no Account In");
-#line 95
+#line 80
  testRunner.And("I save the schedule");
-#line 96
+#line 81
  testRunner.When("I try to run the scheduler");
-#line 97
+#line 82
  testRunner.Then("I will receive no core error");
-#line 98
+#line 83
  testRunner.And("the accountOut value will change in -100");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -365,51 +340,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _96_RunWithMonthlyScheduleS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Run with monthly schedule (S)", ((string[])(null)));
-#line 100
+#line 85
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table11.AddRow(new string[] {
-                        "Move Db96",
-                        "",
-                        "Out",
-                        "10"});
-#line 101
- testRunner.Given("I have this future move to create", ((string)(null)), table11);
-#line 104
- testRunner.And("its Date is 7 months ago");
-#line 105
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table12.AddRow(new string[] {
+            table6.AddRow(new string[] {
+                        "Move Db96",
+                        "",
+                        "Out",
+                        "10",
                         "6",
                         "False",
                         "Monthly",
                         "False"});
-#line 106
- testRunner.And("the move has this schedule", ((string)(null)), table12);
-#line 109
+#line 86
+ testRunner.Given("I have this schedule to create", ((string)(null)), table6);
+#line 89
+ testRunner.And("its Date is 7 months ago");
+#line 90
+ testRunner.And("it has no Details");
+#line 91
  testRunner.And("it has a Category");
-#line 110
+#line 92
  testRunner.And("it has an Account Out");
-#line 111
+#line 93
  testRunner.And("it has no Account In");
-#line 112
+#line 94
  testRunner.And("I save the schedule");
-#line 113
+#line 95
  testRunner.When("I try to run the scheduler");
-#line 114
+#line 96
  testRunner.Then("I will receive no core error");
-#line 115
+#line 97
  testRunner.And("the accountOut value will change in -60");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -420,51 +390,46 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _97_RunWithYearlyScheduleS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Run with yearly schedule (S)", ((string[])(null)));
-#line 117
+#line 99
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table13.AddRow(new string[] {
-                        "Move Db97",
-                        "",
-                        "Out",
-                        "10"});
-#line 118
- testRunner.Given("I have this future move to create", ((string)(null)), table13);
-#line 121
- testRunner.And("its Date is 2 years ago");
-#line 122
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table14.AddRow(new string[] {
+            table7.AddRow(new string[] {
+                        "Move Db97",
+                        "",
+                        "Out",
+                        "10",
                         "2",
                         "False",
                         "Monthly",
                         "False"});
-#line 123
- testRunner.And("the move has this schedule", ((string)(null)), table14);
-#line 126
+#line 100
+ testRunner.Given("I have this schedule to create", ((string)(null)), table7);
+#line 103
+ testRunner.And("its Date is 2 years ago");
+#line 104
+ testRunner.And("it has no Details");
+#line 105
  testRunner.And("it has a Category");
-#line 127
+#line 106
  testRunner.And("it has an Account Out");
-#line 128
+#line 107
  testRunner.And("it has no Account In");
-#line 129
+#line 108
  testRunner.And("I save the schedule");
-#line 130
+#line 109
  testRunner.When("I try to run the scheduler");
-#line 131
+#line 110
  testRunner.Then("I will receive no core error");
-#line 132
+#line 111
  testRunner.And("the accountOut value will change in -20");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -475,64 +440,59 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _98_RunWithDetailsInScheduleS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Run with details in schedule (S)", ((string[])(null)));
-#line 134
+#line 113
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table15.AddRow(new string[] {
-                        "Move Db98",
-                        "",
-                        "Out",
-                        ""});
-#line 135
- testRunner.Given("I have this future move to create", ((string)(null)), table15);
-#line 138
- testRunner.And("its Date is 10 days ago");
-#line hidden
-            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Description",
-                        "Amount",
-                        "Value"});
-            table16.AddRow(new string[] {
-                        "Detail 1",
-                        "1",
-                        "10"});
-            table16.AddRow(new string[] {
-                        "Detail 2",
-                        "1",
-                        "10"});
-#line 139
- testRunner.And("the move has this details", ((string)(null)), table16);
-#line hidden
-            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table17.AddRow(new string[] {
+            table8.AddRow(new string[] {
+                        "Move Db98",
+                        "",
+                        "Out",
+                        "",
                         "5",
                         "False",
                         "Daily",
                         "False"});
-#line 143
- testRunner.And("the move has this schedule", ((string)(null)), table17);
-#line 146
+#line 114
+ testRunner.Given("I have this schedule to create", ((string)(null)), table8);
+#line 117
+ testRunner.And("its Date is 10 days ago");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Amount",
+                        "Value"});
+            table9.AddRow(new string[] {
+                        "Detail 1",
+                        "1",
+                        "10"});
+            table9.AddRow(new string[] {
+                        "Detail 2",
+                        "1",
+                        "10"});
+#line 118
+ testRunner.And("the move has this details", ((string)(null)), table9);
+#line 122
  testRunner.And("it has a Category");
-#line 147
+#line 123
  testRunner.And("it has an Account Out");
-#line 148
+#line 124
  testRunner.And("it has no Account In");
-#line 149
+#line 125
  testRunner.And("I save the schedule");
-#line 150
+#line 126
  testRunner.When("I try to run the scheduler");
-#line 151
+#line 127
  testRunner.Then("I will receive no core error");
-#line 152
+#line 128
  testRunner.And("the accountOut value will change in -100");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -543,49 +503,44 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_RunWithE_MailSystemOutS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Run with e-mail system out (S)", ((string[])(null)));
-#line 156
+#line 132
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table18.AddRow(new string[] {
-                        "Move Db99",
-                        "2014-03-22",
-                        "Out",
-                        "10"});
-#line 157
- testRunner.Given("I have this future move to create", ((string)(null)), table18);
-#line 160
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table19.AddRow(new string[] {
+            table10.AddRow(new string[] {
+                        "Move Db99",
+                        "2014-03-22",
+                        "Out",
+                        "10",
                         "1",
                         "False",
                         "Monthly",
                         "False"});
-#line 161
- testRunner.And("the move has this schedule", ((string)(null)), table19);
-#line 164
+#line 133
+ testRunner.Given("I have this schedule to create", ((string)(null)), table10);
+#line 136
+ testRunner.And("it has no Details");
+#line 137
  testRunner.And("it has a Category");
-#line 165
+#line 138
  testRunner.And("it has an Account Out");
-#line 166
+#line 139
  testRunner.And("it has no Account In");
-#line 167
+#line 140
  testRunner.And("I save the schedule");
-#line 168
+#line 141
  testRunner.When("I try to run the scheduler with e-mail system out");
-#line 169
+#line 142
  testRunner.Then("I will receive no core error");
-#line 170
+#line 143
  testRunner.And("the accountOut value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -596,49 +551,44 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _9A_RunWithE_MailSystemOkS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Run with e-mail system ok (S)", ((string[])(null)));
-#line 172
+#line 145
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
-                        "Value"});
-            table20.AddRow(new string[] {
-                        "Move Db9A",
-                        "2014-03-22",
-                        "Out",
-                        "10"});
-#line 173
- testRunner.Given("I have this future move to create", ((string)(null)), table20);
-#line 176
- testRunner.And("it has no Details");
-#line hidden
-            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Value",
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table21.AddRow(new string[] {
+            table11.AddRow(new string[] {
+                        "Move Db9A",
+                        "2014-03-22",
+                        "Out",
+                        "10",
                         "1",
                         "False",
                         "Monthly",
                         "False"});
-#line 177
- testRunner.And("the move has this schedule", ((string)(null)), table21);
-#line 180
+#line 146
+ testRunner.Given("I have this schedule to create", ((string)(null)), table11);
+#line 149
+ testRunner.And("it has no Details");
+#line 150
  testRunner.And("it has a Category");
-#line 181
+#line 151
  testRunner.And("it has an Account Out");
-#line 182
+#line 152
  testRunner.And("it has no Account In");
-#line 183
+#line 153
  testRunner.And("I save the schedule");
-#line 184
+#line 154
  testRunner.When("I try to run the scheduler with e-mail system ok");
-#line 185
+#line 155
  testRunner.Then("I will receive no core error");
-#line 186
+#line 156
  testRunner.And("the accountOut value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();

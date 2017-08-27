@@ -98,6 +98,8 @@ Scenario: 04. Get translations of Errors
 		| Error   | SummaryNatureNotFound          |
 		| Error   | InvalidYear                    |
 		| Error   | InvalidMonth                   |
+		| Error   | InvalidSchedule                |
+		| Error   | DisabledSchedule               |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -316,32 +318,36 @@ Scenario: 12. Get translate of Interface (general)
 
 Scenario: 13. Get translate of Interface (schedule)
 	Given I have these keys
-		| Section  | Phrase          |
-		| Schedule | Create          |
-		| Schedule | Edit            |
-		| Schedule | Schedule        |
-		| Schedule | Move            |
-		| Schedule | DayNames        |
-		| Schedule | Frequency       |
-		| Schedule | Boundless       |
-		| Schedule | Repeat          |
-		| Schedule | Times           |
-		| Schedule | ShowInstallment |
-		| Schedule | Description     |
-		| Schedule | CharactersMax   |
-		| Schedule | Date            |
-		| Schedule | Category        |
-		| Schedule | Select          |
-		| Schedule | Create          |
-		| Schedule | Category        |
-		| Schedule | Nature          |
-		| Schedule | JustOneValue    |
-		| Schedule | Detailed        |
-		| Schedule | Add             |
-		| Schedule | Detail          |
-		| Schedule | Value           |
-		| Schedule | Amount          |
-		| Schedule | ToMove          |
+		| Section  | Phrase                |
+		| Schedule | Create                |
+		| Schedule | Edit                  |
+		| Schedule | Schedule              |
+		| Schedule | Move                  |
+		| Schedule | DayNames              |
+		| Schedule | Frequency             |
+		| Schedule | Boundless             |
+		| Schedule | Repeat                |
+		| Schedule | Times                 |
+		| Schedule | ShowInstallment       |
+		| Schedule | Description           |
+		| Schedule | CharactersMax         |
+		| Schedule | Date                  |
+		| Schedule | Category              |
+		| Schedule | Select                |
+		| Schedule | Create                |
+		| Schedule | Category              |
+		| Schedule | Nature                |
+		| Schedule | JustOneValue          |
+		| Schedule | Detailed              |
+		| Schedule | Add                   |
+		| Schedule | Detail                |
+		| Schedule | Value                 |
+		| Schedule | Amount                |
+		| Schedule | ToMove                |
+		| Schedule | Schedules             |
+		| Schedule | NoSchedules           |
+		| Schedule | Schedule              |
+		| Schedule | ConfirmDeleteSchedule |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
