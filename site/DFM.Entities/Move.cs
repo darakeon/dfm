@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.Entities
 {
@@ -33,9 +34,26 @@ namespace DFM.Entities
 
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
-        
+
+
+
+        public virtual Int64 FakeID
+        {
+            get
+            {
+                return ID * Constants.FakeID;
+            }
+            set
+            {
+                if (value % Constants.FakeID != 0)
+                    throw new DFMException("Get back!");
+
+                ID = (Int32)(value / Constants.FakeID);
+            }
+        }
 
         
+
         public virtual User User()
         {
             return (In ?? Out)

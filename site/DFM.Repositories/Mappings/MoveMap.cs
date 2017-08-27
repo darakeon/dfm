@@ -16,6 +16,8 @@ namespace DFM.Repositories.Mappings
                 .Cascade.None()
                 .Nullable();
 
+            mapping.IgnoreProperty(m => m.FakeID);
+
             mapping.References(m => m.Category)
                 .Cascade.None();
 
