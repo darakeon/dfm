@@ -23,12 +23,10 @@ else
         @foreach (var account in Model.AccountList)
         {
             var movesSum = account.Total();
-
-            var negative = movesSum.IsNegative();
-            var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
+            var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
+            var className = movesSum < 0 ? "out" : "in";
 
             var sign = account.Sign();
-            
             
             var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
             var editUrl = Url.Action("Edit", "Accounts", new { id = account.Url });
@@ -46,7 +44,7 @@ else
                     @Html.RouteLink(account.Name, RouteNames.Account, new { accounturl = account.Url, controller = "" })
                 </td>
                 
-                <td class="numeric @(negative ? "out" : "in")">@value</td>
+                <td class="numeric @className">@value</td>
                     
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
 

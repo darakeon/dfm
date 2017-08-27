@@ -72,7 +72,6 @@ namespace DFM.BusinessLogic.Repositories
             if (!String.IsNullOrEmpty(account.Url))
                 account.Url = account.Url.ToLower();
 
-            // TODO: use Current User
             var oldAccount = Get(account.ID);
 
             if (oldAccount == null)

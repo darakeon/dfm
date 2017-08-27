@@ -2,7 +2,7 @@
 
 @{
     var value = Model.Account.Total();
-    var negative = value.IsNegative();
+    var negative = value < 0;
     var signClass = negative ? "out" : "in";
 
     value *= negative ? -1 : 1;

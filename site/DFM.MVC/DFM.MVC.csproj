@@ -237,7 +237,6 @@
     <Compile Include="Helpers\Models\DateFromInt.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
-    <Compile Include="Helpers\Views\ValueSign.cs" />
     <Compile Include="Models\AccountsCreateEditModel.cs" />
     <Compile Include="Models\AccountsIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />

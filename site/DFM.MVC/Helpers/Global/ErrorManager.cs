@@ -28,7 +28,6 @@ namespace DFM.MVC.Helpers.Global
                 )
                 .ToDictionary(p => p.Key, p => p.Value);
 
-            // TODO: Use Current here (when its in separate project)
             EmailSent = Error.SendReport(current.AllErrors
                 , current.Request.Url.ToString()
                 , parameters

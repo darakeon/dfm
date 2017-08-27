@@ -27,11 +27,10 @@ else
             var endMonth = account.EndDate.Value.Month;
             var endYear = account.EndDate.Value.Year;
             var monthReportId = endYear * 100 + endMonth;
-
             
             var movesSum = account.Total();
-            var negative = movesSum.IsNegative();
-            var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
+            var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
+            var className = movesSum < 0 ? "out" : "in";
 
             var sign = account.Sign();
 

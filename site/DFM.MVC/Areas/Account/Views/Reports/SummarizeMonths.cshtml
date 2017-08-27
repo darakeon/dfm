@@ -37,7 +37,7 @@
         {
             var sum = month.Total();
 
-            var negative = sum.IsNegative();
+            var negative = sum < 0;
             var sign = negative ? "out" : "in";
 
             sum *= negative ? -1 : 1;
