@@ -12,12 +12,12 @@
 
 .android-link
 {
-    float: right;
+    float: left;
     width: 70px;
     height: 80px;
     background: url('/Assets/image/android.gif');
     padding: 0;
-    margin: 10px;
+    margin: 185px 10px 10px 10px;
     display: none;
 }
 
