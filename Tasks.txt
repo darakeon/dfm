@@ -7,7 +7,7 @@ VERSÃO 3.1.3.0 (Little change) - 2?
 						Categorização múltipla da movimentação
 						"Adivinhar" categoria
 
-VERSÃO 3.1.2.0 (Little change) - 2?
+VERSÃO 3.1.2.0 (Little change) - 3?
 ================================================================================================
 						relatórios de mais de uma conta
 						relatórios mensal por categoria (http://www.chartjs.org/)
@@ -18,7 +18,7 @@ VERSÃO 3.1.1.0 (Little change) - 2?
 						Listar agendamentos para desativar (aparecerá deletar)
 						Mostrar gastos futuros no relatório mensal
 
-VERSÃO 3.1.0.0 (Big change) - 7?
+VERSÃO 3.1.0.0 (Big change) - 6?
 ================================================================================================
 						Procurar TO-DOs no projeto
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
@@ -51,41 +51,45 @@ VERSÃO 2.2.0.0 (Big change) - 10?
 					>>>	importador de Money
 					>>>	importador de Excel
 
-VERSÃO 2.1.0.0 (Big change) - 4?
+VERSÃO 2.1.0.0 (Big change) - 3?
 ================================================================================================
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
 							possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.1.0 (Little change) - 7?
+VERSÃO 2.0.2.0 (Little change) - 7?
 ================================================================================================
 						Colocar hover em TRs de tabela (destacar linha que está em cima)
 						Trocar Extensions Sum para Total
-						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
 
-VERSÃO 2.0.0.1 (System) - 11?
+VERSÃO 2.0.1.0 (Little change) - 9?
 ================================================================================================
-						Travar schedule de conta fechada / deletada
-						Transformar Double em int, usar como centavos
-						Tirar complete / validate de SaveOrUpdate
 						Desativar user a cada 5 senhas erradas
 						Colocar botão de alerta (enviar dados de post para o desenv)
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
-						Criar teste unitário para deletar todas as movimentações de um agendamento
-						Criar teste unitário agendamento meio antes / meio depois
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
-						Guardar dados localmente, para quando está sem internet (Mobile)
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
-						Remover GetOrCreate
 						Colocar menu ao clicar e segurar em Account (mobile)
+						Sistema de notificações de novidades
+
+VERSÃO 2.0.0.1 (System) - 10?
+================================================================================================
+						Em Move, colocar Value como campo gravado e usar Total para exibição
+						Travar schedule de conta fechada / deletada
+						Guardar dados localmente, para quando está sem internet (Mobile)
+						Criar teste unitário para deletar todas as movimentações de um agendamento
+						Criar teste unitário agendamento meio antes / meio depois
+						Transformar Double em int, usar como centavos
+						Tirar complete / validate de SaveOrUpdate
+						Remover GetOrCreate
 						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
 
