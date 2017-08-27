@@ -1,7 +1,6 @@
 ﻿using System;
-using DFM.Multilanguage;
 
-namespace DFM.BusinessLogic.Helpers
+namespace DFM.Multilanguage.Helpers
 {
     public static class DoubleToMoneyExtension
     {

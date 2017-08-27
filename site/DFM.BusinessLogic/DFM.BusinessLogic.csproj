@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Bases\GenericMoveRepository.cs" />
     <Compile Include="Bases\ITransactionController.cs" />
-    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Bases\BaseRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

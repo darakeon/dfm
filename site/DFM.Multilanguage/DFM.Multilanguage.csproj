@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Helpers\DicException.cs" />
     <Compile Include="Helpers\DicList.cs" />
+    <Compile Include="Helpers\DoubleToMoneyExtension.cs" />
     <Compile Include="Helpers\EmailLayout.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\INameable.cs" />
