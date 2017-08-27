@@ -76,7 +76,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Transformar Double em int, usar como centavos
 						Tirar complete / validate de SaveOrUpdate
 						Desativar user a cada 5 senhas erradas
-						Colocar botão de pânico (enviar dados de post para o desenv)
+						Colocar botão de alerta (enviar dados de post para o desenv)
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
 						Criar teste unitário para deletar todas as movimentações de um agendamento
@@ -92,6 +92,8 @@ VERSÃO 2.0.0.1 (System) - 11?
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
 						Criar produto no google play
+						Colocar Saldo Atual na tela de Extrato
+						Trocar botão e Contas por imagem de Home, Botão de Sair por imagem de logout
 						Consertar esquema de session do NH
 						Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
 2014-03-05	2014-03-05	Criar box de avisos
