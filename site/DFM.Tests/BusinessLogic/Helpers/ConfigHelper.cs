@@ -55,14 +55,24 @@ namespace DFM.Tests.BusinessLogic.Helpers
             ConfigurationManager.AppSettings["EmailSender"] = "DontSend";
         }
 
-        internal static void ActivateEmailForUser(ServiceAccess sa)
+        internal static void ActivateMoveEmailForUser(ServiceAccess sa)
         {
             sa.Admin.UpdateConfig(null, null, true, null);
         }
 
-        internal static void DeactivateEmailForUser(ServiceAccess sa)
+        internal static void DeactivateMoveEmailForUser(ServiceAccess sa)
         {
             sa.Admin.UpdateConfig(null, null, false, null);
+        }
+
+        internal static void ActivateCategoriesUseForUser(ServiceAccess sa)
+        {
+            sa.Admin.UpdateConfig(null, null, null, true);
+        }
+
+        internal static void DeactivateCategoriesUseForUser(ServiceAccess sa)
+        {
+            sa.Admin.UpdateConfig(null, null, null, false);
         }
 
     }

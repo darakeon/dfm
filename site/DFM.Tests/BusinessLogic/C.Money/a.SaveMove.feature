@@ -647,3 +647,19 @@ Scenario: 9C. Save with e-mail sender system ok
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 	
+Scenario: 9D. Save with e-mail sender system ok and without category
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9D   | 2014-03-23 | Out    | 10    |
+	And it has no Details
+	And it has no Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move with e-mail system ok and categories use disabled
+	Then I will receive no core error
+	And I will receive no notification
+	And the move will be saved
+	And the accountOut value will change in -10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
+	

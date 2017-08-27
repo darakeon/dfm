@@ -76,6 +76,9 @@ Scenario: 91. Disable categories use and save move without category (S)
 	When I try to save the move
 	Then I will receive no core error
 	And the move will be saved
+	And the accountOut value will change in -10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
 
 Scenario: 92. Disable categories use and save schedule without category (S)
 	Given I disable Categories use

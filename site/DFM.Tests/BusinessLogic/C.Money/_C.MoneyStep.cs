@@ -139,7 +139,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void WhenITryToSaveTheMoveWithEMailSystemOut()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
             try
@@ -156,7 +156,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             }
 
             ConfigHelper.FixTheEmailSystem();
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
 
@@ -164,7 +164,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void WhenITryToSaveTheMoveWithEMailSystemOk()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
 
             try
             {
@@ -179,7 +179,32 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Error = e;
             }
 
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
+        }
+
+        [When(@"I try to save the move with e-mail system ok and categories use disabled")]
+        public void WhenITryToSaveTheMoveWithEMailSystemOkAndCategoriesUseDisabled()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateMoveEmailForUser(SA);
+            ConfigHelper.DeactivateCategoriesUseForUser(SA);
+
+            try
+            {
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+
+                var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+                CurrentEmailStatus = result.Error;
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.ActivateCategoriesUseForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
 
@@ -652,7 +677,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void WhenITryToDeleteTheMoveWithEMailSystemOk()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
 
             try
             {
@@ -664,7 +689,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Error = e;
             }
 
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
 
@@ -672,7 +697,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void WhenITryToDeleteTheMoveWithEMailSystemOut()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
             try
@@ -686,10 +711,17 @@ namespace DFM.Tests.BusinessLogic.C.Money
             }
 
             ConfigHelper.FixTheEmailSystem();
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
 
+        [Given(@"I run the scheduler and get the move")]
+        public void GivenIRunTheScheduler()
+        {
+            SA.Robot.RunSchedule();
+            id = Schedule.MoveList.Last().ID;
+        }
+        
         [Then(@"the move will be deleted")]
         public void ThenTheMoveWillBeDeleted()
         {

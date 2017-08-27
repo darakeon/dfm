@@ -280,6 +280,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I will receive no core error");
 #line 78
  testRunner.And("the move will be saved");
+#line 79
+ testRunner.And("the accountOut value will change in -10");
+#line 80
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 81
+ testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -289,9 +295,9 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _92_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Disable categories use and save schedule without category (S)", ((string[])(null)));
-#line 80
+#line 83
 this.ScenarioSetup(scenarioInfo);
-#line 81
+#line 84
  testRunner.Given("I disable Categories use");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -304,9 +310,9 @@ this.ScenarioSetup(scenarioInfo);
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 82
- testRunner.And("I have this future move to create", ((string)(null)), table6);
 #line 85
+ testRunner.And("I have this future move to create", ((string)(null)), table6);
+#line 88
  testRunner.And("it has no Details");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -319,19 +325,19 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 86
- testRunner.And("the move has this schedule", ((string)(null)), table7);
 #line 89
- testRunner.And("it has no Category");
-#line 90
- testRunner.And("it has an Account Out");
-#line 91
- testRunner.And("it has no Account In");
+ testRunner.And("the move has this schedule", ((string)(null)), table7);
 #line 92
- testRunner.When("I try to save the schedule");
+ testRunner.And("it has no Category");
 #line 93
- testRunner.Then("I will receive no core error");
+ testRunner.And("it has an Account Out");
 #line 94
+ testRunner.And("it has no Account In");
+#line 95
+ testRunner.When("I try to save the schedule");
+#line 96
+ testRunner.Then("I will receive no core error");
+#line 97
  testRunner.And("the schedule will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();

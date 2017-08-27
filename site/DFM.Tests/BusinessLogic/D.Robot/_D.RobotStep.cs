@@ -141,7 +141,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         public void WhenITryToRunTheSchedulerWithEMailSystemOut()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
             ConfigHelper.BreakTheEmailSystem();
 
             try
@@ -154,7 +154,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             }
 
             ConfigHelper.FixTheEmailSystem();
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
 
@@ -162,7 +162,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         public void WhenITryToRunTheSchedulerWithEMailSystemOk()
         {
             ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.ActivateMoveEmailForUser(SA);
 
             try
             {
@@ -173,7 +173,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
                 Error = e;
             }
 
-            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateMoveEmailForUser(SA);
             ConfigHelper.DeactivateEmailSystem();
         }
         #endregion

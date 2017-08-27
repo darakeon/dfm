@@ -1949,6 +1949,52 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9D. Save with e-mail sender system ok and without category")]
+        public virtual void _9D_SaveWithE_MailSenderSystemOkAndWithoutCategory()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9D. Save with e-mail sender system ok and without category", ((string[])(null)));
+#line 650
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value"});
+            table50.AddRow(new string[] {
+                        "Move Ca9D",
+                        "2014-03-23",
+                        "Out",
+                        "10"});
+#line 651
+ testRunner.Given("I have this move to create", ((string)(null)), table50);
+#line 654
+ testRunner.And("it has no Details");
+#line 655
+ testRunner.And("it has no Category");
+#line 656
+ testRunner.And("it has an Account Out");
+#line 657
+ testRunner.And("it has no Account In");
+#line 658
+ testRunner.When("I try to save the move with e-mail system ok and categories use disabled");
+#line 659
+ testRunner.Then("I will receive no core error");
+#line 660
+ testRunner.And("I will receive no notification");
+#line 661
+ testRunner.And("the move will be saved");
+#line 662
+ testRunner.And("the accountOut value will change in -10");
+#line 663
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 664
+ testRunner.And("the year-category-accountOut value will change in 10");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion
