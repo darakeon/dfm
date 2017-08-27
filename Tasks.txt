@@ -36,6 +36,7 @@ VERSÃO 3.0.0.0
 						Unir Categorias
 						Possibilitar reabrir conta
 						Relatório mensal: selecione para mostrar soma
+						Relatório Período: com filtro por início e fim
 
 VERSÃO 2.2.0.0
 ================================================================================================
