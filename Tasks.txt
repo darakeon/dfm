@@ -115,7 +115,7 @@ H						Travar schedule de conta fechada / deletada
 S						Security desativa os anteriores
 S						Desativar user a cada 5 senhas erradas
 B						Tratar erro ao enviar e-mail (Security)
-B						Consertar problema ao pedir relatório que ainda não tem Month/Year
+2014-07-06	2014-07-06	Consertar problema ao pedir relatório que ainda não tem Month/Year
 2014-07-05	2014-07-06	Mover itens genéricos para a Ak
 2014-06-29	2014-06-29	Corrigir para que movimentação sem categoria conserte realmente os summaries
 2014-06-29	2014-06-29	Arrumar testes de e-mail falhando
