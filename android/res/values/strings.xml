@@ -27,7 +27,7 @@
 	<string name="NoAccounts">There is no accounts</string>
     
     <!-- Moves -->
-    <string name="title_activity_moves">Extrato</string>
+    <string name="title_activity_moves">Extract</string>
 	<string name="NoMoves">There is no moves for this month</string>
     
 </resources>
