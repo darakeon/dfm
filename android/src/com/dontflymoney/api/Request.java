@@ -221,7 +221,7 @@ public class Request
 	    	}
 		}
     	
-		progress.dismiss();
+		closeProgressBar();
 		
 		if (response.IsSuccess())
 		{
@@ -232,6 +232,19 @@ public class Request
 	    	activity.HandlePostError(response.GetError(), step);
 		}
 	}	
+	
+	
+	
+	private void closeProgressBar()
+	{
+		// This try is a fix for user turn the screen
+		// it recharges the activity and fucks the dialog
+		try
+		{
+			progress.dismiss();
+			progress = null;
+	    } catch (IllegalArgumentException e) { }
+	}
 	
 	
 }
