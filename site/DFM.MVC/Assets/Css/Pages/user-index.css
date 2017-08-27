@@ -15,12 +15,13 @@
 
 .android-link
 {
-    float: left;
+    clear: left;
+    display: block;
     width: 70px;
     height: 80px;
     background: url('/Assets/image/android.gif');
     padding: 0;
-    margin: 175px 10px 10px 10px;
+    margin: 345px 10px -45px 10px;
 }
 
     .android-link:hover

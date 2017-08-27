@@ -20,6 +20,8 @@
 		<LanguagePtbr text="Portuguese" />
 		<Save text="Save" />
 		<ConfigChanged text="Settings changed" />
+		<!-- for other translates, search in http://developers.google.com -->
+		<AndroidRobotLicenseText text="The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License." />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -41,5 +43,7 @@
 		<LanguagePtbr text="Português" />
 		<Save text="Salvar" />
 		<ConfigChanged text="Configurações alteradas" />
+		<!-- para traduzir isto, procurar em http://developers.google.com -->
+		<AndroidRobotLicenseText text="O robô Android é reproduzido ou modificado a partir de trabalhos criados e compartilhados pela Google e usado de acordo com os termos descritos na Licença de atribuição Creative Commons 3.0." />
 	</pt-BR>
 </user>
