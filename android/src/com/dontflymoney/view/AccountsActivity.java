@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableLayout;
@@ -29,17 +30,29 @@ public class AccountsActivity extends SmartActivity
 	
 	
 	
+	public void refresh(MenuItem menuItem)
+	{
+		main.removeAllViews();
+		getAccounts();
+	}
+
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getMain();
 		getAccounts();
-	}	
+	}
 	
-	public void getAccounts()
+	private void getMain()
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
-		
+	}
+	
+	private void getAccounts()
+	{
 		Request request = new Request(this, "Accounts/List");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Post();
@@ -126,7 +139,7 @@ public class AccountsActivity extends SmartActivity
 	{
 		row.setClickable(true);
 		
-		row.setOnClickListener(new OnClickListener()
+		OnClickListener listener = new OnClickListener()
 		{
 		    public void onClick(View row)
 		    {
@@ -138,9 +151,14 @@ public class AccountsActivity extends SmartActivity
 		        
 		        redirect(MovesActivity.class, parameters);
 		    }
-		});
+		};		
+		
+		row.setOnClickListener(listener);
 	}
 
+	
+	
+	
 	
 	
 }

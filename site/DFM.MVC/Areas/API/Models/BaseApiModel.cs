@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Areas.API.Models
 {
-    internal class BaseApiModel : BaseModel
+    internal class BaseApiModel : BaseLoggedModel
     {
         
 

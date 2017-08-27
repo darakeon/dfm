@@ -125,7 +125,15 @@ public class Request
 			parameters.remove("accounturl");
 		}
 		
-		return completeUrl + "/" + url;
+		completeUrl += "/" + url;
+		
+		if (parameters.containsKey("id"))
+		{
+			completeUrl += "/" + parameters.get("id");
+			parameters.remove("id");
+		}
+
+		return completeUrl;
 	}
 
 	private List<NameValuePair> getParameters()

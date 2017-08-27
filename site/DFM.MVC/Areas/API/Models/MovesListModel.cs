@@ -8,7 +8,7 @@ namespace DFM.MVC.Areas.API.Models
 {
     internal class MovesListModel : BaseApiModel
     {
-        public MovesListModel(String accountUrl, Int32? id)
+        public MovesListModel(String accountUrl, Int32 id)
         {
             var monthDate = DateFromInt.GetDateMonth(id, Today);
             var yearDate = DateFromInt.GetDateYear(id, Today);

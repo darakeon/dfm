@@ -103,6 +103,7 @@
     </Content>
     <Content Include="Multilanguage\Resources\general.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Multilanguage\Resources\move.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

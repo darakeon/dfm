@@ -1,5 +1,6 @@
 ﻿using System;
 using Ak.MVC.Route;
+using DFM.Entities.Extensions;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models

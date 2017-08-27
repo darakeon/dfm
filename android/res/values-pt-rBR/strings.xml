@@ -3,6 +3,7 @@
 
     <string name="app_name">Don\'t fly Money</string>
     <string name="action_logout">Sair</string>
+    <string name="action_refresh">Atualizar</string>
     <string name="action_accounts">Contas</string>
     
     <!-- Errors -->
@@ -18,9 +19,9 @@
 	<string name="Uninvited">Sua sessão expirou</string>
     
     <!-- Login -->
-    <string name="email">E-mail</string>
-    <string name="password">Senha</string>
-    <string name="login">Entrar</string>
+    <string name="email">e-mail</string>
+    <string name="password">senha</string>
+    <string name="login">entrar</string>
     
     <!-- Accounts -->
     <string name="title_activity_accounts">Contas</string>
@@ -29,5 +30,6 @@
     <!-- Moves -->
     <string name="title_activity_moves">Extrato</string>
    	<string name="NoMoves">Não há movimentações neste mês</string>
-   
+	<string name="changeDate">mudar</string>
+   	
 </resources>

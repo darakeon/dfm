@@ -141,6 +141,8 @@ public class SmartActivity extends Activity
 	    	.show();
 	}
 	
+	
+	
 	protected void logout()
 	{
 		Authentication.Clear();
@@ -166,10 +168,7 @@ public class SmartActivity extends Activity
 		
 		startActivity(intent);
 	}
-	
-	
-	
-	
+		
 	public void logout(MenuItem menuItem)
 	{
 		logout();

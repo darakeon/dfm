@@ -3,6 +3,7 @@
 
     <string name="app_name">Don\'t fly Money</string>
     <string name="action_logout">Logout</string>
+    <string name="action_refresh">Refresh</string>
     <string name="action_accounts">Accounts</string>
     
     <!-- Errors -->
@@ -18,9 +19,9 @@
 	<string name="Uninvited">You are uninvited</string>
     
     <!-- Login -->
-    <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
+    <string name="email">e-mail</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
     
     <!-- Accounts -->
     <string name="title_activity_accounts">Accounts</string>
@@ -29,5 +30,6 @@
     <!-- Moves -->
     <string name="title_activity_moves">Extract</string>
 	<string name="NoMoves">There is no moves for this month</string>
+	<string name="changeDate">change</string>
     
 </resources>
