@@ -1,4 +1,5 @@
 ﻿@model DFM.MVC.Areas.Accounts.Models.BaseMoveModel
+@using DFM.Entities;
 @using DFM.MVC.Areas.Accounts.Models;
 
 <div class="createMoveScreenLeft">
@@ -74,9 +75,16 @@
             <th>@MultiLanguage.Dictionary["Value"]</th>
         </tr>
 
-        @for (var d = 0; d < Model.DetailList.Count; d++)
+        @if (Model.IsDetailed)
         {
-            @Html.Partial("../Detail/Add", new MoveAddDetailModel(Model.DetailList[d], d));
+            for (var d = 0; d < Model.DetailList.Count; d++)
+            {
+                @Html.Partial("../Detail/Add", new MoveAddDetailModel(Model.DetailList[d], d));
+            }
+        }
+        else
+        { 
+            @Html.Partial("../Detail/Add", new MoveAddDetailModel(new Detail(), 0));
         }
     </tbody>
 </table>

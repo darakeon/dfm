@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Entities.Extensions;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
@@ -41,7 +42,7 @@ namespace DFM.BusinessLogic.Services
 
             var oldMove = moveService.GetOldById(move.ID);
 
-            if (move.ID == 0)
+            if (move.ID == 0 || !move.IsDetailed())
             {
                 move = moveService.SaveOrUpdate(move);
                 detailService.SaveDetails(move);

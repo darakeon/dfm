@@ -107,7 +107,7 @@ namespace DFM.BusinessLogic.Services
 
         private Schedule saveOrUpdate(Schedule schedule)
         {
-            if (schedule.ID == 0)
+            if (schedule.ID == 0 || !schedule.IsDetailed())
             {
                 scheduleService.SaveOrUpdate(schedule);
                 detailService.SaveDetails(schedule);
