@@ -15,7 +15,7 @@ else
 
         <tr>
             <th>@MultiLanguage.Dictionary["Name"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+            <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var category in Model.CategoryList)
@@ -32,16 +32,16 @@ else
             <tr>
                 <td>@category.Name </td>
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     @if (category.Active)
                     {
-                        <a href="@disableUrl"><img src="/Assets/image/close.gif" alt="@disableLabel" title="@disableLabel" /></a>
+                        <a href="@disableUrl"><img src="/Assets/image/icons/close.gif" alt="@disableLabel" title="@disableLabel" /></a>
                     }
                     else
                     {
-                        <a href="@enableUrl"><img src="/Assets/image/open.gif" alt="@enableLabel" title="@enableLabel" /></a>
+                        <a href="@enableUrl"><img src="/Assets/image/icons/reopen.gif" alt="@enableLabel" title="@enableLabel" /></a>
                     }
                 </td>
             </tr>

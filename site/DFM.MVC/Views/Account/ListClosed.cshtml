@@ -19,7 +19,7 @@ else
             <th>@MultiLanguage.Dictionary["BeginDate"]</th>
             <th>@MultiLanguage.Dictionary["EndDate"]</th>
             <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
-            <!--th>@MultiLanguage.Dictionary["TODO"]</th-->
+            <!--th class="todo-column">@MultiLanguage.Dictionary["TODO"]</th-->
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -49,11 +49,11 @@ else
                 <td>@account.EndDate.Value.ToShortDateString()</td>
 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
-                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
+                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
 
                 <!--td class="image">
                     <a href="@reopenUrl">
-                        <img src="/Assets/image/close.gif" alt="@reopenLabel" title="@reopenLabel" />
+                        <img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
                     </a>
                 </td-->
             </tr>

@@ -49,6 +49,11 @@ td.image img {
     td.image a:hover {
 	    background: none;
     }
+    
+th.todo-column
+{
+    width: 15%;
+}
 
 
 table.Mini {

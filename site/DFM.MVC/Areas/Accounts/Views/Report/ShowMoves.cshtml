@@ -33,7 +33,7 @@ else
             <th>@MultiLanguage.Dictionary["Date"]</th>
             <th>@MultiLanguage.Dictionary["In"]</th>
             <th>@MultiLanguage.Dictionary["Out"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+            <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var move in Model.MoveList.OrderBy(m => m.Date))
@@ -68,11 +68,11 @@ else
                     var deleteConfirm = String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
                     }
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
-                        <img src="/Assets/image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                        <img src="/Assets/image/icons/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
                     </a>
                 </td>
                 

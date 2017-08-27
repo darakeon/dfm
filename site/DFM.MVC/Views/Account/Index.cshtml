@@ -17,7 +17,7 @@ else
         <tr>
             <th width="500px">@MultiLanguage.Dictionary["Name"]</th>
             <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
-            <th colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+            <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
         </tr>
 
         @foreach (var account in Model.AccountList)
@@ -49,21 +49,21 @@ else
                 
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                     
-                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
+                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     @if (account.HasMoves())
                     {
                         <a href="@closeUrl">
-                            <img src="/Assets/image/close.gif" alt="@closeLabel" title="@closeLabel" />
+                            <img src="/Assets/image/icons/close.gif" alt="@closeLabel" title="@closeLabel" />
                         </a>
                     }
                     else
                     {
                         <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
-                            <img src="/Assets/image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                            <img src="/Assets/image/icons/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
                         </a>
                     }
                 </td>
