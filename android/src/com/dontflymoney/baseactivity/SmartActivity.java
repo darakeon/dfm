@@ -59,8 +59,8 @@ public abstract class SmartActivity extends FixOrientationActivity
 		form = new Form(this);
 		message = new Message(this);
 		navigation = new Navigation(this, Authentication);
-		resultHandler = new ResultHandler(this, message, navigation);
-		license = new License(this, message);
+		resultHandler = new ResultHandler(this, navigation);
+		license = new License(this);
 	}
 
 	@Override
@@ -118,6 +118,13 @@ public abstract class SmartActivity extends FixOrientationActivity
 	{
 		finish();
 		startActivity(getIntent());
+	}
+	
+	
+	
+	public Message getMessage()
+	{
+		return message;
 	}
 	
 	

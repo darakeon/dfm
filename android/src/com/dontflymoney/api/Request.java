@@ -25,7 +25,7 @@ public class Request
 	private String domain;
 	private String site;
 	
-	SmartActivity activity;
+	public SmartActivity activity;
 	private String url;
 	private HashMap<String, Object> parameters;
 
@@ -90,7 +90,7 @@ public class Request
 		
 		site.execute();
 
-		showWaitDialog();
+		progress = activity.getMessage().showWaitDialog();
 	}
 	
 	
@@ -116,7 +116,7 @@ public class Request
 		
 		site.execute();
 
-		showWaitDialog();
+		progress = activity.getMessage().showWaitDialog();
 	}
 	
 	
@@ -173,16 +173,7 @@ public class Request
 	    }
 	    
 		return nameValuePairs;
-	}
-
-	private void showWaitDialog()
-	{
-		progress = new ProgressDialog(activity);
-		progress.setTitle(activity.getString(R.string.wait_title));
-		progress.setMessage(activity.getString(R.string.wait_text));
-		progress.show();		
-	}
-	
+	}	
 	
 	
 	void HandleResponse(String json, String errorMessage, Step step)

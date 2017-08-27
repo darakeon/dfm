@@ -1,9 +1,9 @@
 package com.dontflymoney.viewhelper;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.dontflymoney.baseactivity.Message;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -12,16 +12,18 @@ import com.google.android.vending.licensing.Policy;
 public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 {
 	SmartActivity activity;
-	Message message;
+	ProgressDialog progress;
 	
-	public DfmLicenseCheckerCallback(SmartActivity activity, Message message)
+	public DfmLicenseCheckerCallback(SmartActivity activity, ProgressDialog progress)
 	{
 		this.activity = activity;
-		this.message = message;
+		this.progress = progress;
 	}
 	
     public void allow(int reason)
     {
+        progress.dismiss();
+
         if (activity.isFinishing())
         {
             // Don't update UI if Activity is finishing.
@@ -30,27 +32,29 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 
         if (reason == Policy.RETRY)
         {
-        	message.alertRetryLicense();
+        	activity.getMessage().alertRetryLicense();
         }
         else
         {
-            message.alertError("Allow");
+        	activity.getMessage().alertError("Allow");
         }
     }
 
     public void dontAllow(int reason)
     {
+        progress.dismiss();
+
         if (activity.isFinishing())
         {
             // Don't update UI if Activity is finishing.
             return;
         }
 
-        message.alertError("dont_allow");
+        activity.getMessage().alertError("dont_allow");
         
         if (reason == Policy.RETRY)
         {
-        	message.alertRetryLicense();
+        	activity.getMessage().alertRetryLicense();
         }
         else
         {
@@ -63,6 +67,8 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 	@Override
 	public void applicationError(int errorCode)
 	{
+        progress.dismiss();
+
         if (activity.isFinishing())
         {
             // Don't update UI if Activity is finishing.
@@ -72,7 +78,7 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
         String genericMessage = activity.getString(R.string.license_error);
         String specificMessage = String.format(genericMessage, errorCode);
         
-        message.alertError(specificMessage);
+        activity.getMessage().alertError(specificMessage);
 	}
 	
 }

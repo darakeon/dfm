@@ -1,6 +1,7 @@
 package com.dontflymoney.baseactivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
@@ -57,6 +58,27 @@ public class Message
 	    	}
 		);
 	}
+	
+	
+
+
+	public ProgressDialog getWaitDialog()
+	{
+		ProgressDialog progress = new ProgressDialog(activity);
+		progress.setTitle(activity.getString(R.string.wait_title));
+		progress.setMessage(activity.getString(R.string.wait_text));
+		
+		return progress;
+	}
+	
+	public ProgressDialog showWaitDialog()
+	{
+		ProgressDialog progress = getWaitDialog();
+		progress.show();
+		
+		return progress;
+	}
+	
 	
 	
 }

@@ -1,5 +1,7 @@
 package com.dontflymoney.baseactivity;
 
+import android.app.ProgressDialog;
+
 import com.dontflymoney.auth.Unique;
 import com.dontflymoney.view.R;
 import com.dontflymoney.viewhelper.DfmLicenseCheckerCallback;
@@ -14,27 +16,36 @@ public class License
 			-27, -94, -87, -29, +57, +42, +62, -78, -54, -29, 
 		};
 	
+	SmartActivity activity;
 	LicenseChecker checker;
 	DfmLicenseCheckerCallback callback;
+	ProgressDialog progress;
 		
-	public License(SmartActivity activity, Message message)
+	public License(SmartActivity activity)
 	{
+		this.activity = activity;
+		progress = activity.getMessage().getWaitDialog();
+		
 		AESObfuscator obfuscator = new AESObfuscator(SALT, activity.getPackageName(), Unique.GetKey());
 		ServerManagedPolicy policy = new ServerManagedPolicy(activity, obfuscator); 
 		String appKey = activity.getString(R.string.license_key);
 		
-		checker = new LicenseChecker(activity, policy, appKey);		
-		callback = new DfmLicenseCheckerCallback(activity, message);			
+		checker = new LicenseChecker(activity, policy, appKey);
+		callback = new DfmLicenseCheckerCallback(activity, progress);			
 	}
 	
 	public void Check()
 	{
 		checker.checkAccess(callback);
+		progress.show();
 	}
 	
 	public void Destroy()
 	{
 		checker.onDestroy();
+
+		if (progress.isShowing())
+			progress.dismiss();
 	}
 	
 	

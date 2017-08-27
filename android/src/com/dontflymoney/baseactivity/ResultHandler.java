@@ -10,13 +10,11 @@ import com.dontflymoney.view.R;
 public class ResultHandler
 {
 	SmartActivity activity;
-	Message message;
 	Navigation navigation;
 	
-	ResultHandler(SmartActivity activity, Message message, Navigation navigation)
+	ResultHandler(SmartActivity activity, Navigation navigation)
 	{
 		this.activity = activity;
-		this.message = message;
 		this.navigation = navigation;
 	}
 	
@@ -28,7 +26,7 @@ public class ResultHandler
 			{
 				String error = result.getString("error");
 				
-				message.alertError(error);
+				activity.getMessage().alertError(error);
 
 				if (error.contains(activity.getString(R.string.uninvited))
 					|| error.contains("uninvited"))
@@ -48,13 +46,13 @@ public class ResultHandler
 		}
 		catch (JSONException e)
 		{
-			message.alertError(R.string.error_activity_json, e);
+			activity.getMessage().alertError(R.string.error_activity_json, e);
 		}
 	}
 
 	public void HandlePostError(String error, Step step)
 	{
-		message.alertError(error);
+		activity.getMessage().alertError(error);
 	}
 	
 	
