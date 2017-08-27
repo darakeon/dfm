@@ -2,7 +2,7 @@ package com.dontflymoney.api;
 
 public class Site
 {
-	public static final String Domain = "192.168.1.31";
+	public static final String Domain = "beta.dontflymoney.com";
 	
 	//TODO: DELETE IT
 	public static Boolean IsLocal()
