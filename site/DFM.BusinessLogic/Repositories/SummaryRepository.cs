@@ -59,6 +59,7 @@ namespace DFM.BusinessLogic.Repositories
                     .Where(s => s.Broken)
                     .ToList();
 
+            //NH POG
             if (!summaryList.Any())
             {
                 var summariesNHIgnored = getRealSummaryList(summarizable);
