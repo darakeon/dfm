@@ -96,8 +96,9 @@ VERSÃO 2.0.0.0
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
 						Criar área Json
-2013-09-04				Criar DTOs
+2013-09-04				Criar DTOs (Simple*)
 2013-09-02				Criar App Mobile
+2013-10-03	2013-10-03	Consertar bug ao adicionar detalhes a uma movimentação existente
 2013-10-03	2013-10-03	Consertar agendamento com detalhes
 2013-10-02	2013-10-02	Ocultar Mover e Agendar da conta fechada
 2013-10-02	2013-10-02	Alterar contas fechadas para ficar igual abertas, mas sem edição
