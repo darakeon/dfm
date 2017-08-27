@@ -106,6 +106,7 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Remover GetOrCreate
 						Arrumar testes
 						Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+						Escrever Termos de Uso
 						Fazer licença do google impedir o usuário de continuar caso dê negativo
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
