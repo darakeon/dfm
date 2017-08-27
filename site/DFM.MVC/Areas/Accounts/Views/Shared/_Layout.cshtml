@@ -1,4 +1,7 @@
-﻿@{
+﻿@model DFM.MVC.Areas.Accounts.Models.BaseAccountsModel
+           
+@{
+    ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), ViewBag.Title);
     Layout = "~/Views/Shared/Inner/_Layout.cshtml";
 }
 
@@ -21,10 +24,8 @@
             <li>@Html.ActionLink(currentMonthReport, "ShowMoves", "Report")</li>
             <li>@Html.ActionLink(currentYearReport, "SummarizeMonths", "Report")</li>
             <li>@Html.ActionLink(MultiLanguage.Dictionary["Create", "Move"], "Create", "Move")</li>
-            <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule", "Move"], "Create", "Schedule")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule", "Moves"], "Create", "Schedule")</li>
         </ul>
-        
-        
     }
 }
 
