@@ -110,7 +110,7 @@ R						Em Move, colocar Value como campo gravado e usar Total para exibição
 R						Colocar valores em inteiro (double > int) no banco
 T						Criar teste unitário para deletar todas as movimentações de um agendamento
 T						Criar teste unitário agendamento meio antes / meio depois
-H						Deletar schedule de conta deletada
+2014-07-25	2014-07-25	Deletar schedule de conta deletada
 2014-07-25	2014-07-25	Travar schedule de conta fechada
 2014-07-06	2014-07-06	Security desativa os anteriores
 2014-07-06	2014-07-06	Desativar user a cada 5 senhas erradas

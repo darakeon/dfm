@@ -94,5 +94,17 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
+        public void DeleteAll(Account account)
+        {
+            var scheduleList = List(
+                s => s.In.ID == account.ID
+                || s.Out.ID == account.ID
+            );
+
+            foreach (var schedule in scheduleList)
+            {
+                Delete(schedule);
+            }
+        }
     }
 }

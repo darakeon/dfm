@@ -139,6 +139,8 @@ namespace DFM.BusinessLogic.Services
                     yearRepository.Delete(year);
                 }
 
+                scheduleRepository.DeleteAll(account);
+
                 accountRepository.Delete(url, Parent.Current.User);
 
                 CommitTransaction();

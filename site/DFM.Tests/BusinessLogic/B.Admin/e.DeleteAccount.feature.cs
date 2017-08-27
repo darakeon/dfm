@@ -65,10 +65,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Delete an Account that doesn\'t exist (E)")]
-        public virtual void _01_DeleteAnAccountThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("E01. Delete an Account that doesn\'t exist")]
+        public virtual void E01_DeleteAnAccountThatDoesnTExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Delete an Account that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E01. Delete an Account that doesn\'t exist", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -82,14 +82,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Delete an Account already deleted (E)")]
-        public virtual void _02_DeleteAnAccountAlreadyDeletedE()
+        [NUnit.Framework.DescriptionAttribute("E02. Delete an Account already deleted")]
+        public virtual void E02_DeleteAnAccountAlreadyDeleted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Delete an Account already deleted (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E02. Delete an Account already deleted", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I give a url of the account Be02 without moves");
+ testRunner.Given("I give a url of the account BeE02 without moves");
 #line 14
  testRunner.And("I already have deleted the account");
 #line 15
@@ -101,16 +101,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Delete an Account that has moves (E)")]
-        public virtual void _03_DeleteAnAccountThatHasMovesE()
+        [NUnit.Framework.DescriptionAttribute("E03. Delete an Account that has moves")]
+        public virtual void E03_DeleteAnAccountThatHasMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Delete an Account that has moves (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E03. Delete an Account that has moves", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.Given("I have a category");
 #line 20
- testRunner.And("I give a url of the account Be03 with moves");
+ testRunner.And("I give a url of the account BeE03 with moves");
 #line 21
  testRunner.When("I try to delete the account");
 #line 22
@@ -122,18 +122,18 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Delete an Account that had moves (S)")]
-        public virtual void _98_DeleteAnAccountThatHadMovesS()
+        [NUnit.Framework.DescriptionAttribute("S01. Delete an Account that had moves")]
+        public virtual void S01_DeleteAnAccountThatHadMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Delete an Account that had moves (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S01. Delete an Account that had moves", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.Given("I have a category");
 #line 28
- testRunner.And("I give a url of the account Be98 with moves");
+ testRunner.And("I give a url of the account BeS01 with moves");
 #line 29
- testRunner.And("I delete the moves of Be98");
+ testRunner.And("I delete the moves of BeS01");
 #line 30
  testRunner.When("I try to delete the account");
 #line 31
@@ -145,19 +145,42 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Delete an Account without moves (S)")]
-        public virtual void _99_DeleteAnAccountWithoutMovesS()
+        [NUnit.Framework.DescriptionAttribute("S02. Delete an Account without moves")]
+        public virtual void S02_DeleteAnAccountWithoutMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete an Account without moves (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S02. Delete an Account without moves", ((string[])(null)));
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
- testRunner.Given("I give a url of the account Be99 without moves");
+ testRunner.Given("I give a url of the account BeS02 without moves");
 #line 36
  testRunner.When("I try to delete the account");
 #line 37
  testRunner.Then("I will receive no core error");
 #line 38
+ testRunner.And("the account will be deleted");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("S03. Delete an Account with schedule")]
+        public virtual void S03_DeleteAnAccountWithSchedule()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S03. Delete an Account with schedule", ((string[])(null)));
+#line 40
+this.ScenarioSetup(scenarioInfo);
+#line 41
+ testRunner.Given("I have a category");
+#line 42
+ testRunner.And("I give a url of the account BeS03 without moves");
+#line 43
+ testRunner.And("the account has a schedule");
+#line 44
+ testRunner.When("I try to delete the account");
+#line 45
+ testRunner.Then("I will receive no core error");
+#line 46
  testRunner.And("the account will be deleted");
 #line hidden
             testRunner.CollectScenarioErrors();
