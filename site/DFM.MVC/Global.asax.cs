@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ak.Generic.Exceptions;
+using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Authentication;
 using DFM.Email;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
@@ -21,16 +21,11 @@ namespace DFM.MVC
         private readonly Current current = Auth.Current;
         private readonly ServiceAccess access = new ServiceAccess(new Connector());
 
-
-        // ReSharper disable InconsistentNaming
         protected void Application_Start()
-        // ReSharper restore InconsistentNaming
         {
             AreaRegistration.RegisterAllAreas();
-
-            GeneralAreaRegistration.RegisterGlobalFilters(GlobalFilters.Filters);
-            GeneralAreaRegistration.RegisterRoutes(RouteTable.Routes);
-
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            
             Directory.SetCurrentDirectory(Server.MapPath("~"));
 
             NHManager.Start();
@@ -80,7 +75,7 @@ namespace DFM.MVC
                     var message = MultiLanguage.Dictionary["ScheduleRun"];
                     var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
                     var final = String.Format(message, error);
-                    
+
                     ErrorAlert.AddTranslated(final);
                 }
             }
@@ -113,8 +108,8 @@ namespace DFM.MVC
                 throw new Exception("Forced error.");
         }
 
-        
-        
+
+
         private static void error()
         {
             try

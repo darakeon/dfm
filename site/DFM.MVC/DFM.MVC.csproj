@@ -7,16 +7,14 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D8715D0D-45FE-4623-A573-BC53AE5275A3}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectGuid>{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DFM.MVC</RootNamespace>
     <AssemblyName>DFM.MVC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
-    <TargetFrameworkProfile />
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -30,9 +28,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PublishDatabases>false</PublishDatabases>
-    <PackageAsSingleFile>false</PackageAsSingleFile>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,88 +36,125 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ak.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Ak.Generic">
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
     <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Elmah\Elmah.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\NHibernate\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
       <HintPath>..\Library\NHibernate\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\NHibernate\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Library\Json\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaRegistration.cs" />
+    <Content Include="Assets\Css\Forms.css" />
+    <Content Include="Assets\Css\General.css" />
+    <Content Include="Assets\Css\half-screen.css" />
+    <Content Include="Assets\Css\ieca.css" />
+    <Content Include="Assets\Css\Libraries\datepicker.css" />
+    <Content Include="Assets\Css\Menu.css" />
+    <Content Include="Assets\Css\modal.css" />
+    <Content Include="Assets\Css\MVC.css" />
+    <Content Include="Assets\Css\navigation.css" />
+    <Content Include="Assets\Css\Pages\move-create-edit-schedule.css" />
+    <Content Include="Assets\Css\Pages\user-index.css" />
+    <Content Include="Assets\Css\Table.css" />
+    <Content Include="Assets\Css\top-right-div.css" />
+    <Content Include="Assets\Image\advertising\darakeon.gif" />
+    <Content Include="Assets\Image\advertising\pea.jpg" />
+    <Content Include="Assets\Image\advertising\quero_um_bicho.gif" />
+    <Content Include="Assets\Image\android.gif" />
+    <Content Include="Assets\Image\clouds.gif" />
+    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\Image\icons\close.gif" />
+    <Content Include="Assets\Image\icons\delete.gif" />
+    <Content Include="Assets\Image\icons\edit.gif" />
+    <Content Include="Assets\Image\icons\green_sign.gif" />
+    <Content Include="Assets\Image\icons\home.gif" />
+    <Content Include="Assets\Image\icons\home_active.gif" />
+    <Content Include="Assets\Image\icons\icons_menu.png" />
+    <Content Include="Assets\Image\icons\logoff.gif" />
+    <Content Include="Assets\Image\icons\logoff_active.gif" />
+    <Content Include="Assets\Image\icons\red_sign.gif" />
+    <Content Include="Assets\Image\icons\reopen.gif" />
+    <Content Include="Assets\Image\icons\settings.gif" />
+    <Content Include="Assets\Image\icons\settings_active.gif" />
+    <Content Include="Assets\Image\icons\yellow_sign.gif" />
+    <Content Include="Assets\Image\logo.gif" />
+    <Content Include="Assets\Image\pig.gif" />
+    <Content Include="Assets\Image\pig.ico" />
+    <Content Include="Assets\Image\ptbr_apps_rgb_wo.jpg" />
+    <Content Include="Assets\Script\Ajax.js" />
+    <Content Include="Assets\Script\button-href.js" />
+    <Content Include="Assets\Script\Detail.js" />
+    <Content Include="Assets\Script\Forms.js" />
+    <Content Include="Assets\Script\image-link.js" />
+    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js" />
+    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
+    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Assets\Script\Libraries\sawpf.js" />
+    <Content Include="Assets\Script\Menu.js" />
+    <Content Include="Assets\Script\money-date.js" />
+    <Content Include="Assets\Script\Navigation.js" />
+    <Content Include="Assets\Script\Pages\account-create-edit.js" />
+    <Content Include="Assets\Script\Pages\move-create-edit-schedule.js" />
+    <Content Include="Assets\Script\Starter.js" />
+    <Content Include="Assets\Script\twitter.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="robots.txt" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
     <Compile Include="Areas\Accounts\Controllers\BaseAccountsController.cs" />
     <Compile Include="Areas\Accounts\Controllers\DetailController.cs" />
@@ -130,18 +162,18 @@
     <Compile Include="Areas\Accounts\Controllers\ReportController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ScheduleController.cs" />
     <Compile Include="Areas\Accounts\Models\BaseAccountsModel.cs" />
-    <Compile Include="Areas\Accounts\Models\DetailAddModel.cs" />
     <Compile Include="Areas\Accounts\Models\BaseMoveModel.cs" />
-    <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
+    <Compile Include="Areas\Accounts\Models\DetailAddModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoneyModel.cs" />
+    <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportShowMovesModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSummarizeMonthsModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
+    <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
-    <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Helpers\DFMDate.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
     <Compile Include="Areas\API\Jsons\AccountJson.cs" />
@@ -150,12 +182,12 @@
     <Compile Include="Areas\API\Jsons\SimpleMoveJson.cs" />
     <Compile Include="Areas\API\Models\AccountsListModel.cs" />
     <Compile Include="Areas\API\Models\BaseApiModel.cs" />
-    <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
     <Compile Include="Areas\API\Models\MovesCreateGetModel.cs" />
     <Compile Include="Areas\API\Models\MovesCreatePostModel.cs" />
-    <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\MovesExtractModel.cs" />
+    <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\UserGetConfigModel.cs" />
+    <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -169,142 +201,87 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Authorize\Auth.cs" />
-    <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
+    <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
-    <Compile Include="Helpers\Global\ErrorAlert.cs" />
-    <Compile Include="Helpers\Models\DateFromInt.cs" />
-    <Compile Include="Helpers\Global\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
+    <Compile Include="Helpers\Global\ErrorAlert.cs" />
+    <Compile Include="Helpers\Global\ErrorManager.cs" />
     <Compile Include="Helpers\Global\IP.cs" />
     <Compile Include="Helpers\Global\MultiLanguage.cs" />
     <Compile Include="Helpers\Global\RouteNames.cs" />
+    <Compile Include="Helpers\Models\DateFromInt.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
     <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Helpers\Views\ValueSign.cs" />
     <Compile Include="Models\AccountCreateEditModel.cs" />
     <Compile Include="Models\AccountIndexModel.cs" />
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\BaseLoggedModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
-    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\LoginsIndexModel.cs" />
-    <Compile Include="Models\RobotModel.cs" />
-    <Compile Include="Models\ScheduleIndexModel.cs" />
-    <Compile Include="Models\OpsModel.cs" />
-    <Compile Include="Models\SafeModel.cs" />
     <Compile Include="Models\OpsCodeModel.cs" />
+    <Compile Include="Models\OpsModel.cs" />
+    <Compile Include="Models\RobotModel.cs" />
+    <Compile Include="Models\SafeModel.cs" />
+    <Compile Include="Models\ScheduleIndexModel.cs" />
     <Compile Include="Models\TokenIndexModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UserConfigModel.cs" />
     <Compile Include="Models\UserForgotPasswordModel.cs" />
     <Compile Include="Models\UserLogOnModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\css\forms.css" />
-    <Content Include="Assets\css\general.css" />
-    <Content Include="Assets\css\half-screen.css" />
-    <Content Include="Assets\css\ieca.css" />
-    <Content Include="Assets\css\libraries\datepicker.css" />
-    <Content Include="Assets\css\menu.css" />
-    <Content Include="Assets\css\modal.css" />
-    <Content Include="Assets\css\mvc.css" />
-    <Content Include="Assets\css\navigation.css" />
-    <Content Include="Assets\css\pages\move-create-edit-schedule.css" />
-    <Content Include="Assets\css\pages\user-index.css" />
-    <Content Include="Assets\css\table.css" />
-    <Content Include="Assets\css\top-right-div.css" />
-    <Content Include="Assets\image\advertising\darakeon.gif" />
-    <Content Include="Assets\image\advertising\pea.jpg" />
-    <Content Include="Assets\image\advertising\quero_um_bicho.gif" />
-    <Content Include="Assets\image\android.gif" />
-    <Content Include="Assets\image\clouds.gif" />
-    <Content Include="Assets\image\datepicker\ui-icons_ffffff_256x240.png" />
-    <Content Include="Assets\image\icons\close.gif" />
-    <Content Include="Assets\image\icons\delete.gif" />
-    <Content Include="Assets\image\icons\edit.gif" />
-    <Content Include="Assets\image\icons\green_sign.gif" />
-    <Content Include="Assets\image\icons\home.gif" />
-    <Content Include="Assets\image\icons\home_active.gif" />
-    <Content Include="Assets\image\icons\logoff.gif" />
-    <Content Include="Assets\image\icons\logoff_active.gif" />
-    <Content Include="Assets\image\icons\red_sign.gif" />
-    <Content Include="Assets\image\icons\reopen.gif" />
-    <Content Include="Assets\image\icons\settings.gif" />
-    <Content Include="Assets\image\icons\settings_active.gif" />
-    <Content Include="Assets\image\icons\yellow_sign.gif" />
-    <Content Include="Assets\image\logo.gif" />
-    <Content Include="Assets\image\pig.gif" />
-    <Content Include="Assets\image\pig.ico" />
-    <Content Include="Assets\script\ajax.js" />
-    <Content Include="Assets\script\button-href.js" />
-    <Content Include="Assets\script\detail.js" />
-    <Content Include="Assets\script\forms.js" />
-    <Content Include="Assets\script\image-link.js" />
-    <Content Include="Assets\script\libraries\jquery-1.6.2.min.js" />
-    <Content Include="Assets\script\libraries\jquery-ui-1.8.16.custom.min.js" />
-    <Content Include="Assets\script\libraries\jquery.maskedinput-1.3.min.js" />
-    <Content Include="Assets\script\libraries\jquery.maskMoney.0.2.js" />
-    <Content Include="Assets\script\libraries\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Assets\script\libraries\jquery.validate.min.js" />
-    <Content Include="Assets\script\libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\script\libraries\sawpf.js" />
-    <Content Include="Assets\script\menu.js" />
-    <Content Include="Assets\script\money-date.js" />
-    <Content Include="Assets\script\navigation.js" />
-    <Content Include="Assets\script\pages\account-create-edit.js" />
-    <Content Include="Assets\script\pages\move-create-edit-schedule.js" />
-    <Content Include="Assets\script\starter.js" />
-    <Content Include="Assets\script\twitter.js" />
-    <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
-    <Content Include="robots.txt" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
     <Content Include="Areas\Accounts\Views\Detail\Add.cshtml" />
-    <Content Include="Areas\Accounts\Views\Shared\CreateEditSchedule.cshtml" />
+    <Content Include="Areas\Accounts\Views\Move\Create.cshtml" />
+    <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
     <Content Include="Areas\Accounts\Views\Report\ShowMoves.cshtml" />
     <Content Include="Areas\Accounts\Views\Report\SummarizeMonths.cshtml" />
-    <Content Include="Areas\Accounts\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Areas\Accounts\Views\Report\Total.cshtml" />
+    <Content Include="Areas\Accounts\Views\Schedule\Create.cshtml" />
+    <Content Include="Areas\Accounts\Views\Schedule\OtherFields.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditSchedule.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleCss.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleJs.cshtml" />
+    <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
+    <Content Include="Assets\Image\icons\icons_source" />
+    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.zip" />
     <Content Include="Views\Account\CreateEdit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\ListClosed.cshtml" />
     <Content Include="Views\Category\CreateEdit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
     <Content Include="Views\Ops\404.cshtml" />
     <Content Include="Views\Ops\500.cshtml" />
     <Content Include="Views\Ops\Error.cshtml" />
     <Content Include="Views\Ops\Index.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Shared\AD.cshtml" />
+    <Content Include="Views\Shared\AnalyzeDictionary.cshtml" />
     <Content Include="Views\Shared\_InnerLayout.cshtml" />
-    <Content Include="Views\Shared\_OuterLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
+    <Content Include="Views\Shared\_NoAreaLayout.cshtml" />
+    <Content Include="Views\Shared\_OuterLayout.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Token\Disable.cshtml" />
+    <Content Include="Views\Token\Index.cshtml" />
     <Content Include="Views\Token\Invalid.cshtml" />
     <Content Include="Views\Token\PasswordReset.cshtml" />
     <Content Include="Views\Token\PasswordResetSuccess.cshtml" />
-    <Content Include="Views\Token\Index.cshtml" />
     <Content Include="Views\Token\UserVerificationSuccess.cshtml" />
+    <Content Include="Views\User\Config.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\ForgotPasswordSuccess.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
@@ -313,6 +290,13 @@
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Accounts\Views\web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Authentication\DFM.Authentication.csproj">
@@ -348,45 +332,7 @@
       <Name>DFM.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Move\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Schedule\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Schedule\OtherFields.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleJs.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Shared\CreateEditScheduleCss.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_NoAreaLayout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Accounts\Views\Report\Total.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\User\Config.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Schedule\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Logins\Index.cshtml" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -394,19 +340,15 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>2199</DevelopmentServerPort>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:59369/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -421,5 +363,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-  </Target> -->
+  </Target>
+  -->
 </Project>

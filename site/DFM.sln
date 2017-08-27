@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{D8715D0D-45FE-4623-A573-BC53AE5275A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities", "DFM.Entities\DFM.Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities.Extensions", "DFM.Entities.Extensions\DFM.Entities.Extensions.csproj", "{ED5A9D42-8D45-4CA5-BFD2-49E29483A6C4}"
@@ -29,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\Tests.txt = ..\Tests.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DFM.vsmdi
@@ -42,16 +42,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D8715D0D-45FE-4623-A573-BC53AE5275A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{288B6282-630A-4D92-BF07-717774BFB2BD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -152,6 +142,16 @@ Global
 		{D3552EB5-C5CA-446C-8D6A-BBD72D355448}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3552EB5-C5CA-446C-8D6A-BBD72D355448}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D3552EB5-C5CA-446C-8D6A-BBD72D355448}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

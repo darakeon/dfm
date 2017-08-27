@@ -1,17 +1,16 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.MVC.Controllers;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC
 {
-    public class GeneralAreaRegistration
+    public class RouteConfig
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            //filters.Add(new HandleErrorAttribute());
-        }
-
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("elmah.axd");
@@ -22,9 +21,8 @@ namespace DFM.MVC
                 RouteNames.Default,
                 "{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
-                new [] { typeof(UserController).Namespace }
+                new[] { typeof(UserController).Namespace }
             );
         }
-
     }
 }
