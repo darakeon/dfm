@@ -9,13 +9,13 @@ Background:
 Scenario: 01. Select with ticket that doesn't exist (E)
 	Given I pass a ticket that doesn't exist
 	When I try to get the user
-	Then I will receive this core error: InvalidTicket
+	Then I will receive this core error: Uninvited
 	And I will receive no user
 
 Scenario: 02. Select with ticket that is not active anymore (E)
 	Given I pass a ticket that is already disabled
 	When I try to get the user
-	Then I will receive this core error: InvalidTicket
+	Then I will receive this core error: Uninvited
 	And I will receive no user
 
 Scenario: 99. Select with info all right (S)

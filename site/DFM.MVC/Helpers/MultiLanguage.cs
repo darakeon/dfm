@@ -32,10 +32,15 @@ namespace DFM.MVC.Helpers
             }
         }
 
-        
+
         public String this[DFMCoreException exception]
         {
             get { return this[exception.Type.ToString()]; }
+        }
+
+        public String this[ExceptionPossibilities exception]
+        {
+            get { return this[exception.ToString()]; }
         }
 
         public String this[params String[] phrase]

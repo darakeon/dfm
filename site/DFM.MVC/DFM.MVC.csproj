@@ -151,6 +151,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Authorize\Auth.cs" />
+    <Compile Include="Helpers\Authorize\DFMJsonAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />

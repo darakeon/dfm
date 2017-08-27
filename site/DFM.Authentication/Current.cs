@@ -43,7 +43,8 @@ namespace DFM.Authentication
         }
 
 
-        public String Language {
+        public String Language
+        {
             get { return User == null ? null : User.Language; }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Ak.MVC.Route;
 
 namespace DFM.Generic
 {
@@ -12,6 +13,12 @@ namespace DFM.Generic
                 return local
                     ?? (local = Token.New());
             }
+
+            var route = new RouteInfo();
+            var ticket = route.RouteData.Values["ticket"];
+
+            if (ticket != null)
+                return ticket.ToString();
 
             if (get() == null)
             {

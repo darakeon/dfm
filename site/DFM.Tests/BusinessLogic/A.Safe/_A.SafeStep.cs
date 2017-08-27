@@ -422,7 +422,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
             }
 
             Assert.IsNotNull(Error);
-            Assert.AreEqual(ExceptionPossibilities.InvalidTicket, Error.Type);
+            Assert.AreEqual(ExceptionPossibilities.Uninvited, Error.Type);
         }
         #endregion
 

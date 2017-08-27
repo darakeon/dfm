@@ -158,7 +158,7 @@ namespace DFM.BusinessLogic.Services
             var ticket = ticketService.GetByKey(ticketKey);
 
             if (ticket == null || !ticket.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
 
             if (!ticket.User.Active)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
@@ -182,7 +182,7 @@ namespace DFM.BusinessLogic.Services
                 }
                 else if (ticket.User.Email != email)
                 {
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTicket);
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
                 }
 
                 CommitTransaction();

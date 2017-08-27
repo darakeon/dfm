@@ -58,7 +58,7 @@ Scenario: 04. Get translations of Errors
 		| Error   | UserEmailInvalid               |
 		| Error   | UserPasswordRequired           |
 		| Error   | DisabledUser                   |
-		| Error   | InvalidTicket                  |
+		| Error   | Uninvited                      |
 		| Error   | AccountNameRequired            |
 		| Error   | AccountUrlRequired             |
 		| Error   | AccountUrlInvalid              |
@@ -247,15 +247,9 @@ Scenario: 10. Get translate of Interface (user)
 		| User    | Send                   |
 		| User    | ForgotPassword         |
 		| User    | FollowEmailIntructions |
-		| User    | Welcome                |
+		| User    | Index_Welcome          |
 		| User    | Index_Introdution      |
-		| User    | Index_PossibleNowADays |
-		| User    | Index_Moves            |
-		| User    | Index_Transfer         |
-		| User    | Index_Categories       |
-		| User    | Index_Reports          |
-		| User    | Index_ReportMonth      |
-		| User    | Index_ReportYear       |
+		| User    | Index_Explanation      |
 		| User    | Index_Close            |
 		| User    | Logon                  |
 		| User    | Login                  |

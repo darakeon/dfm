@@ -13,7 +13,7 @@
         UserEmailInvalid = 204,
         UserPasswordRequired = 205,
         DisabledUser = 206,
-        InvalidTicket = 207,
+        Uninvited = 207,
 
         AccountNameRequired = 301,
         AccountUrlRequired = 302,
