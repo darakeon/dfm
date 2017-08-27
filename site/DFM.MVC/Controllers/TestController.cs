@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using DFM.Multilanguage;
 
 namespace DFM.MVC.Controllers
 {
@@ -6,7 +7,7 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("AnalyzeDictionary", PlainText.Dictionary);
         }
 
     }

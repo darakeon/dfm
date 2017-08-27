@@ -108,6 +108,7 @@
     <Content Include="Assets\Css\modal.css" />
     <Content Include="Assets\Css\MVC.css" />
     <Content Include="Assets\Css\navigation.css" />
+    <Content Include="Assets\Css\Pages\analyse-dictionary.css" />
     <Content Include="Assets\Css\Pages\move-create-edit-schedule.css" />
     <Content Include="Assets\Css\Pages\user-index.css" />
     <Content Include="Assets\Css\Table.css" />
@@ -277,14 +278,12 @@
     <Content Include="Views\Ops\Error.cshtml" />
     <Content Include="Views\Ops\Index.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
-    <Content Include="Views\Shared\AD.cshtml" />
-    <Content Include="Views\Shared\AnalyzeDictionary.cshtml" />
+    <Content Include="Views\Test\AnalyzeDictionary.cshtml" />
     <Content Include="Views\Shared\_InnerLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\_NoAreaLayout.cshtml" />
     <Content Include="Views\Shared\_OuterLayout.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Token\Disable.cshtml" />
     <Content Include="Views\Token\Index.cshtml" />
     <Content Include="Views\Token\Invalid.cshtml" />
