@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ak.Generic.Exceptions;
+using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Authentication;
 using DFM.MVC.Helpers;
@@ -14,12 +15,10 @@ using log4net.Config;
 
 namespace DFM.MVC
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : HttpApplication
     {
-        private readonly Current current = Auth.Current; 
+        private readonly Current current = Auth.Current;
+        private readonly ServiceAccess access = new ServiceAccess(new Connector());
 
 
         // ReSharper disable InconsistentNaming
@@ -61,7 +60,7 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (current.IsAuthenticated)
-                Services.Robot.RunSchedule();
+                access.Robot.RunSchedule();
         }
 
 
@@ -87,7 +86,7 @@ namespace DFM.MVC
 
             NHManager.Close();
 
-            PageLogger.Record(Context, Services.Safe);
+            PageLogger.Record(Context, access.Safe);
 
             if (Request["Error"] == "Force")
                 throw new Exception("Forced error.");

@@ -23,32 +23,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult ShowMoves(Int32? id)
         {
-            var currentMonth = (Int16)DateTime.Today.Month;
-
-            var dateMonth = id.HasValue
-                ? (Int16)(id.Value % 100)
-                : currentMonth;
-
-            dateMonth = dateMonth.ForceBetween(1, 12);
-
-
-            var currentYear = (Int16)DateTime.Today.Year;
-
-            var dateYear = id.HasValue
-                ? (Int16)(id.Value / 100)
-                : currentYear;
-
-            dateYear = dateYear.ForceBetween(1900, currentYear);
-
-
-            var model = new ReportShowMovesModel
-                            {
-                                MoveList = Services.Report.GetMonthReport(Account.Name, dateMonth, dateYear),
-                                Account = Account,
-                                Month = dateMonth,
-                                Year = dateYear,
-                            };
-
+            var model = new ReportShowMovesModel(id);
 
             return View(model);
         }
@@ -57,18 +32,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult SummarizeMonths(Int16? id)
         {
-            var currentYear = (Int16)DateTime.Today.Year;
-            
-            var year = id ?? currentYear;
-            
-            year = year.ForceBetween(1900, currentYear);
-
-
-            var model = new ReportSummarizeMonthsModel
-                            {
-                                Year =  Services.Report.GetYearReport(Account.Name, year),
-                            };
-
+            var model = new ReportSummarizeMonthsModel(id);
 
             return View(model);
         }

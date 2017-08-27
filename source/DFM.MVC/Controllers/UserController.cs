@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
-using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
@@ -35,7 +34,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Services.Safe.SaveUserAndSendVerify(model.User.Email, model.User.Password);
+                    model.SaveUserAndSendVerify();
                 }
                 catch (DFMCoreException e)
                 {
@@ -93,9 +92,11 @@ namespace DFM.MVC.Controllers
 
         public ActionResult SendVerification(String id)
         {
+            var model = new SafeModel();
+
             try
             {
-                Services.Safe.SendUserVerify(id);
+                model.SendUserVerify(id);
             }
             catch (DFMCoreException e)
             {
@@ -129,7 +130,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Services.Safe.SendPasswordReset(model.Email);
+                    model.SendPasswordReset();
                 }
                 catch (DFMCoreException e)
                 {

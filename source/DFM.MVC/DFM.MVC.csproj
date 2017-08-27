@@ -117,9 +117,11 @@
     <Compile Include="Areas\Accounts\Controllers\MoveController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ReportController.cs" />
     <Compile Include="Areas\Accounts\Controllers\ScheduleController.cs" />
+    <Compile Include="Areas\Accounts\Models\BaseAccountsModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoveAddDetailModel.cs" />
-    <Compile Include="Areas\Accounts\Models\GenericMoveModel.cs" />
+    <Compile Include="Areas\Accounts\Models\BaseMoveModel.cs" />
     <Compile Include="Areas\Accounts\Models\MoveCreateEditModel.cs" />
+    <Compile Include="Areas\Accounts\Models\MoneyModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
@@ -147,8 +149,11 @@
     <Compile Include="Models\AccountCreateEditModel.cs" />
     <Compile Include="Models\AccountIndexModel.cs" />
     <Compile Include="Models\BaseLoggedModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CategoryCreateEditModel.cs" />
     <Compile Include="Models\CategoryIndexModel.cs" />
+    <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\SafeModel.cs" />
     <Compile Include="Models\OpsCodeModel.cs" />
     <Compile Include="Models\TokenIndexModel.cs" />
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />

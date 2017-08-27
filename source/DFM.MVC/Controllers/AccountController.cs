@@ -6,7 +6,6 @@ using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
-using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
@@ -50,10 +49,7 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new AccountCreateEditModel(OperationType.Edit)
-            {
-                Account = Services.Admin.GetAccountByName(id)
-            };
+            var model = new AccountCreateEditModel(OperationType.Edit, id);
 
             if (model.Account == null)
                 return RedirectToAction("Create");
@@ -64,10 +60,7 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(String id, AccountCreateEditModel model)
         {
-            var oldAccount = Services.Admin.GetAccountByName(id);
-
-            model.Type = OperationType.Edit;
-            model.Account.Name = oldAccount.Name;
+            model.ResetAccountName(OperationType.Edit, id);
 
             return createEdit(model);
         }
@@ -80,10 +73,7 @@ namespace DFM.MVC.Controllers
                 {
                     model.Account.User = Current.User;
 
-                    if (model.Type == OperationType.Creation)
-                        Services.Admin.CreateAccount(model.Account);
-                    else
-                        Services.Admin.UpdateAccount(model.Account, model.Name);
+                    model.CreateOrUpdate();
                 }
                 catch (DFMCoreException e)
                 {
@@ -101,23 +91,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Close(String id)
         {
-            // TODO: implement messages on page head
-            //String message;
+            var model = new AdminModel();
 
-            try
-            {
-                Services.Admin.CloseAccount(id);
-                //else
-                //    account = null;
-
-                //message = account == null
-                //    ? MultiLanguage.Dictionary["AccountNotFound"]
-                //    : String.Format(MultiLanguage.Dictionary["AccountClosed"], account.Name);
-            }
-            catch (DFMCoreException)// e)
-            {
-                //message = MultiLanguage.Dictionary[e];
-            }
+            model.CloseAccount(id);
 
             return RedirectToAction("Index");
         }
@@ -126,24 +102,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Delete(String id)
         {
-            // TODO: implement messages on page head
-            //String message;
+            var model = new AdminModel();
 
-            try
-            {
-                Services.Admin.DeleteAccount(id);
-                //else
-                //    account = null;
-
-                //message = account == null
-                //    ? MultiLanguage.Dictionary["AccountNotFound"]
-                //    : String.Format(MultiLanguage.Dictionary["AccountDeleted"], account.Name);
-            }
-            catch (DFMCoreException)// e)
-            {
-                //message = MultiLanguage.Dictionary[e];
-            }
-
+            model.Delete(id);
 
             return RedirectToAction("Index");
         }

@@ -17,6 +17,11 @@ namespace DFM.MVC.Models
             Type = type;
         }
 
+        public AccountCreateEditModel(OperationType type, String id) : this(type)
+        {
+            Account = Admin.GetAccountByName(id);
+        }
+
 
 
         public OperationType Type { get; set; }
@@ -82,6 +87,26 @@ namespace DFM.MVC.Models
                 Account.RedLimit = null;
                 Account.YellowLimit = null;
             }
+        }
+
+        
+
+        internal void ResetAccountName(OperationType type, string id)
+        {
+            var oldAccount = Admin.GetAccountByName(id);
+
+            Type = type;
+            Account.Name = oldAccount.Name;
+        }
+
+        
+
+        internal void CreateOrUpdate()
+        {
+            if (Type == OperationType.Creation)
+                Admin.CreateAccount(Account);
+            else
+                Admin.UpdateAccount(Account, Name);
         }
 
 

@@ -11,19 +11,18 @@ using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public abstract class GenericMoveModel : BaseLoggedModel
+    public abstract class BaseMoveModel : BaseAccountsModel
     {
-        protected GenericMoveModel(IMove iMove, OperationType type)
+        protected BaseMoveModel(IMove iMove, OperationType type)
             : this(iMove)
         {
             Type = type;
         }
 
-        protected GenericMoveModel(IMove iMove)
+        protected BaseMoveModel(IMove iMove)
             : this()
         {
             GenericMove = iMove;
@@ -38,7 +37,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         }
 
-        private GenericMoveModel()
+        private BaseMoveModel()
         {
             var transferIsPossible =
                 Current.User.AccountList

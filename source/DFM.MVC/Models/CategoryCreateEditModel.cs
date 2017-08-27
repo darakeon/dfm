@@ -19,6 +19,11 @@ namespace DFM.MVC.Models
             Type = type;
         }
 
+        public CategoryCreateEditModel(OperationType type, String accountName) : this(type)
+        {
+            Category = Admin.GetCategoryByName(accountName);
+        }
+
         
 
         public OperationType Type { get; set; }
@@ -66,6 +71,16 @@ namespace DFM.MVC.Models
         internal void DefineAction(HttpRequestBase request)
         {
             IsMoveCRUD = request.Path.Contains(RouteNames.Accounts);
+        }
+
+
+
+        internal void CreateEdit()
+        {
+            if (Type == OperationType.Creation)
+                Admin.CreateCategory(Category);
+            else
+                Admin.UpdateCategory(Category, Name);
         }
 
 

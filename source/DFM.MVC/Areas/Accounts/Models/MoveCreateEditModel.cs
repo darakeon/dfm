@@ -1,25 +1,25 @@
-﻿using DFM.Generic;
+﻿using System;
+using DFM.Generic;
 using DFM.Entities;
 using DFM.MVC.Helpers.Controllers;
-using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class MoveCreateEditModel : GenericMoveModel
+    public class MoveCreateEditModel : BaseMoveModel
     {
         public MoveCreateEditModel() 
             : base(new Move())  { }
 
         public MoveCreateEditModel(OperationType type) 
-            : this(new Move(), type) { }
+            : base(new Move(), type) { }
 
-        public MoveCreateEditModel(Move move, OperationType type) 
-            : base(move, type) { }
+        public MoveCreateEditModel(Int32 id, OperationType type) 
+            : base(Money.GetMoveById(id), type) { }
 
 
         internal override void SaveOrUpdate(AccountSelector selector)
         {
-            Services.Money.SaveOrUpdateMove(Move, selector.AccountOutName, selector.AccountInName, CategoryName);
+            Money.SaveOrUpdateMove(Move, selector.AccountOutName, selector.AccountInName, CategoryName);
         }
 
 

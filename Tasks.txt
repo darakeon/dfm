@@ -93,7 +93,7 @@ VERSÃO 2.0.0.0
 						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
-						Mover lógica dos Controllers para os Models
+2013-08-24				Mover lógica dos Controllers para os Models
 
 VERSÃO 1.0.3.0 (Little change)
 ================================================================================================

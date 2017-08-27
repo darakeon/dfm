@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.Accounts.Models;
-using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
-using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Helpers.Extensions;
-using DFM.Repositories;
 using DFM.Generic;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
@@ -27,7 +22,7 @@ namespace DFM.MVC.Areas.Accounts.Controllers
         {
             var model = new MoveCreateEditModel(OperationType.Creation);
             
-            model.PopulateExcludingAccount(Account.Url);
+            model.PopulateExcludingAccount(model.Account.Url);
 
             return View(model);
         }
@@ -47,14 +42,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Create");
 
-            var move = Services.Money.GetMoveById(id.Value);
+            var model = new MoveCreateEditModel(id.Value, OperationType.Edit);
 
-            var model = new MoveCreateEditModel(move, OperationType.Edit);
+            if (model.AccountName == model.Account.Name)
+                return redirectToRightAccount(model.Move);
 
-            if (model.AccountName == Account.Name)
-                return redirectToRightAccount(move);
-
-            model.PopulateExcludingAccount(Account.Name);
+            model.PopulateExcludingAccount(model.Account.Name);
 
             return View(model);
         }
@@ -88,20 +81,11 @@ namespace DFM.MVC.Areas.Accounts.Controllers
 
         public ActionResult Delete(Int32 id)
         {
-            var move =  Services.Money.GetMoveById(id);
+            var model = new MoneyModel();
 
-            Services.Money.DeleteMove(id);
-            //else
-            //    move = null;
+            model.DeleteMove(id);
 
-            // TODO: implement messages on page head
-            //var message = move == null
-            //    ? MultiLanguage.Dictionary["MoveNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["MoveDeleted"], move.Description);
-
-            var reportID = (move.In ?? move.Out).Url();
-
-            return RedirectToAction("ShowMoves", "Report", new { id = reportID });
+            return RedirectToAction("ShowMoves", "Report", new { id = model.ReportUrl });
         }
 
 

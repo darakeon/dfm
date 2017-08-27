@@ -64,10 +64,7 @@ namespace DFM.MVC.Controllers
             if (String.IsNullOrEmpty(id)) 
                 return RedirectToAction("Create");
 
-            var model = new CategoryCreateEditModel(OperationType.Edit)
-            {
-                Category = Services.Admin.GetCategoryByName(id)
-            };
+            var model = new CategoryCreateEditModel(OperationType.Edit, id);
 
             return View("CreateEdit", model);
         }
@@ -106,10 +103,7 @@ namespace DFM.MVC.Controllers
         {
             model.Category.User = Current.User;
 
-            if (model.Type == OperationType.Creation)
-                Services.Admin.CreateCategory(model.Category);
-            else
-                Services.Admin.UpdateCategory(model.Category, model.Name);
+            model.CreateEdit();
 
             return model.Category;
         }
@@ -118,14 +112,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Disable(String id)
         {
-            Services.Admin.DisableCategory(id);
-            //else
-            //    category = null;
+            var model = new AdminModel();
 
-            // TODO: implement messages on page head
-            //var message = category == null
-            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["CategoryDisabled"], category.Name);
+            model.Disable(id);
 
             return RedirectToAction("Index");
         }
@@ -134,15 +123,10 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Enable(String id)
         {
-            Services.Admin.EnableCategory(id);
-            //else
-            //    category = null;
+            var model = new AdminModel();
 
-            // TODO: implement messages on page head
-            //var message = category == null
-            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["CategoryEnabled"], category.Name);
-
+            model.Enable(id);
+            
             return RedirectToAction("Index");
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.SuperServices
 {

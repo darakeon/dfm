@@ -11,7 +11,7 @@ using DFM.MVC.Helpers.Views;
 
 namespace DFM.MVC.Models
 {
-    public class BaseLoggedModel
+    public class BaseLoggedModel : BaseModel
     {
         public BaseLoggedModel()
         {
@@ -59,7 +59,9 @@ namespace DFM.MVC.Models
         }
 
 
-        protected readonly Current Current = Auth.Current; 
+        protected readonly Current Current = Auth.Current;
+
+
 
     }
 }

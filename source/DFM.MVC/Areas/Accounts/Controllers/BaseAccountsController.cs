@@ -1,21 +1,14 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
-using DFM.Generic;
 using DFM.MVC.Areas.Accounts.Models;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Helpers.Extensions;
-using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Controllers
 {
     public class BaseAccountsController : BaseController
     {
-        protected Account Account;
-
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
@@ -23,20 +16,17 @@ namespace DFM.MVC.Areas.Accounts.Controllers
             if (!Current.IsAuthenticated)
                 return;
 
-            var url = RouteData.Values["accounturl"].ToString();
-
-            Account = Services.Admin.GetAccountByUrl(url);
         }
 
 
 
-        protected ActionResult CreateEditSchedule(GenericMoveModel model)
+        protected ActionResult CreateEditSchedule(BaseMoveModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var selector = new AccountSelector(model.GenericMove.Nature, Account.Name, model.AccountName);
+                    var selector = new AccountSelector(model.GenericMove.Nature, model.Account.Name, model.AccountName);
 
                     return saveOrUpdateAndRedirect(model, selector);
                 }
@@ -46,12 +36,12 @@ namespace DFM.MVC.Areas.Accounts.Controllers
                 }
             }
 
-            model.PopulateExcludingAccount(Account.Name);
+            model.PopulateExcludingAccount(model.Account.Name);
 
             return View(model);
         }
 
-        private ActionResult saveOrUpdateAndRedirect(GenericMoveModel model, AccountSelector selector)
+        private ActionResult saveOrUpdateAndRedirect(BaseMoveModel model, AccountSelector selector)
         {
             model.SaveOrUpdate(selector);
 

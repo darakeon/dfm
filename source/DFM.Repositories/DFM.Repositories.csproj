@@ -47,7 +47,6 @@
     <Compile Include="Mappings\YearMap.cs" />
     <Compile Include="NHManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services.cs" />
     <Compile Include="TransactionController.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,25 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.MVC.Helpers;
-using DFM.MVC.Models;
+using DFM.MVC.Helpers.Extensions;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class ReportSummarizeMonthsModel : BaseLoggedModel
+    public class ReportSummarizeMonthsModel : BaseAccountsModel
     {
+        public ReportSummarizeMonthsModel(Int16? id)
+        {
+            var currentYear = (Int16)DateTime.Today.Year;
+            
+            var year = id ?? currentYear;
+            
+            year = year.ForceBetween(1900, currentYear);
+
+            Year = Report.GetYearReport(Account.Name, year);
+
+        }
+
+
         public Year Year { get; set; }
 
         public String Date
@@ -17,5 +30,7 @@ namespace DFM.MVC.Areas.Accounts.Models
                                      MultiLanguage.Dictionary["Summary"], Year.Time);
             }
         }
+
+
     }
 }

@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Models;
-using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
@@ -27,7 +26,7 @@ namespace DFM.MVC.Controllers
 
             try
             {
-                Services.Safe.TestSecurityToken(model.Token, model.SecurityAction);
+                model.Test();
             }
             catch (DFMCoreException e)
             {
@@ -53,16 +52,16 @@ namespace DFM.MVC.Controllers
 
         public ActionResult PasswordReset(String id)
         {
+            var model = new TokenPasswordResetModel();
+
             try
             {
-                Services.Safe.TestSecurityToken(id, SecurityAction.PasswordReset);
+                model.TestSecurityToken(id);
             }
             catch (DFMCoreException)
             {
                 return invalidTokenAction();
             }
-
-            var model = new TokenPasswordResetModel();
 
             return View(model);
         }
@@ -72,7 +71,7 @@ namespace DFM.MVC.Controllers
         {
             try
             {
-                Services.Safe.TestSecurityToken(id, SecurityAction.PasswordReset);
+                model.TestSecurityToken(id);
             }
             catch (DFMCoreException)
             {
@@ -87,7 +86,7 @@ namespace DFM.MVC.Controllers
             {
                 try
                 {
-                    Services.Safe.PasswordReset(id, model.Password);
+                    model.PasswordReset(id);
                 }
                 catch (DFMCoreException e)
                 {
@@ -107,16 +106,18 @@ namespace DFM.MVC.Controllers
 
         public ActionResult UserVerification(String id)
         {
+            var model = new SafeModel();
+
             try
             {
-                Services.Safe.TestSecurityToken(id, SecurityAction.UserVerification);
+                model.TestUserVerificationToken(id);
             }
             catch (DFMCoreException)
             {
                 return invalidTokenAction();
             }
 
-            Services.Safe.ActivateUser(id);
+            model.ActivateUser(id);
 
             return View("UserVerificationSuccess");
         }
@@ -125,9 +126,11 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Disable(String id)
         {
+            var model = new SafeModel();
+
             try
             {
-                Services.Safe.DisableToken(id);
+                model.Disable(id);
             }
             catch (DFMCoreException)
             {

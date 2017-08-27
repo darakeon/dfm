@@ -7,13 +7,15 @@ using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
-    public class TokenIndexModel
+    public class TokenIndexModel : BaseModel
     {
         public TokenIndexModel()
         {
             SecurityActionList = SelectListExtension.CreateSelect(
                                     MultiLanguage.GetEnumNames<SecurityAction>());
         }
+
+
 
         [Required(ErrorMessage = "*")]
         public String Token { get; set; }
@@ -22,6 +24,13 @@ namespace DFM.MVC.Models
         public SecurityAction SecurityAction { get; set; }
 
         public SelectList SecurityActionList { get; set; }
+
+
+        internal void Test()
+        {
+            Safe.TestSecurityToken(Token, SecurityAction);
+        }
+
 
     }
 }

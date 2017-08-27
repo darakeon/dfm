@@ -5,7 +5,7 @@ using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
-    public class UserSignUpModel
+    public class UserSignUpModel : BaseModel
     {
         public UserSignUpModel()
         {
@@ -30,5 +30,14 @@ namespace DFM.MVC.Models
 
         [Required(ErrorMessage = "*")]
         public String RetypePassword { get; set; }
+
+
+
+        internal void SaveUserAndSendVerify()
+        {
+            Safe.SaveUserAndSendVerify(User.Email, User.Password);
+        }
+
+
     }
 }

@@ -7,11 +7,10 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Controllers;
-using DFM.Repositories;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
-    public class ScheduleCreateModel : GenericMoveModel
+    public class ScheduleCreateModel : BaseMoveModel
     {
         public ScheduleCreateModel()
             : this(new Schedule()) { }
@@ -27,7 +26,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         internal override void SaveOrUpdate(AccountSelector selector)
         {
-            Services.Robot.SaveOrUpdateSchedule(Schedule, selector.AccountOutName, selector.AccountInName, CategoryName);
+            Robot.SaveOrUpdateSchedule(Schedule, selector.AccountOutName, selector.AccountInName, CategoryName);
         }
 
 
