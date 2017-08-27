@@ -50,8 +50,8 @@
     <string name="value">valor</string>
     <string name="amount">qte</string>
     <string name="pick">escolher</string>
-    <string name="use_detailed">detalhes</string>
-    <string name="use_simple">apenas valor</string>
+    <string name="use_detailed">++</string>
+    <string name="use_simple">––</string>
     <string name="add_detail">+</string>
     <string name="remove_detail">–</string>
     <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>

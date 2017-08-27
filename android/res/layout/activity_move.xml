@@ -116,29 +116,37 @@
 		    android:layout_height="35dp" />
 	    
 
-   	    <TextView
-	        android:id="@+id/value_label"
-	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/value" />
-		    
-   	    
    	    <LinearLayout
    	        android:id="@+id/simple_value"
 	 		android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	 	   	<EditText 
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	    	
+	   	    <LinearLayout
+		 		android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+	        	android:orientation="horizontal">
+		    	<TextView
+			        android:id="@+id/value_label"
+			 		android:layout_width="0dp"
+			 		android:layout_weight="14"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/value" />
+   		   	    <Button 
+		   	        android:text="@string/use_detailed"
+		   	        android:textSize="12sp"
+			 		android:layout_width="0dp"
+			 		android:layout_weight="3"
+			 		android:layout_height="wrap_content"
+			        android:onClick="useDetailed" />
+	   	    </LinearLayout>
+
+	   	    <EditText 
 		        android:id="@+id/value"
-		 		android:layout_width="0dp"
-		 		android:layout_weight="1"
+		 		android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:inputType="numberDecimal" />
-	   	    <Button 
-	   	        android:text="@string/use_detailed"
-	   	        android:textSize="12sp"
-		 		android:layout_width="wrap_content"
-		 		android:layout_height="wrap_content"
-		        android:onClick="useDetailed" />
+
    	    </LinearLayout>
 		    
    	    
@@ -157,26 +165,29 @@
 		   	        android:text="@string/description"
 		   	        android:textSize="12sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="4"
+			 		android:layout_weight="8"
 			        android:layout_height="wrap_content" />
 		 	   	<TextView 
 		   	        android:text="@string/amount"
 		   	        android:textSize="12sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="1"
+			 		android:layout_weight="2"
 			 		android:gravity="center"
 			        android:layout_height="wrap_content" />
 		 	   	<TextView 
 		   	        android:text="@string/value"
 		   	        android:textSize="12sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="2"
+			 		android:layout_weight="4"
 			 		android:gravity="center"
 			        android:layout_height="wrap_content" />
-		   	    <View 
+		   	    <Button 
+		   	        android:text="@string/use_simple"
+		   	        android:textSize="12sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="1"
-			 		android:layout_height="wrap_content" />
+			 		android:layout_weight="3"
+			 		android:layout_height="wrap_content"
+			        android:onClick="useSimple" />
 		   	    
 	   	    </LinearLayout>
 	   	    
@@ -188,28 +199,28 @@
 			        android:id="@+id/detail_description"
 		   	        android:textSize="14sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="4"
+			 		android:layout_weight="8"
 			        android:layout_height="wrap_content"
 			        android:inputType="text" />
 		 	   	<EditText 
 			        android:id="@+id/detail_amount"
 		   	        android:textSize="14sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="1"
+			 		android:layout_weight="2"
 			        android:layout_height="wrap_content"
 			        android:inputType="number" />
 		 	   	<EditText 
 			        android:id="@+id/detail_value"
 		   	        android:textSize="14sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="2"
+			 		android:layout_weight="4"
 			        android:layout_height="wrap_content"
 			        android:inputType="numberDecimal" />
 		   	    <Button 
 		   	        android:text="@string/add_detail"
 		   	        android:textSize="12sp"
 			 		android:layout_width="0dp"
-			 		android:layout_weight="1"
+			 		android:layout_weight="3"
 			 		android:layout_height="wrap_content"
 			        android:onClick="addDetail" />
 		   	    
@@ -221,13 +232,6 @@
 		 		android:layout_width="fill_parent"
 		        android:layout_height="wrap_content">
 	   	    </LinearLayout>
-	   	    
-	   	    <Button 
-	   	        android:text="@string/use_simple"
-	   	        android:textSize="12sp"
-		 		android:layout_width="fill_parent"
-		 		android:layout_height="wrap_content"
-		        android:onClick="useSimple" />
 	   	    	   	    	   	    
    	    </LinearLayout>
    	    	    

@@ -50,8 +50,8 @@
     <string name="value">value</string>
     <string name="amount">qty</string>
     <string name="pick">pick</string>
-    <string name="use_detailed">details</string>
-    <string name="use_simple">simple view</string>
+    <string name="use_detailed">++</string>
+    <string name="use_simple">––</string>
     <string name="add_detail">+</string>
     <string name="remove_detail">–</string>
     <string name="fill_all">Fill all fields to add a detail.</string>
