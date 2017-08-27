@@ -329,10 +329,6 @@
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Multilanguage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.PageLog\DFM.PageLog.csproj">
-      <Project>{89AD2EC3-8043-453E-9B0D-A9A40F1A3631}</Project>
-      <Name>DFM.PageLog</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DFM.Repositories\DFM.Repositories.csproj">
       <Project>{40054C79-2502-4A01-AF87-8AB2489F8A0D}</Project>
       <Name>DFM.Repositories</Name>

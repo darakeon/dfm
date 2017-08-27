@@ -109,7 +109,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Criar produto no google play
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
-						Deletar PageLog
+2014-05-04	2014-05-04	Deletar PageLog
 2014-05-04	2014-05-04	Consertar problema de salvar língua
 2014-05-04	2014-05-04	Arrumar tabela em caso de texto grande
 2014-05-04	2014-05-04	Exibir apenas dois dígitos nos centavos no mobile

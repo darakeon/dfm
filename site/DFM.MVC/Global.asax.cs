@@ -11,7 +11,6 @@ using DFM.Authentication;
 using DFM.Email;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
-using DFM.PageLog;
 using DFM.Repositories;
 using log4net.Config;
 
@@ -109,8 +108,6 @@ namespace DFM.MVC
                 error();
 
             NHManager.Close();
-
-            PageLogger.Record(Context, access.Safe);
 
             if (Request["Error"] == "Force")
                 throw new Exception("Forced error.");
