@@ -92,11 +92,10 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 2.0.2.0 (Little change) - 8?
+VERSÃO 2.0.2.0 (Little change) - 7?
 ================================================================================================
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
-F						Explicar url e sinalização da conta
 F						Colocar botão CANCEL em Settings e Move (mobile)
 2015-01-11	2015-01-11	Rever layout empty table
 2015-01-11	2015-01-11	Aumentar versão da API Android de acordo com downloads do DFM
