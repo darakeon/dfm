@@ -80,9 +80,9 @@ public class Move
 		{
 			int position = Details.lastIndexOf(detail);
 			
-			request.AddParameter("Details[" + position + "].Description", detail.Description);
-			request.AddParameter("Details[" + position + "].Amount", detail.Amount);
-			request.AddParameter("Details[" + position + "].Value", detail.Value);
+			request.AddParameter("DetailList[" + position + "].Description", detail.Description);
+			request.AddParameter("DetailList[" + position + "].Amount", detail.Amount);
+			request.AddParameter("DetailList[" + position + "].Value", detail.Value);
 		}		
 	}
 

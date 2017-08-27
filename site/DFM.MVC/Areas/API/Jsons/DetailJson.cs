@@ -5,9 +5,9 @@ namespace DFM.MVC.Areas.API.Jsons
 {
     public class DetailJson
     {
-        public String Description;
-        public Int16 Amount;
-        public Double Value;
+        public String Description { get; set; }
+        public Int16 Amount { get; set; }
+        public Double Value { get; set; }
 
         public Detail ConvertToEntity()
         {
