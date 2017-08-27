@@ -211,6 +211,7 @@
     <Content Include="Assets\css\top-right-div.css" />
     <Content Include="Assets\image\advertising\darakeon.gif" />
     <Content Include="Assets\image\advertising\pea.jpg" />
+    <Content Include="Assets\image\advertising\quero_um_bicho.gif" />
     <Content Include="Assets\image\android.gif" />
     <Content Include="Assets\image\clouds.gif" />
     <Content Include="Assets\image\datepicker\ui-icons_ffffff_256x240.png" />
@@ -242,6 +243,7 @@
     <Content Include="Assets\script\libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\script\libraries\jquery.validate.min.js" />
     <Content Include="Assets\script\libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Assets\script\libraries\sawpf.js" />
     <Content Include="Assets\script\menu.js" />
     <Content Include="Assets\script\money-date.js" />
     <Content Include="Assets\script\navigation.js" />

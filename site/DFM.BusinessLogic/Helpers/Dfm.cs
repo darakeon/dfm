@@ -7,11 +7,14 @@ namespace DFM.BusinessLogic.Helpers
     {
         public static String Url
         {
-            get {
-                return "http://" +
-                    (HttpContext.Current != null 
-                    ? HttpContext.Current.Request.Url.Authority
-                    : "www.dontflymoney.com");
+            get
+            {
+                if (HttpContext.Current == null)
+                    return "https://www.dontflymoney.com";
+
+                var url = HttpContext.Current.Request.Url;
+
+                return url.Scheme + "://" + url.Authority;
             }
         }
 
