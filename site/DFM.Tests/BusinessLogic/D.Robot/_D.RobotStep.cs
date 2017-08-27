@@ -11,14 +11,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
     [Binding]
     public class RobotStep : BaseStep
     {
-        #region Variables
-        protected Schedule Schedule
-        {
-            get { return Get<Schedule>("Schedule"); }
-            set { Set("Schedule", value); }
-        }
-        #endregion
-
         #region SaveSchedule
         [Given(@"I have this future move to create")]
         public void GivenIHaveThisMoveToCreate(Table table)

@@ -72,7 +72,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Ak.Generic">
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
