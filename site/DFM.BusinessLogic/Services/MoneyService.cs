@@ -59,7 +59,8 @@ namespace DFM.BusinessLogic.Services
             {
                 move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
 
-                Parent.BaseMove.SendEmail(move, operationType);
+                if (Parent.Current.User.SendMoveEmail)
+                    Parent.BaseMove.SendEmail(move, operationType);
 
                 CommitTransaction();
             }
