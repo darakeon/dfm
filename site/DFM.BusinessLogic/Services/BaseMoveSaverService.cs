@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ak.Generic.Exceptions;
-using Ak.NHibernate.Base;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;

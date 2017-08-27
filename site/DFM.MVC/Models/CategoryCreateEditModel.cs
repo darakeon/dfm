@@ -64,7 +64,7 @@ namespace DFM.MVC.Models
 
         internal void DefineAction(HttpRequestBase request)
         {
-            IsMoveCRUD = request.Path.Contains(RouteNames.Accounts);
+            IsMoveCRUD = request.Path.Contains(RouteNames.Account);
         }
 
 

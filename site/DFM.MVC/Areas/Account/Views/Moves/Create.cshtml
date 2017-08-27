@@ -1,0 +1,24 @@
+﻿@model MoveCreateEditModel
+
+@{
+    ViewBag.Title = MultiLanguage.Dictionary["Create", "Move"];
+    Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
+}
+
+@section HtmlHeadCss { 
+    @Html.Partial("CreateEditScheduleCss")
+}
+
+@section HtmlFooterJs {
+    @Html.Partial("CreateEditScheduleJs")
+}
+
+@Html.Partial("NewCategoryBox")
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("CreateEditSchedule")
+}
+

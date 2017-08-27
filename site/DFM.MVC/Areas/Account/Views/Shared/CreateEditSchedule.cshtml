@@ -1,0 +1,112 @@
+﻿@model BaseMoveModel
+
+@using DFM.Entities;
+
+<div class="createMoveScreenLeft">
+    <div>
+        @Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"]) 
+        @Html.ValidationMessageFor(m => m.Description)<br />
+        @Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MoveDescription })
+        <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MoveDescription)</span>
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"])
+        @Html.ValidationMessageFor(m => m.Date)<br />
+        @Html.TextBoxFor(m => m.Date, new { @class = "date_notHour", disabled = "disabled" })
+    </div>
+</div>
+    
+<div class="createMoveScreenRight">
+    
+    @if (Auth.Current.User.Config.UseCategories)
+    {
+        <div>
+            @Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"]) 
+            @Html.ValidationMessageFor(m => m.CategoryName)<br />
+            @Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+
+            <a href="javascript:void(0)" type="button" id="new-category-caller">@MultiLanguage.Dictionary["Create", "Category"]</a>
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
+
+            @Html.ValidationMessageFor(m => m.Nature)
+            @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
+        
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
+            @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
+            @Html.ValidationMessageFor(m => m.Nature)<br />
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
+        </div>
+        <div class="accountForTransfer">
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Account"]) 
+            @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
+            @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+        </div>
+    }
+
+</div>
+    
+<div class="divRowForm"><hr /></div>
+    
+<div class="createMoveScreenLeft">
+    @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "detailLevel", id = "IsNotDetailed" })
+    <label for="IsNotDetailed">@MultiLanguage.Dictionary["JustOneValue"]</label>
+</div> 
+        
+<div class="createMoveScreenRight">
+    @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "detailLevel" })
+    <label for="IsDetailed">@MultiLanguage.Dictionary["Detailed"]</label>
+        
+    <a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>
+</div>
+
+<div id="oneValue" class="createMoveScreenLeft">
+    <table class="List">
+        <tr>
+            <th>@Html.LabelFor(m => m.DetailList[0].Value, MultiLanguage.Dictionary["Value"])</th>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(m => m.DetailList[0].Value, new { @class = "money" })</td>
+        </tr>
+    </table>
+        
+    @Html.HiddenFor(m => m.DetailList[0].FakeID)
+</div>
+        
+<table class="createMoveScreenRight">
+    <tbody id="details">
+        <tr>
+            <th>
+                @MultiLanguage.Dictionary["Description"]
+                <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DetailDescription)</span>
+            </th>
+            <th>@MultiLanguage.Dictionary["Amount"]</th>
+            <th>@MultiLanguage.Dictionary["Value"]</th>
+        </tr>
+
+        @if (Model.IsDetailed)
+        {
+            for (var d = 0; d < Model.DetailList.Count; d++)
+            {
+                @Html.Partial("../Details/Add", new DetailAddModel(Model.DetailList[d], d))
+            }
+        }
+        else
+        { 
+            @Html.Partial("../Details/Add", new DetailAddModel(new Detail(), 0))
+        }
+    </tbody>
+</table>
+    
+<div id="moveCreateButton">
+    <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
+</div>

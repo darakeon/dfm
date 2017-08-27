@@ -1,0 +1,79 @@
+﻿@model AccountIndexModel
+
+@{
+    ViewBag.Title = MultiLanguage.Dictionary["Accounts"];
+    Layout = "~/Views/Shared/_NoAreaLayout.cshtml";
+}
+
+@if (!Model.AccountList.Any())
+{ 
+    <div class="ZeroItems">@MultiLanguage.Dictionary["NoAccounts"]</div>
+}
+else
+{ 
+    
+    <table class="List">
+
+        <tr>
+            <th width="500px">@MultiLanguage.Dictionary["Name"]</th>
+            <th colspan="2">@MultiLanguage.Dictionary["Total"]</th>
+            <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+        </tr>
+
+        @foreach (var account in Model.AccountList)
+        {
+            var movesSum = account.Total();
+
+            var negative = movesSum.IsNegative();
+            var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
+
+            var sign = account.Sign();
+            
+            
+            var editLabel = MultiLanguage.Dictionary["Edit", "Account"];
+            var editUrl = Url.Action("Edit", "Accounts", new { id = account.Url });
+
+            var closeLabel = MultiLanguage.Dictionary["Close", "Account"];
+            var closeUrl = Url.Action("Close", new { id = account.Url });
+            var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
+
+            var deleteLabel = MultiLanguage.Dictionary["Delete", "Account"];
+            var deleteUrl = Url.Action("Delete", new { id = account.Url });
+            var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
+
+            <tr>
+                <td>
+                    @Html.RouteLink(account.Name, RouteNames.Account, new { accounturl = account.Url, controller = "" })
+                </td>
+                
+                <td class="numeric @(negative ? "out" : "in")">@value</td>
+                    
+                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
+
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+
+                <td class="image">
+                    @if (account.HasMoves())
+                    {
+                        <a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
+                            <img src="/Assets/image/icons/close.gif" alt="@closeLabel" title="@closeLabel" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+                            <img src="/Assets/image/icons/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                        </a>
+                    }
+                </td>
+            </tr>
+
+        } 
+
+    </table>
+} 
+
+<div class="tableFooterButtonList">
+    <button href="@Url.Action("Create")">@MultiLanguage.Dictionary["Create", "Account"]</button>
+    <button href="@Url.Action("ListClosed")">@MultiLanguage.Dictionary["ClosedAccounts"]</button>
+</div>

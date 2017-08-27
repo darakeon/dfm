@@ -15,14 +15,14 @@
 
 
 @section MenuTopo {
-    <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new {action = "Index", controller = "Account"})</li>
+    <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new {action = "Index", controller = "Accounts"})</li>
         
     @if (Auth.Current.User.Config.UseCategories)
     {
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new {action = "Index", controller = "Category"})</li>
+        <li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new {action = "Index", controller = "Categories"})</li>
     }
 
-    <li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.Default, new { action = "Index", controller = "Schedule" })</li>
+    <li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.Default, new { action = "Index", controller = "Schedules" })</li>
     <li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.Default, new { action = "Index", controller = "Logins" })</li>
 }
 

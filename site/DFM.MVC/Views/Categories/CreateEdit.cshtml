@@ -1,0 +1,34 @@
+﻿@using DFM.Generic
+@model CategoryCreateEditModel
+
+@{
+    if (Model.IsMoveCRUD) { Model.ActionName = "Create"; }
+    
+    ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
+
+    if (Model.Type == OperationType.Edit)
+    {
+        ViewBag.Title += " " + Model.Name;
+    }
+    
+    Layout = Model.IsMoveCRUD ? null : "~/Views/Shared/_NoAreaLayout.cshtml";
+}
+
+<div class="half-screen CRUDCategory">
+
+    @using (
+            Model.IsMoveCRUD
+                ? Ajax.BeginForm("CreateAjax", "Categories", new AjaxOptionsDFM { OnSuccess = "InsertCategoryOnDropDown" })
+                : Html.BeginForm()
+        )
+    {
+        <p>
+            @Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"])
+            @Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.CategoryName })
+            @Html.ValidationMessageFor(m => m.Name)
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CategoryName)</span>
+        </p>
+    
+        <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
+    }
+</div>

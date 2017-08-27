@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities;
+using account = DFM.Entities.Account;
 
 namespace DFM.MVC.Areas.API.Jsons
 {
@@ -12,7 +12,7 @@ namespace DFM.MVC.Areas.API.Jsons
         public Double? RedLimit { get; set; }
         public Double? YellowLimit { get; set; }
 
-        public AccountJson(Account account)
+        public AccountJson(account account)
         {
             Name = account.Name;
             Url = account.Url;

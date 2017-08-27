@@ -1,0 +1,43 @@
+﻿@model BaseAccountsModel
+           
+@{
+    ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), ViewBag.Title);
+    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+}
+
+@section HtmlHeadCss {
+    @RenderSection("HtmlHeadCss", false)
+}
+
+@section HtmlFooterJs {
+    @RenderSection("HtmlFooterJs", false)
+}
+
+
+
+@section MenuTopo {
+    @if (Model.Account.IsOpen())
+    {
+        <li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")</li>
+        <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")</li>
+    }
+    <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")</li>
+    <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
+    <li class="icon home">@Html.RouteLink(" ", RouteNames.Default, new {action = "Index", controller = "Accounts"})</li>
+}
+
+
+
+@{/* Made without spaces to hide when empty */}
+@section TopRightDiv {@RenderSection("TopRightDiv", false)}
+
+
+
+@section PS {
+    @RenderSection("PS", false)
+}
+
+
+
+@RenderBody()
+

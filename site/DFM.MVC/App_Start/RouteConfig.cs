@@ -16,8 +16,8 @@ namespace DFM.MVC
             routes.MapRoute(
                 RouteNames.Default,
                 "{controller}/{action}/{id}",
-                new { controller = "User", action = "Index", id = UrlParameter.Optional },
-                new[] { typeof(UserController).Namespace }
+                new { controller = "Users", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(UsersController).Namespace }
             );
         }
     }

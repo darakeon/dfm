@@ -1,6 +1,4 @@
-﻿using Ak.Generic.DB;
-
-namespace DFM.Entities
+﻿namespace DFM.Entities
 {
     public partial class Ticket
     {
