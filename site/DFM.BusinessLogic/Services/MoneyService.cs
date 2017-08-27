@@ -127,19 +127,19 @@ namespace DFM.BusinessLogic.Services
 
             if (schedule.Category == null && useCategories)
             {
-                Parent.Admin.UpdateConfig(null, null, null, false);
+                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, false);
             }
 
             if (schedule.Category != null && !useCategories)
             {
-                Parent.Admin.UpdateConfig(null, null, null, true);
+                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, true);
             }
 
             scheduleRepository.SaveOrUpdate(schedule);
 
             if (schedule.User.Config.UseCategories != useCategories)
             {
-                Parent.Admin.UpdateConfig(null, null, null, useCategories);
+                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, useCategories);
             }
         }
 

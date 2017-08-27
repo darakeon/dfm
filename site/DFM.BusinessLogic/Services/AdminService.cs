@@ -261,22 +261,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                var config = Parent.Current.User.Config;
-
-                if (!String.IsNullOrEmpty(language))
-                    config.Language = language;
-
-                if (!String.IsNullOrEmpty(timeZone))
-                    config.TimeZone = timeZone;
-
-                if (sendMoveEmail.HasValue)
-                    config.SendMoveEmail = sendMoveEmail.Value;
-
-                if (useCategories.HasValue)
-                    config.UseCategories = useCategories.Value;
-
-                configRepository.Update(config);
-
+                UpdateConfigWithinTransaction(language, timeZone, sendMoveEmail, useCategories);
                 CommitTransaction();
             }
             catch
@@ -284,6 +269,25 @@ namespace DFM.BusinessLogic.Services
                 RollbackTransaction();
                 throw;
             }
+        }
+
+        internal void UpdateConfigWithinTransaction(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories)
+        {
+            var config = Parent.Current.User.Config;
+
+            if (!String.IsNullOrEmpty(language))
+                config.Language = language;
+
+            if (!String.IsNullOrEmpty(timeZone))
+                config.TimeZone = timeZone;
+
+            if (sendMoveEmail.HasValue)
+                config.SendMoveEmail = sendMoveEmail.Value;
+
+            if (useCategories.HasValue)
+                config.UseCategories = useCategories.Value;
+
+            configRepository.Update(config);
         }
         #endregion
 
