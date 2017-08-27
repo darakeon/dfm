@@ -1,4 +1,5 @@
 ﻿function AjustMoneyAndDate() {
+    
     AjustMoney(".money");
     AjustDate(".date_notHour");
 }
@@ -28,6 +29,7 @@ function AjustMoney(discriminator) {
 }
 
 function AjustDate(discriminator) {
+
     $(discriminator).unmask();
     $(discriminator).mask("99/99/9999");
 

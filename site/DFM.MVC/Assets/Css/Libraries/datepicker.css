@@ -63,7 +63,7 @@
 
 /* Component containers
 ----------------------------------*/
-.ui-widget-content { border: 0px; background: #999 url(/Assets/Image/datepicker/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x; color: #333333; }
+.ui-widget-content { border: 0px; background: #999; color: #333333; }
 .ui-widget-content a { color: #333; }
 .ui-widget-header { border: 0px; background: #999 url(/Assets/Image/datepicker/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x; color: #fff; font-weight: bold; }
 .ui-widget-header a { color: #fff; }
