@@ -614,3 +614,36 @@ Scenario: 9A. Save with details with same description (S)
 	And the accountOut value will change in -10
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
+
+Scenario: 9B. Save with e-mail sender system fail
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9B   | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move with e-mail system out
+	Then I will receive the notification
+	And I will receive no core error
+	And the move will be saved
+	And the accountOut value will change in -10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
+	
+Scenario: 9C. Save with e-mail sender system ok
+	Given I have this move to create
+		| Description | Date       | Nature | Value |
+		| Move Ca9C   | 2012-03-31 | Out    | 10    |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	When I try to save the move with e-mail system ok
+	Then I will receive no notification
+	And I will receive no core error
+	And the move will be saved
+	And the accountOut value will change in -10
+	And the month-category-accountOut value will change in 10
+	And the year-category-accountOut value will change in 10
+	

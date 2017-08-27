@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
@@ -23,48 +24,56 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void RunSchedule()
+        public Boolean RunSchedule()
         {
             Parent.Safe.VerifyUser();
 
             var useCategories = Parent.Current.User.Config.UseCategories;
 
-            runScheduleEqualConfig(useCategories);
-            runScheduleDiffConfig(useCategories);
+            var emailsSent = runScheduleEqualConfig(useCategories)
+                & runScheduleDiffConfig(useCategories);
 
             Parent.BaseMove.FixSummaries();
+
+            return emailsSent;
         }
 
-        private void runScheduleEqualConfig(bool useCategories)
+        private Boolean runScheduleEqualConfig(Boolean useCategories)
         {
             var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
             var sameConfigList = scheduleList
                 .Where(s => s.HasCategory() == useCategories);
 
-            runSchedule(sameConfigList);
+            return runSchedule(sameConfigList);
         }
 
-        private void runScheduleDiffConfig(bool useCategories)
+        private Boolean runScheduleDiffConfig(Boolean useCategories)
         {
             var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
             var diffConfigList = scheduleList
                 .Where(s => s.HasCategory() != useCategories);
 
+            Boolean emailsSent;
+
             try
             {
                 Parent.Admin.UpdateConfig(null, null, null, !useCategories);
-                runSchedule(diffConfigList);
+                emailsSent = runSchedule(diffConfigList);
             }
             finally
             {
                 Parent.Admin.UpdateConfig(null, null, null, useCategories);
             }
+
+            return emailsSent;
         }
 
-        private void runSchedule(IEnumerable<Schedule> scheduleList)
+        private Boolean runSchedule(IEnumerable<Schedule> scheduleList)
         {
+            var emailsSent = true;
+
             foreach (var schedule in scheduleList)
             {
                 var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
@@ -73,31 +82,39 @@ namespace DFM.BusinessLogic.Services
                 var category = schedule.Category;
                 var categoryName = category == null ? null : schedule.Category.Name;
 
-                addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
+                emailsSent &= addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
             }
+
+            return emailsSent;
         }
 
-        private void addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
+        private Boolean addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
+            var emailsSent = true;
+
             while (schedule.CanRunNow())
             {
                 var newMove = schedule.GetNewMove();
 
                 schedule.LastRun++;
 
-                saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
+                emailsSent &= saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
 
                 schedule.MoveList.Add(newMove);
             }
+
+            return emailsSent;
         }
 
-        private void saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        private Boolean saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
+            ErrorComposedReturn<Move, Boolean> result;
+
             BeginTransaction();
 
             try
             {
-                Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
+                result = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
                 CommitTransaction();
             }
             catch (Exception)
@@ -105,6 +122,8 @@ namespace DFM.BusinessLogic.Services
                 RollbackTransaction();
                 throw;
             }
+
+            return !result.Error;
         }
 
 

@@ -2,6 +2,7 @@
 using System.Configuration;
 using DFM.Email;
 using DFM.Email.Exceptions;
+using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -37,8 +38,7 @@ namespace DFM.Tests.Email
         [When(@"I try to send the e-mail")]
         public void WhenITryToSendTheEMail()
         {
-            var emailSenderConfig = ConfigurationManager.AppSettings["EmailSender"];
-            ConfigurationManager.AppSettings["EmailSender"] = "";
+            ConfigHelper.ActivateEmailSystem();
 
             try
             {
@@ -49,7 +49,7 @@ namespace DFM.Tests.Email
                 error = e;
             }
 
-            ConfigurationManager.AppSettings["EmailSender"] = emailSenderConfig;
+            ConfigHelper.DeactivateEmailSystem();
         }
 
         

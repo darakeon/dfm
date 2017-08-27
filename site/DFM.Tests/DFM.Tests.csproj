@@ -168,6 +168,7 @@
     <Compile Include="BusinessLogic\CD.MoneyRobotStep.cs" />
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
+    <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
     <Compile Include="BusinessLogic\Helpers\DBHelper.cs" />
     <Compile Include="BusinessLogic\D.Robot\b.RunSchedule.feature.cs">
       <DependentUpon>b.RunSchedule.feature</DependentUpon>
@@ -337,6 +338,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Ak.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Castle.Core">
       <HintPath>..\Library\NHibernate\Castle.Core.dll</HintPath>
     </Reference>

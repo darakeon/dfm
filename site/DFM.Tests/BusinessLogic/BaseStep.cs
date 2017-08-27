@@ -273,6 +273,12 @@ namespace DFM.Tests.BusinessLogic
 
 
 
+        protected static Boolean EmailError
+        {
+            get { return Get<Boolean>("EmailError"); }
+            set { Set("EmailError", value); }
+        }
+
         protected static Move Move
         {
             get { return Get<Move>("Move"); }

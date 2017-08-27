@@ -1,4 +1,5 @@
 ﻿using System;
+using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
@@ -28,8 +29,13 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        internal Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        internal ErrorComposedReturn<Move, Boolean> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
+            var operationType =
+                move.ID == 0
+                    ? OperationType.Creation
+                    : OperationType.Edit;
+
             resetSchedule(move);
 
             linkEntities(move, accountOutUrl, accountInUrl, categoryName);
@@ -54,7 +60,21 @@ namespace DFM.BusinessLogic.Services
             breakSummaries(move);
 
 
-            return move;
+            try
+            {
+                if (Parent.Current.User.Config.SendMoveEmail)
+                    SendEmail(move, operationType);
+            }
+            catch (DFMCoreException exception)
+            {
+                if (exception.Type == ExceptionPossibilities.FailOnEmailSend)
+                    return new ErrorComposedReturn<Move, Boolean>(move, true);
+
+                throw;
+            }
+
+
+            return new ErrorComposedReturn<Move, Boolean>(move);
         }
 
         internal Account GetAccountByUrl(String accountUrl)

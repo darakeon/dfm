@@ -5,6 +5,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using DFM.Generic;
+using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -133,6 +134,56 @@ namespace DFM.Tests.BusinessLogic.C.Money
             }
         }
 
+        [When(@"I try to save the move with e-mail system out")]
+        public void WhenITryToSaveTheMoveWithEMailSystemOut()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+            ConfigHelper.BreakTheEmailSystem();
+
+            try
+            {
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+
+                var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+
+                EmailError = result.Error;
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.FixTheEmailSystem();
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
+        }
+
+        [When(@"I try to save the move with e-mail system ok")]
+        public void WhenITryToSaveTheMoveWithEMailSystemOk()
+        {
+            ConfigHelper.ActivateEmailSystem();
+            ConfigHelper.ActivateEmailForUser(SA);
+
+            try
+            {
+                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
+                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+
+                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            ConfigHelper.DeactivateEmailForUser(SA);
+            ConfigHelper.DeactivateEmailSystem();
+        }
+
+
+
         [Then(@"the move will not be saved")]
         public void ThenTheMoveWillNotBeSaved()
         {
@@ -147,6 +198,18 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var newMove = SA.Money.GetMoveById(Move.ID);
 
             Assert.IsNotNull(newMove);
+        }
+
+        [Then(@"I will receive the notification")]
+        public void ThenIWillReceiveTheNotification()
+        {
+            Assert.IsTrue(EmailError);
+        }
+
+        [Then(@"I will receive no notification")]
+        public void ThenIWillReceiveNoNotification()
+        {
+            Assert.IsFalse(EmailError);
         }
         #endregion
 
@@ -520,7 +583,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 Move.DetailList.Add(newDetail);
             }
 
-            Move = SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
+            var result = SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
+            Move = result.Success;
 
             detail = Move.DetailList.First();
         }

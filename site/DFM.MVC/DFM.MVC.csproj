@@ -160,6 +160,7 @@
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
+    <Compile Include="Helpers\Global\ErrorAlert.cs" />
     <Compile Include="Helpers\Models\DateFromInt.cs" />
     <Compile Include="Helpers\Global\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />

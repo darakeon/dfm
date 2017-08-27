@@ -92,14 +92,16 @@ VERSÃO 2.0.0.1 (System) - 11?
 
 VERSÃO 2.0.0.0 (All new) - 29?
 ================================================================================================
+						Colocar botão de sair
+						Colocar configuração de usuário para pegar www ou beta
 						Colocar lista de Categorias / Contas no combo em ordem alfabética
 						Criar produto no google play
 						Colocar Saldo Atual na tela de Extrato
 						Trocar botão e Contas por imagem de Home, Botão de Sair por imagem de logout
-						Consertar esquema de session do NH
-						Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Resolver problema de tab na tela de criação de Move
+						Consertar esquema de session do NH
+2014-03-16				Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
 2014-03-05	2014-03-05	Criar box de avisos
 2014-03-05	2014-03-05	Criar tela de configuração para usuário (Mobile)
 2014-03-05	2014-03-05	Ocultar categoria quando usuário não quiser usar categoria

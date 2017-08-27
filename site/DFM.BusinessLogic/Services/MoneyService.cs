@@ -1,4 +1,5 @@
 ﻿using System;
+using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
@@ -33,32 +34,31 @@ namespace DFM.BusinessLogic.Services
         }
 
 
-        public Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        public ErrorComposedReturn<Move, Boolean> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             Parent.Safe.VerifyUser();
 
-            move = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
+            var result = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
 
             Parent.BaseMove.FixSummaries();
 
-            return move;
+            return result;
         }
 
-        private Move saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, string categoryName)
+        private ErrorComposedReturn<Move, Boolean> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            BeginTransaction();
-
             var operationType =
                 move.ID == 0
                     ? OperationType.Creation
                     : OperationType.Edit;
 
+            ErrorComposedReturn<Move, Boolean> result;
+
+            BeginTransaction();
+
             try
             {
-                move = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
-
-                if (Parent.Current.User.Config.SendMoveEmail)
-                    Parent.BaseMove.SendEmail(move, operationType);
+                result = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
 
                 CommitTransaction();
             }
@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.Services
                 throw;
             }
 
-            return move;
+            return result;
         }
 
 

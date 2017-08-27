@@ -64,7 +64,14 @@ namespace DFM.MVC
                 Response.Redirect("/");
 
             if (current.IsAuthenticated)
-                access.Robot.RunSchedule();
+            {
+                var emailsSent = access.Robot.RunSchedule();
+
+                if (!emailsSent)
+                {
+                    ErrorAlert.Add("EmailsNotSent");
+                }
+            }
         }
 
 
