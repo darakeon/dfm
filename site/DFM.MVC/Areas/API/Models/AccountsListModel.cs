@@ -5,9 +5,9 @@ using DFM.MVC.Areas.API.Jsons;
 
 namespace DFM.MVC.Areas.API.Models
 {
-    internal class AccountListModel : BaseJsonModel
+    internal class AccountsListModel : BaseApiModel
     {
-        public AccountListModel()
+        public AccountsListModel()
         {
             AccountList = 
                 Current.User.AccountList

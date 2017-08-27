@@ -9,7 +9,7 @@ namespace DFM.MVC.Areas.API.Jsons
         public String Name { get; set; }
         public String Url { get; set; }
 
-        public Double Sum { get; set; }
+        public Double Total { get; set; }
         public Double? RedLimit { get; set; }
         public Double? YellowLimit { get; set; }
 
@@ -17,7 +17,7 @@ namespace DFM.MVC.Areas.API.Jsons
         {
             Name = account.Name;
             Url = account.Url;
-            Sum = account.Sum();
+            Total = account.Sum();
             RedLimit = account.RedLimit;
             YellowLimit = account.YellowLimit;
         }

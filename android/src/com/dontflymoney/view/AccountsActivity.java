@@ -38,7 +38,7 @@ public class AccountsActivity extends SmartActivity
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
 		
-		Request request = new Request(this, "Account/List");
+		Request request = new Request(this, "Accounts/List");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		
@@ -89,8 +89,6 @@ public class AccountsActivity extends SmartActivity
 		}
 	}
 
-
-
 	private void getAccount(JSONObject account)
 			throws JSONException
 	{
@@ -99,7 +97,7 @@ public class AccountsActivity extends SmartActivity
 		String name = account.getString("Name");
 		row.addView(createText(name, Gravity.LEFT));
 
-		double sum = account.getDouble("Sum");
+		double sum = account.getDouble("Total");
 		String sumStr = new DecimalFormat("#,##0.00").format(sum);
 		row.addView(createText(sumStr, Gravity.RIGHT));
 		
@@ -128,8 +126,7 @@ public class AccountsActivity extends SmartActivity
 		    public void onClick(View row)
 		    {
 		        TableRow tablerow = (TableRow)row;
-		        TextView sample = (TextView) tablerow.getChildAt(0);
-		        alertError(sample.getText().toString());
+		        TextView name = (TextView) tablerow.getChildAt(0);
 		        
 		        redirect(MovesActivity.class);
 		    }

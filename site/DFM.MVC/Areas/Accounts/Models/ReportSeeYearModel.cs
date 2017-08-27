@@ -15,7 +15,7 @@ namespace DFM.MVC.Areas.Accounts.Models
             
             year = year.ForceBetween(1900, currentYear);
 
-            Year = Report.GetYearReport(Account.Name, year);
+            Year = Report.GetYearReport(AccountUrl, year);
 
         }
 

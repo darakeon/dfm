@@ -102,9 +102,7 @@ public class SmartActivity extends Activity
 	protected void logout()
 	{
 		Authentication.Clear();
-		
-		Intent intent = new Intent(this, LoginActivity.class);
-		startActivity(intent);
+		redirect(LoginActivity.class);
 	}
 	
 	protected void redirect(Class<?> activityClass)
@@ -119,6 +117,11 @@ public class SmartActivity extends Activity
 	public void logout(MenuItem menuItem)
 	{
 		logout();
+	}
+	
+	public void goToAccounts(MenuItem menuItem)
+	{
+		redirect(AccountsActivity.class);
 	}
 	
 	

@@ -27,7 +27,7 @@ namespace DFM.MVC.Areas.Accounts.Models
 
             dateYear = dateYear.ForceBetween(1900, currentYear);
 
-            MoveList = Report.GetMonthReport(Account.Name, dateMonth, dateYear);
+            MoveList = Report.GetMonthReport(AccountUrl, dateMonth, dateYear);
             
             Month = dateMonth;
             Year = dateYear;

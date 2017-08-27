@@ -125,14 +125,18 @@
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
-    <Compile Include="Areas\API\Controllers\AccountController.cs" />
+    <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
-    <Compile Include="Areas\API\Controllers\UserController.cs" />
+    <Compile Include="Areas\API\Controllers\MovesController.cs" />
+    <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Jsons\AccountJson.cs" />
-    <Compile Include="Areas\API\Models\AccountListModel.cs" />
-    <Compile Include="Areas\API\Models\BaseJsonModel.cs" />
-    <Compile Include="Areas\API\Models\UserLogOnJsonModel.cs" />
+    <Compile Include="Areas\API\Jsons\DetailJson.cs" />
+    <Compile Include="Areas\API\Jsons\MoveJson.cs" />
+    <Compile Include="Areas\API\Models\AccountsListModel.cs" />
+    <Compile Include="Areas\API\Models\BaseApiModel.cs" />
+    <Compile Include="Areas\API\Models\MovesListModel.cs" />
+    <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
@@ -353,7 +357,7 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>2199</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

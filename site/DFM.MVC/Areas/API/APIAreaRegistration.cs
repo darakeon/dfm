@@ -17,24 +17,24 @@ namespace DFM.MVC.Areas.API
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                RouteNames.API,
-                "API/{controller}/{action}/{id}",
-                new { controller = "User", action = "Index", id = UrlParameter.Optional },
-                new[] { typeof(UserController).Namespace }
+                RouteNames.APILoggedAccount,
+                "API-{ticket}/Account-{accounturl}/{controller}/{action}/{id}",
+                new { controller = "Moves", action = "List", id = UrlParameter.Optional },
+                new[] { typeof(UsersController).Namespace }
             );
 
             context.MapRoute(
                 RouteNames.APILogged,
                 "API-{ticket}/{controller}/{action}/{id}",
-                new { controller = "Account", action = "List", id = UrlParameter.Optional },
-                new[] { typeof(UserController).Namespace }
+                new { controller = "Accounts", action = "List", id = UrlParameter.Optional },
+                new[] { typeof(UsersController).Namespace }
             );
 
             context.MapRoute(
-                RouteNames.APILoggedAccount,
-                "API-{ticket}/Account-{accountname}/{controller}/{action}/{id}",
-                new { controller = "User", action = "Index", id = UrlParameter.Optional },
-                new[] { typeof(UserController).Namespace }
+                RouteNames.API,
+                "API/{controller}/{action}/{id}",
+                new { controller = "Users", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(UsersController).Namespace }
             );
 
         }

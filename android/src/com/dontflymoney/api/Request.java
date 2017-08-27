@@ -67,14 +67,14 @@ public class Request
 	
 	public void Post()
 	{
+		result = null;
+		error = null;
+		
 		if (isOffline())
 		{
 			error = "You're current offline";
 			return;
 		}
-		
-		result = null;
-		error = null;
 		
 		HttpClient client = new DefaultHttpClient();
 		
@@ -94,35 +94,10 @@ public class Request
 			return;
 		}
 
-	    HttpResponse response;
-	    
-		try
-		{
-	    	// TODO: make it asynchronous
-	    	ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
-	    	ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
-	    	
-	    	StrictMode.setThreadPolicy(policy);
-			response = client.execute(post);
-	    	StrictMode.setThreadPolicy(oldPolicy);
-		}
-		catch (ClientProtocolException e)
-		{
-			error = "Error on posting: [client] " + e.getMessage();
-			return;
-		}
-		catch (IOException e)
-		{
-			error = "Error on posting: [io] " + e.getMessage();
-			return;
-		}
-		catch (Exception e)
-		{
-			error = "Error on posting: [" + e.getClass() + "] " + e.getMessage();
-			return;
-		}
+	    HttpResponse response = getResponse(client, post);
 
-        handleResponse(response);
+	    if (response != null)
+	    	handleResponse(response);
 	}
 
 	private boolean isOffline()
@@ -134,8 +109,6 @@ public class Request
 			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTED;
 	}
 
-
-
 	private String getUrl()
 	{
 		String completeUrl = site;
@@ -146,10 +119,14 @@ public class Request
 			parameters.remove("ticket");
 		}
 		
+		if (parameters.containsKey("accounturl"))
+		{
+			completeUrl += "/Account-" + parameters.get("accounturl");
+			parameters.remove("accounturl");
+		}
+		
 		return completeUrl + "/" + url;
 	}
-
-
 
 	private List<NameValuePair> getParameters()
 	{
@@ -168,6 +145,38 @@ public class Request
 		return nameValuePairs;
 	}
 
+	private HttpResponse getResponse(HttpClient client, HttpPost post)
+	{
+		try
+		{
+			HttpResponse response;
+
+			// TODO: make it asynchronous
+	    	ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
+	    	ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
+	    	
+	    	StrictMode.setThreadPolicy(policy);
+			response = client.execute(post);
+	    	StrictMode.setThreadPolicy(oldPolicy);
+	    	
+	    	return response;
+		}
+		catch (ClientProtocolException e)
+		{
+			error = "Error on posting: [client] " + e.getMessage();
+		}
+		catch (IOException e)
+		{
+			error = "Error on posting: [io] " + e.getMessage();
+		}
+		catch (Exception e)
+		{
+			error = "Error on posting: [" + e.getClass() + "] " + e.getMessage();
+		}
+		
+		return null;
+	}
+	
 	private void handleResponse(HttpResponse response)
 	{
 		if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)

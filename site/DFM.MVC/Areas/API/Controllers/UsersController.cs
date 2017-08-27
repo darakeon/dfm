@@ -6,12 +6,12 @@ using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    public class UserController : BaseJsonController
+    public class UsersController : BaseJsonController
     {
-        public ActionResult Index(String email, String password)
+        public ActionResult Login(String email, String password)
         {
             var model =
-                new UserLogOnJsonModel
+                new UsersLoginModel
                 {
                     Email = email,
                     Password = password,
