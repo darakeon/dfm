@@ -257,7 +257,6 @@ Scenario: 10. Get translate of Interface (user)
 		| User    | Index_ReportMonth      |
 		| User    | Index_ReportYear       |
 		| User    | Index_Close            |
-		| User    | Index_Finish           |
 		| User    | Logon                  |
 		| User    | Enter                  |
 		| User    | Email                  |
