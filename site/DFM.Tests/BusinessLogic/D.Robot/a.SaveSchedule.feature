@@ -697,14 +697,13 @@ Scenario: 9A. Save with exactly length in Description (S)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 	
-Scenario: 9A. Save with details with same description (S)
+Scenario: 9B. Save with details with same description (S)
 	Given I have this future move to create
 		| Description | Date       | Nature | Value |
-		| Move Ca9A   | 2012-03-31 | Out    |       |
-	And the move has this details
+		| Move Da9D   | 2012-03-31 | Out    |       |
+	And the future move has this details
 		| Description | Amount | Value |
-		| Move Ca9A   | 1      | 10    |
-		| Detail 2    | 1      | 10    |
+		| Move Da9D   | 1      | 10    |
 	And the move has this schedule
 		| Times | Boundless | Frequency | ShowInstallment |
 		| 10    | False     | Monthly   | False           |

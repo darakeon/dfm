@@ -42,6 +42,17 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             }
         }
 
+        [Given(@"the future move has this details")]
+        public void GivenTheFutureMoveHasThisDetails(Table table)
+        {
+            foreach (var detailData in table.Rows)
+            {
+                var detail = GetDetailFromTable(detailData);
+
+                Schedule.DetailList.Add(detail);
+            }
+        }
+
         [Given(@"the move has no schedule")]
         public void GivenTheMoveHasNoSchedule()
         {

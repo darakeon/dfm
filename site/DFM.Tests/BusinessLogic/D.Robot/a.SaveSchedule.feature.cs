@@ -2242,10 +2242,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9A. Save with details with same description (S)")]
-        public virtual void _9A_SaveWithDetailsWithSameDescriptionS()
+        [NUnit.Framework.DescriptionAttribute("9B. Save with details with same description (S)")]
+        public virtual void _9B_SaveWithDetailsWithSameDescriptionS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Save with details with same description (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Save with details with same description (S)", ((string[])(null)));
 #line 700
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -2255,7 +2255,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table81.AddRow(new string[] {
-                        "Move Ca9A",
+                        "Move Da9D",
                         "2012-03-31",
                         "Out",
                         ""});
@@ -2267,15 +2267,11 @@ this.ScenarioSetup(scenarioInfo);
                         "Amount",
                         "Value"});
             table82.AddRow(new string[] {
-                        "Move Ca9A",
-                        "1",
-                        "10"});
-            table82.AddRow(new string[] {
-                        "Detail 2",
+                        "Move Da9D",
                         "1",
                         "10"});
 #line 704
- testRunner.And("the move has this details", ((string)(null)), table82);
+ testRunner.And("the future move has this details", ((string)(null)), table82);
 #line hidden
             TechTalk.SpecFlow.Table table83 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
@@ -2287,25 +2283,25 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 708
+#line 707
  testRunner.And("the move has this schedule", ((string)(null)), table83);
-#line 711
+#line 710
  testRunner.And("it has a Category");
-#line 712
+#line 711
  testRunner.And("it has an Account Out");
-#line 713
+#line 712
  testRunner.And("it has no Account In");
-#line 714
+#line 713
  testRunner.When("I try to save the schedule");
-#line 715
+#line 714
  testRunner.Then("I will receive no core error");
-#line 716
+#line 715
  testRunner.And("the move will be saved");
-#line 717
+#line 716
  testRunner.And("the accountOut value will not change");
-#line 718
+#line 717
  testRunner.And("the month-category-accountOut value will not change");
-#line 719
+#line 718
  testRunner.And("the year-category-accountOut value will not change");
 #line hidden
             testRunner.CollectScenarioErrors();
