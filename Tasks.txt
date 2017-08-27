@@ -94,13 +94,14 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Verificar se password reset inativa usuário
 						Rever layout empty table
 						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
-
-VERSÃO 2.0.1.0 (Little Change)
-================================================================================================
-						Tratar erro ao enviar e-mail (Security)
 						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+
+VERSÃO 2.0.1.0 (Little Change)
+================================================================================================
+						Disponibilizar Task list no site
+						Tratar erro ao enviar e-mail (Security)
 						Procurar TO-DOs no projeto
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 						Security desativa os anteriores
