@@ -40,7 +40,7 @@
     <Categories text="Categories" />
     <Detail text="Detail" />
     <Nature text="Nature" />
-    <Schedule text="Schedule" />
+    <TheSchedule text="Schedule" />
     <Schedules text="Schedules" />
 
     <!--Enums-->
@@ -102,8 +102,8 @@
     <Categories text="Categorias" />
     <Detail text="Detalhe" />
     <Nature text="Natureza" />
-    <Schedule text="Schedule" />
-    <Schedules text="Schedules" />
+    <TheSchedule text="Agendamento" />
+    <Schedules text="Agendamentos" />
 
     <!--Enums-->
     <In text="Entrada" />

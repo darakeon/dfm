@@ -312,6 +312,8 @@ Scenario: 12. Get translate of Interface (general)
 		| General | Accounts    |
 		| General | ScheduleRun |
 		| General | Total       |
+		| General | Schedules   |
+		| General | TheSchedule |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -344,9 +346,7 @@ Scenario: 13. Get translate of Interface (schedule)
 		| Schedule | Value                 |
 		| Schedule | Amount                |
 		| Schedule | ToMove                |
-		| Schedule | Schedules             |
 		| Schedule | NoSchedules           |
-		| Schedule | Schedule              |
 		| Schedule | ConfirmDeleteSchedule |
 	When I try get the translate
 	Then I will receive no multilanguage error

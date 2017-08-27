@@ -59,7 +59,7 @@ else
                 </td>
 
                 @{
-                    var deleteLabel = MultiLanguage.Dictionary["Delete", "Schedule"];
+                    var deleteLabel = MultiLanguage.Dictionary["Delete", "TheSchedule"];
                     var deleteUrl = Url.Action("Delete", "Schedule", new { id = schedule.ID });
                     var deleteConfirm = String.Format(MultiLanguage.Dictionary["ConfirmDeleteSchedule"], schedule.Description);
                 }
