@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 
 
 public class LoginActivity extends SmartActivity
@@ -43,7 +44,7 @@ public class LoginActivity extends SmartActivity
 	}
 	
 	@Override
-	public void HandlePost(Request request)
+	public void HandlePost(Request request, Step step)
 	{
 		if (request.IsSuccess())
 		{

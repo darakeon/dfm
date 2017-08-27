@@ -7,6 +7,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -18,13 +19,23 @@ import com.dontflymoney.view.R;
 class SiteConnector extends AsyncTask<Void, Void, String>
 {
 	HttpPost post;
+	HttpGet get;
 	Request request;
+	Step step;
 	String error;
 	
-	public SiteConnector(HttpPost post, Request request)
+	public SiteConnector(HttpPost post, Request request, Step step)
 	{
 		this.post = post;
 		this.request = request;
+		this.step = step;
+	}
+
+	public SiteConnector(HttpGet get, Request request, Step step)
+	{
+		this.get = get;
+		this.request = request;
+		this.step = step;
 	}
 
 	protected String doInBackground(Void... urls)
@@ -33,7 +44,10 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 		{
 			HttpClient client = new DefaultHttpClient();
 
-			HttpResponse response = client.execute(post);
+			HttpResponse response =
+					post != null
+					? client.execute(post)
+					: client.execute(get);
 
 			if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
 	        {
@@ -47,25 +61,25 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 				}
 		        catch (ParseException e)
 		        {
-					error = request.activity.getString(R.string.ErrorConvertResult) + ": [parse] " + e.getMessage();
+					error = request.activity.getString(R.string.error_convert_result) + ": [parse] " + e.getMessage();
 				}
 		        catch (IOException e)
 		        {
-					error = request.activity.getString(R.string.ErrorConvertResult) + ": [io] " + e.getMessage();
+					error = request.activity.getString(R.string.error_convert_result) + ": [io] " + e.getMessage();
 				}
 			}
 		}
 		catch (ClientProtocolException e)
 		{
-			error = request.activity.getString(R.string.ErrorPost) + ": [client] " + e.getMessage();
+			error = request.activity.getString(R.string.error_post) + ": [client] " + e.getMessage();
 		}
 		catch (IOException e)
 		{
-			error = request.activity.getString(R.string.ErrorPost) + ": [io] " + e.getMessage();
+			error = request.activity.getString(R.string.error_post) + ": [io] " + e.getMessage();
 		}
 		catch (Exception e)
 		{
-			error = request.activity.getString(R.string.ErrorPost) + ": [" + e.getClass() + "] " + e.getMessage();
+			error = request.activity.getString(R.string.error_post) + ": [" + e.getClass() + "] " + e.getMessage();
 		}
 		
 		return null;
@@ -73,6 +87,6 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 
    	protected void onPostExecute(String json)
    	{
-   		request.HandleResponse(json, error);
+   		request.HandleResponse(json, error, step);
    	}
 }

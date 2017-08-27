@@ -46,7 +46,7 @@ public class File
 	    }
 	    catch (IOException e)
 	    {
-	        status = context.getString(R.string.ErrorFileWrite) + ": " + e.toString();
+	        status = context.getString(R.string.error_file_write) + ": " + e.toString();
 	    } 
 	}
 
@@ -79,11 +79,11 @@ public class File
 	    }
 	    catch (FileNotFoundException e)
 	    {
-	        status = context.getString(R.string.ErrorFileNotFound) + ": " + e.toString();
+	        status = context.getString(R.string.error_file_not_found) + ": " + e.toString();
 	    } 
 	    catch (IOException e) 
 	    {
-	        status = context.getString(R.string.ErrorFileRead) + ": " + e.toString();
+	        status = context.getString(R.string.error_file_read) + ": " + e.toString();
 	    }
 
 	    return result;

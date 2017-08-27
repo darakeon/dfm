@@ -37,6 +37,10 @@
             android:name="com.dontflymoney.view.SummaryActivity"
             android:label="@string/title_activity_summary" >
         </activity>
+        <activity
+            android:name="com.dontflymoney.view.MoveActivity"
+            android:label="@string/title_activity_move" >
+        </activity>
     </application>
 
 </manifest>

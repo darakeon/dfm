@@ -130,11 +130,15 @@
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
+    <Compile Include="Areas\API\Helpers\SelectItem.cs" />
     <Compile Include="Areas\API\Jsons\AccountJson.cs" />
+    <Compile Include="Areas\API\Jsons\DetailJson.cs" />
     <Compile Include="Areas\API\Jsons\SimpleMonthJson.cs" />
     <Compile Include="Areas\API\Jsons\SimpleMoveJson.cs" />
     <Compile Include="Areas\API\Models\AccountsListModel.cs" />
     <Compile Include="Areas\API\Models\BaseApiModel.cs" />
+    <Compile Include="Areas\API\Models\MoveCreateGetModel.cs" />
+    <Compile Include="Areas\API\Models\MoveCreatePostModel.cs" />
     <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\MovesExtractModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />

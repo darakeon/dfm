@@ -27,7 +27,7 @@
     <InvalidAccount text="Invalid Account" />
     <InvalidEmail text="Invalid E-mail" />
     <InvalidToken text="Invalid Token" />
-    <Uninvited text="You are uninvited" />
+    <Uninvited text="You are uninvited!" />
     <InvalidUser text="User and/or password invalid." />
     <MonthAmbiguousInYear text="Month ambiguous reference. Contact support." />
     <MoveFutureNotScheduled text="To create future Moves use Schedule." />
@@ -95,7 +95,7 @@
     <InvalidAccount text="Conta inválida" />
     <InvalidEmail text="E-mail inválido" />
     <InvalidToken text="Token inválido" />
-    <Uninvited text="Esqueceu o convite" />
+    <Uninvited text="Tchau!" />
     <InvalidUser text="Usuário e/ou senha inválido(s)." />
     <MonthAmbiguousInYear text="Referência de mês ambígua. Contate o suporte." />
     <MoveFutureNotScheduled text="Para criar Movimentações futuras, use o Agendamento." />

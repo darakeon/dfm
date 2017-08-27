@@ -94,7 +94,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 2.0.0.0 (All new) - 15?
+VERSÃO 2.0.0.0 (All new) - 22?
 ================================================================================================
 						Colocar menu ao clicar e segurar em Account
 						Colocar modelo de movimentação (Mobile)

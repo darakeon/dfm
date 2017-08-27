@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -62,12 +63,17 @@ public class Request
 	
 	public void Post()
 	{
+		Post(Step.NoSteps);
+	}
+	
+	public void Post(Step step)
+	{
 		result = null;
 		error = null;
 		
 		if (isOffline())
 		{
-			error = activity.getString(R.string.UROffline);
+			error = activity.getString(R.string.u_r_offline);
 			return;
 		}
 		
@@ -81,19 +87,46 @@ public class Request
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
-			error = activity.getString(R.string.ErrorSetParameters) + e.getMessage();
+			error = activity.getString(R.string.error_set_parameters) + e.getMessage();
 			return;
 		}
 
-		SiteConnector site = new SiteConnector(post, this);
+		SiteConnector site = new SiteConnector(post, this, step);
 		
 		site.execute();
 
-		progress = new ProgressDialog(activity);
-		progress.setTitle(activity.getString(R.string.wait_title));
-		progress.setMessage(activity.getString(R.string.wait_text));
-		progress.show();
+		showWaitDialog();
 	}
+	
+	
+	
+	public void Get()
+	{
+		Get(Step.NoSteps);
+	}
+	
+	public void Get(Step step)
+	{
+		result = null;
+		error = null;
+		
+		if (isOffline())
+		{
+			error = activity.getString(R.string.u_r_offline);
+			return;
+		}
+		
+		String completeUrl = getUrl();
+		HttpGet get = new HttpGet(completeUrl);
+
+		SiteConnector site = new SiteConnector(get, this, step);
+		
+		site.execute();
+
+		showWaitDialog();
+	}
+	
+	
 
 	private boolean isOffline()
 	{
@@ -147,10 +180,18 @@ public class Request
 	    
 		return nameValuePairs;
 	}
+
+	private void showWaitDialog()
+	{
+		progress = new ProgressDialog(activity);
+		progress.setTitle(activity.getString(R.string.wait_title));
+		progress.setMessage(activity.getString(R.string.wait_text));
+		progress.show();		
+	}
 	
 	
 	
-	void HandleResponse(String json, String errorMessage)
+	void HandleResponse(String json, String errorMessage, Step step)
 	{
 		if (errorMessage != null)
 		{
@@ -158,7 +199,7 @@ public class Request
 		}
 		else if (json.startsWith("<"))
     	{
-    		error = activity.getString(R.string.ErrorContactUrl) + " " + this.url;
+    		error = activity.getString(R.string.error_contact_url) + " " + this.url;
     	}
 		else 
 		{
@@ -168,12 +209,12 @@ public class Request
 	    	}
 	        catch (JSONException e)
 	        {
-				error = activity.getString(R.string.ErrorConvertResult) + ": [json] " + e.getMessage();
+				error = activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage();
 			}
     	}
     	
 		progress.dismiss();
-    	activity.HandlePost(this);
+    	activity.HandlePost(this, step);
 	}
 	
 	

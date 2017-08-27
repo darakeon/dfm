@@ -15,6 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
 public class AccountsActivity extends SmartActivity
@@ -42,6 +43,16 @@ public class AccountsActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		getMain();
 		getAccounts();
+		
+		/*
+		Intent intent = new Intent(this, MoveActivity.class);
+		
+		intent.putExtra("accounturl", "x");
+		intent.putExtra("year", 2014);
+		intent.putExtra("month", 1);
+		
+		startActivity(intent);
+		*/
 	}
 	
 	private void getMain()
@@ -57,7 +68,7 @@ public class AccountsActivity extends SmartActivity
 	}
 
 	@Override
-	public void HandlePost(Request request)
+	public void HandlePost(Request request, Step step)
 	{
 		if (request.IsSuccess())
 		{
@@ -69,7 +80,7 @@ public class AccountsActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				alertError(getString(R.string.ErrorActivityJson) + ": " + e.getMessage());
+				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
 			}
 		}
 		else
@@ -87,7 +98,7 @@ public class AccountsActivity extends SmartActivity
 			
 			alertError(error);
 
-			if (error.contains(getString(R.string.Uninvited)))
+			if (error.contains(getString(R.string.uninvited)))
 			{
 				logout();
 			}			
@@ -99,7 +110,7 @@ public class AccountsActivity extends SmartActivity
 			
 			if (accountList.length() == 0)
 			{
-				View empty = createText(getString(R.string.NoAccounts), Gravity.CENTER);
+				View empty = createText(getString(R.string.no_accounts), Gravity.CENTER);
 				main.addView(empty);
 			}
 			else

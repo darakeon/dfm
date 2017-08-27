@@ -20,6 +20,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
 public class SummaryActivity extends SmartActivity
@@ -119,7 +120,7 @@ public class SummaryActivity extends SmartActivity
 	}
 	
 	@Override
-	public void HandlePost(Request request)
+	public void HandlePost(Request request, Step step)
 	{
 		if (request.IsSuccess())
 		{
@@ -131,7 +132,7 @@ public class SummaryActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				alertError(getString(R.string.ErrorActivityJson) + ": " + e.getMessage());
+				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
 			}
 		}
 		else
@@ -160,7 +161,7 @@ public class SummaryActivity extends SmartActivity
 			
 			if (monthList.length() == 0)
 			{
-				View empty = createText(getString(R.string.NoMoves), Gravity.CENTER);
+				View empty = createText(getString(R.string.no_summary), Gravity.CENTER);
 				main.addView(empty);
 			}
 			else

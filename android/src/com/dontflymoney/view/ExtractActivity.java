@@ -22,6 +22,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 
 public class ExtractActivity extends SmartActivity
 {
@@ -55,7 +56,6 @@ public class ExtractActivity extends SmartActivity
 	private void setDate()
 	{
 		Calendar today = Calendar.getInstance();
-
 		int startMonth = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
 		int startYear = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
 		setDate(startMonth, startYear);
@@ -126,7 +126,7 @@ public class ExtractActivity extends SmartActivity
 	}
 	
 	@Override
-	public void HandlePost(Request request)
+	public void HandlePost(Request request, Step step)
 	{
 		if (request.IsSuccess())
 		{
@@ -138,7 +138,7 @@ public class ExtractActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				alertError(getString(R.string.ErrorActivityJson) + ": " + e.getMessage());
+				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
 			}
 		}
 		else
@@ -167,7 +167,7 @@ public class ExtractActivity extends SmartActivity
 			
 			if (moveList.length() == 0)
 			{
-				View empty = createText(getString(R.string.NoMoves), Gravity.CENTER);
+				View empty = createText(getString(R.string.no_extract), Gravity.CENTER);
 				main.addView(empty);
 			}
 			else
@@ -233,6 +233,16 @@ public class ExtractActivity extends SmartActivity
 		startActivity(intent);
 	}
 	
+	public void goToMove(MenuItem item)
+	{
+		Intent intent = new Intent(this, MoveActivity.class);
+		
+		intent.putExtra("accounturl", accounturl);
+		intent.putExtra("year", year);
+		intent.putExtra("month", month);
+		
+		startActivity(intent);
+	}
 
 
 }

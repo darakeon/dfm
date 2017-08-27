@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 
 public abstract class SmartActivity extends Activity
@@ -156,17 +157,19 @@ public abstract class SmartActivity extends Activity
 	
 	
 	
+	protected void redirect(Class<?> activityClass)
+	{
+		Intent intent = new Intent(this, activityClass);
+		startActivity(intent);
+	}
+	
 	protected void logout()
 	{
 		Authentication.Clear();
 		redirect(LoginActivity.class);
 	}
 	
-	protected void redirect(Class<?> activityClass)
-	{
-		Intent intent = new Intent(this, activityClass);
-		startActivity(intent);
-	}
+
 	
 	public void logout(MenuItem menuItem)
 	{
@@ -180,6 +183,6 @@ public abstract class SmartActivity extends Activity
 	
 	
 	
-	public abstract void HandlePost(Request request);
+	public abstract void HandlePost(Request request, Step step);
 	
 }
