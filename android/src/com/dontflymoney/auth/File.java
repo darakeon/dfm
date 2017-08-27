@@ -33,6 +33,9 @@ public class File
 	{
 	    try
 	    {
+	    	if (data == null)
+	    		data = "";
+	    	
 	    	FileOutputStream fileOutput = context.openFileOutput(name, Context.MODE_PRIVATE);
 	    	
 	        OutputStreamWriter writer = new OutputStreamWriter(fileOutput);

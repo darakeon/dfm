@@ -14,7 +14,7 @@ public class AccountsActivity extends SmartActivity
 {
 	public AccountsActivity()
 	{
-		Init(this, R.layout.activity_accounts, R.menu.accounts);
+		init(this, R.layout.activity_accounts, R.menu.accounts);
 	}
 	
 	
@@ -44,12 +44,12 @@ public class AccountsActivity extends SmartActivity
 			}
 			catch (JSONException e)
 			{
-				AlertError("Activity json error: " + e.getMessage());
+				alertError("Activity json error: " + e.getMessage());
 			}
 		}
 		else
 		{
-			AlertError(request.GetError());
+			alertError(request.GetError());
 		}
 	}
 
@@ -61,10 +61,10 @@ public class AccountsActivity extends SmartActivity
 			
 			if (error.contains("You are uninvited"))
 			{
-				BackToLogin();
+				logout();
 			}
 			
-			AlertError(error);
+			alertError(error);
 		}
 		else
 		{

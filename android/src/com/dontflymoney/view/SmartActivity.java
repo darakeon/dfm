@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +22,7 @@ public class SmartActivity extends Activity
 	protected String machineId;
 	protected Authentication Authentication;
 	
-	public void Init(Activity activity, int contentView, int menuRes)
+	public void init(Activity activity, int contentView, int menuRes)
 	{
 		this.activity = activity;
 		this.contentView = contentView;
@@ -56,21 +57,21 @@ public class SmartActivity extends Activity
 		return (T)activity.findViewById(id);
 	}
 	
-	protected String GetValue(int id)
+	protected String getValue(int id)
 	{
 		EditText field = getField(id);
 		
 		return field.getText().toString();
 	}
 
-	protected void SetValue(int id, String text)
+	protected void setValue(int id, String text)
 	{
 		TextView field = getField(id);
 		
 		field.setText(text);
 	}
 
-	protected void AlertError(String message)
+	protected void alertError(String message)
 	{
 		View view = (View)activity.getWindow().getDecorView().findViewById(android.R.id.content);
 
@@ -80,7 +81,7 @@ public class SmartActivity extends Activity
 	    	.show();
 	}
 	
-	protected void BackToLogin()
+	protected void logout()
 	{
 		Authentication.Clear();
 		
@@ -88,7 +89,7 @@ public class SmartActivity extends Activity
 		startActivity(intent);
 	}
 	
-	protected void Redirect(Class<?> activityClass)
+	protected void redirect(Class<?> activityClass)
 	{
 		Intent intent = new Intent(this, activityClass);
 		startActivity(intent);
@@ -96,6 +97,11 @@ public class SmartActivity extends Activity
 	
 	
 	
+	
+	public void logout(MenuItem menuItem)
+	{
+		logout();
+	}
 	
 	
 }

@@ -13,7 +13,7 @@ public class LoginActivity extends SmartActivity
 {
 	public LoginActivity()
 	{
-		Init(this, R.layout.activity_login, R.menu.login);
+		init(this, R.layout.activity_login, R.menu.login);
 	}
 	
 	
@@ -26,7 +26,7 @@ public class LoginActivity extends SmartActivity
 		
 		if (Authentication.IsLoggedIn())
 		{
-			Redirect(AccountsActivity.class);
+			redirect(AccountsActivity.class);
 		}
 	}	
 
@@ -37,8 +37,8 @@ public class LoginActivity extends SmartActivity
 		Request request = new Request("User/Index");
 		
 		request.AddParameter("id", machineId);
-		request.AddParameter("email", GetValue(R.id.email));
-		request.AddParameter("password", GetValue(R.id.password));
+		request.AddParameter("email", getValue(R.id.email));
+		request.AddParameter("password", getValue(R.id.password));
 		
 		request.Post();
 		
@@ -49,19 +49,19 @@ public class LoginActivity extends SmartActivity
 			if (result.has("error"))
 			{
 				String error = result.getString("error");
-				AlertError(error);
+				alertError(error);
 			}
 			else
 			{
 				String ticket = result.getString("data");
 				Authentication.Set(ticket);
 				
-				Redirect(AccountsActivity.class);
+				redirect(AccountsActivity.class);
 			}
 		}
 		else
 		{
-			AlertError(request.GetError());
+			alertError(request.GetError());
 		}
 	}	
 	
