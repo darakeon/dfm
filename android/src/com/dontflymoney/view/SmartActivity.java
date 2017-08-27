@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.language.Language;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
 public abstract class SmartActivity extends Activity
@@ -256,7 +257,12 @@ public abstract class SmartActivity extends Activity
 			}
 			else
 			{
-				HandleSuccess(result.getJSONObject("data"), step);
+				JSONObject data = result.getJSONObject("data");
+				
+				if (data.has("Language"))
+					Language.Change(this, data.getString("Language"));
+				
+				HandleSuccess(data, step);
 			}
 		}
 		catch (JSONException e)
