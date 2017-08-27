@@ -53,6 +53,7 @@ namespace DFM.MVC
             if (isLocal)
                 MultiLanguage.Initialize();
 
+            NHManager.Open();
         }
 
         // ReSharper disable InconsistentNaming
