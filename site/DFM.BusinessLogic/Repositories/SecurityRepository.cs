@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Ak.Generic.Extensions;
 using DFM.BusinessLogic.Bases;
 using DFM.Email;
-using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -49,18 +48,11 @@ namespace DFM.BusinessLogic.Repositories
 
             var fileContent = format.Layout.Format(dic);
 
-            try
-            {
-                new Sender()
-                    .To(security.User.Email)
-                    .Subject(format.Subject)
-                    .Body(fileContent)
-                    .Send();
-            }
-            catch (DFMEmailException)
-            {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
-            }
+            new Sender()
+                .To(security.User.Email)
+                .Subject(format.Subject)
+                .Body(fileContent)
+                .Send();
 
             security.Sent = true;
             SaveOrUpdate(security);

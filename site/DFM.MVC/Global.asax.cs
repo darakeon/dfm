@@ -8,7 +8,7 @@ using Ak.Generic.Exceptions;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Authentication;
-using DFM.Email.Exceptions;
+using DFM.Email;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
 using DFM.PageLog;
@@ -63,14 +63,25 @@ namespace DFM.MVC
 
             if (isElmah && !current.IsAdm)
                 Response.Redirect("/");
+        }
+
+        // ReSharper disable InconsistentNaming
+        protected void Application_AcquireRequestState()
+        // ReSharper restore InconsistentNaming
+        {
+            if (isAsset) return;
 
             if (current.IsAuthenticated)
             {
-                var emailsSent = access.Robot.RunSchedule();
+                var emailsStatus = access.Robot.RunSchedule();
 
-                if (emailsSent <= EmailStatus.Ok)
+                if (emailsStatus > EmailStatus.EmailSent)
                 {
-                    ErrorAlert.Add("EmailsNotSent");
+                    var message = MultiLanguage.Dictionary["ScheduleRun"];
+                    var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
+                    var final = String.Format(message, error);
+                    
+                    ErrorAlert.Add(final);
                 }
             }
         }

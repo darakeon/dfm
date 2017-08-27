@@ -5,9 +5,13 @@
         ? new { controller = "Account", action = "Index" }
         : new { controller = "User", action = "Index" };
 
-    var hasSomethingToShow = 
+    var hasSummaryToShow = 
         !Html.ViewData.ModelState.IsValid
-            && Html.ViewData.ModelState.ContainsKey("");
+        && Html.ViewData.ModelState.ContainsKey("");
+
+    var hasSomethingToShow =
+        hasSummaryToShow
+        || ErrorAlert.Any();
 }
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,6 +50,13 @@
             {
                 <div id="warning">
                     @Html.ValidationSummary(true)
+
+                    <ul>
+                        @foreach (var error in ErrorAlert.GetAndClean())
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
                 </div>
             }
         </div>

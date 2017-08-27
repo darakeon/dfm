@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Email.Exceptions
+namespace DFM.Email
 {
     public class DFMEmailException : Exception
     {

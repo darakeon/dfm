@@ -4,7 +4,7 @@ using System.Linq;
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
-using DFM.Email.Exceptions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
@@ -31,12 +31,12 @@ namespace DFM.BusinessLogic.Services
 
             var useCategories = Parent.Current.User.Config.UseCategories;
 
-            var emailsSent = runScheduleEqualConfig(useCategories)
-                & runScheduleDiffConfig(useCategories);
+            var equalResult = runScheduleEqualConfig(useCategories);
+            var diffResult = runScheduleDiffConfig(useCategories);
 
             Parent.BaseMove.FixSummaries();
 
-            return emailsSent;
+            return max(equalResult, diffResult);
         }
 
         private EmailStatus runScheduleEqualConfig(Boolean useCategories)
@@ -73,7 +73,7 @@ namespace DFM.BusinessLogic.Services
 
         private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
         {
-            var emailsSent = EmailStatus.Ok;
+            var emailsStati = new List<EmailStatus>();
 
             foreach (var schedule in scheduleList)
             {
@@ -83,15 +83,20 @@ namespace DFM.BusinessLogic.Services
                 var category = schedule.Category;
                 var categoryName = category == null ? null : schedule.Category.Name;
 
-                emailsSent |= addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
+                var result = addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
+
+                emailsStati.AddRange(result);
             }
 
-            return emailsSent;
+            if (!emailsStati.Any())
+                return EmailStatus.EmailSent;
+
+            return emailsStati.Max();
         }
 
-        private EmailStatus addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
+        private IEnumerable<EmailStatus> addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            var emailsSent = EmailStatus.Ok;
+            var emailsStati = new List<EmailStatus>();
 
             while (schedule.CanRunNow())
             {
@@ -99,15 +104,16 @@ namespace DFM.BusinessLogic.Services
 
                 schedule.LastRun++;
 
-                emailsSent |= saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
+                var result = saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
 
-                schedule.MoveList.Add(newMove);
+                schedule.MoveList.Add(result.Success);
+                emailsStati.Add(result.Error);
             }
 
-            return emailsSent;
+            return emailsStati;
         }
 
-        private EmailStatus saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+        private ComposedResult<Move, EmailStatus> saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
             ComposedResult<Move, EmailStatus> result;
 
@@ -124,7 +130,14 @@ namespace DFM.BusinessLogic.Services
                 throw;
             }
 
-            return result.Error;
+            return result;
+        }
+
+        private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
+        {
+            return equalResult > diffResult
+                ? equalResult
+                : diffResult;
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Email.Exceptions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -212,7 +212,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void ThenIWillReceiveNoNotification()
         {
             Assert.IsTrue(CurrentEmailStatus.HasValue);
-            Assert.AreEqual(EmailStatus.Ok, CurrentEmailStatus.Value);
+            Assert.AreEqual(EmailStatus.EmailSent, CurrentEmailStatus.Value);
         }
         #endregion
 

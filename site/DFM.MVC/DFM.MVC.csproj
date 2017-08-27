@@ -185,6 +185,7 @@
     <Compile Include="Models\UserForgotPasswordModel.cs" />
     <Compile Include="Models\UserLogOnModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

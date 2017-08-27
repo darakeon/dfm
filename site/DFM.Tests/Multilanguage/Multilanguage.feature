@@ -286,15 +286,16 @@ Scenario: 11. Get translate of Interface (ops)
 
 Scenario: 12. Get translate of Interface (general)
 	Given I have these keys
-		| Section | Phrase     |
-		| General | LogOff     |
-		| General | MonthMoves |
-		| General | YearMoves  |
-		| General | Create     |
-		| General | Schedule   |
-		| General | Move       |
-		| General | Categories |
-		| General | Accounts   |
+		| Section | Phrase      |
+		| General | LogOff      |
+		| General | MonthMoves  |
+		| General | YearMoves   |
+		| General | Create      |
+		| General | Schedule    |
+		| General | Move        |
+		| General | Categories  |
+		| General | Accounts    |
+		| General | ScheduleRun |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -329,3 +330,19 @@ Scenario: 13. Get translate of Interface (schedule)
 		| Schedule | ToMove          |
 	When I try get the translate
 	Then I will receive no multilanguage error
+
+
+
+Scenario: 14. Get translations of E-mail Stati
+	Given I have these keys
+		| Section | Phrase         |
+		| Email   | EmailDisabled  |
+		| Email   | EmailSent      |
+		| Email   | InvalidSubject |
+		| Email   | InvalidBody    |
+		| Email   | InvalidAddress |
+		| Email   | EmailNotSent   |
+	When I try get the translate
+	Then I will receive no multilanguage error
+
+

@@ -92,6 +92,18 @@ div#warning {
     div#warning * {
         font-size: 20px;
     }
+    
+    div#warning ul
+    {
+	    padding: 0;
+        margin: 0;
+    }
+
+    div#warning li
+    {
+	    list-style-type: none;
+	    padding: 0;
+    }
 
 div#main {
 	min-height: 500px;

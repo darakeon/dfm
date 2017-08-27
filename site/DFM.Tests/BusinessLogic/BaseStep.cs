@@ -4,7 +4,7 @@ using System.IO;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Email.Exceptions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;

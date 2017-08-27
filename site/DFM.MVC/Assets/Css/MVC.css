@@ -33,15 +33,3 @@ tr:nth-child(2n+1) .field-validation-error
 {
     display: none;
 }
-
-.validation-summary-errors ul
-{
-	padding: 0;
-    margin: 0;
-}
-
-.validation-summary-errors li
-{
-	list-style-type: none;
-	padding: 0;
-}

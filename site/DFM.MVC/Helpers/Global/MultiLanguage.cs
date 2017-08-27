@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Routing;
 using Ak.MVC.Route;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Email;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
 using DFM.MVC.Helpers.Authorize;
@@ -34,19 +35,30 @@ namespace DFM.MVC.Helpers.Global
         }
 
 
-        public String this[DFMCoreException exception]
-        {
-            get { return this[exception.Type.ToString()]; }
-        }
-
-        public String this[ExceptionPossibilities exception]
-        {
-            get { return this[exception.ToString()]; }
-        }
 
         public String this[params String[] phrase]
         {
             get { return PlainText.Dictionary[section, Language, phrase]; }
+        }
+        
+        public String this[DFMCoreException exception]
+        {
+            get { return this[exception.Type]; }
+        }
+
+        public String this[ExceptionPossibilities exception]
+        {
+            get { return this["Error", exception.ToString()]; }
+        }
+
+        public String this[EmailStatus exception]
+        {
+            get { return this["Email", exception.ToString()]; }
+        }
+
+        private String this[String specificSection, params String[] phrase]
+        {
+            get { return PlainText.Dictionary[specificSection, Language, phrase]; }
         }
 
 

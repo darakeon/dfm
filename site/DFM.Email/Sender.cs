@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
-using DFM.Email.Exceptions;
 using CM = System.Configuration.ConfigurationManager;
 using Smtp = System.Net.Configuration.SmtpSection;
 
@@ -82,19 +81,16 @@ namespace DFM.Email
             if (String.IsNullOrEmpty(to))
                 DFMEmailException.WithMessage(EmailStatus.InvalidAddress);
 
-            var all = CM.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var net = (Smtp)all.GetSection("system.net/mailSettings/smtp");
+            var net = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
             var host = net.Network.Host;
 
             using (var smtp = new SmtpClient(host) {Timeout = 10000})
             {
-
                 try
                 {
                     var message =
                         new MailMessage(from, to, subject, body)
                         {IsBodyHtml = true};
-
 
                     var attachments = files.Select(
                         fileFullName => new Attachment(fileFullName));

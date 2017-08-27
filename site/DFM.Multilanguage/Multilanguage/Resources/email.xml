@@ -6,6 +6,13 @@
     <MoveNotificationTransfer text="Move Notification" />
     <UserVerification text="User Verification" />
     <PasswordReset text="Password Reset" />
+
+    <EmailDisabled text="E-mail sender system disabled" />
+    <EmailSent text="E-mail successfuly sent" />
+    <InvalidSubject text="The subject is required" />
+    <InvalidBody text="The e-mail body is required" />
+    <InvalidAddress text="Invalid e-mail address" />
+    <EmailNotSent text="There is a problem on e-mail sender system" />
   </en-US>
   <pt-BR>
     <MoveNotificationIn text="Notificação de Movimentação" />
@@ -13,5 +20,12 @@
     <MoveNotificationTransfer text="Notificação de Movimentação" />
     <UserVerification text="Verificação de Usuário" />
     <PasswordReset text="Redefinição de Senha" />
+
+    <EmailDisabled text="Sistema de envio de e-mails desabilitado" />
+    <EmailSent text="E-mail enviado com sucesso" />
+    <InvalidSubject text="Assunto em branco" />
+    <InvalidBody text="Corpo do e-mail em branco" />
+    <InvalidAddress text="E-mail inválido" />
+    <EmailNotSent text="Erro ao tentar enviar e-mail" />
   </pt-BR>
 </email>

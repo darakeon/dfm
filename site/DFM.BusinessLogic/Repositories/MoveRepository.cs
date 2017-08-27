@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Ak.Generic.Extensions;
 using DFM.BusinessLogic.Bases;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
-using DFM.Email.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Multilanguage.Helpers;
-using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -85,7 +82,7 @@ namespace DFM.BusinessLogic.Repositories
                     .Body(fileContent)
                     .Send();
 
-                return EmailStatus.Ok;
+                return EmailStatus.EmailSent;
             }
             catch (DFMEmailException e)
             {

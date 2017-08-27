@@ -19,6 +19,7 @@
     <Send text="Send" />
     <New text="New" />
     <Logon text="Logon" />
+    <ScheduleRun text="Schedule: {0}, but the moves was inserted successfuly"/>
 
     <!--Nouns-->
     <Name text="Name" />
@@ -81,6 +82,7 @@
     <Send text="Enviar" />
     <New text="Novo" />
     <Logon text="Entrar" />
+    <ScheduleRun text="Agendamentos: {0}, mas movimentações foram inseridas com sucesso"/>
 
     <!--Nouns-->
     <Name text="Nome" />

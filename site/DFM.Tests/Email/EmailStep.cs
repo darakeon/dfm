@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.Email;
-using DFM.Email.Exceptions;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using NUnit.Framework;

@@ -2,42 +2,93 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DFM.BusinessLogic.Exceptions;
+using DFM.Email;
 
 namespace DFM.MVC.Helpers.Global
 {
     public class ErrorAlert
     {
-        private static IList<String> errors
-        {
-            get
-            {
-                if (sessionErrors == null)
-                    sessionErrors = new List<String>();
+        private static readonly SessionList<ExceptionPossibilities> errors = 
+            new SessionList<ExceptionPossibilities>("errors");
 
-                return (List<String>)sessionErrors;
-            }
+        public static void Add(ExceptionPossibilities error)
+        {
+            errors.List.Add(error);
         }
 
-        private static object sessionErrors
+
+
+        private static readonly SessionList<EmailStatus> emailsStati =
+            new SessionList<EmailStatus>("emailsStati");
+
+        public static void Add(EmailStatus emailStatus)
         {
-            get { return HttpContext.Current.Session["errors"]; }
-            set { HttpContext.Current.Session["errors"] = value; }
+            emailsStati.List.Add(emailStatus);
         }
 
-        public static void Add(String error)
+
+
+        private static readonly SessionList<String> texts =
+            new SessionList<String>("texts");
+
+        public static void Add(String text)
         {
-            errors.Add(error);
+            texts.List.Add(text);
         }
+
+
 
         public static IList<String> GetAndClean()
         {
-            var list = errors
-                .Select(e => MultiLanguage.Dictionary[e])
-                .ToList();
+            var list = new List<String>();
 
-            errors.Clear();
+            list.AddRange(errors.List.Select(e => MultiLanguage.Dictionary[e]));
+            errors.List.Clear();
+
+            list.AddRange(emailsStati.List.Select(e => MultiLanguage.Dictionary[e]));
+            emailsStati.List.Clear();
+
+            list.AddRange(texts.List);
+            texts.List.Clear();
 
             return list;
+        }
+
+        public static Boolean Any()
+        {
+            return errors.List.Any() 
+                || emailsStati.List.Any()
+                || texts.List.Any();
+        }
+
+
+    }
+
+    internal class SessionList<T>
+    {
+        private String name;
+
+        internal SessionList(String name)
+        {
+            this.name = name;
+        }
+
+        internal IList<T> List
+        {
+            get
+            {
+                if (session == null)
+                    session = new List<T>();
+
+                return (List<T>)session;
+            }
+        }
+
+        private object session
+        {
+            get { return HttpContext.Current.Session[name]; }
+            set { HttpContext.Current.Session[name] = value; }
         }
 
     }

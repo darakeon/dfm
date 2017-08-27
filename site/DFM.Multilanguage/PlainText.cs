@@ -106,7 +106,7 @@ namespace DFM.Multilanguage
 
                 phrase.ToList().ForEach(p => entire += this[section, language, p] + " ");
                 
-                return entire;
+                return entire.Trim();
             }
         }
 
@@ -116,11 +116,11 @@ namespace DFM.Multilanguage
             {
                 phrase = Phrase.RemoveWrongCharacters(phrase);
 
-                var text = (tryGetText("general", language, phrase)
-                    ?? tryGetText(section, language, phrase))
-                    ?? tryGetText("error", language, phrase);
-
-                return text ?? notFound(section, language, phrase);
+                return tryGetText("general", language, phrase)
+                    ?? tryGetText(section, language, phrase)
+                    ?? tryGetText("error", language, phrase)
+                    ?? tryGetText("email", language, phrase)
+                    ?? notFound(section, language, phrase);
             }
         }
 

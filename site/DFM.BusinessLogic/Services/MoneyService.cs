@@ -2,7 +2,7 @@
 using Ak.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
-using DFM.Email.Exceptions;
+using DFM.Email;
 using DFM.Entities;
 using DFM.Generic;
 
