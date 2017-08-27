@@ -10,8 +10,8 @@ namespace DFM.MVC.Helpers.Global
 
         internal static String Get()
         {
-            var nome = Dns.GetHostName();
-            var ipInfo = Dns.GetHostAddresses(nome);
+            var name = Dns.GetHostName();
+            var ipInfo = Dns.GetHostAddresses(name);
 
             var ip = ipInfo[1].ToString();
 
