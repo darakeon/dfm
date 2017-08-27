@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +13,7 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.view.AccountsActivity;
 
-public abstract class SmartActivity extends Activity
+public abstract class SmartActivity extends FixOrientationActivity
 {
 	protected int contentView;
 	protected int menuResource;
@@ -26,6 +25,8 @@ public abstract class SmartActivity extends Activity
 	protected Message message;
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
+	
+	
 	
 	public void init(SmartActivity activity, int contentView, int menuResource)
 	{
