@@ -89,7 +89,7 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
 
-VERSÃO 2.0.0.0 (All new) - 29?
+VERSÃO 2.0.0.0 (All new) - 29? (2014-04-05)
 ================================================================================================
 						Colocar língua padrão do usuário como língua do browser dele
 						Criar produto no google play
