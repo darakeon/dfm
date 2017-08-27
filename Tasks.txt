@@ -55,27 +55,25 @@ VERSÃO 2.1.0.0
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
 							possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.1.0
+VERSÃO 2.0.2.0
 ================================================================================================
 					>>>	Iluminar última movimentação verificada
 					>>>	Remover fundo do site
 					>>> Tirar listra de menu do ambiente logado
 						Colocar hover em TRs de tabela (destacar linha que está em cima)
 
-VERSÃO 2.0.0.2
+VERSÃO 2.0.1.0
 ================================================================================================
 						Trocar Extensions Sum para Total
-						Remover entidade Year
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)
 					>>>	Se for post, fazer login realizar history.go(-2)
-						Colocar combo das duas accounts
+					>>> Colocar combo das duas accounts
 						Trocar seleção de Out / In / Transfer por desenhos
 
 VERSÃO 2.0.0.1
 ================================================================================================
-						Gravar data de Início e última data rodada em Schedule
 						Travar schedule de conta fechada / deletada
 						Transformar Double em int, usar como centavos
 						Tirar complete / validate de SaveOrUpdate
@@ -87,7 +85,7 @@ VERSÃO 2.0.0.1
 VERSÃO 2.0.0.0
 ================================================================================================
 						Colocar modelo de movimentação (Mobile)
-						Criar Template
+						Criar Template (Move)
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
