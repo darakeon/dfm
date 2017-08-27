@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Areas.API.Helpers;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
-using Newtonsoft.Json;
 using file = System.IO.File;
 
 namespace DFM.MVC.Areas.API.Controllers

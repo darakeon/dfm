@@ -20,7 +20,7 @@ Scenario: 01. Disable categories use and save move with category (E)
 
 Scenario: 02. Disable categories use and save schedule with category (E)
 	Given I disable Categories use
-	Given I have this future move to create
+	And I have this future move to create
 		| Description   | Date       | Nature | Value |
 		| Schedule Bk02 | 2014-03-04 | Out    | 10    |
 	And it has no Details
@@ -33,6 +33,36 @@ Scenario: 02. Disable categories use and save schedule with category (E)
 	When I try to save the schedule
 	Then I will receive this core error: CategoriesDisabled
 	And the schedule will not be saved
+
+Scenario: 03. Disable categories use and create a category (E)
+	Given I disable Categories use
+	And I have this category to create
+		| Name          |
+		| Category Bf99 |
+	When I try to save the category
+	Then I will receive this core error: CategoriesDisabled
+	And the category will not be saved
+
+Scenario: 04. Disable categories use and select a category (E)
+	Given I pass a valid category name
+	And I disable Categories use
+	When I try to get the category by its name
+	Then I will receive this core error: CategoriesDisabled
+	And I will receive no category
+
+Scenario: 05. Disable categories use and disable a category (E)
+	Given I give the enabled category Bi99
+	And I disable Categories use
+	When I try to disable the category
+	Then I will receive this core error: CategoriesDisabled
+	
+Scenario: 06. Disable categories use and enable a category (E)
+	Given I give the disabled category Bj99
+	And I disable Categories use
+	When I try to enable the category
+	Then I will receive this core error: CategoriesDisabled
+
+
 
 Scenario: 91. Disable categories use and save move without category (S)
 	Given I disable Categories use
@@ -49,7 +79,7 @@ Scenario: 91. Disable categories use and save move without category (S)
 
 Scenario: 92. Disable categories use and save schedule without category (S)
 	Given I disable Categories use
-	Given I have this future move to create
+	And I have this future move to create
 		| Description   | Date       | Nature | Value |
 		| Schedule Bk92 | 2012-03-31 | Out    | 10    |
 	And it has no Details

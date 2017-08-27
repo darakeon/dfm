@@ -18,7 +18,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             var moveData = table.Rows[0];
 
-            Schedule = new Schedule() { Description = moveData["Description"] };
+            Schedule = new Schedule { Description = moveData["Description"] };
 
             if (!String.IsNullOrEmpty(moveData["Nature"]))
                 Schedule.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);

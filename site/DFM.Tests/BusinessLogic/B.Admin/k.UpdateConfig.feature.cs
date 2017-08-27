@@ -127,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Out",
                         "10"});
 #line 23
- testRunner.Given("I have this future move to create", ((string)(null)), table2);
+ testRunner.And("I have this future move to create", ((string)(null)), table2);
 #line 26
  testRunner.And("it has no Details");
 #line hidden
@@ -160,40 +160,125 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Disable categories use and save move without category (S)")]
-        public virtual void _91_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
+        [NUnit.Framework.DescriptionAttribute("03. Disable categories use and create a category (E)")]
+        public virtual void _03_DisableCategoriesUseAndCreateACategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Disable categories use and save move without category (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Disable categories use and create a category (E)", ((string[])(null)));
 #line 37
 this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.Given("I disable Categories use");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table4.AddRow(new string[] {
+                        "Category Bf99"});
+#line 39
+ testRunner.And("I have this category to create", ((string)(null)), table4);
+#line 42
+ testRunner.When("I try to save the category");
+#line 43
+ testRunner.Then("I will receive this core error: CategoriesDisabled");
+#line 44
+ testRunner.And("the category will not be saved");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("04. Disable categories use and select a category (E)")]
+        public virtual void _04_DisableCategoriesUseAndSelectACategoryE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Disable categories use and select a category (E)", ((string[])(null)));
+#line 46
+this.ScenarioSetup(scenarioInfo);
+#line 47
+ testRunner.Given("I pass a valid category name");
+#line 48
+ testRunner.And("I disable Categories use");
+#line 49
+ testRunner.When("I try to get the category by its name");
+#line 50
+ testRunner.Then("I will receive this core error: CategoriesDisabled");
+#line 51
+ testRunner.And("I will receive no category");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("05. Disable categories use and disable a category (E)")]
+        public virtual void _05_DisableCategoriesUseAndDisableACategoryE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Disable categories use and disable a category (E)", ((string[])(null)));
+#line 53
+this.ScenarioSetup(scenarioInfo);
+#line 54
+ testRunner.Given("I give the enabled category Bi99");
+#line 55
+ testRunner.And("I disable Categories use");
+#line 56
+ testRunner.When("I try to disable the category");
+#line 57
+ testRunner.Then("I will receive this core error: CategoriesDisabled");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("06. Disable categories use and enable a category (E)")]
+        public virtual void _06_DisableCategoriesUseAndEnableACategoryE()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Disable categories use and enable a category (E)", ((string[])(null)));
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line 60
+ testRunner.Given("I give the disabled category Bj99");
+#line 61
+ testRunner.And("I disable Categories use");
+#line 62
+ testRunner.When("I try to enable the category");
+#line 63
+ testRunner.Then("I will receive this core error: CategoriesDisabled");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("91. Disable categories use and save move without category (S)")]
+        public virtual void _91_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Disable categories use and save move without category (S)", ((string[])(null)));
+#line 67
+this.ScenarioSetup(scenarioInfo);
+#line 68
+ testRunner.Given("I disable Categories use");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Move Bk91",
                         "2014-03-04",
                         "Out",
                         "10"});
-#line 39
- testRunner.And("I have this move to create", ((string)(null)), table4);
-#line 42
+#line 69
+ testRunner.And("I have this move to create", ((string)(null)), table5);
+#line 72
  testRunner.And("it has no Details");
-#line 43
+#line 73
  testRunner.And("it has no Category");
-#line 44
+#line 74
  testRunner.And("it has an Account Out");
-#line 45
+#line 75
  testRunner.And("it has no Account In");
-#line 46
+#line 76
  testRunner.When("I try to save the move");
-#line 47
+#line 77
  testRunner.Then("I will receive no core error");
-#line 48
+#line 78
  testRunner.And("the move will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -204,49 +289,49 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _92_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Disable categories use and save schedule without category (S)", ((string[])(null)));
-#line 50
+#line 80
 this.ScenarioSetup(scenarioInfo);
-#line 51
+#line 81
  testRunner.Given("I disable Categories use");
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
                         "Date",
                         "Nature",
                         "Value"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Schedule Bk92",
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 52
- testRunner.Given("I have this future move to create", ((string)(null)), table5);
-#line 55
+#line 82
+ testRunner.And("I have this future move to create", ((string)(null)), table6);
+#line 85
  testRunner.And("it has no Details");
 #line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Times",
                         "Boundless",
                         "Frequency",
                         "ShowInstallment"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "10",
                         "False",
                         "Monthly",
                         "False"});
-#line 56
- testRunner.And("the move has this schedule", ((string)(null)), table6);
-#line 59
+#line 86
+ testRunner.And("the move has this schedule", ((string)(null)), table7);
+#line 89
  testRunner.And("it has no Category");
-#line 60
+#line 90
  testRunner.And("it has an Account Out");
-#line 61
+#line 91
  testRunner.And("it has no Account In");
-#line 62
+#line 92
  testRunner.When("I try to save the schedule");
-#line 63
+#line 93
  testRunner.Then("I will receive no core error");
-#line 64
+#line 94
  testRunner.And("the schedule will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions

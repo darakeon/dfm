@@ -406,10 +406,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         public void ThenTheCategoryWillNotBeSaved()
         {
             Error = null;
+            var categoryName = Category.Name;
+            Category = null;
 
             try
             {
-                SA.Admin.GetCategoryByName(Category.Name);
+                Category = SA.Admin.GetCategoryByName(categoryName);
             }
             catch (DFMCoreException e)
             {
@@ -417,7 +419,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             }
 
             Assert.IsNotNull(Error);
-            Assert.AreEqual(ExceptionPossibilities.InvalidCategory, Error.Type);
+            Assert.IsNull(Category);
         }
         
         [Then(@"the category will be saved")]
@@ -527,8 +529,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         #endregion
 
         #region DisableCategory
-        [Given(@"I give an id of enabled category ([\w ]+)")]
-        public void GivenIGiveAnIdOfEnabledCategory(String givenCategoryName)
+        [Given(@"I give the enabled category ([\w ]+)")]
+        public void GivenIGiveAnEnabledCategory(String givenCategoryName)
         {
             SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });
@@ -567,8 +569,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         #endregion
 
         #region EnableCategory
-        [Given(@"I give an id of disabled category ([\w ]+)")]
-        public void GivenIGiveAnIdOfDisabledCategory(String givenCategoryName)
+        [Given(@"I give the disabled category ([\w ]+)")]
+        public void GivenIGiveADisabledCategory(String givenCategoryName)
         {
             SA.Admin.CreateCategory(
                 new Category { Name = givenCategoryName, User = User });

@@ -91,7 +91,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I give an id of disabled category Bj02");
+ testRunner.Given("I give the disabled category Bj02");
 #line 15
  testRunner.And("I already have enabled the category");
 #line 16
@@ -110,7 +110,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.Given("I give an id of disabled category Bj99");
+ testRunner.Given("I give the disabled category Bj99");
 #line 21
  testRunner.When("I try to enable the category");
 #line 22

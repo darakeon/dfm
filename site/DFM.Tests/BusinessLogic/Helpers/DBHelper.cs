@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Repositories;
 using MySql.Data.MySqlClient;

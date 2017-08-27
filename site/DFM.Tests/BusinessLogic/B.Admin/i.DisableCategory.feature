@@ -11,13 +11,13 @@ Scenario: 01. Disable a Category that doesn't exist (E)
 	Then I will receive this core error: InvalidCategory
 
 Scenario: 02. Disable a Category already disabled (E)
-	Given I give an id of enabled category Bi02
+	Given I give the enabled category Bi02
 	And I already have disabled the category
 	When I try to disable the category
 	Then I will receive this core error: DisabledCategory
 
 Scenario: 99. Disable a Category with info all right (S)
-	Given I give an id of enabled category Bi99
+	Given I give the enabled category Bi99
 	When I try to disable the category
 	Then I will receive no core error
 	And the category will be disabled
