@@ -6,7 +6,7 @@ namespace DFM.Generic
 	{
 		public static Int32 ToCents(this Double value)
 		{
-			return (Int32)(value * 100);
+            return (Int32)(Math.Round(value * 100, 0));
 		}
 
 		public static Double ToVisual(this Int32 value)
@@ -16,12 +16,16 @@ namespace DFM.Generic
 
 		public static Int32? ToCents(this Double? value)
 		{
-			return value == null ? null : (Int32?)(value * 100);
+		    return value.HasValue 
+                ? value.Value.ToCents()
+                : default(Int32?);
 		}
 
 		public static Double? ToVisual(this Int32? value)
 		{
-			return value == null ? null : value / 100.0;
+			return value.HasValue
+                ? value.Value.ToVisual()
+                : default(Double?);
 		}
 
 	}
