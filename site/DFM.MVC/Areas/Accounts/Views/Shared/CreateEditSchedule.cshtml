@@ -19,23 +19,41 @@
 </div>
     
 <div class="createMoveScreenRight">
-    <div>
-        @Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"]) 
-        @Html.ValidationMessageFor(m => m.CategoryName)<br />
-        @Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+    
+    @if (Auth.Current.User.Config.UseCategories)
+    {
+        <div>
+            @Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"]) 
+            @Html.ValidationMessageFor(m => m.CategoryName)<br />
+            @Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
 
-        <a href="javascript:void(0)" type="button" id="new-category-caller">@MultiLanguage.Dictionary["Create", "Category"]</a>
-    </div>
+            <a href="javascript:void(0)" type="button" id="new-category-caller">@MultiLanguage.Dictionary["Create", "Category"]</a>
+        </div>
 
-    <div>
-        @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
+        <div>
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
 
-        @Html.ValidationMessageFor(m => m.Nature)
-        @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
+            @Html.ValidationMessageFor(m => m.Nature)
+            @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
         
-        @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
-        @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
-    </div>
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
+            @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "accountForTransfer" })
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Nature"]) 
+            @Html.ValidationMessageFor(m => m.Nature)<br />
+            @Html.DropDownListFor(m => m.Nature, Model.NatureSelectList, new { @class = "natureSelect" })
+        </div>
+        <div class="accountForTransfer">
+            @Html.LabelFor(m => m.Nature, MultiLanguage.Dictionary["Account"]) 
+            @Html.ValidationMessageFor(m => m.ChosenAccountUrl)<br />
+            @Html.DropDownListFor(m => m.ChosenAccountUrl, Model.AccountSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --")
+        </div>
+    }
+
 </div>
     
 <div class="divRowForm"><hr /></div>

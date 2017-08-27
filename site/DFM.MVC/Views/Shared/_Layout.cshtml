@@ -1,5 +1,5 @@
 ﻿@{
-    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
+    var isAuthenticated = Auth.Current.IsAuthenticated;
 
     Layout = isAuthenticated
         ? "~/Views/Shared/Inner/_Layout.cshtml"
@@ -8,11 +8,11 @@
 
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", required: false)
+    @RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", required: false)
+    @RenderSection("HtmlFooterJs", false)
 
     <script type="text/javascript" src="http://sawpf.com/1.0.js"></script>
 }
@@ -20,7 +20,7 @@
 
 
 @section PS {
-    @RenderSection("PS", required: false)
+    @RenderSection("PS", false)
 }
 
 

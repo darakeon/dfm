@@ -29,7 +29,10 @@ else
 
         <tr>
             <th>@MultiLanguage.Dictionary["Description"]</th>
-            <th>@MultiLanguage.Dictionary["Category"]</th>
+            @if (Auth.Current.User.Config.UseCategories)
+            {
+                <th>@MultiLanguage.Dictionary["Category"]</th>
+            }
             <th>@MultiLanguage.Dictionary["Date"]</th>
             <th>@MultiLanguage.Dictionary["In"]</th>
             <th>@MultiLanguage.Dictionary["Out"]</th>
@@ -42,7 +45,14 @@ else
             
             <tr>
                 <td>@move.GetDescriptionDetailed() </td>
-                <td>@move.Category.Name </td>
+                @if (Auth.Current.User.Config.UseCategories)
+                {
+                    var categoryName =
+                        move.Category == null
+                            ? "---" : move.Category.Name;
+                    
+                    <td>@categoryName </td>
+                }
                 <td>@move.Date.ToShortDateString() </td>
 
                 <td class="numeric in">

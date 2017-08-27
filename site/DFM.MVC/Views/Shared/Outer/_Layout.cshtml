@@ -1,14 +1,14 @@
 ﻿@{
     Layout = "~/Views/Shared/_Master.cshtml";
-    var isAuthenticated = DFM.MVC.Helpers.Authorize.Auth.Current.IsAuthenticated;
+    var isAuthenticated = Auth.Current.IsAuthenticated;
 }
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", required: false)
+    @RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", required: false)
+    @RenderSection("HtmlFooterJs", false)
 }
 
 
