@@ -115,7 +115,8 @@ namespace DFM.BusinessLogic.Services
                 updateScheduleDeleted(move.Schedule);
             }
 
-            var emailStatus = Parent.BaseMove.SendEmail(move, OperationType.Delete);
+            var emailStatus = moveRepository.SendEmail(move);
+
             return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
         }
 

@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 using DFM.Multilanguage.Helpers;
 
 namespace DFM.BusinessLogic.Repositories
@@ -48,7 +49,7 @@ namespace DFM.BusinessLogic.Repositories
 
 
         #region SendEmail
-        internal EmailStatus SendEmail(Move move, String action)
+        internal EmailStatus SendEmail(Move move)
         {
             var user = move.User;
 
@@ -74,7 +75,6 @@ namespace DFM.BusinessLogic.Repositories
                                 { "Description", move.Description },
                                 { "Value", move.Value().ToMoney(user.Config.Language) },
                                 { "Details", detailsHTML(move) },
-                                { "Action", action }
                             };
 
             var fileContent =

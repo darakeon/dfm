@@ -7,7 +7,6 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -33,11 +32,6 @@ namespace DFM.BusinessLogic.Services
 
         internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            var operationType =
-                move.ID == 0
-                    ? OperationType.Creation
-                    : OperationType.Edit;
-
             resetSchedule(move);
 
             linkEntities(move, accountOutUrl, accountInUrl, categoryName);
@@ -61,7 +55,7 @@ namespace DFM.BusinessLogic.Services
 
             breakSummaries(move);
 
-            var emailStatus = SendEmail(move, operationType);
+            var emailStatus = moveRepository.SendEmail(move);
 
             return new ComposedResult<Move, EmailStatus>(move, emailStatus);
         }
@@ -146,29 +140,6 @@ namespace DFM.BusinessLogic.Services
                 summaryRepository.Break(move.Out.Year, move.Category);
             }
 
-        }
-
-
-        internal EmailStatus SendEmail(Move move, OperationType operationType)
-        {
-            var emailAction = getEmailAction(operationType);
-
-            return moveRepository.SendEmail(move, emailAction);
-        }
-
-        private static string getEmailAction(OperationType operationType)
-        {
-            switch (operationType)
-            {
-                case OperationType.Creation:
-                    return "create_move";
-                case OperationType.Edit:
-                    return "edit";
-                case OperationType.Delete:
-                    return "delete";
-                default:
-                    throw new NotImplementedException();
-            }
         }
 
         
