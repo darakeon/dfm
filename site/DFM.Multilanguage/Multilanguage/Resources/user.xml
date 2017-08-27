@@ -11,6 +11,15 @@
 		<FollowEmailIntructions text="Follow the instructions in the e-mail sent. Pay attention to the sender address: must be {0}." />
 		<PasswordReset text="Password Reset" />
 		<UserVerification text="User Verification" />
+		<Settings text="Settings" />
+		<UseCategories text="Use categories" />
+		<SendMoveEmail text="Send e-mail when record move" />
+		<Language text="Language" />
+		<TimeZone text="Time zone" />
+		<LanguageEnus text="English" />
+		<LanguagePtbr text="Portuguese" />
+		<Save text="Save" />
+		<ConfigChanged text="Settings changed" />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -23,5 +32,14 @@
 		<FollowEmailIntructions text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
 		<PasswordReset text="Recuperação de Senha" />
 		<UserVerification text="Verificação de Usuário" />
+		<Settings text="Configurações" />
+		<UseCategories text="Usar categorias" />
+		<SendMoveEmail text="Enviar e-mail após gravar movimentação" />
+		<Language text="Língua" />
+		<TimeZone text="Fuso horário" />
+		<LanguageEnus text="Inglês" />
+		<LanguagePtbr text="Português" />
+		<Save text="Salvar" />
+		<ConfigChanged text="Configurações alteradas" />
 	</pt-BR>
 </user>

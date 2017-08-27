@@ -93,6 +93,11 @@ namespace DFM.Multilanguage
             return acceptedLanguages.Contains(chosenLanguage.ToLower());
         }
 
+        public static IList<String> AcceptedLanguage()
+        {
+            return acceptedLanguages.ToList();
+        }
+
 
 
         public String this[String section, String language, params String[] phrase]

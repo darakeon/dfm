@@ -273,6 +273,15 @@ Scenario: 10. Get translate of Interface (user)
 		| User    | Create                 |
 		| User    | SignUpSuccess          |
 		| User    | FollowEmailIntructions |
+		| User    | Settings               |
+		| User    | UseCategories          |
+		| User    | SendMoveEmail          |
+		| User    | Language               |
+		| User    | TimeZone               |
+		| User    | LanguageEnus           |
+		| User    | LanguagePtbr           |
+		| User    | Save                   |
+		| User    | ConfigChanged          |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

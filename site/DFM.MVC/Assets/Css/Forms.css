@@ -50,3 +50,18 @@ input:disabled
     background: #F7F7F7;
     border: 1px #EEE solid;
 }
+
+
+.divRowForm
+{
+    clear: both;
+    padding: 10px 0;
+}
+
+form hr
+{
+    background-color: #AA8E55;
+    height: 1px;
+    width: 95%;
+    border: none;
+}

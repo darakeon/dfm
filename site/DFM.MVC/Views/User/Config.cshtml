@@ -1,0 +1,43 @@
+﻿@model UserConfigModel
+
+@{
+    ViewBag.Title = MultiLanguage.Dictionary["Settings"];
+    Layout = "~/Views/Shared/_NoAreaLayout.cshtml";
+}
+
+<div class="half-screen">
+    @using (Html.BeginForm())
+    {
+        <p class="checkbox divRowForm">
+            @Html.LabelFor(m => m.UseCategories, MultiLanguage.Dictionary["UseCategories"])
+            @Html.CheckBoxFor(m => m.UseCategories)
+        </p>
+
+        <p class="checkbox divRowForm">
+            @Html.LabelFor(m => m.SendMoveEmail, MultiLanguage.Dictionary["SendMoveEmail"])
+            @Html.CheckBoxFor(m => m.SendMoveEmail)
+        </p>
+        
+        <div class="divRowForm">
+            <hr />
+        </div>
+
+        <p>
+            @Html.LabelFor(m => m.Language, MultiLanguage.Dictionary["Language"])
+            @Html.DropDownListFor(m => m.Language, Model.LanguageList)
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.TimeZone, MultiLanguage.Dictionary["TimeZone"])
+            @Html.DropDownListFor(m => m.TimeZone, Model.TimeZoneList)
+        </p>
+        
+        <div class="divRowForm">
+            <hr />
+        </div>
+
+        <p>
+            <button type="submit">@MultiLanguage.Dictionary["Save"]</button>
+        </p>
+    }
+</div>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DFM.Generic
 {
@@ -14,5 +16,13 @@ namespace DFM.Generic
                 timeZone
             );
         }
+
+        public static IDictionary<String, String> TimeZoneList()
+        {
+            return TimeZoneInfo.GetSystemTimeZones()
+                .ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
+        }
+
+
     }
 }

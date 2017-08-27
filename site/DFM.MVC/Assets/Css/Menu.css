@@ -25,13 +25,13 @@
         .menu li.icon
         {
             width: 15px;
+            background-position: center 4px;
+            background-repeat: no-repeat;
         }
     
         .menu li.logoff
         {
             background-image: url("/Assets/image/icons/logoff.gif");
-            background-position: center 4px;
-            background-repeat: no-repeat;
         }
     
             .menu li.logoff:hover
@@ -39,11 +39,19 @@
                 background-image: url("/Assets/image/icons/logoff_active.gif");
             }
     
+        .menu li.settings
+        {
+            background-image: url("/Assets/image/icons/settings.gif");
+        }
+    
+            .menu li.settings:hover
+            {
+                background-image: url("/Assets/image/icons/settings_active.gif");
+            }
+    
         .menu li.home
         {
             background-image: url("/Assets/image/icons/home.gif");
-            background-position: center 4px;
-            background-repeat: no-repeat;
         }
     
             .menu li.home:hover

@@ -106,5 +106,26 @@ namespace DFM.MVC.Controllers
 
 
 
+        public ActionResult Config()
+        {
+            return View(new UserConfigModel());
+        }
+
+        [HttpPost]
+        public ActionResult Config(UserConfigModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var errors = model.Save();
+
+                AddErrors(errors);
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            return RedirectToAction("Index", "Account");
+        }
+
     }
 }
