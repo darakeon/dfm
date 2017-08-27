@@ -62,7 +62,7 @@ Scenario: 04. Get translations of Errors
 		| Error   | AccountNameRequired            |
 		| Error   | AccountUrlRequired             |
 		| Error   | AccountUrlInvalid              |
-		| Error   | AccountAlreadyExists           |
+		| Error   | AccountNameAlreadyExists       |
 		| Error   | AccountUrlAlreadyExists        |
 		| Error   | CantCloseEmptyAccount          |
 		| Error   | CantDeleteAccountWithMoves     |

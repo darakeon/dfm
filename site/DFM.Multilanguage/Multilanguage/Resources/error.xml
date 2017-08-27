@@ -3,7 +3,6 @@
   <en-US>
     <CheckErrors text="Check the fields and try again."/>
     
-    <AccountAlreadyExists text="Account already exists." />
     <AccountNotFound text="Account not found." />
     <AccountUrlRequired text="Account url required." />
     <AccountUrlInvalid text="Account url invalid." />
@@ -50,6 +49,7 @@
     <WrongUserEmail text="Wrong user e-mail." />
     <YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
     <AccountNameRequired text="Account name is required." />
+    <AccountNameAlreadyExists text="Account name already exists." />
     <CategoryNameRequired text="Category name is required." />
     <EnabledCategory text="Category is already enabled." />
     <MoveDescriptionRequired text="Description required." />
@@ -73,7 +73,6 @@
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
 
-    <AccountAlreadyExists text="Conta já existe." />
     <AccountNotFound text="Conta não encontrada." />
     <AccountUrlRequired text="Url da conta obrigatória." />
     <AccountUrlInvalid text="Url da conta inválida." />
@@ -120,6 +119,7 @@
     <WrongUserEmail text="E-mail de usuário errado." />
     <YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
     <AccountNameRequired text="Nome da conta obrigatório." />
+    <AccountNameAlreadyExists text="Nome de conta já usado." />
     <CategoryNameRequired text="Nome da categoria obrigatório." />
     <EnabledCategory text="A categoria já está habilitada." />
     <MoveDescriptionRequired text="Descrição obrigatória." />

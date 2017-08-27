@@ -234,7 +234,7 @@ this.ScenarioSetup(scenarioInfo);
                         "AccountUrlInvalid"});
             table5.AddRow(new string[] {
                         "Error",
-                        "AccountAlreadyExists"});
+                        "AccountNameAlreadyExists"});
             table5.AddRow(new string[] {
                         "Error",
                         "AccountUrlAlreadyExists"});
