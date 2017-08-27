@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Configuration
+@{
     var isAuthenticated = Auth.Current.IsAuthenticated;
 
     var routeValues = isAuthenticated
@@ -93,8 +94,9 @@
         </div>
 
         <div id="Footer">
-		    Don't fly Money<br />
-            2011
+			Don't fly Money<br />
+			@ConfigurationManager.AppSettings["version"]<br />
+			2011
 	    </div>
 
         <div id="Advertising">
