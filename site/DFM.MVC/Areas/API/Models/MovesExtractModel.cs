@@ -16,6 +16,7 @@ namespace DFM.MVC.Areas.API.Models
 
             MoveList =
                 Report.GetMonthReport(accountUrl, monthDate, yearDate)
+                    .OrderByDescending(m => m.ID)
                     .Select(m => new SimpleMoveJson(m, accountUrl))
                     .OrderByDescending(m => m.Date)
                     .ToList();
