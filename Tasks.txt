@@ -114,7 +114,7 @@ VERSÃO 2.0.1.0 (Little Change)
 						Refactor em controllers e areas, inverter plural
 						Remover GetOrCreate
 						Atualizar projeto: MVC 5
-						Atualizar projeto: .NET 4.5
+2014-06-09	2014-06-09	Atualizar projeto: .NET 4.5
 2014-06-09	2014-06-09	Atualizar projeto: VS 2013
 2014-06-09	2014-06-09	Fix transform for rewrite
 2014-06-05				Review rotate logic
