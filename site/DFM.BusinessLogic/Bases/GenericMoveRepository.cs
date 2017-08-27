@@ -118,7 +118,9 @@ namespace DFM.BusinessLogic.Bases
 
 		private static void adjustValue(T move)
 		{
-			if (move.Value < 0)
+		    if (move.Value == 0)
+		        move.Value = null;
+			else if (move.Value < 0)
 				move.Value = -move.Value;
 		}
 
