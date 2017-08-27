@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.Repositories
         {
             user.Active = true;
 
-            update(user, true);
+            update(user);
         }
 
 
@@ -64,14 +64,10 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-        private User update(User user, Boolean keepActive = false)
+        private User update(User user)
         {
             if (user.ID == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
-
-            if (!keepActive && user.Active
-                    && user.HasPendentActivation())
-                user.Active = false;
 
             return saveOrUpdate(user);
         }
