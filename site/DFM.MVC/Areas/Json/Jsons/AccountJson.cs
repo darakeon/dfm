@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class AccountJson
+    internal class AccountJson
     {
         public String Name { get; set; }
         public String Url { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class YearJson
+    internal class YearJson
     {
         public Int32 ID { get; set; }
 

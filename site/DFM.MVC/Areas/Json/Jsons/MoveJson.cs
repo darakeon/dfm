@@ -4,7 +4,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class MoveJson
+    internal class MoveJson
     {
         public Int32 FakeID { get; set; }
         

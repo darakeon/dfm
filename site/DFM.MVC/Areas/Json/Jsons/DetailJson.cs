@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class DetailJson
+    internal class DetailJson
     {
         public Int32 FakeID { get; set; }
         

@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class TicketJson
+    internal class TicketJson
     {
         public virtual String Key { get; set; }
 

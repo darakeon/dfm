@@ -4,7 +4,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class ScheduleJson
+    internal class ScheduleJson
     {
         public String Description { get; set; }
         public MoveNature Nature { get; set; }

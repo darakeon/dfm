@@ -3,7 +3,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.MVC.Areas.Json.Jsons
 {
-    public class SummaryJson
+    internal class SummaryJson
     {
         public Int32 ID { get; set; }
 
