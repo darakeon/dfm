@@ -85,6 +85,7 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 
 VERSÃO 2.0.0.1 (System) - 10?
 ================================================================================================
+						Parar request no Destroy da Activity
 						Mudar campos para usar campos que firefox e chrome personalizam
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
