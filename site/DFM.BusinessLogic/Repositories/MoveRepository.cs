@@ -23,7 +23,6 @@ namespace DFM.BusinessLogic.Repositories
         private static void validate(Move move)
         {
             Validate(move);
-            TestCategory(move);
         }
 
         #region PlaceAccountsInMove

@@ -149,10 +149,8 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-        internal void Close(String url, User user)
+        internal void Close(Account account)
         {
-            var account = GetByUrl(url, user);
-
             if (account == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 

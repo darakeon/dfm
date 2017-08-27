@@ -204,7 +204,7 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                scheduleRepository.Disable(id, Parent.Current.User);
+                scheduleRepository.Disable(id);
                 CommitTransaction();
             }
             catch

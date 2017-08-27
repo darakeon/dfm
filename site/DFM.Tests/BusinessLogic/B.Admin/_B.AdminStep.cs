@@ -707,6 +707,52 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             AccountUrl = Account.Url;
         }
 
+        [Given(@"the account has a schedule")]
+        public void GivenTheAccountHasSchedules()
+        {
+            Schedule = new Schedule
+            {
+                Date = Current.User.Now().AddDays(1),
+                Description = "Schedule for account test",
+                Nature = MoveNature.Out,
+                Frequency = ScheduleFrequency.Daily,
+                Boundless = false,
+                Times = 1
+            };
+
+            // TODO: Remove this, put Value
+            var detail = new Detail { Amount = 1, Description = Schedule.Description, Value = 10 };
+
+            Schedule.DetailList.Add(detail);
+
+            SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+        }
+
+        [Given(@"the account has a disabled schedule")]
+        public void GivenTheAccountHasADisabledSchedule()
+        {
+            Schedule = new Schedule
+            {
+                Date = Current.User.Now().AddDays(1),
+                Description = "Schedule for account test",
+                Nature = MoveNature.Out,
+                Frequency = ScheduleFrequency.Daily,
+                Boundless = false,
+                Times = 1
+            };
+
+            // TODO: Remove this, put Value
+            var detail = new Detail { Amount = 1, Description = Schedule.Description, Value = 10 };
+
+            Schedule.DetailList.Add(detail);
+
+            SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+
+            SA.Robot.DisableSchedule(Schedule.ID);
+        }
+
+        
+        
         [Then(@"I will receive no account")]
         public void ThenIWillReceiveNoAccount()
         {
@@ -745,6 +791,25 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             if (CategoryName != null)
                 Assert.AreEqual(CategoryName, Category.Name);
         }
+
+        [Then(@"the schedule will be disabled")]
+        public void ThenTheScheduleWillBeDisabled()
+        {
+            Error = null;
+
+            try
+            {
+                SA.Robot.DisableSchedule(Schedule.ID);
+            }
+            catch (DFMCoreException e)
+            {
+                Error = e;
+            }
+
+            Assert.IsNotNull(Error);
+            Assert.AreEqual(Error.Type, ExceptionPossibilities.DisabledSchedule);
+        }
+
 
         #endregion
 

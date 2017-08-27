@@ -27,10 +27,7 @@ namespace DFM.BusinessLogic.Repositories
 
         private static void validate(Schedule schedule)
         {
-            Validate(schedule);
-
-            if (schedule.Active)
-                TestCategory(schedule);
+            Validate(schedule, schedule.Active);
 
             if (!schedule.Boundless && schedule.Times <= 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
@@ -66,9 +63,9 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-        internal void Disable(int id, User user)
+        internal void Disable(Int32 id)
         {
-            var schedule = getById(id, user);
+            var schedule = GetById(id);
 
             if (schedule == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
@@ -80,14 +77,21 @@ namespace DFM.BusinessLogic.Repositories
             SaveOrUpdate(schedule);
         }
 
-        private Schedule getById(Int32 id, User user)
-        {
-            return SingleOrDefault(
-                    a => a.ID == id
-                         && a.User.ID == user.ID
-                );
-        }
 
+        public void DisableAll(Account account)
+        {
+            var scheduleList = List(
+                s => s.Active
+                && (s.In.ID == account.ID
+                    || s.Out.ID == account.ID)
+            );
+
+            foreach (var schedule in scheduleList)
+            {
+                schedule.Active = false;
+                SaveOrUpdate(schedule);
+            }
+        }
 
 
     }

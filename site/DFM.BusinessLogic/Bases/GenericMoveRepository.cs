@@ -14,14 +14,19 @@ namespace DFM.BusinessLogic.Bases
         where T : class, IEntity, IMove
     {
         #region Validate
-        protected static void Validate(T move)
+        protected static void Validate(T move, Boolean validateParents = true)
         {
             testDescription(move);
             testDate(move);
             testValue(move);
             testNature(move);
             testDetailList(move);
-            testAccounts(move);
+
+            if (validateParents)
+            {
+                testAccounts(move);
+                testCategory(move);
+            }
         }
 
         private static void testDescription(T move)
@@ -95,7 +100,7 @@ namespace DFM.BusinessLogic.Bases
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
         }
 
-        protected static void TestCategory(T move)
+        private static void testCategory(T move)
         {
             if (move.User.Config.UseCategories)
             {

@@ -15,8 +15,9 @@ namespace DFM.BusinessLogic.Services
         private readonly MonthRepository monthRepository;
         private readonly SummaryRepository summaryRepository;
         private readonly ConfigRepository configRepository;
+        private readonly ScheduleRepository scheduleRepository;
 
-        internal AdminService(ServiceAccess serviceAccess, AccountRepository accountRepository, CategoryRepository categoryRepository, YearRepository yearRepository, MonthRepository monthRepository, SummaryRepository summaryRepository, ConfigRepository configRepository)
+        internal AdminService(ServiceAccess serviceAccess, AccountRepository accountRepository, CategoryRepository categoryRepository, YearRepository yearRepository, MonthRepository monthRepository, SummaryRepository summaryRepository, ConfigRepository configRepository, ScheduleRepository scheduleRepository)
             : base(serviceAccess)
         {
             this.accountRepository = accountRepository;
@@ -25,6 +26,7 @@ namespace DFM.BusinessLogic.Services
             this.monthRepository = monthRepository;
             this.summaryRepository = summaryRepository;
             this.configRepository = configRepository;
+            this.scheduleRepository = scheduleRepository;
         }
 
 
@@ -90,7 +92,14 @@ namespace DFM.BusinessLogic.Services
 
             try
             {
-                accountRepository.Close(url, Parent.Current.User);
+                var account = accountRepository.GetByUrl(url, Parent.Current.User);
+
+                if (account != null)
+                {
+                    scheduleRepository.DisableAll(account);
+                }
+
+                accountRepository.Close(account);
                 CommitTransaction();
             }
             catch

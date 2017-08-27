@@ -65,10 +65,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Close an Account that doesn\'t exist (E)")]
-        public virtual void _01_CloseAnAccountThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("E01. Close an Account that doesn\'t exist")]
+        public virtual void E01_CloseAnAccountThatDoesnTExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Close an Account that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E01. Close an Account that doesn\'t exist", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -82,16 +82,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Close an Account already closed (E)")]
-        public virtual void _02_CloseAnAccountAlreadyClosedE()
+        [NUnit.Framework.DescriptionAttribute("E02. Close an Account already closed")]
+        public virtual void E02_CloseAnAccountAlreadyClosed()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Close an Account already closed (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E02. Close an Account already closed", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("I have a category");
 #line 14
- testRunner.And("I give a url of the account Bd02 with moves");
+ testRunner.And("I give a url of the account BdE02 with moves");
 #line 15
  testRunner.And("I already have closed the account");
 #line 16
@@ -103,14 +103,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Close an Account that has no moves (E)")]
-        public virtual void _03_CloseAnAccountThatHasNoMovesE()
+        [NUnit.Framework.DescriptionAttribute("E03. Close an Account that has no moves")]
+        public virtual void E03_CloseAnAccountThatHasNoMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Close an Account that has no moves (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E03. Close an Account that has no moves", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.Given("I give a url of the account Bd03 without moves");
+ testRunner.Given("I give a url of the account BdE03 without moves");
 #line 21
  testRunner.When("I try to close the account");
 #line 22
@@ -122,21 +122,69 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Close an Account with info all right (S)")]
-        public virtual void _99_CloseAnAccountWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("S01. Close an Account with info all right")]
+        public virtual void S01_CloseAnAccountWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Close an Account with info all right (S)", ((string[])(null)));
-#line 25
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S01. Close an Account with info all right", ((string[])(null)));
 #line 26
- testRunner.Given("I have a category");
+this.ScenarioSetup(scenarioInfo);
 #line 27
- testRunner.And("I give a url of the account Bd99 with moves");
+ testRunner.Given("I have a category");
 #line 28
- testRunner.When("I try to close the account");
+ testRunner.And("I give a url of the account BdS01 with moves");
 #line 29
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to close the account");
 #line 30
+ testRunner.Then("I will receive no core error");
+#line 31
+ testRunner.And("the account will be closed");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("S02. Close an Account with schedule")]
+        public virtual void S02_CloseAnAccountWithSchedule()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S02. Close an Account with schedule", ((string[])(null)));
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line 34
+ testRunner.Given("I have a category");
+#line 35
+ testRunner.And("I give a url of the account BdS02 with moves");
+#line 36
+ testRunner.And("the account has a schedule");
+#line 37
+ testRunner.When("I try to close the account");
+#line 38
+ testRunner.Then("I will receive no core error");
+#line 39
+ testRunner.And("the account will be closed");
+#line 40
+ testRunner.And("the schedule will be disabled");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("S03. Close an Account with disabled schedule")]
+        public virtual void S03_CloseAnAccountWithDisabledSchedule()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S03. Close an Account with disabled schedule", ((string[])(null)));
+#line 42
+this.ScenarioSetup(scenarioInfo);
+#line 43
+ testRunner.Given("I have a category");
+#line 44
+ testRunner.And("I give a url of the account BdS03 with moves");
+#line 45
+ testRunner.And("the account has a disabled schedule");
+#line 46
+ testRunner.When("I try to close the account");
+#line 47
+ testRunner.Then("I will receive no core error");
+#line 48
  testRunner.And("the account will be closed");
 #line hidden
             testRunner.CollectScenarioErrors();
