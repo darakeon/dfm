@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Extensions;
-using DFM.MVC.Areas.Android.Jsons;
+using DFM.MVC.Areas.API.Jsons;
 
-namespace DFM.MVC.Areas.Android.Models
+namespace DFM.MVC.Areas.API.Models
 {
     internal class AccountListModel : BaseJsonModel
     {

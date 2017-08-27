@@ -166,7 +166,7 @@ namespace DFM.BusinessLogic.Services
             return ticket.User;
         }
 
-        public String ValidateUserAndCreateTicket(String email, String password, String ticketKey)
+        public String ValidateUserAndCreateTicket(String email, String password, String machineId, String ticketKey)
         {
             BeginTransaction();
             
@@ -178,7 +178,7 @@ namespace DFM.BusinessLogic.Services
 
                 if (ticket == null)
                 {
-                    ticket = ticketService.Create(user, ticketKey);
+                    ticket = ticketService.Create(user, machineId, ticketKey);
                 }
                 else if (ticket.User.Email != email)
                 {

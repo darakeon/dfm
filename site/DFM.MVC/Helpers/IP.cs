@@ -6,7 +6,7 @@ namespace DFM.MVC.Helpers
 {
     public class IP
     {
-        const string relativePath = @"../../android/DontFlyMoney/src/com/dontflymoney/site/IP";
+        const string relativePath = @"../../android/DontFlyMoney/src/com/dontflymoney/site/HttpHelper.java";
 
         internal static String Get()
         {
@@ -37,11 +37,24 @@ namespace DFM.MVC.Helpers
 
             var path = Path.Combine(currentPath, relativePath);
             var info = new FileInfo(path);
-
             path = info.FullName;
 
-            File.WriteAllText(path, address);
+            var lines = File.ReadAllLines(path);
+
+            for (var l = 0; l < lines.Length; l++)
+            {
+                if (lines[l].StartsWith(domainDeclaration))
+                {
+                    lines[l] = domainDeclaration + address + "\";";
+                    break;
+                }
+            }
+
+            File.WriteAllLines(path, lines);
         }
+
+        const string domainDeclaration = "	private static String domain = \"";
+
 
 
     }

@@ -37,7 +37,8 @@ namespace DFM.MVC
 
             XmlConfigurator.Configure();
 
-            IP.SaveCurrent();
+            if (isLocal)
+                IP.SaveCurrent();
         }
 
 

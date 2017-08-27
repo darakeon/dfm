@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Areas.Android.Models;
+using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers;
 
-namespace DFM.MVC.Areas.Android.Controllers
+namespace DFM.MVC.Areas.API.Controllers
 {
     public class UserController : BaseJsonController
     {
-        public ActionResult Index(String email, String password, String ticket)
+        public ActionResult Index(String id, String email, String password)
         {
-            var model = new UserLogOnJsonModel { Email = email, Password = password };
+            if (String.IsNullOrEmpty(id))
+                return RedirectToAction("Uninvited");
+
+            var model =
+                new UserLogOnJsonModel
+                {
+                    Email = email,
+                    Password = password,
+                    MachineId = id
+                };
 
             var result = model.LogOn();
 
@@ -20,10 +29,14 @@ namespace DFM.MVC.Areas.Android.Controllers
             return JsonGet(Current.Ticket);
         }
 
+
+
         public ActionResult Uninvited()
         {
             return JsonGetError(MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited]);
         }
+
+
 
     }
 }

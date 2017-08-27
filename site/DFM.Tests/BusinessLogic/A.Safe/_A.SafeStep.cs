@@ -105,7 +105,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, null, Current.Ticket);
             }
             catch (DFMCoreException e)
             {
@@ -186,7 +186,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+                SA.Safe.ValidateUserAndCreateTicket(email, password, null, Current.Ticket);
             }
             catch (DFMCoreException e)
             {
@@ -200,7 +200,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Then(@"the user will be activated")]
         public void ThenTheUserWillBeActivated()
         {
-            var ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+            var ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, null, Current.Ticket);
             
             User = SA.Safe.GetUserByTicket(ticket);
 
@@ -226,7 +226,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Token.New());
+                ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, null, Token.New());
             }
             catch (DFMCoreException e)
             {
@@ -308,7 +308,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+                SA.Safe.ValidateUserAndCreateTicket(email, password, null, Current.Ticket);
             }
             catch (DFMCoreException e)
             {
@@ -326,7 +326,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(email, newPassword, Current.Ticket);
+                SA.Safe.ValidateUserAndCreateTicket(email, newPassword, null, Current.Ticket);
             }
             catch (DFMCoreException e)
             {
@@ -486,7 +486,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I pass a ticket that is of this disabled user")]
         public void GivenIPassATicketThatIsOfThisDisabledUser()
         {
-            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, null, Current.Ticket);
         }
 
         [Given(@"I pass a ticket that exist")]
@@ -505,7 +505,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I have a ticket of this user")]
         public void GivenIHaveATicketOfThisUser()
         {
-            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Token.New());
+            ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, null, Token.New());
         }
 
         

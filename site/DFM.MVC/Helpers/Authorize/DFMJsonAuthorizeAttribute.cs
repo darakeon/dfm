@@ -9,7 +9,7 @@ namespace DFM.MVC.Helpers.Authorize
         {
             var route = new RouteValueDictionary(new { controller = "User", action = "Uninvited" });
 
-            filterContext.Result = new RedirectToRouteResult(RouteNames.Android, route);
+            filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
         }
 
     }

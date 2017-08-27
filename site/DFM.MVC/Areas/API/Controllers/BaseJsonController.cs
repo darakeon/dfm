@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using DFM.MVC.Helpers.Controllers;
 
-namespace DFM.MVC.Areas.Android.Controllers
+namespace DFM.MVC.Areas.API.Controllers
 {
     public class BaseJsonController : BaseController
     {

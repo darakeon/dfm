@@ -102,7 +102,7 @@ namespace DFM.Tests.BusinessLogic
         {
             try
             {
-                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, Token.New());
+                SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, null, Token.New());
                 return null;
             }
             catch (DFMCoreException e)
@@ -155,7 +155,7 @@ namespace DFM.Tests.BusinessLogic
         {
             var ticketKey = Token.New();
 
-            SA.Safe.ValidateUserAndCreateTicket(email, password, ticketKey);
+            SA.Safe.ValidateUserAndCreateTicket(email, password, null, ticketKey);
 
             return SA.Safe.GetUserByTicket(ticketKey);
         }

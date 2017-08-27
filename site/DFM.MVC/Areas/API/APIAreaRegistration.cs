@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using DFM.MVC.Areas.Android.Controllers;
+using DFM.MVC.Areas.API.Controllers;
 using DFM.MVC.Helpers;
 
-namespace DFM.MVC.Areas.Android
+namespace DFM.MVC.Areas.API
 {
     public class APIAreaRegistration : AreaRegistration
     {
@@ -10,29 +10,29 @@ namespace DFM.MVC.Areas.Android
         {
             get
             {
-                return RouteNames.Android;
+                return RouteNames.API;
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                RouteNames.Android,
-                "Android/{controller}/{action}/{id}",
+                RouteNames.API,
+                "API/{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );
 
             context.MapRoute(
-                RouteNames.AndroidLogged,
-                "Android-{ticket}/{controller}/{action}/{id}",
+                RouteNames.APILogged,
+                "API-{ticket}/{controller}/{action}/{id}",
                 new { controller = "Account", action = "List", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );
 
             context.MapRoute(
-                RouteNames.AndroidLoggedAccount,
-                "Android-{ticket}/{accountname}/{controller}/{action}/{id}",
+                RouteNames.APILoggedAccount,
+                "API-{ticket}/Account-{accountname}/{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );

@@ -1,8 +1,6 @@
-﻿using Ak.MVC.Route;
-using DFM.Entities;
-using DFM.MVC.Models;
+﻿using DFM.MVC.Models;
 
-namespace DFM.MVC.Areas.Android.Models
+namespace DFM.MVC.Areas.API.Models
 {
     internal class BaseJsonModel : BaseLoggedModel
     {

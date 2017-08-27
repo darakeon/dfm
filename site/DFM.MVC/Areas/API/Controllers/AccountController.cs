@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using DFM.MVC.Areas.Android.Models;
+using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
 
-namespace DFM.MVC.Areas.Android.Controllers
+namespace DFM.MVC.Areas.API.Controllers
 {
     [DFMJsonAuthorize]
     public class AccountController : BaseJsonController

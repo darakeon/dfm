@@ -2,7 +2,7 @@
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
-namespace DFM.MVC.Areas.Android.Jsons
+namespace DFM.MVC.Areas.API.Jsons
 {
     internal class AccountJson
     {
