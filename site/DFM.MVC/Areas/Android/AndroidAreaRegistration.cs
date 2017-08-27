@@ -29,6 +29,14 @@ namespace DFM.MVC.Areas.Android
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );
+
+            context.MapRoute(
+                RouteNames.AndroidLoggedAccount,
+                "Android-{ticket}/{accountname}/{controller}/{action}/{id}",
+                new { controller = "User", action = "Index", id = UrlParameter.Optional },
+                new[] { typeof(UserController).Namespace }
+            );
+
         }
     }
 }
