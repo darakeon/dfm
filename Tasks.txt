@@ -93,184 +93,187 @@ VERSÃO 2.0.0.0
 						Possibilitar gravar movimentação (Mobile)
 						Criar App Mobile (http://haxe.org/ ?)
 						Criar área Json
+
+VERSÃO 1.0.3.1 (System)
+================================================================================================
 2013-08-24				Mover lógica dos Controllers para os Models
 
 VERSÃO 1.0.3.0 (Little change)
 ================================================================================================
-18/08/2013	22/08/2013	Colocar Broken em summary, e usar RobotService para consertar
-09/08/2013	22/08/2013	Resolver problema da atualização de Summaries em caso de mudança de valor
-06/08/2013	09/08/2013	Usar apenas um cookie para pegar tudo no servidor
-05/08/2013	06/08/2013	Adicionar link para tela de login na tela de User Verification
-02/08/2013	02/08/2013	Separar Controller Move em Move / Schedule / Detail
-22/07/2013	01/08/2013	Rever Schedule para ser IMove / Matar FutureMove
-17/07/2013	30/07/2013	Consertar testes
-16/07/2013	16/07/2013	Trocar Select por Get
-15/07/2013	16/07/2013	Criar SessionOld para usar em GetByIdOld
-15/07/2013	15/07/2013	http://www.dontflymoney.com/Token/ (put Index)
-15/07/2013	15/07/2013	http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
-24/03/2013	24/03/2013	Sugerir url para conta
-24/03/2013	24/03/2013	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
-18/03/2013	24/03/2013	Usar Identity (Generic) para guardar usuário logado
-18/03/2013	18/03/2013	Tirar retorno de setter do Authentication
-17/03/2013	17/03/2013	Fazer logout de ticket
-16/03/2013	17/03/2013	Substituir SelectByEmail de User por SelectByTicket
-11/03/2013	14/03/2013	Fazer ValidateAndGet pegar String de Ticket
+2013-08-18	2013-08-22	Colocar Broken em summary, e usar RobotService para consertar
+2013-08-09	2013-08-22	Resolver problema da atualização de Summaries em caso de mudança de valor
+2013-08-06	2013-08-09	Usar apenas um cookie para pegar tudo no servidor
+2013-08-05	2013-08-06	Adicionar link para tela de login na tela de User Verification
+2013-08-02	2013-08-02	Separar Controller Move em Move / Schedule / Detail
+2013-07-22	2013-08-01	Rever Schedule para ser IMove / Matar FutureMove
+2013-07-17	2013-07-30	Consertar testes
+2013-07-16	2013-07-16	Trocar Select por Get
+2013-07-15	2013-07-16	Criar SessionOld para usar em GetByIdOld
+2013-07-15	2013-07-15	http://www.dontflymoney.com/Token/ (put Index)
+2013-07-15	2013-07-15	http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
+2013-03-24	2013-03-24	Sugerir url para conta
+2013-03-24	2013-03-24	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
+2013-03-18	2013-03-24	Usar Identity (Generic) para guardar usuário logado
+2013-03-18	2013-03-18	Tirar retorno de setter do Authentication
+2013-03-17	2013-03-17	Fazer logout de ticket
+2013-03-16	2013-03-17	Substituir SelectByEmail de User por SelectByTicket
+2013-03-11	2013-03-14	Fazer ValidateAndGet pegar String de Ticket
 
 VERSÃO 1.0.2.3 (System)
 ================================================================================================
-07/03/2013	07/03/2013	Proteger edição de hiddens, onde for necessário
-07/03/2013	07/03/2013	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
-07/03/2013	07/03/2013	Não enviar e-mail caso dê erro ao mexer na movimentação
-07/03/2013	07/03/2013	Proteger edição de objeto (user) no core
-07/03/2013	07/03/2013	Numerar enums (segurança para o banco)
-03/03/2013	07/03/2013	Usar url da conta no MVC
-03/03/2013	03/03/2013	Possibilitar url escolhida para a conta
-24/02/2013	03/03/2013	Criar edição de nome de Categoria / Conta (incluindo mvc)
-21/02/2013	22/02/2013	Substituir SelectById de Account / Category por SelectByName
-21/02/2013	22/02/2013	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
-21/02/2013	21/02/2013	Passar Accounts / Category como name para a save move
-21/02/2013	21/02/2013	Consertar e-mail de transferência
-20/02/2013	21/02/2013	Proteção por usuário no Core (verificar active também)
-20/02/2013	20/02/2013	Isolar projeto de autenticação
-17/10/2012	20/02/2013	Arrumar MVC para passar Category e Schedule de move separados da move
-17/10/2012	17/10/2012	Colocar log por visita no site (IP, Data/Hora, Endereço)
-17/10/2012	17/10/2012	Arrumar configuração de e-mail para usar direito web.config
+2013-03-07	2013-03-07	Proteger edição de hiddens, onde for necessário
+2013-03-07	2013-03-07	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
+2013-03-07	2013-03-07	Não enviar e-mail caso dê erro ao mexer na movimentação
+2013-03-07	2013-03-07	Proteger edição de objeto (user) no core
+2013-03-07	2013-03-07	Numerar enums (segurança para o banco)
+2013-03-03	2013-03-07	Usar url da conta no MVC
+2013-03-03	2013-03-03	Possibilitar url escolhida para a conta
+2013-02-24	2013-03-03	Criar edição de nome de Categoria / Conta (incluindo mvc)
+2013-02-21	2013-02-22	Substituir SelectById de Account / Category por SelectByName
+2013-02-21	2013-02-22	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
+2013-02-21	2013-02-21	Passar Accounts / Category como name para a save move
+2013-02-21	2013-02-21	Consertar e-mail de transferência
+2013-02-20	2013-02-21	Proteção por usuário no Core (verificar active também)
+2013-02-20	2013-02-20	Isolar projeto de autenticação
+2012-10-17	2013-02-20	Arrumar MVC para passar Category e Schedule de move separados da move
+2012-10-17	2012-10-17	Colocar log por visita no site (IP, Data/Hora, Endereço)
+2012-10-17	2012-10-17	Arrumar configuração de e-mail para usar direito web.config
 
 VERSÃO 1.0.2.2 (System)
 ================================================================================================
-20/08/2012	21/08/2012	Testes de Multilanguage
-20/08/2012	20/08/2012	Testar fechar conta e desativar categoria (MVC)
-17/08/2012	17/08/2012	Adicionar configuração de SMTP no web.config
-16/08/2012	16/08/2012	Testar entrar com user não validado ainda (MVC)
-16/08/2012	16/08/2012	Colocar robot.txt para google
-16/08/2012	16/08/2012	Reorganização da ordem das funções nos serviços
-09/08/2012	09/08/2012	Arrumar configuração de DB no webconfig release
-09/08/2012	09/08/2012	Colocar dados de Post no e-mail de erro
-18/07/2012	18/07/2012	Passar parent para superservices, ao invés de passar todos os services
-18/07/2012	18/07/2012	Criar classe Session para Begin/Commit/Rollback
-18/07/2012	18/07/2012	Modificar this[] para retornar objeto novo caso não exista o procurado
-17/06/2012	04/07/2012	Criar testes de edição de Move
-14/06/2012	14/06/2012	Adicionar Assert para ver se soma mês/ano não muda quando dá erro (moneyservice)
-14/06/2012	14/06/2012	Verificar em testes se summaries não são alterados em caso de erro
-14/06/2012	14/06/2012	Criar testes de nomes muito grandes
-14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Conta Fechada
-14/06/2012	14/06/2012	Criar testes de inserção de move/schedule em Categoria Desabilitada
-14/06/2012	14/06/2012	Colocar category/schedule como parâmetro na Save da Move
-03/06/2012	03/06/2012	Retirar retorno da Transaction no Begin (usar da session)
-07/04/2012	07/04/2012	Save User deve receber e-mail e senha
-06/04/2012	13/06/2012	Implementar BDD
-18/03/2012	06/04/2012	Escrever BDD
+2012-08-20	2012-08-21	Testes de Multilanguage
+2012-08-20	2012-08-20	Testar fechar conta e desativar categoria (MVC)
+2012-08-17	2012-08-17	Adicionar configuração de SMTP no web.config
+2012-08-16	2012-08-16	Testar entrar com user não validado ainda (MVC)
+2012-08-16	2012-08-16	Colocar robot.txt para google
+2012-08-16	2012-08-16	Reorganização da ordem das funções nos serviços
+2012-08-09	2012-08-09	Arrumar configuração de DB no webconfig release
+2012-08-09	2012-08-09	Colocar dados de Post no e-mail de erro
+2012-07-18	2012-07-18	Passar parent para superservices, ao invés de passar todos os services
+2012-07-18	2012-07-18	Criar classe Session para Begin/Commit/Rollback
+2012-07-18	2012-07-18	Modificar this[] para retornar objeto novo caso não exista o procurado
+2012-06-17	2012-07-04	Criar testes de edição de Move
+2012-06-14	2012-06-14	Adicionar Assert para ver se soma mês/ano não muda quando dá erro (moneyservice)
+2012-06-14	2012-06-14	Verificar em testes se summaries não são alterados em caso de erro
+2012-06-14	2012-06-14	Criar testes de nomes muito grandes
+2012-06-14	2012-06-14	Criar testes de inserção de move/schedule em Conta Fechada
+2012-06-14	2012-06-14	Criar testes de inserção de move/schedule em Categoria Desabilitada
+2012-06-14	2012-06-14	Colocar category/schedule como parâmetro na Save da Move
+2012-06-03	2012-06-03	Retirar retorno da Transaction no Begin (usar da session)
+2012-04-07	2012-04-07	Save User deve receber e-mail e senha
+2012-04-06	2012-06-13	Implementar BDD
+2012-03-18	2012-04-06	Escrever BDD
 
 VERSÃO 1.0.2.1 (System)
 ================================================================================================
-21/03/2012	22/03/2012	Fornecer detalhes do erro no e-mail de report
-20/03/2012	20/03/2012	Refactor Resharper
+2012-03-21	2012-03-22	Fornecer detalhes do erro no e-mail de report
+2012-03-20	2012-03-20	Refactor Resharper
 
 VERSÃO 1.0.2.0 (Little change)
 ================================================================================================
-17/03/2012	17/03/2012	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
-16/03/2012	17/03/2012	Testar Elmah com página tratada (Report > SeeYear)
-14/03/2012	16/03/2012	Retirar delegates de Getters para envio de e-mail
-14/03/2012	14/03/2012	Separar Multilanguage de MVC
-14/03/2012	14/03/2012	Retirar delegate DeleteSummary / outros try de duplicata
-02/02/2012	14/03/2012	Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
-30/01/2012	31/01/2012	Layout com sombras e 3D
-30/01/2012	31/01/2012	Opção de colocar (atual/total) na descrição de agendadas
-28/01/2012	28/01/2012	Iluminar conta escolhida (na area account)
-04/01/2012	27/01/2012	Mudar Scheduler para usar FutureMove
-28/12/2011	03/01/2012	Criar superServices e migrar uso para ele
-05/12/2011	19/12/2011	Separar BusinessLogic de NHibernate
+2012-03-17	2012-03-17	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
+2012-03-16	2012-03-17	Testar Elmah com página tratada (Report > SeeYear)
+2012-03-14	2012-03-16	Retirar delegates de Getters para envio de e-mail
+2012-03-14	2012-03-14	Separar Multilanguage de MVC
+2012-03-14	2012-03-14	Retirar delegate DeleteSummary / outros try de duplicata
+2012-02-02	2012-03-14	Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
+2012-01-30	2012-01-31	Layout com sombras e 3D
+2012-01-30	2012-01-31	Opção de colocar (atual/total) na descrição de agendadas
+2012-01-28	2012-01-28	Iluminar conta escolhida (na area account)
+2012-01-04	2012-01-27	Mudar Scheduler para usar FutureMove
+2011-12-28	2012-01-03	Criar superServices e migrar uso para ele
+2011-12-05	2011-12-19	Separar BusinessLogic de NHibernate
 ----------	----------	RESPONDE COMEÇOU A SER PROGRAMADO. DFM MAIS LENTO.
-02/12/2011	05/12/2011	Reorganização primária de camadas
+2011-12-02	2011-12-05	Reorganização primária de camadas
 
 VERSÃO 1.0.1.0 (Little change)
 ================================================================================================
-25/11/2011	30/11/2011	Testes e Publicação
-25/10/2011	25/10/2011	Erros tratados
-25/10/2011	25/10/2011	Proteção para log do Elmah
-24/10/2011	25/10/2011	Tentativa de passar Log4Net / Elmah para MySql: FAIL
-19/10/2011	19/10/2011	Log4Net / Elmah
+2011-11-25	2011-11-30	Testes e Publicação
+2011-10-25	2011-10-25	Erros tratados
+2011-10-25	2011-10-25	Proteção para log do Elmah
+2011-10-24	2011-10-25	Tentativa de passar Log4Net / Elmah para MySql: FAIL
+2011-10-19	2011-10-19	Log4Net / Elmah
 
 VERSÃO 1.0.0.4 (System)
 ================================================================================================
-11/11/2011	11/11/2011	Tornar possível valor ZERO em sinais (vermelho / amarelo)
-09/11/2011	09/11/2011	Verificar se recuperação de senha está desativando usuário
-09/11/2011	22/11/2011	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
-09/11/2011	09/11/2011	Substituir links por desenhos na lista de Categorias
-08/11/2011	08/11/2011	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
-23/10/2011	23/10/2011	Corrigido erro na movimentação de Transferência: não estava trazendo contas
+2011-11-11	2011-11-11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
+2011-11-09	2011-11-09	Verificar se recuperação de senha está desativando usuário
+2011-11-09	2011-11-22	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
+2011-11-09	2011-11-09	Substituir links por desenhos na lista de Categorias
+2011-11-08	2011-11-08	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
+2011-10-23	2011-10-23	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 
 VERSÃO 1.0.0.3 (System)
 ================================================================================================
-13/10/2011	14/10/2011	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
-11/10/2011	13/10/2011	Ícones ao invés de palavras nas listagem de contas
-10/10/2011	10/10/2011	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-02/10/2011	09/10/2011	Recuperação de Senha - hashcode
+2011-10-13	2011-10-14	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
+2011-10-11	2011-10-13	Ícones ao invés de palavras nas listagem de contas
+2011-10-10	2011-10-10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
+2011-10-02	2011-10-09	Recuperação de Senha - hashcode
 
 VERSÃO 1.0.0.2 (System)
 ================================================================================================
-01/10/2011	01/10/2011	Colocar BETA no logo do site
-01/10/2011	01/10/2011	Escurecer mensagem de erro (inverter cor?)
-01/10/2011	01/10/2011	Data de cadastro do usuário
-28/09/2011	01/10/2011	Confirmação de senha
-25/09/2011	26/09/2011	Conflito de formato de data
+2011-10-01	2011-10-01	Colocar BETA no logo do site
+2011-10-01	2011-10-01	Escurecer mensagem de erro (inverter cor?)
+2011-10-01	2011-10-01	Data de cadastro do usuário
+2011-09-28	2011-10-01	Confirmação de senha
+2011-09-25	2011-09-26	Conflito de formato de data
 
 VERSÃO 1.0.0.1 (System)
 ================================================================================================
-24/09/2011	24/09/2011	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
-24/09/2011	24/09/2011	Consertar acesso NH no publicado
+2011-09-24	2011-09-24	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
+2011-09-24	2011-09-24	Consertar acesso NH no publicado
 
 VERSÃO 1.0.0.0 (All new)
 ================================================================================================
-22/09/2011	22/09/2011	Publicar
-22/09/2011	22/09/2011	Verificar no IE
-21/09/2011	22/09/2011	Limitar tamanhos dos campos de texto
-21/09/2011	21/09/2011	Cifrar senha
-18/09/2011	19/09/2011	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
-18/09/2011	18/09/2011	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
-15/09/2011	15/09/2011	Robô para Taxas Fixas
-15/09/2011	15/09/2011	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
-15/09/2011	15/09/2011	Refactor: centralizar textos de erro em enum
-15/09/2011	15/09/2011	Retirar campo Login
-15/09/2011	15/09/2011	Proteger alteração / deleção de itens que não pertencem ao usuário logado
-13/09/2011	15/09/2011	Quebrar Value de Summary em In e Out
-12/09/2011	12/09/2011	Implementar Frequência Daily em Scheduler (testar funções ligadas aos valores postas no Enum)
-11/09/2011	12/09/2011	-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
-10/09/2011	10/09/2011	-- Arrancar IsValid de Summary
-07/09/2011	11/09/2011	Criar robô executor da Agenda (controlar request) - pega a última e duplica
-05/09/2011	06/09/2011	Interface do agendador ilimitado
-04/09/2011	05/09/2011	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
-02/09/2011	02/09/2011	Refactor: kill SelectOne and Select with lambda
-28/08/2011	02/09/2011	Despesa Fixa (criar Agenda)
-27/08/2011	27/08/2011	Mudar cor para amarelo / colocar ícone
-23/08/2011	27/08/2011	Revisar o layout (verificar faixa no topo, se fica legal)
-23/08/2011	23/08/2011	Submenu com relatórios
-22/08/2011	22/08/2011	Link do Relatório de Conta fechada aponta para últimos relatórios
-22/08/2011	22/08/2011	Conta vazia - Deletar / Conta com Movimentações - Desativar
-22/08/2011	22/08/2011	Colocar apenas botão de entrar, quando já logado
-22/08/2011	22/08/2011	Fazer EntityData static
-19/08/2011	21/08/2011	Unificar página layout
-18/08/2011	22/08/2011	Navegação Mês / Ano
-18/08/2011	18/08/2011	tirar Quantidade de Valor único
-16/08/2011	17/08/2011	Layout
-15/08/2011	16/08/2011	-- WCF Iniciado
-14/08/2011	14/08/2011	-- Implementar "manter logado"
-10/08/2011	14/08/2011	-- Agendamento de Movimentação
-09/08/2011	10/08/2011	REFACTORING
-03/08/2011	08/08/2011	-- Criar Select com lambda expression no BaseData
-01/08/2011	03/08/2011	Saldo mensal (adaptar edição / criação de movimentação)
-01/08/2011	01/08/2011	-- Edição de Categoria
-01/08/2011	01/08/2011	-- Desativação de Categoria
-31/07/2011	01/08/2011	-- Listagem de Categorias
-25/07/2011	31/07/2011	-- Tradução
-24/07/2011	25/07/2011	-- Multi-língue
-24/07/2011	24/07/2011	Listagem de Contas desativadas
-24/07/2011	24/07/2011	Desativação de Conta
-23/07/2011	24/07/2011	Edição de Conta
-23/07/2011	23/07/2011	-- Possibilitar deleção de Detalhes
-23/07/2011	23/07/2011	-- Implementar Quantidade em Detalhes
-23/07/2011	23/07/2011	Deleção de Movimentação
-18/07/2011	23/07/2011	-- Arrancar entidade Transferência
-29/06/2011	18/07/2011	Edição de Movimentação
-20/06/2011	29/06/2011	-- Refazer roteamento para uma conta entrar em uma url
-01/06/2011	20/06/2011	Detalhes na Movimentação
+2011-09-22	2011-09-22	Publicar
+2011-09-22	2011-09-22	Verificar no IE
+2011-09-21	2011-09-22	Limitar tamanhos dos campos de texto
+2011-09-21	2011-09-21	Cifrar senha
+2011-09-18	2011-09-19	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
+2011-09-18	2011-09-18	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
+2011-09-15	2011-09-15	Robô para Taxas Fixas
+2011-09-15	2011-09-15	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
+2011-09-15	2011-09-15	Refactor: centralizar textos de erro em enum
+2011-09-15	2011-09-15	Retirar campo Login
+2011-09-15	2011-09-15	Proteger alteração / deleção de itens que não pertencem ao usuário logado
+2011-09-13	2011-09-15	Quebrar Value de Summary em In e Out
+2011-09-12	2011-09-12	Implementar Frequência Daily em Scheduler (testar funções ligadas aos valores postas no Enum)
+2011-09-11	2011-09-12	-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
+2011-09-10	2011-09-10	-- Arrancar IsValid de Summary
+2011-09-07	2011-09-11	Criar robô executor da Agenda (controlar request) - pega a última e duplica
+2011-09-05	2011-09-06	Interface do agendador ilimitado
+2011-09-04	2011-09-05	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
+2011-09-02	2011-09-02	Refactor: kill SelectOne and Select with lambda
+2011-08-28	2011-09-02	Despesa Fixa (criar Agenda)
+2011-08-27	2011-08-27	Mudar cor para amarelo / colocar ícone
+2011-08-23	2011-08-27	Revisar o layout (verificar faixa no topo, se fica legal)
+2011-08-23	2011-08-23	Submenu com relatórios
+2011-08-22	2011-08-22	Link do Relatório de Conta fechada aponta para últimos relatórios
+2011-08-22	2011-08-22	Conta vazia - Deletar / Conta com Movimentações - Desativar
+2011-08-22	2011-08-22	Colocar apenas botão de entrar, quando já logado
+2011-08-22	2011-08-22	Fazer EntityData static
+2011-08-19	2011-08-21	Unificar página layout
+2011-08-18	2011-08-22	Navegação Mês / Ano
+2011-08-18	2011-08-18	tirar Quantidade de Valor único
+2011-08-16	2011-08-17	Layout
+2011-08-15	2011-08-16	-- WCF Iniciado
+2011-08-14	2011-08-14	-- Implementar "manter logado"
+2011-08-10	2011-08-14	-- Agendamento de Movimentação
+2011-08-09	2011-08-10	REFACTORING
+2011-08-03	2011-08-08	-- Criar Select com lambda expression no BaseData
+2011-08-01	2011-08-03	Saldo mensal (adaptar edição / criação de movimentação)
+2011-08-01	2011-08-01	-- Edição de Categoria
+2011-08-01	2011-08-01	-- Desativação de Categoria
+2011-07-31	2011-08-01	-- Listagem de Categorias
+2011-07-25	2011-07-31	-- Tradução
+2011-07-24	2011-07-25	-- Multi-língue
+2011-07-24	2011-07-24	Listagem de Contas desativadas
+2011-07-24	2011-07-24	Desativação de Conta
+2011-07-23	2011-07-24	Edição de Conta
+2011-07-23	2011-07-23	-- Possibilitar deleção de Detalhes
+2011-07-23	2011-07-23	-- Implementar Quantidade em Detalhes
+2011-07-23	2011-07-23	Deleção de Movimentação
+2011-07-18	2011-07-23	-- Arrancar entidade Transferência
+2011-06-29	2011-07-18	Edição de Movimentação
+2011-06-20	2011-06-29	-- Refazer roteamento para uma conta entrar em uma url
+2011-06-01	2011-06-20	Detalhes na Movimentação
