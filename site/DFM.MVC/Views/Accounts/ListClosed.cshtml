@@ -45,7 +45,7 @@ else
                 <td>@account.BeginDate.ToShortDateString()</td>
                 <td>@account.EndDate.Value.ToShortDateString()</td>
 
-                <td class="numeric @(negative ? "out" : "in")">@value</td>
+                <td class="numeric @className">@value</td>
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
                 @*
                 <td class="image">

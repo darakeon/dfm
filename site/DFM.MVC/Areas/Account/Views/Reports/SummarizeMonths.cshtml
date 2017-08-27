@@ -38,7 +38,7 @@
             var sum = month.Total();
 
             var negative = sum < 0;
-            var sign = negative ? "out" : "in";
+            var className = negative ? "out" : "in";
 
             sum *= negative ? -1 : 1;
             
@@ -48,7 +48,7 @@
                         @MultiLanguage.GetMonthName(month.Time)
                     </a>
                 </td>
-                <td class="numeric @sign">@sum.ToMoney(Model.Language) </td>
+                <td class="numeric @className">@sum.ToMoney(Model.Language) </td>
             </tr>
 
         } 

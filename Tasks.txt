@@ -107,6 +107,7 @@ B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 VERSÃO 2.0.1.2 (System) - 1
 ================================================================================================
 						Arrumar erro ao editar movimentação
+2015-01-11	2015-01-11	Arrumar lista de contas fechadas
 2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
 
 VERSÃO 2.0.1.1 (System) - 4
