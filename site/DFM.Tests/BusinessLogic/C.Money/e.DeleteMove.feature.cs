@@ -321,6 +321,56 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9E. Delete all moves from schedule")]
+        public virtual void _9E_DeleteAllMovesFromSchedule()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9E. Delete all moves from schedule", ((string[])(null)));
+#line 93
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value",
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table3.AddRow(new string[] {
+                        "Move Ce9E",
+                        "2014-09-28",
+                        "Out",
+                        "10",
+                        "3",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 94
+ testRunner.Given("I have this schedule to create", ((string)(null)), table3);
+#line 97
+ testRunner.And("it has no Details");
+#line 98
+ testRunner.And("it has a Category");
+#line 99
+ testRunner.And("it has an Account Out");
+#line 100
+ testRunner.And("it has no Account In");
+#line 101
+ testRunner.And("I save the schedule");
+#line 102
+ testRunner.And("I run the scheduler and get all the moves");
+#line 103
+ testRunner.When("I try to delete all the moves");
+#line 104
+ testRunner.Then("I will receive no core error");
+#line 105
+ testRunner.And("the accountOut value will not change");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

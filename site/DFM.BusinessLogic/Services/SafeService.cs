@@ -28,31 +28,20 @@ namespace DFM.BusinessLogic.Services
 
         public void SendPasswordReset(String email)
         {
-            BeginTransaction();
+	        InTransaction(() =>
+	        {
+		        var user = userRepository.GetByEmail(email);
 
-            try
-            {
-                var user = userRepository.GetByEmail(email);
+		        if (user == null)
+			        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-                if (user == null)
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
-
-                createAndSendToken(user, SecurityAction.PasswordReset);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+		        createAndSendToken(user, SecurityAction.PasswordReset);
+});
         }
         
         public void SaveUserAndSendVerify(String email, String password, String language)
         {
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var user = new User
                 {
@@ -67,21 +56,12 @@ namespace DFM.BusinessLogic.Services
                 user = userRepository.Save(user);
 
                 sendUserVerify(user);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         public void SendUserVerify(String email)
         {
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var user = userRepository.GetByEmail(email);
 
@@ -89,14 +69,7 @@ namespace DFM.BusinessLogic.Services
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
                 sendUserVerify(user);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         private void sendUserVerify(User user)
@@ -113,7 +86,7 @@ namespace DFM.BusinessLogic.Services
             securityRepository.SendEmail(security);
 
             var others = securityRepository
-                .List(
+                .SimpleFilter(
                     s => s.ID != security.ID
                         && s.User.ID == security.User.ID
                         && s.Active
@@ -130,23 +103,14 @@ namespace DFM.BusinessLogic.Services
 
         public void ActivateUser(String token)
         {
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var security = securityRepository.ValidateAndGet(token, SecurityAction.UserVerification);
 
                 userRepository.Activate(security.User);
 
                 securityRepository.Disable(token);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
 
         }
 
@@ -155,9 +119,7 @@ namespace DFM.BusinessLogic.Services
             if (String.IsNullOrEmpty(password))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var security = securityRepository.ValidateAndGet(token, SecurityAction.PasswordReset);
 
@@ -166,14 +128,7 @@ namespace DFM.BusinessLogic.Services
                 userRepository.ChangePassword(security.User);
 
                 securityRepository.Disable(token);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
 
@@ -184,19 +139,10 @@ namespace DFM.BusinessLogic.Services
 
         public void DisableToken(String token)
         {
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 securityRepository.Disable(token);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
 
@@ -215,45 +161,38 @@ namespace DFM.BusinessLogic.Services
 
         public String ValidateUserAndCreateTicket(String email, String password, PseudoTicket pseudoTicket)
         {
-            BeginTransaction();
-            
-            try
-            {
-                var user = userRepository.ValidateAndGet(email, password);
-
-                var ticket = ticketRepository.GetByKey(pseudoTicket.Key);
-
-                if (ticket == null)
-                {
-                    ticket = ticketRepository.Create(user, pseudoTicket);
-                }
-                else if (ticket.User.Email != email)
-                {
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
-                }
-
-                CommitTransaction();
-
-                return ticket.Key;
-            }
-            catch
-            {
-                RollbackTransaction();
-                addPasswordError(email);
-                throw;
-            }
+			return InTransaction(
+				() => validateUserAndCreateTicket(email, password, pseudoTicket),
+				() => addPasswordError(email)
+			);
         }
 
-        private void addPasswordError(String email)
+	    private string validateUserAndCreateTicket(string email, string password, PseudoTicket pseudoTicket)
+	    {
+		    var user = userRepository.ValidateAndGet(email, password);
+
+		    var ticket = ticketRepository.GetByKey(pseudoTicket.Key);
+
+		    if (ticket == null)
+		    {
+			    ticket = ticketRepository.Create(user, pseudoTicket);
+		    }
+		    else if (ticket.User.Email != email)
+		    {
+			    throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+		    }
+
+		    return ticket.Key;
+	    }
+
+	    private void addPasswordError(String email)
         {
             var user = userRepository.GetByEmail(email);
 
             if (user == null)
                 return;
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 user.WrongLogin++;
 
@@ -261,14 +200,7 @@ namespace DFM.BusinessLogic.Services
                     user.Active = false;
 
                 userRepository.SaveOrUpdate(user);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+			});
 
             if (user.WrongPassExceeded())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
@@ -276,9 +208,7 @@ namespace DFM.BusinessLogic.Services
 
         public void DisableTicket(String ticketKey)
         {
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var ticket = ticketKey.Length == Defaults.TicketShowedPart
                     ? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
@@ -288,14 +218,7 @@ namespace DFM.BusinessLogic.Services
                 {
                     ticketRepository.Disable(ticket);
                 }
-
-                CommitTransaction();
-            }
-            catch (Exception)
-            {
-                RollbackTransaction();
-                throw;
-            }
+            });
         }
 
 

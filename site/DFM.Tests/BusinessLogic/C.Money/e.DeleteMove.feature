@@ -89,3 +89,17 @@ Scenario: 9D. Delete move from schedule without Category
 	When I try to delete the move
 	Then I will receive no core error
 	And the accountOut value will not change
+	
+Scenario: 9E. Delete all moves from schedule
+	Given I have this schedule to create
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+		| Move Ce9E   | 2014-09-28 | Out    | 10    | 3     | False     | Monthly   | False           |
+	And it has no Details
+	And it has a Category
+	And it has an Account Out
+	And it has no Account In
+	And I save the schedule
+	And I run the scheduler and get all the moves
+	When I try to delete all the moves
+	Then I will receive no core error
+	And the accountOut value will not change

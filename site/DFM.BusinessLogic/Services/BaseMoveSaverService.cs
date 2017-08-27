@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ak.Generic.Exceptions;
+using Ak.NHibernate.Base;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;
@@ -146,30 +148,43 @@ namespace DFM.BusinessLogic.Services
 
         internal void FixSummaries()
         {
-            BeginTransaction();
+	        InTransaction(() =>
+	        {
+				var summaryList =
+					summaryRepository
+						.SimpleFilter(s => s.Broken)
+						.Where(s => s.User() == Parent.Current.User)
+						.ToList();
 
-            try
-            {
-                var summaryList = 
-                    summaryRepository
-                        .List(s => s.Broken)
-                        .Where(s => s.User() == Parent.Current.User);
+		        var monthSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Month);
+				fixMonthSummaries(monthSummaryList);
 
-                foreach (var summary in summaryList)
-                {
-                    summaryRepository.Fix(summary);
-                }
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
-
-
+				var yearSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Year);
+				fixYearSummaries(yearSummaryList);
+	        });
         }
+
+	    private void fixMonthSummaries(IEnumerable<Summary> summaryList)
+	    {
+		    foreach (var summary in summaryList)
+		    {
+			    var @in = moveRepository.GetIn(summary.Month, summary.Category);
+				var @out = moveRepository.GetOut(summary.Month, summary.Category);
+
+			    summaryRepository.Fix(summary, @in, @out);
+		    }
+	    }
+
+	    private void fixYearSummaries(IEnumerable<Summary> summaryList)
+		{
+			foreach (var summary in summaryList)
+			{
+				var @in = monthRepository.GetIn(summary.Year, summary.Category);
+				var @out = monthRepository.GetOut(summary.Year, summary.Category);
+
+				summaryRepository.Fix(summary, @in, @out);
+			}
+		}
 
 
     }

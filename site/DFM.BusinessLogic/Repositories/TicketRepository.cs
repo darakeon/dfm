@@ -43,7 +43,7 @@ namespace DFM.BusinessLogic.Repositories
 
         internal IEnumerable<Ticket> List(User user)
         {
-            return List(
+            return SimpleFilter(
                 t => t.User.ID == user.ID
                     && t.Active
             );

@@ -60,37 +60,27 @@ namespace DFM.BusinessLogic.Services
 
             account.User = Parent.Current.User;
 
-            BeginTransaction();
+	        InTransaction(() =>
+	        {
+		        if (opType == OperationType.Edit)
+		        {
+			        var oldAccount = GetAccountByUrl(account.Url);
 
-            try
-            {
-                if (opType == OperationType.Edit)
-                {
-                    var oldAccount = GetAccountByUrl(account.Url);
+			        account.ID = oldAccount.ID;
 
-                    account.ID = oldAccount.ID;
+			        if (!String.IsNullOrEmpty(newUrl))
+				        account.Url = newUrl;
+		        }
 
-                    if (!String.IsNullOrEmpty(newUrl))
-                        account.Url = newUrl;
-                }
-
-                accountRepository.SaveOrUpdate(account);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+		        accountRepository.SaveOrUpdate(account);
+});
         }
 
         public void CloseAccount(String url)
         {
             Parent.Safe.VerifyUser();
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
@@ -100,22 +90,14 @@ namespace DFM.BusinessLogic.Services
                 }
 
                 accountRepository.Close(account);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         public void DeleteAccount(String url)
         {
             Parent.Safe.VerifyUser();
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 var account = GetAccountByUrl(url);
 
@@ -142,19 +124,12 @@ namespace DFM.BusinessLogic.Services
                 scheduleRepository.DeleteAll(account);
 
                 accountRepository.Delete(url, Parent.Current.User);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         internal IList<Account> GetAccounts()
         {
-            return accountRepository.List(a => a.User.ID == Parent.Current.User.ID);
+            return accountRepository.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
         }
         #endregion
 
@@ -191,9 +166,7 @@ namespace DFM.BusinessLogic.Services
 
             category.User = Parent.Current.User;
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 if (opType == OperationType.Edit)
                 {
@@ -207,13 +180,7 @@ namespace DFM.BusinessLogic.Services
                 }
 
                 categoryRepository.SaveOrUpdate(category);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         public void DisableCategory(String name)
@@ -221,18 +188,10 @@ namespace DFM.BusinessLogic.Services
             Parent.Safe.VerifyUser();
             verifyCategoriesEnabled();
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 categoryRepository.Disable(name, Parent.Current.User);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         public void EnableCategory(String name)
@@ -240,18 +199,10 @@ namespace DFM.BusinessLogic.Services
             Parent.Safe.VerifyUser();
             verifyCategoriesEnabled();
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 categoryRepository.Enable(name, Parent.Current.User);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         private void verifyCategoriesEnabled()
@@ -268,18 +219,10 @@ namespace DFM.BusinessLogic.Services
         {
             Parent.Safe.VerifyUser();
 
-            BeginTransaction();
-
-            try
+            InTransaction(() =>
             {
                 UpdateConfigWithinTransaction(language, timeZone, sendMoveEmail, useCategories);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
+});
         }
 
         internal void UpdateConfigWithinTransaction(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories)

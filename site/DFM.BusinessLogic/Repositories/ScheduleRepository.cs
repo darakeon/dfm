@@ -43,7 +43,7 @@ namespace DFM.BusinessLogic.Repositories
         private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
         {
             var scheduleList = 
-                List(s => s.User == user && s.Active)
+                SimpleFilter(s => s.User == user && s.Active)
                     .Where(s => s.HasCategory() == hasCategory);
 
             foreach (var schedule in scheduleList)
@@ -65,7 +65,7 @@ namespace DFM.BusinessLogic.Repositories
 
         internal void Disable(Int32 id)
         {
-            var schedule = GetById(id);
+            var schedule = Get(id);
 
             if (schedule == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
@@ -80,7 +80,7 @@ namespace DFM.BusinessLogic.Repositories
 
         public void DisableAll(Account account)
         {
-            var scheduleList = List(
+            var scheduleList = SimpleFilter(
                 s => s.Active
                 && (s.In.ID == account.ID
                     || s.Out.ID == account.ID)
@@ -96,7 +96,7 @@ namespace DFM.BusinessLogic.Repositories
 
         public void DeleteAll(Account account)
         {
-            var scheduleList = List(
+            var scheduleList = SimpleFilter(
                 s => s.In.ID == account.ID
                 || s.Out.ID == account.ID
             );

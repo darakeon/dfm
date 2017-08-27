@@ -11,210 +11,174 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class RobotService : BaseService
-    {
-        private readonly ScheduleRepository scheduleRepository;
-        private readonly DetailRepository detailRepository;
-        
-        internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleRepository, DetailRepository detailRepository)
-            : base(serviceAccess)
-        {
-            this.scheduleRepository = scheduleRepository;
-            this.detailRepository = detailRepository;
-        }
+	public class RobotService : BaseService
+	{
+		private readonly ScheduleRepository scheduleRepository;
+		private readonly DetailRepository detailRepository;
+
+		internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleRepository,
+			DetailRepository detailRepository)
+			: base(serviceAccess)
+		{
+			this.scheduleRepository = scheduleRepository;
+			this.detailRepository = detailRepository;
+		}
 
 
 
-        public EmailStatus RunSchedule()
-        {
-            Parent.Safe.VerifyUser();
+		public EmailStatus RunSchedule()
+		{
+			Parent.Safe.VerifyUser();
 
-            var useCategories = Parent.Current.User.Config.UseCategories;
+			var useCategories = Parent.Current.User.Config.UseCategories;
 
-            var equalResult = runScheduleEqualConfig(useCategories);
-            var diffResult = runScheduleDiffConfig(useCategories);
+			var equalResult = runScheduleEqualConfig(useCategories);
+			var diffResult = runScheduleDiffConfig(useCategories);
 
-            Parent.BaseMove.FixSummaries();
+			Parent.BaseMove.FixSummaries();
 
-            return max(equalResult, diffResult);
-        }
+			return max(equalResult, diffResult);
+		}
 
-        private EmailStatus runScheduleEqualConfig(Boolean useCategories)
-        {
-            var sameConfigList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
+		private EmailStatus runScheduleEqualConfig(Boolean useCategories)
+		{
+			var sameConfigList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
-            return runSchedule(sameConfigList);
-        }
+			return runSchedule(sameConfigList);
+		}
 
-        private EmailStatus runScheduleDiffConfig(Boolean useCategories)
-        {
-            var diffConfigList = scheduleRepository.GetRunnable(Parent.Current.User, !useCategories);
+		private EmailStatus runScheduleDiffConfig(Boolean useCategories)
+		{
+			var diffConfigList = scheduleRepository.GetRunnable(Parent.Current.User, !useCategories);
 
-            EmailStatus emailsSent;
+			EmailStatus emailsSent;
 
-            try
-            {
-                Parent.Admin.UpdateConfig(null, null, null, !useCategories);
-                emailsSent = runSchedule(diffConfigList);
-            }
-            finally
-            {
-                Parent.Admin.UpdateConfig(null, null, null, useCategories);
-            }
+			try
+			{
+				Parent.Admin.UpdateConfig(null, null, null, !useCategories);
+				emailsSent = runSchedule(diffConfigList);
+			}
+			finally
+			{
+				Parent.Admin.UpdateConfig(null, null, null, useCategories);
+			}
 
-            return emailsSent;
-        }
+			return emailsSent;
+		}
 
-        private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
-        {
-            var emailsStati = new List<EmailStatus>();
+		private EmailStatus runSchedule(IEnumerable<Schedule> scheduleList)
+		{
+			var emailsStati = new List<EmailStatus>();
 
-            foreach (var schedule in scheduleList)
-            {
-                var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
-                var accountInUrl = schedule.In == null ? null : schedule.In.Url;
+			foreach (var schedule in scheduleList)
+			{
+				var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
+				var accountInUrl = schedule.In == null ? null : schedule.In.Url;
 
-                var category = schedule.Category;
-                var categoryName = category == null ? null : schedule.Category.Name;
+				var category = schedule.Category;
+				var categoryName = category == null ? null : schedule.Category.Name;
 
-                var result = addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
+				var result = addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
 
-                emailsStati.AddRange(result);
-            }
+				emailsStati.AddRange(result);
+			}
 
-            if (!emailsStati.Any())
-                return EmailStatus.EmailSent;
+			if (!emailsStati.Any())
+				return EmailStatus.EmailSent;
 
-            return emailsStati.Max();
-        }
+			return emailsStati.Max();
+		}
 
-        private IEnumerable<EmailStatus> addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            var emailsStati = new List<EmailStatus>();
+		private IEnumerable<EmailStatus> addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl,
+			String categoryName)
+		{
+			var emailsStati = new List<EmailStatus>();
 
-            while (schedule.CanRunNow())
-            {
-                var newMove = schedule.GetNewMove();
+			while (schedule.CanRunNow())
+			{
+				var newMove = schedule.GetNewMove();
 
-                schedule.LastRun++;
+				schedule.LastRun++;
 
-                var result = saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
+				var result = saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
 
-                schedule.MoveList.Add(result.Success);
-                emailsStati.Add(result.Error);
-            }
+				schedule.MoveList.Add(result.Success);
+				emailsStati.Add(result.Error);
+			}
 
-            return emailsStati;
-        }
+			return emailsStati;
+		}
 
-        private ComposedResult<Move, EmailStatus> saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            ComposedResult<Move, EmailStatus> result;
+		private ComposedResult<Move, EmailStatus> saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl,
+			String categoryName)
+		{
+			return InTransaction(() => Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName));
+		}
 
-            BeginTransaction();
-
-            try
-            {
-                result = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
-                CommitTransaction();
-            }
-            catch (Exception)
-            {
-                RollbackTransaction();
-                throw;
-            }
-
-            return result;
-        }
-
-        private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
-        {
-            return equalResult > diffResult
-                ? equalResult
-                : diffResult;
-        }
+		private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
+		{
+			return equalResult > diffResult
+				? equalResult
+				: diffResult;
+		}
 
 
 
-        public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            Parent.Safe.VerifyUser();
+		public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutUrl, String accountInUrl,
+			String categoryName)
+		{
+			Parent.Safe.VerifyUser();
 
-            BeginTransaction();
+			if (schedule == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
 
-            if (schedule == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+			var operationType =
+				schedule.ID == 0
+					? OperationType.Creation
+					: OperationType.Edit;
 
-            var operationType =
-                schedule.ID == 0
-                    ? OperationType.Creation
-                    : OperationType.Edit;
+			return InTransaction(
+				() => saveOrUpdate(schedule, accountOutUrl, accountInUrl, categoryName),
+				() => resetSchedule(schedule, operationType)
+				);
+		}
 
-            try
-            {
-                linkToEntities(schedule, accountOutUrl, accountInUrl, categoryName);
+		private Schedule saveOrUpdate(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
+		{
+			schedule.Out = Parent.BaseMove.GetAccountByUrl(accountOutUrl);
+			schedule.In = Parent.BaseMove.GetAccountByUrl(accountInUrl);
+			schedule.Category = Parent.BaseMove.GetCategoryByName(categoryName);
+			schedule.User = Parent.Current.User;
 
-                schedule = saveOrUpdate(schedule);
+			if (schedule.ID == 0 || !schedule.IsDetailed())
+			{
+				scheduleRepository.SaveOrUpdate(schedule);
+				detailRepository.SaveDetails(schedule);
+			}
+			else
+			{
+				detailRepository.SaveDetails(schedule);
+				scheduleRepository.SaveOrUpdate(schedule);
+			}
 
-                CommitTransaction();
+			return schedule;
+		}
 
-                return schedule;
-            }
-            catch
-            {
-                if (operationType == OperationType.Creation)
-                    schedule.ID = 0;
-
-                RollbackTransaction();
-                throw;
-            }
-        }
-
-        private Schedule saveOrUpdate(Schedule schedule)
-        {
-            if (schedule.ID == 0 || !schedule.IsDetailed())
-            {
-                scheduleRepository.SaveOrUpdate(schedule);
-                detailRepository.SaveDetails(schedule);
-            }
-            else
-            {
-                detailRepository.SaveDetails(schedule);
-                scheduleRepository.SaveOrUpdate(schedule);
-            }
-
-            return schedule;
-        }
-
-        private void linkToEntities(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            schedule.Out = Parent.BaseMove.GetAccountByUrl(accountOutUrl);
-            schedule.In = Parent.BaseMove.GetAccountByUrl(accountInUrl);
-            schedule.Category = Parent.BaseMove.GetCategoryByName(categoryName);
-            schedule.User = Parent.Current.User;
-        }
+		private static void resetSchedule(Schedule schedule, OperationType operationType)
+		{
+			if (operationType == OperationType.Creation)
+				schedule.ID = 0;
+		}
 
 
 
-        public void DisableSchedule(Int32 id)
-        {
-            Parent.Safe.VerifyUser();
+		public void DisableSchedule(Int32 id)
+		{
+			Parent.Safe.VerifyUser();
 
-            BeginTransaction();
-
-            try
-            {
-                scheduleRepository.Disable(id);
-                CommitTransaction();
-            }
-            catch
-            {
-                RollbackTransaction();
-                throw;
-            }
-        }
+			InTransaction(() => scheduleRepository.Disable(id));
+		}
+	}
 
 
-
-    }
 }

@@ -27,7 +27,7 @@ namespace DFM.BusinessLogic.Services
         {
             Parent.Safe.VerifyUser();
 
-            var move = moveRepository.GetById(id);
+            var move = moveRepository.Get(id);
 
             verifyMove(move);
 
@@ -53,47 +53,28 @@ namespace DFM.BusinessLogic.Services
                     ? OperationType.Creation
                     : OperationType.Edit;
 
-            ComposedResult<Move, EmailStatus> result;
-
-            BeginTransaction();
-
-            try
-            {
-                result = Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName);
-
-                CommitTransaction();
-            }
-            catch
-            {
-                if (operationType == OperationType.Creation)
-                    move.ID = 0;
-
-                RollbackTransaction();
-                throw;
-            }
-
-            return result;
+            return InTransaction(
+				() => Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName),
+				() => resetMove(move, operationType)
+			);
         }
 
+	    private static void resetMove(Move move, OperationType operationType)
+	    {
+		    if (operationType == OperationType.Creation)
+		    {
+			    move.ID = 0;
+		    }
+	    }
 
-        public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
+
+	    public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
         {
             ComposedResult<Boolean, EmailStatus> result;
 
             Parent.Safe.VerifyUser();
 
-            BeginTransaction();
-
-            try
-            {
-                result = deleteMove(id);
-                CommitTransaction();
-            }
-            catch (DFMCoreException)
-            {
-                RollbackTransaction();
-                throw;
-            }
+            result = InTransaction(() => deleteMove(id));
 
             Parent.BaseMove.FixSummaries();
 
@@ -149,7 +130,7 @@ namespace DFM.BusinessLogic.Services
         {
             Parent.Safe.VerifyUser();
 
-            var detail = detailRepository.GetById(id);
+            var detail = detailRepository.Get(id);
 
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);

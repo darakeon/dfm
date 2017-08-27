@@ -92,7 +92,7 @@
       <Name>DFM.Email</Name>
     </ProjectReference>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
-      <Project>{288B6282-630A-4D92-BF07-717774BFB2BD}</Project>
+      <Project>{288b6282-630a-4d92-bf07-717774bfb2bd}</Project>
       <Name>DFM.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\DFM.Generic\DFM.Generic.csproj">

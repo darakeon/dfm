@@ -38,12 +38,17 @@
             Records that at DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetById(System.Int32)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Get(System.Int32)">
             <summary>
             Get entity by its ID
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Exists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetOldById(System.Int32)">
+            <summary>
+            Get old data of the entity
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Verify if there is any entity that correspond to the expression
             </summary>
@@ -56,11 +61,6 @@
             </summary>
             <exception cref="T:System.Exception">Not unique object</exception>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
-            <summary>
-            Return as list of entities for expression
-            </summary>
-        </member>
         <member name="M:Ak.NHibernate.Base.BaseRepository`1.Delete(`0)">
             <summary>
             Delete permanently the entity of DB
@@ -71,10 +71,32 @@
             Delete permanently the entity of DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetOldById(System.Int32)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.NewQuery">
             <summary>
-            Get old data of the entity
+            Return an object to take data
             </summary>
+        </member>
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetAll">
+            <summary>
+            Get all elements of the type from database
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.SimpleFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Use this instead NewQuery from simple conditions
+            </summary>
+            <param name="condition">Lambda expression condition</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Count">
+            <summary>
+            Count all elements of the type from database
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Use this instead NewQuery from simple conditions count
+            </summary>
+            <param name="condition">Lambda expression condition</param>
         </member>
         <member name="T:Ak.NHibernate.Base.BaseRepository`1.DelegateAction">
             <summary>
@@ -88,30 +110,33 @@
             </summary>
         </member>
         <member name="M:Ak.NHibernate.Base.BaseService.#ctor">
-            <summary>
-            
-            </summary>
+            <summary></summary>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseService.BeginTransaction">
+        <member name="M:Ak.NHibernate.Base.BaseService.InTransaction``1(System.Func{``0},System.Action)">
             <summary>
-            Starts Transaction
+            Execute commands inside a transaction.
+            Anything executed without it will not work
             </summary>
-            <exception cref="T:Ak.Generic.Exceptions.AkException">Transaction already opened</exception>
+            <param name="action">() => { return [your-code-here] }</param>
+            <param name="onError">() => { [your-ON-ERROR-code-here] }</param>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseService.CommitTransaction">
+        <member name="M:Ak.NHibernate.Base.BaseService.InTransaction(System.Action,System.Action)">
             <summary>
-            Execute everything at DB
+            Execute commands inside a transaction.
+            Anything executed without it will not work
             </summary>
+            <param name="action">() => { [your-code-here] }</param>
+            <param name="onError">() => { [your-ON-ERROR-code-here] }</param>
         </member>
-        <member name="M:Ak.NHibernate.Base.BaseService.RollbackTransaction">
+        <member name="T:Ak.NHibernate.Base.SearchItem`1">
             <summary>
-            Undo all changes
+            To search for string
             </summary>
+            <typeparam name="T"></typeparam>
         </member>
-        <member name="P:Ak.NHibernate.Base.BaseService.TransactionController">
-            <summary>
-            To control DB Transaction
-            </summary>
+        <member name="M:Ak.NHibernate.Base.SearchItem`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
+            <param name="property">Lambda of property</param>
+            <param name="term">Text to search</param>
         </member>
         <member name="T:Ak.NHibernate.Helpers.DBMS">
             <summary>
@@ -274,6 +299,66 @@
             <summary>
              Force the Initialize of NHibernate objects.
             </summary>
+        </member>
+        <member name="T:Ak.NHibernate.Base.Query`1">
+            <summary>
+            Object to handle database fluently
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.#ctor(NHibernate.ISession)">
+            <summary></summary>
+            <param name="session">NH Session</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.Filter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="where">Lambda expression</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="property">Lambda of property</param>
+            <param name="term">Text to search</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.LikeCondition(System.Collections.Generic.IList{Ak.NHibernate.Base.SearchItem{`0}})">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="searchTerms">Fields and texts to search</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Reordering results
+            </summary>
+            <param name="order">Property to order</param>
+            <param name="ascending">Whether the order is ascending (true) or descending (false)</param>
+        </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.Page(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            To get a page of the results
+            </summary>
+            <param name="itemsPerPage">Amount of items in each page</param>
+            <param name="page">Page to get</param>
+        </member>
+        <member name="P:Ak.NHibernate.Base.Query`1.Count">
+            <summary>
+            Execute the query, getting just the amount of items
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.Base.Query`1.Result">
+            <summary>
+            Execute the query, getting all the results
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.Base.Query`1.UniqueResult">
+            <summary>
+            Execute the query, return just one result
+            It will throw Exception
+            </summary>
+            <exception cref="T:NHibernate.NonUniqueResultException">If there is more than one result from constructed query</exception>
         </member>
         <member name="T:Ak.NHibernate.UserPassed.AutoMappingInfo`2">
             <summary>

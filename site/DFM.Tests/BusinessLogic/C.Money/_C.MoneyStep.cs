@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
@@ -16,13 +17,19 @@ namespace DFM.Tests.BusinessLogic.C.Money
     public class MoneyStep : BaseStep
     {
         #region Variables
-        private static Int32 id
-        {
-            get { return Get<Int32>("ID"); }
-            set { Set("ID", value); }
-        }
+		private static Int32 id
+		{
+			get { return Get<Int32>("ID"); }
+			set { Set("ID", value); }
+		}
 
-        private static Detail detail
+		private static List<Int32> ids
+		{
+			get { return Get<List<Int32>>("IDs"); }
+			set { Set("IDs", value); }
+		}
+
+		private static Detail detail
         {
             get { return Get<Detail>("Detail"); }
             set { Set("Detail", value); }
@@ -658,19 +665,49 @@ namespace DFM.Tests.BusinessLogic.C.Money
         }
         #endregion
 
-        #region DeleteMove
-        [When(@"I try to delete the move")]
-        public void WhenITryToDeleteTheMove()
-        {
-            try
-            {
-                SA.Money.DeleteMove(id);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-        }
+		#region DeleteMove
+		[Given(@"I run the scheduler and get the move")]
+		public void GivenIRunTheSchedulerAndGetTheMove()
+		{
+			SA.Robot.RunSchedule();
+			id = Schedule.MoveList.Last().ID;
+		}
+
+		[Given(@"I run the scheduler and get all the moves")]
+		public void GivenIRunTheSchedulerAndGetAllTheMoves()
+		{
+			SA.Robot.RunSchedule();
+			ids = Schedule.MoveList.Select(m => m.ID).ToList();
+		}
+
+		[When(@"I try to delete the move")]
+		public void WhenITryToDeleteTheMove()
+		{
+			try
+			{
+				SA.Money.DeleteMove(id);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[When(@"I try to delete all the moves")]
+		public void WhenITryToDeleteAllTheMoves()
+		{
+			try
+			{
+				foreach (var moveId in ids)
+				{
+					SA.Money.DeleteMove(moveId);
+				}
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
         [When(@"I try to delete the move with e-mail system ok")]
         public void WhenITryToDeleteTheMoveWithEMailSystemOk()
@@ -712,13 +749,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
             ConfigHelper.DeactivateMoveEmailForUser(SA);
         }
 
-        [Given(@"I run the scheduler and get the move")]
-        public void GivenIRunTheScheduler()
-        {
-            SA.Robot.RunSchedule();
-            id = Schedule.MoveList.Last().ID;
-        }
-        
         [Then(@"the move will be deleted")]
         public void ThenTheMoveWillBeDeleted()
         {

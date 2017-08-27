@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Extensions;
@@ -57,5 +58,31 @@ namespace DFM.BusinessLogic.Repositories
         }
 
 
-    }
+
+		internal Double GetIn(Year year, Category category)
+		{
+			return get(year, category).Sum(m => m.In);
+		}
+
+	    internal Double GetOut(Year year, Category category)
+		{
+			return get(year, category).Sum(m => m.Out);
+		}
+
+		private IEnumerable<Summary> get(Year year, Category category)
+		{
+			var summaryList = NewQuery()
+				.Filter(m => m.Year.ID == year.ID)
+				.Result
+				.SelectMany(m => m.SummaryList);
+
+			summaryList = category == null
+				? summaryList.Where(m => m.Category == null)
+				: summaryList.Where(m => m.Category != null && m.Category.ID == category.ID);
+
+			return summaryList;
+		}
+
+
+	}
 }

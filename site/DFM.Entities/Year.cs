@@ -32,18 +32,6 @@ namespace DFM.Entities
 
 
 
-        public virtual Double CheckUpIn(Category category)
-        {
-            return MonthList.Sum(mt => mt.CheckUpIn(category));
-        }
-
-        public virtual Double CheckUpOut(Category category)
-        {
-            return MonthList.Sum(mt => mt.CheckUpOut(category));
-        }
-
-
-        
         public virtual Summary AddSummary(Category category)
         {
             var summary = new Summary

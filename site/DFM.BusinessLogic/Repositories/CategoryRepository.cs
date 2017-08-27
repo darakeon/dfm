@@ -45,7 +45,7 @@ namespace DFM.BusinessLogic.Repositories
 
         internal Category GetByName(String name, User user)
         {
-            var categoryList = List(
+            var categoryList = SimpleFilter(
                     a => a.Name == name
                          && a.User.ID == user.ID
                 );

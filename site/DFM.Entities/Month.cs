@@ -35,28 +35,6 @@ namespace DFM.Entities
 
 
 
-        public virtual Double CheckUpIn(Category category)
-        {
-            var @in = sum(InList, category);
-
-            return Math.Round(@in, 2);
-        }
-
-        public virtual Double CheckUpOut(Category category)
-        {
-            var @out = sum(OutList, category);
-
-            return Math.Round(@out, 2);
-        }
-
-
-        private static Double sum(IEnumerable<Move> moveList, Category category)
-        {
-            return moveList
-                .Where(m => m.Category.Is(category))
-                .Sum(m => m.Value());
-        }
-
         public virtual Summary AddSummary(Category category)
         {
             var summary = new Summary

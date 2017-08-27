@@ -108,7 +108,7 @@ R						Refactor em controllers e areas, inverter plural
 R						Trocar Extensions Sum para Total
 R						Em Move, colocar Value como campo gravado e usar Total para exibição
 R						Colocar valores em inteiro (double > int) no banco
-T						Criar teste unitário para deletar todas as movimentações de um agendamento
+2014-11-29				Criar teste unitário para deletar todas as movimentações de um agendamento
 2014-11-29	2014-11-29	Criar teste unitário agendamento meio antes / meio depois
 
 VERSÃO 2.0.0.3 (Little Change)

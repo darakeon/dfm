@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
@@ -15,7 +16,7 @@ namespace DFM.BusinessLogic.Repositories
 
         private Summary getByYearAndCategory(Year year, Category category)
         {
-            return List(s => s.Year.ID == year.ID)
+            return SimpleFilter(s => s.Year.ID == year.ID)
                 .SingleOrDefault(s => s.Category.Is(category));
         }
 
@@ -28,10 +29,9 @@ namespace DFM.BusinessLogic.Repositories
 
         private Summary getByMonthAndCategory(Month month, Category category)
         {
-            var list = List(s => s.Month.ID == month.ID);
+            var list = SimpleFilter(s => s.Month.ID == month.ID);
 
-            return list
-                .SingleOrDefault(s => s.Category.Is(category));
+            return list.SingleOrDefault(s => s.Category.Is(category));
         }
 
         private void @break(Summary summary)
@@ -44,12 +44,10 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-        public void Fix(Summary summary)
+		public void Fix(Summary summary, Double @in, Double @out)
         {
-            var summarizable = summary.Parent();
-
-            summary.In = summarizable.CheckUpIn(summary.Category);
-            summary.Out = summarizable.CheckUpOut(summary.Category);
+            summary.In = @in;
+            summary.Out = @out;
             summary.Broken = false;
 
             SaveOrUpdate(summary);

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Ak.Generic.Extensions;
+using Ak.NHibernate.Base;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
@@ -117,6 +119,32 @@ namespace DFM.BusinessLogic.Repositories
                 ? null : account.Name;
         }
         #endregion
+
+	    
+		
+		internal Double GetIn(Month month, Category category)
+		{
+			var query = NewQuery().Filter(m => m.In.ID == month.ID);
+
+			return get(query, category);
+		}
+
+	    internal Double GetOut(Month month, Category category)
+		{
+			var query = NewQuery().Filter(m => m.Out.ID == month.ID);
+
+			return get(query, category);
+		}
+
+		private Double get(Query<Move> query, Category category)
+		{
+			query = category == null
+				? query.Filter(m => m.Category == null)
+				: query.Filter(m => m.Category != null && m.Category.ID == category.ID);
+
+			return query.Result.Sum(m => m.Value());
+		}
+
 
 
     }
