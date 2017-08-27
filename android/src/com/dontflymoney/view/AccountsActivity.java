@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.TableLayout;
@@ -90,30 +89,7 @@ public class AccountsActivity extends SmartActivity
 				double sum = account.getDouble("Sum");
 				String sumStr = new DecimalFormat("#0.00").format(sum);
 				row.addView(createText(sumStr, Gravity.RIGHT));
-				
-				boolean hasRed = account.getString("RedLimit") != "null";
-				boolean hasYellow = account.getString("YellowLimit") != "null";
-				TextView flag;
-				
-				if (hasYellow || hasRed)
-				{
-					double yellow = hasYellow ? account.getDouble("YellowLimit") : sum;
-					double red = hasRed ? account.getDouble("RedLimit") : sum;
-
-					if (sum < red)
-						flag = createText("     ", Gravity.CENTER, Color.RED);
-					else if (sum < yellow)
-						flag = createText("     ", Gravity.CENTER, Color.YELLOW);
-					else
-						flag = createText("     ", Gravity.CENTER, Color.GREEN);
-				}
-				else
-				{
-					flag = createText(" ", Gravity.CENTER);
-				}
-				
-				row.addView(flag);
-				
+			
 				main.addView(row);
 			}
 
@@ -126,15 +102,6 @@ public class AccountsActivity extends SmartActivity
 		
 		field.setText(text);
 		field.setGravity(gravity);
-		
-		return field;
-	}	
-	
-	private TextView createText(String text, int gravity, int color)
-	{
-		TextView field = createText(text, gravity);
-		
-		field.setBackgroundColor(color);
 		
 		return field;
 	}	
