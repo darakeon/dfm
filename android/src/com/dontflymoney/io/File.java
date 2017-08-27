@@ -1,4 +1,4 @@
-package com.dontflymoney.auth;
+package com.dontflymoney.io;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,8 +12,7 @@ import android.content.Context;
 
 public class File
 {
-	private static final String extension = ".d59";
-	public static final String Ticket = "ticket" + extension;
+	static final String extension = ".dfm";
 	
 	private Context context;
 	private String name;
@@ -22,10 +21,10 @@ public class File
 	
 	
 	
-	public File(Context context, String name)
+	public File(Context context, FileNames name)
 	{
 		this.context = context;
-		this.name = name;
+		this.name = name.getName();
 	}
 	
 	
@@ -37,7 +36,7 @@ public class File
 	    		data = "";
 	    	
 	    	FileOutputStream fileOutput = context.openFileOutput(name, Context.MODE_PRIVATE);
-	    	
+
 	        OutputStreamWriter writer = new OutputStreamWriter(fileOutput);
 	        
 	        writer.write(data);

@@ -6,7 +6,7 @@ namespace DFM.MVC.Helpers
 {
     public class IP
     {
-        const string relativePath = @"../../android/DontFlyMoney/src/com/dontflymoney/site/HttpHelper.java";
+        const string relativePath = @"../../android/src/com/dontflymoney/api/Site.java";
 
         internal static String Get()
         {
@@ -53,7 +53,7 @@ namespace DFM.MVC.Helpers
             File.WriteAllLines(path, lines);
         }
 
-        const string domainDeclaration = "	private static String domain = \"";
+        const string domainDeclaration = "	public static final String Domain = \"";
 
 
 

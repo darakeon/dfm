@@ -1,5 +1,7 @@
 package com.dontflymoney.auth;
 
+import com.dontflymoney.io.*;
+
 import android.content.Context;
 
 public class Authentication
@@ -15,7 +17,7 @@ public class Authentication
 	
 	public void Set(String ticket)
 	{
-		File ticketFile = new File(context, File.Ticket);
+		File ticketFile = new File(context, FileNames.Ticket);
 		
 		String encryptedTicket = safe.Encrypt(ticket);
 		
@@ -24,7 +26,7 @@ public class Authentication
 	
 	public String Get()
 	{
-		File ticketFile = new File(context, File.Ticket);
+		File ticketFile = new File(context, FileNames.Ticket);
 		
 		String encryptedTicket = ticketFile.ReadFromFile();
 		

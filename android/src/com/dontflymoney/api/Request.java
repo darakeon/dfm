@@ -29,8 +29,8 @@ import android.os.StrictMode.ThreadPolicy;
 
 public class Request
 {
-	private String domain = "beta.dontflymoney.com";
-	private String site = "http://" + domain + "/Api";
+	private String domain;
+	private String site;
 	
 	private Context context;
 	private String url;
@@ -46,10 +46,18 @@ public class Request
 		this.context = context;
 		this.url = url;
 		this.parameters = new HashMap<String, Object>();
+		
+		setMainUrl();
 	}
 	
-	
-	
+	private void setMainUrl()
+	{
+		domain = Site.Domain;
+		site = "http://" + domain + "/Api";		
+	}
+
+
+
 	public void AddParameter(String key, Object value)
 	{
 		parameters.put(key, value);

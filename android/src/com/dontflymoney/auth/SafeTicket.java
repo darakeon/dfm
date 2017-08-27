@@ -25,6 +25,9 @@ class SafeTicket
 	
 	public String Encrypt(String ticket)
 	{	
+		if (ticket == null)
+			return null;
+		
 		String encryptedTicket = "";
 		
 		for(int s = 0; s < ticket.length(); s++)
@@ -39,6 +42,9 @@ class SafeTicket
 
 	public String Decrypt(String encryptedTicket)
 	{
+		if (encryptedTicket == null)
+			return null;
+		
 		String ticket = "";
 		
 		for(int s = 0; s < encryptedTicket.length(); s+=2)
