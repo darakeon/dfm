@@ -1,6 +1,6 @@
 ﻿namespace DFM.BusinessLogic.Services
 {
-    public class BaseService : Ak.NHibernate.BaseService
+    public class BaseService : Ak.NHibernate.Base.BaseService
     {
         protected BaseService(ServiceAccess serviceAccess)
         {

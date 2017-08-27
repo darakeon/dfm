@@ -4,7 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    public abstract class BaseRepository<T> : Ak.NHibernate.BaseRepository<T> 
+    public abstract class BaseRepository<T> : Ak.NHibernate.Base.BaseRepository<T> 
         where T : class, IEntity
     {
         public new T SaveOrUpdate(T entity, params DelegateAction[] actions)

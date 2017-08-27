@@ -17,99 +17,98 @@
             <param name="mapping">Object received in AutoMappingOverride</param>
             <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
         </member>
-        <member name="T:Ak.NHibernate.BaseData`1">
+        <member name="T:Ak.NHibernate.Base.BaseData`1">
             <summary>
             Base communication with DB
             </summary>
             <typeparam name="T">Entity type</typeparam>
         </member>
-        <member name="T:Ak.NHibernate.BaseRepository`1">
+        <member name="T:Ak.NHibernate.Base.BaseRepository`1">
             <summary>
             Higher level queries
             </summary>
-            <typeparam name="T"></typeparam>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.#ctor">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.#ctor">
             <summary>
             Initializes DB reader/writer
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.SaveOrUpdate(`0,Ak.NHibernate.BaseRepository{`0}.DelegateAction[])">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.SaveOrUpdate(`0,Ak.NHibernate.Base.BaseRepository{`0}.DelegateAction[])">
             <summary>
             Records that at DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.GetById(System.Int32)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetById(System.Int32)">
             <summary>
             Get entity by its ID
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.Exists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Exists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Verify if there is any entity that correspond to the expression
             </summary>
             <param name="func"></param>
             <returns></returns>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.SingleOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.SingleOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Return unique entity for expression
             </summary>
             <exception cref="T:System.Exception">Not unique object</exception>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Return as list of entities for expression
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.Delete(`0)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Delete(`0)">
             <summary>
             Delete permanently the entity of DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.Delete(System.Int32)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.Delete(System.Int32)">
             <summary>
             Delete permanently the entity of DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseRepository`1.GetOldById(System.Int32)">
+        <member name="M:Ak.NHibernate.Base.BaseRepository`1.GetOldById(System.Int32)">
             <summary>
             Get old data of the entity
             </summary>
         </member>
-        <member name="T:Ak.NHibernate.BaseRepository`1.DelegateAction">
+        <member name="T:Ak.NHibernate.Base.BaseRepository`1.DelegateAction">
             <summary>
             Signature of methods to execute on Save or Update
             </summary>
             <param name="entity"></param>
         </member>
-        <member name="T:Ak.NHibernate.BaseService">
+        <member name="T:Ak.NHibernate.Base.BaseService">
             <summary>
             Base for services, to have transaction
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseService.#ctor">
+        <member name="M:Ak.NHibernate.Base.BaseService.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseService.BeginTransaction">
+        <member name="M:Ak.NHibernate.Base.BaseService.BeginTransaction">
             <summary>
             Starts Transaction
             </summary>
             <exception cref="T:Ak.Generic.Exceptions.AkException">Transaction already opened</exception>
         </member>
-        <member name="M:Ak.NHibernate.BaseService.CommitTransaction">
+        <member name="M:Ak.NHibernate.Base.BaseService.CommitTransaction">
             <summary>
             Execute everything at DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.BaseService.RollbackTransaction">
+        <member name="M:Ak.NHibernate.Base.BaseService.RollbackTransaction">
             <summary>
             Undo all changes
             </summary>
         </member>
-        <member name="P:Ak.NHibernate.BaseService.TransactionController">
+        <member name="P:Ak.NHibernate.Base.BaseService.TransactionController">
             <summary>
             To control DB Transaction
             </summary>
@@ -222,12 +221,12 @@
             Verify whether can use session
             </summary>
         </member>
-        <member name="T:Ak.NHibernate.SessionBuilder">
+        <member name="T:Ak.NHibernate.Base.SessionBuilder">
             <summary>
             To create NHibernate Session and communicate with DB
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.Start``2(Ak.NHibernate.UserPassed.ConnectionInfo,Ak.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.Start``2(Ak.NHibernate.UserPassed.ConnectionInfo,Ak.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
             <summary>
              Create Session Factory.
              To be used at Application_Start.
@@ -237,7 +236,7 @@
              <param name="connectionInfo">About database connection</param>
              <param name="autoMappingInfo">About mappings on the entities</param>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.Start``2(Ak.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.Start``2(Ak.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
             <summary>
             Create Session Factory, using the AppSettings.
             The keys required are the ConnectionInfo class properties.
@@ -247,31 +246,31 @@
             <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
             <param name="autoMappingInfo">About mappings on the entities</param>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.Open">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.Open">
             <summary>
             Open the NH session.
             To be used at Application_BeginRequest.
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.Close(NHibernate.ISession)">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.Close(NHibernate.ISession)">
             <summary>
              Disconnect from DB.
              To be used at Application_EndRequest.
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.End">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.End">
             <summary>
              Close the SessionFactory.
              To be used at Application_End.
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.Error(NHibernate.ISession)">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.Error(NHibernate.ISession)">
             <summary>
              Rollback the actions in case of Error.
              To be used at Application_Error.
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.SessionBuilder.NhInitialize(NHibernate.ISession,System.Object)">
+        <member name="M:Ak.NHibernate.Base.SessionBuilder.NhInitialize(NHibernate.ISession,System.Object)">
             <summary>
              Force the Initialize of NHibernate objects.
             </summary>
