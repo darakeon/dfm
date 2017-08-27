@@ -26,9 +26,12 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult SignUp(UserSignUpModel model)
         {
-            var errors = model.ValidateAndSendVerify(ModelState);
+            if (ModelState.IsValid)
+            {
+                var errors = model.ValidateAndSendVerify(ModelState);
 
-            AddErrors(errors);
+                AddErrors(errors);
+            }
 
             return ModelState.IsValid
                 ? View("SignUpSuccess")
@@ -89,9 +92,12 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult ForgotPassword(UserForgotPasswordModel model)
         {
-            var errors = model.SendPasswordReset();
+            if (ModelState.IsValid)
+            {
+                var errors = model.SendPasswordReset();
 
-            AddErrors(errors);
+                AddErrors(errors);
+            }
 
             return ModelState.IsValid
                 ? View("ForgotPasswordSuccess")

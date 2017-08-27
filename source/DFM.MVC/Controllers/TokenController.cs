@@ -17,12 +17,17 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult Index(TokenIndexModel model)
         {
-            var errors = model.Test();
+            if (ModelState.IsValid)
+            {
+                var errors = model.Test();
 
-            AddErrors(errors);
+                AddErrors(errors);
+            }
 
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             return RedirectToAction(
                 model.SecurityAction.ToString(),
@@ -52,9 +57,12 @@ namespace DFM.MVC.Controllers
             if (!isValid)
                 return View("Invalid");
 
-            var errors = model.PasswordReset(id);
+            if (ModelState.IsValid)
+            {
+                var errors = model.PasswordReset(id);
 
-            AddErrors(errors);
+                AddErrors(errors);
+            }
 
             return ModelState.IsValid 
                 ? View("PasswordResetSuccess") 

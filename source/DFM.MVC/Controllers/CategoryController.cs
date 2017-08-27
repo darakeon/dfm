@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
-using DFM.Repositories;
 
 namespace DFM.MVC.Controllers
 {
@@ -22,7 +19,7 @@ namespace DFM.MVC.Controllers
         }
 
 
-        
+
         public ActionResult Create()
         {
             var model = new CategoryCreateEditModel(OperationType.Creation);
@@ -43,19 +40,16 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public JsonResult CreateAjax(CategoryCreateEditModel model)
         {
-            try
-            {
-                model.Type = OperationType.Creation;
+            model.Type = OperationType.Creation;
 
-                var category = createEditForAll(model);
-                var json = new { name = category.Name };
+            var error = model.CreateEdit();
 
-                return new JsonResult { Data = json };
-            }
-            catch (DFMCoreException e)
-            {
-                throw new Exception(MultiLanguage.Dictionary[e]);
-            }
+            if (error != null)
+                throw new Exception(MultiLanguage.Dictionary[error]);
+
+            var json = new { name = model.Category.Name };
+
+            return new JsonResult { Data = json };
         }
 
 
@@ -82,30 +76,22 @@ namespace DFM.MVC.Controllers
 
         private ActionResult createEditForHtmlForm(CategoryCreateEditModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                createEditForAll(model);
+                var error = model.CreateEdit();
 
-                if (ModelState.IsValid)
-                    return RedirectToAction("Index");
+                if (error != null)
+                    ModelState.AddModelError("Category.Name", MultiLanguage.Dictionary[error]);
             }
-            catch (DFMCoreException e)
+
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("Category.Name", MultiLanguage.Dictionary[e]);
+                return RedirectToAction("Index");
             }
 
             model.DefineAction(Request);
 
             return View("CreateEdit", model);
-        }
-
-        private Category createEditForAll(CategoryCreateEditModel model)
-        {
-            model.Category.User = Current.User;
-
-            model.CreateEdit();
-
-            return model.Category;
         }
 
 
@@ -129,6 +115,7 @@ namespace DFM.MVC.Controllers
             
             return RedirectToAction("Index");
         }
+
 
     }
 }

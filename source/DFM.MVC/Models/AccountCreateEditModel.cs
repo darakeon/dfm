@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Generic;
+using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
@@ -48,17 +51,10 @@ namespace DFM.MVC.Models
             }
             set
             {
-                switch (Type)
-                {
-                    case OperationType.Creation:
-                        Account.Name = value;
-                        break;
-                    case OperationType.Edit:
-                        name = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                name = value;
+
+                if (Type == OperationType.Creation)
+                    Account.Name = value;
             }
         }
 
@@ -101,12 +97,25 @@ namespace DFM.MVC.Models
 
         
 
-        internal void CreateOrUpdate()
+        internal IList<String> CreateOrUpdate()
         {
-            if (Type == OperationType.Creation)
-                Admin.CreateAccount(Account);
-            else
-                Admin.UpdateAccount(Account, Name);
+            var errors = new List<String>();
+
+            try
+            {
+                Account.User = Current.User;
+
+                if (Type == OperationType.Creation)
+                    Admin.CreateAccount(Account);
+                else
+                    Admin.UpdateAccount(Account, Name);
+            }
+            catch (DFMCoreException e)
+            {
+                errors.Add(MultiLanguage.Dictionary[e]);
+            }
+
+            return errors;
         }
 
 

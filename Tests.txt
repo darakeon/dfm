@@ -7,3 +7,21 @@ Token > PasswordReset
 Token > Disable
 User > LogOn (verified)
 User > LogOff
+Account > Index
+Account > Create
+Account > Edit
+Account > Delete
+Category > Index
+Category > Create
+Category > Edit
+Category > Disable
+Category > Enable
+
+
+
+
+Category > CreateAjax
+
+
+Account > Close
+Account > ListClosed

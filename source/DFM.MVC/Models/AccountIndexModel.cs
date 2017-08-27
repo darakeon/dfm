@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Extensions;
 using DFM.Entities;
-using DFM.MVC.Helpers.Controllers;
-using DFM.Repositories;
 
 namespace DFM.MVC.Models
 {

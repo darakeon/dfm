@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.BusinessLogic.Exceptions;
 using DFM.Generic;
-using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -69,20 +67,13 @@ namespace DFM.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    model.Account.User = Current.User;
+                var errors = model.CreateOrUpdate();
 
-                    model.CreateOrUpdate();
-                }
-                catch (DFMCoreException e)
-                {
-                    ModelState.AddModelError("", MultiLanguage.Dictionary[e]);
-                }
-
-                if (ModelState.IsValid)
-                    return RedirectToAction("Index");
+                AddErrors(errors);
             }
+
+            if (ModelState.IsValid)
+                return RedirectToAction("Index");
 
             return View("CreateEdit", model);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.MVC.Helpers;
@@ -19,9 +20,9 @@ namespace DFM.MVC.Models
             Type = type;
         }
 
-        public CategoryCreateEditModel(OperationType type, String accountName) : this(type)
+        public CategoryCreateEditModel(OperationType type, String categoryName) : this(type)
         {
-            Category = Admin.GetCategoryByName(accountName);
+            Category = Admin.GetCategoryByName(categoryName);
         }
 
         
@@ -49,17 +50,10 @@ namespace DFM.MVC.Models
             }
             set
             {
-                switch (Type)
-                {
-                    case OperationType.Creation:
-                        Category.Name = value;
-                        break;
-                    case OperationType.Edit:
-                        name = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                name = value;
+
+                if (Type == OperationType.Creation)
+                    Category.Name = value;
             }
         }
 
@@ -75,12 +69,23 @@ namespace DFM.MVC.Models
 
 
 
-        internal void CreateEdit()
+        internal DFMCoreException CreateEdit()
         {
-            if (Type == OperationType.Creation)
-                Admin.CreateCategory(Category);
-            else
-                Admin.UpdateCategory(Category, Name);
+            Category.User = Current.User;
+
+            try
+            {
+                if (Type == OperationType.Creation)
+                    Admin.CreateCategory(Category);
+                else
+                    Admin.UpdateCategory(Category, Name);
+            }
+            catch (DFMCoreException e)
+            {
+                return e;
+            }
+
+            return null;
         }
 
 

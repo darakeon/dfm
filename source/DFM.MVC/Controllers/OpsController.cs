@@ -26,9 +26,7 @@ namespace DFM.MVC.Controllers
                 model.EmailSent = ErrorManager.EmailSent;
 
 
-            // ReSharper disable Asp.NotResolved
             return View(id.ToString(), model);
-            // ReSharper restore Asp.NotResolved
         }
 
 
