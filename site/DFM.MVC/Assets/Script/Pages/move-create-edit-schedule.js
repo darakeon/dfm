@@ -71,7 +71,7 @@ function InsertCategoryOnDropDown(data) {
         var op = new Option(name, name, true);
         $("#CategoryName").append(op);
 
-        $('#hidden-new-category form').reset();
+        $('#hidden-new-category form')[0].reset();
         $("#hidden-new-category").dialog("close");
 
         $("#Category_Name").removeClass("input-validation-error");
