@@ -96,8 +96,9 @@ VERSÃO 2.0.0.0
 
 VERSÃO 1.0.3.1 (System)
 ================================================================================================
-						http://www.dontflymoney.com/Token/Received
-2013-08-24				Mover lógica dos Controllers para os Models
+						Inserir Year e Month antes de inserir a movimentação
+2013-08-30	2013-08-30	http://www.dontflymoney.com/Token/Received
+2013-08-24	2013-08-30	Mover lógica dos Controllers para os Models
 
 VERSÃO 1.0.3.0 (Little change)
 ================================================================================================
