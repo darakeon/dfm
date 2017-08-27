@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
@@ -8,10 +7,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class SummaryRepository : BaseRepository<Summary>
     {
-        internal SummaryRepository(IData<Summary> repository) : base(repository) { }
-
-
-
         internal void Break(Year year, Category category)
         {
             var summary = getByYearAndCategory(year, category);
@@ -34,7 +29,9 @@ namespace DFM.BusinessLogic.Repositories
 
         private Summary getByMonthAndCategory(Month month, Category category)
         {
-            return List(s => s.Month.ID == month.ID)
+            var list = List(s => s.Month.ID == month.ID);
+
+            return list
                 .SingleOrDefault(s => s.Category.Is(category));
         }
 
@@ -42,7 +39,8 @@ namespace DFM.BusinessLogic.Repositories
         {
             summary.Broken = true;
 
-            SaveOrUpdate(summary);
+            if (summary.ID != 0 )
+                SaveOrUpdate(summary);
         }
 
 

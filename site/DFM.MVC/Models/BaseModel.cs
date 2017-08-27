@@ -3,7 +3,6 @@ using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
 using DFM.Entities.Extensions;
-using DFM.Repositories;
 
 namespace DFM.MVC.Models
 {
@@ -13,8 +12,7 @@ namespace DFM.MVC.Models
 
         private static ServiceAccess getOrCreateAccess()
         {
-            return access
-                ?? (access = new ServiceAccess(new Connector()));
+            return access ?? (access = new ServiceAccess());
         }
 
         protected static AdminService Admin { get { return getOrCreateAccess().Admin; } }

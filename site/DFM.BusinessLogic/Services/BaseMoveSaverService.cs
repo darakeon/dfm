@@ -121,7 +121,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void BreakSummaries(Move move)
+        internal void BreakSummaries(Move move)
         {
             var oldMove = moveRepository.GetOldById(move.ID);
 

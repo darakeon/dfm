@@ -1,5 +1,4 @@
 ﻿using System;
-using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -8,8 +7,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class DetailRepository : BaseRepository<Detail>
     {
-        internal DetailRepository(IData<Detail> repository) : base(repository) { }
-
         internal void SaveDetails(Move move)
         {
             foreach (var detail in move.DetailList)

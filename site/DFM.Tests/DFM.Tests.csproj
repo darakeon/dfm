@@ -363,12 +363,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
+    <Reference Include="Ak.MVC">
+      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.NHibernate">
+      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Ak.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.XML.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\Library\NHibernate\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.1.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

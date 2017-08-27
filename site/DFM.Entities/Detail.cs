@@ -1,4 +1,5 @@
 ﻿using System;
+using Ak.Generic.DB;
 using DFM.Entities.Bases;
 using DFM.Generic;
 

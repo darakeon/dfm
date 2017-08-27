@@ -1,6 +1,6 @@
 ﻿using System;
-using DFM.Entities.Bases;
-using DFM.Generic;
+using Ak.Generic.DB;
+using Ak.MVC.Cookies;
 
 namespace DFM.Entities
 {

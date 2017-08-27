@@ -1,9 +1,6 @@
-﻿using System;
-using DFM.BusinessLogic.Exceptions;
-
-namespace DFM.BusinessLogic.Services
+﻿namespace DFM.BusinessLogic.Services
 {
-    public class BaseService
+    public class BaseService : Ak.NHibernate.BaseService
     {
         protected BaseService(ServiceAccess serviceAccess)
         {
@@ -11,29 +8,6 @@ namespace DFM.BusinessLogic.Services
         }
 
         protected ServiceAccess Parent { get; private set; }
-
-
-        protected void BeginTransaction()
-        {
-            Parent.TransactionController.Begin();
-        }
-
-        protected void CommitTransaction()
-        {
-            try
-            {
-                Parent.TransactionController.Commit();
-            }
-            catch (Exception e)
-            {
-                DFMCoreException.TestOtherIfTooLarge(e);
-            }
-        }
-
-        protected void RollbackTransaction()
-        {
-            Parent.TransactionController.Rollback();
-        }
 
         
 

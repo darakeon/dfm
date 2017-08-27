@@ -1,6 +1,6 @@
 ﻿using System;
+using Ak.MVC.Cookies;
 using DFM.Entities;
-using DFM.Generic;
 
 namespace DFM.Authentication
 {

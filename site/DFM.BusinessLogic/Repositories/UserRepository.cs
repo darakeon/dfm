@@ -2,7 +2,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
@@ -12,8 +11,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class UserRepository : BaseRepository<User>
     {
-        internal UserRepository(IData<User> repository) : base(repository) { }
-
         private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
         
         

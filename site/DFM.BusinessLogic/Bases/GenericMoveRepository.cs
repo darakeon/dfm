@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Ak.Generic.DB;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
@@ -9,12 +11,8 @@ using DFM.Entities.Extensions;
 namespace DFM.BusinessLogic.Bases
 {
     public class GenericMoveRepository<T> : BaseRepository<T>
-        where T : IEntity, IMove
+        where T : class, IEntity, IMove
     {
-        internal GenericMoveRepository(IData<T> repository) : base(repository) { }
-
-
-
         #region Validate
         protected static void Validate(T move)
         {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.BusinessLogic.Exceptions;
@@ -11,8 +10,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class AccountRepository : BaseRepository<Account>
     {
-        internal AccountRepository(IData<Account> repository) : base(repository) { }
-
         internal Account SaveOrUpdate(Account account)
         {
             return SaveOrUpdate(account, complete, validate);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
@@ -8,8 +7,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class MonthRepository : BaseRepository<Month>
     {
-        protected internal MonthRepository(IData<Month> repository) : base(repository) { }
-
         internal Month GetOrCreateMonthWithSummary(Int16 dateMonth, Year year, Category category)
         {
             var month = GetOrCreateMonth(dateMonth, year);

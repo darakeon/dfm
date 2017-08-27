@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DFM.BusinessLogic.Bases;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
@@ -8,8 +7,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class YearRepository : BaseRepository<Year>
     {
-        internal YearRepository(IData<Year> repository) : base(repository) { }
-
         internal Year GetOrCreateYearWithSummary(Int16 dateYear, Account account, Category category)
         {
             var year = GetOrCreateYear(dateYear, account);

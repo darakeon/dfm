@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ak.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
@@ -8,7 +9,7 @@ using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TK = DFM.Generic.Token;
+using TK = Ak.Generic.Extensions.Token;
 
 namespace DFM.Tests.BusinessLogic.A.Safe
 {
@@ -529,7 +530,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I pass a ticket that doesn't exist")]
         public void GivenIPassATicketThatDoesnTExist()
         {
-            ticket = Token.New();
+            ticket = TK.New();
         }
 
         [Given(@"I pass a ticket that is already disabled")]

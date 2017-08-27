@@ -5,13 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ak.Generic.Exceptions;
+using Ak.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
+using DFM.Entities;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories;
+using DFM.Repositories.Mappings;
 using log4net.Config;
 
 namespace DFM.MVC
@@ -19,7 +22,7 @@ namespace DFM.MVC
     public class MvcApplication : HttpApplication
     {
         private readonly Current current = Auth.Current;
-        private readonly ServiceAccess access = new ServiceAccess(new Connector());
+        private readonly ServiceAccess access = new ServiceAccess();
 
         protected void Application_Start()
         {
@@ -28,7 +31,7 @@ namespace DFM.MVC
             
             Directory.SetCurrentDirectory(Server.MapPath("~"));
 
-            NHManager.Start();
+            NHManager.Start<UserMap, User>();
             MultiLanguage.Initialize();
 
             XmlConfigurator.Configure();

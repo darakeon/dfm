@@ -8,22 +8,20 @@ namespace DFM.BusinessLogic
 {
     public class ServiceAccess 
     {
-        public ServiceAccess(IConnector resolver)
+        public ServiceAccess()
         {
-            var account = new AccountRepository(resolver.Resolve<Account>());
-            var category = new CategoryRepository(resolver.Resolve<Category>());
-            var config = new ConfigRepository(resolver.Resolve<Config>());
-            var detail = new DetailRepository(resolver.Resolve<Detail>());
-            var month = new MonthRepository(resolver.Resolve<Month>());
-            var move = new MoveRepository(resolver.Resolve<Move>());
-            var schedule = new ScheduleRepository(resolver.Resolve<Schedule>());
-            var security = new SecurityRepository(resolver.Resolve<Security>());
-            var summary = new SummaryRepository(resolver.Resolve<Summary>());
-            var ticket = new TicketRepository(resolver.Resolve<Ticket>());
-            var user = new UserRepository(resolver.Resolve<User>());
-            var year = new YearRepository(resolver.Resolve<Year>());
-
-            TransactionController = resolver.GetTransactionController();
+            var account = new AccountRepository();
+            var category = new CategoryRepository();
+            var config = new ConfigRepository();
+            var detail = new DetailRepository();
+            var month = new MonthRepository();
+            var move = new MoveRepository();
+            var schedule = new ScheduleRepository();
+            var security = new SecurityRepository();
+            var summary = new SummaryRepository();
+            var ticket = new TicketRepository();
+            var user = new UserRepository();
+            var year = new YearRepository();
 
             BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
 
@@ -36,8 +34,6 @@ namespace DFM.BusinessLogic
             Current = new Current(Safe);
         }
 
-
-        internal ITransactionController TransactionController { get; private set; }
 
         internal BaseMoveSaverService BaseMove { get; private set; }
 

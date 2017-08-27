@@ -38,6 +38,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
     </Reference>
+    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.NHibernate">
+      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\Library\NHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -46,16 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bases\GenericMoveRepository.cs" />
-    <Compile Include="Bases\ITransactionController.cs" />
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Bases\BaseRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ConfigRepository.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />
-    <Compile Include="IConnector.cs" />
-    <Compile Include="Bases\IData.cs" />
     <Compile Include="Repositories\MonthRepository.cs" />
     <Compile Include="Repositories\MoveRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />

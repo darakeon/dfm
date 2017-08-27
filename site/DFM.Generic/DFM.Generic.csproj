@@ -39,12 +39,8 @@
     <Compile Include="ApiDebug.cs" />
     <Compile Include="DFMException.cs" />
     <Compile Include="EnumExtension.cs" />
-    <Compile Include="MyCookie.cs" />
     <Compile Include="OperationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PseudoTicket.cs" />
-    <Compile Include="TicketType.cs" />
-    <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ak.Generic">

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Ak.MVC.Cookies;
 using DFM.Email;
-using DFM.Generic;
 
 namespace DFM.MVC.Helpers.Global
 {

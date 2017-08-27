@@ -10,10 +10,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class ScheduleRepository : GenericMoveRepository<Schedule>
     {
-        internal ScheduleRepository(IData<Schedule> repository) : base(repository) { }
-
-
-
         internal Schedule SaveOrUpdate(Schedule schedule)
         {
             return SaveOrUpdate(schedule, complete, validate);

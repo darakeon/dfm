@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ak.Generic.Extensions;
-using DFM.BusinessLogic.Bases;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -14,10 +13,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class SecurityRepository : BaseRepository<Security>
     {
-        internal SecurityRepository(IData<Security> repository) : base(repository) { }
-
-
-
         internal Security SaveOrUpdate(Security security)
         {
             return SaveOrUpdate(security, complete);

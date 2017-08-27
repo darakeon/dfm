@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.BusinessLogic.Bases;
+using Ak.MVC.Cookies;
 using DFM.Entities;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Repositories
 {
     internal class TicketRepository : BaseRepository<Ticket>
     {
-        internal TicketRepository(IData<Ticket> repository) : base(repository) { }
-
         internal Ticket Create(User user, PseudoTicket pseudoTicket)
         {
             var ticket = 

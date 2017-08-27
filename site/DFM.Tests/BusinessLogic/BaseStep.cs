@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Ak.MVC.Cookies;
+using Ak.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
@@ -8,9 +10,8 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using DFM.Multilanguage;
-using DFM.Repositories;
+using DFM.Repositories.Mappings;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
@@ -28,9 +29,9 @@ namespace DFM.Tests.BusinessLogic
             if (SA != null)
                 return;
 
-            NHManager.Start();
+            NHManager.Start<UserMap, User>();
 
-            SA = new ServiceAccess(new Connector());
+            SA = new ServiceAccess();
 
             var path = Directory.GetCurrentDirectory();
             PlainText.Initialize(path);

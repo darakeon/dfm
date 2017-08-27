@@ -86,6 +86,90 @@
              The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
         </member>
+        <member name="T:Ak.MVC.Cookies.MyCookie">
+            <summary>
+            "Cookie" for browser, cellphone or local
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Cookies.MyCookie.Get">
+            <summary>
+            Get (if needed, create) ticket
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Cookies.PseudoTicket">
+            <summary>
+            Ticket for cookie
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Cookies.PseudoTicket.Key">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Cookies.PseudoTicket.Type">
+            <summary>
+            Cellphone, browser or local
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Cookies.TicketType">
+            <summary>
+            Cookie ticket type
+            </summary>
+        </member>
+        <member name="F:Ak.MVC.Cookies.TicketType.Browser">
+            <summary>
+            Web
+            </summary>
+        </member>
+        <member name="F:Ak.MVC.Cookies.TicketType.Cellphone">
+            <summary>
+            API Call
+            </summary>
+        </member>
+        <member name="F:Ak.MVC.Cookies.TicketType.Local">
+            <summary>
+            Desktop or tests
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Forms.CheckBoxList">
+            <summary>
+            To create a CheckBoxList in Form
+            (copy the View naming it CheckboxList.cshtml to Views/Shared/EditorTemplates)
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.CheckBoxList.#ctor">
+            <summary>
+            Constructor for MVC build
+            </summary>
+        </member>
+        <member name="M:Ak.MVC.Forms.CheckBoxList.#ctor(System.Collections.Generic.IEnumerable{Ak.MVC.Forms.IListable},System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Constructor to use in your code
+            </summary>
+            <param name="all">All the items to show</param>
+            <param name="chosen">Just the chosen items IDs</param>
+        </member>
+        <member name="M:Ak.MVC.Forms.CheckBoxList.GetChosen">
+            <summary>
+            Get the chosen ids
+            </summary>
+        </member>
+        <member name="F:Ak.MVC.Forms.CheckBoxList.View">
+            <summary>
+            HTML to create the EditorFor
+            Past it in Views/Shared/EditorTemplates/CheckboxList.cshtml
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Forms.CheckBoxList.Items">
+            <summary>
+            Items of CheckBoxList
+            </summary>
+        </member>
+        <member name="T:Ak.MVC.Forms.CheckBoxList.CheckBoxItem">
+            <summary>
+            Item for CheckBoxList
+            </summary>
+        </member>
         <member name="T:Ak.MVC.Forms.HtmlHelperExtension">
             <summary>
              
@@ -112,6 +196,21 @@
             <typeparam name="TModel">The current Model</typeparam>
             <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
         </member>
+        <member name="T:Ak.MVC.Forms.IListable">
+            <summary>
+            Items for CheckBoxList and SelectListExtension
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Forms.IListable.ID">
+            <summary>
+            Value of CheckBox / SelectList
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Forms.IListable.Name">
+            <summary>
+            Text of CheckBox / SelectList
+            </summary>
+        </member>
         <member name="T:Ak.MVC.Forms.SelectListExtension">
             <summary>
             </summary>
@@ -123,6 +222,12 @@
             <param name="list">The list that will fill the SelectList</param>
             <param name="value">The property the will fill the values of the options</param>
             <param name="text">The property the will fill the text that appears in options</param>
+        </member>
+        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IList{``0})">
+            <summary>
+             Create a SelectList from List of objects (must be IListable)
+            </summary>
+            <param name="list">The list that will fill the SelectList</param>
         </member>
         <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
             <summary>

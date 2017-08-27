@@ -37,7 +37,6 @@
     <Compile Include="Account.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Bases\EntityExtension.cs" />
-    <Compile Include="Bases\IEntity.cs" />
     <Compile Include="Bases\IMove.cs" />
     <Compile Include="Bases\ISummarizable.cs" />
     <Compile Include="Category.cs" />
@@ -59,6 +58,14 @@
     <Compile Include="Year.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

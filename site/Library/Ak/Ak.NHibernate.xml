@@ -17,6 +17,103 @@
             <param name="mapping">Object received in AutoMappingOverride</param>
             <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
         </member>
+        <member name="T:Ak.NHibernate.BaseData`1">
+            <summary>
+            Base communication with DB
+            </summary>
+            <typeparam name="T">Entity type</typeparam>
+        </member>
+        <member name="T:Ak.NHibernate.BaseRepository`1">
+            <summary>
+            Higher level queries
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.#ctor">
+            <summary>
+            Initializes DB reader/writer
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.SaveOrUpdate(`0,Ak.NHibernate.BaseRepository{`0}.DelegateAction[])">
+            <summary>
+            Records that at DB
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.GetById(System.Int32)">
+            <summary>
+            Get entity by its ID
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.Exists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Verify if there is any entity that correspond to the expression
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.SingleOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Return unique entity for expression
+            </summary>
+            <exception cref="T:System.Exception">Not unique object</exception>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Return as list of entities for expression
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.Delete(`0)">
+            <summary>
+            Delete permanently the entity of DB
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.Delete(System.Int32)">
+            <summary>
+            Delete permanently the entity of DB
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseRepository`1.GetOldById(System.Int32)">
+            <summary>
+            Get old data of the entity
+            </summary>
+        </member>
+        <member name="T:Ak.NHibernate.BaseRepository`1.DelegateAction">
+            <summary>
+            Signature of methods to execute on Save or Update
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="T:Ak.NHibernate.BaseService">
+            <summary>
+            Base for services, to have transaction
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseService.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseService.BeginTransaction">
+            <summary>
+            Starts Transaction
+            </summary>
+            <exception cref="T:Ak.Generic.Exceptions.AkException">Transaction already opened</exception>
+        </member>
+        <member name="M:Ak.NHibernate.BaseService.CommitTransaction">
+            <summary>
+            Execute everything at DB
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.BaseService.RollbackTransaction">
+            <summary>
+            Undo all changes
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.BaseService.TransactionController">
+            <summary>
+            To control DB Transaction
+            </summary>
+        </member>
         <member name="T:Ak.NHibernate.Helpers.DBMS">
             <summary>
             List of accepted DBMSs
@@ -76,6 +173,53 @@
             <summary>
              Verify errors on entities and mapping.
              Avoid error to just appear when entities are accessed.
+            </summary>
+        </member>
+        <member name="T:Ak.NHibernate.NHManager">
+            <summary>
+            Session Manager
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Open">
+            <summary>
+            Open Session and SessionOld to use
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Start``2">
+            <summary>
+            Starts session factory
+            </summary>
+            <typeparam name="TMap">AutoMappingOverride sample</typeparam>
+            <typeparam name="TEntity">Entity sample</typeparam>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Error">
+            <summary>
+            Handle error case
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Close">
+            <summary>
+            Close session
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.End">
+            <summary>
+            Finishes session factory
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.Session">
+            <summary>
+            Communicates with DB
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.SessionOld">
+            <summary>
+            Helps to get old data without messing with changed entities
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.IsActive">
+            <summary>
+            Verify whether can use session
             </summary>
         </member>
         <member name="T:Ak.NHibernate.SessionBuilder">

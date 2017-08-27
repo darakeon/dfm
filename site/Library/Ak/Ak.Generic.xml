@@ -25,6 +25,16 @@
              Whether an object is in a list
             </summary>
         </member>
+        <member name="T:Ak.Generic.DB.IEntity">
+            <summary>
+            Minimum entity for DB
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.DB.IEntity.ID">
+            <summary>
+            DB unique identifier
+            </summary>
+        </member>
         <member name="T:Ak.Generic.Enums.Str2Enum">
             <summary>
              Convert String to Enum
@@ -206,6 +216,17 @@
             <summary>
              Give a name of a property, to use lambda expression, not strings
             </summary>
+        </member>
+        <member name="T:Ak.Generic.Extensions.Token">
+            <summary>
+            String Guid
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.Token.New">
+            <summary>
+            Generates new Guid
+            </summary>
+            <returns>Guid without dashes ("-")</returns>
         </member>
     </members>
 </doc>

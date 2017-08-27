@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Ak.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {

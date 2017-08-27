@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ak.Generic.DB;
 
 namespace DFM.Entities.Bases
 {

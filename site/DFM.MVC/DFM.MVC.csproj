@@ -46,8 +46,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
     </Reference>
+    <Reference Include="Ak.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\Library\Elmah\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\NHibernate\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Library\NHibernate\log4net.dll</HintPath>

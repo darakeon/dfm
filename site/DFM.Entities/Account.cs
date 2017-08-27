@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities.Bases;
+using Ak.Generic.DB;
 
 namespace DFM.Entities
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Ak.Generic.Exceptions;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.Exceptions
@@ -23,9 +24,9 @@ namespace DFM.BusinessLogic.Exceptions
 
 
 
-        public static void TestOtherIfTooLarge(Exception e)
+        public static void TestOtherIfTooLarge(AkException e)
         {
-            if (e.InnerException != null && e.InnerException.Message.StartsWith("Data too long for column"))
+            if (e.Message.StartsWith("TooLargeData"))
                 WithMessage(ExceptionPossibilities.TooLargeData);
 
             throw e;

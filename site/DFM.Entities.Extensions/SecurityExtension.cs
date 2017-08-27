@@ -1,4 +1,4 @@
-﻿using DFM.Generic;
+﻿using Ak.Generic.Extensions;
 
 namespace DFM.Entities.Extensions
 {

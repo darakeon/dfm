@@ -13,9 +13,6 @@ namespace DFM.BusinessLogic.Repositories
 {
     internal class MoveRepository : GenericMoveRepository<Move>
     {
-        internal MoveRepository(IData<Move> repository) : base(repository) { }
-
-
         internal Move SaveOrUpdate(Move move)
         {
             //Keep this order, weird errors happen if invert
