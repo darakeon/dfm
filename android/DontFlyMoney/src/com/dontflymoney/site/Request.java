@@ -11,24 +11,33 @@ import android.os.AsyncTask;
 public class Request extends AsyncTask<Void, Void, HttpResult>
 {
 	IRequestCaller activity;
+	HttpMethod method;
 	Context context;
-	Controller controller;
-	Action action;
+	Controller_Action controller_action;
+	String id;
 	Map<String, String> parameters;
 	
-	public Request(IRequestCaller activity, Context context, Controller controller, Action action)
+	
+	public Request(IRequestCaller activity, HttpMethod method, Context context, Controller_Action controller_action)
 	{
 		this.activity = activity;
+		this.method = method;
 		this.context = context;
-		this.controller = controller;
-		this.action = action;
+		this.controller_action = controller_action;
 	}
 	
-	public Request(IRequestCaller activity, Context context, Controller controller, Action action, Map<String, String> parameters)
+	public Request(IRequestCaller activity, HttpMethod method, Context context, Controller_Action controller_action, String id)
 	{
-		this(activity, context, controller, action);
+		this(activity, method, context, controller_action);
+		this.id = id;
+	}
+	
+	public Request(IRequestCaller activity, HttpMethod method, Context context, Controller_Action controller_action, Map<String, String> parameters)
+	{
+		this(activity, method, context, controller_action);
 		this.parameters = parameters;
 	}
+	
 	
 	
 	@Override
@@ -36,8 +45,10 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 	{			
 		try
 		{
-			String result = HttpHelper.Post(context, controller, action, parameters);
-			
+			String result =
+				method == HttpMethod.Get
+					? HttpHelper.Get(context, controller_action, id)
+					: HttpHelper.Post(context, controller_action, id, parameters);
 		    return new HttpResult(result);
 		}
 		catch (Exception e)
@@ -46,13 +57,14 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 		}
 	}
 
+
 	
 	@Override
     protected void onPostExecute(HttpResult result)
 	{
 		if (!result.IsSucceded())
 		{
-			activity.Error(result.GetErrorResult());
+			activity.Error(result.GetErrorResult().getMessage());
 			return;
 		}
 		
@@ -62,14 +74,12 @@ public class Request extends AsyncTask<Void, Void, HttpResult>
 		try
 		{
 			JSONObject json = new JSONObject(normalResult);
-			
 			activity.DoOnReturn(json);
 		}
 		catch (JSONException e)
 		{
 			activity.Error(normalResult);
 		}
-		
 	}
 	
 	

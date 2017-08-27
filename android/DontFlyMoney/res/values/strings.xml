@@ -7,7 +7,6 @@
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="error_message"></string>
-    <string name="title_activity_accounts">Accounts</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="verifying_login">Verifying login, please wait.</string>
+    
 </resources>

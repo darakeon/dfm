@@ -23,33 +23,17 @@ import android.content.Context;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.generic.DFMException;
 
-public class HttpHelper
+class HttpHelper
 {
-	private static String domain = "beta.dontflymoney.com";
+	private static String domain = "192.168.1.104";
 	private static String url = String.format("http://%s/API", domain);
 
 	
 
-	public static String Get(Context context, Controller controller) 
+	static String Get(Context context, Controller_Action controller_action, String id) 
 			throws ClientProtocolException, IOException, DFMException
 	{
-		return Get(context, controller, null);		
-	}
-	
-	
-	
-	public static String Get(Context context, Controller controller, Action action) 
-			throws ClientProtocolException, IOException, DFMException
-	{
-		return Get(context, controller, action, null);		
-	}
-	
-	
-	
-	public static String Get(Context context, Controller controller, Action action, String id) 
-			throws ClientProtocolException, IOException, DFMException
-	{
-		String urlGet = getUrl(context, controller, action, id);
+		String urlGet = getUrl(context, controller_action, id);
 		
 		HttpGet get;
 		
@@ -67,26 +51,10 @@ public class HttpHelper
 
 
 
-	public static String Post(Context context, Controller controller) 
+	static String Post(Context context, Controller_Action controller_action, String id, Map<String, String> parameters) 
 			throws ClientProtocolException, IOException, DFMException
 	{
-		return Post(context, controller, null);		
-	}
-	
-	
-	
-	public static String Post(Context context, Controller controller, Action action) 
-			throws ClientProtocolException, IOException, DFMException
-	{
-		return Post(context, controller, action, null);		
-	}
-	
-	
-	
-	public static String Post(Context context, Controller controller, Action action, Map<String, String> parameters) 
-			throws ClientProtocolException, IOException, DFMException
-	{
-		String urlPost = getUrl(context, controller, action, null);
+		String urlPost = getUrl(context, controller_action, id);
 		
 		HttpPost post;
 		
@@ -102,9 +70,7 @@ public class HttpHelper
 		if (parameters != null)
 		{
 			List<NameValuePair> parametersToPost = convertMapToList(parameters);
-			
 			UrlEncodedFormEntity urlEntity = new UrlEncodedFormEntity(parametersToPost, "UTF-8");
-
 			post.setEntity(urlEntity);
 		}
 
@@ -127,31 +93,19 @@ public class HttpHelper
 
 
 
-	private static String getUrl(Context context, Controller controller, Action action, String id)
+	private static String getUrl(Context context, Controller_Action controller_action, String id)
 	{
 		String newUrl = url;
 		
 		String ticket = Authentication.Get(context);
 		
 		if (ticket != null && ticket != "")
-		{
 			newUrl += "-" + ticket;
-		}
 		
-		if (controller != null)
-		{
-			newUrl += "/" + controller;
-		
-			if (action == null)
-			{
-				newUrl += "/" + action;
+		newUrl += "/" + controller_action.toString().replace("_", "/");
 				
-				if (id == null)
-				{
-					newUrl += "/" + id;
-				}
-			}
-		}
+		if (id != null)
+			newUrl += "/" + id;
 		
 		return newUrl;
 	}
@@ -172,6 +126,5 @@ public class HttpHelper
 	}
 	
 
-	
 	
 }

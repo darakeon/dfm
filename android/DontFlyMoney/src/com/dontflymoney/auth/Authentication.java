@@ -20,6 +20,13 @@ public class Authentication
 		
 		return ticketFile.ReadFromFile();
 	}
+
+	public static boolean IsLoggedIn(Context context)
+	{
+		String ticket = Get(context);
+
+		return ticket != null && ticket != "";
+	}
 	
 
 }

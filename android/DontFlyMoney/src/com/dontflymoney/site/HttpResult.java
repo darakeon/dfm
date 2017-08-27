@@ -16,6 +16,7 @@ public class HttpResult
 	
 	public HttpResult(Exception result)
 	{
+		succeded = false;
 		errorResult = result;
 	}
 	

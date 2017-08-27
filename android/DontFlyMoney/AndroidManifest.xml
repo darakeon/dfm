@@ -6,10 +6,10 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +27,11 @@
         </activity>
         <activity
             android:name="com.dontflymoney.view.Accounts"
-            android:label="@string/title_activity_accounts" >
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.dontflymoney.view.VerifyActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

@@ -16,18 +16,17 @@ import android.view.View;
 
 import com.dontflymoney.android.R;
 import com.dontflymoney.auth.Authentication;
-import com.dontflymoney.site.Action;
-import com.dontflymoney.site.Controller;
+import com.dontflymoney.site.Controller_Action;
+import com.dontflymoney.site.HttpMethod;
 import com.dontflymoney.site.IRequestCaller;
 import com.dontflymoney.site.Request;
 import com.dontflymoney.viewhelpers.SmartView;
 
-
-public class Login extends Activity
-				   implements IRequestCaller
+public class LoginActivity extends Activity implements IRequestCaller
 {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
@@ -35,7 +34,8 @@ public class Login extends Activity
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
@@ -47,13 +47,10 @@ public class Login extends Activity
 	
 	private void verifyLogin()
 	{
-		String ticket = Authentication.Get(getApplicationContext());
-		
-		if (ticket != null)
+		if (Authentication.IsLoggedIn(getApplicationContext()))
 		{
-			callAccounts();
+			callVerify();
 		}
-		
 	}
 	
 	public void login(View button)
@@ -74,7 +71,7 @@ public class Login extends Activity
 		parameters.put("password", password);
 		parameters.put("machineId", android_id);
 		
-		Request task = new Request(this, getApplicationContext(), Controller.User, Action.Index, parameters);
+		Request task = new Request(this, HttpMethod.Post, getApplicationContext(), Controller_Action.User_Login, parameters);
 		
 		task.execute();
 	}
@@ -101,7 +98,7 @@ public class Login extends Activity
 				String ticket = json.get("data").toString();
 				Authentication.Set(getApplicationContext(), ticket);
 
-				callAccounts();
+				callVerify();
 				
 				return;
 			}
@@ -115,35 +112,22 @@ public class Login extends Activity
 		
 	}
 
+	
+	
 	@Override
-	public void Error(Exception exception)
+	public void Error(String errorMessage)
 	{
-		form.SetText(R.id.error_message, exception.getMessage());
-	}
-
-	@Override
-	public void Error(String errorScreen)
-	{
-		form.SetText(R.id.error_message, errorScreen);
+		form.SetText(R.id.error_message, errorMessage);
 	}
 
 
 
-	private void callAccounts()
+	private void callVerify()
 	{
-		Intent intent = new Intent(this, Accounts.class);
-		
+		Intent intent = new Intent(this, VerifyActivity.class);
 		startActivity(intent);		
 	}
 
 
-
-	
-	
-	
-	
-	
-	
-	
 
 }

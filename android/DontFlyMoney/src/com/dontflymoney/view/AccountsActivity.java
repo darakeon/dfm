@@ -15,16 +15,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dontflymoney.android.R;
-import com.dontflymoney.site.Action;
-import com.dontflymoney.site.Controller;
+import com.dontflymoney.site.Controller_Action;
+import com.dontflymoney.site.HttpMethod;
 import com.dontflymoney.site.IRequestCaller;
 import com.dontflymoney.site.Request;
 import com.dontflymoney.viewhelpers.SmartView;
 
-public class Accounts extends Activity implements IRequestCaller {
-
+public class AccountsActivity extends Activity implements IRequestCaller
+{
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accounts);
 		
@@ -32,7 +33,8 @@ public class Accounts extends Activity implements IRequestCaller {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.accounts, menu);
 		return true;
@@ -46,7 +48,7 @@ public class Accounts extends Activity implements IRequestCaller {
 	{
 		form = new SmartView(getWindow());
 
-		Request task = new Request(this, getApplicationContext(), Controller.Account, Action.Index);
+		Request task = new Request(this, HttpMethod.Get, getApplicationContext(), Controller_Action.Account_List);
 		task.execute();
 	}
 
@@ -115,15 +117,9 @@ public class Accounts extends Activity implements IRequestCaller {
 	}
 
 	@Override
-	public void Error(Exception exception)
+	public void Error(String errorMessage)
 	{
-		form.AlertError(exception.getMessage());
-	}
-
-	@Override
-	public void Error(String errorScreen)
-	{
-		form.AlertError(errorScreen);
+		form.AlertError(errorMessage);
 	}
 
 	
