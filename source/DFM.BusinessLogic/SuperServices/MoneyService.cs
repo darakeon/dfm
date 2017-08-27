@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.SuperServices
             return move;
         }
 
-        private Move saveOrUpdate(Move move, string accountOutName, string accountInName, string categoryName)
+        private Move saveOrUpdate(Move move, String accountOutName, String accountInName, string categoryName)
         {
             BeginTransaction();
 

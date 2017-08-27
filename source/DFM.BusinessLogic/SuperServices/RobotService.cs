@@ -47,9 +47,25 @@ namespace DFM.BusinessLogic.SuperServices
 
                 schedule.LastRun++;
 
-                Parent.BaseMove.SaveOrUpdateMove(newMove, accountOutName, accountInName, categoryName);
+                saveOrUpdateMove(newMove, accountOutName, accountInName, categoryName);
 
                 schedule.MoveList.Add(newMove);
+            }
+        }
+
+        private void saveOrUpdateMove(Move move, String accountOutName, String accountInName, String categoryName)
+        {
+            BeginTransaction();
+
+            try
+            {
+                Parent.BaseMove.SaveOrUpdateMove(move, accountOutName, accountInName, categoryName);
+                CommitTransaction();
+            }
+            catch (Exception)
+            {
+                RollbackTransaction();
+                throw;
             }
         }
 
