@@ -126,7 +126,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             try
             {
-                SA.Admin.GetAccountByName(Account.Name);
+                if (String.IsNullOrEmpty(Account.Name))
+                {
+                    SA.Admin.GetAccountByUrl(Account.Url);
+                }
+                else
+                {
+                    SA.Admin.GetAccountByName(Account.Name);
+                }
             }
             catch (DFMCoreException e)
             {
