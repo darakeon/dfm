@@ -105,7 +105,7 @@ VERSÃO 2.0.1.1 (System) - 4?
 ================================================================================================
 2015-01-01	2015-01-03	Fix test errors
 2015-01-03	2015-01-03	Trocar YellowLimit e RedLimit para Cents
-2015-01-01				Fix error on mobile detailed move
+2015-01-01	2015-01-03	Fix error on mobile detailed move
 2014-12-30	2014-12-31	Fix move error with decimal value
 2014-12-30	2014-12-30	Fix login redirect bug
 
