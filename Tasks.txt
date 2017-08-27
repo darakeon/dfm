@@ -85,6 +85,7 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 
 VERSÃO 2.0.0.1 (System) - 10?
 ================================================================================================
+						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
@@ -107,7 +108,6 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Criar produto no google play
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
-						Consertar problema ao pedir relatório que ainda não tem Month/Year
 2014-04-14	2014-04-14	Listar logins para derrubar
 2014-04-14	2014-04-14	Colocar língua padrão do usuário como língua do browser dele
 2014-04-14	2014-04-14	Impedir de abrir o dfm em iframe / X-frame-options
