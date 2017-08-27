@@ -37,7 +37,7 @@ namespace DFM.MVC
 
             XmlConfigurator.Configure();
 
-            IP.Save();
+            IP.SaveCurrent();
         }
 
 
@@ -115,6 +115,8 @@ namespace DFM.MVC
         // ReSharper restore InconsistentNaming
         {
             NHManager.End();
+
+            IP.SaveOnline();
         }
 
 

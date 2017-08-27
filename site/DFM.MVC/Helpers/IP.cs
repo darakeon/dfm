@@ -6,6 +6,8 @@ namespace DFM.MVC.Helpers
 {
     public class IP
     {
+        const string relativePath = @"../../android/DontFlyMoney/src/com/dontflymoney/site/IP";
+
         internal static String Get()
         {
             var nome = Dns.GetHostName();
@@ -19,9 +21,18 @@ namespace DFM.MVC.Helpers
             return ip;
         }
 
-        internal static void Save()
+        internal static void SaveCurrent()
         {
-            var relativePath = @"../../android/DontFlyMoney/src/com/dontflymoney/site/IP";
+            save(Get());
+        }
+
+        internal static void SaveOnline()
+        {
+            save("http://beta.dontflymoney.com");
+        }
+
+        private static void save(String address)
+        {
             var currentPath = Directory.GetCurrentDirectory();
 
             var path = Path.Combine(currentPath, relativePath);
@@ -29,9 +40,7 @@ namespace DFM.MVC.Helpers
 
             path = info.FullName;
 
-            var ip = Get();
-
-            File.WriteAllText(path, ip);
+            File.WriteAllText(path, address);
         }
 
 
