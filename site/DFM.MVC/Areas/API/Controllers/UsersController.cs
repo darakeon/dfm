@@ -46,7 +46,7 @@ namespace DFM.MVC.Areas.API.Controllers
         }
 
 
-        //[DFMApiAuthorize, HttpGet]
+        [DFMApiAuthorize, HttpGet]
         public ActionResult GetConfig()
         {
             try
