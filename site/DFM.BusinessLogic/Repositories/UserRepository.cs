@@ -136,15 +136,5 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-        internal void ValidateSecurity(Security security)
-        {
-            var currentUser = GetByEmail(security.User.Email);
-
-            if (currentUser == null || currentUser.Email != security.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
-        }
-
-
-
     }
 }

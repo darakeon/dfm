@@ -68,8 +68,6 @@ namespace DFM.Tests.BusinessLogic.A_Safe
  testRunner.Given("I have this user created", ((string)(null)), table1);
 #line 7
  testRunner.And("I have a token for its password reset");
-#line 8
- testRunner.And("I have a token for its activation");
 #line hidden
         }
         
@@ -78,17 +76,17 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_PasswordResetWithInvalidTokenE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Password reset with invalid token (E)", ((string[])(null)));
-#line 10
+#line 9
 this.ScenarioSetup(scenarioInfo);
-#line 11
+#line 10
  testRunner.Given("I pass an invalid token");
-#line 12
+#line 11
  testRunner.And("I pass this password: new_password");
-#line 13
+#line 12
  testRunner.When("I try to reset the password");
-#line 14
+#line 13
  testRunner.Then("I will receive this core error: InvalidToken");
-#line 15
+#line 14
  testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -99,10 +97,12 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_PasswordResetWithTokenOfUserVerificationE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password reset with token of user verification (E)", ((string[])(null)));
-#line 17
+#line 16
 this.ScenarioSetup(scenarioInfo);
+#line 17
+ testRunner.Given("I have a token for its activation");
 #line 18
- testRunner.Given("I pass a valid UserVerification token");
+ testRunner.And("I pass a valid UserVerification token");
 #line 19
  testRunner.And("I pass this password: new_password");
 #line 20

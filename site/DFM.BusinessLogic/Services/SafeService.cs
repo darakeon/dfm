@@ -8,7 +8,6 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -30,12 +29,24 @@ namespace DFM.BusinessLogic.Services
 
         public void SendPasswordReset(String email)
         {
-            var user = userRepository.GetByEmail(email);
+            BeginTransaction();
 
-            if (user == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+            try
+            {
+                var user = userRepository.GetByEmail(email);
 
-            createAndSendToken(user, SecurityAction.PasswordReset);
+                if (user == null)
+                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+
+                createAndSendToken(user, SecurityAction.PasswordReset);
+
+                CommitTransaction();
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
         }
         
         public void SaveUserAndSendVerify(String email, String password, String language)
@@ -86,10 +97,22 @@ namespace DFM.BusinessLogic.Services
         {
             var security = new Security { Action = action, User = user };
 
-            userRepository.ValidateSecurity(security);
             security = securityRepository.SaveOrUpdate(security);
 
             securityRepository.SendEmail(security);
+
+            var others = securityRepository
+                .List(
+                    s => s.ID != security.ID
+                        && s.User.ID == security.User.ID
+                        && s.Active
+                );
+
+            foreach (var other in others)
+            {
+                other.Active = false;
+                securityRepository.SaveOrUpdate(other);
+            }
         }
 
 

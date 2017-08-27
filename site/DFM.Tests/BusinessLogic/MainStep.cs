@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Ak.NHibernate;
-using DFM.Repositories;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -45,7 +44,7 @@ namespace DFM.Tests.BusinessLogic
         }
 
         [Then(@"I will receive no core error")]
-        public void ThenIWillReceiveNoError()
+        public void ThenIWillReceiveNoCoreError()
         {
             Assert.IsNull(Error);
         }

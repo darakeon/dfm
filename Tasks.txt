@@ -111,7 +111,7 @@ R						Colocar valores em inteiro (double > int) no banco
 T						Criar teste unitário para deletar todas as movimentações de um agendamento
 T						Criar teste unitário agendamento meio antes / meio depois
 H						Travar schedule de conta fechada / deletada
-S						Security desativa os anteriores
+2014-07-06	2014-07-06	Security desativa os anteriores
 2014-07-06	2014-07-06	Desativar user a cada 5 senhas erradas
 2014-07-06	2014-07-06	Verificar se password reset inativa usuário
 2014-07-06	2014-07-06	Tratar erro ao enviar e-mail (Security)

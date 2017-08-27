@@ -37,7 +37,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
                          and S.Action = @action
                          and S.Active = 1
                          and S.Expire >= @expire
-                    order by S.Expire desc
+                    order by S.ID desc, S.Expire desc
                        limit 1";
 
                 var cmd = new MySqlCommand(query, conn);

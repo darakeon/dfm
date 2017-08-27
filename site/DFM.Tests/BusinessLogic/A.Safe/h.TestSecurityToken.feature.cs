@@ -66,10 +66,6 @@ namespace DFM.Tests.BusinessLogic.A_Safe
                         "password"});
 #line 4
  testRunner.Given("I have this user created", ((string)(null)), table1);
-#line 7
- testRunner.And("I have a token for its password reset");
-#line 8
- testRunner.And("I have a token for its activation");
 #line hidden
         }
         
@@ -78,13 +74,13 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void _01_TestWithInvalidTokenE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Test with invalid token (E)", ((string[])(null)));
-#line 10
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 11
+#line 9
  testRunner.Given("I pass an invalid token");
-#line 12
+#line 10
  testRunner.When("I test the token");
-#line 13
+#line 11
  testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -95,13 +91,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_TestWithTokenOfUVWithActionPSE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Test with token of UV with action PS (E)", ((string[])(null)));
-#line 15
+#line 13
 this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I have a token for its activation");
+#line 15
+ testRunner.And("I pass a token of UserVerification with action PasswordReset");
 #line 16
- testRunner.Given("I pass a token of UserVerification with action PasswordReset");
-#line 17
  testRunner.When("I test the token");
-#line 18
+#line 17
  testRunner.Then("I will receive this core error: InvalidToken");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -112,10 +110,12 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_TestWithTokenOfPSWithActionUVE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Test with token of PS with action UV (E)", ((string[])(null)));
-#line 20
+#line 19
 this.ScenarioSetup(scenarioInfo);
+#line 20
+ testRunner.Given("I have a token for its password reset");
 #line 21
- testRunner.Given("I pass a token of PasswordReset with action UserVerification");
+ testRunner.And("I pass a token of PasswordReset with action UserVerification");
 #line 22
  testRunner.When("I test the token");
 #line 23
@@ -125,34 +125,59 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Test with token of UV with action UV (S)")]
-        public virtual void _98_TestWithTokenOfUVWithActionUVS()
+        [NUnit.Framework.DescriptionAttribute("04. Test with token when I created another one (E)")]
+        public virtual void _04_TestWithTokenWhenICreatedAnotherOneE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Test with token of UV with action UV (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Test with token when I created another one (E)", ((string[])(null)));
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.Given("I pass a token of UserVerification with action UserVerification");
+ testRunner.Given("I have a token for its activation");
 #line 27
- testRunner.When("I test the token");
+ testRunner.And("I have a token for its password reset");
 #line 28
+ testRunner.And("I pass a token of UserVerification with action UserVerification");
+#line 29
+ testRunner.When("I test the token");
+#line 30
+ testRunner.Then("I will receive this core error: InvalidToken");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("90. Test with token of UV with action UV (S)")]
+        public virtual void _90_TestWithTokenOfUVWithActionUVS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("90. Test with token of UV with action UV (S)", ((string[])(null)));
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 33
+ testRunner.Given("I have a token for its activation");
+#line 34
+ testRunner.And("I pass a token of UserVerification with action UserVerification");
+#line 35
+ testRunner.When("I test the token");
+#line 36
  testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Test with token of PS with action PS (S)")]
-        public virtual void _99_TestWithTokenOfPSWithActionPSS()
+        [NUnit.Framework.DescriptionAttribute("91. Test with token of PS with action PS (S)")]
+        public virtual void _91_TestWithTokenOfPSWithActionPSS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Test with token of PS with action PS (S)", ((string[])(null)));
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Test with token of PS with action PS (S)", ((string[])(null)));
+#line 38
 this.ScenarioSetup(scenarioInfo);
-#line 31
- testRunner.Given("I pass a token of PasswordReset with action PasswordReset");
-#line 32
+#line 39
+ testRunner.Given("I have a token for its password reset");
+#line 40
+ testRunner.And("I pass a token of PasswordReset with action PasswordReset");
+#line 41
  testRunner.When("I test the token");
-#line 33
+#line 42
  testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();

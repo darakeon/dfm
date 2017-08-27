@@ -5,7 +5,6 @@ Background:
 		| Email                         | Password |
 		| activateuser@dontflymoney.com | password |
 	And I have a token for its activation
-	And I have a token for its password reset
 
 Scenario: 01. Activate user with invalid token (E)
 	Given I pass an invalid token
@@ -14,7 +13,8 @@ Scenario: 01. Activate user with invalid token (E)
 	And the user will not be activated
 
 Scenario: 02. Activate user with token of reset password (E)
-	Given I pass a valid PasswordReset token
+	Given I have a token for its password reset
+	And I pass a valid PasswordReset token
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
 	And the user will not be activated
