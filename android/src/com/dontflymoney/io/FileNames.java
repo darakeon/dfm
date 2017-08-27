@@ -2,13 +2,14 @@
 
 public enum FileNames
 {
-	Ticket("ticket" + File.extension);
+	Ticket("ticket"),
+	Language("language");
 	
 	String name;
 	
 	FileNames(String name)
 	{
-		this.name = name;
+		this.name = name + File.extension;
 	}
 	
 	String getName()

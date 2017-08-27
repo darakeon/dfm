@@ -114,7 +114,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Arrumar tabela em caso de texto grande
 						Exibir apenas dois dígitos nos centavos no mobile
 						Trocar língua antes de renderizar a tela
-						Gravar a língua localmente
+2014-05-04	2014-05-04	Gravar a língua localmente
 2014-05-04	2014-05-04	Consertar logoff (M)
 2014-04-18	2014-04-18	Fazer activity só chamar porquinho se não foi só mudança de orientation
 2014-04-18	2014-04-18	Arrumar tradução de nature

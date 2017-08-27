@@ -41,7 +41,7 @@ public class ResultHandler
 				JSONObject data = result.getJSONObject("data");
 				
 				if (data.has("Language"))
-					Language.Change(activity, data.getString("Language"));
+					Language.ChangeAndSave(activity, data.getString("Language"));
 				
 				activity.HandleSuccess(data, step);
 			}

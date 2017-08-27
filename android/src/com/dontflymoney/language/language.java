@@ -2,15 +2,18 @@ package com.dontflymoney.language;
 
 import java.util.Locale;
 
-import com.dontflymoney.baseactivity.SmartActivity;
-
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+
+import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.io.File;
+import com.dontflymoney.io.FileNames;
 
 
 public class Language
 {
-	public static void Change(SmartActivity activity, String language)
+	public static void ChangeAndSave(SmartActivity activity, String language)
 	{
 		String current = Locale.getDefault().toString();
 		
@@ -18,7 +21,17 @@ public class Language
 		
 		if (language.equalsIgnoreCase(current))
 			return;
+
+		change(activity, language);
 		
+		File file = new File(activity, FileNames.Language);
+		file.WriteToFile(language);
+		
+		activity.refresh();
+	}
+	
+	private static void change(Activity activity, String language)
+	{
 		Resources resources = activity.getResources();
 
 		Locale[] locales = Locale.getAvailableLocales();
@@ -42,6 +55,6 @@ public class Language
 		
 		resources.updateConfiguration(config, null);
 		resources.flushLayoutCache();
-		activity.refresh();
 	}
+	
 }
