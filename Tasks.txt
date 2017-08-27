@@ -10,6 +10,7 @@ VERSÃO 3.1.3.0 (Little change) - 2?
 VERSÃO 3.1.2.0 (Little change) - 2?
 ================================================================================================
 						relatórios de mais de uma conta
+						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
 VERSÃO 3.1.1.0 (Little change) - 2?
@@ -23,7 +24,6 @@ VERSÃO 3.1.0.0 (Big change) - 7?
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
-					>>>	Edição de Perfil de usuário
 					>>>	Colocar nome (ou apelido) no sign up
 						Separar dados adicionais de Conta em Options e User em Config
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
@@ -31,10 +31,10 @@ VERSÃO 3.1.0.0 (Big change) - 7?
 VERSÃO 3.0.0.0 (All new) - 8?
 ================================================================================================
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
-						Colocar soma de todas as contas
+						Colocar soma de todas as contas (total na tela inicial)
 						Permitir limite de conta negativo
 						Relacionar Conta e Categoria (combo)
-						Unir Categorias
+						Possibilitar unir Categorias
 						Possibilitar reabrir conta
 						Relatório mensal: selecione para mostrar soma
 						Relatório Período: com filtro por início e fim
@@ -60,22 +60,16 @@ VERSÃO 2.1.0.0 (Big change) - 4?
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria,
 							possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.2.0 (Little change) - 4?
-================================================================================================
-					>>>	Iluminar última movimentação verificada
-					>>>	Remover fundo do site
-					>>> Tirar listra de menu do ambiente logado
-						Colocar hover em TRs de tabela (destacar linha que está em cima)
-
 VERSÃO 2.0.1.0 (Little change) - 7?
 ================================================================================================
+						Colocar hover em TRs de tabela (destacar linha que está em cima)
 						Trocar Extensions Sum para Total
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Security desativa os anteriores
 						Retornar mensagens de erro já traduzidas (do core)
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
-						Trocar seleção de Out / In / Transfer por desenhos
+						Mostrar naturezas em botões, não dropdowns
 
 VERSÃO 2.0.0.1 (System) - 11?
 ================================================================================================
@@ -85,7 +79,6 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Desativar user a cada 5 senhas erradas
 						Remover GetOrCreate
 						Colocar botão de pânico (enviar dados de post para o desenv)
-						Mostrar naturezas em botões, não dropdowns
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
 						Criar teste unitário para deletar todas as movimentações de um agendamento
@@ -94,13 +87,14 @@ VERSÃO 2.0.0.1 (System) - 11?
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 2.0.0.0 (All new) - 22?
+VERSÃO 2.0.0.0 (All new) - 23?
 ================================================================================================
+						Criar tela de configuração para usuário (Web)
 						Colocar menu ao clicar e segurar em Account
 						Colocar modelo de movimentação (Mobile)
 						Criar Template (Move)
 						Criar tela de configuração para usuário (Mobile)
-						Possibilitar gravar movimentação (Mobile)
+2014-01-25				Possibilitar gravar movimentação (Mobile)
 2014-01-25	2014-01-25	Criar resumo das contas (Mobile)
 2014-01-25	2014-01-25	Colocar scroll e loading
 2014-01-23	2014-01-23	Tornar chamada ao site assíncrona
