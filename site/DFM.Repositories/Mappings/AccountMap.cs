@@ -17,14 +17,13 @@ namespace DFM.Repositories.Mappings
                 .Length(MaximumLength.AccountUrl)
                 .UniqueKey("Account_UrlUser");
 
-            mapping.Map(a => a.EndDate)
-                .Nullable();
+            mapping.Map(a => a.EndDate).Nullable();
 
-            mapping.Map(a => a.RedLimit)
-                .Nullable();
+            mapping.Map(a => a.RedLimitCents).Nullable();
+            mapping.Map(a => a.YellowLimitCents).Nullable();
 
-            mapping.Map(a => a.YellowLimit)
-                .Nullable();
+            mapping.IgnoreProperty(a => a.RedLimit);
+            mapping.IgnoreProperty(a => a.YellowLimit);
 
             mapping.HasMany(a => a.YearList)
                 .Cascade.Delete();
