@@ -28,12 +28,18 @@ namespace DFM.Entities.Extensions
 
         public static IList<Category> VisibleCategoryList(this User user)
         {
-            return user.CategoryList.Where(c => c.Active).ToList();
+            return user.CategoryList
+                .Where(c => c.Active)
+                .OrderBy(c => c.Name)
+                .ToList();
         }
 
         public static IList<Account> VisibleAccountList(this User user)
         {
-            return user.AccountList.Where(c => c.IsOpen()).ToList();
+            return user.AccountList
+                .Where(c => c.IsOpen())
+                .OrderBy(a => a.Name)
+                .ToList();
         }
 
     }
