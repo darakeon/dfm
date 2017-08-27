@@ -1,11 +1,12 @@
 ﻿@model DFM.MVC.Models.OpsCodeModel
+@using DFM.Email;
 
 @{
-    ViewBag.Title = "Ops!";
+    ViewBag.Title = MultiLanguage.Dictionary["Ops"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.EmailSent == DFM.Email.Error.Status.Sent)
+@if (Model.EmailSent == Error.Status.Sent)
 {
     @MultiLanguage.Dictionary["InternalMessageSent"]
 }

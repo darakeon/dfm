@@ -11,12 +11,14 @@ namespace DFM.MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new OpsModel();
+
+            return View(model);
         }
 
         public ActionResult Code(Int32 id)
         {
-            if (!id.IsIn(400, 500))
+            if (!id.IsIn(404, 500))
                 return RedirectToAction("Index");
 
 
@@ -32,7 +34,9 @@ namespace DFM.MVC.Controllers
 
         public ActionResult Error(ExceptionPossibilities id)
         {
-            return View(id);
+            var model = new OpsModel(id);
+
+            return View(model);
         }
 
 

@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ops>
   <en-US>
+    <Ops text="Ops!" />
+    
     <Unknown text="Ops..." />
     <UnknownMessage text="Please, contact us." />
     
-    <NotFound text="Not found" />
+    <NotFound text="Page not found" />
     <NotFoundMessage text="Sorry, page not found." />
     
     <Internal text="Ops!" />
@@ -13,6 +15,8 @@
     <CommunicationError text="An internal error ocurred. Please, contact us." />
   </en-US>
   <pt-BR>
+    <Ops text="Ops!" />
+
     <Unknown text="Ops..." />
     <UnknownMessage text="Por favor, entre em contato conosco." />
 

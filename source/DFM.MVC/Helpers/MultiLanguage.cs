@@ -62,7 +62,7 @@ namespace DFM.MVC.Helpers
             {
                 var current = RouteInfo.Current;
 
-                if (current == null && current.RouteData == null)
+                if (current == null || current.RouteData == null)
                     return "Ops";
 
                 var controller = current.RouteData.Values["controller"].ToString().ToLower();
