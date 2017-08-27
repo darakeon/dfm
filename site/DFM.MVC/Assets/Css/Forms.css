@@ -19,25 +19,34 @@ select
 	height: 24px;
 }
 
-button {
+button
+{
 	margin-top: 20px;
 	border-radius: 2px 0 10px 0;
-	color: #FFF;
 	font-weight: bold;
 	font-size: 12px;
 	text-transform: uppercase;
 	padding: 1px 5px 2px 5px;
 	cursor: pointer;
 	border: none;
-
-    background: #777;
-	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
-	background: -moz-linear-gradient(top,  #999,  #333);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
+	color: #AA3A3A;
+    background: #ABFFAB;
 }
+    button:hover
+    {
+	    background: #3AAA3A;
+    }
 
-.input-ps {
+
+.input-ps
+{
 	font-size: 80%;
 	color: #999;
 	display: block;
+}
+
+input:disabled
+{
+    background: #F7F7F7;
+    border: 1px #EEE solid;
 }

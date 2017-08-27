@@ -13,19 +13,19 @@
 	border-radius: 0 0 15px 15px;
 	list-style: none;
 	float: left;
-
-    background: #777;
-	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
-	background: -moz-linear-gradient(top,  #999,  #333);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
+    background: #ABFFAB;
 }
+    .menu-topo li:hover
+    {
+	    background: #3AAA3A;
+    }
 
-.menu-topo li a
+
+
+h2
 {
-	color: #FFF;
+    clear: left;
 }
-
-
 
 .menu-baixo
 {
@@ -35,32 +35,21 @@
 	white-space: nowrap;
 }
 
-h2
-{
-    clear: left;
-}
-
-.menu-baixo li
-{
-	vertical-align: top;
-	padding: 2px 10px 5px 10px;
-	margin: 0 10px 20px 0; 
-	border-radius: 0 0 15px 15px;
-	list-style: none;
-	float: left;
-
-    background: #777;
-	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#333));
-	background: -moz-linear-gradient(top,  #999,  #333);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#333333');
-}
-
-.menu-baixo li:first-child
-{
-	border-radius: 10px 0 15px 15px;
-}
-
-.menu-baixo li a
-{
-	color: #FFF;
-}
+    .menu-baixo li
+    {
+	    vertical-align: top;
+	    padding: 2px 10px 5px 10px;
+	    margin: 0 10px 20px 0; 
+	    border-radius: 0 0 15px 15px;
+	    list-style: none;
+	    float: left;
+        background: #ABFFAB;
+    }
+        .menu-baixo li:first-child
+        {
+	        border-radius: 10px 0 15px 15px;
+        }
+        .menu-baixo li:hover
+        {
+	        background: #3AAA3A;
+        }

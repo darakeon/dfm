@@ -1,12 +1,12 @@
-﻿div#TopRightDiv, div#TopRightDiv input, div#TopRightDiv button {
+﻿div#top-right-div, div#top-right-div input, div#top-right-div button {
 	font-size: 80%;
 }
 
-div#TopRightDiv div.HalfScreen {
+div#top-right-div div.half-screen {
 	text-align: right;
 }
 
-div#TopRightDiv button {
+div#top-right-div button {
 	margin-top: 0px;
 }
 
@@ -19,7 +19,7 @@ div#TokenReceived a {
 }
 
 hr.Text {
-    background-color: #990;
+    background-color: #AA3A3A;
     border: none;
     height: 1px;
     width: 25%;

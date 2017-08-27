@@ -42,16 +42,16 @@ function ActiveDatePicker() {
 
 function SetNewCategoryCaller() {
     $('#newCategoryCaller').click(function () {
-        if ($('#TopRightDiv').html() == "") {
+        if ($('#top-right-div').html() == "") {
 
             $("#hiddenNewCategory ." + inputErrorClass)
                 .removeClass(inputErrorClass);
 
             var html = $("#hiddenNewCategory").html();
-            $('#TopRightDiv').html(html);
+            $('#top-right-div').html(html);
 
         } else {
-            $('#TopRightDiv').html("");
+            $('#top-right-div').html("");
         }
 
         return false;
@@ -70,7 +70,7 @@ function InsertCategoryOnDropDown(data) {
         $("#CategoryName").append(op);
 
         $('#newCategory form')[0].reset();
-        $('#TopRightDiv').html("");
+        $('#top-right-div').html("");
     }
 }
 

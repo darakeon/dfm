@@ -3,12 +3,12 @@
 .field-validation-error, .validation-summary-errors
 {
     font-weight: bold;
-    color: #995;
+    color: #AA3A3A;
 }
 
 tr:nth-child(2n+1) .field-validation-error
 {
-    color: #550;
+    color: #AA3A3A;
 }
 
 .field-validation-error
@@ -24,8 +24,8 @@ tr:nth-child(2n+1) .field-validation-error
 
 .input-validation-error
 {
-    border: 3px ridge;
-    background-color: #FFD;
+    background-color: #FFEEEE;
+    border-width: 1px;
 }
 
 .validation-summary-errors

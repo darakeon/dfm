@@ -9,25 +9,20 @@ table.List {
 	margin: auto;
 }
 
-th, td {
-	padding: 0px 7px;
-}
+    th, td {
+	    padding: 0px 7px;
+    }
 
-tr:nth-child(2n) {
-	background: #FFF;
-}
+    tr:nth-child(2n+1) td {
+	    background: #FFEEEE;
+    }
 
-tr:nth-child(2n+1) {
-	background: #CCC;
-}
-
-th {
-	background: #111;
-	color: #FFF;
-	margin: 0;
-	border-radius: 7px 7px 0 0;
-}
-
+    th {
+	    background: #3AAA3A;
+	    color: #FFF;
+	    margin: 0;
+	    border-radius: 7px 7px 0 0;
+    }
 
 
 

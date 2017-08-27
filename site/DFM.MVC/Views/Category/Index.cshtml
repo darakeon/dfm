@@ -32,16 +32,16 @@ else
             <tr>
                 <td>@category.Name </td>
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     @if (category.Active)
                     {
-                        <a href="@disableUrl"><img src="/Assets/Image/close.gif" alt="@disableLabel" title="@disableLabel" /></a>
+                        <a href="@disableUrl"><img src="/Assets/image/close.gif" alt="@disableLabel" title="@disableLabel" /></a>
                     }
                     else
                     {
-                        <a href="@enableUrl"><img src="/Assets/Image/open.gif" alt="@enableLabel" title="@enableLabel" /></a>
+                        <a href="@enableUrl"><img src="/Assets/image/open.gif" alt="@enableLabel" title="@enableLabel" /></a>
                     }
                 </td>
             </tr>

@@ -21,10 +21,10 @@
         String currentYearReport = String.Format(MultiLanguage.Dictionary["YearMoves"], Model.CurrentYear);
 
         <ul class="menu-baixo">
-            <li>@Html.ActionLink(currentMonthReport, "ShowMoves", "Report")</li>
-            <li>@Html.ActionLink(currentYearReport, "SummarizeMonths", "Report")</li>
             <li>@Html.ActionLink(MultiLanguage.Dictionary["Create", "Move"], "Create", "Move")</li>
             <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule", "Moves"], "Create", "Schedule")</li>
+            <li>@Html.ActionLink(currentMonthReport, "ShowMoves", "Report")</li>
+            <li>@Html.ActionLink(currentYearReport, "SummarizeMonths", "Report")</li>
         </ul>
     }
 }

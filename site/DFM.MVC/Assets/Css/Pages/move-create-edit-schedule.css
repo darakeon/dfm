@@ -63,7 +63,7 @@ input.amount {
 
 .divRowForm hr
 {
-    background-color: #990;
+    background-color: #AA3A3A;
     height: 1px;
     width: 95%;
     border: none;
@@ -74,7 +74,8 @@ input.amount {
 }
 
 #details .input-ps {
-	color: #CCC;
+	color: #FFF;
 	float: right;
+	font-weight: bold;
 	margin-top: 2px;
 }

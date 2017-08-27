@@ -1,0 +1,13 @@
+div.half-screen {
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.half-screen label {
+	display: block;
+}
+
+#Remember label, #top-right-div label, .half-screen .radio label {
+	display: inline;
+}

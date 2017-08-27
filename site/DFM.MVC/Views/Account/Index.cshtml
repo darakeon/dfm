@@ -63,23 +63,23 @@ else
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>
 
                 <!--
-                <td class="image"><a href="@createUrl"><img src="/Assets/Image/create_move.gif" alt="@createLabel" title="@createLabel" /></a></td>
-                <td class="image"><a href="@scheduleUrl"><img src="/Assets/Image/schedule_move.gif" alt="@scheduleLabel" title="@scheduleLabel" /></a></td>
+                <td class="image"><a href="@createUrl"><img src="/Assets/image/create_move.gif" alt="@createLabel" title="@createLabel" /></a></td>
+                <td class="image"><a href="@scheduleUrl"><img src="/Assets/image/schedule_move.gif" alt="@scheduleLabel" title="@scheduleLabel" /></a></td>
                 -->
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/Image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+                <td class="image"><a href="@editUrl"><img src="/Assets/image/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
 
                 <td class="image">
                     @if (account.HasMoves())
                     {
                         <a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
-                            <img src="/Assets/Image/close.gif" alt="@closeLabel" title="@closeLabel" />
+                            <img src="/Assets/image/close.gif" alt="@closeLabel" title="@closeLabel" />
                         </a>
                     }
                     else
                     {
                         <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
-                            <img src="/Assets/Image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
+                            <img src="/Assets/image/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
                         </a>
                     }
                 </td>
