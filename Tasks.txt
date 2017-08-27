@@ -97,6 +97,7 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+						Colocar Captcha no registro de usuário
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
@@ -113,15 +114,15 @@ VERSÃO 2.0.1.0 (Little Change)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Travar schedule de conta fechada / deletada
 						Arrumar testes
-						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
+						Colocar frase de limpar schedules no final de testes de create schedule
 						Trocar Extensions Sum para Total
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Colocar valores em inteiro (double > int) no banco
 						Arrumar agendamento detalhado
 						Refactor em controllers e areas, inverter plural
 						Remover GetOrCreate
-						Parar request no Destroy da Activity
+2014-06-18	2014-06-19	Parar request no Destroy da Activity
 2014-06-11	2014-06-17	Atualizar projeto: MVC 5
 2014-06-09	2014-06-09	Atualizar projeto: .NET 4.5
 2014-06-09	2014-06-09	Atualizar projeto: VS 2013

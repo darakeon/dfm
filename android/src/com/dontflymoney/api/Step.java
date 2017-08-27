@@ -5,5 +5,6 @@ public enum Step
 	NoSteps,
 	Populate,
 	Recording,
+	Logout,
 
 }

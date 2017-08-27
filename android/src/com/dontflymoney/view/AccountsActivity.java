@@ -60,7 +60,7 @@ public class AccountsActivity extends SmartActivity
 	
 	private void getAccounts()
 	{
-		Request request = new Request(this, "Accounts/List");
+		request = new Request(this, "Accounts/List");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Post();
 	}

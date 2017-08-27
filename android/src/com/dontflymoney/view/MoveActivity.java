@@ -130,7 +130,7 @@ public class MoveActivity extends SmartActivity {
 
 	private void populateScreen()
 	{
-		Request request = new Request(this, "Moves/Create");
+		request = new Request(this, "Moves/Create");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Get(Step.Populate);
 
@@ -416,9 +416,11 @@ public class MoveActivity extends SmartActivity {
 	
 	public void save(View view)
 	{
-		Request request = new Request(this, "Moves/Create");
+		request = new Request(this, "Moves/Create");
+		
 		request.AddParameter("ticket", Authentication.Get());
 		move.setParameters(request);
+		
 		request.Post(Step.Recording);
 	}
 	

@@ -47,14 +47,14 @@ public class SettingsActivity extends SmartActivity
 
 	private void getCurrentSettings()
 	{
-		Request request = new Request(this, "Users/GetConfig");
+		request = new Request(this, "Users/GetConfig");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Get(Step.Populate);
 	}
 	
 	public void saveSettings(View view)
 	{
-		Request request = new Request(this, "Users/SaveConfig");
+		request = new Request(this, "Users/SaveConfig");
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("UseCategories", useCategoriesField.isChecked());
 		request.Post(Step.Recording);

@@ -147,7 +147,7 @@ public class ExtractActivity extends SmartActivity
 	{
 		main.removeAllViews();
 		
-		Request request = new Request(this, "Moves/Extract");
+		request = new Request(this, "Moves/Extract");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accounturl", accounturl);

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.language.Language;
@@ -27,6 +28,8 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
 	protected License license;
+	
+	protected Request request;
 	
 	protected static boolean succeded = false;
 	
@@ -76,7 +79,12 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected void onDestroy()
 	{
 		super.onDestroy();
-		license.Destroy();
+		
+		if (license != null)
+			license.Destroy();
+		
+		if (request != null)
+			request.Cancel();
 	}
 
 	/**
@@ -134,8 +142,8 @@ public abstract class SmartActivity extends FixOrientationActivity
 	
 	public void HandlePostResult(JSONObject result, Step step)
 	{
-		succeded = true;
 		resultHandler.HandlePostResult(result, step);
+		succeded = true;
 	}
 
 	public void HandlePostError(String error, Step step)

@@ -3,6 +3,7 @@ package com.dontflymoney.baseactivity;
 import android.content.Intent;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.view.LoginActivity;
 import com.dontflymoney.view.SettingsActivity;
@@ -30,11 +31,13 @@ public class Navigation
 	{
 		Request request = new Request(activity, "Users/Logout");
 		request.AddParameter("ticket", authentication.Get());
-		request.Post();
+		boolean tryResult = request.Post(Step.Logout);
 
-		authentication.Clear();
-
-		redirect(LoginActivity.class);
+		if (tryResult)
+		{
+			authentication.Clear();
+			redirect(LoginActivity.class);
+		}
 	}
 	
 	public void goToSettings()

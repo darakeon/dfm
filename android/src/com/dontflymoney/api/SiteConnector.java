@@ -49,7 +49,7 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 					post != null
 					? client.execute(post)
 					: client.execute(get);
-
+					
 			if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
 	        {
 	            error = response.getStatusLine().getReasonPhrase();
@@ -104,6 +104,11 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 
    	protected void onPostExecute(String json)
    	{
-   		request.HandleResponse(json, error, step);
+   		if (request != null)
+   		{
+   			request.HandleResponse(json, error, step);
+   		}
    	}
+
+
 }

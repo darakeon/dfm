@@ -30,6 +30,7 @@ public class Request
 
 	private ProgressDialog progress;
 	private Response response; 
+	private SiteConnector connector;
 	
 	
 	public Request(SmartActivity activity, String url)
@@ -60,13 +61,13 @@ public class Request
 		Post(Step.NoSteps);
 	}
 	
-	public void Post(Step step)
+	public boolean Post(Step step)
 	{
 		if (isOffline())
 		{
 			String error = activity.getString(R.string.u_r_offline);
 			activity.HandlePostError(error, step);
-			return;
+			return false;
 		}
 		
 		String completeUrl = getUrl();
@@ -81,14 +82,16 @@ public class Request
 	    {
 	    	String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
 			activity.HandlePostError(error, step);
-			return;
+			return false;
 		}
 
-		SiteConnector connector = new SiteConnector(post, this, step);
+		connector = new SiteConnector(post, this, step);
 		
 		connector.execute();
 
 		progress = activity.getMessage().showWaitDialog();
+		
+		return true;
 	}
 	
 	
@@ -110,7 +113,7 @@ public class Request
 		String completeUrl = getUrl();
 		HttpGet get = new HttpGet(completeUrl);
 
-		SiteConnector connector = new SiteConnector(get, this, step);
+		connector = new SiteConnector(get, this, step);
 		
 		connector.execute();
 
@@ -173,6 +176,7 @@ public class Request
 		return nameValuePairs;
 	}	
 	
+
 	
 	void HandleResponse(String json, String errorMessage, Step step)
 	{
@@ -206,14 +210,13 @@ public class Request
     	
 		closeProgressBar();
 		
+		if (step == Step.Logout)
+			return;
+		
 		if (response.IsSuccess())
-		{
 	    	activity.HandlePostResult(response.GetResult(), step);
-		}
 		else
-		{
 	    	activity.HandlePostError(response.GetError(), step);
-		}
 	}	
 	
 	
@@ -227,6 +230,14 @@ public class Request
 			progress.dismiss();
 			progress = null;
 	    } catch (IllegalArgumentException e) { }
+	}
+	
+	
+	
+	public void Cancel()
+	{
+		progress = null;
+		connector.cancel(true);
 	}
 	
 	

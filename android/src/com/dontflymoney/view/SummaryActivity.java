@@ -137,7 +137,7 @@ public class SummaryActivity extends SmartActivity
 		
 		main.removeAllViews();
 		
-		Request request = new Request(this, "Moves/Summary");
+		request = new Request(this, "Moves/Summary");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accounturl", accounturl);
