@@ -33,7 +33,7 @@ namespace DFM.MVC.Areas.API.Models
             var account = Admin.GetAccountByUrl(accountUrl);
 
             Name = account.Name;
-            Total = account.Sum();
+            Total = account.Total();
         }
 
         public IList<SimpleMonthJson> MonthList { get; private set; }

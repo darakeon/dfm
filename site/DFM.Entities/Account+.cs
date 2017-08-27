@@ -31,9 +31,9 @@ namespace DFM.Entities
 			}
 		}
 		
-		public virtual Double Sum()
+		public virtual Double Total()
         {
-            return YearList.Sum(m => m.Sum());
+            return YearList.Sum(m => m.Total());
         }
 
         public virtual Boolean IsOpen()
@@ -59,7 +59,7 @@ namespace DFM.Entities
         {
             var hasRed = RedLimit != null;
             var hasYellow = YellowLimit != null;
-            var sum = Sum();
+            var sum = Total();
 
             if (hasRed && sum < RedLimit)
                 return AccountSign.Red;

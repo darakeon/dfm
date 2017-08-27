@@ -105,7 +105,7 @@ F						Disponibilizar Task list no site
 F						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
 R						Procurar TO-DOs no projeto
 R						Refactor em controllers e areas, inverter plural
-R						Trocar Extensions Sum para Total
+2014-12-07	2014-12-07	Trocar Extensions Sum para Total
 2014-12-06	2014-12-07	Em Move, colocar Value como campo gravado e usar Total para exibição
 2014-12-01	2014-12-01	Colocar valores em inteiro (double > int) no banco
 2014-11-29	2014-11-29	Criar teste unitário para deletar todas as movimentações de um agendamento

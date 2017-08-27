@@ -11,7 +11,7 @@ namespace DFM.MVC.Areas.API.Jsons
         {
             Number = month.Time;
             Name = MultiLanguage.GetMonthName(month.Time);
-            Total = month.Sum();
+            Total = month.Total();
         }
 
         public SimpleMonthJson(Int16 month)

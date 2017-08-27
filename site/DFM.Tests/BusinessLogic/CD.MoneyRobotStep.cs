@@ -77,7 +77,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
 
-            AccountOutTotal = AccountOut.Sum();
+            AccountOutTotal = AccountOut.Total();
             YearCategoryAccountOutTotal = (year[CategoryName] ?? new Summary()).Out;
             MonthCategoryAccountOutTotal = (month[CategoryName] ?? new Summary()).Out;
         }
@@ -132,7 +132,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            AccountInTotal = AccountIn.Sum();
+            AccountInTotal = AccountIn.Total();
             YearCategoryAccountInTotal = (year[CategoryName] ?? new Summary()).In;
             MonthCategoryAccountInTotal = (month[CategoryName] ?? new Summary()).In;
         }
@@ -188,7 +188,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            AccountInTotal = AccountIn.Sum();
+            AccountInTotal = AccountIn.Total();
             YearCategoryAccountInTotal = (year[CategoryName] ?? new Summary()).In;
             MonthCategoryAccountInTotal = (month[CategoryName] ?? new Summary()).In;
         }
@@ -200,7 +200,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            Assert.AreEqual(AccountOutTotal, AccountOut.Sum());
+            Assert.AreEqual(AccountOutTotal, AccountOut.Total());
         }
 
         [Then(@"the month-category-accountOut value will not change")]
@@ -234,7 +234,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            Assert.AreEqual(AccountInTotal, AccountIn.Sum());
+            Assert.AreEqual(AccountInTotal, AccountIn.Total());
         }
 
         [Then(@"the month-category-accountIn value will not change")]
@@ -268,7 +268,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-            var currentTotal = AccountOut.Sum();
+            var currentTotal = AccountOut.Total();
 
             Assert.AreEqual(AccountOutTotal + change, currentTotal);
         }
@@ -304,7 +304,7 @@ namespace DFM.Tests.BusinessLogic
         {
             AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-            var currentTotal = AccountIn.Sum();
+            var currentTotal = AccountIn.Total();
 
             Assert.AreEqual(AccountInTotal + change, currentTotal);
         }

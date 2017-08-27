@@ -249,7 +249,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var year = AccountOut[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 
-                newAccountOutTotal = AccountOut.Sum();
+                newAccountOutTotal = AccountOut.Total();
                 newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
                 newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
             }
@@ -259,7 +259,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var year = AccountIn[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 
-                newAccountInTotal = AccountIn.Sum();
+                newAccountInTotal = AccountIn.Total();
                 newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
                 newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
             }
@@ -282,7 +282,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var year = AccountOut[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
 
-            newAccountOutTotal = AccountOut.Sum();
+            newAccountOutTotal = AccountOut.Total();
             newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
             newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
         }
@@ -296,7 +296,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var year = AccountIn[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
 
-            newAccountInTotal = AccountIn.Sum();
+            newAccountInTotal = AccountIn.Total();
             newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
             newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
         }
@@ -314,7 +314,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var year = AccountIn[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
 
-            newAccountInTotal = AccountIn.Sum();
+            newAccountInTotal = AccountIn.Total();
             newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
             newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
         }
@@ -332,7 +332,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var year = AccountOut[Move.Date.Year, true];
             var month = year[Move.Date.Month, true];
 
-            newAccountOutTotal = AccountOut.Sum();
+            newAccountOutTotal = AccountOut.Total();
             newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
             newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
         }
@@ -379,7 +379,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             var account = GetOrCreateAccount(AccountOutUrl);
 
-            var currentTotal = account.Sum();
+            var currentTotal = account.Total();
 
             Assert.AreEqual(AccountOutTotal + value, currentTotal);
         }
@@ -389,7 +389,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             var account = GetOrCreateAccount(AccountOut.Name);
 
-            var currentTotal = account.Sum();
+            var currentTotal = account.Total();
 
             Assert.AreEqual(newAccountOutTotal + value, currentTotal);
         }
@@ -453,7 +453,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             var account = GetOrCreateAccount(AccountInUrl);
 
-            var currentTotal = account.Sum();
+            var currentTotal = account.Total();
 
             Assert.AreEqual(AccountInTotal + value, currentTotal);
         }
@@ -463,7 +463,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             var account = GetOrCreateAccount(AccountIn.Name);
 
-            var currentTotal = account.Sum();
+            var currentTotal = account.Total();
 
             Assert.AreEqual(newAccountInTotal + value, currentTotal);
         }
@@ -531,7 +531,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 [(Int16)oldDate.Year]
                 [(Int16)oldDate.Month];
 
-            Assert.AreEqual(MonthAccountOutTotal, month.Sum());
+            Assert.AreEqual(MonthAccountOutTotal, month.Total());
         }
 
         [Then(@"the year-accountOut value will not change")]
@@ -542,7 +542,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var year = account
                 [(Int16)oldDate.Year];
 
-            Assert.AreEqual(YearAccountOutTotal, year.Sum());
+            Assert.AreEqual(YearAccountOutTotal, year.Total());
         }
         #endregion
 
@@ -834,9 +834,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var year = AccountOut[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 
-                AccountOutTotal = AccountOut.Sum();
-                YearAccountOutTotal = year.Sum();
-                MonthAccountOutTotal = month.Sum();
+                AccountOutTotal = AccountOut.Total();
+                YearAccountOutTotal = year.Total();
+                MonthAccountOutTotal = month.Total();
                 YearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
                 MonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
             }
@@ -848,9 +848,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var year = AccountIn[Move.Date.Year, true];
                 var month = year[Move.Date.Month, true];
 
-                AccountInTotal = AccountIn.Sum();
-                YearAccountInTotal = year.Sum();
-                MonthAccountInTotal = month.Sum();
+                AccountInTotal = AccountIn.Total();
+                YearAccountInTotal = year.Total();
+                MonthAccountInTotal = month.Total();
                 YearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
                 MonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
             }

@@ -22,7 +22,7 @@ else
 
         @foreach (var account in Model.AccountList)
         {
-            var movesSum = account.Sum();
+            var movesSum = account.Total();
 
             var negative = movesSum.IsNegative();
             var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);

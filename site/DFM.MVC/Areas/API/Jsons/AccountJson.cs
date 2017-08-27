@@ -16,7 +16,7 @@ namespace DFM.MVC.Areas.API.Jsons
         {
             Name = account.Name;
             Url = account.Url;
-            Total = account.Sum();
+            Total = account.Total();
             RedLimit = account.RedLimit;
             YellowLimit = account.YellowLimit;
         }

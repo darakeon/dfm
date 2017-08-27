@@ -1,7 +1,7 @@
 ﻿@model BaseAccountsModel
 
 @{
-    var value = Model.Account.Sum();
+    var value = Model.Account.Total();
     var negative = value.IsNegative();
     var signClass = negative ? "out" : "in";
 

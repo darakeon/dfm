@@ -183,7 +183,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 
-            accountTotal = Account.Sum();
+            accountTotal = Account.Total();
         }
         
         [When(@"make this changes to the account")]
@@ -250,7 +250,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         [Then(@"the account value will not change")]
         public void TheAccountValueWillNotChange()
         {
-            Assert.AreEqual(accountTotal, Account.Sum());
+            Assert.AreEqual(accountTotal, Account.Total());
         }
         #endregion
 

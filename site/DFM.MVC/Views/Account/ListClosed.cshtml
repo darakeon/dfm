@@ -29,7 +29,7 @@ else
             var monthReportId = endYear * 100 + endMonth;
 
             
-            var movesSum = account.Sum();
+            var movesSum = account.Total();
             var negative = movesSum.IsNegative();
             var value = (negative ? -movesSum : movesSum).ToMoney(Model.Language);
 
