@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DFM.Entities;
 using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Extensions;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -10,30 +9,16 @@ namespace DFM.MVC.Areas.Accounts.Models
     {
         public ReportShowMovesModel(Int32? id)
         {
-            var currentMonth = (Int16)Today.Month;
-
-            var dateMonth = id.HasValue
-                ? (Int16)(id.Value % 100)
-                : currentMonth;
-
-            dateMonth = dateMonth.ForceBetween(1, 12);
-
-
-            var currentYear = (Int16)Today.Year;
-
-            var dateYear = id.HasValue
-                ? (Int16)(id.Value / 100)
-                : currentYear;
-
-            dateYear = dateYear.ForceBetween(1900, currentYear);
+            var dateMonth = DateFromInt.GetDateMonth(id, Today);
+            var dateYear = DateFromInt.GetDateYear(id, Today);
 
             MoveList = Report.GetMonthReport(AccountUrl, dateMonth, dateYear);
             
             Month = dateMonth;
             Year = dateYear;
-
         }
 
+        
 
 
         public IList<Move> MoveList { get; set; }

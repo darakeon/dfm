@@ -6,9 +6,9 @@ namespace DFM.MVC.Areas.API.Controllers
 {
     public class MovesController : BaseJsonController
     {
-        public ActionResult List(String accounturl)
+        public ActionResult List(String accounturl, Int32? id)
         {
-            var model = new MovesListModel("new", 10, 2013);
+            var model = new MovesListModel(accounturl, id);
 
             return JsonGet(model);
         }

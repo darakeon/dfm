@@ -31,8 +31,8 @@ namespace DFM.MVC.Areas.API.Jsons
             Nature = move.Nature;
 
             Category = move.Category.Name;
-            AccountIn = move.Nature != MoveNature.Out ? move.AccIn().Name : null;
-            AccountOut = move.Nature != MoveNature.In ? move.AccOut().Name : null;
+            AccountIn = move.Nature != MoveNature.Out ? move.AccIn().Url : null;
+            AccountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
 
             Total = move.Value();
 

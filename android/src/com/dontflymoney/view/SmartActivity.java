@@ -1,9 +1,13 @@
 package com.dontflymoney.view;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -69,12 +73,6 @@ public class SmartActivity extends Activity
 	}
 
 	
-	@SuppressWarnings("unchecked")
-	private <T extends View> T getField(int id)
-	{
-		return (T)activity.findViewById(id);
-	}
-	
 	protected String getValue(int id)
 	{
 		EditText field = getField(id);
@@ -89,6 +87,49 @@ public class SmartActivity extends Activity
 		field.setText(text);
 	}
 
+	@SuppressWarnings("unchecked")
+	private <T extends View> T getField(int id)
+	{
+		return (T)activity.findViewById(id);
+	}
+
+	protected TextView createText(String text, int gravity, int color)
+	{
+		TextView field = createText(text, gravity);
+		
+		field.setTextColor(color);
+		
+		return field;
+	}
+	
+	protected TextView createText(String text, int gravity)
+	{
+		TextView field = new TextView(getApplicationContext());
+		
+		field.setText(text);
+		field.setGravity(gravity);
+		//TODO: put this on config
+		field.setTextSize(17);
+		field.setTextColor(Color.BLACK);
+		
+		return field;
+	}	
+	
+	protected TextView createHidden(String text)
+	{
+		TextView field = new TextView(getApplicationContext());
+		
+		field.setText(text);
+		field.setTextSize(0);
+		
+		return field;
+	}
+	
+	protected void alertError(Object message)
+	{
+		alertError(message.toString());
+	}
+	
 	protected void alertError(String message)
 	{
 		View view = (View)activity.getWindow().getDecorView().findViewById(android.R.id.content);
@@ -107,7 +148,21 @@ public class SmartActivity extends Activity
 	
 	protected void redirect(Class<?> activityClass)
 	{
+		redirect(activityClass, new HashMap<String, Object>());
+	}
+	
+	protected void redirect(Class<?> activityClass, HashMap<String, Object> parameters)
+	{
 		Intent intent = new Intent(this, activityClass);
+		
+		for(Map.Entry<String, Object> parameter : parameters.entrySet())
+	    {
+	    	String key = parameter.getKey();
+	    	String value = parameter.getValue().toString();
+	    	
+			intent.putExtra(key, value);
+	    }
+		
 		startActivity(intent);
 	}
 	

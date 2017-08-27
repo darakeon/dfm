@@ -1,11 +1,13 @@
 package com.dontflymoney.view;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -39,9 +41,7 @@ public class AccountsActivity extends SmartActivity
 		main = (TableLayout)findViewById(R.id.main_table);
 		
 		Request request = new Request(this, "Accounts/List");
-		
 		request.AddParameter("ticket", Authentication.Get());
-		
 		request.Post();
 		
 		if (request.IsSuccess())
@@ -63,7 +63,8 @@ public class AccountsActivity extends SmartActivity
 		}
 	}
 
-	private void handleResult(JSONObject result) throws JSONException
+	private void handleResult(JSONObject result)
+		throws JSONException
 	{
 		if (result.has("error"))
 		{
@@ -81,40 +82,44 @@ public class AccountsActivity extends SmartActivity
 			JSONObject data = result.getJSONObject("data");
 			JSONArray accountList = data.getJSONArray("AccountList"); 
 			
-			for(int a = 0; a < accountList.length(); a++)
+			if (accountList.length() == 0)
 			{
-				getAccount(accountList.getJSONObject(a));
+				View empty = createText("There is no accounts", Gravity.CENTER, Color.BLACK);
+				main.addView(empty);
+			}
+			else
+			{
+				for(int a = 0; a < accountList.length(); a++)
+				{
+					int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
+					
+					getAccount(accountList.getJSONObject(a), color);
+				}
 			}
 
 		}
 	}
 
-	private void getAccount(JSONObject account)
-			throws JSONException
+	private void getAccount(JSONObject account, int color)
+		throws JSONException
 	{
 		TableRow row = new TableRow(getApplicationContext());
+		row.setBackgroundColor(color);
 		
 		String name = account.getString("Name");
 		row.addView(createText(name, Gravity.LEFT));
 
-		double sum = account.getDouble("Total");
-		String sumStr = new DecimalFormat("#,##0.00").format(sum);
-		row.addView(createText(sumStr, Gravity.RIGHT));
+		String url = account.getString("Url");
+		row.addView(createHidden(url));
+
+		double total = account.getDouble("Total");
+		int textColor = total < 0 ? Color.RED : Color.BLUE;
+		String totalStr = new DecimalFormat("#,##0.00").format(total);
+		row.addView(createText(totalStr, Gravity.RIGHT, textColor));
 		
 		setClick(row);
 
 		main.addView(row);
-	}
-
-	private TextView createText(String text, int gravity)
-	{
-		TextView field = new TextView(getApplicationContext());
-		
-		field.setText(text);
-		field.setGravity(gravity);
-		field.setTextSize(17);
-		
-		return field;
 	}	
 	
 	private void setClick(TableRow row)
@@ -126,9 +131,12 @@ public class AccountsActivity extends SmartActivity
 		    public void onClick(View row)
 		    {
 		        TableRow tablerow = (TableRow)row;
-		        TextView name = (TextView) tablerow.getChildAt(0);
+		        TextView url = (TextView) tablerow.getChildAt(1);
 		        
-		        redirect(MovesActivity.class);
+		        HashMap<String, Object> parameters = new HashMap<String, Object>();
+		        parameters.put("accounturl", url.getText());
+		        
+		        redirect(MovesActivity.class, parameters);
 		    }
 		});
 	}

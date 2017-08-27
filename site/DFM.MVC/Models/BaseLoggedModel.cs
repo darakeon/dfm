@@ -1,6 +1,5 @@
 ﻿using System;
 using Ak.MVC.Route;
-using DFM.Entities.Extensions;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
@@ -26,10 +25,6 @@ namespace DFM.MVC.Models
 
         public String ActionName { get; set; }
 
-        public DateTime Today
-        {
-            get { return Current.User.Now().Date; }
-        }
         
 
 

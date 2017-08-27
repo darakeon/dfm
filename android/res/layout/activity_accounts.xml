@@ -10,4 +10,6 @@
     android:stretchColumns="0"
     android:id="@+id/main_table" >
 	
+        
+    
 </TableLayout>

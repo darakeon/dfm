@@ -152,6 +152,7 @@
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
+    <Compile Include="Helpers\DateFromInt.cs" />
     <Compile Include="Helpers\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />

@@ -1,6 +1,8 @@
-﻿using DFM.Authentication;
+﻿using System;
+using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
+using DFM.Entities.Extensions;
 using DFM.Repositories;
 
 namespace DFM.MVC.Models
@@ -23,6 +25,10 @@ namespace DFM.MVC.Models
 
         public static Current Current { get { return getOrCreateAccess().Current; } }
 
+        public DateTime Today
+        {
+            get { return Current.User.Now().Date; }
+        }
 
     }
 }

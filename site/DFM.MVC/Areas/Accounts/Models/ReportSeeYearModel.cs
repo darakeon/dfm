@@ -1,7 +1,6 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Extensions;
 
 namespace DFM.MVC.Areas.Accounts.Models
 {
@@ -9,15 +8,11 @@ namespace DFM.MVC.Areas.Accounts.Models
     {
         public ReportSummarizeMonthsModel(Int16? id)
         {
-            var currentYear = (Int16)Today.Year;
-            
-            var year = id ?? currentYear;
-            
-            year = year.ForceBetween(1900, currentYear);
+            var year = DateFromInt.GetDateYear(id, Today);
 
             Year = Report.GetYearReport(AccountUrl, year);
-
         }
+
 
 
         public Year Year { get; set; }

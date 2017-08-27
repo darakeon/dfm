@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.dontflymoney.api.Request;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Gravity;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 public class MovesActivity extends SmartActivity
 {
 	TableLayout main;
-	public String accounturl;
 	
 	public MovesActivity()
 	{
@@ -37,6 +37,8 @@ public class MovesActivity extends SmartActivity
 	
 	public void getMoves()
 	{
+		String accounturl = getIntent().getStringExtra("accounturl");
+		
 		main = (TableLayout)findViewById(R.id.main_table);
 		
 		Request request = new Request(this, "Moves/List");
@@ -81,44 +83,44 @@ public class MovesActivity extends SmartActivity
 		else
 		{
 			JSONObject data = result.getJSONObject("data");
-			JSONArray moveList = data.getJSONArray("MoveList"); 
+			JSONArray moveList = data.getJSONArray("MoveList");
 			
-			for(int a = 0; a < moveList.length(); a++)
+			if (moveList.length() == 0)
 			{
-				getMove(moveList.getJSONObject(a));
+				View empty = createText("There is no moves for this month", Gravity.CENTER, Color.BLACK);
+				main.addView(empty);
+			}
+			else
+			{
+				for(int a = 0; a < moveList.length(); a++)
+				{
+					int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
+					
+					getMove(moveList.getJSONObject(a), color);
+				}
 			}
 
 		}
 	}
 
-	private void getMove(JSONObject move)
+	private void getMove(JSONObject move, int color)
 			throws JSONException
 	{
-		//TableRow row = new TableRow(getApplicationContext());
 		TableRow row = new TableRow(this);
+		row.setBackgroundColor(color);
 		
 		String description = move.getString("Description");
 		row.addView(createText(description, Gravity.LEFT));
 
-		double sum = move.getDouble("Total");
-		String sumStr = new DecimalFormat("#,##0.00").format(sum);
-		row.addView(createText(sumStr, Gravity.RIGHT));
+		double total = move.getDouble("Total");
+		int textColor = total < 0 ? Color.RED : Color.BLUE;
+		String totalStr = new DecimalFormat("#,##0.00").format(total);
+		row.addView(createText(totalStr, Gravity.RIGHT, textColor));
 		
 		setClick(row);
 
 		main.addView(row);
 	}
-
-	private TextView createText(String text, int gravity)
-	{
-		TextView field = new TextView(getApplicationContext());
-		
-		field.setText(text);
-		field.setGravity(gravity);
-		field.setTextSize(17);
-		
-		return field;
-	}	
 	
 	private void setClick(TableRow row)
 	{
