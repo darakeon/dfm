@@ -15,6 +15,28 @@ public class Message
 	{
 		this.activity = activity;
 	}
+
+	
+	public void alertYesNo(String message, final IYesNoDialogAnswer answer)
+	{
+		alertError(message, R.string.ok_button, true, new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (which){
+			        case DialogInterface.BUTTON_POSITIVE:
+			        	answer.YesAction();
+			            break;
+	
+			        case DialogInterface.BUTTON_NEGATIVE:
+			        	answer.NoAction();
+			            break;
+		        }
+				
+				dialog.cancel();
+			}
+    	});
+	}
+	
 	
 	
 	public void alertError(Object message)

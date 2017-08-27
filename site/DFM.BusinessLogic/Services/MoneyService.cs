@@ -68,7 +68,14 @@ namespace DFM.BusinessLogic.Services
 	    }
 
 
-	    public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
+		public ComposedResult<Boolean, EmailStatus> DeleteMoveByFakeId(Int32 fakeId)
+		{
+			var aux = new Move {FakeID = fakeId};
+
+			return DeleteMove(aux.ID);
+		}
+		
+		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
         {
             ComposedResult<Boolean, EmailStatus> result;
 

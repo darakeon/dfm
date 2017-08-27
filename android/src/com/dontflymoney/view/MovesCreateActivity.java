@@ -25,7 +25,7 @@ import com.dontflymoney.viewhelper.AfterTextWatcher;
 import com.dontflymoney.viewhelper.DetailBox;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
-public class MoveActivity extends SmartActivity {
+public class MovesCreateActivity extends SmartActivity {
 	DatePickerDialog dialog;
 	ScrollView window;
 
@@ -37,8 +37,8 @@ public class MoveActivity extends SmartActivity {
 
 
 	
-	public MoveActivity() {
-		init(R.layout.activity_move, R.menu.move);
+	public MovesCreateActivity() {
+		init(R.layout.activity_moves_create, R.menu.moves_create);
 	}
 
 	@Override

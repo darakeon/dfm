@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -26,9 +27,10 @@ import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
 
-public class ExtractActivity extends SmartActivity
+public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 {
 	static JSONArray moveList;
 	static String name;
@@ -40,6 +42,8 @@ public class ExtractActivity extends SmartActivity
 	DatePickerDialog dialog;
 	private static int month;
 	private static int year;
+	
+	public int moveId;
 
 	
 	public ExtractActivity()
@@ -153,17 +157,31 @@ public class ExtractActivity extends SmartActivity
 		request.AddParameter("accounturl", accounturl);
 		request.AddParameter("id", year * 100 + month + 1);
 		
-		request.Post();
+		request.Post(Step.Populate);
 	}
 	
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
-		moveList = data.getJSONArray("MoveList");
-		name = data.getString("Name");
-		total = data.getDouble("Total");
-		
-		fillMoves();
+		switch (step)
+		{
+			case Populate: {
+				moveList = data.getJSONArray("MoveList");
+				name = data.getString("Name");
+				total = data.getDouble("Total");
+				
+				fillMoves();
+				break;
+			}
+			case Recording: {
+				refresh();
+				break;
+			}
+			default: {
+				message.alertError(R.string.this_is_not_happening);
+				break;
+			}
+		}
 	}
 	
 	private void fillMoves()
@@ -196,7 +214,7 @@ public class ExtractActivity extends SmartActivity
 		
 		String description = move.getString("Description");
 		row.addView(form.createText(description, Gravity.LEFT));
-
+		
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
 		{
 			JSONObject date = move.getJSONObject("Date");
@@ -217,7 +235,9 @@ public class ExtractActivity extends SmartActivity
 		double total = move.getDouble("Total");
 		row.addView(form.createText(total, Gravity.RIGHT));
 		
-		setRowClick(row);
+		int id = move.has("FakeID") ? move.getInt("FakeID") : 0;
+
+		setRowClick(row, description, id);
 
 		main.addView(row);
 	}
@@ -225,9 +245,32 @@ public class ExtractActivity extends SmartActivity
 	
 	
 	
-	private void setRowClick(TableRow row)
+	private void setRowClick(TableRow row, final String moveDescription, final int moveId)
 	{
 		row.setClickable(true);
+		
+		if (moveId != 0)
+		{
+			final ExtractActivity activity = this;
+			
+			row.setOnLongClickListener(new OnLongClickListener(){
+
+				@Override
+				public boolean onLongClick(View v) {
+					
+					String messageText = getString(R.string.sure_to_delete);
+					
+					messageText = String.format(messageText, moveDescription);
+					
+					activity.moveId = moveId; 
+					
+					message.alertYesNo(messageText, activity);
+
+					return false;
+				}
+				
+			});
+		}
 		
 		row.setOnClickListener(new OnClickListener()
 		{
@@ -256,7 +299,7 @@ public class ExtractActivity extends SmartActivity
 	
 	public void goToMove(MenuItem item)
 	{
-		Intent intent = new Intent(this, MoveActivity.class);
+		Intent intent = new Intent(this, MovesCreateActivity.class);
 		
 		intent.putExtra("accounturl", accounturl);
 		intent.putExtra("year", year);
@@ -266,4 +309,21 @@ public class ExtractActivity extends SmartActivity
 	}
 
 
+
+	
+
+	@Override
+	public void YesAction() { 		
+		request = new Request(this, "Moves/Delete");
+		
+		request.AddParameter("ticket", Authentication.Get());
+		request.AddParameter("accounturl", accounturl);
+		request.AddParameter("id", moveId);
+		
+		request.Post(Step.Recording);
+	}
+
+	@Override
+	public void NoAction() { }
+	
 }

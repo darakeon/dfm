@@ -45,15 +45,16 @@
     <string name="title_activity_accounts">Accounts</string>
     <string name="no_accounts">There is no accounts</string>
 
-    <!-- Reports -->
+    <!-- Extract -->
     <string name="title_activity_extract">Extract</string>
     <string name="title_activity_summary">Year summary</string>
     <string name="no_extract">There is no moves for this month</string>
     <string name="no_summary">There is no moves for this year</string>
     <string name="total">%s total</string>
     <string name="change_date">change</string>
+    <string name="sure_to_delete">Do you really want to DELETE Move \'%s\'?"</string>
 
-    <!-- Move -->
+    <!-- Moves Create -->
     <string name="title_activity_move">Move</string>
     <string name="description">description</string>
     <string name="date">date</string>

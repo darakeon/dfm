@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.dontflymoney.api.Site;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
@@ -36,15 +37,20 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
         }
         else
         {
-            activity.runOnUiThread(new Runnable()
-            {
-			    @Override
-		        public void run()
-		        {
-			        activity.EnableScreen();
-		        }
-	        });
+            enableScreen();
         }
+    }
+    
+    private void enableScreen()
+    {
+    	activity.runOnUiThread(new Runnable()
+        {
+		    @Override
+	        public void run()
+	        {
+		        activity.EnableScreen();
+	        }
+        });
     }
     
     public void dontAllow(int reason)
@@ -60,6 +66,10 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
         if (reason == Policy.RETRY)
         {
         	activity.getMessage().alertRetryLicense();
+        }
+        else if (Site.IsLocal())
+        {
+        	enableScreen();
         }
         else
         {

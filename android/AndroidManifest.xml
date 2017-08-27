@@ -49,7 +49,7 @@
             android:label="@string/title_activity_summary" >
         </activity>
         <activity
-            android:name="com.dontflymoney.view.MoveActivity"
+            android:name="com.dontflymoney.view.MovesCreateActivity"
             android:label="@string/title_activity_move" >
         </activity>
         <activity

@@ -52,6 +52,7 @@
    	<string name="no_summary">Não há movimentações neste ano</string>
     <string name="total">Saldo de %s</string>
  	<string name="change_date">mudar</string>
+    <string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
     
     <!-- Move -->
     <string name="title_activity_move">Mover</string>
