@@ -15,12 +15,16 @@ namespace DFM.Generic
                 return new PseudoTicket(ticket, TicketType.Local);
             }
 
-            var routeData = new RouteInfo().RouteData;
+            var routeInfo = new RouteInfo();
+            var routeData = routeInfo.RouteData;
 
-            var routeTicket = routeData.Values["ticket"];
+            if (routeData != null)
+            {
+                var routeTicket = routeData.Values["ticket"];
 
-            if (routeTicket != null)
-                return new PseudoTicket(routeTicket.ToString(), TicketType.Cellphone);
+                if (routeTicket != null)
+                    return new PseudoTicket(routeTicket.ToString(), TicketType.Cellphone);
+            }
 
             if (get() == null)
                 add(Token.New());
