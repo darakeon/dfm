@@ -99,6 +99,7 @@ F						Colocar botão CANCEL em Settings e Move (mobile)
 F						Rever layout empty table
 B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 F						Colocar Captcha no registro de usuário
+R						Trocar YellowLimit e RedLimit para Cents
 
 VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
