@@ -257,21 +257,33 @@ namespace DFM.BusinessLogic.Services
         {
             Parent.Safe.VerifyUser();
 
-            var config = Parent.Current.User.Config;
+            BeginTransaction();
 
-            if (!String.IsNullOrEmpty(language))
-                config.Language = language;
+            try
+            {
+                var config = Parent.Current.User.Config;
 
-            if (!String.IsNullOrEmpty(timeZone))
-                config.TimeZone = timeZone;
+                if (!String.IsNullOrEmpty(language))
+                    config.Language = language;
 
-            if (sendMoveEmail.HasValue)
-                config.SendMoveEmail = sendMoveEmail.Value;
+                if (!String.IsNullOrEmpty(timeZone))
+                    config.TimeZone = timeZone;
 
-            if (useCategories.HasValue)
-                config.UseCategories = useCategories.Value;
+                if (sendMoveEmail.HasValue)
+                    config.SendMoveEmail = sendMoveEmail.Value;
 
-            configRepository.Update(config);
+                if (useCategories.HasValue)
+                    config.UseCategories = useCategories.Value;
+
+                configRepository.Update(config);
+
+                CommitTransaction();
+            }
+            catch
+            {
+                RollbackTransaction();
+                throw;
+            }
         }
         #endregion
 
