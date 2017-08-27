@@ -27,7 +27,7 @@ import android.os.StrictMode.ThreadPolicy;
 public class Request implements Runnable
 {
 	private String domain = "beta.dontflymoney.com";
-	private String site = "http://" + domain + "/Api/";
+	private String site = "http://" + domain + "/Api";
 	
 	private String url;
 	private HashMap<String, Object> parameters;
@@ -86,21 +86,20 @@ public class Request implements Runnable
 		error = null;
 		
 		HttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost(site + url);
+		
+		String completeUrl = getUrl();
+		
+		HttpPost post = new HttpPost(completeUrl);
 
 	    List<NameValuePair> nameValuePairs = getParameters();
 
 	    try
 	    {
-	    	// TODO: make it asynchronous
-	    	ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
-	    	StrictMode.setThreadPolicy(policy);
-
 	    	post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
-			error = "Error on parameters: " + e.getMessage();
+			error = "Error on set parameters: " + e.getMessage();
 			return;
 		}
 
@@ -108,7 +107,13 @@ public class Request implements Runnable
 	    
 		try
 		{
+	    	// TODO: make it asynchronous
+	    	ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
+	    	ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
+	    	
+	    	StrictMode.setThreadPolicy(policy);
 			response = client.execute(post);
+	    	StrictMode.setThreadPolicy(oldPolicy);
 		}
 		catch (ClientProtocolException e)
 		{
@@ -129,9 +134,24 @@ public class Request implements Runnable
         handleResponse(response);
 	}
 
+	private String getUrl()
+	{
+		String completeUrl = site;
+		
+		if (parameters.containsKey("ticket"))
+		{
+			completeUrl += "-" + parameters.get("ticket");
+			parameters.remove("ticket");
+		}
+		
+		return completeUrl + "/" + url;
+	}
+
+
+
 	private List<NameValuePair> getParameters()
 	{
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 	    
 	    for(Map.Entry<String, Object> parameter : parameters.entrySet())
 	    {

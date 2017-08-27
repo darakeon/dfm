@@ -3,9 +3,11 @@ package com.dontflymoney.view;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.dontflymoney.api.Request;
+import com.dontflymoney.auth.Authentication;
 
 
 public class LoginActivity extends SmartActivity
@@ -21,6 +23,7 @@ public class LoginActivity extends SmartActivity
 	{
 		Request request = new Request("User/Index");
 		
+		request.AddParameter("id", machineId);
 		request.AddParameter("email", GetValue(R.id.email));
 		request.AddParameter("password", GetValue(R.id.password));
 		
@@ -32,15 +35,16 @@ public class LoginActivity extends SmartActivity
 			
 			if (result.has("error"))
 			{
-				Object error = result.get("error");
-				
-				AlertError(error.toString());
+				String error = result.get("error").toString();
+				AlertError(error);
 			}
 			else
 			{
-				Object data = result.get("data");
+				String data = result.get("data").toString();
+				Authentication.Set(getApplicationContext(), data);
 				
-				AlertError(data.toString());
+				Intent intent = new Intent(this, AccountsActivity.class);
+				startActivity(intent);
 			}
 		}
 		else
