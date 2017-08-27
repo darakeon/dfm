@@ -38,8 +38,8 @@ public class ExtractActivity extends SmartActivity
 	String accounturl;
 
 	DatePickerDialog dialog;
-	private int month;
-	private int year;
+	private static int month;
+	private static int year;
 
 	
 	public ExtractActivity()
@@ -52,10 +52,11 @@ public class ExtractActivity extends SmartActivity
 	{
 		super.onCreate(savedInstanceState);
 		setCurrentInfo();
-		setDate();
 
 		if (rotated)
 		{
+			setDateFromLast();
+			
 			try
 			{
 				fillMoves();
@@ -67,6 +68,7 @@ public class ExtractActivity extends SmartActivity
 		}
 		else
 		{
+			setDateFromCaller();
 			getExtract();
 		}
 	}
@@ -77,7 +79,12 @@ public class ExtractActivity extends SmartActivity
 		accounturl = getIntent().getStringExtra("accounturl");
 	}
 	
-	private void setDate()
+	private void setDateFromLast()
+	{
+		setDate(month, year);
+	}
+	
+	private void setDateFromCaller()
 	{
 		Calendar today = Calendar.getInstance();
 		int startMonth = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
@@ -88,8 +95,8 @@ public class ExtractActivity extends SmartActivity
 	@SuppressLint("SimpleDateFormat")
 	private void setDate(int month, int year)
 	{
-		this.month = month;
-		this.year = year;
+		ExtractActivity.month = month;
+		ExtractActivity.year = year;
 		
 		Calendar date = Calendar.getInstance();
 	    date.set(Calendar.MONTH, month);

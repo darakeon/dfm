@@ -33,7 +33,7 @@ public class SummaryActivity extends SmartActivity
 	String accounturl;
 
 	DatePickerDialog dialog;
-	private int year;
+	private static int year;
 	
 	public SummaryActivity()
 	{
@@ -45,10 +45,11 @@ public class SummaryActivity extends SmartActivity
 	{
 		super.onCreate(savedInstanceState);
 		setCurrentInfo();
-		setDate();
 		
 		if (rotated)
 		{
+			setDateFromLast();
+
 			try
 			{
 				fillSummary();
@@ -60,6 +61,7 @@ public class SummaryActivity extends SmartActivity
 		}
 		else
 		{
+			setDateFromCaller();
 			getSummary();
 		}
 	}
@@ -70,7 +72,12 @@ public class SummaryActivity extends SmartActivity
 		accounturl = getIntent().getStringExtra("accounturl");
 	}
 	
-	private void setDate()
+	private void setDateFromLast()
+	{
+		setDate(year);
+	}
+	
+	private void setDateFromCaller()
 	{
 		Calendar today = Calendar.getInstance();
 
@@ -80,7 +87,7 @@ public class SummaryActivity extends SmartActivity
 
 	private void setDate(int year)
 	{
-		this.year = year;
+		SummaryActivity.year = year;
 		form.setValue(R.id.reportDate, Integer.toString(year));
 	}
 	

@@ -116,7 +116,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
 						Mudança de orientação na move deve setar funções dos campos
-						Mudança de orientação nos relatórios deve manter filtro de tempo
+2014-05-19	2014-05-19	Mudança de orientação nos relatórios deve manter filtro de tempo
 2014-05-19	2014-05-19	Scroll nos detalhes da move
 2014-05-19	2014-05-19	Corrigir mês e ano do extract mobile nas movimentações
 2014-05-19	2014-05-19	Consertar edit da movimentação transfer
