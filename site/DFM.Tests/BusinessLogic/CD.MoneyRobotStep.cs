@@ -284,7 +284,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month.GetOrCreateSummary(Category).Out;
+            var currentTotal = month[CategoryName].Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
         }
@@ -296,7 +296,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountOut[Date.Year, true];
 
-            var currentTotal = year.GetOrCreateSummary(Category).Out;
+            var currentTotal = year[CategoryName].Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal + change, currentTotal);
         }
@@ -320,7 +320,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month.GetOrCreateSummary(Category).In;
+            var currentTotal = month[CategoryName].In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);
         }
@@ -332,7 +332,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountIn[Date.Year, true];
 
-            var currentTotal = year.GetOrCreateSummary(Category).In;
+            var currentTotal = year[CategoryName].In;
 
             Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
         }

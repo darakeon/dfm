@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.Entities.Bases;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
@@ -58,7 +60,19 @@ namespace DFM.BusinessLogic.Repositories
                     .ToList();
 
             if (!summaryList.Any())
+            {
+                var summariesNHIgnored = getRealSummaryList(summarizable);
+
+                if (summariesNHIgnored.Any())
+                {
+                    summariesNHIgnored.ToList()
+                        .ForEach(summarizable.SummaryList.Add);
+
+                    Fix(summarizable);
+                }
+
                 return;
+            }
 
             removeRepeated(summarizable);
 
@@ -66,6 +80,13 @@ namespace DFM.BusinessLogic.Repositories
             {
                 fix(summary, summarizable);
             }
+        }
+
+        private IList<Summary> getRealSummaryList(ISummarizable summarizable)
+        {
+            return summarizable is Year
+                ? List(s => s.Broken && s.Nature == SummaryNature.Year && s.Year.ID == summarizable.ID)
+                : List(s => s.Broken && s.Nature == SummaryNature.Month && s.Month.ID == summarizable.ID);
         }
 
         private void fix(Summary summary, ISummarizable summarizable)
