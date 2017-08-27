@@ -59,3 +59,36 @@ ALTER TABLE Summary
 
 ALTER TABLE Schedule
 	MODIFY COLUMN Category_ID INTEGER NULL;
+	
+	
+	
+--FIX FKS
+SELECT CONCAT('ALTER TABLE ', table_schema, '.', table_name, '\nDROP FOREIGN KEY ', Constraint_Name, ';')
+    FROM information_schema.key_column_usage
+    WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL
+        AND Constraint_Schema = "dfm";
+
+SELECT table_name, column_name,
+    CONCAT(
+        'ALTER TABLE ', table_name, '\n',
+        '   ADD CONSTRAINT FK_', UPPER(SUBSTRING(table_name, 1, 1)), LOWER(SUBSTRING(table_name, 2, 100)), '_', REPLACE(column_name, '_ID', ''), '\n',
+        '       FOREIGN KEY (', column_name, ')\n',
+        '       REFERENCES ',  
+            CASE REPLACE(column_name, '\_ID', '')
+                WHEN 'In' THEN 
+                    (CASE table_name
+                        WHEN 'Schedule' THEN 'Account'
+                        WHEN 'Move' THEN 'Month'
+                    END)
+                WHEN 'Out' THEN 
+                    (CASE table_name
+                        WHEN 'Schedule' THEN 'Account'
+                        WHEN 'Move' THEN 'Month'
+                    END)
+                ELSE REPLACE(column_name, '_ID', '')
+            END,
+            ' (ID);'
+    )
+    FROM information_schema.columns
+    WHERE Table_Schema = 'dfm'
+        AND column_name LIKE '%\_ID';
