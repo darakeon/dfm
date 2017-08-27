@@ -1,9 +1,0 @@
-﻿@if (Request.Url.Authority.StartsWith("localhost"))
-{
-    <br />
-
-    var nome = Dns.GetHostName();
-    var ip = Dns.GetHostAddresses(nome);
-    
-    @ip[1]
-}

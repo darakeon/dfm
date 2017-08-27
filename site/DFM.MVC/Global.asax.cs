@@ -36,6 +36,8 @@ namespace DFM.MVC
             MultiLanguage.Initialize();
 
             XmlConfigurator.Configure();
+
+            IP.Save();
         }
 
 

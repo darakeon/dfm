@@ -6,7 +6,8 @@ namespace DFM.MVC.Helpers
     {
         public const String Default = "Default";
         public const String Accounts = "Accounts";
-        public const String Json = "Json";
+        public const String Android = "Android";
+        public const String AndroidLogged = "AndroidLogged";
 
     }
 }

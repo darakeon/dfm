@@ -125,22 +125,23 @@
     <Compile Include="Areas\Accounts\Models\ReportSeeMonthModel.cs" />
     <Compile Include="Areas\Accounts\Models\ReportSeeYearModel.cs" />
     <Compile Include="Areas\Accounts\Models\ScheduleCreateModel.cs" />
-    <Compile Include="Areas\Json\Controllers\BaseJsonController.cs" />
-    <Compile Include="Areas\Json\Controllers\UserController.cs" />
-    <Compile Include="Areas\Json\JsonAreaRegistration.cs" />
-    <Compile Include="Areas\Json\Jsons\AccountJson.cs" />
-    <Compile Include="Areas\Json\Jsons\CategoryJson.cs" />
-    <Compile Include="Areas\Json\Jsons\DetailJson.cs" />
-    <Compile Include="Areas\Json\Jsons\MonthJson.cs" />
-    <Compile Include="Areas\Json\Jsons\MoveJson.cs" />
-    <Compile Include="Areas\Json\Jsons\ScheduleJson.cs" />
-    <Compile Include="Areas\Json\Jsons\SecurityJson.cs" />
-    <Compile Include="Areas\Json\Jsons\SummaryJson.cs" />
-    <Compile Include="Areas\Json\Jsons\TicketJson.cs" />
-    <Compile Include="Areas\Json\Jsons\YearJson.cs" />
-    <Compile Include="Areas\Json\Models\AccountListModel.cs" />
-    <Compile Include="Areas\Json\Models\BaseJsonModel.cs" />
-    <Compile Include="Areas\Json\Models\UserLogOnModel.cs" />
+    <Compile Include="Areas\Android\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Android\Controllers\BaseJsonController.cs" />
+    <Compile Include="Areas\Android\Controllers\UserController.cs" />
+    <Compile Include="Areas\Android\AndroidAreaRegistration.cs" />
+    <Compile Include="Areas\Android\Jsons\AccountJson.cs" />
+    <Compile Include="Areas\Android\Jsons\CategoryJson.cs" />
+    <Compile Include="Areas\Android\Jsons\DetailJson.cs" />
+    <Compile Include="Areas\Android\Jsons\MonthJson.cs" />
+    <Compile Include="Areas\Android\Jsons\MoveJson.cs" />
+    <Compile Include="Areas\Android\Jsons\ScheduleJson.cs" />
+    <Compile Include="Areas\Android\Jsons\SecurityJson.cs" />
+    <Compile Include="Areas\Android\Jsons\SummaryJson.cs" />
+    <Compile Include="Areas\Android\Jsons\TicketJson.cs" />
+    <Compile Include="Areas\Android\Jsons\YearJson.cs" />
+    <Compile Include="Areas\Android\Models\AccountListModel.cs" />
+    <Compile Include="Areas\Android\Models\BaseJsonModel.cs" />
+    <Compile Include="Areas\Android\Models\UserLogOnModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Helpers\ErrorManager.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />
+    <Compile Include="Helpers\IP.cs" />
     <Compile Include="Helpers\MultiLanguage.cs" />
     <Compile Include="Helpers\RouteNames.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
@@ -333,19 +335,14 @@
     <Content Include="Areas\Accounts\Views\Move\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Json\Views\Web.config" />
+    <Content Include="Areas\Android\Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Json\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Accounts\Views\Shared\NewCategoryBox.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\IP.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

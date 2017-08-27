@@ -10,22 +10,22 @@ namespace DFM.MVC.Areas.Android
         {
             get
             {
-                return RouteNames.Json;
+                return RouteNames.Android;
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                RouteNames.Json,
+                RouteNames.Android,
                 "Android/{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );
 
             context.MapRoute(
-                RouteNames.Json,
-                "Json{ticket}/{controller}/{action}/{id}",
+                RouteNames.AndroidLogged,
+                "Android-{ticket}/{controller}/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UserController).Namespace }
             );

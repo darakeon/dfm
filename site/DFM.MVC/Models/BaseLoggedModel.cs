@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ak.MVC.Route;
-using DFM.Authentication;
 using DFM.Entities.Extensions;
 using DFM.Entities;
 using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Authorize;
-using DFM.MVC.Helpers.Views;
 
 namespace DFM.MVC.Models
 {
