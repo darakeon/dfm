@@ -9,11 +9,13 @@
     
 <div class="createMoveScreenRight">
     <div>
-        @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio" }) @(" ")
-        @Html.LabelFor(m => m.Boundless, MultiLanguage.Dictionary["Boundless"])<br />
+        @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio", id = "Boundless" })
+        <label for="Boundless">@MultiLanguage.Dictionary["Boundless"]</label>
+    </div>
+    <div>
+        @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio", id = "Bounded" })
+        <label for="Bounded">@MultiLanguage.Dictionary["Repeat"]</label>
 
-        @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio" }) @(" ")
-        @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Repeat"])
         @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
         @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Times"])
     </div>

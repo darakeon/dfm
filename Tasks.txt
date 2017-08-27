@@ -110,7 +110,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Listar schedule / permitir parar ("deletar") schedule
-						Label do limite de agendamento / Label do detalhado
+2014-04-14	2014-04-14	Label do limite de agendamento / Label do detalhado
 2014-04-14	2014-04-14	Mostrar data da move em modo paisagem
 2014-04-08	2014-04-14	Trocar língua do mobile para língua do usuário
 2014-04-07	2014-04-07	Criar tela de configuração para usuário (Web)

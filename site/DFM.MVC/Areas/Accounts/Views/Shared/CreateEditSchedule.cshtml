@@ -58,13 +58,13 @@
 <div class="divRowForm"><hr /></div>
     
 <div class="createMoveScreenLeft">
-    @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "detailLevel" })
-    @MultiLanguage.Dictionary["JustOneValue"]
+    @Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "detailLevel", id = "IsNotDetailed" })
+    <label for="IsNotDetailed">@MultiLanguage.Dictionary["JustOneValue"]</label>
 </div> 
         
 <div class="createMoveScreenRight">
     @Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "detailLevel" })
-    @MultiLanguage.Dictionary["Detailed"]
+    <label for="IsDetailed">@MultiLanguage.Dictionary["Detailed"]</label>
         
     <a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>
 </div>
