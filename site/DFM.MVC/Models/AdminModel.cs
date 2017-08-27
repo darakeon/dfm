@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -11,69 +12,51 @@ namespace DFM.MVC.Models
             {
                 Admin.CloseAccount(url);
             }
-            catch (DFMCoreException)// e)
+            catch (DFMCoreException e)
             {
-                //message = MultiLanguage.Dictionary[e];
+                ErrorAlert.Add(e.Type);
             }
-
-            //else
-            //    account = null;
-
-            //message = account == null
-            //    ? MultiLanguage.Dictionary["AccountNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["AccountClosed"], account.Name);
         }
 
 
         
         internal void Delete(String url)
         {
-            // TODO: implement messages on page head
-            //String message;
-
             try
             {
                 Admin.DeleteAccount(url);
-                //else
-                //    account = null;
-
-                //message = account == null
-                //    ? MultiLanguage.Dictionary["AccountNotFound"]
-                //    : String.Format(MultiLanguage.Dictionary["AccountDeleted"], account.Name);
             }
-            catch (DFMCoreException)// e)
+            catch (DFMCoreException e)
             {
-                //message = MultiLanguage.Dictionary[e];
+                ErrorAlert.Add(e.Type);
             }
-
-
         }
 
 
         internal void Disable(String name)
         {
-            Admin.DisableCategory(name);
-            //else
-            //    category = null;
-
-            // TODO: implement messages on page head
-            //var message = category == null
-            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["CategoryDisabled"], category.Name);
+            try
+            {
+                Admin.DisableCategory(name);
+            }
+            catch (DFMCoreException e)
+            {
+                ErrorAlert.Add(e.Type);
+            }
         }
 
 
 
         internal void Enable(String name)
         {
-            Admin.EnableCategory(name);
-            //else
-            //    category = null;
-
-            // TODO: implement messages on page head
-            //var message = category == null
-            //    ? MultiLanguage.Dictionary["CategoryNotFound"]
-            //    : String.Format(MultiLanguage.Dictionary["CategoryEnabled"], category.Name);
+            try
+            {
+                Admin.EnableCategory(name);
+            }
+            catch (DFMCoreException e)
+            {
+                ErrorAlert.Add(e.Type);
+            }
         }
 
 
