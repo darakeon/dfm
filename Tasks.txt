@@ -87,14 +87,11 @@ VERSÃO 2.0.0.2 (System) - 10?
 						Tirar descrição de transferência entre contas
 						Aumentar versão da API Android de acordo com downloads do DFM
 
-VERSÃO 2.0.2.0 (Little Change)
+VERSÃO 2.0.1.0 (Little Change)
 ================================================================================================
 						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
-
-VERSÃO 2.0.1.0 (Little Change)
-================================================================================================
 						Procurar TO-DOs no projeto
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
 						Remover acesso direto de Month e Year a Summary (refactor em Summary)
