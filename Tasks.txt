@@ -85,6 +85,9 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Criar Template (Move)
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Sistema de notificações de novidades
+						Tirar complete / validate de SaveOrUpdate
+						Criar teste unitário para deletar todas as movimentações de um agendamento
+						Criar teste unitário agendamento meio antes / meio depois
 
 VERSÃO 2.0.0.1 (System) - 10?
 ================================================================================================
@@ -92,21 +95,19 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Resolver problema de tab na tela de criação de Move (mobile)
 						Colocar botão de sair (mobile)
-						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Travar schedule de conta fechada / deletada
 						Guardar dados localmente, para quando está sem internet (Mobile)
-						Criar teste unitário para deletar todas as movimentações de um agendamento
-						Criar teste unitário agendamento meio antes / meio depois
-						Tirar complete / validate de SaveOrUpdate
 						Remover GetOrCreate
 						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
 						Explicar url e sinalização da conta
-						Tirar descrição de transferência entre contas.
-						Arrumar agendamento detalhado
+						Tirar descrição de transferência entre contas
+						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Colocar valores em inteiro (double > int) no banco
+						Arrumar agendamento detalhado
 						Setar conta quando edita move transfer
 						Refactor em controllers e areas, inverter plural
+						Handle differentely EConnReset
 						Arrumar testes
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
@@ -118,7 +119,6 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Mudança de orientação nos relatórios deve manter filtro de tempo
 						Scroll nos detalhes da move
 						Corrigir mês e ano do extract mobile nas movimentações
-						Handle differentely EConnReset
 2014-05-19	2014-05-19	Consertar edit da movimentação transfer
 2014-05-18	2014-05-19	Revisar texto de introdução
 2014-05-12	2014-05-16	Remover Release do versionamento, mudar nome do db, usuário e senha
