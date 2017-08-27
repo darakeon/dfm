@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Bases;
-using DFM.Entities.Extensions;
+using DFM.Entities.Enums;
 using DFM.Generic;
 
 namespace DFM.Entities
@@ -113,13 +113,48 @@ namespace DFM.Entities
 
             
             var total = schedule.Times;
-            var executed = this.PositionInSchedule();
+            var executed = positionInSchedule();
                 
             var format = schedule.Boundless
                              ? boundlessFormat
                              : boundedFormat;
 
             return String.Format(format, Description, executed, total);
+        }
+
+
+        private Int32 positionInSchedule()
+        {
+            var schedule = Schedule;
+
+            var diff = 0;
+
+            if (schedule == null)
+                return diff;
+
+            var days = Date - schedule.Date;
+            var month = Date.Month - schedule.Date.Month;
+            var year = Date.Year - schedule.Date.Year;
+
+            switch (schedule.Frequency)
+            {
+                case ScheduleFrequency.Daily:
+                    diff = (Int32)days.TotalDays;
+                    break;
+
+                case ScheduleFrequency.Monthly:
+                    diff = month + year * 12;
+                    break;
+
+                case ScheduleFrequency.Yearly:
+                    diff = year;
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return diff + 1;
         }
 
 

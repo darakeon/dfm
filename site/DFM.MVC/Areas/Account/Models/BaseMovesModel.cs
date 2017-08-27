@@ -99,7 +99,7 @@ namespace DFM.MVC.Areas.Account.Models
 
         private void arrangeDetails()
         {
-            IsDetailed = GenericMove.HasDetails();
+            IsDetailed = GenericMove.IsDetailed();
         }
 
 

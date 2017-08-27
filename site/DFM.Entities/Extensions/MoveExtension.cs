@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions
 {
@@ -9,48 +8,14 @@ namespace DFM.Entities.Extensions
     {
 		public static Boolean HasValue(this IMove move)
 		{
-			return move.HasDetails() || 
-				(move.Value.HasValue && move.Value != 0);
+            return (move.Value.HasValue && move.Value != 0) ||
+                move.DetailList.Any(d => d.Value != 0 && d.Amount != 0);
 		}
 
-		public static Boolean HasDetails(this IMove move)
+		public static Boolean IsDetailed(this IMove move)
 		{
-			return move.DetailList.Any();
+            return !move.Value.HasValue;
 		}
-
-		public static Int32 PositionInSchedule(this Move move)
-        {
-            var schedule = move.Schedule;
-
-            var diff = 0;
-
-            if (schedule == null)
-                return diff;
-
-            var days = move.Date - schedule.Date;
-            var month = move.Date.Month - schedule.Date.Month;
-            var year = move.Date.Year - schedule.Date.Year;
-
-            switch (schedule.Frequency)
-            {
-                case ScheduleFrequency.Daily:
-                    diff = (Int32) days.TotalDays;
-                    break;
-
-                case ScheduleFrequency.Monthly:
-                    diff = month + year * 12;
-                    break;
-
-                case ScheduleFrequency.Yearly:
-                    diff = year;
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            return diff + 1;
-        }
 
         public static Boolean HasCategory(this IMove move)
         {
