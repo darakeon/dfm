@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 
 Scenario: 01. Change the name (S)
 	Given I have this category

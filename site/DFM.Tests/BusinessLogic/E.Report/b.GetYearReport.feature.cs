@@ -60,6 +60,8 @@ namespace DFM.Tests.BusinessLogic.E_Report
 #line 4
  testRunner.Given("I have an active user");
 #line 5
+ testRunner.And("I enable Categories use");
+#line 6
  testRunner.And("I have an account");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -86,7 +88,7 @@ namespace DFM.Tests.BusinessLogic.E_Report
                         "2012-04-05"});
             table1.AddRow(new string[] {
                         "2012-04-06"});
-#line 6
+#line 7
  testRunner.And("I have moves of", ((string)(null)), table1);
 #line hidden
         }
@@ -96,22 +98,22 @@ namespace DFM.Tests.BusinessLogic.E_Report
         public virtual void _01_GetWithInvalidAccountNameE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get with invalid Account name (E)", ((string[])(null)));
-#line 20
-this.ScenarioSetup(scenarioInfo);
 #line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
  testRunner.Given("I pass an invalid account url");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table2.AddRow(new string[] {
                         "2012"});
-#line 22
+#line 23
  testRunner.And("I pass this date", ((string)(null)), table2);
-#line 25
- testRunner.When("I try to get the year report");
 #line 26
- testRunner.Then("I will receive this core error: InvalidAccount");
+ testRunner.When("I try to get the year report");
 #line 27
+ testRunner.Then("I will receive this core error: InvalidAccount");
+#line 28
  testRunner.And("I will receive no year report");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -122,22 +124,22 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_GetWithDateYearZeroE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get with Date Year Zero (E)", ((string[])(null)));
-#line 29
-this.ScenarioSetup(scenarioInfo);
 #line 30
+this.ScenarioSetup(scenarioInfo);
+#line 31
  testRunner.Given("I pass a valid account url");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table3.AddRow(new string[] {
                         "0"});
-#line 31
+#line 32
  testRunner.And("I pass this date", ((string)(null)), table3);
-#line 34
- testRunner.When("I try to get the year report");
 #line 35
- testRunner.Then("I will receive this core error: InvalidYear");
+ testRunner.When("I try to get the year report");
 #line 36
+ testRunner.Then("I will receive this core error: InvalidYear");
+#line 37
  testRunner.And("I will receive no year report");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -148,24 +150,24 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_GetWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get with info all right (S)", ((string[])(null)));
-#line 40
-this.ScenarioSetup(scenarioInfo);
 #line 41
+this.ScenarioSetup(scenarioInfo);
+#line 42
  testRunner.Given("I pass a valid account url");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table4.AddRow(new string[] {
                         "2012"});
-#line 42
+#line 43
  testRunner.And("I pass this date", ((string)(null)), table4);
-#line 45
- testRunner.When("I try to get the year report");
 #line 46
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to get the year report");
 #line 47
- testRunner.And("I will receive the year report");
+ testRunner.Then("I will receive no core error");
 #line 48
+ testRunner.And("I will receive the year report");
+#line 49
  testRunner.And("its sum value will be equal to its months sum value");
 #line hidden
             testRunner.CollectScenarioErrors();

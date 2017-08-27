@@ -223,5 +223,12 @@ namespace DFM.BusinessLogic.Services
         }
 
 
+
+        internal void VerifyUser()
+        {
+            if (Parent.Current.User == null || !Parent.Current.User.Active)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+        }
+
     }
 }

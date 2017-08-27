@@ -29,9 +29,10 @@ namespace DFM.BusinessLogic.Services
 
 
 
+        #region Account
         public Account GetAccountByUrl(String url)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
@@ -53,7 +54,7 @@ namespace DFM.BusinessLogic.Services
 
         private void saveOrUpdateAccount(Account account, OperationType opType, String newUrl = null)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             account.User = Parent.Current.User;
 
@@ -83,7 +84,7 @@ namespace DFM.BusinessLogic.Services
 
         public void CloseAccount(String url)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             BeginTransaction();
 
@@ -101,7 +102,7 @@ namespace DFM.BusinessLogic.Services
 
         public void DeleteAccount(String url)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             BeginTransaction();
 
@@ -144,12 +145,15 @@ namespace DFM.BusinessLogic.Services
         {
             return accountRepository.List(a => a.User.ID == Parent.Current.User.ID);
         }
+        #endregion
 
 
 
+        #region Category
         public Category GetCategoryByName(String name)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
+            verifyCategoriesEnabled();
 
             var category = categoryRepository.GetByName(name, Parent.Current.User);
 
@@ -171,7 +175,8 @@ namespace DFM.BusinessLogic.Services
 
         private void saveOrUpdateCategory(Category category, OperationType opType, String newName = null)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
+            verifyCategoriesEnabled();
 
             category.User = Parent.Current.User;
 
@@ -202,7 +207,8 @@ namespace DFM.BusinessLogic.Services
 
         public void DisableCategory(String name)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
+            verifyCategoriesEnabled();
 
             BeginTransaction();
 
@@ -220,7 +226,8 @@ namespace DFM.BusinessLogic.Services
 
         public void EnableCategory(String name)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
+            verifyCategoriesEnabled();
 
             BeginTransaction();
 
@@ -236,11 +243,19 @@ namespace DFM.BusinessLogic.Services
             }
         }
 
+        private void verifyCategoriesEnabled()
+        {
+            if (!Parent.Current.User.Config.UseCategories)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+        }
+        #endregion
 
 
+
+        #region Config
         public void UpdateConfig(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             var config = Parent.Current.User.Config;
 
@@ -258,6 +273,8 @@ namespace DFM.BusinessLogic.Services
 
             configRepository.Update(config);
         }
+        #endregion
+
 
     }
 }

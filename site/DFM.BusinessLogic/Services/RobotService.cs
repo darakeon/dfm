@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
@@ -23,20 +25,56 @@ namespace DFM.BusinessLogic.Services
 
         public void RunSchedule()
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
-            var scheduleList = scheduleRepository.GetScheduleToRun(Parent.Current.User);
+            var useCategories = Parent.Current.User.Config.UseCategories;
 
+            runScheduleEqualConfig(useCategories);
+            runScheduleDiffConfig(useCategories);
+
+            Parent.BaseMove.FixSummaries();
+        }
+
+        private void runScheduleEqualConfig(bool useCategories)
+        {
+            var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
+
+            var sameConfigList = scheduleList
+                .Where(s => s.HasCategory() == useCategories);
+
+            runSchedule(sameConfigList);
+        }
+
+        private void runScheduleDiffConfig(bool useCategories)
+        {
+            var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
+
+            var diffConfigList = scheduleList
+                .Where(s => s.HasCategory() != useCategories);
+
+            try
+            {
+                Parent.Admin.UpdateConfig(null, null, null, !useCategories);
+                runSchedule(diffConfigList);
+            }
+            finally
+            {
+                Parent.Admin.UpdateConfig(null, null, null, useCategories);
+            }
+        }
+
+        private void runSchedule(IEnumerable<Schedule> scheduleList)
+        {
             foreach (var schedule in scheduleList)
             {
                 var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
                 var accountInUrl = schedule.In == null ? null : schedule.In.Url;
-                var categoryName = schedule.Category.Name;
+
+                var category = schedule.Category;
+                var categoryName = category == null ? null : schedule.Category.Name;
 
                 addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
             }
-
-            Parent.BaseMove.FixSummaries();
         }
 
         private void addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
@@ -73,7 +111,7 @@ namespace DFM.BusinessLogic.Services
 
         public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             BeginTransaction();
 

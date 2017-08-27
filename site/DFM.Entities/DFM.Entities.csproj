@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Bases\Constants.cs" />
+    <Compile Include="Bases\EntityExtension.cs" />
     <Compile Include="Bases\IEntity.cs" />
     <Compile Include="Bases\IMove.cs" />
     <Compile Include="Bases\ISummarizable.cs" />

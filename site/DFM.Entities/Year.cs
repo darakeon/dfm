@@ -80,8 +80,9 @@ namespace DFM.Entities
         {
             get
             {
-                return SummaryList
-                    .SingleOrDefault(y => y.Category.Name == categoryName);
+                return String.IsNullOrEmpty(categoryName)
+                    ? SummaryList.SingleOrDefault(y => y.Category == null)
+                    : SummaryList.SingleOrDefault(y => y.Category != null && y.Category.Name == categoryName);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
@@ -38,17 +39,16 @@ namespace DFM.BusinessLogic.Repositories
 
 
         
-        internal IList<Schedule> GetScheduleToRun(User user)
+        internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
         {
-            return getRunnableAndDisableOthers(user)
-                .ToList();
+            return getRunnableAndDisableOthers(user, hasCategory).ToList();
         }
 
-        private IEnumerable<Schedule> getRunnableAndDisableOthers(User user)
+        private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
         {
             var scheduleList = 
-                List(s => s.User == user
-                        && s.Active);
+                List(s => s.User == user && s.Active)
+                    .Where(s => s.HasCategory() == hasCategory);
 
             foreach (var schedule in scheduleList)
             {

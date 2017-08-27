@@ -22,8 +22,12 @@ namespace DFM.Entities.Extensions
                 summary.Nature == SummaryNature.Month
                     ? summary.Month.ID : 0;
 
-            return String.Format("{0}_{1}_{2}", yearID, monthID, summary.Category.ID);
+            var category = summary.Category;
+            var categoryID = category == null ? 0 : category.ID;
+
+            return String.Format("{0}_{1}_{2}", yearID, monthID, categoryID);
         }
+
 
 
     }

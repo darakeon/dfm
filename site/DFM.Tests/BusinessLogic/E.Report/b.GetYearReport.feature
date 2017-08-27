@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 	And I have an account
 	And I have moves of
 		| Date       |

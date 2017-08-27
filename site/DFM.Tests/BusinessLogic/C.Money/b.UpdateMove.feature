@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 	And I have two accounts
 	And I have a category
 

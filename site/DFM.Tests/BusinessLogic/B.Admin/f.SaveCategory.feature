@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 
 Scenario: 01. Save Category without name (E)
 	Given I have this category to create

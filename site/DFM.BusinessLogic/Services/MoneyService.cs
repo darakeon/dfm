@@ -23,11 +23,11 @@ namespace DFM.BusinessLogic.Services
 
         public Move GetMoveById(Int32 id)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             var move = moveRepository.GetById(id);
 
-            VerifyMove(move);
+            verifyMove(move);
 
             return move;
         }
@@ -35,7 +35,7 @@ namespace DFM.BusinessLogic.Services
 
         public Move SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             move = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
 
@@ -77,7 +77,7 @@ namespace DFM.BusinessLogic.Services
 
         public void DeleteMove(Int32 id)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             deleteMove(id);
         }
@@ -90,7 +90,7 @@ namespace DFM.BusinessLogic.Services
             {
                 var move = GetMoveById(id);
 
-                VerifyMove(move);
+                verifyMove(move);
 
                 moveRepository.Delete(id);
 
@@ -121,18 +121,28 @@ namespace DFM.BusinessLogic.Services
 
         public Detail GetDetailById(Int32 id)
         {
-            VerifyUser();
+            Parent.Safe.VerifyUser();
 
             var detail = detailRepository.GetById(id);
 
             if (detail == null)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
 
-            VerifyMove(detail.Move);
+            verifyMove(detail.Move);
 
             return detail;
         }
 
+
+        // ReSharper disable once UnusedParameter.Local
+        private void verifyMove(Move move)
+        {
+            if (move == null)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+
+            if (move.User.Email != Parent.Current.User.Email)
+                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+        }
 
 
     }

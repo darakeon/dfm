@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 	And I have a category
 
 Scenario: 01. Try to get Category with wrong Name (E)

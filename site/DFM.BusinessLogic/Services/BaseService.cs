@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -36,20 +35,7 @@ namespace DFM.BusinessLogic.Services
             Parent.TransactionController.Rollback();
         }
 
-        protected void VerifyUser()
-        {
-            if (Parent.Current.User == null || !Parent.Current.User.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
-        }
-
-        protected void VerifyMove(Move move)
-        {
-            if (move == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
-
-            if (move.User.Email != Parent.Current.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
-        }
+        
 
     
 

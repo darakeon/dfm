@@ -8,6 +8,5 @@ namespace DFM.Entities.Extensions
         {
             return category.User == user;
         }
-
     }
 }

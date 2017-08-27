@@ -65,6 +65,11 @@ namespace DFM.Entities.Extensions
             return diff + 1;
         }
 
+        public static Boolean HasCategory(this IMove move)
+        {
+            return move.Category != null;
+        }
+
 
     }
 }

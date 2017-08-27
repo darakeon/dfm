@@ -2,6 +2,7 @@
 
 Background:
 	Given I have an active user
+	And I enable Categories use
 	And I have a category
 
 Scenario: 01. Disable categories use and save move with category (E)
