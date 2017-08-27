@@ -101,7 +101,13 @@ B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 F						Colocar Captcha no registro de usuário
 R						Trocar YellowLimit e RedLimit para Cents
 
-VERSÃO 2.0.1.0 (Little Change)
+VERSÃO 2.0.1.1 (System) - 10?
+================================================================================================
+2015-01-01				Fix error on mobile detailed move
+2014-12-30	2014-12-31	Fix move error with decimal value
+2014-12-30	2014-12-30	Fix login redirect bug
+
+VERSÃO 2.0.1.0 (Little Change) - 9
 ================================================================================================
 2014-12-21	2014-12-25	Colocar delete de move (mobile)
 2014-12-07	2014-12-07	Extrato: fazer combo de ano mudar se o combo de mês reiniciar
@@ -113,7 +119,7 @@ VERSÃO 2.0.1.0 (Little Change)
 2014-11-29	2014-11-29	Criar teste unitário para deletar todas as movimentações de um agendamento
 2014-11-29	2014-11-29	Criar teste unitário agendamento meio antes / meio depois
 
-VERSÃO 2.0.0.3 (Little Change)
+VERSÃO 2.0.0.3 (System) - 12
 ================================================================================================
 2014-10-20	2014-10-21	Arrumar apk para kitkat
 2014-07-25	2014-07-25	Deletar schedule de conta deletada
