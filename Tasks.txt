@@ -2,6 +2,7 @@
 ================================================================================================
 						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
 						Revenge.css
+						PageSpeed
 						Mock de envio de e-mail
 
 VERSÃO 3.1.3.0 (Little change) - 2?
@@ -118,7 +119,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Corrigir mês e ano do extract nas movimentações
 						Consertar edit da movimentação transfer
 						Handle differentely EConnReset
-						Remover Release do versionamento, mudar nome do db, usuário e senha
+2014-05-12				Remover Release do versionamento, mudar nome do db, usuário e senha
 2014-05-11	2014-05-11	Retirar dados do post se forem senhas ou valores
 2014-05-10	2014-05-11	Consertar lentidão no server
 2014-05-04	2014-05-04	Deletar PageLog

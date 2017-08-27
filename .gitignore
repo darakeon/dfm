@@ -14,6 +14,7 @@ android/.metadata/.plugins/org.eclipse.cdt.core/.log
 *.dex
 *.ap_
 *.suo
+Web.Release.config
 
 pseudo-debug.txt
 syntax: regexp
@@ -29,6 +30,5 @@ syntax: regexp
 ^(.*[\\/])?\.settings[\\/].*
 .hg*
 site/DFM.MVC/DFM.MVC.Publish.xml
-site/DFM.MVC/Web.Release.config
 android/.metadata
 android/*/bin
