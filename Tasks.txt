@@ -97,6 +97,8 @@ VERSÃO 2.0.0.0 (All new) - 29?
 						Trocar botão e Contas por imagem de Home, Botão de Sair por imagem de logout
 						Consertar esquema de session do NH
 						Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
+						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
+						Resolver problema de tab na tela de criação de Move
 2014-03-05	2014-03-05	Criar box de avisos
 2014-03-05	2014-03-05	Criar tela de configuração para usuário (Mobile)
 2014-03-05	2014-03-05	Ocultar categoria quando usuário não quiser usar categoria
