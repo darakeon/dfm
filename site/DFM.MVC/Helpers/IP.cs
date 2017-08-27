@@ -39,6 +39,9 @@ namespace DFM.MVC.Helpers
             var info = new FileInfo(path);
             path = info.FullName;
 
+            if (!info.Exists)
+                return;
+
             var lines = File.ReadAllLines(path);
 
             for (var l = 0; l < lines.Length; l++)
