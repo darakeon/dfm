@@ -104,25 +104,26 @@ Scenario: 04. Get translations of Errors
 
 Scenario: 05. Get translate of Interface (move)
 	Given I have these keys
-		| Section | Phrase          |
-		| Move    | Create          |
-		| Move    | Edit            |
-		| Move    | Move            |
-		| Move    | DayNames        |
-		| Move    | Description     |
-		| Move    | CharactersMax   |
-		| Move    | Date            |
-		| Move    | Category        |
-		| Move    | Select          |
-		| Move    | Create          |
-		| Move    | Category        |
-		| Move    | Nature          |
-		| Move    | JustOneValue    |
-		| Move    | Detailed        |
-		| Move    | Add             |
-		| Move    | Detail          |
-		| Move    | Value           |
-		| Move    | Amount          |
+		| Section | Phrase        |
+		| Move    | Create        |
+		| Move    | Edit          |
+		| Move    | Move          |
+		| Move    | DayNames      |
+		| Move    | Description   |
+		| Move    | CharactersMax |
+		| Move    | Date          |
+		| Move    | Category      |
+		| Move    | Select        |
+		| Move    | Create        |
+		| Move    | Category      |
+		| Move    | Nature        |
+		| Move    | JustOneValue  |
+		| Move    | Detailed      |
+		| Move    | Add           |
+		| Move    | Detail        |
+		| Move    | Value         |
+		| Move    | Amount        |
+		| Move    | ToMove        |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -147,6 +148,7 @@ Scenario: 06. Get translate of Interface (report)
 		| Report  | NoYearMoves       |
 		| Report  | Month             |
 		| Report  | Value             |
+		| Report  | ToMove            |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -332,5 +334,6 @@ Scenario: 13. Get translate of Interface (schedule)
 		| Schedule | Detail          |
 		| Schedule | Value           |
 		| Schedule | Amount          |
+		| Schedule | ToMove          |
 	When I try get the translate
 	Then I will receive no multilanguage error

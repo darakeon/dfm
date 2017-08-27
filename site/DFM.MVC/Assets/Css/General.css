@@ -1,13 +1,13 @@
 /*
-Texts: AA3A3A
-Alternative Background: FFEEEE
-Background: ABFFAB
-Light Background: EEFFEE
-Warning: 3AAA3A
+Texts: #AA3A3A
+Alternative Background: #FFEEEE
+Background: #ABFFAB
+Light Background: #EEFFEE
+Warning: #3AAA3A
 */
 
 body {
-	background: #EEFFEE url("/assets/image/clouds_AA3A3A_ABFFAB.gif");
+	background: #EEFFEE url("/assets/image/clouds.gif");
 	text-align: justify;
 	margin: 0;
 }

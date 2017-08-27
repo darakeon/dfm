@@ -60,8 +60,9 @@
     
     <!--Menu (and Account)-->
     <WeirdMenuExplanation text="Your menu is different because you have too much accounts to list here."/>
-    <MonthMoves text="{0} Moves" />
-    <YearMoves text="{0} Summary" />
+    <MonthMoves text="Extract" />
+    <YearMoves text="Year Summary" />
+    <ToMove text="Move" />
 
   </en-US>
   <pt-BR>
@@ -124,8 +125,9 @@
 
     <!--Menu (and Account)-->
     <WeirdMenuExplanation text="Seu menu aparece diferente por excesso de contas para listar."/>
-    <MonthMoves text="Extrato de {0}" />
-    <YearMoves text="Resumo de {0}" />
+    <MonthMoves text="Extrato" />
+    <YearMoves text="Resumo Anual" />
+    <ToMove text="Mover" />
 
   </pt-BR>
 </general>

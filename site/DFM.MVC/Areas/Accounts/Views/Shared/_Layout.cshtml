@@ -17,14 +17,11 @@
 
 @section MenuBaixo {
     @{
-        String currentMonthReport = String.Format(MultiLanguage.Dictionary["MonthMoves"], Model.CurrentMonth);
-        String currentYearReport = String.Format(MultiLanguage.Dictionary["YearMoves"], Model.CurrentYear);
-
         <ul class="menu-baixo">
-            <li>@Html.ActionLink(MultiLanguage.Dictionary["Create", "Move"], "Create", "Move")</li>
-            <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule", "Moves"], "Create", "Schedule")</li>
-            <li>@Html.ActionLink(currentMonthReport, "ShowMoves", "Report")</li>
-            <li>@Html.ActionLink(currentYearReport, "SummarizeMonths", "Report")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Move")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedule")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Report")</li>
+            <li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Report")</li>
         </ul>
     }
 }
