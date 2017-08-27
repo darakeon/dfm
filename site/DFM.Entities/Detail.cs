@@ -16,6 +16,8 @@ namespace DFM.Entities
             Amount = 1;
         }
 
+
+
         public virtual Int32 ID { get; set; }
         
         public virtual String Description { get; set; }

@@ -8,11 +8,21 @@ namespace DFM.Entities
     {
         public Summary()
         {
+            init();
+        }
+
+        private void init()
+        {
             Broken = true;
         }
 
         public Summary(Month month, Category category)
             : this()
+        {
+            init(month, category);
+        }
+
+        private void init(Month month, Category category)
         {
             Month = month;
             Category = category;
@@ -20,6 +30,11 @@ namespace DFM.Entities
         }
 
         public Summary(Year year, Category category)
+        {
+            init(year, category);
+        }
+
+        private void init(Year year, Category category)
         {
             Year = year;
             Category = category;
