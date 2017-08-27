@@ -5,10 +5,10 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.view.View;
-import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.SmartActivity;
 
 
 public class LoginActivity extends SmartActivity

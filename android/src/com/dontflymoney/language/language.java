@@ -2,9 +2,10 @@ package com.dontflymoney.language;
 
 import java.util.Locale;
 
+import com.dontflymoney.baseactivity.SmartActivity;
+
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import baseactivity.SmartActivity;
 
 
 public class Language

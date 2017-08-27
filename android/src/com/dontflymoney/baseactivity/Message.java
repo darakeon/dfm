@@ -1,4 +1,4 @@
-package baseactivity;
+package com.dontflymoney.baseactivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,7 +22,7 @@ public class Message
 		alertError(message.toString());
 	}
 	
-	protected void alertError(int resourceId, Exception e)
+	public void alertError(int resourceId, Exception e)
 	{
 		alertError(activity.getString(resourceId)+ ": " + e.getLocalizedMessage());
 	}

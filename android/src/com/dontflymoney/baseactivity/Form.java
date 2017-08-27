@@ -1,4 +1,4 @@
-package baseactivity;
+package com.dontflymoney.baseactivity;
 
 import java.text.DecimalFormat;
 

@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.entities.Constants;
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.viewhelper.AfterTextWatcher;
@@ -28,9 +28,10 @@ public class MoveActivity extends SmartActivity {
 
 	Move move;
 
-	JSONArray categoryList;
-	JSONArray natureList;
-	JSONArray accountList;
+	static boolean useCategories;
+	static JSONArray categoryList;
+	static JSONArray natureList;
+	static JSONArray accountList;
 
 
 	
@@ -43,7 +44,22 @@ public class MoveActivity extends SmartActivity {
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		populateScreen();
+		
+		if (rotated)
+		{
+			try
+			{
+				populateCategoryAndNature();
+			}
+			catch (JSONException e)
+			{
+				message.alertError(R.string.error_activity_json, e);
+			}
+		}
+		else
+		{
+			populateScreen();
+		}
 	}
 
 	private void populateScreen()
@@ -88,20 +104,28 @@ public class MoveActivity extends SmartActivity {
 
 	private void populateScreen(JSONObject data) throws JSONException
 	{
-		boolean useCategories = data.getBoolean("UseCategories");
+		useCategories = data.getBoolean("UseCategories");
 		
 		if (useCategories)
-		{
 			categoryList = data.getJSONArray("CategoryList");
+		
+		natureList = data.getJSONArray("NatureList");
+		accountList = data.getJSONArray("AccountList");
+		
+		populateCategoryAndNature();
+	}
+	
+	private void populateCategoryAndNature()
+		throws JSONException
+	{
+		if (useCategories)
+		{
 			findViewById(R.id.category_box).setVisibility(View.VISIBLE);
 		}
 		else
 		{
 			findViewById(R.id.category_box).setVisibility(View.GONE);
 		}
-		
-		natureList = data.getJSONArray("NatureList");
-		accountList = data.getJSONArray("AccountList");
 		
 		JSONObject firstNature = natureList.getJSONObject(0);
 		

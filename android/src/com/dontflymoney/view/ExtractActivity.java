@@ -23,19 +23,24 @@ import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.SmartActivity;
 
 public class ExtractActivity extends SmartActivity
 {
+	static JSONArray moveList;
+	static String name;
+	static double total;
+	
 	TableLayout main;
 	String accounturl;
 
 	DatePickerDialog dialog;
 	private int month;
 	private int year;
+
 	
 	public ExtractActivity()
 	{
@@ -48,7 +53,22 @@ public class ExtractActivity extends SmartActivity
 		super.onCreate(savedInstanceState);
 		setCurrentInfo();
 		setDate();
-		getExtract();
+
+		if (rotated)
+		{
+			try
+			{
+				fillMoves();
+			}
+			catch (JSONException e)
+			{
+				message.alertError(R.string.error_activity_json, e);
+			}
+		}
+		else
+		{
+			getExtract();
+		}
 	}
 	
 	private void setCurrentInfo()
@@ -132,10 +152,18 @@ public class ExtractActivity extends SmartActivity
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{
-		JSONArray moveList = data.getJSONArray("MoveList");
+		moveList = data.getJSONArray("MoveList");
+		name = data.getString("Name");
+		total = data.getDouble("Total");
 		
-		form.setValue(R.id.totalTitle, data.getString("Name"));
-		form.setValueColored(R.id.totalValue, data.getDouble("Total"));
+		fillMoves();
+	}
+	
+	private void fillMoves()
+		throws JSONException
+	{
+		form.setValue(R.id.totalTitle, name);
+		form.setValueColored(R.id.totalValue, total);
 		
 		if (moveList.length() == 0)
 		{

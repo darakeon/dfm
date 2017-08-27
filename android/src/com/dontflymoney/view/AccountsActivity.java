@@ -12,15 +12,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
 public class AccountsActivity extends SmartActivity
 {
 	TableLayout main;
+	static JSONArray accountList;
 	
 	public AccountsActivity()
 	{
@@ -34,7 +35,22 @@ public class AccountsActivity extends SmartActivity
 	{
 		super.onCreate(savedInstanceState);
 		getMain();
-		getAccounts();
+		
+		if (rotated)
+		{
+			try
+			{
+				fillAccounts();
+			}
+			catch (JSONException e)
+			{
+				message.alertError(R.string.error_activity_json, e);
+			}
+		}
+		else
+		{
+			getAccounts();
+		}
 	}
 	
 	private void getMain()
@@ -53,7 +69,7 @@ public class AccountsActivity extends SmartActivity
 	protected void HandleSuccess(JSONObject data, Step step)
 		throws JSONException
 	{
-		JSONArray accountList = data.getJSONArray("AccountList"); 
+		accountList = data.getJSONArray("AccountList"); 
 		
 		if (accountList.length() == 0)
 		{
@@ -62,12 +78,18 @@ public class AccountsActivity extends SmartActivity
 		}
 		else
 		{
-			for(int a = 0; a < accountList.length(); a++)
-			{
-				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-				
-				getAccount(accountList.getJSONObject(a), color);
-			}
+			fillAccounts();
+		}
+	}
+	
+	private void fillAccounts()
+		throws JSONException
+	{
+		for(int a = 0; a < accountList.length(); a++)
+		{
+			int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
+			
+			getAccount(accountList.getJSONObject(a), color);
 		}
 	}
 

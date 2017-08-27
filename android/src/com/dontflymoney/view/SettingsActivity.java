@@ -9,14 +9,15 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
+import com.dontflymoney.baseactivity.SmartActivity;
 
 public class SettingsActivity extends SmartActivity
 {
-	CheckBox useCategories;
+	boolean useCategories;
+	CheckBox useCategoriesField;
 	
 	public SettingsActivity()
 	{
@@ -27,18 +28,21 @@ public class SettingsActivity extends SmartActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		populateScreen();
-	}
-
-	private void populateScreen()
-	{
 		getFields();
-		getCurrentSettings();
+		
+		if (rotated)
+		{
+			useCategoriesField.setChecked(useCategories);
+		}
+		else
+		{
+			getCurrentSettings();
+		}
 	}
 	
 	private void getFields()
 	{
-		useCategories = (CheckBox) findViewById(R.id.use_categories);
+		useCategoriesField = (CheckBox) findViewById(R.id.use_categories);
 	}
 
 	private void getCurrentSettings()
@@ -52,7 +56,7 @@ public class SettingsActivity extends SmartActivity
 	{
 		Request request = new Request(this, "Users/SaveConfig");
 		request.AddParameter("ticket", Authentication.Get());
-		request.AddParameter("UseCategories", useCategories.isChecked());
+		request.AddParameter("UseCategories", useCategoriesField.isChecked());
 		request.Post(Step.Recording);
 	}
 	
@@ -81,8 +85,8 @@ public class SettingsActivity extends SmartActivity
 	
 	private void populateScreen(JSONObject data) throws JSONException
 	{
-		boolean currentUseCategories = data.getBoolean("UseCategories");
-		useCategories.setChecked(currentUseCategories);
+		useCategories = data.getBoolean("UseCategories");
+		useCategoriesField.setChecked(useCategories);
 	}
 	
 	

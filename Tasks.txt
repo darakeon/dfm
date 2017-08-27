@@ -114,7 +114,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Trocar língua antes de renderizar a tela
 						Gravar a língua localmente
 						Consertar logoff (M)
-2014-04-18				Fazer activity só chamar porquinho se não foi só mudança de orientation
+2014-04-18	2014-04-18	Fazer activity só chamar porquinho se não foi só mudança de orientation
 2014-04-18	2014-04-18	Arrumar tradução de nature
 2014-04-18	2014-04-18	Fazer valor zero aparecer como azul
 2014-04-18	2014-04-18	Arrumar layout e-mail para não ficar com marca de link
