@@ -38,7 +38,7 @@ public class Form
 	{
 		TextView field = getField(id);
 		
-		field.setText(Double.toString(value));
+		field.setText(String.format("%1$,.2f", value));
 
 		int color = value < 0 ? Color.RED : Color.BLUE;
 		field.setTextColor(color);
