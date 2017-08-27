@@ -18,9 +18,11 @@ namespace DFM.Repositories.Mappings
             mapping.IgnoreProperty(d => d.FakeID);
 
             mapping.References(d => d.Move)
+                .Cascade.None()
                 .Nullable();
 
             mapping.References(d => d.Schedule)
+                .Cascade.None()
                 .Nullable();
 
         }

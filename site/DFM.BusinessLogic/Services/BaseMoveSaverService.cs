@@ -41,12 +41,18 @@ namespace DFM.BusinessLogic.Services
 
             var oldMove = moveService.GetOldById(move.ID);
 
-            
-            move = moveService.SaveOrUpdate(move);
+            if (move.ID == 0)
+            {
+                move = moveService.SaveOrUpdate(move);
+                detailService.SaveDetails(move);
+            }
+            else
+            {
+                detailService.SaveDetails(move);
+                move = moveService.SaveOrUpdate(move);
+            }
 
-            detailService.SaveDetails(move);
 
-            
             if (oldMove != null)
                 breakSummaries(oldMove);
 
