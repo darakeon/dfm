@@ -120,60 +120,24 @@ public class SummaryActivity extends SmartActivity
 	}
 	
 	@Override
-	public void HandlePost(Request request, Step step)
+	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
 	{
-		if (request.IsSuccess())
+		JSONObject data = result.getJSONObject("data");
+		JSONArray monthList = data.getJSONArray("MonthList");
+		
+		if (monthList.length() == 0)
 		{
-			JSONObject result = request.GetResult();
-			
-			try
-			{
-				handleResult(result);
-			}
-			catch (JSONException e)
-			{
-				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
-			}
+			View empty = createText(getString(R.string.no_summary), Gravity.CENTER);
+			main.addView(empty);
 		}
 		else
 		{
-			alertError(request.GetError());
-		}
-	}
-	
-	private void handleResult(JSONObject result) throws JSONException
-	{
-		if (result.has("error"))
-		{
-			String error = result.get("error").toString();
-			
-			if (error.contains("You are uninvited"))
+			for(int a = 0; a < monthList.length(); a++)
 			{
-				logout();
+				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
+				
+				getMonth(monthList.getJSONObject(a), color);
 			}
-			
-			alertError(error);
-		}
-		else
-		{
-			JSONObject data = result.getJSONObject("data");
-			JSONArray monthList = data.getJSONArray("MonthList");
-			
-			if (monthList.length() == 0)
-			{
-				View empty = createText(getString(R.string.no_summary), Gravity.CENTER);
-				main.addView(empty);
-			}
-			else
-			{
-				for(int a = 0; a < monthList.length(); a++)
-				{
-					int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-					
-					getMonth(monthList.getJSONObject(a), color);
-				}
-			}
-
 		}
 	}
 

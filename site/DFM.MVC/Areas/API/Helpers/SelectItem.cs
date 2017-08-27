@@ -1,17 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DFM.MVC.Areas.API.Helpers
 {
-    public class SelectItem<TValue, TText>
+    public class SelectItem<TText, TValue>
     {
-        public SelectItem(TValue value, TText text)
+        public SelectItem(TText text, TValue value)
         {
-            Value = value;
             Text = text;
+            Value = value;
         }
 
-        public TValue Value { get; set; }
         public TText Text { get; set; }
+        public TValue Value { get; set; }
 
+    }
+
+    public static class SelectItemEnum
+    {
+        public static SelectItem<String, Int32> SelectItem<TEnum>(this TEnum value)
+            where TEnum : IConvertible
+        {
+            return new SelectItem<String, Int32>(value.ToString(), Convert.ToInt32(value));
+        }
+
+        public static IList<SelectItem<String, Int32>> SelectItem<TEnum>()
+            where TEnum : IConvertible
+        {
+            return Enum.GetValues(typeof(TEnum))
+                    .Cast<TEnum>()
+                    .Select(n => n.SelectItem())
+                    .ToList();
+        }
+    
     }
 }

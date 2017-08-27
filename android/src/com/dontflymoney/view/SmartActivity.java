@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
@@ -132,19 +131,6 @@ public abstract class SmartActivity extends Activity
 	
 
 
-	/*
-	protected TextView createHidden(String text)
-	{
-		TextView field = new TextView(getApplicationContext());
-		
-		field.setText(text);
-		field.setVisibility(View.GONE);
-		field.setWidth(0);
-		
-		return field;
-	}
-	*/
-	
 	protected void alertError(Object message)
 	{
 		alertError(message.toString());
@@ -204,6 +190,37 @@ public abstract class SmartActivity extends Activity
 	
 	
 	
-	public abstract void HandlePost(Request request, Step step);
+	protected abstract void HandleSuccess(JSONObject response, Step step) throws JSONException;
+	
+	public void HandlePostResult(JSONObject result, Step step)
+	{
+		try
+		{
+			if (result.has("error"))
+			{
+				String error = result.get("error").toString();
+				
+				alertError(error);
+
+				if (error.contains("You are uninvited"))
+				{
+					logout();
+				}				
+			}
+			else
+			{
+				HandleSuccess(result, step);
+			}
+		}
+		catch (JSONException e)
+		{
+			alertError(getString(R.string.error_activity_json) + ": " + e.getLocalizedMessage());
+		}
+	}
+
+	public void HandlePostError(String error, Step step)
+	{
+		alertError(error);
+	}
 	
 }

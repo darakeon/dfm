@@ -70,61 +70,25 @@ public class AccountsActivity extends SmartActivity
 	}
 
 	@Override
-	public void HandlePost(Request request, Step step)
-	{
-		if (request.IsSuccess())
-		{
-			JSONObject result = request.GetResult();
-			
-			try
-			{
-				handleResult(result);
-			}
-			catch (JSONException e)
-			{
-				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
-			}
-		}
-		else
-		{
-			alertError(request.GetError());
-		}
-	}
-
-	private void handleResult(JSONObject result)
+	protected void HandleSuccess(JSONObject result, Step step)
 		throws JSONException
 	{
-		if (result.has("error"))
+		JSONObject data = result.getJSONObject("data");
+		JSONArray accountList = data.getJSONArray("AccountList"); 
+		
+		if (accountList.length() == 0)
 		{
-			String error = result.get("error").toString();
-			
-			alertError(error);
-
-			if (error.contains(getString(R.string.uninvited)))
-			{
-				logout();
-			}			
+			View empty = createText(getString(R.string.no_accounts), Gravity.CENTER);
+			main.addView(empty);
 		}
 		else
 		{
-			JSONObject data = result.getJSONObject("data");
-			JSONArray accountList = data.getJSONArray("AccountList"); 
-			
-			if (accountList.length() == 0)
+			for(int a = 0; a < accountList.length(); a++)
 			{
-				View empty = createText(getString(R.string.no_accounts), Gravity.CENTER);
-				main.addView(empty);
+				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
+				
+				getAccount(accountList.getJSONObject(a), color);
 			}
-			else
-			{
-				for(int a = 0; a < accountList.length(); a++)
-				{
-					int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-					
-					getAccount(accountList.getJSONObject(a), color);
-				}
-			}
-
 		}
 	}
 

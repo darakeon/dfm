@@ -25,20 +25,12 @@ import com.dontflymoney.viewhelper.LinearLayoutDetail;
 
 public class MoveActivity extends SmartActivity {
 	DatePickerDialog dialog;
-	int day;
-	int month;
-	int year;
-	String accountUrl;
 
 	Move move;
 
 	JSONArray categoryList;
 	JSONArray accountList;
 	JSONArray natureList;
-
-	String category;
-	String account;
-	String nature;
 
 
 	
@@ -61,37 +53,28 @@ public class MoveActivity extends SmartActivity {
 		request.Get(Step.Populate);
 
 		Calendar today = Calendar.getInstance();
-		day = getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH));
-		month = getIntent().getIntExtra("month", today.get(Calendar.MONTH));
-		year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
-		accountUrl = getIntent().getStringExtra("accounturl");
+		move.setDay(getIntent().getIntExtra("day", today.get(Calendar.DAY_OF_MONTH)));
+		move.setMonth(getIntent().getIntExtra("month", today.get(Calendar.MONTH)));
+		move.setYear(getIntent().getIntExtra("year", today.get(Calendar.YEAR)));
+		move.OtherAccount = getIntent().getStringExtra("accounturl");
 	}
 
 	@Override
-	public void HandlePost(Request request, Step step) {
-		if (request.IsSuccess()) {
-			JSONObject result = request.GetResult();
-
-			try {
-				switch (step) {
-					case Populate: {
-						populateScreen(result);
-						break;
-					}
-					case Recording: {
-						backToExtract();
-						break;
-					}
-					default: {
-						alertError(getString(R.string.this_is_not_happening));
-						break;
-					}
-				}
-			} catch (JSONException e) {
-				alertError(getString(R.string.error_activity_json) + ": " + e.getMessage());
+	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
+	{
+		switch (step) {
+			case Populate: {
+				populateScreen(result);
+				break;
 			}
-		} else {
-			alertError(request.GetError());
+			case Recording: {
+				backToExtract();
+				break;
+			}
+			default: {
+				alertError(getString(R.string.this_is_not_happening));
+				break;
+			}
 		}
 	}
 
@@ -109,9 +92,9 @@ public class MoveActivity extends SmartActivity {
 	private void backToExtract()
 	{
 		Intent intent = new Intent(this, ExtractActivity.class);
-		intent.putExtra("accounturl", accountUrl);
-		intent.putExtra("month", month);
-		intent.putExtra("year", year);
+		intent.putExtra("accounturl", move.OtherAccount);
+		intent.putExtra("month", move.getMonth());
+		intent.putExtra("year", move.getYear());
 
 		startActivity(intent);
 	}
@@ -120,7 +103,14 @@ public class MoveActivity extends SmartActivity {
 	
 	public void showDatePicker(View view)
 	{
-		dialog = new DatePickerDialog(this, new PickDate(), year, month, day);
+		dialog = 
+			new DatePickerDialog(
+				this,
+				new PickDate(),
+				move.getYear(),
+				move.getMonth(),
+				move.getDay()
+			);
 		dialog.show();
 	}
 
@@ -132,9 +122,9 @@ public class MoveActivity extends SmartActivity {
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 			String dateInFull = formatter.format(date.getTime());
 			
-			MoveActivity.this.year = year;
-			MoveActivity.this.month = month;
-			MoveActivity.this.day = day;
+			MoveActivity.this.move.setYear(year);
+			MoveActivity.this.move.setMonth(month);
+			MoveActivity.this.move.setDay(day);
 
 			setValue(R.id.date, dateInFull);
 			dialog.hide();
@@ -156,7 +146,7 @@ public class MoveActivity extends SmartActivity {
 		public void setResult(String text, String value)
 		{
 			setValue(R.id.category, text);
-			category = value;
+			move.Category = value;
 		}
 
 		@Override
@@ -181,10 +171,10 @@ public class MoveActivity extends SmartActivity {
 		public void setResult(String text, String value)
 		{
 			setValue(R.id.nature, text);
-			nature = value;
+			move.Nature = Integer.parseInt(value);
 			
 			int accountVisibility =
-				value.equals(Constants.MoveNatureTransfer)
+				move.Nature == Constants.MoveNatureTransfer
 					? View.VISIBLE : View.GONE;
 			
 			findViewById(R.id.account).setVisibility(accountVisibility);
@@ -214,7 +204,7 @@ public class MoveActivity extends SmartActivity {
 		public void setResult(String text, String value)
 		{
 			setValue(R.id.account, text);
-			account = value;
+			move.OtherAccount = value;
 		}
 
 		@Override

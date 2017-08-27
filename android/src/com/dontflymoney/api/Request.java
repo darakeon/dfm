@@ -32,9 +32,7 @@ public class Request
 	private HashMap<String, Object> parameters;
 
 	private ProgressDialog progress;
-	private JSONObject result;
-	private String error;
-	
+	private Response response; 
 	
 	
 	public Request(SmartActivity activity, String url)
@@ -68,12 +66,10 @@ public class Request
 	
 	public void Post(Step step)
 	{
-		result = null;
-		error = null;
-		
 		if (isOffline())
 		{
-			error = activity.getString(R.string.u_r_offline);
+			String error = activity.getString(R.string.u_r_offline);
+			activity.HandlePostError(error, step);
 			return;
 		}
 		
@@ -87,7 +83,8 @@ public class Request
 		}
 	    catch (UnsupportedEncodingException e)
 	    {
-			error = activity.getString(R.string.error_set_parameters) + e.getMessage();
+	    	String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
+			activity.HandlePostError(error, step);
 			return;
 		}
 
@@ -107,12 +104,10 @@ public class Request
 	
 	public void Get(Step step)
 	{
-		result = null;
-		error = null;
-		
 		if (isOffline())
 		{
-			error = activity.getString(R.string.u_r_offline);
+			String error = activity.getString(R.string.u_r_offline);
+			activity.HandlePostError(error, step);
 			return;
 		}
 		
@@ -195,47 +190,35 @@ public class Request
 	{
 		if (errorMessage != null)
 		{
-			error = errorMessage;
+			response = new Response(errorMessage);
 		}
 		else if (json.startsWith("<"))
     	{
-    		error = activity.getString(R.string.error_contact_url) + " " + this.url;
+			response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
     	}
 		else 
 		{
 	    	try
 	    	{
-	    		result = new JSONObject(json);
+	    		response = new Response(new JSONObject(json));
 	    	}
 	        catch (JSONException e)
 	        {
-				error = activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage();
+	        	response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
 			}
     	}
     	
 		progress.dismiss();
-    	activity.HandlePost(this, step);
-	}
+		
+		if (response.IsSuccess())
+		{
+	    	activity.HandlePostResult(response.GetResult(), step);
+		}
+		else
+		{
+	    	activity.HandlePostError(response.GetError(), step);
+		}
+	}	
 	
 	
-	
-	
-	
-	public boolean IsSuccess()
-	{
-		return error == null;
-	}
-	
-	public JSONObject GetResult()
-	{
-		return result;
-	}
-	
-	public String GetError()
-	{
-		return error;
-	}
-
-
-
 }

@@ -44,37 +44,13 @@ public class LoginActivity extends SmartActivity
 	}
 	
 	@Override
-	public void HandlePost(Request request, Step step)
+	protected void HandleSuccess(JSONObject result, Step step) throws JSONException
 	{
-		if (request.IsSuccess())
-		{
-			JSONObject result = request.GetResult();
-
-			try
-			{
-				if (result.has("error"))
-				{
-					String error = result.getString("error");
-					alertError(error);
-				}
-				else
-				{
-					String ticket = result.getString("data");
-					Authentication.Set(ticket);
-					
-					redirect(AccountsActivity.class);
-				}
-			}
-			catch (JSONException e)
-			{
-				alertError(e.getLocalizedMessage());
-			}
-		}
-		else
-		{
-			alertError(request.GetError());
-		}
-	}	
+		String ticket = result.getString("data");
+		Authentication.Set(ticket);
+		
+		redirect(AccountsActivity.class);
+	}
 	
 
 }

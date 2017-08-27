@@ -19,25 +19,14 @@ namespace DFM.MVC.Areas.API.Models
                 .Select(a => new SelectItem<String, String>(a.Name, a.Name))
                 .ToList();
 
-            if (AccountList.Any())
-            {
-                NatureList = Enum.GetValues(typeof (MoveNature))
-                    .Cast<MoveNature>()
-                    .Select(n => new SelectItem<Int32, String>((Int32)n, n.ToString()))
-                    .ToList();
-            }
-            else
-            {
-                NatureList = Enum.GetValues(typeof(PrimalMoveNature))
-                    .Cast<PrimalMoveNature>()
-                    .Select(n => new SelectItem<Int32, String>((Int32)n, n.ToString()))
-                    .ToList();
-            }
+            NatureList = AccountList.Any() 
+                ? SelectItemEnum.SelectItem<MoveNature>() 
+                : SelectItemEnum.SelectItem<PrimalMoveNature>();
         }
 
         public IList<SelectItem<String, String>> AccountList { get; set; }
         public IList<SelectItem<String, String>> CategoryList { get; set; }
-        public IList<SelectItem<Int32, String>> NatureList { get; set; }
+        public IList<SelectItem<String, Int32>> NatureList { get; set; }
 
     }
 }
