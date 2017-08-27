@@ -1,7 +1,9 @@
-package com.dontflymoney.helpers;
+package com.dontflymoney.site;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,11 +15,14 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 public class HttpHelper
 {
 	private static String url = "http://beta.dontflymoney.com/Json";
+	
+	
 	
 	public static String doGet(String controller) 
 			throws ClientProtocolException, IOException
@@ -25,11 +30,15 @@ public class HttpHelper
 		return doGet(controller, null);		
 	}
 	
+	
+	
 	public static String doGet(String controller, String action) 
 			throws ClientProtocolException, IOException
 	{
 		return doGet(controller, action, null);		
 	}
+	
+	
 	
 	public static String doGet(String controller, String action, String id) 
 			throws ClientProtocolException, IOException
@@ -49,13 +58,17 @@ public class HttpHelper
 		return doPost(controller, null);		
 	}
 	
+	
+	
 	public static String doPost(String controller, String action) 
 			throws ClientProtocolException, IOException
 	{
 		return doPost(controller, action, null);		
 	}
 	
-	public static String doPost(String controller, String action, List<NameValuePair> parameters) 
+	
+	
+	public static String doPost(String controller, String action, Map<String, String> parameters) 
 			throws ClientProtocolException, IOException
 	{
 		String urlPost = getUrl(controller, action, null);
@@ -64,12 +77,28 @@ public class HttpHelper
 		
 		if (parameters != null)
 		{
-			UrlEncodedFormEntity urlEntity = new UrlEncodedFormEntity(parameters, "UTF-8");
+			List<NameValuePair> parametersToPost = convertMapToList(parameters);
 			
+			UrlEncodedFormEntity urlEntity = new UrlEncodedFormEntity(parametersToPost, "UTF-8");
+
 			post.setEntity(urlEntity);
 		}
 
 		return doRequest(post);
+	}
+	
+	
+	
+	private static List<NameValuePair> convertMapToList(Map<String, String> mapParameters)
+	{
+		List<NameValuePair> listParameters = new ArrayList<NameValuePair>();
+		
+		for(String key: mapParameters.keySet())
+		{
+			listParameters.add(new BasicNameValuePair(key, mapParameters.get(key)));
+		}
+		
+		return listParameters;
 	}
 
 
