@@ -85,12 +85,14 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Criar Template (Move)
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Sistema de notificações de novidades
+						Busca por movimentação
 						Tirar complete / validate de SaveOrUpdate
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
 
 VERSÃO 2.0.0.1 (System) - 10?
 ================================================================================================
+						Mudar campos para usar campos que firefox e chrome personalizam
 						Consertar problema ao pedir relatório que ainda não tem Month/Year
 						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 						Resolver problema de tab na tela de criação de Move (mobile)
