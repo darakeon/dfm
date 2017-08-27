@@ -77,21 +77,25 @@ F						Implementar necessidade de assinar TERMO
 S						Arrumar para web usar fakeId, não id
 2014-06-01				Escrever Termos de Uso
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
-
-VERSÃO 2.0.1.2 (System) - 19?
-================================================================================================
+						Tratar erro que acontece no robot para avisar usuário, não estourar
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
+
+VERSÃO 2.0.3.0 (Little change) - 8?
+================================================================================================
 F						Disponibilizar Task list no site
+F						Guardar dados localmente, para quando está sem internet (Mobile)
 F						Mudar campos para usar campos que firefox e chrome personalizam
 F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 F						Colocar tela de lista de funcionalidades
 F						Resolver problema de tab na tela de criação de Move (mobile)
-F						Colocar botão de sair (mobile)
-F						Colocar edição de movimentação (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
-F						Guardar dados localmente, para quando está sem internet (Mobile)
+
+VERSÃO 2.0.2.0 (Little change) - 10?
+================================================================================================
+F						Colocar botão de sair (mobile)
+F						Colocar edição de movimentação (mobile)
 F						Explicar url e sinalização da conta
 R						Aumentar versão da API Android de acordo com downloads do DFM
 H						Arrumar clique do menu (clique botões direito e meio do mouse)
@@ -99,9 +103,9 @@ F						Colocar botão CANCEL em Settings e Move (mobile)
 F						Rever layout empty table
 B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 F						Colocar Captcha no registro de usuário
-						Tratar erro que acontece no robot para avisar usuário, não estourar
+B						Arrumar tela de criação de movimentação / agendamento na parte de valor
 
-VERSÃO 2.0.1.1 (System) - 4?
+VERSÃO 2.0.1.1 (System) - 4
 ================================================================================================
 2015-01-01	2015-01-03	Fix test errors
 2015-01-03	2015-01-03	Trocar YellowLimit e RedLimit para Cents
