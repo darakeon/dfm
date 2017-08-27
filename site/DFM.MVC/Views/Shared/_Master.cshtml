@@ -10,99 +10,100 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head>
-    <title>DFM - @ViewBag.Title</title>
+    <head>
+        <title>DFM - @ViewBag.Title</title>
 
-    <link rel="icon" href="/Assets/image/pig.ico" />
+        <link rel="icon" href="/Assets/image/pig.ico" />
 
-    <link href="/Assets/css/libraries/datepicker.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/libraries/datepicker.css" rel="stylesheet" type="text/css" />
 
-    <link href="/Assets/css/mvc.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/general.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/half-screen.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/forms.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/top-right-div.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/menu.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/modal.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/mvc.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/general.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/half-screen.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/forms.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/top-right-div.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/modal.css" rel="stylesheet" type="text/css" />
 
-    <link href="/Assets/css/ieca.css" rel="stylesheet" type="text/css" />
+        <link href="/Assets/css/ieca.css" rel="stylesheet" type="text/css" />
 
 
-    @RenderSection("HtmlHeadCss", required: false)
+        @RenderSection("HtmlHeadCss", required: false)
 
-    <script src="/Assets/script/Libraries/jquery-1.6.2.min.js" type="text/javascript"></script>
-    <script src="/Assets/script/Libraries/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="/Assets/script/Libraries/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
-    <script src="/Assets/script/Libraries/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
-    <script src="/Assets/script/Libraries/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-</head>
-<body>
-	<div id="Head">
+        <script src="/Assets/script/Libraries/jquery-1.6.2.min.js" type="text/javascript"></script>
+        <script src="/Assets/script/Libraries/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="/Assets/script/Libraries/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+        <script src="/Assets/script/Libraries/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+        <script src="/Assets/script/Libraries/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+	    <div id="Head">
 
-        <a class="logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
-            <img alt="DFM" src="/Assets/image/pig.gif" />
-            <img alt="DFM" src="/Assets/image/logo.gif" />
-        </a>
+            <a class="logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
+                <img alt="DFM" src="/Assets/image/pig.gif" />
+                <img alt="DFM" src="/Assets/image/logo.gif" />
+            </a>
 
-        @RenderSection("MenuTopo")
+            @RenderSection("MenuTopo")
 
-	</div>
+	    </div>
 
-    <div id="Body">
+        <div id="Body">
 
-        <div id="Main">
+            <div id="Main">
 
-            @RenderSection("MenuBaixo", required: false)
+                @RenderSection("MenuBaixo", required: false)
 
-            @{/* Made without spaces to hide when empty */}
-            <div id="top-right-div">@RenderSection("TopRightDiv", required: false)</div>
+                @{/* Made without spaces to hide when empty */}
+                <div id="top-right-div">@RenderSection("TopRightDiv", required: false)</div>
 
-            <h2>@ViewBag.Title</h2>
+                <h2>@ViewBag.Title</h2>
 
-            @RenderBody()
+                @RenderBody()
 
-            <div id="PS">
-                @RenderSection("PS", required: false)
+                <div id="PS">
+                    @RenderSection("PS", required: false)
+                </div>
+
             </div>
 
         </div>
 
-    </div>
+        <div id="Footer">
+		    Don't Fly Money - Since 2011
+            @Html.Partial("IP")
+	    </div>
 
-    <div id="Footer">
-		Don't Fly Money - Since 2011
-	</div>
+        <div id="Advertising">
+            <a href="http://www.queroumbicho.com.br" target="_blank">
+                <img width="150" height="60" border="0" src="http://www.queroumbicho.com.br/images/banners/banner_03.gif" />
+            </a>
 
-    <div id="Advertising">
-        <a href="http://www.queroumbicho.com.br" target="_blank">
-            <img width="150" height="60" border="0" src="http://www.queroumbicho.com.br/images/banners/banner_03.gif" />
-        </a>
+            <!--a href="http://www.pea.org.br/" target="_blank">
+                <img width="71" height="60" border="0" src="/assets/image/advertising/pea.jpg" />
+            </a-->
 
-        <!--a href="http://www.pea.org.br/" target="_blank">
-            <img width="71" height="60" border="0" src="/assets/image/advertising/pea.jpg" />
-        </a-->
-
-        <!--a href="http://www.darakeon.com/" target="_blank">
-            <img width="60" height="60" border="0" src="/assets/image/advertising/darakeon.gif" />
-        </a-->
-    </div>
-</body>
-<footer>
-    <script src="/Assets/script/Libraries/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
-    <script src="/Assets/script/Libraries/jquery.maskMoney.0.2.js" type="text/javascript"></script>
+            <!--a href="http://www.darakeon.com/" target="_blank">
+                <img width="60" height="60" border="0" src="/assets/image/advertising/darakeon.gif" />
+            </a-->
+        </div>
+    </body>
+    <footer>
+        <script src="/Assets/script/Libraries/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
+        <script src="/Assets/script/Libraries/jquery.maskMoney.0.2.js" type="text/javascript"></script>
 
 
-    <script src='/Assets/script/image-link.js' type='text/javascript'></script>
-    <script src="/Assets/script/money-date.js" type="text/javascript"></script>
-    <script src="/Assets/script/button-href.js" type="text/javascript"></script>
-    <script src="/Assets/script/Ajax.js" type="text/javascript"></script>
-    <script src="/Assets/script/Detail.js" type="text/javascript"></script>
-    <script src="/Assets/script/Navigation.js" type="text/javascript"></script>
-    <script src="/Assets/script/Menu.js" type="text/javascript"></script>
-    <script src="/Assets/script/Forms.js" type="text/javascript"></script>
+        <script src='/Assets/script/image-link.js' type='text/javascript'></script>
+        <script src="/Assets/script/money-date.js" type="text/javascript"></script>
+        <script src="/Assets/script/button-href.js" type="text/javascript"></script>
+        <script src="/Assets/script/Ajax.js" type="text/javascript"></script>
+        <script src="/Assets/script/Detail.js" type="text/javascript"></script>
+        <script src="/Assets/script/Navigation.js" type="text/javascript"></script>
+        <script src="/Assets/script/Menu.js" type="text/javascript"></script>
+        <script src="/Assets/script/Forms.js" type="text/javascript"></script>
 
-    <script src="/Assets/script/Starter.js" type="text/javascript"></script>
+        <script src="/Assets/script/Starter.js" type="text/javascript"></script>
 
-    @RenderSection("HtmlFooterJs", required: false)
-</footer>
+        @RenderSection("HtmlFooterJs", required: false)
+    </footer>
 </html>
