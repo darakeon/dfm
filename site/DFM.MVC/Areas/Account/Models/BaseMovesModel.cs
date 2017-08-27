@@ -99,12 +99,11 @@ namespace DFM.MVC.Areas.Account.Models
 
         private void arrangeDetails()
         {
-            IsDetailed = GenericMove.IsDetailed();
+	        IsDetailed = GenericMove.ID != 0 && GenericMove.IsDetailed();
         }
 
 
-        
-        public OperationType Type { get; set; }
+	    public OperationType Type { get; set; }
 
 
         protected internal IMove GenericMove { get; set; }

@@ -97,13 +97,17 @@ VERSÃO 2.0.2.0 (Little change) - 10?
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
 F						Explicar url e sinalização da conta
-R						Aumentar versão da API Android de acordo com downloads do DFM
-H						Arrumar clique do menu (clique botões direito e meio do mouse)
 F						Colocar botão CANCEL em Settings e Move (mobile)
 F						Rever layout empty table
-B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 F						Colocar Captcha no registro de usuário
-B						Arrumar tela de criação de movimentação / agendamento na parte de valor
+R						Aumentar versão da API Android de acordo com downloads do DFM
+H						Arrumar clique do menu (clique botões direito e meio do mouse)
+B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
+
+VERSÃO 2.0.1.2 (System) - 1
+================================================================================================
+						Arrumar erro ao editar movimentação
+2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
 
 VERSÃO 2.0.1.1 (System) - 4
 ================================================================================================
