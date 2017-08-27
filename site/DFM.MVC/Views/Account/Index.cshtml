@@ -15,8 +15,7 @@ else
     <table class="List">
 
         <tr>
-            <th width="200px">@MultiLanguage.Dictionary["Name"]</th>
-            <th>@MultiLanguage.Dictionary["BeginDate"]</th>
+            <th width="500px">@MultiLanguage.Dictionary["Name"]</th>
             <th colspan="2">@MultiLanguage.Dictionary["Value"]</th>
             <!--
             <th colspan="2">@MultiLanguage.Dictionary["Move"]</th>
@@ -59,8 +58,6 @@ else
                     @Html.RouteLink(account.Name, RouteNames.Accounts, new { accounturl = account.Url, controller = "" })
                 </td>
                 
-                <td>@account.BeginDate.ToShortDateString()</td>
-
                 <td class="numeric @(negative ? "out" : "in")">@value</td>
                     
                 <td class="account_sign">@if (sign != null) { <img src="/Assets/image/@(sign)_sign.gif" alt="@sign" /> } </td>

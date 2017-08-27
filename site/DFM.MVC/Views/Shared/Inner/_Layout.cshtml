@@ -17,8 +17,8 @@
 
 @section MenuTopo {
     <ul class="menu-topo">
-        <li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "fixItem" })</li>
         <li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Account" }, new { @class = "fixItem" })</li>
+        <li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Category" }, new { @class = "fixItem" })</li>
         <li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.Default, new { action = "LogOff", controller = "User" }, new { @class = "fixItem" })</li>
     </ul>
 }
