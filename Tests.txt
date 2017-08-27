@@ -1,0 +1,18 @@
+User
+	Create
+	Activate
+	Recover Password
+
+Account
+	Create
+	Edit
+
+Category
+	Create
+	Edit
+
+Move
+	Create
+	Edit
+	Schedule
+	Reports
