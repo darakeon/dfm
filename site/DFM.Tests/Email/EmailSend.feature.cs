@@ -106,10 +106,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Send an e-mail without addressee")]
-        public virtual void _03_SendAnE_MailWithoutAddressee()
+        [NUnit.Framework.DescriptionAttribute("03. Send an e-mail without address")]
+        public virtual void _03_SendAnE_MailWithoutAddress()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Send an e-mail without addressee", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Send an e-mail without address", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -126,7 +126,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
  testRunner.When("I try to send the e-mail");
 #line 22
- testRunner.Then("I will receive this e-mail error: InvalidAddressee");
+ testRunner.Then("I will receive this e-mail error: InvalidAddress");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

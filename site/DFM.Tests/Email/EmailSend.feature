@@ -14,12 +14,12 @@ Scenario: 02. Send an e-mail without body
 	When I try to send the e-mail
 	Then I will receive this e-mail error: InvalidBody
 
-Scenario: 03. Send an e-mail without addressee
+Scenario: 03. Send an e-mail without address
 	Given I have this e-mail to send
 		| Subject           | Body              | To |
 		| without addressee | without addressee |    |
 	When I try to send the e-mail
-	Then I will receive this e-mail error: InvalidAddressee
+	Then I will receive this e-mail error: InvalidAddress
 
 Scenario: 98. Send an e-mail successfuly
 	Given I have this e-mail to send
