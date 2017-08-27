@@ -41,20 +41,14 @@ namespace DFM.BusinessLogic.Services
 
         private EmailStatus runScheduleEqualConfig(Boolean useCategories)
         {
-            var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
-
-            var sameConfigList = scheduleList
-                .Where(s => s.HasCategory() == useCategories);
+            var sameConfigList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
 
             return runSchedule(sameConfigList);
         }
 
         private EmailStatus runScheduleDiffConfig(Boolean useCategories)
         {
-            var scheduleList = scheduleRepository.GetRunnable(Parent.Current.User, useCategories);
-
-            var diffConfigList = scheduleList
-                .Where(s => s.HasCategory() != useCategories);
+            var diffConfigList = scheduleRepository.GetRunnable(Parent.Current.User, !useCategories);
 
             EmailStatus emailsSent;
 
