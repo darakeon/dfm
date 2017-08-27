@@ -105,6 +105,7 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Arrumar agendamento detalhado
 						Colocar valores em inteiro (double > int) no banco
 						Setar conta quando edita move transfer
+						Arrumar testes
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
@@ -118,6 +119,7 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 						Consertar edit da movimentação transfer
 						Handle differentely EConnReset
 						Retirar dados do post se forem senhas ou valores
+						Consertar lentidão no server
 2014-05-04	2014-05-04	Deletar PageLog
 2014-05-04	2014-05-04	Consertar problema de salvar língua
 2014-05-04	2014-05-04	Arrumar tabela em caso de texto grande
