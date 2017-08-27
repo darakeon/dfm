@@ -1,6 +1,6 @@
 ALTER TABLE PageLog CHANGE COLUMN IP IP VARCHAR(50) NOT NULL;
 
---USER
+--PRE-PUBLISH
 CREATE TABLE Config
 (
 	ID INT NOT NULL AUTO_INCREMENT,
@@ -18,9 +18,6 @@ INSERT INTO Config (Language, TimeZone, SendMoveEmail, User_ID)
 		FROM User
 	
 ALTER TABLE User
-	DROP Language,
-	DROP TimeZone,
-	DROP SendMoveEmail,
 	ADD Config_ID INTEGER NULL,
 	ADD UNIQUE (Config_ID);
 
@@ -46,7 +43,14 @@ ALTER TABLE Config
 	DROP COLUMN User_ID,
 	DROP INDEX User_ID;
 	
---CATEGORY
+	
+	
+--POS-PUBLISH
+ALTER TABLE User
+	DROP Language,
+	DROP TimeZone,
+	DROP SendMoveEmail;
+	
 ALTER TABLE Move
 	MODIFY COLUMN Category_ID INTEGER NULL;
 
