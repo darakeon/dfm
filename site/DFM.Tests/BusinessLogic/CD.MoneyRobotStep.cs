@@ -44,6 +44,7 @@ namespace DFM.Tests.BusinessLogic
         public void GivenItHasNoCategory()
         {
             CategoryName = null;
+            Category = null;
         }
 
         [Given(@"it has an unknown Category")]
@@ -73,8 +74,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountOutTotal = AccountOut.Sum();
-            YearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
-            MonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
+            YearCategoryAccountOutTotal = (year[CategoryName] ?? new Summary()).Out;
+            MonthCategoryAccountOutTotal = (month[CategoryName] ?? new Summary()).Out;
         }
 
         [Given(@"it has no Account Out")]
@@ -132,8 +133,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-            MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+            YearCategoryAccountInTotal = (year[CategoryName] ?? new Summary()).In;
+            MonthCategoryAccountInTotal = (month[CategoryName] ?? new Summary()).In;
         }
 
         [Given(@"it has no Account In")]
@@ -192,8 +193,8 @@ namespace DFM.Tests.BusinessLogic
             var month = year[Date.Month, true];
 
             AccountInTotal = AccountIn.Sum();
-            YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-            MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+            YearCategoryAccountInTotal = (year[CategoryName] ?? new Summary()).In;
+            MonthCategoryAccountInTotal = (month[CategoryName] ?? new Summary()).In;
         }
 
 
@@ -214,7 +215,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountOut[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month.GetOrCreateSummary(Category).Out;
+            var currentTotal = (month[CategoryName] ?? new Summary()).Out;
 
             Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
         }
@@ -226,7 +227,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountOut[Date.Year, true];
 
-            var currentTotal = year.GetOrCreateSummary(Category).Out;
+            var currentTotal = (year[CategoryName] ?? new Summary()).Out;
 
             Assert.AreEqual(YearCategoryAccountOutTotal, currentTotal);
         }
@@ -248,7 +249,7 @@ namespace DFM.Tests.BusinessLogic
             var year = AccountIn[Date.Year, true];
             var month = year[Date.Month, true];
 
-            var currentTotal = month.GetOrCreateSummary(Category).In;
+            var currentTotal = (month[CategoryName] ?? new Summary()).In;
 
             Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
         }
@@ -260,7 +261,7 @@ namespace DFM.Tests.BusinessLogic
 
             var year = AccountIn[Date.Year, true];
 
-            var currentTotal = year.GetOrCreateSummary(Category).In;
+            var currentTotal = (year[CategoryName] ?? new Summary()).In;
 
             Assert.AreEqual(YearCategoryAccountInTotal, currentTotal);
         }

@@ -14,8 +14,7 @@ namespace DFM.BusinessLogic.Repositories
         {
             var year = getOrCreateYear(account, dateYear);
 
-            if (category != null)
-                year.GetOrCreateSummary(category);
+            year.GetOrCreateSummary(category);
 
             return year;
         }

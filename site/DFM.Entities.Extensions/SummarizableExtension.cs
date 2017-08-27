@@ -13,7 +13,9 @@ namespace DFM.Entities.Extensions
 
         public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
         {
-            return summarizable[category.Name]
+            var categoryName = category == null ? null : category.Name;
+
+            return summarizable[categoryName]
                 ?? summarizable.AddSummary(category);
         }
 

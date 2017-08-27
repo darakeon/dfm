@@ -256,8 +256,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var month = year[Move.Date.Month, true];
 
                 newAccountOutTotal = AccountOut.Sum();
-                newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
-                newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
+                newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
+                newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
             }
 
             if (AccountIn != null)
@@ -266,8 +266,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var month = year[Move.Date.Month, true];
 
                 newAccountInTotal = AccountIn.Sum();
-                newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-                newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+                newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
+                newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
             }
         }
 
@@ -276,6 +276,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         public void GivenIChangeTheCategoryOfTheMove()
         {
             Category = GetOrCreateCategory(newCategoryName);
+            CategoryName = newCategoryName;
         }
 
 
@@ -288,8 +289,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountOutTotal = AccountOut.Sum();
-            newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
-            newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
+            newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
+            newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
         }
 
 
@@ -302,8 +303,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountInTotal = AccountIn.Sum();
-            newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-            newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+            newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
+            newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
         }
 
 
@@ -320,8 +321,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountInTotal = AccountIn.Sum();
-            newYearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-            newMonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+            newYearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
+            newMonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
         }
 
 
@@ -338,8 +339,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var month = year[Move.Date.Month, true];
 
             newAccountOutTotal = AccountOut.Sum();
-            newYearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
-            newMonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
+            newYearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
+            newMonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
         }
 
         [When(@"I change the move value to (\d+)")]
@@ -371,7 +372,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
                 var accountInUrl = AccountIn == null ? null : AccountIn.Url;
 
-                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, Category.Name);
+                SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
             }
             catch (DFMCoreException e)
             {
@@ -816,9 +817,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
             var accountInUrl = nature == MoveNature.Out
                                     ? null : AccountInUrl;
 
-            Category = GetOrCreateCategory(MainCategoryName);
+            CategoryName = MainCategoryName;
 
-            SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, Category.Name);
+            SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, MainCategoryName);
 
             if (accountOutUrl != null)
             {
@@ -830,8 +831,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 AccountOutTotal = AccountOut.Sum();
                 YearAccountOutTotal = year.Sum();
                 MonthAccountOutTotal = month.Sum();
-                YearCategoryAccountOutTotal = year.GetOrCreateSummary(Category).Out;
-                MonthCategoryAccountOutTotal = month.GetOrCreateSummary(Category).Out;
+                YearCategoryAccountOutTotal = (year[MainCategoryName] ?? new Summary()).Out;
+                MonthCategoryAccountOutTotal = (month[MainCategoryName] ?? new Summary()).Out;
             }
 
             if (accountInUrl != null)
@@ -844,8 +845,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
                 AccountInTotal = AccountIn.Sum();
                 YearAccountInTotal = year.Sum();
                 MonthAccountInTotal = month.Sum();
-                YearCategoryAccountInTotal = year.GetOrCreateSummary(Category).In;
-                MonthCategoryAccountInTotal = month.GetOrCreateSummary(Category).In;
+                YearCategoryAccountInTotal = (year[MainCategoryName] ?? new Summary()).In;
+                MonthCategoryAccountInTotal = (month[MainCategoryName] ?? new Summary()).In;
             }
         }
 

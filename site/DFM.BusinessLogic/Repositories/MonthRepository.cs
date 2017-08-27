@@ -14,8 +14,7 @@ namespace DFM.BusinessLogic.Repositories
         {
             var month = getOrCreateMonth(year, dateMonth);
 
-            if (category != null)
-                month.GetOrCreateSummary(category);
+            month.GetOrCreateSummary(category);
 
             return month;
         }
