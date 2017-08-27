@@ -97,7 +97,8 @@ VERSÃO 2.0.0.0 (All new) - 15?
 						Criar relatório mensal (Mobile)
 						Criar resumo das contas (Mobile)
 						Possibilitar gravar movimentação (Mobile)
-						Colocar lista de contas (Mobile)
+2013-12-30				Colocar lista de contas (Mobile)
+2013-12-28	2013-12-31	Refazer app
 2013-11-08	2013-11-08	Arrumar data e hora de limite de inserção de movimentação
 2013-10-04	2013-10-16	Fazer login por ticket no site
 2013-10-04	2013-10-04	Criar App Mobile

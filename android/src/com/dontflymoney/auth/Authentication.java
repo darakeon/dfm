@@ -4,30 +4,37 @@ import android.content.Context;
 
 public class Authentication
 {
-	public static void Set(Context context, String ticket)
+	Context context;
+	
+	public Authentication(Context context)
+	{
+		this.context = context;
+	}
+	
+	public void Set(String ticket)
 	{
 		File ticketFile = new File(context, File.Ticket);
 		
 		ticketFile.WriteToFile(ticket);
 	}
 	
-	public static String Get(Context context)
+	public String Get()
 	{
 		File ticketFile = new File(context, File.Ticket);
 		
 		return ticketFile.ReadFromFile();
 	}
 
-	public static boolean IsLoggedIn(Context context)
+	public boolean IsLoggedIn()
 	{
-		String ticket = Get(context);
+		String ticket = Get();
 
 		return ticket != null && ticket != "";
 	}
 
-	public static void Clear(Context context)
+	public void Clear()
 	{
-		Set(context, null);
+		Set(null);
 	}
 	
 

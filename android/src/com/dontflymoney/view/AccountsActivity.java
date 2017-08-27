@@ -20,6 +20,8 @@ public class AccountsActivity extends SmartActivity
 		Init(this, R.layout.activity_accounts, R.menu.accounts);
 	}
 	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -31,7 +33,7 @@ public class AccountsActivity extends SmartActivity
 	{
 		Request request = new Request("Account/List");
 		
-		request.AddParameter("ticket", Authentication.Get(getApplicationContext()));
+		request.AddParameter("ticket", Authentication.Get());
 		
 		request.Post();
 		

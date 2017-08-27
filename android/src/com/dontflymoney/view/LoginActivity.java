@@ -3,11 +3,10 @@ package com.dontflymoney.view;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import com.dontflymoney.api.Request;
-import com.dontflymoney.auth.Authentication;
 
 
 public class LoginActivity extends SmartActivity
@@ -17,6 +16,20 @@ public class LoginActivity extends SmartActivity
 		Init(this, R.layout.activity_login, R.menu.login);
 	}
 	
+	
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		
+		if (Authentication.IsLoggedIn())
+		{
+			Redirect(AccountsActivity.class);
+		}
+	}	
+
 	
 	
 	public void login(View view) throws JSONException
@@ -40,11 +53,10 @@ public class LoginActivity extends SmartActivity
 			}
 			else
 			{
-				String data = result.get("data").toString();
-				Authentication.Set(getApplicationContext(), data);
+				String ticket = result.get("data").toString();
+				Authentication.Set(ticket);
 				
-				Intent intent = new Intent(this, AccountsActivity.class);
-				startActivity(intent);
+				Redirect(AccountsActivity.class);
 			}
 		}
 		else

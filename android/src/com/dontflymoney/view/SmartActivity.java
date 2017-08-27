@@ -2,6 +2,7 @@ package com.dontflymoney.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.view.Menu;
@@ -9,12 +10,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dontflymoney.auth.Authentication;
+
 public class SmartActivity extends Activity
 {
-	Activity activity;
-	int contentView;
-	int menuRes;
-	String machineId;
+	protected Activity activity;
+	protected int contentView;
+	protected int menuRes;
+
+	protected String machineId;
+	protected Authentication Authentication;
 	
 	public void Init(Activity activity, int contentView, int menuRes)
 	{
@@ -31,6 +36,7 @@ public class SmartActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(contentView);
 
+		Authentication = new Authentication(getApplicationContext());
 		machineId = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
 	}
 
@@ -76,13 +82,20 @@ public class SmartActivity extends Activity
 	
 	protected void BackToLogin()
 	{
-		/*
-		Authentication.Clear(getApplicationContext());
+		Authentication.Clear();
 		
 		Intent intent = new Intent(this, LoginActivity.class);
 		startActivity(intent);
-		*/
 	}
+	
+	protected void Redirect(Class<?> activityClass)
+	{
+		Intent intent = new Intent(this, activityClass);
+		startActivity(intent);
+	}
+	
+	
+	
 	
 	
 }
