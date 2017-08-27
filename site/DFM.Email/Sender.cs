@@ -84,7 +84,7 @@ namespace DFM.Email
             var net = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
             var host = net.Network.Host;
 
-            using (var smtp = new SmtpClient(host) {Timeout = 10000})
+            using (var smtp = new SmtpClient(host) {Timeout = 3000})
             {
                 try
                 {
