@@ -1,0 +1,5 @@
+<resources>
+
+    <integer name="amount_default">1</integer>
+    
+</resources>
