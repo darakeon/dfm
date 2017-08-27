@@ -72,7 +72,7 @@ namespace DFM.BusinessLogic.Repositories
                                 { "Date", move.Date.ToShortDateString() },
                                 { "Category", categoryName },
                                 { "Description", move.Description },
-                                { "Value", move.Value().ToMoney(user.Config.Language) },
+                                { "Value", move.Total().ToMoney(user.Config.Language) },
                                 { "Details", detailsHTML(move) },
                             };
 
@@ -142,7 +142,7 @@ namespace DFM.BusinessLogic.Repositories
 				? query.Filter(m => m.Category == null)
 				: query.Filter(m => m.Category != null && m.Category.ID == category.ID);
 
-			return query.Result.Sum(m => m.Value());
+			return query.Result.Sum(m => m.Total());
 		}
 
 

@@ -24,7 +24,7 @@ namespace DFM.MVC.Areas.API.Jsons
 
             var accountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
 
-            Total = move.Value() * (accountUrl == accountOut ? -1 : 1);
+            Total = move.Total() * (accountUrl == accountOut ? -1 : 1);
         }
         
     }

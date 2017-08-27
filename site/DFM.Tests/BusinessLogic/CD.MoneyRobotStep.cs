@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using NUnit.Framework;
@@ -16,11 +17,15 @@ namespace DFM.Tests.BusinessLogic
             GetOrCreateAccount(AccountInUrl);
         }
 
-        [Given(@"it has no Details")]
-        public void GivenItHasNoDetails()
-        {
-            // TODO: empty detaillist
-        }
+		[Given(@"it has no Details")]
+		public void GivenItHasNoDetails()
+		{
+			if (Move != null)
+				Move.DetailList = new List<Detail>();
+
+			if (Schedule != null)
+				Schedule.DetailList = new List<Detail>();
+		}
 
         [Given(@"the move has this details")]
         public void GivenTheMoveHasThisDetails(Table table)
@@ -107,17 +112,13 @@ namespace DFM.Tests.BusinessLogic
 
             var move = new Move
             {
-                Date = Current.User.Now(),
-                Description = "Description",
-                Nature = MoveNature.Out
+	            Date = Current.User.Now(),
+	            Description = "Description",
+	            Nature = MoveNature.Out,
+	            Value = 10
             };
 
-            // TODO: Remove this, put Value
-            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
-
-            move.DetailList.Add(detail);
-
-            SA.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
+	        SA.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
 
             SA.Admin.CloseAccount(AccountOut.Url);
         }
@@ -166,17 +167,13 @@ namespace DFM.Tests.BusinessLogic
 
             var move = new Move
             {
-                Date = Current.User.Now(),
-                Description = "Description",
-                Nature = MoveNature.In
+	            Date = Current.User.Now(),
+	            Description = "Description",
+	            Nature = MoveNature.In,
+	            Value = 10
             };
 
-            // TODO: Remove this, put Value
-            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
-
-            move.DetailList.Add(detail);
-
-            SA.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
+	        SA.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
 
             SA.Admin.CloseAccount(AccountIn.Url);
         }

@@ -7,31 +7,18 @@ namespace DFM.Entities.Extensions
 {
     public static class MoveExtension
     {
-        public static Boolean IsDetailed(this IMove move)
-        {
-            return !move.hasJustOneDetail()
-                    || move.hasFirstDetailDescription();
-        }
+		public static Boolean HasValue(this IMove move)
+		{
+			return move.HasDetails() || 
+				(move.Value.HasValue && move.Value != 0);
+		}
 
-        private static Boolean hasJustOneDetail(this IMove move)
-        {
-            return move.DetailList.Count == 1;
-        }
+		public static Boolean HasDetails(this IMove move)
+		{
+			return move.DetailList.Any();
+		}
 
-        private static Boolean hasFirstDetailDescription(this IMove move)
-        {
-            var detail = move.DetailList.First();
-
-            return !String.IsNullOrEmpty(detail.Description)
-                && detail.Description != move.Description;
-        }
-
-        public static Boolean HasDetails(this IMove move)
-        {
-            return move.DetailList.Any();
-        }
-
-        public static Int32 PositionInSchedule(this Move move)
+		public static Int32 PositionInSchedule(this Move move)
         {
             var schedule = move.Schedule;
 

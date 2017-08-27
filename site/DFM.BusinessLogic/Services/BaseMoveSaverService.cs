@@ -40,7 +40,7 @@ namespace DFM.BusinessLogic.Services
 
             var oldMove = moveRepository.GetOldById(move.ID);
 
-            if (move.ID == 0 || !move.IsDetailed())
+            if (move.ID == 0 || !move.HasDetails())
             {
                 move = moveRepository.SaveOrUpdate(move);
                 detailRepository.SaveDetails(move);

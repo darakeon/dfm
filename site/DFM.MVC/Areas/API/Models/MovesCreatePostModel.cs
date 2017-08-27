@@ -36,25 +36,13 @@ namespace DFM.MVC.Areas.API.Models
 
         private Move convertToEntity()
         {
-            if (!DetailList.Any())
-            {
-                //TODO: replace by Value
-                var detail = new DetailJson
-                {
-                    Amount = 1,
-                    Value = Value,
-                    Description = Description
-                };
-
-                DetailList.Add(detail);
-            }
-
             return new Move
             {
                 Description = Description,
                 Date = Date,
                 Nature = Nature,
-                DetailList = DetailList.Select(d => d.ConvertToEntity()).ToList()
+				Value = Value,
+                DetailList = DetailList.Select(d => d.ConvertToEntity()).ToList(),
             };
         }
     }

@@ -99,11 +99,10 @@ namespace DFM.MVC.Areas.Accounts.Models
 
         private void arrangeDetails()
         {
-            //TODO: Fix here when put Value in move
             if (!GenericMove.HasDetails())
                 GenericMove.AddDetail(new Detail { Amount = 1 });
 
-            IsDetailed = GenericMove.IsDetailed();
+            IsDetailed = GenericMove.HasDetails();
         }
 
 

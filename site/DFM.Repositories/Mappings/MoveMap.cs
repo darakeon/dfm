@@ -15,10 +15,10 @@ namespace DFM.Repositories.Mappings
             mapping.References(m => m.Schedule)
                 .Cascade.None()
                 .Nullable();
-
+			
             mapping.IgnoreProperty(m => m.FakeID);
-
-            mapping.IgnoreProperty(m => m.User);
+			mapping.IgnoreProperty(m => m.Value);
+			mapping.IgnoreProperty(m => m.User);
 
             mapping.References(m => m.Category)
                 .Cascade.None()

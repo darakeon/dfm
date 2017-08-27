@@ -12,20 +12,17 @@ namespace DFM.Entities
             init();
         }
 
-        
-
-
 
         public virtual Int32 ID { get; set; }
 
         public virtual String Description { get; set; }
-        public virtual MoveNature Nature { get; set; }
-        public virtual IList<Detail> DetailList { get; set; }
+		public virtual DateTime Date { get; set; }
+		public virtual MoveNature Nature { get; set; }
+		public virtual Int32? ValueCents { get; set; }
         
         public virtual Boolean ShowInstallment { get; set; }
 
         
-        public virtual DateTime Date { get; set; }
 
         public virtual Int16 LastRun { get; set; }
         public virtual Int16 Deleted { get; set; }
@@ -43,7 +40,8 @@ namespace DFM.Entities
         public virtual User User { get; set; }
 
 
-        public virtual IList<Move> MoveList { get; set; }
+		public virtual IList<Detail> DetailList { get; set; }
+		public virtual IList<Move> MoveList { get; set; }
         
 
 

@@ -150,7 +150,7 @@ namespace DFM.BusinessLogic.Services
 			schedule.Category = Parent.BaseMove.GetCategoryByName(categoryName);
 			schedule.User = Parent.Current.User;
 
-			if (schedule.ID == 0 || !schedule.IsDetailed())
+			if (schedule.ID == 0 || !schedule.HasDetails())
 			{
 				scheduleRepository.SaveOrUpdate(schedule);
 				detailRepository.SaveDetails(schedule);

@@ -207,21 +207,8 @@ namespace DFM.Tests.BusinessLogic.D.Robot
             if (!String.IsNullOrEmpty(scheduleData["Date"]))
                 Schedule.Date = DateTime.Parse(scheduleData["Date"]);
 
-            // TODO: use this, delete above
-            //if (moveData["Value"] != null)
-            //    move.Value = Int32.Parse(moveData["Value"]);
-
-            if (!String.IsNullOrEmpty(scheduleData["Value"]))
-            {
-                var detail = new Detail
-                {
-                    Description = Schedule.Description,
-                    Amount = 1,
-                    Value = Int32.Parse(scheduleData["Value"])
-                };
-
-                Schedule.DetailList.Add(detail);
-            }
+			if (!String.IsNullOrEmpty(scheduleData["Value"]))
+				Schedule.Value = Int32.Parse(scheduleData["Value"]);
 
             if (!String.IsNullOrEmpty(scheduleData["Times"]))
                 Schedule.Times = Int16.Parse(scheduleData["Times"]);

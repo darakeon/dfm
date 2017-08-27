@@ -108,21 +108,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
             if (!String.IsNullOrEmpty(moveData["Nature"]))
                 Move.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
 
-            // TODO: use this, delete above
-            //if (moveData["Value"] != null)
-            //    move.Value = Int32.Parse(moveData["Value"]);
-
-            if (!String.IsNullOrEmpty(moveData["Value"]))
-            {
-                var newDetail = new Detail
-                {
-                    Description = Move.Description,
-                    Amount = 1,
-                    Value = Int32.Parse(moveData["Value"])
-                };
-
-                Move.DetailList.Add(newDetail);
-            }
+			if (!String.IsNullOrEmpty(moveData["Value"]))
+			    Move.Value = Int32.Parse(moveData["Value"]);
         }
         
 
@@ -353,8 +340,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         [When(@"I change the move value to (\d+)")]
         public void WhenIChangeTheMoveValueTo(Int32 value)
         {
-            // TODO change to value of move
-            Move.DetailList[0].Value = value;
+            Move.Value = value;
         }
 
         [When(@"I add these details to the move")]
@@ -812,17 +798,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             makeJustMove(nature);
 
-            // TODO: use this, delete above
-            //    move.Value = value;
-
-            var newDetail = new Detail
-            {
-                Description = Move.Description,
-                Amount = 1,
-                Value = value,
-            };
-
-            Move.DetailList.Add(newDetail);
+            Move.Value = value;
             
             setMoveExternals(nature);
         }

@@ -101,7 +101,7 @@ function AddDetail() {
         function (data) {
             $("#details").append(data);
 
-            AjustMoney("#details .money");
+            AdjustMoney("#details .money");
 
             $("#addDetailCaller").show();
         }
@@ -116,11 +116,11 @@ function RemoveDetail(position) {
     do {
         position++;
 
-        AjustNumbersLess(prefix + position, "Detail", position)
+        AdjustNumbersLess(prefix + position, "Detail", position)
 
     } while ($(prefix + position)[0]);
 
-    AjustMoney("#details .money");
+    AdjustMoney("#details .money");
 }
 
 

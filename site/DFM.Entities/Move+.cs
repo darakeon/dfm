@@ -14,6 +14,23 @@ namespace DFM.Entities
 			DetailList = new List<Detail>();
 		}
 
+		public override String ToString()
+		{
+			return Description;
+		}
+
+		public virtual Double? Value
+		{
+			get { return ValueCents.ToVisual(); }
+			set { ValueCents = value.ToCents(); }
+		}
+
+		public virtual Double Total()
+		{
+			return Value ??
+				DetailList.Sum(d => d.Value * d.Amount);
+		}
+
 
 		public virtual Int64 FakeID
 		{
@@ -61,21 +78,12 @@ namespace DFM.Entities
 			detail.Move = this;
 		}
 
-		public virtual Double Value()
-		{
-			return DetailList.Sum(d => d.Value * d.Amount);
-		}
-
 		private static Account getAccount(Month month)
 		{
 			return month == null ? null : month.Year.Account;
 		}
 
 
-		public override String ToString()
-		{
-			return Description;
-		}
 
 
 		public virtual String Month()

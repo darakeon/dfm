@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    AjustMoneyAndDate();
-    AjustMenuButtons();
-    AjustLinkButtons();
+    AdjustMoneyAndDate();
+    AdjustMenuButtons();
+    AdjustLinkButtons();
     SetNavigation();
 });

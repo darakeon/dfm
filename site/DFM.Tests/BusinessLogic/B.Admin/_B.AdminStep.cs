@@ -691,17 +691,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             var move = new Move
             {
-                Date = Current.User.Now(),
-                Description = "Move for account test",
-                Nature = MoveNature.Out
+	            Date = Current.User.Now(),
+	            Description = "Move for account test",
+	            Nature = MoveNature.Out,
+	            Value = 10
             };
 
-            // TODO: Remove this, put Value
-            var detail = new Detail { Amount = 1, Description = move.Description, Value = 10 };
-
-            move.DetailList.Add(detail);
-
-            SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+	        SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
 
             AccountUrl = Account.Url;
         }
@@ -711,20 +707,16 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             Schedule = new Schedule
             {
-                Date = Current.User.Now().AddDays(1),
-                Description = "Schedule for account test",
-                Nature = MoveNature.Out,
-                Frequency = ScheduleFrequency.Daily,
-                Boundless = false,
-                Times = 1
+	            Date = Current.User.Now().AddDays(1),
+	            Description = "Schedule for account test",
+	            Nature = MoveNature.Out,
+	            Frequency = ScheduleFrequency.Daily,
+	            Boundless = false,
+	            Times = 1,
+	            Value = 10
             };
 
-            // TODO: Remove this, put Value
-            var detail = new Detail { Amount = 1, Description = Schedule.Description, Value = 10 };
-
-            Schedule.DetailList.Add(detail);
-
-            SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+	        SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
         }
 
         [Given(@"the account has a disabled schedule")]
@@ -732,20 +724,16 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         {
             Schedule = new Schedule
             {
-                Date = Current.User.Now().AddDays(1),
-                Description = "Schedule for account test",
-                Nature = MoveNature.Out,
-                Frequency = ScheduleFrequency.Daily,
-                Boundless = false,
-                Times = 1
+	            Date = Current.User.Now().AddDays(1),
+	            Description = "Schedule for account test",
+	            Nature = MoveNature.Out,
+	            Frequency = ScheduleFrequency.Daily,
+	            Boundless = false,
+	            Times = 1,
+	            Value = 10
             };
 
-            // TODO: Remove this, put Value
-            var detail = new Detail { Amount = 1, Description = Schedule.Description, Value = 10 };
-
-            Schedule.DetailList.Add(detail);
-
-            SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+	        SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
 
             SA.Robot.DisableSchedule(Schedule.ID);
         }

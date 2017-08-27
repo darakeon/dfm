@@ -20,7 +20,6 @@ namespace DFM.BusinessLogic.Bases
             testDate(move);
             testValue(move);
             testNature(move);
-            testDetailList(move);
 
             if (validateParents)
             {
@@ -51,9 +50,7 @@ namespace DFM.BusinessLogic.Bases
 
         private static void testValue(T move)
         {
-            // TODO: When create value move, use the other if
-            if (!move.IsDetailed() && move.Value() == 0)
-            // if (!baseMove.IsDetailed() && baseMove.Value == 0)
+            if (!move.HasValue())
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
@@ -80,12 +77,6 @@ namespace DFM.BusinessLogic.Bases
                     break;
 
             }
-        }
-
-        private static void testDetailList(T move)
-        {
-            if (!move.DetailList.Any())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
         }
 
         private static void testAccounts(T move)
@@ -121,23 +112,26 @@ namespace DFM.BusinessLogic.Bases
         #region Complete
         protected static void Complete(T move)
         {
-            ajustDetailList(move);
+			adjustValue(move);
+			adjustDetailList(move);
         }
 
-        private static void ajustDetailList(T move)
-        {
-            if (!move.IsDetailed())
-            {
-                move.DetailList[0].Description = move.Description;
-                move.DetailList[0].Amount = 1;
-            }
+		private static void adjustValue(T move)
+		{
+			if (move.Value < 0)
+				move.Value = -move.Value;
+		}
 
-            foreach (var detail in move.DetailList
-                                    .Where(detail => detail.Value < 0))
-            {
-                detail.Value = -detail.Value;
-            }
-        }
+		private static void adjustDetailList(T move)
+		{
+			var wrongDetails = move.DetailList
+				.Where(detail => detail.Value < 0);
+
+			foreach (var detail in wrongDetails)
+			{
+				detail.Value = -detail.Value;
+			}
+		}
         #endregion
 
 

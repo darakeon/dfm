@@ -18,7 +18,8 @@ namespace DFM.Entities
 
         public virtual String Description { get; set; }
         public virtual DateTime Date { get; set; }
-        public virtual MoveNature Nature { get; set; }
+		public virtual MoveNature Nature { get; set; }
+		public virtual Int32? ValueCents { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual Schedule Schedule { get; set; }

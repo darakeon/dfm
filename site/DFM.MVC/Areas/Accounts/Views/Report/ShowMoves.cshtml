@@ -55,14 +55,14 @@ else
 
                 <td class="numeric in">
                     @if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
-                        {@move.Value().ToMoney(Model.Language)}
+                        {@move.Total().ToMoney(Model.Language)}
                     else
                         { @(" ") }
                 </td>
 
                 <td class="numeric out">
                     @if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
-                        {@move.Value().ToMoney(Model.Language)}
+                        {@move.Total().ToMoney(Model.Language)}
                     else
                         { @(" ") }
                 </td>

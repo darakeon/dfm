@@ -74,8 +74,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
             var actual = monthReport.Sum(m => 
                     m.AccOut() != null 
                             && m.AccOut().ID == Account.ID
-                        ? - m.Value()
-                        : m.Value()
+                        ? - m.Total()
+                        : m.Total()
                 );
 
             Assert.AreEqual(expected, actual);
@@ -135,24 +135,13 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
                 var move = new Move
                 {
-                    Description = "Description",
-                    Date = date,
-                    Nature = MoveNature.Out,
+	                Description = "Description",
+	                Date = date,
+	                Nature = MoveNature.Out,
+	                Value = 10,
                 };
 
-
-                // TODO: use this, delete above
-                //    move.Value = 10;
-                var detail = new Detail
-                {
-                    Description = move.Description,
-                    Amount = 1,
-                    Value = 10,
-                };
-
-                move.DetailList.Add(detail);
-
-                SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+	            SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
             }
         }
 

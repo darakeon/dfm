@@ -47,7 +47,7 @@ namespace DFM.BusinessLogic.Repositories
             if (detail.Amount == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailAmountRequired);
 
-            if (detail.Value == 0)
+            if (detail.ValueCents == 0)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailValueRequired);
         }
 

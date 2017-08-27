@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.Entities
 {
@@ -24,6 +25,18 @@ namespace DFM.Entities
 				ID, Frequency, Description);
 		}
 
+		public virtual Double? Value
+		{
+			get { return ValueCents.ToVisual(); }
+			set { ValueCents = value.ToCents(); }
+		}
+
+		public virtual Double Total()
+		{
+			return Value ??
+				DetailList.Sum(d => d.Value * d.Amount);
+		}
+
 
 
 		public virtual Account AccOut()
@@ -43,11 +56,6 @@ namespace DFM.Entities
 			detail.Schedule = this;
 		}
 
-		public virtual Double Value()
-		{
-			return DetailList.Sum(d => d.Value * d.Amount);
-		}
-
         public virtual Move GetNewMove()
         {
             var dateTime = LastDateRun();
@@ -59,6 +67,7 @@ namespace DFM.Entities
                         Description = Description,
                         Nature = Nature,
                         Schedule = this,
+						Value = Value,
                     };
 
             foreach (var detail in DetailList)

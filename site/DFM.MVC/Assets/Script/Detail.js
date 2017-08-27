@@ -1,4 +1,4 @@
-﻿function AjustNumbersPlus(obj, preced, currentNumber) {
+﻿function AdjustNumbersPlus(obj, preced, currentNumber) {
     var rightPieceNumber = currentNumber + 1;
 
     var current = new RegExp("(" + preced + "[^0-9 ]*)(" + currentNumber + ")", "gi");
@@ -13,7 +13,7 @@
         );
 }
 
-function AjustNumbersLess(identifier, preced, currentNumber) {
+function AdjustNumbersLess(identifier, preced, currentNumber) {
     var obj = $(identifier);
 
     GetInputValues(obj);
