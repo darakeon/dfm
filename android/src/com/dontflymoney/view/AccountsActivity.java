@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -56,7 +57,7 @@ public class AccountsActivity extends SmartActivity
 		
 		if (accountList.length() == 0)
 		{
-			View empty = createText(getString(R.string.no_accounts), Gravity.CENTER);
+			View empty = form.createText(getString(R.string.no_accounts), Gravity.CENTER);
 			main.addView(empty);
 		}
 		else
@@ -79,10 +80,10 @@ public class AccountsActivity extends SmartActivity
 		row.setBackgroundColor(color);
 		
 		String name = account.getString("Name");
-		row.addView(createText(name, Gravity.LEFT));
+		row.addView(form.createText(name, Gravity.LEFT));
 
 		double total = account.getDouble("Total");
-		row.addView(createText(total, Gravity.RIGHT));
+		row.addView(form.createText(total, Gravity.RIGHT));
 		
 		setClick(row);
 
@@ -101,7 +102,7 @@ public class AccountsActivity extends SmartActivity
 		    	TableRowWithExtra<String> tablerow = (TableRowWithExtra<String>)row;
 		        String url = tablerow.getExtra();
 		        
-				Intent intent = new Intent(activity, ExtractActivity.class);
+				Intent intent = new Intent(AccountsActivity.this, ExtractActivity.class);
 				intent.putExtra("accounturl", url);
 				startActivity(intent);
 		    }

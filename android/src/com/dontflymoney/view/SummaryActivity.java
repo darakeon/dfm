@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -62,7 +63,7 @@ public class SummaryActivity extends SmartActivity
 	private void setDate(int year)
 	{
 		this.year = year;
-	    setValue(R.id.reportDate, Integer.toString(year));
+		form.setValue(R.id.reportDate, Integer.toString(year));
 	}
 	
     public void changeDate(View v)
@@ -125,12 +126,12 @@ public class SummaryActivity extends SmartActivity
 	{
 		JSONArray monthList = data.getJSONArray("MonthList");
 		
-		setValue(R.id.totalTitle, data.getString("Name"));
-		setValueColored(R.id.totalValue, data.getDouble("Total"));
+		form.setValue(R.id.totalTitle, data.getString("Name"));
+		form.setValueColored(R.id.totalValue, data.getDouble("Total"));
 		
 		if (monthList.length() == 0)
 		{
-			View empty = createText(getString(R.string.no_summary), Gravity.CENTER);
+			View empty = form.createText(getString(R.string.no_summary), Gravity.CENTER);
 			main.addView(empty);
 		}
 		else
@@ -153,10 +154,10 @@ public class SummaryActivity extends SmartActivity
 		row.setBackgroundColor(color);
 		
 		String description = move.getString("Name");
-		row.addView(createText(description, Gravity.LEFT));
+		row.addView(form.createText(description, Gravity.LEFT));
 
 		double total = move.getDouble("Total");
-		row.addView(createText(total, Gravity.RIGHT));
+		row.addView(form.createText(total, Gravity.RIGHT));
 
 		setClick(row);
 
@@ -175,7 +176,7 @@ public class SummaryActivity extends SmartActivity
 				TableRowWithExtra<Integer> tablerow = (TableRowWithExtra<Integer>)row;
 		        int monthNumber = tablerow.getExtra();
 
-				Intent intent = new Intent(activity, ExtractActivity.class);
+				Intent intent = new Intent(SummaryActivity.this, ExtractActivity.class);
 				
 		        intent.putExtra("accounturl", accounturl);
 				intent.putExtra("year", year);

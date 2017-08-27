@@ -18,9 +18,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.view.R;
-import com.dontflymoney.view.SmartActivity;
 
 public class Request
 {

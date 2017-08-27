@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.view.View;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -27,7 +28,7 @@ public class LoginActivity extends SmartActivity
 		
 		if (Authentication.IsLoggedIn())
 		{
-			redirect(AccountsActivity.class);
+			navigation.redirect(AccountsActivity.class);
 		}
 	}	
 
@@ -37,8 +38,8 @@ public class LoginActivity extends SmartActivity
 	{
 		Request request = new Request(this, "Users/Login");
 		
-		request.AddParameter("email", getValue(R.id.email));
-		request.AddParameter("password", getValue(R.id.password));
+		request.AddParameter("email", form.getValue(R.id.email));
+		request.AddParameter("password", form.getValue(R.id.password));
 		
 		request.Post();
 	}
@@ -49,7 +50,7 @@ public class LoginActivity extends SmartActivity
 		String ticket = data.getString("ticket");
 		Authentication.Set(ticket);
 		
-		redirect(AccountsActivity.class);
+		navigation.redirect(AccountsActivity.class);
 	}
 	
 

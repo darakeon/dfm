@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -57,7 +58,7 @@ public class MoveActivity extends SmartActivity {
 		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
 		
 		move.Date.set(year, month, day);
-		setValue(R.id.date, move.DateString());
+		form.setValue(R.id.date, move.DateString());
 		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
 		
 		setDescriptionListener();
@@ -79,7 +80,7 @@ public class MoveActivity extends SmartActivity {
 				break;
 			}
 			default: {
-				alertError(R.string.this_is_not_happening);
+				message.alertError(R.string.this_is_not_happening);
 				break;
 			}
 		}
@@ -104,7 +105,7 @@ public class MoveActivity extends SmartActivity {
 		
 		JSONObject firstNature = natureList.getJSONObject(0);
 		
-		setValue(R.id.nature, firstNature.getString("Text"));
+		form.setValue(R.id.nature, firstNature.getString("Text"));
 		move.Nature = firstNature.getInt("Value");
 	}
 
@@ -146,7 +147,7 @@ public class MoveActivity extends SmartActivity {
 		{
 			move.Date.set(year, month, day);
 
-			setValue(R.id.date, move.DateString());
+			form.setValue(R.id.date, move.DateString());
 			dialog.hide();
 		}
 	}
@@ -155,7 +156,7 @@ public class MoveActivity extends SmartActivity {
 	
 	public void changeCategory(View view) throws JSONException
 	{
-		showChangeList(categoryList, R.string.category, new DialogCategory(categoryList));
+		form.showChangeList(categoryList, R.string.category, new DialogCategory(categoryList));
 	}
 
 	class DialogCategory extends DialogSelectClickListener
@@ -165,14 +166,14 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void setResult(String text, String value)
 		{
-			setValue(R.id.category, text);
+			form.setValue(R.id.category, text);
 			move.Category = value;
 		}
 
 		@Override
 		public void handleError(JSONException exception)
 		{
-			alertError(R.string.error_convert_result);
+			message.alertError(R.string.error_convert_result);
 		}
 	}
 
@@ -180,7 +181,7 @@ public class MoveActivity extends SmartActivity {
 	
 	public void changeNature(View view) throws JSONException
 	{
-		showChangeList(natureList, R.string.nature, new DialogNature(natureList));
+		form.showChangeList(natureList, R.string.nature, new DialogNature(natureList));
 	}
 
 	class DialogNature extends DialogSelectClickListener
@@ -190,7 +191,7 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void setResult(String text, String value)
 		{
-			setValue(R.id.nature, text);
+			form.setValue(R.id.nature, text);
 			move.Nature = Integer.parseInt(value);
 			
 			int accountVisibility =
@@ -205,7 +206,7 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void handleError(JSONException exception)
 		{
-			alertError(R.string.error_convert_result);
+			message.alertError(R.string.error_convert_result);
 		}
 	}
 
@@ -213,7 +214,7 @@ public class MoveActivity extends SmartActivity {
 	
 	public void changeAccount(View view) throws JSONException
 	{
-		showChangeList(accountList, R.string.account, new DialogAccount(accountList));
+		form.showChangeList(accountList, R.string.account, new DialogAccount(accountList));
 	}
 
 	class DialogAccount extends DialogSelectClickListener
@@ -223,14 +224,14 @@ public class MoveActivity extends SmartActivity {
 		@Override
 		public void setResult(String text, String value)
 		{
-			setValue(R.id.account, text);
+			form.setValue(R.id.account, text);
 			move.OtherAccount = value;
 		}
 
 		@Override
 		public void handleError(JSONException exception)
 		{
-			alertError(R.string.error_convert_result);
+			message.alertError(R.string.error_convert_result);
 		}
 	}
 
@@ -265,20 +266,20 @@ public class MoveActivity extends SmartActivity {
 	}
 
 	public void addDetail(View view) {
-		String description = getValue(R.id.detail_description);
-		String amountStr = getValue(R.id.detail_amount);
-		String valueStr = getValue(R.id.detail_value);
+		String description = form.getValue(R.id.detail_description);
+		String amountStr = form.getValue(R.id.detail_amount);
+		String valueStr = form.getValue(R.id.detail_value);
 
 		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty()) {
-			alertError(R.string.fill_all);
+			message.alertError(R.string.fill_all);
 			return;
 		}
 		
 		int amountDefault = getResources().getInteger(R.integer.amount_default);
 		
-		setValue(R.id.detail_description, "");
-		setValue(R.id.detail_amount, amountDefault);
-		setValue(R.id.detail_value, "");
+		form.setValue(R.id.detail_description, "");
+		form.setValue(R.id.detail_amount, amountDefault);
+		form.setValue(R.id.detail_value, "");
 
 		int amount = Integer.parseInt(amountStr);
 		double value = Double.parseDouble(valueStr);

@@ -23,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -77,7 +78,7 @@ public class ExtractActivity extends SmartActivity
 	    SimpleDateFormat formatter = new SimpleDateFormat("MMM/yyyy");
 	    String dateInFull = formatter.format(date.getTime());
 		
-	    setValue(R.id.reportDate, dateInFull);
+	    form.setValue(R.id.reportDate, dateInFull);
 	}
 	
     public void changeDate(View v)
@@ -133,12 +134,12 @@ public class ExtractActivity extends SmartActivity
 	{
 		JSONArray moveList = data.getJSONArray("MoveList");
 		
-		setValue(R.id.totalTitle, data.getString("Name"));
-		setValueColored(R.id.totalValue, data.getDouble("Total"));
+		form.setValue(R.id.totalTitle, data.getString("Name"));
+		form.setValueColored(R.id.totalValue, data.getDouble("Total"));
 		
 		if (moveList.length() == 0)
 		{
-			View empty = createText(getString(R.string.no_extract), Gravity.CENTER);
+			View empty = form.createText(getString(R.string.no_extract), Gravity.CENTER);
 			main.addView(empty);
 		}
 		else
@@ -159,7 +160,7 @@ public class ExtractActivity extends SmartActivity
 		row.setBackgroundColor(color);
 		
 		String description = move.getString("Description");
-		row.addView(createText(description, Gravity.LEFT));
+		row.addView(form.createText(description, Gravity.LEFT));
 
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
 		{
@@ -172,14 +173,14 @@ public class ExtractActivity extends SmartActivity
             
             DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
 			
-            TextView cell = createText(format.format(calendar.getTime()), Gravity.CENTER);
+            TextView cell = form.createText(format.format(calendar.getTime()), Gravity.CENTER);
             cell.setPadding(20, 20, 200, 20);
             
 			row.addView(cell);
 		}
 
 		double total = move.getDouble("Total");
-		row.addView(createText(total, Gravity.RIGHT));
+		row.addView(form.createText(total, Gravity.RIGHT));
 		
 		setRowClick(row);
 

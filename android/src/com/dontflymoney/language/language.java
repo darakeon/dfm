@@ -4,8 +4,8 @@ import java.util.Locale;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import baseactivity.SmartActivity;
 
-import com.dontflymoney.view.SmartActivity;
 
 public class Language
 {

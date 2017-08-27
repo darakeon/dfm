@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import baseactivity.SmartActivity;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -70,7 +71,7 @@ public class SettingsActivity extends SmartActivity
 				break;
 			}
 			default: {
-				alertError(R.string.this_is_not_happening);
+				message.alertError(R.string.this_is_not_happening);
 				break;
 			}
 		}
@@ -96,7 +97,7 @@ public class SettingsActivity extends SmartActivity
 			.setPositiveButton(R.string.alert_button, new OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					redirect(parent);
+					navigation.redirect(parent);
 				}
 	    	})
 			.show();
