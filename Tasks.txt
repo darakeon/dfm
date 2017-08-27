@@ -18,15 +18,12 @@ VERSÃO 3.1.2.0 (Little change) - 3?
 
 VERSÃO 3.1.1.0 (Little change) - 2?
 ================================================================================================
-						Listar agendamentos para desativar (aparecerá deletar)
 						Mostrar gastos futuros no relatório mensal
 
 VERSÃO 3.1.0.0 (Big change) - 6?
 ================================================================================================
 						Procurar TO-DOs no projeto
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
-					>>>	Opção de enviar transações para o e-mail (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-					>>>	Permitir escolha da língua para usuário logado (lembrar de testar tamanho máximo)
 					>>>	Colocar nome (ou apelido) no sign up
 						Limitar o datepicker
 						Atualizar projeto: VS 2013, .NET 4.5 e MVC 5
@@ -66,10 +63,7 @@ VERSÃO 2.1.0.0 (Big change) - 3?
 
 VERSÃO 2.0.2.0 (Little change) - 7?
 ================================================================================================
-						Colocar hover em TRs de tabela (destacar linha que está em cima)
-						Trocar Extensions Sum para Total
 						Security desativa os anteriores
-						Retornar mensagens de erro já traduzidas (do core)
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
@@ -77,7 +71,6 @@ VERSÃO 2.0.2.0 (Little change) - 7?
 VERSÃO 2.0.1.0 (Little change) - 9?
 ================================================================================================
 						Desativar user a cada 5 senhas erradas
-						Colocar botão de alerta (enviar dados de post para o desenv)
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
 						Extrato: fazer combo de ano mudar se o combo de mês reiniciar
@@ -86,7 +79,6 @@ VERSÃO 2.0.1.0 (Little change) - 9?
 						Colocar menu ao clicar e segurar em Account (mobile)
 						Sistema de notificações de novidades
 						Busca por movimentação
-						Tirar complete / validate de SaveOrUpdate
 						Criar teste unitário para deletar todas as movimentações de um agendamento
 						Criar teste unitário agendamento meio antes / meio depois
 						Configurar max request length 
@@ -100,21 +92,22 @@ VERSÃO 2.0.0.1 (System) - 10?
 						Colocar botão de sair (mobile)
 						Travar schedule de conta fechada / deletada
 						Guardar dados localmente, para quando está sem internet (Mobile)
-						Remover GetOrCreate
 						Colocar frase de rodar robot no final de testes de create schedule
 						Corrigir para que movimentação sem categoria conserte realmente os summaries
 						Explicar url e sinalização da conta
 						Tirar descrição de transferência entre contas
+						Trocar Extensions Sum para Total
 						Em Move, colocar Value como campo gravado e usar Total para exibição
 						Colocar valores em inteiro (double > int) no banco
 						Arrumar agendamento detalhado
-						Setar conta quando edita move transfer
 						Refactor em controllers e areas, inverter plural
 						Handle differentely EConnReset
+						Remover GetOrCreate
 						Arrumar testes
 
 VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 ================================================================================================
+						Colocar o link do play no site
 						Criar produto no google play
 							https://support.google.com/googleplay/android-developer/topic/15867?hl=en&ref_topic=2526025
 						HTTPS!!!
