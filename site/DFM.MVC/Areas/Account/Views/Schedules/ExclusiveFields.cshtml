@@ -1,14 +1,6 @@
 ﻿@model SchedulesCreateModel
 
-<hr/>
-
-@Html.HiddenFor(m => m.Frequency)
-
 <div class="row">
-
-	<div class="col-lg-4 col-sm-6">
-		@Html.Partial("Frequency")
-	</div>
 
 	<div class="col-lg-4 col-sm-6">
 		@Html.Partial("Repeating")
@@ -16,6 +8,10 @@
 
 	<div class="col-lg-4 col-sm-12">
 		@Html.Partial("Installment")
+	</div>
+
+	<div class="col-lg-4 col-sm-6">
+		@Html.Partial("Frequency")
 	</div>
 
 </div>

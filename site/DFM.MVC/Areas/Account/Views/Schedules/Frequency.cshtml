@@ -1,6 +1,8 @@
 ﻿@using DFM.Entities.Enums
 @model SchedulesCreateModel
 
+@Html.HiddenFor(m => m.Frequency)
+
 <div class="row">
 	<div class="btn-group-vertical btn-group-sm col-sm-12">
 		@foreach (ScheduleFrequency frequency in Enum.GetValues(typeof(ScheduleFrequency)))
