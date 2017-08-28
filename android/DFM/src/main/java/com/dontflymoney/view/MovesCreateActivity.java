@@ -114,7 +114,7 @@ public class MovesCreateActivity extends SmartActivity {
 			}
 			
 			
-			if (move.Details.size() > 0)
+			if (move.isDetailed)
 			{
 				for(int d = 0; d < move.Details.size(); d++)
 				{
@@ -382,12 +382,15 @@ public class MovesCreateActivity extends SmartActivity {
 	}
 	
 	
-	
+
 	public void useDetailed() {
 		useDetailed(null);
 	}
 	
-	public void useDetailed(View view) {
+	public void useDetailed(View view)
+    {
+        move.isDetailed = true;
+
 		findViewById(R.id.simple_value).setVisibility(View.GONE);
 		findViewById(R.id.detailed_value).setVisibility(View.VISIBLE);
 		
@@ -396,7 +399,9 @@ public class MovesCreateActivity extends SmartActivity {
 
 	public void useSimple(View view)
 	{
-		findViewById(R.id.simple_value).setVisibility(View.VISIBLE);
+        move.isDetailed = false;
+
+        findViewById(R.id.simple_value).setVisibility(View.VISIBLE);
 		findViewById(R.id.detailed_value).setVisibility(View.GONE);
 		
 		scrollToTheEnd();

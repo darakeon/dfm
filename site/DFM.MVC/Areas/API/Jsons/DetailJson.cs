@@ -5,7 +5,9 @@ namespace DFM.MVC.Areas.API.Jsons
 {
     public class DetailJson
     {
-	    public DetailJson(Detail detail)
+	    public DetailJson() { }
+
+	    public DetailJson(Detail detail) : this()
 	    {
 		    Description = detail.Description;
 		    Amount = detail.Amount;

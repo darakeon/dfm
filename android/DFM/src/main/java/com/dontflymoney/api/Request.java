@@ -181,7 +181,8 @@ public class Request
         if (errorMessage != null)
         {
             response = new Response(errorMessage);
-        } else
+        }
+        else
         {
             while (json.startsWith("\n") || json.startsWith("\r"))
             {

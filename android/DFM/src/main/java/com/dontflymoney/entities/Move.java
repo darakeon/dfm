@@ -28,8 +28,9 @@ public class Move
     public String PrimaryAccount;
     public String OtherAccount;
     public int Nature;
-    public double Value;
 
+    public boolean isDetailed;
+    public double Value;
     public List<Detail> Details;
 
 
@@ -85,16 +86,22 @@ public class Move
 		request.AddParameter("PrimaryAccount", PrimaryAccount);
 		request.AddParameter("OtherAccount", OtherAccount);
 		request.AddParameter("Nature", Nature);
-		request.AddParameter("Value", Value);
-		
-		for(Detail detail : Details)
-		{
-			int position = Details.lastIndexOf(detail);
-			
-			request.AddParameter("DetailList[" + position + "].Description", detail.Description);
-			request.AddParameter("DetailList[" + position + "].Amount", detail.Amount);
-			request.AddParameter("DetailList[" + position + "].Value", detail.Value);
-		}		
+
+        if (isDetailed)
+        {
+            for (Detail detail : Details)
+            {
+                int position = Details.lastIndexOf(detail);
+
+                request.AddParameter("DetailList[" + position + "].Description", detail.Description);
+                request.AddParameter("DetailList[" + position + "].Amount", detail.Amount);
+                request.AddParameter("DetailList[" + position + "].Value", detail.Value);
+            }
+        }
+        else
+        {
+            request.AddParameter("Value", Value);
+        }
 	}
 
 	public String DateString() {

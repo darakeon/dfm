@@ -23,9 +23,7 @@ namespace DFM.MVC.Areas.API.Models
 			Category = move.Category == null ? null : move.Category.Name;
 			Nature = move.Nature;
 			OtherAccount = move.Nature == MoveNature.Transfer ? move.AccIn().Name : null;
-
-			if (move.Value.HasValue)
-				Value = move.Value.Value;
+			Value = move.Value;
 
 			DetailList = move.DetailList.Select(d => new DetailJson(d)).ToList();
 	    }
@@ -37,7 +35,7 @@ namespace DFM.MVC.Areas.API.Models
         public MoveNature Nature { get; set; }
         public String PrimaryAccount { get; set; }
         public String OtherAccount { get; set; }
-        public Decimal Value { get; set; }
+        public Decimal? Value { get; set; }
 
         public IList<DetailJson> DetailList { get; set; }
 
