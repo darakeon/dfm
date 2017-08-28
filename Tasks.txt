@@ -95,6 +95,7 @@ F						Colocar criação de categoria (mobile)
 
 VERSÃO 2.0.2.0 (Little change) - 7?
 ================================================================================================
+						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
 						Corrigir url do logo
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
