@@ -6,18 +6,18 @@
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"])
+	@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = MaximumLength.USER_EMAIL })
 	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.USER_EMAIL)</small>
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"])
+	@Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"], new { @class = "control-label" })
 	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.RetypePassword, MultiLanguage.Dictionary["RetypePassword"])
+	@Html.LabelFor(m => m.RetypePassword, MultiLanguage.Dictionary["RetypePassword"], new { @class = "control-label" })
 	@Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control" })
 </div>
 
