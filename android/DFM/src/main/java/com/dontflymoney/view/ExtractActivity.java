@@ -5,17 +5,17 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.dontflymoney.adapters.MoveAdapter;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.adapters.MoveAdapter;
 import com.dontflymoney.layout.MoveLine;
 
 import org.json.JSONArray;
@@ -29,6 +29,8 @@ import java.util.Calendar;
 public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 {
 	ListView main;
+	TextView empty;
+
 	String accountUrl;
 
 	static JSONArray moveList;
@@ -78,6 +80,8 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	private void setCurrentInfo()
 	{
 		main = (ListView)findViewById(R.id.main_table);
+		empty = (TextView)findViewById(R.id.empty_list);
+
 		accountUrl = getIntent().getStringExtra("accountUrl");
 	}
 	
@@ -191,11 +195,14 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 		if (moveList.length() == 0)
 		{
-			View empty = form.createText(getString(R.string.no_extract), Gravity.CENTER);
-			main.addView(empty);
+			main.setVisibility(View.GONE);
+			empty.setVisibility(View.VISIBLE);
 		}
 		else
 		{
+			main.setVisibility(View.VISIBLE);
+			empty.setVisibility(View.GONE);
+
 			MoveAdapter accountAdapter = new MoveAdapter(this, moveList, canCheck);
 			main.setAdapter(accountAdapter);
 		}
