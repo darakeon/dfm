@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -9,9 +11,11 @@ using DFM.BusinessLogic;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Generic;
+using DFM.MVC.Controllers;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories.Mappings;
+using DK.Generic.Reflection;
 using DK.MVC.Cookies;
 using DK.NHibernate.Base;
 using log4net.Config;
@@ -27,7 +31,7 @@ namespace DFM.MVC
 		{
 			AreaRegistration.RegisterAllAreas();
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
-			
+
 			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
 			SessionFactoryManager.Initialize<UserMap, User>();
@@ -135,8 +139,23 @@ namespace DFM.MVC
 
 
 		private static Uri url => HttpContext.Current.Request.Url;
-		private static Boolean isAsset => url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/");
+		private static String path => url.AbsolutePath.ToLowerInvariant();
+
+		private static Boolean isAsset => path.StartsWith("/assets/");
 		private static Boolean isLocal => Cfg.IsLocal;
-		private static Boolean isElmah => url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd");
+
+		private static readonly String elmahTestAction = getName(oc => oc.TestElmahLog);
+		private static Boolean isElmah => path.Contains("elmah.axd")
+			|| (!String.IsNullOrEmpty(elmahTestAction) && path.Contains(elmahTestAction));
+
+		private delegate ActionResult TestElmah();
+		private static String getName(Expression<Func<OpsController, TestElmah>> expression)
+		{
+			var body = (UnaryExpression)expression.Body;
+			var operand = (MethodCallExpression)body.Operand;
+			var @object = (ConstantExpression)operand.Object;
+			var value = (_MethodInfo)@object?.Value;
+			return value?.Name?.ToLowerInvariant();
+		}
 	}
 }

@@ -4,6 +4,7 @@ using DK.Generic.Collection;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
+using elmah = DFM.Generic.Elmah;
 
 namespace DFM.MVC.Controllers
 {
@@ -37,6 +38,13 @@ namespace DFM.MVC.Controllers
 			var model = new OpsModel(id);
 
 			return View(model);
+		}
+
+
+		public ActionResult TestElmahLog()
+		{
+			var errorOnLog = elmah.TryLog(new Exception("Logging right!"));
+			return Content(errorOnLog?.ToString());
 		}
 
 
