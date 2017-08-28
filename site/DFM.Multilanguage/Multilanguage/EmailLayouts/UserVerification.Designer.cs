@@ -72,6 +72,15 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         /// <summary>
         ///   Looks up a localized string similar to User Verification.
         /// </summary>
+        public static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification.
+        /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);

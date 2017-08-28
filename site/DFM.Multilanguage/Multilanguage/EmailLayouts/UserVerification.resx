@@ -120,8 +120,11 @@
   <data name="DisableText" xml:space="preserve">
     <value>If your user is already activated, please, disable the Token. Won't be necessary give any information.</value>
   </data>
-  <data name="Title" xml:space="preserve">
+  <data name="Subject" xml:space="preserve">
     <value>User Verification</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Verification</value>
   </data>
   <data name="TokenText" xml:space="preserve">
     <value>If you prefer, go to the site, click in the link 'Token received by e-mail' and type the token below.</value>

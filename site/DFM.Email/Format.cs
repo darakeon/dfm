@@ -35,7 +35,7 @@ namespace DFM.Email
 			var resourceManager = getResourceForLayout(layoutName);
 			var resourceSet = resourceManager.ToDictionary(new CultureInfo(language));
 
-			Subject = resourceSet["Title"];
+			Subject = resourceSet["Subject"];
 			Layout = PlainText.EmailLayout[theme, type].Format(resourceSet);
 		}
 
