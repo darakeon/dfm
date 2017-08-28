@@ -53,7 +53,7 @@ VERSÃO 3.0.0.0 (All new) - 1
 ================================================================================================
 F						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 2.4.0.0 (Big change) - 5
+VERSÃO 2.5.0.0 (Big change) - 5
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Totais de (Negativo / Positivo / Total) no Resumo Anual
@@ -61,15 +61,15 @@ VERSÃO 2.4.0.0 (Big change) - 5
 						Criar Template (Move)
 						Busca por movimentação
 
-VERSÃO 2.3.1.0 (Little change) - 5
+VERSÃO 2.4.1.0 (Little change) - 5
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
 						Mostrar naturezas em botões, não dropdowns
 						Atualizar versão do SpecFlow
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
-
-VERSÃO 2.3.0.1 (Bugfix) - 5
+						
+VERSÃO 2.4.0.1 (Bugfix) - 5
 ================================================================================================
 S						Arrumar para web usar fakeId, não id
 B						Tratar DFMCoreException em Robot
@@ -77,7 +77,7 @@ B						Corrigir mobile: move tem category, mas config atual não permite
 B						Ajustar mobile para preencher conta quando edita move transfer
 F						Mudar campos para usar campos que firefox e chrome personalizam
 
-VERSÃO 2.3.0.0 (Big change) - 5
+VERSÃO 2.4.0.0 (Big change) - 5
 ================================================================================================
 F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 F						Colocar tela de lista de funcionalidades
@@ -85,13 +85,17 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 2.2.0.0 (Big change) - 5
+VERSÃO 2.3.0.0 (Big change) - 5
 ================================================================================================
 						Trocar menu superior por inferior (mobile)
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Permitir não exibir valores direto na tela inicial
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
+
+VERSÃO 2.2.0.0 (Big change) - 1
+================================================================================================
+						Parcelamento: movimentação de schedule pega detalhes de schedule, tendo seu valor dividido
 
 VERSÃO 2.1.1.1 (Bug fix) - 3
 ================================================================================================
