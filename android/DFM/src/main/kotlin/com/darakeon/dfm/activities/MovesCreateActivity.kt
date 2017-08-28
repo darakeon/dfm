@@ -172,11 +172,12 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 	@Throws(JSONException::class)
 	private fun populateCategoryAndNature() {
-		if (static.useCategories) {
-			findViewById(R.id.category_box).visibility = View.VISIBLE
-		} else {
-			findViewById(R.id.category_box).visibility = View.GONE
-		}
+
+		findViewById(R.id.category).visibility =
+			if (static.useCategories)
+				View.VISIBLE
+			else
+				View.GONE
 
 		if (static.move.Nature == null) {
 			val firstNature = static.natureList?.getJSONObject(0)
@@ -241,19 +242,19 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		static.move.SetNature(value)
 
 		val accountOutVisibility = if (static.move.Nature != Nature.In) View.VISIBLE else View.GONE
-		findViewById(R.id.account_out_block).visibility = accountOutVisibility
+		findViewById(R.id.account_out).visibility = accountOutVisibility
 
 		val accountInVisibility = if (static.move.Nature != Nature.Out) View.VISIBLE else View.GONE
-		findViewById(R.id.account_in_block).visibility = accountInVisibility
+		findViewById(R.id.account_in).visibility = accountInVisibility
 
 		if (static.move.Nature == Nature.Out) {
 			static.move.AccountIn = null
-			form.setValue(R.id.account_in, getString(R.string.pick))
+			form.setValue(R.id.account_in, getString(R.string.account_in))
 		}
 
 		if (static.move.Nature == Nature.In) {
 			static.move.AccountOut = null
-			form.setValue(R.id.account_out, getString(R.string.pick))
+			form.setValue(R.id.account_out, getString(R.string.account_out))
 		}
 	}
 

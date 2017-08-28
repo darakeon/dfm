@@ -78,8 +78,8 @@
 	<string name="add_detail">+</string>
 	<string name="remove_detail">–</string>
 	<string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
-	<string name="account_in">entrada</string>
-	<string name="account_out">saída</string>
+	<string name="account_in">conta entrada</string>
+	<string name="account_out">conta saída</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>
