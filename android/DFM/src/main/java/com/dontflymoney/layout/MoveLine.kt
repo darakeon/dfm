@@ -23,7 +23,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
     private var move: MoveAdapter.Move? = null
 
     val NameField: TextView get() = findViewById(R.id.name) as TextView
-    val DateField: TextView get() = findViewById(R.id.date) as TextView
+    val DateField: TextView? get() = findViewById(R.id.date) as? TextView
     val TotalField: TextView get() = findViewById(R.id.value) as TextView
     val CheckedField: ImageView get() = findViewById(R.id.check_move) as ImageView
 

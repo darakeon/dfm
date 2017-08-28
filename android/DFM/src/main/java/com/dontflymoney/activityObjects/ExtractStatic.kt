@@ -8,7 +8,7 @@ object ExtractStatic : SmartStatic
     override var succeeded: Boolean = false
     override var inflater: LayoutInflater? = null
 
-    var moveList: JSONArray? = null
+    lateinit var moveList: JSONArray
     var name: String? = null
     var total: Double = 0.toDouble()
     var canCheck: Boolean = false

@@ -152,7 +152,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
         form.setValue(R.id.totalTitle, static.name)
         form.setValueColored(R.id.totalValue, static.total)
 
-        if (static.moveList == null || static.moveList?.length() == 0) {
+        if (static.moveList.length() == 0) {
             main.visibility = View.GONE
             empty.visibility = View.VISIBLE
         } else {
