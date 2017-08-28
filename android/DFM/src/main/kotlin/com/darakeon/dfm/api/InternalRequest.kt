@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.view.Surface
 import android.view.WindowManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -17,6 +18,7 @@ import org.json.JSONObject
 import java.util.*
 
 class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private val url: String) {
+
     private val parameters: HashMap<String, Any?>
 
     private var jsonRequest: JsonObjectRequest? = null
@@ -60,12 +62,17 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
         val completeUrl = getUrl()
 
-        jsonRequest = JsonObjectRequest(method, completeUrl, parameters, Response.Listener<JSONObject> { response -> handleResponse(response, step) }, Response.ErrorListener { error -> handleError(error, step) })
+        jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
+                Response.Listener<JSONObject> { response -> handleResponse(response, step) },
+                Response.ErrorListener { error -> handleError(error, step) })
+
+        jsonRequest?.retryPolicy = getDefaultRetryPolicy(step)
 
         Volley.newRequestQueue(activity).add(jsonRequest!!)
 
         startUIWait()
     }
+
 
 
     private fun getParameters(step: Step): JSONObject? {
@@ -88,6 +95,24 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
         return jsonParameters
     }
+
+
+
+    private fun getDefaultRetryPolicy(step: Step): DefaultRetryPolicy {
+        val timeout = DefaultRetryPolicy.DEFAULT_TIMEOUT_MS
+
+        val maxRetries =
+            if (step == Step.Recording)
+                0
+            else
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES
+
+        val backoffMult = DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+
+        return DefaultRetryPolicy(timeout, maxRetries, backoffMult)
+    }
+
+
 
     private fun getUrl(): String {
         var completeUrl = Site.GetProtocol() + "://" + Site.Domain + "/Api"
