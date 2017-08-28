@@ -2,8 +2,8 @@
 <manifest package="com.dontflymoney.view"
 		  xmlns:android="http://schemas.android.com/apk/res/android"
 		  android:installLocation="auto"
-		  android:versionCode="002001004003"
-		  android:versionName="2.1.4.3">
+		  android:versionCode="002001004004"
+		  android:versionName="2.1.4.4">
 
 	<uses-sdk
 		android:maxSdkVersion="22"
