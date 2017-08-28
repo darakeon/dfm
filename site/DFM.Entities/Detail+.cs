@@ -43,14 +43,14 @@ namespace DFM.Entities
 		{
 			get
 			{
-				return ID * Constants.FakeID;
+				return ID * Constants.FAKE_ID;
 			}
 			set
 			{
-				if (value % Constants.FakeID != 0)
+				if (value % Constants.FAKE_ID != 0)
 					throw new DFMException("Get back!");
 
-				ID = (Int32)(value / Constants.FakeID);
+				ID = (Int32)(value / Constants.FAKE_ID);
 			}
 		}
 
