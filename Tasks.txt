@@ -65,7 +65,7 @@ VERSÃO 2.1.2.0 (Little change) - 3?
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
 
-VERSÃO 2.1.1.0 (Little change) - 15?
+VERSÃO 2.1.1.0 (Little change) - 16?
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -82,6 +82,7 @@ S						Arrumar para web usar fakeId, não id
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						Tratar DFMCoreException em Robot
+						Corrigir mobile: move tem category, mas config atual não permite
 
 VERSÃO 2.1.0.0 (Big change) - 11?
 ================================================================================================
@@ -97,12 +98,11 @@ F						Colocar criação de categoria (mobile)
 						Colocar menu de adicionar movimentação como bolinha com "+" (css absolute)
 						Permitir não exibir valores direto na tela inicial
 						
-VERSÃO 2.0.4.0 (Little change) - 6
+VERSÃO 2.0.4.0 (Little change) - 5
 ================================================================================================
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
-						Corrigir mobile: move tem category, mas config atual não permite
 2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
 2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
