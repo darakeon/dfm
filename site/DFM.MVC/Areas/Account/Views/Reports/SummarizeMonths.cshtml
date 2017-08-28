@@ -8,6 +8,7 @@
 
 	ViewBag.HasContent = Model.Year.MonthList.Any();
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoYearMoves"];
+	ViewBag.TableSize = 6;
 
 	var beginDate = new YearUnit(Model.Account.BeginDate);
 	var endDate = new YearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
