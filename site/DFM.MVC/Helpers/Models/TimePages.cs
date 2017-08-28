@@ -11,27 +11,24 @@ namespace DFM.MVC.Helpers.Models
 		public Boolean HasMoreBack { get; }
 		public Boolean HasMoreFoward { get; }
 
-		public TimeUnit Current { get; }
 		public IList<TimeUnit> Pages { get; }
 
-		public TimePages(DateTime beginDate, DateTime endDate, Int32 year, Int32 month, Int32 limit)
+		public TimePages(TimeUnit minimum, TimeUnit maximum, TimeUnit current, Int32 rangeSize)
 		{
-			Current = new TimeUnit(year, month);
+			var first = current - (rangeSize/2);
+			var last = current + (rangeSize/2);
 
-			var first = Current - (limit / 2);
-			var last = Current + (limit / 2);
-
-			while (first < beginDate)
+			while (first < minimum)
 			{
 				first++;
 
-				if (last < endDate)
+				if (last < maximum)
 				{ last++; }
 			}
 
-			while (last > endDate)
+			while (last > maximum)
 			{
-				if (first > beginDate)
+				if (first > minimum)
 				{ first--; }
 
 				last--;
@@ -39,17 +36,16 @@ namespace DFM.MVC.Helpers.Models
 
 			Pages = new List<TimeUnit>();
 
-			for (var page = first; page <= last.ToDate(); page++)
+			for (var page = first; page <= last; page++)
 			{
 				Pages.Add(page);
 			}
 
 			MoreBack = Pages.First() - 1;
-			HasMoreBack = MoreBack >= beginDate;
+			HasMoreBack = MoreBack >= minimum;
 			MoreFoward = Pages.Last() + 1;
-			HasMoreFoward = MoreFoward <= endDate;
+			HasMoreFoward = MoreFoward <= maximum;
 		}
-
 
 	}
 }

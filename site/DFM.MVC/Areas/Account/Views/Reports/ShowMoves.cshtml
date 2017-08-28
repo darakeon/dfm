@@ -9,11 +9,11 @@
 	ViewBag.HasContent = Model.MoveList.Any();
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoMonthMoves"];
 
-	var pages = new TimePages(
-		Model.Account.BeginDate,
-		Model.Account.EndDate ?? Service.Current.User.Now(),
-		Model.Year, Model.Month, 5
-	);
+	var beginDate = new TimeUnit(Model.Account.BeginDate);
+	var endDate = new TimeUnit(Model.Account.EndDate ?? Service.Current.User.Now());
+	var current = new TimeUnit(Model.Year, Model.Month);
+
+	var pages = new TimePages<TimeUnit>(beginDate, endDate, current, 5);
 }
 
 @section TableHeader {
@@ -115,7 +115,7 @@
 
 				@foreach (var page in pages.Pages)
 				{
-					<li class="@(page == pages.Current ? "active" : "")">
+					<li class="@(page == current ? "active" : "")">
 						@Html.ActionLink(page.Label, null, new {id = page.Url})
 					</li>
 				}

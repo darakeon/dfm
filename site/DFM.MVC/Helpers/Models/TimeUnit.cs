@@ -37,24 +37,24 @@ namespace DFM.MVC.Helpers.Models
 			return unit - 1;
 		}
 
-		public static Boolean operator <(TimeUnit unit, DateTime dateTime)
+		public static Boolean operator <(TimeUnit unit, TimeUnit other)
 		{
-			return unit.ToDate(dateTime.Day) < dateTime;
+			return unit.ToDate() < other.ToDate();
 		}
 
-		public static Boolean operator >(TimeUnit unit, DateTime dateTime)
+		public static Boolean operator >(TimeUnit unit, TimeUnit other)
 		{
-			return unit.ToDate(dateTime.Day) > dateTime;
+			return unit.ToDate() > other.ToDate();
 		}
 
-		public static Boolean operator <=(TimeUnit unit, DateTime dateTime)
+		public static Boolean operator <=(TimeUnit unit, TimeUnit other)
 		{
-			return !(unit > dateTime);
+			return !(unit > other);
 		}
 
-		public static Boolean operator >=(TimeUnit unit, DateTime dateTime)
+		public static Boolean operator >=(TimeUnit unit, TimeUnit other)
 		{
-			return !(unit < dateTime);
+			return !(unit < other);
 		}
 
 		public static Boolean operator ==(TimeUnit unit, TimeUnit other)
