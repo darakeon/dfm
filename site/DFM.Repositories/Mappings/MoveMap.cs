@@ -13,6 +13,7 @@ namespace DFM.Repositories.Mappings
 				.Length(MaximumLength.MOVE_DESCRIPTION);
 
 			mapping.References(m => m.Schedule)
+				.Not.Update()
 				.Nullable();
 			
 			mapping.IgnoreProperty(m => m.FakeID);

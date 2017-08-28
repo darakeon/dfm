@@ -33,8 +33,6 @@ namespace DFM.BusinessLogic.Services
 
 		internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
 		{
-			resetSchedule(move);
-
 			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
 			var oldMove = moveRepository.GetNonCached(move.ID);
@@ -83,15 +81,6 @@ namespace DFM.BusinessLogic.Services
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
 
 			return null;
-		}
-
-		private void resetSchedule(Move move)
-		{
-			if (move.ID == 0) return;
-
-			var oldMove = moveRepository.GetNonCached(move.ID);
-
-			move.Schedule = oldMove?.Schedule;
 		}
 
 

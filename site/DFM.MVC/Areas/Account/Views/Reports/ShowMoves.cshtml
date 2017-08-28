@@ -44,7 +44,7 @@
 @foreach (var move in Model.MoveList)
 {
 	<tr class="row">
-		<td>@move.GetDescriptionDetailed() </td>
+		<td>@move.GetDescriptionDetailed()</td>
 
 		@if (Model.UseCategories)
 		{

@@ -106,13 +106,14 @@ VERSÃO 3.0.1.0 (Little change) - 7
 						Colocar marcação para conta de entrada e de saída separadas
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 19
+VERSÃO 3.0.0.0 (All new) - 20
 ================================================================================================
 						Video do porquinho
-						Corrigir edição de movimentação com schedule
+						Corrigir inserção duplicada de move no mobile
 						Corrigir edição de movimentação no mobile
 						Corrigir problema de cache na criação/edição de movimentação (conta/categoria)
 						Tema dark no android
+2017-03-27	2017-03-27	Corrigir edição de movimentação com schedule
 2017-03-26	2017-03-27	Mudar layouts de e-mail - light / dark
 2017-03-25	2017-03-26	Configuração de tema
 2017-03-24	2017-03-25	Adicionar aviso de cookies no logon (remember me)
