@@ -149,28 +149,28 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table4.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "In"});
             table4.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Out"});
             table4.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Transfer"});
             table4.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Daily"});
             table4.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Monthly"});
             table4.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Yearly"});
             table4.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "UserVerification"});
             table4.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "PasswordReset"});
 #line 36
  testRunner.Given("I have these keys", ((string)(null)), table4);

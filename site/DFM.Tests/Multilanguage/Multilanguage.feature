@@ -34,15 +34,15 @@ Scenario: 02. Get layouts of e-mails
 
 Scenario: 03. Get translations of Enums
 	Given I have these keys
-		| Section  | Phrase           |
-		| Move     | In               |
-		| Move     | Out              |
-		| Move     | Transfer         |
-		| Schedule | Daily            |
-		| Schedule | Monthly          |
-		| Schedule | Yearly           |
-		| Token    | UserVerification |
-		| Token    | PasswordReset    |
+		| Section   | Phrase           |
+		| Moves     | In               |
+		| Moves     | Out              |
+		| Moves     | Transfer         |
+		| Schedules | Daily            |
+		| Schedules | Monthly          |
+		| Schedules | Yearly           |
+		| Tokens    | UserVerification |
+		| Tokens    | PasswordReset    |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
