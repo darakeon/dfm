@@ -88,9 +88,8 @@ F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 						Trocar menu superior por inferior (mobile)
 
-VERSÃO 3.1.0.0 (Big change) - 5
+VERSÃO 3.1.0.0 (Big change) - 4
 ================================================================================================
-						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Permitir não exibir valores direto na tela inicial
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
