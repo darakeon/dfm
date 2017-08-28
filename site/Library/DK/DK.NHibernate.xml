@@ -18,6 +18,31 @@
             <param name="propertyExpression">Lambda of property with correspondent entity</param>
             <param name="parentExpression">Lambda of property that represents this entity in other entity</param>
         </member>
+        <member name="T:DK.NHibernate.AutoMapping.AutoMappingOne2ManyEnum">
+            <summary>
+             Extensions to relation 1:N
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.AutoMapping.AutoMappingOne2ManyEnum.IsEnumList``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1}}})">
+            <summary>
+             Used at Enum Lists
+            </summary>
+            <param name="mapping">Object received in AutoMappingOverride</param>
+            <param name="propertyExpression">Lambda of property with correspondent enum list</param>
+        </member>
+        <member name="T:DK.NHibernate.AutoMapping.ReservedWord">
+            <summary>
+             Extensions to ReserveWord
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.AutoMapping.ReservedWord.MapAsReservedWord``1(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+             Used on weak entity of 1:1.
+             Use HasOne on the strong entity mapping.
+            </summary>
+            <param name="mapping">Object received in AutoMappingOverride</param>
+            <param name="propertyExpression">Lambda of property with correspondent property</param>
+        </member>
         <member name="T:DK.NHibernate.Base.BaseData`1">
             <summary>
             Base communication with DB
@@ -50,9 +75,14 @@
             Get entity by its ID
             </summary>
         </member>
-        <member name="M:DK.NHibernate.Base.BaseRepository`1.GetOldById(System.Int32)">
+        <member name="M:DK.NHibernate.Base.BaseRepository`1.GetNonCached(System.Int32)">
             <summary>
             Get old data of the entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.BaseRepository`1.NewNonCachedQuery``1(System.Func{DK.NHibernate.Base.Query{`0},``0})">
+            <summary>
+            Get old data of query
             </summary>
         </member>
         <member name="M:DK.NHibernate.Base.BaseRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
@@ -105,6 +135,11 @@
             </summary>
             <param name="condition">Lambda expression condition</param>
         </member>
+        <member name="M:DK.NHibernate.Base.BaseRepository`1.SaveFile``2(``0,``1,System.String)">
+            <summary>
+            Save file method for attach file to entity
+            </summary>
+        </member>
         <member name="T:DK.NHibernate.Base.BaseService">
             <summary>
             Base for services, to have transaction
@@ -129,6 +164,32 @@
             <param name="action">() => { [your-code-here] }</param>
             <param name="onError">() => { [your-ON-ERROR-code-here] }</param>
         </member>
+        <member name="T:DK.NHibernate.Base.IUpload">
+            <summary>
+            Interface for object which brings the file
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Base.IUpload.OriginalName">
+            <summary>
+            Original name of the file (to be shown)
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.IUpload.Save(System.String)">
+            <summary>
+            Method of saving on disk the file
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="T:DK.NHibernate.Base.IUploadParent">
+            <summary>
+            Interface for Entity which has file
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.IUploadParent.SetFileNames(System.String,System.String)">
+            <summary>
+            Method to set on entity the fields of filename
+            </summary>
+        </member>
         <member name="T:DK.NHibernate.Base.SearchItem`1">
             <summary>
             To search for string
@@ -139,22 +200,18 @@
             <param name="property">Lambda of property</param>
             <param name="term">Text to search</param>
         </member>
-        <member name="T:DK.NHibernate.Base.SessionBuilder">
-            <summary>
-            To create NHibernate Session and communicate with DB
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.Start``2(DK.NHibernate.UserPassed.ConnectionInfo,DK.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+        <member name="M:DK.NHibernate.Base.SessionFactoryBuilder.start``2(DK.NHibernate.UserPassed.ConnectionInfo,DK.NHibernate.UserPassed.AutoMappingInfo{``0,``1},DK.NHibernate.Helpers.DBAction)">
             <summary>
              Create Session Factory.
              To be used at Application_Start.
             </summary>
              <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
              <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
-             <param name="connectionInfo">About database connection</param>
-             <param name="autoMappingInfo">About mappings on the entities</param>
+            <param name="connectionInfo">About database connection</param>
+            <param name="autoMappingInfo">About mappings on the entities</param>
+            <param name="dbAction"></param>
         </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.Start``2(DK.NHibernate.UserPassed.AutoMappingInfo{``0,``1})">
+        <member name="M:DK.NHibernate.Base.SessionFactoryBuilder.Start``2(DK.NHibernate.UserPassed.AutoMappingInfo{``0,``1},DK.NHibernate.Helpers.DBAction)">
             <summary>
             Create Session Factory, using the AppSettings.
             The keys required are the ConnectionInfo class properties.
@@ -163,35 +220,7 @@
             <typeparam name="TM">Any mapping class. Passed automatic by passing to AutoMappingInfo.</typeparam>
             <typeparam name="TE">Any entity class. Passed automatic by passing to AutoMappingInfo.</typeparam>
             <param name="autoMappingInfo">About mappings on the entities</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.Open">
-            <summary>
-            Open the NH session.
-            To be used at Application_BeginRequest.
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.Close(NHibernate.ISession)">
-            <summary>
-             Disconnect from DB.
-             To be used at Application_EndRequest.
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.End">
-            <summary>
-             Close the SessionFactory.
-             To be used at Application_End.
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.Error(NHibernate.ISession)">
-            <summary>
-             Rollback the actions in case of Error.
-             To be used at Application_Error.
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.SessionBuilder.NhInitialize(NHibernate.ISession,System.Object)">
-            <summary>
-             Force the Initialize of NHibernate objects.
-            </summary>
+            <param name="dbAction">Action into DB when start project</param>
         </member>
         <member name="T:DK.NHibernate.Base.Query`1">
             <summary>
@@ -203,33 +232,88 @@
             <summary></summary>
             <param name="session">NH Session</param>
         </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Filter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Make a filter with lambda expression
             </summary>
             <param name="where">Lambda expression</param>
         </member>
-        <member name="M:DK.NHibernate.Base.Query`1.FilterWithAscending``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Type[])">
+        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            To make a filter with ascending entities
+            Make a filter with lambda expression
             </summary>
-            <typeparam name="TFinalEntity">The entity with the property to be compared</typeparam>
-            <param name="where">Lambda for filter</param>
-            <param name="levels">All the entities between current and final</param>
-            <returns></returns>
+            <param name="entityRelation">Lambda expression for parent entity</param>
+            <param name="where">Lambda expression of condition</param>
         </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
+        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="entityRelation">Lambda expression for child entity</param>
+            <param name="where">Lambda expression of condition</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.InCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Collections.Generic.IList{``0})">
+            <summary>
+            List of entities where certain property is in a list of possibilities
+            </summary>
+            <param name="property">Lambda of property to test</param>
+            <param name="contains">List to be verified</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.IsNotEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is not empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.IsEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,DK.NHibernate.Base.Query{`0}.LikeType)">
             <summary>
             Search for text inside entity property values
             </summary>
             <param name="property">Lambda of property</param>
             <param name="term">Text to search</param>
+            <param name="likeType">Start, End, Both</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="ascendingRelation">Relation to parent entity</param>
+            <param name="property">Property of parent</param>
+            <param name="term">Terms of search</param>
         </member>
         <member name="M:DK.NHibernate.Base.Query`1.LikeCondition(System.Collections.Generic.IList{DK.NHibernate.Base.SearchItem{`0}})">
             <summary>
             Search for text inside entity property values
             </summary>
             <param name="searchTerms">Fields and texts to search</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Parent entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Child entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.FetchModeEager``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Fetch eagerly, using a separate select.
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.HasFlag``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},``0)">
+            <summary>
+            Verify if a flagged enum has a specific flag
+            </summary>
+            <param name="func">Property to be checked</param>
+            <param name="value">Value to find</param>
         </member>
         <member name="M:DK.NHibernate.Base.Query`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
             <summary>
@@ -238,12 +322,50 @@
             <param name="order">Property to order</param>
             <param name="ascending">Whether the order is ascending (true) or descending (false)</param>
         </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Page(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:DK.NHibernate.Base.Query`1.OrderByParent``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Ordering using parent entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.Take(System.Int32)">
+            <summary>
+            Take just the first items
+            </summary>
+            <param name="topItems">Number of items to take</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.Any">
+            <summary>
+            Verify if there is any item that corresponds to the query
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.Page(DK.NHibernate.Base.ISearch)">
             <summary>
             To get a page of the results
             </summary>
-            <param name="itemsPerPage">Amount of items in each page</param>
-            <param name="page">Page to get</param>
+            <param name="search">Parameters of paging</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.DistinctMainEntity">
+            <summary>
+            To do not duplicate main entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.TransformResult``3(System.Collections.Generic.IList{``1},System.Collections.Generic.IList{``2})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <param name="summarizeProperties">Summarize properties (Count, Max, Sum)</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
+            <typeparam name="TSummarize">Need to construct from Query.Summarize</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.TransformResult``2(System.Collections.Generic.IList{``1})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
         </member>
         <member name="P:DK.NHibernate.Base.Query`1.Count">
             <summary>
@@ -264,6 +386,179 @@
         <member name="P:DK.NHibernate.Base.Query`1.FirstOrDefault">
             <summary>
             Return first result of list, or null if list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.ResultAs``1">
+            <summary>
+            Result for summarized queries
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.SumInt(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int32 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.SumLong(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int64 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.SumDecimal(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Decimal field
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.Query`1.Summarize`1">
+            <summary>
+            Class to construct Summarize parameters
+            </summary>
+            <typeparam name="TDestiny">Result class of summarize</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.Summarize`1.GetSummarize``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`1,``0}},DK.NHibernate.Base.Query{`0}.SummarizeType)">
+            <summary>
+            To construct each parameter of summarize
+            </summary>
+            <param name="origin">Property on original entity</param>
+            <param name="destiny">Corresponding property on result class</param>
+            <param name="type">(Count, Max, Sum)</param>
+        </member>
+        <member name="T:DK.NHibernate.Base.Query`1.GroupBy`1">
+            <summary>
+            Class to construct Summarize parameters
+            </summary>
+            <typeparam name="TDestiny">Result class of grouping</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Base.Query`1.GroupBy`1.GetGroupBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <summary>
+            To construct each parameter of grouping
+            </summary>
+            <param name="origin">Property on original entity</param>
+            <param name="destiny">Corresponding property on result class</param>
+        </member>
+        <member name="T:DK.NHibernate.Base.Query`1.SummarizeType">
+            <summary>
+            Type of summarize
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Count">
+            <summary>
+            Count items
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Max">
+            <summary>
+            Get biggest item
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Sum">
+            <summary>
+            Sum all items
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.Query`1.LikeType">
+            <summary>
+            Type of like comparison
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.LikeType.Both">
+            <summary>
+            Look start and end of string
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.LikeType.JustStart">
+            <summary>
+            Look just at start of string
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Base.Query`1.LikeType.JustEnd">
+            <summary>
+            Look just at end of string
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.ISearch">
+            <summary>
+            Interface for searches by Query
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Base.ISearch.Page">
+            <summary>
+            Page target, considering ItemsPerPage
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Base.ISearch.ItemsPerPage">
+            <summary>
+            Items that should be brought on each page
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.SessionFactoryManager">
+            <summary>
+            Manager of Build of Sessions
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Base.SessionFactoryManager.Instance">
+            <summary>
+            Singleton
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2(DK.NHibernate.UserPassed.IDataInitializer)">
+            <summary>
+            Initialize function, need to be called before use instance
+            </summary>
+            <param name="dbInitializer">Object to pre-populate DB</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionFactoryManager.End">
+            <summary>
+            Finishes SessionFactory
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.SessionManager">
+            <summary>
+            Manager for NH Session
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionManager.Init(DK.NHibernate.Base.SessionManager.GetKey)">
+            <summary>
+            Need to be called before once using SessionManager
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Base.SessionManager.GetKey">
+            <summary>
+            Signature to get key of current NH Session
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionManager.GetCurrent">
+            <summary>
+            Get current NH Session
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionManager.Close">
+            <summary>
+            Close session
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionManager.GetNonCached``1(System.Int32)">
+            <summary>
+            Get objects from DB without NH cache
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionManager.GetNonCached">
+            <summary>
+            Get objects from DB without NH cache
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Conventions.NameConvention.GetTableNameWithNamespace(System.Type)">
+            <summary>
+            Rules for table naming from entity type
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Conventions.StringTypeConvention">
+            <summary>
+            Convention for String Types
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Conventions.StringTypeConvention.Apply(FluentNHibernate.Conventions.Instances.IPropertyInstance)">
+            <summary>
+            Apply changes to the target
             </summary>
         </member>
         <member name="T:DK.NHibernate.Helpers.DBMS">
@@ -327,58 +622,6 @@
              Avoid error to just appear when entities are accessed.
             </summary>
         </member>
-        <member name="T:DK.NHibernate.NHManager">
-            <summary>
-            Session Manager
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.NHManager.Session">
-            <summary>
-            Communicates with DB
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.NHManager.SessionOld">
-            <summary>
-            Helps to get old data without messing with changed entities
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.NHManager.Open">
-            <summary>
-            Open Session and SessionOld to use
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.NHManager.Start``2(DK.NHibernate.NHManager.GetKey)">
-            <summary>
-            Starts session factory
-            </summary>
-            <typeparam name="TMap">AutoMappingOverride sample</typeparam>
-            <typeparam name="TEntity">Entity sample</typeparam>
-        </member>
-        <member name="M:DK.NHibernate.NHManager.Error">
-            <summary>
-            Handle error case
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.NHManager.Close">
-            <summary>
-            Close session
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.NHManager.End">
-            <summary>
-            Finishes session factory
-            </summary>
-        </member>
-        <member name="T:DK.NHibernate.NHManager.GetKey">
-            <summary>
-            Delegate of method to get key for NH
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.NHManager.IsActive">
-            <summary>
-            Verify whether can use session
-            </summary>
-        </member>
         <member name="T:DK.NHibernate.UserPassed.AutoMappingInfo`2">
             <summary>
             Information to use Automapping of Fluent
@@ -386,9 +629,9 @@
             <typeparam name="TM">Some of the AutoMaps, just for reference</typeparam>
             <typeparam name="TE">Some of the Entities, just for reference</typeparam>
         </member>
-        <member name="P:DK.NHibernate.UserPassed.AutoMappingInfo`2.EntityBase">
+        <member name="P:DK.NHibernate.UserPassed.AutoMappingInfo`2.BaseEntities">
             <summary>
-            EntityBase, if it exists, to be ignored on mapping
+            BaseEntities, if it exists, to be ignored on mapping
             </summary>
         </member>
         <member name="P:DK.NHibernate.UserPassed.AutoMappingInfo`2.SuperEntities">
@@ -436,21 +679,10 @@
             Database Managment System used.
             </summary>
         </member>
-        <member name="P:DK.NHibernate.UserPassed.ConnectionInfo.DBAction">
-            <summary>
-            The Action to be executed when SessionFactory is Created
-            Old CreateDB.
-            </summary>
-        </member>
         <member name="P:DK.NHibernate.UserPassed.ConnectionInfo.ScriptFileFullName">
             <summary>
             The File Full Name for export Script.
             Just fill if see the script is needed
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.UserPassed.ConnectionInfo.DataInitializer">
-            <summary>
-            Data to initialize the DB.
             </summary>
         </member>
         <member name="P:DK.NHibernate.UserPassed.ConnectionInfo.ShowSQL">
@@ -464,7 +696,7 @@
             The property CreateDB need to be TRUE.
             </summary>
         </member>
-        <member name="M:DK.NHibernate.UserPassed.IDataInitializer.Initialize">
+        <member name="M:DK.NHibernate.UserPassed.IDataInitializer.PopulateDB">
             <summary>
             Fill the Database.
             </summary>
