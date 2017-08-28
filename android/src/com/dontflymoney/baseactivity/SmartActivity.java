@@ -106,6 +106,11 @@ public abstract class SmartActivity extends FixOrientationActivity
 		navigation.logout();
 	}
 	
+	public void back(MenuItem menuItem)
+	{
+		navigation.back();
+	}
+	
 	public void refresh(MenuItem menuItem)
 	{
 		refresh();

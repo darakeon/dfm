@@ -40,6 +40,11 @@ public class Navigation
 		}
 	}
 	
+	protected void back()
+	{
+		activity.finish();
+	}
+	
 	public void goToSettings()
 	{
 		Intent intent = new Intent(activity, SettingsActivity.class);

@@ -9,6 +9,7 @@
 
     <!-- Buttons -->
     <string name="save">save</string>
+    <string name="cancel">cancel</string>
 
     <!-- Alert dialog -->
     <string name="error_title">Ops!</string>
