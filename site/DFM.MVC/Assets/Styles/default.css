@@ -21,7 +21,8 @@ footer {
 	}
 
 .glyphicon-plus {
-	margin-right: -2px;
+	margin-left: 1px;
+	margin-right: -1px;
 }
 
 .side-vertical-button {
