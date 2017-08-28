@@ -1,0 +1,1 @@
+"C:\Program Files\Android\Android Studio\sdk\build-tools\21.1.2\zipalign.exe" -v 4 "C:\Lucas\Keon\03 - DFM\Projeto\android\DFM\build\outputs\apk\DFM-release-unaligned.apk" "C:\Lucas\Keon\03 - DFM\Projeto\android\DFM\build\outputs\apk\DFM.apk"

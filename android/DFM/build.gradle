@@ -10,10 +10,19 @@ android {
         targetSdkVersion 22
     }
 
+    signingConfigs {
+        release {
+            storeFile file("C:\\Lucas\\Keon\\android\\keon.keystore")
+            keyAlias "DFM"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
         }
     }
 }

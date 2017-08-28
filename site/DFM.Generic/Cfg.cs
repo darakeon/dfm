@@ -18,7 +18,7 @@ namespace DFM.Generic
 
         public static String Version
         {
-            get { return ConfigurationManager.AppSettings["Version"]; }
+            get { return typeof(Cfg).Assembly.GetName().Version.ToString(); }
         }
 
         public static Boolean IsLocal
