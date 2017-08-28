@@ -20,7 +20,12 @@
 	<div class="col-sm-@(rowWidths) form-group">
 		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new {@class = "control-label"})
 		@Html.ValidationMessageFor(m => m.Date)<br/>
-		@Html.TextBoxFor(m => m.Date, new {@class = "date_notHour form-control"})
+		<div class="input-group date">
+			@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-calendar"></span>
+			</span>
+		</div>
 	</div>
 
 	@if (useCategories)

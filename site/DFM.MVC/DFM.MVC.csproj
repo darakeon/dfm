@@ -144,6 +144,12 @@
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\moment-with-locales.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\moment-with-locales.min.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\moment.js" />
+    <Content Include="Assets\Bootstrap\Datepicker\moment.min.js" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Account\Views\Moves\NatureAndAccount.cshtml" />
