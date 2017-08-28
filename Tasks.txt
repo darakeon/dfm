@@ -104,17 +104,19 @@ VERSÃO 3.1.1.0 (Little change) - 6
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
 
-VERSÃO 3.1.0.0 (Big change) - 4
+VERSÃO 3.1.0.0 (Big change) - 5
 ================================================================================================
 						Corrigir edição de movimentação com schedule
-						Corrigir problema de cache na criação de movimentação (conta/categoria)
-						Tema dark no android (para Slate e Cyborg)
+						Corrigir edição de movimentação no mobile
+						Corrigir problema de cache na criação/edição de movimentação (conta/categoria)
+						Configuração de tema
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 15
+VERSÃO 3.0.0.0 (All new) - 16
 ================================================================================================
 						Video do porquinho
 						Adicionar aviso de cookies no logon (remember me)
+						Tema dark no android (para Slate e Cyborg)
 						Mudar layouts de e-mail
 						Fazer capa nova para youtube / facebook / twitter (?)
 						Link unsubscribe
