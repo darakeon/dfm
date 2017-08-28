@@ -98,7 +98,7 @@
                 android:orientation="vertical"
                 android:baselineAligned="false"
                 android:id="@+id/account_out_block"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/account_out_label"
