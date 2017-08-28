@@ -1,11 +1,11 @@
 package com.darakeon.dfm.activities
 
 import android.view.View
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -16,6 +16,9 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
     }
 
     override val isLoggedIn: Boolean
+        get() = false
+
+    override val hasTitle: Boolean
         get() = false
 
 

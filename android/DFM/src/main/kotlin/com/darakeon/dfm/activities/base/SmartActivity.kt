@@ -38,9 +38,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
     protected open val isLoggedIn: Boolean
         get() = true
 
-    protected fun hasParent(): Boolean {
-        return false
-    }
+    protected val hasParent: Boolean
+        get() = false
+
+    protected open val hasTitle: Boolean
+        get() = true
 
     protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
@@ -59,6 +61,9 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
         Theme.ChangeFromSaved(this)
 
         super.onCreate(savedInstanceState)
+
+        if (!hasTitle)
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         static.inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -103,7 +108,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
     }
 
     private fun setupActionBar() {
-        if (hasParent()) {
+        if (hasParent) {
             val actionBar = actionBar
 
             actionBar?.setDisplayHomeAsUpEnabled(true)

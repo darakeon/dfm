@@ -22,6 +22,10 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
         return R.layout.welcome
     }
 
+    override val hasTitle: Boolean
+        get() = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

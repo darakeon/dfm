@@ -37,8 +37,9 @@ object Theme {
 
     private fun getRes(theme: String): Int {
         when (theme) {
-            "Light" -> return android.R.style.Theme_Holo_Light
-            else -> return android.R.style.Theme_Holo
+            "Light" -> return R.style.Light
+            "Dark" -> return R.style.Dark
+            else -> return R.style.AppTheme
         }
     }
 
@@ -48,16 +49,18 @@ object Theme {
         }
         else {
             when (currentTheme) {
-                android.R.style.Theme_Holo_Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
-                else -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
+                R.style.Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
+                R.style.Dark -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
+                else -> return 0
             }
         }
     }
 
     fun getHighLightColor(): Int {
         when (currentTheme) {
-            android.R.style.Theme_Holo_Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
-            else -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
+            R.style.Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
+            R.style.Dark -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
+            else -> return 0
         }
     }
 
