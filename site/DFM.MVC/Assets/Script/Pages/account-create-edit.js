@@ -15,7 +15,7 @@ function toggleLimitFields(hasLimitCheckBox) {
     $('#Account_YellowLimit')[0].disabled = !hasLimit;
 }
 
-function suggestUrl(obj) {
+function suggestUrl() {
     var name = $(".suggest-name").val();
     var url = $(".suggest-url").val();
 

@@ -69,6 +69,9 @@ namespace DFM.Tests.Multilanguage
                     try
                     {
                         var translation = PlainText.Dictionary[key.Section, language, key.Phrase];
+
+	                    if (String.IsNullOrEmpty(translation))
+		                    errors.AppendLine($"Null at S: {key.Section}, L: {language}, P:{key.Phrase}");
                     }
                     catch (DicException e)
                     {
@@ -90,8 +93,11 @@ namespace DFM.Tests.Multilanguage
                     try
                     {
                         var layout = PlainText.EmailLayout[language, emailType];
-                    }
-                    catch (DicException e)
+
+						if (String.IsNullOrEmpty(layout))
+							errors.AppendLine($"Null at L: {language}, T: {emailType}");
+					}
+					catch (DicException e)
                     {
                         errors.AppendLine(e.Message);
                     }
