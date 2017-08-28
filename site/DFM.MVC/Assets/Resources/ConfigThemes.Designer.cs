@@ -22,14 +22,14 @@ namespace DFM.MVC.Assets.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Users {
+    public class ConfigThemes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Users() {
+        internal ConfigThemes() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DFM.MVC.Assets.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.MVC.Assets.Resources.Users", typeof(Users).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.MVC.Assets.Resources.ConfigThemes", typeof(ConfigThemes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,47 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I understood and agree with the {0}.
+        ///   Looks up a localized string similar to Alert.
         /// </summary>
-        public static string ContractAccept {
+        public static string Alert {
             get {
-                return ResourceManager.GetString("ContractAccept", resourceCulture);
+                return ResourceManager.GetString("Alert", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Date.
+        ///   Looks up a localized string similar to Button.
         /// </summary>
-        public static string ContractBeginDate {
+        public static string Button {
             get {
-                return ResourceManager.GetString("ContractBeginDate", resourceCulture);
+                return ResourceManager.GetString("Button", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Terms of Use.
+        ///   Looks up a localized string similar to Column.
         /// </summary>
-        public static string ContractTitle {
+        public static string Header {
             get {
-                return ResourceManager.GetString("ContractTitle", resourceCulture);
+                return ResourceManager.GetString("Header", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cookies will be used to remember your session next time you access the system using this browser.
+        ///   Looks up a localized string similar to Field.
         /// </summary>
-        public static string CookiesWarning {
+        public static string Label {
             get {
-                return ResourceManager.GetString("CookiesWarning", resourceCulture);
+                return ResourceManager.GetString("Label", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save to use the chosen theme at the site for now on.
+        ///   Looks up a localized string similar to Row.
         /// </summary>
-        public static string NeedToSaveTheme {
+        public static string Row {
             get {
-                return ResourceManager.GetString("NeedToSaveTheme", resourceCulture);
+                return ResourceManager.GetString("Row", resourceCulture);
             }
         }
     }

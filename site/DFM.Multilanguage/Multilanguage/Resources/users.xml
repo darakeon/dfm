@@ -25,9 +25,10 @@
 		<EmailToChange text="New e-mail" />
 		<EmailUpdated text="E-mail successfully updated. New user activation is required." />
 		<PasswordChanged text="Password successfully updated. System logged out for safety." />
-		<MainSettings text="Options" />
+		<OptionsSettings text="Options" />
 		<PasswordSettings text="Password" />
 		<EmailSettings text="E-mail" />
+		<ThemeSettings text="Theme" />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -54,8 +55,9 @@
 		<EmailToChange text="Novo e-mail" />
 		<EmailUpdated text="E-mail atualizado com sucesso. Será necessária nova ativação de usuário." />
 		<PasswordChanged text="Senha atualizada com sucesso. Sistema deslogado por segurança." />
-		<MainSettings text="Opções" />
+		<OptionsSettings text="Opções" />
 		<PasswordSettings text="Senha" />
 		<EmailSettings text="E-mail" />
+		<ThemeSettings text="Layout" />
 	</pt-BR>
 </users>

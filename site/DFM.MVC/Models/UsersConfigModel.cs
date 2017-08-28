@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Multilanguage;
 using DFM.MVC.Helpers.Global;
@@ -19,10 +20,12 @@ namespace DFM.MVC.Models
 		{
 			Main = new MainConfig(Admin, Current.User.Config);
 			Info = new UserInfo(Safe);
+			Theme = new ThemeOptions(Admin, Current.User.Config);
 		}
 
 		public MainConfig Main { get; set; }
 		public UserInfo Info { get; set; }
+		public ThemeOptions Theme { get; set; }
 		
 		public Form ActiveForm { get; set; }
 
@@ -30,7 +33,8 @@ namespace DFM.MVC.Models
 		{
 			Options,
 			Password,
-			Email
+			Email,
+			Theme
 		}
 
 
@@ -159,9 +163,43 @@ namespace DFM.MVC.Models
 			}
 		}
 
+		public class ThemeOptions
+		{
+			public ThemeOptions(AdminService admin, Config config)
+			{
+				this.admin = admin;
+				Theme = config.Theme;
 
+				ThemeList = 
+					Enum.GetValues(typeof (BootstrapTheme))
+						.Cast<BootstrapTheme>()
+						.Where(bt => bt != 0)
+						.OrderBy(bt => bt.ToString())
+						.ToList();
+			}
 
+			private readonly AdminService admin;
 
+			public BootstrapTheme Theme { get; set; }
+
+			public IList<BootstrapTheme> ThemeList { get; private set; }
+
+			public IList<String> Change()
+			{
+				var errors = new List<String>();
+
+				try
+				{
+					admin.ChangeTheme(Theme);
+				}
+				catch (DFMCoreException e)
+				{
+					errors.Add(MultiLanguage.Dictionary[e]);
+				}
+
+				return errors;
+			}
+		}
 
 	}
 }

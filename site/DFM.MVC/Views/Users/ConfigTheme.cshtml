@@ -1,0 +1,75 @@
+﻿@model UsersConfigModel
+
+@{
+	var tableColumns = 3;
+	var tableRows = 2;
+}
+
+@Html.HiddenFor(m => m.Theme.Theme, new { @class = "theme-changer-hidden" })
+
+<div class="alert alert-info text-center">
+	@Users.NeedToSaveTheme
+</div>
+
+<div class="row">
+	<div class="col-lg-3 col-sm-3 text-center">
+		<div class="btn-group-vertical btn-group-sm">
+			@foreach (var theme in Model.Theme.ThemeList)
+			{
+				<button class="btn btn-sm btn-default theme-changer @(theme == Model.UserTheme ? "active" : "")"
+				        data-theme="@theme.ToString().ToLower()" type="button">
+					@theme
+				</button>
+			}
+		</div>
+	</div>
+
+	<div class="col-lg-9 col-sm-9 text-center">
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					@for (var c = 0; c < tableColumns; c++)
+					{
+						<th class="text-center">@ConfigThemes.Header</th>
+					}
+				</tr>
+			</thead>
+			<tbody>
+				@for (var r = 0; r < tableRows; r++)
+				{
+					<tr>
+						@for (var c = 0; c < tableColumns; c++)
+						{
+							<td class="text-center">@ConfigThemes.Row</td>
+						}
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<div class="form-group well">
+			<label class="control-label">@ConfigThemes.Label</label>
+			<input class="form-control" />
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-success">@ConfigThemes.Button</button>
+			<button class="btn btn-warning">@ConfigThemes.Button</button>
+			<button class="btn btn-danger">@ConfigThemes.Button</button>
+		</div>
+
+		<div class="alert alert-info">@ConfigThemes.Alert</div>
+		<div class="alert alert-success">@ConfigThemes.Alert</div>
+		<div class="alert alert-warning">@ConfigThemes.Alert</div>
+		<div class="alert alert-danger">@ConfigThemes.Alert</div>
+
+	</div>
+
+</div>
+
+@foreach (var theme in Model.Theme.ThemeList)
+{
+	<iframe src="/Assets/Bootstrap/Themes/bootstrap-@(theme.ToString().ToLower()).min.css" 
+			marginheight="0" marginwidth="0" scrolling="no" width="0" height="0" frameborder="0" seamless></iframe>
+}

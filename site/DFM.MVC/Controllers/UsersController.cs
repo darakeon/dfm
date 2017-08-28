@@ -114,7 +114,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[DFMAuthorize, HttpPost]
-		public ActionResult ChangeConfig(UsersConfigModel model)
+		public ActionResult ConfigOptions(UsersConfigModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -130,7 +130,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[DFMAuthorize, HttpPost]
-		public ActionResult ChangePassword(UsersConfigModel model)
+		public ActionResult ConfigPassword(UsersConfigModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -146,11 +146,27 @@ namespace DFM.MVC.Controllers
 		}
 
 		[DFMAuthorize, HttpPost]
-		public ActionResult UpdateEmail(UsersConfigModel model)
+		public ActionResult ConfigEmail(UsersConfigModel model)
 		{
 			if (ModelState.IsValid)
 			{
 				var errors = model.Info.UpdateEmail();
+
+				AddErrors(errors);
+			}
+
+			if (!ModelState.IsValid)
+				return View("Config", model);
+
+			return RedirectToAction("Index", "Accounts");
+		}
+
+		[DFMAuthorize, HttpPost]
+		public ActionResult ConfigTheme(UsersConfigModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.Theme.Change();
 
 				AddErrors(errors);
 			}

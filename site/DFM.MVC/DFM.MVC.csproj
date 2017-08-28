@@ -146,7 +146,21 @@
     <Content Include="Assets\Bootstrap\MaskedMoney\jquery.maskMoney.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-cerulean.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-cosmo.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-darkly.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-flatly.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-journal.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-lumen.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-paper.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-readable.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-simplex.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-solar.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-superhero.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-united.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-yeti.min.css" />
     <Content Include="Assets\Images\big_pig.png" />
+    <Content Include="Assets\Scripts\dynamic-theme-change.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.min.js" />
@@ -231,6 +245,11 @@
     <Compile Include="Areas\API\Models\UserGetConfigModel.cs" />
     <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
+    <Compile Include="Assets\Resources\ConfigThemes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigThemes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Assets\Resources\Contracts\003000000000.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -305,6 +324,11 @@
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <None Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
     <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
+    <EmbeddedResource Include="Assets\Resources\ConfigThemes.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\ConfigThemes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfigThemes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.pt-BR.resx" />
     <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -346,6 +370,7 @@
     <None Include="Views\Users\ConfigOptions.cshtml" />
     <None Include="Views\Users\ConfigPassword.cshtml" />
     <Content Include="Views\Users\Contract.cshtml" />
+    <Content Include="Views\Users\ConfigTheme.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <Content Include="Views\Users\ModalContract.cshtml" />

@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using DFM.Authentication;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
 using DFM.Entities.Enums;
 using DFM.MVC.Controllers;
@@ -50,24 +51,11 @@ namespace DFM.MVC.Models
 		}
 
 
-		public Boolean UseCategories => IsAuthenticated && Current.User.Config.UseCategories;
-
+		public Boolean UseCategories => Current.User?.Config?.UseCategories ?? false;
 
 		public DateTime Today => Current.User?.Now().Date ?? DateTime.UtcNow;
 
-
-		public BootstrapTheme Theme
-		{
-			get
-			{
-				BootstrapTheme theme;
-				var urlTheme = HttpContext.Current?.Request["theme"];
-
-				Enum.TryParse(urlTheme, out theme);
-
-				return theme == BootstrapTheme.None ? BootstrapTheme.Slate : theme;
-			}
-		}
+		public BootstrapTheme UserTheme => Current.User?.Config?.Theme ?? Defaults.DEFAULT_THEME;
 
 	}
 }

@@ -3,49 +3,52 @@
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Settings"];
 	Layout = "~/Views/Shared/_Form.cshtml";
+
+	var tabs = Enum.GetValues(typeof (UsersConfigModel.Form));
+
+	ViewBag.FormSizeSm = 8;
+	ViewBag.FormSizeLg = 6;
 }
 
-@section Scripts
-{
+@section Scripts {
 	<script type="text/javascript" src="~/Assets/Scripts/tab-forms.js"></script>
+	<script type="text/javascript" src="~/Assets/Scripts/dynamic-theme-change.js"></script>
+	<script type="text/javascript">
+		window.currentTheme = '@Model.UserTheme.ToString().ToLower()';
+	</script>
 }
 
 <ul class="nav nav-tabs">
-	<li class="options-caller">
-		<a href="#options" data-toggle="tab">
-			@MultiLanguage.Dictionary["MainSettings"]
-		</a>
-	</li>
-	<li class="password-caller">
-		<a href="#password" data-toggle="tab">
-			@MultiLanguage.Dictionary["PasswordSettings"]
-		</a>
-	</li>
-	<li class="email-caller">
-		<a href="#email" data-toggle="tab">
-			@MultiLanguage.Dictionary["EmailSettings"]
-		</a>
-	</li>
+	@foreach (var tab in tabs)
+	{
+		var name = tab.ToString();
+		var lower = name.ToLower();
+
+		<li class="@lower-caller">
+			<a href="#@lower" data-toggle="tab">
+				<small>
+					@MultiLanguage.Dictionary[$"{name}Settings"]
+				</small>
+			</a>
+		</li>
+	}
 </ul>
 
 @Html.HiddenFor(m => m.ActiveForm)
 
 <div class="tab-content well-sm">
-	<div class="tab-pane" id="options" data-form="@Url.Action("ChangeConfig")">
-		@Html.Partial("ConfigOptions")
-	</div>
+	@foreach (var tab in tabs)
+	{
+		var name = tab.ToString();
+		var lower = name.ToLower();
 
-	<div class="tab-pane" id="password" data-form="@Url.Action("ChangePassword")">
-		@Html.Partial("ConfigPassword")
-	</div>
-
-	<div class="tab-pane" id="email" data-form="@Url.Action("UpdateEmail")">
-		@Html.Partial("ConfigEmail")
-	</div>
+		<div class="tab-pane" id="@lower" data-form="@Url.Action($"Config{name}")">
+			@Html.Partial($"Config{name}")
+		</div>
+	}
 </div>
 
-@section Footer
-{
+@section Footer {
 	<button type="submit" class="btn btn-success">
 		@MultiLanguage.Dictionary["Save"]
 	</button>

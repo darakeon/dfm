@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ContractAccept" xml:space="preserve">
-    <value>Entendi e concordo com os {0}</value>
+  <data name="Alert" xml:space="preserve">
+    <value>Alert</value>
   </data>
-  <data name="ContractBeginDate" xml:space="preserve">
-    <value>Início de Vigência</value>
+  <data name="Button" xml:space="preserve">
+    <value>Button</value>
   </data>
-  <data name="ContractTitle" xml:space="preserve">
-    <value>Termos de Uso</value>
+  <data name="Header" xml:space="preserve">
+    <value>Column</value>
   </data>
-  <data name="CookiesWarning" xml:space="preserve">
-    <value>Cookies serão usados para manter a sessão na próxima vez que você acessar o sistema por este browser</value>
+  <data name="Label" xml:space="preserve">
+    <value>Field</value>
   </data>
-  <data name="NeedToSaveTheme" xml:space="preserve">
-    <value>Salve para usar o layout que escolher no site de agora em diante</value>
+  <data name="Row" xml:space="preserve">
+    <value>Row</value>
   </data>
 </root>

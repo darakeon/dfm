@@ -968,7 +968,7 @@ this.FeatureBackground();
                         "PasswordChanged"});
             table11.AddRow(new string[] {
                         "Users",
-                        "MainSettings"});
+                        "OptionsSettings"});
             table11.AddRow(new string[] {
                         "Users",
                         "PasswordSettings"});

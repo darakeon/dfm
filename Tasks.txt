@@ -118,7 +118,7 @@ VERSÃO 3.0.0.0 (All new) - 15
 ================================================================================================
 						Video do porquinho
 						Mudar layouts de e-mail - light / dark
-2017-03-25				Configuração de tema
+2017-03-25	2017-03-26	Configuração de tema
 2017-03-24	2017-03-25	Adicionar aviso de cookies no logon (remember me)
 2017-03-24	2017-03-24	Fazer capa nova para youtube / facebook / twitter (?)
 2017-03-21	2017-03-24	Implementar necessidade de assinar TERMO

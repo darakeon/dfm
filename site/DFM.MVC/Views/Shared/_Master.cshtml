@@ -8,34 +8,34 @@
 
 	<link rel="icon" href="/Assets/Images/pig.ico" />
 
-	<link href="/Assets/Bootstrap/Themes/bootstrap-@(Model.Theme).min.css" rel="stylesheet" type="text/css" />
-	<link href="/Assets/Styles/android.css" rel="stylesheet" type="text/css" />
-	<link href="/Assets/Styles/default.css" rel="stylesheet" type="text/css" />
-	<link href="/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Bootstrap/Themes/bootstrap-@(Model.UserTheme).min.css" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<link href="~/Assets/Styles/android.css" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Styles/default.css" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
-	<script src="/Assets/Bootstrap/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="/Assets/Bootstrap/Datepicker/moment.min.js" type="text/javascript"></script>
+	<script src="~/Assets/Bootstrap/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="~/Assets/Bootstrap/Datepicker/moment.min.js" type="text/javascript"></script>
 
-	<script src="/Assets/Bootstrap/Scripts/bootstrap.min.js" type="text/javascript"></script>
-	<script src="/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+	<script src="~/Assets/Bootstrap/Scripts/bootstrap.min.js" type="text/javascript"></script>
+	<script src="~/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 
-	<script src="/Assets/Bootstrap/MaskedMoney/jquery.maskMoney.js" type="text/javascript"></script>
+	<script src="~/Assets/Bootstrap/MaskedMoney/jquery.maskMoney.js" type="text/javascript"></script>
 
 	@{
 		var logged = Model as BaseLoggedModel;
 
 		if (logged != null && logged.Language != "en-US")
 		{
-			<script src="/Assets/Bootstrap/Datepicker/moment-@(logged.Language.ToLower()).js"></script>
+			<script src="~/Assets/Bootstrap/Datepicker/moment-@(logged.Language.ToLower()).js"></script>
 			<script type="text/javascript">
 				window.language = "@logged.Language.ToLower()";
 			</script>
 		}
 	}
 
-	<script src="/Assets/Scripts/default.js" type="text/javascript"></script>
+	<script src="~/Assets/Scripts/default.js" type="text/javascript"></script>
 
 	@RenderSection("Scripts", false)
 </head>
