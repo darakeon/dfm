@@ -93,16 +93,19 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 2.0.2.0 (Little change) - 7?
+VERSÃO 2.0.3.0 (Little change) - 6?
 ================================================================================================
 						Corrigir problema de deletar conta que já teve movimentações
-						Verificar erro no tablet
 						Deixar salvar o programa no SD
 						Não deixar sleep quando já estiver no meio de uma requisição
 						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
-						Corrigir url do logo
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
+
+VERSÃO 2.0.2.0 (Little change) - 13?
+================================================================================================
+						Usar versão de projeto no .NET
+						Corrigir url do logo
 2015-08-31	2015-08-31	Corrigido erro no tablet (falta de 3G)
 2015-08-30	2015-08-30	Migrar para android studio
 2015-02-14	2015-09-02	Colocar botão CANCEL em Settings e Move (mobile)
