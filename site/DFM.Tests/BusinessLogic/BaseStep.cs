@@ -33,9 +33,8 @@ namespace DFM.Tests.BusinessLogic
 			SessionManager.Init(getTicketKey);
 
 			SA = new ServiceAccess(getTicket);
-
-			var path = Directory.GetCurrentDirectory();
-			PlainText.Initialize(path);
+			
+			PlainText.Initialize(RunPath);
 		}
 
 

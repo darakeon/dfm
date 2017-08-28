@@ -7,7 +7,6 @@ using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using DFM.Multilanguage;
-using System.IO;
 
 namespace DFM.Tests.Multilanguage
 {
@@ -23,11 +22,7 @@ namespace DFM.Tests.Multilanguage
 		[Given(@"the dictionary is initialized")]
 		public void TheDictionaryIsInitialized()
 		{
-			var path = Path.Combine(
-				Directory.GetCurrentDirectory(),
-				@"..\..\..\DFM.Multilanguage");
-
-			PlainText.Initialize(path);
+			PlainText.Initialize(RunPath);
 		}
 
 

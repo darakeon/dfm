@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.Helpers
@@ -16,6 +17,20 @@ namespace DFM.Tests.Helpers
 		{
 			ScenarioContext.Current[key] = value;
 		}
+
+		protected String RunPath
+		{
+			get
+			{
+				var assembly = GetType().Assembly;
+
+				var uri = new UriBuilder(assembly.CodeBase);
+				var path = Uri.UnescapeDataString(uri.Path);
+
+				return Path.GetDirectoryName(path);
+			}
+		}
+
 	}
 
 
