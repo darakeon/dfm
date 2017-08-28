@@ -291,7 +291,7 @@
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
-    <Content Include="Views\Users\SendVerification.old" />
+    <None Include="Views\Users\SendVerification.cshtml" />
     <Content Include="Views\Users\SignUpSuccess.cshtml" />
     <Content Include="Views\_ViewStart.old" />
     <Content Include="Areas\Account\Views\web.config">
