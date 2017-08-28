@@ -113,9 +113,10 @@ VERSÃO 3.1.0.0 (Big change) - 4
 						Tema dark no android (para Slate e Cyborg)
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 12
+VERSÃO 3.0.0.0 (All new) - 13
 ================================================================================================
 						Video do porquinho
+						Adicionar aviso de cookies no logon (remember me)
 						Mudar layouts de e-mail
 						Fazer capa nova para youtube / facebook / twitter (?)
 						Link unsubscribe
