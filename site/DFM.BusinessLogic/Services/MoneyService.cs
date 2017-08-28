@@ -70,11 +70,9 @@ namespace DFM.BusinessLogic.Services
 
 		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
         {
-            ComposedResult<Boolean, EmailStatus> result;
+			Parent.Safe.VerifyUser();
 
-            Parent.Safe.VerifyUser();
-
-            result = InTransaction(() => deleteMove(id));
+            var result = InTransaction(() => deleteMove(id));
 
             Parent.BaseMove.FixSummaries();
 
