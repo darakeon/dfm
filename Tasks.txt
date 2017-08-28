@@ -110,7 +110,7 @@ VERSÃO 2.1.1.1 (Bug fix) - 2
 
 VERSÃO 2.1.1.0 (Little change) - 3
 ================================================================================================
-						Remover validação front do DFM (problema de data)
+2017-01-14	2017-01-14	Remover validação front do DFM (problema de data)
 2017-01-13	2017-01-14	Possibilitar trocar e-mail
 2017-01-13	2017-01-14	Possibilitar trocar senha
 
