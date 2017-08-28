@@ -5,7 +5,7 @@ import android.content.Context
 internal object SP {
     private val sharedPreferencesDFM = "DfM"
 
-    fun getValue(context: Context, key: String): String {
+    fun getValue(context: Context, key: String): String? {
         val sp = context.getSharedPreferences(sharedPreferencesDFM, Context.MODE_PRIVATE)
         return sp.getString(key, null)
     }

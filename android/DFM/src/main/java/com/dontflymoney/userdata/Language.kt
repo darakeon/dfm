@@ -27,7 +27,9 @@ object Language {
 
     fun ChangeFromSaved(activity: Activity) {
         val language = SP.getValue(activity, spKey)
-        change(activity, language)
+
+        if (language != null)
+            change(activity, language)
     }
 
     private fun change(activity: Activity, language: String) {
