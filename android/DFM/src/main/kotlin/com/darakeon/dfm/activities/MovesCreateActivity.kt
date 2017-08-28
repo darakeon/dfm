@@ -136,6 +136,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 				populateScreen(data)
 			}
 			Step.Recording -> {
+				intent.removeExtra("id")
 				back()
 			}
 			else -> {
