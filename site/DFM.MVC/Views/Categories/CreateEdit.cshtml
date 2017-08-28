@@ -1,0 +1,29 @@
+﻿@model CategoriesCreateEditModel
+
+@using DFM.Generic
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
+
+	if (Model.Type == OperationType.Edit)
+	{
+		ViewBag.Title += " [" + Model.Name + "]";
+	}
+	
+	Layout = "~/Views/Shared/_MiniForm.cshtml";
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"], new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.CATEGORY_NAME, @class = "form-control" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CATEGORY_NAME)</small>
+</div>
+
+@section Footer
+{
+	<div class="text-right">
+		<button type="submit" class="btn btn-success">
+			@MultiLanguage.Dictionary[Model.ActionName]
+		</button>
+	</div>
+}

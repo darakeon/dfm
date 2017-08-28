@@ -24,8 +24,6 @@ namespace DFM.MVC.Controllers
 		{
 			var model = new CategoriesCreateEditModel(OperationType.Creation);
 
-			model.DefineAction(Request);
-
 			return View("CreateEdit", model);
 		}
 
@@ -88,8 +86,6 @@ namespace DFM.MVC.Controllers
 			{
 				return RedirectToAction("Index");
 			}
-
-			model.DefineAction(Request);
 
 			return View("CreateEdit", model);
 		}

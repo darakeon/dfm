@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Generic;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -55,16 +53,6 @@ namespace DFM.MVC.Models
 				if (Type == OperationType.Creation)
 					Category.Name = value;
 			}
-		}
-
-
-
-		public Boolean IsMoveCRUD { get; private set; }
-
-
-		internal void DefineAction(HttpRequestBase request)
-		{
-			IsMoveCRUD = request.Path.Contains(RouteNames.ACCOUNT);
 		}
 
 

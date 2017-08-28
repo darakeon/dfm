@@ -277,8 +277,8 @@
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\ListClosed.cshtml" />
-    <Content Include="Views\Categories\CreateEdit.old" />
-    <Content Include="Views\Categories\Index.old" />
+    <None Include="Views\Categories\CreateEdit.cshtml" />
+    <None Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Logins\Index.old" />
     <Content Include="Views\Ops\404.old" />
     <Content Include="Views\Ops\500.old" />
@@ -294,6 +294,7 @@
     <Content Include="Views\Tokens\PasswordResetSuccess.old" />
     <Content Include="Views\Tokens\UserVerificationSuccess.old" />
     <Content Include="Views\Shared\_Table.cshtml" />
+    <None Include="Views\Categories\Status.cshtml" />
     <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ConfigEmail.cshtml" />

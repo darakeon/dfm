@@ -1,0 +1,10 @@
+﻿@model Boolean
+
+@if (Model)
+{
+	<span class="label label-success">@MultiLanguage.Dictionary["Available"]</span>
+}
+else
+{
+	<span class="label label-danger">@MultiLanguage.Dictionary["Invisible"]</span>
+}

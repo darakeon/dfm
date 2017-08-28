@@ -23,6 +23,11 @@
 		<Logon text="Logon" />
 		<ScheduleRun text="Schedule: {0}, but the moves were inserted successfuly"/>
 
+		<!--Status-->
+		<Status text="Status" />
+		<Available text="Available" />
+		<Invisible text="Invisible" />
+
 		<!--Nouns-->
 		<Name text="Name" />
 		<Value text="Value" />
@@ -95,6 +100,11 @@
 		<New text="Novo" />
 		<Logon text="Entrar" />
 		<ScheduleRun text="Agendamentos: {0}, mas movimentações foram inseridas com sucesso"/>
+
+		<!--Status-->
+		<Status text="Status" />
+		<Available text="Disponível" />
+		<Invisible text="Invisível" />
 
 		<!--Nouns-->
 		<Name text="Nome" />

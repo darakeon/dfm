@@ -332,6 +332,9 @@ Scenario: 12. Get translate of Interface (general)
 		| General | TheSchedule             |
 		| General | Logins                  |
 		| General | AndroidRobotLicenseText |
+		| General | Status                  |
+		| General | Available               |
+		| General | Invisible               |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

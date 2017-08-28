@@ -7,7 +7,7 @@
 	
 	if (Model.Type == OperationType.Edit)
 	{
-		ViewBag.Title += " " + Model.Account.Name;
+		ViewBag.Title += " [" + Model.Account.Name + "]";
 	}
 	
 	Layout = "~/Views/Shared/_MiniForm.cshtml";
