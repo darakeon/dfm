@@ -279,7 +279,7 @@
     <Content Include="Views\Accounts\ListClosed.cshtml" />
     <None Include="Views\Categories\CreateEdit.cshtml" />
     <None Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Logins\Index.old" />
+    <None Include="Views\Logins\Index.cshtml" />
     <Content Include="Views\Ops\404.old" />
     <Content Include="Views\Ops\500.old" />
     <Content Include="Views\Ops\Error.old" />

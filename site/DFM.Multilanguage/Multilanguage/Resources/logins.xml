@@ -8,6 +8,7 @@
 		<Browser text="Browser" />
 		<ConfirmDeleteLogin text="Do you really want to DELETE the login at '{0}' ({1})? The login session will not work anymore." />
 		<LoginRegister text="Login" />
+		<NoLogins text="There is no active logins" />
 	</en-US>
 	<pt-BR>
 		<Creation text="Criação" />
@@ -17,5 +18,6 @@
 		<Browser text="Web" />
 		<ConfirmDeleteLogin text="Realmente deseja APAGAR o login de '{0}' ({1})? A sessão do login irá expirar." />
 		<LoginRegister text="Login" />
+		<NoLogins text="Não há logins em uso" />
 	</pt-BR>
 </logins>

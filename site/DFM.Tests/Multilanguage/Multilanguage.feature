@@ -383,6 +383,7 @@ Scenario: 14. Get translate of Interface (logins)
 		| Logins  | Browser            |
 		| Logins  | ConfirmDeleteLogin |
 		| Logins  | LoginRegister      |
+		| Logins  | NoLogins           |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
