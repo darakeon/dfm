@@ -146,14 +146,16 @@
     <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Account\Views\Moves\Nature.cshtml" />
-    <Content Include="Areas\Account\Views\Moves\Account.cshtml" />
+    <Content Include="Areas\Account\Views\Moves\NatureAndAccount.cshtml" />
     <Content Include="Areas\Account\Views\Moves\ValueAndDetail.cshtml" />
     <Content Include="Areas\Account\Views\Moves\MoveMainData.cshtml" />
     <Content Include="Areas\Account\Views\Moves\DetailHeader.cshtml" />
     <Content Include="Areas\Account\Views\Moves\DetailBody.cshtml" />
     <Content Include="Areas\Account\Views\Moves\DetailFooter.cshtml" />
     <Content Include="Areas\Account\Views\Moves\DetailTabs.cshtml" />
+    <Content Include="Areas\Account\Views\Schedules\Frequency.cshtml" />
+    <Content Include="Areas\Account\Views\Schedules\Repeating.cshtml" />
+    <Content Include="Areas\Account\Views\Schedules\Installment.cshtml" />
     <None Include="Assets\Bootstrap\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.js" />
@@ -274,7 +276,7 @@
     <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
     <None Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
-    <None Include="Areas\Account\Views\Schedules\OtherFields.cshtml" />
+    <None Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
     <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
     <None Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
