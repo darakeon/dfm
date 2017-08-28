@@ -6,6 +6,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.License
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.WelcomeStatic
+import com.darakeon.dfm.api.Site
 import com.darakeon.dfm.api.Step
 import org.json.JSONObject
 import kotlin.reflect.KClass
@@ -34,7 +35,10 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
             return
         }
 
-        license.Check()
+        if (Site.IsLocal())
+            GoToApp()
+        else
+            license.Check()
     }
 
     fun GoToApp()

@@ -6,6 +6,7 @@
 		<item name="transfer">@color/transfer_dark</item>
 		<item name="checked">@color/checked_dark</item>
 		<item name="unchecked">@color/unchecked_dark</item>
+		<item name="android:actionBarStyle">@style/ActionBar</item>
 	</style>
 
 	<style name="Light" parent="android:Theme.Holo.Light">
@@ -14,6 +15,12 @@
 		<item name="transfer">@color/transfer_light</item>
 		<item name="checked">@color/checked_light</item>
 		<item name="unchecked">@color/unchecked_light</item>
+		<item name="android:actionBarStyle">@style/ActionBar</item>
+	</style>
+
+	<style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">
+		<item name="android:background">#227F7F7F</item>
+		<item name="android:divider">@color/transfer_light</item>
 	</style>
 
 	<style name="AppTheme" parent="Dark">
