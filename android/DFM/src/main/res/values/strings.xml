@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Don\'t fly Money</string>
+    <string name="app_name" translatable="false">Don\'t fly Money</string>
 
     <!-- Actions -->
     <string name="action_logout">Logout</string>
