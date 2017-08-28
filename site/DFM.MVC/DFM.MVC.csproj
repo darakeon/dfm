@@ -270,7 +270,6 @@
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Create.old" />
     <Content Include="Areas\Account\Views\Schedules\OtherFields.old" />
-    <Content Include="Areas\Account\Views\Shared\_Layout.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditSchedule.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleCss.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleJs.old" />

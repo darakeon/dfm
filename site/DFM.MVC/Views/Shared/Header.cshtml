@@ -1,6 +1,8 @@
 ﻿@using DFM.MVC.Areas.Account.Models
 @model BaseModel
 
+@{ var model = Model as BaseAccountModel; }
+
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -28,22 +30,36 @@
 					{
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
 					}
-					else if (Model.GetType().IsSubclassOf(typeof (BaseAccountModel)))
+					else if (model == null)
 					{
-					}
-					else
-					{
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
 
 						if (Model.UseCategories)
 						{
-							<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new {action = "Index", controller = "Categories"})</li>
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
 						}
 
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new {action = "Index", controller = "Schedules"})</li>
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new {action = "Index", controller = "Logins"})</li>
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
 					}
-					
+					else
+					{
+						if (model.Account.IsOpen())
+						{
+							<li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")</li>
+							<li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")</li>
+						}
+
+						<li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")</li>
+						<li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
+
+						<li>
+							<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})">
+								<span class="glyphicon glyphicon-home"></span>
+							</a>
+						</li>
+					}
+
 					<li>
 						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Config", controller = "Users"})">
 							<span class="glyphicon glyphicon-cog"></span>
