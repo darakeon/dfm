@@ -1,33 +1,33 @@
 ﻿@model SchedulesCreateModel
 
 <div class="createMoveScreenLeft">
-    <div>
-        @Html.LabelFor(m => m.Frequency, MultiLanguage.Dictionary["Frequency"])<br />
-        @Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
-    </div>
+	<div>
+		@Html.LabelFor(m => m.Frequency, MultiLanguage.Dictionary["Frequency"])<br />
+		@Html.DropDownListFor(m => m.Frequency, Model.FrequencySelectList)
+	</div>
 </div>
-    
+	
 <div class="createMoveScreenRight">
-    <div>
-        @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio", id = "Boundless" })
-	    @* ReSharper disable once Html.IdNotResolved *@
-        <label for="Boundless">@MultiLanguage.Dictionary["Boundless"]</label>
-    </div>
-    <div>
-        @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio", id = "Bounded" })
+	<div>
+		@Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio", id = "Boundless" })
 		@* ReSharper disable once Html.IdNotResolved *@
-        <label for="Bounded">@MultiLanguage.Dictionary["Repeat"]</label>
+		<label for="Boundless">@MultiLanguage.Dictionary["Boundless"]</label>
+	</div>
+	<div>
+		@Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio", id = "Bounded" })
+		@* ReSharper disable once Html.IdNotResolved *@
+		<label for="Bounded">@MultiLanguage.Dictionary["Repeat"]</label>
 
-        @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
-        @Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Times"])
-    </div>
+		@Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
+		@Html.LabelFor(m => m.Times, MultiLanguage.Dictionary["Times"])
+	</div>
 </div>
-    
+	
 <div class="divRowForm">
-    @Html.CheckBoxFor(m => m.ShowInstallment)
-    @Html.LabelFor(m => m.ShowInstallment, MultiLanguage.Dictionary["ShowInstallment"])
+	@Html.CheckBoxFor(m => m.ShowInstallment)
+	@Html.LabelFor(m => m.ShowInstallment, MultiLanguage.Dictionary["ShowInstallment"])
 </div>
-    
+	
 <div class="divRowForm">
-    <hr />
+	<hr />
 </div>

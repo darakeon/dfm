@@ -6,10 +6,10 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    public class BaseJsonController : BaseController
-    {
-	    protected JsonResult JsonGet(Func<object> action)
-	    {
+	public class BaseJsonController : BaseController
+	{
+		protected JsonResult JsonGet(Func<object> action)
+		{
 			try
 			{
 				var model = action();
@@ -30,29 +30,29 @@ namespace DFM.MVC.Areas.API.Controllers
 		}
 
 
-	    public JsonResult Uninvited()
-        {
-            return Json(
+		public JsonResult Uninvited()
+		{
+			return Json(
 				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited] }, 
 				JsonRequestBehavior.AllowGet
 			);
-        }
+		}
 
-        protected JsonResult JsonPostSuccess()
-        {
-            return JsonPost( new { success = true });
-        }
+		protected JsonResult JsonPostSuccess()
+		{
+			return JsonPost( new { success = true });
+		}
 
-        protected JsonResult JsonPost(object result)
-        {
-            return Json(new { data = result });
-        }
+		protected JsonResult JsonPost(object result)
+		{
+			return Json(new { data = result });
+		}
 
-        protected JsonResult JsonPostError(String result)
-        {
-            return Json(new { error = result });
-        }
+		protected JsonResult JsonPostError(String result)
+		{
+			return Json(new { error = result });
+		}
 
 
-    }
+	}
 }

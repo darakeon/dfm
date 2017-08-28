@@ -1,36 +1,36 @@
 ﻿@model UsersLogOnModel
 
 @{
-    ViewBag.Title = MultiLanguage.Dictionary["Logon"];
+	ViewBag.Title = MultiLanguage.Dictionary["Logon"];
 }
 
 <div class="half-screen">
 
-    @using (Html.BeginForm("LogOn", "Users", new { returnUrl = Request.QueryString["returnUrl"] }))
-    {
-        <p>
-            @Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
-            @Html.TextBoxFor(m => m.Email) 
-        </p>
+	@using (Html.BeginForm("LogOn", "Users", new { returnUrl = Request.QueryString["returnUrl"] }))
+	{
+		<p>
+			@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"] + ":")
+			@Html.TextBoxFor(m => m.Email) 
+		</p>
 
-        <p>
-            @Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"] + ":")
-            @Html.PasswordFor(m => m.Password)
-        </p>
+		<p>
+			@Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"] + ":")
+			@Html.PasswordFor(m => m.Password)
+		</p>
 
-        <div id="Remember">
-            @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
-        </div>
+		<div id="Remember">
+			@Html.CheckBoxFor(m => m.RememberMe)
+			@Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
+		</div>
 
-        <button type="submit">@MultiLanguage.Dictionary["Login"]</button>
+		<button type="submit">@MultiLanguage.Dictionary["Login"]</button>
 
-    }
+	}
 
 </div>
 
 
 @section PS
 {
-    @Html.ActionLink(MultiLanguage.Dictionary["ForgotPassword"], "ForgotPassword")
+	@Html.ActionLink(MultiLanguage.Dictionary["ForgotPassword"], "ForgotPassword")
 }

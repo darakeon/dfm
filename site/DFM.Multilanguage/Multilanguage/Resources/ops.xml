@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ops>
-  <en-US>
-    <Ops text="Ops!" />
-    
-    <Unknown text="Ops..." />
-    <UnknownMessage text="Please, contact us." />
-    
-    <NotFound text="Page not found" />
-    <NotFoundMessage text="Sorry, page not found." />
-    
-    <Internal text="Ops!" />
-    <InternalMessageSent text="An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible." />
-    <InternalMessageNotSent text="An internal error ocurred. Please, contact us." />
-    <CommunicationError text="An internal error ocurred. Please, contact us." />
-  </en-US>
-  <pt-BR>
-    <Ops text="Ops!" />
+	<en-US>
+		<Ops text="Ops!" />
 
-    <Unknown text="Ops..." />
-    <UnknownMessage text="Por favor, entre em contato conosco." />
+		<Unknown text="Ops..." />
+		<UnknownMessage text="Please, contact us." />
 
-    <NotFound text="Não encontrada" />
-    <NotFoundMessage text="Página não encontrada." />
+		<NotFound text="Page not found" />
+		<NotFoundMessage text="Sorry, page not found." />
 
-    <Internal text="Ops!" />
-    <InternalMessageSent text="Ocorreu um erro interno. Um e-mail foi enviado, resolveremos assim que possível." />
-    <InternalMessageNotSent text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
-    <CommunicationError text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
-  </pt-BR>
+		<Internal text="Ops!" />
+		<InternalMessageSent text="An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible." />
+		<InternalMessageNotSent text="An internal error ocurred. Please, contact us." />
+		<CommunicationError text="An internal error ocurred. Please, contact us." />
+	</en-US>
+	<pt-BR>
+		<Ops text="Ops!" />
+
+		<Unknown text="Ops..." />
+		<UnknownMessage text="Por favor, entre em contato conosco." />
+
+		<NotFound text="Não encontrada" />
+		<NotFoundMessage text="Página não encontrada." />
+
+		<Internal text="Ops!" />
+		<InternalMessageSent text="Ocorreu um erro interno. Um e-mail foi enviado, resolveremos assim que possível." />
+		<InternalMessageNotSent text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
+		<CommunicationError text="Ocorreu um erro interno. Por favor, entre em contato conosco." />
+	</pt-BR>
 </ops>

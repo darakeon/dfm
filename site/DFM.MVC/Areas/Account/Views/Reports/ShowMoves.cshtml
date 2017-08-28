@@ -1,20 +1,20 @@
 ﻿@model ReportsShowMovesModel
 
 @{
-    ViewBag.Title = Model.Date;
-    Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = Model.Date;
+	Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
 }
 
 @section HtmlFooterJs {
-    <script type='text/javascript'>
-        navigation.init('@Url.Action("ShowMoves", new { id = "" })');
-    </script>
+	<script type='text/javascript'>
+		navigation.init('@Url.Action("ShowMoves", new { id = "" })');
+	</script>
 }
 
 @section TopRightDiv {
-    @Html.NumberNavFor(m => m.Month, TimeNavigation.LimitsAndParent(1, 12, "#Year"))
-    @Html.NumberNavFor(m => m.Year, TimeNavigation.Limits(1900, Model.Today.Year))
-    <button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
+	@Html.NumberNavFor(m => m.Month, TimeNavigation.LimitsAndParent(1, 12, "#Year"))
+	@Html.NumberNavFor(m => m.Year, TimeNavigation.Limits(1900, Model.Today.Year))
+	<button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
 }
 
 

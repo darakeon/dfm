@@ -18,7 +18,7 @@ body {
 }
 
 img {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 h2 {
@@ -36,18 +36,18 @@ a {
 	padding: 0 3px;
 }
 
-    a:hover {
-	    color: #FFF;
-	    background: #AA8E55;
-    }
+	a:hover {
+		color: #FFF;
+		background: #AA8E55;
+	}
 
-    a img:hover {
-	    background: #AA8E55;
-    }
+	a img:hover {
+		background: #AA8E55;
+	}
 
 #ui-datepicker-div a
 {
-    padding: 0;
+	padding: 0;
 }
 
 
@@ -56,55 +56,55 @@ div#head {
 	margin: 0 auto;
 	width: 950px;
 }
-    div#head .logo
-    {
-        margin: 20px;
-        display: inline-block;
-    }
-        div#head .logo:hover
-        {
-            background: none;
-        }
-        
-        div#head .logo img:hover
-        {
-            background: none;
-        }
-            div#head .logo img:first-child
-            {
-                margin-right: 10px;
-            }
+	div#head .logo
+	{
+		margin: 20px;
+		display: inline-block;
+	}
+		div#head .logo:hover
+		{
+			background: none;
+		}
+		
+		div#head .logo img:hover
+		{
+			background: none;
+		}
+			div#head .logo img:first-child
+			{
+				margin-right: 10px;
+			}
 
 div#shadow-bound {
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 div#warning {
 	color: #447D99;
-    font-style: italic;
-    text-align: center;
-    margin: 0 -5px;
-    padding: 6px 15px 12px 15px;
-    background: #E3D5B0;
+	font-style: italic;
+	text-align: center;
+	margin: 0 -5px;
+	padding: 6px 15px 12px 15px;
+	background: #E3D5B0;
 	box-shadow: 0 -4px 4px 1px #6e6755 inset;
 	box-shadow: 0 -4px 4px 1px rgba(110, 103, 85, 0.3) inset;
 }
 
 	div#warning * {
-        font-size: 20px;
-    }
-    
-    div#warning ul
-    {
-	    padding: 0;
-        margin: 0;
-    }
+		font-size: 20px;
+	}
+	
+	div#warning ul
+	{
+		padding: 0;
+		margin: 0;
+	}
 
-    div#warning li
-    {
-	    list-style-type: none;
-	    padding: 0;
-    }
+	div#warning li
+	{
+		list-style-type: none;
+		padding: 0;
+	}
 
 div#main {
 	min-height: 500px;
@@ -137,13 +137,13 @@ div#Footer {
 
 div#Advertising 
 {
-    margin-top: 50px;
-    text-align: center;
+	margin-top: 50px;
+	text-align: center;
 }
 
 div#Advertising a
 {
-    margin: 20px;
+	margin: 20px;
 }
 
 

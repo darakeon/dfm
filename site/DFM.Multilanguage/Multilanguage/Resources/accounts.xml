@@ -1,43 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <accounts>
-  <en-US>
-    <NoAccounts text="There's no Accounts yet." />
-    <NoClosedAccounts text="There's no closed Accounts." />
-    <BeginDate text="Begin" />
-    <EndDate text="End" />
-    <Close text="Close" />
-    <Reopen text="Reopen" />
-    <DeleteConfirm text="Do you really want to DELETE Account '{0}'?\nThis action cannot be undone." />
-    <CloseConfirm text="Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone and this\naccount schedules will be stopped." />
-    <ClosedAccounts text="Closed Accounts" />
-    <AccountClosed text="Account '{0}' closed." />
-    <AccountDeleted text="Account '{0}' deleted." />
-    <Report text="Report" />
-    <RedLimit text="Red Limit" />
-    <YellowLimit text="Yellow Limit" />
-    <LimitExplanation text="when account goes under this, a sign is shown on account list." />
-    <AccountHasLimit text="Account has limits" />
-    <Url text="Url" />
-    <AcceptedUrlCharacters text="Use just letters (without accents), numbers and underlines (&quot;_&quot;)" />
-  </en-US>
-  <pt-BR>
-    <NoAccounts text="Não há Contas ainda." />
-    <NoClosedAccounts text="Não há Contas Fechadas." />
-    <BeginDate text="Início" />
-    <EndDate text="Fim" />
-    <Close text="Fechar" />
-    <Reopen text="Reabrir" />
-    <DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
-    <CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida e\nos agendamentos serão parados." />
-    <ClosedAccounts text="Contas Fechadas" />
-    <AccountClosed text="Conta '{0}' fechada." />
-    <AccountDeleted text="Conta '{0}' apagada." />
-    <Report text="Relatórios" />
-    <RedLimit text="Sinal Vermelho" />
-    <YellowLimit text="Sinal Amarelo" />
-    <LimitExplanation text="quando uma conta fica abaixo do valor, um sinal aparecerá na listagem de contas." />
-    <AccountHasLimit text="Mostrar sinalização na Conta" />
-    <Url text="Url" />
-    <AcceptedUrlCharacters text="Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)" />
-  </pt-BR>
+	<en-US>
+		<NoAccounts text="There's no Accounts yet." />
+		<NoClosedAccounts text="There's no closed Accounts." />
+		<BeginDate text="Begin" />
+		<EndDate text="End" />
+		<Close text="Close" />
+		<Reopen text="Reopen" />
+		<DeleteConfirm text="Do you really want to DELETE Account '{0}'?\nThis action cannot be undone." />
+		<CloseConfirm text="Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone and this\naccount schedules will be stopped." />
+		<ClosedAccounts text="Closed Accounts" />
+		<AccountClosed text="Account '{0}' closed." />
+		<AccountDeleted text="Account '{0}' deleted." />
+		<Report text="Report" />
+		<RedLimit text="Red Limit" />
+		<YellowLimit text="Yellow Limit" />
+		<LimitExplanation text="when account goes under this, a sign is shown on account list." />
+		<AccountHasLimit text="Account has limits" />
+		<Url text="Url" />
+		<AcceptedUrlCharacters text="Use just letters (without accents), numbers and underlines (&quot;_&quot;)" />
+	</en-US>
+	<pt-BR>
+		<NoAccounts text="Não há Contas ainda." />
+		<NoClosedAccounts text="Não há Contas Fechadas." />
+		<BeginDate text="Início" />
+		<EndDate text="Fim" />
+		<Close text="Fechar" />
+		<Reopen text="Reabrir" />
+		<DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
+		<CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida e\nos agendamentos serão parados." />
+		<ClosedAccounts text="Contas Fechadas" />
+		<AccountClosed text="Conta '{0}' fechada." />
+		<AccountDeleted text="Conta '{0}' apagada." />
+		<Report text="Relatórios" />
+		<RedLimit text="Sinal Vermelho" />
+		<YellowLimit text="Sinal Amarelo" />
+		<LimitExplanation text="quando uma conta fica abaixo do valor, um sinal aparecerá na listagem de contas." />
+		<AccountHasLimit text="Mostrar sinalização na Conta" />
+		<Url text="Url" />
+		<AcceptedUrlCharacters text="Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)" />
+	</pt-BR>
 </accounts>

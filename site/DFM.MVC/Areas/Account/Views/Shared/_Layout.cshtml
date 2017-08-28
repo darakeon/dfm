@@ -1,31 +1,31 @@
 ﻿@model BaseAccountModel
-           
+
 @{
-    ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), ViewBag.Title);
-    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+	ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), ViewBag.Title);
+	Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", false)
+	@RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", false)
+	@RenderSection("HtmlFooterJs", false)
 }
 
 
 
 @section MenuTopo {
-    
-    @if (Model.Account.IsOpen())
-    {
-        @Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")
-        @Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")
-    }
+	
+	@if (Model.Account.IsOpen())
+	{
+		@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")
+		@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")
+	}
 
-    @Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")
-    @Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")
-    @Html.RouteLink(" ", RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"}, new { @class = "icon home" })
+	@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")
+	@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")
+	@Html.RouteLink(" ", RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"}, new { @class = "icon home" })
 }
 
 
@@ -36,7 +36,7 @@
 
 
 @section PS {
-    @RenderSection("PS", false)
+	@RenderSection("PS", false)
 }
 
 

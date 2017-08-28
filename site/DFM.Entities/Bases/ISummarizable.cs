@@ -4,13 +4,13 @@ using DK.Generic.DB;
 
 namespace DFM.Entities.Bases
 {
-    public interface ISummarizable : IEntity
-    {
-        IList<Summary> SummaryList { get; set; }
-        Int16 Time { get; set; }
+	public interface ISummarizable : IEntity
+	{
+		IList<Summary> SummaryList { get; set; }
+		Int16 Time { get; set; }
 
-        Summary AddSummary(Category category);
+		Summary AddSummary(Category category);
 
-        Summary this[String categoryName] { get; }
-    }
+		Summary this[String categoryName] { get; }
+	}
 }

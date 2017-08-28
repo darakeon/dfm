@@ -2,34 +2,34 @@
 -----------------------------------------------------------*/
 .field-validation-error
 {
-    font-weight: bold;
-    color: #AA8E55;
+	font-weight: bold;
+	color: #AA8E55;
 }
 
 tr:nth-child(2n+1) .field-validation-error
 {
-    color: #AA8E55;
+	color: #AA8E55;
 }
 
 .field-validation-error
 {
-    padding: 2px;
-    margin: 3px 3px;
+	padding: 2px;
+	margin: 3px 3px;
 }
 
 .field-validation-valid
 {
-    display: none;
+	display: none;
 }
 
 .input-validation-error
 {
-    background-color: #558EAA;
-    color: #FFF;
-    border-width: 1px;
+	background-color: #558EAA;
+	color: #FFF;
+	border-width: 1px;
 }
 
 .validation-summary-valid
 {
-    display: none;
+	display: none;
 }

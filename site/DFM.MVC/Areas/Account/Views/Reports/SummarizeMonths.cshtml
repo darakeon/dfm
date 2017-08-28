@@ -1,70 +1,70 @@
 ﻿@model ReportsSummarizeMonthsModel
 
 @{
-    ViewBag.Title = Model.Date;
-    Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = Model.Date;
+	Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
 }
 
 @section HtmlFooterJs {
-    <script type='text/javascript'>
+	<script type='text/javascript'>
 		navigation.init('@Url.Action("SummarizeMonths", new { id = "" })');
-    </script>
+	</script>
 }
 
 @section TopRightDiv {
-    @{
-        @Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, Model.Today.Year))
-        <button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
-    }
+	@{
+		@Html.NumberNavFor(m => m.Year.Time, TimeNavigation.Limits(1900, Model.Today.Year))
+		<button type="button" id="NavGo">@MultiLanguage.Dictionary["Go"]</button>
+	}
 }
 
 
 
 @if (!Model.Year.MonthList.Any()) { 
-    
-    <div class="zero-items">@MultiLanguage.Dictionary["NoYearMoves"]</div>
+	
+	<div class="zero-items">@MultiLanguage.Dictionary["NoYearMoves"]</div>
 
 } else {
 
-    <table class="List Mini">
+	<table class="List Mini">
 
-        <tr>
-            <th>@MultiLanguage.Dictionary["Month"]</th>
-            <th>@MultiLanguage.Dictionary["In"]</th>
-            <th>@MultiLanguage.Dictionary["Out"]</th>
-            <th>@MultiLanguage.Dictionary["Total"]</th>
-        </tr>
+		<tr>
+			<th>@MultiLanguage.Dictionary["Month"]</th>
+			<th>@MultiLanguage.Dictionary["In"]</th>
+			<th>@MultiLanguage.Dictionary["Out"]</th>
+			<th>@MultiLanguage.Dictionary["Total"]</th>
+		</tr>
 
-        @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
-        {
-            var _in = month.In();
-            var _out = month.Out();
-            var sum = month.Total();
+		@foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
+		{
+			var _in = month.In();
+			var _out = month.Out();
+			var sum = month.Total();
 
-            var negative = sum < 0;
-            var className = negative ? "out" : "in";
+			var negative = sum < 0;
+			var className = negative ? "out" : "in";
 
-            sum *= negative ? -1 : 1;
-            
-            if (_in == 0 && _out == 0)
-            {
-                continue;
-            }
-            
-            <tr>
-                <td>
-                    <a href="@Url.Action("ShowMoves", new { id = month.Url() } )">
-                        @MultiLanguage.GetMonthName(month.Time)
-                    </a>
-                </td>
-                <td class="numeric in">@_in.ToMoney(Model.Language, true) </td>
-                <td class="numeric out">@_out.ToMoney(Model.Language, true) </td>
-                <td class="numeric @className">@sum.ToMoney(Model.Language) </td>
-            </tr>
+			sum *= negative ? -1 : 1;
+			
+			if (_in == 0 && _out == 0)
+			{
+				continue;
+			}
+			
+			<tr>
+				<td>
+					<a href="@Url.Action("ShowMoves", new { id = month.Url() } )">
+						@MultiLanguage.GetMonthName(month.Time)
+					</a>
+				</td>
+				<td class="numeric in">@_in.ToMoney(Model.Language, true) </td>
+				<td class="numeric out">@_out.ToMoney(Model.Language, true) </td>
+				<td class="numeric @className">@sum.ToMoney(Model.Language) </td>
+			</tr>
 
-        } 
+		} 
 
-    </table>
+	</table>
 } 
 
 @Html.Partial("Total")

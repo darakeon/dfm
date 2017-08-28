@@ -1,22 +1,22 @@
 ﻿$(document).ready(function () {
 
-    $(".validation-summary-errors:visible").each(function () {
-        if ($(this).find("li:visible").length === 0) {
-            $(this).remove();
-        }
-    });
+	$(".validation-summary-errors:visible").each(function () {
+		if ($(this).find("li:visible").length === 0) {
+			$(this).remove();
+		}
+	});
 });
 
 function valueToBoolean(obj) {
-    var value = obj.value;
+	var value = obj.value;
 
-    if (value == undefined) value = obj.val();
-    if (value == undefined) value = obj.attr("value");
-    if (value == undefined) return null;
+	if (value == undefined) value = obj.val();
+	if (value == undefined) value = obj.attr("value");
+	if (value == undefined) return null;
 
-    return toBoolean(value);
+	return toBoolean(value);
 }
 
 function toBoolean(value) {
-    return value.toLowerCase() === "true";
+	return value.toLowerCase() === "true";
 }

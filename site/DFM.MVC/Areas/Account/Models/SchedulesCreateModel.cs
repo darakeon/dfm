@@ -9,62 +9,62 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class SchedulesCreateModel : BaseMovesModel
-    {
-        public SchedulesCreateModel()
-            : this(new Schedule()) { }
+	public class SchedulesCreateModel : BaseMovesModel
+	{
+		public SchedulesCreateModel()
+			: this(new Schedule()) { }
 
-        public SchedulesCreateModel(Schedule schedule)
-            : base(schedule, OperationType.Schedule)
-        {
-            FrequencySelectList =
-                SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());
-        }
-
-
-
-        internal override void SaveOrUpdate()
-        {
-            Robot.SaveOrUpdateSchedule(Schedule, AccountOutUrl, AccountInUrl, CategoryName);
-        }
+		public SchedulesCreateModel(Schedule schedule)
+			: base(schedule, OperationType.Schedule)
+		{
+			FrequencySelectList =
+				SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());
+		}
 
 
 
-        public Schedule Schedule
-        {
-            get { return (Schedule)GenericMove; }
-            set { GenericMove = value; }
-        }
-
-        [Required]
-        public ScheduleFrequency Frequency
-        {
-            get { return Schedule.Frequency; } 
-            set { Schedule.Frequency = value; }
-        }
-
-        [Required]
-        public Boolean Boundless
-        {
-            get { return Schedule.Boundless; } 
-            set { Schedule.Boundless = value; }
-        }
-
-        [Required]
-        public Int16 Times
-        {
-            get { return Schedule.Times; } 
-            set { Schedule.Times = value; }
-        }
-
-        public Boolean ShowInstallment
-        {
-            get { return Schedule.ShowInstallment; } 
-            set { Schedule.ShowInstallment = value; }
-        }
-
-        public SelectList FrequencySelectList { get; set; }
+		internal override void SaveOrUpdate()
+		{
+			Robot.SaveOrUpdateSchedule(Schedule, AccountOutUrl, AccountInUrl, CategoryName);
+		}
 
 
-    }
+
+		public Schedule Schedule
+		{
+			get { return (Schedule)GenericMove; }
+			set { GenericMove = value; }
+		}
+
+		[Required]
+		public ScheduleFrequency Frequency
+		{
+			get { return Schedule.Frequency; } 
+			set { Schedule.Frequency = value; }
+		}
+
+		[Required]
+		public Boolean Boundless
+		{
+			get { return Schedule.Boundless; } 
+			set { Schedule.Boundless = value; }
+		}
+
+		[Required]
+		public Int16 Times
+		{
+			get { return Schedule.Times; } 
+			set { Schedule.Times = value; }
+		}
+
+		public Boolean ShowInstallment
+		{
+			get { return Schedule.ShowInstallment; } 
+			set { Schedule.ShowInstallment = value; }
+		}
+
+		public SelectList FrequencySelectList { get; set; }
+
+
+	}
 }

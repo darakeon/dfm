@@ -1,21 +1,21 @@
 ﻿.modal
 {
-    display: none;
+	display: none;
 }
 
 .ui-dialog
 {
-    border-radius: 5px 0 25px 0;
+	border-radius: 5px 0 25px 0;
 }
 
 .ui-dialog, .ui-dialog-titlebar, .ui-dialog-buttonpane
 {
-    background: #FFF;
+	background: #FFF;
 }
 
 .ui-dialog-titlebar-close
 {
-    background: #558EAA;
+	background: #558EAA;
 }
 
 .ui-dialog-titlebar

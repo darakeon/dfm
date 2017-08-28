@@ -19,7 +19,7 @@
 		var add = $(obj).attr("add");
 
 		var navigatorID = "#" + rel;
-            
+			
 		var current = $(navigatorID)[0].value;
 		var max = $(navigatorID).attr("max");
 		var min = $(navigatorID).attr("min");
@@ -34,10 +34,10 @@
 		var comeToBegin = current <= min && add < 0;
 
 		$(navigatorID)[0].value = 
-            someNaN ? 0 :
-            comeToEnd ? min :
-            comeToBegin ? max :
-            current + add;
+			someNaN ? 0 :
+			comeToEnd ? min :
+			comeToBegin ? max :
+			current + add;
 
 		var parentInput = $(navigatorID).attr("parent");
 

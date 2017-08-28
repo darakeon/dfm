@@ -2,8 +2,8 @@
 @using DFM.Email;
 
 @{
-    ViewBag.Title = MultiLanguage.Dictionary["Ops"];
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = MultiLanguage.Dictionary["Ops"];
+	Layout = "~/Views/Shared/_Layout.cshtml";
 
 	var messageKey = Model.EmailSent == Error.Status.Sent
 		? "InternalMessageSent"

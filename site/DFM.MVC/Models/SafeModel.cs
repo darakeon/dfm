@@ -4,54 +4,54 @@ using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
 {
-    public class SafeModel : BaseModel
-    {
-        internal Boolean Disable(String token)
-        {
-            try
-            {
-                Safe.DisableToken(token);
-            }
-            catch (DFMCoreException)
-            {
-                return false;
-            }
+	public class SafeModel : BaseModel
+	{
+		internal Boolean Disable(String token)
+		{
+			try
+			{
+				Safe.DisableToken(token);
+			}
+			catch (DFMCoreException)
+			{
+				return false;
+			}
 
-            return true;
-        }
-
-
-
-        internal Boolean TestAndActivate(String token)
-        {
-            try
-            {
-                Safe.TestSecurityToken(token, SecurityAction.UserVerification);
-            }
-            catch (DFMCoreException)
-            {
-                return false;
-            }
-
-            Safe.ActivateUser(token);
-
-            return true;
-        }
+			return true;
+		}
 
 
 
-        internal void LogOff()
-        {
-            Current.Clean();
-        }
+		internal Boolean TestAndActivate(String token)
+		{
+			try
+			{
+				Safe.TestSecurityToken(token, SecurityAction.UserVerification);
+			}
+			catch (DFMCoreException)
+			{
+				return false;
+			}
+
+			Safe.ActivateUser(token);
+
+			return true;
+		}
 
 
 
-        internal void DisableLogin(String key)
-        {
-            Safe.DisableTicket(key);
-        }
+		internal void LogOff()
+		{
+			Current.Clean();
+		}
 
 
-    }
+
+		internal void DisableLogin(String key)
+		{
+			Safe.DisableTicket(key);
+		}
+
+
+	}
 }

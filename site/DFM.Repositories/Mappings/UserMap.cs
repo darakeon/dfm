@@ -5,28 +5,28 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.Repositories.Mappings
 {
-    public class UserMap : IAutoMappingOverride<User>
-    {
-        public void Override(AutoMapping<User> mapping)
-        {
-            mapping.Map(u => u.Password)
-                .Length(MaximumLength.USER_PASSWORD);
+	public class UserMap : IAutoMappingOverride<User>
+	{
+		public void Override(AutoMapping<User> mapping)
+		{
+			mapping.Map(u => u.Password)
+				.Length(MaximumLength.USER_PASSWORD);
 
-            mapping.Map(u => u.Email)
-                .Length(MaximumLength.USER_EMAIL)
-                .Unique();
+			mapping.Map(u => u.Email)
+				.Length(MaximumLength.USER_EMAIL)
+				.Unique();
 
-            mapping.Map(u => u.Creation)
-                .Default("'2011-09-21'");
+			mapping.Map(u => u.Creation)
+				.Default("'2011-09-21'");
 
-            mapping.HasMany(u => u.AccountList)
-                .Not.LazyLoad();
+			mapping.HasMany(u => u.AccountList)
+				.Not.LazyLoad();
 
-            mapping.HasMany(u => u.ScheduleList)
-                .Cascade.SaveUpdate();
+			mapping.HasMany(u => u.ScheduleList)
+				.Cascade.SaveUpdate();
 
-	        mapping.References(u => u.Config)
-		        .Cascade.All();
-        }
-    }
+			mapping.References(u => u.Config)
+				.Cascade.All();
+		}
+	}
 }

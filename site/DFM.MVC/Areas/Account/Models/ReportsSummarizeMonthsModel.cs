@@ -5,24 +5,24 @@ using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public class ReportsSummarizeMonthsModel : BaseAccountModel
-    {
-        public ReportsSummarizeMonthsModel(Int16? id)
-        {
-            var year = DateFromInt.GetDateYear(id, Today);
+	public class ReportsSummarizeMonthsModel : BaseAccountModel
+	{
+		public ReportsSummarizeMonthsModel(Int16? id)
+		{
+			var year = DateFromInt.GetDateYear(id, Today);
 
-            Year = Report.GetYearReport(CurrentAccountUrl, year);
-        }
+			Year = Report.GetYearReport(CurrentAccountUrl, year);
+		}
 
 
 
-        public Year Year { get; set; }
+		public Year Year { get; set; }
 
-        public String Date => 
+		public String Date => 
 			String.Format(
 				MultiLanguage.Dictionary["ShortDateFormat"],
 				MultiLanguage.Dictionary["Summary"],
 				Year.Time
 			);
-    }
+	}
 }

@@ -1,143 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <general>
-  <en-US>
-    
-    <language text="english" />
+	<en-US>
 
-    <!--Actions-->
-    <Enter text="Enter" />
-    <Login text="Login" />
-    <SignUp text="Sign up" />
-    <Create text="Create" />
-    <Edit text="Edit" />
-    <Schedule text="Schedule" />
-    <Add text="Add" />
-    <Select text="Select" />
-    <LogOff text="Log Off" />
-    <Delete text="Delete" />
-    <Go text="Go" />
-    <GOTO text="GO TO" />
-    <TODO text="TO DO" />
-    <Send text="Send" />
-    <New text="New" />
-    <Logon text="Logon" />
-    <ScheduleRun text="Schedule: {0}, but the moves were inserted successfuly"/>
+		<language text="english" />
 
-    <!--Nouns-->
-    <Name text="Name" />
-    <Value text="Value" />
-    <Total text="Total" />
-    <Description text="Description" />
-    <Date text="Date" />
-    <and text="and" />
-    <CharactersMax text="max. {0} characters" />
-    <DayNames text="S, M, T, W, T, F, S" />
+		<!--Actions-->
+		<Enter text="Enter" />
+		<Login text="Login" />
+		<SignUp text="Sign up" />
+		<Create text="Create" />
+		<Edit text="Edit" />
+		<Schedule text="Schedule" />
+		<Add text="Add" />
+		<Select text="Select" />
+		<LogOff text="Log Off" />
+		<Delete text="Delete" />
+		<Go text="Go" />
+		<GOTO text="GO TO" />
+		<TODO text="TO DO" />
+		<Send text="Send" />
+		<New text="New" />
+		<Logon text="Logon" />
+		<ScheduleRun text="Schedule: {0}, but the moves were inserted successfuly"/>
 
-    <!--Entities-->
-    <Account text="Account" />
-    <Accounts text="Accounts" />
-    <Move text="Move" />
-    <Moves text="Moves" />
-    <Category text="Category" />
-    <Categories text="Categories" />
-    <Detail text="Detail" />
-    <Nature text="Nature" />
-    <TheSchedule text="Schedule" />
-    <Schedules text="Schedules" />
-    <Logins text="Logins" />
+		<!--Nouns-->
+		<Name text="Name" />
+		<Value text="Value" />
+		<Total text="Total" />
+		<Description text="Description" />
+		<Date text="Date" />
+		<and text="and" />
+		<CharactersMax text="max. {0} characters" />
+		<DayNames text="S, M, T, W, T, F, S" />
 
-    <!--Enums-->
-    <In text="In" />
-    <Out text="Out" />
-    <Transfer text="Transfer" />
-    <Daily text="Daily" />
-    <Monthly text="Monthly" />
-    <Yearly text="Yearly" />
-    <UserVerification text="User Verification" />
-    <PasswordReset text="Password Reset" />
+		<!--Entities-->
+		<Account text="Account" />
+		<Accounts text="Accounts" />
+		<Move text="Move" />
+		<Moves text="Moves" />
+		<Category text="Category" />
+		<Categories text="Categories" />
+		<Detail text="Detail" />
+		<Nature text="Nature" />
+		<TheSchedule text="Schedule" />
+		<Schedules text="Schedules" />
+		<Logins text="Logins" />
 
-    <!--Index-->
-    <Index_Welcome text="Welcome!" />
-    <Index_Introdution text="Don't fly Money is a personal financial management system. It is made thinking in the most generic way to manage money." />
-    <Index_Explanation text="To {0}sign up{1} you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account." />
-    <Index_Close text="Any doubt? Contact us: {0}" />
+		<!--Enums-->
+		<In text="In" />
+		<Out text="Out" />
+		<Transfer text="Transfer" />
+		<Daily text="Daily" />
+		<Monthly text="Monthly" />
+		<Yearly text="Yearly" />
+		<UserVerification text="User Verification" />
+		<PasswordReset text="Password Reset" />
 
-    <TokenReceivedByEmail text="Token received by e-mail" />
+		<!--Index-->
+		<Index_Welcome text="Welcome!" />
+		<Index_Introdution text="Don't fly Money is a personal financial management system. It is made thinking in the most generic way to manage money." />
+		<Index_Explanation text="To {0}sign up{1} you just need a valid e-mail and a password. Then you can create accounts and register the moves, see month extracts and year summaries of each account." />
+		<Index_Close text="Any doubt? Contact us: {0}" />
 
-    <!--Menu (and Account)-->
-    <MonthMoves text="Extract" />
-    <YearMoves text="Year Summary" />
-    <ToMove text="Move" />
+		<TokenReceivedByEmail text="Token received by e-mail" />
 
-  </en-US>
-  <pt-BR>
-    
-    <language text="português" />
+		<!--Menu (and Account)-->
+		<MonthMoves text="Extract" />
+		<YearMoves text="Year Summary" />
+		<ToMove text="Move" />
 
-    <!--Actions-->
-    <Enter text="Entrar" />
-    <Login text="Entrar" />
-    <SignUp text="Cadastrar-se" />
-    <Create text="Criar" />
-    <Edit text="Editar" />
-    <Schedule text="Agendar" />
-    <Add text="Adicionar" />
-    <Select text="Selecione" />
-    <LogOff text="Sair" />
-    <Delete text="Apagar" />
-    <Go text="Ir" />
-    <GOTO text="Ver" />
-    <TODO text="Ações" />
-    <Send text="Enviar" />
-    <New text="Novo" />
-    <Logon text="Entrar" />
-    <ScheduleRun text="Agendamentos: {0}, mas movimentações foram inseridas com sucesso"/>
+	</en-US>
+	<pt-BR>
 
-    <!--Nouns-->
-    <Name text="Nome" />
-    <Value text="Valor" />
-    <Total text="Saldo" />
-    <Description text="Descrição" />
-    <Date text="Data" />
-    <and text="e" />
-    <CharactersMax text="max. {0} caracteres" />
-    <DayNames text="D, S, T, Q, Q, S, S" />
+		<language text="português" />
 
-    <!--Entities-->
-    <Account text="Conta" />
-    <Accounts text="Contas" />
-    <Move text="Movimentação" />
-    <Moves text="Movimentações" />
-    <Category text="Categoria" />
-    <Categories text="Categorias" />
-    <Detail text="Detalhe" />
-    <Nature text="Natureza" />
-    <TheSchedule text="Agendamento" />
-    <Schedules text="Agendamentos" />
-    <Logins text="Logins" />
+		<!--Actions-->
+		<Enter text="Entrar" />
+		<Login text="Entrar" />
+		<SignUp text="Cadastrar-se" />
+		<Create text="Criar" />
+		<Edit text="Editar" />
+		<Schedule text="Agendar" />
+		<Add text="Adicionar" />
+		<Select text="Selecione" />
+		<LogOff text="Sair" />
+		<Delete text="Apagar" />
+		<Go text="Ir" />
+		<GOTO text="Ver" />
+		<TODO text="Ações" />
+		<Send text="Enviar" />
+		<New text="Novo" />
+		<Logon text="Entrar" />
+		<ScheduleRun text="Agendamentos: {0}, mas movimentações foram inseridas com sucesso"/>
 
-    <!--Enums-->
-    <In text="Entrada" />
-    <Out text="Saída" />
-    <Transfer text="Transferência" />
-    <Daily text="Diária" />
-    <Monthly text="Mensal" />
-    <Yearly text="Anual" />
-    <UserVerification text="Verificação de Usuário" />
-    <PasswordReset text="Redefinição de Senha" />
+		<!--Nouns-->
+		<Name text="Nome" />
+		<Value text="Valor" />
+		<Total text="Saldo" />
+		<Description text="Descrição" />
+		<Date text="Data" />
+		<and text="e" />
+		<CharactersMax text="max. {0} caracteres" />
+		<DayNames text="D, S, T, Q, Q, S, S" />
 
-    <!--Index-->
-    <Index_Welcome text="Bem-vindo!" />
-    <Index_Introdution text="Don't fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa." />
-    <Index_Explanation text="Para {0}se cadastrar{1}, basta fornecer um e-mail válido e uma senha. Então você poderá criar contas e registrar movimentações, ver extratos mensais e resumos anuais de cada conta." />
-    <Index_Close text="Dúvidas? Entre em contato: {0}" />
+		<!--Entities-->
+		<Account text="Conta" />
+		<Accounts text="Contas" />
+		<Move text="Movimentação" />
+		<Moves text="Movimentações" />
+		<Category text="Categoria" />
+		<Categories text="Categorias" />
+		<Detail text="Detalhe" />
+		<Nature text="Natureza" />
+		<TheSchedule text="Agendamento" />
+		<Schedules text="Agendamentos" />
+		<Logins text="Logins" />
 
-    <TokenReceivedByEmail text="Token recebido via e-mail" />
+		<!--Enums-->
+		<In text="Entrada" />
+		<Out text="Saída" />
+		<Transfer text="Transferência" />
+		<Daily text="Diária" />
+		<Monthly text="Mensal" />
+		<Yearly text="Anual" />
+		<UserVerification text="Verificação de Usuário" />
+		<PasswordReset text="Redefinição de Senha" />
 
-    <!--Menu (and Account)-->
-    <MonthMoves text="Extrato" />
-    <YearMoves text="Resumo Anual" />
-    <ToMove text="Mover" />
+		<!--Index-->
+		<Index_Welcome text="Bem-vindo!" />
+		<Index_Introdution text="Don't fly Money é um sistema de gerenciamento financeiro pessoal. Foi feito pensando no modo mais genérico de gerenciar renda e despesa." />
+		<Index_Explanation text="Para {0}se cadastrar{1}, basta fornecer um e-mail válido e uma senha. Então você poderá criar contas e registrar movimentações, ver extratos mensais e resumos anuais de cada conta." />
+		<Index_Close text="Dúvidas? Entre em contato: {0}" />
 
-  </pt-BR>
+		<TokenReceivedByEmail text="Token recebido via e-mail" />
+
+		<!--Menu (and Account)-->
+		<MonthMoves text="Extrato" />
+		<YearMoves text="Resumo Anual" />
+		<ToMove text="Mover" />
+
+	</pt-BR>
 </general>

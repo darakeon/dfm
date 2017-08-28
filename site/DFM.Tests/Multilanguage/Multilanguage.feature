@@ -129,7 +129,7 @@ Scenario: 05. Get translate of Interface (moves)
 		| Moves   | MoveSave                |
 		| Moves   | MoveNotFound            |
 		| Moves   | MoveDeleted             |
-		| Moves   | MoveDeletedWithoutEmail |		
+		| Moves   | MoveDeletedWithoutEmail |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

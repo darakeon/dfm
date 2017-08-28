@@ -1,29 +1,29 @@
 ﻿@model BaseModel
 
 @{
-    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+	Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", false)
+	@RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", false)
+	@RenderSection("HtmlFooterJs", false)
 }
 
 
 
 @section MenuTopo {
-    @Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})
-        
-    @if (Auth.Current.User.Config.UseCategories)
-    {
-        @Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new {action = "Index", controller = "Categories"})
-    }
+	@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})
+		
+	@if (Auth.Current.User.Config.UseCategories)
+	{
+		@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new {action = "Index", controller = "Categories"})
+	}
 
-    @Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })
-    @Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })
+	@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })
+	@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })
 }
 
 
@@ -34,7 +34,7 @@
 
 
 @section PS {
-    @RenderSection("PS", false)
+	@RenderSection("PS", false)
 }
 
 

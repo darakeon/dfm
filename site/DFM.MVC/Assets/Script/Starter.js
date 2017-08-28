@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    AdjustMoneyAndDate();
-    AdjustMenuButtons();
-    AdjustLinkButtons();
+	AdjustMoneyAndDate();
+	AdjustMenuButtons();
+	AdjustLinkButtons();
 });

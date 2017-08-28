@@ -2,8 +2,8 @@
 
 namespace DFM.Multilanguage.Helpers
 {
-    public static class DecimalToMoneyExtension
-    {
+	public static class DecimalToMoneyExtension
+	{
 		public static String ToMoney(this Decimal number, String language, Boolean differentIfZero = false)
 		{
 			if (differentIfZero && number == 0)

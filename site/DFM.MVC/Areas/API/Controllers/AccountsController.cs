@@ -4,13 +4,13 @@ using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    [DFMApiAuthorize]
-    public class AccountsController : BaseJsonController
-    {
-        public ActionResult List()
-        {
-            return JsonGet(() => new AccountsListModel());
-        }
+	[DFMApiAuthorize]
+	public class AccountsController : BaseJsonController
+	{
+		public ActionResult List()
+		{
+			return JsonGet(() => new AccountsListModel());
+		}
 
-    }
+	}
 }

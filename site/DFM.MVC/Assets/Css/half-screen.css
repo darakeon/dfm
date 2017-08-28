@@ -4,21 +4,21 @@ div.half-screen {
 	text-align: center;
 }
 
-    div.half-screen label {
-	    display: block;
-    }
+	div.half-screen label {
+		display: block;
+	}
 
-        div.half-screen .checkbox {
-            text-align: left;
-        }
+		div.half-screen .checkbox {
+			text-align: left;
+		}
 
-            div.half-screen .checkbox input {
-                float: right;
-            }
+			div.half-screen .checkbox input {
+				float: right;
+			}
 
-            div.half-screen .checkbox label {
-	            display: inline;
-            }
+			div.half-screen .checkbox label {
+				display: inline;
+			}
 
 #Remember label, #top-right-div label, .half-screen .radio label {
 	display: inline;

@@ -6,8 +6,8 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-    public partial class Schedule
-    {
+	public partial class Schedule
+	{
 		private void init()
 		{
 			Times = 1;
@@ -24,7 +24,7 @@ namespace DFM.Entities
 			return $"[{ID}] {Frequency} x {Description}";
 		}
 
-        public virtual Decimal? Value
+		public virtual Decimal? Value
 		{
 			get { return ValueCents.ToVisual(); }
 			set { ValueCents = value.ToCents(); }
@@ -55,72 +55,72 @@ namespace DFM.Entities
 			detail.Schedule = this;
 		}
 
-        public virtual Move GetNewMove()
-        {
-            var dateTime = LastDateRun();
+		public virtual Move GetNewMove()
+		{
+			var dateTime = LastDateRun();
 
-            var move =
-                new Move
-                    {
-                        Date = dateTime,
-                        Description = Description,
-                        Nature = Nature,
-                        Schedule = this,
+			var move =
+				new Move
+					{
+						Date = dateTime,
+						Description = Description,
+						Nature = Nature,
+						Schedule = this,
 						Value = Value,
-                    };
+					};
 
-            foreach (var detail in DetailList)
-            {
-                move.AddDetail(detail.Clone());
-            }
+			foreach (var detail in DetailList)
+			{
+				move.AddDetail(detail.Clone());
+			}
 
-            return move;
-        }
-
-
-        public virtual DateTime LastDateRun()
-        {
-            switch (Frequency)
-            {
-                case ScheduleFrequency.Monthly:
-                    return Date.AddMonths(LastRun);
-                case ScheduleFrequency.Yearly:
-                    return Date.AddYears(LastRun);
-                case ScheduleFrequency.Daily:
-                    return Date.AddDays(LastRun);
-                default:
-                    throw new ArgumentException("schedule");
-            }
-        }
+			return move;
+		}
 
 
-
-        public virtual Boolean CanRun()
-        {
-            return canRun(false);
-        }
-
-        public virtual Boolean CanRunNow()
-        {
-            return canRun(true);
-        }
-
-        private Boolean canRun(Boolean tryNow)
-        {
-            if (!Active)
-                return false;
-
-            var lastDate = LastDateRun();
-
-            if (tryNow && lastDate >= User.Now())
-                return false;
-
-            if (Boundless)
-                return true;
-
-            return LastRun < Times;
-        }
+		public virtual DateTime LastDateRun()
+		{
+			switch (Frequency)
+			{
+				case ScheduleFrequency.Monthly:
+					return Date.AddMonths(LastRun);
+				case ScheduleFrequency.Yearly:
+					return Date.AddYears(LastRun);
+				case ScheduleFrequency.Daily:
+					return Date.AddDays(LastRun);
+				default:
+					throw new ArgumentException("schedule");
+			}
+		}
 
 
-    }
+
+		public virtual Boolean CanRun()
+		{
+			return canRun(false);
+		}
+
+		public virtual Boolean CanRunNow()
+		{
+			return canRun(true);
+		}
+
+		private Boolean canRun(Boolean tryNow)
+		{
+			if (!Active)
+				return false;
+
+			var lastDate = LastDateRun();
+
+			if (tryNow && lastDate >= User.Now())
+				return false;
+
+			if (Boundless)
+				return true;
+
+			return LastRun < Times;
+		}
+
+
+	}
 }

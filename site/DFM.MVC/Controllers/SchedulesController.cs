@@ -6,24 +6,24 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-    [DFMAuthorize]
-    public class SchedulesController : BaseController
-    {
-        public ActionResult Index()
-        {
-            return View(new SchedulesIndexModel());
-        }
+	[DFMAuthorize]
+	public class SchedulesController : BaseController
+	{
+		public ActionResult Index()
+		{
+			return View(new SchedulesIndexModel());
+		}
 
-        public ActionResult Delete(Int32 id)
-        {
-            var model = new RobotModel();
+		public ActionResult Delete(Int32 id)
+		{
+			var model = new RobotModel();
 
-            model.Disable(id);
+			model.Disable(id);
 
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index");
+		}
 
 
 
-    }
+	}
 }

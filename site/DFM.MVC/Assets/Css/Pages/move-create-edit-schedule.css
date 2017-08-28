@@ -1,27 +1,27 @@
 #hidden-new-category .input-ps
 {
-    display: block;
+	display: block;
 }
 
 
 .createMoveScreenLeft, .createMoveScreenRight
 {
-    float: left;
+	float: left;
 }
 
 .createMoveScreenLeft {
-    width: 35%;
-    clear: left;
+	width: 35%;
+	clear: left;
 }
 
 .createMoveScreenRight {
-    width: 60%;
-    margin-right: -200px;
+	width: 60%;
+	margin-right: -200px;
 }
 
 .createMoveScreenLeft div, .createMoveScreenRight div 
 {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 
 
@@ -42,13 +42,13 @@
 
 
 #moveCreateButton {
-    clear: both;
-    text-align: right;
+	clear: both;
+	text-align: right;
 }
 
 #addDetailCaller {
-    margin-left: 20px;
-    display: none;
+	margin-left: 20px;
+	display: none;
 }
 
 input.amount {

@@ -6,60 +6,60 @@ using DFM.Entities;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class TicketRepository : BaseRepository<Ticket>
-    {
-        internal Ticket Create(User user, PseudoTicket pseudoTicket)
-        {
-            var ticket = 
-                new Ticket
-                    {
-                        ID = 0,
-                        Key = pseudoTicket.Key,
-                        Type = pseudoTicket.Type,
-                        Creation = user.Now(),
-                        Active = true,
-                        User = user,
-                    };
+	internal class TicketRepository : BaseRepository<Ticket>
+	{
+		internal Ticket Create(User user, PseudoTicket pseudoTicket)
+		{
+			var ticket = 
+				new Ticket
+					{
+						ID = 0,
+						Key = pseudoTicket.Key,
+						Type = pseudoTicket.Type,
+						Creation = user.Now(),
+						Active = true,
+						User = user,
+					};
 
-            return SaveOrUpdate(ticket);
-        }
-
-
-
-        internal Ticket GetByKey(String key)
-        {
-            return SingleOrDefault(t => t.Key == key);
-        }
-
-        internal Ticket GetByPartOfKey(User user, String key)
-        {
-            return List(user)
-                .SingleOrDefault(
-                    t => t.Key.StartsWith(key)
-                );
-        }
+			return SaveOrUpdate(ticket);
+		}
 
 
 
-        internal IEnumerable<Ticket> List(User user)
-        {
-            return SimpleFilter(
-                t => t.User.ID == user.ID
-                    && t.Active
-            );
-        }
+		internal Ticket GetByKey(String key)
+		{
+			return SingleOrDefault(t => t.Key == key);
+		}
+
+		internal Ticket GetByPartOfKey(User user, String key)
+		{
+			return List(user)
+				.SingleOrDefault(
+					t => t.Key.StartsWith(key)
+				);
+		}
 
 
 
-        internal void Disable(Ticket ticket)
-        {
-            ticket.Key += DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff");
-            ticket.Active = false;
-            ticket.Expiration = DateTime.UtcNow;
+		internal IEnumerable<Ticket> List(User user)
+		{
+			return SimpleFilter(
+				t => t.User.ID == user.ID
+					&& t.Active
+			);
+		}
 
-            SaveOrUpdate(ticket);
-        }
 
-    }
+
+		internal void Disable(Ticket ticket)
+		{
+			ticket.Key += DateTime.UtcNow.ToString("yyyyMMddHHmmssffffff");
+			ticket.Active = false;
+			ticket.Expiration = DateTime.UtcNow;
+
+			SaveOrUpdate(ticket);
+		}
+
+	}
 
 }

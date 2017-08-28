@@ -4,32 +4,32 @@ using DK.Generic.DB;
 
 namespace DFM.Entities
 {
-    public partial class User : IEntity
-    {
-        public User()
-        {
-            init();
-        }
+	public partial class User : IEntity
+	{
+		public User()
+		{
+			init();
+		}
 
 
-        public virtual Int32 ID { get; set; }
+		public virtual Int32 ID { get; set; }
 
-        public virtual String Password { get; set; }
-        public virtual String Email { get; set; }
-        public virtual DateTime Creation { get; set; }
-        public virtual Boolean Active { get; set; }
-        public virtual Int32 WrongLogin { get; set; }
+		public virtual String Password { get; set; }
+		public virtual String Email { get; set; }
+		public virtual DateTime Creation { get; set; }
+		public virtual Boolean Active { get; set; }
+		public virtual Int32 WrongLogin { get; set; }
 
-        public virtual Config Config { get; set; }
+		public virtual Config Config { get; set; }
 
-        public virtual IList<Account> AccountList { get; set; }
-        public virtual IList<Category> CategoryList { get; set; }
-        public virtual IList<Schedule> ScheduleList { get; set; }
+		public virtual IList<Account> AccountList { get; set; }
+		public virtual IList<Category> CategoryList { get; set; }
+		public virtual IList<Schedule> ScheduleList { get; set; }
 
-        public virtual IList<Security> SecurityList { get; set; }
+		public virtual IList<Security> SecurityList { get; set; }
 
 
 
 		
-    }
+	}
 }

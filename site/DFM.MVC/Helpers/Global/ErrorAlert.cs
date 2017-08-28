@@ -7,94 +7,94 @@ using DFM.Email;
 
 namespace DFM.MVC.Helpers.Global
 {
-    public class ErrorAlert
-    {
-        private static readonly SessionList<ExceptionPossibilities> errors = 
-            new SessionList<ExceptionPossibilities>("errors");
+	public class ErrorAlert
+	{
+		private static readonly SessionList<ExceptionPossibilities> errors = 
+			new SessionList<ExceptionPossibilities>("errors");
 
-        public static void Add(ExceptionPossibilities error)
-        {
-            errors.List.Add(error);
-        }
-
-
-
-        private static readonly SessionList<EmailStatus> emailsStati =
-            new SessionList<EmailStatus>("emailsStati");
-
-        public static void Add(EmailStatus emailStatus)
-        {
-            emailsStati.List.Add(emailStatus);
-        }
+		public static void Add(ExceptionPossibilities error)
+		{
+			errors.List.Add(error);
+		}
 
 
 
-        private static readonly SessionList<String> texts =
-            new SessionList<String>("texts");
+		private static readonly SessionList<EmailStatus> emailsStati =
+			new SessionList<EmailStatus>("emailsStati");
 
-        public static void AddTranslated(String text)
-        {
-            texts.List.Add(text);
-        }
-
-        public static void Add(String text)
-        {
-            texts.List.Add(MultiLanguage.Dictionary[text]);
-        }
+		public static void Add(EmailStatus emailStatus)
+		{
+			emailsStati.List.Add(emailStatus);
+		}
 
 
 
-        public static IList<String> GetAndClean()
-        {
-            var list = new List<String>();
+		private static readonly SessionList<String> texts =
+			new SessionList<String>("texts");
 
-            list.AddRange(errors.List.Select(e => MultiLanguage.Dictionary[e]));
-            errors.List.Clear();
+		public static void AddTranslated(String text)
+		{
+			texts.List.Add(text);
+		}
 
-            list.AddRange(emailsStati.List.Select(e => MultiLanguage.Dictionary[e]));
-            emailsStati.List.Clear();
-
-            list.AddRange(texts.List);
-            texts.List.Clear();
-
-            return list;
-        }
-
-        public static Boolean Any()
-        {
-            return errors.List.Any() 
-                || emailsStati.List.Any()
-                || texts.List.Any();
-        }
+		public static void Add(String text)
+		{
+			texts.List.Add(MultiLanguage.Dictionary[text]);
+		}
 
 
-    }
 
-    internal class SessionList<T>
-    {
-        private readonly String name;
+		public static IList<String> GetAndClean()
+		{
+			var list = new List<String>();
 
-        internal SessionList(String name)
-        {
-            this.name = name;
-        }
+			list.AddRange(errors.List.Select(e => MultiLanguage.Dictionary[e]));
+			errors.List.Clear();
 
-        internal IList<T> List
-        {
-            get
-            {
-                if (session == null)
-                    session = new List<T>();
+			list.AddRange(emailsStati.List.Select(e => MultiLanguage.Dictionary[e]));
+			emailsStati.List.Clear();
 
-                return (List<T>)session;
-            }
-        }
+			list.AddRange(texts.List);
+			texts.List.Clear();
 
-        private object session
-        {
-            get { return HttpContext.Current.Session[name]; }
-            set { HttpContext.Current.Session[name] = value; }
-        }
+			return list;
+		}
 
-    }
+		public static Boolean Any()
+		{
+			return errors.List.Any() 
+				|| emailsStati.List.Any()
+				|| texts.List.Any();
+		}
+
+
+	}
+
+	internal class SessionList<T>
+	{
+		private readonly String name;
+
+		internal SessionList(String name)
+		{
+			this.name = name;
+		}
+
+		internal IList<T> List
+		{
+			get
+			{
+				if (session == null)
+					session = new List<T>();
+
+				return (List<T>)session;
+			}
+		}
+
+		private object session
+		{
+			get { return HttpContext.Current.Session[name]; }
+			set { HttpContext.Current.Session[name] = value; }
+		}
+
+	}
 }

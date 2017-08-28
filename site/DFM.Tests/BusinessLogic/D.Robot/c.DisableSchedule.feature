@@ -13,7 +13,7 @@ Scenario: 01. Disable a Schedule that doesn't exist (E)
 
 Scenario: 02. Disable a Schedule already disabled (E)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment | 
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details
 	And it has a Category
@@ -26,7 +26,7 @@ Scenario: 02. Disable a Schedule already disabled (E)
 
 Scenario: 99. Disable a Schedule with info all right (S)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment | 
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details
 	And it has a Category

@@ -1,17 +1,17 @@
 ﻿$(document).ready(function () {
-    SetConfirms();
+	SetConfirms();
 });
 
 
 function SetConfirms() {
-    $('.withConfirm').click(function (e) {
-        var confirmMessage = 
-            $(this).attr("confirm")
-                .replace(/\\n/g, "\n");
+	$('.withConfirm').click(function (e) {
+		var confirmMessage = 
+			$(this).attr("confirm")
+				.replace(/\\n/g, "\n");
 
-        if (!confirm(confirmMessage)) {
-            e.preventDefault();
-        }
-    });
+		if (!confirm(confirmMessage)) {
+			e.preventDefault();
+		}
+	});
 }
 

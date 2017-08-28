@@ -1,26 +1,26 @@
 ﻿@{
-    var isAuthenticated = Auth.Current.IsAuthenticated;
+	var isAuthenticated = Auth.Current.IsAuthenticated;
 
-    Layout = isAuthenticated
-        ? "~/Views/Shared/_NoAreaLayout.cshtml"
-        : "~/Views/Shared/_OuterLayout.cshtml";
+	Layout = isAuthenticated
+		? "~/Views/Shared/_NoAreaLayout.cshtml"
+		: "~/Views/Shared/_OuterLayout.cshtml";
 }
 
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", false)
+	@RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", false)
+	@RenderSection("HtmlFooterJs", false)
 
-    <script type="text/javascript" src="/Assets/script/libraries/sawpf.js"></script>
+	<script type="text/javascript" src="/Assets/script/libraries/sawpf.js"></script>
 }
 
 
 
 @section PS {
-    @RenderSection("PS", false)
+	@RenderSection("PS", false)
 }
 
 

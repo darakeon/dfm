@@ -8,103 +8,103 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class ScheduleRepository : GenericMoveRepository<Schedule>
-    {
-        internal Schedule SaveOrUpdate(Schedule schedule)
-        {
-            return SaveOrUpdate(schedule, complete, validate);
-        }
+	internal class ScheduleRepository : GenericMoveRepository<Schedule>
+	{
+		internal Schedule SaveOrUpdate(Schedule schedule)
+		{
+			return SaveOrUpdate(schedule, complete, validate);
+		}
 
-        private static void complete(Schedule schedule)
-        {
-            Complete(schedule);
+		private static void complete(Schedule schedule)
+		{
+			Complete(schedule);
 
-            if (schedule.ID == 0)
-            {
-                schedule.Active = true;
-            }
-        }
+			if (schedule.ID == 0)
+			{
+				schedule.Active = true;
+			}
+		}
 
-        private static void validate(Schedule schedule)
-        {
-            Validate(schedule, schedule.Active);
+		private static void validate(Schedule schedule)
+		{
+			Validate(schedule, schedule.Active);
 
-            if (!schedule.Boundless && schedule.Times <= 0)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
-        }
-
-
-        
-        internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
-        {
-            return getRunnableAndDisableOthers(user, hasCategory).ToList();
-        }
-
-        private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
-        {
-            var scheduleList = 
-                SimpleFilter(s => s.User == user && s.Active)
-                    .Where(s => s.HasCategory() == hasCategory);
-
-            foreach (var schedule in scheduleList)
-            {
-                if (!schedule.CanRun())
-                    disable(schedule);
-                else if (schedule.CanRunNow())
-                    yield return schedule;
-            }
-        }
-
-        private void disable(Schedule schedule)
-        {
-            schedule.Active = false;
-            SaveOrUpdate(schedule);
-        }
+			if (!schedule.Boundless && schedule.Times <= 0)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
+		}
 
 
+		
+		internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
+		{
+			return getRunnableAndDisableOthers(user, hasCategory).ToList();
+		}
 
-        internal void Disable(Int32 id)
-        {
-            var schedule = Get(id);
+		private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
+		{
+			var scheduleList = 
+				SimpleFilter(s => s.User == user && s.Active)
+					.Where(s => s.HasCategory() == hasCategory);
 
-            if (schedule == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
+			foreach (var schedule in scheduleList)
+			{
+				if (!schedule.CanRun())
+					disable(schedule);
+				else if (schedule.CanRunNow())
+					yield return schedule;
+			}
+		}
 
-            if (!schedule.Active)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledSchedule);
-
-            schedule.Active = false;
-            SaveOrUpdate(schedule);
-        }
-
-
-        public void DisableAll(Account account)
-        {
-            var scheduleList = SimpleFilter(
-                s => s.Active
-                && (s.In.ID == account.ID
-                    || s.Out.ID == account.ID)
-            );
-
-            foreach (var schedule in scheduleList)
-            {
-                schedule.Active = false;
-                SaveOrUpdate(schedule);
-            }
-        }
+		private void disable(Schedule schedule)
+		{
+			schedule.Active = false;
+			SaveOrUpdate(schedule);
+		}
 
 
-        public void DeleteAll(Account account)
-        {
-            var scheduleList = SimpleFilter(
-                s => s.In.ID == account.ID
-                || s.Out.ID == account.ID
-            );
 
-            foreach (var schedule in scheduleList)
-            {
-                Delete(schedule);
-            }
-        }
-    }
+		internal void Disable(Int32 id)
+		{
+			var schedule = Get(id);
+
+			if (schedule == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
+
+			if (!schedule.Active)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledSchedule);
+
+			schedule.Active = false;
+			SaveOrUpdate(schedule);
+		}
+
+
+		public void DisableAll(Account account)
+		{
+			var scheduleList = SimpleFilter(
+				s => s.Active
+				&& (s.In.ID == account.ID
+					|| s.Out.ID == account.ID)
+			);
+
+			foreach (var schedule in scheduleList)
+			{
+				schedule.Active = false;
+				SaveOrUpdate(schedule);
+			}
+		}
+
+
+		public void DeleteAll(Account account)
+		{
+			var scheduleList = SimpleFilter(
+				s => s.In.ID == account.ID
+				|| s.Out.ID == account.ID
+			);
+
+			foreach (var schedule in scheduleList)
+			{
+				Delete(schedule);
+			}
+		}
+	}
 }

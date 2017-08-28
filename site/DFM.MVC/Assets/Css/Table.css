@@ -4,11 +4,11 @@
 }
 
 .zero-items {
-    color: #558eaa;
-    font-size: 18px;
-    font-style: italic;
-    margin: auto;
-    width: 95%;
+	color: #558eaa;
+	font-size: 18px;
+	font-style: italic;
+	margin: auto;
+	width: 95%;
 }
 
 table.List {
@@ -17,54 +17,54 @@ table.List {
 	margin: auto;
 }
 
-    th, td {
-	    padding: 0 7px;
-    }
+	th, td {
+		padding: 0 7px;
+	}
 
-    tr:nth-child(2n+1) td {
-	    background: #F7EEDD;
-    }
+	tr:nth-child(2n+1) td {
+		background: #F7EEDD;
+	}
 
-    th {
-	    background: #DDCFAA;
-	    color: #FFF;
-	    margin: 0;
-	    border-radius: 7px 7px 0 0;
-    }
+	th {
+		background: #DDCFAA;
+		color: #FFF;
+		margin: 0;
+		border-radius: 7px 7px 0 0;
+	}
 
 
-    td.numeric {
-	    text-align: right;
-    }
+	td.numeric {
+		text-align: right;
+	}
 
-    td.in, .saldo .in {
-	    color: #00C;
-    }
+	td.in, .saldo .in {
+		color: #00C;
+	}
 
-    td.out, .saldo .out {
-	    color: #C00;
-    }
+	td.out, .saldo .out {
+		color: #C00;
+	}
 
-    td.transfer {
-	    color: #0C0;
-    }
+	td.transfer {
+		color: #0C0;
+	}
 
-    td.image {
-	    text-align: center;
-    }
+	td.image {
+		text-align: center;
+	}
 
-    td.image img {
-	    padding: 4px;
-        }
+	td.image img {
+		padding: 4px;
+		}
 
-        td.image a:hover {
-	        background: none;
-        }
-    
-    th.todo-column
-    {
-        width: 15%;
-    }
+		td.image a:hover {
+			background: none;
+		}
+	
+	th.todo-column
+	{
+		width: 15%;
+	}
 
 
 table.Mini {
@@ -74,28 +74,28 @@ table.Mini {
 
 
 .saldo {
-    margin: 50px 25px 0 0;
-    text-align: right;
+	margin: 50px 25px 0 0;
+	text-align: right;
 }
 
-    .saldo span {
-        padding: 5px 10px;
-        font-size: 17px;
-    }
+	.saldo span {
+		padding: 5px 10px;
+		font-size: 17px;
+	}
 
-        .saldo span.title {
-	        background: #DDCFAA;
-	        color: #FFF;
-	        margin: 0;
-	        border-radius: 7px 0 0 7px;
-            font-weight: bold;
-        }
+		.saldo span.title {
+			background: #DDCFAA;
+			color: #FFF;
+			margin: 0;
+			border-radius: 7px 0 0 7px;
+			font-weight: bold;
+		}
 
-        .saldo span.value {
-	        background: #F7EEDD;
-	        margin: 0;
-	        border-radius: 0 7px 7px 0;
-        }
+		.saldo span.value {
+			background: #F7EEDD;
+			margin: 0;
+			border-radius: 0 7px 7px 0;
+		}
 
 
 

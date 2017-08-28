@@ -2,8 +2,8 @@
 
 namespace DFM.Entities
 {
-    public partial class Category
-    {
+	public partial class Category
+	{
 		private void init()
 		{
 			Active = true;
@@ -15,8 +15,8 @@ namespace DFM.Entities
 		}
 		
 		public virtual Boolean AuthorizeCRUD(User user)
-        {
-            return User == user;
-        }
-    }
+		{
+			return User == user;
+		}
+	}
 }

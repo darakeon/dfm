@@ -7,18 +7,18 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    [DFMApiAuthorize]
-    public class MovesController : BaseJsonController
-    {
-        public ActionResult Extract(String accounturl, Int32 id)
-        {
-	        return JsonGet(() => new MovesExtractModel(accounturl, id));
-        }
+	[DFMApiAuthorize]
+	public class MovesController : BaseJsonController
+	{
+		public ActionResult Extract(String accounturl, Int32 id)
+		{
+			return JsonGet(() => new MovesExtractModel(accounturl, id));
+		}
 
-        public ActionResult Summary(String accounturl, Int16 id)
-        {
-	        return JsonGet(() => new MovesSummaryModel(accounturl, id));
-        }
+		public ActionResult Summary(String accounturl, Int16 id)
+		{
+			return JsonGet(() => new MovesSummaryModel(accounturl, id));
+		}
 
 		[HttpGet]
 		public ActionResult Create(String accounturl, Int32? id)
@@ -26,20 +26,20 @@ namespace DFM.MVC.Areas.API.Controllers
 			return JsonGet(() => new MovesCreateGetModel(accounturl, id));
 		}
 
-        [HttpPost]
-        public ActionResult Create(MovesCreatePostModel move)
-        {
-            try
-            {
-                move.Save();
+		[HttpPost]
+		public ActionResult Create(MovesCreatePostModel move)
+		{
+			try
+			{
+				move.Save();
 
-                return JsonPostSuccess();
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonPostError(MultiLanguage.Dictionary[e]);
-            }
-        }
+				return JsonPostSuccess();
+			}
+			catch (DFMCoreException e)
+			{
+				return JsonPostError(MultiLanguage.Dictionary[e]);
+			}
+		}
 
 		[HttpPost]
 		public ActionResult Delete(Int32 id)
@@ -56,5 +56,5 @@ namespace DFM.MVC.Areas.API.Controllers
 			}
 		}
 
-    }
+	}
 }

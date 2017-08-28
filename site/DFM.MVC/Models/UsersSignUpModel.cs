@@ -8,44 +8,44 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class UsersSignUpModel : BaseModel
-    {
-        [Required(ErrorMessage = "*")]
-        public String Email { get; set; }
+	public class UsersSignUpModel : BaseModel
+	{
+		[Required(ErrorMessage = "*")]
+		public String Email { get; set; }
 
-        [Required(ErrorMessage = "*")]
-        public String Password { get; set; }
+		[Required(ErrorMessage = "*")]
+		public String Password { get; set; }
 
-        [Required(ErrorMessage = "*")]
-        public String RetypePassword { get; set; }
+		[Required(ErrorMessage = "*")]
+		public String RetypePassword { get; set; }
 
 
 
-        internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
-        {
-            var errors = new List<String>();
+		internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
+		{
+			var errors = new List<String>();
 
-            if (Password != RetypePassword)
-                errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
+			if (Password != RetypePassword)
+				errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
 
-            if (!errors.Any())
-            {
-                try
-                {
-	                var pathAction = Url.Action("UserVerification", "Tokens");
+			if (!errors.Any())
+			{
+				try
+				{
+					var pathAction = Url.Action("UserVerification", "Tokens");
 					var pathDisable = Url.Action("Disable", "Tokens");
-                    Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language, pathAction, pathDisable);
-                }
-                catch (DFMCoreException e)
-                {
-                    errors.Add(MultiLanguage.Dictionary[e]);
-                }
-            }
+					Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language, pathAction, pathDisable);
+				}
+				catch (DFMCoreException e)
+				{
+					errors.Add(MultiLanguage.Dictionary[e]);
+				}
+			}
 
-            return errors;
-        }
+			return errors;
+		}
 
 
 
-    }
+	}
 }

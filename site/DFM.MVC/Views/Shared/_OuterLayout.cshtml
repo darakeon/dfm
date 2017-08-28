@@ -1,30 +1,30 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Master.cshtml";
-    var isAuthenticated = Auth.Current.IsAuthenticated;
+	Layout = "~/Views/Shared/_Master.cshtml";
+	var isAuthenticated = Auth.Current.IsAuthenticated;
 }
 
 @section HtmlHeadCss {
-    @RenderSection("HtmlHeadCss", false)
+	@RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", false)
+	@RenderSection("HtmlFooterJs", false)
 }
 
 
 
 @section MenuTopo {
-    @if (isAuthenticated)
-    {
-        @Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })
-        @Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" })
-    }
-    else
-    {
-        @Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new { action = "LogOn", controller = "Users" })
-        @Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new { action = "SignUp", controller = "Users" })
-        @Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")
-    }
+	@if (isAuthenticated)
+	{
+		@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })
+		@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" })
+	}
+	else
+	{
+		@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new { action = "LogOn", controller = "Users" })
+		@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new { action = "SignUp", controller = "Users" })
+		@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")
+	}
 }
 
 
@@ -35,7 +35,7 @@
 
 
 @section PS {
-    @RenderSection("PS", false)
+	@RenderSection("PS", false)
 }
 
 

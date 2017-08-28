@@ -8,10 +8,10 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    public class UsersController : BaseJsonController
-    {
-        public ActionResult Login(String email, String password)
-        {
+	public class UsersController : BaseJsonController
+	{
+		public ActionResult Login(String email, String password)
+		{
 			return JsonGet(() =>
 			{
 				var model =
@@ -25,46 +25,46 @@ namespace DFM.MVC.Areas.API.Controllers
 
 				return new {ticket = Current.Ticket.Key};
 			});
-        }
+		}
 
 
 
-        public ActionResult Logout()
-        {
-	        return JsonGet(() =>
-	        {
-		        var model = new SafeModel();
+		public ActionResult Logout()
+		{
+			return JsonGet(() =>
+			{
+				var model = new SafeModel();
 
-		        model.LogOff();
+				model.LogOff();
 
-		        return new {success = true};
-	        });
-        }
-
-
-
-        [DFMApiAuthorize, HttpGet]
-        public ActionResult GetConfig()
-        {
-	        return JsonGet(() => new UserGetConfigModel());
-        }
-
-        [DFMApiAuthorize, HttpPost]
-        public ActionResult SaveConfig(UserSaveConfigModel model)
-        {
-            try
-            {
-                model.Save();
-
-                return JsonPostSuccess();
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonPostError(MultiLanguage.Dictionary[e]);
-            }
-        }
+				return new {success = true};
+			});
+		}
 
 
 
-    }
+		[DFMApiAuthorize, HttpGet]
+		public ActionResult GetConfig()
+		{
+			return JsonGet(() => new UserGetConfigModel());
+		}
+
+		[DFMApiAuthorize, HttpPost]
+		public ActionResult SaveConfig(UserSaveConfigModel model)
+		{
+			try
+			{
+				model.Save();
+
+				return JsonPostSuccess();
+			}
+			catch (DFMCoreException e)
+			{
+				return JsonPostError(MultiLanguage.Dictionary[e]);
+			}
+		}
+
+
+
+	}
 }

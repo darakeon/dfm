@@ -7,8 +7,8 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-    public partial class Move
-    {
+	public partial class Move
+	{
 		private void init()
 		{
 			DetailList = new List<Detail>();
@@ -19,13 +19,13 @@ namespace DFM.Entities
 			return Description;
 		}
 
-        public virtual Decimal? Value
+		public virtual Decimal? Value
 		{
 			get { return ValueCents.ToVisual(); }
 			set { ValueCents = value.ToCents(); }
 		}
 
-        public virtual Decimal Total()
+		public virtual Decimal Total()
 		{
 			return Value ??
 				DetailList.Sum(d => d.Value * d.Amount);
@@ -85,76 +85,74 @@ namespace DFM.Entities
 
 
 		public virtual String Month()
-        {
-            return Date.ToString("MMMM");
-        }
+		{
+			return Date.ToString("MMMM");
+		}
 
 
 
 
-        public virtual Boolean AuthorizeCRUD(User user)
-        {
-            return User == user;
-        }
+		public virtual Boolean AuthorizeCRUD(User user)
+		{
+			return User == user;
+		}
 
 
 
 
-        public virtual String GetDescriptionDetailed()
-        {
-            const string boundlessFormat = "{0} [{1}]";
-            const string boundedFormat = "{0} [{1}/{2}]";
-            var schedule = Schedule;
+		public virtual String GetDescriptionDetailed()
+		{
+			const string boundlessFormat = "{0} [{1}]";
+			const string boundedFormat = "{0} [{1}/{2}]";
+			var schedule = Schedule;
 
-            if (schedule == null || !schedule.ShowInstallment)
-                return Description;
+			if (schedule == null || !schedule.ShowInstallment)
+				return Description;
 
-            
-            var total = schedule.Times;
-            var executed = positionInSchedule();
-                
-            var format = schedule.Boundless
-                             ? boundlessFormat
-                             : boundedFormat;
+			
+			var total = schedule.Times;
+			var executed = positionInSchedule();
+				
+			var format = schedule.Boundless ? boundlessFormat : boundedFormat;
 
-            return String.Format(format, Description, executed, total);
-        }
+			return String.Format(format, Description, executed, total);
+		}
 
 
-        private Int32 positionInSchedule()
-        {
-            var schedule = Schedule;
+		private Int32 positionInSchedule()
+		{
+			var schedule = Schedule;
 
-            var diff = 0;
+			var diff = 0;
 
-            if (schedule == null)
-                return diff;
+			if (schedule == null)
+				return diff;
 
-            var days = Date - schedule.Date;
-            var month = Date.Month - schedule.Date.Month;
-            var year = Date.Year - schedule.Date.Year;
+			var days = Date - schedule.Date;
+			var month = Date.Month - schedule.Date.Month;
+			var year = Date.Year - schedule.Date.Year;
 
-            switch (schedule.Frequency)
-            {
-                case ScheduleFrequency.Daily:
-                    diff = (Int32)days.TotalDays;
-                    break;
+			switch (schedule.Frequency)
+			{
+				case ScheduleFrequency.Daily:
+					diff = (Int32)days.TotalDays;
+					break;
 
-                case ScheduleFrequency.Monthly:
-                    diff = month + year * 12;
-                    break;
+				case ScheduleFrequency.Monthly:
+					diff = month + year * 12;
+					break;
 
-                case ScheduleFrequency.Yearly:
-                    diff = year;
-                    break;
+				case ScheduleFrequency.Yearly:
+					diff = year;
+					break;
 
-                default:
-                    throw new NotImplementedException();
-            }
+				default:
+					throw new NotImplementedException();
+			}
 
-            return diff + 1;
-        }
+			return diff + 1;
+		}
 
 
-    }
+	}
 }

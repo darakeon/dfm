@@ -1,26 +1,26 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Master.cshtml";
+	Layout = "~/Views/Shared/_Master.cshtml";
 }
 
 @section HtmlHeadCss {
-    <link href="/Assets/css/Table.css" rel="stylesheet" type="text/css" />
-    <link href="/Assets/css/Navigation.css" rel="stylesheet" type="text/css" />
+	<link href="/Assets/css/Table.css" rel="stylesheet" type="text/css" />
+	<link href="/Assets/css/Navigation.css" rel="stylesheet" type="text/css" />
 
-    @RenderSection("HtmlHeadCss", false)
+	@RenderSection("HtmlHeadCss", false)
 }
 
 @section HtmlFooterJs {
-    @RenderSection("HtmlFooterJs", false)
+	@RenderSection("HtmlFooterJs", false)
 }
 
 
 
 @section MenuTopo
 {
-    @RenderSection("MenuTopo", false)
+	@RenderSection("MenuTopo", false)
 
-    @Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "Config", controller = "Users" }, new { @class = "icon settings" })
-    @Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" }, new { @class = "icon logoff" })
+	@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "Config", controller = "Users" }, new { @class = "icon settings" })
+	@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" }, new { @class = "icon logoff" })
 }
 
 
@@ -31,7 +31,7 @@
 
 
 @section PS {
-    @RenderSection("PS", false)
+	@RenderSection("PS", false)
 }
 
 

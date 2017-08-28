@@ -7,100 +7,100 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-    [DFMAuthorize]
-    public class AccountsController : BaseController
-    {
-        public ActionResult Index()
-        {
-            var model = new AccountsIndexModel();
+	[DFMAuthorize]
+	public class AccountsController : BaseController
+	{
+		public ActionResult Index()
+		{
+			var model = new AccountsIndexModel();
 
-            return View(model);
-        }
+			return View(model);
+		}
 
-        public ActionResult ListClosed()
-        {
-            var model = new AccountsIndexModel(false);
+		public ActionResult ListClosed()
+		{
+			var model = new AccountsIndexModel(false);
 
-            return View(model);
-        }
-
-
-
-
-        public ActionResult Create()
-        {
-            var model = new AccountsCreateEditModel(OperationType.Creation);
-
-            return View("CreateEdit", model);
-        }
-
-        [HttpPost]
-        public ActionResult Create(AccountsCreateEditModel model)
-        {
-            model.Type = OperationType.Creation;
-
-            return createEdit(model);
-        }
-
-        public ActionResult Edit(String id)
-        {
-            if (String.IsNullOrEmpty(id)) 
-                return RedirectToAction("Create");
-
-            var model = new AccountsCreateEditModel(OperationType.Edit, id);
-
-            if (model.Account == null)
-                return RedirectToAction("Create");
-            
-            return View("CreateEdit", model);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(String id, AccountsCreateEditModel model)
-        {
-            model.ResetAccountUrl(OperationType.Edit, id);
-
-            return createEdit(model);
-        }
-
-        private ActionResult createEdit(AccountsCreateEditModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var errors = model.CreateOrUpdate();
-
-                AddErrors(errors);
-            }
-
-            if (ModelState.IsValid)
-                return RedirectToAction("Index");
-
-            return View("CreateEdit", model);
-        }
+			return View(model);
+		}
 
 
 
-        public ActionResult Close(String id)
-        {
-            var model = new AdminModel();
 
-            model.CloseAccount(id);
+		public ActionResult Create()
+		{
+			var model = new AccountsCreateEditModel(OperationType.Creation);
 
-            return RedirectToAction("Index");
-        }
+			return View("CreateEdit", model);
+		}
+
+		[HttpPost]
+		public ActionResult Create(AccountsCreateEditModel model)
+		{
+			model.Type = OperationType.Creation;
+
+			return createEdit(model);
+		}
+
+		public ActionResult Edit(String id)
+		{
+			if (String.IsNullOrEmpty(id)) 
+				return RedirectToAction("Create");
+
+			var model = new AccountsCreateEditModel(OperationType.Edit, id);
+
+			if (model.Account == null)
+				return RedirectToAction("Create");
+			
+			return View("CreateEdit", model);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(String id, AccountsCreateEditModel model)
+		{
+			model.ResetAccountUrl(OperationType.Edit, id);
+
+			return createEdit(model);
+		}
+
+		private ActionResult createEdit(AccountsCreateEditModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.CreateOrUpdate();
+
+				AddErrors(errors);
+			}
+
+			if (ModelState.IsValid)
+				return RedirectToAction("Index");
+
+			return View("CreateEdit", model);
+		}
 
 
 
-        public ActionResult Delete(String id)
-        {
-            var model = new AdminModel();
+		public ActionResult Close(String id)
+		{
+			var model = new AdminModel();
 
-            model.Delete(id);
+			model.CloseAccount(id);
 
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index");
+		}
 
 
 
-    }
+		public ActionResult Delete(String id)
+		{
+			var model = new AdminModel();
+
+			model.Delete(id);
+
+			return RedirectToAction("Index");
+		}
+
+
+
+	}
 }

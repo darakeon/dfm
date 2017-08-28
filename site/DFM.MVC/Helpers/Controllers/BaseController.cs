@@ -6,20 +6,20 @@ using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Helpers.Controllers
 {
-    public class BaseController : Controller
-    {
-        protected readonly Current Current = Auth.Current;
+	public class BaseController : Controller
+	{
+		protected readonly Current Current = Auth.Current;
 
 
-        protected void AddErrors(IList<String> errors)
-        {
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError("", error);
-            }
-        }
+		protected void AddErrors(IList<String> errors)
+		{
+			foreach (var error in errors)
+			{
+				ModelState.AddModelError("", error);
+			}
+		}
 
 
-    }
+	}
 
 }

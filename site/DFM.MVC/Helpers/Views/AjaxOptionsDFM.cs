@@ -2,15 +2,15 @@
 
 namespace DFM.MVC.Helpers.Views
 {
-    public class AjaxOptionsDFM : AjaxOptions
-    {
-        public AjaxOptionsDFM()
-        {
-            OnBegin = "BeginAjaxPost";
-            OnComplete = "EndAjaxPost";
-            OnFailure = "AjaxFail";
-            OnSuccess = "TellResultAndReload";
-            HttpMethod = "Post";
-        }
-    }
+	public class AjaxOptionsDFM : AjaxOptions
+	{
+		public AjaxOptionsDFM()
+		{
+			OnBegin = "BeginAjaxPost";
+			OnComplete = "EndAjaxPost";
+			OnFailure = "AjaxFail";
+			OnSuccess = "TellResultAndReload";
+			HttpMethod = "Post";
+		}
+	}
 }

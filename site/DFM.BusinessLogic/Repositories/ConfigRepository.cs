@@ -2,14 +2,14 @@
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class ConfigRepository : BaseRepository<Config>
-    {
-        internal void Update(Config config)
-        {
-            SaveOrUpdate(config);
-        }
+	internal class ConfigRepository : BaseRepository<Config>
+	{
+		internal void Update(Config config)
+		{
+			SaveOrUpdate(config);
+		}
 
 
-    }
+	}
 
 }

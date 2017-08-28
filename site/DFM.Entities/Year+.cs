@@ -5,8 +5,8 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-    public partial class Year
-    {
+	public partial class Year
+	{
 		private void init()
 		{
 			MonthList = new List<Month>();
@@ -57,22 +57,22 @@ namespace DFM.Entities
 		}
 
 
-        public virtual User User()
-        {
-            return Account.User;
-        }
+		public virtual User User()
+		{
+			return Account.User;
+		}
 
 
-        public virtual Year Clone()
-        {
-            return new Year
-            {
-                Account = Account,
-                MonthList = MonthList,
-                SummaryList = SummaryList,
-                Time = Time
-            };
-        }
+		public virtual Year Clone()
+		{
+			return new Year
+			{
+				Account = Account,
+				MonthList = MonthList,
+				SummaryList = SummaryList,
+				Time = Time
+			};
+		}
 
-    }
+	}
 }

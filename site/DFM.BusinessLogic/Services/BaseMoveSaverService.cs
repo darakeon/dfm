@@ -11,169 +11,169 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
-    internal class BaseMoveSaverService : BaseService
-    {
-        private readonly MoveRepository moveRepository;
-        private readonly DetailRepository detailRepository;
-        private readonly SummaryRepository summaryRepository;
-        private readonly MonthRepository monthRepository;
-        private readonly YearRepository yearRepository;
+	internal class BaseMoveSaverService : BaseService
+	{
+		private readonly MoveRepository moveRepository;
+		private readonly DetailRepository detailRepository;
+		private readonly SummaryRepository summaryRepository;
+		private readonly MonthRepository monthRepository;
+		private readonly YearRepository yearRepository;
 
-        internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, MonthRepository monthRepository, YearRepository yearRepository)
-            : base(serviceAccess)
-        {
-            this.moveRepository = moveRepository;
-            this.detailRepository = detailRepository;
-            this.summaryRepository = summaryRepository;
-            this.monthRepository = monthRepository;
-            this.yearRepository = yearRepository;
-        }
-
-
-
-        internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            resetSchedule(move);
-
-            linkEntities(move, accountOutUrl, accountInUrl, categoryName);
-
-            var oldMove = moveRepository.GetOldById(move.ID);
-
-            if (move.ID == 0 || !move.IsDetailed())
-            {
-                move = moveRepository.SaveOrUpdate(move);
-                detailRepository.SaveDetails(move);
-            }
-            else
-            {
-                detailRepository.SaveDetails(move);
-                move = moveRepository.SaveOrUpdate(move);
-            }
-
-
-            if (oldMove != null)
-                breakSummaries(oldMove);
-
-            breakSummaries(move);
-
-            var emailStatus = moveRepository.SendEmail(move);
-
-            return new ComposedResult<Move, EmailStatus>(move, emailStatus);
-        }
-
-        internal Account GetAccountByUrl(String accountUrl)
-        {
-            return accountUrl == null
-                ? null
-                : Parent.Admin.GetAccountByUrl(accountUrl);
-        }
-
-        internal Category GetCategoryByName(String categoryName)
-        {
-            if (Parent.Current.User.Config.UseCategories)
-                return Parent.Admin.GetCategoryByName(categoryName);
-
-            if (!String.IsNullOrEmpty(categoryName))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
-
-            return null;
-        }
-
-        private void resetSchedule(Move move)
-        {
-            if (move.ID == 0) return;
-
-            var oldMove = moveRepository.GetOldById(move.ID);
-
-            move.Schedule = oldMove?.Schedule;
-        }
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, MonthRepository monthRepository, YearRepository yearRepository)
+			: base(serviceAccess)
+		{
+			this.moveRepository = moveRepository;
+			this.detailRepository = detailRepository;
+			this.summaryRepository = summaryRepository;
+			this.monthRepository = monthRepository;
+			this.yearRepository = yearRepository;
+		}
 
 
 
-        private void linkEntities(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            move.Category = GetCategoryByName(categoryName);
+		internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		{
+			resetSchedule(move);
 
-            var accountOut = GetAccountByUrl(accountOutUrl);
-            var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
-            var accountIn = GetAccountByUrl(accountInUrl);
-            var monthIn = accountIn == null ? null : getMonth(move, accountIn);
+			var oldMove = moveRepository.GetOldById(move.ID);
 
-            moveRepository.PlaceMonthsInMove(move, monthOut, monthIn);
-        }
-
-        private Month getMonth(Move move, Account account)
-        {
-            if (move.Date == DateTime.MinValue)
-                return null;
-
-            var year = yearRepository.GetOrCreateYearWithSummary((Int16)move.Date.Year, account, move.Category);
-
-            return monthRepository.GetOrCreateMonthWithSummary((Int16)move.Date.Month, year, move.Category);
-        }
+			if (move.ID == 0 || !move.IsDetailed())
+			{
+				move = moveRepository.SaveOrUpdate(move);
+				detailRepository.SaveDetails(move);
+			}
+			else
+			{
+				detailRepository.SaveDetails(move);
+				move = moveRepository.SaveOrUpdate(move);
+			}
 
 
+			if (oldMove != null)
+				breakSummaries(oldMove);
 
-        internal void BreakSummaries(Move move)
-        {
-            var oldMove = moveRepository.GetOldById(move.ID);
+			breakSummaries(move);
 
-            breakSummaries(oldMove);
-        }
+			var emailStatus = moveRepository.SendEmail(move);
 
-        private void breakSummaries(Move move)
-        {
-            if (move.Nature != MoveNature.Out)
-            {
-                summaryRepository.CreateIfNotExists(move.In, move.Category);
+			return new ComposedResult<Move, EmailStatus>(move, emailStatus);
+		}
 
-                summaryRepository.Break(move.In, move.Category);
-                summaryRepository.Break(move.In.Year, move.Category);
-            }
+		internal Account GetAccountByUrl(String accountUrl)
+		{
+			return accountUrl == null
+				? null
+				: Parent.Admin.GetAccountByUrl(accountUrl);
+		}
 
-            if (move.Nature != MoveNature.In)
-            {
-                summaryRepository.CreateIfNotExists(move.Out, move.Category);
+		internal Category GetCategoryByName(String categoryName)
+		{
+			if (Parent.Current.User.Config.UseCategories)
+				return Parent.Admin.GetCategoryByName(categoryName);
 
-                summaryRepository.Break(move.Out, move.Category);
-                summaryRepository.Break(move.Out.Year, move.Category);
-            }
+			if (!String.IsNullOrEmpty(categoryName))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
 
-        }
+			return null;
+		}
 
-        
+		private void resetSchedule(Move move)
+		{
+			if (move.ID == 0) return;
 
-        internal void FixSummaries()
-        {
-	        InTransaction(() =>
-	        {
+			var oldMove = moveRepository.GetOldById(move.ID);
+
+			move.Schedule = oldMove?.Schedule;
+		}
+
+
+
+		private void linkEntities(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		{
+			move.Category = GetCategoryByName(categoryName);
+
+			var accountOut = GetAccountByUrl(accountOutUrl);
+			var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+
+			var accountIn = GetAccountByUrl(accountInUrl);
+			var monthIn = accountIn == null ? null : getMonth(move, accountIn);
+
+			moveRepository.PlaceMonthsInMove(move, monthOut, monthIn);
+		}
+
+		private Month getMonth(Move move, Account account)
+		{
+			if (move.Date == DateTime.MinValue)
+				return null;
+
+			var year = yearRepository.GetOrCreateYearWithSummary((Int16)move.Date.Year, account, move.Category);
+
+			return monthRepository.GetOrCreateMonthWithSummary((Int16)move.Date.Month, year, move.Category);
+		}
+
+
+
+		internal void BreakSummaries(Move move)
+		{
+			var oldMove = moveRepository.GetOldById(move.ID);
+
+			breakSummaries(oldMove);
+		}
+
+		private void breakSummaries(Move move)
+		{
+			if (move.Nature != MoveNature.Out)
+			{
+				summaryRepository.CreateIfNotExists(move.In, move.Category);
+
+				summaryRepository.Break(move.In, move.Category);
+				summaryRepository.Break(move.In.Year, move.Category);
+			}
+
+			if (move.Nature != MoveNature.In)
+			{
+				summaryRepository.CreateIfNotExists(move.Out, move.Category);
+
+				summaryRepository.Break(move.Out, move.Category);
+				summaryRepository.Break(move.Out.Year, move.Category);
+			}
+
+		}
+
+		
+
+		internal void FixSummaries()
+		{
+			InTransaction(() =>
+			{
 				var summaryList =
 					summaryRepository
 						.SimpleFilter(s => s.Broken)
 						.Where(s => s.User() == Parent.Current.User)
 						.ToList();
 
-		        var monthSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Month);
+				var monthSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Month);
 				fixMonthSummaries(monthSummaryList);
 
 				var yearSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Year);
 				fixYearSummaries(yearSummaryList);
-	        });
-        }
+			});
+		}
 
-	    private void fixMonthSummaries(IEnumerable<Summary> summaryList)
-	    {
-		    foreach (var summary in summaryList)
-		    {
-			    var @in = moveRepository.GetIn(summary.Month, summary.Category);
+		private void fixMonthSummaries(IEnumerable<Summary> summaryList)
+		{
+			foreach (var summary in summaryList)
+			{
+				var @in = moveRepository.GetIn(summary.Month, summary.Category);
 				var @out = moveRepository.GetOut(summary.Month, summary.Category);
 
-			    summaryRepository.Fix(summary, @in, @out);
-		    }
-	    }
+				summaryRepository.Fix(summary, @in, @out);
+			}
+		}
 
-	    private void fixYearSummaries(IEnumerable<Summary> summaryList)
+		private void fixYearSummaries(IEnumerable<Summary> summaryList)
 		{
 			foreach (var summary in summaryList)
 			{
@@ -185,5 +185,5 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-    }
+	}
 }

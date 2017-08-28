@@ -6,24 +6,24 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-    [DFMAuthorize]
-    public class LoginsController : BaseController
-    {
-        public ActionResult Index()
-        {
-            return View(new LoginsIndexModel());
-        }
+	[DFMAuthorize]
+	public class LoginsController : BaseController
+	{
+		public ActionResult Index()
+		{
+			return View(new LoginsIndexModel());
+		}
 
-        public ActionResult Delete(String id)
-        {
-            var model = new SafeModel();
+		public ActionResult Delete(String id)
+		{
+			var model = new SafeModel();
 
-            model.DisableLogin(id);
+			model.DisableLogin(id);
 
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index");
+		}
 
 
 
-    }
+	}
 }

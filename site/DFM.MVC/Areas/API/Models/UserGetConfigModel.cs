@@ -2,14 +2,14 @@
 
 namespace DFM.MVC.Areas.API.Models
 {
-    public class UserGetConfigModel : BaseApiModel
-    {
-        public UserGetConfigModel()
-        {
-            UseCategories = Current.User.Config.UseCategories;
-        }
+	public class UserGetConfigModel : BaseApiModel
+	{
+		public UserGetConfigModel()
+		{
+			UseCategories = Current.User.Config.UseCategories;
+		}
 
-        public Boolean UseCategories { get; set; }
+		public Boolean UseCategories { get; set; }
 
-    }
+	}
 }

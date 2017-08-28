@@ -4,13 +4,13 @@ using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Controllers
 {
-    [DFMAuthorize(true)]
-    public class TestController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View("AnalyzeDictionary", PlainText.Dictionary);
-        }
+	[DFMAuthorize(true)]
+	public class TestController : Controller
+	{
+		public ActionResult Index()
+		{
+			return View("AnalyzeDictionary", PlainText.Dictionary);
+		}
 
-    }
+	}
 }

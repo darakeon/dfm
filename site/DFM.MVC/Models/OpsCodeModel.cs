@@ -2,8 +2,8 @@
 
 namespace DFM.MVC.Models
 {
-    public class OpsCodeModel : BaseLoggedModel
-    {
-        public Error.Status EmailSent { get; set; }
-    }
+	public class OpsCodeModel : BaseLoggedModel
+	{
+		public Error.Status EmailSent { get; set; }
+	}
 }

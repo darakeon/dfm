@@ -2,8 +2,8 @@
 
 namespace DFM.MVC.Areas.API.Models
 {
-    internal class UsersLoginModel : UsersLogOnModel
-    {
+	internal class UsersLoginModel : UsersLogOnModel
+	{
 
-    }
+	}
 }

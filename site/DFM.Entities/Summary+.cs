@@ -5,8 +5,8 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-    public partial class Summary
-    {
+	public partial class Summary
+	{
 		private void init()
 		{
 			Broken = true;
@@ -27,79 +27,79 @@ namespace DFM.Entities
 		}
 
 
-        public virtual Decimal In
+		public virtual Decimal In
 		{
 			get { return InCents.ToVisual(); }
 			set { InCents = value.ToCents(); }
 		}
 
-        public virtual Decimal Out
+		public virtual Decimal Out
 		{
 			get { return OutCents.ToVisual(); }
 			set { OutCents = value.ToCents(); }
 		}
 
 
-	    public override String ToString()
+		public override String ToString()
 		{
 			return $"[{ID}] {In - Out}";
 		}
 
 
-        public virtual Decimal Value()
-        {
-            return Math.Round(In - Out, 2);
-        }
+		public virtual Decimal Value()
+		{
+			return Math.Round(In - Out, 2);
+		}
 
 
 
-        public virtual String UniqueID()
-        {
-            var yearID =
-                Nature == SummaryNature.Year
-                    ? Year.ID : 0;
+		public virtual String UniqueID()
+		{
+			var yearID =
+				Nature == SummaryNature.Year
+					? Year.ID : 0;
 
-            var monthID =
-                Nature == SummaryNature.Month
-                    ? Month.ID : 0;
+			var monthID =
+				Nature == SummaryNature.Month
+					? Month.ID : 0;
 
-            var category = Category;
-            var categoryID = category?.ID ?? 0;
+			var category = Category;
+			var categoryID = category?.ID ?? 0;
 
-            return $"{yearID}_{monthID}_{categoryID}";
-        }
-
-
-
-        public virtual ISummarizable Parent()
-        {
-            switch (Nature)
-            {
-                case SummaryNature.Year:
-                    return Year;
-                case SummaryNature.Month:
-                    return Month;
-                default:
-                    throw new NotImplementedException();
-            }
-        }
+			return $"{yearID}_{monthID}_{categoryID}";
+		}
 
 
 
-        public virtual User User()
-        {
-            switch (Nature)
-            {
-                case SummaryNature.Year:
-                    return Year.User();
-                case SummaryNature.Month:
-                    return Month.User();
-                default:
-                    throw new NotImplementedException();
-            }
-        }
+		public virtual ISummarizable Parent()
+		{
+			switch (Nature)
+			{
+				case SummaryNature.Year:
+					return Year;
+				case SummaryNature.Month:
+					return Month;
+				default:
+					throw new NotImplementedException();
+			}
+		}
 
 
 
-    }
+		public virtual User User()
+		{
+			switch (Nature)
+			{
+				case SummaryNature.Year:
+					return Year.User();
+				case SummaryNature.Month:
+					return Month.User();
+				default:
+					throw new NotImplementedException();
+			}
+		}
+
+
+
+	}
 }

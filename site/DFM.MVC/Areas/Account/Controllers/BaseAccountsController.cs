@@ -4,27 +4,27 @@ using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-    public class BaseAccountsController : BaseController
-    {
-        protected ActionResult CreateEditSchedule(BaseMovesModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var errors = model.CreateEditSchedule();
+	public class BaseAccountsController : BaseController
+	{
+		protected ActionResult CreateEditSchedule(BaseMovesModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.CreateEditSchedule();
 
-                AddErrors(errors);
-            }
+				AddErrors(errors);
+			}
 
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction(
-                    "ShowMoves", "Reports", 
-                    new { id = model.Date.ToString("yyyyMM") }
-                );
-            }
+			if (ModelState.IsValid)
+			{
+				return RedirectToAction(
+					"ShowMoves", "Reports", 
+					new { id = model.Date.ToString("yyyyMM") }
+				);
+			}
 
-            return View(model);
-        }
+			return View(model);
+		}
 
-    }
+	}
 }

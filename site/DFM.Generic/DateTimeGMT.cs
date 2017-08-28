@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace DFM.Generic
 {
-    public class DateTimeGMT
-    {
-        public static DateTime Now(String timeZoneName)
-        {
-	        try
-	        {
+	public class DateTimeGMT
+	{
+		public static DateTime Now(String timeZoneName)
+		{
+			try
+			{
 				var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
 
 				return TimeZoneInfo.ConvertTime(
@@ -20,18 +20,18 @@ namespace DFM.Generic
 				);
 			}
 			catch (TimeZoneNotFoundException e)
-	        {
-		        Debug.Write(e.Message);
-		        throw;
-	        }
-        }
+			{
+				Debug.Write(e.Message);
+				throw;
+			}
+		}
 
-        public static IDictionary<String, String> TimeZoneList()
-        {
-            return TimeZoneInfo.GetSystemTimeZones()
-                .ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
-        }
+		public static IDictionary<String, String> TimeZoneList()
+		{
+			return TimeZoneInfo.GetSystemTimeZones()
+				.ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
+		}
 
 
-    }
+	}
 }

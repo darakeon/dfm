@@ -7,175 +7,177 @@ using NHibernate;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class AccountRepository : BaseRepository<Account>
-    {
-        internal Account SaveOrUpdate(Account account)
-        {
-            return SaveOrUpdate(account, complete, validate);
-        }
+	internal class AccountRepository : BaseRepository<Account>
+	{
+		internal Account SaveOrUpdate(Account account)
+		{
+			return SaveOrUpdate(account, complete, validate);
+		}
 
 
-        private void validate(Account account)
-        {
-            checkName(account);
-            checkUrl(account);
-            checkLimits(account);
-        }
+		private void validate(Account account)
+		{
+			checkName(account);
+			checkUrl(account);
+			checkLimits(account);
+		}
 
-        private void checkName(Account account)
-        {
-            if (String.IsNullOrEmpty(account.Name))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
+		private void checkName(Account account)
+		{
+			if (String.IsNullOrEmpty(account.Name))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
 
-            var otherAccount = getByName(account.Name, account.User);
+			var otherAccount = getByName(account.Name, account.User);
 
-            var accountExistsForUser = otherAccount != null
-                                       && otherAccount.ID != account.ID;
+			var accountExistsForUser = 
+				otherAccount != null
+					&& otherAccount.ID != account.ID;
 
-            if (accountExistsForUser)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameAlreadyExists);
-        }
+			if (accountExistsForUser)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameAlreadyExists);
+		}
 
-        private void checkUrl(Account account)
-        {
-            if (String.IsNullOrEmpty(account.Url))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlRequired);
+		private void checkUrl(Account account)
+		{
+			if (String.IsNullOrEmpty(account.Url))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlRequired);
 
-            var regex = new Regex(@"^[a-z0-9_]*$");
+			var regex = new Regex(@"^[a-z0-9_]*$");
 
-            if (!regex.IsMatch(account.Url))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlInvalid);
-
-
-            var otherAccount = GetByUrl(account.Url, account.User);
-
-            var accountUrlExistsForUser = otherAccount != null
-                                       && otherAccount.ID != account.ID;
-
-            if (accountUrlExistsForUser)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlAlreadyExists);
-        }
-
-        private static void checkLimits(Account account)
-        {
-            if (account.RedLimit == null || account.YellowLimit == null)
-                return;
-
-            if (account.RedLimit > account.YellowLimit)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.RedLimitAboveYellowLimit);
-        }
+			if (!regex.IsMatch(account.Url))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlInvalid);
 
 
+			var otherAccount = GetByUrl(account.Url, account.User);
 
-        private void complete(Account account)
-        {
-            if (!String.IsNullOrEmpty(account.Url))
-                account.Url = account.Url.ToLower();
+			var accountUrlExistsForUser = 
+				otherAccount != null
+					&& otherAccount.ID != account.ID;
 
-            var oldAccount = Get(account.ID);
+			if (accountUrlExistsForUser)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlAlreadyExists);
+		}
 
-            if (oldAccount == null)
-            {
-                account.BeginDate = account.User.Now();
-                return;
-            }
+		private static void checkLimits(Account account)
+		{
+			if (account.RedLimit == null || account.YellowLimit == null)
+				return;
 
-            if (!account.YearList.Any())
-                account.YearList = oldAccount.YearList;
-
-            if (account.BeginDate == DateTime.MinValue)
-                account.BeginDate = oldAccount.BeginDate;
-
-            if (account.IsOpen())
-                account.EndDate = oldAccount.EndDate;
-
-        }
-
-
-        private Account getByName(String name, User user)
-        {
-            try
-            {
-                return SingleOrDefault(
-                        a => a.Name == name
-                             && a.User.ID == user.ID
-                    );
-            }
-            catch (NonUniqueResultException)
-            {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
-            }
-        }
-
-        internal Account GetByUrl(String url, User user)
-        {
-            try
-            {
-                return SingleOrDefault(
-                        a => a.Url == url
-                             && a.User.ID == user.ID
-                    );
-            }
-            catch (NonUniqueResultException)
-            {
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
-            }
-        }
+			if (account.RedLimit > account.YellowLimit)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.RedLimitAboveYellowLimit);
+		}
 
 
 
+		private void complete(Account account)
+		{
+			if (!String.IsNullOrEmpty(account.Url))
+				account.Url = account.Url.ToLower();
+
+			var oldAccount = Get(account.ID);
+
+			if (oldAccount == null)
+			{
+				account.BeginDate = account.User.Now();
+				return;
+			}
+
+			if (!account.YearList.Any())
+				account.YearList = oldAccount.YearList;
+
+			if (account.BeginDate == DateTime.MinValue)
+				account.BeginDate = oldAccount.BeginDate;
+
+			if (account.IsOpen())
+				account.EndDate = oldAccount.EndDate;
+
+		}
 
 
-        internal Year NonFuture(Year year)
-        {
-            var now = year.User().Now();
+		private Account getByName(String name, User user)
+		{
+			try
+			{
+				return SingleOrDefault(
+						a => a.Name == name
+							&& a.User.ID == user.ID
+					);
+			}
+			catch (NonUniqueResultException)
+			{
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
+			}
+		}
 
-            if (year.Time >= now.Year)
-            {
-                //prevent from saving and destroying the original element
-                var currentYear = year.Clone();
-
-                currentYear.MonthList =
-                    currentYear.MonthList
-                        .Where(m => m.Time <= now.Month)
-                        .ToList();
-
-                return currentYear;
-            }
-
-            return year;
-        }
-
-
-        internal void Close(Account account)
-        {
-            if (account == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
-
-            if (!account.IsOpen())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
-
-            if (!account.HasMoves())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
-
-            account.EndDate = account.User.Now();
-
-            SaveOrUpdate(account);
-        }
+		internal Account GetByUrl(String url, User user)
+		{
+			try
+			{
+				return SingleOrDefault(
+						a => a.Url == url
+							&& a.User.ID == user.ID
+					);
+			}
+			catch (NonUniqueResultException)
+			{
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
+			}
+		}
 
 
-        internal void Delete(String url, User user)
-        {
-            var account = GetByUrl(url, user);
 
-            if (account == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
 
-            if (account.HasMoves())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
 
-            Delete(account);
-        }
+		internal Year NonFuture(Year year)
+		{
+			var now = year.User().Now();
 
-    }
+			if (year.Time >= now.Year)
+			{
+				//prevent from saving and destroying the original element
+				var currentYear = year.Clone();
+
+				currentYear.MonthList =
+					currentYear.MonthList
+						.Where(m => m.Time <= now.Month)
+						.ToList();
+
+				return currentYear;
+			}
+
+			return year;
+		}
+
+
+		internal void Close(Account account)
+		{
+			if (account == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+			if (!account.IsOpen())
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
+
+			if (!account.HasMoves())
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
+
+			account.EndDate = account.User.Now();
+
+			SaveOrUpdate(account);
+		}
+
+
+		internal void Delete(String url, User user)
+		{
+			var account = GetByUrl(url, user);
+
+			if (account == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+
+			if (account.HasMoves())
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
+
+			Delete(account);
+		}
+
+	}
 }

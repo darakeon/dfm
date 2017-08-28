@@ -1,8 +1,8 @@
 ﻿div#top-right-div:empty
 {
-    /*display: none; Doens't work fine on chrome */
-    background: #FFF;
-    box-shadow: none;
+	/*display: none; Doens't work fine on chrome */
+	background: #FFF;
+	box-shadow: none;
 }
 
 div#top-right-div {

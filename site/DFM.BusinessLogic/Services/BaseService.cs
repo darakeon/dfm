@@ -1,17 +1,17 @@
 ﻿namespace DFM.BusinessLogic.Services
 {
-    public class BaseService : DK.NHibernate.Base.BaseService
-    {
-        protected BaseService(ServiceAccess serviceAccess)
-        {
-            Parent = serviceAccess;
-        }
+	public class BaseService : DK.NHibernate.Base.BaseService
+	{
+		protected BaseService(ServiceAccess serviceAccess)
+		{
+			Parent = serviceAccess;
+		}
 
-        protected ServiceAccess Parent { get; private set; }
+		protected ServiceAccess Parent { get; private set; }
 
-        
+		
 
-    
+	
 
-    }
+	}
 }

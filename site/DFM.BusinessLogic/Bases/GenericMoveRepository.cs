@@ -10,114 +10,114 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Bases
 {
-    public class GenericMoveRepository<T> : BaseRepository<T>
-        where T : class, IEntity, IMove
-    {
-        #region Validate
-        protected static void Validate(T move, Boolean validateParents = true)
-        {
-            testDescription(move);
-            testDate(move);
-            testValue(move);
-            testNature(move);
+	public class GenericMoveRepository<T> : BaseRepository<T>
+		where T : class, IEntity, IMove
+	{
+		#region Validate
+		protected static void Validate(T move, Boolean validateParents = true)
+		{
+			testDescription(move);
+			testDate(move);
+			testValue(move);
+			testNature(move);
 
-            if (validateParents)
-            {
-                testAccounts(move);
-                testCategory(move);
-            }
-        }
+			if (validateParents)
+			{
+				testAccounts(move);
+				testCategory(move);
+			}
+		}
 
-	    // ReSharper disable once UnusedParameter.Local
+		// ReSharper disable once UnusedParameter.Local
 		private static void testDescription(T move)
-        {
-            if (String.IsNullOrEmpty(move.Description))
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
-        }
+		{
+			if (String.IsNullOrEmpty(move.Description))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
+		}
 
-        private static void testDate(T move)
-        {
-            if (move.Date == DateTime.MinValue)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
+		private static void testDate(T move)
+		{
+			if (move.Date == DateTime.MinValue)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
 
-            var now = move.User?.Now() ?? DateTime.UtcNow;
+			var now = move.User?.Now() ?? DateTime.UtcNow;
 
-            if (typeof(T) != typeof(Schedule) && move.Date > now)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
-        }
+			if (typeof(T) != typeof(Schedule) && move.Date > now)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
+		}
 
-        private static void testValue(T move)
-        {
-            if (!move.HasValue())
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
-        }
+		private static void testValue(T move)
+		{
+			if (!move.HasValue())
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveValueOrDetailRequired);
+		}
 
-        private static void testNature(T move)
-        {
-            var hasIn = move.AccIn() != null;
-            var hasOut = move.AccOut() != null;
+		private static void testNature(T move)
+		{
+			var hasIn = move.AccIn() != null;
+			var hasOut = move.AccOut() != null;
 
-            switch (move.Nature)
-            {
-                case MoveNature.In:
-                    if (!hasIn || hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.InMoveWrong);
-                    break;
+			switch (move.Nature)
+			{
+				case MoveNature.In:
+					if (!hasIn || hasOut)
+						throw DFMCoreException.WithMessage(ExceptionPossibilities.InMoveWrong);
+					break;
 
-                case MoveNature.Out:
-                    if (hasIn || !hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.OutMoveWrong);
-                    break;
+				case MoveNature.Out:
+					if (hasIn || !hasOut)
+						throw DFMCoreException.WithMessage(ExceptionPossibilities.OutMoveWrong);
+					break;
 
-                case MoveNature.Transfer:
-                    if (!hasIn || !hasOut)
-                        throw DFMCoreException.WithMessage(ExceptionPossibilities.TransferMoveWrong);
-                    break;
+				case MoveNature.Transfer:
+					if (!hasIn || !hasOut)
+						throw DFMCoreException.WithMessage(ExceptionPossibilities.TransferMoveWrong);
+					break;
 
-            }
-        }
+			}
+		}
 
-        private static void testAccounts(T move)
-        {
-            var moveInClosed = move.AccIn() != null && !move.AccIn().IsOpen();
-            var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
+		private static void testAccounts(T move)
+		{
+			var moveInClosed = move.AccIn() != null && !move.AccIn().IsOpen();
+			var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
 
-            if (moveInClosed || moveOutClosed)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
+			if (moveInClosed || moveOutClosed)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
 
-            if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
-        }
+			if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
+		}
 
-        private static void testCategory(T move)
-        {
-            if (move.User.Config.UseCategories)
-            {
-                if (move.Category == null)
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+		private static void testCategory(T move)
+		{
+			if (move.User.Config.UseCategories)
+			{
+				if (move.Category == null)
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
 
-                if (!move.Category.Active)
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
-            }
-            else
-            {
-                if (move.Category != null)
-                    throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
-            }
-        }
-        #endregion
+				if (!move.Category.Active)
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledCategory);
+			}
+			else
+			{
+				if (move.Category != null)
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+			}
+		}
+		#endregion
 
-        #region Complete
-        protected static void Complete(T move)
-        {
+		#region Complete
+		protected static void Complete(T move)
+		{
 			adjustValue(move);
 			adjustDetailList(move);
-        }
+		}
 
 		private static void adjustValue(T move)
 		{
-		    if (move.Value == 0)
-		        move.Value = null;
+			if (move.Value == 0)
+				move.Value = null;
 			else if (move.Value < 0)
 				move.Value = -move.Value;
 		}
@@ -132,8 +132,8 @@ namespace DFM.BusinessLogic.Bases
 				detail.Value = -detail.Value;
 			}
 		}
-        #endregion
+		#endregion
 
 
-    }
+	}
 }

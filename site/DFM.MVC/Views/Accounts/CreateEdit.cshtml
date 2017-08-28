@@ -2,60 +2,60 @@
 @model AccountsCreateEditModel
 
 @{
-    ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
-    
-    if (Model.Type == OperationType.Edit)
-    {
-        ViewBag.Title += " " + Model.Account.Name;
-    }
-    
-    Layout = "~/Views/Shared/_NoAreaLayout.cshtml";
+	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
+	
+	if (Model.Type == OperationType.Edit)
+	{
+		ViewBag.Title += " " + Model.Account.Name;
+	}
+	
+	Layout = "~/Views/Shared/_NoAreaLayout.cshtml";
 }
 
 @section HtmlFooterJs { 
-    <script src="/Assets/script/Pages/account-create-edit.js" type="text/javascript"></script>
+	<script src="/Assets/script/Pages/account-create-edit.js" type="text/javascript"></script>
 }
 
 <div class="half-screen">
-    @using (Html.BeginForm())
-    {
-        <p>
-            @Html.LabelFor(m => m.Account.Name, MultiLanguage.Dictionary["Name"])
-            @Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaximumLength.ACCOUNT_NAME, @class = "suggest-name" })
+	@using (Html.BeginForm())
+	{
+		<p>
+			@Html.LabelFor(m => m.Account.Name, MultiLanguage.Dictionary["Name"])
+			@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaximumLength.ACCOUNT_NAME, @class = "suggest-name" })
 
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_NAME)</span>
-        </p>
+			<span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_NAME)</span>
+		</p>
 
-        <p>
-            @Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"])
-            @Html.TextBoxFor(m => m.Url, new { maxlength = MaximumLength.ACCOUNT_URL, @class = "suggest-url" })
+		<p>
+			@Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"])
+			@Html.TextBoxFor(m => m.Url, new { maxlength = MaximumLength.ACCOUNT_URL, @class = "suggest-url" })
 
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_URL)</span>
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)</span>
-        </p>
+			<span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_URL)</span>
+			<span class='input-ps'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)</span>
+		</p>
 
-        <p class="radio">
-            @Html.CheckBoxFor(m => m.HasLimit)
-            @Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"])
-        </p>
-        
-        <p>
-            @Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"] + " #")
-            @Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money letZero" })
-        </p>
+		<p class="radio">
+			@Html.CheckBoxFor(m => m.HasLimit)
+			@Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"])
+		</p>
+		
+		<p>
+			@Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"] + " #")
+			@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "money letZero" })
+		</p>
 
-        <p>
-            @Html.LabelFor(m => m.Account.YellowLimit, MultiLanguage.Dictionary["YellowLimit"] + " #")
-            @Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money letZero" })
-        </p>
+		<p>
+			@Html.LabelFor(m => m.Account.YellowLimit, MultiLanguage.Dictionary["YellowLimit"] + " #")
+			@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "money letZero" })
+		</p>
 
-        <p>
-            <button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
-        </p>
+		<p>
+			<button type="submit">@MultiLanguage.Dictionary[Model.ActionName]!</button>
+		</p>
 
-    }
+	}
 </div>
 
 @section PS {
-    # @MultiLanguage.Dictionary["RedLimit"] / @MultiLanguage.Dictionary["YellowLimit"]: @MultiLanguage.Dictionary["LimitExplanation"]
+	# @MultiLanguage.Dictionary["RedLimit"] / @MultiLanguage.Dictionary["YellowLimit"]: @MultiLanguage.Dictionary["LimitExplanation"]
 }

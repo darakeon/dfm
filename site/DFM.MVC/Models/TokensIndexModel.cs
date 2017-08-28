@@ -9,54 +9,54 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-    public class TokensIndexModel : BaseModel
-    {
-        public TokensIndexModel()
-        {
-            SecurityActionList = SelectListExtension.CreateSelect(
-                                    MultiLanguage.GetEnumNames<SecurityAction>());
-        }
+	public class TokensIndexModel : BaseModel
+	{
+		public TokensIndexModel()
+		{
+			SecurityActionList = SelectListExtension.CreateSelect(
+									MultiLanguage.GetEnumNames<SecurityAction>());
+		}
 
 
 
-        private String token;
+		private String token;
 
-        [Required(ErrorMessage = "*")]
-        public String Token
-        {
-            get { return token; }
-            set { token = (value ?? "").Trim(); }
-        }
-
-
-        [Required(ErrorMessage = "*")]
-        public SecurityAction SecurityAction { get; set; }
-
-        public SelectList SecurityActionList { get; set; }
+		[Required(ErrorMessage = "*")]
+		public String Token
+		{
+			get { return token; }
+			set { token = (value ?? "").Trim(); }
+		}
 
 
-        internal IList<String> Test()
-        {
-            var errors = new List<String>();
+		[Required(ErrorMessage = "*")]
+		public SecurityAction SecurityAction { get; set; }
 
-            try
-            {
-                Safe.TestSecurityToken(Token, SecurityAction);
-            }
-            catch (DFMCoreException e)
-            {
-                errors.Add(MultiLanguage.Dictionary[e]);
-            }
-
-            if (SecurityAction != SecurityAction.PasswordReset 
-                && SecurityAction != SecurityAction.UserVerification)
-            {
-                errors.Add(MultiLanguage.Dictionary["NotRecognizedAction"]);
-            }
-
-            return errors;
-        }
+		public SelectList SecurityActionList { get; set; }
 
 
-    }
+		internal IList<String> Test()
+		{
+			var errors = new List<String>();
+
+			try
+			{
+				Safe.TestSecurityToken(Token, SecurityAction);
+			}
+			catch (DFMCoreException e)
+			{
+				errors.Add(MultiLanguage.Dictionary[e]);
+			}
+
+			if (SecurityAction != SecurityAction.PasswordReset 
+				&& SecurityAction != SecurityAction.UserVerification)
+			{
+				errors.Add(MultiLanguage.Dictionary["NotRecognizedAction"]);
+			}
+
+			return errors;
+		}
+
+
+	}
 }

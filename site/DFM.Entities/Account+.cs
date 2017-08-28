@@ -6,8 +6,8 @@ using DFM.Entities.Extensions;
 
 namespace DFM.Entities
 {
-    public partial class Account
-    {
+	public partial class Account
+	{
 		private void init()
 		{
 			YearList = new List<Year>();
@@ -32,46 +32,46 @@ namespace DFM.Entities
 		}
 		
 		public virtual Decimal Total()
-        {
-            return YearList.Sum(m => m.Total());
-        }
+		{
+			return YearList.Sum(m => m.Total());
+		}
 
-        public virtual Boolean IsOpen()
-        {
-            return EndDate == null;
-        }
+		public virtual Boolean IsOpen()
+		{
+			return EndDate == null;
+		}
 
-        public virtual Boolean HasMoves()
-        {
-            return YearList.Any(
-                    y => y.MonthList.Any(
-                            m => m.MoveList().Any()
-                        )
-                );
-        }
+		public virtual Boolean HasMoves()
+		{
+			return YearList.Any(
+					y => y.MonthList.Any(
+							m => m.MoveList().Any()
+						)
+				);
+		}
 
-        public virtual Boolean AuthorizeCRUD(User user)
-        {
-            return User == user;
-        }
+		public virtual Boolean AuthorizeCRUD(User user)
+		{
+			return User == user;
+		}
 
-        public virtual AccountSign? Sign()
-        {
-            var hasRed = RedLimit != null;
-            var hasYellow = YellowLimit != null;
-            var sum = Total();
+		public virtual AccountSign? Sign()
+		{
+			var hasRed = RedLimit != null;
+			var hasYellow = YellowLimit != null;
+			var sum = Total();
 
-            if (hasRed && sum < RedLimit)
-                return AccountSign.Red;
-            
-            if (hasYellow && sum < YellowLimit)
-                return AccountSign.Yellow;
+			if (hasRed && sum < RedLimit)
+				return AccountSign.Red;
+			
+			if (hasYellow && sum < YellowLimit)
+				return AccountSign.Yellow;
 
-            if (hasRed || hasYellow)
-                return AccountSign.Green;
-            
-            return null;
-        }
+			if (hasRed || hasYellow)
+				return AccountSign.Green;
+			
+			return null;
+		}
 
-    }
+	}
 }

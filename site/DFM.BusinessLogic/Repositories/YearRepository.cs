@@ -5,41 +5,41 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class YearRepository : BaseRepository<Year>
-    {
-        internal Year GetOrCreateYearWithSummary(Int16 dateYear, Account account, Category category)
-        {
-            var year = GetOrCreateYear(dateYear, account);
+	internal class YearRepository : BaseRepository<Year>
+	{
+		internal Year GetOrCreateYearWithSummary(Int16 dateYear, Account account, Category category)
+		{
+			var year = GetOrCreateYear(dateYear, account);
 
-            year.GetOrCreateSummary(category);
+			year.GetOrCreateSummary(category);
 
-            return year;
-        }
+			return year;
+		}
 
-        internal Year GetOrCreateYear(Int16 dateYear, Account account)
-        {
-            var year = account.YearList
-                .SingleOrDefault(m => m.Time == dateYear);
+		internal Year GetOrCreateYear(Int16 dateYear, Account account)
+		{
+			var year = account.YearList
+				.SingleOrDefault(m => m.Time == dateYear);
 
-            return year ?? createYear(account, dateYear);
-        }
+			return year ?? createYear(account, dateYear);
+		}
 
-        private Year createYear(Account account, Int16 year)
-        {
-            var newYear = new Year{ Account = account, Time = year };
+		private Year createYear(Account account, Int16 year)
+		{
+			var newYear = new Year{ Account = account, Time = year };
 
-            account.YearList.Add(newYear);
-            SaveOrUpdate(newYear);
+			account.YearList.Add(newYear);
+			SaveOrUpdate(newYear);
 
-            return newYear;
-        }
-
-
-        internal void SaveOrUpdate(Year year)
-        {
-            base.SaveOrUpdate(year);
-        }
+			return newYear;
+		}
 
 
-    }
+		internal void SaveOrUpdate(Year year)
+		{
+			base.SaveOrUpdate(year);
+		}
+
+
+	}
 }

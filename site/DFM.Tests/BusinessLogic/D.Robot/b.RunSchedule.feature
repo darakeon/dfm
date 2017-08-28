@@ -15,7 +15,7 @@ Scenario: 01. Run with unlogged user (E)
 
 Scenario: 91. Run with bounded schedule (S)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment | 
+		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details
 	And it has a Category

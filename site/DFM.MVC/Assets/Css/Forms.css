@@ -1,6 +1,6 @@
 select, button, input {
-    vertical-align: middle;
-    padding: 2px;
+	vertical-align: middle;
+	padding: 2px;
 }
 
 input[type="text"], input[type="password"]
@@ -10,7 +10,7 @@ input[type="text"], input[type="password"]
 
 input[type="radio"]
 {
-    vertical-align: top;
+	vertical-align: top;
 }
 
 select
@@ -30,12 +30,12 @@ button
 	cursor: pointer;
 	border: none;
 	color: #FFF;
-    background: #558EAA;
+	background: #558EAA;
 }
-    button:hover
-    {
-	    background: #AA8E55;
-    }
+	button:hover
+	{
+		background: #AA8E55;
+	}
 
 
 .input-ps
@@ -47,21 +47,21 @@ button
 
 input:disabled
 {
-    background: #F7F7F7;
-    border: 1px #EEE solid;
+	background: #F7F7F7;
+	border: 1px #EEE solid;
 }
 
 
 .divRowForm
 {
-    clear: both;
-    padding: 10px 0;
+	clear: both;
+	padding: 10px 0;
 }
 
 form hr
 {
-    background-color: #AA8E55;
-    height: 1px;
-    width: 95%;
-    border: none;
+	background-color: #AA8E55;
+	height: 1px;
+	width: 95%;
+	border: none;
 }

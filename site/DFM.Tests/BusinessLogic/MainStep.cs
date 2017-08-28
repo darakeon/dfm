@@ -6,72 +6,72 @@ using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic
 {
-    [Binding]
-    public class MainStep : BaseStep
-    {
-        [Given(@"I have an active user")]
-        public void GivenIHaveAnActiveUser()
-        {
-            CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
+	[Binding]
+	public class MainStep : BaseStep
+	{
+		[Given(@"I have an active user")]
+		public void GivenIHaveAnActiveUser()
+		{
+			CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
 
-            Current.Reset(USER_EMAIL, UserPassword);
-        }
+			Current.Reset(USER_EMAIL, UserPassword);
+		}
 
-        [Given(@"I have an account")]
-        public void GivenIHaveAnAccount()
-        {
-            Account = GetOrCreateAccount(MAIN_ACCOUNT_URL);
-        }
+		[Given(@"I have an account")]
+		public void GivenIHaveAnAccount()
+		{
+			Account = GetOrCreateAccount(MAIN_ACCOUNT_URL);
+		}
 
-        [Given(@"I have a category")]
-        public void GivenIHaveACategory()
-        {
-            Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
-        }
+		[Given(@"I have a category")]
+		public void GivenIHaveACategory()
+		{
+			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
+		}
 
-        [Given(@"I pass a valid account url")]
-        public void GivenIPassValidAccountName()
-        {
-            AccountUrl = Account.Url;
-        }
+		[Given(@"I pass a valid account url")]
+		public void GivenIPassValidAccountName()
+		{
+			AccountUrl = Account.Url;
+		}
 
-        
-        [Then(@"I will receive this core error: ([A-Za-z]+)")]
-        public void ThenIWillReceiveThisError(String error)
-        {
-            Assert.IsNotNull(Error);
-            Assert.AreEqual(error, Error.Type.ToString());
-        }
+		
+		[Then(@"I will receive this core error: ([A-Za-z]+)")]
+		public void ThenIWillReceiveThisError(String error)
+		{
+			Assert.IsNotNull(Error);
+			Assert.AreEqual(error, Error.Type.ToString());
+		}
 
-        [Then(@"I will receive no core error")]
-        public void ThenIWillReceiveNoCoreError()
-        {
-            Assert.IsNull(Error);
-        }
+		[Then(@"I will receive no core error")]
+		public void ThenIWillReceiveNoCoreError()
+		{
+			Assert.IsNull(Error);
+		}
 
 
 
-        [AfterScenarioBlock]
-        public static void CloseSession()
-        {
-            NHManager.Close();
-        }
+		[AfterScenarioBlock]
+		public static void CloseSession()
+		{
+			NHManager.Close();
+		}
 
-        [AfterScenario]
-        public void CleanSchedulesAndLogoff()
-        {
-            if (!Current.IsAuthenticated)
-                return;
+		[AfterScenario]
+		public void CleanSchedulesAndLogoff()
+		{
+			if (!Current.IsAuthenticated)
+				return;
 
-            var pendentSchedules = Current.User.ScheduleList.Where(s => s.Active);
+			var pendentSchedules = Current.User.ScheduleList.Where(s => s.Active);
 
-            foreach (var pendentSchedule in pendentSchedules)
-            {
-                SA.Robot.DisableSchedule(pendentSchedule.ID);
-            }
+			foreach (var pendentSchedule in pendentSchedules)
+			{
+				SA.Robot.DisableSchedule(pendentSchedule.ID);
+			}
 
-            Current.Clean();
-        }
+			Current.Clean();
+		}
 
 
 		[StepArgumentTransformation(@"( not)?")]

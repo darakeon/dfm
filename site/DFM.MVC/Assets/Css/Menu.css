@@ -5,64 +5,64 @@
 	margin-top: 0;
 }
 
-    .menu a
-    {
-        background: #558EAA;
-	    float: left;
-	    border-radius: 0 0 15px 15px;
-	    vertical-align: top;
-	    padding: 2px 10px 5px 10px;
-        cursor: pointer;
-	    margin-left: 10px; 
-	    color: #FFF;
-        height: 20px;
-    }
-    
-        .menu a:hover
-        {
-	        background: #AA8E55;
-        }
-    
-        .menu a.icon
-        {
-            width: 15px;
-            background-position: center 4px;
-            background-repeat: no-repeat;
-        }
-    
-        .menu a.logoff
-        {
-            background-image: url("/Assets/image/icons/logoff.gif");
-        }
-    
-            .menu a.logoff:hover
-            {
-                background-image: url("/Assets/image/icons/logoff_active.gif");
-            }
-    
-        .menu a.settings
-        {
-            background-image: url("/Assets/image/icons/settings.gif");
-        }
-    
-            .menu a.settings:hover
-            {
-                background-image: url("/Assets/image/icons/settings_active.gif");
-            }
-    
-        .menu a.home
-        {
-            background-image: url("/Assets/image/icons/home.gif");
-        }
-    
-            .menu a.home:hover
-            {
-                background-image: url("/Assets/image/icons/home_active.gif");
-            }
+	.menu a
+	{
+		background: #558EAA;
+		float: left;
+		border-radius: 0 0 15px 15px;
+		vertical-align: top;
+		padding: 2px 10px 5px 10px;
+		cursor: pointer;
+		margin-left: 10px; 
+		color: #FFF;
+		height: 20px;
+	}
+	
+		.menu a:hover
+		{
+			background: #AA8E55;
+		}
+	
+		.menu a.icon
+		{
+			width: 15px;
+			background-position: center 4px;
+			background-repeat: no-repeat;
+		}
+	
+		.menu a.logoff
+		{
+			background-image: url("/Assets/image/icons/logoff.gif");
+		}
+	
+			.menu a.logoff:hover
+			{
+				background-image: url("/Assets/image/icons/logoff_active.gif");
+			}
+	
+		.menu a.settings
+		{
+			background-image: url("/Assets/image/icons/settings.gif");
+		}
+	
+			.menu a.settings:hover
+			{
+				background-image: url("/Assets/image/icons/settings_active.gif");
+			}
+	
+		.menu a.home
+		{
+			background-image: url("/Assets/image/icons/home.gif");
+		}
+	
+			.menu a.home:hover
+			{
+				background-image: url("/Assets/image/icons/home_active.gif");
+			}
 
 h2
 {
-    clear: left;
+	clear: left;
 }
 
 

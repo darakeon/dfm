@@ -6,39 +6,39 @@ using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.API.Models
 {
-    internal class MovesSummaryModel : BaseApiModel
-    {
-        public MovesSummaryModel(String accountUrl, Int16 id)
-        {
-            var yearDate = DateFromInt.GetDateYear(id, Today);
+	internal class MovesSummaryModel : BaseApiModel
+	{
+		public MovesSummaryModel(String accountUrl, Int16 id)
+		{
+			var yearDate = DateFromInt.GetDateYear(id, Today);
 
-            MonthList =
-                Report.GetYearReport(accountUrl, yearDate)
-                    .MonthList
-                    .Select(m => new SimpleMonthJson(m))
-                    .ToList();
+			MonthList =
+				Report.GetYearReport(accountUrl, yearDate)
+					.MonthList
+					.Select(m => new SimpleMonthJson(m))
+					.ToList();
 
-            for (Int16 ym = 1; ym < 13; ym++)
-            {
-                if (MonthList.All(m => m.Number != ym))
-                {
-                    MonthList.Add(new SimpleMonthJson(ym));
-                }
-            }
+			for (Int16 ym = 1; ym < 13; ym++)
+			{
+				if (MonthList.All(m => m.Number != ym))
+				{
+					MonthList.Add(new SimpleMonthJson(ym));
+				}
+			}
 
-            MonthList = MonthList
-                .OrderByDescending(m => m.Number)
-                .ToList();
+			MonthList = MonthList
+				.OrderByDescending(m => m.Number)
+				.ToList();
 
-            var account = Admin.GetAccountByUrl(accountUrl);
+			var account = Admin.GetAccountByUrl(accountUrl);
 
-            Name = account.Name;
-            Total = account.Total();
-        }
+			Name = account.Name;
+			Total = account.Total();
+		}
 
-        public IList<SimpleMonthJson> MonthList { get; }
-        public String Name { get; private set; }
-        public Decimal Total { get; private set; }
+		public IList<SimpleMonthJson> MonthList { get; }
+		public String Name { get; private set; }
+		public Decimal Total { get; private set; }
 
-    }
+	}
 }

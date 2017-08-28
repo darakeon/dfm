@@ -14,9 +14,9 @@ using account = DFM.Entities.Account;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-    public abstract class BaseMovesModel : BaseAccountModel
-    {
-	    private readonly IList<account> accountList;
+	public abstract class BaseMovesModel : BaseAccountModel
+	{
+		private readonly IList<account> accountList;
 
 
 		private BaseMovesModel()
@@ -32,21 +32,21 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 		protected BaseMovesModel(IMove iMove)
-            : this()
-        {
-            GenericMove = iMove;
+			: this()
+		{
+			GenericMove = iMove;
 
-            if (Date == DateTime.MinValue)
-                Date = Today;
+			if (Date == DateTime.MinValue)
+				Date = Today;
 
-	        AccountOutUrl = iMove.AccOut()?.Url;
-	        AccountInUrl = iMove.AccIn()?.Url;
+			AccountOutUrl = iMove.AccOut()?.Url;
+			AccountInUrl = iMove.AccIn()?.Url;
 
-            if (iMove.Category != null)
-                CategoryName = iMove.Category.Name;
+			if (iMove.Category != null)
+				CategoryName = iMove.Category.Name;
 
-            arrangeDetails();
-        }
+			arrangeDetails();
+		}
 
 		protected BaseMovesModel(IMove iMove, OperationType type)
 			: this(iMove)
@@ -57,135 +57,135 @@ namespace DFM.MVC.Areas.Account.Models
 
 
 		private void populateDropDowns(Boolean transferIsPossible)
-        {
-            if (GenericMove == null)
-                GenericMove = initIMove();
+		{
+			if (GenericMove == null)
+				GenericMove = initIMove();
 
-            makeNatureList(transferIsPossible);
+			makeNatureList(transferIsPossible);
 
-            makeCategoryList();
+			makeCategoryList();
 
-            makeAccountList();
+			makeAccountList();
 
-            arrangeDetails();
-        }
+			arrangeDetails();
+		}
 
-        private IMove initIMove()
-        {
-            if (GetType() == typeof(SchedulesCreateModel))
-                return new Schedule();
+		private IMove initIMove()
+		{
+			if (GetType() == typeof(SchedulesCreateModel))
+				return new Schedule();
 
-            return new Move();
-        }
+			return new Move();
+		}
 
-        private void makeNatureList(bool transferIsPossible)
-        {
-            NatureSelectList = 
-                transferIsPossible
-                    ? SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>())
-                    : SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
-        }
+		private void makeNatureList(bool transferIsPossible)
+		{
+			NatureSelectList = 
+				transferIsPossible
+					? SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>())
+					: SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
+		}
 
-        private void makeCategoryList()
-        {
-            var categoryList = Current.User.VisibleCategoryList();
+		private void makeCategoryList()
+		{
+			var categoryList = Current.User.VisibleCategoryList();
 
-            CategorySelectList = SelectListExtension
-                .CreateSelect(categoryList, mv => mv.Name, mv => mv.Name);
-        }
+			CategorySelectList = SelectListExtension
+				.CreateSelect(categoryList, mv => mv.Name, mv => mv.Name);
+		}
 
-        private void makeAccountList()
-        {
-            AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
-            AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
-        }
+		private void makeAccountList()
+		{
+			AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
+			AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
+		}
 
-        private void arrangeDetails()
-        {
-	        IsDetailed = GenericMove.ID != 0 && GenericMove.IsDetailed();
-        }
-
-
-	    public OperationType Type { get; set; }
+		private void arrangeDetails()
+		{
+			IsDetailed = GenericMove.ID != 0 && GenericMove.IsDetailed();
+		}
 
 
-        protected internal IMove GenericMove { get; set; }
+		public OperationType Type { get; set; }
 
 
-        public IList<Detail> DetailList
-        {
-            get { return GenericMove.DetailList; }
-            set { GenericMove.DetailList = value; }
-        }
+		protected internal IMove GenericMove { get; set; }
 
 
-        [Required(ErrorMessage = "*")]
-        public String Description
-        {
-            get { return GenericMove.Description; } 
-            set { GenericMove.Description = value; }
-        }
-
-        
-        [Required(ErrorMessage = "*")]
-        public DateTime Date
-        {
-            get { return GenericMove.Date; } 
-            set { GenericMove.Date = value; }
-        }
+		public IList<Detail> DetailList
+		{
+			get { return GenericMove.DetailList; }
+			set { GenericMove.DetailList = value; }
+		}
 
 
-        [Required(ErrorMessage = "*")]
-        public MoveNature Nature
-        {
-            get { return GenericMove.Nature; } 
-            set { GenericMove.Nature = value; }
-        }
+		[Required(ErrorMessage = "*")]
+		public String Description
+		{
+			get { return GenericMove.Description; } 
+			set { GenericMove.Description = value; }
+		}
 
-        public SelectList NatureSelectList { get; set; }
+		
+		[Required(ErrorMessage = "*")]
+		public DateTime Date
+		{
+			get { return GenericMove.Date; } 
+			set { GenericMove.Date = value; }
+		}
 
-        
 
-        [Required(ErrorMessage = "*")]
-        public SelectList CategorySelectList { get; set; }
-        public String CategoryName { get; set; }
+		[Required(ErrorMessage = "*")]
+		public MoveNature Nature
+		{
+			get { return GenericMove.Nature; } 
+			set { GenericMove.Nature = value; }
+		}
 
-        public SelectList AccountOutSelectList { get; set; }
+		public SelectList NatureSelectList { get; set; }
+
+		
+
+		[Required(ErrorMessage = "*")]
+		public SelectList CategorySelectList { get; set; }
+		public String CategoryName { get; set; }
+
+		public SelectList AccountOutSelectList { get; set; }
 		public String AccountOutUrl { get; set; }
 
 		public SelectList AccountInSelectList { get; set; }
-        public String AccountInUrl { get; set; }
+		public String AccountInUrl { get; set; }
 
 
-        public Boolean IsDetailed { get; set; }
+		public Boolean IsDetailed { get; set; }
 
 
-        public Decimal? Value
+		public Decimal? Value
 		{
 			get { return GenericMove.Value; }
 			set { GenericMove.Value = value; }
 		}
 
 
-        internal abstract void SaveOrUpdate();
+		internal abstract void SaveOrUpdate();
 
 
-        public IList<String> CreateEditSchedule()
-        {
-            var errors = new List<String>();
+		public IList<String> CreateEditSchedule()
+		{
+			var errors = new List<String>();
 
-            try
-            {
-                SaveOrUpdate();
-            }
-            catch (DFMCoreException e)
-            {
-                errors.Add(MultiLanguage.Dictionary[e]);
-            }
+			try
+			{
+				SaveOrUpdate();
+			}
+			catch (DFMCoreException e)
+			{
+				errors.Add(MultiLanguage.Dictionary[e]);
+			}
 
-            return errors;
-        }
+			return errors;
+		}
 
 
-    }
+	}
 }

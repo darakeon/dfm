@@ -1,16 +1,16 @@
 ﻿@model SchedulesCreateModel
 
 @{
-    ViewBag.Title = MultiLanguage.Dictionary["Schedule", "Moves"];
-    Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = MultiLanguage.Dictionary["Schedule", "Moves"];
+	Layout = "~/Areas/Account/Views/Shared/_Layout.cshtml";
 }
 
 @section HtmlHeadCss { 
-    @Html.Partial("CreateEditScheduleCss")
+	@Html.Partial("CreateEditScheduleCss")
 }
 
 @section HtmlFooterJs {
-    @Html.Partial("CreateEditScheduleJs")
+	@Html.Partial("CreateEditScheduleJs")
 }
 
 @Html.Partial("NewCategoryBox")
@@ -19,8 +19,8 @@
 
 @using (Html.BeginForm())
 {
-    @Html.Partial("OtherFields")
+	@Html.Partial("OtherFields")
 
-    @Html.Partial("CreateEditSchedule")
+	@Html.Partial("CreateEditSchedule")
 }
 

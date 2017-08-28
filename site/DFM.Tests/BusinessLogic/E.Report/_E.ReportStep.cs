@@ -9,161 +9,161 @@ using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic.E.Report
 {
-    [Binding]
-    public class ReportStep : BaseStep
-    {
-        #region Variables
+	[Binding]
+	public class ReportStep : BaseStep
+	{
+		#region Variables
 
-        private static Int16 month
-        {
-            get { return Get<Int16>("Month"); }
-            set { Set("Month", value); }
-        }
+		private static Int16 month
+		{
+			get { return Get<Int16>("Month"); }
+			set { Set("Month", value); }
+		}
 
-        private static Int16 year
-        {
-            get { return Get<Int16>("Year"); }
-            set { Set("Year", value); }
-        }
+		private static Int16 year
+		{
+			get { return Get<Int16>("Year"); }
+			set { Set("Year", value); }
+		}
 
-        private static IList<Move> monthReport
-        {
-            get { return Get<IList<Move>>("MonthReport"); }
-            set { Set("MonthReport", value); }
-        }
+		private static IList<Move> monthReport
+		{
+			get { return Get<IList<Move>>("MonthReport"); }
+			set { Set("MonthReport", value); }
+		}
 
-        private static Year yearReport
-        {
-            get { return Get<Year>("YearReport"); }
-            set { Set("YearReport", value); }
-        }
-        #endregion
+		private static Year yearReport
+		{
+			get { return Get<Year>("YearReport"); }
+			set { Set("YearReport", value); }
+		}
+		#endregion
 
-        #region GetMonthReport
-        [When(@"I try to get the month report")]
-        public void WhenITryToGetTheMonthReport()
-        {
-            try
-            {
-                monthReport = SA.Report.GetMonthReport(AccountUrl, month, year);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-        }
+		#region GetMonthReport
+		[When(@"I try to get the month report")]
+		public void WhenITryToGetTheMonthReport()
+		{
+			try
+			{
+				monthReport = SA.Report.GetMonthReport(AccountUrl, month, year);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
-        [Then(@"I will receive no month report")]
-        public void ThenIWillReceiveNoMonthReport()
-        {
-            Assert.IsNull(monthReport);
-        }
+		[Then(@"I will receive no month report")]
+		public void ThenIWillReceiveNoMonthReport()
+		{
+			Assert.IsNull(monthReport);
+		}
 
-        [Then(@"I will receive the month report")]
-        public void ThenIWillReceiveTheMonthReport()
-        {
-            Assert.IsNotNull(monthReport);
-        }
+		[Then(@"I will receive the month report")]
+		public void ThenIWillReceiveTheMonthReport()
+		{
+			Assert.IsNotNull(monthReport);
+		}
 
-        [Then(@"its sum value will be equal to its moves sum value")]
-        public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
-        {
-            var expected = Account[year][month]
-                .SummaryList.Sum(s => s.Value());
-            
-            var actual = monthReport.Sum(m => 
-                    m.AccOut() != null 
-                            && m.AccOut().ID == Account.ID
-                        ? - m.Total()
-                        : m.Total()
-                );
+		[Then(@"its sum value will be equal to its moves sum value")]
+		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
+		{
+			var expected = Account[year][month]
+				.SummaryList.Sum(s => s.Value());
+			
+			var actual = monthReport.Sum(m => 
+					m.AccOut() != null 
+							&& m.AccOut().ID == Account.ID
+						? - m.Total()
+						: m.Total()
+				);
 
-            Assert.AreEqual(expected, actual);
-        }
-        #endregion
+			Assert.AreEqual(expected, actual);
+		}
+		#endregion
 
-        #region GetYearReport
-        [When(@"I try to get the year report")]
-        public void WhenITryToGetTheYearReport()
-        {
-            try
-            {
-                yearReport = SA.Report.GetYearReport(AccountUrl, year);
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-        }
+		#region GetYearReport
+		[When(@"I try to get the year report")]
+		public void WhenITryToGetTheYearReport()
+		{
+			try
+			{
+				yearReport = SA.Report.GetYearReport(AccountUrl, year);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
-        [Then(@"I will receive no year report")]
-        public void ThenIWillReceiveNoYearReport()
-        {
-            Assert.IsNull(yearReport);
-        }
+		[Then(@"I will receive no year report")]
+		public void ThenIWillReceiveNoYearReport()
+		{
+			Assert.IsNull(yearReport);
+		}
 
-        [Then(@"I will receive the year report")]
-        public void ThenIWillReceiveTheYearReport()
-        {
-            Assert.IsNotNull(yearReport);
-        }
+		[Then(@"I will receive the year report")]
+		public void ThenIWillReceiveTheYearReport()
+		{
+			Assert.IsNotNull(yearReport);
+		}
 
-        [Then(@"its sum value will be equal to its months sum value")]
-        public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
-        {
-            var expected = Account[year].SummaryList.Sum(s => s.Value());
+		[Then(@"its sum value will be equal to its months sum value")]
+		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
+		{
+			var expected = Account[year].SummaryList.Sum(s => s.Value());
 
-            var actual = yearReport.MonthList.Sum(m =>
-                    m.SummaryList.Sum(s => s.Value())
-                );
+			var actual = yearReport.MonthList.Sum(m =>
+					m.SummaryList.Sum(s => s.Value())
+				);
 
-            Assert.AreEqual(expected, actual);
-        }
-        #endregion
-
-
-
-        #region MoreThanOne
-        [Given(@"I have moves of")]
-        public void GivenIHaveMovesOf(Table table)
-        {
-            Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
-
-            foreach (var row in table.Rows)
-            {
-                var date = DateTime.Parse(row["Date"]);
-
-                var move = new Move
-                {
-	                Description = "Description",
-	                Date = date,
-	                Nature = MoveNature.Out,
-	                Value = 10,
-                };
-
-	            SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
-            }
-        }
-
-        [Given(@"I pass an invalid account url")]
-        public void GivenIPassAnInvalidAccountName()
-        {
-            AccountUrl = "invalid";
-        }
-
-        [Given(@"I pass this date")]
-        public void GivenIPassThisDate(Table table)
-        {
-            var dateData = table.Rows[0];
-
-            if (table.Header.Contains("Month"))
-                month = Int16.Parse(dateData["Month"]);
-
-            year = Int16.Parse(dateData["Year"]);
-        }
-
-        #endregion
+			Assert.AreEqual(expected, actual);
+		}
+		#endregion
 
 
-    }
+
+		#region MoreThanOne
+		[Given(@"I have moves of")]
+		public void GivenIHaveMovesOf(Table table)
+		{
+			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
+
+			foreach (var row in table.Rows)
+			{
+				var date = DateTime.Parse(row["Date"]);
+
+				var move = new Move
+				{
+					Description = "Description",
+					Date = date,
+					Nature = MoveNature.Out,
+					Value = 10,
+				};
+
+				SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+			}
+		}
+
+		[Given(@"I pass an invalid account url")]
+		public void GivenIPassAnInvalidAccountName()
+		{
+			AccountUrl = "invalid";
+		}
+
+		[Given(@"I pass this date")]
+		public void GivenIPassThisDate(Table table)
+		{
+			var dateData = table.Rows[0];
+
+			if (table.Header.Contains("Month"))
+				month = Int16.Parse(dateData["Month"]);
+
+			year = Int16.Parse(dateData["Year"]);
+		}
+
+		#endregion
+
+
+	}
 }

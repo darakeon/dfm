@@ -2,8 +2,8 @@
 
 namespace DFM.Multilanguage.Helpers
 {
-    public class DicException : Exception
-    {
-        public DicException(String message) : base(message) { }
-    }
+	public class DicException : Exception
+	{
+		public DicException(String message) : base(message) { }
+	}
 }

@@ -4,8 +4,8 @@ using DFM.Entities.Bases;
 
 namespace DFM.Entities.Extensions
 {
-    public static class SummarizableExtension
-    {
+	public static class SummarizableExtension
+	{
 		public static Decimal In(this ISummarizable summarizable)
 		{
 			return summarizable.SummaryList.Sum(s => s.In);
@@ -22,12 +22,12 @@ namespace DFM.Entities.Extensions
 		}
 
 		public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
-        {
-            var categoryName = category?.Name;
+		{
+			var categoryName = category?.Name;
 
-            return summarizable[categoryName]
-                ?? summarizable.AddSummary(category);
-        }
+			return summarizable[categoryName]
+				?? summarizable.AddSummary(category);
+		}
 
-    }
+	}
 }

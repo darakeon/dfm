@@ -5,26 +5,26 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.Repositories.Mappings
 {
-    public class DetailMap : IAutoMappingOverride<Detail>
-    {
-        public void Override(AutoMapping<Detail> mapping)
-        {
-	        mapping.IgnoreProperty(d => d.Value);
+	public class DetailMap : IAutoMappingOverride<Detail>
+	{
+		public void Override(AutoMapping<Detail> mapping)
+		{
+			mapping.IgnoreProperty(d => d.Value);
 
-            mapping.Map(d => d.Description)
-                .Length(MaximumLength.DETAIL_DESCRIPTION);
+			mapping.Map(d => d.Description)
+				.Length(MaximumLength.DETAIL_DESCRIPTION);
 
-            mapping.Map(d => d.Amount)
-                .Default("1");
+			mapping.Map(d => d.Amount)
+				.Default("1");
 
-            mapping.IgnoreProperty(d => d.FakeID);
+			mapping.IgnoreProperty(d => d.FakeID);
 
-            mapping.References(d => d.Move)
-                .Nullable();
+			mapping.References(d => d.Move)
+				.Nullable();
 
-            mapping.References(d => d.Schedule)
-                .Nullable();
+			mapping.References(d => d.Schedule)
+				.Nullable();
 
-        }
-    }
+		}
+	}
 }

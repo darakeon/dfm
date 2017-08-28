@@ -7,69 +7,69 @@ using DFM.Email;
 
 namespace DFM.MVC.Helpers.Global
 {
-    public class ErrorManager
-    {
-        public static void SendEmail()
-        {
-            var current = HttpContext.Current;
-            var user = current.User.Identity;
+	public class ErrorManager
+	{
+		public static void SendEmail()
+		{
+			var current = HttpContext.Current;
+			var user = current.User.Identity;
 
-            var get = current.Request.QueryString;
-            var post = current.Request.Form;
+			var get = current.Request.QueryString;
+			var post = current.Request.Form;
 
-            var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
-            var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
+			var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
+			var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
 
-            Decimal value;
-            var parameters = getDictionary.Union(postDictionary)
-                .Where(
-                    p => !p.Key.Contains("Password")
-                        && !Decimal.TryParse(p.Value, out value)
-                )
-                .ToDictionary(p => p.Key, p => p.Value);
+			Decimal value;
+			var parameters = getDictionary.Union(postDictionary)
+				.Where(
+					p => !p.Key.Contains("Password")
+						&& !Decimal.TryParse(p.Value, out value)
+				)
+				.ToDictionary(p => p.Key, p => p.Value);
 
 			var urlReferrer = current.Request.UrlReferrer;
 
-            EmailSent = Error.SendReport(current.AllErrors
+			EmailSent = Error.SendReport(current.AllErrors
 				, current.Request.Url.ToString()
 				, urlReferrer?.ToString() ?? "typed"
-                , parameters
-                , user.IsAuthenticated ? user.Name : "Off");
+				, parameters
+				, user.IsAuthenticated ? user.Name : "Off");
 
-        }
+		}
 
-        /// <summary>
-        /// When its value is gotten, its emptied
-        /// </summary>
-        public static Error.Status EmailSent
-        {
-            get
-            {
-                if (!errors.ContainsKey(key))
-                    return Error.Status.Empty;
+		/// <summary>
+		/// When its value is gotten, its emptied
+		/// </summary>
+		public static Error.Status EmailSent
+		{
+			get
+			{
+				if (!errors.ContainsKey(key))
+					return Error.Status.Empty;
 
-                var result = errors[key];
+				var result = errors[key];
 
-                errors[key] = Error.Status.Empty;
+				errors[key] = Error.Status.Empty;
 
-                return result;
-            }
-            private set
-            {
-                if (!errors.ContainsKey(key))
-                    errors.Add(key, value);
-                else
-                    errors[key] = value;
-            }
-        }
-
-
-
-        private static readonly 
-            IDictionary<String, Error.Status> errors 
-                = new Dictionary<String, Error.Status>();
+				return result;
+			}
+			private set
+			{
+				if (!errors.ContainsKey(key))
+					errors.Add(key, value);
+				else
+					errors[key] = value;
+			}
+		}
 
 
-        private static String key => MyCookie.Get().Key;
-    }
+
+		private static readonly 
+			IDictionary<String, Error.Status> errors 
+				= new Dictionary<String, Error.Status>();
+
+
+		private static String key => MyCookie.Get().Key;
+	}
 }

@@ -8,162 +8,162 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
-    public class MoneyService : BaseService
-    {
-        private readonly MoveRepository moveRepository;
-        private readonly DetailRepository detailRepository;
-        private readonly ScheduleRepository scheduleRepository;
+	public class MoneyService : BaseService
+	{
+		private readonly MoveRepository moveRepository;
+		private readonly DetailRepository detailRepository;
+		private readonly ScheduleRepository scheduleRepository;
 
-        internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, ScheduleRepository scheduleRepository)
-            : base(serviceAccess)
-        {
-            this.moveRepository = moveRepository;
-            this.detailRepository = detailRepository;
-            this.scheduleRepository = scheduleRepository;
-        }
-
-
-        public Move GetMoveById(Int32 id)
-        {
-            Parent.Safe.VerifyUser();
-
-            var move = moveRepository.Get(id);
-
-            verifyMove(move);
-
-            return move;
-        }
+		internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, ScheduleRepository scheduleRepository)
+			: base(serviceAccess)
+		{
+			this.moveRepository = moveRepository;
+			this.detailRepository = detailRepository;
+			this.scheduleRepository = scheduleRepository;
+		}
 
 
-        public ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            Parent.Safe.VerifyUser();
+		public Move GetMoveById(Int32 id)
+		{
+			Parent.Safe.VerifyUser();
 
-            var result = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
+			var move = moveRepository.Get(id);
 
-            Parent.BaseMove.FixSummaries();
+			verifyMove(move);
 
-            return result;
-        }
+			return move;
+		}
 
-        private ComposedResult<Move, EmailStatus> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-        {
-            var operationType =
-                move.ID == 0
-                    ? OperationType.Creation
-                    : OperationType.Edit;
 
-            return InTransaction(
+		public ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		{
+			Parent.Safe.VerifyUser();
+
+			var result = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
+
+			Parent.BaseMove.FixSummaries();
+
+			return result;
+		}
+
+		private ComposedResult<Move, EmailStatus> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		{
+			var operationType =
+				move.ID == 0
+					? OperationType.Creation
+					: OperationType.Edit;
+
+			return InTransaction(
 				() => Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName),
 				() => resetMove(move, operationType)
 			);
-        }
+		}
 
-	    private static void resetMove(Move move, OperationType operationType)
-	    {
-		    if (operationType == OperationType.Creation)
-		    {
-			    move.ID = 0;
-		    }
-	    }
+		private static void resetMove(Move move, OperationType operationType)
+		{
+			if (operationType == OperationType.Creation)
+			{
+				move.ID = 0;
+			}
+		}
 
 
 		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
-        {
+		{
 			Parent.Safe.VerifyUser();
 
-            var result = InTransaction(() => deleteMove(id));
+			var result = InTransaction(() => deleteMove(id));
 
-            Parent.BaseMove.FixSummaries();
+			Parent.BaseMove.FixSummaries();
 
-            return result;
-        }
+			return result;
+		}
 
-        private ComposedResult<Boolean, EmailStatus> deleteMove(Int32 id)
-        {
-            var move = GetMoveById(id);
+		private ComposedResult<Boolean, EmailStatus> deleteMove(Int32 id)
+		{
+			var move = GetMoveById(id);
 
-            verifyMove(move);
+			verifyMove(move);
 
-            moveRepository.Delete(id);
+			moveRepository.Delete(id);
 
-            Parent.BaseMove.BreakSummaries(move);
+			Parent.BaseMove.BreakSummaries(move);
 
-            if (move.Schedule != null)
-            {
-                updateScheduleDeleted(move.Schedule);
-            }
+			if (move.Schedule != null)
+			{
+				updateScheduleDeleted(move.Schedule);
+			}
 
-            var emailStatus = moveRepository.SendEmail(move);
+			var emailStatus = moveRepository.SendEmail(move);
 
-            return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
-        }
+			return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
+		}
 
-        private void updateScheduleDeleted(Schedule schedule)
-        {
-            schedule.Deleted++;
+		private void updateScheduleDeleted(Schedule schedule)
+		{
+			schedule.Deleted++;
 
-            var useCategories = schedule.User.Config.UseCategories;
+			var useCategories = schedule.User.Config.UseCategories;
 
-            if (schedule.Category == null && useCategories)
-            {
-                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, false);
-            }
+			if (schedule.Category == null && useCategories)
+			{
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, false);
+			}
 
-            if (schedule.Category != null && !useCategories)
-            {
-                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, true);
-            }
+			if (schedule.Category != null && !useCategories)
+			{
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, true);
+			}
 
-            scheduleRepository.SaveOrUpdate(schedule);
+			scheduleRepository.SaveOrUpdate(schedule);
 
-            if (schedule.User.Config.UseCategories != useCategories)
-            {
-                Parent.Admin.UpdateConfigWithinTransaction(null, null, null, useCategories);
-            }
-        }
-
-
-        public Detail GetDetailById(Int32 id)
-        {
-            Parent.Safe.VerifyUser();
-
-            var detail = detailRepository.Get(id);
-
-            if (detail == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
-
-            verifyMove(detail.Move);
-
-            return detail;
-        }
+			if (schedule.User.Config.UseCategories != useCategories)
+			{
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, useCategories);
+			}
+		}
 
 
-        // ReSharper disable once UnusedParameter.Local
-        private void verifyMove(Move move)
-        {
-            if (move == null)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+		public Detail GetDetailById(Int32 id)
+		{
+			Parent.Safe.VerifyUser();
 
-            if (move.User.Email != Parent.Current.User.Email)
-                throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
-        }
+			var detail = detailRepository.Get(id);
 
+			if (detail == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
 
+			verifyMove(detail.Move);
 
-	    public Move ToggleMoveCheck(Int32 moveId, Boolean @checked)
-	    {
-		    var move = GetMoveById(moveId);
-
-		    verifyMove(move);
-
-		    move.Checked = @checked;
-
-		    InTransaction(() => moveRepository.SaveOrUpdate(move));
-
-		    return move;
-	    }
+			return detail;
+		}
 
 
-    }
+		// ReSharper disable once UnusedParameter.Local
+		private void verifyMove(Move move)
+		{
+			if (move == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+
+			if (move.User.Email != Parent.Current.User.Email)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+		}
+
+
+
+		public Move ToggleMoveCheck(Int32 moveId, Boolean @checked)
+		{
+			var move = GetMoveById(moveId);
+
+			verifyMove(move);
+
+			move.Checked = @checked;
+
+			InTransaction(() => moveRepository.SaveOrUpdate(move));
+
+			return move;
+		}
+
+
+	}
 }

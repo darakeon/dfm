@@ -6,56 +6,56 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    internal class MonthRepository : BaseRepository<Month>
-    {
-        internal Month GetOrCreateMonthWithSummary(Int16 dateMonth, Year year, Category category)
-        {
-            var month = GetOrCreateMonth(dateMonth, year);
+	internal class MonthRepository : BaseRepository<Month>
+	{
+		internal Month GetOrCreateMonthWithSummary(Int16 dateMonth, Year year, Category category)
+		{
+			var month = GetOrCreateMonth(dateMonth, year);
 
-            month.GetOrCreateSummary(category);
+			month.GetOrCreateSummary(category);
 
-            return month;
-        }
+			return month;
+		}
 
-        internal Month GetOrCreateMonth(Int16 dateMonth, Year year)
-        {
-            var month = year.MonthList
-                .SingleOrDefault(m => m.Time == dateMonth);
+		internal Month GetOrCreateMonth(Int16 dateMonth, Year year)
+		{
+			var month = year.MonthList
+				.SingleOrDefault(m => m.Time == dateMonth);
 
-            return month ?? createMonth(year, dateMonth);
-        }
+			return month ?? createMonth(year, dateMonth);
+		}
 
-        private Month createMonth(Year year, Int16 month)
-        {
-            var newMonth = new Month { Year = year, Time = month };
+		private Month createMonth(Year year, Int16 month)
+		{
+			var newMonth = new Month { Year = year, Time = month };
 
-            year.MonthList.Add(newMonth);
+			year.MonthList.Add(newMonth);
 
-            SaveOrUpdate(newMonth);
+			SaveOrUpdate(newMonth);
 
-            return newMonth;
-        }
+			return newMonth;
+		}
 
 
-        internal void SaveOrUpdate(Month month)
-        {
-            base.SaveOrUpdate(month);
-        }
+		internal void SaveOrUpdate(Month month)
+		{
+			base.SaveOrUpdate(month);
+		}
 
-        internal void RemoveMoveFromMonth(Move move)
-        {
-            if (move.In != null)
-            {
-                move.In.InList.Remove(move);
-                SaveOrUpdate(move.In);
-            }
+		internal void RemoveMoveFromMonth(Move move)
+		{
+			if (move.In != null)
+			{
+				move.In.InList.Remove(move);
+				SaveOrUpdate(move.In);
+			}
 
-            if (move.Out != null)
-            {
-                move.Out.OutList.Remove(move);
-                SaveOrUpdate(move.Out);
-            }
-        }
+			if (move.Out != null)
+			{
+				move.Out.OutList.Remove(move);
+				SaveOrUpdate(move.Out);
+			}
+		}
 
 
 
@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Repositories
 			return get(year, category).Sum(m => m.In);
 		}
 
-        internal Decimal GetOut(Year year, Category category)
+		internal Decimal GetOut(Year year, Category category)
 		{
 			return get(year, category).Sum(m => m.Out);
 		}

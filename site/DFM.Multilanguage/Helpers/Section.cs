@@ -3,34 +3,34 @@ using DK.XML;
 
 namespace DFM.Multilanguage.Helpers
 {
-    public class Section : INameable
-    {
-        public String Name { get; set; }
-        public DicList<Language> LanguageList { get; set; }
+	public class Section : INameable
+	{
+		public String Name { get; set; }
+		public DicList<Language> LanguageList { get; set; }
 
-        public Section()
-        {
-            LanguageList = new DicList<Language>();
-        }
+		public Section()
+		{
+			LanguageList = new DicList<Language>();
+		}
 
-        public Section(Node nodeSection) : this()
-        {
-            Name = nodeSection.Name;
+		public Section(Node nodeSection) : this()
+		{
+			Name = nodeSection.Name;
 
-            foreach (var nodeLanguage in nodeSection)
-            {
-                var dicLanguage = new Language(nodeLanguage);
+			foreach (var nodeLanguage in nodeSection)
+			{
+				var dicLanguage = new Language(nodeLanguage);
 
-                LanguageList.Add(dicLanguage);
-            }
-        }
+				LanguageList.Add(dicLanguage);
+			}
+		}
 
-        public Language this[String language] => LanguageList[language];
+		public Language this[String language] => LanguageList[language];
 
 
-	    public override String ToString()
-        {
-            return Name;
-        }
-    }
+		public override String ToString()
+		{
+			return Name;
+		}
+	}
 }
