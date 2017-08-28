@@ -69,7 +69,7 @@ VERSÃO 3.2.1.0 (Little change) - 5
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						
-VERSÃO 3.2.0.1 (Bugfix) - 5
+VERSÃO 3.2.0.1 (System) - 5
 ================================================================================================
 S						Arrumar para web usar fakeId, não id
 B						Tratar DFMCoreException em Robot
@@ -103,15 +103,15 @@ VERSÃO 2.1.3.0 (Little change) - 2
 						Usar packages do Nuget
 						Trocar apache por Volley
 
-VERSÃO 2.1.2.0 (Little change) - 2
+VERSÃO 2.1.3.0 (Little change) - 2
 ================================================================================================
 						Ajustar layouts de android para usar formato novo
-2017-01-14	2017-01-15	Ajustar NH de site para novas formas
-
-VERSÃO 2.1.1.1 (Bug fix) - 2
-================================================================================================
 						Ocultar coluna de movimentação marcada ou não (web/mobile)
-						Arrumar problema com movimentação de saída/entrada
+
+VERSÃO 2.1.2.0 (Little change) - 2
+================================================================================================
+2017-01-15	2017-01-15	Arrumar problema com movimentação de saída/entrada
+2017-01-14	2017-01-15	Ajustar NH de site para novas formas
 
 VERSÃO 2.1.1.0 (Little change) - 3
 ================================================================================================

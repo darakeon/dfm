@@ -102,6 +102,7 @@ function ShowAccountList(obj) {
 	$(".account-combo").each(function () {
 		var show = $(this).data(nature) === 1;
 		$(this).toggle(show);
+		$(this).find("select").prop("disabled", !show);
 	});
 }
 

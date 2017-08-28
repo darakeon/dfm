@@ -24,9 +24,6 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			accountList = Current.User.VisibleAccountList();
 
-			AccountOutUrl = CurrentAccountUrl;
-			AccountInUrl = CurrentAccountUrl;
-
 			var transferIsPossible = accountList.Count > 1;
 
 			populateDropDowns(transferIsPossible);
@@ -40,10 +37,8 @@ namespace DFM.MVC.Areas.Account.Models
 			if (Date == DateTime.MinValue)
 				Date = Today;
 
-			var accountUrl = new RouteInfo().RouteData.Values["accounturl"]?.ToString();
-
-			AccountOutUrl = iMove.AccOut()?.Url ?? accountUrl;
-			AccountInUrl = iMove.AccIn()?.Url ?? accountUrl;
+			AccountOutUrl = iMove.AccOut()?.Url;
+			AccountInUrl = iMove.AccIn()?.Url;
 
 			if (iMove.Category != null)
 				CategoryName = iMove.Category.Name;
@@ -55,6 +50,12 @@ namespace DFM.MVC.Areas.Account.Models
 			: this(iMove)
 		{
 			Type = type;
+
+			if (AccountOutUrl == null)
+				AccountOutUrl = CurrentAccountUrl;
+
+			if (AccountInUrl == null)
+				AccountInUrl = CurrentAccountUrl;
 		}
 
 
