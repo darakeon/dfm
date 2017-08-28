@@ -2,6 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Multilanguage;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -636,7 +637,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		[Given(@"I disable Categories use")]
 		[When(@"I try to disable Categories use")]
-		public void GivenIDisableCategoryForThisUser()
+		public void GivenIDisableCategoriesUse()
 		{
 			try
 			{
@@ -650,7 +651,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		[Given(@"I enable Categories use")]
 		[When(@"I try to enable Categories use")]
-		public void GivenIEnableCategoryForThisUser()
+		public void GivenIEnableCategoriesUse()
 		{
 			try
 			{
@@ -667,7 +668,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, true);
+				SA.Admin.UpdateConfig(language, null, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -675,13 +676,64 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			}
 		}
 
-        #endregion
+		[Then(@"the translation will be")]
+		public void ThenTheTranslationWillBe(Table table)
+		{
+			foreach (var tableRow in table.Rows)
+			{
+				var translated = PlainText.Dictionary["general", SA.Current.Language, tableRow["Key"]];
+				Assert.AreEqual(tableRow["Translated"], translated);
+			}
+		}
+
+		[When(@"I try to change the timezone to ([\w\s\.]+)")]
+		public void WhenITryToChangeTheTimezoneTo(String timezone)
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, timezone, null, null);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Given(@"I disable move send e-mail")]
+		[When(@"I try to disable move send e-mail")]
+		public void GivenIDisableMoveSendEmail()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, false, null);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Given(@"I enable move send e-mail")]
+		[When(@"I try to enable move send e-mail")]
+		public void GivenIEnableMoveSendEmail()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, true, null);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		#endregion
 
 
 
 
-        #region MoreThanOne
-        [Given(@"I pass a url of account that doesn't exist")]
+		#region MoreThanOne
+		[Given(@"I pass a url of account that doesn't exist")]
         public void GivenIPassAnNameOfAccountThatDoesnTExist()
         {
             AccountUrl = "account_that_doesnt_exist";

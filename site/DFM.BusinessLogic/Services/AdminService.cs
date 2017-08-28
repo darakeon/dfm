@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Generic;
+using DFM.Multilanguage;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -236,6 +237,12 @@ namespace DFM.BusinessLogic.Services
 			Boolean? useCategories)
 		{
 			var config = Parent.Current.User.Config;
+
+			if (!String.IsNullOrEmpty(language) && !PlainText.AcceptedLanguage().Contains(language.ToLower()))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnkown);
+
+			if (!String.IsNullOrEmpty(timeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(timeZone))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnkown);
 
 			if (!String.IsNullOrEmpty(language))
 				config.Language = language;

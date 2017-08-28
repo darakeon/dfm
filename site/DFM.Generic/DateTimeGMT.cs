@@ -8,13 +8,21 @@ namespace DFM.Generic
     {
         public static DateTime Now(String timeZoneName)
         {
-            var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
+	        try
+	        {
+				var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
 
-            return TimeZoneInfo.ConvertTime(
-                DateTime.UtcNow,
-                TimeZoneInfo.Utc,
-                timeZone
-            );
+				return TimeZoneInfo.ConvertTime(
+					DateTime.UtcNow,
+					TimeZoneInfo.Utc,
+					timeZone
+				);
+			}
+			catch (TimeZoneNotFoundException)
+	        {
+		        
+		        throw;
+	        }
         }
 
         public static IDictionary<String, String> TimeZoneList()

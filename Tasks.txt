@@ -101,9 +101,10 @@ VERSÃO 2.0.3.1 (System) - 4
 ================================================================================================
 						Exibir parcela no mobile
 						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
-F						Configuração de usuário para habilitar conferência
+						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
-2015-09-19				Testes de mudança de configuração
+						Conserta envio de e-mail para Amazon
+2015-09-19	2016-05-09	Testes de mudança de configuração
 2015-09-15	2015-09-17	Corrigir funcionamento do app no Lollipop
 2015-09-10	2015-09-10	Corrigir problema ao abrir tela de criar movimentação (mobile)
 2015-09-10	2015-09-10	Corrigir problema de deletar conta que já teve movimentações

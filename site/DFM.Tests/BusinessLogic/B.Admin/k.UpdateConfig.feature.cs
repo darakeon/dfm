@@ -240,13 +240,77 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Disable categories use and save move without category (S)")]
-        public virtual void _91_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
+        [NUnit.Framework.DescriptionAttribute("11. Change language to en-US")]
+        public virtual void _11_ChangeLanguageToEn_US()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Disable categories use and save move without category (S)", ((string[])(null)));
-#line 63
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Change language to en-US", ((string[])(null)));
+#line 62
 this.ScenarioSetup(scenarioInfo);
+#line 63
+ testRunner.When("I try to change the language to zz-ZZ");
 #line 64
+ testRunner.Then("I will receive this core error: LanguageUnkown");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("21. Change timezone to en-US")]
+        public virtual void _21_ChangeTimezoneToEn_US()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21. Change timezone to en-US", ((string[])(null)));
+#line 66
+this.ScenarioSetup(scenarioInfo);
+#line 67
+ testRunner.When("I try to change the timezone to Someplace");
+#line 68
+ testRunner.Then("I will receive this core error: TimezoneUnkown");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("91. Disable categories use")]
+        public virtual void _91_DisableCategoriesUse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Disable categories use", ((string[])(null)));
+#line 72
+this.ScenarioSetup(scenarioInfo);
+#line 73
+ testRunner.Given("I enable Categories use");
+#line 74
+ testRunner.When("I try to disable Categories use");
+#line 75
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("92. Enable categories use")]
+        public virtual void _92_EnableCategoriesUse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Enable categories use", ((string[])(null)));
+#line 77
+this.ScenarioSetup(scenarioInfo);
+#line 78
+ testRunner.Given("I disable Categories use");
+#line 79
+ testRunner.When("I try to enable Categories use");
+#line 80
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("93. Disable categories use and save move without category (S)")]
+        public virtual void _93_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Disable categories use and save move without category (S)", ((string[])(null)));
+#line 82
+this.ScenarioSetup(scenarioInfo);
+#line 83
  testRunner.Given("I disable Categories use");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -255,44 +319,44 @@ this.ScenarioSetup(scenarioInfo);
                         "Nature",
                         "Value"});
             table4.AddRow(new string[] {
-                        "Move Bk91",
+                        "Move Bk93",
                         "2014-03-04",
                         "Out",
                         "10"});
-#line 65
+#line 84
  testRunner.And("I have this move to create", ((string)(null)), table4);
-#line 68
+#line 87
  testRunner.And("it has no Details");
-#line 69
+#line 88
  testRunner.And("it has no Category");
-#line 70
+#line 89
  testRunner.And("it has an Account Out");
-#line 71
+#line 90
  testRunner.And("it has no Account In");
-#line 72
+#line 91
  testRunner.When("I try to save the move");
-#line 73
+#line 92
  testRunner.Then("I will receive no core error");
-#line 74
+#line 93
  testRunner.And("the move will be saved");
-#line 75
+#line 94
  testRunner.And("the accountOut value will change in -10");
-#line 76
+#line 95
  testRunner.And("the month-category-accountOut value will change in 10");
-#line 77
+#line 96
  testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("92. Disable categories use and save schedule without category (S)")]
-        public virtual void _92_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
+        [NUnit.Framework.DescriptionAttribute("94. Disable categories use and save schedule without category (S)")]
+        public virtual void _94_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Disable categories use and save schedule without category (S)", ((string[])(null)));
-#line 79
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Disable categories use and save schedule without category (S)", ((string[])(null)));
+#line 98
 this.ScenarioSetup(scenarioInfo);
-#line 80
+#line 99
  testRunner.Given("I disable Categories use");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -305,7 +369,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Frequency",
                         "ShowInstallment"});
             table5.AddRow(new string[] {
-                        "Schedule Bk92",
+                        "Schedule Bk94",
                         "2012-03-31",
                         "Out",
                         "10",
@@ -313,22 +377,119 @@ this.ScenarioSetup(scenarioInfo);
                         "False",
                         "Monthly",
                         "False"});
-#line 81
+#line 100
  testRunner.And("I have this schedule to create", ((string)(null)), table5);
-#line 84
+#line 103
  testRunner.And("it has no Details");
-#line 85
+#line 104
  testRunner.And("it has no Category");
-#line 86
+#line 105
  testRunner.And("it has an Account Out");
-#line 87
+#line 106
  testRunner.And("it has no Account In");
-#line 88
+#line 107
  testRunner.When("I try to save the schedule");
-#line 89
+#line 108
  testRunner.Then("I will receive no core error");
-#line 90
+#line 109
  testRunner.And("the schedule will be saved");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("95. Change language to pt-BR")]
+        public virtual void _95_ChangeLanguageToPt_BR()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Change language to pt-BR", ((string[])(null)));
+#line 111
+this.ScenarioSetup(scenarioInfo);
+#line 112
+ testRunner.When("I try to change the language to pt-BR");
+#line 113
+ testRunner.Then("I will receive no core error");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Key",
+                        "Translated"});
+            table6.AddRow(new string[] {
+                        "language",
+                        "português"});
+#line 114
+  testRunner.And("the translation will be", ((string)(null)), table6);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("96. Change language to en-US")]
+        public virtual void _96_ChangeLanguageToEn_US()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Change language to en-US", ((string[])(null)));
+#line 118
+this.ScenarioSetup(scenarioInfo);
+#line 119
+ testRunner.When("I try to change the language to en-US");
+#line 120
+ testRunner.Then("I will receive no core error");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Key",
+                        "Translated"});
+            table7.AddRow(new string[] {
+                        "language",
+                        "english"});
+#line 121
+  testRunner.And("the translation will be", ((string)(null)), table7);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("97. Change timezone")]
+        public virtual void _97_ChangeTimezone()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Change timezone", ((string[])(null)));
+#line 125
+this.ScenarioSetup(scenarioInfo);
+#line 126
+ testRunner.When("I try to change the timezone to E. South America Standard Time");
+#line 127
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Disable move send e-mail")]
+        public virtual void _98_DisableMoveSendE_Mail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Disable move send e-mail", ((string[])(null)));
+#line 129
+this.ScenarioSetup(scenarioInfo);
+#line 130
+ testRunner.Given("I enable move send e-mail");
+#line 131
+ testRunner.When("I try to disable move send e-mail");
+#line 132
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("99. Enable move send e-mail")]
+        public virtual void _99_EnableMoveSendE_Mail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Enable move send e-mail", ((string[])(null)));
+#line 134
+this.ScenarioSetup(scenarioInfo);
+#line 135
+ testRunner.Given("I disable move send e-mail");
+#line 136
+ testRunner.When("I try to enable move send e-mail");
+#line 137
+ testRunner.Then("I will receive no core error");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

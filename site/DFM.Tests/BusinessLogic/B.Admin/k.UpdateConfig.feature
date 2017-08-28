@@ -59,12 +59,31 @@ Scenario: 06. Disable categories use and enable a category (E)
 	When I try to enable the category
 	Then I will receive this core error: CategoriesDisabled
 
+Scenario: 11. Change language to en-US
+	When I try to change the language to zz-ZZ
+	Then I will receive this core error: LanguageUnkown
 
-Scenario: 91. Disable categories use and save move without category (S)
+Scenario: 21. Change timezone to en-US
+	When I try to change the timezone to Someplace
+	Then I will receive this core error: TimezoneUnkown
+
+
+
+Scenario: 91. Disable categories use
+	Given I enable Categories use
+	When I try to disable Categories use
+	Then I will receive no core error
+
+Scenario: 92. Enable categories use
+	Given I disable Categories use
+	When I try to enable Categories use
+	Then I will receive no core error
+
+Scenario: 93. Disable categories use and save move without category (S)
 	Given I disable Categories use
 	And I have this move to create
 		| Description | Date       | Nature | Value |
-		| Move Bk91   | 2014-03-04 | Out    | 10    |
+		| Move Bk93   | 2014-03-04 | Out    | 10    |
 	And it has no Details
 	And it has no Category
 	And it has an Account Out
@@ -76,11 +95,11 @@ Scenario: 91. Disable categories use and save move without category (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 92. Disable categories use and save schedule without category (S)
+Scenario: 94. Disable categories use and save schedule without category (S)
 	Given I disable Categories use
 	And I have this schedule to create
 		| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Schedule Bk92 | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		| Schedule Bk94 | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 	And it has no Details
 	And it has no Category
 	And it has an Account Out
@@ -88,4 +107,32 @@ Scenario: 92. Disable categories use and save schedule without category (S)
 	When I try to save the schedule
 	Then I will receive no core error
 	And the schedule will be saved
+
+Scenario: 95. Change language to pt-BR
+	When I try to change the language to pt-BR
+	Then I will receive no core error
+		And the translation will be
+			| Key      | Translated |
+			| language | português  |
+
+Scenario: 96. Change language to en-US
+	When I try to change the language to en-US
+	Then I will receive no core error
+		And the translation will be
+			| Key      | Translated |
+			| language | english    |
+
+Scenario: 97. Change timezone
+	When I try to change the timezone to E. South America Standard Time
+	Then I will receive no core error
+
+Scenario: 98. Disable move send e-mail
+	Given I enable move send e-mail
+	When I try to disable move send e-mail
+	Then I will receive no core error
+
+Scenario: 99. Enable move send e-mail
+	Given I disable move send e-mail
+	When I try to enable move send e-mail
+	Then I will receive no core error
 
