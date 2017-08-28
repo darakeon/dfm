@@ -36,3 +36,11 @@ footer {
 .side-vertical-button {
 	margin-top: 10px;
 }
+
+.logo {
+	font-size: 36px;
+	background: url('/Assets/Images/big_pig.png') left center no-repeat;
+	height: 71px;
+	padding: 13px 0 17px 95px;
+	margin-left: 5px;
+}

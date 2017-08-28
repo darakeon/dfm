@@ -109,7 +109,7 @@ VERSÃO 3.0.0.1 (System) - 9
 ================================================================================================
 						Colocar data e categoria na mesma linha na move create/edit do mobile
 						Verificar permissão read state do android
-						Arrumar logo no mobile
+2017-04-06	2017-04-06	Arrumar logo no mobile
 2017-04-06	2017-04-06	Destacar signup
 2017-04-06	2017-04-06	Arrumar detalhes da movimentação (tabela) no e-mail
 2017-04-05	2017-04-06	Arrumar cores no e-mail

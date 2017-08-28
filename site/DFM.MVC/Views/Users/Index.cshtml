@@ -1,12 +1,9 @@
-﻿@using DFM.Entities.Enums
-@using DK.Generic.Collection
-@model BaseModel
+﻿@model BaseModel
 
 @{
 	ViewBag.HideTopLogo = true;
 
 	var twitterTheme = Model != null ? Model.UserTheme.Simplify().ToString().ToLower() : null;
-	var tagTitle = Model != null && Model.UserTheme.IsIn(BootstrapTheme.Cyborg, BootstrapTheme.Paper) ? "h3" : "h1";
 }
 
 @section Scripts {
@@ -17,13 +14,8 @@
 	<link href="~/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
 }
 
-<div class="row">
-	<div class="col-sm-1">
-		<img alt="DFM" src="~/Assets/Images/big_pig.png">
-	</div>
-	<div class="col-sm-11">
-		<@tagTitle>Don't fly Money</@tagTitle>
-	</div>
+<div class="logo">
+	Don't fly Money
 </div>
 
 <div class="row">
