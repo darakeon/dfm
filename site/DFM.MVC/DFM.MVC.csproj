@@ -319,11 +319,11 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
-    <None Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
-    <None Include="Areas\Account\Views\Reports\Total.cshtml" />
-    <None Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
-    <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
+    <Content Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
+    <Content Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
+    <Content Include="Areas\Account\Views\Reports\Total.cshtml" />
+    <Content Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
+    <Content Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
     <EmbeddedResource Include="Assets\Resources\ConfigThemes.pt-BR.resx" />
     <EmbeddedResource Include="Assets\Resources\ConfigThemes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -337,45 +337,45 @@
     <EmbeddedResource Include="Assets\Resources\General.pt-BR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Views\Accounts\CreateEdit.cshtml" />
+    <Content Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
-    <None Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\ListClosed.cshtml" />
-    <None Include="Views\Categories\CreateEdit.cshtml" />
-    <None Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\CreateEdit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Contracts\003000000000.cshtml" />
-    <None Include="Views\Logins\Index.cshtml" />
-    <None Include="Views\Ops\404.cshtml" />
-    <None Include="Views\Ops\500.cshtml" />
-    <None Include="Views\Ops\Error.cshtml" />
-    <None Include="Views\Ops\Index.cshtml" />
-    <None Include="Views\Schedules\Index.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Ops\404.cshtml" />
+    <Content Include="Views\Ops\500.cshtml" />
+    <Content Include="Views\Ops\Error.cshtml" />
+    <Content Include="Views\Ops\Index.cshtml" />
+    <Content Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Shared\_Form.cshtml" />
     <Content Include="Views\Shared\Title.cshtml" />
     <Content Include="Views\Shared\ModelState.cshtml" />
-    <None Include="Views\Test\AnalyzeDictionary.cshtml" />
+    <Content Include="Views\Test\AnalyzeDictionary.cshtml" />
     <Content Include="Views\Test\Email.cshtml" />
-    <None Include="Views\Tokens\Disable.cshtml" />
-    <None Include="Views\Tokens\Index.cshtml" />
-    <None Include="Views\Tokens\Invalid.cshtml" />
-    <None Include="Views\Tokens\PasswordReset.cshtml" />
-    <None Include="Views\Tokens\PasswordResetSuccess.cshtml" />
-    <None Include="Views\Tokens\UserVerificationSuccess.cshtml" />
+    <Content Include="Views\Tokens\Disable.cshtml" />
+    <Content Include="Views\Tokens\Index.cshtml" />
+    <Content Include="Views\Tokens\Invalid.cshtml" />
+    <Content Include="Views\Tokens\PasswordReset.cshtml" />
+    <Content Include="Views\Tokens\PasswordResetSuccess.cshtml" />
+    <Content Include="Views\Tokens\UserVerificationSuccess.cshtml" />
     <Content Include="Views\Shared\_Table.cshtml" />
-    <None Include="Views\Categories\Status.cshtml" />
-    <None Include="Views\Logins\LoginType.cshtml" />
-    <None Include="Views\Shared\MoveNature.cshtml" />
-    <None Include="Views\Users\Config.cshtml" />
+    <Content Include="Views\Categories\Status.cshtml" />
+    <Content Include="Views\Logins\LoginType.cshtml" />
+    <Content Include="Views\Shared\MoveNature.cshtml" />
+    <Content Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
-    <None Include="Views\Users\ConfigEmail.cshtml" />
-    <None Include="Views\Users\ConfigOptions.cshtml" />
-    <None Include="Views\Users\ConfigPassword.cshtml" />
+    <Content Include="Views\Users\ConfigEmail.cshtml" />
+    <Content Include="Views\Users\ConfigOptions.cshtml" />
+    <Content Include="Views\Users\ConfigPassword.cshtml" />
     <Content Include="Views\Users\Contract.cshtml" />
     <Content Include="Views\Users\ConfigTheme.cshtml" />
-    <None Include="Views\Users\ForgotPassword.cshtml" />
-    <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Views\Users\ForgotPassword.cshtml" />
+    <Content Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <Content Include="Views\Users\ModalContract.cshtml" />
-    <None Include="Views\Users\SendVerification.cshtml" />
+    <Content Include="Views\Users\SendVerification.cshtml" />
     <Content Include="Views\Users\SignUpSuccess.cshtml" />
     <Content Include="Areas\Account\Views\web.config">
       <SubType>Designer</SubType>
@@ -395,10 +395,10 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\ValidationSummary.cshtml" />
     <Content Include="Views\Shared\_Result.cshtml" />
-    <None Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\SignUp.cshtml" />
-    <None Include="Views\Users\LogOn.cshtml" />
-    <None Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Users\LogOn.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
