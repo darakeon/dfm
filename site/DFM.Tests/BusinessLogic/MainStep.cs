@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.BusinessLogic.Exceptions;
 using DK.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -15,6 +16,8 @@ namespace DFM.Tests.BusinessLogic
 
 			Current.Clear();
 			Current.Set(USER_EMAIL, UserPassword, false);
+
+			Service.Safe.AcceptContract();
 		}
 
 		[Given(@"I have an account")]
@@ -63,11 +66,21 @@ namespace DFM.Tests.BusinessLogic
 			if (!Current.IsAuthenticated)
 				return;
 
-			var pendentSchedules = Service.Robot.GetScheduleList();
-
-			foreach (var pendentSchedule in pendentSchedules)
+			try
 			{
-				Service.Robot.DisableSchedule(pendentSchedule.ID);
+				var pendentSchedules = Service.Robot.GetScheduleList();
+
+				foreach (var pendentSchedule in pendentSchedules)
+				{
+					Service.Robot.DisableSchedule(pendentSchedule.ID);
+				}
+			}
+			catch (DFMCoreException e)
+			{
+				if (e.Type != ExceptionPossibilities.NotSignedLastContract)
+				{
+					throw;
+				}
 			}
 
 			Current.Clear();

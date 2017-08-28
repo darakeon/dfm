@@ -232,12 +232,17 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (Parent.Current.User == null || !Parent.Current.User.Active)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+
+			if (!IsLastContractAccepted())
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.NotSignedLastContract);
 		}
 
 
 
 		public IList<Ticket> ListLogins()
 		{
+			VerifyUser();
+
 			var user = Parent.Current.User;
 
 			var tickets = ticketRepository.List(user);
@@ -261,6 +266,8 @@ namespace DFM.BusinessLogic.Services
 
 		public void ChangePassword(String currentPassword, IPasswordForm passwordForm)
 		{
+			VerifyUser();
+
 			passwordForm.Verify();
 
 			var user = Parent.Current.User;
@@ -286,6 +293,8 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateEmail(String currentPassword, String email, String pathAction, String pathDisable)
 		{
+			VerifyUser();
+
 			var user = Parent.Current.User;
 
 			if (!userRepository.VerifyPassword(user, currentPassword))

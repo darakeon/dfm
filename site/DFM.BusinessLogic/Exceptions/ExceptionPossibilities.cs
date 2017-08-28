@@ -2,7 +2,8 @@
 {
 	public enum ExceptionPossibilities
 	{
-		Unauthorized = 0,
+		Unauthorized = 27,
+		NotSignedLastContract = 42,
 
 		FailOnEmailSend = 101,
 		TooLargeData = 102,

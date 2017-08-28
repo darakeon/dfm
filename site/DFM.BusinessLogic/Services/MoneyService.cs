@@ -27,7 +27,11 @@ namespace DFM.BusinessLogic.Services
 		public Move GetMoveById(Int32 id)
 		{
 			Parent.Safe.VerifyUser();
+			return GetMoveByIdInternal(id);
+		}
 
+		internal Move GetMoveByIdInternal(Int32 id)
+		{
 			var move = moveRepository.Get(id);
 
 			verifyMove(move);
@@ -82,7 +86,7 @@ namespace DFM.BusinessLogic.Services
 
 		private ComposedResult<Boolean, EmailStatus> deleteMove(Int32 id)
 		{
-			var move = GetMoveById(id);
+			var move = GetMoveByIdInternal(id);
 
 			verifyMove(move);
 
@@ -157,17 +161,19 @@ namespace DFM.BusinessLogic.Services
 
 		public Move CheckMove(Int32 moveId)
 		{
+			Parent.Safe.VerifyUser();
 			return toggleMoveCheck(moveId, true);
 		}
 
 		public Move UncheckMove(Int32 moveId)
 		{
+			Parent.Safe.VerifyUser();
 			return toggleMoveCheck(moveId, false);
 		}
 
 		private Move toggleMoveCheck(Int32 moveId, Boolean check)
 		{
-			var move = GetMoveById(moveId);
+			var move = GetMoveByIdInternal(moveId);
 
 			verifyMove(move);
 			verifyMoveForCheck(move, check);

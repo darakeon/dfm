@@ -71,13 +71,13 @@ namespace DFM.BusinessLogic.Services
 		{
 			return accountUrl == null
 				? null
-				: Parent.Admin.GetAccountByUrl(accountUrl);
+				: Parent.Admin.GetAccountByUrlInternal(accountUrl);
 		}
 
 		internal Category GetCategoryByName(String categoryName)
 		{
 			if (Parent.Current.User.Config.UseCategories)
-				return Parent.Admin.GetCategoryByName(categoryName);
+				return Parent.Admin.GetCategoryByNameInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);

@@ -38,6 +38,8 @@ namespace DFM.BusinessLogic.Services
 		#region Account
 		public IList<Account> GetAccountList(Boolean open)
 		{
+			Parent.Safe.VerifyUser();
+
 			var query = accountRepository.NewQuery();
 
 			query.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
@@ -53,7 +55,11 @@ namespace DFM.BusinessLogic.Services
 		public Account GetAccountByUrl(String url)
 		{
 			Parent.Safe.VerifyUser();
+			return GetAccountByUrlInternal(url);
+		}
 
+		internal Account GetAccountByUrlInternal(String url)
+		{
 			var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
 			if (account == null)
@@ -82,7 +88,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				if (opType == OperationType.Edit)
 				{
-					var oldAccount = GetAccountByUrl(account.Url);
+					var oldAccount = GetAccountByUrlInternal(account.Url);
 
 					account.ID = oldAccount.ID;
 
@@ -117,7 +123,7 @@ namespace DFM.BusinessLogic.Services
 
 			InTransaction(() =>
 			{
-				var account = GetAccountByUrl(url);
+				var account = GetAccountByUrlInternal(url);
 
 				foreach (var year in account.YearList)
 				{
@@ -151,6 +157,8 @@ namespace DFM.BusinessLogic.Services
 		#region Category
 		public IList<Category> GetCategoryList(Boolean? active = null)
 		{
+			Parent.Safe.VerifyUser();
+
 			var query = categoryRepository.NewQuery()
 				.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
 
@@ -169,6 +177,11 @@ namespace DFM.BusinessLogic.Services
 		public Category GetCategoryByName(String name)
 		{
 			Parent.Safe.VerifyUser();
+			return GetCategoryByNameInternal(name);
+		}
+
+		internal Category GetCategoryByNameInternal(String name)
+		{
 			verifyCategoriesEnabled();
 
 			var category = categoryRepository.GetByName(name, Parent.Current.User);
@@ -200,7 +213,7 @@ namespace DFM.BusinessLogic.Services
 			{
 				if (opType == OperationType.Edit)
 				{
-					var oldCategory = GetCategoryByName(category.Name);
+					var oldCategory = GetCategoryByNameInternal(category.Name);
 
 					category.ID = oldCategory.ID;
 					category.Active = oldCategory.Active;

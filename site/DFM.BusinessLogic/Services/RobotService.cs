@@ -143,7 +143,7 @@ namespace DFM.BusinessLogic.Services
 			return InTransaction(
 				() => saveOrUpdate(schedule, accountOutUrl, accountInUrl, categoryName),
 				() => resetSchedule(schedule, operationType)
-				);
+			);
 		}
 
 		private Schedule saveOrUpdate(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
@@ -186,6 +186,8 @@ namespace DFM.BusinessLogic.Services
 
 		public IList<Schedule> GetScheduleList()
 		{
+			Parent.Safe.VerifyUser();
+
 			return scheduleRepository.SimpleFilter(s => s.Active);
 		}
 	
