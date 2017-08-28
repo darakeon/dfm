@@ -35,21 +35,6 @@ namespace DFM.MVC.Controllers
 			return createEditForHtmlForm(model);
 		}
 
-		[HttpPost]
-		[DFMAjaxAuthorize]
-		public JsonResult CreateAjax(CategoriesCreateEditModel model)
-		{
-			model.Type = OperationType.Creation;
-
-			var error = model.CreateEdit();
-
-			var json = error == null
-				? new { name = model.Category.Name, error = String.Empty }
-				: new { name = String.Empty, error = MultiLanguage.Dictionary[error] };
-
-			return new JsonResult { Data = json };
-		}
-
 
 		public ActionResult Edit(String id)
 		{

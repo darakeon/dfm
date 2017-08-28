@@ -274,7 +274,6 @@
     <Content Include="Areas\Account\Views\Shared\CreateEditSchedule.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleCss.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleJs.old" />
-    <Content Include="Areas\Account\Views\Shared\NewCategoryBox.old" />
     <None Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Views\Accounts\Index.cshtml" />
