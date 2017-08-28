@@ -63,7 +63,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 	private fun setDate(year: Int) {
 		static.year = year
-		form.setValue(R.id.reportDate, Integer.toString(year))
+		form.setValue(R.id.reportChange, Integer.toString(year))
 	}
 
 	fun changeDate(v: View) {

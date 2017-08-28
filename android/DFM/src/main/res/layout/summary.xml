@@ -32,26 +32,13 @@
 
 	<View android:layout_width="fill_parent" android:layout_height="15dp" />
 
-	<LinearLayout
+	<Button
+		android:id="@+id/reportChange"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:text="@string/change_date"
+		android:onClick="changeDate" />
 
-		<TextView
-			android:id="@+id/reportDate"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:textSize="17sp"
-			android:layout_weight="1"
-			android:padding="5dp" />
-
-		<Button
-			android:id="@+id/reportChange"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/change_date"
-			android:onClick="changeDate" />
-	</LinearLayout>
-	
 	<View android:layout_width="fill_parent" android:layout_height="15dp" />
 
 	<TextView

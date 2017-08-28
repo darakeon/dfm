@@ -89,7 +89,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		val formatter = SimpleDateFormat("MMM/yyyy")
 		val dateInFull = formatter.format(date.time)
 
-		form.setValue(R.id.reportDate, dateInFull)
+		form.setValue(R.id.reportChange, dateInFull)
 	}
 
 	fun changeDate(v: View) {
