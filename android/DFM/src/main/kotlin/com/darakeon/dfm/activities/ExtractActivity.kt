@@ -83,6 +83,9 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		static.month = month
 		static.year = year
 
+		intent.putExtra("month", month)
+		intent.putExtra("year", year)
+
 		val date = Calendar.getInstance()
 		date.set(Calendar.MONTH, month)
 		date.set(Calendar.YEAR, year)
