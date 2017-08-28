@@ -8,7 +8,7 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-	[DFMAjaxAuthorize]
+	[DFMAuthorize]
 	public class CategoriesController : BaseController
 	{
 		public ActionResult Index()
@@ -38,6 +38,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost]
+		[DFMAjaxAuthorize]
 		public JsonResult CreateAjax(CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
