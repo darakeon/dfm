@@ -1,0 +1,10 @@
+change version .NET
+change version Android
+hg ci -m "New version"
+hg tag {version}
+hg up default
+hg merge develop
+hg ci -m "Publish"
+hg up develop
+hg push bitbucket
+{password}
