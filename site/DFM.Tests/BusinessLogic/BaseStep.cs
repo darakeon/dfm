@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic
 			SessionFactoryManager.Initialize<UserMap, User>();
 			SessionManager.Init(getTicketKey);
 
-			Service = new ServiceAccess(getTicket);
+			Service = new ServiceAccess(getTicket, getPath);
 			
 			PlainText.Initialize(RunPath);
 		}
@@ -78,7 +78,7 @@ namespace DFM.Tests.BusinessLogic
 				case ExceptionPossibilities.InvalidUser:
 
 					var passwordForm = new PasswordForm(userPassword, userPassword);
-					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, false, Defaults.CONFIG_LANGUAGE, null, null);
+					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, false, Defaults.CONFIG_LANGUAGE);
 
 					if (shouldActivateUser)
 					{
@@ -168,6 +168,11 @@ namespace DFM.Tests.BusinessLogic
 		private TypedTicket getTicket(Boolean? remember = null)
 		{
 			return new TypedTicket(TicketKey, TicketType.Local);
+		}
+
+		private String getPath(PathType pathType)
+		{
+			return null;
 		}
 
 		private String getTicketKey()

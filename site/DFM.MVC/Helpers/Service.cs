@@ -2,6 +2,9 @@
 using System.Web;
 using DFM.Authentication;
 using DFM.BusinessLogic;
+using DFM.BusinessLogic.Helpers;
+using DFM.MVC.Helpers.Global;
+using DFM.MVC.Models;
 using DK.MVC.Cookies;
 using DK.MVC.Route;
 using TicketType = DFM.Entities.Enums.TicketType;
@@ -10,8 +13,27 @@ namespace DFM.MVC.Helpers
 {
 	public class Service
 	{
-		public static ServiceAccess Access = new ServiceAccess(getTicket);
+		public static ServiceAccess Access = new ServiceAccess(getTicket, getPath);
 		public static Current Current => Access?.Current;
+
+
+		private static String getPath(PathType pathType)
+		{
+			switch (pathType)
+			{
+				case PathType.PasswordReset:
+					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "PasswordReset", controller = "Tokens" });
+
+				case PathType.UserVerification:
+					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "UserVerification", controller = "Tokens" });
+
+				case PathType.DisableToken:
+					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "Disable", controller = "Tokens" });
+
+				default:
+					throw new NotImplementedException();
+			}
+		}
 
 
 		private static TypedTicket getTicket(Boolean? remember = null)

@@ -1,4 +1,6 @@
-﻿using DFM.Authentication;
+﻿using System;
+using DFM.Authentication;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
 
@@ -6,7 +8,7 @@ namespace DFM.BusinessLogic
 {
 	public class ServiceAccess 
 	{
-		public ServiceAccess(Current.GetTicket getTicket)
+		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath)
 		{
 			var acceptance = new AcceptanceRepository();
 			var account = new AccountRepository();
@@ -25,7 +27,7 @@ namespace DFM.BusinessLogic
 
 			BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
 
-			Safe = new SafeService(this, user, security, ticket, contract, acceptance);
+			Safe = new SafeService(this, user, security, ticket, contract, acceptance, getPath);
 			Admin = new AdminService(this, account, category, year, month, summary, config, schedule);
 			Money = new MoneyService(this, move, detail, schedule);
 			Robot = new RobotService(this, schedule, detail);

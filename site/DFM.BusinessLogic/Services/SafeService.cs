@@ -19,8 +19,13 @@ namespace DFM.BusinessLogic.Services
 		private readonly TicketRepository ticketRepository;
 		private readonly ContractRepository contractRepository;
 		private readonly AcceptanceRepository acceptanceRepository;
+		
+		private readonly Func<PathType, String> getPath;
 
-		internal SafeService(ServiceAccess serviceAccess, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository, ContractRepository contractRepository, AcceptanceRepository acceptanceRepository)
+		internal SafeService(ServiceAccess serviceAccess
+			, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository, ContractRepository contractRepository, AcceptanceRepository acceptanceRepository
+			, Func<PathType, String> getPath
+			)
 			: base(serviceAccess)
 		{
 			this.userRepository = userRepository;
@@ -28,11 +33,13 @@ namespace DFM.BusinessLogic.Services
 			this.ticketRepository = ticketRepository;
 			this.contractRepository = contractRepository;
 			this.acceptanceRepository = acceptanceRepository;
+
+			this.getPath = getPath;
 		}
 
 
 
-		public void SendPasswordReset(String email, String pathAction, String pathDisable)
+		public void SendPasswordReset(String email)
 		{
 			InTransaction(() =>
 			{
@@ -41,11 +48,11 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-				createAndSendToken(user, SecurityAction.PasswordReset, pathAction, pathDisable);
+				createAndSendToken(user, SecurityAction.PasswordReset, getPath(PathType.PasswordReset));
 			});
 		}
 
-		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, String language, String pathAction, String pathDisable)
+		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, String language)
 		{
 			InTransaction(() =>
 			{
@@ -68,11 +75,11 @@ namespace DFM.BusinessLogic.Services
 					acceptContract(user);
 				}
 
-				sendUserVerify(user, pathAction, pathDisable);
+				sendUserVerify(user);
 			});
 		}
 
-		public void SendUserVerify(String email, String pathAction, String pathDisable)
+		public void SendUserVerify(String email)
 		{
 			InTransaction(() =>
 			{
@@ -81,22 +88,22 @@ namespace DFM.BusinessLogic.Services
 				if (user == null)
 					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-				sendUserVerify(user, pathAction, pathDisable);
+				sendUserVerify(user);
 			});
 		}
 
-		private void sendUserVerify(User user, String pathAction, String pathDisable)
+		private void sendUserVerify(User user)
 		{
-			createAndSendToken(user, SecurityAction.UserVerification, pathAction, pathDisable);
+			createAndSendToken(user, SecurityAction.UserVerification, getPath(PathType.UserVerification));
 		}
 
-		private void createAndSendToken(User user, SecurityAction action, String pathAction, String pathDisable)
+		private void createAndSendToken(User user, SecurityAction action, String pathAction)
 		{
 			var security = new Security { Action = action, User = user };
 
 			security = securityRepository.SaveOrUpdate(security);
 
-			securityRepository.SendEmail(security, pathAction, pathDisable);
+			securityRepository.SendEmail(security, pathAction, getPath(PathType.DisableToken));
 
 			var others = securityRepository
 				.SimpleFilter(
@@ -296,7 +303,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public void UpdateEmail(String currentPassword, String email, String pathAction, String pathDisable)
+		public void UpdateEmail(String currentPassword, String email)
 		{
 			VerifyUser();
 
@@ -308,7 +315,7 @@ namespace DFM.BusinessLogic.Services
 			InTransaction(() =>
 			{
 				user = userRepository.UpdateEmail(user.ID, email);
-				sendUserVerify(user, pathAction, pathDisable);
+				sendUserVerify(user);
 			});
 		}
 

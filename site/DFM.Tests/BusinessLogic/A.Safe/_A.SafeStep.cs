@@ -113,7 +113,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			};
 
 			var passwordForm = new PasswordForm(otherUser.Password, otherUser.Password);
-			Service.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, false, Defaults.CONFIG_LANGUAGE, null, null);
+			Service.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, false, Defaults.CONFIG_LANGUAGE);
 
 			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
 			Service.Safe.ActivateUser(tokenActivate);
@@ -127,7 +127,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				var passwordForm = new PasswordForm(password, retypePassword);
-				Service.Safe.SaveUserAndSendVerify(email, passwordForm, false, Defaults.CONFIG_LANGUAGE, null, null);
+				Service.Safe.SaveUserAndSendVerify(email, passwordForm, false, Defaults.CONFIG_LANGUAGE);
 			}
 			catch (DFMCoreException e)
 			{
@@ -188,7 +188,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.SendPasswordReset(email, null, null);
+				Service.Safe.SendPasswordReset(email);
 			}
 			catch (DFMCoreException e)
 			{
@@ -201,7 +201,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a token of password reset")]
 		public void GivenIPassATokenOfPasswordReset()
 		{
-			Service.Safe.SendPasswordReset(User.Email, null, null);
+			Service.Safe.SendPasswordReset(User.Email);
 
 			token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.PasswordReset);
 		}
@@ -256,7 +256,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I activate the user")]
 		public void GivenIActivateTheUser()
 		{
-			Service.Safe.SendUserVerify(email, null, null);
+			Service.Safe.SendUserVerify(email);
 
 			var tokenToActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
 
@@ -608,7 +608,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.UpdateEmail(currentPassword, newEmail, null, null);
+				Service.Safe.UpdateEmail(currentPassword, newEmail);
 			}
 			catch (DFMCoreException e)
 			{
@@ -661,13 +661,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I have a token for its activation")]
 		public void GivenIHaveATokenForItsActivation()
 		{
-			Service.Safe.SendUserVerify(email, null, null);
+			Service.Safe.SendUserVerify(email);
 		}
 
 		[Given(@"I have a token for its password reset")]
 		public void GivenIHaveATokenForItsPasswordReset()
 		{
-			Service.Safe.SendPasswordReset(email, null, null);
+			Service.Safe.SendPasswordReset(email);
 		}
 
 		[Given(@"I pass an invalid token")]
@@ -729,7 +729,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.SendUserVerify(email, null, null);
+				Service.Safe.SendUserVerify(email);
 			}
 			catch (DFMCoreException e)
 			{

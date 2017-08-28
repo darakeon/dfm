@@ -147,10 +147,7 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					var pathAction = Url.Action("UserVerification", "Tokens");
-					var pathDisable = Url.Action("Disable", "Tokens");
-					
-					safe.UpdateEmail(CurrentPassword, Email, pathAction, pathDisable);
+					safe.UpdateEmail(CurrentPassword, Email);
 					
 					ErrorAlert.Add("EmailUpdated");
 				}

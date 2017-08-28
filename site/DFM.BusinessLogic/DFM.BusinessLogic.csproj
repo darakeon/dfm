@@ -87,6 +87,7 @@
     <Compile Include="Services\BaseMoveSaverService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\MoneyService.cs" />
+    <Compile Include="Helpers\PathType.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\RobotService.cs" />
     <Compile Include="Services\SafeService.cs" />
