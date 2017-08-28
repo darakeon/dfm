@@ -181,15 +181,11 @@ public class MovesCreateActivity extends SmartActivity {
 
 		populateCategoryAndNature();
 
-        if (data.has("Move"))
+        if (data.has("Move") && !data.get("Move").equals(null))
         {
             JSONObject moveToEdit = data.getJSONObject("Move");
-
-            if (moveToEdit != null)
-            {
-                move.SetData(moveToEdit);
-                populateOldData(true);
-            }
+            move.SetData(moveToEdit);
+            populateOldData(true);
         }
     }
 	
