@@ -149,3 +149,13 @@ div#Advertising a
 
 
 
+/* Classes for JS */
+/* ReSharper disable DeclarationIsEmpty */
+.money { }
+.boundlessRadio { }
+.date_notHour { }
+.nature-select { }
+.detailLevel { }
+.suggest-name { }
+.suggest-url { }
+/* ReSharper restore DeclarationIsEmpty */
