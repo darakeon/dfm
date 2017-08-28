@@ -7,7 +7,6 @@ import android.view.Surface;
 import android.view.WindowManager;
 
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.stati.Internet;
 import com.dontflymoney.view.R;
 
 import org.apache.http.NameValuePair;

@@ -1,4 +1,4 @@
-package com.dontflymoney.layout;
+package com.dontflymoney.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.layout.MoveLine;
 import com.dontflymoney.view.R;
 import com.dontflymoney.viewhelper.DateTime;
 
@@ -43,13 +44,13 @@ public class MoveAdapter extends BaseAdapter
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	class Move
+	public class Move
 	{
-		String Description;
-		Calendar Date;
-		double Total;
-		Boolean Checked;
-		int ID;
+		public String Description;
+		public Calendar Date;
+		public double Total;
+		public Boolean Checked;
+		public int ID;
 
 		Move(JSONObject jsonObject) throws JSONException
 		{

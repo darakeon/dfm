@@ -1,4 +1,4 @@
-package com.dontflymoney.layout;
+package com.dontflymoney.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.dontflymoney.layout.AccountLine;
 import com.dontflymoney.view.R;
 
 import org.json.JSONArray;
@@ -35,11 +36,11 @@ public class AccountAdapter extends BaseAdapter
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	class Account
+	public class Account
 	{
-		String Name;
-		double Total;
-		String Url;
+		public String Name;
+		public double Total;
+		public String Url;
 
 		Account(JSONObject jsonObject) throws JSONException
 		{

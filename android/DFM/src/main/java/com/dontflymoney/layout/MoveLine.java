@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dontflymoney.adapters.MoveAdapter;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 

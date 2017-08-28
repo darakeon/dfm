@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dontflymoney.adapters.AccountAdapter;
 import com.dontflymoney.view.ExtractActivity;
 import com.dontflymoney.view.R;
 

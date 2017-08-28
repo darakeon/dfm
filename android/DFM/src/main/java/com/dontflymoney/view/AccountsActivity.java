@@ -8,7 +8,7 @@ import android.widget.ListView;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.layout.AccountAdapter;
+import com.dontflymoney.adapters.AccountAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

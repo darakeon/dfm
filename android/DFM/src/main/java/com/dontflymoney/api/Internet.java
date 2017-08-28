@@ -1,4 +1,4 @@
-package com.dontflymoney.stati;
+package com.dontflymoney.api;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

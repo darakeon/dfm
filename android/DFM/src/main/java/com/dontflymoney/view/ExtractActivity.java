@@ -15,7 +15,7 @@ import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.layout.MoveAdapter;
+import com.dontflymoney.adapters.MoveAdapter;
 import com.dontflymoney.layout.MoveLine;
 
 import org.json.JSONArray;
