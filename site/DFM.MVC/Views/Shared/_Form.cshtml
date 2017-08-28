@@ -3,10 +3,14 @@
 	String action = ViewBag.Action;
 	String controller = ViewBag.Controller;
 	object routeValues = ViewBag.RouteValues;
+
+	var formSize = ViewBag.FormSize ?? 4;
+	if (formSize % 2 == 1) { formSize++; }
+	var push = 6 - formSize / 2;
 }
 
 <div class="row move-down">
-	<div class="col-sm-4 col-sm-push-4">
+	<div class="col-sm-@(formSize) col-sm-push-@push">
 
 		<div class="panel panel-default">
 			<div class="panel-heading text-center">
