@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,6 +69,10 @@
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -124,67 +132,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Css\Forms.css" />
-    <Content Include="Assets\Css\General.css" />
-    <Content Include="Assets\Css\half-screen.css" />
-    <Content Include="Assets\Css\ieca.css" />
-    <Content Include="Assets\Css\Libraries\datepicker.css" />
-    <Content Include="Assets\Css\Menu.css" />
-    <Content Include="Assets\Css\modal.css" />
-    <Content Include="Assets\Css\MVC.css" />
-    <Content Include="Assets\Css\navigation.css" />
-    <Content Include="Assets\Css\Pages\analyse-dictionary.css" />
-    <Content Include="Assets\Css\Pages\move-create-edit-schedule.css" />
-    <Content Include="Assets\Css\Pages\user-index.css" />
-    <Content Include="Assets\Css\Table.css" />
-    <Content Include="Assets\Css\top-right-div.css" />
-    <Content Include="Assets\Css\two-columns.css" />
-    <Content Include="Assets\Image\advertising\darakeon.gif" />
-    <Content Include="Assets\Image\advertising\pea.jpg" />
-    <Content Include="Assets\Image\advertising\quero_um_bicho.gif" />
-    <Content Include="Assets\Image\android.gif" />
-    <Content Include="Assets\Image\clouds.gif" />
-    <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
-    <Content Include="Assets\Image\icons\check.gif" />
-    <Content Include="Assets\Image\icons\close.gif" />
-    <Content Include="Assets\Image\icons\delete.gif" />
-    <Content Include="Assets\Image\icons\edit.gif" />
-    <Content Include="Assets\Image\icons\green_sign.gif" />
-    <Content Include="Assets\Image\icons\home.gif" />
-    <Content Include="Assets\Image\icons\home_active.gif" />
-    <Content Include="Assets\Image\icons\icons_menu.png" />
-    <Content Include="Assets\Image\icons\logoff.gif" />
-    <Content Include="Assets\Image\icons\logoff_active.gif" />
-    <Content Include="Assets\Image\icons\red_sign.gif" />
-    <Content Include="Assets\Image\icons\reopen.gif" />
-    <Content Include="Assets\Image\icons\settings.gif" />
-    <Content Include="Assets\Image\icons\settings_active.gif" />
-    <Content Include="Assets\Image\icons\uncheck.gif" />
-    <Content Include="Assets\Image\icons\yellow_sign.gif" />
-    <Content Include="Assets\Image\logo.gif" />
-    <Content Include="Assets\Image\pig.gif" />
-    <Content Include="Assets\Image\pig.ico" />
-    <Content Include="Assets\Image\ptbr_apps_rgb_wo.jpg" />
-    <Content Include="Assets\Script\Ajax.js" />
-    <Content Include="Assets\Script\button-href.js" />
-    <Content Include="Assets\Script\Detail.js" />
-    <Content Include="Assets\Script\Forms.js" />
-    <Content Include="Assets\Script\image-link.js" />
-    <Content Include="Assets\Script\Libraries\jquery-1.6.2.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.maskedinput-1.3.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.maskMoney.0.2.js" />
-    <Content Include="Assets\Script\Libraries\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.validate.min.js" />
-    <Content Include="Assets\Script\Libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\Script\Libraries\sawpf.js" />
-    <Content Include="Assets\Script\Menu.js" />
-    <Content Include="Assets\Script\money-date.js" />
-    <Content Include="Assets\Script\Navigation.js" />
-    <Content Include="Assets\Script\Pages\account-create-edit.js" />
-    <Content Include="Assets\Script\Pages\move-create-edit-schedule.js" />
-    <Content Include="Assets\Script\Starter.js" />
-    <Content Include="Assets\Script\twitter.js" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.css" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.min.css" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap.css" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap.min.css" />
+    <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
+    <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
+    <None Include="Assets\Bootstrap\Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.js" />
+    <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-cyborg.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-sandstone.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-slate.min.css" />
+    <Content Include="Assets\Bootstrap\Themes\bootstrap-spacelab.min.css" />
+    <Content Include="Assets\Images\android.png" />
+    <Content Include="Assets\Images\pig.ico" />
+    <Content Include="Assets\Images\pig.png" />
+    <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg" />
+    <Content Include="Assets\Styles\default.css" />
+    <Content Include="Assets\Styles\twitter.css" />
+    <Content Include="Assets\Scripts\twitter.js" />
+    <Content Include="Assets\Styles\android.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="robots.txt" />
@@ -295,8 +264,6 @@
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleCss.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleJs.old" />
     <Content Include="Areas\Account\Views\Shared\NewCategoryBox.old" />
-    <Content Include="Assets\Image\icons\icons_source" />
-    <Content Include="Assets\Script\Libraries\jquery-ui-1.8.16.custom.zip" />
     <Content Include="Views\Accounts\CreateEdit.old" />
     <Content Include="Views\Accounts\Index.old" />
     <Content Include="Views\Accounts\ListClosed.old" />
@@ -332,7 +299,21 @@
     <Content Include="Areas\Account\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.css.map" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.min.css.map" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap.css.map" />
+    <Content Include="Assets\Bootstrap\Content\bootstrap.min.css.map" />
+    <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.map" />
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
+    <Content Include="Views\Shared\_Master.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <None Include="Views\Users\Index.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -393,6 +374,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

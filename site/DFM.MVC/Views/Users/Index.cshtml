@@ -1,0 +1,59 @@
+﻿@using DFM.Entities.Enums
+@using DK.Generic.Collection
+@model BaseModel
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary["Index_Welcome"];
+
+	var twitterTheme = 
+		(Model?.Theme.IsIn(BootstrapTheme.Cyborg, BootstrapTheme.Slate) ?? false)
+			? "dark" : "light";
+}
+
+@section Scripts {
+	<script src="/Assets/Scripts/twitter.js" type="text/javascript"></script>
+}
+
+@section Styles {
+	<link href="/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
+	<link href="/Assets/Styles/android.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="row">
+
+	<div class="col-sm-8">
+
+		<div class="panel panel-body">
+			<p>@MultiLanguage.Dictionary["Index_Introdution"]</p>
+
+			<p>
+				@Html.Raw(String.Format(
+					MultiLanguage.Dictionary["Index_Explanation"],
+					"<a href='" + Url.Action("SignUp", "Users") + "'>", "</a>"
+					))
+			</p>
+
+			<p>
+				@Html.Raw(String.Format(
+					MultiLanguage.Dictionary["Index_Close"],
+					"dfm@dontflymoney.com"
+					))
+			</p>
+		</div>
+
+	</div>
+
+	<div class="col-sm-4 text-right twitter">
+		<a class="twitter-timeline"
+		   href="https://twitter.com/dfm_grunt"
+		   width="300px" height="400px" target="_blank"
+		   data-widget-id="386678992192806915"
+		   data-theme="@twitterTheme">
+
+			Tweets by @("@dfm_grunt")
+		</a>
+	</div>
+
+</div>
+
+

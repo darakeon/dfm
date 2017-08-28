@@ -1,0 +1,12 @@
+﻿.android-link
+{
+	width: 70px;
+	height: 80px;
+	display: block;
+	background: url('../Images/android.png');
+}
+
+	.android-link:hover
+	{
+		background-position: 70px;
+	}

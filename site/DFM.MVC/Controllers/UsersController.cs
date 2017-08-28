@@ -12,7 +12,7 @@ namespace DFM.MVC.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			return View(new BaseModel());
 		}
 
 

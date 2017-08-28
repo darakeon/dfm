@@ -41,6 +41,7 @@
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Config+.cs" />
+    <Compile Include="Enums\BootstrapTheme.cs" />
     <Compile Include="Enums\TicketType.cs" />
     <Compile Include="Ticket+.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />

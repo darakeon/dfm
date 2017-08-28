@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using DFM.Authentication;
 using DFM.BusinessLogic.Services;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
@@ -20,5 +21,7 @@ namespace DFM.MVC.Models
 		public DateTime Today => Current.User?.Now().Date ?? DateTime.UtcNow;
 
 		public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
+
+		public BootstrapTheme Theme => BootstrapTheme.Cyborg;
 	}
 }
