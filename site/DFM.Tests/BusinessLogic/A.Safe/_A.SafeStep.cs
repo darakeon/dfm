@@ -817,14 +817,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		}
 
 		[Then(@"the contract status will be (not )?accepted")]
-		public void ThenTheContractStatusWillBeAccepted(Boolean not)
+		public void ThenTheContractStatusWillBeAccepted(Boolean expectAccepted)
 		{
 			if (!accepted.HasValue)
 			{
 				accepted = Service.Safe.IsLastContractAccepted();
             }
 
-			Assert.AreEqual(not, accepted);
+			Assert.AreEqual(expectAccepted, accepted);
 		}
 		#endregion Contract
 	}
