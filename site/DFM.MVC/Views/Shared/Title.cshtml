@@ -1,0 +1,24 @@
+﻿@using DFM.MVC.Areas.Account.Models
+@model BaseModel
+
+@{
+	var accountModel = Model as BaseAccountModel;
+
+	if (ViewBag.Title == null)
+	{
+		@("Don't fly Money");
+	}
+	else
+	{
+		var title = new List<String> {"DfM"};
+
+		if (accountModel != null)
+		{
+			title.Add(accountModel.Account.Name.ToUpper());
+		}
+
+		title.Add(ViewBag.Title);
+		
+		@String.Join(" - ", title)
+	}
+}

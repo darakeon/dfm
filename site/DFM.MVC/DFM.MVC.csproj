@@ -288,6 +288,7 @@
     <None Include="Views\Ops\Index.cshtml" />
     <None Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Shared\_Form.cshtml" />
+    <Content Include="Views\Shared\Title.cshtml" />
     <None Include="Views\Test\AnalyzeDictionary.cshtml" />
     <None Include="Views\Tokens\Disable.cshtml" />
     <None Include="Views\Tokens\Index.cshtml" />

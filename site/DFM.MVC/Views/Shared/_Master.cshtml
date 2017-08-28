@@ -1,33 +1,11 @@
 ﻿@using DFM.MVC.Areas.Account.Models
 @model BaseModel
 
-@{
-	var accountModel = Model as BaseAccountModel;
-
-	var title = new List<String>();
-
-	if (ViewBag.Title == null)
-	{
-		title.Add("Don't fly Money");
-	}
-	else
-	{
-		title.Add("DfM");
-
-		if (accountModel != null)
-		{
-			title.Add(accountModel.Account.Name.ToUpper());
-		}
-
-		title.Add(ViewBag.Title);
-	}
-}
-
 <!DOCTYPE html>
 
 <html>
 <head>
-	<title>@String.Join(" - ", title)</title>
+	<title>@Html.Partial("Title")</title>
 
 	<link rel="icon" href="/Assets/Images/pig.ico" />
 
