@@ -21,7 +21,9 @@ namespace DFM.Entities
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32? ValueCents { get; set; }
 
-        public virtual Category Category { get; set; }
+		public virtual Boolean Checked { get; set; }
+
+		public virtual Category Category { get; set; }
         public virtual Schedule Schedule { get; set; }
 
         public virtual IList<Detail> DetailList { get; set; }
@@ -29,11 +31,5 @@ namespace DFM.Entities
 
         public virtual Month In { get; set; }
         public virtual Month Out { get; set; }
-
-
-
-        
-
-
     }
 }

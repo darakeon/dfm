@@ -14,7 +14,7 @@ namespace DFM.Repositories.Mappings
                 .Unique();
 
             mapping.Map(t => t.Active)
-                .Default("'1'");
+                .Default("1");
 
             mapping.Map(t => t.Expiration)
                 .Nullable();
