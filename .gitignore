@@ -25,6 +25,7 @@ android/**.iml
 android/gradlew
 android/gradlew.bat
 
+*/.vs/*
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
 ^(.*[\\/])?bin[\\/].*
