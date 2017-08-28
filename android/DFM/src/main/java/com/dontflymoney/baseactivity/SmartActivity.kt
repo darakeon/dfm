@@ -43,7 +43,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
     protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
-    protected var Authentication: Authentication = Authentication(this)
+    protected val Authentication: Authentication get() = Authentication(this)
 
     protected val form: Form get() = Form(this)
     val message: Message<T> get() = Message(this)
