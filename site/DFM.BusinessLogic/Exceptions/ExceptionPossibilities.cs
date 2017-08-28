@@ -68,8 +68,8 @@
 		InvalidYear = 801,
 		InvalidMonth = 802,
 
-		LanguageUnkown = 901,
-		TimezoneUnkown = 902,
+		LanguageUnknown = 901,
+		TimezoneUnknown = 902,
 	}
 
 }

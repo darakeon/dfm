@@ -261,10 +261,10 @@ namespace DFM.BusinessLogic.Services
 			var config = Parent.Current.User.Config;
 
 			if (!String.IsNullOrEmpty(mainConfig.Language) && !PlainText.AcceptedLanguage().Contains(mainConfig.Language.ToLower()))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnkown);
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnknown);
 
 			if (!String.IsNullOrEmpty(mainConfig.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(mainConfig.TimeZone))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnkown);
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnknown);
 
 			if (!String.IsNullOrEmpty(mainConfig.Language))
 				config.Language = mainConfig.Language;

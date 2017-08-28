@@ -74,6 +74,8 @@
 		<CategoriesDisabled text="Categories disabled" />
 		<MoveCheckDisabled text="Move check is disabled" />
 		<WrongPassword text="Wrong password for current user" />
+		<LanguageUnknown text="Unknown language"/>
+		<TimezoneUnknown text="Unknown timezone"/>
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -149,5 +151,7 @@
 		<CategoriesDisabled text="Uso de Categorias desabilitado" />
 		<MoveCheckDisabled text="A verificação de movimentação está desabilitada" />
 		<WrongPassword text="Senha errada para usuário atual" />
+		<LanguageUnknown text="Língua desconhecida"/>
+		<TimezoneUnknown text="Fuso horário desconhecido"/>
 	</pt-BR>
 </error>

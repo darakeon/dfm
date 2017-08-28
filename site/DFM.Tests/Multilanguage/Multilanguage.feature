@@ -106,6 +106,8 @@ Scenario: 04. Get translations of Errors
 		| Error   | InvalidMonth                   |
 		| Error   | InvalidSchedule                |
 		| Error   | DisabledSchedule               |
+		| Error   | LanguageUnknown                |
+		| Error   | TimezoneUnknown                |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
