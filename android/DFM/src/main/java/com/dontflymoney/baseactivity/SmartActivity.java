@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.language.Language;
@@ -41,7 +41,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected ResultHandler resultHandler;
 	protected License license;
 	
-	protected Request request;
+	protected InternalRequest request;
 
 	protected static boolean succeded = false;
 

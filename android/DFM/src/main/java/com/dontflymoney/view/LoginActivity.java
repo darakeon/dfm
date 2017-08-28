@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 
@@ -47,7 +47,7 @@ public class LoginActivity extends SmartActivity
 	
 	public void login(View view)
 	{
-		request = new Request(this, "Users/Login");
+		request = new InternalRequest(this, "Users/Login");
 		
 		request.AddParameter("email", form.getValue(R.id.email));
 		request.AddParameter("password", form.getValue(R.id.password));

@@ -6,7 +6,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dontflymoney.adapters.AccountAdapter;
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 
@@ -56,7 +56,7 @@ public class AccountsActivity extends SmartActivity
 
 	private void getAccounts()
 	{
-		request = new Request(this, "Accounts/List");
+		request = new InternalRequest(this, "Accounts/List");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Post();
 	}

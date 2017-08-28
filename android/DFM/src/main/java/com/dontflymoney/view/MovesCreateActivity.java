@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.entities.Nature;
@@ -159,7 +159,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	private void populateScreen()
 	{
-		request = new Request(this, "Moves/Create");
+		request = new InternalRequest(this, "Moves/Create");
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accountUrl", getIntent().getStringExtra("accountUrl"));
 		request.AddParameter("id", getIntent().getIntExtra("id", 0));
@@ -495,7 +495,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	public void save(View view)
 	{
-		request = new Request(this, "Moves/Create");
+		request = new InternalRequest(this, "Moves/Create");
 
 		request.AddParameter("ticket", Authentication.Get());
 		move.setParameters(request);

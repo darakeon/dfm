@@ -1,6 +1,6 @@
 package com.dontflymoney.entities;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.viewhelper.DateTime;
 
 import org.json.JSONArray;
@@ -92,7 +92,7 @@ public class Move
 		return Date.get(Calendar.YEAR);
 	}
 
-	public void setParameters(Request request)
+	public void setParameters(InternalRequest request)
 	{
 		request.AddParameter("ID", Id);
 		request.AddParameter("Description", Description);

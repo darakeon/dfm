@@ -3,11 +3,13 @@ package com.dontflymoney.baseactivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.view.LoginActivity;
 import com.dontflymoney.view.SettingsActivity;
+
+import org.json.JSONException;
 
 public class Navigation
 {
@@ -47,7 +49,7 @@ public class Navigation
 
 	void logout()
 	{
-		Request request = new Request(activity, "Users/Logout");
+		InternalRequest request = new InternalRequest(activity, "Users/Logout");
 		request.AddParameter("ticket", authentication.Get());
 		boolean tryResult = request.Post(Step.Logout);
 

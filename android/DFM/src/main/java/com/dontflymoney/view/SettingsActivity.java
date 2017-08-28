@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 
@@ -53,14 +53,14 @@ public class SettingsActivity extends SmartActivity
 
 	private void getCurrentSettings()
 	{
-		request = new Request(this, "Users/GetConfig");
+		request = new InternalRequest(this, "Users/GetConfig");
 		request.AddParameter("ticket", Authentication.Get());
 		request.Get(Step.Populate);
 	}
 	
 	public void saveSettings(View view)
 	{
-		request = new Request(this, "Users/SaveConfig");
+		request = new InternalRequest(this, "Users/SaveConfig");
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("UseCategories", useCategoriesField.isChecked());
 		request.AddParameter("MoveCheck", moveCheckField.isChecked());

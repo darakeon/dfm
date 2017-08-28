@@ -6,48 +6,37 @@ import android.content.res.Configuration;
 import android.view.Surface;
 import android.view.WindowManager;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.view.R;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
-public class Request
+public class InternalRequest
 {
-	private String site;
-
 	public SmartActivity activity;
 	private String url;
 	private HashMap<String, Object> parameters;
 
+	private JsonObjectRequest jsonRequest;
+
 	private ProgressDialog progress;
-	private SiteConnector connector;
 
 
-	public Request(SmartActivity activity, String url)
+
+	public InternalRequest(SmartActivity activity, String url)
 	{
 		this.activity = activity;
 		this.url = url;
 		this.parameters = new HashMap<>();
-
-		setMainUrl();
-	}
-
-	private void setMainUrl()
-	{
-		site = Site.GetProtocol() + "://" + Site.Domain + "/Api";
 	}
 
 
@@ -57,71 +46,93 @@ public class Request
 	}
 
 
+
 	public void Post()
 	{
 		Post(Step.NoSteps);
 	}
 
-	public boolean Post(Step step)
+	public boolean Post(final Step step)
 	{
-		if (isOffline())
-		{
-			String error = activity.getString(R.string.u_r_offline);
-			activity.HandlePostError(error, step);
-			return false;
-		}
-
-		String completeUrl = getUrl();
-		HttpPost post = new HttpPost(completeUrl);
-		List<NameValuePair> nameValuePairs = getParameters();
-
-		try
-		{
-			post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-		} catch (UnsupportedEncodingException e)
-		{
-			String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
-			activity.HandlePostError(error, step);
-			return false;
-		}
-
-		connector = new SiteConnector(post, this, step);
-		connector.execute();
-
-		startUIWait();
-
+		makeRequest(step, Request.Method.POST);
 		return true;
 	}
 
-
-	public void Get(Step step)
+	public void Get(final Step step)
 	{
-		if (isOffline())
+		makeRequest(step, Request.Method.GET);
+	}
+
+	private void makeRequest(final Step step, int method)
+	{
+		if (Internet.isOffline(activity))
 		{
 			String error = activity.getString(R.string.u_r_offline);
 			activity.HandlePostError(error, step);
 			return;
 		}
 
+		JSONObject parameters = getParameters(step);
+
+		if (parameters == null)
+			return;
+
 		String completeUrl = getUrl();
-		HttpGet get = new HttpGet(completeUrl);
 
-		connector = new SiteConnector(get, this, step);
+		jsonRequest = new JsonObjectRequest(method, completeUrl, parameters, new Response.Listener<JSONObject>()
+		{
+			@Override
+			public void onResponse(JSONObject response)
+			{
+				handleResponse(response, step);
+			}
+		}, new Response.ErrorListener()
+		{
+			@Override
+			public void onErrorResponse(VolleyError error)
+			{
+				handleError(error, step);
+			}
+		});
 
-		connector.execute();
+		Volley.newRequestQueue(activity).add(jsonRequest);
 
 		startUIWait();
 	}
 
 
-	private boolean isOffline()
+
+	private JSONObject getParameters(Step step)
 	{
-		return Internet.isOffline(activity);
+		JSONObject jsonParameters = new JSONObject();
+
+		for (Map.Entry<String, Object> parameter : parameters.entrySet())
+		{
+			Object rawValue = parameter.getValue();
+
+			if (rawValue != null)
+			{
+				String key = parameter.getKey();
+				String value = rawValue.toString();
+
+				try
+				{
+					jsonParameters.put(key, value);
+				}
+				catch (JSONException e)
+				{
+					handleError(e, step);
+					return null;
+				}
+			}
+		}
+
+		return jsonParameters;
 	}
 
 	private String getUrl()
 	{
-		String completeUrl = site;
+		String completeUrl = Site.GetProtocol() + "://" + Site.Domain + "/Api";
 
 		if (parameters.containsKey("ticket"))
 		{
@@ -146,76 +157,58 @@ public class Request
 		return completeUrl;
 	}
 
-	private List<NameValuePair> getParameters()
+
+
+	private void handleResponse(JSONObject response, Step step)
 	{
-		List<NameValuePair> nameValuePairs = new ArrayList<>();
-
-		for (Map.Entry<String, Object> parameter : parameters.entrySet())
-		{
-			Object rawValue = parameter.getValue();
-
-			if (rawValue != null)
-			{
-				String key = parameter.getKey();
-				String value = rawValue.toString();
-
-				BasicNameValuePair pair = new BasicNameValuePair(key, value);
-
-				nameValuePairs.add(pair);
-			}
-		}
-
-		return nameValuePairs;
-	}
-
-
-	void HandleResponse(String json, String errorMessage, Step step)
-	{
-		Response response;
-
-		if (errorMessage != null)
-		{
-			response = new Response(errorMessage);
-		}
-		else
-		{
-			while (json.startsWith("\n") || json.startsWith("\r"))
-			{
-				json = json.substring(1);
-			}
-
-			if (json.startsWith("<"))
-			{
-				response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
-			} else
-			{
-				try
-				{
-					response = new Response(new JSONObject(json));
-				} catch (JSONException e)
-				{
-					response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
-				}
-			}
-		}
+		InternalResponse internalResponse = new InternalResponse(response);
 
 		endUIWait();
 
 		if (step == Step.Logout)
 			return;
 
-		if (response.IsSuccess())
-			activity.HandlePostResult(response.GetResult(), step);
-		else
-			activity.HandlePostError(response.GetError(), step);
+		handleResponse(internalResponse, step);
 	}
+
+	private void handleError(JSONException e, Step step)
+	{
+		InternalResponse response = new InternalResponse(
+				activity.getString(R.string.error_convert_result)
+						+ ": [json] " + e.getMessage()
+		);
+
+		handleResponse(response, step);
+	}
+
+	private void handleError(Exception e, Step step)
+	{
+		InternalResponse response = new InternalResponse(
+				activity.getString(R.string.error_contact_url)
+						+ ": " + this.url
+						+ "\r\n " + e.getMessage()
+		);
+
+		handleResponse(response, step);
+	}
+
+	private void handleResponse(InternalResponse internalResponse, Step step)
+	{
+		if (internalResponse.IsSuccess())
+			activity.HandlePostResult(internalResponse.GetResult(), step);
+		else
+			activity.HandlePostError(internalResponse.GetError(), step);
+	}
+
 
 
 	public void Cancel()
 	{
 		endUIWait();
-		connector.cancel(true);
+		jsonRequest.cancel();
 	}
+
+
 
 
 	private void startUIWait()

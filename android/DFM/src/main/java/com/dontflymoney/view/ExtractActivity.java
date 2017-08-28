@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dontflymoney.adapters.MoveAdapter;
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
@@ -154,7 +154,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 	private void getExtract()
 	{
-		request = new Request(this, "Moves/Extract");
+		request = new InternalRequest(this, "Moves/Extract");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accountUrl", accountUrl);
@@ -303,7 +303,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 	private void submitMoveAction(String action)
 	{
-		request = new Request(this, "Moves/" + action);
+		request = new InternalRequest(this, "Moves/" + action);
 
 		MoveLine view = (MoveLine) clickedView;
 

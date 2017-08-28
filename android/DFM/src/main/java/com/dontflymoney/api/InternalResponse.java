@@ -2,17 +2,17 @@ package com.dontflymoney.api;
 
 import org.json.JSONObject;
 
-class Response
+class InternalResponse
 {
 	private JSONObject result;
 	private String error;
 
-	Response(JSONObject result)
+	InternalResponse(JSONObject result)
 	{
 		this.result = result;
 	}
 
-	Response(String error)
+	InternalResponse(String error)
 	{
 		this.error = error;
 	}

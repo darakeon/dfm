@@ -8,7 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dontflymoney.adapters.YearAdapter;
-import com.dontflymoney.api.Request;
+import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 
@@ -140,7 +140,7 @@ public class SummaryActivity extends SmartActivity
 	{
 		String accountUrl = getIntent().getStringExtra("accountUrl");
 		
-		request = new Request(this, "Moves/Summary");
+		request = new InternalRequest(this, "Moves/Summary");
 		
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accountUrl", accountUrl);
