@@ -136,5 +136,10 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
+		public Boolean VerifyPassword(User user, String password)
+		{
+			return user.Password == encrypt(password);
+		}
+
 	}
 }

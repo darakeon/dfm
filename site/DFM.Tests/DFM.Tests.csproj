@@ -37,6 +37,11 @@
     <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\l.ChangePassword.feature.cs">
+      <DependentUpon>l.ChangePassword.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\j.DisableTicket.feature.cs">
       <DependentUpon>j.DisableTicket.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -236,6 +241,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="BusinessLogic\A.Safe\l.ChangePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>l.ChangePassword.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

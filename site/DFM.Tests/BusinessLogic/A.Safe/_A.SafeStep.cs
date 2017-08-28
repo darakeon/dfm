@@ -55,6 +55,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			set { Set("NewPassword", value); }
 		}
 
+		private static String currentPassword
+		{
+			get { return Get<String>("CurrentPassword"); }
+			set { Set("CurrentPassword", value); }
+		}
+
 		private static String token
 		{
 			get { return Get<String>("Token"); }
@@ -325,6 +331,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			newPassword = passwordData.Rows[0]["Password"];
 			retypePassword = passwordData.Rows[0]["Retype Password"];
+
+			if (passwordData.Header.Any(c => c == "Current Password"))
+				currentPassword = passwordData.Rows[0]["Current Password"];
 		}
 
 		[Given(@"I pass no password")]
@@ -519,6 +528,22 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 		#endregion
+
+		#region ChangePassword
+		[When(@"I try to change the password")]
+		public void WhenITryToChangeThePassword()
+		{
+			try
+			{
+				var passwordForm = new PasswordForm(newPassword, retypePassword);
+				SA.Safe.ChangePassword(currentPassword, passwordForm);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+		#endregion ChangePassword
 
 
 
