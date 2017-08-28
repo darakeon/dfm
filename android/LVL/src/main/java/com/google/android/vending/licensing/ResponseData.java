@@ -16,14 +16,15 @@
 
 package com.google.android.vending.licensing;
 
-import java.util.regex.Pattern;
-
 import android.text.TextUtils;
+
+import java.util.regex.Pattern;
 
 /**
  * ResponseData from licensing server.
  */
-public class ResponseData {
+public class ResponseData
+{
 
     public int responseCode;
     public int nonce;
@@ -31,30 +32,36 @@ public class ResponseData {
     public String versionCode;
     public String userId;
     public long timestamp;
-    /** Response-specific data. */
+    /**
+     * Response-specific data.
+     */
     public String extra;
 
     /**
      * Parses response string into ResponseData.
      *
      * @param responseData response data string
-     * @throws IllegalArgumentException upon parsing error
      * @return ResponseData object
+     * @throws IllegalArgumentException upon parsing error
      */
-    public static ResponseData parse(String responseData) {
+    public static ResponseData parse(String responseData)
+    {
         // Must parse out main response data and response-specific data.
-    	int index = responseData.indexOf(':');
-    	String mainData, extraData;
-    	if ( -1 == index ) {
-    		mainData = responseData;
-    		extraData = "";
-    	} else {
-    		mainData = responseData.substring(0, index);
-    		extraData = index >= responseData.length() ? "" : responseData.substring(index+1);
-    	}
+        int index = responseData.indexOf(':');
+        String mainData, extraData;
+        if (-1 == index)
+        {
+            mainData = responseData;
+            extraData = "";
+        } else
+        {
+            mainData = responseData.substring(0, index);
+            extraData = index >= responseData.length() ? "" : responseData.substring(index + 1);
+        }
 
-        String [] fields = TextUtils.split(mainData, Pattern.quote("|"));
-        if (fields.length < 6) {
+        String[] fields = TextUtils.split(mainData, Pattern.quote("|"));
+        if (fields.length < 6)
+        {
             throw new IllegalArgumentException("Wrong number of fields.");
         }
 
@@ -72,8 +79,9 @@ public class ResponseData {
     }
 
     @Override
-    public String toString() {
-        return TextUtils.join("|", new Object [] { responseCode, nonce, packageName, versionCode,
-            userId, timestamp });
+    public String toString()
+    {
+        return TextUtils.join("|", new Object[]{responseCode, nonce, packageName, versionCode,
+                userId, timestamp});
     }
 }

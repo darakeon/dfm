@@ -24,9 +24,11 @@ package com.google.android.vending.licensing;
  * by multiple users using the same license (signing in to Market as the same
  * user), we recommend you use this implementation.
  */
-public class NullDeviceLimiter implements DeviceLimiter {
+public class NullDeviceLimiter implements DeviceLimiter
+{
 
-    public int isDeviceAllowed(String userId) {
+    public int isDeviceAllowed(String userId)
+    {
         return Policy.LICENSED;
     }
 }

@@ -20,7 +20,8 @@ package com.google.android.vending.licensing;
  * Policy used by {@link LicenseChecker} to determine whether a user should have
  * access to the application.
  */
-public interface Policy {
+public interface Policy
+{
 
     /**
      * Change these values to make it more difficult for tools to automatically
@@ -46,9 +47,9 @@ public interface Policy {
      * Provide results from contact with the license server. Retry counts are
      * incremented if the current value of response is RETRY. Results will be
      * used for any future policy decisions.
-     * 
+     *
      * @param response the result from validating the server response
-     * @param rawData the raw server response data, can be null for RETRY
+     * @param rawData  the raw server response data, can be null for RETRY
      */
     void processServerResponse(int response, ResponseData rawData);
 

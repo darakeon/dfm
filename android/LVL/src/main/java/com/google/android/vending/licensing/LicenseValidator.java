@@ -16,11 +16,11 @@
 
 package com.google.android.vending.licensing;
 
-import com.google.android.vending.licensing.util.Base64;
-import com.google.android.vending.licensing.util.Base64DecoderException;
-
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.google.android.vending.licensing.util.Base64;
+import com.google.android.vending.licensing.util.Base64DecoderException;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -32,7 +32,8 @@ import java.security.SignatureException;
  * Contains data related to a licensing request and methods to verify
  * and process the response.
  */
-class LicenseValidator {
+class LicenseValidator
+{
     private static final String TAG = "LicenseValidator";
 
     // Server response codes.
@@ -55,7 +56,8 @@ class LicenseValidator {
     private final DeviceLimiter mDeviceLimiter;
 
     LicenseValidator(Policy policy, DeviceLimiter deviceLimiter, LicenseCheckerCallback callback,
-             int nonce, String packageName, String versionCode) {
+                     int nonce, String packageName, String versionCode)
+    {
         mPolicy = policy;
         mDeviceLimiter = deviceLimiter;
         mCallback = callback;
@@ -64,15 +66,18 @@ class LicenseValidator {
         mVersionCode = versionCode;
     }
 
-    public LicenseCheckerCallback getCallback() {
+    public LicenseCheckerCallback getCallback()
+    {
         return mCallback;
     }
 
-    public int getNonce() {
+    public int getNonce()
+    {
         return mNonce;
     }
 
-    public String getPackageName() {
+    public String getPackageName()
+    {
         return mPackageName;
     }
 
@@ -81,70 +86,84 @@ class LicenseValidator {
     /**
      * Verifies the response from server and calls appropriate callback method.
      *
-     * @param publicKey public key associated with the developer account
+     * @param publicKey    public key associated with the developer account
      * @param responseCode server response code
-     * @param signedData signed data from server
-     * @param signature server signature
+     * @param signedData   signed data from server
+     * @param signature    server signature
      */
-    public void verify(PublicKey publicKey, int responseCode, String signedData, String signature) {
+    public void verify(PublicKey publicKey, int responseCode, String signedData, String signature)
+    {
         String userId = null;
         // Skip signature check for unsuccessful requests
         ResponseData data = null;
         if (responseCode == LICENSED || responseCode == NOT_LICENSED ||
-                responseCode == LICENSED_OLD_KEY) {
+                responseCode == LICENSED_OLD_KEY)
+        {
             // Verify signature.
-            try {
+            try
+            {
                 Signature sig = Signature.getInstance(SIGNATURE_ALGORITHM);
                 sig.initVerify(publicKey);
                 sig.update(signedData.getBytes());
 
-                if (!sig.verify(Base64.decode(signature))) {
+                if (!sig.verify(Base64.decode(signature)))
+                {
                     Log.e(TAG, "Signature verification failed.");
                     handleInvalidResponse();
                     return;
                 }
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NoSuchAlgorithmException e)
+            {
                 // This can't happen on an Android compatible device.
                 throw new RuntimeException(e);
-            } catch (InvalidKeyException e) {
+            } catch (InvalidKeyException e)
+            {
                 handleApplicationError(LicenseCheckerCallback.ERROR_INVALID_PUBLIC_KEY);
                 return;
-            } catch (SignatureException e) {
+            } catch (SignatureException e)
+            {
                 throw new RuntimeException(e);
-            } catch (Base64DecoderException e) {
+            } catch (Base64DecoderException e)
+            {
                 Log.e(TAG, "Could not Base64-decode signature.");
                 handleInvalidResponse();
                 return;
             }
 
             // Parse and validate response.
-            try {
+            try
+            {
                 data = ResponseData.parse(signedData);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e)
+            {
                 Log.e(TAG, "Could not parse response.");
                 handleInvalidResponse();
                 return;
             }
 
-            if (data.responseCode != responseCode) {
+            if (data.responseCode != responseCode)
+            {
                 Log.e(TAG, "Response codes don't match.");
                 handleInvalidResponse();
                 return;
             }
 
-            if (data.nonce != mNonce) {
+            if (data.nonce != mNonce)
+            {
                 Log.e(TAG, "Nonce doesn't match.");
                 handleInvalidResponse();
                 return;
             }
 
-            if (!data.packageName.equals(mPackageName)) {
+            if (!data.packageName.equals(mPackageName))
+            {
                 Log.e(TAG, "Package name doesn't match.");
                 handleInvalidResponse();
                 return;
             }
 
-            if (!data.versionCode.equals(mVersionCode)) {
+            if (!data.versionCode.equals(mVersionCode))
+            {
                 Log.e(TAG, "Version codes don't match.");
                 handleInvalidResponse();
                 return;
@@ -152,14 +171,16 @@ class LicenseValidator {
 
             // Application-specific user identifier.
             userId = data.userId;
-            if (TextUtils.isEmpty(userId)) {
+            if (TextUtils.isEmpty(userId))
+            {
                 Log.e(TAG, "User identifier is empty.");
                 handleInvalidResponse();
                 return;
             }
         }
 
-        switch (responseCode) {
+        switch (responseCode)
+        {
             case LICENSED:
             case LICENSED_OLD_KEY:
                 int limiterResponse = mDeviceLimiter.isDeviceAllowed(userId);
@@ -201,24 +222,29 @@ class LicenseValidator {
      * @param response
      * @param rawData
      */
-    private void handleResponse(int response, ResponseData rawData) {
+    private void handleResponse(int response, ResponseData rawData)
+    {
         // Update policy data and increment retry counter (if needed)
         mPolicy.processServerResponse(response, rawData);
 
         // Given everything we know, including cached data, ask the policy if we should grant
         // access.
-        if (mPolicy.allowAccess()) {
+        if (mPolicy.allowAccess())
+        {
             mCallback.allow(response);
-        } else {
+        } else
+        {
             mCallback.dontAllow(response);
         }
     }
 
-    private void handleApplicationError(int code) {
+    private void handleApplicationError(int code)
+    {
         mCallback.applicationError(code);
     }
 
-    private void handleInvalidResponse() {
+    private void handleInvalidResponse()
+    {
         mCallback.dontAllow(Policy.NOT_LICENSED);
     }
 }

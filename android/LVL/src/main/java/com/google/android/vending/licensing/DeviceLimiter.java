@@ -35,7 +35,8 @@ package com.google.android.vending.licensing;
  * changing phones. This will catch egregious violations of multiple people
  * sharing one license.
  */
-public interface DeviceLimiter {
+public interface DeviceLimiter
+{
 
     /**
      * Checks if this device is allowed to use the given user's license.

@@ -29,11 +29,13 @@ package com.google.android.vending.licensing;
  * Access to the application is only allowed if a LICESNED response is.
  * received. All other responses (including RETRY) will deny access.
  */
-public class StrictPolicy implements Policy {
+public class StrictPolicy implements Policy
+{
 
     private int mLastResponse;
 
-    public StrictPolicy() {
+    public StrictPolicy()
+    {
         // Set default policy. This will force the application to check the policy on launch.
         mLastResponse = Policy.RETRY;
     }
@@ -44,19 +46,21 @@ public class StrictPolicy implements Policy {
      * Any ResponseData provided is ignored.
      *
      * @param response the result from validating the server response
-     * @param rawData the raw server response data
+     * @param rawData  the raw server response data
      */
-    public void processServerResponse(int response, ResponseData rawData) {
+    public void processServerResponse(int response, ResponseData rawData)
+    {
         mLastResponse = response;
     }
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * This implementation allows access if and only if a LICENSED response
      * was received the last time the server was contacted.
      */
-    public boolean allowAccess() {
+    public boolean allowAccess()
+    {
         return (mLastResponse == Policy.LICENSED);
     }
 

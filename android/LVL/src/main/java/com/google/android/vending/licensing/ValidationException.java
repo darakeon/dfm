@@ -20,13 +20,16 @@ package com.google.android.vending.licensing;
  * Indicates that an error occurred while validating the integrity of data managed by an
  * {@link Obfuscator}.}
  */
-public class ValidationException extends Exception {
-    public ValidationException() {
-      super();
+public class ValidationException extends Exception
+{
+    public ValidationException()
+    {
+        super();
     }
 
-    public ValidationException(String s) {
-      super(s);
+    public ValidationException(String s)
+    {
+        super(s);
     }
 
     private static final long serialVersionUID = 1L;

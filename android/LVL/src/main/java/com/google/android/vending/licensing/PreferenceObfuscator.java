@@ -22,7 +22,8 @@ import android.util.Log;
 /**
  * An wrapper for SharedPreferences that transparently performs data obfuscation.
  */
-public class PreferenceObfuscator {
+public class PreferenceObfuscator
+{
 
     private static final String TAG = "PreferenceObfuscator";
 
@@ -34,42 +35,52 @@ public class PreferenceObfuscator {
      * Constructor.
      *
      * @param sp A SharedPreferences instance provided by the system.
-     * @param o The Obfuscator to use when reading or writing data.
+     * @param o  The Obfuscator to use when reading or writing data.
      */
-    public PreferenceObfuscator(SharedPreferences sp, Obfuscator o) {
+    public PreferenceObfuscator(SharedPreferences sp, Obfuscator o)
+    {
         mPreferences = sp;
         mObfuscator = o;
         mEditor = null;
     }
 
-    public void putString(String key, String value) {
-        if (mEditor == null) {
+    public void putString(String key, String value)
+    {
+        if (mEditor == null)
+        {
             mEditor = mPreferences.edit();
         }
         String obfuscatedValue = mObfuscator.obfuscate(value, key);
         mEditor.putString(key, obfuscatedValue);
     }
 
-    public String getString(String key, String defValue) {
+    public String getString(String key, String defValue)
+    {
         String result;
         String value = mPreferences.getString(key, null);
-        if (value != null) {
-            try {
+        if (value != null)
+        {
+            try
+            {
                 result = mObfuscator.unobfuscate(value, key);
-            } catch (ValidationException e) {
+            } catch (ValidationException e)
+            {
                 // Unable to unobfuscate, data corrupt or tampered
                 Log.w(TAG, "Validation error while reading preference: " + key);
                 result = defValue;
             }
-        } else {
+        } else
+        {
             // Preference not found
             result = defValue;
         }
         return result;
     }
 
-    public void commit() {
-        if (mEditor != null) {
+    public void commit()
+    {
+        if (mEditor != null)
+        {
             mEditor.commit();
             mEditor = null;
         }

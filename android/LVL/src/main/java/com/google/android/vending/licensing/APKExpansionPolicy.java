@@ -17,12 +17,12 @@ package com.google.android.vending.licensing;
  * limitations under the License.
  */
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -46,7 +46,8 @@ import java.util.Vector;
  * Developers who need more fine grained control over their application's
  * licensing policy should implement a custom Policy.
  */
-public class APKExpansionPolicy implements Policy {
+public class APKExpansionPolicy implements Policy
+{
 
     private static final String TAG = "APKExpansionPolicy";
     private static final String PREFS_FILE = "com.android.vending.licensing.APKExpansionPolicy";
@@ -82,10 +83,11 @@ public class APKExpansionPolicy implements Policy {
     public static final int PATCH_FILE_URL_INDEX = 1;
 
     /**
-     * @param context The context for the current application
+     * @param context    The context for the current application
      * @param obfuscator An obfuscator to be used with preferences.
      */
-    public APKExpansionPolicy(Context context, Obfuscator obfuscator) {
+    public APKExpansionPolicy(Context context, Obfuscator obfuscator)
+    {
         // Import old values
         SharedPreferences sp = context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mPreferences = new PreferenceObfuscator(sp, obfuscator);
@@ -102,7 +104,8 @@ public class APKExpansionPolicy implements Policy {
      * We call this to guarantee that we fetch a fresh policy from the server.
      * This is to be used if the URL is invalid.
      */
-    public void resetPolicy() {
+    public void resetPolicy()
+    {
         mPreferences.putString(PREF_LAST_RESPONSE, Integer.toString(Policy.RETRY));
         setRetryUntil(DEFAULT_RETRY_UNTIL);
         setMaxRetries(DEFAULT_MAX_RETRIES);
@@ -122,45 +125,57 @@ public class APKExpansionPolicy implements Policy {
      * <li>GT: the timestamp that the client should ignore retry errors until
      * <li>GR: the number of retry errors that the client should ignore
      * </ul>
-     * 
+     *
      * @param response the result from validating the server response
-     * @param rawData the raw server response data
+     * @param rawData  the raw server response data
      */
     public void processServerResponse(int response,
-            com.google.android.vending.licensing.ResponseData rawData) {
+                                      com.google.android.vending.licensing.ResponseData rawData)
+    {
 
         // Update retry counter
-        if (response != Policy.RETRY) {
+        if (response != Policy.RETRY)
+        {
             setRetryCount(0);
-        } else {
+        } else
+        {
             setRetryCount(mRetryCount + 1);
         }
 
-        if (response == Policy.LICENSED) {
+        if (response == Policy.LICENSED)
+        {
             // Update server policy data
             Map<String, String> extras = decodeExtras(rawData.extra);
             mLastResponse = response;
             setValidityTimestamp(Long.toString(System.currentTimeMillis() + MILLIS_PER_MINUTE));
             Set<String> keys = extras.keySet();
-            for (String key : keys) {
-                if (key.equals("VT")) {
+            for (String key : keys)
+            {
+                if (key.equals("VT"))
+                {
                     setValidityTimestamp(extras.get(key));
-                } else if (key.equals("GT")) {
+                } else if (key.equals("GT"))
+                {
                     setRetryUntil(extras.get(key));
-                } else if (key.equals("GR")) {
+                } else if (key.equals("GR"))
+                {
                     setMaxRetries(extras.get(key));
-                } else if (key.startsWith("FILE_URL")) {
+                } else if (key.startsWith("FILE_URL"))
+                {
                     int index = Integer.parseInt(key.substring("FILE_URL".length())) - 1;
                     setExpansionURL(index, extras.get(key));
-                } else if (key.startsWith("FILE_NAME")) {
+                } else if (key.startsWith("FILE_NAME"))
+                {
                     int index = Integer.parseInt(key.substring("FILE_NAME".length())) - 1;
                     setExpansionFileName(index, extras.get(key));
-                } else if (key.startsWith("FILE_SIZE")) {
+                } else if (key.startsWith("FILE_SIZE"))
+                {
                     int index = Integer.parseInt(key.substring("FILE_SIZE".length())) - 1;
                     setExpansionFileSize(index, Long.parseLong(extras.get(key)));
                 }
             }
-        } else if (response == Policy.NOT_LICENSED) {
+        } else if (response == Policy.NOT_LICENSED)
+        {
             // Clear out stale policy data
             setValidityTimestamp(DEFAULT_VALIDITY_TIMESTAMP);
             setRetryUntil(DEFAULT_RETRY_UNTIL);
@@ -175,10 +190,11 @@ public class APKExpansionPolicy implements Policy {
      * Set the last license response received from the server and add to
      * preferences. You must manually call PreferenceObfuscator.commit() to
      * commit these changes to disk.
-     * 
+     *
      * @param l the response
      */
-    private void setLastResponse(int l) {
+    private void setLastResponse(int l)
+    {
         mLastResponseTime = System.currentTimeMillis();
         mLastResponse = l;
         mPreferences.putString(PREF_LAST_RESPONSE, Integer.toString(l));
@@ -187,15 +203,17 @@ public class APKExpansionPolicy implements Policy {
     /**
      * Set the current retry count and add to preferences. You must manually
      * call PreferenceObfuscator.commit() to commit these changes to disk.
-     * 
+     *
      * @param c the new retry count
      */
-    private void setRetryCount(long c) {
+    private void setRetryCount(long c)
+    {
         mRetryCount = c;
         mPreferences.putString(PREF_RETRY_COUNT, Long.toString(c));
     }
 
-    public long getRetryCount() {
+    public long getRetryCount()
+    {
         return mRetryCount;
     }
 
@@ -203,14 +221,17 @@ public class APKExpansionPolicy implements Policy {
      * Set the last validity timestamp (VT) received from the server and add to
      * preferences. You must manually call PreferenceObfuscator.commit() to
      * commit these changes to disk.
-     * 
+     *
      * @param validityTimestamp the VT string received
      */
-    private void setValidityTimestamp(String validityTimestamp) {
+    private void setValidityTimestamp(String validityTimestamp)
+    {
         Long lValidityTimestamp;
-        try {
+        try
+        {
             lValidityTimestamp = Long.parseLong(validityTimestamp);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             // No response or not parseable, expire in one minute.
             Log.w(TAG, "License validity timestamp (VT) missing, caching for a minute");
             lValidityTimestamp = System.currentTimeMillis() + MILLIS_PER_MINUTE;
@@ -221,7 +242,8 @@ public class APKExpansionPolicy implements Policy {
         mPreferences.putString(PREF_VALIDITY_TIMESTAMP, validityTimestamp);
     }
 
-    public long getValidityTimestamp() {
+    public long getValidityTimestamp()
+    {
         return mValidityTimestamp;
     }
 
@@ -229,14 +251,17 @@ public class APKExpansionPolicy implements Policy {
      * Set the retry until timestamp (GT) received from the server and add to
      * preferences. You must manually call PreferenceObfuscator.commit() to
      * commit these changes to disk.
-     * 
+     *
      * @param retryUntil the GT string received
      */
-    private void setRetryUntil(String retryUntil) {
+    private void setRetryUntil(String retryUntil)
+    {
         Long lRetryUntil;
-        try {
+        try
+        {
             lRetryUntil = Long.parseLong(retryUntil);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             // No response or not parseable, expire immediately
             Log.w(TAG, "License retry timestamp (GT) missing, grace period disabled");
             retryUntil = "0";
@@ -247,7 +272,8 @@ public class APKExpansionPolicy implements Policy {
         mPreferences.putString(PREF_RETRY_UNTIL, retryUntil);
     }
 
-    public long getRetryUntil() {
+    public long getRetryUntil()
+    {
         return mRetryUntil;
     }
 
@@ -255,14 +281,17 @@ public class APKExpansionPolicy implements Policy {
      * Set the max retries value (GR) as received from the server and add to
      * preferences. You must manually call PreferenceObfuscator.commit() to
      * commit these changes to disk.
-     * 
+     *
      * @param maxRetries the GR string received
      */
-    private void setMaxRetries(String maxRetries) {
+    private void setMaxRetries(String maxRetries)
+    {
         Long lMaxRetries;
-        try {
+        try
+        {
             lMaxRetries = Long.parseLong(maxRetries);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             // No response or not parseable, expire immediately
             Log.w(TAG, "Licence retry count (GR) missing, grace period disabled");
             maxRetries = "0";
@@ -273,7 +302,8 @@ public class APKExpansionPolicy implements Policy {
         mPreferences.putString(PREF_MAX_RETRIES, maxRetries);
     }
 
-    public long getMaxRetries() {
+    public long getMaxRetries()
+    {
         return mMaxRetries;
     }
 
@@ -281,10 +311,11 @@ public class APKExpansionPolicy implements Policy {
      * Gets the count of expansion URLs. Since expansionURLs are not committed
      * to preferences, this will return zero if there has been no LVL fetch
      * in the current session.
-     * 
+     *
      * @return the number of expansion URLs. (0,1,2)
      */
-    public int getExpansionURLCount() {
+    public int getExpansionURLCount()
+    {
         return mExpansionURLs.size();
     }
 
@@ -292,13 +323,15 @@ public class APKExpansionPolicy implements Policy {
      * Gets the expansion URL. Since these URLs are not committed to
      * preferences, this will always return null if there has not been an LVL
      * fetch in the current session.
-     * 
+     *
      * @param index the index of the URL to fetch. This value will be either
-     *            MAIN_FILE_URL_INDEX or PATCH_FILE_URL_INDEX
-     * @param URL the URL to set
+     *              MAIN_FILE_URL_INDEX or PATCH_FILE_URL_INDEX
+     * @param URL   the URL to set
      */
-    public String getExpansionURL(int index) {
-        if (index < mExpansionURLs.size()) {
+    public String getExpansionURL(int index)
+    {
+        if (index < mExpansionURLs.size())
+        {
             return mExpansionURLs.elementAt(index);
         }
         return null;
@@ -308,41 +341,51 @@ public class APKExpansionPolicy implements Policy {
      * Sets the expansion URL. Expansion URL's are not committed to preferences,
      * but are instead intended to be stored when the license response is
      * processed by the front-end.
-     * 
+     *
      * @param index the index of the expansion URL. This value will be either
-     *            MAIN_FILE_URL_INDEX or PATCH_FILE_URL_INDEX
-     * @param URL the URL to set
+     *              MAIN_FILE_URL_INDEX or PATCH_FILE_URL_INDEX
+     * @param URL   the URL to set
      */
-    public void setExpansionURL(int index, String URL) {
-        if (index >= mExpansionURLs.size()) {
+    public void setExpansionURL(int index, String URL)
+    {
+        if (index >= mExpansionURLs.size())
+        {
             mExpansionURLs.setSize(index + 1);
         }
         mExpansionURLs.set(index, URL);
     }
 
-    public String getExpansionFileName(int index) {
-        if (index < mExpansionFileNames.size()) {
+    public String getExpansionFileName(int index)
+    {
+        if (index < mExpansionFileNames.size())
+        {
             return mExpansionFileNames.elementAt(index);
         }
         return null;
     }
 
-    public void setExpansionFileName(int index, String name) {
-        if (index >= mExpansionFileNames.size()) {
+    public void setExpansionFileName(int index, String name)
+    {
+        if (index >= mExpansionFileNames.size())
+        {
             mExpansionFileNames.setSize(index + 1);
         }
         mExpansionFileNames.set(index, name);
     }
 
-    public long getExpansionFileSize(int index) {
-        if (index < mExpansionFileSizes.size()) {
+    public long getExpansionFileSize(int index)
+    {
+        if (index < mExpansionFileSizes.size())
+        {
             return mExpansionFileSizes.elementAt(index);
         }
         return -1;
     }
 
-    public void setExpansionFileSize(int index, long size) {
-        if (index >= mExpansionFileSizes.size()) {
+    public void setExpansionFileSize(int index, long size)
+    {
+        if (index >= mExpansionFileSizes.size())
+        {
             mExpansionFileSizes.setSize(index + 1);
         }
         mExpansionFileSizes.set(index, size);
@@ -356,17 +399,21 @@ public class APKExpansionPolicy implements Policy {
      * the RETRY count or in the RETRY period.
      * </ol>
      */
-    public boolean allowAccess() {
+    public boolean allowAccess()
+    {
         long ts = System.currentTimeMillis();
-        if (mLastResponse == Policy.LICENSED) {
+        if (mLastResponse == Policy.LICENSED)
+        {
             // Check if the LICENSED response occurred within the validity
             // timeout.
-            if (ts <= mValidityTimestamp) {
+            if (ts <= mValidityTimestamp)
+            {
                 // Cached LICENSED response is still valid.
                 return true;
             }
         } else if (mLastResponse == Policy.RETRY &&
-                ts < mLastResponseTime + MILLIS_PER_MINUTE) {
+                ts < mLastResponseTime + MILLIS_PER_MINUTE)
+        {
             // Only allow access if we are within the retry period or we haven't
             // used up our
             // max retries.
@@ -375,20 +422,25 @@ public class APKExpansionPolicy implements Policy {
         return false;
     }
 
-    private Map<String, String> decodeExtras(String extras) {
+    private Map<String, String> decodeExtras(String extras)
+    {
         Map<String, String> results = new HashMap<String, String>();
-        try {
+        try
+        {
             URI rawExtras = new URI("?" + extras);
             List<NameValuePair> extraList = URLEncodedUtils.parse(rawExtras, "UTF-8");
-            for (NameValuePair item : extraList) {
+            for (NameValuePair item : extraList)
+            {
                 String name = item.getName();
                 int i = 0;
-                while (results.containsKey(name)) {
+                while (results.containsKey(name))
+                {
                     name = item.getName() + ++i;
                 }
                 results.put(name, item.getValue());
             }
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException e)
+        {
             Log.w(TAG, "Invalid syntax error while decoding extras data from server.");
         }
         return results;
