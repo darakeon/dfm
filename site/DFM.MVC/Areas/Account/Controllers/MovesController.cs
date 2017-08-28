@@ -60,9 +60,30 @@ namespace DFM.MVC.Areas.Account.Controllers
             model.DeleteMove(id);
 
             return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
-        }
-        
+		}
 
 
-    }
+
+
+		public ActionResult Check(Int32 id)
+		{
+			var model = new MoneyModel();
+
+			model.ToggleMoveCheck(id, true);
+
+			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
+		}
+
+		public ActionResult Uncheck(Int32 id)
+		{
+			var model = new MoneyModel();
+
+			model.ToggleMoveCheck(id, false);
+
+			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
+		}
+
+
+
+	}
 }

@@ -20,75 +20,115 @@
 
 
 @if (!Model.MoveList.Any())
-{ 
-    <div class="zero-items">@MultiLanguage.Dictionary["NoMonthMoves"]</div>
+{
+	<div class="zero-items">@MultiLanguage.Dictionary["NoMonthMoves"]</div>
 }
 else
-{    
-    <table class="List">
+{
+	<table class="List">
 
-        <tr>
-            <th>@MultiLanguage.Dictionary["Description"]</th>
-            @if (Auth.Current.User.Config.UseCategories)
-            {
-                <th>@MultiLanguage.Dictionary["Category"]</th>
-            }
-            <th>@MultiLanguage.Dictionary["Date"]</th>
-            <th>@MultiLanguage.Dictionary["In"]</th>
-            <th>@MultiLanguage.Dictionary["Out"]</th>
-            <th class="todo-column" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
-        </tr>
+		<tr>
+			<th>@MultiLanguage.Dictionary["Description"]</th>
+			@if (Auth.Current.User.Config.UseCategories)
+			{
+				<th>@MultiLanguage.Dictionary["Category"]</th>
+			}
+			<th>@MultiLanguage.Dictionary["Date"]</th>
+			<th>@MultiLanguage.Dictionary["In"]</th>
+			<th>@MultiLanguage.Dictionary["Out"]</th>
+			<th>@MultiLanguage.Dictionary["Check"]</th>
+			<th class="todo-column" colspan="3">@MultiLanguage.Dictionary["TODO"]</th>
+		</tr>
 
-        @foreach (var move in Model.MoveList)
-        {
-            <tr>
-                <td>@move.GetDescriptionDetailed() </td>
-                @if (Auth.Current.User.Config.UseCategories)
-                {
-                    var categoryName =
-                        move.Category == null
-                            ? "---" : move.Category.Name;
-                    
-                    <td>@categoryName </td>
-                }
-                <td>@move.Date.ToShortDateString() </td>
+		@foreach (var move in Model.MoveList)
+		{
+			<tr>
+				<td>@move.GetDescriptionDetailed() </td>
+				@if (Auth.Current.User.Config.UseCategories)
+				{
+					var categoryName =
+						move.Category == null
+							? "---" : move.Category.Name;
 
-                <td class="numeric in">
-                    @if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
-                        {@move.Total().ToMoney(Model.Language)}
-                    else
-                        { @(" ") }
-                </td>
+					<td>@categoryName </td>
+				}
+				<td>@move.Date.ToShortDateString() </td>
 
-                <td class="numeric out">
-                    @if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
-                        {@move.Total().ToMoney(Model.Language)}
-                    else
-                        { @(" ") }
-                </td>
+				<td class="numeric in">
+					@if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
+					{
+						@move.Total().ToMoney(Model.Language)
+					}
+					else
+					{
+						@(" ")
+					}
+				</td>
 
-                @{
-                    var editLabel = MultiLanguage.Dictionary["Edit", "Move"];
-                    var editUrl = Url.Action("Edit", "Moves", new { id = move.ID });
+				<td class="numeric out">
+					@if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
+					{
+						@move.Total().ToMoney(Model.Language)
+					}
+					else
+					{
+						@(" ")
+					}
+				</td>
 
-                    var deleteLabel = MultiLanguage.Dictionary["Delete", "Move"];
-                    var deleteUrl = Url.Action("Delete", "Moves", new { id = move.ID });
-                    var deleteConfirm = String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
-                    }
+				@{
+					var checkedImage = move.Checked ? "green" : "red";
+					var checkedKey = move.Checked ? "Unchecked" : "Checked";
+					var checkedText = MultiLanguage.Dictionary[checkedKey];
+				}
 
-                <td class="image"><a href="@editUrl"><img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel" /></a></td>
+				<td class="image">
+					<img src="/Assets/image/icons/@(checkedImage)_sign.gif" alt="@checkedText" title="@checkedText" />
+				</td>
 
-                <td class="image">
-                    <a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
-                        <img src="/Assets/image/icons/delete.gif" alt="@deleteLabel" title="@deleteLabel" />
-                    </a>
-                </td>
-                
-            </tr>
 
-        } 
+				@{
+					var editLabel = MultiLanguage.Dictionary["Edit", "Move"];
+					var editUrl = Url.Action("Edit", "Moves", new { id = move.ID });
+				}
 
-    </table>
+				<td class="image">
+					<a href="@editUrl">
+						<img src="/Assets/image/icons/edit.gif" alt="@editLabel" title="@editLabel"/>
+					</a>
+				</td>
+
+
+				@{
+					var deleteLabel = MultiLanguage.Dictionary["Delete", "Move"];
+					var deleteUrl = Url.Action("Delete", "Moves", new { id = move.ID });
+					var deleteConfirm = String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed());
+				}
+
+				<td class="image">
+					<a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+						<img src="/Assets/image/icons/delete.gif" alt="@deleteLabel" title="@deleteLabel"/>
+					</a>
+				</td>
+
+
+				@{
+					var toggleCheck = move.Checked ? "Uncheck" : "Check";
+					var checkLabel = MultiLanguage.Dictionary[toggleCheck, "Move"];
+					var checkUrl = Url.Action(toggleCheck, "Moves", new { id = move.ID });
+				}
+
+				<td class="image">
+					<a href="@checkUrl">
+						<img src="/Assets/image/icons/@(toggleCheck.ToLower()).gif" alt="@checkLabel" title="@checkLabel"/>
+					</a>
+				</td>
+
+			</tr>
+
+		}
+
+	</table>
 }
 
 @Html.Partial("Total")

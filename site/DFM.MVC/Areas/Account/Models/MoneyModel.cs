@@ -38,9 +38,24 @@ namespace DFM.MVC.Areas.Account.Models
 
                 ReportUrl = (move.Out ?? move.In).Url();
             }
-        }
+		}
 
-        private static Move getMove(int id)
+		public void ToggleMoveCheck(int id, Boolean @checked)
+		{
+			try
+			{
+				var move = Money.ToggleMoveCheck(id, @checked);
+
+				ReportUrl = (move.Out ?? move.In).Url();
+			}
+			catch (DFMCoreException e)
+			{
+				ErrorAlert.Add(e.Type);
+			}
+		}
+
+
+		private static Move getMove(int id)
         {
             try
             {
@@ -53,7 +68,6 @@ namespace DFM.MVC.Areas.Account.Models
         }
 
         public Int32? ReportUrl;
-
     }
 
 }
