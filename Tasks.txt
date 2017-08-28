@@ -111,8 +111,8 @@ VERSÃO 3.0.0.0 (All new) - 20
 						Video do porquinho
 						Corrigir inserção duplicada de move no mobile
 						Corrigir edição de movimentação no mobile
-						Corrigir problema de cache na criação/edição de movimentação (conta/categoria)
 						Tema dark no android
+2017-03-27	2017-03-27	Corrigir problema de cache na criação/edição de movimentação (conta/categoria) - e outros caches loucos
 2017-03-27	2017-03-27	Corrigir edição de movimentação com schedule
 2017-03-26	2017-03-27	Mudar layouts de e-mail - light / dark
 2017-03-25	2017-03-26	Configuração de tema

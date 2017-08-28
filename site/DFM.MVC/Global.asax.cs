@@ -116,7 +116,7 @@ namespace DFM.MVC
 
 
 		// ReSharper disable InconsistentNaming
-		protected void Application_EndRequest(object sender, EventArgs e)
+		protected void Application_PostRequestHandlerExecute(object sender, EventArgs e)
 		// ReSharper restore InconsistentNaming
 		{
 			if (isAsset) return;
