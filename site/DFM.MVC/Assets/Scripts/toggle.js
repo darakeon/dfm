@@ -17,13 +17,18 @@
 	toggleFields($(".button-toggle.active"));
 });
 
-function toggleFields(obj) {
-	if (obj.length === 0)
+function toggleFields(list) {
+	if (list.length === 0)
 		return;
 
-	var isChecked = obj.is(":checked") || obj.is(".active");
-	var toEnableField = obj.data("to-enable");
-	var toDisableField = obj.data("to-disable");
-	$(toEnableField).attr("disabled", !isChecked);
-	$(toDisableField).attr("disabled", isChecked);
+	$(list).each(function () {
+		var obj = $(this);
+
+		var isChecked = obj.is(":checked") || obj.is(".active");
+		var toEnableField = obj.data("to-enable");
+		var toDisableField = obj.data("to-disable");
+		$(toEnableField).attr("disabled", !isChecked);
+		$(toDisableField).attr("disabled", isChecked);
+	});
+
 }
