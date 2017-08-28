@@ -50,6 +50,8 @@
 		MoveDetailAmountRequired = 512,
 		MoveDetailValueRequired = 513,
 		InvalidDetail = 514,
+		MoveAlreadyChecked = 515,
+		MoveAlreadyUnchecked = 516,
 
 		ScheduleRequired = 601,
 		ScheduleFrequencyNotRecognized = 602,

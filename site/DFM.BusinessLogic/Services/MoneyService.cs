@@ -140,13 +140,22 @@ namespace DFM.BusinessLogic.Services
 
 
 		// ReSharper disable once UnusedParameter.Local
-		private void verifyMove(Move move)
+		private void verifyMove(Move move, Boolean? check = null)
 		{
 			if (move == null)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
 
 			if (move.User.Email != Parent.Current.User.Email)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+
+			if (check.HasValue && move.Checked == check.Value)
+			{
+				var error = move.Checked
+					? ExceptionPossibilities.MoveAlreadyChecked
+					: ExceptionPossibilities.MoveAlreadyUnchecked;
+
+				throw DFMCoreException.WithMessage(error);
+			}
 		}
 
 
@@ -165,7 +174,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = GetMoveById(moveId);
 
-			verifyMove(move);
+			verifyMove(move, @checked);
 
 			move.Checked = @checked;
 
