@@ -4,9 +4,6 @@
     <Amount text="Amount" />
     <JustOneValue text="Just one value" />
     <Detailed text="Detailed" />
-    <Daily text="Daily" />
-    <Monthly text="Monthly" />
-    <Yearly text="Yearly" />
     <Frequency text="Frequency" />
     <Boundless text="Boundless" />
     <Times text="times" />
@@ -19,9 +16,6 @@
     <Amount text="Qte" />
     <JustOneValue text="Valor único" />
     <Detailed text="Detalhado" />
-    <Daily text="Diária" />
-    <Monthly text="Mensal" />
-    <Yearly text="Anual" />
     <Frequency text="Frequência" />
     <Boundless text="Ilimitado" />
     <Times text="vezes" />

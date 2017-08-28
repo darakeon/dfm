@@ -357,10 +357,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Get translate of Interface (move)")]
-        public virtual void _05_GetTranslateOfInterfaceMove()
+        [NUnit.Framework.DescriptionAttribute("05. Get translate of Interface (moves)")]
+        public virtual void _05_GetTranslateOfInterfaceMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Get translate of Interface (move)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Get translate of Interface (moves)", ((string[])(null)));
 #line 107
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -368,73 +368,73 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Create"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Edit"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Move"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "DayNames"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Description"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "CharactersMax"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Date"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Category"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Select"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Create"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Category"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Nature"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "JustOneValue"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Detailed"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Add"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Detail"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Value"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "Amount"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "ToMove"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "MoveSave"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "MoveNotFound"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "MoveDeleted"});
             table6.AddRow(new string[] {
-                        "Move",
+                        "Moves",
                         "MoveDeletedWithoutEmail"});
 #line 108
  testRunner.Given("I have these keys", ((string)(null)), table6);
@@ -447,10 +447,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Get translate of Interface (report)")]
-        public virtual void _06_GetTranslateOfInterfaceReport()
+        [NUnit.Framework.DescriptionAttribute("06. Get translate of Interface (reports)")]
+        public virtual void _06_GetTranslateOfInterfaceReports()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Get translate of Interface (report)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Get translate of Interface (reports)", ((string[])(null)));
 #line 137
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -458,58 +458,58 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "ShortDateFormat"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Summary"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Go"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "NoMonthMoves"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Description"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Category"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Date"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "In"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Out"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "TODO"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Edit"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Move"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Delete"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "ConfirmDeleteMove"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "NoYearMoves"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Month"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "Value"});
             table7.AddRow(new string[] {
-                        "Report",
+                        "Reports",
                         "ToMove"});
 #line 138
  testRunner.Given("I have these keys", ((string)(null)), table7);
@@ -522,10 +522,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("07. Get translate of Interface (account)")]
-        public virtual void _07_GetTranslateOfInterfaceAccount()
+        [NUnit.Framework.DescriptionAttribute("07. Get translate of Interface (accounts)")]
+        public virtual void _07_GetTranslateOfInterfaceAccounts()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07. Get translate of Interface (account)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07. Get translate of Interface (accounts)", ((string[])(null)));
 #line 162
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -533,106 +533,106 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Create"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Edit"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Account"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Name"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "CharactersMax"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "AccountHasLimit"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "RedLimit"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "YellowLimit"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "LimitExplanation"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Accounts"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "NoAccounts"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "BeginDate"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Value"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "TODO"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Create"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Move"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Schedule"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Edit"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Account"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Delete"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Close"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "DeleteConfirm"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "CloseConfirm"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "ClosedAccounts"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "NoClosedAccounts"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Name"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "BeginDate"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "EndDate"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Value"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "GOTO"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "MonthMoves"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "YearMoves"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "Url"});
             table8.AddRow(new string[] {
-                        "Account",
+                        "Accounts",
                         "AcceptedUrlCharacters"});
 #line 163
  testRunner.Given("I have these keys", ((string)(null)), table8);
@@ -645,10 +645,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("08. Get translate of Interface (category)")]
-        public virtual void _08_GetTranslateOfInterfaceCategory()
+        [NUnit.Framework.DescriptionAttribute("08. Get translate of Interface (categories)")]
+        public virtual void _08_GetTranslateOfInterfaceCategories()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08. Get translate of Interface (category)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08. Get translate of Interface (categories)", ((string[])(null)));
 #line 203
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -656,37 +656,37 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Create"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Edit"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Category"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "CharactersMax"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Categories"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "NoCategories"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Name"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "TODO"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Enable"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Disable"});
             table9.AddRow(new string[] {
-                        "Category",
+                        "Categories",
                         "Create"});
 #line 204
  testRunner.Given("I have these keys", ((string)(null)), table9);
@@ -699,10 +699,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("09. Get translate of Interface (token)")]
-        public virtual void _09_GetTranslateOfInterfaceToken()
+        [NUnit.Framework.DescriptionAttribute("09. Get translate of Interface (tokens)")]
+        public virtual void _09_GetTranslateOfInterfaceTokens()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09. Get translate of Interface (token)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09. Get translate of Interface (tokens)", ((string[])(null)));
 #line 221
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -710,67 +710,67 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "RetypeWrong"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "NotRecognizedAction"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "RetypeWrong"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "NotRecognizedAction"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "TokenDisable"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "TokenDisableSuccess"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "TokenInvalid"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "TokenInvalidMessage"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "PasswordReset"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "Password"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "RetypePassword"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "Reset"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "PasswordReset"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "PasswordResetSuccess"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "TokenReceivedByEmail"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "Token"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "SecurityAction"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "Select"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "Go"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "UserVerification"});
             table10.AddRow(new string[] {
-                        "Token",
+                        "Tokens",
                         "UserVerificationSuccess"});
 #line 222
  testRunner.Given("I have these keys", ((string)(null)), table10);
@@ -783,10 +783,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("10. Get translate of Interface (user)")]
-        public virtual void _10_GetTranslateOfInterfaceUser()
+        [NUnit.Framework.DescriptionAttribute("10. Get translate of Interface (users)")]
+        public virtual void _10_GetTranslateOfInterfaceUsers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10. Get translate of Interface (user)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10. Get translate of Interface (users)", ((string[])(null)));
 #line 249
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -794,115 +794,115 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "ForgotPassword"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Email"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Send"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "ForgotPassword"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "FollowEmailIntructions"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Index_Welcome"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Index_Introdution"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Index_Explanation"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Index_Close"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Logon"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Login"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Enter"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Email"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Password"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "RememberMe"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "ForgotPassword"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "TokenReceivedByEmail"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "LogonDisabled"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "FollowEmailIntructions"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "SignUp"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Email"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "CharactersMax"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Password"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "RetypePassword"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Create"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "SignUpSuccess"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "FollowEmailIntructions"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Settings"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "UseCategories"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "SendMoveEmail"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Language"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "TimeZone"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "LanguageEnus"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "LanguagePtbr"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "Save"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "ConfigChanged"});
             table11.AddRow(new string[] {
-                        "User",
+                        "Users",
                         "AndroidRobotLicenseText"});
 #line 250
  testRunner.Given("I have these keys", ((string)(null)), table11);
@@ -1008,10 +1008,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("13. Get translate of Interface (schedule)")]
-        public virtual void _13_GetTranslateOfInterfaceSchedule()
+        [NUnit.Framework.DescriptionAttribute("13. Get translate of Interface (schedules)")]
+        public virtual void _13_GetTranslateOfInterfaceSchedules()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Get translate of Interface (schedule)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Get translate of Interface (schedules)", ((string[])(null)));
 #line 324
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -1019,85 +1019,85 @@ this.ScenarioSetup(scenarioInfo);
                         "Section",
                         "Phrase"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Create"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Edit"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Schedule"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Move"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "DayNames"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Frequency"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Boundless"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Repeat"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Times"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "ShowInstallment"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Description"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "CharactersMax"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Date"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Category"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Select"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Create"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Category"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Nature"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "JustOneValue"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Detailed"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Add"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Detail"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Value"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "Amount"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "ToMove"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "NoSchedules"});
             table14.AddRow(new string[] {
-                        "Schedule",
+                        "Schedules",
                         "ConfirmDeleteSchedule"});
 #line 325
  testRunner.Given("I have these keys", ((string)(null)), table14);

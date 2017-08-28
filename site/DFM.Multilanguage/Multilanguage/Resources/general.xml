@@ -48,6 +48,11 @@
     <In text="In" />
     <Out text="Out" />
     <Transfer text="Transfer" />
+    <Daily text="Daily" />
+    <Monthly text="Monthly" />
+    <Yearly text="Yearly" />
+    <UserVerification text="User Verification" />
+    <PasswordReset text="Password Reset" />
 
     <!--Index-->
     <Index_Welcome text="Welcome!" />
@@ -111,6 +116,11 @@
     <In text="Entrada" />
     <Out text="Saída" />
     <Transfer text="Transferência" />
+    <Daily text="Diária" />
+    <Monthly text="Mensal" />
+    <Yearly text="Anual" />
+    <UserVerification text="Verificação de Usuário" />
+    <PasswordReset text="Redefinição de Senha" />
 
     <!--Index-->
     <Index_Welcome text="Bem-vindo!" />

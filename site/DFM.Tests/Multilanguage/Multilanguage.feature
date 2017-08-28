@@ -104,188 +104,188 @@ Scenario: 04. Get translations of Errors
 	Then I will receive no multilanguage error
 
 
-Scenario: 05. Get translate of Interface (move)
+Scenario: 05. Get translate of Interface (moves)
 	Given I have these keys
 		| Section | Phrase                  |
-		| Move    | Create                  |
-		| Move    | Edit                    |
-		| Move    | Move                    |
-		| Move    | DayNames                |
-		| Move    | Description             |
-		| Move    | CharactersMax           |
-		| Move    | Date                    |
-		| Move    | Category                |
-		| Move    | Select                  |
-		| Move    | Create                  |
-		| Move    | Category                |
-		| Move    | Nature                  |
-		| Move    | JustOneValue            |
-		| Move    | Detailed                |
-		| Move    | Add                     |
-		| Move    | Detail                  |
-		| Move    | Value                   |
-		| Move    | Amount                  |
-		| Move    | ToMove                  |
-		| Move    | MoveSave                |
-		| Move    | MoveNotFound            |
-		| Move    | MoveDeleted             |
-		| Move    | MoveDeletedWithoutEmail |
+		| Moves   | Create                  |
+		| Moves   | Edit                    |
+		| Moves   | Move                    |
+		| Moves   | DayNames                |
+		| Moves   | Description             |
+		| Moves   | CharactersMax           |
+		| Moves   | Date                    |
+		| Moves   | Category                |
+		| Moves   | Select                  |
+		| Moves   | Create                  |
+		| Moves   | Category                |
+		| Moves   | Nature                  |
+		| Moves   | JustOneValue            |
+		| Moves   | Detailed                |
+		| Moves   | Add                     |
+		| Moves   | Detail                  |
+		| Moves   | Value                   |
+		| Moves   | Amount                  |
+		| Moves   | ToMove                  |
+		| Moves   | MoveSave                |
+		| Moves   | MoveNotFound            |
+		| Moves   | MoveDeleted             |
+		| Moves   | MoveDeletedWithoutEmail |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 
-Scenario: 06. Get translate of Interface (report)
+Scenario: 06. Get translate of Interface (reports)
 	Given I have these keys
 		| Section | Phrase            |
-		| Report  | ShortDateFormat   |
-		| Report  | Summary           |
-		| Report  | Go                |
-		| Report  | NoMonthMoves      |
-		| Report  | Description       |
-		| Report  | Category          |
-		| Report  | Date              |
-		| Report  | In                |
-		| Report  | Out               |
-		| Report  | TODO              |
-		| Report  | Edit              |
-		| Report  | Move              |
-		| Report  | Delete            |
-		| Report  | ConfirmDeleteMove |
-		| Report  | NoYearMoves       |
-		| Report  | Month             |
-		| Report  | Value             |
-		| Report  | ToMove            |
+		| Reports | ShortDateFormat   |
+		| Reports | Summary           |
+		| Reports | Go                |
+		| Reports | NoMonthMoves      |
+		| Reports | Description       |
+		| Reports | Category          |
+		| Reports | Date              |
+		| Reports | In                |
+		| Reports | Out               |
+		| Reports | TODO              |
+		| Reports | Edit              |
+		| Reports | Move              |
+		| Reports | Delete            |
+		| Reports | ConfirmDeleteMove |
+		| Reports | NoYearMoves       |
+		| Reports | Month             |
+		| Reports | Value             |
+		| Reports | ToMove            |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 
-Scenario: 07. Get translate of Interface (account)
+Scenario: 07. Get translate of Interface (accounts)
 	Given I have these keys
-		| Section | Phrase                |
-		| Account | Create                |
-		| Account | Edit                  |
-		| Account | Account               |
-		| Account | Name                  |
-		| Account | CharactersMax         |
-		| Account | AccountHasLimit       |
-		| Account | RedLimit              |
-		| Account | YellowLimit           |
-		| Account | LimitExplanation      |
-		| Account | Accounts              |
-		| Account | NoAccounts            |
-		| Account | BeginDate             |
-		| Account | Value                 |
-		| Account | TODO                  |
-		| Account | Create                |
-		| Account | Move                  |
-		| Account | Schedule              |
-		| Account | Edit                  |
-		| Account | Account               |
-		| Account | Delete                |
-		| Account | Close                 |
-		| Account | DeleteConfirm         |
-		| Account | CloseConfirm          |
-		| Account | ClosedAccounts        |
-		| Account | NoClosedAccounts      |
-		| Account | Name                  |
-		| Account | BeginDate             |
-		| Account | EndDate               |
-		| Account | Value                 |
-		| Account | GOTO                  |
-		| Account | MonthMoves            |
-		| Account | YearMoves             |
-		| Account | Url                   |
-		| Account | AcceptedUrlCharacters |
+		| Section  | Phrase                |
+		| Accounts | Create                |
+		| Accounts | Edit                  |
+		| Accounts | Account               |
+		| Accounts | Name                  |
+		| Accounts | CharactersMax         |
+		| Accounts | AccountHasLimit       |
+		| Accounts | RedLimit              |
+		| Accounts | YellowLimit           |
+		| Accounts | LimitExplanation      |
+		| Accounts | Accounts              |
+		| Accounts | NoAccounts            |
+		| Accounts | BeginDate             |
+		| Accounts | Value                 |
+		| Accounts | TODO                  |
+		| Accounts | Create                |
+		| Accounts | Move                  |
+		| Accounts | Schedule              |
+		| Accounts | Edit                  |
+		| Accounts | Account               |
+		| Accounts | Delete                |
+		| Accounts | Close                 |
+		| Accounts | DeleteConfirm         |
+		| Accounts | CloseConfirm          |
+		| Accounts | ClosedAccounts        |
+		| Accounts | NoClosedAccounts      |
+		| Accounts | Name                  |
+		| Accounts | BeginDate             |
+		| Accounts | EndDate               |
+		| Accounts | Value                 |
+		| Accounts | GOTO                  |
+		| Accounts | MonthMoves            |
+		| Accounts | YearMoves             |
+		| Accounts | Url                   |
+		| Accounts | AcceptedUrlCharacters |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 
-Scenario: 08. Get translate of Interface (category)
+Scenario: 08. Get translate of Interface (categories)
 	Given I have these keys
-		| Section  | Phrase        |
-		| Category | Create        |
-		| Category | Edit          |
-		| Category | Category      |
-		| Category | CharactersMax |
-		| Category | Categories    |
-		| Category | NoCategories  |
-		| Category | Name          |
-		| Category | TODO          |
-		| Category | Enable        |
-		| Category | Disable       |
-		| Category | Create        |
+		| Section    | Phrase        |
+		| Categories | Create        |
+		| Categories | Edit          |
+		| Categories | Category      |
+		| Categories | CharactersMax |
+		| Categories | Categories    |
+		| Categories | NoCategories  |
+		| Categories | Name          |
+		| Categories | TODO          |
+		| Categories | Enable        |
+		| Categories | Disable       |
+		| Categories | Create        |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 
-Scenario: 09. Get translate of Interface (token)
-	Given I have these keys
-		| Section | Phrase                  |
-		| Token   | RetypeWrong             |
-		| Token   | NotRecognizedAction     |
-		| Token   | RetypeWrong             |
-		| Token   | NotRecognizedAction     |
-		| Token   | TokenDisable            |
-		| Token   | TokenDisableSuccess     |
-		| Token   | TokenInvalid            |
-		| Token   | TokenInvalidMessage     |
-		| Token   | PasswordReset           |
-		| Token   | Password                |
-		| Token   | RetypePassword          |
-		| Token   | Reset                   |
-		| Token   | PasswordReset           |
-		| Token   | PasswordResetSuccess    |
-		| Token   | TokenReceivedByEmail    |
-		| Token   | Token                   |
-		| Token   | SecurityAction          |
-		| Token   | Select                  |
-		| Token   | Go                      |
-		| Token   | UserVerification        |
-		| Token   | UserVerificationSuccess |
-	When I try get the translate
-	Then I will receive no multilanguage error
-
-
-Scenario: 10. Get translate of Interface (user)
+Scenario: 09. Get translate of Interface (tokens)
 	Given I have these keys
 		| Section | Phrase                  |
-		| User    | ForgotPassword          |
-		| User    | Email                   |
-		| User    | Send                    |
-		| User    | ForgotPassword          |
-		| User    | FollowEmailIntructions  |
-		| User    | Index_Welcome           |
-		| User    | Index_Introdution       |
-		| User    | Index_Explanation       |
-		| User    | Index_Close             |
-		| User    | Logon                   |
-		| User    | Login                   |
-		| User    | Enter                   |
-		| User    | Email                   |
-		| User    | Password                |
-		| User    | RememberMe              |
-		| User    | ForgotPassword          |
-		| User    | TokenReceivedByEmail    |
-		| User    | LogonDisabled           |
-		| User    | FollowEmailIntructions  |
-		| User    | SignUp                  |
-		| User    | Email                   |
-		| User    | CharactersMax           |
-		| User    | Password                |
-		| User    | RetypePassword          |
-		| User    | Create                  |
-		| User    | SignUpSuccess           |
-		| User    | FollowEmailIntructions  |
-		| User    | Settings                |
-		| User    | UseCategories           |
-		| User    | SendMoveEmail           |
-		| User    | Language                |
-		| User    | TimeZone                |
-		| User    | LanguageEnus            |
-		| User    | LanguagePtbr            |
-		| User    | Save                    |
-		| User    | ConfigChanged           |
-		| User    | AndroidRobotLicenseText |
+		| Tokens  | RetypeWrong             |
+		| Tokens  | NotRecognizedAction     |
+		| Tokens  | RetypeWrong             |
+		| Tokens  | NotRecognizedAction     |
+		| Tokens  | TokenDisable            |
+		| Tokens  | TokenDisableSuccess     |
+		| Tokens  | TokenInvalid            |
+		| Tokens  | TokenInvalidMessage     |
+		| Tokens  | PasswordReset           |
+		| Tokens  | Password                |
+		| Tokens  | RetypePassword          |
+		| Tokens  | Reset                   |
+		| Tokens  | PasswordReset           |
+		| Tokens  | PasswordResetSuccess    |
+		| Tokens  | TokenReceivedByEmail    |
+		| Tokens  | Token                   |
+		| Tokens  | SecurityAction          |
+		| Tokens  | Select                  |
+		| Tokens  | Go                      |
+		| Tokens  | UserVerification        |
+		| Tokens  | UserVerificationSuccess |
+	When I try get the translate
+	Then I will receive no multilanguage error
+
+
+Scenario: 10. Get translate of Interface (users)
+	Given I have these keys
+		| Section | Phrase                  |
+		| Users   | ForgotPassword          |
+		| Users   | Email                   |
+		| Users   | Send                    |
+		| Users   | ForgotPassword          |
+		| Users   | FollowEmailIntructions  |
+		| Users   | Index_Welcome           |
+		| Users   | Index_Introdution       |
+		| Users   | Index_Explanation       |
+		| Users   | Index_Close             |
+		| Users   | Logon                   |
+		| Users   | Login                   |
+		| Users   | Enter                   |
+		| Users   | Email                   |
+		| Users   | Password                |
+		| Users   | RememberMe              |
+		| Users   | ForgotPassword          |
+		| Users   | TokenReceivedByEmail    |
+		| Users   | LogonDisabled           |
+		| Users   | FollowEmailIntructions  |
+		| Users   | SignUp                  |
+		| Users   | Email                   |
+		| Users   | CharactersMax           |
+		| Users   | Password                |
+		| Users   | RetypePassword          |
+		| Users   | Create                  |
+		| Users   | SignUpSuccess           |
+		| Users   | FollowEmailIntructions  |
+		| Users   | Settings                |
+		| Users   | UseCategories           |
+		| Users   | SendMoveEmail           |
+		| Users   | Language                |
+		| Users   | TimeZone                |
+		| Users   | LanguageEnus            |
+		| Users   | LanguagePtbr            |
+		| Users   | Save                    |
+		| Users   | ConfigChanged           |
+		| Users   | AndroidRobotLicenseText |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
@@ -321,36 +321,36 @@ Scenario: 12. Get translate of Interface (general)
 	Then I will receive no multilanguage error
 
 
-Scenario: 13. Get translate of Interface (schedule)
+Scenario: 13. Get translate of Interface (schedules)
 	Given I have these keys
-		| Section  | Phrase                |
-		| Schedule | Create                |
-		| Schedule | Edit                  |
-		| Schedule | Schedule              |
-		| Schedule | Move                  |
-		| Schedule | DayNames              |
-		| Schedule | Frequency             |
-		| Schedule | Boundless             |
-		| Schedule | Repeat                |
-		| Schedule | Times                 |
-		| Schedule | ShowInstallment       |
-		| Schedule | Description           |
-		| Schedule | CharactersMax         |
-		| Schedule | Date                  |
-		| Schedule | Category              |
-		| Schedule | Select                |
-		| Schedule | Create                |
-		| Schedule | Category              |
-		| Schedule | Nature                |
-		| Schedule | JustOneValue          |
-		| Schedule | Detailed              |
-		| Schedule | Add                   |
-		| Schedule | Detail                |
-		| Schedule | Value                 |
-		| Schedule | Amount                |
-		| Schedule | ToMove                |
-		| Schedule | NoSchedules           |
-		| Schedule | ConfirmDeleteSchedule |
+		| Section   | Phrase                |
+		| Schedules | Create                |
+		| Schedules | Edit                  |
+		| Schedules | Schedule              |
+		| Schedules | Move                  |
+		| Schedules | DayNames              |
+		| Schedules | Frequency             |
+		| Schedules | Boundless             |
+		| Schedules | Repeat                |
+		| Schedules | Times                 |
+		| Schedules | ShowInstallment       |
+		| Schedules | Description           |
+		| Schedules | CharactersMax         |
+		| Schedules | Date                  |
+		| Schedules | Category              |
+		| Schedules | Select                |
+		| Schedules | Create                |
+		| Schedules | Category              |
+		| Schedules | Nature                |
+		| Schedules | JustOneValue          |
+		| Schedules | Detailed              |
+		| Schedules | Add                   |
+		| Schedules | Detail                |
+		| Schedules | Value                 |
+		| Schedules | Amount                |
+		| Schedules | ToMove                |
+		| Schedules | NoSchedules           |
+		| Schedules | ConfirmDeleteSchedule |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

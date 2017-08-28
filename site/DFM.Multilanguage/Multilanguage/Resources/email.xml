@@ -4,8 +4,6 @@
     <MoveNotificationIn text="Move Notification" />
     <MoveNotificationOut text="Move Notification" />
     <MoveNotificationTransfer text="Move Notification" />
-    <UserVerification text="User Verification" />
-    <PasswordReset text="Password Reset" />
 
     <EmailDisabled text="E-mail sender system disabled" />
     <EmailSent text="E-mail successfuly sent" />
@@ -18,8 +16,6 @@
     <MoveNotificationIn text="Notificação de Movimentação" />
     <MoveNotificationOut text="Notificação de Movimentação" />
     <MoveNotificationTransfer text="Notificação de Movimentação" />
-    <UserVerification text="Verificação de Usuário" />
-    <PasswordReset text="Redefinição de Senha" />
 
     <EmailDisabled text="Sistema de envio de e-mails desabilitado" />
     <EmailSent text="E-mail enviado com sucesso" />
