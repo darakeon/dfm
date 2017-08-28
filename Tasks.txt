@@ -62,8 +62,8 @@ VERSÃO 2.2.0.0 (Big change) - 3?
 VERSÃO 2.1.2.0 (Little change) - 3?
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
-					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
+						Possibilitar mudar início do mês por conta
 
 VERSÃO 2.1.1.0 (Little change) - 16?
 ================================================================================================
@@ -83,6 +83,7 @@ D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						Tratar DFMCoreException em Robot
 						Corrigir mobile: move tem category, mas config atual não permite
+						Ajustar mobile para preencher conta quando edita move transfer
 
 VERSÃO 2.1.0.0 (Big change) - 11?
 ================================================================================================
