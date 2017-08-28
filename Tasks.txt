@@ -96,7 +96,7 @@ F						Colocar criação de categoria (mobile)
 
 VERSÃO 2.0.3.0 (Little change) - 5?
 ================================================================================================
-						Deixar salvar o programa no SD
+2015-09-07	2015-09-07	Deixar salvar o programa no SD
 2015-09-06	2015-09-07	Colocar edição de movimentação (mobile)
 2015-09-06	2015-09-06	Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
 2015-09-06	2015-09-06	Não deixar sleep quando já estiver no meio de uma requisição
