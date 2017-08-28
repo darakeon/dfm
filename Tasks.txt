@@ -85,28 +85,28 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 3.1.0.0 (Big change) - 5
+VERSÃO 3.1.0.0 (Big change) - 6
 ================================================================================================
 						Trocar menu superior por inferior (mobile)
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Permitir não exibir valores direto na tela inicial
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
+						Colocar campos de datetime ao lado do botão no mobile
 
 VERSÃO 3.0.0.0 (All new) - 2
 ================================================================================================
 						Layout Bootstrap
 						Android Kotlin
 
-VERSÃO 2.1.5.0 (Little change) - 3
+VERSÃO 2.1.4.0 (Little change) - 3
 ================================================================================================
 						Usar packages do Nuget
 						Trocar apache por Volley
 						Trocar licensing
 
-VERSÃO 2.1.4.0 (Little change) - 2
+VERSÃO 2.1.3.3 (System) - 1
 ================================================================================================
-						Colocar campos de datetime ao lado do botão no mobile
 2017-01-15	2017-01-22	Ajustar layouts de android para usar formato novo
 
 VERSÃO 2.1.3.2 (System) - 2
