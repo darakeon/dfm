@@ -60,9 +60,11 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table1.AddRow(new string[] {
                         "sendpasswordreset@dontflymoney.com",
+                        "password",
                         "password"});
 #line 4
  testRunner.Given("I have this user created", ((string)(null)), table1);

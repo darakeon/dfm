@@ -4,8 +4,8 @@ Background:
 
 Scenario: 01. Validate without e-mail (E)
 	Given I have this user created
-		| Email                 | Password |
-		| Ae01@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae01@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email | Password |
 		|       | password |
@@ -15,8 +15,8 @@ Scenario: 01. Validate without e-mail (E)
 
 Scenario: 02. Validate without password (E)
 	Given I have this user created
-		| Email                 | Password |
-		| Ae02@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae02@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password |
 		| Ae02@dontflymoney.com |          |
@@ -34,8 +34,8 @@ Scenario: 03. Validate with wrong e-mail (E)
 
 Scenario: 04. Validate with wrong password (E)
 	Given I have this user created
-		| Email                 | Password |
-		| Ae04@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae04@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password       |
 		| Ae04@dontflymoney.com | password_wrong |
@@ -45,8 +45,8 @@ Scenario: 04. Validate with wrong password (E)
 
 Scenario: 05. Validate user disabled (E)
 	Given I have this user created
-		| Email                 | Password |
-		| Ae05@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae05@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password |
 		| Ae05@dontflymoney.com | password |
@@ -56,8 +56,8 @@ Scenario: 05. Validate user disabled (E)
 
 Scenario: 06. Disable user by excessive trying (E)
 	Given I have this user created and activated
-		| Email                 | Password |
-		| Ae06@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae06@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password       |
 		| Ae06@dontflymoney.com | password_wrong |
@@ -67,8 +67,8 @@ Scenario: 06. Disable user by excessive trying (E)
 
 Scenario: 90. Validate with info all right (S)
 	Given I have this user created
-		| Email                 | Password |
-		| Ae90@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae90@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password |
 		| Ae90@dontflymoney.com | password |
@@ -79,8 +79,8 @@ Scenario: 90. Validate with info all right (S)
 
 Scenario: 91. Enable user let login again (S)
 	Given I have this user created and activated
-		| Email                 | Password |
-		| Ae91@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae91@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password       |
 		| Ae91@dontflymoney.com | password_wrong |
@@ -95,8 +95,8 @@ Scenario: 91. Enable user let login again (S)
 
 Scenario: 92. Enable user resets the password trial times (S)
 	Given I have this user created and activated
-		| Email                 | Password |
-		| Ae92@dontflymoney.com | password |
+		| Email                 | Password | Retype Password |
+		| Ae92@dontflymoney.com | password | password        |
 	And I have this user data
 		| Email                 | Password       |
 		| Ae92@dontflymoney.com | password_wrong |

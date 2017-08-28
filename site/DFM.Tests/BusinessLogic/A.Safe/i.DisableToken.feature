@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-		| Email                         | Password |
-		| disabletoken@dontflymoney.com | password |
+		| Email                         | Password | Retype Password |
+		| disabletoken@dontflymoney.com | password | password        |
 
 Scenario: 01. Disable invalid token (E)
 	Given I pass an invalid token

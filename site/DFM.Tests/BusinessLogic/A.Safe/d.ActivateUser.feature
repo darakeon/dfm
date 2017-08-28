@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-		| Email                         | Password |
-		| activateuser@dontflymoney.com | password |
+		| Email                         | Password | Retype Password |
+		| activateuser@dontflymoney.com | password | password        |
 	And I have a token for its activation
 
 Scenario: 01. Activate user with invalid token (E)

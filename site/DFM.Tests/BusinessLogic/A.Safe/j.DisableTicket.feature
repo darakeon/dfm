@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created and activated
-		| Email                          | Password |
-		| disableticket@dontflymoney.com | password |
+		| Email                          | Password | Retype Password |
+		| disableticket@dontflymoney.com | password | password        |
 	And I have a ticket of this user
 
 Scenario: 99. Select with info all right (S)

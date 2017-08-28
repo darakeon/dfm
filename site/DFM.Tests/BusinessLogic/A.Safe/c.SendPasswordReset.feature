@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-		| Email                              | Password |
-		| sendpasswordreset@dontflymoney.com | password |
+		| Email                              | Password | Retype Password |
+		| sendpasswordreset@dontflymoney.com | password | password        |
 
 Scenario: 01. Send with email that doesn't exist (E)
 	Given I pass an e-mail that doesn't exist

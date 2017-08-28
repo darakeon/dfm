@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created and activated
-		| Email                               | Password |
-		| selectuserbyticket@dontflymoney.com | password |
+		| Email                               | Password | Retype Password |
+		| selectuserbyticket@dontflymoney.com | password | password        |
 	And I have a ticket of this user
 
 Scenario: 01. Select with ticket that doesn't exist (E)

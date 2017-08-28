@@ -70,9 +70,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table1.AddRow(new string[] {
                         "Ae01@dontflymoney.com",
+                        "password",
                         "password"});
 #line 6
  testRunner.Given("I have this user created", ((string)(null)), table1);
@@ -105,9 +107,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table3.AddRow(new string[] {
                         "Ae02@dontflymoney.com",
+                        "password",
                         "password"});
 #line 17
  testRunner.Given("I have this user created", ((string)(null)), table3);
@@ -166,9 +170,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table6.AddRow(new string[] {
                         "Ae04@dontflymoney.com",
+                        "password",
                         "password"});
 #line 36
  testRunner.Given("I have this user created", ((string)(null)), table6);
@@ -201,9 +207,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table8.AddRow(new string[] {
                         "Ae05@dontflymoney.com",
+                        "password",
                         "password"});
 #line 47
  testRunner.Given("I have this user created", ((string)(null)), table8);
@@ -236,9 +244,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table10.AddRow(new string[] {
                         "Ae06@dontflymoney.com",
+                        "password",
                         "password"});
 #line 58
  testRunner.Given("I have this user created and activated", ((string)(null)), table10);
@@ -271,9 +281,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table12.AddRow(new string[] {
                         "Ae90@dontflymoney.com",
+                        "password",
                         "password"});
 #line 69
  testRunner.Given("I have this user created", ((string)(null)), table12);
@@ -308,9 +320,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table14.AddRow(new string[] {
                         "Ae91@dontflymoney.com",
+                        "password",
                         "password"});
 #line 81
  testRunner.Given("I have this user created and activated", ((string)(null)), table14);
@@ -356,9 +370,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table17.AddRow(new string[] {
                         "Ae92@dontflymoney.com",
+                        "password",
                         "password"});
 #line 97
  testRunner.Given("I have this user created and activated", ((string)(null)), table17);

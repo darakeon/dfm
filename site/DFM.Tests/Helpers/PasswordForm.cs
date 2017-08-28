@@ -5,9 +5,6 @@ namespace DFM.Tests.Helpers
 {
 	class PasswordForm : IPasswordForm
 	{
-		public PasswordForm(String password) 
-			: this(password, password) { }
-
 		public PasswordForm(String password, String retypePassword)
 		{
 			Password = password;

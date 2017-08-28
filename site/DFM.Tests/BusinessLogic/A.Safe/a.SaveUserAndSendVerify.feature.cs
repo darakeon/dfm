@@ -63,9 +63,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table1.AddRow(new string[] {
                         "",
+                        "password",
                         "password"});
 #line 4
  testRunner.Given("I have this user data", ((string)(null)), table1);
@@ -89,9 +91,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table2.AddRow(new string[] {
                         "saveuser@dontflymoney.com",
+                        "",
                         ""});
 #line 12
  testRunner.Given("I have this user data", ((string)(null)), table2);
@@ -115,9 +119,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table3.AddRow(new string[] {
                         "saveuser",
+                        "password",
                         "password"});
 #line 20
  testRunner.Given("I have this user data", ((string)(null)), table3);
@@ -141,9 +147,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table4.AddRow(new string[] {
                         "repeated@dontflymoney.com",
+                        "password",
                         "password"});
 #line 28
  testRunner.Given("I have this user data", ((string)(null)), table4);
@@ -169,9 +177,11 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table5.AddRow(new string[] {
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh@dontflymoney.com",
+                        "password",
                         "password"});
 #line 37
  testRunner.Given("I have this user data", ((string)(null)), table5);
@@ -186,26 +196,56 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Save user with exactly length e-mail (S)")]
-        public virtual void _98_SaveUserWithExactlyLengthE_MailS()
+        [NUnit.Framework.DescriptionAttribute("06. Save user wrong retype (E)")]
+        public virtual void _06_SaveUserWrongRetypeE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save user with exactly length e-mail (S)", ((string[])(null)));
-#line 45
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Save user wrong retype (E)", ((string[])(null)));
+#line 44
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table6.AddRow(new string[] {
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com",
-                        "password"});
-#line 46
+                        "email@dontflymoney.com",
+                        "password",
+                        "password_wrong"});
+#line 45
  testRunner.Given("I have this user data", ((string)(null)), table6);
-#line 49
+#line 48
  testRunner.When("I try to save the user");
+#line 49
+ testRunner.Then("I will receive this core error: RetypeWrong");
 #line 50
+ testRunner.And("the user will not be saved");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("98. Save user with exactly length e-mail (S)")]
+        public virtual void _98_SaveUserWithExactlyLengthE_MailS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save user with exactly length e-mail (S)", ((string[])(null)));
+#line 53
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Email",
+                        "Password",
+                        "Retype Password"});
+            table7.AddRow(new string[] {
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com",
+                        "password",
+                        "password"});
+#line 54
+ testRunner.Given("I have this user data", ((string)(null)), table7);
+#line 57
+ testRunner.When("I try to save the user");
+#line 58
  testRunner.Then("I will receive no core error");
-#line 51
+#line 59
  testRunner.And("the user will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -216,22 +256,24 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_SaveUserWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save user with info all right (S)", ((string[])(null)));
-#line 53
+#line 61
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
-            table7.AddRow(new string[] {
+                        "Password",
+                        "Retype Password"});
+            table8.AddRow(new string[] {
                         "saveuser@dontflymoney.com",
+                        "password",
                         "password"});
-#line 54
- testRunner.Given("I have this user data", ((string)(null)), table7);
-#line 57
+#line 62
+ testRunner.Given("I have this user data", ((string)(null)), table8);
+#line 65
  testRunner.When("I try to save the user");
-#line 58
+#line 66
  testRunner.Then("I will receive no core error");
-#line 59
+#line 67
  testRunner.And("the user will be saved");
 #line hidden
             testRunner.CollectScenarioErrors();

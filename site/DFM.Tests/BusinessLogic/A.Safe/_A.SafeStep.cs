@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -35,11 +36,17 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			get { return Get<String>("ticket"); }
 			set { Set("ticket", value); }
 		}
-		
+
 		private static String password
 		{
 			get { return Get<String>("Password"); }
 			set { Set("Password", value); }
+		}
+
+		private static String retypePassword
+		{
+			get { return Get<String>("RetypePassword"); }
+			set { Set("RetypePassword", value); }
 		}
 
 		private static String newPassword
@@ -74,6 +81,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			email = table.Rows[0]["Email"];
 			password = table.Rows[0]["Password"];
+
+			if (table.Header.Any(c => c == "Retype Password"))
+				retypePassword = table.Rows[0]["Retype Password"];
 		}
 
 		[Given(@"I already have created this user")]
@@ -85,7 +95,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Password = password + "_diff",
 			};
 
-			var passwordForm = new PasswordForm(otherUser.Password);
+			var passwordForm = new PasswordForm(otherUser.Password, otherUser.Password);
 			SA.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 
 			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
@@ -100,7 +110,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				var passwordForm = new PasswordForm(password);
+				var passwordForm = new PasswordForm(password, retypePassword);
 				SA.Safe.SaveUserAndSendVerify(email, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 			}
 			catch (DFMCoreException e)
@@ -310,10 +320,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.UserVerification);
 		}
 
-		[Given(@"I pass this password: (.*)")]
-		public void GivenIPassThisPassword(String passedPassword)
+		[Given(@"I pass this password")]
+		public void GivenIPassThisPassword(Table passwordData)
 		{
-			newPassword = passedPassword;
+			newPassword = passwordData.Rows[0]["Password"];
+			retypePassword = passwordData.Rows[0]["Retype Password"];
 		}
 
 		[Given(@"I pass no password")]
@@ -328,7 +339,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				var passwordForm = new PasswordForm(newPassword);
+				var passwordForm = new PasswordForm(newPassword, retypePassword);
 				SA.Safe.PasswordReset(token, passwordForm);
 			}
 			catch (DFMCoreException e)
@@ -517,6 +528,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			email = table.Rows[0]["Email"];
 			password = table.Rows[0]["Password"];
+			retypePassword = table.Rows[0]["Retype Password"];
 
 			CreateUserIfNotExists(email, password);
 		}

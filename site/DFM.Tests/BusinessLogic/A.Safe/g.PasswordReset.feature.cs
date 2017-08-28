@@ -60,9 +60,11 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
-                        "Password"});
+                        "Password",
+                        "Retype Password"});
             table1.AddRow(new string[] {
                         "passwordreset@dontflymoney.com",
+                        "password",
                         "password"});
 #line 4
  testRunner.Given("I have this user created", ((string)(null)), table1);
@@ -80,13 +82,20 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.Given("I pass an invalid token");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Password",
+                        "Retype Password"});
+            table2.AddRow(new string[] {
+                        "new_password",
+                        "new_password"});
 #line 11
- testRunner.And("I pass this password: new_password");
-#line 12
- testRunner.When("I try to reset the password");
-#line 13
- testRunner.Then("I will receive this core error: InvalidToken");
+ testRunner.And("I pass this password", ((string)(null)), table2);
 #line 14
+ testRunner.When("I try to reset the password");
+#line 15
+ testRunner.Then("I will receive this core error: InvalidToken");
+#line 16
  testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -97,19 +106,26 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_PasswordResetWithTokenOfUserVerificationE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password reset with token of user verification (E)", ((string[])(null)));
-#line 16
-this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("I have a token for its activation");
 #line 18
- testRunner.And("I pass a valid UserVerification token");
+this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.And("I pass this password: new_password");
+ testRunner.Given("I have a token for its activation");
 #line 20
- testRunner.When("I try to reset the password");
+ testRunner.And("I pass a valid UserVerification token");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Password",
+                        "Retype Password"});
+            table3.AddRow(new string[] {
+                        "new_password",
+                        "new_password"});
 #line 21
+ testRunner.And("I pass this password", ((string)(null)), table3);
+#line 24
+ testRunner.When("I try to reset the password");
+#line 25
  testRunner.Then("I will receive this core error: InvalidToken");
-#line 22
+#line 26
  testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -120,17 +136,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_PasswordResetWithNoPasswordE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Password reset with no password (E)", ((string[])(null)));
-#line 24
-this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("I pass a valid PasswordReset token");
-#line 26
- testRunner.And("I pass no password");
-#line 27
- testRunner.When("I try to reset the password");
 #line 28
- testRunner.Then("I will receive this core error: UserPasswordRequired");
+this.ScenarioSetup(scenarioInfo);
 #line 29
+ testRunner.Given("I pass a valid PasswordReset token");
+#line 30
+ testRunner.And("I pass no password");
+#line 31
+ testRunner.When("I try to reset the password");
+#line 32
+ testRunner.Then("I will receive this core error: UserPasswordRequired");
+#line 33
  testRunner.And("the password will not be changed");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -141,19 +157,26 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_PasswordResetWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Password reset with info all right (S)", ((string[])(null)));
-#line 31
-this.ScenarioSetup(scenarioInfo);
-#line 32
- testRunner.Given("I pass a valid PasswordReset token");
-#line 33
- testRunner.And("I pass this password: new_password");
-#line 34
- testRunner.When("I try to reset the password");
 #line 35
- testRunner.Then("I will receive no core error");
+this.ScenarioSetup(scenarioInfo);
 #line 36
- testRunner.And("the password will be changed");
+ testRunner.Given("I pass a valid PasswordReset token");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Password",
+                        "Retype Password"});
+            table4.AddRow(new string[] {
+                        "new_password",
+                        "new_password"});
 #line 37
+ testRunner.And("I pass this password", ((string)(null)), table4);
+#line 40
+ testRunner.When("I try to reset the password");
+#line 41
+ testRunner.Then("I will receive no core error");
+#line 42
+ testRunner.And("the password will be changed");
+#line 43
  testRunner.And("the token will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
