@@ -2,7 +2,12 @@
 	$(".btn-add-detail").click(function () {
 		var detailTable = $(this).closest("table").find("tbody");
 		var lastTrVisible = detailTable.find("tr:visible").last();
-		var nextTrInvisible = lastTrVisible.next("tr.hidden");
+
+		var nextTrInvisible =
+			lastTrVisible.length === 1
+				? lastTrVisible.next("tr.hidden")
+				: detailTable.find("tr.hidden").first();
+
 		nextTrInvisible.removeClass("hidden");
 		nextTrInvisible.find(".hidden-send").val("True");
 	});
@@ -11,5 +16,11 @@
 		var tr = $(this).closest("tr");
 		tr.addClass("hidden");
 		tr.find(".hidden-send").val("False");
+
+		tr.find("input").each(function () {
+			if (!$(this).is("[type=hidden]")) {
+				$(this).val(null);
+			}
+		});
 	});
 });
