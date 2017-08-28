@@ -1,4 +1,4 @@
-﻿VERSÃO 4.0.0.0 (All new) - 5
+﻿VERSÃO 6.0.0.0 (All new) - 5
 ================================================================================================
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
@@ -6,7 +6,7 @@ F						Implementar necessidade de assinar TERMO
 						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
 						OCR de nota fiscal
 
-VERSÃO 3.4.0.0 (Little change) - 5
+VERSÃO 4.3.2.0 (Little change) - 5
 ================================================================================================
 						Mock de envio de e-mail
 						"Adivinhar" categoria
@@ -14,7 +14,7 @@ VERSÃO 3.4.0.0 (Little change) - 5
 						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 3.3.1.0 (Little change) - 5
+VERSÃO 4.3.1.0 (Little change) - 5
 ================================================================================================
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Colocar nome (ou apelido) no sign up
@@ -22,7 +22,7 @@ VERSÃO 3.3.1.0 (Little change) - 5
 						Colocar soma de todas as contas (total na tela inicial, se mostra totais)
 						Permitir limite de conta negativo
 
-VERSÃO 3.3.0.0 (Big change) - 5
+VERSÃO 4.3.0.0 (Big change) - 5
 ================================================================================================
 						Possibilitar unir Categorias
 						Relacionar Conta e Categoria (combo)
@@ -30,7 +30,7 @@ VERSÃO 3.3.0.0 (Big change) - 5
 						Relatório com valores: selecione para mostrar soma
 						Enviar e-mail se a move está abaixo dos limites amarelo e vermelho
 
-VERSÃO 3.2.0.0 (Big change) - 8
+VERSÃO 4.2.0.0 (Big change) - 8
 ================================================================================================
 					>>>	exportador de CSV
 					>>>	exportador de Money
@@ -41,7 +41,7 @@ VERSÃO 3.2.0.0 (Big change) - 8
 					>>>	importador de CSV
 					>>>	importador de Money
 
-VERSÃO 3.1.0.0 (Big change) - 5
+VERSÃO 4.1.0.0 (Big change) - 5
 ================================================================================================
 						Possibilitar reabrir conta
 S						Configurar max request length 
@@ -49,11 +49,11 @@ S						Configurar max request length
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
 						Possibilitar mudar início do mês por conta
 
-VERSÃO 3.0.0.0 (All new) - 1
+VERSÃO 4.0.0.0 (All new) - 1
 ================================================================================================
 F						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 2.5.0.0 (Big change) - 5
+VERSÃO 3.3.0.0 (Big change) - 5
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Totais de (Negativo / Positivo / Total) no Resumo Anual
@@ -61,7 +61,7 @@ VERSÃO 2.5.0.0 (Big change) - 5
 						Criar Template (Move)
 						Busca por movimentação
 
-VERSÃO 2.4.1.0 (Little change) - 5
+VERSÃO 3.2.1.0 (Little change) - 5
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
 						Mostrar naturezas em botões, não dropdowns
@@ -69,7 +69,7 @@ VERSÃO 2.4.1.0 (Little change) - 5
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						
-VERSÃO 2.4.0.1 (Bugfix) - 5
+VERSÃO 3.2.0.1 (Bugfix) - 5
 ================================================================================================
 S						Arrumar para web usar fakeId, não id
 B						Tratar DFMCoreException em Robot
@@ -77,7 +77,7 @@ B						Corrigir mobile: move tem category, mas config atual não permite
 B						Ajustar mobile para preencher conta quando edita move transfer
 F						Mudar campos para usar campos que firefox e chrome personalizam
 
-VERSÃO 2.4.0.0 (Big change) - 5
+VERSÃO 3.2.0.0 (Big change) - 5
 ================================================================================================
 F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 F						Colocar tela de lista de funcionalidades
@@ -85,7 +85,7 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 2.3.0.0 (Big change) - 5
+VERSÃO 3.1.0.0 (Big change) - 5
 ================================================================================================
 						Trocar menu superior por inferior (mobile)
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
@@ -93,15 +93,19 @@ VERSÃO 2.3.0.0 (Big change) - 5
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
 
-VERSÃO 2.2.0.0 (Big change) - 1
+VERSÃO 3.0.0.0 (All new) - 1
 ================================================================================================
-						Parcelamento: movimentação de schedule pega detalhes de schedule, tendo seu valor dividido
+						Layout Bootstrap
+						Android Kotlin
 
-VERSÃO 2.1.1.1 (Bug fix) - 3
+VERSÃO 2.1.1.2 (Bug fix) - 2
 ================================================================================================
 						Usar packages do Nuget
-						Ajustar NH de site para novas formas
 						Trocar apache por Volley
+
+VERSÃO 2.1.1.1 (Bug fix) - 2
+================================================================================================
+						Ajustar NH de site para novas formas
 						Ajustar layouts de android para usar formato novo
 
 VERSÃO 2.1.1.0 (Little change) - 3
