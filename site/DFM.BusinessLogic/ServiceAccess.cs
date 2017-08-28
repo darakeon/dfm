@@ -8,9 +8,11 @@ namespace DFM.BusinessLogic
 	{
 		public ServiceAccess(Current.GetTicket getTicket)
 		{
+			var acceptance = new AcceptanceRepository();
 			var account = new AccountRepository();
 			var category = new CategoryRepository();
 			var config = new ConfigRepository();
+			var contract = new ContractRepository();
 			var detail = new DetailRepository();
 			var month = new MonthRepository();
 			var move = new MoveRepository();
@@ -23,7 +25,7 @@ namespace DFM.BusinessLogic
 
 			BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
 
-			Safe = new SafeService(this, user, security, ticket);
+			Safe = new SafeService(this, user, security, ticket, contract, acceptance);
 			Admin = new AdminService(this, account, category, year, month, summary, config, schedule);
 			Money = new MoneyService(this, move, detail, schedule);
 			Robot = new RobotService(this, schedule, detail);

@@ -102,6 +102,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>k.ListLogins.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\n.GetContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>n.GetContract.feature</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\A.Safe\o.AcceptContract.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>o.AcceptContract.feature</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>p.IsLastContractAccepted.feature</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature.cs">
+      <DependentUpon>q.OperationsWithNotSignedContract.feature</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\_A.SafeStep.cs" />
     <Compile Include="BusinessLogic\B.Admin\a.SaveAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -277,6 +297,22 @@
     <None Include="BusinessLogic\A.Safe\k.ListLogins.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>k.ListLogins.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\n.GetContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>n.GetContract.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\o.AcceptContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>o.AcceptContract.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>p.IsLastContractAccepted.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>q.OperationsWithNotSignedContract.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

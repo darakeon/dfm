@@ -83,6 +83,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			get { return Get<IList<Ticket>>("logins"); }
 			set { Set("logins", value); }
 		}
+
+		private static Boolean? accepted
+		{
+			get { return Get<Boolean?>("accepted"); }
+			set { Set("accepted", value); }
+		}
 		#endregion
 
 
@@ -747,5 +753,79 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		#endregion
 
 
+
+		#region Contract
+		[Given(@"I have a contract")]
+		public void GivenIHaveAContract()
+		{
+			if (Service.Safe.GetContract() == null)
+			{
+				DBHelper.CreateContract("TestContract");
+			}
+		}
+
+		[Given(@"I have accepted the contract")]
+		public void GivenIHaveAcceptedTheContract()
+		{
+			Service.Safe.AcceptContract();
+		}
+
+		[Given(@"I create a new contract")]
+		public void GivenICreateANewContract()
+		{
+			var contractVersion = TK.New().Substring(0, 12);
+            DBHelper.CreateContract(contractVersion);
+		}
+
+		[When(@"I try to get the contract")]
+		public void WhenITryToGetTheContract()
+		{
+			try
+			{
+				Service.Safe.GetContract();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[When(@"I try to accept the contract")]
+		public void WhenITryToAcceptTheContract()
+		{
+			try
+			{
+				Service.Safe.AcceptContract();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[When(@"I try to get the acceptance")]
+		public void WhenITryToGetTheAcceptance()
+		{
+			try
+			{
+				accepted = Service.Safe.IsLastContractAccepted();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the contract status will be (not )?accepted")]
+		public void ThenTheContractStatusWillBeAccepted(Boolean not)
+		{
+			if (!accepted.HasValue)
+			{
+				accepted = Service.Safe.IsLastContractAccepted();
+            }
+
+			Assert.AreEqual(not, accepted);
+		}
+		#endregion Contract
 	}
 }

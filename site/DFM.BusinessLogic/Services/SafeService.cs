@@ -17,13 +17,17 @@ namespace DFM.BusinessLogic.Services
 		private readonly UserRepository userRepository;
 		private readonly SecurityRepository securityRepository;
 		private readonly TicketRepository ticketRepository;
+		private readonly ContractRepository contractRepository;
+		private readonly AcceptanceRepository acceptanceRepository;
 
-		internal SafeService(ServiceAccess serviceAccess, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository)
+		internal SafeService(ServiceAccess serviceAccess, UserRepository userRepository, SecurityRepository securityRepository, TicketRepository ticketRepository, ContractRepository contractRepository, AcceptanceRepository acceptanceRepository)
 			: base(serviceAccess)
 		{
 			this.userRepository = userRepository;
 			this.securityRepository = securityRepository;
 			this.ticketRepository = ticketRepository;
+			this.contractRepository = contractRepository;
+			this.acceptanceRepository = acceptanceRepository;
 		}
 
 
@@ -293,6 +297,36 @@ namespace DFM.BusinessLogic.Services
 				sendUserVerify(user, pathAction, pathDisable);
 			});
 		}
+
+
+
+		public Contract GetContract()
+		{
+			return contractRepository.GetContract();
+		}
+
+		public Boolean IsLastContractAccepted()
+		{
+			var contract = GetContract();
+			var user = Parent.Current.User;
+
+			var acceptance = InTransaction(() => 
+				acceptanceRepository.GetOrCreate(user, contract)
+			);
+
+			return acceptance.Accepted;
+		}
+
+		public void AcceptContract()
+		{
+			var contract = GetContract();
+			var user = Parent.Current.User;
+
+			InTransaction(() => 
+				acceptanceRepository.Accept(user, contract)
+			);
+		}
+
 
 
 	}

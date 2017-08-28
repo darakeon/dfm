@@ -41,6 +41,8 @@
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\ConfigMap.cs" />
+    <Compile Include="Mappings\AcceptanceMap.cs" />
+    <Compile Include="Mappings\ContractMap.cs" />
     <Compile Include="Mappings\TicketMap.cs" />
     <Compile Include="Mappings\DetailMap.cs" />
     <Compile Include="Mappings\MonthMap.cs" />

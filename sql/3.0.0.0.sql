@@ -1,9 +1,9 @@
 CREATE TABLE Contract
 (
-	ID INT NOT NULL,
+	ID INT NOT NULL AUTO_INCREMENT,
 	BeginDate DATETIME NOT NULL,
-	Version VARCHAR(50) NOT NULL,
-	
+	Version VARCHAR(12) NOT NULL,
+
 	CONSTRAINT PK_Contract
 		PRIMARY KEY (ID),
 		
@@ -13,8 +13,8 @@ CREATE TABLE Contract
 
 CREATE TABLE Acceptance
 (
-	ID INT NOT NULL,
-	Accept BIT NOT NULL,
+	ID INT NOT NULL AUTO_INCREMENT,
+	Accepted BIT NOT NULL,
 	CreateDate DATETIME NOT NULL,
 	AcceptDate DATETIME NOT NULL,
 	Contract_ID INT NOT NULL,
@@ -35,11 +35,4 @@ CREATE TABLE Acceptance
 		UNIQUE KEY (User_ID, Contract_ID)
 );
 
-INSERT INTO Contract (BeginDate, Version) VALUES (curdate(), '3.0.0.0');
-
-INSERT INTO Acceptance
-	(CreateDate, Contract_ID, User_ID)
-	SELECT getdate(), 
-		FROM Contract c
-			JOIN User u
-		WHERE c.Version = '3.0.0.0';
+INSERT INTO Contract (BeginDate, Version) VALUES (curdate(), '003000000000');

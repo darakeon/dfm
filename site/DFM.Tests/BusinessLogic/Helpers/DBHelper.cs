@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
@@ -39,23 +40,24 @@ namespace DFM.Tests.BusinessLogic.Helpers
 					order by S.ID desc, S.Expire desc
 						limit 1";
 
-				var cmd = new MySqlCommand(query, conn);
-
-				cmd.Parameters.AddWithValue("email", email);
-				cmd.Parameters.AddWithValue("password", encrypt(password));
-				cmd.Parameters.AddWithValue("action", (Int32)action);
-				cmd.Parameters.AddWithValue("expire", DateTime.Now);
-
-				var result = cmd.ExecuteScalar();
-
-				if (result == null)
+				using (var cmd = new MySqlCommand(query, conn))
 				{
-					conn.Close();
+					cmd.Parameters.AddWithValue("email", email);
+					cmd.Parameters.AddWithValue("password", encrypt(password));
+					cmd.Parameters.AddWithValue("action", (Int32) action);
+					cmd.Parameters.AddWithValue("expire", DateTime.Now);
 
-					throw new DFMRepositoryException("Bad, bad developer. No token for you.");
+					var result = cmd.ExecuteScalar();
+
+					if (result == null)
+					{
+						conn.Close();
+
+						throw new DFMRepositoryException("Bad, bad developer. No token for you.");
+					}
+
+					token = result.ToString();
 				}
-
-				token = result.ToString();
 
 				conn.Close();
 			}
@@ -84,21 +86,22 @@ namespace DFM.Tests.BusinessLogic.Helpers
 					order by T.ID desc
 						limit 1";
 
-				var cmd = new MySqlCommand(query, conn);
-
-				cmd.Parameters.AddWithValue("email", email);
-				cmd.Parameters.AddWithValue("password", encrypt(password));
-
-				var result = cmd.ExecuteScalar();
-
-				if (result == null)
+				using (var cmd = new MySqlCommand(query, conn))
 				{
-					conn.Close();
+					cmd.Parameters.AddWithValue("email", email);
+					cmd.Parameters.AddWithValue("password", encrypt(password));
 
-					throw new DFMRepositoryException("Bad, bad developer. No ticket for you.");
+					var result = cmd.ExecuteScalar();
+
+					if (result == null)
+					{
+						conn.Close();
+
+						throw new DFMRepositoryException("Bad, bad developer. No ticket for you.");
+					}
+
+					ticket = result.ToString();
 				}
-
-				ticket = result.ToString();
 
 				conn.Close();
 			}
@@ -126,25 +129,51 @@ namespace DFM.Tests.BusinessLogic.Helpers
 					order by T.ID desc
 						limit 1";
 
-				var cmd = new MySqlCommand(query, conn);
-
-				cmd.Parameters.AddWithValue("ticket", ticket);
-
-				var result = cmd.ExecuteScalar();
-
-				if (result == null)
+				using (var cmd = new MySqlCommand(query, conn))
 				{
-					conn.Close();
+					cmd.Parameters.AddWithValue("ticket", ticket);
 
-					throw new DFMRepositoryException("Bad, bad developer. No e-mail for you.");
+					var result = cmd.ExecuteScalar();
+
+					if (result == null)
+					{
+						conn.Close();
+
+						throw new DFMRepositoryException("Bad, bad developer. No e-mail for you.");
+					}
+
+					token = result.ToString();
 				}
-
-				token = result.ToString();
 
 				conn.Close();
 			}
 
 			return token;
+		}
+
+
+		public static void CreateContract(String contractVersion)
+		{
+			using (var conn = new MySqlConnection(connStr))
+			{
+				conn.Open();
+
+				var query = @"
+					INSERT INTO Contract 
+						(BeginDate, Version) 
+						VALUES 
+						(curdate(), @contractVersion);
+				";
+
+				using (var cmd = new MySqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("contractVersion", contractVersion);
+
+					cmd.ExecuteNonQuery();
+				}
+
+				conn.Close();
+			}
 		}
 
 
@@ -165,7 +194,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 			return hexCode;
 		}
-
 
 
 	}

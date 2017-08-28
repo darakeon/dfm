@@ -37,10 +37,12 @@
     <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Acceptance.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Config+.cs" />
+    <Compile Include="Contract.cs" />
     <Compile Include="Enums\BootstrapTheme.cs" />
     <Compile Include="Enums\TicketType.cs" />
     <Compile Include="Ticket+.cs" />
