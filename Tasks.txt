@@ -111,7 +111,7 @@ VERSÃO 3.0.0.0 (All new) - 7
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 						Layout Bootstrap
-2017-02-24				Arrumar packages do android
+2017-02-24	2017-02-25	Arrumar packages do android
 2017-02-23	2017-02-23	Colocar imagem de início no android
 2017-02-23	2017-02-23	Implementar testes de GetList da Admin/Robot
 2017-02-09	2017-02-22	Android Kotlin
