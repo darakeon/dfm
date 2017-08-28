@@ -12,8 +12,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/"><img alt="DFM" src="/Assets/Images/pig.png" width="25" /></a>
-			<a class="navbar-brand" href="/">Don't fly Money</a>
+
+			@if (ViewBag.HideTopLogo == null)
+			{
+				<a class="navbar-brand" href="/"><img alt="DFM" src="/Assets/Images/pig.png" width="25"/></a>
+				<a class="navbar-brand" href="/">Don't fly Money</a>
+			}
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">

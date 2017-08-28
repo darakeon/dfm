@@ -6,6 +6,10 @@
 	var twitterTheme = 
 		(Model?.Theme.IsIn(BootstrapTheme.Cyborg, BootstrapTheme.Slate) ?? false)
 			? "dark" : "light";
+
+	ViewBag.HideTopLogo = true;
+
+	var tagTitle = Model.Theme == BootstrapTheme.Cyborg ? "h3" : "h1";
 }
 
 @section Scripts {
@@ -13,10 +17,17 @@
 }
 
 @section Styles {
-	<link href="/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
 }
 
-<h1>@MultiLanguage.Dictionary["Index_Welcome"]</h1>
+<div class="row">
+	<div class="col-sm-1">
+		<img alt="DFM" src="~/Assets/Images/pig.png" width="85">
+	</div>
+	<div class="col-sm-11">
+		<@tagTitle>Don't fly Money</@tagTitle>
+	</div>
+</div>
 
 <div class="row">
 
