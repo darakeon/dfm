@@ -1,90 +1,72 @@
-﻿@model AccountsIndexModel
+﻿@using DFM.MVC.Helpers
+@model AccountsIndexModel
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Accounts"];
+	Layout = "../Shared/_Table.cshtml";
 
-	var hasAccounts = Model.AccountList.Any();
+	ViewBag.HasContent = Model.AccountList.Any() && Request["Empty"] != "Y";
+	ViewBag.NoContentText = MultiLanguage.Dictionary["NoAccounts"];
+	ViewBag.Buttons = new List<Button>
+	{
+		new Button(MultiLanguage.Dictionary["ClosedAccounts"], "ListClosed", true),
+		new Button(MultiLanguage.Dictionary["Create", "Account"], "Create")
+	};
 }
 
-<h1>@ViewBag.Title</h1><hr/>
-
-@if (!hasAccounts)
+@section TableHeader
 {
-	<div class="alert alert-warning text-center">
-		@MultiLanguage.Dictionary["NoAccounts"]
-	</div>
-	<div class="text-center">
-		@Html.ActionLink(MultiLanguage.Dictionary["ClosedAccounts"], "ListClosed", null, new { @class = "btn btn-default" })
-		@Html.ActionLink(MultiLanguage.Dictionary["Create", "Account"], "Create", null, new { @class = "btn btn-default" })
-	</div>
+	<tr class="row">
+		<th class="col-sm-6">@MultiLanguage.Dictionary["Name"]</th>
+		<th class="col-sm-4 text-center" colspan="3">@MultiLanguage.Dictionary["Total"]</th>
+		<th class="col-sm-2 text-center" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+	</tr>
 }
-else
+
+@foreach (var account in Model.AccountList)
 {
-	<div class="well-sm">
-		<table class="table table-striped table-hover table-responsive">
-			<thead>
-				<tr class="row">
-					<th class="col-sm-6">@MultiLanguage.Dictionary["Name"]</th>
-					<th class="col-sm-4 text-center" colspan="3">@MultiLanguage.Dictionary["Total"]</th>
-					<th class="col-sm-2 text-center" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
-				</tr>
-			</thead>
+	var movesSum = account.Total();
+	var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
+	var className = movesSum < 0 ? "danger" : "info";
 
-			<tbody>
-				@foreach (var account in Model.AccountList)
-				{
-					var movesSum = account.Total();
-					var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
-					var className = movesSum < 0 ? "danger" : "info";
+	<tr class="row">
+		<td class="col-sm-6">
+			@Html.RouteLink(account.Name, RouteNames.ACCOUNT, new {accounturl = account.Url, controller = String.Empty})
+		</td>
 
-					<tr class="row">
-						<td class="col-sm-6">
-							@Html.RouteLink(account.Name, RouteNames.ACCOUNT, new { accounturl = account.Url, controller = String.Empty })
-						</td>
+		<td class="col-sm-1"></td>
+		<td class="col-sm-2 text-right">
+			<span class="glyphicon glyphicon-tags pull-left text-@Html.Partial("AccountSign", account.Sign())"></span>
+			<span class="text-@className">@value</span>
+		</td>
+		<td class="col-sm-1"></td>
 
-						<td class="col-sm-1"></td>
-						<td class="col-sm-2 text-right">
-							<span class="glyphicon glyphicon-tags pull-left text-@Html.Partial("AccountSign", account.Sign())"></span>
-							<span class="text-@className">@value</span>
-						</td>
-						<td class="col-sm-1"></td>
+		<td class="col-sm-1 text-center">
+			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+		</td>
 
-						<td class="col-sm-1 text-center">
-							<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
-								<span class="glyphicon glyphicon-edit"></span>
-							</a>
-						</td>
+		<td class="col-sm-1 text-center">
+			@if (account.HasMoves())
+			{
+				var closeUrl = Url.Action("Close", new {id = account.Url});
+				var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
 
-						<td class="col-sm-1 text-center">
-							@if (account.HasMoves())
-							{
-								var closeUrl = Url.Action("Close", new { id = account.Url });
-								var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
+				<a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
+					<span class="glyphicon glyphicon-off"></span>
+				</a>
+			}
+			else
+			{
+				var deleteUrl = Url.Action("Delete", new {id = account.Url});
+				var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
 
-								<a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
-									<span class="glyphicon glyphicon-off"></span>
-								</a>
-							}
-							else
-							{
-								var deleteUrl = Url.Action("Delete", new { id = account.Url });
-								var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
+				<a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+					<span class="glyphicon glyphicon-remove"></span>
+				</a>
+			}
+		</td>
+	</tr>
 
-								<a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-					}
-						</td>
-					</tr>
-
-				}
-			</tbody>
-		</table>
-		
-	</div>
-	<div class="text-right">
-		@Html.ActionLink(MultiLanguage.Dictionary["ClosedAccounts"], "ListClosed", null, new { @class = "btn btn-default pull-left" })
-		@Html.ActionLink(MultiLanguage.Dictionary["Create", "Account"], "Create", null, new { @class = "btn btn-default" })
-	</div>
 }
-
