@@ -8,14 +8,13 @@ namespace DFM.MVC.Models
 	{
 		public BaseLoggedModel()
 		{
-			ActionName = RouteInfo.Current["action"] ?? String.Empty;
 		}
 
 		public String CurrentMonth => MultiLanguage.GetMonthName(Today.Month);
 
 		public String CurrentYear => Today.ToString("yyyy");
 
-		public String ActionName { get; set; }
+		public String ActionName => RouteInfo.Current["action"] ?? String.Empty;
 
 		public String Language => Current.Language;
 	}
