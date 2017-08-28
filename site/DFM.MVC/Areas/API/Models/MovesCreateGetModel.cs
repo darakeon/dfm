@@ -8,9 +8,17 @@ namespace DFM.MVC.Areas.API.Models
 {
     internal class MovesCreateGetModel : BaseApiModel
     {
-        public MovesCreateGetModel(String accountUrl)
+        public MovesCreateGetModel(String accountUrl, Int32? id)
         {
-            AccountList = Current.User.VisibleAccountList()
+	        if (id.HasValue && id != 0)
+	        {
+		        var move = Money.GetMoveById(id.Value);
+		        accountUrl = (move.AccOut() ?? move.AccIn()).Url;
+
+				Move = new MovesCreatePostModel(move);
+	        }
+
+	        AccountList = Current.User.VisibleAccountList()
                 .Where(a => a.Url != accountUrl)
                 .Select(a => new SelectItem<String, String>(a.Name, a.Url))
                 .ToList();
@@ -30,6 +38,8 @@ namespace DFM.MVC.Areas.API.Models
         }
 
         public Boolean UseCategories { get; set; }
+
+		public MovesCreatePostModel Move { get; set; }
 
         public IList<SelectItem<String, String>> AccountList { get; set; }
         public IList<SelectItem<String, String>> CategoryList { get; set; }

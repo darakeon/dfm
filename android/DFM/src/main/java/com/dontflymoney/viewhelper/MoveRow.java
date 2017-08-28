@@ -1,4 +1,4 @@
-package com.dontflymoney.view;
+package com.dontflymoney.viewhelper;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,6 +8,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.viewhelper.DateTime;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,10 +56,7 @@ public class MoveRow extends TableRow
         if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE)
             return;
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, date.getInt("Year"));
-        calendar.set(Calendar.MONTH, date.getInt("Month") - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, date.getInt("Day"));
+        Calendar calendar = DateTime.getCalendar(date);
 
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
 

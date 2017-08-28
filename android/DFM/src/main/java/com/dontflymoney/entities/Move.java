@@ -1,21 +1,27 @@
 package com.dontflymoney.entities;
 
+import com.dontflymoney.api.Request;
+import com.dontflymoney.viewhelper.DateTime;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import com.dontflymoney.api.Request;
-
 public class Move
 {
 	public Move()
 	{
-		Details = new ArrayList<Detail>();
+		Details = new ArrayList<>();
 		Date = Calendar.getInstance();
 	}
-	
+
+    public int Id;
 	public String Description;
     public Calendar Date;
     public String Category;
@@ -25,7 +31,9 @@ public class Move
     public double Value;
 
     public List<Detail> Details;
-    
+
+
+
     public void Add(String description, int amount, double value)
     {
     	Detail detail = new Detail();
@@ -68,8 +76,11 @@ public class Move
 
 	public void setParameters(Request request)
 	{
-		request.AddParameter("Description", Description);
-		request.AddParameter("Date", DateString());
+        request.AddParameter("ID", Id);
+        request.AddParameter("Description", Description);
+        request.AddParameter("Date.Year", Date.get(Calendar.YEAR));
+        request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1);
+        request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH));
 		request.AddParameter("Category", Category);
 		request.AddParameter("PrimaryAccount", PrimaryAccount);
 		request.AddParameter("OtherAccount", OtherAccount);
@@ -88,12 +99,34 @@ public class Move
 
 	public String DateString() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-		
+
 		return formatter.format(Date.getTime());
 	}
-	
-	
-	
+
+
+
+
+    public void SetData(JSONObject moveToEdit) throws JSONException
+    {
+        Id = moveToEdit.getInt("ID");
+        Description = moveToEdit.getString("Description");
+        Date = DateTime.getCalendar(moveToEdit.getJSONObject("Date"));
+        Category = moveToEdit.getString("Category");
+        OtherAccount = moveToEdit.getString("OtherAccount");
+        Nature = moveToEdit.getInt("Nature");
+        Value = moveToEdit.getDouble("Value");
+
+        if (moveToEdit.has("DetailList"))
+        {
+            JSONArray detailList = moveToEdit.getJSONArray("DetailList");
+
+            for (int d = 0; d < detailList.length(); d++)
+            {
+                JSONObject detail = detailList.getJSONObject(d);
+                Add(detail.getString("Description"), detail.getInt("Amount"), detail.getDouble("Value"));
+            }
+        }
+    }
 	
 	
 }

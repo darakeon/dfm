@@ -53,7 +53,7 @@ public class MovesCreateActivity extends SmartActivity {
 			{
 				populateCategoryAndNature();
 				setControls();
-				populateOldData();
+				populateOldData(false);
 			}
 			catch (JSONException e)
 			{
@@ -67,7 +67,7 @@ public class MovesCreateActivity extends SmartActivity {
 		}
 	}
 	
-	private void populateOldData() throws NumberFormatException, JSONException
+	private void populateOldData(boolean populateAll) throws NumberFormatException, JSONException
 	{
 		if (move != null)
 		{
@@ -76,7 +76,7 @@ public class MovesCreateActivity extends SmartActivity {
 				JSONObject category = categoryList.getJSONObject(c);
 				String value = category.getString("Value");
 				
-				if (value == move.Category)
+				if (value.equals(move.Category))
 				{
 					String text = category.getString("Text");
 					form.setValue(R.id.category, text);
@@ -105,7 +105,7 @@ public class MovesCreateActivity extends SmartActivity {
 				JSONObject account = accountList.getJSONObject(n);
 				String value = account.getString("Value");
 				
-				if (value == move.OtherAccount)
+				if (value.equals(move.OtherAccount))
 				{
 					String text = account.getString("Text");
 					form.setValue(R.id.account, text);
@@ -125,13 +125,25 @@ public class MovesCreateActivity extends SmartActivity {
 				
 				useDetailed();
 			}
+
+            if (!populateAll)
+                return;
+
+            EditText descriptionView = (EditText) findViewById(R.id.description);
+            descriptionView.setText(move.Description);
+
+            EditText valueView = (EditText) findViewById(R.id.value);
+            valueView.setText(Double.toString(move.Value));
+
 		}
 	}
 
 	private void populateScreen()
 	{
 		request = new Request(this, "Moves/Create");
-		request.AddParameter("ticket", Authentication.Get());
+        request.AddParameter("ticket", Authentication.Get());
+        request.AddParameter("accounturl", getIntent().getStringExtra("accounturl"));
+        request.AddParameter("id", getIntent().getIntExtra("id", 0));
 		request.Get(Step.Populate);
 
 		setCurrentDate();
@@ -166,9 +178,20 @@ public class MovesCreateActivity extends SmartActivity {
 		
 		natureList = data.getJSONArray("NatureList");
 		accountList = data.getJSONArray("AccountList");
-		
+
 		populateCategoryAndNature();
-	}
+
+        if (data.has("Move"))
+        {
+            JSONObject moveToEdit = data.getJSONObject("Move");
+
+            if (moveToEdit != null)
+            {
+                move.SetData(moveToEdit);
+                populateOldData(true);
+            }
+        }
+    }
 	
 	private void populateCategoryAndNature()
 		throws JSONException

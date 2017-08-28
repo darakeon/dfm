@@ -38,20 +38,20 @@ namespace DFM.MVC.Areas.API.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Create(String accounturl)
-        {
-            try
-            {
-                var model = new MovesCreateGetModel(accounturl);
+		[HttpGet]
+		public ActionResult Create(String accounturl, Int32? id)
+		{
+			try
+			{
+				var model = new MovesCreateGetModel(accounturl, id);
 
-                return JsonGet(model);
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonGetError(MultiLanguage.Dictionary[e]);
-            }
-        }
+				return JsonGet(model);
+			}
+			catch (DFMCoreException e)
+			{
+				return JsonGetError(MultiLanguage.Dictionary[e]);
+			}
+		}
 
         [HttpPost]
         public ActionResult Create(MovesCreatePostModel move)

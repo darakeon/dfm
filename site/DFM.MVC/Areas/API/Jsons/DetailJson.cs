@@ -5,7 +5,14 @@ namespace DFM.MVC.Areas.API.Jsons
 {
     public class DetailJson
     {
-        public String Description { get; set; }
+	    public DetailJson(Detail detail)
+	    {
+		    Description = detail.Description;
+		    Amount = detail.Amount;
+		    Value = detail.Value;
+	    }
+
+	    public String Description { get; set; }
         public Int16 Amount { get; set; }
         public Decimal Value { get; set; }
 

@@ -6,7 +6,7 @@ namespace DFM.MVC.Helpers.Global
 {
     public class IP
     {
-        const string relativePath = @"../../android/src/com/dontflymoney/api/Site.java";
+		const string relativePath = @"../../android/DFM/src/main/java/com/dontflymoney/api/Site.java";
 
         internal static String Get()
         {

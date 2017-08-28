@@ -16,6 +16,7 @@ import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.viewhelper.MoveRow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +38,6 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	DatePickerDialog dialog;
 	private static int month;
 	private static int year;
-	
-	public int moveId;
 
 
 
@@ -235,14 +234,20 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	
 	public void goToMove(MenuItem item)
 	{
-		Intent intent = new Intent(this, MovesCreateActivity.class);
-		
-		intent.putExtra("accounturl", accounturl);
-		intent.putExtra("year", year);
-		intent.putExtra("month", month);
-		
-		startActivity(intent);
+        goToMove(0);
 	}
+
+    private void goToMove(int moveId)
+    {
+        Intent intent = new Intent(this, MovesCreateActivity.class);
+
+        intent.putExtra("id", moveId);
+        intent.putExtra("accounturl", accounturl);
+        intent.putExtra("year", year);
+        intent.putExtra("month", month);
+
+        startActivity(intent);
+    }
 
 
 
@@ -264,8 +269,9 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
         }
     }
 
-    private void edit(View view)
+    private void edit(MoveRow moveRow)
     {
+        goToMove(moveRow.ID);
     }
 
     public boolean askDelete(MoveRow moveRow) {
