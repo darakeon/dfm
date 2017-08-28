@@ -1,20 +1,16 @@
 package com.dontflymoney.view;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.DatePicker;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.dontflymoney.adapters.YearAdapter;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.viewhelper.TableRowWithExtra;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +25,9 @@ public class SummaryActivity extends SmartActivity
 	static String name;
 	static double total;
 	
-	TableLayout main;
+	ListView main;
+	TextView empty;
+
 	String accountUrl;
 
 	DatePickerDialog dialog;
@@ -70,7 +68,9 @@ public class SummaryActivity extends SmartActivity
 	
 	private void setCurrentInfo()
 	{
-		main = (TableLayout)findViewById(R.id.main_table);
+		main = (ListView) findViewById(R.id.main_table);
+		empty = (TextView)findViewById(R.id.empty_list);
+
 		accountUrl = getIntent().getStringExtra("accountUrl");
 	}
 	
@@ -140,8 +140,6 @@ public class SummaryActivity extends SmartActivity
 	{
 		String accountUrl = getIntent().getStringExtra("accountUrl");
 		
-		main.removeAllViews();
-		
 		request = new Request(this, "Moves/Summary");
 		
 		request.AddParameter("ticket", Authentication.Get());
@@ -157,74 +155,32 @@ public class SummaryActivity extends SmartActivity
 		monthList = data.getJSONArray("MonthList");
 		name = data.getString("Name");
 		total = data.getDouble("Total");
-		
+
 		fillSummary();
 	}
-	
-	private void fillSummary()
-		throws JSONException
+
+	private void fillSummary() throws JSONException
 	{
 		form.setValue(R.id.totalTitle, name);
 		form.setValueColored(R.id.totalValue, total);
-		
+
 		if (monthList.length() == 0)
 		{
-			View empty = form.createText(getString(R.string.no_summary), Gravity.CENTER);
-			main.addView(empty);
+			main.setVisibility(View.GONE);
+			empty.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			for(int a = 0; a < monthList.length(); a++)
-			{
-				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-				
-				getMonth(monthList.getJSONObject(a), color);
-			}
+			main.setVisibility(View.VISIBLE);
+			empty.setVisibility(View.GONE);
+
+			YearAdapter yearAdapter = new YearAdapter(this, monthList, accountUrl, year);
+			main.setAdapter(yearAdapter);
 		}
+
 	}
 
-	private void getMonth(JSONObject move, int color)
-			throws JSONException
-	{
-		int number = move.getInt("Number");
-		
-		TableRowWithExtra<Integer> row = new TableRowWithExtra<>(this, number);
-		row.setBackgroundColor(color);
-		
-		String description = move.getString("Name");
-		row.addView(form.createText(description, Gravity.START));
 
-		double total = move.getDouble("Total");
-		row.addView(form.createText(total, Gravity.END));
-
-		setClick(row);
-
-		main.addView(row);
-	}
-	
-	private void setClick(TableRow row)
-	{
-		row.setClickable(true);
-		
-		row.setOnClickListener(new OnClickListener()
-		{
-			public void onClick(View row)
-			{
-				@SuppressWarnings("unchecked")
-				TableRowWithExtra<Integer> tablerow = (TableRowWithExtra<Integer>)row;
-				int monthNumber = tablerow.getExtra();
-
-				Intent intent = new Intent(SummaryActivity.this, ExtractActivity.class);
-				
-				intent.putExtra("accountUrl", accountUrl);
-				intent.putExtra("year", year);
-				intent.putExtra("month", monthNumber-1);
-				
-				startActivity(intent);
-			}
-		});
-	}
-	
 	
 
 }

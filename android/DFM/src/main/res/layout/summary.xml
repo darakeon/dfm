@@ -54,16 +54,20 @@
 	
 	<View android:layout_width="fill_parent" android:layout_height="15dp" />
 
-	<ScrollView 
+	<TextView
+		android:id="@+id/empty_list"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		android:gravity="center"
+		android:textSize="17sp"
+		android:paddingTop="20dp"
+		android:paddingBottom="20dp"
+		android:text="@string/no_summary" />
 
-		<TableLayout 
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:stretchColumns="0"
-			android:id="@+id/main_table">
+	<ListView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/main_table" />
 
-		</TableLayout>
-	</ScrollView>
 </LinearLayout>
