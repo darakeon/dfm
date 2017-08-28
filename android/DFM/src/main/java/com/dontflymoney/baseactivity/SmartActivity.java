@@ -20,7 +20,9 @@ import org.json.JSONObject;
 
 public abstract class SmartActivity extends FixOrientationActivity
 {
-	protected abstract int contentView();
+    public View clickedView;
+
+    protected abstract int contentView();
     protected int optionsMenuResource(){ return 0; }
     protected int contextMenuResource(){ return 0; }
     protected int viewWithContext(){ return 0; }

@@ -250,7 +250,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     public boolean onContextItemSelected(MenuItem item)
     {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        MoveRow view = (MoveRow)info.targetView;
+        MoveRow view = (MoveRow)clickedView;
 
         switch (item.getItemId()) {
             case R.id.edit_move:
@@ -282,10 +282,12 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     @Override
 	public void YesAction() { 		
 		request = new Request(this, "Moves/Delete");
-		
+
+        MoveRow view = (MoveRow)clickedView;
+
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("accounturl", accounturl);
-		request.AddParameter("id", moveId);
+		request.AddParameter("id", view.ID);
 		
 		request.Post(Step.Recording);
 	}

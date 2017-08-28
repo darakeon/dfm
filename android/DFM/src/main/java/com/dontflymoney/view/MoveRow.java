@@ -31,7 +31,7 @@ public class MoveRow extends TableRow
             @Override
             public void onClick(View v)
             {
-                //activity.clickedView = v;
+                activity.clickedView = v;
                 v.showContextMenu();
             }
         });
