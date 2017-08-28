@@ -97,11 +97,20 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Row.
+        ///   Looks up a localized string similar to Negative Value.
         /// </summary>
-        public static string Row {
+        public static string RowNegative {
             get {
-                return ResourceManager.GetString("Row", resourceCulture);
+                return ResourceManager.GetString("RowNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Positive Value.
+        /// </summary>
+        public static string RowPositive {
+            get {
+                return ResourceManager.GetString("RowPositive", resourceCulture);
             }
         }
     }

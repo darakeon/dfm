@@ -129,7 +129,10 @@
   <data name="Label" xml:space="preserve">
     <value>Field</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>Row</value>
+  <data name="RowNegative" xml:space="preserve">
+    <value>Negative Value</value>
+  </data>
+  <data name="RowPositive" xml:space="preserve">
+    <value>Positive Value</value>
   </data>
 </root>

@@ -129,7 +129,7 @@
   <data name="CookiesWarning" xml:space="preserve">
     <value>Cookies will be used to remember your session next time you access the system using this browser</value>
   </data>
-  <data name="NeedToSaveTheme" xml:space="preserve">
-    <value>Save to use the chosen theme at the site for now on</value>
+  <data name="ThemeInstruction" xml:space="preserve">
+    <value>Chose a theme at the menu on the left and verify the examples at right. Save to use the chosen theme at the site for now on.</value>
   </data>
 </root>

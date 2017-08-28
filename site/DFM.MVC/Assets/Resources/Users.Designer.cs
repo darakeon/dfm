@@ -97,11 +97,11 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save to use the chosen theme at the site for now on.
+        ///   Looks up a localized string similar to Chose a theme at the menu on the left and verify the examples at right. Save to use the chosen theme at the site for now on..
         /// </summary>
-        public static string NeedToSaveTheme {
+        public static string ThemeInstruction {
             get {
-                return ResourceManager.GetString("NeedToSaveTheme", resourceCulture);
+                return ResourceManager.GetString("ThemeInstruction", resourceCulture);
             }
         }
     }
