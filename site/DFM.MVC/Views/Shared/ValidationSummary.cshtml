@@ -3,20 +3,23 @@
 		!Html.ViewData.ModelState.IsValid
 		&& Html.ViewData.ModelState.ContainsKey("");
 
-	var hasSomethingToShow = hasSummaryToShow; //|| ErrorAlert.Any();
+	var hasSomethingToShow = hasSummaryToShow || ErrorAlert.Any();
 }
 
 @if (hasSomethingToShow)
 {
-	<div class="alert alert-danger">
-		@Html.ValidationSummary(true, null, new { @class = "text-center" })
+	if (hasSummaryToShow)
+	{
+		<div class="alert alert-danger">
+			@Html.ValidationSummary(true, null, new {@class = "text-center"})
+		</div>
+	}
 
-		<ul>
-			@foreach (var error in ErrorAlert.GetAndClean())
-			{
-				<li>@error</li>
-			}
-		</ul>
-	</div>
+	foreach (var error in ErrorAlert.GetAndClean())
+	{
+		<div class="alert alert-info text-center">
+			@error
+		</div>
+	}
 }
 

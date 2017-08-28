@@ -6,6 +6,8 @@
 	var buttonList = (List<Button>)ViewBag.Buttons;
 }
 
+@Html.Partial("ValidationSummary")
+
 <h1>@ViewBag.Title</h1><hr />
 
 @if (!ViewBag.HasContent)
