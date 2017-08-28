@@ -6,6 +6,7 @@
     <!-- Actions -->
     <string name="action_logout">Logout</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_close">Close</string>
 
     <!-- Buttons -->
     <string name="save">save</string>
@@ -76,5 +77,5 @@
     <string name="settings_warning">This settings applies to mobile and web</string>
     <string name="use_categories">Use categories</string>
     <string name="settings_saved">Settings applied!</string>
-    
+
 </resources>

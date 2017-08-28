@@ -1,8 +1,5 @@
 package com.dontflymoney.view;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +7,9 @@ import android.widget.Button;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LoginActivity extends SmartActivity
@@ -26,6 +26,12 @@ public class LoginActivity extends SmartActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+        if (getIntent().getBooleanExtra("EXIT", false))
+        {
+            finish();
+            return;
+        }
 
 		if (Authentication.IsLoggedIn())
 		{

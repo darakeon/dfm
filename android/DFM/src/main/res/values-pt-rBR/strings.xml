@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Don\'t fly Money</string>
-
     <!-- Actions -->
     <string name="action_logout">Sair</string>
     <string name="action_refresh">Atualizar</string>
-    
+    <string name="action_close">Fechar</string>
+
     <!-- Buttons -->
     <string name="save">salvar</string>
     <string name="cancel">cancelar</string>

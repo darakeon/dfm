@@ -17,4 +17,12 @@
         android:icon="@drawable/logoff"
         android:onClick="logout" />
 
+    <item
+        android:id="@+id/action_close"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_close"
+        android:icon="@drawable/close"
+        android:onClick="close" />
+
 </menu>
