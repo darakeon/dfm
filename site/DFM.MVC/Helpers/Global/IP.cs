@@ -56,7 +56,7 @@ namespace DFM.MVC.Helpers.Global
 			File.WriteAllLines(path, lines);
 		}
 
-		const string domainDeclaration = "	public static final String Domain = ";
+		const string domainDeclaration = "	static final String Domain = ";
 
 
 
