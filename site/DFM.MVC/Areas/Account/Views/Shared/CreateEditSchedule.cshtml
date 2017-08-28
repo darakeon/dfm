@@ -78,11 +78,13 @@
 
 <div class="createMoveScreenLeft">
 	@Html.RadioButtonFor(m => m.IsDetailed, false, new { @class = "detailLevel", id = "IsNotDetailed" })
+	@* ReSharper disable once Html.IdNotResolved *@
 	<label for="IsNotDetailed">@MultiLanguage.Dictionary["JustOneValue"]</label>
 </div>
 
 <div class="createMoveScreenRight">
 	@Html.RadioButtonFor(m => m.IsDetailed, true, new { @class = "detailLevel" })
+	@* ReSharper disable once Html.IdNotResolved *@
 	<label for="IsDetailed">@MultiLanguage.Dictionary["Detailed"]</label>
 
 	<a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>

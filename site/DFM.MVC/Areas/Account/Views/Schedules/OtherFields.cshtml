@@ -10,10 +10,12 @@
 <div class="createMoveScreenRight">
     <div>
         @Html.RadioButtonFor(m => m.Boundless, true, new { @class = "boundlessRadio", id = "Boundless" })
+	    @* ReSharper disable once Html.IdNotResolved *@
         <label for="Boundless">@MultiLanguage.Dictionary["Boundless"]</label>
     </div>
     <div>
         @Html.RadioButtonFor(m => m.Boundless, false, new { @class = "boundlessRadio", id = "Bounded" })
+		@* ReSharper disable once Html.IdNotResolved *@
         <label for="Bounded">@MultiLanguage.Dictionary["Repeat"]</label>
 
         @Html.TextBoxFor(m => m.Times, new { @class = "amount" }) @(" ")
