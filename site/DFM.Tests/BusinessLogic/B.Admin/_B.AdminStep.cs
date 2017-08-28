@@ -486,7 +486,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Service.Admin.CreateCategory(Category);
 		}
 
-		[When(@"I make this changes to the category")]
+		[Given(@"I make this changes to the category")]
 		public void WhenIMakeThisChangesToTheCategory(Table table)
 		{
 			var categoryData = table.Rows[0];

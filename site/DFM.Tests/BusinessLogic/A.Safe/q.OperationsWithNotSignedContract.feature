@@ -13,11 +13,7 @@ Scenario: Aq001. List Logins
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq002. Change Password
-	Given I have this user created and activated
-		| Email                  | Password |
-		| Aq002@dontflymoney.com | password |
-	And I have a ticket of this user
-	And I pass this password
+	Given I pass this password
 		| Current Password | Password     | Retype Password |
 		| password         | new_password | new_password    |
 	But there is a new contract
@@ -25,11 +21,7 @@ Scenario: Aq002. Change Password
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq003. Update E-mail
-	Given I have this user created and activated
-		| Email                  | Password |
-		| Aq003@dontflymoney.com | password |
-	And I have a ticket of this user
-	And I pass this new e-mail and password
+	Given I pass this new e-mail and password
 		| New E-mail              | Current Password |
 		| Aq003_@dontflymoney.com | password         |
 	But there is a new contract
@@ -46,7 +38,8 @@ Scenario: Aq101. Save Account
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq102. Select Account
-	Given I pass a valid account url
+	Given I have an account
+	And I pass a valid account url
 	But there is a new contract
 	When I try to get the account by its url
 	Then I will receive this core error: NotSignedLastContract
@@ -84,7 +77,8 @@ Scenario: Aq106. Save Category
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq107. Select Category
-	Given I pass a valid category name
+	Given I have a category
+	And I pass a valid category name
 	But there is a new contract
 	When I try to get the category by its name
 	Then I will receive this core error: NotSignedLastContract
@@ -93,10 +87,11 @@ Scenario: Aq108. Update Category
 	Given I have this category
 		| Name           |
 		| Category Aq108 |
-	But there is a new contract
-	When I make this changes to the category
+	And I make this changes to the category
 		| Name             |
 		| Aq108 - new name |
+	But there is a new contract
+	When I try to update the category
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq109. Disable Category
@@ -158,7 +153,9 @@ Scenario: Aq119. Get Category list
 
 
 Scenario: Aq201. Save Move
-	Given I have this move to create
+	Given I have a category
+	And I have two accounts
+	And I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca94   | 2012-03-31 | Out    | 10    |
 	And it has no Details
@@ -170,40 +167,58 @@ Scenario: Aq201. Save Move
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq202. Update Move
-	Given I have a move with value 10 (Out)
+	Given I have a category
+	And I have two accounts
+	And I have a move with value 10 (Out)
 	And I change the move date in -1 day
 	But there is a new contract
 	When I update the move
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq203. Select Move
-	Given I pass valid Move ID
+	Given I enable Categories use
+	And I have two accounts
+	And I have a category
+	And I have a move
+	And I pass valid Move ID
 	But there is a new contract
 	When I try to get the move
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq204. Select Detail
-	Given I pass valid Detail ID
+	Given I enable Categories use
+	And I have two accounts
+	And I have a category
+	And I have a move with details
+	And I pass valid Detail ID
 	But there is a new contract
 	When I try to get the detail
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq205. Delete Move
-	Given I have a move with value 10 (In)
+	Given I have a category
+	And I have two accounts
+	And I have a move with value 10 (In)
 	And I pass valid Move ID
 	But there is a new contract
 	When I try to delete the move
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq206. Check Move
-	Given I have a move with value 10 (Out)
+	Given I have a category
+		And I have two accounts
+		And I enable move check
+		And I have a move with value 10 (Out)
 		And the move is not checked
 		But there is a new contract
 	When I try to mark it as checked
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq207. Uncheck Move
-	Given I have a move with value 10 (Out)
+	Given I have a category
+		And I have two accounts
+		And I enable move check
+		And I have a move with value 10 (Out)
 		And the move is checked
 		But there is a new contract
 	When I try to mark it as not checked
@@ -211,7 +226,9 @@ Scenario: Aq207. Uncheck Move
 
 
 Scenario: Aq301. Save Schedule
-	Given I have this schedule to create
+	Given I have a category
+	And I have two accounts
+	And I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
 	And it has no Details
@@ -223,7 +240,9 @@ Scenario: Aq301. Save Schedule
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq302. Run Schedule
-	Given I have this schedule to create
+	Given I have a category
+	And I have two accounts
+	And I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
 	And its Date is 5 days ago
@@ -237,7 +256,10 @@ Scenario: Aq302. Run Schedule
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq303. Disable Schedule
-	Given I have this schedule to create
+	Given I enable Categories use
+	And I have two accounts
+	And I have a category
+	And I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
 	And it has no Details

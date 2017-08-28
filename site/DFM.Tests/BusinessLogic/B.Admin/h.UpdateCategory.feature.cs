@@ -95,9 +95,9 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "Ca01 - new name"});
 #line 11
- testRunner.When("I make this changes to the category", ((string)(null)), table2, "When ");
+ testRunner.And("I make this changes to the category", ((string)(null)), table2, "And ");
 #line 14
- testRunner.And("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
@@ -135,9 +135,9 @@ this.FeatureBackground();
             table5.AddRow(new string[] {
                         "Category Ha02.1"});
 #line 25
- testRunner.When("I make this changes to the category", ((string)(null)), table5, "When ");
+ testRunner.And("I make this changes to the category", ((string)(null)), table5, "And ");
 #line 28
- testRunner.And("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
  testRunner.Then("I will receive this core error: CategoryAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
@@ -168,9 +168,9 @@ this.FeatureBackground();
             table7.AddRow(new string[] {
                         ""});
 #line 36
- testRunner.When("I make this changes to the category", ((string)(null)), table7, "When ");
+ testRunner.And("I make this changes to the category", ((string)(null)), table7, "And ");
 #line 39
- testRunner.And("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
  testRunner.Then("I will receive this core error: CategoryNameRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 41
