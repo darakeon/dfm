@@ -39,7 +39,7 @@ VERSÃO 3.0.0.0 (All new) - 8?
 						Relatório Período: com filtro por início e fim
 						Enviar e-mail se a move está abaixo dos limites amarelo e vermelho
 
-VERSÃO 2.2.0.0 (Big change) - 11?
+VERSÃO 2.3.0.0 (Big change) - 11?
 ================================================================================================
 					>>>	exportador de CSV
 					>>>	exportador de Money
@@ -53,19 +53,19 @@ VERSÃO 2.2.0.0 (Big change) - 11?
 					>>>	importador de Excel
 S						Configurar max request length
 
-VERSÃO 2.1.0.0 (Big change) - 3?
+VERSÃO 2.2.0.0 (Big change) - 3?
 ================================================================================================
 					>>>	Mostrar valor da conta com movimentações futuras
 					>>>	Criar relatórios por anos
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 2.0.3.0 (Little change) - 3?
+VERSÃO 2.1.2.0 (Little change) - 3?
 ================================================================================================
 					>>>	Se for post, fazer login realizar history.go(-2)
 					>>> Colocar combo das duas accounts
 						Mostrar naturezas em botões, não dropdowns
 
-VERSÃO 2.0.2.0 (Little change) - 11?
+VERSÃO 2.1.1.0 (Little change) - 14?
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Total no Resumo Anual
@@ -82,7 +82,7 @@ S						Arrumar para web usar fakeId, não id
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 
-VERSÃO 2.0.3.0 (Little change) - 8?
+VERSÃO 2.1.0.0 (Big change) - 9?
 ================================================================================================
 F						Disponibilizar Task list no site
 F						Guardar dados localmente, para quando está sem internet (Mobile)
@@ -94,7 +94,7 @@ F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 						Corrigir problema de deletar conta que já teve movimentações
 
-VERSÃO 2.0.3.0 (Little change) - 5?
+VERSÃO 2.0.3.0 (Little change) - 5
 ================================================================================================
 2015-09-07	2015-09-07	Deixar salvar o programa no SD
 2015-09-06	2015-09-07	Colocar edição de movimentação (mobile)
@@ -102,7 +102,7 @@ VERSÃO 2.0.3.0 (Little change) - 5?
 2015-09-06	2015-09-06	Não deixar sleep quando já estiver no meio de uma requisição
 2015-09-05	2015-09-05	Colocar botão de sair (mobile)
 
-VERSÃO 2.0.2.0 (Little change) - 13?
+VERSÃO 2.0.2.0 (Little change) - 13
 ================================================================================================
 2015-09-02	2015-09-03	Usar versão de projeto no .NET
 2015-09-02	2015-09-02	Corrigir url do logo
