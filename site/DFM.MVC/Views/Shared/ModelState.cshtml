@@ -1,0 +1,14 @@
+﻿@foreach (var state in ViewData.ModelState)
+{
+	if (state.Value.Errors.Any())
+	{
+		<div>
+			<span class="label label-default">@state.Key</span>
+
+			@foreach (var error in state.Value.Errors)
+			{
+				<text>{ @error.ErrorMessage }</text>
+			}
+		</div>
+	}
+}
