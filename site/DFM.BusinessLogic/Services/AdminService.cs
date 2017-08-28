@@ -36,6 +36,19 @@ namespace DFM.BusinessLogic.Services
 
 
 		#region Account
+		public IList<Account> GetAccountList(Boolean open)
+		{
+			var query = accountRepository.NewQuery();
+
+			query.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
+
+			if (open)
+				query.SimpleFilter(a => a.EndDate == null);
+			else
+				query.SimpleFilter(a => a.EndDate != null);
+
+			return query.OrderBy(a => a.Name).Result;
+		}
 
 		public Account GetAccountByUrl(String url)
 		{
@@ -142,6 +155,14 @@ namespace DFM.BusinessLogic.Services
 
 
 		#region Category
+		public IList<Category> GetCategoryList()
+		{
+			return categoryRepository.NewQuery()
+				.SimpleFilter(a => a.User.ID == Parent.Current.User.ID)
+				.OrderBy(c => c.Active, false)
+				.OrderBy(a => a.Name)
+				.Result;
+		}
 
 		public Category GetCategoryByName(String name)
 		{
@@ -263,7 +284,6 @@ namespace DFM.BusinessLogic.Services
 		}
 
 		#endregion
-
 
 	}
 }

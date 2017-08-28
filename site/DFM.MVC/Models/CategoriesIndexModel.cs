@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using DFM.Entities;
 
 namespace DFM.MVC.Models
@@ -8,11 +7,7 @@ namespace DFM.MVC.Models
 	{
 		public CategoriesIndexModel()
 		{
-			CategoryList =
-				Current.User.CategoryList
-					.OrderBy(c => c.Name)
-					.ThenByDescending(c => c.Active)
-					.ToList();
+			CategoryList = Admin.GetCategoryList();
 		}
 
 		public IList<Category> CategoryList;
