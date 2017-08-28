@@ -92,6 +92,8 @@ F						Colocar tela de lista de funcionalidades
 F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
+F						Configuração de usuário para habilitar conferência
+F						Conferência de movimentação
 
 VERSÃO 2.0.3.1 (System) - 4
 ================================================================================================
