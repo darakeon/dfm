@@ -8,6 +8,7 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
 
 namespace DFM.BusinessLogic.Repositories
@@ -58,11 +59,10 @@ namespace DFM.BusinessLogic.Repositories
 			var accountInName = getAccountName(move.AccIn());
 			var accountOutName = getAccountName(move.AccOut());
 
-			var categoryName = move.Category == null
-				? "---"
-				: move.Category.Name;
+			var categoryName = move.Category?.Name ?? "---";
+			var nature = PlainText.Dictionary["general", user.Config.Language, move.Nature.ToString()];
 
-			var format = new Format(user.Config.Language, move.Nature);
+			var format = Format.MoveNotification(user.Config.Language);
 
 			var dic = new Dictionary<String, String>
 							{
@@ -70,6 +70,7 @@ namespace DFM.BusinessLogic.Repositories
 								{ "AccountIn", accountInName },
 								{ "AccountOut", accountOutName },
 								{ "Date", move.Date.ToShortDateString() },
+								{ "Nature", nature },
 								{ "Category", categoryName },
 								{ "Description", move.Description },
 								{ "Value", move.Total().ToMoney(user.Config.Language) },

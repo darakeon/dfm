@@ -81,21 +81,18 @@ namespace DFM.Tests.Multilanguage
 		[When(@"I try get the layout")]
 		public void WhenITryGetTheLayout()
 		{
-			foreach (var language in languages)
+			foreach (var emailType in emailTypes)
 			{
-				foreach (var emailType in emailTypes)
+				try
 				{
-					try
-					{
-						var layout = PlainText.EmailLayout[language, emailType];
+					var layout = PlainText.EmailLayout[emailType];
 
-						if (String.IsNullOrEmpty(layout))
-							errors.AppendLine($"Null at L: {language}, T: {emailType}");
-					}
-					catch (DicException e)
-					{
-						errors.AppendLine(e.Message);
-					}
+					if (String.IsNullOrEmpty(layout))
+						errors.AppendLine($"Null at T: {emailType}");
+				}
+				catch (DicException e)
+				{
+					errors.AppendLine(e.Message);
 				}
 			}
 		}

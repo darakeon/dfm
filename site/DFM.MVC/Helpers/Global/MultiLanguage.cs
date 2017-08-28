@@ -39,11 +39,6 @@ namespace DFM.MVC.Helpers.Global
 		private String this[String specificSection, params String[] phrase] => PlainText.Dictionary[specificSection, Language, phrase];
 
 
-		public static String EmailLayout(String layout)
-		{
-			return PlainText.EmailLayout[Language, layout];
-		}
-
 		public static String GetMonthName(Int32 month)
 		{
 			return PlainText.GetMonthName(month, Language);

@@ -31,17 +31,15 @@ namespace DFM.BusinessLogic.Repositories
 		internal void SendEmail(Security security, String pathAction, String pathDisable)
 		{
 			var dic = new Dictionary<String, String>
-							{
-								{ "Url", Dfm.Url },
-								{ "Token", security.Token },
-								{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
-								{ "PathAction", pathAction },
-								{ "PathDisable", pathDisable },
-							};
+			{
+				{ "Url", Dfm.Url },
+				{ "Token", security.Token },
+				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
+				{ "PathAction", pathAction },
+				{ "PathDisable", pathDisable },
+			};
 
-			var format = new Format(security.User.Config.Language, security.Action);
-			
-
+			var format = Format.SecurityAction(security.User.Config.Language, security.Action);
 			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()

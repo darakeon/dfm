@@ -1,44 +1,24 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Move Notification</title>
+	<title>{{Title}}</title>
 </head>
 <body>
 	<div style="background: #EEF3F6; text-align: justify; width: 100%; padding-bottom: 20px; font-family: Calibri; font-size: 15px;">
 		<a id="Logo" href="{{Url}}" style="text-decoration: none;">
 			<img style="margin: 20px 3px 20px 20px;" src="{{Url}}/Assets/Image/pig.gif" alt="DFM" />
-			<img style="margin: 20px 20px 20px 3px;" src="{{Url}}/Assets/Image/logo.gif" alt="DFM" />
 		</a>
 
 		<br />
-	
+
 		<div style="margin: 0 auto; background: #FFF; padding: 20px; border-radius: 5px 0 25px 0; width: 400px;">
 			<h2 style="color: #AA8E55; font-size: 20px; border-bottom: #AA8E55 2px solid; margin: 0 0 40px 0;">
-				Move Notification (on DFM)
+				{{Title}}
 			</h2>
 
-			<table style="width: 100%">
-				<tr>
-					<td>Out</td>
-					<td style="text-align: right;">{{Description}}</td>
-				</tr>
-				<tr>
-					<td>Acc. {{AccountOut}}</td>
-					<td style="text-align: right;">{{Date}}</td>
-				</tr>
-				<tr>
-					<td>Cat. {{Category}}</td>
-					<td style="text-align: right;">{{Value}}</td>
-				</tr>
-			</table>
+			{{Body}}
 
-			<div style="margin: 20px 0;">
-				Details:<br />
-				{{Details}}
-			</div>
-
-			This move was done JUST IN DFM SYSTEM. We have NO link with financial institutions. Don't reply this e-mail. Our contact: dfm@dontflymoney.com
-
+			{{Warning}}
 		</div>
 	</div>
 </body>

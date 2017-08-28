@@ -8,31 +8,16 @@ Background:
 		| pt-BR    |
 
 
-Scenario: 01. Get translations of e-mail names
-	Given I have these keys
-		| Section | Phrase                   |
-		| Email   | MoveNotificationIn       |
-		| Email   | MoveNotificationOut      |
-		| Email   | MoveNotificationTransfer |
-		| Email   | UserVerification         |
-		| Email   | PasswordReset            |
-	When I try get the translate
-	Then I will receive no multilanguage error
-
-
-Scenario: 02. Get layouts of e-mails
+Scenario: 01. Get layouts of e-mails
 	Given I have these e-mail types
-		| Phrase                   |
-		| MoveNotificationIn       |
-		| MoveNotificationOut      |
-		| MoveNotificationTransfer |
-		| UserVerification         |
-		| PasswordReset            |
+		| Phrase           |
+		| MoveNotification |
+		| SecurityAction   |
 	When I try get the layout
 	Then I will receive no multilanguage error
 
 
-Scenario: 03. Get translations of Enums
+Scenario: 02. Get translations of Enums
 	Given I have these keys
 		| Section   | Phrase           |
 		| Moves     | In               |
@@ -46,7 +31,7 @@ Scenario: 03. Get translations of Enums
 	When I try get the translate
 	Then I will receive no multilanguage error
 
-Scenario: 04. Get translations of Errors
+Scenario: 03. Get translations of Errors
 	Given I have these keys
 		| Section | Phrase                         |
 		| Error   | Unauthorized                   |

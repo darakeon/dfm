@@ -354,6 +354,7 @@
     <Content Include="Views\Shared\Title.cshtml" />
     <Content Include="Views\Shared\ModelState.cshtml" />
     <None Include="Views\Test\AnalyzeDictionary.cshtml" />
+    <Content Include="Views\Test\Email.cshtml" />
     <None Include="Views\Tokens\Disable.cshtml" />
     <None Include="Views\Tokens\Index.cshtml" />
     <None Include="Views\Tokens\Invalid.cshtml" />

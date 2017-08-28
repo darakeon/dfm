@@ -7,19 +7,26 @@ namespace DFM.Multilanguage.Helpers
 	{
 		private static readonly String path = Path.Combine(PlainText.MainPath, "EmailLayouts");
 
-		public String this[String language, String layout]
+		public String this[String layout]
 		{
 			get
 			{
-				var filePath = Path.Combine(path, language, layout + ".htm");
+				var masterPath = Path.Combine(path, "master.htm");
+				var mainPath = Path.Combine(path, layout + ".htm");
 
-				if (!File.Exists(filePath))
-					return "";
+				var masterContent = getContent(masterPath);
+				var mainContent = getContent(mainPath);
 
-				return File.ReadAllText(filePath);
+				return masterContent.Replace("{{Body}}", mainContent);
 			}
 		}
 
+		private static string getContent(string filePath)
+		{
+			if (!File.Exists(filePath))
+				return "";
 
+			return File.ReadAllText(filePath);
+		}
 	}
 }
