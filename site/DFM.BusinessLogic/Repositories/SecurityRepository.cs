@@ -39,7 +39,9 @@ namespace DFM.BusinessLogic.Repositories
 				{ "PathDisable", pathDisable },
 			};
 
-			var format = Format.SecurityAction(security.User.Config.Language, security.Action);
+			var config = security.User.Config;
+
+			var format = Format.SecurityAction(config.Language, config.Theme.Simplify(), security.Action);
 			var fileContent = format.Layout.Format(dic);
 
 			var sender = new Sender()

@@ -1,8 +1,16 @@
-﻿@model String
+﻿@model IEnumerable<String>
 
 @{
 	Layout = null;
 }
 
+<div style="width: @(500 * Model.Count())px;">
 
-@Html.Raw(Model)
+	@foreach (var layout in Model)
+	{
+		<div style="width: 500px; float: left;">
+			@Html.Raw(layout)
+		</div>
+	}
+	
+</div>

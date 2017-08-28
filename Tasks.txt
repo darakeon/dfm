@@ -112,8 +112,8 @@ VERSÃO 3.0.0.0 (All new) - 19
 						Corrigir edição de movimentação com schedule
 						Corrigir edição de movimentação no mobile
 						Corrigir problema de cache na criação/edição de movimentação (conta/categoria)
-						Tema dark no android (para Slate e Cyborg)
-2017-03-26				Mudar layouts de e-mail - light / dark
+						Tema dark no android
+2017-03-26	2017-03-27	Mudar layouts de e-mail - light / dark
 2017-03-25	2017-03-26	Configuração de tema
 2017-03-24	2017-03-25	Adicionar aviso de cookies no logon (remember me)
 2017-03-24	2017-03-24	Fazer capa nova para youtube / facebook / twitter (?)

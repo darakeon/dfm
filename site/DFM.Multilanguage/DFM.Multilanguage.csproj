@@ -48,10 +48,12 @@
     <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Emails\SimpleTheme.cs" />
+    <Compile Include="Emails\EmailType.cs" />
     <Compile Include="Helpers\DicException.cs" />
     <Compile Include="Helpers\DicList.cs" />
     <Compile Include="Helpers\DecimalToMoneyExtension.cs" />
-    <Compile Include="Helpers\EmailLayout.cs" />
+    <Compile Include="Emails\EmailLayout.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\INameable.cs" />
     <Compile Include="Helpers\Language.cs" />
@@ -72,16 +74,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserVerification.resx</DependentUpon>
     </Compile>
-    <Compile Include="MultiLanguage\EmailLayouts\Master.Designer.cs">
+    <Compile Include="MultiLanguage\EmailLayouts\General.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Master.resx</DependentUpon>
+      <DependentUpon>General.resx</DependentUpon>
     </Compile>
     <Compile Include="PlainText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MultiLanguage\EmailLayouts\Master.htm">
+    <Content Include="MultiLanguage\EmailLayouts\DarkMaster.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MultiLanguage\EmailLayouts\LightMaster.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MultiLanguage\EmailLayouts\SecurityAction.htm">
@@ -130,7 +135,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\Master.pt-BR.resx" />
+    <EmbeddedResource Include="MultiLanguage\EmailLayouts\General.pt-BR.resx" />
     <EmbeddedResource Include="MultiLanguage\EmailLayouts\MoveNotification.pt-BR.resx" />
     <EmbeddedResource Include="MultiLanguage\EmailLayouts\MoveNotification.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -146,9 +151,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserVerification.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\Master.resx">
+    <EmbeddedResource Include="MultiLanguage\EmailLayouts\General.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Master.Designer.cs</LastGenOutput>
+      <LastGenOutput>General.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

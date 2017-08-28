@@ -97,7 +97,7 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Move Notification (on DfM).
+        ///   Looks up a localized string similar to Move Notification.
         /// </summary>
         public static string Title {
             get {

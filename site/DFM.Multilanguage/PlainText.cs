@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using DFM.Multilanguage.Emails;
 using DK.XML;
 using DK.Generic.Extensions;
 using DFM.Multilanguage.Helpers;

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
 
-namespace DFM.Multilanguage.Helpers
+namespace DFM.Multilanguage.Emails
 {
 	public class EmailLayout
 	{
 		private static readonly String path = Path.Combine(PlainText.MainPath, "EmailLayouts");
 
-		public String this[String layout]
+		public String this[SimpleTheme simpleTheme, EmailType emailType]
 		{
 			get
 			{
-				var masterPath = Path.Combine(path, "master.htm");
-				var mainPath = Path.Combine(path, layout + ".htm");
+				var masterPath = Path.Combine(path, $"{simpleTheme}Master.htm");
+				var mainPath = Path.Combine(path, $"{emailType}.htm");
 
 				var masterContent = getContent(masterPath);
 				var mainContent = getContent(mainPath);
@@ -28,5 +28,9 @@ namespace DFM.Multilanguage.Helpers
 
 			return File.ReadAllText(filePath);
 		}
+
+
+
+
 	}
 }

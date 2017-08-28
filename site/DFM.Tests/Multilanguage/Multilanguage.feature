@@ -13,6 +13,10 @@ Scenario: 01. Get layouts of e-mails
 		| Phrase           |
 		| MoveNotification |
 		| SecurityAction   |
+	And I have these themes
+		| Phrase |
+		| Dark   |
+		| Light  |
 	When I try get the layout
 	Then I will receive no multilanguage error
 

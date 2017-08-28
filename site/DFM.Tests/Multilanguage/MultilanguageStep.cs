@@ -7,6 +7,7 @@ using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using DFM.Multilanguage;
+using DFM.Multilanguage.Emails;
 
 namespace DFM.Tests.Multilanguage
 {
@@ -48,7 +49,15 @@ namespace DFM.Tests.Multilanguage
 		public void GivenIHaveTheseEmailTypes(Table table)
 		{
 			emailTypes = table.Rows
-				.Select(r => r["Phrase"])
+				.Select(r => (EmailType)Enum.Parse(typeof(EmailType), r["Phrase"]))
+				.ToList();
+		}
+
+		[Given(@"I have these themes")]
+		public void GivenIHaveTheseThemes(Table table)
+		{
+			themes = table.Rows
+				.Select(r => (SimpleTheme)Enum.Parse(typeof(SimpleTheme), r["Phrase"]))
 				.ToList();
 		}
 
@@ -83,16 +92,19 @@ namespace DFM.Tests.Multilanguage
 		{
 			foreach (var emailType in emailTypes)
 			{
-				try
+				foreach (var theme in themes)
 				{
-					var layout = PlainText.EmailLayout[emailType];
+					try
+					{
+						var layoutDark = PlainText.EmailLayout[theme, emailType];
 
-					if (String.IsNullOrEmpty(layout))
-						errors.AppendLine($"Null at T: {emailType}");
-				}
-				catch (DicException e)
-				{
-					errors.AppendLine(e.Message);
+						if (String.IsNullOrEmpty(layoutDark))
+							errors.AppendLine($"Null at {theme} {emailType}");
+					}
+					catch (DicException e)
+					{
+						errors.AppendLine(e.Message);
+					}
 				}
 			}
 		}
@@ -124,10 +136,16 @@ namespace DFM.Tests.Multilanguage
 			set { Set("keys", value); }
 		}
 
-		private static IList<String> emailTypes
+		private static IList<EmailType> emailTypes
 		{
-			get { return Get<IList<String>>("emailTypes"); }
+			get { return Get<IList<EmailType>>("emailTypes"); }
 			set { Set("emailTypes", value); }
+		}
+
+		private static IList<SimpleTheme> themes
+		{
+			get { return Get<IList<SimpleTheme>>("themes"); }
+			set { Set("themes", value); }
 		}
 
 

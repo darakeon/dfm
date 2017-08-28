@@ -22,14 +22,14 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Master {
+    public class General {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Master() {
+        internal General() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Multilanguage.MultiLanguage.EmailLayouts.Master", typeof(Master).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Multilanguage.MultiLanguage.EmailLayouts.General", typeof(General).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

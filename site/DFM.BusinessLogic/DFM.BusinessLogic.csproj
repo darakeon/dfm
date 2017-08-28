@@ -57,6 +57,7 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Bases\GenericMoveRepository.cs" />
+    <Compile Include="Helpers\ThemeExtension.cs" />
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="ObjectInterfaces\IPasswordForm.cs" />
     <Compile Include="ObjectInterfaces\MainConfig.cs" />

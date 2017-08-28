@@ -52,30 +52,31 @@ namespace DFM.BusinessLogic.Repositories
 		internal EmailStatus SendEmail(Move move)
 		{
 			var user = move.User;
+			var config = user.Config;
 
-			if (!user.Config.SendMoveEmail)
+			if (!config.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
 
 			var accountInName = getAccountName(move.AccIn());
 			var accountOutName = getAccountName(move.AccOut());
 
 			var categoryName = move.Category?.Name ?? "---";
-			var nature = PlainText.Dictionary["general", user.Config.Language, move.Nature.ToString()];
+			var nature = PlainText.Dictionary["general", config.Language, move.Nature.ToString()];
 
-			var format = Format.MoveNotification(user.Config.Language);
+			var format = Format.MoveNotification(config.Language, config.Theme.Simplify());
 
 			var dic = new Dictionary<String, String>
-							{
-								{ "Url", Dfm.Url },
-								{ "AccountIn", accountInName },
-								{ "AccountOut", accountOutName },
-								{ "Date", move.Date.ToShortDateString() },
-								{ "Nature", nature },
-								{ "Category", categoryName },
-								{ "Description", move.Description },
-								{ "Value", move.Total().ToMoney(user.Config.Language) },
-								{ "Details", detailsHTML(move) },
-							};
+			{
+				{ "Url", Dfm.Url },
+				{ "AccountIn", accountInName },
+				{ "AccountOut", accountOutName },
+				{ "Date", move.Date.ToShortDateString() },
+				{ "Nature", nature },
+				{ "Category", categoryName },
+				{ "Description", move.Description },
+				{ "Value", move.Total().ToMoney(config.Language) },
+				{ "Details", detailsHTML(move) },
+			};
 
 			var fileContent =
 				format.Layout.Format(dic);

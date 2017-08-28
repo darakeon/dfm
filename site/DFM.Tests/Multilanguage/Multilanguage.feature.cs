@@ -98,9 +98,18 @@ this.FeatureBackground();
                         "SecurityAction"});
 #line 12
  testRunner.Given("I have these e-mail types", ((string)(null)), table2, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Phrase"});
+            table3.AddRow(new string[] {
+                        "Dark"});
+            table3.AddRow(new string[] {
+                        "Light"});
 #line 16
+ testRunner.And("I have these themes", ((string)(null)), table3, "And ");
+#line 20
  testRunner.When("I try get the layout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 21
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -111,43 +120,43 @@ this.FeatureBackground();
         public virtual void _02_GetTranslationsOfEnums()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get translations of Enums", ((string[])(null)));
-#line 20
+#line 24
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Moves",
                         "In"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Moves",
                         "Out"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Moves",
                         "Transfer"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Schedules",
                         "Daily"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Schedules",
                         "Monthly"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Schedules",
                         "Yearly"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Tokens",
                         "UserVerification"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Tokens",
                         "PasswordReset"});
-#line 21
- testRunner.Given("I have these keys", ((string)(null)), table3, "Given ");
-#line 31
+#line 25
+ testRunner.Given("I have these keys", ((string)(null)), table4, "Given ");
+#line 35
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 36
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -158,196 +167,196 @@ this.FeatureBackground();
         public virtual void _03_GetTranslationsOfErrors()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Get translations of Errors", ((string[])(null)));
-#line 34
+#line 38
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "Unauthorized"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "FailOnEmailSend"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "TooLargeData"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidToken"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidUser"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "UserAlreadyExists"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "UserEmailInvalid"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "UserPasswordRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DisabledUser"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "Uninvited"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "RetypeWrong"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "WrongPassword"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "AccountNameRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "AccountUrlRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "AccountUrlInvalid"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "AccountNameAlreadyExists"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "AccountUrlAlreadyExists"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "CantCloseEmptyAccount"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "CantDeleteAccountWithMoves"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "ClosedAccount"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DuplicatedAccountName"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DuplicatedAccountUrl"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "RedLimitAboveYellowLimit"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidAccount"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "CategoriesDisabled"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveCheckDisabled"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "CategoryNameRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "CategoryAlreadyExists"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DisabledCategory"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "EnabledCategory"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DuplicatedCategoryName"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidCategory"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InMoveWrong"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "OutMoveWrong"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "TransferMoveWrong"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveCircularTransfer"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDescriptionRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDateRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDateInvalid"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveValueOrDetailRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidMove"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DetailWithoutParent"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDetailDescriptionRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDetailAmountRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveDetailValueRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidDetail"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveAlreadyChecked"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "MoveAlreadyUnchecked"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "ScheduleRequired"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "ScheduleFrequencyNotRecognized"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "ScheduleWithNoMoves"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "ScheduleTimesCantBeZero"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "SummaryNatureNotFound"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidYear"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidMonth"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "InvalidSchedule"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "DisabledSchedule"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "LanguageUnknown"});
-            table4.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Error",
                         "TimezoneUnknown"});
-#line 35
- testRunner.Given("I have these keys", ((string)(null)), table4, "Given ");
-#line 96
+#line 39
+ testRunner.Given("I have these keys", ((string)(null)), table5, "Given ");
+#line 100
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 97
+#line 101
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -358,88 +367,88 @@ this.FeatureBackground();
         public virtual void _05_GetTranslateOfInterfaceMoves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Get translate of Interface (moves)", ((string[])(null)));
-#line 100
+#line 104
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Create"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Edit"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Move"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "DayNames"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Description"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "CharactersMax"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Date"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Category"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Select"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Create"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Category"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Nature"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "JustOneValue"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Detailed"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Add"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Detail"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Value"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "Amount"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "ToMove"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "MoveSave"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "MoveNotFound"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "MoveDeleted"});
-            table5.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Moves",
                         "MoveDeletedWithoutEmail"});
-#line 101
- testRunner.Given("I have these keys", ((string)(null)), table5, "Given ");
-#line 126
+#line 105
+ testRunner.Given("I have these keys", ((string)(null)), table6, "Given ");
+#line 130
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 127
+#line 131
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -450,85 +459,85 @@ this.FeatureBackground();
         public virtual void _06_GetTranslateOfInterfaceReports()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Get translate of Interface (reports)", ((string[])(null)));
-#line 130
+#line 134
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "ShortDateFormat"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Summary"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Go"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "NoMonthMoves"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Description"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Category"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Date"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "In"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Out"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "TODO"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Edit"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Move"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Delete"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "ConfirmDeleteMove"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "NoYearMoves"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Month"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Value"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "ToMove"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Check"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Uncheck"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Checked"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "Reports",
                         "Unchecked"});
-#line 131
- testRunner.Given("I have these keys", ((string)(null)), table6, "Given ");
-#line 155
+#line 135
+ testRunner.Given("I have these keys", ((string)(null)), table7, "Given ");
+#line 159
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 156
+#line 160
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -539,121 +548,121 @@ this.FeatureBackground();
         public virtual void _07_GetTranslateOfInterfaceAccounts()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07. Get translate of Interface (accounts)", ((string[])(null)));
-#line 159
+#line 163
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Create"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Edit"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Account"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Name"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "CharactersMax"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "AccountHasLimit"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "RedLimit"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "YellowLimit"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "LimitExplanation"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Accounts"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "NoAccounts"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "BeginDate"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Value"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "TODO"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Create"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Move"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Schedule"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Edit"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Account"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Delete"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Close"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "DeleteConfirm"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "CloseConfirm"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "ClosedAccounts"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "NoClosedAccounts"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Name"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "BeginDate"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "EndDate"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Value"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "GOTO"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "MonthMoves"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "YearMoves"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "Url"});
-            table7.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "Accounts",
                         "AcceptedUrlCharacters"});
-#line 160
- testRunner.Given("I have these keys", ((string)(null)), table7, "Given ");
-#line 196
+#line 164
+ testRunner.Given("I have these keys", ((string)(null)), table8, "Given ");
+#line 200
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 197
+#line 201
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -664,52 +673,52 @@ this.FeatureBackground();
         public virtual void _08_GetTranslateOfInterfaceCategories()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08. Get translate of Interface (categories)", ((string[])(null)));
-#line 200
+#line 204
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Create"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Edit"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Category"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "CharactersMax"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Categories"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "NoCategories"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Name"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "TODO"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Enable"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Disable"});
-            table8.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "Categories",
                         "Create"});
-#line 201
- testRunner.Given("I have these keys", ((string)(null)), table8, "Given ");
-#line 214
+#line 205
+ testRunner.Given("I have these keys", ((string)(null)), table9, "Given ");
+#line 218
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 215
+#line 219
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -720,70 +729,70 @@ this.FeatureBackground();
         public virtual void _09_GetTranslateOfInterfaceTokens()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09. Get translate of Interface (tokens)", ((string[])(null)));
-#line 218
+#line 222
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "NotRecognizedAction"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "TokenDisable"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "TokenDisableSuccess"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "TokenInvalid"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "TokenInvalidMessage"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "PasswordReset"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "Password"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "RetypePassword"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "Reset"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "PasswordResetSuccess"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "TokenReceivedByEmail"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "Token"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "SecurityAction"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "Select"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "Go"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "UserVerification"});
-            table9.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "Tokens",
                         "UserVerificationSuccess"});
-#line 219
- testRunner.Given("I have these keys", ((string)(null)), table9, "Given ");
-#line 238
+#line 223
+ testRunner.Given("I have these keys", ((string)(null)), table10, "Given ");
+#line 242
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 239
+#line 243
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -794,148 +803,148 @@ this.FeatureBackground();
         public virtual void _10_GetTranslateOfInterfaceUsers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10. Get translate of Interface (users)", ((string[])(null)));
-#line 242
+#line 246
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "ForgotPassword"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Email"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Send"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "FollowEmailIntructions"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "PayAttentionSender"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Index_Welcome"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Index_Introdution"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Index_Explanation"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Index_Close"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Logon"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Login"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Enter"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Email"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Password"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "RememberMe"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "ForgotPassword"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "TokenReceivedByEmail"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "LogonDisabled"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "SignUp"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Email"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "CharactersMax"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Password"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "RetypePassword"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Create"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "SignUpSuccess"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Settings"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "UseCategories"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "SendMoveEmail"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "MoveCheck"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Language"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "TimeZone"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "LanguageEnus"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "LanguagePtbr"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "Save"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "ConfigChanged"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "CurrentPassword"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "NewPassword"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "EmailToChange"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "EmailUpdated"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "PasswordChanged"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "OptionsSettings"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "PasswordSettings"});
-            table10.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "Users",
                         "EmailSettings"});
-#line 243
- testRunner.Given("I have these keys", ((string)(null)), table10, "Given ");
-#line 288
+#line 247
+ testRunner.Given("I have these keys", ((string)(null)), table11, "Given ");
+#line 292
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 289
+#line 293
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -946,31 +955,31 @@ this.FeatureBackground();
         public virtual void _11_GetTranslateOfInterfaceOps()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Get translate of Interface (ops)", ((string[])(null)));
-#line 292
+#line 296
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table11.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "Ops",
                         "NotFound"});
-            table11.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "Ops",
                         "InternalMessageSent"});
-            table11.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "Ops",
                         "InternalMessageNotSent"});
-            table11.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "Ops",
                         "CommunicationError"});
-#line 293
- testRunner.Given("I have these keys", ((string)(null)), table11, "Given ");
-#line 299
+#line 297
+ testRunner.Given("I have these keys", ((string)(null)), table12, "Given ");
+#line 303
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 300
+#line 304
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -981,70 +990,70 @@ this.FeatureBackground();
         public virtual void _12_GetTranslateOfInterfaceGeneral()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Get translate of Interface (general)", ((string[])(null)));
-#line 303
+#line 307
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "LogOff"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "MonthMoves"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "YearMoves"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Create"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Schedule"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Move"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Categories"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Accounts"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "ScheduleRun"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Total"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Schedules"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "TheSchedule"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Logins"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "AndroidRobotLicenseText"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Status"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Available"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "General",
                         "Invisible"});
-#line 304
- testRunner.Given("I have these keys", ((string)(null)), table12, "Given ");
-#line 323
+#line 308
+ testRunner.Given("I have these keys", ((string)(null)), table13, "Given ");
+#line 327
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 324
+#line 328
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1055,100 +1064,100 @@ this.FeatureBackground();
         public virtual void _13_GetTranslateOfInterfaceSchedules()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Get translate of Interface (schedules)", ((string[])(null)));
-#line 327
+#line 331
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Create"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Edit"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Schedule"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Move"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "DayNames"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Frequency"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Boundless"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Repeat"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Times"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "ShowInstallment"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Description"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "CharactersMax"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Date"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Category"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Select"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Create"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Category"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Nature"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "JustOneValue"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Detailed"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Add"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Detail"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Value"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "Amount"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "ToMove"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "NoSchedules"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Schedules",
                         "ConfirmDeleteSchedule"});
-#line 328
- testRunner.Given("I have these keys", ((string)(null)), table13, "Given ");
-#line 357
+#line 332
+ testRunner.Given("I have these keys", ((string)(null)), table14, "Given ");
+#line 361
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 358
+#line 362
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1159,43 +1168,43 @@ this.FeatureBackground();
         public virtual void _14_GetTranslateOfInterfaceLogins()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Get translate of Interface (logins)", ((string[])(null)));
-#line 361
+#line 365
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "Creation"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "Expiration"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "Type"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "Mobile"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "Browser"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "ConfirmDeleteLogin"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "LoginRegister"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "Logins",
                         "NoLogins"});
-#line 362
- testRunner.Given("I have these keys", ((string)(null)), table14, "Given ");
-#line 372
+#line 366
+ testRunner.Given("I have these keys", ((string)(null)), table15, "Given ");
+#line 376
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 373
+#line 377
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1206,37 +1215,37 @@ this.FeatureBackground();
         public virtual void _15_GetTranslationsOfE_MailStati()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15. Get translations of E-mail Stati", ((string[])(null)));
-#line 377
+#line 381
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                         "Section",
                         "Phrase"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "EmailDisabled"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "EmailSent"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "InvalidSubject"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "InvalidBody"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "InvalidAddress"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "Email",
                         "EmailNotSent"});
-#line 378
- testRunner.Given("I have these keys", ((string)(null)), table15, "Given ");
-#line 386
+#line 382
+ testRunner.Given("I have these keys", ((string)(null)), table16, "Given ");
+#line 390
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 387
+#line 391
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
