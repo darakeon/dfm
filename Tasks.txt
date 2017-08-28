@@ -92,6 +92,10 @@ VERSÃO 3.1.0.0 (Big change) - 6
 						Permitir não exibir valores direto na tela inicial
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
+
+VERSÃO 3.0.1.0 (Little change) - 2
+================================================================================================
+						Permitir marcar todas as movimentações antes de uma data
 						Colocar campos de datetime ao lado do botão no mobile
 
 VERSÃO 3.0.0.0 (All new) - 2
