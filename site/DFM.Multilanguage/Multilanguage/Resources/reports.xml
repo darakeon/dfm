@@ -21,7 +21,7 @@
 		<Month text="Mês" />
 		<Summary text="Resumo" />
 		<Go text="Go" />
-		<Check text="Verificar"/>
+		<Check text="Marcar"/>
 		<Uncheck text="Desmarcar"/>
 		<Checked text="Verificado"/>
 		<Unchecked text="Pendente"/>

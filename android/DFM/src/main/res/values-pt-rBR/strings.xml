@@ -55,7 +55,7 @@
     <string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
     <string name="edit">editar</string>
     <string name="delete">excluir</string>
-    <string name="check">verificar</string>
+    <string name="check">marcar</string>
     <string name="uncheck">desmarcar</string>
 
     <!-- Move -->
