@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
@@ -234,25 +235,20 @@ namespace DFM.BusinessLogic.Services
 
             var tickets = ticketRepository.List(user);
 
-            var logins = new List<Ticket>();
-
-            foreach (var ticket in tickets)
-            {
-                var login = new Ticket
-                {
-                    Active = ticket.Active,
-                    Creation = ticket.Creation,
-                    Expiration = ticket.Expiration,
-                    Key = ticket.Key.Substring(0, Defaults.TICKET_SHOWED_PART),
-                    Type = ticket.Type,
-                };
-
-                logins.Add(login);
-            }
-
-            return logins;
+	        return tickets.Select(getLogin).ToList();
         }
 
-
+	    private static Ticket getLogin(Ticket ticket)
+	    {
+		    return new Ticket
+		    {
+			    Active = ticket.Active,
+			    Creation = ticket.Creation,
+			    Expiration = ticket.Expiration,
+			    Key = ticket.Key.Substring(0, Defaults.TICKET_SHOWED_PART),
+			    Type = ticket.Type,
+		    };
+	    }
+		
     }
 }
