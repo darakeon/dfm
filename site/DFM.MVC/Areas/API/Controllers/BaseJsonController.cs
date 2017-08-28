@@ -26,8 +26,8 @@ namespace DFM.MVC.Areas.API.Controllers
 					JsonRequestBehavior.AllowGet
 				);
 			}
-
 		}
+
 
 
 		public JsonResult Uninvited()
@@ -38,19 +38,20 @@ namespace DFM.MVC.Areas.API.Controllers
 			);
 		}
 
-		protected JsonResult JsonPostSuccess()
-		{
-			return JsonPost( new { success = true });
-		}
 
-		protected JsonResult JsonPost(object result)
-		{
-			return Json(new { data = result });
-		}
 
-		protected JsonResult JsonPostError(String result)
+		protected JsonResult JsonPost(Action action)
 		{
-			return Json(new { error = result });
+			try
+			{
+				action();
+
+				return Json(new { success = true });
+			}
+			catch (DFMCoreException e)
+			{
+				return Json(new { error = MultiLanguage.Dictionary[e] });
+			}
 		}
 
 

@@ -29,31 +29,13 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpPost]
 		public ActionResult Create(MovesCreatePostModel move)
 		{
-			try
-			{
-				move.Save();
-
-				return JsonPostSuccess();
-			}
-			catch (DFMCoreException e)
-			{
-				return JsonPostError(MultiLanguage.Dictionary[e]);
-			}
+			return JsonPost((Action) move.Save);
 		}
 
 		[HttpPost]
 		public ActionResult Delete(Int32 id)
 		{
-			try
-			{
-				MovesDeleteModel.Delete(id);
-
-				return JsonPostSuccess();
-			}
-			catch (DFMCoreException e)
-			{
-				return JsonPostError(MultiLanguage.Dictionary[e]);
-			}
+			return JsonPost(() => MovesDeleteModel.Delete(id));
 		}
 
 	}

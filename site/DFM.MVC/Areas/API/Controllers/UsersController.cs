@@ -52,16 +52,7 @@ namespace DFM.MVC.Areas.API.Controllers
 		[DFMApiAuthorize, HttpPost]
 		public ActionResult SaveConfig(UserSaveConfigModel model)
 		{
-			try
-			{
-				model.Save();
-
-				return JsonPostSuccess();
-			}
-			catch (DFMCoreException e)
-			{
-				return JsonPostError(MultiLanguage.Dictionary[e]);
-			}
+			return JsonPost((Action) model.Save);
 		}
 
 
