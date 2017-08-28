@@ -35,7 +35,7 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		val ticket = data.getString("ticket")
 		Authentication.Set(ticket)
-		navigation.redirect(AccountsActivity::class.java)
+		navigation.redirect(WelcomeActivity::class.java)
 	}
 
 
