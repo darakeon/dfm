@@ -25,6 +25,18 @@ fun TextView.applyGlyphicon(ac: SmartActivity<*>) {
 	typeface = Typeface.createFromAsset(ac.assets, "fonts/glyphicons-halflings-regular.ttf")
 }
 
+fun Any.getChildOrMe(fieldName: String): Any {
+	for (field in javaClass.declaredFields) {
+		if (field.name == fieldName)
+		{
+			field.isAccessible = true
+			return field.get(this)
+		}
+	}
+
+	return this
+}
+
 class Form internal constructor(private val activity: Activity) {
 
 	fun getValue(id: Int): String {

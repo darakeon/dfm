@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.IYesNoDialogAnswer
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.getChildOrMe
 import com.darakeon.dfm.activities.objects.ExtractStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -97,13 +98,10 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
 			try {
-				val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
-				pickerField.isAccessible = true
-
-				val field = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
-				field.isAccessible = true
-				val dayPicker = field.get(pickerField.get(dialog))
-				(dayPicker as View).visibility = View.GONE
+				val picker = dialog!!.getChildOrMe("mDatePicker")
+				val delegate = picker.getChildOrMe("mDelegate")
+				val day = delegate.getChildOrMe("mDaySpinner")
+				(day as View).visibility = View.GONE
 			} catch (ignored: Exception) {
 			}
 		}

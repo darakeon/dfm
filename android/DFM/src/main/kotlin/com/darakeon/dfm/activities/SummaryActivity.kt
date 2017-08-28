@@ -7,6 +7,7 @@ import android.widget.ListView
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.getChildOrMe
 import com.darakeon.dfm.activities.objects.SummaryStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -71,18 +72,15 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 			dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
 
 			try {
-				val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
-				pickerField.isAccessible = true
+				val picker = dialog!!.getChildOrMe("mDatePicker")
+				val delegate = picker.getChildOrMe("mDelegate")
 
-				val dayField = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
-				dayField.isAccessible = true
-				val dayPicker = dayField.get(pickerField.get(dialog))
-				(dayPicker as View).visibility = View.GONE
+				val day = delegate.getChildOrMe("mDaySpinner") as View
+				day.visibility = View.GONE
 
-				val monthField = pickerField.get(dialog).javaClass.getDeclaredField("mMonthSpinner")
-				monthField.isAccessible = true
-				val monthPicker = monthField.get(pickerField.get(dialog))
-				(monthPicker as View).visibility = View.GONE
+				val month = delegate.getChildOrMe("mMonthSpinner") as View
+				month.visibility = View.GONE
+				
 			} catch (ignored: Exception) {
 			}
 
