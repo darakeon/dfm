@@ -83,7 +83,7 @@ D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						Sair do sandbox da Amazon
 
-VERSÃO 2.1.0.0 (Big change) - 14?
+VERSÃO 2.1.0.0 (Big change) - 11?
 ================================================================================================
 F						Disponibilizar Task list no site
 F						Guardar dados localmente, para quando está sem internet (Mobile)
@@ -96,9 +96,14 @@ F						Colocar criação de categoria (mobile)
 						Trocar menu superior por inferior (mobile)
 						Colocar menu de adicionar movimentação como bolinha com "+" (css absolute)
 						Permitir não exibir valores direto na tela inicial
+						
+VERSÃO 2.0.4.0 (Little change) - 4
+================================================================================================
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
+						Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
+						Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
 VERSÃO 2.0.3.1 (System) - 8
 ================================================================================================
