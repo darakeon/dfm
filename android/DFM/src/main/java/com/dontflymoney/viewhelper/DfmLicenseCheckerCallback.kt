@@ -1,21 +1,16 @@
 package com.dontflymoney.viewhelper
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.api.Site
-import com.dontflymoney.baseactivity.SmartActivity
-import com.dontflymoney.view.LoginActivity
 import com.dontflymoney.view.R
+import com.dontflymoney.view.WelcomeActivity
 import com.google.android.vending.licensing.LicenseCheckerCallback
 import com.google.android.vending.licensing.Policy
 
-class DfmLicenseCheckerCallback<T : SmartStatic>(private val activity: SmartActivity<T>, private val progress: ProgressDialog) : LicenseCheckerCallback {
+class DfmLicenseCheckerCallback(private val activity: WelcomeActivity) : LicenseCheckerCallback {
 
     override fun allow(reason: Int) {
-        progress.dismiss()
-
         if (activity.isFinishing) {
             // Don't update UI if Activity is finishing.
             return
@@ -24,17 +19,11 @@ class DfmLicenseCheckerCallback<T : SmartStatic>(private val activity: SmartActi
         if (reason == Policy.RETRY) {
             activity.message.alertRetryLicense()
         } else {
-            enableScreen()
+            activity.runOnUiThread { activity.GoToApp() }
         }
     }
 
-    private fun enableScreen() {
-        activity.runOnUiThread { activity.EnableScreen() }
-    }
-
     override fun dontAllow(reason: Int) {
-        progress.dismiss()
-
         if (activity.isFinishing) {
             // Don't update UI if Activity is finishing.
             return
@@ -43,7 +32,7 @@ class DfmLicenseCheckerCallback<T : SmartStatic>(private val activity: SmartActi
         if (reason == Policy.RETRY) {
             activity.message.alertRetryLicense()
         } else if (Site.IsLocal()) {
-            enableScreen()
+            activity.runOnUiThread { activity.KillThem() }
         } else {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("market://details?id=" + activity.packageName)
@@ -52,8 +41,6 @@ class DfmLicenseCheckerCallback<T : SmartStatic>(private val activity: SmartActi
     }
 
     override fun applicationError(errorCode: Int) {
-        progress.dismiss()
-
         if (activity.isFinishing) {
             // Don't update UI if Activity is finishing.
             return

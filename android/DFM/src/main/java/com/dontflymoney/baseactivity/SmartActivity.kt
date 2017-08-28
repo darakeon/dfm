@@ -49,7 +49,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
     val message: Message<T> get() = Message(this)
     protected val navigation: Navigation<T> get() = Navigation(this, Authentication)
     internal val resultHandler: ResultHandler<T> get() = ResultHandler(this, navigation)
-    protected val license: License<T> get() = License(this)
 
     var request: InternalRequest<T>? = null
 
@@ -93,7 +92,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
     override fun onDestroy() {
         super.onDestroy()
-        license.Destroy()
         request?.Cancel()
     }
 

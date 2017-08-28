@@ -1,24 +1,19 @@
 package com.dontflymoney.baseactivity
 
-import android.app.ProgressDialog
-import com.dontflymoney.activityObjects.SmartStatic
-
 import com.dontflymoney.userdata.Unique
 import com.dontflymoney.view.R
+import com.dontflymoney.view.WelcomeActivity
 import com.dontflymoney.viewhelper.DfmLicenseCheckerCallback
 import com.google.android.vending.licensing.AESObfuscator
 import com.google.android.vending.licensing.LicenseChecker
 import com.google.android.vending.licensing.ServerManagedPolicy
 
-class License<T : SmartStatic>(private val activity: SmartActivity<T>) {
+class License(private val activity: WelcomeActivity) {
     private val checker: LicenseChecker
-    private val callback: DfmLicenseCheckerCallback<T>
-    private val progress: ProgressDialog
+    private val callback: DfmLicenseCheckerCallback
 
     init {
-        progress = activity.message.waitDialog
-
-        callback = DfmLicenseCheckerCallback(activity, progress)
+        callback = DfmLicenseCheckerCallback(activity)
 
         val SALT = byteArrayOf(-21, +84, -38, +79, -81, -74, -98, +73, -14, +93, -27, -94, -87, -32, +57, +42, +62, -78, -54, -29)
         val appKey = activity.getString(R.string.license_key)
@@ -31,14 +26,10 @@ class License<T : SmartStatic>(private val activity: SmartActivity<T>) {
     fun Check() {
         activity.Reset()
         checker.checkAccess(callback)
-        progress.show()
     }
 
     internal fun Destroy() {
         checker.onDestroy()
-
-        if (progress.isShowing)
-            progress.dismiss()
     }
 
 

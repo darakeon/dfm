@@ -9,6 +9,7 @@ import com.dontflymoney.api.Step
 import com.dontflymoney.userdata.Authentication
 import com.dontflymoney.view.LoginActivity
 import com.dontflymoney.view.SettingsActivity
+import com.dontflymoney.view.WelcomeActivity
 
 class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>, private val authentication: Authentication) {
 
@@ -46,7 +47,7 @@ class Navigation<T : SmartStatic> internal constructor(private val activity: Sma
     }
 
     internal fun close() {
-        val intent = Intent(activity, LoginActivity::class.java)
+        val intent = Intent(activity, WelcomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         intent.putExtra("EXIT", true)
         activity.startActivity(intent)
