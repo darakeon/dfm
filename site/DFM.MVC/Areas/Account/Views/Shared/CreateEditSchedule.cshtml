@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, Model.ControllerName];
 	Layout = "~/Views/Shared/_Form.cshtml";
-	ViewBag.FormSize = 4;
+	ViewBag.FormSize = 6;
 
 	var scheduleModel = Model as SchedulesCreateModel;
 }
@@ -15,9 +15,13 @@
 
 @Html.Partial("../Moves/MoveMainData")
 
+<hr/>
+
 @Html.Partial("../Moves/Nature")
 
 @Html.Partial("../Moves/Account")
+
+<hr />
 
 @Html.Partial("../Moves/ValueAndDetail")
 

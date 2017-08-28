@@ -7,7 +7,7 @@
 
 <div class="row">
 
-	<div class="btn-group btn-group-sm col-sm-12">
+	<div class="btn-group btn-group-sm btn-group-vertical col-sm-4">
 		@foreach (ScheduleFrequency frequency in Enum.GetValues(typeof(ScheduleFrequency)))
 		{
 			<button type="button"
@@ -21,11 +21,7 @@
 		}
 	</div>
 
-</div>
-
-<div class="row">
-
-	<div class="col-sm-5">
+	<div class="col-sm-4">
 		<div class="form-group checkbox">
 			<label for="@Html.IdFor(m => m.Boundless)">
 				@Html.CheckBoxFor(m => m.Boundless, new {@class = "check-toggle", data_to_disable = ".boundless-disable"})
@@ -43,7 +39,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-7 form-group checkbox">
+	<div class="col-sm-4 form-group checkbox">
 		<label for="@Html.IdFor(m => m.ShowInstallment)">
 			@Html.CheckBoxFor(m => m.ShowInstallment)
 			@MultiLanguage.Dictionary["ShowInstallment"]
