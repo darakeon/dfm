@@ -298,7 +298,6 @@
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <None Include="Views\Users\SendVerification.cshtml" />
     <Content Include="Views\Users\SignUpSuccess.cshtml" />
-    <Content Include="Views\_ViewStart.old" />
     <Content Include="Areas\Account\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
