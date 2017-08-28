@@ -121,11 +121,17 @@ public class Move
         Category = moveToEdit.getString("Category");
         OtherAccount = moveToEdit.getString("OtherAccount");
         Nature = moveToEdit.getInt("Nature");
-        Value = moveToEdit.getDouble("Value");
+
+        if (moveToEdit.has("Value") && !moveToEdit.get("Value").equals(null))
+        {
+            Value = moveToEdit.getDouble("Value");
+        }
 
         if (moveToEdit.has("DetailList"))
         {
             JSONArray detailList = moveToEdit.getJSONArray("DetailList");
+
+            isDetailed = detailList.length() > 0;
 
             for (int d = 0; d < detailList.length(); d++)
             {
