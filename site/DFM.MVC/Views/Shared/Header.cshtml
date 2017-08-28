@@ -18,18 +18,17 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if (!Model.IsAuthenticated)
 				{
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new { action = "LogOn", controller = "Users" })</li>
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new { action = "SignUp", controller = "Users" })</li>
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new {action = "LogOn", controller = "Users"})</li>
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new {action = "SignUp", controller = "Users"})</li>
 					<li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
-				}
-				else if (Model.IsExternal)
-				{
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" })</li>
 				}
 				else
 				{
-					if (Model.GetType().IsSubclassOf(typeof (BaseAccountModel)))
+					if (Model.IsExternal)
+					{
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
+					}
+					else if (Model.GetType().IsSubclassOf(typeof (BaseAccountModel)))
 					{
 					}
 					else
@@ -44,12 +43,13 @@
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new {action = "Index", controller = "Schedules"})</li>
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new {action = "Index", controller = "Logins"})</li>
 					}
-
+					
 					<li>
 						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Config", controller = "Users"})">
 							<span class="glyphicon glyphicon-cog"></span>
 						</a>
 					</li>
+
 					<li>
 						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "LogOff", controller = "Users"})">
 							<span class="glyphicon glyphicon-off"></span>
