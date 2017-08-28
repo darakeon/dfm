@@ -37,8 +37,7 @@ namespace DFM.MVC.Models
 
 				var controller = RouteInfo.Current["controller"];
 
-				return controller.IsIn(usersControllerUrl, tokensControllerUrl)
-					|| (controller == opsControllerUrl && IsAuthenticated);
+				return controller.IsIn(usersControllerUrl, tokensControllerUrl, opsControllerUrl);
 			}
 		}
 
