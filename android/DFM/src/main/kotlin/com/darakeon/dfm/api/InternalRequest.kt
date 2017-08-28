@@ -141,10 +141,10 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 	private fun handleResponse(response: JSONObject, step: Step) {
 		val internalResponse = InternalResponse(response)
 
-		endUIWait()
-
-		if (step == Step.Logout)
+		if (step == Step.Logout) {
+			endUIWait()
 			return
+		}
 
 		handleResponse(internalResponse, step)
 	}
@@ -169,6 +169,8 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 	}
 
 	private fun handleResponse(internalResponse: InternalResponse, step: Step) {
+		endUIWait()
+
 		if (internalResponse.IsSuccess())
 			activity.HandlePostResult(internalResponse.GetResult(), step)
 		else
