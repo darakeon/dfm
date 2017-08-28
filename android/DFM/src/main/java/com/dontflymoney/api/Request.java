@@ -129,10 +129,10 @@ public class Request
             parameters.remove("ticket");
         }
 
-        if (parameters.containsKey("accounturl"))
+        if (parameters.containsKey("accountUrl"))
         {
-            completeUrl += "/Account-" + parameters.get("accounturl");
-            parameters.remove("accounturl");
+            completeUrl += "/Account-" + parameters.get("accountUrl");
+            parameters.remove("accountUrl");
         }
 
         completeUrl += "/" + url;

@@ -30,7 +30,7 @@ public class SummaryActivity extends SmartActivity
 	static double total;
 	
 	TableLayout main;
-	String accounturl;
+	String accountUrl;
 
 	DatePickerDialog dialog;
 	private static int year;
@@ -71,7 +71,7 @@ public class SummaryActivity extends SmartActivity
 	private void setCurrentInfo()
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
-		accounturl = getIntent().getStringExtra("accounturl");
+		accountUrl = getIntent().getStringExtra("accountUrl");
 	}
 	
 	private void setDateFromLast()
@@ -138,14 +138,14 @@ public class SummaryActivity extends SmartActivity
 	
 	private void getSummary()
 	{
-		String accounturl = getIntent().getStringExtra("accounturl");
+		String accountUrl = getIntent().getStringExtra("accountUrl");
 		
 		main.removeAllViews();
 		
 		request = new Request(this, "Moves/Summary");
 		
 		request.AddParameter("ticket", Authentication.Get());
-		request.AddParameter("accounturl", accounturl);
+		request.AddParameter("accountUrl", accountUrl);
 		request.AddParameter("id", year);
 		
 		request.Post();
@@ -216,7 +216,7 @@ public class SummaryActivity extends SmartActivity
 
 				Intent intent = new Intent(SummaryActivity.this, ExtractActivity.class);
 				
-		        intent.putExtra("accounturl", accounturl);
+		        intent.putExtra("accountUrl", accountUrl);
 				intent.putExtra("year", year);
 				intent.putExtra("month", monthNumber-1);
 				

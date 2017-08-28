@@ -67,7 +67,7 @@ public class AccountLine extends LinearLayout
 		public void onClick(View v)
 		{
 			Intent intent = new Intent(context, ExtractActivity.class);
-			intent.putExtra("accounturl", url);
+			intent.putExtra("accountUrl", url);
 			context.startActivity(intent);
 		}
 	}

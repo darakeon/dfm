@@ -161,7 +161,7 @@ public class MovesCreateActivity extends SmartActivity {
 	{
 		request = new Request(this, "Moves/Create");
 		request.AddParameter("ticket", Authentication.Get());
-		request.AddParameter("accounturl", getIntent().getStringExtra("accounturl"));
+		request.AddParameter("accountUrl", getIntent().getStringExtra("accountUrl"));
 		request.AddParameter("id", getIntent().getIntExtra("id", 0));
 		request.Get(Step.Populate);
 
@@ -203,7 +203,7 @@ public class MovesCreateActivity extends SmartActivity {
 		if (data.has("Move") && !data.isNull("Move"))
 		{
 			JSONObject moveToEdit = data.getJSONObject("Move");
-			move.SetData(moveToEdit, getIntent().getStringExtra("accounturl"));
+			move.SetData(moveToEdit, getIntent().getStringExtra("accountUrl"));
 			populateOldData(true);
 		}
 	}
@@ -506,7 +506,7 @@ public class MovesCreateActivity extends SmartActivity {
 	private void backToExtract()
 	{
 		Intent intent = new Intent(this, ExtractActivity.class);
-		intent.putExtra("accounturl", getIntent().getStringExtra("accounturl"));
+		intent.putExtra("accountUrl", getIntent().getStringExtra("accountUrl"));
 		intent.putExtra("month", move.getMonth());
 		intent.putExtra("year", move.getYear());
 

@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 {
 	ListView main;
-	String accounturl;
+	String accountUrl;
 
 	static JSONArray moveList;
 	static String name;
@@ -78,7 +78,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	private void setCurrentInfo()
 	{
 		main = (ListView)findViewById(R.id.main_table);
-		accounturl = getIntent().getStringExtra("accounturl");
+		accountUrl = getIntent().getStringExtra("accountUrl");
 	}
 	
 	private void setDateFromLast()
@@ -153,7 +153,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		request = new Request(this, "Moves/Extract");
 		
 		request.AddParameter("ticket", Authentication.Get());
-		request.AddParameter("accounturl", accounturl);
+		request.AddParameter("accountUrl", accountUrl);
 		request.AddParameter("id", year * 100 + month + 1);
 		
 		request.Post(Step.Populate);
@@ -213,7 +213,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	{
 		Intent intent = new Intent(this, SummaryActivity.class);
 		
-		intent.putExtra("accounturl", accounturl);
+		intent.putExtra("accountUrl", accountUrl);
 		intent.putExtra("year", year);
 		
 		startActivity(intent);
@@ -229,7 +229,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		Intent intent = new Intent(this, MovesCreateActivity.class);
 
 		intent.putExtra("id", moveId);
-		intent.putExtra("accounturl", accounturl);
+		intent.putExtra("accountUrl", accountUrl);
 		intent.putExtra("year", year);
 		intent.putExtra("month", month);
 
@@ -308,7 +308,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
         MoveLine view = (MoveLine) clickedView;
 
         request.AddParameter("ticket", Authentication.Get());
-        request.AddParameter("accounturl", accounturl);
+        request.AddParameter("accountUrl", accountUrl);
         request.AddParameter("id", view.getId());
 
         request.Post(Step.Recording);
