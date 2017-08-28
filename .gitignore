@@ -38,6 +38,8 @@ syntax: regexp
 ^(.*[\\/])?javadoc[\\/].*
 ^(.*[\\/])?\.metadata[\\/].*
 ^(.*[\\/])?\.settings[\\/].*
+
+site/Library/DK/*.pdb
 .hg*
 site/DFM.MVC/DFM.MVC.Publish.xml
 site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
