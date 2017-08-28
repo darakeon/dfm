@@ -5,11 +5,9 @@ import android.os.Bundle;
 
 import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
-import com.dontflymoney.auth.Authentication;
+import com.dontflymoney.userdata.Authentication;
 import com.dontflymoney.view.LoginActivity;
 import com.dontflymoney.view.SettingsActivity;
-
-import org.json.JSONException;
 
 public class Navigation
 {

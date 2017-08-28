@@ -1,15 +1,16 @@
-package com.dontflymoney.auth;
+package com.dontflymoney.userdata;
 
 import android.content.Context;
-
-import com.dontflymoney.io.File;
-import com.dontflymoney.io.FileNames;
 
 public class Authentication
 {
 	private Context context;
 	private SafeTicket safe;
-	
+
+	private static final String spKey = "Ticket";
+
+
+
 	public Authentication(Context context)
 	{
 		this.context = context;
@@ -18,19 +19,13 @@ public class Authentication
 	
 	public void Set(String ticket)
 	{
-		File ticketFile = new File(context, FileNames.Ticket);
-		
 		String encryptedTicket = safe.Encrypt(ticket);
-		
-		ticketFile.WriteToFile(encryptedTicket);
+		SP.setValue(context, spKey, encryptedTicket);
 	}
 	
 	public String Get()
 	{
-		File ticketFile = new File(context, FileNames.Ticket);
-		
-		String encryptedTicket = ticketFile.ReadFromFile();
-		
+		String encryptedTicket = SP.getValue(context, spKey);
 		return safe.Decrypt(encryptedTicket);
 	}
 

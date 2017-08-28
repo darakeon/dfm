@@ -1,7 +1,7 @@
 package com.dontflymoney.baseactivity;
 
 import com.dontflymoney.api.Step;
-import com.dontflymoney.language.Language;
+import com.dontflymoney.userdata.Language;
 import com.dontflymoney.view.R;
 
 import org.json.JSONException;

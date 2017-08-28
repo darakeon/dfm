@@ -107,7 +107,7 @@ VERSÃO 3.0.0.0 (All new) - 2
 ================================================================================================
 						Layout Bootstrap
 						Android Kotlin
-2017-01-30				SharedPreferences para guardar login / language
+2017-01-30	2017-01-30	SharedPreferences para guardar login / language
 
 VERSÃO 2.1.4.0 (Little change) - 3
 ================================================================================================

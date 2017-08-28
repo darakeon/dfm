@@ -1,4 +1,4 @@
-package com.dontflymoney.auth;
+package com.dontflymoney.userdata;
 
 import android.content.Context;
 

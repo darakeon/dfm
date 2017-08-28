@@ -2,7 +2,7 @@ package com.dontflymoney.baseactivity;
 
 import android.app.ProgressDialog;
 
-import com.dontflymoney.auth.Unique;
+import com.dontflymoney.userdata.Unique;
 import com.dontflymoney.view.R;
 import com.dontflymoney.viewhelper.DfmLicenseCheckerCallback;
 import com.google.android.vending.licensing.AESObfuscator;

@@ -11,8 +11,8 @@ import android.view.View;
 
 import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
-import com.dontflymoney.auth.Authentication;
-import com.dontflymoney.language.Language;
+import com.dontflymoney.userdata.Authentication;
+import com.dontflymoney.userdata.Language;
 import com.dontflymoney.view.AccountsActivity;
 import com.dontflymoney.view.R;
 
