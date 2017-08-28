@@ -291,8 +291,7 @@
     <Content Include="Views\Users\ForgotPassword.old" />
     <Content Include="Views\Users\ForgotPasswordSuccess.old" />
     <Content Include="Views\Users\SendVerification.old" />
-    <Content Include="Views\Users\SignUp.old" />
-    <Content Include="Views\Users\SignUpSuccess.old" />
+    <Content Include="Views\Users\SignUpSuccess.cshtml" />
     <Content Include="Views\_ViewStart.old" />
     <Content Include="Areas\Account\Views\web.config">
       <SubType>Designer</SubType>
@@ -312,7 +311,9 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\_MiniForm.cshtml" />
     <Content Include="Views\Shared\ValidationSummary.cshtml" />
+    <Content Include="Views\Shared\_Result.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\SignUp.cshtml" />
     <None Include="Views\Users\LogOn.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Release.config">

@@ -35,7 +35,7 @@ namespace DFM.MVC.Controllers
 			}
 
 			return ModelState.IsValid
-				? View("SignUpSuccess")
+				? BaseModelView("SignUpSuccess")
 				: View(model);
 		}
 

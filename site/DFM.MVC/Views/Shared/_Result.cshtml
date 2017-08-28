@@ -1,0 +1,27 @@
+﻿@{
+	Layout = "_Master.cshtml";
+	String style = ViewBag.Style;
+}
+
+<div class="row">
+	<div class="col-sm-6 col-sm-push-3 text-center">
+
+		<div class="panel panel-@style">
+			
+			<div class="panel-heading">
+				<h4>@ViewBag.Title</h4>
+			</div>
+
+			<div class="panel-body">
+				<div class="well-lg">
+					@RenderBody()
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+@section Scripts { @RenderSection("Scripts", false) }
+@section Styles { @RenderSection("Styles", false) }
