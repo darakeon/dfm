@@ -8,10 +8,14 @@ public class Internet
 {
 	public static boolean isOffline(Context context)
 	{
-		ConnectivityManager conMgr =  
-			(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-		return conMgr.getNetworkInfo(0).getState() != NetworkInfo.State.CONNECTED 
-			    &&  conMgr.getNetworkInfo(1).getState() != NetworkInfo.State.CONNECTED;
+		NetworkInfo networkInfoWifi = conMgr.getNetworkInfo(0);
+		NetworkInfo networkInfo3G = conMgr.getNetworkInfo(1);
+
+		Boolean noWifi = networkInfoWifi == null || networkInfoWifi.getState() != NetworkInfo.State.CONNECTED;
+		Boolean no3G = networkInfo3G == null || networkInfo3G.getState() != NetworkInfo.State.CONNECTED;
+
+		return noWifi && no3G;
 	}
 }
