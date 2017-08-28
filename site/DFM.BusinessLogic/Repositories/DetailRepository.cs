@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -7,7 +8,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class DetailRepository : BaseRepository<Detail>
 	{
-		internal void SaveDetails(Move move)
+		internal void SaveDetails(Move move, Move oldMove)
 		{
 			foreach (var detail in move.DetailList)
 			{
@@ -15,6 +16,18 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			saveDetails(move);
+
+			//TODO: DELETE ORPHAN MANUALLY, MAKE NH DO IT - RIGHT
+			if (oldMove != null)
+			{
+				foreach (var detail in oldMove.DetailList)
+				{
+					if (move.DetailList.All(d => d.ID != detail.ID))
+					{
+						Delete(detail.ID);
+					}
+				}
+			}
 		}
 
 		internal void SaveDetails(Schedule schedule)

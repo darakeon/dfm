@@ -48,11 +48,11 @@ namespace DFM.BusinessLogic.Services
 			if (move.ID == 0 || !move.IsDetailed())
 			{
 				move = moveRepository.SaveOrUpdate(move);
-				detailRepository.SaveDetails(move);
+				detailRepository.SaveDetails(move, oldMove);
 			}
 			else
 			{
-				detailRepository.SaveDetails(move);
+				detailRepository.SaveDetails(move, oldMove);
 				move = moveRepository.SaveOrUpdate(move);
 			}
 
