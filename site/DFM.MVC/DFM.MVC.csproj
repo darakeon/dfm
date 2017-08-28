@@ -140,6 +140,8 @@
     <Content Include="Assets\Bootstrap\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Bootstrap\Content\bootstrap.css" />
     <Content Include="Assets\Bootstrap\Content\bootstrap.min.css" />
+    <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.css" />
+    <Content Include="Assets\Bootstrap\Datepicker\moment-pt-br.js" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
