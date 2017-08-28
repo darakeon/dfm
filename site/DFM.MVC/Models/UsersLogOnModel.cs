@@ -39,7 +39,9 @@ namespace DFM.MVC.Models
         {
             try
             {
-                Safe.SendUserVerify(Email);
+				var pathAction = Url.Action("UserVerification", "Tokens");
+				var pathDisable = Url.Action("Disable", "Tokens");
+				Safe.SendUserVerify(Email, pathAction, pathDisable);
             }
             catch (DFMCoreException e)
             {

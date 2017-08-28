@@ -17,7 +17,9 @@ namespace DFM.MVC.Models
 
             try
             {
-                Safe.SendPasswordReset(Email);
+				var pathAction = Url.Action("PasswordReset", "Tokens");
+				var pathDisable = Url.Action("Disable", "Tokens");
+				Safe.SendPasswordReset(Email, pathAction, pathDisable);
             }
             catch (DFMCoreException e)
             {

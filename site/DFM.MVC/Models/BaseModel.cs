@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web;
+using System.Web.Mvc;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
@@ -31,5 +33,12 @@ namespace DFM.MVC.Models
                     : Current.User.Now().Date;
             }
         }
+
+		public static UrlHelper Url
+		{
+			get { return new UrlHelper(HttpContext.Current.Request.RequestContext); }
+		}
+
+
     }
 }

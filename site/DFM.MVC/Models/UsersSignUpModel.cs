@@ -32,7 +32,9 @@ namespace DFM.MVC.Models
             {
                 try
                 {
-                    Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language);
+	                var pathAction = Url.Action("UserVerification", "Tokens");
+					var pathDisable = Url.Action("Disable", "Tokens");
+                    Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language, pathAction, pathDisable);
                 }
                 catch (DFMCoreException e)
                 {

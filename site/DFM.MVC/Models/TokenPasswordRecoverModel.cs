@@ -21,7 +21,7 @@ namespace DFM.MVC.Models
         {
             try
             {
-                Safe.TestSecurityToken(token, SecurityAction.PasswordReset);
+				Safe.TestSecurityToken(token, SecurityAction.PasswordReset);
             }
             catch (DFMCoreException)
             {

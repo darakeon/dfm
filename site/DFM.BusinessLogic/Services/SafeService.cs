@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-        public void SendPasswordReset(String email)
+		public void SendPasswordReset(String email, String pathAction, String pathDisable)
         {
 	        InTransaction(() =>
 	        {
@@ -35,11 +35,11 @@ namespace DFM.BusinessLogic.Services
 		        if (user == null)
 			        throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-		        createAndSendToken(user, SecurityAction.PasswordReset);
-});
+		        createAndSendToken(user, SecurityAction.PasswordReset, pathAction, pathDisable);
+			});
         }
-        
-        public void SaveUserAndSendVerify(String email, String password, String language)
+
+		public void SaveUserAndSendVerify(String email, String password, String language, String pathAction, String pathDisable)
         {
             InTransaction(() =>
             {
@@ -55,11 +55,11 @@ namespace DFM.BusinessLogic.Services
 
                 user = userRepository.Save(user);
 
-                sendUserVerify(user);
-});
+                sendUserVerify(user, pathAction, pathDisable);
+			});
         }
 
-        public void SendUserVerify(String email)
+		public void SendUserVerify(String email, String pathAction, String pathDisable)
         {
             InTransaction(() =>
             {
@@ -68,22 +68,22 @@ namespace DFM.BusinessLogic.Services
                 if (user == null)
                     throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
-                sendUserVerify(user);
-});
+                sendUserVerify(user, pathAction, pathDisable);
+			});
         }
 
-        private void sendUserVerify(User user)
+		private void sendUserVerify(User user, String pathAction, String pathDisable)
         {
-            createAndSendToken(user, SecurityAction.UserVerification);
+            createAndSendToken(user, SecurityAction.UserVerification, pathAction, pathDisable);
         }
 
-        private void createAndSendToken(User user, SecurityAction action)
+		private void createAndSendToken(User user, SecurityAction action, String pathAction, String pathDisable)
         {
             var security = new Security { Action = action, User = user };
 
             security = securityRepository.SaveOrUpdate(security);
 
-            securityRepository.SendEmail(security);
+            securityRepository.SendEmail(security, pathAction, pathDisable);
 
             var others = securityRepository
                 .SimpleFilter(
@@ -110,7 +110,7 @@ namespace DFM.BusinessLogic.Services
                 userRepository.Activate(security.User);
 
                 securityRepository.Disable(token);
-});
+			});
 
         }
 
@@ -128,7 +128,7 @@ namespace DFM.BusinessLogic.Services
                 userRepository.ChangePassword(security.User);
 
                 securityRepository.Disable(token);
-});
+			});
         }
 
 
@@ -139,10 +139,7 @@ namespace DFM.BusinessLogic.Services
 
         public void DisableToken(String token)
         {
-            InTransaction(() =>
-            {
-                securityRepository.Disable(token);
-});
+            InTransaction(() => securityRepository.Disable(token));
         }
 
 

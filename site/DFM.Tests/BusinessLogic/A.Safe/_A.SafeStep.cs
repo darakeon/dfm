@@ -84,7 +84,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
                 Password = password + "_diff",
             };
 
-            SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.ConfigLanguage);
+			SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.ConfigLanguage, null, null);
 
             var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
 
@@ -98,7 +98,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             try
             {
-                SA.Safe.SaveUserAndSendVerify(email, password, Defaults.ConfigLanguage);
+				SA.Safe.SaveUserAndSendVerify(email, password, Defaults.ConfigLanguage, null, null);
             }
             catch (DFMCoreException e)
             {
@@ -157,7 +157,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             try
             {
-                SA.Safe.SendPasswordReset(email);
+				SA.Safe.SendPasswordReset(email, null, null);
             }
             catch (DFMCoreException e)
             {
@@ -170,7 +170,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I pass a token of password reset")]
         public void GivenIPassATokenOfPasswordReset()
         {
-            SA.Safe.SendPasswordReset(User.Email);
+			SA.Safe.SendPasswordReset(User.Email, null, null);
 
             token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.PasswordReset);
         }
@@ -221,7 +221,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I activate the user")]
         public void GivenIActivateTheUser()
         {
-            SA.Safe.SendUserVerify(email);
+			SA.Safe.SendUserVerify(email, null, null);
 
             var tokenToActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
 
@@ -529,13 +529,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I have a token for its activation")]
         public void GivenIHaveATokenForItsActivation()
         {
-            SA.Safe.SendUserVerify(email);
+			SA.Safe.SendUserVerify(email, null, null);
         }
 
         [Given(@"I have a token for its password reset")]
         public void GivenIHaveATokenForItsPasswordReset()
         {
-            SA.Safe.SendPasswordReset(email);
+			SA.Safe.SendPasswordReset(email, null, null);
         }
 
         [Given(@"I pass an invalid token")]
@@ -593,7 +593,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             try
             {
-                SA.Safe.SendUserVerify(email);
+				SA.Safe.SendUserVerify(email, null, null);
             }
             catch (DFMCoreException e)
             {
