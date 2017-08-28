@@ -70,7 +70,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			get { return Get<String>("newCategoryName"); }
 			set { Set("newCategoryName", value); }
 		}
+
 		#endregion
+
+
 
 		#region SaveAccount
 		[Given(@"I have this account to create")]
@@ -156,6 +159,29 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Account = Service.Admin.GetAccountByUrl(Account.Url);
 
 			Assert.IsNotNull(Account);
+		}
+		#endregion
+
+		#region GetAccountByUrl
+		[Given(@"I pass an url of account that doesn't exist")]
+		public void GivenIPassAUrlOfAccountThatDoesnTExist()
+		{
+			AccountUrl = "Invalid_account_url";
+		}
+
+		[When(@"I try to get the account by its url")]
+		public void WhenITryToGetTheAccountByItsUrl()
+		{
+			Account = null;
+
+			try
+			{
+				Account = Service.Admin.GetAccountByUrl(AccountUrl);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
 		}
 		#endregion
 
@@ -376,6 +402,63 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Assert.AreEqual(ExceptionPossibilities.InvalidAccount, Error.Type);
 		}
 		#endregion
+
+		#region GetAccountList
+		[Given(@"I close the account (.+)")]
+		public void GivenICloseTheAccount(String accountUrl)
+		{
+			Service.Admin.CloseAccount(accountUrl);
+		}
+
+		[When(@"ask for the (not )?active account list")]
+		public void WhenAskForTheActiveAccountList(Boolean active)
+		{
+			try
+			{
+				accountList = Service.Admin.GetAccountList(active);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the account list will (not )?have this")]
+		public void ThenTheAccountListsWillBeThis(Boolean has, Table table)
+		{
+			var expectedList = new List<Account>();
+
+			foreach (var accountData in table.Rows)
+			{
+				var account = new Account
+				{
+					Name = accountData["Name"],
+					Url = accountData["Url"]
+				};
+
+				expectedList.Add(account);
+			}
+
+			foreach (var expected in expectedList)
+			{
+				var account = accountList.SingleOrDefault(
+					a => a.Url == expected.Url
+						&& a.Name == expected.Name
+				);
+
+				if (has)
+				{
+					Assert.IsNotNull(account);
+				}
+				else
+				{
+					Assert.IsNull(account);
+				}
+			}
+		}
+		#endregion
+
+
 
 		#region SaveCategory
 		[Given(@"I have this category to create")]
@@ -631,29 +714,76 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Assert.IsTrue(Category.Active);
 		}
 		#endregion
-
-		#region GetAccountByUrl
-		[Given(@"I pass an url of account that doesn't exist")]
-		public void GivenIPassAUrlOfAccountThatDoesnTExist()
+		
+		#region GetCategoryList
+		[Given(@"I disable the category (.+)")]
+		public void GivenICloseTheCategory(String categoryName)
 		{
-			AccountUrl = "Invalid_account_url";
+			Service.Admin.DisableCategory(categoryName);
 		}
 
-		[When(@"I try to get the account by its url")]
-		public void WhenITryToGetTheAccountByItsUrl()
+		[When(@"ask for all the category list")]
+		public void WhenAskForAllTheCategoryList()
 		{
-			Account = null;
-
 			try
 			{
-				Account = Service.Admin.GetAccountByUrl(AccountUrl);
+				categoryList = Service.Admin.GetCategoryList();
 			}
 			catch (DFMCoreException e)
 			{
 				Error = e;
 			}
 		}
+
+		[When(@"ask for the (not )?active category list")]
+		public void WhenAskForTheActiveCategoryList(Boolean active)
+		{
+			try
+			{
+				categoryList = Service.Admin.GetCategoryList(active);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the category list will (not )?have this")]
+		public void ThenTheCategoryListsWillBeThis(Boolean has, Table table)
+		{
+			var expectedList = new List<Category>();
+
+			foreach (var categoryData in table.Rows)
+			{
+				var category = new Category
+				{
+					Name = categoryData["Name"]
+				};
+
+				expectedList.Add(category);
+			}
+
+			foreach (var expected in expectedList)
+			{
+				var category = categoryList.SingleOrDefault(
+					c => c.Name == expected.Name
+				);
+
+				if (has)
+				{
+					Assert.IsNotNull(category);
+				}
+				else
+				{
+					Assert.IsNull(category);
+				}
+			}
+		}
 		#endregion
+
+
+
+
 
 		#region UpdateConfig
 
@@ -786,131 +916,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		}
 
 		#endregion
-
-
-
-		#region GetAccountList
-		[Given(@"I close the account (.+)")]
-		public void GivenICloseTheAccount(String accountUrl)
-		{
-			Service.Admin.CloseAccount(accountUrl);
-		}
-
-		[When(@"ask for the (not )?active account list")]
-		public void WhenAskForTheActiveAccountList(Boolean active)
-		{
-			try
-			{
-				accountList = Service.Admin.GetAccountList(active);
-			}
-			catch (DFMCoreException e)
-			{
-				Error = e;
-			}
-		}
-
-		[Then(@"the account list will (not )?have this")]
-		public void ThenTheAccountListsWillBeThis(Boolean has, Table table)
-		{
-			var expectedList = new List<Account>();
-
-			foreach (var accountData in table.Rows)
-			{
-				var account = new Account
-				{
-					Name = accountData["Name"],
-					Url = accountData["Url"]
-				};
-
-				expectedList.Add(account);
-			}
-
-			foreach (var expected in expectedList)
-			{
-				var account = accountList.SingleOrDefault(
-					a => a.Url == expected.Url
-						&& a.Name == expected.Name
-				);
-
-				if (has)
-				{
-					Assert.IsNotNull(account);
-				}
-				else
-				{
-					Assert.IsNull(account);
-				}
-			}
-		}
-		#endregion
-
-
-
-		#region GetCategoryList
-		[Given(@"I disable the category (.+)")]
-		public void GivenICloseTheCategory(String categoryName)
-		{
-			Service.Admin.DisableCategory(categoryName);
-		}
-
-		[When(@"ask for all the category list")]
-		public void WhenAskForAllTheCategoryList()
-		{
-			try
-			{
-				categoryList = Service.Admin.GetCategoryList();
-			}
-			catch (DFMCoreException e)
-			{
-				Error = e;
-			}
-		}
-
-		[When(@"ask for the (not )?active category list")]
-		public void WhenAskForTheActiveCategoryList(Boolean active)
-		{
-			try
-			{
-				categoryList = Service.Admin.GetCategoryList(active);
-			}
-			catch (DFMCoreException e)
-			{
-				Error = e;
-			}
-		}
-
-		[Then(@"the category list will (not )?have this")]
-		public void ThenTheCategoryListsWillBeThis(Boolean has, Table table)
-		{
-			var expectedList = new List<Category>();
-
-			foreach (var categoryData in table.Rows)
-			{
-				var category = new Category
-				{
-					Name = categoryData["Name"]
-				};
-
-				expectedList.Add(category);
-			}
-
-			foreach (var expected in expectedList)
-			{
-				var category = categoryList.SingleOrDefault(
-					c => c.Name == expected.Name
-				);
-
-				if (has)
-				{
-					Assert.IsNotNull(category);
-				}
-				else
-				{
-					Assert.IsNull(category);
-				}
-			}
-		}
-		#endregion
+		
 
 
 
