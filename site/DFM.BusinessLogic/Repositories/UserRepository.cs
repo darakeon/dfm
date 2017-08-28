@@ -10,7 +10,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class UserRepository : BaseRepository<User>
 	{
-		private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
+		private const string email_pattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 		
 		
 		
@@ -102,7 +102,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		private void validateEmail(User user)
 		{
-			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
+			var regex = new Regex(email_pattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserEmailInvalid);
