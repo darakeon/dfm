@@ -6,12 +6,22 @@ namespace DFM.Entities.Extensions
 {
     public static class SummarizableExtension
     {
-        public static Decimal Total(this ISummarizable summarizable)
-        {
-            return summarizable.SummaryList.Sum(s => s.Value());
-        }
+		public static Decimal In(this ISummarizable summarizable)
+		{
+			return summarizable.SummaryList.Sum(s => s.In);
+		}
 
-        public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
+		public static Decimal Out(this ISummarizable summarizable)
+		{
+			return summarizable.SummaryList.Sum(s => s.Out);
+		}
+
+		public static Decimal Total(this ISummarizable summarizable)
+		{
+			return summarizable.SummaryList.Sum(s => s.Value());
+		}
+
+		public static Summary GetOrCreateSummary(this ISummarizable summarizable, Category category)
         {
             var categoryName = category == null ? null : category.Name;
 

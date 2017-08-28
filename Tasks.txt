@@ -97,7 +97,7 @@ VERSÃO 2.0.2.0 (Little change) - 7?
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
 F						Colocar botão CANCEL em Settings e Move (mobile)
-F						Colocar in e out no relatório anual
+2015-02-14	2015-02-14	Colocar in e out no relatório anual
 2015-02-14	2015-02-14	Colocar URLReferrer em report de 404
 2015-02-14	2015-02-14	Remover o cascade para filhos do NH
 2015-02-14	2015-02-14	Arrumar urls de e-mail e de robots

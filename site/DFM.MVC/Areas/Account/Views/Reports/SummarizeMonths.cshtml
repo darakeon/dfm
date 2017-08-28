@@ -30,11 +30,15 @@
 
         <tr>
             <th>@MultiLanguage.Dictionary["Month"]</th>
+            <th>@MultiLanguage.Dictionary["In"]</th>
+            <th>@MultiLanguage.Dictionary["Out"]</th>
             <th>@MultiLanguage.Dictionary["Total"]</th>
         </tr>
 
         @foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
         {
+            var _in = month.In();
+            var _out = month.Out();
             var sum = month.Total();
 
             var negative = sum < 0;
@@ -42,12 +46,19 @@
 
             sum *= negative ? -1 : 1;
             
+            if (_in == 0 && _out == 0)
+            {
+                continue;
+            }
+            
             <tr>
                 <td>
                     <a href="@Url.Action("ShowMoves", new { id = month.Url() } )">
                         @MultiLanguage.GetMonthName(month.Time)
                     </a>
                 </td>
+                <td class="numeric in">@_in.ToMoney(Model.Language, true) </td>
+                <td class="numeric out">@_out.ToMoney(Model.Language, true) </td>
                 <td class="numeric @className">@sum.ToMoney(Model.Language) </td>
             </tr>
 
