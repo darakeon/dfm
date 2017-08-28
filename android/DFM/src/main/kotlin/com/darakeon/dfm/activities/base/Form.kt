@@ -2,16 +2,22 @@ package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.graphics.Color
+import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.dialogs.DialogSelectClickListener
 import org.json.JSONArray
 import org.json.JSONException
 
-class Form internal constructor(private val activity: Activity) {
+fun TextView.setColorByAttr(attr : Int){
+    val typedValue = TypedValue()
+    context.theme.resolveAttribute(attr, typedValue, true)
+    setTextColor(typedValue.data)
+}
 
+class Form internal constructor(private val activity: Activity) {
 
     fun getValue(id: Int): String {
         val field = getField<EditText>(id)
@@ -25,8 +31,8 @@ class Form internal constructor(private val activity: Activity) {
 
         field.text = String.format("%1$,.2f", value)
 
-        val color = if (value < 0) Color.RED else Color.BLUE
-        field.setTextColor(color)
+        val color = if (value < 0) R.attr.negative else R.attr.positive
+        field.setColorByAttr(color)
     }
 
     fun setValue(id: Int, text: Any?) {

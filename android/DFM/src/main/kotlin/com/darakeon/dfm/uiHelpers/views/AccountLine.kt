@@ -2,16 +2,18 @@ package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.darakeon.dfm.activities.ExtractActivity
-import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.activities.base.setColorByAttr
+import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import org.json.JSONException
 import java.text.DecimalFormat
+
+
 
 class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
@@ -28,11 +30,11 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 
         NameField.text = account.Name
 
-        val totalColor = if (account.Total < 0) Color.RED else Color.BLUE
+        val totalColor = if (account.Total < 0) R.attr.negative else R.attr.positive
         val totalToShow = if (account.Total < 0) -account.Total else account.Total
         val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
 
-        TotalField.setTextColor(totalColor)
+        TotalField.setColorByAttr(totalColor)
         TotalField.text = totalStr
 
         isClickable = true

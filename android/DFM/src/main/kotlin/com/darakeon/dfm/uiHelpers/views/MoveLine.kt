@@ -1,14 +1,13 @@
 package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.activities.base.setColorByAttr
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import org.json.JSONException
 import java.text.DateFormat
@@ -25,7 +24,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
     val NameField: TextView get() = findViewById(R.id.name) as TextView
     val DateField: TextView? get() = findViewById(R.id.date) as? TextView
     val TotalField: TextView get() = findViewById(R.id.value) as TextView
-    val CheckedField: ImageView get() = findViewById(R.id.check_move) as ImageView
+    val CheckedField: TextView get() = findViewById(R.id.check_move) as TextView
 
     @Throws(JSONException::class)
     fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
@@ -45,18 +44,25 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
     }
 
     private fun setTotalField(move: MoveAdapter.Move) {
-        val totalColor = if (move.Total < 0) Color.RED else Color.BLUE
+        val totalColor = if (move.Total < 0) R.attr.negative else R.attr.positive
         val totalToShow = if (move.Total < 0) -move.Total else move.Total
         val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
 
-        TotalField.setTextColor(totalColor)
+        TotalField.setColorByAttr(totalColor)
         TotalField.text = totalStr
     }
 
     private fun setCheckField(move: MoveAdapter.Move, canCheck: Boolean) {
         if (canCheck) {
-            val idResource = if (move.Checked) R.drawable.green_sign else R.drawable.red_sign
-            CheckedField.setImageResource(idResource)
+            val textRes = if (move.Checked) R.string.checked else R.string.unchecked
+            CheckedField.text = context.getString(textRes)
+
+            val activity = context as ExtractActivity
+            CheckedField.setTypeface(activity.glyphicon)
+
+            val color = if (move.Checked) R.attr.checked else R.attr.unchecked
+            CheckedField.setColorByAttr(color)
+
         } else {
             CheckedField.visibility = View.GONE
         }

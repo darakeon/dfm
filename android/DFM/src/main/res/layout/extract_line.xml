@@ -23,7 +23,7 @@
 			  android:textSize="17sp"
 		/>
 
-	<ImageView android:id="@+id/check_move"
+	<TextView android:id="@+id/check_move"
 			   android:paddingTop="13dp"
 			   android:paddingBottom="13dp"
 			   android:paddingLeft="0dp"

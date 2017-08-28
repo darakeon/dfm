@@ -1,6 +1,15 @@
 <resources>
 
-	<!-- Default screen margins, per the Android Design guidelines. -->
-	<color name="highlight">#DDCFAA</color>
+	<color name="negative_dark">#FFAA0000</color>
+	<color name="positive_dark">#FF0000AA</color>
+	<color name="transfer_dark">#FF088D00</color>
+	<color name="checked_dark">#FF008800</color>
+	<color name="unchecked_dark">#FFAA0000</color>
+
+	<color name="negative_light">#FFFF2222</color>
+	<color name="positive_light">#FF2222FF</color>
+	<color name="transfer_light">#FF00CC00</color>
+	<color name="checked_light">#FF00CC00</color>
+	<color name="unchecked_light">#FFFF2222</color>
 
 </resources>

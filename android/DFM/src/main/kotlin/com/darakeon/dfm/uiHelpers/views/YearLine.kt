@@ -2,14 +2,14 @@ package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.darakeon.dfm.activities.ExtractActivity
-import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.activities.base.setColorByAttr
+import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import org.json.JSONException
 import java.text.DecimalFormat
 
@@ -28,11 +28,11 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
         MonthField.text = year.MonthName
 
-        val totalColor = if (year.Total < 0) Color.RED else Color.BLUE
+        val totalColor = if (year.Total < 0) R.attr.negative else R.attr.positive
         val totalToShow = if (year.Total < 0) -year.Total else year.Total
         val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
 
-        TotalField.setTextColor(totalColor)
+        TotalField.setColorByAttr(totalColor)
         TotalField.text = totalStr
 
         isClickable = true

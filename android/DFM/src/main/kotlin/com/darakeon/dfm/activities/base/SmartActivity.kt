@@ -1,7 +1,10 @@
 package com.darakeon.dfm.activities.base
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
 import android.view.*
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.AccountsActivity
@@ -15,6 +18,8 @@ import org.json.JSONException
 import org.json.JSONObject
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
+
+    var glyphicon : Typeface? = null
 
     var clickedView: View? = null
 
@@ -62,8 +67,10 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
         super.onCreate(savedInstanceState)
 
+        glyphicon = Typeface.createFromAsset(assets, "fonts/glyphicons-halflings-regular.ttf")
+
         if (!hasTitle)
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         static.inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -75,17 +82,16 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
             registerForContextMenu(contextView)
         }
 
-        val highlight = findViewById(R.id.highlight);
-
-        if (highlight != null)
-            highlight.setBackgroundColor(Theme.getHighLightColor())
+        findViewById(R.id.highlight)?.
+            setBackgroundColor(Theme.getHighLightColor())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
 
-        if (optionsMenuResource() != 0)
+        if (optionsMenuResource() != 0) {
             menuInflater.inflate(optionsMenuResource(), menu)
+        }
 
         if (isLoggedIn)
             menuInflater.inflate(R.menu.common, menu)

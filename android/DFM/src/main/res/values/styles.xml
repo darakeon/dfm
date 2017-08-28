@@ -1,9 +1,19 @@
 <resources>
 
 	<style name="Dark" parent="android:Theme.Holo">
+		<item name="negative">@color/negative_dark</item>
+		<item name="positive">@color/positive_dark</item>
+		<item name="transfer">@color/transfer_dark</item>
+		<item name="checked">@color/checked_dark</item>
+		<item name="unchecked">@color/unchecked_dark</item>
 	</style>
 
 	<style name="Light" parent="android:Theme.Holo.Light">
+		<item name="negative">@color/negative_light</item>
+		<item name="positive">@color/positive_light</item>
+		<item name="transfer">@color/transfer_light</item>
+		<item name="checked">@color/checked_light</item>
+		<item name="unchecked">@color/unchecked_light</item>
 	</style>
 
 	<style name="AppTheme" parent="Dark">

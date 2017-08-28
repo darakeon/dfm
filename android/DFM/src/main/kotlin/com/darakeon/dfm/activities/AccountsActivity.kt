@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.AccountsStatic
-import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.R
+import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import org.json.JSONException
 import org.json.JSONObject
 
