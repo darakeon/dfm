@@ -207,7 +207,7 @@ namespace DFM.BusinessLogic.Services
         {
             InTransaction(() =>
             {
-                var ticket = ticketKey.Length == Defaults.TicketShowedPart
+                var ticket = ticketKey.Length == Defaults.TICKET_SHOWED_PART
                     ? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
                     : ticketRepository.GetByKey(ticketKey);
 
@@ -243,7 +243,7 @@ namespace DFM.BusinessLogic.Services
                     Active = ticket.Active,
                     Creation = ticket.Creation,
                     Expiration = ticket.Expiration,
-                    Key = ticket.Key.Substring(0, Defaults.TicketShowedPart),
+                    Key = ticket.Key.Substring(0, Defaults.TICKET_SHOWED_PART),
                     Type = ticket.Type,
                 };
 

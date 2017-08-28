@@ -106,9 +106,9 @@ namespace DFM.BusinessLogic.Repositories
 
             user.Active = false;
             
-            user.Config.TimeZone = Defaults.ConfigTimeZone;
-            user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
-            user.Config.UseCategories = Defaults.ConfigUseCategories;
+            user.Config.TimeZone = Defaults.CONFIG_TIMEZONE;
+            user.Config.SendMoveEmail = Defaults.CONFIG_SEND_MOVE_EMAIL;
+            user.Config.UseCategories = Defaults.CONFIG_USE_CATEGORIES;
 
             user.Creation = DateTime.UtcNow;
             user.Password = encrypt(user.Password);

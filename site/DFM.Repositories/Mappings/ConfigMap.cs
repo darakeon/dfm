@@ -11,16 +11,16 @@ namespace DFM.Repositories.Mappings
         {
             mapping.Map(u => u.Language)
                 .Length(MaximumLength.ConfigLanguage)
-                .Default("'" + Defaults.ConfigLanguage + "'");
+                .Default("'" + Defaults.CONFIG_LANGUAGE + "'");
 
             mapping.Map(u => u.TimeZone)
-                .Default("'" + Defaults.ConfigTimeZone + "'");
+                .Default("'" + Defaults.CONFIG_TIMEZONE + "'");
 
             mapping.Map(u => u.SendMoveEmail)
-                .Default("'" + Defaults.ConfigSendMoveEmail + "'");
+                .Default("'" + Defaults.CONFIG_SEND_MOVE_EMAIL + "'");
 
             mapping.Map(u => u.UseCategories)
-                .Default("'" + Defaults.ConfigUseCategories + "'");
+                .Default("'" + Defaults.CONFIG_USE_CATEGORIES + "'");
 
         }
     }

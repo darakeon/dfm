@@ -84,7 +84,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
                 Password = password + "_diff",
             };
 
-			SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.ConfigLanguage, null, null);
+			SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.CONFIG_LANGUAGE, null, null);
 
             var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
 
@@ -98,7 +98,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             try
             {
-				SA.Safe.SaveUserAndSendVerify(email, password, Defaults.ConfigLanguage, null, null);
+				SA.Safe.SaveUserAndSendVerify(email, password, Defaults.CONFIG_LANGUAGE, null, null);
             }
             catch (DFMCoreException e)
             {
@@ -498,7 +498,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         {
             foreach (var login in logins)
             {
-                Assert.AreEqual(Defaults.TicketShowedPart, login.Key.Length);
+                Assert.AreEqual(Defaults.TICKET_SHOWED_PART, login.Key.Length);
                 Assert.AreEqual(0, login.ID);
                 Assert.IsNull(login.User);
             }
