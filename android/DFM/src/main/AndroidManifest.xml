@@ -18,14 +18,19 @@
 	<uses-permission
 		android:name="com.android.vending.CHECK_LICENSE"
 		android:protectionLevel="signature"/>
+	<uses-permission
+		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		android:protectionLevel="signature"/>
+	<uses-permission
+		android:name="android.permission.READ_PHONE_STATE"
+		android:protectionLevel="signature"/>
+	<uses-permission
+		android:name="android.permission.READ_EXTERNAL_STORAGE"
+		android:protectionLevel="signature"/>
 
 	<uses-feature
 		android:name="android.hardware.faketouch"
 		android:required="true"/>
-
-	<android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<android:uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-	<android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 	<application
 		android:allowBackup="true"
