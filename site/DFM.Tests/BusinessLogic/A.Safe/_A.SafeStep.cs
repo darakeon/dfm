@@ -773,7 +773,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"there is a new contract")]
 		public void GivenICreateANewContract()
 		{
-			var contractVersion = TK.New().Substring(0, 12);
+			var scenarioName = ScenarioContext.Current.ScenarioInfo.Title;
+            var contractVersion = scenarioName.Substring(0, 12);
             DBHelper.CreateContract(contractVersion);
 		}
 
