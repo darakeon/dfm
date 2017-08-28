@@ -7,7 +7,6 @@
 		<ShortDateFormat text="{1} {0}" />
 		<Month text="Month" />
 		<Summary text="Summary" />
-		<Go text="Ir" />
 		<Check text="Check"/>
 		<Uncheck text="Uncheck"/>
 		<Checked text="Checked"/>
@@ -20,7 +19,6 @@
 		<ShortDateFormat text="{0} de {1}" />
 		<Month text="Mês" />
 		<Summary text="Resumo" />
-		<Go text="Go" />
 		<Check text="Marcar"/>
 		<Uncheck text="Desmarcar"/>
 		<Checked text="Verificado"/>
