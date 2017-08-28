@@ -161,5 +161,27 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Accounts");
 		}
 
+
+
+		[DFMAuthorize(needContract: false)]
+		public ActionResult Contract()
+		{
+			var model = new UsersContractModel();
+			return View(model);
+		}
+
+		[DFMAuthorize(needContract: false), HttpPost]
+		public ActionResult Contract(UsersContractModel model)
+		{
+			model.AcceptContract(ModelState.AddModelError);
+
+			if (ModelState.IsValid)
+			{
+				return RedirectToAction("Index", "Accounts");
+			}
+
+			return View(model);
+		}
+
 	}
 }

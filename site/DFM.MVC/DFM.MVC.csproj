@@ -229,11 +229,22 @@
     <Compile Include="Areas\API\Models\UserGetConfigModel.cs" />
     <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
+    <Compile Include="Assets\Resources\Contracts\003000000000.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>003000000000.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Resources\General.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>General.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Models\UsersContractModel.cs" />
     <Compile Include="Helpers\Views\MonthYearUnit.cs" />
     <Compile Include="Helpers\Views\YearUnit.cs" />
     <Compile Include="Models\TestAnalyzeDictionary.cs" />
@@ -278,6 +289,11 @@
     <Compile Include="Models\UsersLogOnModel.cs" />
     <Compile Include="Models\UsersSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Resources\Users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Users.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -287,12 +303,21 @@
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <None Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
     <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
+    <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>003000000000.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\General.pt-BR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\ListClosed.cshtml" />
     <None Include="Views\Categories\CreateEdit.cshtml" />
     <None Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Contracts\003000000000.cshtml" />
     <None Include="Views\Logins\Index.cshtml" />
     <None Include="Views\Ops\404.cshtml" />
     <None Include="Views\Ops\500.cshtml" />
@@ -318,6 +343,7 @@
     <None Include="Views\Users\ConfigEmail.cshtml" />
     <None Include="Views\Users\ConfigOptions.cshtml" />
     <None Include="Views\Users\ConfigPassword.cshtml" />
+    <Content Include="Views\Users\Contract.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <None Include="Views\Users\SendVerification.cshtml" />
@@ -378,7 +404,17 @@
       <Name>DFM.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Resources\General.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>General.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\Users.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\Users.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

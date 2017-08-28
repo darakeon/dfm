@@ -1,0 +1,48 @@
+﻿@model UsersContractModel
+
+@{
+	ViewBag.Title = Users.ContractTitle;
+	Layout = "~/Views/Shared/_Form.cshtml";
+	ViewBag.FormSize = 8;
+}
+
+<style>
+	.contract > ol {
+		padding-left: 15px;
+	}
+	.contract > ol > li {
+		margin-top: 20px;
+	}
+	.contract > ol > li > ol {
+		padding-left: 30px;
+	}
+	.contract > ol > li > ol > li {
+		list-style-type: lower-alpha;
+		margin-top: 5px;
+	}
+</style>
+
+
+<div class="">
+
+	<div class="contract well-sm">
+		@Html.Partial($"../Contracts/{Model.Contract.Version}")
+	</div>
+
+	<div class="checkbox text-center form-group">
+		<label for="@Html.IdFor(m => m.Accept)">
+			@Html.CheckBoxFor(m => m.Accept)
+			@Users.ContractAccept
+		</label>
+	</div>
+
+</div>
+
+
+@section Footer {
+	<span class="pull-left text-left">
+		@Users.ContractBeginDate<br />
+		@Model.Contract.BeginDate.ToShortDateString()
+	</span>
+	<button class="btn btn-success">@General.Accept</button>
+}

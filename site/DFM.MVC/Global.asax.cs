@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -43,6 +45,7 @@ namespace DFM.MVC
 		}
 
 
+
 		// ReSharper disable InconsistentNaming
 		protected void Application_BeginRequest()
 		// ReSharper restore InconsistentNaming
@@ -55,6 +58,8 @@ namespace DFM.MVC
 			SessionManager.Init(BrowserId.Get);
 		}
 
+
+
 		// ReSharper disable InconsistentNaming
 		protected void Application_AuthenticateRequest()
 		// ReSharper restore InconsistentNaming
@@ -65,26 +70,38 @@ namespace DFM.MVC
 				Response.Redirect("/");
 		}
 
+
+
 		// ReSharper disable InconsistentNaming
 		protected void Application_AcquireRequestState()
 		// ReSharper restore InconsistentNaming
 		{
-			if (isAsset) return;
+			if (isAsset || !current.IsAuthenticated)
+				return;
 
-			if (current.IsAuthenticated)
-			{
-				var emailsStatus = access.Robot.RunSchedule();
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo(Service.Current.Language);
 
-				if (emailsStatus.IsWrong())
-				{
-					var message = MultiLanguage.Dictionary["ScheduleRun"];
-					var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
-					var final = String.Format(message, error);
-
-					ErrorAlert.AddTranslated(final);
-				}
-			}
+			if (access.Safe.IsLastContractAccepted())
+				runSchedule();
 		}
+
+		private void runSchedule()
+		{
+			var emailsStatus = access.Robot.RunSchedule();
+
+			if (emailsStatus.IsWrong())
+				setErrorMessage(emailsStatus);
+		}
+
+		private static void setErrorMessage(EmailStatus emailsStatus)
+		{
+			var message = MultiLanguage.Dictionary["ScheduleRun"];
+			var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
+			var final = String.Format(message, error);
+
+			ErrorAlert.AddTranslated(final);
+		}
+
 
 
 		// ReSharper disable InconsistentNaming
@@ -140,11 +157,11 @@ namespace DFM.MVC
 		private static Uri url => HttpContext.Current.Request.Url;
 		private static String path => url.AbsolutePath.ToLowerInvariant();
 
-		private static Boolean isAsset => 
+		private static Boolean isAsset =>
 			path.StartsWith("/assets/")
 			|| path.StartsWith("/favicon.ico")
 			|| path.StartsWith("/robots.txt");
-		
+
 		private static Boolean isLocal => Cfg.IsLocal;
 
 		private static readonly String elmahTestAction = getName(oc => oc.TestElmahLog);
@@ -160,5 +177,6 @@ namespace DFM.MVC
 			var value = (_MethodInfo)@object?.Value;
 			return value?.Name?.ToLowerInvariant();
 		}
+
 	}
 }
