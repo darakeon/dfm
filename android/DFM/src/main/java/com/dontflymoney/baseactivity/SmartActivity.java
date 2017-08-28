@@ -1,12 +1,14 @@
 package com.dontflymoney.baseactivity;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
+import android.widget.ListView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -20,6 +22,8 @@ import org.json.JSONObject;
 
 public abstract class SmartActivity extends FixOrientationActivity
 {
+	protected static LayoutInflater inflater = null;
+
     public View clickedView;
 
     protected abstract int contentView();
@@ -49,13 +53,15 @@ public abstract class SmartActivity extends FixOrientationActivity
 		Language.ChangeFromSaved(this);
 
 		super.onCreate(savedInstanceState);
-		
+
+		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 		setContentView(contentView());
 		setupActionBar();
 
         if (viewWithContext() != 0)
         {
-            TableLayout contextView = (TableLayout)findViewById(viewWithContext());
+            ListView contextView = (ListView)findViewById(viewWithContext());
             registerForContextMenu(contextView);
         }
 
