@@ -130,6 +130,7 @@
     <Content Include="Assets\Image\android.gif" />
     <Content Include="Assets\Image\clouds.gif" />
     <Content Include="Assets\Image\datepicker\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\Image\icons\check.gif" />
     <Content Include="Assets\Image\icons\close.gif" />
     <Content Include="Assets\Image\icons\delete.gif" />
     <Content Include="Assets\Image\icons\edit.gif" />
@@ -143,6 +144,7 @@
     <Content Include="Assets\Image\icons\reopen.gif" />
     <Content Include="Assets\Image\icons\settings.gif" />
     <Content Include="Assets\Image\icons\settings_active.gif" />
+    <Content Include="Assets\Image\icons\uncheck.gif" />
     <Content Include="Assets\Image\icons\yellow_sign.gif" />
     <Content Include="Assets\Image\logo.gif" />
     <Content Include="Assets\Image\pig.gif" />
