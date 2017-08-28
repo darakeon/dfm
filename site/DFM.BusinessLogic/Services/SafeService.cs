@@ -9,6 +9,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.ObjectInterfaces;
+using DK.MVC.Authentication;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -45,11 +46,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
-				if (String.IsNullOrEmpty(passwordForm.Password))
-					throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
-
-				if (passwordForm.Password != passwordForm.RetypePassword)
-					throw DFMCoreException.WithMessage(ExceptionPossibilities.RetypeWrong);
+				passwordForm.Verify();
 
 				var user = new User
 				{
@@ -124,11 +121,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void PasswordReset(String token, IPasswordForm passwordForm)
 		{
-			if (String.IsNullOrEmpty(passwordForm.Password))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
-
-			if (passwordForm.Password != passwordForm.RetypePassword)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.RetypeWrong);
+			passwordForm.Verify();
 
 			InTransaction(() =>
 			{
@@ -259,6 +252,8 @@ namespace DFM.BusinessLogic.Services
 				Type = ticket.Type,
 			};
 		}
+
+
 		
 	}
 }
