@@ -9,7 +9,8 @@ namespace DFM.Repositories.Mappings
 		public void Override(AutoMapping<Year> mapping)
 		{
 			mapping.HasMany(y => y.MonthList)
-				.Cascade.Delete();
+				.Cascade.Delete()
+				.Inverse();
 
 			mapping.Map(m => m.Time)
 				.UniqueKey("Year_TimeAccount");

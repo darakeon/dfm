@@ -26,7 +26,8 @@ namespace DFM.Repositories.Mappings
 			mapping.IgnoreProperty(a => a.YellowLimit);
 
 			mapping.HasMany(a => a.YearList)
-				.Cascade.Delete();
+				.Cascade.Delete()
+				.Inverse();
 
 			mapping.References(a => a.User)
 				.UniqueKey("Account_NameUser")
