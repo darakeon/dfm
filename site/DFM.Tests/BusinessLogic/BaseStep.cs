@@ -296,11 +296,8 @@ namespace DFM.Tests.BusinessLogic
         {
             get
             {
-                return Move == null 
-                    ? Schedule == null 
-                        ? DateTime.MinValue 
-                        : Schedule.Date 
-                    : Move.Date;
+                return Move?.Date ?? 
+					(Schedule?.Date ?? DateTime.MinValue);
             }
             set
             {

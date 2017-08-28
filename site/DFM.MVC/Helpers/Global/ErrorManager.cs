@@ -32,7 +32,7 @@ namespace DFM.MVC.Helpers.Global
 
             EmailSent = Error.SendReport(current.AllErrors
 				, current.Request.Url.ToString()
-				, urlReferrer == null ? "typed" : urlReferrer.ToString()
+				, urlReferrer?.ToString() ?? "typed"
                 , parameters
                 , user.IsAuthenticated ? user.Name : "Off");
 

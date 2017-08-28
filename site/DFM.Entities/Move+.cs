@@ -55,9 +55,7 @@ namespace DFM.Entities
 			{
 				var month = Out ?? In;
 
-				return month == null
-					? null
-					: month.Year.Account.User;
+				return month?.Year.Account.User;
 			}
 		}
 
@@ -80,7 +78,7 @@ namespace DFM.Entities
 
 		private static Account getAccount(Month month)
 		{
-			return month == null ? null : month.Year.Account;
+			return month?.Year.Account;
 		}
 
 

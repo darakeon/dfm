@@ -39,10 +39,7 @@ namespace DFM.BusinessLogic.Bases
             if (move.Date == DateTime.MinValue)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
 
-            var now =
-                move.User == null
-                    ? DateTime.UtcNow
-                    : move.User.Now();
+            var now = move.User?.Now() ?? DateTime.UtcNow;
 
             if (typeof(T) != typeof(Schedule) && move.Date > now)
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);

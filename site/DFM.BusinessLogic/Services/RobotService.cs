@@ -72,8 +72,8 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var schedule in scheduleList)
 			{
-				var accountOutUrl = schedule.Out == null ? null : schedule.Out.Url;
-				var accountInUrl = schedule.In == null ? null : schedule.In.Url;
+				var accountOutUrl = schedule.Out?.Url;
+				var accountInUrl = schedule.In?.Url;
 
 				var category = schedule.Category;
 				var categoryName = category == null ? null : schedule.Category.Name;

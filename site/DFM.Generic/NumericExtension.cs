@@ -16,16 +16,12 @@ namespace DFM.Generic
 
         public static Int32? ToCents(this Decimal? value)
 		{
-		    return value.HasValue 
-                ? value.Value.ToCents()
-                : default(Int32?);
+		    return value?.ToCents();
 		}
 
         public static Decimal? ToVisual(this Int32? value)
 		{
-			return value.HasValue
-                ? value.Value.ToVisual()
-                : default(Decimal?);
+			return value?.ToVisual();
 		}
 
 	}

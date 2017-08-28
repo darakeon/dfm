@@ -45,8 +45,8 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         {
             try
             {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+                var accountOutUrl = AccountOut?.Url;
+                var accountInUrl = AccountIn?.Url;
 
                 SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
             }
@@ -226,8 +226,8 @@ namespace DFM.Tests.BusinessLogic.D.Robot
         [Given(@"I save the schedule")]
         public void GivenISaveTheSchedule()
         {
-            var accountOutName = AccountOut == null ? null : AccountOut.Name;
-            var accountInName = AccountIn == null ? null : AccountIn.Name;
+            var accountOutName = AccountOut?.Name;
+            var accountInName = AccountIn?.Name;
 
             var schedule = SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
 

@@ -25,9 +25,7 @@ namespace DFM.MVC.Models
 	    protected static Current Current => getOrCreateAccess().Current;
 
 	    public DateTime Today => 
-			Current.User == null
-				? DateTime.UtcNow
-				: Current.User.Now().Date;
+			Current.User?.Now().Date ?? DateTime.UtcNow;
 
 	    public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
     }

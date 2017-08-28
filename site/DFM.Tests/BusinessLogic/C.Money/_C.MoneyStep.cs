@@ -109,8 +109,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+                var accountOutUrl = AccountOut?.Url;
+                var accountInUrl = AccountIn?.Url;
 
                 SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
             }
@@ -128,8 +128,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             try
             {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+                var accountOutUrl = AccountOut?.Url;
+                var accountInUrl = AccountIn?.Url;
 
                 var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
                 CurrentEmailStatus = result.Error;
@@ -151,8 +151,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
             try
             {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+                var accountOutUrl = AccountOut?.Url;
+                var accountInUrl = AccountIn?.Url;
 
                 var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
                 CurrentEmailStatus = result.Error;
@@ -328,8 +328,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
         {
             try
             {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
+                var accountOutUrl = AccountOut?.Url;
+                var accountInUrl = AccountIn?.Url;
 
                 SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
             }

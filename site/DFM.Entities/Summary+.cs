@@ -64,7 +64,7 @@ namespace DFM.Entities
                     ? Month.ID : 0;
 
             var category = Category;
-            var categoryID = category == null ? 0 : category.ID;
+            var categoryID = category?.ID ?? 0;
 
             return String.Format("{0}_{1}_{2}", yearID, monthID, categoryID);
         }

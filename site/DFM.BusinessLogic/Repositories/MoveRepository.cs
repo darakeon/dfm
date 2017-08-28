@@ -115,8 +115,7 @@ namespace DFM.BusinessLogic.Repositories
 
         private static String getAccountName(Account account)
         {
-            return account == null
-                ? null : account.Name;
+            return account?.Name;
         }
         #endregion
 

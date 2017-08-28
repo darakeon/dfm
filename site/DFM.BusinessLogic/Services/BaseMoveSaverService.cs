@@ -85,8 +85,7 @@ namespace DFM.BusinessLogic.Services
 
             var oldMove = moveRepository.GetOldById(move.ID);
 
-            move.Schedule = oldMove == null
-                ? null : oldMove.Schedule;
+            move.Schedule = oldMove?.Schedule;
         }
 
 
