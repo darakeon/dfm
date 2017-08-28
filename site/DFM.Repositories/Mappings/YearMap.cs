@@ -4,23 +4,23 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.Repositories.Mappings
 {
-    public class YearMap : IAutoMappingOverride<Year>
-    {
-        public void Override(AutoMapping<Year> mapping)
-        {
-            mapping.HasMany(y => y.MonthList)
-                .Cascade.Delete();
+	public class YearMap : IAutoMappingOverride<Year>
+	{
+		public void Override(AutoMapping<Year> mapping)
+		{
+			mapping.HasMany(y => y.MonthList)
+				.Cascade.Delete();
 
-            mapping.Map(m => m.Time)
-                .UniqueKey("Year_TimeAccount");
+			mapping.Map(m => m.Time)
+				.UniqueKey("Year_TimeAccount");
 
-            mapping.References(y => y.Account)
-                .UniqueKey("Year_TimeAccount")
+			mapping.References(y => y.Account)
+				.UniqueKey("Year_TimeAccount")
 				.Not.Update()
-                .Nullable();
+				.Nullable();
 
-            mapping.HasMany(y => y.SummaryList)
-                .Cascade.SaveUpdate();
-        }
-    }
+			mapping.HasMany(y => y.SummaryList)
+				.Cascade.SaveUpdate();
+		}
+	}
 }
