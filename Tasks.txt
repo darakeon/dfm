@@ -81,6 +81,7 @@ S						Arrumar para web usar fakeId, não id
 						Tratar erro que acontece no robot para avisar usuário, não estourar
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
+						Sair do sandbox da Amazon
 
 VERSÃO 2.1.0.0 (Big change) - 8?
 ================================================================================================
@@ -103,7 +104,7 @@ VERSÃO 2.0.3.1 (System) - 4
 						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
 						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
-2016-05-09				Conserta envio de e-mail para Amazon
+2016-05-09	2016-05-15	Consertar envio de e-mail para Amazon
 2015-09-19	2016-05-09	Testes de mudança de configuração
 2015-09-15	2015-09-17	Corrigir funcionamento do app no Lollipop
 2015-09-10	2015-09-10	Corrigir problema ao abrir tela de criar movimentação (mobile)

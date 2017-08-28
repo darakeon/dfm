@@ -84,7 +84,7 @@ namespace DFM.Email
             if (String.IsNullOrEmpty(to))
                 DFMEmailException.WithMessage(EmailStatus.InvalidAddress);
 
-            using (var smtp = new SmtpClient {Timeout = 3000})
+            using (var smtp = new SmtpClient {Timeout = 60000})
             {
                 try
                 {
