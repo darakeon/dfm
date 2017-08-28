@@ -121,6 +121,7 @@
     </Content>
     <Content Include="Multilanguage\Resources\reports.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Multilanguage\Resources\tokens.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -722,6 +722,18 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 		#region ToggleMoveChecked
 
+		[Given(@"the move is (not )?checked")]
+		public void GivenTheMoveIsChecked(Boolean @checked)
+		{
+			if (Move.Checked == @checked)
+				return;
+
+			if (@checked)
+				SA.Money.CheckMove(Move.ID);
+			else
+				SA.Money.UncheckMove(Move.ID);
+		}
+
 		[When(@"I try to mark it as (not )?checked")]
 		public void WhenIMarkItAsChecked(Boolean @checked)
 		{
@@ -741,7 +753,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				Error = e;
 			}
 		}
-
 
 		[Then(@"the move will (not )?be checked")]
 		public void ThenTheMoveWillBeChecked(Boolean @checked)

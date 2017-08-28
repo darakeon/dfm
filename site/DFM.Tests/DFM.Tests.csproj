@@ -160,10 +160,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>b.UpdateMove.feature</DependentUpon>
     </Compile>
-    <Compile Include="BusinessLogic\C.Money\f.ToggleMoveChecked.feature.cs">
+    <Compile Include="BusinessLogic\C.Money\f.CheckMove.feature.cs">
+      <DependentUpon>f.CheckMove.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>f.ToggleMoveChecked.feature</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\C.Money\g.UncheckMove.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>g.UncheckMove.feature</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogic\C.Money\_C.MoneyStep.cs" />
     <Compile Include="BusinessLogic\C.Money\c.SelectMoveById.feature.cs">
@@ -303,9 +308,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.UpdateMove.feature.cs</LastGenOutput>
     </None>
-    <None Include="BusinessLogic\C.Money\f.ToggleMoveChecked.feature">
+    <None Include="BusinessLogic\C.Money\f.CheckMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>f.ToggleMoveChecked.feature.cs</LastGenOutput>
+      <LastGenOutput>f.CheckMove.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\C.Money\g.UncheckMove.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>g.UncheckMove.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\D.Robot\b.RunSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

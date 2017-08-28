@@ -91,6 +91,8 @@ Scenario: 04. Get translations of Errors
 		| Error   | MoveDetailAmountRequired       |
 		| Error   | MoveDetailValueRequired        |
 		| Error   | InvalidDetail                  |
+		| Error   | MoveAlreadyChecked             |
+		| Error   | MoveAlreadyUnchecked           |
 		| Error   | ScheduleRequired               |
 		| Error   | ScheduleFrequencyNotRecognized |
 		| Error   | ScheduleWithNoMoves            |

@@ -350,6 +350,12 @@ namespace DFM.Tests.BusinessLogic
 				newDetail.Amount = Int16.Parse(detailData["Amount"]);
 			return newDetail;
 		}
+
+		protected Boolean IsCurrent(ScenarioBlock block)
+		{
+			return ScenarioContext.Current.CurrentScenarioBlock == block;
+		}
+
 		#endregion
 
 
