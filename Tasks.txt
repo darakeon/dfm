@@ -105,6 +105,18 @@ VERSÃO 3.0.1.0 (Little change) - 7
 						Colocar marcação para conta de entrada e de saída separadas
 						Acessibilidade
 
+VERSÃO 3.0.0.5 (System) - 5
+================================================================================================
+						Escrever testes para permissões por usuário
+						Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
+						Corrigir tamanho da caixa de saldo no browser mobile
+						Corrigir naturezas na tela de agendamento
+						Corrigir tela de agendamentos caso não haja uso de categorias
+
+VERSÃO 3.0.0.4 (System) - 1
+================================================================================================
+						Corrigir listagem de agendamentos (está mostrando de todos os usuários)
+
 VERSÃO 3.0.0.3 (System) - 1
 ================================================================================================
 2017-04-11	2017-04-11	Corrigir problema de falta de ícone na listagem de apps
