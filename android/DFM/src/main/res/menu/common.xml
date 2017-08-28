@@ -10,6 +10,14 @@
         android:onClick="refresh" />
 
     <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/title_activity_settings"
+        android:icon="@drawable/settings"
+        android:onClick="goToSettings" />
+
+    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:showAsAction="always"

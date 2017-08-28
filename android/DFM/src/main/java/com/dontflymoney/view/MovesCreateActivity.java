@@ -38,7 +38,6 @@ public class MovesCreateActivity extends SmartActivity {
 
 	
     protected int contentView() { return R.layout.moves_create; }
-    protected int optionsMenuResource() { return R.menu.moves_create; }
 
 
 

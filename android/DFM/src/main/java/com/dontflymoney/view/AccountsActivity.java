@@ -26,7 +26,6 @@ public class AccountsActivity extends SmartActivity
 
 
     protected int contentView() { return R.layout.accounts; }
-    protected int optionsMenuResource() { return R.menu.accounts; }
 
 	
 	
