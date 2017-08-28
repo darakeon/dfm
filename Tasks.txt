@@ -54,18 +54,18 @@ VERSÃO 4.0.0.0 (All new) - 1
 ================================================================================================
 F						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 3.5.0.0 (Big change) - 2
+VERSÃO 3.4.0.0 (Big change) - 2
 ================================================================================================
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Totais de (Negativo / Positivo / Total) no Resumo Anual
 
-VERSÃO 3.4.0.0 (Big change) - 3
+VERSÃO 3.3.0.0 (Big change) - 3
 ========================================================================================
 						Colocar Template no Mobile
 						Criar Template (Move)
 						Busca por movimentação
 
-VERSÃO 3.3.1.0 (Little change) - 5
+VERSÃO 3.2.1.0 (Little change) - 5
 ================================================================================================
 					>>>	Se for post, fazer login chamar history.go(-2)
 						Mostrar naturezas em botões, não dropdowns
@@ -73,14 +73,14 @@ VERSÃO 3.3.1.0 (Little change) - 5
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						
-VERSÃO 3.3.0.1 (System) - 4
+VERSÃO 3.2.0.1 (System) - 4
 ================================================================================================
 S						Arrumar para web usar fakeId, não id
 B						Tratar DFMCoreException em Robot
 B						Corrigir mobile no caso: move tem category, mas config atual não permite
 F						Mudar campos para usar campos que firefox e chrome personalizam
 
-VERSÃO 3.3.0.0 (Big change) - 5
+VERSÃO 3.2.0.0 (Big change) - 5
 ================================================================================================
 F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
 F						Resolver problema de tab na tela de criação de Move (mobile)
@@ -88,7 +88,7 @@ F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 						Trocar menu superior por inferior (mobile)
 
-VERSÃO 3.2.0.0 (Big change) - 5
+VERSÃO 3.1.0.0 (Big change) - 5
 ================================================================================================
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Permitir não exibir valores direto na tela inicial
@@ -96,7 +96,7 @@ VERSÃO 3.2.0.0 (Big change) - 5
 						Mudar categoria para autocomplete (mobile)
 						Colocar spinner de datetime ao lado do botão no mobile (tirar modal)
 
-VERSÃO 3.1.1.0 (Little change) - 6
+VERSÃO 3.0.1.0 (Little change) - 7
 ================================================================================================
 						Permitir marcar todas as movimentações antes de uma data
 						Possibilitar marcar uma movimentação em conta fechada
@@ -104,19 +104,15 @@ VERSÃO 3.1.1.0 (Little change) - 6
 						Marcar movimentação sem recarregar a tela - mobile
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
+						Acessibilidade
 
-VERSÃO 3.1.0.0 (Big change) - 6
+VERSÃO 3.0.0.0 (All new) - 19
 ================================================================================================
+						Video do porquinho
 						Corrigir edição de movimentação com schedule
 						Corrigir edição de movimentação no mobile
 						Corrigir problema de cache na criação/edição de movimentação (conta/categoria)
-						Acessibilidade
-						Configuração de tema - mobile
 						Tema dark no android (para Slate e Cyborg)
-
-VERSÃO 3.0.0.0 (All new) - 15
-================================================================================================
-						Video do porquinho
 						Mudar layouts de e-mail - light / dark
 2017-03-25	2017-03-26	Configuração de tema
 2017-03-24	2017-03-25	Adicionar aviso de cookies no logon (remember me)
