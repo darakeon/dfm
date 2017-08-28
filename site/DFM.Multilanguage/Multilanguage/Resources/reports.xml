@@ -8,6 +8,10 @@
 		<Month text="Month" />
 		<Summary text="Summary" />
 		<Go text="Ir" />
+		<Check text="Check"/>
+		<Uncheck text="Uncheck"/>
+		<Checked text="Checked"/>
+		<Unchecked text="Unchecked"/>
 	</en-US>
 	<pt-BR>
 		<NoMonthMoves text="Não há Movimentações para este mês." />
@@ -17,5 +21,9 @@
 		<Month text="Mês" />
 		<Summary text="Resumo" />
 		<Go text="Go" />
+		<Check text="Verificar"/>
+		<Uncheck text="Desmarcar"/>
+		<Checked text="Verificado"/>
+		<Unchecked text="Pendente"/>
 	</pt-BR>
 </reports>
