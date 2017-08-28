@@ -49,7 +49,6 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
         fillAccounts()
     }
 
-    @Throws(JSONException::class)
     private fun fillAccounts() {
         if (static.accountList.length() == 0) {
             main.visibility = View.GONE
@@ -58,8 +57,7 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
             main.visibility = View.VISIBLE
             empty.visibility = View.GONE
 
-            val accountAdapter = AccountAdapter(this, static.accountList)
-            main.adapter = accountAdapter
+            main.adapter = AccountAdapter(this, static.accountList)
         }
     }
 

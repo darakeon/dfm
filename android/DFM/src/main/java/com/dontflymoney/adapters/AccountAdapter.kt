@@ -1,48 +1,34 @@
 package com.dontflymoney.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-
 import com.dontflymoney.layout.AccountLine
 import com.dontflymoney.view.R
-
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-import java.util.ArrayList
+class AccountAdapter(context: Context, accountJsonList: JSONArray) : BaseAdapter() {
 
-class AccountAdapter @Throws(JSONException::class)
-constructor(context: Context, accountJsonList: JSONArray) : BaseAdapter() {
     private val accountList: MutableList<Account>
+    private var inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     init {
-        accountList = ArrayList<Account>()
+        accountList =
+            (0..accountJsonList.length() - 1)
+                .map { Account(accountJsonList.getJSONObject(it)) }
+                .toMutableList()
 
-        for (a in 0..accountJsonList.length() - 1) {
-            val account = Account(accountJsonList.getJSONObject(a))
-            accountList.add(account)
-        }
-
-        inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     }
 
-    inner class Account @Throws(JSONException::class)
-    internal constructor(jsonObject: JSONObject) {
-        var Name: String
-        var Total: Double = 0.toDouble()
-        var Url: String
-
-        init {
-            Name = jsonObject.getString("Name")
-            Total = jsonObject.getDouble("Total")
-            Url = jsonObject.getString("Url")
-        }
+    inner class Account(jsonObject: JSONObject) {
+        var Name: String = jsonObject.getString("Name")
+        var Total: Double = jsonObject.getDouble("Total")
+        var Url: String = jsonObject.getString("Url")
     }
 
     override fun getCount(): Int {
@@ -57,9 +43,8 @@ constructor(context: Context, accountJsonList: JSONArray) : BaseAdapter() {
         return position.toLong()
     }
 
-    override fun getView(position: Int, view: View, viewGroup: ViewGroup): View {
-        @SuppressLint("ViewHolder", "InflateParams")
-        val line = inflater!!.inflate(R.layout.accounts_line, null) as AccountLine
+    override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
+        val line = inflater.inflate(R.layout.accounts_line, null) as AccountLine
 
         try {
             val color = if (position % 2 == 0) Color.TRANSPARENT else Color.LTGRAY
@@ -71,8 +56,5 @@ constructor(context: Context, accountJsonList: JSONArray) : BaseAdapter() {
         return line
     }
 
-    companion object {
-        private var inflater: LayoutInflater? = null
-    }
 
 }
