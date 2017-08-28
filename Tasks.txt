@@ -108,7 +108,7 @@ VERSÃO 3.0.1.0 (Little change) - 7
 VERSÃO 3.0.0.5 (System) - 5
 ================================================================================================
 						Escrever testes para permissões por usuário
-						Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
+2017-04-18	2017-04-18	Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
 2017-04-18	2017-04-18	Corrigir tela de agendamentos caso não haja uso de categorias
 2017-04-18	2017-04-18	Corrigir naturezas na tela de agendamento
 2017-04-18	2017-04-18	Corrigir tamanho da caixa de saldo no browser mobile

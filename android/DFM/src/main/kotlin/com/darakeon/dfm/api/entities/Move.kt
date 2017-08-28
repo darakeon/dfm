@@ -31,7 +31,7 @@ class Move {
 
 
 	fun SetNature(number: String) {
-		SetNature(Integer.parseInt(number))
+		SetNature(number.toInt())
 	}
 
 	fun SetNature(number: Int?) {

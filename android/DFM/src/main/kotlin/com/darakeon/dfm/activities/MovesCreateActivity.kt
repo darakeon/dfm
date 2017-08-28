@@ -13,6 +13,7 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.api.entities.Nature
+import com.darakeon.dfm.api.toDoubleByCulture
 import com.darakeon.dfm.uiHelpers.dialogs.*
 import com.darakeon.dfm.uiHelpers.views.DetailBox
 import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
@@ -291,7 +292,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		val amountStr = form.getValue(R.id.detail_amount)
 		val valueStr = form.getValue(R.id.detail_value)
 
-		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty()) {
+		val value = valueStr.toDoubleByCulture()
+
+		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty() || value == null) {
 			message.alertError(R.string.fill_all)
 			return
 		}
@@ -302,8 +305,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		form.setValue(R.id.detail_amount, amountDefault)
 		form.setValue(R.id.detail_value, "")
 
-		val amount = Integer.parseInt(amountStr)
-		val value = java.lang.Double.parseDouble(valueStr)
+		val amount = amountStr.toInt()
 
 		static.move.Add(description, amount, value)
 
