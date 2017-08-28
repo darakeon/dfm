@@ -20,6 +20,7 @@ android/local.properties
 android/.idea
 android/.DS_Store
 android/*/build
+android/build
 android/**.iml
 android/gradlew
 android/gradlew.bat
@@ -38,4 +39,3 @@ syntax: regexp
 .hg*
 site/DFM.MVC/DFM.MVC.Publish.xml
 site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
-android/build
