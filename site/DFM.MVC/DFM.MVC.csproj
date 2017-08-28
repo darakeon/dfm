@@ -154,6 +154,7 @@
     <Content Include="Assets\Images\pig.ico" />
     <Content Include="Assets\Images\pig.png" />
     <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg" />
+    <Content Include="Assets\Scripts\tab-forms.js" />
     <Content Include="Assets\Styles\default.css" />
     <Content Include="Assets\Styles\twitter.css" />
     <Content Include="Assets\Scripts\twitter.js" />
@@ -289,6 +290,9 @@
     <Content Include="Views\Tokens\UserVerificationSuccess.old" />
     <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
+    <None Include="Views\Users\ConfigEmail.cshtml" />
+    <None Include="Views\Users\ConfigOptions.cshtml" />
+    <None Include="Views\Users\ConfigPassword.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <None Include="Views\Users\SendVerification.cshtml" />

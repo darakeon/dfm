@@ -1,0 +1,11 @@
+﻿@model UsersConfigModel
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Info.Email, MultiLanguage.Dictionary["EmailToChange"])
+	@Html.TextBoxFor(m => m.Info.Email, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Info.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"])
+	@Html.PasswordFor(m => m.Info.CurrentPassword, new { @class = "form-control" })
+</div>
