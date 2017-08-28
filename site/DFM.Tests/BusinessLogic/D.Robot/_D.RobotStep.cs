@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -17,6 +19,12 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			get { return Get<Int32>("ID"); }
 			set { Set("ID", value); }
+		}
+
+		private static IList<Schedule> scheduleList
+		{
+			get { return Get<IList<Schedule>>("scheduleList"); }
+			set { Set("scheduleList", value); }
 		}
 		#endregion
 
@@ -191,7 +199,58 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		}
 		#endregion
 
+		#region GetScheduleList
+		[Given(@"I disable the schedule")]
+		public void GivenICloseTheSchedule()
+		{
+			SA.Robot.DisableSchedule(id);
+		}
 
+		[When(@"ask for the schedule list")]
+		public void WhenAskForAllTheScheduleList()
+		{
+			try
+			{
+				scheduleList = SA.Robot.GetScheduleList();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+		
+		[Then(@"the schedule list will (not )?have this")]
+		public void ThenTheScheduleListsWillBeThis(Boolean has, Table table)
+		{
+			var expectedList = new List<Schedule>();
+
+			foreach (var scheduleData in table.Rows)
+			{
+				var schedule = new Schedule
+				{
+					Description = scheduleData["Name"]
+				};
+
+				expectedList.Add(schedule);
+			}
+
+			foreach (var expected in expectedList)
+			{
+				var schedule = scheduleList.SingleOrDefault(
+					s => s.Description == expected.Description
+				);
+
+				if (has)
+				{
+					Assert.IsNotNull(schedule);
+				}
+				else
+				{
+					Assert.IsNull(schedule);
+				}
+			}
+		}
+		#endregion
 
 		#region MoreThanOne
 		[Given(@"I have this schedule to create")]

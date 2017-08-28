@@ -212,6 +212,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>c.DisableSchedule.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\D.Robot\d.GetScheduleList.feature.cs">
+      <DependentUpon>d.GetScheduleList.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
     <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
@@ -360,6 +365,10 @@
     <None Include="BusinessLogic\D.Robot\c.DisableSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>c.DisableSchedule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\D.Robot\d.GetScheduleList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>d.GetScheduleList.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\E.Report\b.GetYearReport.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
