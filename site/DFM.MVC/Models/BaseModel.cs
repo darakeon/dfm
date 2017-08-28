@@ -5,6 +5,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic.Services;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
+using DK.Generic.Extensions;
 
 namespace DFM.MVC.Models
 {
@@ -22,6 +23,17 @@ namespace DFM.MVC.Models
 
 		public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
 
-		public BootstrapTheme Theme => BootstrapTheme.Cyborg;
+		public BootstrapTheme Theme
+		{
+			get
+			{
+				BootstrapTheme theme;
+				var urlTheme = HttpContext.Current?.Request["theme"];
+
+				Enum.TryParse(urlTheme, out theme);
+
+				return theme == BootstrapTheme.None ? BootstrapTheme.Cyborg : theme;
+			}
+		}
 	}
 }
