@@ -113,9 +113,10 @@ VERSÃO 3.1.0.0 (Big change) - 4
 						This site uses cookies to store your preferences for site-specific language and display options. 
 						Escrever testes para permissões por usuário
 
-VERSÃO 3.0.0.5 (System) - 5
+VERSÃO 3.0.0.5 (System) - 6
 ================================================================================================
 						Corrigir url de e-mails quando enviada via API
+						Corrigir url de uncheck/check na página de relatórios
 2017-04-18	2017-04-18	Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
 2017-04-18	2017-04-18	Corrigir tela de agendamentos caso não haja uso de categorias
 2017-04-18	2017-04-18	Corrigir naturezas na tela de agendamento
