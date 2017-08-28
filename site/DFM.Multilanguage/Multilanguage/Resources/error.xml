@@ -62,6 +62,8 @@
 		<MoveDetailAmountRequired text="Amount of detail required. You can add a move without details." />
 		<MoveDetailValueRequired text="Value of detail required. You can add a move without details." />
 		<InvalidDetail text="Invalid detail." />
+		<MoveAlreadyChecked text="Move already checked" />
+		<MoveAlreadyUnchecked text="Move already unchecked" />
 		<ScheduleRequired text="Schedule required to future moves." />
 		<ScheduleWithNoMoves text="The schedule has no moves." />
 		<ScheduleTimesCantBeZero text="To schedule something, schedule at least once" />
@@ -133,6 +135,8 @@
 		<MoveDetailAmountRequired text="A quantidade do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
 		<MoveDetailValueRequired text="P valor do detalhe é obrigatório. Você pode criar uma movimentação sem detalhes." />
 		<InvalidDetail text="Detalhe inválido." />
+		<MoveAlreadyChecked text="Movimentação já verificada" />
+		<MoveAlreadyUnchecked text="Movimentação não está verificada" />
 		<ScheduleRequired text="Necessário agendamento para movimentações futuras." />
 		<ScheduleWithNoMoves text="O agendamento não possui movimentações." />
 		<ScheduleTimesCantBeZero text="Para agendar algo, agende para executar ao menos uma vez." />
