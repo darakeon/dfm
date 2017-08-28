@@ -1,0 +1,21 @@
+﻿@model BaseMovesModel
+
+@{
+	var detailedTabUiList = new List<BaseMovesModel.DetailTabUI>
+	{
+		new BaseMovesModel.DetailTabUI("JustOneValue", "just-value", false),
+		new BaseMovesModel.DetailTabUI("Detailed", "detailed", true)
+	};
+}
+
+<ul class="nav nav-tabs">
+	@foreach (var detailedTabUi in detailedTabUiList)
+	{
+		<li class="@(Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "") value-setter"
+			data-target-id="@Html.IdFor(m => m.IsDetailed)" data-target-value="@detailedTabUi.IsDetailed">
+			<a href="#@detailedTabUi.TargetId" data-toggle="tab">
+				@MultiLanguage.Dictionary[detailedTabUi.ResourceKey]
+			</a>
+		</li>
+	}
+</ul>

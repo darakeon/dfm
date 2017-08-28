@@ -15,6 +15,7 @@ namespace DFM.MVC.Models
 		public String CurrentYear => Today.ToString("yyyy");
 
 		public String ActionName => RouteInfo.Current["action"] ?? String.Empty;
+		public String ControllerName => RouteInfo.Current["controller"] ?? String.Empty;
 
 		public String Language => Current.Language;
 	}

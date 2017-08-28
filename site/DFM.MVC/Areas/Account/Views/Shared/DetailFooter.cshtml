@@ -1,0 +1,19 @@
+﻿@model BaseMovesModel
+
+<tfoot>
+	<tr class="row">
+
+		<td colspan="3" class="col-sm-11">
+			<small>
+				@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DETAIL_DESCRIPTION)
+			</small>
+		</td>
+
+		<td class="col-sm-1">
+			<button class="btn btn-sm btn-success btn-add-detail" type="button">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</td>
+
+	</tr>
+</tfoot>

@@ -1,0 +1,29 @@
+﻿@model BaseMovesModel
+
+<tbody>
+	@for (var d = 0; d < Model.DetailList.Count; d++)
+	{
+		<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
+			<td class="col-sm-6 form-group">
+				@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new { @class = "form-control detail-description", maxlength = MaximumLength.DETAIL_DESCRIPTION })
+			</td>
+
+			<td class="col-sm-2 form-group">
+				@Html.TextBoxFor(m => m.DetailList[d].Detail.Amount, new { @class = "form-control text-center detail-amount" })
+			</td>
+
+			<td class="col-sm-3 form-group">
+				@Html.TextBoxFor(m => m.DetailList[d].Detail.Value, new { @class = "form-control text-right detail-value" })
+			</td>
+
+			<td class="col-sm-1">
+				<button class="btn btn-sm btn-danger btn-remove-detail" type="button">
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+
+				@Html.HiddenFor(m => m.DetailList[d].Send, new { @class = "hidden-send" })
+				@Html.HiddenFor(m => m.DetailList[d].Detail.FakeID)
+			</td>
+		</tr>
+	}
+</tbody>

@@ -1,0 +1,35 @@
+﻿@using DFM.MVC.Helpers
+@model BaseMovesModel
+
+@{
+	var useCategories = Service.Current.User.Config.UseCategories;
+	var rowWidths = useCategories ? 6 : 12;
+}
+
+<div class="form-group">
+
+	@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
+	@Html.ValidationMessageFor(m => m.Description)<br />
+	@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MOVE_DESCRIPTION, @class = "form-control" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MOVE_DESCRIPTION)</small>
+
+</div>
+
+<div class="row">
+	
+	<div class="col-sm-@(rowWidths) form-group">
+		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new {@class = "control-label"})
+		@Html.ValidationMessageFor(m => m.Date)<br/>
+		@Html.TextBoxFor(m => m.Date, new {@class = "date_notHour form-control"})
+	</div>
+
+	@if (useCategories)
+	{
+		<div class="col-sm-@(rowWidths) form-group">
+			@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"], new {@class = "control-label"})
+			@Html.ValidationMessageFor(m => m.CategoryName)<br/>
+			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new {@class = "form-control"})
+		</div>
+	}
+
+</div>

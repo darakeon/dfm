@@ -1,0 +1,34 @@
+﻿@using DFM.Entities.Enums
+@model BaseMovesModel
+
+@{
+	var natureUiList = new List<BaseMovesModel.NatureUI>
+	{
+		new BaseMovesModel.NatureUI(MoveNature.Out, ".combo-account-out", ".combo-account-in"),
+		new BaseMovesModel.NatureUI(MoveNature.Transfer, ".combo-account-out, .combo-account-in"),
+		new BaseMovesModel.NatureUI(MoveNature.In, ".combo-account-in", ".combo-account-out")
+	};
+}
+
+@Html.HiddenFor(m => m.Nature)
+
+<div class="row form-group">
+
+	<div class="btn-group btn-group-sm col-sm-12">
+		@foreach (var natureUI in natureUiList)
+		{
+			<button type="button"
+			        class="btn btn-sm btn-@Html.Partial("MoveNature", natureUI.Nature)
+						col-sm-4 button-toggle value-setter
+						@(Model.Nature == natureUI.Nature ? "active" : "")"
+			        data-to-enable="@natureUI.Enable"
+			        data-to-disable="@natureUI.Disable"
+			        data-target-id="@Html.IdFor(m => m.Nature)"
+			        data-target-value="@natureUI.Nature">
+
+				@MultiLanguage.Dictionary[natureUI.Nature.ToString()]
+			</button>
+		}
+	</div>
+
+</div>

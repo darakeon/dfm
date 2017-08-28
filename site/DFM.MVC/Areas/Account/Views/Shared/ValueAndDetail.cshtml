@@ -1,0 +1,20 @@
+﻿@model BaseMovesModel
+
+@Html.Partial("DetailTabs")
+@Html.HiddenFor(m => m.IsDetailed)
+
+<div class="tab-content">
+
+	<div class="tab-pane @(Model.IsDetailed ? "": "active")" id="just-value">
+		@Html.TextBoxFor(m => m.Value, new { @class = "money form-control" })
+	</div>
+
+	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
+		<table class="table table-condensed">
+			@Html.Partial("DetailHeader")
+			@Html.Partial("DetailBody")
+			@Html.Partial("DetailFooter")
+		</table>
+	</div>
+
+</div>
