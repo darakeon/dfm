@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -99,35 +100,24 @@ public abstract class SmartActivity extends FixOrientationActivity
 		}
 	}
 
-	
-	
-	public void logout(MenuItem menuItem)
-	{
-		navigation.logout();
-	}
-	
-	public void back(MenuItem menuItem)
-	{
-		navigation.back();
-	}
-	
+
+
+    public void back(View view) { navigation.back(); }
+
+	public void logout(MenuItem menuItem) { navigation.logout(); }
 	public void refresh(MenuItem menuItem)
 	{
 		refresh();
 	}
-		
 	public void goToAccounts(MenuItem menuItem)
 	{
 		navigation.redirect(AccountsActivity.class);
 	}
-	
 	public void goToSettings(MenuItem menuItem)
 	{
 		navigation.goToSettings();
 	}
-	
-	
-	
+
 	public void refresh()
 	{
 		finish();

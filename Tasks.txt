@@ -105,7 +105,7 @@ F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
 2015-08-31	2015-08-31	Corrigido erro no tablet (falta de 3G)
 2015-08-30	2015-08-30	Migrar para android studio
-2015-02-14	 			Colocar botão CANCEL em Settings e Move (mobile)
+2015-02-14	2015-09-02	Colocar botão CANCEL em Settings e Move (mobile)
 2015-02-14	2015-02-14	Colocar in e out no relatório anual
 2015-02-14	2015-02-14	Colocar URLReferrer em report de 404
 2015-02-14	2015-02-14	Remover o cascade para filhos do NH
