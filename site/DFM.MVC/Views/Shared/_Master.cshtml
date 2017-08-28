@@ -1,7 +1,8 @@
 ﻿@using DFM.Generic
+@using DFM.MVC.Helpers
 
 @{
-	var isAuthenticated = Auth.Current.IsAuthenticated;
+	var isAuthenticated = Service.Current.IsAuthenticated;
 
 	var routeValues = isAuthenticated
 		? new { controller = "Accounts", action = "Index" }

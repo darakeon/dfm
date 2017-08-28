@@ -1,5 +1,6 @@
-﻿@{
-	var isAuthenticated = Auth.Current.IsAuthenticated;
+﻿@using DFM.MVC.Helpers
+@{
+	var isAuthenticated = Service.Current.IsAuthenticated;
 
 	Layout = isAuthenticated
 		? "~/Views/Shared/_NoAreaLayout.cshtml"

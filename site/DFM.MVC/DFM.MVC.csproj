@@ -229,7 +229,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Authorize\Auth.cs" />
+    <Compile Include="Helpers\Service.cs" />
     <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
+using DFM.Entities.Enums;
 using DK.Generic.DB;
-using DK.MVC.Cookies;
 
 namespace DFM.Entities
 {

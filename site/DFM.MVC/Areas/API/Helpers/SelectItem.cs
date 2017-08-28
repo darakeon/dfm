@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Helpers
@@ -25,7 +25,7 @@ namespace DFM.MVC.Areas.API.Helpers
 			where TEnum : IConvertible
 		{
 			return new SelectItem<String, Int32>(
-				MultiLanguage.Dictionary[value.ToString(Auth.Current.Culture)],
+				MultiLanguage.Dictionary[value.ToString(Service.Current.Culture)],
 				Convert.ToInt32(value)
 			);
 		}

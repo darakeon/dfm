@@ -38,10 +38,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="DK.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -60,6 +56,7 @@
     <Compile Include="DFMAuthException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISafeService.cs" />
+    <Compile Include="TypedTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">

@@ -68,7 +68,7 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 
-		private static Move getMove(int id)
+		private Move getMove(int id)
 		{
 			try
 			{

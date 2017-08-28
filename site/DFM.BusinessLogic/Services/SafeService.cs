@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
@@ -9,6 +8,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.ObjectInterfaces;
+using DK.Generic.Extensions;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -159,24 +159,24 @@ namespace DFM.BusinessLogic.Services
 			return ticket.User;
 		}
 
-		public String ValidateUserAndCreateTicket(String email, String password, PseudoTicket pseudoTicket)
+		public String ValidateUserAndCreateTicket(String email, String password, String ticketKey, TicketType ticketType)
 		{
 			return InTransaction(
-				() => validateUserAndCreateTicket(email, password, pseudoTicket),
+				() => validateUserAndCreateTicket(email, password, ticketKey, ticketType),
 				() => addPasswordError(email)
 			);
 		}
 
-		private string validateUserAndCreateTicket(string email, string password, PseudoTicket pseudoTicket)
+		private String validateUserAndCreateTicket(String email, String password, String ticketKey, TicketType ticketType)
 		{
 			var user = userRepository.ValidateAndGet(email, password);
 
-			
-			var ticket = ticketRepository.GetByKey(pseudoTicket.Key);
+			ticketKey = ticketKey ?? Token.New();
+			var ticket = ticketRepository.GetByKey(ticketKey);
 
 			if (ticket == null)
 			{
-				ticket = ticketRepository.Create(user, pseudoTicket);
+				ticket = ticketRepository.Create(user, ticketKey, ticketType);
 			}
 			else if (ticket.User.Email != email)
 			{

@@ -11,17 +11,18 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Generic;
-using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories.Mappings;
+using DK.MVC.Cookies;
 using log4net.Config;
 
 namespace DFM.MVC
 {
 	public class MvcApplication : HttpApplication
 	{
-		private readonly Current current = Auth.Current;
-		private readonly ServiceAccess access = new ServiceAccess();
+		private readonly Current current = Service.Current;
+		private readonly ServiceAccess access = Service.Access;
 
 		protected void Application_Start()
 		{
@@ -30,7 +31,7 @@ namespace DFM.MVC
 			
 			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
-			NHManager.Start<UserMap, User>();
+			NHManager.Start<UserMap, User>(MyCookie.Get);
 			MultiLanguage.Initialize();
 
 			XmlConfigurator.Configure();

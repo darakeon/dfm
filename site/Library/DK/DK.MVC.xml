@@ -96,48 +96,6 @@
             Get (if needed, create) ticket
             </summary>
         </member>
-        <member name="T:DK.MVC.Cookies.PseudoTicket">
-            <summary>
-            Ticket for cookie
-            </summary>
-        </member>
-        <member name="M:DK.MVC.Cookies.PseudoTicket.#ctor(System.String,DK.MVC.Cookies.TicketType)">
-            <summary>
-            Unique Constructor
-            </summary>
-            <param name="key">Key value</param>
-            <param name="type">Type of ticket</param>
-        </member>
-        <member name="P:DK.MVC.Cookies.PseudoTicket.Key">
-            <summary>
-            Name
-            </summary>
-        </member>
-        <member name="P:DK.MVC.Cookies.PseudoTicket.Type">
-            <summary>
-            Cellphone, browser or local
-            </summary>
-        </member>
-        <member name="T:DK.MVC.Cookies.TicketType">
-            <summary>
-            Cookie ticket type
-            </summary>
-        </member>
-        <member name="F:DK.MVC.Cookies.TicketType.Browser">
-            <summary>
-            Web
-            </summary>
-        </member>
-        <member name="F:DK.MVC.Cookies.TicketType.Cellphone">
-            <summary>
-            API Call
-            </summary>
-        </member>
-        <member name="F:DK.MVC.Cookies.TicketType.Local">
-            <summary>
-            Desktop or tests
-            </summary>
-        </member>
         <member name="T:DK.MVC.Forms.CheckBoxList">
             <summary>
             To create a CheckBoxList in Form

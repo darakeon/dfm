@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DK.MVC.Cookies;
 using DK.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
@@ -15,6 +14,7 @@ using DFM.Repositories.Mappings;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
+using DK.Generic.Extensions;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic
@@ -29,9 +29,9 @@ namespace DFM.Tests.BusinessLogic
 			if (SA != null)
 				return;
 
-			NHManager.Start<UserMap, User>();
+			NHManager.Start<UserMap, User>(getTicketKey);
 
-			SA = new ServiceAccess();
+			SA = new ServiceAccess(getTicket);
 
 			var path = Directory.GetCurrentDirectory();
 			PlainText.Initialize(path);
@@ -98,11 +98,14 @@ namespace DFM.Tests.BusinessLogic
 			}
 		}
 
-		private DFMCoreException verifyUser(string userEmail, string userPassword)
+		private DFMCoreException verifyUser(String userEmail, String userPassword)
 		{
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(userEmail, userPassword, MyCookie.Get());
+				SA.Safe.ValidateUserAndCreateTicket(
+					userEmail, userPassword, Current.Ticket.Key, TicketType.Local
+				);
+
 				return null;
 			}
 			catch (DFMCoreException e)
@@ -153,7 +156,9 @@ namespace DFM.Tests.BusinessLogic
 
 		protected User GetSavedUser(String email, String password)
 		{
-			var key = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
+			var key = SA.Safe.ValidateUserAndCreateTicket(
+				email, password, Current.Ticket.Key, TicketType.Local
+			);
 
 			return SA.Safe.GetUserByTicket(key);
 		}
@@ -162,6 +167,22 @@ namespace DFM.Tests.BusinessLogic
 
 
 		#region Context
+		private TypedTicket getTicket()
+		{
+			return new TypedTicket(getTicketKey(), TicketType.Local);
+		}
+
+		private String getTicketKey()
+		{
+			return mainTicket ?? (mainTicket = Token.New());
+		}
+
+		private static String mainTicket
+		{
+			get { return Get<String>("mainTicket"); }
+			set { Set("mainTicket", value); }
+		}
+
 		protected static DFMCoreException Error
 		{
 			get { return Get<DFMCoreException>("error"); }

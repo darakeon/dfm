@@ -12,10 +12,7 @@ namespace DFM.MVC.Areas.Account.Models
 	public class SchedulesCreateModel : BaseMovesModel
 	{
 		public SchedulesCreateModel()
-			: this(new Schedule()) { }
-
-		public SchedulesCreateModel(Schedule schedule)
-			: base(schedule, OperationType.Schedule)
+			: base(new Schedule(), OperationType.Schedule)
 		{
 			FrequencySelectList =
 				SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());

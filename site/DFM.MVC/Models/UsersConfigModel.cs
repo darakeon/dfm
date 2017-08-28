@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using DK.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Generic;
 using DFM.Multilanguage;
@@ -16,7 +17,8 @@ namespace DFM.MVC.Models
 	{
 		public UsersConfigModel()
 		{
-			Main = new MainConfig(Current.User.Config);
+			Main = new MainConfig(Admin, Current.User.Config);
+			Info = new UserInfo(Safe);
 		}
 
 		public MainConfig Main { get; set; }
@@ -26,8 +28,10 @@ namespace DFM.MVC.Models
 
 		public class MainConfig : IMainConfig
 		{
-			public MainConfig(Config config)
+			public MainConfig(AdminService admin, Config config)
 			{
+				this.admin = admin;
+
 				var languageDictionary =
 					PlainText.AcceptedLanguage()
 						.ToDictionary(l => l, l => MultiLanguage.Dictionary["Language" + l]);
@@ -42,6 +46,8 @@ namespace DFM.MVC.Models
 				TimeZone = config.TimeZone;
 			}
 
+
+			private readonly AdminService admin;
 
 			public Boolean? UseCategories { get; set; }
 			public Boolean? SendMoveEmail { get; set; }
@@ -78,7 +84,7 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					Admin.UpdateConfig(this);
+					admin.UpdateConfig(this);
 					ErrorAlert.Add("ConfigChanged");
 				}
 				catch (DFMCoreException e)
@@ -92,6 +98,13 @@ namespace DFM.MVC.Models
 
 		public class UserInfo : IPasswordForm
 		{
+			public UserInfo(SafeService safe)
+			{
+				this.safe = safe;
+			}
+
+			private readonly SafeService safe;
+
 			public String Email { get; set; }
 
 			public String CurrentPassword { get; set; }
@@ -105,7 +118,7 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					Safe.ChangePassword(CurrentPassword, this);
+					safe.ChangePassword(CurrentPassword, this);
 					ErrorAlert.Add("PasswordChanged");
 				}
 				catch (DFMCoreException e)
@@ -124,7 +137,9 @@ namespace DFM.MVC.Models
 				{
 					var pathAction = Url.Action("UserVerification", "Tokens");
 					var pathDisable = Url.Action("Disable", "Tokens");
-					Safe.UpdateEmail(CurrentPassword, Email, pathAction, pathDisable);
+					
+					safe.UpdateEmail(CurrentPassword, Email, pathAction, pathDisable);
+					
 					ErrorAlert.Add("EmailUpdated");
 				}
 				catch (DFMCoreException e)

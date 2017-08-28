@@ -1,4 +1,5 @@
-﻿@model ReportsShowMovesModel
+﻿@using DFM.MVC.Helpers
+@model ReportsShowMovesModel
 
 @{
 	ViewBag.Title = Model.Date;
@@ -32,7 +33,7 @@ else
 		<tr>
 			<th>@MultiLanguage.Dictionary["Description"]</th>
 			
-			@if (Auth.Current.User.Config.UseCategories)
+			@if (Service.Current.User.Config.UseCategories)
 			{
 				<th>@MultiLanguage.Dictionary["Category"]</th>
 			}
@@ -51,7 +52,7 @@ else
 		{
 			<tr>
 				<td>@move.GetDescriptionDetailed() </td>
-				@if (Auth.Current.User.Config.UseCategories)
+				@if (Service.Current.User.Config.UseCategories)
 				{
 					var categoryName =
 						move.Category == null

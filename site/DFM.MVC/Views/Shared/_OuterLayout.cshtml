@@ -1,6 +1,7 @@
-﻿@{
+﻿@using DFM.MVC.Helpers
+@{
 	Layout = "~/Views/Shared/_Master.cshtml";
-	var isAuthenticated = Auth.Current.IsAuthenticated;
+	var isAuthenticated = Service.Current.IsAuthenticated;
 }
 
 @section HtmlHeadCss {

@@ -41,6 +41,7 @@
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Config+.cs" />
+    <Compile Include="Enums\TicketType.cs" />
     <Compile Include="Ticket+.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Bases\IMove.cs" />
@@ -78,10 +79,6 @@
     <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
-    </Reference>
-    <Reference Include="DK.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

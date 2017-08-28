@@ -6,7 +6,7 @@ namespace DFM.BusinessLogic
 {
 	public class ServiceAccess 
 	{
-		public ServiceAccess()
+		public ServiceAccess(Current.GetTicket getTicket)
 		{
 			var account = new AccountRepository();
 			var category = new CategoryRepository();
@@ -29,7 +29,7 @@ namespace DFM.BusinessLogic
 			Robot = new RobotService(this, schedule, detail);
 			Report = new ReportService(this, account, year, month);
 
-			Current = new Current(Safe);
+			Current = new Current(Safe, getTicket);
 		}
 
 

@@ -8,7 +8,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Helpers;
-using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Helpers.Global
 {
@@ -83,7 +82,7 @@ namespace DFM.MVC.Helpers.Global
 						? request.UserLanguages[0]
 						: null;
 
-				var userLanguage = Auth.Current.Language ?? browserLanguage;
+				var userLanguage = Service.Current.Language ?? browserLanguage;
 
 				if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
 					userLanguage = "en-US";

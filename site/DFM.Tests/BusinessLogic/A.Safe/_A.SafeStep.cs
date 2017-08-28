@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
@@ -139,7 +138,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+				ticket = SA.Safe.ValidateUserAndCreateTicket(
+					email, password, Current.Ticket.Key, TicketType.Local
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -221,7 +222,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				SA.Safe.ValidateUserAndCreateTicket(
-					email, password, Current.Ticket
+					email, password, Current.Ticket.Key, TicketType.Local
 				);
 			}
 			catch (DFMCoreException e)
@@ -237,7 +238,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheUserWillBeActivated()
 		{
 			var ticketKey = SA.Safe.ValidateUserAndCreateTicket(
-				email, password, Current.Ticket
+				email, password, Current.Ticket.Key, TicketType.Local
 			);
 			
 			User = SA.Safe.GetUserByTicket(ticketKey);
@@ -265,7 +266,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
+				ticket = SA.Safe.ValidateUserAndCreateTicket(
+					email, password, Current.Ticket.Key, TicketType.Local
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -281,13 +284,20 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			for (var t = 1; t < times; t++)
 			{
-				try { SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get()); }
+				try
+				{
+					SA.Safe.ValidateUserAndCreateTicket(
+						email, password, Current.Ticket.Key, TicketType.Local
+					);
+				}
 				catch (DFMCoreException) { }
 			}
 
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
+				SA.Safe.ValidateUserAndCreateTicket(
+					email, password, Current.Ticket.Key, TicketType.Local
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -374,7 +384,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+				var testLocalTicket = TK.New();
+
+				SA.Safe.ValidateUserAndCreateTicket(
+					email, password, testLocalTicket, TicketType.Local
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -392,7 +406,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(email, newPassword, Current.Ticket);
+				var testLocalTicket = TK.New();
+				
+				SA.Safe.ValidateUserAndCreateTicket(
+					email, newPassword, testLocalTicket, TicketType.Local
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -605,7 +623,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheEmailWillBeChanged()
 		{
 			Error = null;
-			var userEmail = DBHelper.GetUserEmailByTicket(Current.Ticket);
+			var userEmail = DBHelper.GetUserEmailByTicket(Current.Ticket.Key);
 			Assert.AreEqual(newEmail, userEmail);
 
 			//To next verification
@@ -674,7 +692,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a ticket that is of this disabled user")]
 		public void GivenIPassATicketThatIsOfThisDisabledUser()
 		{
-			ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+			ticket = SA.Safe.ValidateUserAndCreateTicket(
+				email, password, Current.Ticket.Key, TicketType.Local
+			);
 		}
 
 		[Given(@"I pass a ticket that exist")]
@@ -693,7 +713,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I have a ticket of this user")]
 		public void GivenIHaveATicketOfThisUser()
 		{
-			ticket = SA.Safe.ValidateUserAndCreateTicket(email, password, MyCookie.Get());
+			ticket = SA.Safe.ValidateUserAndCreateTicket(
+				email, password, Current.Ticket.Key, TicketType.Local
+			);
 		}
 
 		

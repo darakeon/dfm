@@ -2,30 +2,22 @@
 using System.Web;
 using System.Web.Mvc;
 using DFM.Authentication;
-using DFM.BusinessLogic;
 using DFM.BusinessLogic.Services;
+using DFM.MVC.Helpers;
 
 namespace DFM.MVC.Models
 {
 	public class BaseModel
 	{
-		private static ServiceAccess access;
+		protected AdminService Admin => Service.Access.Admin;
+		protected MoneyService Money => Service.Access.Money;
+		protected ReportService Report => Service.Access.Report;
+		protected RobotService Robot => Service.Access.Robot;
+		protected SafeService Safe => Service.Access.Safe;
 
-		private static ServiceAccess getOrCreateAccess()
-		{
-			return access ?? (access = new ServiceAccess());
-		}
+		protected Current Current => Service.Access.Current;
 
-		protected static AdminService Admin => getOrCreateAccess().Admin;
-		protected static MoneyService Money => getOrCreateAccess().Money;
-		protected static ReportService Report => getOrCreateAccess().Report;
-		protected static RobotService Robot => getOrCreateAccess().Robot;
-		protected static SafeService Safe => getOrCreateAccess().Safe;
-
-		protected static Current Current => getOrCreateAccess().Current;
-
-		public DateTime Today => 
-			Current.User?.Now().Date ?? DateTime.UtcNow;
+		public DateTime Today => Current.User?.Now().Date ?? DateTime.UtcNow;
 
 		public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
 	}

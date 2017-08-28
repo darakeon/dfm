@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using DK.MVC.Cookies;
 using DFM.Entities;
 using DFM.Generic;
 
@@ -9,14 +8,18 @@ namespace DFM.Authentication
 	public class Current
 	{
 		private ISafeService userService { get; }
+		private event GetTicket getTicket;
 
-		public Current(ISafeService userService)
+		public Current(ISafeService userService, GetTicket getTicket)
 		{
 			this.userService = userService;
+			this.getTicket = getTicket;
 		}
 
 
-		public PseudoTicket Ticket => MyCookie.Get();
+		public delegate TypedTicket GetTicket();
+		public TypedTicket Ticket => getTicket?.Invoke();
+
 
 		public User User
 		{
@@ -45,9 +48,9 @@ namespace DFM.Authentication
 		public CultureInfo Culture => new CultureInfo(Language);
 
 
-		public void Set(String username, String password)
+		public String Set(String username, String password)
 		{
-			userService.ValidateUserAndCreateTicket(username, password, Ticket);
+			return userService.ValidateUserAndCreateTicket(username, password, Ticket.Key, Ticket.Type);
 		}
 
 		public void Reset(String username, String password)

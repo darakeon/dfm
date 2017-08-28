@@ -15,8 +15,8 @@ namespace DFM.MVC.Helpers.Authorize
 
 		protected override bool AuthorizeCore(HttpContextBase httpContext)
 		{
-			return Auth.Current.IsAuthenticated
-				&& (!admin || Auth.Current.IsAdm);
+			return Service.Current.IsAuthenticated
+				&& (!admin || Service.Current.IsAdm);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿@model SchedulesIndexModel
+﻿@using DFM.MVC.Helpers
+@model SchedulesIndexModel
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Schedules"];
@@ -17,7 +18,7 @@ else
 
 		<tr>
 			<th>@MultiLanguage.Dictionary["Description"]</th>
-			@if (Auth.Current.User.Config.UseCategories)
+			@if (Service.Current.User.Config.UseCategories)
 			{
 				<th>@MultiLanguage.Dictionary["Category"]</th>
 			}
@@ -32,7 +33,7 @@ else
 		{
 			<tr>
 				<td>@schedule.Description</td>
-				@if (Auth.Current.User.Config.UseCategories)
+				@if (Service.Current.User.Config.UseCategories)
 				{
 					var categoryName =
 						schedule.Category == null

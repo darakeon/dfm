@@ -19,9 +19,9 @@ namespace DFM.MVC.Areas.API.Controllers
 						Password = password,
 					};
 
-				model.LogOn();
+				var ticket = model.LogOn();
 
-				return new {ticket = Current.Ticket.Key};
+				return new { ticket };
 			});
 		}
 

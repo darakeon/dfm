@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DK.MVC.Cookies;
 using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class TicketRepository : BaseRepository<Ticket>
 	{
-		internal Ticket Create(User user, PseudoTicket pseudoTicket)
+		internal Ticket Create(User user, String key, TicketType type)
 		{
 			var ticket = 
 				new Ticket
-					{
-						ID = 0,
-						Key = pseudoTicket.Key,
-						Type = pseudoTicket.Type,
-						Creation = user.Now(),
-						Active = true,
-						User = user,
-					};
+				{
+					ID = 0,
+					Key = key,
+					Type = type,
+					Creation = user.Now(),
+					Active = true,
+					User = user,
+				};
 
 			return SaveOrUpdate(ticket);
 		}

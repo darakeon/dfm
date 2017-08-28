@@ -235,7 +235,6 @@
     </Compile>
     <Compile Include="Email\EmailStep.cs" />
     <Compile Include="Helpers\PasswordForm.cs" />
-    <Compile Include="Helpers\TestLocalTicket.cs" />
     <Compile Include="Multilanguage\Multilanguage.feature.cs">
       <DependentUpon>Multilanguage.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -405,9 +404,6 @@
     <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
-    </Reference>
-    <Reference Include="DK.MVC">
-      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
     </Reference>
     <Reference Include="DK.NHibernate">
       <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>

@@ -347,7 +347,7 @@
             Open Session and SessionOld to use
             </summary>
         </member>
-        <member name="M:DK.NHibernate.NHManager.Start``2">
+        <member name="M:DK.NHibernate.NHManager.Start``2(DK.NHibernate.NHManager.GetKey)">
             <summary>
             Starts session factory
             </summary>
@@ -367,6 +367,11 @@
         <member name="M:DK.NHibernate.NHManager.End">
             <summary>
             Finishes session factory
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.NHManager.GetKey">
+            <summary>
+            Delegate of method to get key for NH
             </summary>
         </member>
         <member name="P:DK.NHibernate.NHManager.IsActive">

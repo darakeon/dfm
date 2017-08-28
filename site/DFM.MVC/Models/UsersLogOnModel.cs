@@ -29,11 +29,11 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		internal void LogOn()
+		internal String LogOn()
 		{
 			try
 			{
-				Current.Set(Email, Password);
+				return Current.Set(Email, Password);
 			}
 			catch (DFMCoreException e)
 			{

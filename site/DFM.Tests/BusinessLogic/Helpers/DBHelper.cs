@@ -4,7 +4,6 @@ using System.Text;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
-using DK.MVC.Cookies;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers
@@ -109,7 +108,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		
 
-		public static String GetUserEmailByTicket(PseudoTicket ticket)
+		public static String GetUserEmailByTicket(String ticket)
 		{
 			String token;
 
@@ -129,7 +128,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 				var cmd = new MySqlCommand(query, conn);
 
-				cmd.Parameters.AddWithValue("ticket", ticket.Key);
+				cmd.Parameters.AddWithValue("ticket", ticket);
 
 				var result = cmd.ExecuteScalar();
 

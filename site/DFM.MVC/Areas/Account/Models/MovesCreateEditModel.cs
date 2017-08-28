@@ -2,6 +2,7 @@
 using DFM.Email;
 using DFM.Generic;
 using DFM.Entities;
+using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -15,7 +16,7 @@ namespace DFM.MVC.Areas.Account.Models
 			: base(new Move(), type) { }
 
 		public MovesCreateEditModel(Int32 id, OperationType type) 
-			: base(Money.GetMoveById(id), type) { }
+			: base(Service.Access.Money.GetMoveById(id), type) { }
 
 
 		internal override void SaveOrUpdate()

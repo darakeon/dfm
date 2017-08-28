@@ -1,6 +1,7 @@
 ﻿@model BaseMovesModel
 
 @using DFM.Entities;
+@using DFM.MVC.Helpers
 
 <div class="createMoveScreenLeft">
 	<div>
@@ -19,7 +20,7 @@
 
 <div class="createMoveScreenRight">
 
-	@if (Auth.Current.User.Config.UseCategories)
+	@if (Service.Current.User.Config.UseCategories)
 	{
 		<div>
 			@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"])
