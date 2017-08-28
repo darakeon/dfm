@@ -1,4 +1,5 @@
-﻿@model BaseModel
+﻿@using DFM.MVC.Areas.Account.Models
+@model BaseModel
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -28,15 +29,24 @@
 				}
 				else
 				{
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
-
-					if (Model.UseCategories)
+					if (Model.GetType().IsSubclassOf(typeof (BaseAccountModel)))
 					{
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
+					}
+					else
+					{
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
+
+						if (Model.UseCategories)
+						{
+							<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new {action = "Index", controller = "Categories"})</li>
+						}
+
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new {action = "Index", controller = "Schedules"})</li>
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new {action = "Index", controller = "Logins"})</li>
 					}
 
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
+					<li>@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "Config", controller = "Users" }, new { @class = "icon settings" })</li>
+					<li>@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" }, new { @class = "icon logoff" })</li>
 				}
 
 				@*<li class="active">

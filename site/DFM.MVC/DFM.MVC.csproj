@@ -276,11 +276,7 @@
     <Content Include="Views\Ops\Index.old" />
     <Content Include="Views\Schedules\Index.old" />
     <Content Include="Views\Test\AnalyzeDictionary.old" />
-    <Content Include="Views\Shared\_InnerLayout.old" />
-    <Content Include="Views\Shared\_Layout.old" />
     <Content Include="Views\Shared\_Master.old" />
-    <Content Include="Views\Shared\_NoAreaLayout.old" />
-    <Content Include="Views\Shared\_OuterLayout.old" />
     <Content Include="Views\Tokens\Disable.old" />
     <Content Include="Views\Tokens\Index.old" />
     <Content Include="Views\Tokens\Invalid.old" />
@@ -310,7 +306,7 @@
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.map" />
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
-    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
