@@ -16,7 +16,7 @@ enum class Nature {
 
     companion object {
 
-        fun GetNature(number: Int): Nature {
+        fun GetNature(number: Int?): Nature {
             when (number) {
                 0 -> return Out
                 1 -> return In

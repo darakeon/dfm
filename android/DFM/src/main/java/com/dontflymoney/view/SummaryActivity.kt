@@ -3,32 +3,27 @@ package com.dontflymoney.view
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.DatePicker
 import android.widget.ListView
 import android.widget.TextView
-
+import com.dontflymoney.activityObjects.SummaryStatic
 import com.dontflymoney.adapters.YearAdapter
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
 import com.dontflymoney.baseactivity.SmartActivity
 import com.dontflymoney.listeners.IDatePickerActivity
 import com.dontflymoney.listeners.PickDate
-
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
-import java.lang.reflect.Field
-import java.util.Calendar
+class SummaryActivity() : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
 
-class SummaryActivity : SmartActivity(), IDatePickerActivity {
+    internal val main: ListView get() = findViewById(R.id.main_table) as ListView
+    internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
 
-    internal var main: ListView
-    internal var empty: TextView
+    internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
+    override var dialog: DatePickerDialog? = null
 
-    internal var accountUrl: String
-
-    internal var dialog: DatePickerDialog? = null
 
 
     override fun contentView(): Int {
@@ -42,9 +37,8 @@ class SummaryActivity : SmartActivity(), IDatePickerActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCurrentInfo()
 
-        if (rotated && SmartActivity.succeded) {
+        if (rotated && succeeded) {
             setDateFromLast()
 
             try {
@@ -59,15 +53,8 @@ class SummaryActivity : SmartActivity(), IDatePickerActivity {
         }
     }
 
-    private fun setCurrentInfo() {
-        main = findViewById(R.id.main_table) as ListView
-        empty = findViewById(R.id.empty_list) as TextView
-
-        accountUrl = intent.getStringExtra("accountUrl")
-    }
-
     private fun setDateFromLast() {
-        setDate(year)
+        setDate(static.year)
     }
 
     private fun setDateFromCaller() {
@@ -78,13 +65,13 @@ class SummaryActivity : SmartActivity(), IDatePickerActivity {
     }
 
     private fun setDate(year: Int) {
-        SummaryActivity.year = year
+        static.year = year
         form.setValue(R.id.reportDate, Integer.toString(year))
     }
 
     fun changeDate(v: View) {
         if (dialog == null) {
-            dialog = DatePickerDialog(this, PickDate(this), year, 1, 1)
+            dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
 
             try {
                 val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
@@ -115,52 +102,39 @@ class SummaryActivity : SmartActivity(), IDatePickerActivity {
     private fun getSummary() {
         val accountUrl = intent.getStringExtra("accountUrl")
 
-        request = InternalRequest(this, "Moves/Summary")
+        val request = InternalRequest(this, "Moves/Summary")
 
         request.AddParameter("ticket", Authentication.Get())
         request.AddParameter("accountUrl", accountUrl)
-        request.AddParameter("id", year)
+        request.AddParameter("id", static.year)
 
         request.Post()
     }
 
-    override fun getDialog(): DatePickerDialog {
-        return dialog
-    }
-
     @Throws(JSONException::class)
     override fun HandleSuccess(data: JSONObject, step: Step) {
-        monthList = data.getJSONArray("MonthList")
-        name = data.getString("Name")
-        total = data.getDouble("Total")
+        static.monthList = data.getJSONArray("MonthList")
+        static.name = data.getString("Name")
+        static.total = data.getDouble("Total")
 
         fillSummary()
     }
 
     @Throws(JSONException::class)
     private fun fillSummary() {
-        form.setValue(R.id.totalTitle, name)
-        form.setValueColored(R.id.totalValue, total)
+        form.setValue(R.id.totalTitle, static.name)
+        form.setValueColored(R.id.totalValue, static.total)
 
-        if (monthList.length() == 0) {
+        if (static.monthList == null || static.monthList?.length() == 0) {
             main.visibility = View.GONE
             empty.visibility = View.VISIBLE
         } else {
             main.visibility = View.VISIBLE
             empty.visibility = View.GONE
 
-            val yearAdapter = YearAdapter(this, monthList, accountUrl, year)
+            val yearAdapter = YearAdapter(this, static.monthList, accountUrl, static.year)
             main.adapter = yearAdapter
         }
 
     }
-
-    companion object {
-        internal var monthList: JSONArray
-        internal var name: String
-        internal var total: Double = 0.toDouble()
-        private var year: Int = 0
-    }
-
-
 }

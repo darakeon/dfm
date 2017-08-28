@@ -3,14 +3,15 @@ package com.dontflymoney.viewhelper
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-
+import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.api.Site
 import com.dontflymoney.baseactivity.SmartActivity
+import com.dontflymoney.view.LoginActivity
 import com.dontflymoney.view.R
 import com.google.android.vending.licensing.LicenseCheckerCallback
 import com.google.android.vending.licensing.Policy
 
-class DfmLicenseCheckerCallback(private val activity: SmartActivity, private val progress: ProgressDialog) : LicenseCheckerCallback {
+class DfmLicenseCheckerCallback<T : SmartStatic>(private val activity: SmartActivity<T>, private val progress: ProgressDialog) : LicenseCheckerCallback {
 
     override fun allow(reason: Int) {
         progress.dismiss()

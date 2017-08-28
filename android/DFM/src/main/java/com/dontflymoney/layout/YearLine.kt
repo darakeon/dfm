@@ -20,12 +20,10 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        MonthField = findViewById(R.id.month) as TextView
-        TotalField = findViewById(R.id.value) as TextView
     }
 
-    var MonthField: TextView
-    var TotalField: TextView
+    val MonthField: TextView get() = findViewById(R.id.month) as TextView
+    val TotalField: TextView get() = findViewById(R.id.value) as TextView
 
     @Throws(JSONException::class)
     fun setYear(year: YearAdapter.Year, color: Int) {

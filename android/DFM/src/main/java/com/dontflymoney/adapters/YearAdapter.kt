@@ -7,26 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-
 import com.dontflymoney.layout.YearLine
 import com.dontflymoney.view.R
-
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
-import java.util.ArrayList
+import java.util.*
 
 class YearAdapter @Throws(JSONException::class)
-constructor(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
+constructor(context: Context, yearJsonList: JSONArray?, accountUrl: String, yearNumber: Int) : BaseAdapter() {
     private val yearList: MutableList<Year>
 
     init {
         yearList = ArrayList<Year>()
 
-        for (a in 0..yearJsonList.length() - 1) {
-            val year = Year(yearJsonList.getJSONObject(a), accountUrl, yearNumber)
-            yearList.add(year)
+        if (yearJsonList != null) {
+            for (a in 0..yearJsonList.length() - 1) {
+                val year = Year(yearJsonList.getJSONObject(a), accountUrl, yearNumber)
+                yearList.add(year)
+            }
         }
 
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

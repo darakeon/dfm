@@ -10,7 +10,7 @@ internal object SP {
         return sp.getString(key, null)
     }
 
-    fun setValue(context: Context, key: String, value: String) {
+    fun setValue(context: Context, key: String, value: String?) {
         val sp = context.getSharedPreferences(sharedPreferencesDFM, Context.MODE_PRIVATE)
         val edit = sp.edit()
 

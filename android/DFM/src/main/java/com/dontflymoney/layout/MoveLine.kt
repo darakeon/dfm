@@ -7,13 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import com.dontflymoney.adapters.MoveAdapter
-import com.dontflymoney.baseactivity.SmartActivity
+import com.dontflymoney.view.ExtractActivity
 import com.dontflymoney.view.R
-
 import org.json.JSONException
-
 import java.text.DateFormat
 import java.text.DecimalFormat
 
@@ -21,21 +18,17 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        NameField = findViewById(R.id.name) as TextView
-        DateField = findViewById(R.id.date) as TextView
-        TotalField = findViewById(R.id.value) as TextView
-        CheckedField = findViewById(R.id.check_move) as ImageView
     }
 
     private var move: MoveAdapter.Move? = null
 
-    var NameField: TextView
-    var DateField: TextView? = null
-    var TotalField: TextView
-    var CheckedField: ImageView
+    val NameField: TextView get() = findViewById(R.id.name) as TextView
+    val DateField: TextView get() = findViewById(R.id.date) as TextView
+    val TotalField: TextView get() = findViewById(R.id.value) as TextView
+    val CheckedField: ImageView get() = findViewById(R.id.check_move) as ImageView
 
     @Throws(JSONException::class)
-    fun setMove(activity: SmartActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
+    fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
         setBackgroundColor(color)
 
         this.move = move

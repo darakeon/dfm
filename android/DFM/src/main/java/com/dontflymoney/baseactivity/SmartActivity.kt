@@ -1,27 +1,25 @@
 package com.dontflymoney.baseactivity
 
-import android.app.ActionBar
 import android.content.Context
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-
+import android.view.*
+import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
 import com.dontflymoney.userdata.Authentication
 import com.dontflymoney.userdata.Language
 import com.dontflymoney.view.AccountsActivity
 import com.dontflymoney.view.R
-
 import org.json.JSONException
 import org.json.JSONObject
 
-abstract class SmartActivity : FixOrientationActivity() {
+abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
 
     var clickedView: View? = null
+
+    var succeeded: Boolean
+        get() = static.succeeded
+        set(value) { static.succeeded = value }
 
     protected abstract fun contentView(): Int
     protected open fun optionsMenuResource(): Int {
@@ -36,7 +34,7 @@ abstract class SmartActivity : FixOrientationActivity() {
         return 0
     }
 
-    protected val isLoggedIn: Boolean
+    protected open val isLoggedIn: Boolean
         get() = true
 
     protected fun hasParent(): Boolean {
@@ -45,15 +43,15 @@ abstract class SmartActivity : FixOrientationActivity() {
 
     protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
-    protected var Authentication: Authentication
+    protected var Authentication: Authentication = Authentication(this)
 
-    protected var form: Form
-    var message: Message
-    protected var navigation: Navigation
-    protected var resultHandler: ResultHandler
-    protected var license: License? = null
+    protected val form: Form get() = Form(this)
+    val message: Message<T> get() = Message(this)
+    protected val navigation: Navigation<T> get() = Navigation(this, Authentication)
+    internal val resultHandler: ResultHandler<T> get() = ResultHandler(this, navigation)
+    protected val license: License<T> get() = License(this)
 
-    protected var request: InternalRequest? = null
+    var request: InternalRequest<T>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +59,7 @@ abstract class SmartActivity : FixOrientationActivity() {
 
         super.onCreate(savedInstanceState)
 
-        inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        static.inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         setContentView(contentView())
         setupActionBar()
@@ -70,14 +68,6 @@ abstract class SmartActivity : FixOrientationActivity() {
             val contextView = findViewById(viewWithContext())
             registerForContextMenu(contextView)
         }
-
-        Authentication = Authentication(this)
-
-        form = Form(this)
-        message = Message(this)
-        navigation = Navigation(this, Authentication)
-        resultHandler = ResultHandler(this, navigation)
-        license = License(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -103,12 +93,8 @@ abstract class SmartActivity : FixOrientationActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        if (license != null)
-            license!!.Destroy()
-
-        if (request != null)
-            request!!.Cancel()
+        license.Destroy()
+        request?.Cancel()
     }
 
     private fun setupActionBar() {
@@ -137,7 +123,7 @@ abstract class SmartActivity : FixOrientationActivity() {
     }
 
     fun goToAccounts(menuItem: MenuItem) {
-        navigation.redirect(AccountsActivity::class.java!!)
+        navigation.redirect(AccountsActivity::class.java)
     }
 
     fun goToSettings(menuItem: MenuItem) {
@@ -151,32 +137,27 @@ abstract class SmartActivity : FixOrientationActivity() {
 
 
     @Throws(JSONException::class)
-    protected abstract fun HandleSuccess(data: JSONObject, step: Step)
+    abstract fun HandleSuccess(data: JSONObject, step: Step)
 
     fun HandlePostResult(result: JSONObject, step: Step) {
         resultHandler.HandlePostResult(result, step)
-        succeded = true
+        succeeded = true
     }
 
     fun HandlePostError(error: String, step: Step) {
-        succeded = false
+        succeeded = false
         resultHandler.HandlePostError(error, step)
     }
 
 
     open fun EnableScreen() {
-        succeded = true
+        succeeded = true
     }
 
     fun Reset() {
-        succeded = false
+        succeeded = false
     }
 
-    companion object {
-        protected var inflater: LayoutInflater? = null
-
-        protected var succeded = false
-    }
 
 
 }

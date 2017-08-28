@@ -1,12 +1,9 @@
 package com.dontflymoney.io
 
-enum class FileNames private constructor(name: String) {
+enum class FileNames constructor(filename: String) {
     Ticket("ticket"),
     Language("language");
 
-    internal var name: String
+    internal var fileFullName: String = filename + File.extension
 
-    init {
-        this.name = name + File.getExtension()
-    }
 }

@@ -20,12 +20,10 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        NameField = findViewById(R.id.name) as TextView
-        TotalField = findViewById(R.id.value) as TextView
     }
 
-    var NameField: TextView
-    var TotalField: TextView
+    val NameField: TextView get() = findViewById(R.id.name) as TextView
+    val TotalField: TextView get() = findViewById(R.id.value) as TextView
 
     @Throws(JSONException::class)
     fun setAccount(account: AccountAdapter.Account, color: Int) {

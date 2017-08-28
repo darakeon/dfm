@@ -1,19 +1,15 @@
 package com.dontflymoney.userdata
 
 import android.app.Activity
-import android.content.res.Configuration
-import android.content.res.Resources
-
+import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.baseactivity.SmartActivity
-import com.dontflymoney.view.R
-
-import java.util.Locale
+import java.util.*
 
 
 object Language {
     private val spKey = "Language"
 
-    fun ChangeAndSave(activity: SmartActivity, language: String) {
+    fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, language: String) {
         var language = language
         val current = Locale.getDefault().toString()
 

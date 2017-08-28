@@ -1,16 +1,8 @@
 package com.dontflymoney.io
 
 import android.content.Context
-
 import com.dontflymoney.view.R
-
-import java.io.BufferedReader
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
+import java.io.*
 
 class File(private val context: Context, name: FileNames) {
     private val name: String
@@ -55,9 +47,12 @@ class File(private val context: Context, name: FileNames) {
                 var line: String
                 val allContent = StringBuilder()
 
+                /*
+                TODO: use kotlin IO
                 while ((line = bufferedReader.readLine()) != null) {
                     allContent.append(line)
                 }
+                */
 
                 inputStream.close()
 

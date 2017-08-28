@@ -4,5 +4,5 @@ import android.app.DatePickerDialog
 
 interface IDatePickerActivity {
     fun setResult(year: Int, month: Int, day: Int)
-    val dialog: DatePickerDialog
+    var dialog: DatePickerDialog?
 }

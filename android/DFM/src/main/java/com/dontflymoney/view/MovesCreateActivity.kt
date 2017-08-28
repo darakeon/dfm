@@ -7,13 +7,12 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
-
+import com.dontflymoney.activityObjects.MovesCreateStatic
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
 import com.dontflymoney.baseactivity.SmartActivity
 import com.dontflymoney.dialogs.DialogAccountIn
 import com.dontflymoney.dialogs.DialogAccountOut
-import com.dontflymoney.entities.Detail
 import com.dontflymoney.entities.Move
 import com.dontflymoney.entities.Nature
 import com.dontflymoney.listeners.DialogCategory
@@ -23,16 +22,15 @@ import com.dontflymoney.listeners.PickDate
 import com.dontflymoney.viewhelper.DetailBox
 import com.dontflymoney.watchers.DescriptionWatcher
 import com.dontflymoney.watchers.ValueWatcher
-
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
-import java.util.Calendar
+class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic), IDatePickerActivity {
+    internal val window: ScrollView get() = findViewById(R.id.window) as ScrollView
 
-class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
-    internal var dialog: DatePickerDialog
-    internal var window: ScrollView
+    override var dialog: DatePickerDialog? = null
 
 
     override fun contentView(): Int {
@@ -42,9 +40,9 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window = findViewById(R.id.window) as ScrollView
 
-        if (rotated && SmartActivity.succeded) {
+
+        if (rotated && succeeded) {
             try {
                 populateCategoryAndNature()
                 setControls()
@@ -54,75 +52,79 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
             }
 
         } else {
-            move = Move()
+            static.move = Move()
             populateScreen()
         }
     }
 
     @Throws(NumberFormatException::class, JSONException::class)
     private fun populateOldData(populateAll: Boolean) {
-        if (move != null) {
-            if (useCategories) {
-                setDataFromList(categoryList, move!!.Category, R.id.category)
-            }
+        if (static.useCategories) {
+            setDataFromList(static.categoryList, static.move.Category, R.id.category)
+        }
 
-            form.setValue(R.id.date, move!!.DateString())
+        form.setValue(R.id.date, static.move.DateString())
 
-            for (n in 0..natureList.length() - 1) {
-                val nature = natureList.getJSONObject(n)
+        val list = static.natureList;
+
+        if (list != null) {
+            for (n in 0..list.length() - 1) {
+                val nature = list.getJSONObject(n)
                 val comparValue = nature.getInt("Value")
 
-                if (comparValue == move!!.Nature.GetNumber()) {
+                if (comparValue == static.move.Nature?.GetNumber()) {
                     val text = nature.getString("Text")
                     val value = nature.getString("Value")
                     setNature(text, value)
                     break
                 }
             }
+        }
 
-            setDataFromList(accountList, move!!.AccountOut, R.id.account_out)
-            setDataFromList(accountList, move!!.AccountIn, R.id.account_in)
+        setDataFromList(static.accountList, static.move.AccountOut, R.id.account_out)
+        setDataFromList(static.accountList, static.move.AccountIn, R.id.account_in)
 
-            if (move!!.isDetailed) {
-                for (d in move!!.Details.indices) {
-                    val detail = move!!.Details[d]
+        if (static.move.isDetailed) {
+            for (d in static.move.Details.indices) {
+                val detail = static.move.Details[d]
 
-                    addViewDetail(move, detail.Description, detail.Amount, detail.Value)
-                }
-
-                useDetailed()
+                addViewDetail(static.move, detail.Description, detail.Amount, detail.Value)
             }
 
-            if (!populateAll)
-                return
+            useDetailed()
+        }
 
-            val descriptionView = findViewById(R.id.description) as EditText
-            descriptionView.setText(move!!.Description)
+        if (!populateAll)
+            return
 
-            if (move!!.Value != 0.0) {
-                val valueView = findViewById(R.id.value) as EditText
-                valueView.setText(String.format("%1$,.2f", move!!.Value))
-            }
+        val descriptionView = findViewById(R.id.description) as EditText
+        descriptionView.setText(static.move.Description)
 
+        if (static.move.Value != 0.0) {
+            val valueView = findViewById(R.id.value) as EditText
+            valueView.setText(String.format("%1$,.2f", static.move.Value))
         }
     }
 
     @Throws(JSONException::class)
-    private fun setDataFromList(list: JSONArray, dataSaved: String, resourceId: Int) {
-        for (n in 0..list.length() - 1) {
-            val `object` = list.getJSONObject(n)
-            val value = `object`.getString("Value")
+    private fun setDataFromList(list: JSONArray?, dataSaved: String?, resourceId: Int) {
+        if (list != null) {
+            for (n in 0..list.length() - 1) {
+                val `object` = list.getJSONObject(n)
+                val value = `object`.getString("Value")
 
-            if (value == dataSaved) {
-                val text = `object`.getString("Text")
-                form.setValue(resourceId, text)
-                break
+                if (value == dataSaved) {
+                    val text = `object`.getString("Text")
+                    form.setValue(resourceId, text)
+                    break
+                }
             }
         }
     }
 
     private fun populateScreen() {
-        request = InternalRequest(this, "Moves/Create")
+        val request = InternalRequest(this, "Moves/Create")
+
         request.AddParameter("ticket", Authentication.Get())
         request.AddParameter("accountUrl", intent.getStringExtra("accountUrl"))
         request.AddParameter("id", intent.getIntExtra("id", 0))
@@ -149,35 +151,35 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
     @Throws(JSONException::class)
     private fun populateScreen(data: JSONObject) {
-        useCategories = data.getBoolean("UseCategories")
+        static.useCategories = data.getBoolean("UseCategories")
 
-        if (useCategories)
-            categoryList = data.getJSONArray("CategoryList")
+        if (static.useCategories)
+            static.categoryList = data.getJSONArray("CategoryList")
 
-        natureList = data.getJSONArray("NatureList")
-        accountList = data.getJSONArray("AccountList")
+        static.natureList = data.getJSONArray("NatureList")
+        static.accountList = data.getJSONArray("AccountList")
 
         populateCategoryAndNature()
 
         if (data.has("Move") && !data.isNull("Move")) {
             val moveToEdit = data.getJSONObject("Move")
-            move!!.SetData(moveToEdit, intent.getStringExtra("accountUrl"))
+            static.move.SetData(moveToEdit, intent.getStringExtra("accountUrl"))
             populateOldData(true)
         }
     }
 
     @Throws(JSONException::class)
     private fun populateCategoryAndNature() {
-        if (useCategories) {
+        if (static.useCategories) {
             findViewById(R.id.category_box).visibility = View.VISIBLE
         } else {
             findViewById(R.id.category_box).visibility = View.GONE
         }
 
-        if (move!!.Nature == null) {
-            val firstNature = natureList.getJSONObject(0)
-            form.setValue(R.id.nature, firstNature.getString("Text"))
-            move!!.SetNature(firstNature.getInt("Value"))
+        if (static.move.Nature == null) {
+            val firstNature = static.natureList?.getJSONObject(0)
+            form.setValue(R.id.nature, firstNature?.getString("Text"))
+            static.move.SetNature(firstNature?.getInt("Value"))
         }
     }
 
@@ -187,11 +189,11 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
         val day = intent.getIntExtra("day", today.get(Calendar.DAY_OF_MONTH))
         val month = intent.getIntExtra("month", today.get(Calendar.MONTH))
         val year = intent.getIntExtra("year", today.get(Calendar.YEAR))
-        move!!.Date.set(year, month, day)
+        static.move.Date.set(year, month, day)
     }
 
     private fun setControls() {
-        form.setValue(R.id.date, move!!.DateString())
+        form.setValue(R.id.date, static.move.DateString())
 
         setDescriptionListener()
         setValueListener()
@@ -199,60 +201,58 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
     private fun setDescriptionListener() {
         val textMessage = findViewById(R.id.description) as EditText
-        textMessage.addTextChangedListener(DescriptionWatcher(move))
+        textMessage.addTextChangedListener(DescriptionWatcher(static.move))
     }
 
     private fun setValueListener() {
         val textMessage = findViewById(R.id.value) as EditText
-        textMessage.addTextChangedListener(ValueWatcher(move))
+        textMessage.addTextChangedListener(ValueWatcher(static.move))
     }
 
 
     fun showDatePicker(view: View) {
-        dialog = DatePickerDialog(this, PickDate(this), move!!.year, move!!.month, move!!.day
+        dialog = DatePickerDialog(
+            this, PickDate(this),
+                static.move.year, static.move.month, static.move.day
         )
 
-        dialog.show()
+        dialog?.show()
     }
 
     override fun setResult(year: Int, month: Int, day: Int) {
-        move!!.Date.set(year, month, day)
-        form.setValue(R.id.date, move!!.DateString())
-    }
-
-    override fun getDialog(): DatePickerDialog {
-        return dialog
+        static.move.Date.set(year, month, day)
+        form.setValue(R.id.date, static.move.DateString())
     }
 
 
     @Throws(JSONException::class)
     fun changeCategory(view: View) {
-        form.showChangeList(categoryList, R.string.category, DialogCategory(categoryList, form, message, move))
+        form.showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, form, message, static.move))
     }
 
     @Throws(JSONException::class)
     fun changeNature(view: View) {
-        form.showChangeList(natureList, R.string.nature, DialogNature(natureList, this))
+        form.showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
     }
 
 
     fun setNature(text: String, value: String) {
         form.setValue(R.id.nature, text)
-        move!!.SetNature(value)
+        static.move.SetNature(value)
 
-        val accountOutVisibility = if (move!!.Nature != Nature.In) View.VISIBLE else View.GONE
+        val accountOutVisibility = if (static.move.Nature != Nature.In) View.VISIBLE else View.GONE
         findViewById(R.id.account_out_block).visibility = accountOutVisibility
 
-        val accountInVisibility = if (move!!.Nature != Nature.Out) View.VISIBLE else View.GONE
+        val accountInVisibility = if (static.move.Nature != Nature.Out) View.VISIBLE else View.GONE
         findViewById(R.id.account_in_block).visibility = accountInVisibility
 
-        if (move!!.Nature == Nature.Out) {
-            move!!.AccountIn = null
+        if (static.move.Nature == Nature.Out) {
+            static.move.AccountIn = null
             form.setValue(R.id.account_in, getString(R.string.pick))
         }
 
-        if (move!!.Nature == Nature.In) {
-            move!!.AccountOut = null
+        if (static.move.Nature == Nature.In) {
+            static.move.AccountOut = null
             form.setValue(R.id.account_out, getString(R.string.pick))
         }
     }
@@ -260,16 +260,16 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
     @Throws(JSONException::class)
     fun changeAccountOut(view: View) {
-        form.showChangeList(accountList, R.string.account, DialogAccountOut(accountList, form, message, move))
+        form.showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, form, message, static.move))
     }
 
     @Throws(JSONException::class)
     fun changeAccountIn(view: View) {
-        form.showChangeList(accountList, R.string.account, DialogAccountIn(accountList, form, message, move))
+        form.showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, form, message, static.move))
     }
 
     @JvmOverloads fun useDetailed(view: View? = null) {
-        move!!.isDetailed = true
+        static.move.isDetailed = true
 
         findViewById(R.id.simple_value).visibility = View.GONE
         findViewById(R.id.detailed_value).visibility = View.VISIBLE
@@ -278,7 +278,7 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
     }
 
     fun useSimple(view: View) {
-        move!!.isDetailed = false
+        static.move.isDetailed = false
 
         findViewById(R.id.simple_value).visibility = View.VISIBLE
         findViewById(R.id.detailed_value).visibility = View.GONE
@@ -305,14 +305,14 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
         val amount = Integer.parseInt(amountStr)
         val value = java.lang.Double.parseDouble(valueStr)
 
-        move!!.Add(description, amount, value)
+        static.move.Add(description, amount, value)
 
-        addViewDetail(move, description, amount, value)
+        addViewDetail(static.move, description, amount, value)
 
         scrollToTheEnd()
     }
 
-    private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
+    private fun addViewDetail(move: Move?, description: String?, amount: Int, value: Double) {
         val row = DetailBox(this, move, description, amount, value)
         val list = findViewById(R.id.details) as LinearLayout
         list.addView(row)
@@ -320,10 +320,10 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
 
     fun save(view: View) {
-        request = InternalRequest(this, "Moves/Create")
+        val request = InternalRequest(this, "Moves/Create")
 
         request.AddParameter("ticket", Authentication.Get())
-        move!!.setParameters(request)
+        static.move.setParameters(request)
 
         request.Post(Step.Recording)
     }
@@ -331,8 +331,8 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
     private fun backToExtract() {
         val intent = Intent(this, ExtractActivity::class.java)
         intent.putExtra("accountUrl", getIntent().getStringExtra("accountUrl"))
-        intent.putExtra("month", move!!.month)
-        intent.putExtra("year", move!!.year)
+        intent.putExtra("month", static.move.month)
+        intent.putExtra("year", static.move.year)
 
         startActivity(intent)
     }
@@ -340,15 +340,6 @@ class MovesCreateActivity : SmartActivity(), IDatePickerActivity {
 
     private fun scrollToTheEnd() {
         window.postDelayed({ window.fullScroll(ScrollView.FOCUS_DOWN) }, 100)
-    }
-
-    companion object {
-
-        internal var move: Move? = null
-        internal var useCategories: Boolean = false
-        internal var categoryList: JSONArray
-        internal var natureList: JSONArray
-        internal var accountList: JSONArray
     }
 
 

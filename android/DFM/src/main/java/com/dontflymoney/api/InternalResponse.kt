@@ -3,8 +3,8 @@ package com.dontflymoney.api
 import org.json.JSONObject
 
 internal class InternalResponse {
-    private val result: JSONObject
-    private val error: String?
+    private var result: JSONObject? = null
+    private var error: String? = null
 
     constructor(result: JSONObject) {
         this.result = result
@@ -20,11 +20,11 @@ internal class InternalResponse {
     }
 
     fun GetResult(): JSONObject {
-        return result
+        return result!!
     }
 
     fun GetError(): String {
-        return error
+        return error!!
     }
 
 

@@ -4,10 +4,11 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
+import com.dontflymoney.activityObjects.SmartStatic
 
 import com.dontflymoney.view.R
 
-class Message internal constructor(private val activity: SmartActivity) {
+class Message<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
 
 
     fun alertYesNo(message: String, answer: IYesNoDialogAnswer) {
@@ -28,7 +29,7 @@ class Message internal constructor(private val activity: SmartActivity) {
     }
 
     fun alertError(resMessage: Int, e: Exception) {
-        alertError(activity.getString(resMessage) + ": " + e.getLocalizedMessage())
+        alertError(activity.getString(resMessage) + ": " + e.message)
     }
 
     private fun alertError(message: String, resOkButton: Int = R.string.ok_button, hasCancelButton: Boolean = false, clickListener: OnClickListener = OnClickListener { dialog, which -> dialog.cancel() }) {

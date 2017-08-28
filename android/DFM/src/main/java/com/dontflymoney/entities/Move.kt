@@ -1,39 +1,31 @@
 package com.dontflymoney.entities
 
+import com.dontflymoney.activityObjects.MovesCreateStatic
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.viewhelper.DateTime
-
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
 import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 
 class Move {
-    init {
-        Details = ArrayList<Detail>()
-        Date = Calendar.getInstance()
-    }
 
     private var Id: Int = 0
-    var Description: String
-    var Date: Calendar
+    var Description: String? = null
+    var Date: Calendar = Calendar.getInstance()
 
-    var Nature: Nature
+    var Nature: Nature? = null
 
-    var Category: String
-    var AccountOut: String
-    var AccountIn: String
+    var Category: String? = null
+    var AccountOut: String? = null
+    var AccountIn: String? = null
 
     var isDetailed: Boolean = false
     var Value: Double = 0.toDouble()
-    var Details: MutableList<Detail>
+    var Details: MutableList<Detail> = ArrayList<Detail>()
 
 
-    private fun getNature(number: Int): Nature {
+    private fun getNature(number: Int?): Nature {
         return com.dontflymoney.entities.Nature.GetNature(number)
     }
 
@@ -42,7 +34,7 @@ class Move {
         SetNature(Integer.parseInt(number))
     }
 
-    fun SetNature(number: Int) {
+    fun SetNature(number: Int?) {
         Nature = getNature(number)
     }
 
@@ -56,7 +48,7 @@ class Move {
         Details.add(detail)
     }
 
-    fun Remove(description: String, amount: Int, value: Double) {
+    fun Remove(description: String?, amount: Int, value: Double) {
         for (detail in Details) {
             if (detail.Equals(description, amount, value)) {
                 Details.remove(detail)
@@ -75,7 +67,7 @@ class Move {
     val year: Int
         get() = Date.get(Calendar.YEAR)
 
-    fun setParameters(request: InternalRequest) {
+    fun setParameters(request: InternalRequest<MovesCreateStatic>) {
         request.AddParameter("ID", Id)
         request.AddParameter("Description", Description)
 

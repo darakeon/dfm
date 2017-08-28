@@ -1,5 +1,6 @@
 package com.dontflymoney.listeners
 
+import com.dontflymoney.activityObjects.MovesCreateStatic
 import com.dontflymoney.baseactivity.Form
 import com.dontflymoney.baseactivity.Message
 import com.dontflymoney.entities.Move
@@ -9,11 +10,11 @@ import com.dontflymoney.viewhelper.DialogSelectClickListener
 import org.json.JSONArray
 import org.json.JSONException
 
-class DialogCategory(list: JSONArray, private val form: Form, private val message: Message, private val move: Move) : DialogSelectClickListener(list) {
+class DialogCategory(list: JSONArray?, private val form: Form, private val message: Message<MovesCreateStatic>, private val move: Move?) : DialogSelectClickListener(list) {
 
     override fun setResult(text: String, value: String) {
         form.setValue(R.id.category, text)
-        move.Category = value
+        move?.Category = value
     }
 
     override fun handleError(exception: JSONException) {

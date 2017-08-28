@@ -2,6 +2,7 @@ package com.dontflymoney.baseactivity
 
 import android.content.Intent
 import android.os.Bundle
+import com.dontflymoney.activityObjects.SmartStatic
 
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
@@ -9,7 +10,7 @@ import com.dontflymoney.userdata.Authentication
 import com.dontflymoney.view.LoginActivity
 import com.dontflymoney.view.SettingsActivity
 
-class Navigation internal constructor(private val activity: SmartActivity, private val authentication: Authentication) {
+class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>, private val authentication: Authentication) {
 
 
     fun redirect(activityClass: Class<*>) {

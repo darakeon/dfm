@@ -5,22 +5,19 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.view.Surface
 import android.view.WindowManager
-
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.baseactivity.SmartActivity
 import com.dontflymoney.view.R
-
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
-import java.util.HashMap
-
-class InternalRequest(var activity: SmartActivity, private val url: String) {
-    private val parameters: HashMap<String, Any>
+class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private val url: String) {
+    private val parameters: HashMap<String, Any?>
 
     private var jsonRequest: JsonObjectRequest? = null
 
@@ -28,11 +25,11 @@ class InternalRequest(var activity: SmartActivity, private val url: String) {
 
 
     init {
-        this.parameters = HashMap<String, Any>()
+        this.parameters = HashMap<String, Any?>()
     }
 
 
-    fun AddParameter(key: String, value: Any) {
+    fun AddParameter(key: String, value: Any?) {
         parameters.put(key, value)
     }
 
@@ -51,6 +48,8 @@ class InternalRequest(var activity: SmartActivity, private val url: String) {
     }
 
     private fun makeRequest(step: Step, method: Int) {
+        activity.request = this
+
         if (Internet.isOffline(activity)) {
             val error = activity.getString(R.string.u_r_offline)
             activity.HandlePostError(error, step)
@@ -154,7 +153,7 @@ class InternalRequest(var activity: SmartActivity, private val url: String) {
 
     fun Cancel() {
         endUIWait()
-        jsonRequest!!.cancel()
+        jsonRequest?.cancel()
     }
 
 

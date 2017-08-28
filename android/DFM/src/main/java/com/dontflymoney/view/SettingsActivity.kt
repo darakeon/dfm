@@ -1,25 +1,22 @@
 package com.dontflymoney.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.DialogInterface.OnClickListener
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
-
+import com.dontflymoney.activityObjects.SettingsStatic
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
 import com.dontflymoney.baseactivity.SmartActivity
-
 import org.json.JSONException
 import org.json.JSONObject
 
-class SettingsActivity : SmartActivity() {
+class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
     internal var useCategories: Boolean = false
-    internal var useCategoriesField: CheckBox
+    internal val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories) as CheckBox
 
     internal var moveCheck: Boolean = false
-    internal var moveCheckField: CheckBox
+    internal val moveCheckField: CheckBox get() = findViewById(R.id.move_check) as CheckBox
 
 
     override fun contentView(): Int {
@@ -29,9 +26,8 @@ class SettingsActivity : SmartActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getFields()
 
-        if (rotated && SmartActivity.succeded) {
+        if (rotated && succeeded) {
             useCategoriesField.isChecked = useCategories
             moveCheckField.isChecked = moveCheck
         } else {
@@ -39,19 +35,14 @@ class SettingsActivity : SmartActivity() {
         }
     }
 
-    private fun getFields() {
-        useCategoriesField = findViewById(R.id.use_categories) as CheckBox
-        moveCheckField = findViewById(R.id.move_check) as CheckBox
-    }
-
     private fun getCurrentSettings() {
-        request = InternalRequest(this, "Users/GetConfig")
+        val request = InternalRequest(this, "Users/GetConfig")
         request.AddParameter("ticket", Authentication.Get())
         request.Get(Step.Populate)
     }
 
     fun saveSettings(view: View) {
-        request = InternalRequest(this, "Users/SaveConfig")
+        val request = InternalRequest(this, "Users/SaveConfig")
         request.AddParameter("ticket", Authentication.Get())
         request.AddParameter("UseCategories", useCategoriesField.isChecked)
         request.AddParameter("MoveCheck", moveCheckField.isChecked)

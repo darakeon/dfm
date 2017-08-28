@@ -13,7 +13,7 @@ import com.dontflymoney.view.R
 import java.text.DecimalFormat
 
 @SuppressLint("ViewConstructor")
-class DetailBox(context: Context, internal var move: Move, internal var description: String, internal var amount: Int, internal var value: Double) : LinearLayout(context) {
+class DetailBox(context: Context, internal var move: Move?, internal var description: String?, internal var amount: Int, internal var value: Double) : LinearLayout(context) {
 
     init {
 
@@ -47,7 +47,7 @@ class DetailBox(context: Context, internal var move: Move, internal var descript
 
     private inner class RemoveDetail : View.OnClickListener {
         override fun onClick(button: View) {
-            move.Remove(description, amount, value)
+            move?.Remove(description, amount, value)
 
             val item = button.parent as LinearLayout
             (item.parent as LinearLayout).removeView(item)

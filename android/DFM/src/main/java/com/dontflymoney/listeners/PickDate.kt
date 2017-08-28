@@ -8,7 +8,7 @@ class PickDate(private val activity: IDatePickerActivity) : DatePickerDialog.OnD
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         if (view.isShown) {
             activity.setResult(year, month, day)
-            activity.dialog.dismiss()
+            activity.dialog?.dismiss()
         }
     }
 }

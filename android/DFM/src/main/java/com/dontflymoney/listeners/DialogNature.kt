@@ -7,7 +7,7 @@ import com.dontflymoney.viewhelper.DialogSelectClickListener
 import org.json.JSONArray
 import org.json.JSONException
 
-class DialogNature(list: JSONArray, private val activity: MovesCreateActivity) : DialogSelectClickListener(list) {
+class DialogNature(list: JSONArray?, private val activity: MovesCreateActivity) : DialogSelectClickListener(list) {
 
     override fun setResult(text: String, value: String) {
         activity.setNature(text, value)

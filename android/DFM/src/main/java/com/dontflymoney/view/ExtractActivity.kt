@@ -7,10 +7,9 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.DatePicker
 import android.widget.ListView
 import android.widget.TextView
-
+import com.dontflymoney.activityObjects.ExtractStatic
 import com.dontflymoney.adapters.MoveAdapter
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
@@ -19,22 +18,17 @@ import com.dontflymoney.baseactivity.SmartActivity
 import com.dontflymoney.layout.MoveLine
 import com.dontflymoney.listeners.IDatePickerActivity
 import com.dontflymoney.listeners.PickDate
-
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
-import java.lang.reflect.Field
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
-class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity {
-    internal var main: ListView
-    internal var empty: TextView
+class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer, IDatePickerActivity {
+    internal val main: ListView get() = findViewById(R.id.main_table) as ListView
+    internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
 
-    internal var accountUrl: String
-
-    internal var dialog: DatePickerDialog? = null
+    internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
+    override var dialog: DatePickerDialog? = null
 
 
     override fun contentView(): Int {
@@ -56,9 +50,8 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCurrentInfo()
 
-        if (rotated && SmartActivity.succeded) {
+        if (rotated && succeeded) {
             setDateFromLast()
 
             try {
@@ -73,15 +66,8 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
         }
     }
 
-    private fun setCurrentInfo() {
-        main = findViewById(R.id.main_table) as ListView
-        empty = findViewById(R.id.empty_list) as TextView
-
-        accountUrl = intent.getStringExtra("accountUrl")
-    }
-
     private fun setDateFromLast() {
-        setDate(month, year)
+        setDate(static.month, static.year)
     }
 
     private fun setDateFromCaller() {
@@ -93,8 +79,8 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
     @SuppressLint("SimpleDateFormat")
     private fun setDate(month: Int, year: Int) {
-        ExtractActivity.month = month
-        ExtractActivity.year = year
+        static.month = month
+        static.year = year
 
         val date = Calendar.getInstance()
         date.set(Calendar.MONTH, month)
@@ -108,7 +94,7 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
     fun changeDate(v: View) {
         if (dialog == null) {
-            dialog = DatePickerDialog(this, PickDate(this), year, month, 1)
+            dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
             try {
                 val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
@@ -132,27 +118,23 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
     }
 
     private fun getExtract() {
-        request = InternalRequest(this, "Moves/Extract")
+        val request = InternalRequest(this, "Moves/Extract")
 
         request.AddParameter("ticket", Authentication.Get())
         request.AddParameter("accountUrl", accountUrl)
-        request.AddParameter("id", year * 100 + month + 1)
+        request.AddParameter("id", static.year * 100 + static.month + 1)
 
         request.Post(Step.Populate)
-    }
-
-    override fun getDialog(): DatePickerDialog {
-        return dialog
     }
 
     @Throws(JSONException::class)
     override fun HandleSuccess(data: JSONObject, step: Step) {
         when (step) {
             Step.Populate -> {
-                moveList = data.getJSONArray("MoveList")
-                name = data.getString("Name")
-                total = data.getDouble("Total")
-                canCheck = data.getBoolean("CanCheck")
+                static.moveList = data.getJSONArray("MoveList")
+                static.name = data.getString("Name")
+                static.total = data.getDouble("Total")
+                static.canCheck = data.getBoolean("CanCheck")
 
                 fillMoves()
             }
@@ -167,17 +149,17 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
     @Throws(JSONException::class)
     private fun fillMoves() {
-        form.setValue(R.id.totalTitle, name)
-        form.setValueColored(R.id.totalValue, total)
+        form.setValue(R.id.totalTitle, static.name)
+        form.setValueColored(R.id.totalValue, static.total)
 
-        if (moveList.length() == 0) {
+        if (static.moveList == null || static.moveList?.length() == 0) {
             main.visibility = View.GONE
             empty.visibility = View.VISIBLE
         } else {
             main.visibility = View.VISIBLE
             empty.visibility = View.GONE
 
-            val accountAdapter = MoveAdapter(this, moveList, canCheck)
+            val accountAdapter = MoveAdapter(this, static.moveList, static.canCheck)
             main.adapter = accountAdapter
         }
     }
@@ -187,7 +169,7 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
         val intent = Intent(this, SummaryActivity::class.java)
 
         intent.putExtra("accountUrl", accountUrl)
-        intent.putExtra("year", year)
+        intent.putExtra("year", static.year)
 
         startActivity(intent)
     }
@@ -201,8 +183,8 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
         intent.putExtra("id", moveId)
         intent.putExtra("accountUrl", accountUrl)
-        intent.putExtra("year", year)
-        intent.putExtra("month", month)
+        intent.putExtra("year", static.year)
+        intent.putExtra("month", static.month)
 
         startActivity(intent)
     }
@@ -264,9 +246,9 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
 
 
     private fun submitMoveAction(action: String) {
-        request = InternalRequest(this, "Moves/" + action)
-
         val view = clickedView as MoveLine
+
+        val request = InternalRequest(this, "Moves/" + action)
 
         request.AddParameter("ticket", Authentication.Get())
         request.AddParameter("accountUrl", accountUrl)
@@ -280,7 +262,7 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
         val move = clickedView as MoveLine
 
         try {
-            if (canCheck) {
+            if (static.canCheck) {
                 hideMenuItem(menu, if (move.isChecked) R.id.check_move else R.id.uncheck_move)
                 showMenuItem(menu, if (move.isChecked) R.id.uncheck_move else R.id.check_move)
             } else {
@@ -304,16 +286,6 @@ class ExtractActivity : SmartActivity(), IYesNoDialogAnswer, IDatePickerActivity
     fun toggleMenuItem(menu: ContextMenu, id: Int, show: Boolean) {
         val buttonToHide = menu.findItem(id)
         buttonToHide.isVisible = show
-    }
-
-    companion object {
-
-        internal var moveList: JSONArray
-        internal var name: String
-        internal var total: Double = 0.toDouble()
-        internal var canCheck: Boolean = false
-        private var month: Int = 0
-        private var year: Int = 0
     }
 
 }

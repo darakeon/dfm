@@ -3,6 +3,7 @@ package com.dontflymoney.view
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import com.dontflymoney.activityObjects.LoginStatic
 
 import com.dontflymoney.api.InternalRequest
 import com.dontflymoney.api.Step
@@ -12,14 +13,13 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class LoginActivity : SmartActivity() {
+class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
     override fun contentView(): Int {
         return R.layout.login
     }
 
-    override fun isLoggedIn(): Boolean {
-        return false
-    }
+    override val isLoggedIn: Boolean
+        get() = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class LoginActivity : SmartActivity() {
 
         if (Authentication.IsLoggedIn()) {
             navigation.redirect(AccountsActivity::class.java)
-        } else if (rotated && SmartActivity.succeded) {
+        } else if (rotated && succeeded) {
             EnableScreen()
         } else {
             license.Check()
@@ -41,7 +41,7 @@ class LoginActivity : SmartActivity() {
 
 
     fun login(view: View) {
-        request = InternalRequest(this, "Users/Login")
+        val request = InternalRequest(this, "Users/Login")
 
         request.AddParameter("email", form.getValue(R.id.email))
         request.AddParameter("password", form.getValue(R.id.password))

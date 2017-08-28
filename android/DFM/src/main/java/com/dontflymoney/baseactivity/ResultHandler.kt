@@ -1,5 +1,6 @@
 package com.dontflymoney.baseactivity
 
+import com.dontflymoney.activityObjects.SmartStatic
 import com.dontflymoney.api.Step
 import com.dontflymoney.userdata.Language
 import com.dontflymoney.view.R
@@ -7,7 +8,7 @@ import com.dontflymoney.view.R
 import org.json.JSONException
 import org.json.JSONObject
 
-internal class ResultHandler(private val activity: SmartActivity, private val navigation: Navigation) {
+internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivity<T>, private val navigation: Navigation<T>) {
 
     fun HandlePostResult(result: JSONObject, step: Step) {
         try {

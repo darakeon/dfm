@@ -6,12 +6,16 @@ import org.json.JSONArray
 import org.json.JSONException
 
 
-abstract class DialogSelectClickListener(private val list: JSONArray) : DialogInterface.OnClickListener {
+abstract class DialogSelectClickListener(private val list: JSONArray?) : DialogInterface.OnClickListener {
 
     override fun onClick(dialog: DialogInterface, which: Int) {
         try {
-            setResult(list.getJSONObject(which).getString("Text"),
-                    list.getJSONObject(which).getString("Value"))
+            if (list != null) {
+                setResult(
+                    list.getJSONObject(which).getString("Text"),
+                    list.getJSONObject(which).getString("Value")
+                )
+            }
         } catch (e: JSONException) {
             handleError(e)
         }

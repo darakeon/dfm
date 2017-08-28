@@ -1,6 +1,7 @@
 package com.dontflymoney.baseactivity
 
 import android.app.ProgressDialog
+import com.dontflymoney.activityObjects.SmartStatic
 
 import com.dontflymoney.userdata.Unique
 import com.dontflymoney.view.R
@@ -9,13 +10,13 @@ import com.google.android.vending.licensing.AESObfuscator
 import com.google.android.vending.licensing.LicenseChecker
 import com.google.android.vending.licensing.ServerManagedPolicy
 
-class License(private val activity: SmartActivity) {
+class License<T : SmartStatic>(private val activity: SmartActivity<T>) {
     private val checker: LicenseChecker
-    private val callback: DfmLicenseCheckerCallback
+    private val callback: DfmLicenseCheckerCallback<T>
     private val progress: ProgressDialog
 
     init {
-        progress = activity.message.getWaitDialog()
+        progress = activity.message.waitDialog
 
         callback = DfmLicenseCheckerCallback(activity, progress)
 
