@@ -75,33 +75,33 @@ public class Form
 		return field;
 	}
 
-    public TextView createText(String text, int gravity)
-    {
-        TextView field = new TextView(activity);
+	public TextView createText(String text, int gravity)
+	{
+		TextView field = new TextView(activity);
 
-        field.setText(text);
-        field.setGravity(gravity);
-        //TODO: put this on config
-        field.setTextSize(17);
-        field.setPadding(20, 20, 20, 20);
-        field.setTextColor(Color.BLACK);
+		field.setText(text);
+		field.setGravity(gravity);
+		//TODO: put this on config
+		field.setTextSize(17);
+		field.setPadding(20, 20, 20, 20);
+		field.setTextColor(Color.BLACK);
 
-        return field;
-    }
+		return field;
+	}
 
-    public ImageView createImage(int resourceId)
-    {
-        ImageView field = new ImageView(activity);
+	public ImageView createImage(int resourceId)
+	{
+		ImageView field = new ImageView(activity);
 
-        field.setImageResource(resourceId);
-        field.setPadding(20, 20, 20, 20);
+		field.setImageResource(resourceId);
+		field.setPadding(20, 20, 20, 20);
 
-        return field;
-    }
+		return field;
+	}
 
 
 
-    public void showChangeList(JSONArray list, int titleId, DialogSelectClickListener selectList)
+	public void showChangeList(JSONArray list, int titleId, DialogSelectClickListener selectList)
 		throws JSONException
 	{
 		CharSequence[] adapter = new CharSequence[list.length()];

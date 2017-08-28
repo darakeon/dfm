@@ -32,61 +32,61 @@ public class File
 	
 	public void WriteToFile(String data)
 	{
-	    try
-	    {
-	    	if (data == null)
-	    		data = "";
-	    	
-	    	FileOutputStream fileOutput = context.openFileOutput(name, Context.MODE_PRIVATE);
+		try
+		{
+			if (data == null)
+				data = "";
 
-	        OutputStreamWriter writer = new OutputStreamWriter(fileOutput);
-	        
-	        writer.write(data);
-	        writer.close();
-	    }
-	    catch (IOException e)
-	    {
-	        status = context.getString(R.string.error_file_write) + ": " + e.toString();
-	    } 
+			FileOutputStream fileOutput = context.openFileOutput(name, Context.MODE_PRIVATE);
+
+			OutputStreamWriter writer = new OutputStreamWriter(fileOutput);
+
+			writer.write(data);
+			writer.close();
+		}
+		catch (IOException e)
+		{
+			status = context.getString(R.string.error_file_write) + ": " + e.toString();
+		}
 	}
 
 
 	public String ReadFromFile()
 	{
-	    String result = "";
+		String result = "";
 
-	    try
-	    {
-	        InputStream inputStream = context.openFileInput(name);
+		try
+		{
+			InputStream inputStream = context.openFileInput(name);
 
-	        if ( inputStream != null )
-	        {
-	            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-	            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-	            
-	            String line;
-	            StringBuilder allContent = new StringBuilder();
+			if ( inputStream != null )
+			{
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-	            while ( (line = bufferedReader.readLine()) != null )
-	            {
-	            	allContent.append(line);
-	            }
+				String line;
+				StringBuilder allContent = new StringBuilder();
 
-	            inputStream.close();
-	            
-	            result = allContent.toString();
-	        }
-	    }
-	    catch (FileNotFoundException e)
-	    {
-	        status = context.getString(R.string.error_file_not_found) + ": " + e.toString();
-	    } 
-	    catch (IOException e) 
-	    {
-	        status = context.getString(R.string.error_file_read) + ": " + e.toString();
-	    }
+				while ( (line = bufferedReader.readLine()) != null )
+				{
+					allContent.append(line);
+				}
 
-	    return result;
+				inputStream.close();
+
+				result = allContent.toString();
+			}
+		}
+		catch (FileNotFoundException e)
+		{
+			status = context.getString(R.string.error_file_not_found) + ": " + e.toString();
+		}
+		catch (IOException e)
+		{
+			status = context.getString(R.string.error_file_read) + ": " + e.toString();
+		}
+
+		return result;
 	}
 
 

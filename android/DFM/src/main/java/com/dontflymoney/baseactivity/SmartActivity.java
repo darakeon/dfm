@@ -23,14 +23,14 @@ public abstract class SmartActivity extends FixOrientationActivity
 {
 	protected static LayoutInflater inflater = null;
 
-    public View clickedView;
+	public View clickedView;
 
-    protected abstract int contentView();
-    protected int optionsMenuResource(){ return 0; }
-    protected int contextMenuResource(){ return 0; }
-    protected int viewWithContext(){ return 0; }
-    protected boolean isLoggedIn() { return true; }
-    protected boolean hasParent() { return false; }
+	protected abstract int contentView();
+	protected int optionsMenuResource(){ return 0; }
+	protected int contextMenuResource(){ return 0; }
+	protected int viewWithContext(){ return 0; }
+	protected boolean isLoggedIn() { return true; }
+	protected boolean hasParent() { return false; }
 	protected void changeContextMenu(View view, ContextMenu menuInfo) { }
 
 	protected Authentication Authentication;
@@ -58,10 +58,10 @@ public abstract class SmartActivity extends FixOrientationActivity
 		setContentView(contentView());
 		setupActionBar();
 
-        if (viewWithContext() != 0)
-        {
+		if (viewWithContext() != 0)
+		{
 			View contextView = findViewById(viewWithContext());
-            registerForContextMenu(contextView);
+			registerForContextMenu(contextView);
 		}
 
 		Authentication = new Authentication(this);
@@ -73,31 +73,31 @@ public abstract class SmartActivity extends FixOrientationActivity
 		license = new License(this);
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        super.onCreateOptionsMenu(menu);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		super.onCreateOptionsMenu(menu);
 
-        if (optionsMenuResource() != 0)
-            getMenuInflater().inflate(optionsMenuResource(), menu);
+		if (optionsMenuResource() != 0)
+			getMenuInflater().inflate(optionsMenuResource(), menu);
 
-        if (isLoggedIn())
-            getMenuInflater().inflate(R.menu.common, menu);
+		if (isLoggedIn())
+			getMenuInflater().inflate(R.menu.common, menu);
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        super.onCreateContextMenu(menu, v, menuInfo);
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+	{
+		super.onCreateContextMenu(menu, v, menuInfo);
 
-        if (contextMenuResource() != 0)
-        {
+		if (contextMenuResource() != 0)
+		{
 			getMenuInflater().inflate(contextMenuResource(), menu);
 			changeContextMenu(v, menu);
 		}
-    }
+	}
 
 	@Override
 	protected void onDestroy()
@@ -126,10 +126,10 @@ public abstract class SmartActivity extends FixOrientationActivity
 
 
 
-    public void back(View view) { navigation.back(); }
+	public void back(View view) { navigation.back(); }
 
-    public void logout(MenuItem menuItem) { navigation.logout(); }
-    public void close(MenuItem menuItem) { navigation.close(); }
+	public void logout(MenuItem menuItem) { navigation.logout(); }
+	public void close(MenuItem menuItem) { navigation.close(); }
 	public void refresh(MenuItem menuItem)
 	{
 		refresh();

@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Actions -->
-    <string name="action_logout">Sair</string>
-    <string name="action_refresh">Atualizar</string>
-    <string name="action_close">Fechar</string>
+	<!-- Actions -->
+	<string name="action_logout">Sair</string>
+	<string name="action_refresh">Atualizar</string>
+	<string name="action_close">Fechar</string>
 
-    <!-- Buttons -->
-    <string name="save">salvar</string>
-    <string name="cancel">cancelar</string>
-    
-    <!-- Alert dialog -->
-    <string name="error_title">Ops!</string>
-    <string name="ok_button">OK</string>
-    <string name="license_retry">Não foi possível checar a licença do aplicativo. Verifique sua conexão de internet e tente novamente.</string>
-    <string name="try_again">Tentar novamente</string>
-    <string name="cancel_button">Cancelar</string>
-    <string name="license_error">Erro ao verificar licença: %d. Entre em contato conosco.</string>
-    
-    <!-- Wait dialog -->
-    <string name="wait_title">Um segundo!</string>
-    <string name="wait_text">Chamando o porquinho&#8230;</string>
-    
-    <!-- Errors -->
-    <string name="u_r_offline">Sem conexão com a internet</string>
-    <string name="error_set_parameters">Error ao setar parâmetros</string>
-    <string name="error_post">Erro ao chamar site</string>
-    <string name="error_convert_result">Erro ao converter resultado</string>
-    <string name="error_contact_url">Erro ao chamar url</string>
-    <string name="error_file_write">Erro ao tentar gravar arquivo</string>
+	<!-- Buttons -->
+	<string name="save">salvar</string>
+	<string name="cancel">cancelar</string>
+
+	<!-- Alert dialog -->
+	<string name="error_title">Ops!</string>
+	<string name="ok_button">OK</string>
+	<string name="license_retry">Não foi possível checar a licença do aplicativo. Verifique sua conexão de internet e tente novamente.</string>
+	<string name="try_again">Tentar novamente</string>
+	<string name="cancel_button">Cancelar</string>
+	<string name="license_error">Erro ao verificar licença: %d. Entre em contato conosco.</string>
+
+	<!-- Wait dialog -->
+	<string name="wait_title">Um segundo!</string>
+	<string name="wait_text">Chamando o porquinho&#8230;</string>
+
+	<!-- Errors -->
+	<string name="u_r_offline">Sem conexão com a internet</string>
+	<string name="error_set_parameters">Error ao setar parâmetros</string>
+	<string name="error_post">Erro ao chamar site</string>
+	<string name="error_convert_result">Erro ao converter resultado</string>
+	<string name="error_contact_url">Erro ao chamar url</string>
+	<string name="error_file_write">Erro ao tentar gravar arquivo</string>
 	<string name="error_file_not_found">Arquivo não encontrado</string>
 	<string name="error_file_read">Erro ao tentar ler arquivo</string>
 	<string name="error_activity_json">Erro ao ler resultado</string>
-    <string name="error_slow_internet">Página %s lenta, entre em contato conosco</string>
+	<string name="error_slow_internet">Página %s lenta, entre em contato conosco</string>
 	<string name="uninvited">Tchau!</string>
 	<string name="this_is_not_happening">Você não deveria ver isso. Entre em contato conosco.</string>
 	
-    <!-- Login -->
-    <string name="email">e-mail</string>
-    <string name="password">senha</string>
-    <string name="login">entrar</string>
-    
-    <!-- Accounts -->
-    <string name="title_activity_accounts">Contas</string>
+	<!-- Login -->
+	<string name="email">e-mail</string>
+	<string name="password">senha</string>
+	<string name="login">entrar</string>
+
+	<!-- Accounts -->
+	<string name="title_activity_accounts">Contas</string>
 	<string name="no_accounts">Não há contas</string>
-        
-    <!-- Reports -->
-    <string name="title_activity_extract">Extrato</string>
-    <string name="title_activity_summary">Resumo anual</string>
+
+	<!-- Reports -->
+	<string name="title_activity_extract">Extrato</string>
+	<string name="title_activity_summary">Resumo anual</string>
    	<string name="no_extract">Não há movimentações neste mês</string>
    	<string name="no_summary">Não há movimentações neste ano</string>
-    <string name="total">Saldo de %s</string>
+	<string name="total">Saldo de %s</string>
  	<string name="change_date">mudar</string>
-    <string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
-    <string name="edit">editar</string>
-    <string name="delete">excluir</string>
-    <string name="check">marcar</string>
-    <string name="uncheck">desmarcar</string>
+	<string name="sure_to_delete">Realmente deseja APAGAR a Movimentação \'%s\'?</string>
+	<string name="edit">editar</string>
+	<string name="delete">excluir</string>
+	<string name="check">marcar</string>
+	<string name="uncheck">desmarcar</string>
 
-    <!-- Move -->
-    <string name="title_activity_move">Mover</string>
-    <string name="description">descrição</string>
-    <string name="date">data</string>
-    <string name="category">categoria</string>
-    <string name="nature">natureza</string>
-    <string name="account">conta</string>
-    <string name="value">valor</string>
-    <string name="amount">qte</string>
-    <string name="pick">escolher</string>
-    <string name="use_detailed">++</string>
-    <string name="use_simple">––</string>
-    <string name="add_detail">+</string>
-    <string name="remove_detail">–</string>
-    <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
-    <string name="account_in">entrada</string>
-    <string name="account_out">saída</string>
+	<!-- Move -->
+	<string name="title_activity_move">Mover</string>
+	<string name="description">descrição</string>
+	<string name="date">data</string>
+	<string name="category">categoria</string>
+	<string name="nature">natureza</string>
+	<string name="account">conta</string>
+	<string name="value">valor</string>
+	<string name="amount">qte</string>
+	<string name="pick">escolher</string>
+	<string name="use_detailed">++</string>
+	<string name="use_simple">––</string>
+	<string name="add_detail">+</string>
+	<string name="remove_detail">–</string>
+	<string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
+	<string name="account_in">entrada</string>
+	<string name="account_out">saída</string>
 
-    <!-- Settings -->
-    <string name="title_activity_settings">Configurações</string>
-    <string name="settings_warning">Estas configurações são para celular e site</string>
-    <string name="use_categories">Usar categorias</string>
-    <string name="settings_saved">Configurações salvas!</string>
+	<!-- Settings -->
+	<string name="title_activity_settings">Configurações</string>
+	<string name="settings_warning">Estas configurações são para celular e site</string>
+	<string name="use_categories">Usar categorias</string>
+	<string name="settings_saved">Configurações salvas!</string>
 	<string name="move_check">Movimentação pode ser verificada</string>
 
 </resources>

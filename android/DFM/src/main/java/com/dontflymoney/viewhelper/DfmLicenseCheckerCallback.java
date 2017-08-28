@@ -21,78 +21,78 @@ public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 		this.progress = progress;
 	}
 	
-    public void allow(int reason)
-    {
-        progress.dismiss();
+	public void allow(int reason)
+	{
+		progress.dismiss();
 
-        if (activity.isFinishing())
-        {
-            // Don't update UI if Activity is finishing.
-            return;
-        }
+		if (activity.isFinishing())
+		{
+			// Don't update UI if Activity is finishing.
+			return;
+		}
 
-        if (reason == Policy.RETRY)
-        {
-        	activity.getMessage().alertRetryLicense();
-        }
-        else
-        {
-            enableScreen();
-        }
-    }
-    
-    private void enableScreen()
-    {
-    	activity.runOnUiThread(new Runnable()
-        {
-		    @Override
-	        public void run()
-	        {
-		        activity.EnableScreen();
-	        }
-        });
-    }
-    
-    public void dontAllow(int reason)
-    {
-        progress.dismiss();
+		if (reason == Policy.RETRY)
+		{
+			activity.getMessage().alertRetryLicense();
+		}
+		else
+		{
+			enableScreen();
+		}
+	}
 
-        if (activity.isFinishing())
-        {
-            // Don't update UI if Activity is finishing.
-            return;
-        }
+	private void enableScreen()
+	{
+		activity.runOnUiThread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				activity.EnableScreen();
+			}
+		});
+	}
 
-        if (reason == Policy.RETRY)
-        {
-        	activity.getMessage().alertRetryLicense();
-        }
-        else if (Site.IsLocal())
-        {
-        	enableScreen();
-        }
-        else
-        {
-        	Intent intent = new Intent(Intent.ACTION_VIEW);
-        	intent.setData(Uri.parse("market://details?id=" + activity.getPackageName()));
-        	activity.startActivity(intent);
-        }
-    }
+	public void dontAllow(int reason)
+	{
+		progress.dismiss();
+
+		if (activity.isFinishing())
+		{
+			// Don't update UI if Activity is finishing.
+			return;
+		}
+
+		if (reason == Policy.RETRY)
+		{
+			activity.getMessage().alertRetryLicense();
+		}
+		else if (Site.IsLocal())
+		{
+			enableScreen();
+		}
+		else
+		{
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("market://details?id=" + activity.getPackageName()));
+			activity.startActivity(intent);
+		}
+	}
 
 	@Override
 	public void applicationError(int errorCode)
 	{
-        progress.dismiss();
+		progress.dismiss();
 
-        if (activity.isFinishing())
-        {
-            // Don't update UI if Activity is finishing.
-            return;
-        }
+		if (activity.isFinishing())
+		{
+			// Don't update UI if Activity is finishing.
+			return;
+		}
 
-        String genericMessage = activity.getString(R.string.license_error);
-        String specificMessage = String.format(genericMessage, errorCode);
-        
+		String genericMessage = activity.getString(R.string.license_error);
+		String specificMessage = String.format(genericMessage, errorCode);
+
 		activity.getMessage().alertError(specificMessage);
 	}
 	

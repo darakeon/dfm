@@ -42,10 +42,10 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 
 
-    protected int contentView() { return R.layout.extract; }
-    protected int optionsMenuResource() { return R.menu.extract; }
-    protected int contextMenuResource() { return R.menu.move_options; }
-    protected int viewWithContext(){ return R.id.main_table; }
+	protected int contentView() { return R.layout.extract; }
+	protected int optionsMenuResource() { return R.menu.extract; }
+	protected int contextMenuResource() { return R.menu.move_options; }
+	protected int viewWithContext(){ return R.id.main_table; }
 
 
 
@@ -101,51 +101,51 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		ExtractActivity.year = year;
 		
 		Calendar date = Calendar.getInstance();
-	    date.set(Calendar.MONTH, month);
-	    date.set(Calendar.YEAR, year);
-	    
-	    SimpleDateFormat formatter = new SimpleDateFormat("MMM/yyyy");
-	    String dateInFull = formatter.format(date.getTime());
+		date.set(Calendar.MONTH, month);
+		date.set(Calendar.YEAR, year);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM/yyyy");
+		String dateInFull = formatter.format(date.getTime());
 		
-	    form.setValue(R.id.reportDate, dateInFull);
+		form.setValue(R.id.reportDate, dateInFull);
 	}
 	
-    public void changeDate(View v)
-    {
+	public void changeDate(View v)
+	{
 		if(dialog == null)
 		{
 			dialog = new DatePickerDialog(this, new PickDate(), year, month, 1);
 
 			try
 			{
-		        Field pickerField = dialog.getClass().getDeclaredField("mDatePicker");
-		        pickerField.setAccessible(true);
-                DatePicker datePicker = (DatePicker) pickerField.get(dialog);
-	            
-	            Field field = datePicker.getClass().getDeclaredField("mDaySpinner");
-	            field.setAccessible(true);
-	            Object dayPicker = field.get(datePicker);
-	            ((View) dayPicker).setVisibility(View.GONE);
-		    } 
-		    catch (Exception ignored) { }
+				Field pickerField = dialog.getClass().getDeclaredField("mDatePicker");
+				pickerField.setAccessible(true);
+				DatePicker datePicker = (DatePicker) pickerField.get(dialog);
+
+				Field field = datePicker.getClass().getDeclaredField("mDaySpinner");
+				field.setAccessible(true);
+				Object dayPicker = field.get(datePicker);
+				((View) dayPicker).setVisibility(View.GONE);
+			}
+			catch (Exception ignored) { }
 		}
 
-        dialog.show();
-    }
+		dialog.show();
+	}
 
 	private class PickDate implements DatePickerDialog.OnDateSetListener
 	{
-	    @Override
-	    public void onDateSet(DatePicker view, int year, int month, int day)
-	    {
-            if (view.isShown())
-            {
-                setDate(month, year);
-                getExtract();
-                dialog.dismiss();
-            }
-	    }
-	    
+		@Override
+		public void onDateSet(DatePicker view, int year, int month, int day)
+		{
+			if (view.isShown())
+			{
+				setDate(month, year);
+				getExtract();
+				dialog.dismiss();
+			}
+		}
+
 	}
 
 	private void getExtract()
@@ -238,50 +238,50 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item)
-    {
-        switch (item.getItemId()) {
-            case R.id.edit_move:
-                edit();
-                return true;
-            case R.id.delete_move:
-                askDelete();
-                return true;
-            case R.id.check_move:
-                check();
-                return true;
-            case R.id.uncheck_move:
-                uncheck();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
+	@Override
+	public boolean onContextItemSelected(MenuItem item)
+	{
+		switch (item.getItemId()) {
+			case R.id.edit_move:
+				edit();
+				return true;
+			case R.id.delete_move:
+				askDelete();
+				return true;
+			case R.id.check_move:
+				check();
+				return true;
+			case R.id.uncheck_move:
+				uncheck();
+				return true;
+			default:
+				return super.onContextItemSelected(item);
+		}
+	}
 
-    private void edit()
-    {
+	private void edit()
+	{
 		MoveLine moveLine = (MoveLine)clickedView;
-        goToMove(moveLine.getId());
-    }
+		goToMove(moveLine.getId());
+	}
 
 
 
-    public boolean askDelete()
-    {
-        String messageText = getString(R.string.sure_to_delete);
-        MoveLine moveRow = (MoveLine) clickedView;
+	public boolean askDelete()
+	{
+		String messageText = getString(R.string.sure_to_delete);
+		MoveLine moveRow = (MoveLine) clickedView;
 
-        messageText = String.format(messageText, moveRow.getDescription());
+		messageText = String.format(messageText, moveRow.getDescription());
 
-        message.alertYesNo(messageText, this);
+		message.alertYesNo(messageText, this);
 
-        return false;
-    }
+		return false;
+	}
 
-    @Override
+	@Override
 	public void YesAction() {
-        submitMoveAction("Delete");
+		submitMoveAction("Delete");
 	}
 
 	@Override
@@ -289,30 +289,30 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 
 
-    private void check()
-    {
-        submitMoveAction("Check");
-    }
+	private void check()
+	{
+		submitMoveAction("Check");
+	}
 
-    private void uncheck()
-    {
-        submitMoveAction("Uncheck");
-    }
+	private void uncheck()
+	{
+		submitMoveAction("Uncheck");
+	}
 
 
 
-    private void submitMoveAction(String action)
-    {
-        request = new Request(this, "Moves/" + action);
+	private void submitMoveAction(String action)
+	{
+		request = new Request(this, "Moves/" + action);
 
-        MoveLine view = (MoveLine) clickedView;
+		MoveLine view = (MoveLine) clickedView;
 
-        request.AddParameter("ticket", Authentication.Get());
-        request.AddParameter("accountUrl", accountUrl);
-        request.AddParameter("id", view.getId());
+		request.AddParameter("ticket", Authentication.Get());
+		request.AddParameter("accountUrl", accountUrl);
+		request.AddParameter("id", view.getId());
 
-        request.Post(Step.Recording);
-    }
+		request.Post(Step.Recording);
+	}
 
 
 	@Override

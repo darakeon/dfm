@@ -26,291 +26,291 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public class Request
 {
-    private String site;
+	private String site;
 
-    public SmartActivity activity;
-    private String url;
-    private HashMap<String, Object> parameters;
+	public SmartActivity activity;
+	private String url;
+	private HashMap<String, Object> parameters;
 
-    private ProgressDialog progress;
-    private SiteConnector connector;
-
-
-    public Request(SmartActivity activity, String url)
-    {
-        this.activity = activity;
-        this.url = url;
-        this.parameters = new HashMap<>();
-
-        setMainUrl();
-    }
-
-    private void setMainUrl()
-    {
-        site = Site.GetProtocol() + "://" + Site.Domain + "/Api";
-    }
+	private ProgressDialog progress;
+	private SiteConnector connector;
 
 
-    public void AddParameter(String key, Object value)
-    {
-        parameters.put(key, value);
-    }
+	public Request(SmartActivity activity, String url)
+	{
+		this.activity = activity;
+		this.url = url;
+		this.parameters = new HashMap<>();
+
+		setMainUrl();
+	}
+
+	private void setMainUrl()
+	{
+		site = Site.GetProtocol() + "://" + Site.Domain + "/Api";
+	}
 
 
-    public void Post()
-    {
-        Post(Step.NoSteps);
-    }
-
-    public boolean Post(Step step)
-    {
-        if (isOffline())
-        {
-            String error = activity.getString(R.string.u_r_offline);
-            activity.HandlePostError(error, step);
-            return false;
-        }
-
-        String completeUrl = getUrl();
-        HttpPost post = new HttpPost(completeUrl);
-        List<NameValuePair> nameValuePairs = getParameters();
-
-        try
-        {
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-        } catch (UnsupportedEncodingException e)
-        {
-            String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
-            activity.HandlePostError(error, step);
-            return false;
-        }
-
-        connector = new SiteConnector(post, this, step);
-        connector.execute();
-
-        startUIWait();
-
-        return true;
-    }
+	public void AddParameter(String key, Object value)
+	{
+		parameters.put(key, value);
+	}
 
 
-    public void Get(Step step)
-    {
-        if (isOffline())
-        {
-            String error = activity.getString(R.string.u_r_offline);
-            activity.HandlePostError(error, step);
-            return;
-        }
+	public void Post()
+	{
+		Post(Step.NoSteps);
+	}
 
-        String completeUrl = getUrl();
-        HttpGet get = new HttpGet(completeUrl);
+	public boolean Post(Step step)
+	{
+		if (isOffline())
+		{
+			String error = activity.getString(R.string.u_r_offline);
+			activity.HandlePostError(error, step);
+			return false;
+		}
 
-        connector = new SiteConnector(get, this, step);
+		String completeUrl = getUrl();
+		HttpPost post = new HttpPost(completeUrl);
+		List<NameValuePair> nameValuePairs = getParameters();
 
-        connector.execute();
+		try
+		{
+			post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+		} catch (UnsupportedEncodingException e)
+		{
+			String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
+			activity.HandlePostError(error, step);
+			return false;
+		}
 
-        startUIWait();
-    }
+		connector = new SiteConnector(post, this, step);
+		connector.execute();
 
+		startUIWait();
 
-    private boolean isOffline()
-    {
-        return Internet.isOffline(activity);
-    }
-
-    private String getUrl()
-    {
-        String completeUrl = site;
-
-        if (parameters.containsKey("ticket"))
-        {
-            completeUrl += "-" + parameters.get("ticket");
-            parameters.remove("ticket");
-        }
-
-        if (parameters.containsKey("accountUrl"))
-        {
-            completeUrl += "/Account-" + parameters.get("accountUrl");
-            parameters.remove("accountUrl");
-        }
-
-        completeUrl += "/" + url;
-
-        if (parameters.containsKey("id"))
-        {
-            completeUrl += "/" + parameters.get("id");
-            parameters.remove("id");
-        }
-
-        return completeUrl;
-    }
-
-    private List<NameValuePair> getParameters()
-    {
-        List<NameValuePair> nameValuePairs = new ArrayList<>();
-
-        for (Map.Entry<String, Object> parameter : parameters.entrySet())
-        {
-            Object rawValue = parameter.getValue();
-
-            if (rawValue != null)
-            {
-                String key = parameter.getKey();
-                String value = rawValue.toString();
-
-                BasicNameValuePair pair = new BasicNameValuePair(key, value);
-
-                nameValuePairs.add(pair);
-            }
-        }
-
-        return nameValuePairs;
-    }
+		return true;
+	}
 
 
-    void HandleResponse(String json, String errorMessage, Step step)
-    {
-        Response response;
+	public void Get(Step step)
+	{
+		if (isOffline())
+		{
+			String error = activity.getString(R.string.u_r_offline);
+			activity.HandlePostError(error, step);
+			return;
+		}
 
-        if (errorMessage != null)
-        {
-            response = new Response(errorMessage);
-        }
-        else
-        {
-            while (json.startsWith("\n") || json.startsWith("\r"))
-            {
-                json = json.substring(1);
-            }
+		String completeUrl = getUrl();
+		HttpGet get = new HttpGet(completeUrl);
 
-            if (json.startsWith("<"))
-            {
-                response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
-            } else
-            {
-                try
-                {
-                    response = new Response(new JSONObject(json));
-                } catch (JSONException e)
-                {
-                    response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
-                }
-            }
-        }
+		connector = new SiteConnector(get, this, step);
 
-        endUIWait();
+		connector.execute();
 
-        if (step == Step.Logout)
-            return;
-
-        if (response.IsSuccess())
-            activity.HandlePostResult(response.GetResult(), step);
-        else
-            activity.HandlePostError(response.GetError(), step);
-    }
+		startUIWait();
+	}
 
 
-    public void Cancel()
-    {
-        endUIWait();
-        connector.cancel(true);
-    }
+	private boolean isOffline()
+	{
+		return Internet.isOffline(activity);
+	}
+
+	private String getUrl()
+	{
+		String completeUrl = site;
+
+		if (parameters.containsKey("ticket"))
+		{
+			completeUrl += "-" + parameters.get("ticket");
+			parameters.remove("ticket");
+		}
+
+		if (parameters.containsKey("accountUrl"))
+		{
+			completeUrl += "/Account-" + parameters.get("accountUrl");
+			parameters.remove("accountUrl");
+		}
+
+		completeUrl += "/" + url;
+
+		if (parameters.containsKey("id"))
+		{
+			completeUrl += "/" + parameters.get("id");
+			parameters.remove("id");
+		}
+
+		return completeUrl;
+	}
+
+	private List<NameValuePair> getParameters()
+	{
+		List<NameValuePair> nameValuePairs = new ArrayList<>();
+
+		for (Map.Entry<String, Object> parameter : parameters.entrySet())
+		{
+			Object rawValue = parameter.getValue();
+
+			if (rawValue != null)
+			{
+				String key = parameter.getKey();
+				String value = rawValue.toString();
+
+				BasicNameValuePair pair = new BasicNameValuePair(key, value);
+
+				nameValuePairs.add(pair);
+			}
+		}
+
+		return nameValuePairs;
+	}
 
 
-    private void startUIWait()
-    {
-        openProgressBar();
-        disableSleep();
-        disableRotation();
-    }
+	void HandleResponse(String json, String errorMessage, Step step)
+	{
+		Response response;
 
-    private void openProgressBar()
-    {
-        progress = activity.getMessage().showWaitDialog();
-    }
+		if (errorMessage != null)
+		{
+			response = new Response(errorMessage);
+		}
+		else
+		{
+			while (json.startsWith("\n") || json.startsWith("\r"))
+			{
+				json = json.substring(1);
+			}
 
-    private void disableSleep()
-    {
-        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
+			if (json.startsWith("<"))
+			{
+				response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
+			} else
+			{
+				try
+				{
+					response = new Response(new JSONObject(json));
+				} catch (JSONException e)
+				{
+					response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
+				}
+			}
+		}
 
-    private void disableRotation()
-    {
-        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
-        int orientation = activity.getResources().getConfiguration().orientation;
+		endUIWait();
 
-        switch (orientation)
-        {
-            case Configuration.ORIENTATION_PORTRAIT:
-                handlePortrait(rotation);
-                break;
+		if (step == Step.Logout)
+			return;
 
-            case Configuration.ORIENTATION_LANDSCAPE:
-                handleLandscape(rotation);
-                break;
-        }
-    }
-
-    private void handlePortrait(int rotation)
-    {
-        switch (rotation)
-        {
-            case Surface.ROTATION_0:
-            case Surface.ROTATION_270:
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                break;
-            default:
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-                break;
-        }
-    }
-
-    private void handleLandscape(int rotation)
-    {
-        switch (rotation)
-        {
-            case Surface.ROTATION_0:
-            case Surface.ROTATION_90:
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                break;
-            default:
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-                break;
-        }
-    }
+		if (response.IsSuccess())
+			activity.HandlePostResult(response.GetResult(), step);
+		else
+			activity.HandlePostError(response.GetError(), step);
+	}
 
 
-    private void endUIWait()
-    {
-        closeProgressBar();
-        enableSleep();
-        enableRotation();
-    }
+	public void Cancel()
+	{
+		endUIWait();
+		connector.cancel(true);
+	}
 
-    private void closeProgressBar()
-    {
-        if (progress == null)
-            return;
 
-        // This try is a fix for user turn the screen
-        // it recharges the activity and fucks the dialog
-        try
-        {
-            progress.dismiss();
-            progress = null;
-        } catch (IllegalArgumentException ignored) { }
-    }
+	private void startUIWait()
+	{
+		openProgressBar();
+		disableSleep();
+		disableRotation();
+	}
 
-    private void enableSleep()
-    {
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
+	private void openProgressBar()
+	{
+		progress = activity.getMessage().showWaitDialog();
+	}
 
-    private void enableRotation()
-    {
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-    }
+	private void disableSleep()
+	{
+		activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
+	private void disableRotation()
+	{
+		int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+		int orientation = activity.getResources().getConfiguration().orientation;
+
+		switch (orientation)
+		{
+			case Configuration.ORIENTATION_PORTRAIT:
+				handlePortrait(rotation);
+				break;
+
+			case Configuration.ORIENTATION_LANDSCAPE:
+				handleLandscape(rotation);
+				break;
+		}
+	}
+
+	private void handlePortrait(int rotation)
+	{
+		switch (rotation)
+		{
+			case Surface.ROTATION_0:
+			case Surface.ROTATION_270:
+				activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+				break;
+			default:
+				activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+				break;
+		}
+	}
+
+	private void handleLandscape(int rotation)
+	{
+		switch (rotation)
+		{
+			case Surface.ROTATION_0:
+			case Surface.ROTATION_90:
+				activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+				break;
+			default:
+				activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+				break;
+		}
+	}
+
+
+	private void endUIWait()
+	{
+		closeProgressBar();
+		enableSleep();
+		enableRotation();
+	}
+
+	private void closeProgressBar()
+	{
+		if (progress == null)
+			return;
+
+		// This try is a fix for user turn the screen
+		// it recharges the activity and fucks the dialog
+		try
+		{
+			progress.dismiss();
+			progress = null;
+		} catch (IllegalArgumentException ignored) { }
+	}
+
+	private void enableSleep()
+	{
+		activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
+	private void enableRotation()
+	{
+		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+	}
 
 
 }

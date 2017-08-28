@@ -23,18 +23,18 @@ public class Message
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				switch (which){
-			        case DialogInterface.BUTTON_POSITIVE:
-			        	answer.YesAction();
-			            break;
+					case DialogInterface.BUTTON_POSITIVE:
+						answer.YesAction();
+						break;
 	
-			        case DialogInterface.BUTTON_NEGATIVE:
-			        	answer.NoAction();
-			            break;
-		        }
+					case DialogInterface.BUTTON_NEGATIVE:
+						answer.NoAction();
+						break;
+				}
 				
 				dialog.cancel();
 			}
-    	});
+		});
 	}
 	
 	
@@ -56,7 +56,7 @@ public class Message
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}
-    	});
+		});
 	}
 	
 	private void alertError(String message, int resOkButton, boolean hasCancelButton, OnClickListener clickListener)
@@ -85,7 +85,7 @@ public class Message
 				dialog.cancel();
 				activity.refresh();
 			}
-    	});
+		});
 	}
 	
 	

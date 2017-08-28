@@ -63,15 +63,15 @@ public class Navigation
 		activity.finish();
 	}
 
-    void close()
-    {
-        Intent intent = new Intent(activity, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        activity.startActivity(intent);
-    }
+	void close()
+	{
+		Intent intent = new Intent(activity, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra("EXIT", true);
+		activity.startActivity(intent);
+	}
 
-    void goToSettings()
+	void goToSettings()
 	{
 		Intent intent = new Intent(activity, SettingsActivity.class);
 

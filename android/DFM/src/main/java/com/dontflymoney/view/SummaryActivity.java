@@ -37,12 +37,12 @@ public class SummaryActivity extends SmartActivity
 
 
 
-    protected int contentView() { return R.layout.summary; }
-    protected int optionsMenuResource() { return R.menu.summary; }
+	protected int contentView() { return R.layout.summary; }
+	protected int optionsMenuResource() { return R.menu.summary; }
 
 
 
-    @Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -93,47 +93,47 @@ public class SummaryActivity extends SmartActivity
 		form.setValue(R.id.reportDate, Integer.toString(year));
 	}
 	
-    public void changeDate(View v)
-    {
+	public void changeDate(View v)
+	{
 		if(dialog == null)
 		{
 			dialog = new DatePickerDialog(this, new PickDate(), year, 1, 1);
 
 			try
 			{
-		        Field pickerField = dialog.getClass().getDeclaredField("mDatePicker");
-		        pickerField.setAccessible(true);
-		        DatePicker datePicker = (DatePicker) pickerField.get(dialog);
-	            
-	            Field dayField = datePicker.getClass().getDeclaredField("mDaySpinner");
-	            dayField.setAccessible(true);
-	            Object dayPicker = dayField.get(datePicker);
-	            ((View) dayPicker).setVisibility(View.GONE);
-	            
-	            Field monthField = datePicker.getClass().getDeclaredField("mMonthSpinner");
-	            monthField.setAccessible(true);
-	            Object monthPicker = monthField.get(datePicker);
-	            ((View) monthPicker).setVisibility(View.GONE);
-		    } 
-		    catch (Exception ignored) { }
+				Field pickerField = dialog.getClass().getDeclaredField("mDatePicker");
+				pickerField.setAccessible(true);
+				DatePicker datePicker = (DatePicker) pickerField.get(dialog);
+
+				Field dayField = datePicker.getClass().getDeclaredField("mDaySpinner");
+				dayField.setAccessible(true);
+				Object dayPicker = dayField.get(datePicker);
+				((View) dayPicker).setVisibility(View.GONE);
+
+				Field monthField = datePicker.getClass().getDeclaredField("mMonthSpinner");
+				monthField.setAccessible(true);
+				Object monthPicker = monthField.get(datePicker);
+				((View) monthPicker).setVisibility(View.GONE);
+			}
+			catch (Exception ignored) { }
 		}
 		
 		dialog.show();
-    }
+	}
 	
 	private class PickDate implements DatePickerDialog.OnDateSetListener
 	{
-	    @Override
-	    public void onDateSet(DatePicker view, int year, int month, int day)
-	    {
-            if (view.isShown())
-            {
-                setDate(year);
-                getSummary();
-                dialog.dismiss();
-            }
-	    }
-	    
+		@Override
+		public void onDateSet(DatePicker view, int year, int month, int day)
+		{
+			if (view.isShown())
+			{
+				setDate(year);
+				getSummary();
+				dialog.dismiss();
+			}
+		}
+
 	}
 	
 	private void getSummary()
@@ -208,20 +208,20 @@ public class SummaryActivity extends SmartActivity
 		
 		row.setOnClickListener(new OnClickListener()
 		{
-		    public void onClick(View row)
-		    {
-		    	@SuppressWarnings("unchecked")
+			public void onClick(View row)
+			{
+				@SuppressWarnings("unchecked")
 				TableRowWithExtra<Integer> tablerow = (TableRowWithExtra<Integer>)row;
-		        int monthNumber = tablerow.getExtra();
+				int monthNumber = tablerow.getExtra();
 
 				Intent intent = new Intent(SummaryActivity.this, ExtractActivity.class);
 				
-		        intent.putExtra("accountUrl", accountUrl);
+				intent.putExtra("accountUrl", accountUrl);
 				intent.putExtra("year", year);
 				intent.putExtra("month", monthNumber-1);
 				
 				startActivity(intent);
-		    }
+			}
 		});
 	}
 	

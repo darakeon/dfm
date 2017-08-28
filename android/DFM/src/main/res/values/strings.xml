@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">Don\'t fly Money</string>
+	<string name="app_name" translatable="false">Don\'t fly Money</string>
 
-    <!-- Actions -->
-    <string name="action_logout">Logout</string>
-    <string name="action_refresh">Refresh</string>
-    <string name="action_close">Close</string>
+	<!-- Actions -->
+	<string name="action_logout">Logout</string>
+	<string name="action_refresh">Refresh</string>
+	<string name="action_close">Close</string>
 
-    <!-- Buttons -->
-    <string name="save">save</string>
-    <string name="cancel">cancel</string>
+	<!-- Buttons -->
+	<string name="save">save</string>
+	<string name="cancel">cancel</string>
 
-    <!-- Alert dialog -->
-    <string name="error_title">Ops!</string>
-    <string name="ok_button">OK</string>
-    <string name="license_retry">Could not get app license. Verify your internet connection and try again.</string>
-    <string name="try_again">Try again</string>
-    <string name="cancel_button">Cancel</string>
-    <string name="license_error">Error on getting license: %d. Contact us.</string>
-    
-    <!-- Wait dialog -->
-    <string name="wait_title">Wait!</string>
-    <string name="wait_text">Calling the Pig&#8230;</string>
+	<!-- Alert dialog -->
+	<string name="error_title">Ops!</string>
+	<string name="ok_button">OK</string>
+	<string name="license_retry">Could not get app license. Verify your internet connection and try again.</string>
+	<string name="try_again">Try again</string>
+	<string name="cancel_button">Cancel</string>
+	<string name="license_error">Error on getting license: %d. Contact us.</string>
 
-    <!-- Errors -->
-    <string name="u_r_offline">You\'re current offline</string>
-    <string name="error_set_parameters">Error on set parameters</string>
-    <string name="error_post">Error on requesting site</string>
-    <string name="error_convert_result">Error on converting result</string>
-    <string name="error_contact_url">Error on contacting url</string>
-    <string name="error_file_write">File write failed</string>
-    <string name="error_file_not_found">File not found</string>
-    <string name="error_file_read">Can not read file</string>
-    <string name="error_activity_json">Activity json error</string>
-    <string name="error_slow_internet">Page %s is slow, contact us</string>
-    <string name="uninvited">You are uninvited!</string>
-    <string name="this_is_not_happening">You should not be here. Contact us.</string>
+	<!-- Wait dialog -->
+	<string name="wait_title">Wait!</string>
+	<string name="wait_text">Calling the Pig&#8230;</string>
 
-    <!-- Login -->
-    <string name="email">e-mail</string>
-    <string name="password">password</string>
-    <string name="login">login</string>
+	<!-- Errors -->
+	<string name="u_r_offline">You\'re current offline</string>
+	<string name="error_set_parameters">Error on set parameters</string>
+	<string name="error_post">Error on requesting site</string>
+	<string name="error_convert_result">Error on converting result</string>
+	<string name="error_contact_url">Error on contacting url</string>
+	<string name="error_file_write">File write failed</string>
+	<string name="error_file_not_found">File not found</string>
+	<string name="error_file_read">Can not read file</string>
+	<string name="error_activity_json">Activity json error</string>
+	<string name="error_slow_internet">Page %s is slow, contact us</string>
+	<string name="uninvited">You are uninvited!</string>
+	<string name="this_is_not_happening">You should not be here. Contact us.</string>
 
-    <!-- Accounts -->
-    <string name="title_activity_accounts">Accounts</string>
-    <string name="no_accounts">There is no accounts</string>
+	<!-- Login -->
+	<string name="email">e-mail</string>
+	<string name="password">password</string>
+	<string name="login">login</string>
 
-    <!-- Reports -->
-    <string name="title_activity_extract">Extract</string>
-    <string name="title_activity_summary">Year summary</string>
-    <string name="no_extract">There is no moves for this month</string>
-    <string name="no_summary">There is no moves for this year</string>
-    <string name="total">%s total</string>
-    <string name="change_date">change</string>
-    <string name="sure_to_delete">Do you really want to DELETE Move \'%s\'?"</string>
-    <string name="edit">edit</string>
-    <string name="delete">delete</string>
-    <string name="check">check</string>
-    <string name="uncheck">uncheck</string>
+	<!-- Accounts -->
+	<string name="title_activity_accounts">Accounts</string>
+	<string name="no_accounts">There is no accounts</string>
 
-    <!-- Move -->
-    <string name="title_activity_move">Move</string>
-    <string name="description">description</string>
-    <string name="date">date</string>
-    <string name="category">category</string>
-    <string name="nature">nature</string>
-    <string name="account">account</string>
-    <string name="value">value</string>
-    <string name="amount">qty</string>
-    <string name="pick">pick</string>
-    <string name="use_detailed">++</string>
-    <string name="use_simple">––</string>
-    <string name="add_detail">+</string>
-    <string name="remove_detail">–</string>
-    <string name="fill_all">Fill all fields to add a detail.</string>
-    <string name="account_in">in</string>
-    <string name="account_out">out</string>
+	<!-- Reports -->
+	<string name="title_activity_extract">Extract</string>
+	<string name="title_activity_summary">Year summary</string>
+	<string name="no_extract">There is no moves for this month</string>
+	<string name="no_summary">There is no moves for this year</string>
+	<string name="total">%s total</string>
+	<string name="change_date">change</string>
+	<string name="sure_to_delete">Do you really want to DELETE Move \'%s\'?"</string>
+	<string name="edit">edit</string>
+	<string name="delete">delete</string>
+	<string name="check">check</string>
+	<string name="uncheck">uncheck</string>
 
-    <!-- Settings -->
-    <string name="title_activity_settings">Settings</string>
-    <string name="settings_warning">This settings applies to mobile and web</string>
-    <string name="use_categories">Use categories</string>
-    <string name="settings_saved">Settings applied!</string>
+	<!-- Move -->
+	<string name="title_activity_move">Move</string>
+	<string name="description">description</string>
+	<string name="date">date</string>
+	<string name="category">category</string>
+	<string name="nature">nature</string>
+	<string name="account">account</string>
+	<string name="value">value</string>
+	<string name="amount">qty</string>
+	<string name="pick">pick</string>
+	<string name="use_detailed">++</string>
+	<string name="use_simple">––</string>
+	<string name="add_detail">+</string>
+	<string name="remove_detail">–</string>
+	<string name="fill_all">Fill all fields to add a detail.</string>
+	<string name="account_in">in</string>
+	<string name="account_out">out</string>
+
+	<!-- Settings -->
+	<string name="title_activity_settings">Settings</string>
+	<string name="settings_warning">This settings applies to mobile and web</string>
+	<string name="use_categories">Use categories</string>
+	<string name="settings_saved">Settings applied!</string>
 	<string name="move_check">Move can be checked / unchecked</string>
 
 </resources>

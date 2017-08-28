@@ -12,11 +12,11 @@ class SafeTicket
 	{
 		String machineId = Unique.GetKey(context);
 
-        if (machineId.length() > 13)
-        {
-            int remove = machineId.length() - 13;
-            machineId = machineId.substring(remove);
-        }
+		if (machineId.length() > 13)
+		{
+			int remove = machineId.length() - 13;
+			machineId = machineId.substring(remove);
+		}
 
 		long factor = Long.parseLong(machineId, 16) * 27;
 		key = Long.toHexString(factor);

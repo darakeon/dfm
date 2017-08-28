@@ -14,8 +14,8 @@ import org.json.JSONObject;
 
 public class LoginActivity extends SmartActivity
 {
-    protected int contentView() { return R.layout.login; }
-    protected boolean isLoggedIn() { return false; }
+	protected int contentView() { return R.layout.login; }
+	protected boolean isLoggedIn() { return false; }
 
 
 	@Override
@@ -23,11 +23,11 @@ public class LoginActivity extends SmartActivity
 	{
 		super.onCreate(savedInstanceState);
 
-        if (getIntent().getBooleanExtra("EXIT", false))
-        {
-            finish();
-            return;
-        }
+		if (getIntent().getBooleanExtra("EXIT", false))
+		{
+			finish();
+			return;
+		}
 
 		if (Authentication.IsLoggedIn())
 		{

@@ -42,7 +42,7 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 
 	protected String doInBackground(Void... urls)
 	{
-	    HttpClient client = new DefaultHttpClient();
+		HttpClient client = new DefaultHttpClient();
 
 		try
 		{
@@ -52,21 +52,21 @@ class SiteConnector extends AsyncTask<Void, Void, String>
 					: client.execute(get);
 					
 			if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
-	        {
-	            error = response.getStatusLine().getReasonPhrase();
-	        }
+			{
+				error = response.getStatusLine().getReasonPhrase();
+			}
 			else
 			{
-		        try
-		        {
-		        	return EntityUtils.toString(response.getEntity()); 
+				try
+				{
+					return EntityUtils.toString(response.getEntity());
 				}
-		        catch (ParseException e)
-		        {
+				catch (ParseException e)
+				{
 					error = request.activity.getString(R.string.error_convert_result) + ": [parse] " + e.getMessage();
 				}
-		        catch (IOException e)
-		        {
+				catch (IOException e)
+				{
 					error = request.activity.getString(R.string.error_convert_result) + ": [io] " + e.getMessage();
 				}
 			}

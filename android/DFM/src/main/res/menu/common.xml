@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/action_refresh"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="@string/action_refresh"
-        android:icon="@drawable/refresh"
-        android:onClick="refresh" />
+	<item
+		android:id="@+id/action_refresh"
+		android:orderInCategory="100"
+		android:showAsAction="always"
+		android:title="@string/action_refresh"
+		android:icon="@drawable/refresh"
+		android:onClick="refresh" />
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="@string/title_activity_settings"
-        android:icon="@drawable/settings"
-        android:onClick="goToSettings" />
+	<item
+		android:id="@+id/action_settings"
+		android:orderInCategory="100"
+		android:showAsAction="always"
+		android:title="@string/title_activity_settings"
+		android:icon="@drawable/settings"
+		android:onClick="goToSettings" />
 
-    <item
-        android:id="@+id/action_logout"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="@string/action_logout"
-        android:icon="@drawable/logoff"
-        android:onClick="logout" />
+	<item
+		android:id="@+id/action_logout"
+		android:orderInCategory="100"
+		android:showAsAction="always"
+		android:title="@string/action_logout"
+		android:icon="@drawable/logoff"
+		android:onClick="logout" />
 
-    <item
-        android:id="@+id/action_close"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="@string/action_close"
-        android:icon="@drawable/close"
-        android:onClick="close" />
+	<item
+		android:id="@+id/action_close"
+		android:orderInCategory="100"
+		android:showAsAction="always"
+		android:title="@string/action_close"
+		android:icon="@drawable/close"
+		android:onClick="close" />
 
 </menu>

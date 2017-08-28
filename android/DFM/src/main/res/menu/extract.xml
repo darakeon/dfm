@@ -1,24 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_move"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/title_activity_move"
-        android:onClick="goToMove" />
+	<item
+		android:id="@+id/action_move"
+		android:orderInCategory="100"
+		android:showAsAction="never"
+		android:title="@string/title_activity_move"
+		android:onClick="goToMove" />
 
-    <item
-        android:id="@+id/action_summary"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/title_activity_summary"
-        android:onClick="goToSummary" />
-    
-    <item
-        android:id="@+id/action_accounts"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/title_activity_accounts"
-        android:onClick="goToAccounts" />
+	<item
+		android:id="@+id/action_summary"
+		android:orderInCategory="100"
+		android:showAsAction="never"
+		android:title="@string/title_activity_summary"
+		android:onClick="goToSummary" />
+
+	<item
+		android:id="@+id/action_accounts"
+		android:orderInCategory="100"
+		android:showAsAction="never"
+		android:title="@string/title_activity_accounts"
+		android:onClick="goToAccounts" />
 
 </menu>
