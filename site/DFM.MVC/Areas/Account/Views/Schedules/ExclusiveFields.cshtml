@@ -1,0 +1,22 @@
+﻿@using DFM.Entities.Enums
+@model SchedulesCreateModel
+
+<hr/>
+
+@Html.HiddenFor(m => m.Frequency)
+
+<div class="row">
+
+	<div class="col-sm-4">
+		@Html.Partial("Frequency")
+	</div>
+
+	<div class="col-sm-4">
+		@Html.Partial("Repeating")
+	</div>
+
+	<div class="col-sm-4">
+		@Html.Partial("Installment")
+	</div>
+
+</div>

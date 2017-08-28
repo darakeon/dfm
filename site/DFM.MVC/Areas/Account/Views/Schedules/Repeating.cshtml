@@ -1,0 +1,17 @@
+﻿@model SchedulesCreateModel
+
+<div class="form-group checkbox">
+	<label for="@Html.IdFor(m => m.Boundless)">
+		@Html.CheckBoxFor(m => m.Boundless, new { @class = "check-toggle", data_to_disable = ".boundless-disable" })
+		@MultiLanguage.Dictionary["Boundless"]
+	</label>
+</div>
+
+<div class="form-group form-group-sm">
+	<div class="input-group input-group-sm">
+		@Html.TextBoxFor(m => m.Times, new { @class = "form-control boundless-disable" })
+		<span class="input-group-addon">
+			@MultiLanguage.Dictionary["Times"]
+		</span>
+	</div>
+</div>

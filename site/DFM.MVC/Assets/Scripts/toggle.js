@@ -5,7 +5,7 @@
 
 	$(".button-toggle").click(function () {
 
-		$(this).closest(".btn-group")
+		$(this).closest(".btn-group, .btn-group-vertical")
 			.find(".active").removeClass("active");
 
 		$(this).toggleClass("active");

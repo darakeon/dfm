@@ -1,0 +1,8 @@
+﻿@model SchedulesCreateModel
+
+<div class="form-group checkbox">
+	<label for="@Html.IdFor(m => m.ShowInstallment)">
+		@Html.CheckBoxFor(m => m.ShowInstallment)
+		@MultiLanguage.Dictionary["ShowInstallment"]
+	</label>
+</div>
