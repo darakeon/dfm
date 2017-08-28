@@ -29,8 +29,7 @@ public class Request
 	private HashMap<String, Object> parameters;
 
 	private ProgressDialog progress;
-	private Response response; 
-	private SiteConnector connector;
+    private SiteConnector connector;
 	
 	
 	public Request(SmartActivity activity, String url)
@@ -180,7 +179,9 @@ public class Request
 	
 	void HandleResponse(String json, String errorMessage, Step step)
 	{
-		if (errorMessage != null)
+        Response response;
+
+        if (errorMessage != null)
 		{
 			response = new Response(errorMessage);
 		}
@@ -229,7 +230,7 @@ public class Request
 		{
 			progress.dismiss();
 			progress = null;
-	    } catch (IllegalArgumentException e) { }
+	    } catch (IllegalArgumentException ignored) { }
 	}
 	
 	
