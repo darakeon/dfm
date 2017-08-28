@@ -9,13 +9,14 @@
              Extensions to relation 1:1
             </summary>
         </member>
-        <member name="M:Ak.NHibernate.AutoMapping.AutoMappingOne2One.IsWeakEntity``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="M:Ak.NHibernate.AutoMapping.AutoMappingOne2One.IsWeakEntity``2(FluentNHibernate.Automapping.AutoMapping{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,``0}})">
             <summary>
              Used on weak entity of 1:1.
              Use HasOne on the strong entity mapping.
             </summary>
             <param name="mapping">Object received in AutoMappingOverride</param>
-            <param name="memberExpression">Lambda of entity that is the wrong on relation</param>
+            <param name="propertyExpression">Lambda of property with correspondent entity</param>
+            <param name="parentExpression">Lambda of property that represents this entity in other entity</param>
         </member>
         <member name="T:Ak.NHibernate.Base.BaseData`1">
             <summary>
@@ -32,6 +33,12 @@
             <summary>
             Initializes DB reader/writer
             </summary>
+        </member>
+        <member name="T:Ak.NHibernate.Base.BaseRepository`1.DelegateAction">
+            <summary>
+            Signature of methods to execute on Save or Update
+            </summary>
+            <param name="entity"></param>
         </member>
         <member name="M:Ak.NHibernate.Base.BaseRepository`1.SaveOrUpdate(`0,Ak.NHibernate.Base.BaseRepository{`0}.DelegateAction[])">
             <summary>
@@ -98,12 +105,6 @@
             </summary>
             <param name="condition">Lambda expression condition</param>
         </member>
-        <member name="T:Ak.NHibernate.Base.BaseRepository`1.DelegateAction">
-            <summary>
-            Signature of methods to execute on Save or Update
-            </summary>
-            <param name="entity"></param>
-        </member>
         <member name="T:Ak.NHibernate.Base.BaseService">
             <summary>
             Base for services, to have transaction
@@ -137,114 +138,6 @@
         <member name="M:Ak.NHibernate.Base.SearchItem`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
             <param name="property">Lambda of property</param>
             <param name="term">Text to search</param>
-        </member>
-        <member name="T:Ak.NHibernate.Helpers.DBMS">
-            <summary>
-            List of accepted DBMSs
-            </summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.MySQL">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2000">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2005">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2008">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql7">
-            <summary></summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.Postgre">
-            <summary>Doesn't need SERVER property</summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.Oracle9">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.Oracle10">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBMS.SQLite">
-            <summary>Doesn't need DATABASE property</summary>
-        </member>
-        <member name="T:Ak.NHibernate.Helpers.DBAction">
-            <summary>
-             Action for DB when create SessionFactory
-            </summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBAction.None">
-            <summary> 
-             Don't even validate the schema.
-             The errors will appear just when the entity is accessed.
-            </summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBAction.Recreate">
-            <summary>
-             Drop and Create the DB.
-             The saved data will be LOST.
-            </summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBAction.Update">
-            <summary>
-             Just ajust the DB to match the entities.
-             Can recreate foreign keys.
-            </summary>
-        </member>
-        <member name="F:Ak.NHibernate.Helpers.DBAction.Validate">
-            <summary>
-             Verify errors on entities and mapping.
-             Avoid error to just appear when entities are accessed.
-            </summary>
-        </member>
-        <member name="T:Ak.NHibernate.NHManager">
-            <summary>
-            Session Manager
-            </summary>
-        </member>
-        <member name="M:Ak.NHibernate.NHManager.Open">
-            <summary>
-            Open Session and SessionOld to use
-            </summary>
-        </member>
-        <member name="M:Ak.NHibernate.NHManager.Start``2">
-            <summary>
-            Starts session factory
-            </summary>
-            <typeparam name="TMap">AutoMappingOverride sample</typeparam>
-            <typeparam name="TEntity">Entity sample</typeparam>
-        </member>
-        <member name="M:Ak.NHibernate.NHManager.Error">
-            <summary>
-            Handle error case
-            </summary>
-        </member>
-        <member name="M:Ak.NHibernate.NHManager.Close">
-            <summary>
-            Close session
-            </summary>
-        </member>
-        <member name="M:Ak.NHibernate.NHManager.End">
-            <summary>
-            Finishes session factory
-            </summary>
-        </member>
-        <member name="P:Ak.NHibernate.NHManager.Session">
-            <summary>
-            Communicates with DB
-            </summary>
-        </member>
-        <member name="P:Ak.NHibernate.NHManager.SessionOld">
-            <summary>
-            Helps to get old data without messing with changed entities
-            </summary>
-        </member>
-        <member name="P:Ak.NHibernate.NHManager.IsActive">
-            <summary>
-            Verify whether can use session
-            </summary>
         </member>
         <member name="T:Ak.NHibernate.Base.SessionBuilder">
             <summary>
@@ -316,6 +209,15 @@
             </summary>
             <param name="where">Lambda expression</param>
         </member>
+        <member name="M:Ak.NHibernate.Base.Query`1.FilterWithAscending``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Type[])">
+            <summary>
+            To make a filter with ascending entities
+            </summary>
+            <typeparam name="TFinalEntity">The entity with the property to be compared</typeparam>
+            <param name="where">Lambda for filter</param>
+            <param name="levels">All the entities between current and final</param>
+            <returns></returns>
+        </member>
         <member name="M:Ak.NHibernate.Base.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
             <summary>
             Search for text inside entity property values
@@ -356,9 +258,121 @@
         <member name="P:Ak.NHibernate.Base.Query`1.UniqueResult">
             <summary>
             Execute the query, return just one result
-            It will throw Exception
             </summary>
             <exception cref="T:NHibernate.NonUniqueResultException">If there is more than one result from constructed query</exception>
+        </member>
+        <member name="P:Ak.NHibernate.Base.Query`1.FirstOrDefault">
+            <summary>
+            Return first result of list, or null if list is empty
+            </summary>
+        </member>
+        <member name="T:Ak.NHibernate.Helpers.DBMS">
+            <summary>
+            List of accepted DBMSs
+            </summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.MySQL">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2000">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2005">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql2008">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.MsSql7">
+            <summary></summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.Postgre">
+            <summary>Doesn't need SERVER property</summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.Oracle9">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.Oracle10">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBMS.SQLite">
+            <summary>Doesn't need DATABASE property</summary>
+        </member>
+        <member name="T:Ak.NHibernate.Helpers.DBAction">
+            <summary>
+             Action for DB when create SessionFactory
+            </summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBAction.None">
+            <summary> 
+             Don't even validate the schema.
+             The errors will appear just when the entity is accessed.
+            </summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBAction.Recreate">
+            <summary>
+             Drop and Create the DB.
+             The saved data will be LOST.
+            </summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBAction.Update">
+            <summary>
+             Just ajust the DB to match the entities.
+             Can recreate foreign keys.
+            </summary>
+        </member>
+        <member name="F:Ak.NHibernate.Helpers.DBAction.Validate">
+            <summary>
+             Verify errors on entities and mapping.
+             Avoid error to just appear when entities are accessed.
+            </summary>
+        </member>
+        <member name="T:Ak.NHibernate.NHManager">
+            <summary>
+            Session Manager
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.Session">
+            <summary>
+            Communicates with DB
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.SessionOld">
+            <summary>
+            Helps to get old data without messing with changed entities
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Open">
+            <summary>
+            Open Session and SessionOld to use
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Start``2">
+            <summary>
+            Starts session factory
+            </summary>
+            <typeparam name="TMap">AutoMappingOverride sample</typeparam>
+            <typeparam name="TEntity">Entity sample</typeparam>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Error">
+            <summary>
+            Handle error case
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.Close">
+            <summary>
+            Close session
+            </summary>
+        </member>
+        <member name="M:Ak.NHibernate.NHManager.End">
+            <summary>
+            Finishes session factory
+            </summary>
+        </member>
+        <member name="P:Ak.NHibernate.NHManager.IsActive">
+            <summary>
+            Verify whether can use session
+            </summary>
         </member>
         <member name="T:Ak.NHibernate.UserPassed.AutoMappingInfo`2">
             <summary>

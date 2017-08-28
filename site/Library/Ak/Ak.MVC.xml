@@ -51,6 +51,16 @@
             </summary>
             <param name="request">Current Request of the Controller</param>
         </member>
+        <member name="P:Ak.MVC.Authentication.Authenticate.IsAuthenticated">
+            <summary>
+             Whether there is user logged-in at the site
+            </summary>
+        </member>
+        <member name="P:Ak.MVC.Authentication.Authenticate.Username">
+            <summary>
+             Return the username that is logged-in
+            </summary>
+        </member>
         <member name="M:Ak.MVC.Authentication.Authenticate.CleanIfDead(System.Web.HttpRequestBase)">
             <summary>
             Clean the session if the login is out on core, 
@@ -65,16 +75,6 @@
             </summary>
             <param name="password"></param>
             <returns></returns>
-        </member>
-        <member name="P:Ak.MVC.Authentication.Authenticate.IsAuthenticated">
-            <summary>
-             Whether there is user logged-in at the site
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Authentication.Authenticate.Username">
-            <summary>
-             Return the username that is logged-in
-            </summary>
         </member>
         <member name="T:Ak.MVC.Authentication.IRole">
             <summary>
@@ -137,6 +137,11 @@
             (copy the View naming it CheckboxList.cshtml to Views/Shared/EditorTemplates)
             </summary>
         </member>
+        <member name="P:Ak.MVC.Forms.CheckBoxList.Items">
+            <summary>
+            Items of CheckBoxList
+            </summary>
+        </member>
         <member name="M:Ak.MVC.Forms.CheckBoxList.#ctor">
             <summary>
             Constructor for MVC build
@@ -154,20 +159,15 @@
             Get the chosen ids
             </summary>
         </member>
+        <member name="T:Ak.MVC.Forms.CheckBoxList.CheckBoxItem">
+            <summary>
+            Item for CheckBoxList
+            </summary>
+        </member>
         <member name="F:Ak.MVC.Forms.CheckBoxList.View">
             <summary>
             HTML to create the EditorFor
             Past it in Views/Shared/EditorTemplates/CheckboxList.cshtml
-            </summary>
-        </member>
-        <member name="P:Ak.MVC.Forms.CheckBoxList.Items">
-            <summary>
-            Items of CheckBoxList
-            </summary>
-        </member>
-        <member name="T:Ak.MVC.Forms.CheckBoxList.CheckBoxItem">
-            <summary>
-            Item for CheckBoxList
             </summary>
         </member>
         <member name="T:Ak.MVC.Forms.HtmlHelperExtension">

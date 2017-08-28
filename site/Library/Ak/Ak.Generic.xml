@@ -25,6 +25,90 @@
              Whether an object is in a list
             </summary>
         </member>
+        <member name="T:Ak.Generic.Collection.GroupedCollection`2">
+            <summary>
+            Collection Grouped by one of the properties of the original IList
+            </summary>
+            <typeparam name="TI">Type of the Items of the Group</typeparam>
+            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.#ctor">
+            <summary>
+            Collection Grouped by one of the properties of the original IList
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.Add(`0)">
+            <summary>
+             Add an Item to the list, evaluation the Group whether it belongs
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
+            <summary>
+             Add an List of the Item to the list, evaluation the Group whether it belongs
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
+            <summary>
+             Return a Group of items
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.GroupedCollection`2.List">
+            <summary>
+             Return the list of Groups and itens
+             Recommended when is needed to use Linq
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.ToString">
+            <summary> Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </summary>
+            <returns> A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </returns>
+        </member>
+        <member name="M:Ak.Generic.Collection.GroupedCollection`2.GetEnumerator">
+            <summary>
+             To make ForEach
+            </summary>
+        </member>
+        <member name="T:Ak.Generic.Collection.ItemGroup`2">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+            <typeparam name="TI">Type of the Items of the Group</typeparam>
+            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor(`1)">
+            <summary>
+            Item of a Grouped Collection
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.Group">
+            <summary>
+             The group chosen of this list
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.Add(`0)">
+            <summary>
+             Add an item for this Group
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.Item(System.Int32)">
+            <summary>
+             Get an item by its position
+            </summary>
+        </member>
+        <member name="P:Ak.Generic.Collection.ItemGroup`2.List">
+            <summary>
+             Return the list of objects of this group
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Collection.ItemGroup`2.GetEnumerator">
+            <summary>
+             To make ForEach
+            </summary>
+        </member>
         <member name="T:Ak.Generic.DB.IEntity">
             <summary>
             Minimum entity for DB
@@ -90,90 +174,6 @@
             <summary>
             </summary>
         </member>
-        <member name="T:Ak.Generic.Collection.GroupedCollection`2">
-            <summary>
-            Collection Grouped by one of the properties of the original IList
-            </summary>
-            <typeparam name="TI">Type of the Items of the Group</typeparam>
-            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.#ctor">
-            <summary>
-            Collection Grouped by one of the properties of the original IList
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.Add(`0)">
-            <summary>
-             Add an Item to the list, evaluation the Group whether it belongs
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
-            <summary>
-             Add an List of the Item to the list, evaluation the Group whether it belongs
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.ToString">
-            <summary> Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </summary>
-            <returns> A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </returns>
-        </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.GetEnumerator">
-            <summary>
-             To make ForEach
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
-            <summary>
-             Return a Group of items
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.List">
-            <summary>
-             Return the list of Groups and itens
-             Recommended when is needed to use Linq
-            </summary>
-        </member>
-        <member name="T:Ak.Generic.Collection.ItemGroup`2">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-            <typeparam name="TI">Type of the Items of the Group</typeparam>
-            <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor(`1)">
-            <summary>
-            Item of a Grouped Collection
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.Add(`0)">
-            <summary>
-             Add an item for this Group
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.GetEnumerator">
-            <summary>
-             To make ForEach
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Group">
-            <summary>
-             The group chosen of this list
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Item(System.Int32)">
-            <summary>
-             Get an item by its position
-            </summary>
-        </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.List">
-            <summary>
-             Return the list of objects of this group
-            </summary>
-        </member>
         <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
             <summary>
              Extension for Exception Base Class
@@ -217,6 +217,17 @@
              String format with words instead of number (e.g. {data} instead {0})
             </summary>
         </member>
+        <member name="T:Ak.Generic.Extensions.Token">
+            <summary>
+            String Guid
+            </summary>
+        </member>
+        <member name="M:Ak.Generic.Extensions.Token.New">
+            <summary>
+            Generates new Guid
+            </summary>
+            <returns>Guid without dashes ("-")</returns>
+        </member>
         <member name="T:Ak.Generic.Reflection.Property">
             <summary>
              Helper of PropertyInfo
@@ -236,17 +247,6 @@
             <summary>
             Parent type
             </summary>
-        </member>
-        <member name="T:Ak.Generic.Extensions.Token">
-            <summary>
-            String Guid
-            </summary>
-        </member>
-        <member name="M:Ak.Generic.Extensions.Token.New">
-            <summary>
-            Generates new Guid
-            </summary>
-            <returns>Guid without dashes ("-")</returns>
         </member>
     </members>
 </doc>
