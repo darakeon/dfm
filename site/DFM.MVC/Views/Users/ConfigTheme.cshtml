@@ -17,7 +17,7 @@
 			@foreach (var theme in Model.Theme.ThemeList)
 			{
 				<button class="btn btn-sm btn-default theme-changer @(theme == Model.UserTheme ? "active" : "")"
-				        data-theme="@theme.ToString().ToLower()" type="button">
+				        data-theme="@theme" type="button">
 					@theme
 				</button>
 			}
