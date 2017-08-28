@@ -9,11 +9,12 @@
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoSchedules"];
 
 	var useCategories = Service.Current.User.Config.UseCategories;
+	var descriptionSize = useCategories ? 2 : 4;
 }
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-2">
+		<th class="col-sm-@descriptionSize">
 			@MultiLanguage.Dictionary["Description"]
 		</th>
 
@@ -36,11 +37,11 @@
 @foreach (var schedule in Model.ScheduleList)
 {
 	<tr class="row">
-		<td class="col-sm-2">@schedule.Description</td>
+		<td class="col-sm-@descriptionSize">@schedule.Description</td>
 		
 		@if (useCategories)
 		{
-			<td class="col-sm-2 text-center">@(schedule.Category == null ? "---" : schedule.Category.Name)</td>
+			<td class="col-sm-2 text-center">@(schedule.Category?.Name ?? "---")</td>
 		}
 
 		<td class="col-sm-2 text-center">@schedule.Date.ToShortDateString()</td>
