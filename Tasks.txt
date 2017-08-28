@@ -108,7 +108,7 @@ VERSÃO 3.0.1.0 (Little change) - 7
 VERSÃO 3.0.0.1 (System) - 11
 ================================================================================================
 						Colocar data e categoria na mesma linha na move create/edit do mobile
-						"Cancelar" não deve recarregar a página quando não dá pra verificar licença
+2017-04-08	2017-04-08	"Cancelar" não deve recarregar a página quando não dá pra verificar licença
 2017-04-08	2017-04-08	Corrigir layout paisagem do extrato
 2017-04-08	2017-04-08	Resolver OutOfMemoryError ao carregar a imagem da entrada
 2017-04-08	2017-04-08	Verificar permissão read state do android

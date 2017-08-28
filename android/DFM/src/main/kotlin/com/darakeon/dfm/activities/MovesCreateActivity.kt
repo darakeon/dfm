@@ -290,7 +290,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		val valueStr = form.getValue(R.id.detail_value)
 
 		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty()) {
-			message.alertError(getString(R.string.fill_all))
+			message.alertError(R.string.fill_all)
 			return
 		}
 

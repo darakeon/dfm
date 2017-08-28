@@ -9,48 +9,61 @@ import com.darakeon.dfm.activities.objects.SmartStatic
 
 class Message<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
 
+	val cancelClickListener: OnClickListener = OnClickListener {
+		dialog, which -> dialog.cancel()
+	}
+
 
 	fun alertYesNo(message: String, answer: IYesNoDialogAnswer) {
-		alertError(message, R.string.ok_button, true, OnClickListener { dialog, which ->
+
+		val listener = OnClickListener { dialog, which ->
 			when (which) {
 				DialogInterface.BUTTON_POSITIVE -> answer.YesAction()
 				DialogInterface.BUTTON_NEGATIVE -> answer.NoAction()
 			}
 
 			dialog.cancel()
-		})
+		}
+
+		alertError(message, R.string.ok_button, listener, true)
 	}
 
 
-	fun alertError(message: Any) {
-		alertError(message.toString())
+	fun alertError(resMessage: Int) {
+		alertError(activity.getString(resMessage))
 	}
 
 	fun alertError(resMessage: Int, e: Exception) {
 		alertError(activity.getString(resMessage) + ": " + e.message)
 	}
 
-	private fun alertError(message: String, resOkButton: Int = R.string.ok_button, hasCancelButton: Boolean = false, clickListener: OnClickListener = OnClickListener { dialog, which -> dialog.cancel() }) {
-		val builder = AlertDialog.Builder(activity)
-				.setTitle(R.string.error_title)
-				.setMessage(message)
-
-		if (resOkButton != 0)
-			builder.setPositiveButton(resOkButton, clickListener)
-
-		if (hasCancelButton)
-			builder.setNegativeButton(R.string.cancel_button, clickListener)
-
-		builder.show()
+	fun alertError(message: String) {
+		alertError(message, R.string.ok_button, cancelClickListener, false)
 	}
 
 	fun alertRetryLicense() {
 		val message = activity.getString(R.string.license_retry)
 
-		alertError(message, R.string.try_again, true, OnClickListener { dialog, which ->
+		val listener = OnClickListener { dialog, which ->
 			dialog.cancel()
 			activity.refresh()
-		})
+		}
+
+		alertError(message, R.string.try_again, listener, true)
+	}
+
+	private fun alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
+		val builder = AlertDialog.Builder(activity)
+				.setTitle(R.string.error_title)
+				.setMessage(message)
+
+		if (resOkButton != 0)
+			builder.setPositiveButton(resOkButton, okClickListener)
+
+		if (hasCancelButton)
+			builder.setNegativeButton(R.string.cancel_button, cancelClickListener)
+
+		builder.show()
 	}
 
 
