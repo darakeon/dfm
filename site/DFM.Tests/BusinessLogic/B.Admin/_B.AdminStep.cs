@@ -71,6 +71,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			set { Set("newCategoryName", value); }
 		}
 
+
+
+		private static BootstrapTheme theme
+		{
+			get { return Get<BootstrapTheme>("theme"); }
+			set { Set("theme", value); }
+		}
+
 		#endregion
 
 
@@ -917,6 +925,32 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		#endregion
 		
+		#region ChangeTheme
+		[Given(@"a theme (\w+)")]
+		public void GivenAThemeSlate(BootstrapTheme chosenTheme)
+		{
+			theme = chosenTheme;
+		}
+
+		[When(@"I try to change the Theme")]
+		public void WhenITryToChangeTheTheme()
+		{
+			try
+			{
+				Service.Admin.ChangeTheme(theme);
+            }
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the Theme will be (\w+)")]
+		public void ThenTheThemeWillBeSlate(BootstrapTheme chosenTheme)
+		{
+			Assert.AreEqual(chosenTheme, Current.User.Config.Theme);
+		}
+		#endregion ChangeTheme
 
 
 

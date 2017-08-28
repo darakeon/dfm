@@ -163,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>k.UpdateConfig.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\B.Admin\n. ChangeTheme.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>n. ChangeTheme.feature</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogic\B.Admin\_B.AdminStep.cs" />
     <Compile Include="BusinessLogic\B.Admin\d.CloseAccount.feature.cs">
       <DependentUpon>d.CloseAccount.feature</DependentUpon>
@@ -365,6 +370,10 @@
     <None Include="BusinessLogic\B.Admin\k.UpdateConfig.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>k.UpdateConfig.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\B.Admin\n. ChangeTheme.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>n. ChangeTheme.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\C.Money\a.SaveMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
