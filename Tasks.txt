@@ -20,12 +20,10 @@ VERSÃO 4.5.0.0 (Big change) - 5
 						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 4.4.1.0 (Little change) - 4
+VERSÃO 4.4.1.0 (Little change) - 2
 ================================================================================================
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Colocar nome (ou apelido) no sign up
-						Trocar o datepicker
-						Permitir limite de conta negativo
 
 VERSÃO 4.4.0.0 (Big change) - 5
 ================================================================================================
@@ -113,7 +111,7 @@ VERSÃO 3.1.0.0 (Big change) - 4
 						Tema dark no android (para Slate e Cyborg)
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 13
+VERSÃO 3.0.0.0 (All new) - 15
 ================================================================================================
 						Video do porquinho
 						Adicionar aviso de cookies no logon (remember me)
@@ -122,6 +120,8 @@ VERSÃO 3.0.0.0 (All new) - 13
 						Link unsubscribe
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
+						Permitir limite de conta negativo
+2017-03-19	2017-03-19	Trocar o datepicker
 2017-03-01				Layout Bootstrap
 2017-03-03	2017-03-05	Corrigir problema com checkbox de manter logado
 2017-02-24	2017-02-25	Arrumar packages do android
