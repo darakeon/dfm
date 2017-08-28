@@ -4,7 +4,13 @@
 
 <html>
 <head>
-	<title>DfM - @ViewBag.Title</title>
+	<title>
+		@(
+			ViewBag.Title != null 
+				? "DfM - " + ViewBag.Title
+				: "Don't fly Money"
+		)
+	</title>
 
 	<link rel="icon" href="/Assets/Images/pig.ico" />
 
