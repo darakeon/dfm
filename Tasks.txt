@@ -103,6 +103,7 @@ VERSÃO 2.0.2.0 (Little change) - 7?
 						Corrigir url do logo
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
+2015-08-30	2015-08-30	Migrar para android studio
 2015-02-14	 			Colocar botão CANCEL em Settings e Move (mobile)
 2015-02-14	2015-02-14	Colocar in e out no relatório anual
 2015-02-14	2015-02-14	Colocar URLReferrer em report de 404
