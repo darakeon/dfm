@@ -97,6 +97,7 @@ VERSÃO 3.0.1.0 (Little change) - 2
 ================================================================================================
 						Permitir marcar todas as movimentações antes de uma data
 						Colocar campos de datetime ao lado do botão no mobile
+						Possibilitar marcar uma movimentação em conta fechada
 
 VERSÃO 3.0.0.0 (All new) - 2
 ================================================================================================
