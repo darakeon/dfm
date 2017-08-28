@@ -93,12 +93,18 @@ VERSÃO 2.2.0.0 (Big change) - 5
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
 
-VERSÃO 2.1.1.0 (Bug fix) - 3
+VERSÃO 2.1.1.1 (Bug fix) - 3
 ================================================================================================
 						Usar packages do Nuget
 						Ajustar NH de site para novas formas
 						Trocar apache por Volley
 						Ajustar layouts de android para usar formato novo
+
+VERSÃO 2.1.1.0 (Little change) - 3
+================================================================================================
+						Remover validação front do DFM (problema de data)
+						Possibilitar trocar e-mail
+						Possibilitar trocar senha
 
 VERSÃO 2.1.0.0 (Big change) - 6
 ================================================================================================
