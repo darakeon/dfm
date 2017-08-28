@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.dontflymoney.view"
-	android:versionCode="002001004003"
-	android:versionName="2.1.4.3"
-	android:installLocation="auto" >
-	
+<manifest package="com.dontflymoney.view"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:installLocation="auto"
+		  android:versionCode="002001004003"
+		  android:versionName="2.1.4.3">
+
 	<uses-sdk
 		android:maxSdkVersion="22"
-		android:minSdkVersion="14" />
-		
+		android:minSdkVersion="14"/>
+
 	<uses-permission
 		android:name="android.permission.INTERNET"
-		android:protectionLevel="signature" />
+		android:protectionLevel="signature"/>
 	<uses-permission
 		android:name="android.permission.ACCESS_NETWORK_STATE"
-		android:protectionLevel="signature" />
+		android:protectionLevel="signature"/>
 	<uses-permission
 		android:name="com.android.vending.CHECK_LICENSE"
-		android:protectionLevel="signature" />
-	
+		android:protectionLevel="signature"/>
+
 	<uses-feature
 		android:name="android.hardware.faketouch"
-		android:required="true" />
+		android:required="true"/>
+
+	<android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<android:uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 	<application
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/AppTheme" >
+		android:theme="@style/AppTheme">
 		<activity
-			android:name="com.dontflymoney.view.LoginActivity"
-			android:label="@string/app_name" >
+			android:name=".LoginActivity"
+			android:label="@string/app_name">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
+				<action android:name="android.intent.action.MAIN"/>
 
-				<category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="com.dontflymoney.view.AccountsActivity"
-			android:label="@string/title_activity_accounts" >
+			android:name=".AccountsActivity"
+			android:label="@string/title_activity_accounts">
 		</activity>
 		<activity
-			android:name="com.dontflymoney.view.ExtractActivity"
-			android:label="@string/title_activity_extract" >
+			android:name=".ExtractActivity"
+			android:label="@string/title_activity_extract">
 		</activity>
 		<activity
-			android:name="com.dontflymoney.view.SummaryActivity"
-			android:label="@string/title_activity_summary" >
+			android:name=".SummaryActivity"
+			android:label="@string/title_activity_summary">
 		</activity>
 		<activity
-			android:name="com.dontflymoney.view.MovesCreateActivity"
-			android:label="@string/title_activity_move" >
+			android:name=".MovesCreateActivity"
+			android:label="@string/title_activity_move">
 		</activity>
 		<activity
-			android:name="com.dontflymoney.view.SettingsActivity"
-			android:label="@string/title_activity_settings" >
+			android:name=".SettingsActivity"
+			android:label="@string/title_activity_settings">
+		</activity>
+		<activity android:name=".TestActivity">
 		</activity>
 	</application>
 
