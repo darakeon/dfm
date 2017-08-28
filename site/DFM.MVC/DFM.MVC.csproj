@@ -286,7 +286,6 @@
     <None Include="Views\Ops\Index.cshtml" />
     <None Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Test\AnalyzeDictionary.old" />
-    <Content Include="Views\Shared\_Master.old" />
     <Content Include="Views\Tokens\Disable.old" />
     <Content Include="Views\Tokens\Index.old" />
     <Content Include="Views\Tokens\Invalid.old" />
