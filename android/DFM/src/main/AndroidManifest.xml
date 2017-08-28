@@ -42,17 +42,17 @@
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
-
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="https" android:host="dontflymoney.com" />
-
 			</intent-filter>
 		</activity>
 
 		<activity
 			android:name=".activities.LoginActivity"
 			android:label="@string/login">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="https" android:host="dontflymoney.com" />
+			</intent-filter>
 		</activity>
 
 		<activity
