@@ -288,8 +288,8 @@
     <Content Include="Views\Tokens\PasswordResetSuccess.old" />
     <Content Include="Views\Tokens\UserVerificationSuccess.old" />
     <Content Include="Views\Users\Config.old" />
-    <Content Include="Views\Users\ForgotPassword.old" />
-    <Content Include="Views\Users\ForgotPasswordSuccess.old" />
+    <None Include="Views\Users\ForgotPassword.cshtml" />
+    <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
     <Content Include="Views\Users\SendVerification.old" />
     <Content Include="Views\Users\SignUpSuccess.cshtml" />
     <Content Include="Views\_ViewStart.old" />

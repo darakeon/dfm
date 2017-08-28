@@ -101,7 +101,7 @@ namespace DFM.MVC.Controllers
 			}
 
 			return ModelState.IsValid
-				? View("ForgotPasswordSuccess")
+				? BaseModelView("ForgotPasswordSuccess")
 				: View(model);
 		}
 
