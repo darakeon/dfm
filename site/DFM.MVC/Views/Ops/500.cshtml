@@ -3,11 +3,13 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Ops"];
-	Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_result.cshtml";
 
 	var messageKey = Model.EmailSent == Error.Status.Sent
 		? "InternalMessageSent"
 		: "InternalMessageNotSent";
+
+	ViewBag.Style = "danger";
 }
 
 @(MultiLanguage.Dictionary[messageKey])

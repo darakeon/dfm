@@ -280,10 +280,10 @@
     <None Include="Views\Categories\CreateEdit.cshtml" />
     <None Include="Views\Categories\Index.cshtml" />
     <None Include="Views\Logins\Index.cshtml" />
-    <Content Include="Views\Ops\404.old" />
-    <Content Include="Views\Ops\500.old" />
-    <Content Include="Views\Ops\Error.old" />
-    <Content Include="Views\Ops\Index.old" />
+    <None Include="Views\Ops\404.cshtml" />
+    <None Include="Views\Ops\500.cshtml" />
+    <None Include="Views\Ops\Error.cshtml" />
+    <None Include="Views\Ops\Index.cshtml" />
     <Content Include="Views\Schedules\Index.old" />
     <Content Include="Views\Test\AnalyzeDictionary.old" />
     <Content Include="Views\Shared\_Master.old" />
@@ -295,6 +295,7 @@
     <Content Include="Views\Tokens\UserVerificationSuccess.old" />
     <Content Include="Views\Shared\_Table.cshtml" />
     <None Include="Views\Categories\Status.cshtml" />
+    <None Include="Views\Logins\LoginType.cshtml" />
     <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ConfigEmail.cshtml" />
