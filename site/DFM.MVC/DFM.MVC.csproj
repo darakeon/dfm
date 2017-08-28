@@ -347,6 +347,7 @@
     <Content Include="Views\Users\Contract.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Views\Users\ModalContract.cshtml" />
     <None Include="Views\Users\SendVerification.cshtml" />
     <Content Include="Views\Users\SignUpSuccess.cshtml" />
     <Content Include="Areas\Account\Views\web.config">
