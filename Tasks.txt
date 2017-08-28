@@ -92,18 +92,25 @@ F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 
-VERSÃO 2.0.2.0 (Little change) - 7?
+VERSÃO 2.0.2.0 (Little change) - 10?
 ================================================================================================
 F						Colocar botão de sair (mobile)
 F						Colocar edição de movimentação (mobile)
+F						Explicar url e sinalização da conta
 F						Colocar botão CANCEL em Settings e Move (mobile)
+F						Colocar in e out no relatório anual
+R						Colocar URLReferrer em report de 404
+F						Colocar Captcha no registro de usuário
+H						Remover o cascade para filhos do NH
+B						Arrumar urls de e-mail e de robots
+R						Aumentar versão da API Android de acordo com downloads do DFM
+H						Arrumar clique do menu (clique botões direito e meio do mouse)
+B						Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 2015-01-11	2015-01-11	Rever layout empty table
-2015-01-11	2015-01-11	Aumentar versão da API Android de acordo com downloads do DFM
-2015-01-11	2015-01-11	Arrumar clique do menu (clique botões direito e meio do mouse)
-2015-01-11	2015-01-11	Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 
-VERSÃO 2.0.1.2 (System) - 2
+VERSÃO 2.0.1.2 (System) - 1
 ================================================================================================
+						Arrumar erro ao editar movimentação
 2015-01-11	2015-01-11	Arrumar lista de contas fechadas
 2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
 
