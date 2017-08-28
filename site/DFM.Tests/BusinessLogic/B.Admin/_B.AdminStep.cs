@@ -45,6 +45,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			set { Set("accountList", value); }
 		}
 
+		private static IList<Category> categoryList
+		{
+			get { return Get<IList<Category>>("categoryList"); }
+			set { Set("categoryList", value); }
+		}
+
 
 
 		private static Category oldCategory
@@ -799,7 +805,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account list will (not )?have this")]
 		public void ThenTheAccountListsWillBeThis(Boolean has, Table table)
 		{
-			var expectedList = new List<Account>(); 
+			var expectedList = new List<Account>();
 
 			foreach (var accountData in table.Rows)
 			{
@@ -824,6 +830,72 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				else
 				{
 					Assert.IsNull(account);
+				}
+			}
+		}
+		#endregion
+
+
+
+		#region GetCategoryList
+		[Given(@"I disable the category (.+)")]
+		public void GivenICloseTheCategory(String categoryName)
+		{
+			SA.Admin.DisableCategory(categoryName);
+		}
+
+		[When(@"ask for all the category list")]
+		public void WhenAskForAllTheCategoryList()
+		{
+			try
+			{
+				categoryList = SA.Admin.GetCategoryList();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[When(@"ask for the (not )?active category list")]
+		public void WhenAskForTheActiveCategoryList(Boolean active)
+		{
+			try
+			{
+				categoryList = SA.Admin.GetCategoryList(active);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the category list will (not )?have this")]
+		public void ThenTheCategoryListsWillBeThis(Boolean has, Table table)
+		{
+			var expectedList = new List<Category>();
+
+			foreach (var categoryData in table.Rows)
+			{
+				var category = new Category
+				{
+					Name = categoryData["Name"]
+				};
+
+				expectedList.Add(category);
+			}
+
+			foreach (var expected in expectedList)
+			{
+				var category = categoryList.SingleOrDefault(a => a.Name == expected.Name);
+
+				if (has)
+				{
+					Assert.IsNotNull(category);
+				}
+				else
+				{
+					Assert.IsNull(category);
 				}
 			}
 		}
