@@ -1,19 +1,41 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
     public class BaseJsonController : BaseController
     {
-        protected JsonResult JsonGet(object result)
-        {
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
+	    protected JsonResult JsonGet(Func<object> action)
+	    {
+			try
+			{
+				var model = action();
+				
+				return Json(
+					new { data = model }, 
+					JsonRequestBehavior.AllowGet
+				);
+			}
+			catch (DFMCoreException e)
+			{
+				return Json(
+					new { error = MultiLanguage.Dictionary[e] }, 
+					JsonRequestBehavior.AllowGet
+				);
+			}
 
-        protected JsonResult JsonGetError(String result)
+		}
+
+
+	    public JsonResult Uninvited()
         {
-            return Json(new { error = result }, JsonRequestBehavior.AllowGet);
+            return Json(
+				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited] }, 
+				JsonRequestBehavior.AllowGet
+			);
         }
 
         protected JsonResult JsonPostSuccess()

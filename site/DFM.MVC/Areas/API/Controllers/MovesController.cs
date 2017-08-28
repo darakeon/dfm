@@ -12,45 +12,18 @@ namespace DFM.MVC.Areas.API.Controllers
     {
         public ActionResult Extract(String accounturl, Int32 id)
         {
-            try
-            {
-                var model = new MovesExtractModel(accounturl, id);
-
-                return JsonGet(model);
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonGetError(MultiLanguage.Dictionary[e]);
-            }
+	        return JsonGet(() => new MovesExtractModel(accounturl, id));
         }
 
         public ActionResult Summary(String accounturl, Int16 id)
         {
-            try
-            {
-                var model = new MovesSummaryModel(accounturl, id);
-
-                return JsonGet(model);
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonGetError(MultiLanguage.Dictionary[e]);
-            }
+	        return JsonGet(() => new MovesSummaryModel(accounturl, id));
         }
 
 		[HttpGet]
 		public ActionResult Create(String accounturl, Int32? id)
 		{
-			try
-			{
-				var model = new MovesCreateGetModel(accounturl, id);
-
-				return JsonGet(model);
-			}
-			catch (DFMCoreException e)
-			{
-				return JsonGetError(MultiLanguage.Dictionary[e]);
-			}
+			return JsonGet(() => new MovesCreateGetModel(accounturl, id));
 		}
 
         [HttpPost]
@@ -79,7 +52,7 @@ namespace DFM.MVC.Areas.API.Controllers
 			}
 			catch (DFMCoreException e)
 			{
-				return JsonGetError(MultiLanguage.Dictionary[e]);
+				return JsonPostError(MultiLanguage.Dictionary[e]);
 			}
 		}
 

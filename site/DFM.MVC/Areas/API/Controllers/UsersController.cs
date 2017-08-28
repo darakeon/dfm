@@ -12,51 +12,41 @@ namespace DFM.MVC.Areas.API.Controllers
     {
         public ActionResult Login(String email, String password)
         {
-            var model =
-                new UsersLoginModel
-                {
-                    Email = email,
-                    Password = password,
-                };
+			return JsonGet(() =>
+			{
+				var model =
+					new UsersLoginModel
+					{
+						Email = email,
+						Password = password,
+					};
 
-            var result = model.LogOn();
+				model.LogOn();
 
-            if (result != null)
-                return JsonGetError(MultiLanguage.Dictionary[result]);
-
-            return JsonGet(new { ticket = Current.Ticket.Key });
+				return new {ticket = Current.Ticket.Key};
+			});
         }
 
 
 
         public ActionResult Logout()
         {
-            var model = new SafeModel();
+	        return JsonGet(() =>
+	        {
+		        var model = new SafeModel();
 
-            model.LogOff();
+		        model.LogOff();
 
-            return JsonGet(new { success = true });
+		        return new {success = true};
+	        });
         }
 
-
-
-        public ActionResult Uninvited()
-        {
-            return JsonGetError(MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited]);
-        }
 
 
         [DFMApiAuthorize, HttpGet]
         public ActionResult GetConfig()
         {
-            try
-            {
-                return JsonGet(new UserGetConfigModel());
-            }
-            catch (DFMCoreException e)
-            {
-                return JsonGetError(MultiLanguage.Dictionary[e]);
-            }
+	        return JsonGet(() => new UserGetConfigModel());
         }
 
         [DFMApiAuthorize, HttpPost]

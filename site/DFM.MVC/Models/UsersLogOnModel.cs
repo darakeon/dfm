@@ -16,7 +16,7 @@ namespace DFM.MVC.Models
 
 
 
-        internal DFMCoreException LogOn()
+        internal void LogOn()
         {
             try
             {
@@ -26,13 +26,16 @@ namespace DFM.MVC.Models
             {
                 if (e.Type == ExceptionPossibilities.DisabledUser)
                 {
-                    e = sendUserVerify() ?? e;
+	                var verifyError = sendUserVerify();
+
+	                if (verifyError != null)
+	                {
+		                throw verifyError;
+	                }
                 }
 
-                return e;
+                throw;
             }
-
-            return null;
         }
 
         private DFMCoreException sendUserVerify()
