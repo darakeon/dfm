@@ -96,6 +96,9 @@ F						Colocar criação de categoria (mobile)
 VERSÃO 2.0.2.0 (Little change) - 7?
 ================================================================================================
 						Corrigir problema de deletar conta que já teve movimentações
+						Verificar erro no tablet
+						Deixar salvar o programa no SD
+						Não deixar sleep quando já estiver no meio de uma requisição
 						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
 						Corrigir url do logo
 F						Colocar botão de sair (mobile)
