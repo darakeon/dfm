@@ -98,6 +98,7 @@ VERSÃO 2.0.3.1 (System) - 3
 						Corrigir problema de deletar conta que já teve movimentações
 						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
 						Corrigir problema ao abrir tela de criar movimentação (mobile)
+2015-09-10	2015-09-10	Colocar cor nos números da tela de agendamentos
 
 VERSÃO 2.0.3.0 (Little change) - 5
 ================================================================================================

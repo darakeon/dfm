@@ -54,8 +54,8 @@ else
                         : " ")
                 </td>
 
-                <td>
-                    @schedule.Total()
+                <td class="@schedule.Nature.ToString().ToLower()">
+                    @schedule.Total().ToMoney(Model.Language)
                 </td>
 
                 @{

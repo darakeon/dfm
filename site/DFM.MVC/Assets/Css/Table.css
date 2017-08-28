@@ -45,6 +45,10 @@ table.List {
 	    color: #C00;
     }
 
+    td.transfer {
+	    color: #0C0;
+    }
+
     td.image {
 	    text-align: center;
     }
