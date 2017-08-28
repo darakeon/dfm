@@ -1,0 +1,134 @@
+﻿@using DFM.MVC.Helpers
+@using DFM.MVC.Helpers.Models
+@model ReportsShowMovesModel
+
+@{
+	ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), Model.Date);
+	Layout = "~/Views/Shared/_Table.cshtml";
+
+	ViewBag.HasContent = Model.MoveList.Any();
+	ViewBag.NoContentText = MultiLanguage.Dictionary["NoMonthMoves"];
+
+	var pages = new TimePages(
+		Model.Account.BeginDate,
+		Model.Account.EndDate ?? Service.Current.User.Now(),
+		Model.Year, Model.Month, 5
+	);
+}
+
+@section TableHeader {
+
+	<tr class="row">
+		<th class="col-sm-2">@MultiLanguage.Dictionary["Description"]</th>
+
+		@if (Model.UseCategories)
+		{
+			<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Category"]</th>
+		}
+
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Date"]</th>
+		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["In"]</th>
+		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Out"]</th>
+
+		@if (Model.CanCheck)
+		{
+			<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Check"]</th>
+		}
+
+		<th class="col-sm-3 text-center" colspan="@(Model.CanCheck ? 3 : 2)">
+			@MultiLanguage.Dictionary["TODO"]
+		</th>
+	</tr>
+}
+
+@foreach (var move in Model.MoveList)
+{
+	<tr class="row">
+		<td>@move.GetDescriptionDetailed() </td>
+
+		@if (Model.UseCategories)
+		{
+			<td class="text-center">@(move.Category?.Name ?? "---")</td>
+		}
+
+		<td class="text-center">@move.Date.ToShortDateString() </td>
+
+		<td class="text-right text-info">
+			@if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
+			{
+				@move.Total().ToMoney(Model.Language)
+			}
+		</td>
+
+		<td class="text-right text-danger">
+			@if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
+			{
+				@move.Total().ToMoney(Model.Language)
+			}
+		</td>
+
+		@if (Model.CanCheck)
+		{
+			<td class="text-center">
+				<span class="glyphicon glyphicon-@(move.Checked ? "exclamation-sign text-success" : "question-sign text-danger")"></span>
+			</td>
+		}
+
+		<td class="col-sm-1 text-center">
+			<a href="@Url.Action("Edit", "Moves", new { id = move.ID })">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+		</td>
+
+		<td class="col-sm-1 text-center">
+			<a href="@Url.Action("Delete", "Moves", new {id = move.ID})" 
+					class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed())">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</td>
+
+
+		@if (Model.CanCheck)
+		{
+			<td class="col-sm-1 text-center">
+				<a href="@Url.Action(move.Checked ? "Uncheck" : "Check", new {id = move.ID})"
+						data-toggle="tooltip" data-placement="right" 
+						data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]">
+					<span class="glyphicon glyphicon-@(move.Checked ? "remove" : "ok")"></span>
+				</a>
+			</td>
+		}
+
+	</tr>
+}
+
+@section Footer {
+	<div class="row">
+		<div class="col-sm-1"></div>
+
+		<div class="col-sm-10 text-center">
+			<ul class="pagination">
+
+				<li class="@(pages.HasMoreBack ? "" : "disabled")">
+					@Html.ActionLink("«", null, new { id = pages.MoreBack.Url })
+				</li>
+
+				@foreach (var page in pages.Pages)
+				{
+					<li class="@(page == pages.Current ? "active" : "")">
+						@Html.ActionLink(page.Label, null, new {id = page.Url})
+					</li>
+				}
+
+				<li class="@(pages.HasMoreFoward ? "" : "disabled")">
+					@Html.ActionLink("»", null, new { id = pages.MoreFoward.Url })
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-1">
+			@Html.Partial("Total")
+		</div>
+
+	</div>
+}

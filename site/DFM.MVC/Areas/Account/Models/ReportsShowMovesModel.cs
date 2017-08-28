@@ -19,9 +19,6 @@ namespace DFM.MVC.Areas.Account.Models
 			Year = dateYear;
 		}
 
-		
-
-
 		public IList<Move> MoveList { get; set; }
 		
 		public Int32 Month { get; set; }
@@ -36,9 +33,5 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public Boolean CanCheck =>
 			Current.User.Config.MoveCheck;
-
-		public Boolean UseCategories =>
-			Current.User.Config.UseCategories;
-
 	}
 }

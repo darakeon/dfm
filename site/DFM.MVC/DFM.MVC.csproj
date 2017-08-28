@@ -188,6 +188,8 @@
     <Compile Include="Areas\Account\Models\ReportsShowMovesModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsSummarizeMonthsModel.cs" />
     <Compile Include="Areas\Account\Models\SchedulesCreateModel.cs" />
+    <Compile Include="Helpers\Models\TimeUnit.cs" />
+    <Compile Include="Helpers\Models\TimePages.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
@@ -236,7 +238,6 @@
     <Compile Include="Helpers\Global\RouteNames.cs" />
     <Compile Include="Helpers\Models\DateFromInt.cs" />
     <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
-    <Compile Include="Helpers\Views\TimeNavigation.cs" />
     <Compile Include="Models\AccountsCreateEditModel.cs" />
     <Compile Include="Models\AccountsIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
@@ -264,9 +265,9 @@
     <Content Include="Areas\Account\Views\Details\Add.old" />
     <Content Include="Areas\Account\Views\Moves\Create.old" />
     <Content Include="Areas\Account\Views\Moves\Edit.old" />
-    <Content Include="Areas\Account\Views\Reports\ShowMoves.old" />
+    <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
     <Content Include="Areas\Account\Views\Reports\SummarizeMonths.old" />
-    <Content Include="Areas\Account\Views\Reports\Total.old" />
+    <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Create.old" />
     <Content Include="Areas\Account\Views\Schedules\OtherFields.old" />
     <Content Include="Areas\Account\Views\Shared\_Layout.old" />
