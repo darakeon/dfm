@@ -81,6 +81,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I try to mark it as checked");
 #line 12
  testRunner.Then("I will receive no core error");
+#line 13
+  testRunner.And("the move will be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -90,14 +92,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_MarkACheckedMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Mark a checked move as not checked", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.Given("I have a move with value 10 (Out)");
+this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.When("I try to mark it as not checked");
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 17
+ testRunner.When("I try to mark it as not checked");
+#line 18
  testRunner.Then("I will receive no core error");
+#line 19
+  testRunner.And("the move will not be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

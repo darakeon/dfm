@@ -69,7 +69,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			var model = new MoneyModel();
 
-			model.ToggleMoveCheck(id, true);
+			model.CheckMove(id);
 
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
@@ -78,7 +78,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			var model = new MoneyModel();
 
-			model.ToggleMoveCheck(id, false);
+			model.UncheckMove(id);
 
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}

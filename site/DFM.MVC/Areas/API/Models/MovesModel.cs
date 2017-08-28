@@ -11,12 +11,12 @@ namespace DFM.MVC.Areas.API.Models
 
 		public static void Check(Int32 id)
 		{
-			Money.ToggleMoveCheck(id, true);
+			Money.CheckMove(id);
 		}
 
 		public static void Uncheck(Int32 id)
 		{
-			Money.ToggleMoveCheck(id, false);
+			Money.UncheckMove(id);
 		}
 	}
 }

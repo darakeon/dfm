@@ -17,34 +17,47 @@ namespace DFM.MVC.Areas.Account.Models
 			if (move == null)
 			{
 				ErrorAlert.Add("MoveNotFound");
+				return;
+			}
+			
+			var result = Money.DeleteMove(id);
+
+			if (result.Error.IsWrong())
+			{
+				var deleted = MultiLanguage.Dictionary["MoveDeletedWithoutEmail"];
+				var error = MultiLanguage.Dictionary[result.Error];
+				var message = String.Format(deleted, move.Description, error);
+				ErrorAlert.AddTranslated(message);
 			}
 			else
 			{
-				var result = Money.DeleteMove(id);
-
-				if (result.Error.IsWrong())
-				{
-					var deleted = MultiLanguage.Dictionary["MoveDeletedWithoutEmail"];
-					var error = MultiLanguage.Dictionary[result.Error];
-					var message = String.Format(deleted, move.Description, error);
-					ErrorAlert.AddTranslated(message);
-				}
-				else
-				{
-					var deleted = MultiLanguage.Dictionary["MoveDeleted"];
-					var message = String.Format(deleted, move.Description);
-					ErrorAlert.AddTranslated(message);
-				}
-
-				ReportUrl = (move.Out ?? move.In).Url();
+				var deleted = MultiLanguage.Dictionary["MoveDeleted"];
+				var message = String.Format(deleted, move.Description);
+				ErrorAlert.AddTranslated(message);
 			}
+
+			ReportUrl = (move.Out ?? move.In).Url();
 		}
 
-		public void ToggleMoveCheck(int id, Boolean @checked)
+		public void CheckMove(int id)
 		{
 			try
 			{
-				var move = Money.ToggleMoveCheck(id, @checked);
+				var move = Money.CheckMove(id);
+
+				ReportUrl = (move.Out ?? move.In).Url();
+			}
+			catch (DFMCoreException e)
+			{
+				ErrorAlert.Add(e.Type);
+			}
+		}
+
+		public void UncheckMove(int id)
+		{
+			try
+			{
+				var move = Money.UncheckMove(id);
 
 				ReportUrl = (move.Out ?? move.In).Url();
 			}

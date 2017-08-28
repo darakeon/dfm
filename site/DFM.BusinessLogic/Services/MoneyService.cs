@@ -151,7 +151,17 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public Move ToggleMoveCheck(Int32 moveId, Boolean @checked)
+		public Move CheckMove(Int32 moveId)
+		{
+			return toggleMoveCheck(moveId, true);
+		}
+
+		public Move UncheckMove(Int32 moveId)
+		{
+			return toggleMoveCheck(moveId, false);
+		}
+
+		private Move toggleMoveCheck(Int32 moveId, Boolean @checked)
 		{
 			var move = GetMoveById(moveId);
 

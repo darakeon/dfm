@@ -727,12 +727,29 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				SA.Money.ToggleMoveCheck(Move.ID, @checked);
+				if (@checked)
+				{
+					SA.Money.CheckMove(Move.ID);
+				}
+				else
+				{
+					SA.Money.UncheckMove(Move.ID);
+				}
 			}
 			catch (DFMCoreException e)
 			{
 				Error = e;
 			}
+		}
+
+
+		[Then(@"the move will (not )?be checked")]
+		public void ThenTheMoveWillBeChecked(Boolean @checked)
+		{
+			var move = SA.Money.GetMoveById(Move.ID);
+
+			Assert.IsNotNull(move);
+			Assert.AreEqual(@checked, move.Checked);
 		}
 
 		#endregion
