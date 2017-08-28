@@ -19,11 +19,8 @@
 	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CATEGORY_NAME)</small>
 </div>
 
-@section Footer
-{
-	<div class="text-right">
-		<button type="submit" class="btn btn-success">
-			@MultiLanguage.Dictionary[Model.ActionName]
-		</button>
-	</div>
+@section Footer {
+	<button type="submit" class="btn btn-success">
+		@MultiLanguage.Dictionary[Model.ActionName]
+	</button>
 }
