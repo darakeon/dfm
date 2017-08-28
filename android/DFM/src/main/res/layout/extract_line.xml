@@ -23,7 +23,12 @@
 		/>
 
 	<ImageView android:id="@+id/check_move"
-			   android:padding="10dp"
+			   android:paddingTop="13dp"
+			   android:paddingBottom="13dp"
+			   android:paddingLeft="0dp"
+			   android:paddingStart="0dp"
+			   android:paddingRight="10dp"
+			   android:paddingEnd="10dp"
 			   android:gravity="end"
 			   android:layout_width="wrap_content"
 			   android:layout_height="wrap_content"
