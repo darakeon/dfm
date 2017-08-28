@@ -3,8 +3,6 @@
 @model BaseModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Index_Welcome"];
-
 	var twitterTheme = 
 		(Model?.Theme.IsIn(BootstrapTheme.Cyborg, BootstrapTheme.Slate) ?? false)
 			? "dark" : "light";
@@ -18,26 +16,34 @@
 	<link href="/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
 }
 
+<h1>@MultiLanguage.Dictionary["Index_Welcome"]</h1>
+
 <div class="row">
 
 	<div class="col-sm-8">
 
-		<div class="panel panel-body">
-			<p>@MultiLanguage.Dictionary["Index_Introdution"]</p>
+		<hr />
 
-			<p>
-				@Html.Raw(String.Format(
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<p>
+					@MultiLanguage.Dictionary["Index_Introdution"]
+				</p>
+
+				<p>
+					@Html.Raw(String.Format(
 					MultiLanguage.Dictionary["Index_Explanation"],
 					"<a href='" + Url.Action("SignUp", "Users") + "'>", "</a>"
 					))
-			</p>
+				</p>
 
-			<p>
-				@Html.Raw(String.Format(
+				<p>
+					@Html.Raw(String.Format(
 					MultiLanguage.Dictionary["Index_Close"],
 					"dfm@dontflymoney.com"
 					))
-			</p>
+				</p>
+			</div>
 		</div>
 
 	</div>
