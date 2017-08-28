@@ -1,13 +1,4 @@
-﻿@using DFM.Generic
-@using DFM.MVC.Helpers
-
-@{
-	var isAuthenticated = Service.Current.IsAuthenticated;
-
-	var routeValues = isAuthenticated
-		? new { controller = "Accounts", action = "Index" }
-		: new { controller = "Users", action = "Index" };
-
+﻿@{
 	var hasSummaryToShow = 
 		!Html.ViewData.ModelState.IsValid
 		&& Html.ViewData.ModelState.ContainsKey("");
@@ -17,18 +8,18 @@
 		|| ErrorAlert.Any();
 }
 
-		<div id="shadow-bound">
-			@if (hasSomethingToShow)
-			{
-				<div id="warning">
-					@Html.ValidationSummary(true)
+<div id="shadow-bound">
+	@if (hasSomethingToShow)
+	{
+		<div id="warning">
+			@Html.ValidationSummary(true)
 
-					<ul>
-						@foreach (var error in ErrorAlert.GetAndClean())
-						{
-							<li>@error</li>
-						}
-					</ul>
-				</div>
-			}
+			<ul>
+				@foreach (var error in ErrorAlert.GetAndClean())
+				{
+					<li>@error</li>
+				}
+			</ul>
 		</div>
+	}
+</div>
