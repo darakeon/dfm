@@ -185,9 +185,9 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public IList<Schedule> GetScheduleList(Boolean active)
+		public IList<Schedule> GetScheduleList()
 		{
-			return scheduleRepository.SimpleFilter(s => s.Active == active);
+			return scheduleRepository.SimpleFilter(s => s.Active);
 		}
 	
 	}

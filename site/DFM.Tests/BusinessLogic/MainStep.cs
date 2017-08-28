@@ -62,7 +62,7 @@ namespace DFM.Tests.BusinessLogic
 			if (!Current.IsAuthenticated)
 				return;
 
-			var pendentSchedules = SA.Robot.GetScheduleList(true);
+			var pendentSchedules = SA.Robot.GetScheduleList();
 
 			foreach (var pendentSchedule in pendentSchedules)
 			{
