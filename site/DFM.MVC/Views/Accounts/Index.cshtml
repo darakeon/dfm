@@ -51,19 +51,15 @@
 		<td class="col-sm-1 text-center">
 			@if (account.HasMoves())
 			{
-				var closeUrl = Url.Action("Close", new {id = account.Url});
-				var closeConfirm = String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name);
-
-				<a href="@closeUrl" class="withConfirm" confirm="@closeConfirm">
-					<span class="glyphicon glyphicon-off"></span>
+				<a href="@Url.Action("Close", new {id = account.Url})" 
+				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)">
+					<span class="glyphicon glyphicon-eye-close"></span>
 				</a>
 			}
 			else
 			{
-				var deleteUrl = Url.Action("Delete", new {id = account.Url});
-				var deleteConfirm = String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name);
-
-				<a href="@deleteUrl" class="withConfirm" confirm="@deleteConfirm">
+				<a href="@Url.Action("Delete", new {id = account.Url})" 
+				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)">
 					<span class="glyphicon glyphicon-trash"></span>
 				</a>
 			}
