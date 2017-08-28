@@ -120,7 +120,7 @@ VERSÃO 3.0.0.0 (All new) - 15
 						Link unsubscribe
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
-						Permitir limite de conta negativo
+2017-03-19	2017-03-19	Permitir limite de conta negativo
 2017-03-19	2017-03-19	Trocar o datepicker
 2017-03-01				Layout Bootstrap
 2017-03-03	2017-03-05	Corrigir problema com checkbox de manter logado

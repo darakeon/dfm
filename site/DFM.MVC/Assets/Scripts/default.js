@@ -17,4 +17,15 @@
 		format: 'DD/MM/YYYY',
 		locale: window.language
 	});
+
+	$("input.number").each(function() {
+		$(this).maskMoney({
+			symbol: "",
+			allowZero: $(this).data("allow-zero"),
+			allowNegative: $(this).data("allow-negative"),
+			precision: $(this).data("precision"),
+			thousands: "",
+			decimal: "."
+		});
+	});
 });

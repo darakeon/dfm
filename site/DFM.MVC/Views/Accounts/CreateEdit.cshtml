@@ -46,7 +46,7 @@
 		  data-toggle="tooltip" data-placement="right"
 		  data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]">
 	</span>
-	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit money letZero" })
+	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 		
 <div class="form-group">
@@ -55,7 +55,7 @@
 		  data-toggle="tooltip" data-placement="right"
 		  data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]">
 	</span>
-	@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "form-control limit money letZero" })
+	@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 
 @section Footer {

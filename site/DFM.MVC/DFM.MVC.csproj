@@ -143,6 +143,7 @@
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.css" />
     <Content Include="Assets\Bootstrap\Datepicker\moment-pt-br.js" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Bootstrap\MaskedMoney\jquery.maskMoney.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
