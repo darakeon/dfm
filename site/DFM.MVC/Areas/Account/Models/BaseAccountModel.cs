@@ -8,10 +8,7 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public BaseAccountModel()
 		{
-			var routeInfo = new RouteInfo();
-
-			CurrentAccountUrl = routeInfo.RouteData.Values["accounturl"].ToString();
-
+			CurrentAccountUrl = RouteInfo.Current["accounturl"];
 			Account = Admin.GetAccountByUrl(CurrentAccountUrl);
 		}
 

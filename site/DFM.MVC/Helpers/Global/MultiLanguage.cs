@@ -60,7 +60,7 @@ namespace DFM.MVC.Helpers.Global
 				if (current?.RouteData == null)
 					return "Ops";
 
-				var controller = current.RouteData.Values["controller"].ToString().ToLower();
+				var controller = current["controller"].ToLower();
 
 				if (controller.StartsWith("?"))
 				{

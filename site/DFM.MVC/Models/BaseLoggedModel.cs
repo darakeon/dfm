@@ -8,9 +8,7 @@ namespace DFM.MVC.Models
 	{
 		public BaseLoggedModel()
 		{
-			ActionName = RouteInfo.Current.RouteData == null
-				? String.Empty
-				: RouteInfo.Current.RouteData.Values["action"].ToString();
+			ActionName = RouteInfo.Current["action"] ?? String.Empty;
 		}
 
 		public String CurrentMonth => MultiLanguage.GetMonthName(Today.Month);

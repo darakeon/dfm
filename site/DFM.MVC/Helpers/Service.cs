@@ -34,9 +34,7 @@ namespace DFM.MVC.Helpers
 					return BrowserId.Get();
 				
 				case TicketType.Mobile:
-					var info = new RouteInfo();
-					
-					return info.RouteData.Values["ticket"]?.ToString();
+					return RouteInfo.Current["ticket"];
 
 				default:
 					throw new NotImplementedException();
