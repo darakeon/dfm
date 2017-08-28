@@ -1,8 +1,8 @@
 package com.dontflymoney.auth;
 
-import java.util.Locale;
-
 import android.content.Context;
+
+import java.util.Locale;
 
 class SafeTicket
 {
@@ -11,7 +11,13 @@ class SafeTicket
 	public SafeTicket(Context context)
 	{
 		String machineId = Unique.GetKey(context);
-		
+
+        if (machineId.length() > 13)
+        {
+            int remove = machineId.length() - 13;
+            machineId = machineId.substring(remove);
+        }
+
 		long factor = Long.parseLong(machineId, 16) * 27;
 		key = Long.toHexString(factor);
 		key = key.toUpperCase(Locale.ITALY);
