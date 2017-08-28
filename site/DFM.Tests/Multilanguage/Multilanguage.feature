@@ -258,8 +258,8 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | ForgotPassword          |
 		| Users   | Email                   |
 		| Users   | Send                    |
-		| Users   | ForgotPassword          |
 		| Users   | FollowEmailIntructions  |
+		| Users   | PayAttentionSender      |
 		| Users   | Index_Welcome           |
 		| Users   | Index_Introdution       |
 		| Users   | Index_Explanation       |
@@ -273,7 +273,6 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | ForgotPassword          |
 		| Users   | TokenReceivedByEmail    |
 		| Users   | LogonDisabled           |
-		| Users   | FollowEmailIntructions  |
 		| Users   | SignUp                  |
 		| Users   | Email                   |
 		| Users   | CharactersMax           |
@@ -281,7 +280,6 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | RetypePassword          |
 		| Users   | Create                  |
 		| Users   | SignUpSuccess           |
-		| Users   | FollowEmailIntructions  |
 		| Users   | Settings                |
 		| Users   | UseCategories           |
 		| Users   | SendMoveEmail           |

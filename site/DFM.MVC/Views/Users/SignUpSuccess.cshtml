@@ -1,12 +1,9 @@
-﻿@using DFM.Email
-
-@{
+﻿@{
 	ViewBag.Title = MultiLanguage.Dictionary["SignUp"];
 	ViewBag.Style = "success";
 	Layout = "../Shared/_Result.cshtml";
 }
 
-@Html.Raw(String.Format(
-	MultiLanguage.Dictionary["SignUpSuccess", "FollowEmailIntructions"],
-	"<span class='text-warning'>" + Sender.SenderAddress + "</span>")
-)
+@MultiLanguage.Dictionary["SignUpSuccess"]<br/>
+
+@Html.Partial("EmailSent")

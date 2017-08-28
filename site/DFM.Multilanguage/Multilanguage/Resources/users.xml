@@ -8,7 +8,8 @@
 		<LogonDisabled text="Your user is not active." />
 		<RememberMe text="Remember" />
 		<ForgotPassword text="Forgot my password" />
-		<FollowEmailIntructions text="Follow the instructions in the e-mail sent. Pay attention to the sender address: must be {0}." />
+		<FollowEmailIntructions text="Follow the instructions in the e-mail sent." />
+		<PayAttentionSender text="Pay attention to the sender address: it MUST be " />
 		<Settings text="Settings" />
 		<UseCategories text="Use categories" />
 		<SendMoveEmail text="Send e-mail when record move" />
@@ -35,7 +36,8 @@
 		<LogonDisabled text="Seu usuário não foi ativado." />
 		<RememberMe text="Lembrar" />
 		<ForgotPassword text="Esqueci minha senha" />
-		<FollowEmailIntructions text="Siga as instruções no e-mail enviado. Atenção para o remetente do e-mail: deve ser {0}." />
+		<FollowEmailIntructions text="Siga as instruções no e-mail enviado." />
+		<PayAttentionSender text="Atenção para o remetente do e-mail: PRECISA ser " />
 		<Settings text="Configurações" />
 		<UseCategories text="Usar categorias" />
 		<SendMoveEmail text="Enviar e-mail após gravar movimentação" />

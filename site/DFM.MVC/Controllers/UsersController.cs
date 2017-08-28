@@ -62,7 +62,7 @@ namespace DFM.MVC.Controllers
 
 			if (logOnError.Type == ExceptionPossibilities.DisabledUser)
 			{
-				return View("SendVerification");
+				return BaseModelView("SendVerification");
 			}
 
 			ModelState.AddModelError("", MultiLanguage.Dictionary[logOnError]);
