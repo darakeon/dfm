@@ -115,6 +115,10 @@ F						Implementar necessidade de assinar TERMO
 						Arrumar packages do android
 2017-02-09				Android Kotlin
 
+VERSÃO 2.1.4.4 (System) - 1
+================================================================================================
+2017-02-14	2017-02-15	Corrigir problema com lista de contas / categorias quando cria uma
+
 VERSÃO 2.1.4.3 (System) - 1
 ================================================================================================
 2017-02-09	2017-02-09	Correção de NullReference
