@@ -7,61 +7,61 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 
 object Theme {
-    private val spKey = "Theme"
-    private var currentTheme = R.style.AppTheme
+	private val spKey = "Theme"
+	private var currentTheme = R.style.AppTheme
 
-    fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, systemTheme: String) {
-        val theme = getRes(systemTheme)
+	fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, systemTheme: String) {
+		val theme = getRes(systemTheme)
 
-        if (theme == currentTheme)
-            return
+		if (theme == currentTheme)
+			return
 
-        change(activity, theme)
+		change(activity, theme)
 
-        SP.setValue(activity, spKey, theme.toString())
+		SP.setValue(activity, spKey, theme.toString())
 
-        activity.refresh()
-    }
+		activity.refresh()
+	}
 
-    fun ChangeFromSaved(activity: Activity) {
-        val theme = SP.getValue(activity, Theme.spKey)
+	fun ChangeFromSaved(activity: Activity) {
+		val theme = SP.getValue(activity, Theme.spKey)
 
-        if (theme != null)
-            Theme.change(activity, theme.toInt())
-    }
+		if (theme != null)
+			Theme.change(activity, theme.toInt())
+	}
 
-    private fun change(activity: Activity, theme: Int) {
-        activity.setTheme(theme)
-        currentTheme = theme;
-    }
+	private fun change(activity: Activity, theme: Int) {
+		activity.setTheme(theme)
+		currentTheme = theme;
+	}
 
-    private fun getRes(theme: String): Int {
-        when (theme) {
-            "Light" -> return R.style.Light
-            "Dark" -> return R.style.Dark
-            else -> return R.style.AppTheme
-        }
-    }
+	private fun getRes(theme: String): Int {
+		when (theme) {
+			"Light" -> return R.style.Light
+			"Dark" -> return R.style.Dark
+			else -> return R.style.AppTheme
+		}
+	}
 
-    fun getLineColor(position: Int): Int {
-        if (position % 2 == 0) {
-            return Color.TRANSPARENT
-        }
-        else {
-            when (currentTheme) {
-                R.style.Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
-                R.style.Dark -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
-                else -> return 0
-            }
-        }
-    }
+	fun getLineColor(position: Int): Int {
+		if (position % 2 == 0) {
+			return Color.TRANSPARENT
+		}
+		else {
+			when (currentTheme) {
+				R.style.Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
+				R.style.Dark -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
+				else -> return 0
+			}
+		}
+	}
 
-    fun getHighLightColor(): Int {
-        when (currentTheme) {
-            R.style.Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
-            R.style.Dark -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
-            else -> return 0
-        }
-    }
+	fun getHighLightColor(): Int {
+		when (currentTheme) {
+			R.style.Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
+			R.style.Dark -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
+			else -> return 0
+		}
+	}
 
 }

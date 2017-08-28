@@ -18,48 +18,48 @@ import java.util.*
 
 class MoveAdapter(private val activity: ExtractActivity, moveJsonList: JSONArray, private val canCheck: Boolean) : BaseAdapter() {
 
-    private val moveList: MutableList<Move>
-    private var inflater: LayoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+	private val moveList: MutableList<Move>
+	private var inflater: LayoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    init {
-        moveList =
-            (0..moveJsonList.length() - 1)
-                .map { Move(moveJsonList.getJSONObject(it)) }
-                .toMutableList()
-    }
+	init {
+		moveList =
+			(0..moveJsonList.length() - 1)
+				.map { Move(moveJsonList.getJSONObject(it)) }
+				.toMutableList()
+	}
 
-    inner class Move(jsonObject: JSONObject) {
-        var Description: String = jsonObject.getString("Description")
-        var Date: Calendar = DateTime.getCalendar(jsonObject.getJSONObject("Date"))
-        var Total: Double = jsonObject.getDouble("Total")
-        var Checked: Boolean = jsonObject.getBoolean("Checked")
-        var ID: Int = jsonObject.getInt("ID")
-    }
+	inner class Move(jsonObject: JSONObject) {
+		var Description: String = jsonObject.getString("Description")
+		var Date: Calendar = DateTime.getCalendar(jsonObject.getJSONObject("Date"))
+		var Total: Double = jsonObject.getDouble("Total")
+		var Checked: Boolean = jsonObject.getBoolean("Checked")
+		var ID: Int = jsonObject.getInt("ID")
+	}
 
 
-    override fun getCount(): Int {
-        return moveList.size
-    }
+	override fun getCount(): Int {
+		return moveList.size
+	}
 
-    override fun getItem(position: Int): Any {
-        return position
-    }
+	override fun getItem(position: Int): Any {
+		return position
+	}
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+	override fun getItemId(position: Int): Long {
+		return position.toLong()
+	}
 
-    override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
-        val line = inflater.inflate(R.layout.extract_line, null) as MoveLine
+	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
+		val line = inflater.inflate(R.layout.extract_line, null) as MoveLine
 
-        try {
-            val color = Theme.getLineColor(position)
-            line.setMove(activity, moveList[position], color, canCheck)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
+		try {
+			val color = Theme.getLineColor(position)
+			line.setMove(activity, moveList[position], color, canCheck)
+		} catch (e: JSONException) {
+			e.printStackTrace()
+		}
 
-        return line
-    }
+		return line
+	}
 
 }

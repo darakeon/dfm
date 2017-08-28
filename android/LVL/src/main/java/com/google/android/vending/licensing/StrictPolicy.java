@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *	  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,36 +32,36 @@ package com.google.android.vending.licensing;
 public class StrictPolicy implements Policy
 {
 
-    private int mLastResponse;
+	private int mLastResponse;
 
-    public StrictPolicy()
-    {
-        // Set default policy. This will force the application to check the policy on launch.
-        mLastResponse = Policy.RETRY;
-    }
+	public StrictPolicy()
+	{
+		// Set default policy. This will force the application to check the policy on launch.
+		mLastResponse = Policy.RETRY;
+	}
 
-    /**
-     * Process a new response from the license server. Since we aren't
-     * performing any caching, this equates to reading the LicenseResponse.
-     * Any ResponseData provided is ignored.
-     *
-     * @param response the result from validating the server response
-     * @param rawData  the raw server response data
-     */
-    public void processServerResponse(int response, ResponseData rawData)
-    {
-        mLastResponse = response;
-    }
+	/**
+	 * Process a new response from the license server. Since we aren't
+	 * performing any caching, this equates to reading the LicenseResponse.
+	 * Any ResponseData provided is ignored.
+	 *
+	 * @param response the result from validating the server response
+	 * @param rawData  the raw server response data
+	 */
+	public void processServerResponse(int response, ResponseData rawData)
+	{
+		mLastResponse = response;
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p>
-     * This implementation allows access if and only if a LICENSED response
-     * was received the last time the server was contacted.
-     */
-    public boolean allowAccess()
-    {
-        return (mLastResponse == Policy.LICENSED);
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * This implementation allows access if and only if a LICENSED response
+	 * was received the last time the server was contacted.
+	 */
+	public boolean allowAccess()
+	{
+		return (mLastResponse == Policy.LICENSED);
+	}
 
 }

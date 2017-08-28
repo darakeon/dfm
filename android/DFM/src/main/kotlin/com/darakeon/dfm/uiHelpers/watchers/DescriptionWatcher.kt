@@ -4,7 +4,7 @@ import com.darakeon.dfm.api.entities.Move
 
 class DescriptionWatcher(private val move: Move) : AfterTextWatcher() {
 
-    override fun textChanged(text: String) {
-        move.Description = text
-    }
+	override fun textChanged(text: String) {
+		move.Description = text
+	}
 }

@@ -19,119 +19,119 @@ import java.util.*
 
 class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
 
-    internal val main: ListView get() = findViewById(R.id.main_table) as ListView
-    internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
+	internal val main: ListView get() = findViewById(R.id.main_table) as ListView
+	internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
 
-    internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
-    override var dialog: DatePickerDialog? = null
-
-
-
-    override fun contentView(): Int {
-        return R.layout.summary
-    }
+	internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
+	override var dialog: DatePickerDialog? = null
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        if (rotated && succeeded) {
-            setDateFromLast()
+	override fun contentView(): Int {
+		return R.layout.summary
+	}
 
-            try {
-                fillSummary()
-            } catch (e: JSONException) {
-                message.alertError(R.string.error_activity_json, e)
-            }
 
-        } else {
-            setDateFromCaller()
-            getSummary()
-        }
-    }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-    private fun setDateFromLast() {
-        setDate(static.year)
-    }
+		if (rotated && succeeded) {
+			setDateFromLast()
 
-    private fun setDateFromCaller() {
-        val today = Calendar.getInstance()
+			try {
+				fillSummary()
+			} catch (e: JSONException) {
+				message.alertError(R.string.error_activity_json, e)
+			}
 
-        val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
-        setDate(startYear)
-    }
+		} else {
+			setDateFromCaller()
+			getSummary()
+		}
+	}
 
-    private fun setDate(year: Int) {
-        static.year = year
-        form.setValue(R.id.reportDate, Integer.toString(year))
-    }
+	private fun setDateFromLast() {
+		setDate(static.year)
+	}
 
-    fun changeDate(v: View) {
-        if (dialog == null) {
-            dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
+	private fun setDateFromCaller() {
+		val today = Calendar.getInstance()
 
-            try {
-                val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
-                pickerField.isAccessible = true
+		val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
+		setDate(startYear)
+	}
 
-                val dayField = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
-                dayField.isAccessible = true
-                val dayPicker = dayField.get(pickerField.get(dialog))
-                (dayPicker as View).visibility = View.GONE
+	private fun setDate(year: Int) {
+		static.year = year
+		form.setValue(R.id.reportDate, Integer.toString(year))
+	}
 
-                val monthField = pickerField.get(dialog).javaClass.getDeclaredField("mMonthSpinner")
-                monthField.isAccessible = true
-                val monthPicker = monthField.get(pickerField.get(dialog))
-                (monthPicker as View).visibility = View.GONE
-            } catch (ignored: Exception) {
-            }
+	fun changeDate(v: View) {
+		if (dialog == null) {
+			dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
 
-        }
+			try {
+				val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
+				pickerField.isAccessible = true
 
-        dialog!!.show()
-    }
+				val dayField = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
+				dayField.isAccessible = true
+				val dayPicker = dayField.get(pickerField.get(dialog))
+				(dayPicker as View).visibility = View.GONE
 
-    override fun setResult(year: Int, month: Int, day: Int) {
-        setDate(year)
-        getSummary()
-    }
+				val monthField = pickerField.get(dialog).javaClass.getDeclaredField("mMonthSpinner")
+				monthField.isAccessible = true
+				val monthPicker = monthField.get(pickerField.get(dialog))
+				(monthPicker as View).visibility = View.GONE
+			} catch (ignored: Exception) {
+			}
 
-    private fun getSummary() {
-        val accountUrl = intent.getStringExtra("accountUrl")
+		}
 
-        val request = InternalRequest(this, "Moves/Summary")
+		dialog!!.show()
+	}
 
-        request.AddParameter("ticket", Authentication.Get())
-        request.AddParameter("accountUrl", accountUrl)
-        request.AddParameter("id", static.year)
+	override fun setResult(year: Int, month: Int, day: Int) {
+		setDate(year)
+		getSummary()
+	}
 
-        request.Post()
-    }
+	private fun getSummary() {
+		val accountUrl = intent.getStringExtra("accountUrl")
 
-    @Throws(JSONException::class)
-    override fun HandleSuccess(data: JSONObject, step: Step) {
-        static.monthList = data.getJSONArray("MonthList")
-        static.name = data.getString("Name")
-        static.total = data.getDouble("Total")
+		val request = InternalRequest(this, "Moves/Summary")
 
-        fillSummary()
-    }
+		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("accountUrl", accountUrl)
+		request.AddParameter("id", static.year)
 
-    @Throws(JSONException::class)
-    private fun fillSummary() {
-        form.setValue(R.id.totalTitle, static.name)
-        form.setValueColored(R.id.totalValue, static.total)
+		request.Post()
+	}
 
-        if (static.monthList.length() == 0) {
-            main.visibility = View.GONE
-            empty.visibility = View.VISIBLE
-        } else {
-            main.visibility = View.VISIBLE
-            empty.visibility = View.GONE
+	@Throws(JSONException::class)
+	override fun HandleSuccess(data: JSONObject, step: Step) {
+		static.monthList = data.getJSONArray("MonthList")
+		static.name = data.getString("Name")
+		static.total = data.getDouble("Total")
 
-            val yearAdapter = YearAdapter(this, static.monthList, accountUrl, static.year)
-            main.adapter = yearAdapter
-        }
+		fillSummary()
+	}
 
-    }
+	@Throws(JSONException::class)
+	private fun fillSummary() {
+		form.setValue(R.id.totalTitle, static.name)
+		form.setValueColored(R.id.totalValue, static.total)
+
+		if (static.monthList.length() == 0) {
+			main.visibility = View.GONE
+			empty.visibility = View.VISIBLE
+		} else {
+			main.visibility = View.VISIBLE
+			empty.visibility = View.GONE
+
+			val yearAdapter = YearAdapter(this, static.monthList, accountUrl, static.year)
+			main.adapter = yearAdapter
+		}
+
+	}
 }

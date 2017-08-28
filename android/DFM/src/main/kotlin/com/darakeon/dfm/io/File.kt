@@ -50,7 +50,7 @@ var line: String
 val allContent = StringBuilder()
 
 while ((line = bufferedReader.readLine()) != null) {
-    allContent.append(line)
+	allContent.append(line)
 }
 
 inputStream.close()

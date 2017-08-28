@@ -11,32 +11,32 @@ import org.json.JSONObject
 
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
-    override fun contentView(): Int {
-        return R.layout.login
-    }
+	override fun contentView(): Int {
+		return R.layout.login
+	}
 
-    override val isLoggedIn: Boolean
-        get() = false
+	override val isLoggedIn: Boolean
+		get() = false
 
-    override val hasTitle: Boolean
-        get() = false
+	override val hasTitle: Boolean
+		get() = false
 
 
-    fun login(view: View) {
-        val request = InternalRequest(this, "Users/Login")
+	fun login(view: View) {
+		val request = InternalRequest(this, "Users/Login")
 
-        request.AddParameter("email", form.getValue(R.id.email))
-        request.AddParameter("password", form.getValue(R.id.password))
+		request.AddParameter("email", form.getValue(R.id.email))
+		request.AddParameter("password", form.getValue(R.id.password))
 
-        request.Post()
-    }
+		request.Post()
+	}
 
-    @Throws(JSONException::class)
-    override fun HandleSuccess(data: JSONObject, step: Step) {
-        val ticket = data.getString("ticket")
-        Authentication.Set(ticket)
-        navigation.redirect(AccountsActivity::class.java)
-    }
+	@Throws(JSONException::class)
+	override fun HandleSuccess(data: JSONObject, step: Step) {
+		val ticket = data.getString("ticket")
+		Authentication.Set(ticket)
+		navigation.redirect(AccountsActivity::class.java)
+	}
 
 
 }

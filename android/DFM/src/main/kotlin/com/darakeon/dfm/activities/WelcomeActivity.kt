@@ -13,56 +13,56 @@ import kotlin.reflect.KClass
 
 class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 
-    private val license: License get() = License(this)
+	private val license: License get() = License(this)
 
-    override fun HandleSuccess(data: JSONObject, step: Step) {
+	override fun HandleSuccess(data: JSONObject, step: Step) {
 
-    }
+	}
 
-    override fun contentView(): Int {
-        return R.layout.welcome
-    }
+	override fun contentView(): Int {
+		return R.layout.welcome
+	}
 
-    override val hasTitle: Boolean
-        get() = false
+	override val hasTitle: Boolean
+		get() = false
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-        if (intent.getBooleanExtra("EXIT", false)) {
-            finish()
-            return
-        }
+		if (intent.getBooleanExtra("EXIT", false)) {
+			finish()
+			return
+		}
 
-        if (Site.IsLocal())
-            GoToApp()
-        else
-            license.Check()
-    }
+		if (Site.IsLocal())
+			GoToApp()
+		else
+			license.Check()
+	}
 
-    fun GoToApp()
-    {
-        val nextActivity : KClass<*> =
-            if (Authentication.IsLoggedIn())
-                AccountsActivity::class
-            else
-                LoginActivity::class
+	fun GoToApp()
+	{
+		val nextActivity : KClass<*> =
+			if (Authentication.IsLoggedIn())
+				AccountsActivity::class
+			else
+				LoginActivity::class
 
-        navigation.redirect(nextActivity.java)
-    }
+		navigation.redirect(nextActivity.java)
+	}
 
-    fun KillThem()
-    {
-        val field = findViewById(R.id.pig) as ImageView
-        field.setImageResource(R.drawable.unauthorized)
-        field.scaleType = ImageView.ScaleType.CENTER
-    }
+	fun KillThem()
+	{
+		val field = findViewById(R.id.pig) as ImageView
+		field.setImageResource(R.drawable.unauthorized)
+		field.scaleType = ImageView.ScaleType.CENTER
+	}
 
-    override fun onDestroy() {
-        super.onDestroy()
-        license.Destroy()
-    }
+	override fun onDestroy() {
+		super.onDestroy()
+		license.Destroy()
+	}
 
 
 

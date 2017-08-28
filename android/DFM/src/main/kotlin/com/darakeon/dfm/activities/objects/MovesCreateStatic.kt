@@ -6,13 +6,13 @@ import org.json.JSONArray
 
 object MovesCreateStatic : SmartStatic
 {
-    override var succeeded: Boolean = false
-    override var inflater: LayoutInflater? = null
+	override var succeeded: Boolean = false
+	override var inflater: LayoutInflater? = null
 
-    var move: Move = Move()
-    var useCategories: Boolean = false
-    var categoryList: JSONArray? = null
-    var natureList: JSONArray? = null
-    var accountList: JSONArray? = null
+	var move: Move = Move()
+	var useCategories: Boolean = false
+	var categoryList: JSONArray? = null
+	var natureList: JSONArray? = null
+	var accountList: JSONArray? = null
 }
 

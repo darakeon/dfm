@@ -5,10 +5,10 @@ import org.json.JSONArray
 
 object AccountsStatic : SmartStatic
 {
-    override var succeeded: Boolean = false
-    override var inflater: LayoutInflater? = null
+	override var succeeded: Boolean = false
+	override var inflater: LayoutInflater? = null
 
-    lateinit var accountList: JSONArray
+	lateinit var accountList: JSONArray
 
 }
 

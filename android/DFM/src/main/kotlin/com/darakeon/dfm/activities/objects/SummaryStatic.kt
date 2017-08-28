@@ -5,12 +5,12 @@ import org.json.JSONArray
 
 object SummaryStatic : SmartStatic
 {
-    override var succeeded: Boolean = false
-    override var inflater: LayoutInflater? = null
+	override var succeeded: Boolean = false
+	override var inflater: LayoutInflater? = null
 
-    lateinit var monthList: JSONArray
-    var name: String? = null
-    var total: Double = 0.toDouble()
-    var year: Int = 0
+	lateinit var monthList: JSONArray
+	var name: String? = null
+	var total: Double = 0.toDouble()
+	var year: Int = 0
 }
 
