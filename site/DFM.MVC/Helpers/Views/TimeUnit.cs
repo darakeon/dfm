@@ -1,6 +1,6 @@
 using System;
 
-namespace DFM.MVC.Helpers.Models
+namespace DFM.MVC.Helpers.Views
 {
 	public class TimeUnit
 	{
