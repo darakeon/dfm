@@ -1,0 +1,68 @@
+﻿@model AccountsIndexModel
+
+@using DFM.Generic
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
+	Layout = "../Shared/_Table.cshtml";
+
+	ViewBag.HasContent = Model.AccountList.Any();
+	ViewBag.NoContentText = MultiLanguage.Dictionary["NoClosedAccounts"];
+}
+
+@section TableHeader {
+	<tr class="row">
+		<th class="col-sm-4">@MultiLanguage.Dictionary["Name"]</th>
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["BeginDate"]</th>
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["EndDate"]</th>
+		<th class="col-sm-4 text-center" colspan="4">@MultiLanguage.Dictionary["Total"]</th>
+		<!--th class="todo-column">@MultiLanguage.Dictionary["TODO"]</th-->
+	</tr>
+}
+
+@foreach (var account in Model.AccountList)
+{
+	if (account.EndDate != null)
+	{
+		var movesSum = account.Total();
+		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
+		var className = movesSum < 0 ? "out" : "in";
+
+		//var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
+		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
+
+		<tr class="row">
+			
+			<td class="col-sm-4">
+				@Html.RouteLink(account.Name, RouteNames.ACCOUNT,
+					new
+					{
+						accounturl = account.Url,
+						controller = "Reports",
+						action = "ShowMoves",
+						id = account.EndDate.ToMonthYear()
+					})
+			</td>
+
+			<td class="col-sm-2 text-center">@account.BeginDate.ToShortDateString()</td>
+			<td class="col-sm-2 text-center">@account.EndDate.ToShortDateString()</td>
+
+			<td class="col-sm-1"></td>
+			<td class="col-sm-2 text-right">
+				<span class="glyphicon glyphicon-tags pull-left text-@Html.Partial("AccountSign", account.Sign())"></span>
+				<span class="text-@className">@value</span>
+			</td>
+			<td class="col-sm-1"></td>
+
+			@*
+				<td class="image">
+					<a href="@reopenUrl">
+						<img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
+					</a>
+				</td>
+			*@
+		</tr>
+	}
+}
+
+

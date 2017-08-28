@@ -8,5 +8,16 @@ namespace DFM.Generic
 		{
 			return dateTime?.ToShortDateString();
 		}
+
+		public static Int32? ToMonthYear(this DateTime? dateTime)
+		{
+			return dateTime?.ToMonthYear();
+		}
+
+		public static Int32 ToMonthYear(this DateTime dateTime)
+		{
+			return dateTime.Year * 100 + dateTime.Month;
+		}
+
 	}
 }

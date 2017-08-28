@@ -273,7 +273,7 @@
     <Content Include="Views\Accounts\CreateEdit.old" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Views\Accounts\Index.cshtml" />
-    <Content Include="Views\Accounts\ListClosed.old" />
+    <Content Include="Views\Accounts\ListClosed.cshtml" />
     <Content Include="Views\Categories\CreateEdit.old" />
     <Content Include="Views\Categories\Index.old" />
     <Content Include="Views\Logins\Index.old" />
