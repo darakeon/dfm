@@ -6,7 +6,8 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class IP
 	{
-		const string relativePath = @"../../android/DFM/src/main/java/com/dontflymoney/api/Site.java";
+		private const string relative_path = @"../../android/DFM/src/main/kotlin/com/darakeon/dfm/api/Site.kt";
+		private const string domain_declaration = "	internal val Domain = ";
 
 		internal static String Get()
 		{
@@ -35,7 +36,7 @@ namespace DFM.MVC.Helpers.Global
 		{
 			var currentPath = Directory.GetCurrentDirectory();
 
-			var path = Path.Combine(currentPath, relativePath);
+			var path = Path.Combine(currentPath, relative_path);
 			var info = new FileInfo(path);
 			path = info.FullName;
 
@@ -46,9 +47,9 @@ namespace DFM.MVC.Helpers.Global
 
 			for (var l = 0; l < lines.Length; l++)
 			{
-				if (lines[l].StartsWith(domainDeclaration))
+				if (lines[l].StartsWith(domain_declaration))
 				{
-					lines[l] = domainDeclaration + address + ";";
+					lines[l] = domain_declaration + address;
 					break;
 				}
 			}
@@ -56,7 +57,6 @@ namespace DFM.MVC.Helpers.Global
 			File.WriteAllLines(path, lines);
 		}
 
-		const string domainDeclaration = "	static final String Domain = ";
 
 
 
