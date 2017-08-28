@@ -36,3 +36,17 @@ CREATE TABLE Acceptance
 );
 
 INSERT INTO Contract (BeginDate, Version) VALUES (now(), '003000000000');
+
+
+
+ALTER TABLE Config
+	ADD COLUMN Theme SMALLINT;
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Config
+	SET Theme = 2;
+
+SET SQL_SAFE_UPDATES = 1;
+

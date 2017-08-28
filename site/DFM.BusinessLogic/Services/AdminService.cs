@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Multilanguage;
 
@@ -150,7 +151,7 @@ namespace DFM.BusinessLogic.Services
 				accountRepository.Delete(url, Parent.Current.User);
 			});
 		}
-		#endregion
+		#endregion Account
 
 
 
@@ -251,7 +252,7 @@ namespace DFM.BusinessLogic.Services
 			if (!Parent.Current.User.Config.UseCategories)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
 		}
-		#endregion
+		#endregion Category
 
 
 
@@ -295,6 +296,29 @@ namespace DFM.BusinessLogic.Services
 			configRepository.Update(config);
 		}
 
-		#endregion
+		#endregion Config
+
+
+
+		#region Theme
+
+		public void ChangeTheme(BootstrapTheme theme)
+		{
+			if (theme == BootstrapTheme.None)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTheme);
+
+			var config = Parent.Current.User.Config;
+			config.Theme = theme;
+
+			InTransaction(() =>
+			{
+				configRepository.Update(config);
+			});
+		}
+
+		#endregion Theme
+
+
+
 	}
 }

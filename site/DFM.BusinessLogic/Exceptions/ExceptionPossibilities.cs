@@ -17,6 +17,7 @@
 		Uninvited = 207,
 		RetypeWrong = 208,
 		WrongPassword = 209,
+		InvalidTheme = 210,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,
