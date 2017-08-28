@@ -9,10 +9,10 @@ site/**.user
 site/*dotCover
 site/DFM.MVC/data/log_files
 site/DFM.MVC/Web.Release.config
-android/*.class
-android/*.apk
-android/*.dex
-android/*.ap_
+android/**.class
+android/**.apk
+android/**.dex
+android/**.ap_
 android/.metadata/.plugins/org.eclipse.cdt.core/.log
 android/res/values/license.xml
 android/.gradle
@@ -20,7 +20,7 @@ android/local.properties
 android/.idea
 android/.DS_Store
 android/*/build
-android/*.iml
+android/**.iml
 android/gradlew
 android/gradlew.bat
 
