@@ -81,5 +81,10 @@ public class MoveRow extends TableRow
         addView(activity.form.createImage(idResource, Gravity.LEFT));
     }
 
+	public Boolean getChecked()
+	{
+		return checked;
+	}
+
 
 }

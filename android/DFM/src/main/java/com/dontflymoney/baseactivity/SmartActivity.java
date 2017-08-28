@@ -28,6 +28,7 @@ public abstract class SmartActivity extends FixOrientationActivity
     protected int viewWithContext(){ return 0; }
     protected boolean isLoggedIn() { return true; }
     protected boolean hasParent() { return false; }
+	protected void changeContextMenu(View view, ContextMenu menuInfo) { }
 
 	protected Authentication Authentication;
 	
@@ -88,9 +89,9 @@ public abstract class SmartActivity extends FixOrientationActivity
 
         if (contextMenuResource() != 0)
         {
-            getMenuInflater().inflate(contextMenuResource(), menu);
-
-        }
+			getMenuInflater().inflate(contextMenuResource(), menu);
+			changeContextMenu(v, menu);
+		}
     }
 
 	@Override

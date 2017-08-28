@@ -1,11 +1,11 @@
 package com.dontflymoney.view;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -223,33 +223,8 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
         row.setClickable(true);
 
-        final Activity thisParent = this;
-
-        row.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                try
-                {
-                    int idButtonToHide = move.getBoolean("Checked") ? R.id.check_move : R.id.uncheck_move;
-                    View buttonToHide = thisParent.findViewById(idButtonToHide);
-                    buttonToHide.setVisibility(View.GONE);
-
-                    int idButtonToShow = move.getBoolean("Checked") ? R.id.uncheck_move : R.id.check_move;
-                    View buttonToShow = thisParent.findViewById(idButtonToShow);
-                    buttonToShow.setVisibility(View.VISIBLE);
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         table.addView(row);
     }
-
 
 	public void goToSummary(MenuItem item)
 	{
@@ -355,6 +330,29 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
         request.Post(Step.Recording);
     }
+
+
+	@Override
+	public void changeContextMenu(View view, ContextMenu menu)
+	{
+		MoveRow move = (MoveRow) clickedView;
+
+		try
+		{
+			int idButtonToHide = move.getChecked() ? R.id.check_move : R.id.uncheck_move;
+			MenuItem buttonToHide = menu.findItem(idButtonToHide);
+			buttonToHide.setVisible(false);
+
+			int idButtonToShow = move.getChecked() ? R.id.uncheck_move : R.id.check_move;
+			MenuItem buttonToShow = menu.findItem(idButtonToShow);
+			buttonToShow.setVisible(true);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+	}
 
 }
 

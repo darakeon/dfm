@@ -110,7 +110,7 @@ VERSÃO 2.1.0.0 (Big change) - 6
 ================================================================================================
 						Configuração de usuário para habilitar conferência - mobile
 						Configuração de usuário para habilitar conferência - site
-2016-07-28				Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - mobile
+2016-07-28	2017-01-12	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - mobile
 2016-07-18	2016-07-18	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - site
 2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
 2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
