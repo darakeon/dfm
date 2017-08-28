@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class TokensPasswordResetModel : BaseModel
+	public class TokensPasswordResetModel : BaseModel, IPasswordForm
 	{
 		[Required(ErrorMessage = "*")]
 		public String Password { get; set; }
@@ -35,21 +36,13 @@ namespace DFM.MVC.Models
 		{
 			var errors = new List<String>();
 
-			if (Password != RetypePassword)
+			try
 			{
-				errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
+				Safe.PasswordReset(token, this);
 			}
-
-			if (!errors.Any())
+			catch (DFMCoreException e)
 			{
-				try
-				{
-					Safe.PasswordReset(token, Password);
-				}
-				catch (DFMCoreException e)
-				{
-					errors.Add(MultiLanguage.Dictionary[e]);
-				}
+				errors.Add(MultiLanguage.Dictionary[e]);
 			}
 
 			return errors;

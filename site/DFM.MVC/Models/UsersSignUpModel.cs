@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersSignUpModel : BaseModel
+	public class UsersSignUpModel : BaseModel, IPasswordForm
 	{
 		[Required(ErrorMessage = "*")]
 		public String Email { get; set; }
@@ -25,21 +26,15 @@ namespace DFM.MVC.Models
 		{
 			var errors = new List<String>();
 
-			if (Password != RetypePassword)
-				errors.Add(MultiLanguage.Dictionary["RetypeWrong"]);
-
-			if (!errors.Any())
+			try
 			{
-				try
-				{
-					var pathAction = Url.Action("UserVerification", "Tokens");
-					var pathDisable = Url.Action("Disable", "Tokens");
-					Safe.SaveUserAndSendVerify(Email, Password, MultiLanguage.Language, pathAction, pathDisable);
-				}
-				catch (DFMCoreException e)
-				{
-					errors.Add(MultiLanguage.Dictionary[e]);
-				}
+				var pathAction = Url.Action("UserVerification", "Tokens");
+				var pathDisable = Url.Action("Disable", "Tokens");
+				Safe.SaveUserAndSendVerify(Email, this, MultiLanguage.Language, pathAction, pathDisable);
+			}
+			catch (DFMCoreException e)
+			{
+				errors.Add(MultiLanguage.Dictionary[e]);
 			}
 
 			return errors;

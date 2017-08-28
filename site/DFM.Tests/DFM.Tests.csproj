@@ -224,6 +224,7 @@
       <DependentUpon>EmailSend.feature</DependentUpon>
     </Compile>
     <Compile Include="Email\EmailStep.cs" />
+    <Compile Include="Helpers\PasswordForm.cs" />
     <Compile Include="Multilanguage\Multilanguage.feature.cs">
       <DependentUpon>Multilanguage.feature</DependentUpon>
       <AutoGen>True</AutoGen>

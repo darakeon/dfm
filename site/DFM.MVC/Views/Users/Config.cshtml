@@ -5,44 +5,52 @@
 	Layout = "~/Views/Shared/_NoAreaLayout.cshtml";
 }
 
-<div class="half-screen">
-	@using (Html.BeginForm())
-	{
-		<p class="checkbox divRowForm">
-			@Html.LabelFor(m => m.UseCategories, MultiLanguage.Dictionary["UseCategories"])
-			@Html.CheckBoxFor(m => m.UseCategories)
-		</p>
+<div class="two-columns">
 
-		<p class="checkbox divRowForm">
-			@Html.LabelFor(m => m.SendMoveEmail, MultiLanguage.Dictionary["SendMoveEmail"])
-			@Html.CheckBoxFor(m => m.SendMoveEmail)
-		</p>
+	<div class="first-column">
+		@using (Html.BeginForm())
+		{
+			<p class="checkbox divRowForm">
+				@Html.LabelFor(m => m.Main.UseCategories, MultiLanguage.Dictionary["UseCategories"])
+				@Html.CheckBoxFor(m => m.Main.UseCategoriesCheck)
+			</p>
 
-		<p class="checkbox divRowForm">
-			@Html.LabelFor(m => m.MoveCheck, MultiLanguage.Dictionary["MoveCheck"])
-			@Html.CheckBoxFor(m => m.MoveCheck)
-		</p>
+			<p class="checkbox divRowForm">
+				@Html.LabelFor(m => m.Main.SendMoveEmail, MultiLanguage.Dictionary["SendMoveEmail"])
+				@Html.CheckBoxFor(m => m.Main.SendMoveEmailCheck)
+			</p>
 
-		<div class="divRowForm">
-			<hr />
-		</div>
+			<p class="checkbox divRowForm">
+				@Html.LabelFor(m => m.Main.MoveCheck, MultiLanguage.Dictionary["MoveCheck"])
+				@Html.CheckBoxFor(m => m.Main.MoveCheckCheck)
+			</p>
 
-		<p>
-			@Html.LabelFor(m => m.Language, MultiLanguage.Dictionary["Language"])
-			@Html.DropDownListFor(m => m.Language, Model.LanguageList)
-		</p>
+			<div class="divRowForm">
+				<hr />
+			</div>
 
-		<p>
-			@Html.LabelFor(m => m.TimeZone, MultiLanguage.Dictionary["TimeZone"])
-			@Html.DropDownListFor(m => m.TimeZone, Model.TimeZoneList)
-		</p>
-		
-		<div class="divRowForm">
-			<hr />
-		</div>
+			<p>
+				@Html.LabelFor(m => m.Main.Language, MultiLanguage.Dictionary["Language"])
+				@Html.DropDownListFor(m => m.Main.Language, Model.Main.LanguageList)
+			</p>
 
-		<p>
-			<button type="submit">@MultiLanguage.Dictionary["Save"]</button>
-		</p>
-	}
+			<p>
+				@Html.LabelFor(m => m.Main.TimeZone, MultiLanguage.Dictionary["TimeZone"])
+				@Html.DropDownListFor(m => m.Main.TimeZone, Model.Main.TimeZoneList)
+			</p>
+
+			<div class="divRowForm">
+				<hr />
+			</div>
+
+			<p>
+				<button type="submit">@MultiLanguage.Dictionary["Save"]</button>
+			</p>
+		}
+	</div>
+
+	<div class="second-column">
+		s
+	</div>
+
 </div>

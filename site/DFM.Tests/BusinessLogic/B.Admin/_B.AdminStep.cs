@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Multilanguage;
@@ -641,7 +642,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, false, null);
+				var mainConfig = new MainConfig { UseCategories = false };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -655,7 +657,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, true, null);
+				var mainConfig = new MainConfig { UseCategories = true };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -669,7 +672,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, null, false);
+				var mainConfig = new MainConfig { MoveCheck = false };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -683,7 +687,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, null, true);
+				var mainConfig = new MainConfig { MoveCheck = true };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -696,7 +701,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(language, null, null, null, null);
+				var mainConfig = new MainConfig { Language = language };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -719,7 +725,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, timezone, null, null, null);
+				var mainConfig = new MainConfig { TimeZone = timezone };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -733,7 +740,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, false, null, null);
+				var mainConfig = new MainConfig { SendMoveEmail = false };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -747,7 +755,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, true, null, null);
+				var mainConfig = new MainConfig { SendMoveEmail = true };
+				SA.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{

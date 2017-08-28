@@ -1,10 +1,18 @@
-﻿namespace DFM.MVC.Areas.API.Models
+﻿using DFM.BusinessLogic.ObjectInterfaces;
+
+namespace DFM.MVC.Areas.API.Models
 {
 	public class UserSaveConfigModel : UserGetConfigModel
 	{
 		internal void Save()
 		{
-			Admin.UpdateConfig(null, null, null, UseCategories, MoveCheck);
+			var mainConfig = new MainConfig
+			{
+				UseCategories = UseCategories,
+				MoveCheck = MoveCheck
+			};
+
+			Admin.UpdateConfig(mainConfig);
 		}
 	}
 }

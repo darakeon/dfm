@@ -8,6 +8,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
+using DFM.BusinessLogic.ObjectInterfaces;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -40,14 +41,20 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void SaveUserAndSendVerify(String email, String password, String language, String pathAction, String pathDisable)
+		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, String language, String pathAction, String pathDisable)
 		{
 			InTransaction(() =>
 			{
+				if (String.IsNullOrEmpty(passwordForm.Password))
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
+
+				if (passwordForm.Password != passwordForm.RetypePassword)
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.RetypeWrong);
+
 				var user = new User
 				{
 					Email = email, 
-					Password = password,
+					Password = passwordForm.Password,
 					Config = new Config
 					{
 						Language = language
@@ -115,16 +122,19 @@ namespace DFM.BusinessLogic.Services
 
 		}
 
-		public void PasswordReset(String token, String password)
+		public void PasswordReset(String token, IPasswordForm passwordForm)
 		{
-			if (String.IsNullOrEmpty(password))
+			if (String.IsNullOrEmpty(passwordForm.Password))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
+
+			if (passwordForm.Password != passwordForm.RetypePassword)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.RetypeWrong);
 
 			InTransaction(() =>
 			{
 				var security = securityRepository.ValidateAndGet(token, SecurityAction.PasswordReset);
 
-				security.User.Password = password;
+				security.User.Password = passwordForm.Password;
 
 				userRepository.ChangePassword(security.User);
 

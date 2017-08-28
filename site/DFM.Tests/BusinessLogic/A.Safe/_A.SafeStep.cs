@@ -7,6 +7,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
+using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TK = DK.Generic.Extensions.Token;
@@ -84,7 +85,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Password = password + "_diff",
 			};
 
-			SA.Safe.SaveUserAndSendVerify(otherUser.Email, otherUser.Password, Defaults.CONFIG_LANGUAGE, null, null);
+			var passwordForm = new PasswordForm(otherUser.Password);
+			SA.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 
 			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
 
@@ -98,7 +100,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				SA.Safe.SaveUserAndSendVerify(email, password, Defaults.CONFIG_LANGUAGE, null, null);
+				var passwordForm = new PasswordForm(password);
+				SA.Safe.SaveUserAndSendVerify(email, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -325,7 +328,8 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				SA.Safe.PasswordReset(token, newPassword);
+				var passwordForm = new PasswordForm(newPassword);
+				SA.Safe.PasswordReset(token, passwordForm);
 			}
 			catch (DFMCoreException e)
 			{

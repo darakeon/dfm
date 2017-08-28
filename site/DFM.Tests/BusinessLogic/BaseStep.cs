@@ -78,7 +78,8 @@ namespace DFM.Tests.BusinessLogic
 			{
 				case ExceptionPossibilities.InvalidUser:
 
-					SA.Safe.SaveUserAndSendVerify(userEmail, userPassword, Defaults.CONFIG_LANGUAGE, null, null);
+					var passwordForm = new PasswordForm(userPassword);
+					SA.Safe.SaveUserAndSendVerify(userEmail, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 
 					if (shouldActivateUser)
 					{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Generic;
@@ -223,40 +224,40 @@ namespace DFM.BusinessLogic.Services
 
 		#region Config
 
-		public void UpdateConfig(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories, Boolean? moveCheck)
+		public void UpdateConfig(IMainConfig mainConfig)
 		{
 			Parent.Safe.VerifyUser();
 
 			InTransaction(() =>
 			{
-				UpdateConfigWithinTransaction(language, timeZone, sendMoveEmail, useCategories, moveCheck);
+				UpdateConfigWithinTransaction(mainConfig);
 			});
 		}
 
-		internal void UpdateConfigWithinTransaction(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories, Boolean? moveCheck)
+		internal void UpdateConfigWithinTransaction(IMainConfig mainConfig)
 		{
 			var config = Parent.Current.User.Config;
 
-			if (!String.IsNullOrEmpty(language) && !PlainText.AcceptedLanguage().Contains(language.ToLower()))
+			if (!String.IsNullOrEmpty(mainConfig.Language) && !PlainText.AcceptedLanguage().Contains(mainConfig.Language.ToLower()))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnkown);
 
-			if (!String.IsNullOrEmpty(timeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(timeZone))
+			if (!String.IsNullOrEmpty(mainConfig.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(mainConfig.TimeZone))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnkown);
 
-			if (!String.IsNullOrEmpty(language))
-				config.Language = language;
+			if (!String.IsNullOrEmpty(mainConfig.Language))
+				config.Language = mainConfig.Language;
 
-			if (!String.IsNullOrEmpty(timeZone))
-				config.TimeZone = timeZone;
+			if (!String.IsNullOrEmpty(mainConfig.TimeZone))
+				config.TimeZone = mainConfig.TimeZone;
 
-			if (sendMoveEmail.HasValue)
-				config.SendMoveEmail = sendMoveEmail.Value;
+			if (mainConfig.SendMoveEmail.HasValue)
+				config.SendMoveEmail = mainConfig.SendMoveEmail.Value;
 
-			if (useCategories.HasValue)
-				config.UseCategories = useCategories.Value;
+			if (mainConfig.UseCategories.HasValue)
+				config.UseCategories = mainConfig.UseCategories.Value;
 
-			if (moveCheck.HasValue)
-				config.MoveCheck = moveCheck.Value;
+			if (mainConfig.MoveCheck.HasValue)
+				config.MoveCheck = mainConfig.MoveCheck.Value;
 
 			configRepository.Update(config);
 		}

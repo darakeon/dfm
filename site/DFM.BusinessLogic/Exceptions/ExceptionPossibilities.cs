@@ -14,6 +14,7 @@
 		UserPasswordRequired = 205,
 		DisabledUser = 206,
 		Uninvited = 207,
+		RetypeWrong = 208,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,
