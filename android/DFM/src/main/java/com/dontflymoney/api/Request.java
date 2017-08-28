@@ -1,10 +1,11 @@
 package com.dontflymoney.api;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.app.ProgressDialog;
+import android.view.WindowManager;
+
+import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.stati.Internet;
+import com.dontflymoney.view.R;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,232 +15,253 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ProgressDialog;
-
-import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.stati.Internet;
-import com.dontflymoney.view.R;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Request
 {
-	private String site;
-	
-	public SmartActivity activity;
-	private String url;
-	private HashMap<String, Object> parameters;
+    private String site;
 
-	private ProgressDialog progress;
+    public SmartActivity activity;
+    private String url;
+    private HashMap<String, Object> parameters;
+
+    private ProgressDialog progress;
     private SiteConnector connector;
-	
-	
-	public Request(SmartActivity activity, String url)
-	{
-		this.activity = activity;
-		this.url = url;
-		this.parameters = new HashMap<String, Object>();
-		
-		setMainUrl();
-	}
-	
-	private void setMainUrl()
-	{
-		site = Site.GetProtocol() + "://" + Site.Domain + "/Api";		
-	}
 
 
+    public Request(SmartActivity activity, String url)
+    {
+        this.activity = activity;
+        this.url = url;
+        this.parameters = new HashMap<String, Object>();
 
-	public void AddParameter(String key, Object value)
-	{
-		parameters.put(key, value);
-	}
-	
-	
-	
-	public void Post()
-	{
-		Post(Step.NoSteps);
-	}
-	
-	public boolean Post(Step step)
-	{
-		if (isOffline())
-		{
-			String error = activity.getString(R.string.u_r_offline);
-			activity.HandlePostError(error, step);
-			return false;
-		}
-		
-		String completeUrl = getUrl();
-		HttpPost post = new HttpPost(completeUrl);
-	    List<NameValuePair> nameValuePairs = getParameters();
+        setMainUrl();
+    }
 
-	    try
-	    {
-	    	post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-		}
-	    catch (UnsupportedEncodingException e)
-	    {
-	    	String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
-			activity.HandlePostError(error, step);
-			return false;
-		}
+    private void setMainUrl()
+    {
+        site = Site.GetProtocol() + "://" + Site.Domain + "/Api";
+    }
 
-		connector = new SiteConnector(post, this, step);
-		
-		connector.execute();
 
-		progress = activity.getMessage().showWaitDialog();
-		
-		return true;
-	}
-	
-	
-	
-	public void Get()
-	{
-		Get(Step.NoSteps);
-	}
-	
-	public void Get(Step step)
-	{
-		if (isOffline())
-		{
-			String error = activity.getString(R.string.u_r_offline);
-			activity.HandlePostError(error, step);
-			return;
-		}
-		
-		String completeUrl = getUrl();
-		HttpGet get = new HttpGet(completeUrl);
+    public void AddParameter(String key, Object value)
+    {
+        parameters.put(key, value);
+    }
 
-		connector = new SiteConnector(get, this, step);
-		
-		connector.execute();
 
-		progress = activity.getMessage().showWaitDialog();
-	}
-	
-	
+    public void Post()
+    {
+        Post(Step.NoSteps);
+    }
 
-	private boolean isOffline()
-	{
-		return Internet.isOffline(activity);
-	}
+    public boolean Post(Step step)
+    {
+        if (isOffline())
+        {
+            String error = activity.getString(R.string.u_r_offline);
+            activity.HandlePostError(error, step);
+            return false;
+        }
 
-	private String getUrl()
-	{
-		String completeUrl = site;
-		
-		if (parameters.containsKey("ticket"))
-		{
-			completeUrl += "-" + parameters.get("ticket");
-			parameters.remove("ticket");
-		}
-		
-		if (parameters.containsKey("accounturl"))
-		{
-			completeUrl += "/Account-" + parameters.get("accounturl");
-			parameters.remove("accounturl");
-		}
-		
-		completeUrl += "/" + url;
-		
-		if (parameters.containsKey("id"))
-		{
-			completeUrl += "/" + parameters.get("id");
-			parameters.remove("id");
-		}
+        String completeUrl = getUrl();
+        HttpPost post = new HttpPost(completeUrl);
+        List<NameValuePair> nameValuePairs = getParameters();
 
-		return completeUrl;
-	}
+        try
+        {
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+        } catch (UnsupportedEncodingException e)
+        {
+            String error = activity.getString(R.string.error_set_parameters) + e.getMessage();
+            activity.HandlePostError(error, step);
+            return false;
+        }
 
-	private List<NameValuePair> getParameters()
-	{
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	    
-	    for(Map.Entry<String, Object> parameter : parameters.entrySet())
-	    {
-	    	Object rawValue = parameter.getValue();
-	    	
-	    	if (rawValue != null)
-	    	{
-		    	String key = parameter.getKey();
-		    	String value = rawValue.toString();
-		    	
-		    	BasicNameValuePair pair = new BasicNameValuePair(key, value); 
-		    	
-		    	nameValuePairs.add(pair);
-	    	}
-	    }
-	    
-		return nameValuePairs;
-	}	
-	
+        connector = new SiteConnector(post, this, step);
 
-	
-	void HandleResponse(String json, String errorMessage, Step step)
-	{
+        connector.execute();
+
+        startUIWait();
+
+        return true;
+    }
+
+
+    public void Get()
+    {
+        Get(Step.NoSteps);
+    }
+
+    public void Get(Step step)
+    {
+        if (isOffline())
+        {
+            String error = activity.getString(R.string.u_r_offline);
+            activity.HandlePostError(error, step);
+            return;
+        }
+
+        String completeUrl = getUrl();
+        HttpGet get = new HttpGet(completeUrl);
+
+        connector = new SiteConnector(get, this, step);
+
+        connector.execute();
+
+        startUIWait();
+    }
+
+
+    private boolean isOffline()
+    {
+        return Internet.isOffline(activity);
+    }
+
+    private String getUrl()
+    {
+        String completeUrl = site;
+
+        if (parameters.containsKey("ticket"))
+        {
+            completeUrl += "-" + parameters.get("ticket");
+            parameters.remove("ticket");
+        }
+
+        if (parameters.containsKey("accounturl"))
+        {
+            completeUrl += "/Account-" + parameters.get("accounturl");
+            parameters.remove("accounturl");
+        }
+
+        completeUrl += "/" + url;
+
+        if (parameters.containsKey("id"))
+        {
+            completeUrl += "/" + parameters.get("id");
+            parameters.remove("id");
+        }
+
+        return completeUrl;
+    }
+
+    private List<NameValuePair> getParameters()
+    {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+        for (Map.Entry<String, Object> parameter : parameters.entrySet())
+        {
+            Object rawValue = parameter.getValue();
+
+            if (rawValue != null)
+            {
+                String key = parameter.getKey();
+                String value = rawValue.toString();
+
+                BasicNameValuePair pair = new BasicNameValuePair(key, value);
+
+                nameValuePairs.add(pair);
+            }
+        }
+
+        return nameValuePairs;
+    }
+
+
+    void HandleResponse(String json, String errorMessage, Step step)
+    {
         Response response;
 
         if (errorMessage != null)
-		{
-			response = new Response(errorMessage);
-		}
-		else
-		{
-			while(json.startsWith("\n") || json.startsWith("\r"))
-			{
-				json = json.substring(1);
-			}
-			
-			if (json.startsWith("<"))
-	    	{
-				response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
-	    	}
-			else 
-			{
-		    	try
-		    	{
-		    		response = new Response(new JSONObject(json));
-		    	}
-		        catch (JSONException e)
-		        {
-		        	response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
-				}
-	    	}
-		}
-    	
-		closeProgressBar();
-		
-		if (step == Step.Logout)
-			return;
-		
-		if (response.IsSuccess())
-	    	activity.HandlePostResult(response.GetResult(), step);
-		else
-	    	activity.HandlePostError(response.GetError(), step);
-	}	
-	
-	
-	
-	private void closeProgressBar()
-	{
-		// This try is a fix for user turn the screen
-		// it recharges the activity and fucks the dialog
-		try
-		{
-			progress.dismiss();
-			progress = null;
-	    } catch (IllegalArgumentException ignored) { }
-	}
-	
-	
-	
-	public void Cancel()
-	{
-		progress = null;
-		connector.cancel(true);
-	}
-	
-	
+        {
+            response = new Response(errorMessage);
+        } else
+        {
+            while (json.startsWith("\n") || json.startsWith("\r"))
+            {
+                json = json.substring(1);
+            }
+
+            if (json.startsWith("<"))
+            {
+                response = new Response(activity.getString(R.string.error_contact_url) + " " + this.url);
+            } else
+            {
+                try
+                {
+                    response = new Response(new JSONObject(json));
+                } catch (JSONException e)
+                {
+                    response = new Response(activity.getString(R.string.error_convert_result) + ": [json] " + e.getMessage());
+                }
+            }
+        }
+
+        endUIWait();
+
+        if (step == Step.Logout)
+            return;
+
+        if (response.IsSuccess())
+            activity.HandlePostResult(response.GetResult(), step);
+        else
+            activity.HandlePostError(response.GetError(), step);
+    }
+
+
+    public void Cancel()
+    {
+        endUIWait();
+        connector.cancel(true);
+    }
+
+
+    private void startUIWait()
+    {
+        openProgressBar();
+        disableSleep();
+    }
+
+    private void openProgressBar()
+    {
+        progress = activity.getMessage().showWaitDialog();
+    }
+
+    private void disableSleep()
+    {
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void endUIWait()
+    {
+        closeProgressBar();
+        enableSleep();
+    }
+
+    private void closeProgressBar()
+    {
+        if (progress == null)
+            return;
+
+        // This try is a fix for user turn the screen
+        // it recharges the activity and fucks the dialog
+        try
+        {
+            progress.dismiss();
+            progress = null;
+        } catch (IllegalArgumentException ignored)
+        {
+        }
+    }
+
+    private void enableSleep()
+    {
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+
 }
