@@ -1,5 +1,4 @@
-﻿using System;
-using token = DK.Generic.Extensions.Token;
+﻿using token = DK.Generic.Extensions.Token;
 
 namespace DFM.Entities
 {
