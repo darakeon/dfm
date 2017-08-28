@@ -6,13 +6,23 @@
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/empty_list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		android:gravity="center"
+		android:textSize="17sp"
+		android:paddingTop="20dp"
+		android:paddingBottom="20dp"
+		android:text="@string/no_accounts" />
 	
 	<ListView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-	  	android:id="@+id/main_table">
-
-	</ListView>
+	  	android:id="@+id/main_table" />
 	
 </LinearLayout>

@@ -1,14 +1,14 @@
 package com.dontflymoney.view;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.dontflymoney.adapters.AccountAdapter;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.adapters.AccountAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +17,8 @@ import org.json.JSONObject;
 public class AccountsActivity extends SmartActivity
 {
 	ListView main;
+	TextView empty;
+
 	static JSONArray accountList;
 
 
@@ -27,7 +29,7 @@ public class AccountsActivity extends SmartActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		getMain();
+		setCurrentInfo();
 
 		if (rotated && succeded)
 		{
@@ -46,9 +48,10 @@ public class AccountsActivity extends SmartActivity
 		}
 	}
 
-	private void getMain()
+	private void setCurrentInfo()
 	{
 		main = (ListView)findViewById(R.id.main_table);
+		empty = (TextView)findViewById(R.id.empty_list);
 	}
 
 	private void getAccounts()
@@ -60,7 +63,7 @@ public class AccountsActivity extends SmartActivity
 
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step)
-		throws JSONException
+			throws JSONException
 	{
 		accountList = data.getJSONArray("AccountList");
 		fillAccounts();
@@ -70,11 +73,14 @@ public class AccountsActivity extends SmartActivity
 	{
 		if (accountList.length() == 0)
 		{
-			View empty = form.createText(getString(R.string.no_accounts), Gravity.CENTER);
-			main.addView(empty);
+			main.setVisibility(View.GONE);
+			empty.setVisibility(View.VISIBLE);
 		}
 		else
 		{
+			main.setVisibility(View.VISIBLE);
+			empty.setVisibility(View.GONE);
+
 			AccountAdapter accountAdapter = new AccountAdapter(this, accountList);
 			main.setAdapter(accountAdapter);
 		}
