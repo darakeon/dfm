@@ -33,12 +33,16 @@
 }
 else
 {
-	var tableSize = ViewBag.TableSize ?? 12;
-	if (tableSize % 2 == 1) { tableSize++; }
-	var push = 6 - tableSize/2;
+	var tableLgSize = ViewBag.TableLgSize ?? 12;
+	if (tableLgSize % 2 == 1) { tableLgSize++; }
+	var pushLg = 6 - tableLgSize / 2;
+
+	var tableSmSize = ViewBag.TableSmSize ?? 12;
+	if (tableSmSize % 2 == 1) { tableSmSize++; }
+	var pushSm = 6 - tableSmSize / 2;
 
 	<div class="row">
-		<div class="col-sm-@tableSize col-sm-push-@push">
+		<div class="col-lg-@tableLgSize col-lg-push-@pushLg col-sm-@tableSmSize col-sm-push-@pushSm">
 
 			<div class="well-sm">
 

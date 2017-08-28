@@ -8,7 +8,8 @@
 
 	ViewBag.HasContent = Model.Year.MonthList.Any();
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoYearMoves"];
-	ViewBag.TableSize = 6;
+	ViewBag.TableLgSize = 6;
+	ViewBag.TableSmSize = 8;
 
 	var beginDate = new YearUnit(Model.Account.BeginDate);
 	var endDate = new YearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
@@ -56,15 +57,14 @@
 } 
 
 @section Footer {
-
 	<div class="row">
-		<div class="col-sm-1"></div>
+		<div class="col-lg-2 col-sm-2"></div>
 
-		<div class="col-sm-10 text-center">
+		<div class="col-lg-8 col-sm-8 text-center">
 			@Html.Partial("Pagination", pages)
 		</div>
 
-		<div class="col-sm-1">
+		<div class="col-lg-2 col-sm-2">
 			@Html.Partial("Total")
 		</div>
 	</div>

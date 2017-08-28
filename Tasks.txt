@@ -109,9 +109,9 @@ VERSÃO 3.0.0.5 (System) - 5
 ================================================================================================
 						Escrever testes para permissões por usuário
 						Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
-						Corrigir tamanho da caixa de saldo no browser mobile
 						Corrigir naturezas na tela de agendamento
 						Corrigir tela de agendamentos caso não haja uso de categorias
+2017-04-18	2017-04-18	Corrigir tamanho da caixa de saldo no browser mobile
 
 VERSÃO 3.0.0.4 (System) - 1
 ================================================================================================
