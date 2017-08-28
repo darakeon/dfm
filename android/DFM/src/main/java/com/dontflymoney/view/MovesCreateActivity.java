@@ -71,19 +71,22 @@ public class MovesCreateActivity extends SmartActivity {
 	{
 		if (move != null)
 		{
-			for(int c = 0; c < categoryList.length(); c++)
-			{
-				JSONObject category = categoryList.getJSONObject(c);
-				String value = category.getString("Value");
-				
-				if (value.equals(move.Category))
-				{
-					String text = category.getString("Text");
-					form.setValue(R.id.category, text);
-					break;
-				}
-			}
-			
+            if (useCategories)
+            {
+                for (int c = 0; c < categoryList.length(); c++)
+                {
+                    JSONObject category = categoryList.getJSONObject(c);
+                    String value = category.getString("Value");
+
+                    if (value.equals(move.Category))
+                    {
+                        String text = category.getString("Text");
+                        form.setValue(R.id.category, text);
+                        break;
+                    }
+                }
+            }
+
 			form.setValue(R.id.date, move.DateString());
 
 			for(int n = 0; n < natureList.length(); n++)
