@@ -4,6 +4,8 @@
 	ViewBag.Title = Users.ContractTitle;
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSize = 8;
+
+	var canSign = !Model.IsLastContractAccepted;
 }
 
 @section Styles {
@@ -16,13 +18,15 @@
 		@Html.Partial($"../Contracts/{Model.Contract.Version}")
 	</div>
 
-	<div class="checkbox text-center form-group">
-		<label for="@Html.IdFor(m => m.Accept)">
-			@Html.CheckBoxFor(m => m.Accept)
-			@Users.ContractAccept
-		</label>
-	</div>
-
+	@if (canSign)
+	{
+		<div class="checkbox text-center form-group">
+			<label for="@Html.IdFor(m => m.Accept)">
+				@Html.CheckBoxFor(m => m.Accept)
+				@Users.ContractAccept
+			</label>
+		</div>
+	}
 </div>
 
 

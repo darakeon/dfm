@@ -4,7 +4,7 @@ using DFM.MVC.Assets.Resources;
 
 namespace DFM.MVC.Models
 {
-	public class UsersContractModel : BaseModel
+	public class UsersContractModel : BaseLoggedModel
 	{
 		public UsersContractModel()
 		{

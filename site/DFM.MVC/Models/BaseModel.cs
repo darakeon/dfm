@@ -25,6 +25,7 @@ namespace DFM.MVC.Models
 
 
 		public Boolean IsAuthenticated => Current.IsAuthenticated;
+		public Boolean IsLastContractAccepted => Safe.IsLastContractAccepted();
 		
 
 		public Boolean IsExternal
