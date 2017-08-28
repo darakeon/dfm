@@ -36,8 +36,8 @@ public class MovesCreateActivity extends SmartActivity {
 	static JSONArray accountList;
 
 
-	
-    protected int contentView() { return R.layout.moves_create; }
+
+	protected int contentView() { return R.layout.moves_create; }
 
 
 
@@ -46,7 +46,7 @@ public class MovesCreateActivity extends SmartActivity {
 	{
 		super.onCreate(savedInstanceState);
 		window = (ScrollView) findViewById(R.id.window);
-		
+
 		if (rotated && succeded)
 		{
 			try
@@ -66,26 +66,26 @@ public class MovesCreateActivity extends SmartActivity {
 			populateScreen();
 		}
 	}
-	
+
 	private void populateOldData(boolean populateAll) throws NumberFormatException, JSONException
 	{
 		if (move != null)
 		{
-            if (useCategories)
-            {
-                for (int c = 0; c < categoryList.length(); c++)
-                {
-                    JSONObject category = categoryList.getJSONObject(c);
-                    String value = category.getString("Value");
+			if (useCategories)
+			{
+				for (int c = 0; c < categoryList.length(); c++)
+				{
+					JSONObject category = categoryList.getJSONObject(c);
+					String value = category.getString("Value");
 
-                    if (value.equals(move.Category))
-                    {
-                        String text = category.getString("Text");
-                        form.setValue(R.id.category, text);
-                        break;
-                    }
-                }
-            }
+					if (value.equals(move.Category))
+					{
+						String text = category.getString("Text");
+						form.setValue(R.id.category, text);
+						break;
+					}
+				}
+			}
 
 			form.setValue(R.id.date, move.DateString());
 
@@ -93,7 +93,7 @@ public class MovesCreateActivity extends SmartActivity {
 			{
 				JSONObject nature = natureList.getJSONObject(n);
 				int comparValue = nature.getInt("Value");
-				
+
 				if (comparValue == move.Nature.GetNumber())
 				{
 					String text = nature.getString("Text");
@@ -103,53 +103,53 @@ public class MovesCreateActivity extends SmartActivity {
 				}
 			}
 
-            for(int n = 0; n < accountList.length(); n++)
-            {
-                JSONObject account = accountList.getJSONObject(n);
-                String value = account.getString("Value");
+			for(int n = 0; n < accountList.length(); n++)
+			{
+				JSONObject account = accountList.getJSONObject(n);
+				String value = account.getString("Value");
 
-                if (value.equals(move.AccountOut))
-                {
-                    String text = account.getString("Text");
-                    form.setValue(R.id.account_out, text);
-                    break;
-                }
-            }
+				if (value.equals(move.AccountOut))
+				{
+					String text = account.getString("Text");
+					form.setValue(R.id.account_out, text);
+					break;
+				}
+			}
 
-            for(int n = 0; n < accountList.length(); n++)
-            {
-                JSONObject account = accountList.getJSONObject(n);
-                String value = account.getString("Value");
+			for(int n = 0; n < accountList.length(); n++)
+			{
+				JSONObject account = accountList.getJSONObject(n);
+				String value = account.getString("Value");
 
-                if (value.equals(move.AccountIn))
-                {
-                    String text = account.getString("Text");
-                    form.setValue(R.id.account_in, text);
-                    break;
-                }
-            }
-			
-			
+				if (value.equals(move.AccountIn))
+				{
+					String text = account.getString("Text");
+					form.setValue(R.id.account_in, text);
+					break;
+				}
+			}
+
+
 			if (move.isDetailed)
 			{
 				for(int d = 0; d < move.Details.size(); d++)
 				{
-					Detail detail = move.Details.get(d); 
-					
+					Detail detail = move.Details.get(d);
+
 					addViewDetail(move, detail.Description, detail.Amount, detail.Value);
 				}
-				
+
 				useDetailed();
 			}
 
-            if (!populateAll)
-                return;
+			if (!populateAll)
+				return;
 
-            EditText descriptionView = (EditText) findViewById(R.id.description);
-            descriptionView.setText(move.Description);
+			EditText descriptionView = (EditText) findViewById(R.id.description);
+			descriptionView.setText(move.Description);
 
-            EditText valueView = (EditText) findViewById(R.id.value);
-            valueView.setText(Double.toString(move.Value));
+			EditText valueView = (EditText) findViewById(R.id.value);
+			valueView.setText(Double.toString(move.Value));
 
 		}
 	}
@@ -157,9 +157,9 @@ public class MovesCreateActivity extends SmartActivity {
 	private void populateScreen()
 	{
 		request = new Request(this, "Moves/Create");
-        request.AddParameter("ticket", Authentication.Get());
-        request.AddParameter("accounturl", getIntent().getStringExtra("accounturl"));
-        request.AddParameter("id", getIntent().getIntExtra("id", 0));
+		request.AddParameter("ticket", Authentication.Get());
+		request.AddParameter("accounturl", getIntent().getStringExtra("accounturl"));
+		request.AddParameter("id", getIntent().getIntExtra("id", 0));
 		request.Get(Step.Populate);
 
 		setCurrentDate();
@@ -188,25 +188,25 @@ public class MovesCreateActivity extends SmartActivity {
 	private void populateScreen(JSONObject data) throws JSONException
 	{
 		useCategories = data.getBoolean("UseCategories");
-		
+
 		if (useCategories)
 			categoryList = data.getJSONArray("CategoryList");
-		
+
 		natureList = data.getJSONArray("NatureList");
 		accountList = data.getJSONArray("AccountList");
 
 		populateCategoryAndNature();
 
-        if (data.has("Move") && !data.get("Move").equals(null))
-        {
-            JSONObject moveToEdit = data.getJSONObject("Move");
-            move.SetData(moveToEdit, getIntent().getStringExtra("accounturl"));
-            populateOldData(true);
-        }
-    }
-	
+		if (data.has("Move") && !data.get("Move").equals(null))
+		{
+			JSONObject moveToEdit = data.getJSONObject("Move");
+			move.SetData(moveToEdit, getIntent().getStringExtra("accounturl"));
+			populateOldData(true);
+		}
+	}
+
 	private void populateCategoryAndNature()
-		throws JSONException
+			throws JSONException
 	{
 		if (useCategories)
 		{
@@ -216,7 +216,7 @@ public class MovesCreateActivity extends SmartActivity {
 		{
 			findViewById(R.id.category_box).setVisibility(View.GONE);
 		}
-		
+
 		if (move.Nature == null)
 		{
 			JSONObject firstNature = natureList.getJSONObject(0);
@@ -225,7 +225,7 @@ public class MovesCreateActivity extends SmartActivity {
 		}
 	}
 
-	
+
 
 	private void setCurrentDate()
 	{
@@ -235,7 +235,7 @@ public class MovesCreateActivity extends SmartActivity {
 		int year = getIntent().getIntExtra("year", today.get(Calendar.YEAR));
 		move.Date.set(year, month, day);
 	}
-	
+
 	private void setControls()
 	{
 		form.setValue(R.id.date, move.DateString());
@@ -243,15 +243,15 @@ public class MovesCreateActivity extends SmartActivity {
 		setDescriptionListener();
 		setValueListener();
 	}
-	
-	
-	
+
+
+
 	private void setDescriptionListener()
 	{
 		EditText textMessage = (EditText) findViewById(R.id.description);
-	    textMessage.addTextChangedListener(new DescriptionWatcher());
+		textMessage.addTextChangedListener(new DescriptionWatcher());
 	}
-	
+
 	private class DescriptionWatcher extends AfterTextWatcher
 	{
 		@Override
@@ -260,19 +260,19 @@ public class MovesCreateActivity extends SmartActivity {
 			move.Description = text;
 		}
 	}
-	
-	
-	
+
+
+
 	public void showDatePicker(View view)
 	{
-		dialog = 
-			new DatePickerDialog(
-				this,
-				new PickDate(),
-				move.getYear(),
-				move.getMonth(),
-				move.getDay()
-			);
+		dialog =
+				new DatePickerDialog(
+						this,
+						new PickDate(),
+						move.getYear(),
+						move.getMonth(),
+						move.getDay()
+				);
 		dialog.show();
 	}
 
@@ -281,17 +281,17 @@ public class MovesCreateActivity extends SmartActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int month, int day)
 		{
-            if (view.isShown())
-            {
-                move.Date.set(year, month, day);
-                form.setValue(R.id.date, move.DateString());
-                dialog.dismiss();
-            }
+			if (view.isShown())
+			{
+				move.Date.set(year, month, day);
+				form.setValue(R.id.date, move.DateString());
+				dialog.dismiss();
+			}
 		}
 	}
 
-	
-	
+
+
 	public void changeCategory(View view) throws JSONException
 	{
 		form.showChangeList(categoryList, R.string.category, new DialogCategory(categoryList));
@@ -315,8 +315,8 @@ public class MovesCreateActivity extends SmartActivity {
 		}
 	}
 
-	
-	
+
+
 	public void changeNature(View view) throws JSONException
 	{
 		form.showChangeList(natureList, R.string.nature, new DialogNature(natureList));
@@ -343,76 +343,82 @@ public class MovesCreateActivity extends SmartActivity {
 	{
 		form.setValue(R.id.nature, text);
 		move.SetNature(value);
-		
+
 		int accountOutVisibility = move.Nature != Nature.In ? View.VISIBLE : View.GONE;
-        findViewById(R.id.account_out_block).setVisibility(accountOutVisibility);
+		findViewById(R.id.account_out_block).setVisibility(accountOutVisibility);
 
-        int accountInVisibility = move.Nature != Nature.Out ? View.VISIBLE : View.GONE;
-        findViewById(R.id.account_in_block).setVisibility(accountInVisibility);
+		int accountInVisibility = move.Nature != Nature.Out ? View.VISIBLE : View.GONE;
+		findViewById(R.id.account_in_block).setVisibility(accountInVisibility);
 
-        if (move.Nature != Nature.In)
-            move.AccountIn = null;
+		if (move.Nature == Nature.Out)
+		{
+			move.AccountIn = null;
+			form.setValue(R.id.account_in, getString(R.string.pick));
+		}
 
-        if (move.Nature != Nature.Out)
-            move.AccountOut = null;
+		if (move.Nature == Nature.In)
+		{
+			move.AccountOut = null;
+			form.setValue(R.id.account_out, getString(R.string.pick));
+		}
 	}
 
 
 
-    public void changeAccountOut(View view) throws JSONException
-    {
-        form.showChangeList(accountList, R.string.account, new DialogAccountOut(accountList));
-    }
+	public void changeAccountOut(View view) throws JSONException
+	{
+		form.showChangeList(accountList, R.string.account, new DialogAccountOut(accountList));
+	}
 
-    public void changeAccountIn(View view) throws JSONException
-    {
-        form.showChangeList(accountList, R.string.account, new DialogAccountIn(accountList));
-    }
+	public void changeAccountIn(View view) throws JSONException
+	{
+		form.showChangeList(accountList, R.string.account, new DialogAccountIn(accountList));
+	}
 
-    class DialogAccountOut extends DialogSelectClickListener
-    {
-        public DialogAccountOut(JSONArray list) { super(list); }
+	class DialogAccountOut extends DialogSelectClickListener
+	{
+		public DialogAccountOut(JSONArray list) { super(list); }
 
-        @Override
-        public void setResult(String text, String value)
-        {
-            form.setValue(R.id.account_out, text);
-            move.AccountOut = value;
-        }
+		@Override
+		public void setResult(String text, String value)
+		{
+			form.setValue(R.id.account_out, text);
+			move.AccountOut = value;
+		}
 
-        @Override
-        public void handleError(JSONException exception)
-        {
-            message.alertError(R.string.error_convert_result);
-        }
-    }
+		@Override
+		public void handleError(JSONException exception)
+		{
+			message.alertError(R.string.error_convert_result);
+		}
+	}
 
-    class DialogAccountIn extends DialogSelectClickListener
-    {
-        public DialogAccountIn(JSONArray list) { super(list); }
+	class DialogAccountIn extends DialogSelectClickListener
+	{
+		public DialogAccountIn(JSONArray list) { super(list); }
 
-        @Override
-        public void setResult(String text, String value)
-        {
-            form.setValue(R.id.account_in, text);
-            move.AccountIn = value;
-        }
+		@Override
+		public void setResult(String text, String value)
+		{
+			form.setValue(R.id.account_in, text);
+			move.AccountIn = value;
+		}
 
-        @Override
-        public void handleError(JSONException exception)
-        {
-            message.alertError(R.string.error_convert_result);
-        }
-    }
+		@Override
+		public void handleError(JSONException exception)
+		{
+			message.alertError(R.string.error_convert_result);
+		}
+	}
 
-	
-	
+
+
 	private void setValueListener()
 	{
 		EditText textMessage = (EditText) findViewById(R.id.value);
-	    textMessage.addTextChangedListener(new ValueWatcher());
+		textMessage.addTextChangedListener(new ValueWatcher());
 	}
-	
+
 	private class ValueWatcher extends AfterTextWatcher
 	{
 		@Override
@@ -422,30 +428,30 @@ public class MovesCreateActivity extends SmartActivity {
 			catch (NumberFormatException e) { }
 		}
 	}
-	
-	
+
+
 
 	public void useDetailed() {
 		useDetailed(null);
 	}
-	
+
 	public void useDetailed(View view)
-    {
-        move.isDetailed = true;
+	{
+		move.isDetailed = true;
 
 		findViewById(R.id.simple_value).setVisibility(View.GONE);
 		findViewById(R.id.detailed_value).setVisibility(View.VISIBLE);
-		
+
 		scrollToTheEnd();
 	}
 
 	public void useSimple(View view)
 	{
-        move.isDetailed = false;
+		move.isDetailed = false;
 
-        findViewById(R.id.simple_value).setVisibility(View.VISIBLE);
+		findViewById(R.id.simple_value).setVisibility(View.VISIBLE);
 		findViewById(R.id.detailed_value).setVisibility(View.GONE);
-		
+
 		scrollToTheEnd();
 	}
 
@@ -459,9 +465,9 @@ public class MovesCreateActivity extends SmartActivity {
 			message.alertError(R.string.fill_all);
 			return;
 		}
-		
+
 		int amountDefault = getResources().getInteger(R.integer.amount_default);
-		
+
 		form.setValue(R.id.detail_description, "");
 		form.setValue(R.id.detail_amount, amountDefault);
 		form.setValue(R.id.detail_value, "");
@@ -472,28 +478,28 @@ public class MovesCreateActivity extends SmartActivity {
 		move.Add(description, amount, value);
 
 		addViewDetail(move, description, amount, value);
-		
+
 		scrollToTheEnd();
 	}
-	
+
 	private void addViewDetail(Move move, String description, int amount, double value)
 	{
 		DetailBox row = new DetailBox(this, move, description, amount, value);
 		LinearLayout list = (LinearLayout) findViewById(R.id.details);
 		list.addView(row);
 	}
-	
-	
+
+
 	public void save(View view)
 	{
 		request = new Request(this, "Moves/Create");
-		
+
 		request.AddParameter("ticket", Authentication.Get());
 		move.setParameters(request);
-		
+
 		request.Post(Step.Recording);
 	}
-	
+
 	private void backToExtract()
 	{
 		Intent intent = new Intent(this, ExtractActivity.class);
@@ -505,16 +511,16 @@ public class MovesCreateActivity extends SmartActivity {
 	}
 
 
-	
+
 	private void scrollToTheEnd()
 	{
 		window.postDelayed(new Runnable() {
-	        @Override
-	        public void run() {
-	            window.fullScroll(ScrollView.FOCUS_DOWN);
-	        }
-	    }, 100);
+			@Override
+			public void run() {
+				window.fullScroll(ScrollView.FOCUS_DOWN);
+			}
+		}, 100);
 	}
-	
+
 
 }
