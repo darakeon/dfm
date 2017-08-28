@@ -1,5 +1,4 @@
-﻿@using DFM.Entities.Enums
-@model LoginsIndexModel
+﻿@model LoginsIndexModel
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Logins"];
@@ -11,10 +10,9 @@
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-3">@MultiLanguage.Dictionary["Creation"]</th>
-		<th class="col-sm-3">@MultiLanguage.Dictionary["Expiration"]</th>
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Type"]</th>
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["TODO"]</th>
+		<th class="col-sm-4">@MultiLanguage.Dictionary["Creation"]</th>
+		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["Type"]</th>
+		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["TODO"]</th>
 	</tr>	
 }
 
@@ -22,10 +20,9 @@
 @foreach (var login in Model.LoginsList)
 {
 	<tr class="row">
-		<td class="col-sm-3">@login.Creation</td>
-		<td class="col-sm-3">@login.Expiration</td>
+		<td class="col-sm-4">@login.Creation</td>
 
-		<td class="col-sm-3 text-center">
+		<td class="col-sm-4 text-center">
 			<span class="label label-@Html.Partial("LoginType", login.Type)">
 				@MultiLanguage.Dictionary[login.Type.ToString()]
 			</span>
@@ -40,7 +37,7 @@
 				);
 		}
 
-		<td class="text-center">
+		<td class="col-sm-4 text-center">
 			<a href="@Url.Action("Delete", "Logins", new { id = login.Key })"
 			   class="withConfirm" confirm="@deleteConfirm">
 				<span class="glyphicon glyphicon-trash"></span>
