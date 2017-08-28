@@ -27,6 +27,9 @@
 		<EmailToChange text="New e-mail" />
 		<EmailUpdated text="E-mail successfully updated. New user activation is required." />
 		<PasswordChanged text="Password successfully updated. System logged out for safety." />
+		<MainSettings text="Options" />
+		<PasswordSettings text="Password" />
+		<EmailSettings text="E-mail" />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -40,7 +43,7 @@
 		<PayAttentionSender text="Atenção para o remetente do e-mail: PRECISA ser " />
 		<Settings text="Configurações" />
 		<UseCategories text="Usar categorias" />
-		<SendMoveEmail text="Enviar e-mail após gravar movimentação" />
+		<SendMoveEmail text="Enviar e-mail ao gravar movimentação" />
 		<MoveCheck text="Movimentação pode ser verificada" />
 		<Language text="Língua" />
 		<TimeZone text="Fuso horário" />
@@ -55,5 +58,8 @@
 		<EmailToChange text="Novo e-mail" />
 		<EmailUpdated text="E-mail atualizado com sucesso. Será necessária nova ativação de usuário." />
 		<PasswordChanged text="Senha atualizada com sucesso. Sistema deslogado por segurança." />
+		<MainSettings text="Opções" />
+		<PasswordSettings text="Senha" />
+		<EmailSettings text="E-mail" />
 	</pt-BR>
 </users>

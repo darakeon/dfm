@@ -23,7 +23,15 @@ namespace DFM.MVC.Models
 
 		public MainConfig Main { get; set; }
 		public UserInfo Info { get; set; }
+		
+		public Form ActiveForm { get; set; }
 
+		public enum Form
+		{
+			Options,
+			Password,
+			Email
+		}
 
 
 		public class MainConfig : IMainConfig

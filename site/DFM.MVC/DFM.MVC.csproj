@@ -287,7 +287,7 @@
     <Content Include="Views\Tokens\PasswordReset.old" />
     <Content Include="Views\Tokens\PasswordResetSuccess.old" />
     <Content Include="Views\Tokens\UserVerificationSuccess.old" />
-    <Content Include="Views\Users\Config.old" />
+    <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ForgotPassword.cshtml" />
     <None Include="Views\Users\ForgotPasswordSuccess.cshtml" />

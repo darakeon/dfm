@@ -963,11 +963,20 @@ this.FeatureBackground();
             table11.AddRow(new string[] {
                         "Users",
                         "PasswordChanged"});
+            table11.AddRow(new string[] {
+                        "Users",
+                        "MainSettings"});
+            table11.AddRow(new string[] {
+                        "Users",
+                        "PasswordSettings"});
+            table11.AddRow(new string[] {
+                        "Users",
+                        "EmailSettings"});
 #line 256
  testRunner.Given("I have these keys", ((string)(null)), table11, "Given ");
-#line 299
+#line 302
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 300
+#line 303
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -978,7 +987,7 @@ this.FeatureBackground();
         public virtual void _11_GetTranslateOfInterfaceOps()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Get translate of Interface (ops)", ((string[])(null)));
-#line 303
+#line 306
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -998,11 +1007,11 @@ this.FeatureBackground();
             table12.AddRow(new string[] {
                         "Ops",
                         "CommunicationError"});
-#line 304
+#line 307
  testRunner.Given("I have these keys", ((string)(null)), table12, "Given ");
-#line 310
+#line 313
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 311
+#line 314
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1013,7 +1022,7 @@ this.FeatureBackground();
         public virtual void _12_GetTranslateOfInterfaceGeneral()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Get translate of Interface (general)", ((string[])(null)));
-#line 314
+#line 317
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1060,11 +1069,11 @@ this.FeatureBackground();
             table13.AddRow(new string[] {
                         "General",
                         "Logins"});
-#line 315
+#line 318
  testRunner.Given("I have these keys", ((string)(null)), table13, "Given ");
-#line 330
+#line 333
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 331
+#line 334
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1075,7 +1084,7 @@ this.FeatureBackground();
         public virtual void _13_GetTranslateOfInterfaceSchedules()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Get translate of Interface (schedules)", ((string[])(null)));
-#line 334
+#line 337
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1164,11 +1173,11 @@ this.FeatureBackground();
             table14.AddRow(new string[] {
                         "Schedules",
                         "ConfirmDeleteSchedule"});
-#line 335
+#line 338
  testRunner.Given("I have these keys", ((string)(null)), table14, "Given ");
-#line 364
+#line 367
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 365
+#line 368
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1179,7 +1188,7 @@ this.FeatureBackground();
         public virtual void _14_GetTranslateOfInterfaceLogins()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Get translate of Interface (logins)", ((string[])(null)));
-#line 368
+#line 371
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1208,11 +1217,11 @@ this.FeatureBackground();
             table15.AddRow(new string[] {
                         "Logins",
                         "LoginRegister"});
-#line 369
+#line 372
  testRunner.Given("I have these keys", ((string)(null)), table15, "Given ");
-#line 378
+#line 381
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 379
+#line 382
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1223,7 +1232,7 @@ this.FeatureBackground();
         public virtual void _15_GetTranslationsOfE_MailStati()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15. Get translations of E-mail Stati", ((string[])(null)));
-#line 383
+#line 386
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1249,11 +1258,11 @@ this.FeatureBackground();
             table16.AddRow(new string[] {
                         "Email",
                         "EmailNotSent"});
-#line 384
+#line 387
  testRunner.Given("I have these keys", ((string)(null)), table16, "Given ");
-#line 392
+#line 395
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 393
+#line 396
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

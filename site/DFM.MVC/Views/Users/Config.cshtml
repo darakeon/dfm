@@ -1,0 +1,118 @@
+﻿@model UsersConfigModel
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary["Settings"];
+	Layout = "../Shared/_MiniForm.cshtml";
+}
+
+@section Scripts
+{
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".nav-tabs li").click(function() {
+				var href = $(this).find("a").attr("href");
+				var action = $(href).data("form");
+				$("form").attr("action", action);
+				$("#ActiveForm").val(href.substr(1));
+			});
+
+			var tabCaller = "." + $("#ActiveForm").val().toLowerCase() + "-caller";
+			$(tabCaller).find("a").click();
+		});
+	</script>
+}
+
+<ul class="nav nav-tabs">
+	<li class="options-caller">
+		<a href="#options" data-toggle="tab">
+			@MultiLanguage.Dictionary["MainSettings"]
+		</a>
+	</li>
+	<li class="password-caller">
+		<a href="#password" data-toggle="tab">
+			@MultiLanguage.Dictionary["PasswordSettings"]
+		</a>
+	</li>
+	<li class="email-caller">
+		<a href="#email" data-toggle="tab">
+			@MultiLanguage.Dictionary["EmailSettings"]
+		</a>
+	</li>
+</ul>
+
+@Html.HiddenFor(m => m.ActiveForm)
+
+<div class="tab-content well-sm">
+	<div class="tab-pane" id="options" data-form="@Url.Action("ChangeConfig")">
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Main.Language, MultiLanguage.Dictionary["Language"])
+			@Html.DropDownListFor(m => m.Main.Language, Model.Main.LanguageList, new {@class = "form-control"})
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Main.TimeZone, MultiLanguage.Dictionary["TimeZone"])
+			@Html.DropDownListFor(m => m.Main.TimeZone, Model.Main.TimeZoneList, new {@class = "form-control"})
+		</div>
+
+		<div class="checkbox row">
+			@Html.LabelFor(m => m.Main.UseCategoriesCheck, MultiLanguage.Dictionary["UseCategories"], new {@class = "col-sm-10"})
+			<label class="col-sm-2 text-right">
+				@Html.CheckBoxFor(m => m.Main.UseCategoriesCheck)
+			</label>
+		</div>
+
+		<div class="checkbox row">
+			@Html.LabelFor(m => m.Main.SendMoveEmailCheck, MultiLanguage.Dictionary["SendMoveEmail"], new {@class = "col-sm-10"})
+			<label class="col-sm-2 text-right">
+				@Html.CheckBoxFor(m => m.Main.SendMoveEmailCheck)
+			</label>
+		</div>
+
+		<div class="checkbox row">
+			@Html.LabelFor(m => m.Main.MoveCheckCheck, MultiLanguage.Dictionary["MoveCheck"], new {@class = "col-sm-10"})
+			<label class="col-sm-2 text-right">
+				@Html.CheckBoxFor(m => m.Main.MoveCheckCheck)
+			</label>
+		</div>
+
+	</div>
+
+	<div class="tab-pane" id="password" data-form="@Url.Action("ChangePassword")">
+		<div class="form-group">
+			@Html.LabelFor(m => m.Info.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"])
+			@Html.PasswordFor(m => m.Info.CurrentPassword, new { @class = "form-control" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Info.Password, MultiLanguage.Dictionary["NewPassword"])
+			@Html.PasswordFor(m => m.Info.Password, new { @class = "form-control" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Info.RetypePassword, MultiLanguage.Dictionary["RetypePassword"])
+			@Html.PasswordFor(m => m.Info.RetypePassword, new { @class = "form-control" })
+		</div>
+	</div>
+	
+	<div class="tab-pane" id="email" data-form="@Url.Action("UpdateEmail")">
+		<div class="form-group">
+			@Html.LabelFor(m => m.Info.Email, MultiLanguage.Dictionary["EmailToChange"])
+			@Html.TextBoxFor(m => m.Info.Email, new { @class = "form-control" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Info.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"])
+			@Html.PasswordFor(m => m.Info.CurrentPassword, new { @class = "form-control" })
+		</div>
+	</div>
+</div>
+
+@section Footer
+{
+	<div class="text-right">
+		<button type="submit" class="btn btn-success">
+			@MultiLanguage.Dictionary["Save"]
+		</button>
+	</div>
+}
