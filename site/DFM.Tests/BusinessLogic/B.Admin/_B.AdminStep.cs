@@ -820,12 +820,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			foreach (var expected in expectedList)
 			{
-				var account = accountList.SingleOrDefault(a => a.Url == expected.Url);
+				var account = accountList.SingleOrDefault(
+					a => a.Url == expected.Url
+						&& a.Name == expected.Name
+				);
 
 				if (has)
 				{
 					Assert.IsNotNull(account);
-					Assert.AreEqual(account.Name, expected.Name);
 				}
 				else
 				{
@@ -887,7 +889,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			foreach (var expected in expectedList)
 			{
-				var category = categoryList.SingleOrDefault(a => a.Name == expected.Name);
+				var category = categoryList.SingleOrDefault(
+					c => c.Name == expected.Name
+				);
 
 				if (has)
 				{
