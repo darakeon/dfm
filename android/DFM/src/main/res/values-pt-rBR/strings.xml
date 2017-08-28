@@ -71,6 +71,8 @@
     <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
     <string name="edit">editar</string>
     <string name="delete">excluir</string>
+    <string name="account_in">entrada</string>
+    <string name="account_out">saída</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>

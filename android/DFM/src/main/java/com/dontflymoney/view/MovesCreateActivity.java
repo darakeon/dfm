@@ -12,7 +12,7 @@ import android.widget.ScrollView;
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.entities.Constants;
+import com.dontflymoney.entities.Nature;
 import com.dontflymoney.entities.Detail;
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.viewhelper.AfterTextWatcher;
@@ -94,7 +94,7 @@ public class MovesCreateActivity extends SmartActivity {
 				JSONObject nature = natureList.getJSONObject(n);
 				int comparValue = nature.getInt("Value");
 				
-				if (comparValue == move.Nature)
+				if (comparValue == move.Nature.GetNumber())
 				{
 					String text = nature.getString("Text");
 					String value = nature.getString("Value");
@@ -103,18 +103,31 @@ public class MovesCreateActivity extends SmartActivity {
 				}
 			}
 
-			for(int n = 0; n < accountList.length(); n++)
-			{
-				JSONObject account = accountList.getJSONObject(n);
-				String value = account.getString("Value");
-				
-				if (value.equals(move.OtherAccount))
-				{
-					String text = account.getString("Text");
-					form.setValue(R.id.account, text);
-					break;
-				}
-			}
+            for(int n = 0; n < accountList.length(); n++)
+            {
+                JSONObject account = accountList.getJSONObject(n);
+                String value = account.getString("Value");
+
+                if (value.equals(move.AccountOut))
+                {
+                    String text = account.getString("Text");
+                    form.setValue(R.id.account_out, text);
+                    break;
+                }
+            }
+
+            for(int n = 0; n < accountList.length(); n++)
+            {
+                JSONObject account = accountList.getJSONObject(n);
+                String value = account.getString("Value");
+
+                if (value.equals(move.AccountIn))
+                {
+                    String text = account.getString("Text");
+                    form.setValue(R.id.account_in, text);
+                    break;
+                }
+            }
 			
 			
 			if (move.isDetailed)
@@ -204,11 +217,11 @@ public class MovesCreateActivity extends SmartActivity {
 			findViewById(R.id.category_box).setVisibility(View.GONE);
 		}
 		
-		if (move.Nature == 0)
+		if (move.Nature == null)
 		{
 			JSONObject firstNature = natureList.getJSONObject(0);
 			form.setValue(R.id.nature, firstNature.getString("Text"));
-			move.Nature = firstNature.getInt("Value");
+			move.SetNature(firstNature.getInt("Value"));
 		}
 	}
 
@@ -226,8 +239,7 @@ public class MovesCreateActivity extends SmartActivity {
 	private void setControls()
 	{
 		form.setValue(R.id.date, move.DateString());
-		move.PrimaryAccount = getIntent().getStringExtra("accounturl");
-		
+
 		setDescriptionListener();
 		setValueListener();
 	}
@@ -330,40 +342,62 @@ public class MovesCreateActivity extends SmartActivity {
 	public void setNature(String text, String value)
 	{
 		form.setValue(R.id.nature, text);
-		move.Nature = Integer.parseInt(value);
+		move.SetNature(value);
 		
-		int accountVisibility =
-			move.Nature == Constants.MoveNatureTransfer
-				? View.VISIBLE : View.GONE;
-		
-		findViewById(R.id.account).setVisibility(accountVisibility);
-		findViewById(R.id.account_label).setVisibility(accountVisibility);
+		int accountOutVisibility = move.Nature != Nature.In ? View.VISIBLE : View.GONE;
+        findViewById(R.id.account_out_block).setVisibility(accountOutVisibility);
+
+        int accountInVisibility = move.Nature != Nature.Out ? View.VISIBLE : View.GONE;
+        findViewById(R.id.account_in_block).setVisibility(accountInVisibility);
 	}
 
-	
-	
-	public void changeAccount(View view) throws JSONException
-	{
-		form.showChangeList(accountList, R.string.account, new DialogAccount(accountList));
-	}
 
-	class DialogAccount extends DialogSelectClickListener
-	{
-		public DialogAccount(JSONArray list) { super(list); }
 
-		@Override
-		public void setResult(String text, String value)
-		{
-			form.setValue(R.id.account, text);
-			move.OtherAccount = value;
-		}
+    public void changeAccountOut(View view) throws JSONException
+    {
+        form.showChangeList(accountList, R.string.account, new DialogAccountOut(accountList));
+    }
 
-		@Override
-		public void handleError(JSONException exception)
-		{
-			message.alertError(R.string.error_convert_result);
-		}
-	}
+    public void changeAccountIn(View view) throws JSONException
+    {
+        form.showChangeList(accountList, R.string.account, new DialogAccountIn(accountList));
+    }
+
+    class DialogAccountOut extends DialogSelectClickListener
+    {
+        public DialogAccountOut(JSONArray list) { super(list); }
+
+        @Override
+        public void setResult(String text, String value)
+        {
+            form.setValue(R.id.account_out, text);
+            move.AccountOut = value;
+        }
+
+        @Override
+        public void handleError(JSONException exception)
+        {
+            message.alertError(R.string.error_convert_result);
+        }
+    }
+
+    class DialogAccountIn extends DialogSelectClickListener
+    {
+        public DialogAccountIn(JSONArray list) { super(list); }
+
+        @Override
+        public void setResult(String text, String value)
+        {
+            form.setValue(R.id.account_in, text);
+            move.AccountIn = value;
+        }
+
+        @Override
+        public void handleError(JSONException exception)
+        {
+            message.alertError(R.string.error_convert_result);
+        }
+    }
 
 	
 	
@@ -457,7 +491,7 @@ public class MovesCreateActivity extends SmartActivity {
 	private void backToExtract()
 	{
 		Intent intent = new Intent(this, ExtractActivity.class);
-		intent.putExtra("accounturl", move.PrimaryAccount);
+		intent.putExtra("accounturl", getIntent().getStringExtra("accounturl"));
 		intent.putExtra("month", move.getMonth());
 		intent.putExtra("year", move.getYear());
 

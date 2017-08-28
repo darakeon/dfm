@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -229,7 +230,6 @@
     <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
-    <Compile Include="Helpers\Controllers\AccountSelector.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Extensions\MonthExtension.cs" />

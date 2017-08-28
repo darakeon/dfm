@@ -25,15 +25,25 @@ public class Move
 	public String Description;
     public Calendar Date;
     public String Category;
-    public String PrimaryAccount;
-    public String OtherAccount;
-    public int Nature;
+    public String AccountOut;
+    public String AccountIn;
+    public Nature Nature;
 
     public boolean isDetailed;
     public double Value;
     public List<Detail> Details;
 
 
+
+    public void SetNature(String number)
+    {
+        SetNature(Integer.parseInt(number));
+    }
+
+    public void SetNature(int number)
+    {
+        Nature = Nature.GetNature(number);
+    }
 
     public void Add(String description, int amount, double value)
     {
@@ -83,8 +93,8 @@ public class Move
         request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1);
         request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH));
 		request.AddParameter("Category", Category);
-		request.AddParameter("PrimaryAccount", PrimaryAccount);
-		request.AddParameter("OtherAccount", OtherAccount);
+		request.AddParameter("AccountOutUrl", AccountOut);
+		request.AddParameter("AccountInUrl", AccountIn);
 		request.AddParameter("Nature", Nature);
 
         if (isDetailed)
@@ -119,8 +129,9 @@ public class Move
         Description = moveToEdit.getString("Description");
         Date = DateTime.getCalendar(moveToEdit.getJSONObject("Date"));
         Category = moveToEdit.getString("Category");
-        OtherAccount = moveToEdit.getString("OtherAccount");
-        Nature = moveToEdit.getInt("Nature");
+        AccountOut = moveToEdit.getString("AccountOutUrl");
+        AccountIn = moveToEdit.getString("AccountInUrl");
+        Nature = Nature.GetNature(moveToEdit.getInt("Nature"));
 
         if (moveToEdit.has("Value") && !moveToEdit.get("Value").equals(null))
         {

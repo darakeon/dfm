@@ -13,13 +13,19 @@ namespace DFM.MVC.Areas.API.Models
 	        if (id.HasValue && id != 0)
 	        {
 		        var move = Money.GetMoveById(id.Value);
-		        accountUrl = (move.AccOut() ?? move.AccIn()).Url;
 
-				Move = new MovesCreatePostModel(move);
+		        Move = new MovesCreatePostModel(move);
+	        }
+	        else
+	        {
+				Move = new MovesCreatePostModel
+				{
+					AccountInUrl = accountUrl,
+					AccountOutUrl = accountUrl
+				};
 	        }
 
 	        AccountList = Current.User.VisibleAccountList()
-                .Where(a => a.Url != accountUrl)
                 .Select(a => new SelectItem<String, String>(a.Name, a.Url))
                 .ToList();
 
@@ -32,7 +38,7 @@ namespace DFM.MVC.Areas.API.Models
                     .ToList();
             }
 
-            NatureList = AccountList.Any() 
+            NatureList = AccountList.Count > 1
                 ? SelectItemEnum.SelectItem<MoveNature>() 
                 : SelectItemEnum.SelectItem<PrimalMoveNature>();
         }

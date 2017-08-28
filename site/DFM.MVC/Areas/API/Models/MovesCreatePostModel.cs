@@ -4,7 +4,6 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.API.Jsons;
-using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.API.Models
 {
@@ -20,9 +19,10 @@ namespace DFM.MVC.Areas.API.Models
 		    ID = move.ID;
 			Description = move.Description;
 			Date = new DateJson(move.Date);
-			Category = move.Category == null ? null : move.Category.Name;
+			Category = move.Category?.Name;
 			Nature = move.Nature;
-			OtherAccount = move.Nature == MoveNature.Transfer ? move.AccIn().Name : null;
+			AccountOutUrl = move.AccOut()?.Url;
+			AccountInUrl = move.AccIn()?.Url;
 			Value = move.Value;
 
 			DetailList = move.DetailList.Select(d => new DetailJson(d)).ToList();
@@ -33,8 +33,8 @@ namespace DFM.MVC.Areas.API.Models
 		public DateJson Date { get; set; }
         public String Category { get; set; }
         public MoveNature Nature { get; set; }
-        public String PrimaryAccount { get; set; }
-        public String OtherAccount { get; set; }
+        public String AccountOutUrl { get; set; }
+        public String AccountInUrl { get; set; }
         public Decimal? Value { get; set; }
 
         public IList<DetailJson> DetailList { get; set; }
@@ -43,9 +43,7 @@ namespace DFM.MVC.Areas.API.Models
         {
             var move = convertToEntity();
 
-            var accountSelector = new AccountSelector(Nature, PrimaryAccount, OtherAccount);
-
-            Money.SaveOrUpdateMove(move, accountSelector.AccountOutUrl, accountSelector.AccountInUrl, Category);
+            Money.SaveOrUpdateMove(move, AccountOutUrl, AccountInUrl, Category);
         }
 
         private Move convertToEntity()
