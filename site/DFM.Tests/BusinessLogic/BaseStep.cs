@@ -20,18 +20,18 @@ namespace DFM.Tests.BusinessLogic
 {
 	public abstract class BaseStep : ContextHelper
 	{
-		protected static ServiceAccess SA;
-		protected static Current Current => SA.Current;
+		protected static ServiceAccess Service;
+		protected static Current Current => Service.Current;
 
 		protected BaseStep()
 		{
-			if (SA != null)
+			if (Service != null)
 				return;
 
 			SessionFactoryManager.Initialize<UserMap, User>();
 			SessionManager.Init(getTicketKey);
 
-			SA = new ServiceAccess(getTicket);
+			Service = new ServiceAccess(getTicket);
 			
 			PlainText.Initialize(RunPath);
 		}
@@ -78,13 +78,13 @@ namespace DFM.Tests.BusinessLogic
 				case ExceptionPossibilities.InvalidUser:
 
 					var passwordForm = new PasswordForm(userPassword, userPassword);
-					SA.Safe.SaveUserAndSendVerify(userEmail, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
+					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 
 					if (shouldActivateUser)
 					{
 						var token = DBHelper.GetLastTokenForUser(userEmail, userPassword, SecurityAction.UserVerification);
 
-						SA.Safe.ActivateUser(token);
+						Service.Safe.ActivateUser(token);
 					}
 
 					return;
@@ -101,7 +101,7 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(
+				Service.Safe.ValidateUserAndCreateTicket(
 					userEmail, userPassword, TicketKey, TicketType.Local
 				);
 
@@ -118,14 +118,14 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				return SA.Admin.GetAccountByUrl(accountUrl);
+				return Service.Admin.GetAccountByUrl(accountUrl);
 			}
 			catch (DFMCoreException e)
 			{
 				if (e.Type != ExceptionPossibilities.InvalidAccount)
 					throw;
 
-				SA.Admin.CreateAccount(
+				Service.Admin.CreateAccount(
 					new Account
 						{
 							Name = accountUrl, 
@@ -133,7 +133,7 @@ namespace DFM.Tests.BusinessLogic
 							User = User
 						});
 
-				return SA.Admin.GetAccountByUrl(accountUrl);
+				return Service.Admin.GetAccountByUrl(accountUrl);
 			}
 		}
 
@@ -141,25 +141,25 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				return SA.Admin.GetCategoryByName(categoryName);
+				return Service.Admin.GetCategoryByName(categoryName);
 			}
 			catch (DFMCoreException e)
 			{
 				if (e.Type != ExceptionPossibilities.InvalidCategory)
 					throw;
 
-				SA.Admin.CreateCategory(new Category { Name = categoryName, User = User });
-				return SA.Admin.GetCategoryByName(categoryName);
+				Service.Admin.CreateCategory(new Category { Name = categoryName, User = User });
+				return Service.Admin.GetCategoryByName(categoryName);
 			}
 		}
 
 		protected User GetSavedUser(String email, String password)
 		{
-			var key = SA.Safe.ValidateUserAndCreateTicket(
+			var key = Service.Safe.ValidateUserAndCreateTicket(
 				email, password, TicketKey, TicketType.Local
 			);
 
-			return SA.Safe.GetUserByTicket(key);
+			return Service.Safe.GetUserByTicket(key);
 		}
 		#endregion
 

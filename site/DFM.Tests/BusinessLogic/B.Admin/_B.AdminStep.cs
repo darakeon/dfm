@@ -102,7 +102,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				User = User
 			};
 
-			SA.Admin.CreateAccount(oldAccount);
+			Service.Admin.CreateAccount(oldAccount);
 		}
 
 		[When(@"I try to save the account")]
@@ -110,7 +110,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.CreateAccount(Account);
+				Service.Admin.CreateAccount(Account);
 			}
 			catch (DFMCoreException e)
 			{
@@ -121,7 +121,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be changed")]
 		public void ThenTheAccountWillNotBeChanged()
 		{
-			var account = SA.Admin.GetAccountByUrl(oldAccount.Url);
+			var account = Service.Admin.GetAccountByUrl(oldAccount.Url);
 
 			Assert.AreEqual(oldAccount.Name, account.Name);
 			Assert.AreEqual(oldAccount.Url, account.Url);
@@ -138,7 +138,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				SA.Admin.GetAccountByUrl(accountUrl);
+				Service.Admin.GetAccountByUrl(accountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -153,7 +153,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will be saved")]
 		public void ThenTheAccountWillBeSaved()
 		{
-			Account = SA.Admin.GetAccountByUrl(Account.Url);
+			Account = Service.Admin.GetAccountByUrl(Account.Url);
 
 			Assert.IsNotNull(Account);
 		}
@@ -173,7 +173,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Url = oldAccountUrl,
 			};
 
-			SA.Admin.CreateAccount(Account);
+			Service.Admin.CreateAccount(Account);
 		}
 
 		[Given(@"this account has moves")]
@@ -197,7 +197,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
 
-			SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
+			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 
 			accountTotal = Account.Total();
 		}
@@ -216,7 +216,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateAccount(Account, newAccountUrl);
+				Service.Admin.UpdateAccount(Account, newAccountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -234,7 +234,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				try
 				{
-					account = SA.Admin.GetAccountByUrl(oldAccountUrl);
+					account = Service.Admin.GetAccountByUrl(oldAccountUrl);
 				}
 				catch (DFMCoreException e)
 				{
@@ -250,7 +250,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				account = SA.Admin.GetAccountByUrl(newAccountUrl);
+				account = Service.Admin.GetAccountByUrl(newAccountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -274,7 +274,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I already have closed the account")]
 		public void GivenICloseTheAccount()
 		{
-			SA.Admin.CloseAccount(AccountUrl);
+			Service.Admin.CloseAccount(AccountUrl);
 		}
 
 		[When(@"I try to close the account")]
@@ -282,7 +282,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.CloseAccount(AccountUrl);
+				Service.Admin.CloseAccount(AccountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -293,14 +293,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be closed")]
 		public void ThenTheAccountWillNotBeClosed()
 		{
-			var account = SA.Admin.GetAccountByUrl(AccountUrl);
+			var account = Service.Admin.GetAccountByUrl(AccountUrl);
 			Assert.IsTrue(account.IsOpen());
 		}
 
 		[Then(@"the account will be closed")]
 		public void ThenTheAccountWillBeClosed()
 		{
-			var account = SA.Admin.GetAccountByUrl(AccountUrl);
+			var account = Service.Admin.GetAccountByUrl(AccountUrl);
 			Assert.IsFalse(account.IsOpen());
 		}
 		#endregion
@@ -309,13 +309,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I already have deleted the account")]
 		public void GivenIDeleteAnAccount()
 		{
-			SA.Admin.DeleteAccount(AccountUrl);
+			Service.Admin.DeleteAccount(AccountUrl);
 		}
 
 		[Given(@"I delete the moves of ([\w ]+)")]
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
-			var account = SA.Admin.GetAccountByUrl(givenAccountUrl);
+			var account = Service.Admin.GetAccountByUrl(givenAccountUrl);
 
 			foreach (var year in account.YearList)
 			{
@@ -323,12 +323,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				{
 					foreach (var move in month.InList)
 					{
-						SA.Money.DeleteMove(move.ID);
+						Service.Money.DeleteMove(move.ID);
 					}
 
 					foreach (var move in month.OutList)
 					{
-						SA.Money.DeleteMove(move.ID);
+						Service.Money.DeleteMove(move.ID);
 					}
 				}
 			}
@@ -339,7 +339,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.DeleteAccount(AccountUrl);
+				Service.Admin.DeleteAccount(AccountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -350,7 +350,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be deleted")]
 		public void ThenTheAccountWillNotBeDeleted()
 		{
-			Account = SA.Admin.GetAccountByUrl(AccountUrl);
+			Account = Service.Admin.GetAccountByUrl(AccountUrl);
 			
 			Assert.IsNotNull(Account);
 		}
@@ -364,7 +364,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Account = SA.Admin.GetAccountByUrl(accountUrl);
+				Account = Service.Admin.GetAccountByUrl(accountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -401,7 +401,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				User = User
 			};
 
-			SA.Admin.CreateCategory(oldCategory);
+			Service.Admin.CreateCategory(oldCategory);
 		}
 
 		[When(@"I try to save the category")]
@@ -409,7 +409,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.CreateCategory(Category);
+				Service.Admin.CreateCategory(Category);
 			}
 			catch (DFMCoreException e)
 			{
@@ -426,7 +426,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Category = SA.Admin.GetCategoryByName(categoryName);
+				Category = Service.Admin.GetCategoryByName(categoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -440,7 +440,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be saved")]
 		public void ThenTheCategoryWillBeSaved()
 		{
-			Category = SA.Admin.GetCategoryByName(Category.Name);
+			Category = Service.Admin.GetCategoryByName(Category.Name);
 
 			Assert.IsNotNull(Category);
 		}
@@ -460,7 +460,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Category = SA.Admin.GetCategoryByName(CategoryName);
+				Category = Service.Admin.GetCategoryByName(CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -483,7 +483,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				User = User
 			};
 
-			SA.Admin.CreateCategory(Category);
+			Service.Admin.CreateCategory(Category);
 		}
 
 		[When(@"I make this changes to the category")]
@@ -499,7 +499,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateCategory(Category, newCategoryName);
+				Service.Admin.UpdateCategory(Category, newCategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -515,7 +515,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Category = SA.Admin.GetCategoryByName(oldCategoryName);
+				Category = Service.Admin.GetCategoryByName(oldCategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -531,7 +531,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Category = SA.Admin.GetCategoryByName(newCategoryName);
+				Category = Service.Admin.GetCategoryByName(newCategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -547,10 +547,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I give the enabled category ([\w ]+)")]
 		public void GivenIGiveAnEnabledCategory(String givenCategoryName)
 		{
-			SA.Admin.CreateCategory(
+			Service.Admin.CreateCategory(
 				new Category { Name = givenCategoryName, User = User });
 
-			Category = SA.Admin.GetCategoryByName(givenCategoryName);
+			Category = Service.Admin.GetCategoryByName(givenCategoryName);
 
 			CategoryName = Category.Name;
 		}
@@ -558,7 +558,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I already have disabled the category")]
 		public void GivenIDisableACategory()
 		{
-			SA.Admin.DisableCategory(CategoryName);
+			Service.Admin.DisableCategory(CategoryName);
 		}
 
 		[When(@"I try to disable the category")]
@@ -566,7 +566,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.DisableCategory(CategoryName);
+				Service.Admin.DisableCategory(CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -577,7 +577,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be disabled")]
 		public void ThenTheCategoryWillBeDisabled()
 		{
-			Category = SA.Admin.GetCategoryByName(CategoryName);
+			Category = Service.Admin.GetCategoryByName(CategoryName);
 
 			Assert.IsFalse(Category.Active);
 		}
@@ -587,20 +587,20 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I give the disabled category ([\w ]+)")]
 		public void GivenIGiveADisabledCategory(String givenCategoryName)
 		{
-			SA.Admin.CreateCategory(
+			Service.Admin.CreateCategory(
 				new Category { Name = givenCategoryName, User = User });
 
-			Category = SA.Admin.GetCategoryByName(givenCategoryName);
+			Category = Service.Admin.GetCategoryByName(givenCategoryName);
 
 			CategoryName = Category.Name;
 
-			SA.Admin.DisableCategory(CategoryName);
+			Service.Admin.DisableCategory(CategoryName);
 		}
 
 		[Given(@"I already have enabled the category")]
 		public void GivenIEnableACategory()
 		{
-			SA.Admin.EnableCategory(CategoryName);
+			Service.Admin.EnableCategory(CategoryName);
 		}
 
 		[When(@"I try to enable the category")]
@@ -608,7 +608,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.EnableCategory(CategoryName);
+				Service.Admin.EnableCategory(CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -619,7 +619,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be enabled")]
 		public void ThenTheCategoryWillBeEnabled()
 		{
-			Category = SA.Admin.GetCategoryByName(CategoryName);
+			Category = Service.Admin.GetCategoryByName(CategoryName);
 
 			Assert.IsTrue(Category.Active);
 		}
@@ -639,7 +639,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				Account = SA.Admin.GetAccountByUrl(AccountUrl);
+				Account = Service.Admin.GetAccountByUrl(AccountUrl);
 			}
 			catch (DFMCoreException e)
 			{
@@ -657,7 +657,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { UseCategories = false };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -672,7 +672,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { UseCategories = true };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -687,7 +687,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { MoveCheck = false };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -702,7 +702,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { MoveCheck = true };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -716,7 +716,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { Language = language };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -729,7 +729,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			foreach (var tableRow in table.Rows)
 			{
-				var translated = PlainText.Dictionary["general", SA.Current.Language, tableRow["Key"]];
+				var translated = PlainText.Dictionary["general", Service.Current.Language, tableRow["Key"]];
 				Assert.AreEqual(tableRow["Translated"], translated);
 			}
 		}
@@ -740,7 +740,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { TimeZone = timezone };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -755,7 +755,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { SendMoveEmail = false };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -770,7 +770,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			try
 			{
 				var mainConfig = new MainConfig { SendMoveEmail = true };
-				SA.Admin.UpdateConfig(mainConfig);
+				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
 			{
@@ -786,7 +786,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I close the account (.+)")]
 		public void GivenICloseTheAccount(String accountUrl)
 		{
-			SA.Admin.CloseAccount(accountUrl);
+			Service.Admin.CloseAccount(accountUrl);
 		}
 
 		[When(@"ask for the (not )?active account list")]
@@ -794,7 +794,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				accountList = SA.Admin.GetAccountList(active);
+				accountList = Service.Admin.GetAccountList(active);
 			}
 			catch (DFMCoreException e)
 			{
@@ -843,7 +843,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I disable the category (.+)")]
 		public void GivenICloseTheCategory(String categoryName)
 		{
-			SA.Admin.DisableCategory(categoryName);
+			Service.Admin.DisableCategory(categoryName);
 		}
 
 		[When(@"ask for all the category list")]
@@ -851,7 +851,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				categoryList = SA.Admin.GetCategoryList();
+				categoryList = Service.Admin.GetCategoryList();
 			}
 			catch (DFMCoreException e)
 			{
@@ -864,7 +864,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				categoryList = SA.Admin.GetCategoryList(active);
+				categoryList = Service.Admin.GetCategoryList(active);
 			}
 			catch (DFMCoreException e)
 			{
@@ -929,7 +929,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Url = givenAccountUrl, 
 			};
 
-			SA.Admin.CreateAccount(Account);
+			Service.Admin.CreateAccount(Account);
 
 			AccountUrl = Account.Url;
 		}
@@ -943,7 +943,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Url = givenAccountUrl,
 			};
 
-			SA.Admin.CreateAccount(Account);
+			Service.Admin.CreateAccount(Account);
 
 			var move = new Move
 			{
@@ -953,7 +953,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Value = 10
 			};
 
-			SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+			Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
 
 			AccountUrl = Account.Url;
 		}
@@ -972,7 +972,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Value = 10
 			};
 
-			SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
 		}
 
 		[Given(@"the account has a disabled schedule")]
@@ -989,9 +989,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Value = 10
 			};
 
-			SA.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
 
-			SA.Robot.DisableSchedule(Schedule.ID);
+			Service.Robot.DisableSchedule(Schedule.ID);
 		}
 
 		
@@ -1042,7 +1042,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				SA.Robot.DisableSchedule(Schedule.ID);
+				Service.Robot.DisableSchedule(Schedule.ID);
 			}
 			catch (DFMCoreException e)
 			{

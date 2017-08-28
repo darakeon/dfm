@@ -45,7 +45,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			try
 			{
-				monthReport = SA.Report.GetMonthReport(AccountUrl, month, year);
+				monthReport = Service.Report.GetMonthReport(AccountUrl, month, year);
 			}
 			catch (DFMCoreException e)
 			{
@@ -88,7 +88,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			try
 			{
-				yearReport = SA.Report.GetYearReport(AccountUrl, year);
+				yearReport = Service.Report.GetYearReport(AccountUrl, year);
 			}
 			catch (DFMCoreException e)
 			{
@@ -114,7 +114,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			var expected = Account[year].SummaryList.Sum(s => s.Value());
 
 			//TODO: Temporary code - the access to move will be refactored
-			yearReport = SA.Report.GetYearReport(AccountUrl, year);
+			yearReport = Service.Report.GetYearReport(AccountUrl, year);
 
 			var actual = yearReport.MonthList.Sum(m =>
 					m.SummaryList.Sum(s => s.Value())
@@ -144,7 +144,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 					Value = 10,
 				};
 
-				SA.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+				Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
 			}
 		}
 

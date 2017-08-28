@@ -64,8 +64,8 @@ namespace DFM.Tests.BusinessLogic
 
 			var moveCategory = new Category { Name = "disabled", User = User };
 
-			SA.Admin.CreateCategory(moveCategory);
-			SA.Admin.DisableCategory(moveCategory.Name);
+			Service.Admin.CreateCategory(moveCategory);
+			Service.Admin.DisableCategory(moveCategory.Name);
 		}
 
 
@@ -108,7 +108,7 @@ namespace DFM.Tests.BusinessLogic
 				Url = MakeUrlFromName("closed out"),
 			};
 
-			SA.Admin.CreateAccount(AccountOut);
+			Service.Admin.CreateAccount(AccountOut);
 
 			var move = new Move
 			{
@@ -118,9 +118,9 @@ namespace DFM.Tests.BusinessLogic
 				Value = 10
 			};
 
-			SA.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
+			Service.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
 
-			SA.Admin.CloseAccount(AccountOut.Url);
+			Service.Admin.CloseAccount(AccountOut.Url);
 		}
 
 
@@ -163,7 +163,7 @@ namespace DFM.Tests.BusinessLogic
 				Url = MakeUrlFromName("closed in"),
 			};
 
-			SA.Admin.CreateAccount(AccountIn);
+			Service.Admin.CreateAccount(AccountIn);
 
 			var move = new Move
 			{
@@ -173,9 +173,9 @@ namespace DFM.Tests.BusinessLogic
 				Value = 10
 			};
 
-			SA.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
+			Service.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
 
-			SA.Admin.CloseAccount(AccountIn.Url);
+			Service.Admin.CloseAccount(AccountIn.Url);
 		}
 
 

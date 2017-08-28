@@ -112,7 +112,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var accountOutUrl = AccountOut?.Url;
 				var accountInUrl = AccountIn?.Url;
 
-				SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+				Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -123,7 +123,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[When(@"I try to save the move with e-mail system out")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
@@ -131,7 +131,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var accountOutUrl = AccountOut?.Url;
 				var accountInUrl = AccountIn?.Url;
 
-				var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+				var result = Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 				CurrentEmailStatus = result.Error;
 			}
 			catch (DFMCoreException e)
@@ -140,21 +140,21 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 		}
 
 		[When(@"I try to save the move with e-mail system ok")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 
 			try
 			{
 				var accountOutUrl = AccountOut?.Url;
 				var accountInUrl = AccountIn?.Url;
 
-				var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+				var result = Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 				CurrentEmailStatus = result.Error;
 			}
 			catch (DFMCoreException e)
@@ -162,7 +162,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				Error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 
@@ -179,7 +179,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			Assert.AreNotEqual(0, Move.ID);
 
-			var newMove = SA.Money.GetMoveById(Move.ID);
+			var newMove = Service.Money.GetMoveById(Move.ID);
 
 			Assert.IsNotNull(newMove);
 		}
@@ -343,7 +343,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var accountOutUrl = AccountOut?.Url;
 				var accountInUrl = AccountIn?.Url;
 
-				SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
+				Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -526,7 +526,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the move total will be (\-?\d+\.?\d*)")]
 		public void ThenTheMoveTotalWillBe(Decimal value)
 		{
-			var move = SA.Money.GetMoveById(Move.ID);
+			var move = Service.Money.GetMoveById(Move.ID);
 			Assert.AreEqual(value, move.Total());
 		}
 		#endregion
@@ -540,7 +540,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			try
 			{
-				Move = SA.Money.GetMoveById(id);
+				Move = Service.Money.GetMoveById(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -588,7 +588,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				Move.DetailList.Add(newDetail);
 			}
 
-			var result = SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
+			var result = Service.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 			Move = result.Success;
 
 			detail = Move.DetailList.First();
@@ -615,7 +615,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			try
 			{
-				detail = SA.Money.GetDetailById(id);
+				detail = Service.Money.GetDetailById(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -640,14 +640,14 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Given(@"I run the scheduler and get the move")]
 		public void GivenIRunTheSchedulerAndGetTheMove()
 		{
-			SA.Robot.RunSchedule();
+			Service.Robot.RunSchedule();
 			id = Schedule.MoveList.Last().ID;
 		}
 
 		[Given(@"I run the scheduler and get all the moves")]
 		public void GivenIRunTheSchedulerAndGetAllTheMoves()
 		{
-			SA.Robot.RunSchedule();
+			Service.Robot.RunSchedule();
 			ids = Schedule.MoveList.Select(m => m.ID).ToList();
 		}
 
@@ -656,7 +656,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				SA.Money.DeleteMove(id);
+				Service.Money.DeleteMove(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -671,7 +671,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				foreach (var moveId in ids)
 				{
-					SA.Money.DeleteMove(moveId);
+					Service.Money.DeleteMove(moveId);
 				}
 			}
 			catch (DFMCoreException e)
@@ -684,11 +684,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void WhenITryToDeleteTheMoveWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 
 			try
 			{
-				var result = SA.Money.DeleteMove(id);
+				var result = Service.Money.DeleteMove(id);
 				CurrentEmailStatus = result.Error;
 			}
 			catch (DFMCoreException e)
@@ -696,19 +696,19 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				Error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 
 		[When(@"I try to delete the move with e-mail system out")]
 		public void WhenITryToDeleteTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
 			{
-				var result = SA.Money.DeleteMove(id);
+				var result = Service.Money.DeleteMove(id);
 				CurrentEmailStatus = result.Error;
 			}
 			catch (DFMCoreException e)
@@ -717,7 +717,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 		}
 
 		[Then(@"the move will be deleted")]
@@ -727,7 +727,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			try
 			{
-				SA.Money.GetMoveById(id);
+				Service.Money.GetMoveById(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -748,9 +748,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				return;
 
 			if (@checked)
-				SA.Money.CheckMove(Move.ID);
+				Service.Money.CheckMove(Move.ID);
 			else
-				SA.Money.UncheckMove(Move.ID);
+				Service.Money.UncheckMove(Move.ID);
 		}
 
 		[When(@"I try to mark it as (not )?checked")]
@@ -760,11 +760,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				if (@checked)
 				{
-					SA.Money.CheckMove(Move.ID);
+					Service.Money.CheckMove(Move.ID);
 				}
 				else
 				{
-					SA.Money.UncheckMove(Move.ID);
+					Service.Money.UncheckMove(Move.ID);
 				}
 			}
 			catch (DFMCoreException e)
@@ -776,7 +776,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the move will (not )?be checked")]
 		public void ThenTheMoveWillBeChecked(Boolean @checked)
 		{
-			var move = SA.Money.GetMoveById(Move.ID);
+			var move = Service.Money.GetMoveById(Move.ID);
 
 			Assert.IsNotNull(move);
 			Assert.AreEqual(@checked, move.Checked);
@@ -851,11 +851,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			CategoryName = MAIN_CATEGORY_NAME;
 
-			SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, MAIN_CATEGORY_NAME);
+			Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, MAIN_CATEGORY_NAME);
 
 			if (accountOutUrl != null)
 			{
-				AccountOut = SA.Admin.GetAccountByUrl(accountOutUrl); 
+				AccountOut = Service.Admin.GetAccountByUrl(accountOutUrl); 
 
 				var year = AccountOut[Move.Date.Year, true];
 				var month = year[Move.Date.Month, true];
@@ -869,7 +869,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			if (accountInUrl != null)
 			{
-				AccountIn = SA.Admin.GetAccountByUrl(accountInUrl);
+				AccountIn = Service.Admin.GetAccountByUrl(accountInUrl);
 
 				var year = AccountIn[Move.Date.Year, true];
 				var month = year[Move.Date.Month, true];

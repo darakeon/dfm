@@ -56,7 +56,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 				var accountOutUrl = AccountOut?.Url;
 				var accountInUrl = AccountIn?.Url;
 
-				SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
+				Service.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
 			}
 			catch (DFMCoreException e)
 			{
@@ -82,7 +82,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I run the scheduler to cleanup older tests")]
 		public void GivenIRunTheSchedulerToCleanupOlderTests()
 		{
-			SA.Robot.RunSchedule();
+			Service.Robot.RunSchedule();
 		}
 		
 		[Given(@"I have no logged user \(logoff\)")]
@@ -107,7 +107,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				SA.Robot.RunSchedule();
+				Service.Robot.RunSchedule();
 			}
 			catch (DFMCoreException e)
 			{
@@ -118,12 +118,12 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[When(@"I try to run the scheduler with e-mail system out")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
 			{
-				CurrentEmailStatus = SA.Robot.RunSchedule();
+				CurrentEmailStatus = Service.Robot.RunSchedule();
 			}
 			catch (DFMCoreException e)
 			{
@@ -131,25 +131,25 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 		}
 
 		[When(@"I try to run the scheduler with e-mail system ok")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(SA);
+			ConfigHelper.ActivateMoveEmailForUser(Service);
 
 			try
 			{
-				CurrentEmailStatus = SA.Robot.RunSchedule();
+				CurrentEmailStatus = Service.Robot.RunSchedule();
 			}
 			catch (DFMCoreException e)
 			{
 				Error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(SA);
+			ConfigHelper.DeactivateMoveEmailForUser(Service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 		#endregion
@@ -164,7 +164,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I already have disabled the Schedule")]
 		public void GivenIAlreadyHaveDisabledTheSchedule()
 		{
-			SA.Robot.DisableSchedule(id);
+			Service.Robot.DisableSchedule(id);
 		}
 
 		[When(@"I try to disable the Schedule")]
@@ -172,7 +172,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				SA.Robot.DisableSchedule(id);
+				Service.Robot.DisableSchedule(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -187,7 +187,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 
 			try
 			{
-				SA.Robot.DisableSchedule(id);
+				Service.Robot.DisableSchedule(id);
 			}
 			catch (DFMCoreException e)
 			{
@@ -203,7 +203,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I disable the schedule")]
 		public void GivenICloseTheSchedule()
 		{
-			SA.Robot.DisableSchedule(id);
+			Service.Robot.DisableSchedule(id);
 		}
 
 		[When(@"ask for the schedule list")]
@@ -211,7 +211,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				scheduleList = SA.Robot.GetScheduleList();
+				scheduleList = Service.Robot.GetScheduleList();
 			}
 			catch (DFMCoreException e)
 			{
@@ -288,7 +288,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			var accountOutName = AccountOut?.Name;
 			var accountInName = AccountIn?.Name;
 
-			var schedule = SA.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
+			var schedule = Service.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
 
 			id = schedule.ID;
 		}
