@@ -26,7 +26,7 @@
 	{
 		var movesSum = account.Total();
 		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
-		var className = movesSum < 0 ? "out" : "in";
+		var className = movesSum < 0 ? "danger" : "info";
 
 		//var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
