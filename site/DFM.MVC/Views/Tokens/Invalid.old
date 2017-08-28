@@ -1,7 +1,0 @@
-﻿@{
-	ViewBag.Title = MultiLanguage.Dictionary["TokenInvalid"];
-}
-
-<div class="half-screen">
-	@MultiLanguage.Dictionary["TokenInvalidMessage"]
-</div>

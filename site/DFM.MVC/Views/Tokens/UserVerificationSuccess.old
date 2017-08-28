@@ -1,9 +1,0 @@
-﻿@{
-	ViewBag.Title = MultiLanguage.Dictionary["UserVerification"];
-}
-
-<div class="half-screen">
-	@MultiLanguage.Dictionary["UserVerificationSuccess"]
-	<br /><br />
-	@Html.ActionLink(MultiLanguage.Dictionary["Logon"], "LogOn", "Users")
-</div>
