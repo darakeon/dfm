@@ -35,7 +35,7 @@ namespace DFM.MVC.Models
         private String url;
 
         [Required(ErrorMessage = "*")]
-        public String Url
+        public new String Url
         {
             get
             {
