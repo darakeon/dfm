@@ -44,7 +44,7 @@
 		<Unauthorized text="Not authorized." />
 		<UserAlreadyExists text="User already exists." />
 		<UserEmailInvalid text="User e-mail is invalid." />
-		<UserPasswordRequired text="Invalid password." />
+		<UserPasswordRequired text="Password cannot be empty" />
 		<DisabledUser text="User is disabled." />
 		<WrongUserEmail text="Wrong user e-mail." />
 		<YearAmbiguousInAccount text="Year ambiguous reference. Contact support." />
@@ -73,6 +73,7 @@
 		<DisabledSchedule text="Schedule already disabled" />
 		<CategoriesDisabled text="Categories disabled" />
 		<MoveCheckDisabled text="Move check is disabled" />
+		<WrongPassword text="Wrong password for current user" />
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -118,7 +119,7 @@
 		<Unauthorized text="Não autorizado." />
 		<UserAlreadyExists text="Usuário já existe." />
 		<UserEmailInvalid text="E-mail inválido." />
-		<UserPasswordRequired text="Senha ínválida." />
+		<UserPasswordRequired text="A senha não pode ser em branco" />
 		<DisabledUser text="Usuário desabilitado." />
 		<WrongUserEmail text="E-mail de usuário errado." />
 		<YearAmbiguousInAccount text="Referência de ano ambígua. Contate o suporte." />
@@ -147,5 +148,6 @@
 		<DisabledSchedule text="Agendamento já desabilitado" />
 		<CategoriesDisabled text="Uso de Categorias desabilitado" />
 		<MoveCheckDisabled text="A verificação de movimentação está desabilitada" />
+		<WrongPassword text="Senha errada para usuário atual" />
 	</pt-BR>
 </error>

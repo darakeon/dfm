@@ -8,7 +8,7 @@
 <div class="two-columns">
 
 	<div class="first-column">
-		@using (Html.BeginForm())
+		@using (Html.BeginForm("ChangeConfig", null))
 		{
 			<p class="checkbox divRowForm">
 				@Html.LabelFor(m => m.Main.UseCategories, MultiLanguage.Dictionary["UseCategories"])
@@ -49,8 +49,28 @@
 		}
 	</div>
 
-	<div class="second-column">
-		s
+	<div class="second-column" style="margin-top: -15px">
+		@using (Html.BeginForm("ChangePassword", null))
+		{
+			<p>
+				@Html.LabelFor(m => m.Info.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"])
+				@Html.PasswordFor(m => m.Info.CurrentPassword)
+			</p>
+
+			<p>
+				@Html.LabelFor(m => m.Info.Password, MultiLanguage.Dictionary["NewPassword"])
+				@Html.PasswordFor(m => m.Info.Password)
+			</p>
+
+			<p>
+				@Html.LabelFor(m => m.Info.RetypePassword, MultiLanguage.Dictionary["RetypePassword"])
+				@Html.PasswordFor(m => m.Info.RetypePassword)
+			</p>
+
+			<p>
+				<button type="submit">@MultiLanguage.Dictionary["Save"]</button>
+			</p>
+		}
 	</div>
 
 </div>

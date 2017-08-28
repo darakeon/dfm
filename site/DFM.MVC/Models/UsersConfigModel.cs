@@ -20,6 +20,8 @@ namespace DFM.MVC.Models
 		}
 
 		public MainConfig Main { get; set; }
+		public UserInfo Info { get; set; }
+
 
 
 		public class MainConfig : IMainConfig
@@ -39,6 +41,7 @@ namespace DFM.MVC.Models
 				Language = config.Language;
 				TimeZone = config.TimeZone;
 			}
+
 
 			public Boolean? UseCategories { get; set; }
 			public Boolean? SendMoveEmail { get; set; }
@@ -67,28 +70,56 @@ namespace DFM.MVC.Models
 
 			public SelectList TimeZoneList { get; set; }
 			public SelectList LanguageList { get; set; }
+
+
+			internal IList<String> Save()
+			{
+				var errors = new List<String>();
+
+				try
+				{
+					Admin.UpdateConfig(this);
+
+					ErrorAlert.Add("ConfigChanged");
+				}
+				catch (DFMCoreException e)
+				{
+					errors.Add(MultiLanguage.Dictionary[e]);
+				}
+
+				return errors;
+			}
 		}
 
-
-
-		internal IList<String> Save()
+		public class UserInfo : IPasswordForm
 		{
-			var errors = new List<String>();
+			public String Email { get; set; }
 
-			try
+			public String CurrentPassword { get; set; }
+			
+			public String Password { get; set; }
+			public String RetypePassword { get; set; }
+
+			public IList<String> ChangePassword()
 			{
-				Admin.UpdateConfig(Main);
-
-				ErrorAlert.Add("ConfigChanged");
+				try
+				{
+					Safe.ChangePassword(CurrentPassword, this);
+					return null;
+				}
+				catch (DFMCoreException e)
+				{
+					return new List<String> { MultiLanguage.Dictionary[e] };
+				}
 			}
-			catch (DFMCoreException e)
-			{
-				errors.Add(MultiLanguage.Dictionary[e]);
-			}
-
-			return errors;
 		}
+
+
+
 
 
 	}
 }
+
+
+

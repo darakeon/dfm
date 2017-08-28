@@ -13,6 +13,9 @@ namespace DFM.MVC.Helpers.Controllers
 
 		protected void AddErrors(IList<String> errors)
 		{
+			if (errors == null)
+				return;
+
 			foreach (var error in errors)
 			{
 				ModelState.AddModelError("", error);

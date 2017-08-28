@@ -59,6 +59,8 @@ Scenario: 04. Get translations of Errors
 		| Error   | UserPasswordRequired           |
 		| Error   | DisabledUser                   |
 		| Error   | Uninvited                      |
+		| Error   | RetypeWrong                    |
+		| Error   | WrongPassword                  |
 		| Error   | AccountNameRequired            |
 		| Error   | AccountUrlRequired             |
 		| Error   | AccountUrlInvalid              |
@@ -229,9 +231,6 @@ Scenario: 08. Get translate of Interface (categories)
 Scenario: 09. Get translate of Interface (tokens)
 	Given I have these keys
 		| Section | Phrase                  |
-		| Tokens  | RetypeWrong             |
-		| Tokens  | NotRecognizedAction     |
-		| Tokens  | RetypeWrong             |
 		| Tokens  | NotRecognizedAction     |
 		| Tokens  | TokenDisable            |
 		| Tokens  | TokenDisableSuccess     |
@@ -241,7 +240,6 @@ Scenario: 09. Get translate of Interface (tokens)
 		| Tokens  | Password                |
 		| Tokens  | RetypePassword          |
 		| Tokens  | Reset                   |
-		| Tokens  | PasswordReset           |
 		| Tokens  | PasswordResetSuccess    |
 		| Tokens  | TokenReceivedByEmail    |
 		| Tokens  | Token                   |
@@ -295,6 +293,8 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | Save                    |
 		| Users   | ConfigChanged           |
 		| Users   | AndroidRobotLicenseText |
+		| Users   | CurrentPassword         |
+		| Users   | NewPassword             |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

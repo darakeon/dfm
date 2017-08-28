@@ -114,17 +114,33 @@ namespace DFM.MVC.Controllers
 		}
 
 		[DFMAuthorize, HttpPost]
-		public ActionResult Config(UsersConfigModel model)
+		public ActionResult ChangeConfig(UsersConfigModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var errors = model.Save();
+				var errors = model.Main.Save();
 
 				AddErrors(errors);
 			}
 
 			if (!ModelState.IsValid)
-				return View(model);
+				return View("Config", model);
+
+			return RedirectToAction("Index", "Accounts");
+		}
+
+		[DFMAuthorize, HttpPost]
+		public ActionResult ChangePassword(UsersConfigModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.Info.ChangePassword();
+
+				AddErrors(errors);
+			}
+
+			if (!ModelState.IsValid)
+				return View("Config", model);
 
 			return RedirectToAction("Index", "Accounts");
 		}
