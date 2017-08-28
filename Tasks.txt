@@ -118,7 +118,7 @@ VERSÃO 3.0.0.0 (All new) - 15
 						Mudar layouts de e-mail
 						Fazer capa nova para youtube / facebook / twitter (?)
 						Link unsubscribe
-F						Implementar necessidade de assinar TERMO
+2017-03-21				Implementar necessidade de assinar TERMO
 2017-03-20	2017-03-22	Escrever Termos de Uso
 2017-03-19	2017-03-19	Permitir limite de conta negativo
 2017-03-19	2017-03-19	Trocar o datepicker
