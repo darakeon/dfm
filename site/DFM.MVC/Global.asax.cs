@@ -161,7 +161,8 @@ namespace DFM.MVC
 		private static Boolean isAsset =>
 			path.StartsWith("/assets/")
 			|| path.StartsWith("/favicon.ico")
-			|| path.StartsWith("/robots.txt");
+			|| path.StartsWith("/robots.txt")
+			|| path.StartsWith("/.well-known");
 
 		private static Boolean isLocal => Cfg.IsLocal;
 
