@@ -10,6 +10,7 @@ using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.MVC.Helpers.Global;
+using DK.MVC.Route;
 using account = DFM.Entities.Account;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -39,8 +40,10 @@ namespace DFM.MVC.Areas.Account.Models
 			if (Date == DateTime.MinValue)
 				Date = Today;
 
-			AccountOutUrl = iMove.AccOut()?.Url;
-			AccountInUrl = iMove.AccIn()?.Url;
+			var accountUrl = new RouteInfo().RouteData.Values["accounturl"]?.ToString();
+
+			AccountOutUrl = iMove.AccOut()?.Url ?? accountUrl;
+			AccountInUrl = iMove.AccIn()?.Url ?? accountUrl;
 
 			if (iMove.Category != null)
 				CategoryName = iMove.Category.Name;
