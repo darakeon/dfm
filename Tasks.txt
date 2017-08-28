@@ -105,8 +105,8 @@ VERSÃO 2.1.1.2 (Bug fix) - 2
 
 VERSÃO 2.1.1.1 (Bug fix) - 2
 ================================================================================================
-						Ajustar NH de site para novas formas
 						Ajustar layouts de android para usar formato novo
+						Ajustar NH de site para novas formas
 
 VERSÃO 2.1.1.0 (Little change) - 3
 ================================================================================================
