@@ -60,7 +60,6 @@ Scenario: 06. Disable categories use and enable a category (E)
 	Then I will receive this core error: CategoriesDisabled
 
 
-
 Scenario: 91. Disable categories use and save move without category (S)
 	Given I disable Categories use
 	And I have this move to create
@@ -89,3 +88,4 @@ Scenario: 92. Disable categories use and save schedule without category (S)
 	When I try to save the schedule
 	Then I will receive no core error
 	And the schedule will be saved
+
