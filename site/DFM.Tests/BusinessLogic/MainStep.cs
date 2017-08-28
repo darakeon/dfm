@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DK.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -63,7 +62,7 @@ namespace DFM.Tests.BusinessLogic
 			if (!Current.IsAuthenticated)
 				return;
 
-			var pendentSchedules = Current.User.ScheduleList.Where(s => s.Active);
+			var pendentSchedules = SA.Robot.GetScheduleList(true);
 
 			foreach (var pendentSchedule in pendentSchedules)
 			{

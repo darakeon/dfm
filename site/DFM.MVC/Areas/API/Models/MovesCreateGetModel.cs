@@ -25,7 +25,7 @@ namespace DFM.MVC.Areas.API.Models
 				};
 			}
 
-			AccountList = Current.User.VisibleAccountList()
+			AccountList = Admin.GetAccountList(true)
 				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
 				.ToList();
 
@@ -33,7 +33,7 @@ namespace DFM.MVC.Areas.API.Models
 
 			if (UseCategories)
 			{
-				CategoryList = Current.User.VisibleCategoryList()
+				CategoryList = Admin.GetCategoryList(true)
 					.Select(a => new SelectItem<String, String>(a.Name, a.Name))
 					.ToList();
 			}

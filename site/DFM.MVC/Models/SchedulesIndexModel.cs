@@ -9,8 +9,7 @@ namespace DFM.MVC.Models
 		public SchedulesIndexModel()
 		{
 			ScheduleList = 
-				Current.User.ScheduleList
-					.Where(a => a.Active)
+				Robot.GetScheduleList(true)
 					.OrderByDescending(a => a.Date)
 					.ToList();
 		}

@@ -22,7 +22,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private BaseMovesModel()
 		{
-			accountList = Current.User.VisibleAccountList();
+			accountList = Admin.GetAccountList(true);
 
 			var transferIsPossible = accountList.Count > 1;
 
@@ -92,7 +92,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private void makeCategoryList()
 		{
-			var categoryList = Current.User.VisibleCategoryList();
+			var categoryList = Admin.GetCategoryList(true);
 
 			CategorySelectList = SelectListExtension
 				.CreateSelect(categoryList, mv => mv.Name, mv => mv.Name);

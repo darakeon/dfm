@@ -19,12 +19,6 @@ namespace DFM.Repositories.Mappings
 			mapping.Map(u => u.Creation)
 				.Default("'2011-09-21'");
 
-			mapping.HasMany(u => u.AccountList)
-				.Not.LazyLoad();
-
-			mapping.HasMany(u => u.ScheduleList)
-				.Cascade.SaveUpdate();
-
 			mapping.References(u => u.Config)
 				.Cascade.All();
 		}

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DK.Generic.DB;
 
 namespace DFM.Entities
@@ -21,13 +20,6 @@ namespace DFM.Entities
 		public virtual Int32 WrongLogin { get; set; }
 
 		public virtual Config Config { get; set; }
-
-		public virtual IList<Account> AccountList { get; set; }
-		public virtual IList<Category> CategoryList { get; set; }
-		public virtual IList<Schedule> ScheduleList { get; set; }
-
-		public virtual IList<Security> SecurityList { get; set; }
-
 
 
 		

@@ -144,24 +144,26 @@ namespace DFM.BusinessLogic.Services
 				accountRepository.Delete(url, Parent.Current.User);
 			});
 		}
-
-		internal IList<Account> GetAccounts()
-		{
-			return accountRepository.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
-		}
-
 		#endregion
 
 
 
 		#region Category
-		public IList<Category> GetCategoryList()
+		public IList<Category> GetCategoryList(Boolean? active = null)
 		{
-			return categoryRepository.NewQuery()
-				.SimpleFilter(a => a.User.ID == Parent.Current.User.ID)
-				.OrderBy(c => c.Active, false)
-				.OrderBy(a => a.Name)
-				.Result;
+			var query = categoryRepository.NewQuery()
+				.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
+
+			if (active.HasValue)
+			{
+				query.SimpleFilter(c => c.Active == active.Value);
+			}
+			else
+			{
+				query.OrderBy(c => c.Active, false);
+			}
+
+			return query.OrderBy(a => a.Name).Result;
 		}
 
 		public Category GetCategoryByName(String name)
@@ -238,7 +240,6 @@ namespace DFM.BusinessLogic.Services
 			if (!Parent.Current.User.Config.UseCategories)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
 		}
-
 		#endregion
 
 
@@ -284,6 +285,5 @@ namespace DFM.BusinessLogic.Services
 		}
 
 		#endregion
-
 	}
 }
