@@ -170,7 +170,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 				total = data.getDouble("Total");
 				canCheck = data.getBoolean("CanCheck");
 
-				fillScreen();
+				fillMoves();
 				break;
 			}
 			case Recording: {
@@ -184,12 +184,11 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		}
 	}
 	
-	private void fillScreen()
-		throws JSONException
+	private void fillMoves() throws JSONException
 	{
 		form.setValue(R.id.totalTitle, name);
 		form.setValueColored(R.id.totalValue, total);
-		
+
 		if (moveList.length() == 0)
 		{
 			View empty = form.createText(getString(R.string.no_extract), Gravity.CENTER);
@@ -197,15 +196,9 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		}
 		else
 		{
-			fillMoves();
+			MoveAdapter accountAdapter = new MoveAdapter(this, moveList, canCheck);
+			main.setAdapter(accountAdapter);
 		}
-	}
-
-
-	private void fillMoves() throws JSONException
-	{
-		MoveAdapter accountAdapter = new MoveAdapter(this, moveList, canCheck);
-		main.setAdapter(accountAdapter);
 	}
 
 

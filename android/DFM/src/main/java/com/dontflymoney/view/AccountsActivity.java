@@ -63,7 +63,11 @@ public class AccountsActivity extends SmartActivity
 		throws JSONException
 	{
 		accountList = data.getJSONArray("AccountList");
+		fillAccounts();
+	}
 
+	private void fillAccounts() throws JSONException
+	{
 		if (accountList.length() == 0)
 		{
 			View empty = form.createText(getString(R.string.no_accounts), Gravity.CENTER);
@@ -71,15 +75,9 @@ public class AccountsActivity extends SmartActivity
 		}
 		else
 		{
-			fillAccounts();
+			AccountAdapter accountAdapter = new AccountAdapter(this, accountList);
+			main.setAdapter(accountAdapter);
 		}
-	}
-
-	private void fillAccounts()
-		throws JSONException
-	{
-		AccountAdapter accountAdapter = new AccountAdapter(this, accountList);
-		main.setAdapter(accountAdapter);
 	}
 
 
