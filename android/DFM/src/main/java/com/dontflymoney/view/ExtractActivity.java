@@ -17,6 +17,8 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.layout.MoveLine;
+import com.dontflymoney.listeners.IDatePickerActivity;
+import com.dontflymoney.listeners.PickDate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +28,7 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
+public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer, IDatePickerActivity
 {
 	ListView main;
 	TextView empty;
@@ -118,7 +120,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	{
 		if(dialog == null)
 		{
-			dialog = new DatePickerDialog(this, new PickDate(), year, month, 1);
+			dialog = new DatePickerDialog(this, new PickDate(this), year, month, 1);
 
 			try
 			{
@@ -137,19 +139,11 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		dialog.show();
 	}
 
-	private class PickDate implements DatePickerDialog.OnDateSetListener
+	@Override
+	public void setResult(int year, int month, int day)
 	{
-		@Override
-		public void onDateSet(DatePicker view, int year, int month, int day)
-		{
-			if (view.isShown())
-			{
-				setDate(month, year);
-				getExtract();
-				dialog.dismiss();
-			}
-		}
-
+		setDate(month, year);
+		getExtract();
 	}
 
 	private void getExtract()
@@ -162,7 +156,13 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		
 		request.Post(Step.Populate);
 	}
-	
+
+	@Override
+	public DatePickerDialog getDialog()
+	{
+		return dialog;
+	}
+
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{

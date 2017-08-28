@@ -11,6 +11,8 @@ import com.dontflymoney.adapters.YearAdapter;
 import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.listeners.IDatePickerActivity;
+import com.dontflymoney.listeners.PickDate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +21,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 import java.util.Calendar;
 
-public class SummaryActivity extends SmartActivity
+public class SummaryActivity extends SmartActivity implements IDatePickerActivity
 {
 	static JSONArray monthList;
 	static String name;
@@ -97,7 +99,7 @@ public class SummaryActivity extends SmartActivity
 	{
 		if(dialog == null)
 		{
-			dialog = new DatePickerDialog(this, new PickDate(), year, 1, 1);
+			dialog = new DatePickerDialog(this, new PickDate(this), year, 1, 1);
 
 			try
 			{
@@ -120,22 +122,14 @@ public class SummaryActivity extends SmartActivity
 		
 		dialog.show();
 	}
-	
-	private class PickDate implements DatePickerDialog.OnDateSetListener
-	{
-		@Override
-		public void onDateSet(DatePicker view, int year, int month, int day)
-		{
-			if (view.isShown())
-			{
-				setDate(year);
-				getSummary();
-				dialog.dismiss();
-			}
-		}
 
+	@Override
+	public void setResult(int year, int month, int day)
+	{
+		setDate(year);
+		getSummary();
 	}
-	
+
 	private void getSummary()
 	{
 		String accountUrl = getIntent().getStringExtra("accountUrl");
@@ -148,7 +142,13 @@ public class SummaryActivity extends SmartActivity
 		
 		request.Post();
 	}
-	
+
+	@Override
+	public DatePickerDialog getDialog()
+	{
+		return dialog;
+	}
+
 	@Override
 	protected void HandleSuccess(JSONObject data, Step step) throws JSONException
 	{

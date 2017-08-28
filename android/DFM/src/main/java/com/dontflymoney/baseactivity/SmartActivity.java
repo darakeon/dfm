@@ -34,9 +34,9 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected void changeContextMenu(View view, ContextMenu menuInfo) { }
 
 	protected Authentication Authentication;
-	
-	public Form form;
-	protected Message message;
+
+	protected Form form;
+	public Message message;
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
 	protected License license;

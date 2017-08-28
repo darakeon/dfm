@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -12,12 +11,18 @@ import android.widget.ScrollView;
 import com.dontflymoney.api.InternalRequest;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.entities.Nature;
+import com.dontflymoney.dialogs.DialogAccountIn;
+import com.dontflymoney.dialogs.DialogAccountOut;
 import com.dontflymoney.entities.Detail;
 import com.dontflymoney.entities.Move;
-import com.dontflymoney.viewhelper.AfterTextWatcher;
+import com.dontflymoney.entities.Nature;
+import com.dontflymoney.listeners.DialogCategory;
+import com.dontflymoney.listeners.DialogNature;
+import com.dontflymoney.listeners.IDatePickerActivity;
+import com.dontflymoney.listeners.PickDate;
 import com.dontflymoney.viewhelper.DetailBox;
-import com.dontflymoney.viewhelper.DialogSelectClickListener;
+import com.dontflymoney.watchers.DescriptionWatcher;
+import com.dontflymoney.watchers.ValueWatcher;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +30,8 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
-public class MovesCreateActivity extends SmartActivity {
+public class MovesCreateActivity extends SmartActivity implements IDatePickerActivity
+{
 	DatePickerDialog dialog;
 	ScrollView window;
 
@@ -73,18 +79,7 @@ public class MovesCreateActivity extends SmartActivity {
 		{
 			if (useCategories)
 			{
-				for (int c = 0; c < categoryList.length(); c++)
-				{
-					JSONObject category = categoryList.getJSONObject(c);
-					String value = category.getString("Value");
-
-					if (value.equals(move.Category))
-					{
-						String text = category.getString("Text");
-						form.setValue(R.id.category, text);
-						break;
-					}
-				}
+				setDataFromList(categoryList, move.Category, R.id.category);
 			}
 
 			form.setValue(R.id.date, move.DateString());
@@ -103,32 +98,8 @@ public class MovesCreateActivity extends SmartActivity {
 				}
 			}
 
-			for(int n = 0; n < accountList.length(); n++)
-			{
-				JSONObject account = accountList.getJSONObject(n);
-				String value = account.getString("Value");
-
-				if (value.equals(move.AccountOut))
-				{
-					String text = account.getString("Text");
-					form.setValue(R.id.account_out, text);
-					break;
-				}
-			}
-
-			for(int n = 0; n < accountList.length(); n++)
-			{
-				JSONObject account = accountList.getJSONObject(n);
-				String value = account.getString("Value");
-
-				if (value.equals(move.AccountIn))
-				{
-					String text = account.getString("Text");
-					form.setValue(R.id.account_in, text);
-					break;
-				}
-			}
-
+			setDataFromList(accountList, move.AccountOut, R.id.account_out);
+			setDataFromList(accountList, move.AccountIn, R.id.account_in);
 
 			if (move.isDetailed)
 			{
@@ -154,6 +125,22 @@ public class MovesCreateActivity extends SmartActivity {
 				valueView.setText(String.format("%1$,.2f", move.Value));
 			}
 
+		}
+	}
+
+	private void setDataFromList(JSONArray list, String dataSaved, int resourceId) throws JSONException
+	{
+		for (int n = 0; n < list.length(); n++)
+		{
+			JSONObject object = list.getJSONObject(n);
+			String value = object.getString("Value");
+
+			if (value.equals(dataSaved))
+			{
+				String text = object.getString("Text");
+				form.setValue(resourceId, text);
+				break;
+			}
 		}
 	}
 
@@ -247,21 +234,16 @@ public class MovesCreateActivity extends SmartActivity {
 		setValueListener();
 	}
 
-
-
 	private void setDescriptionListener()
 	{
 		EditText textMessage = (EditText) findViewById(R.id.description);
-		textMessage.addTextChangedListener(new DescriptionWatcher());
+		textMessage.addTextChangedListener(new DescriptionWatcher(move));
 	}
 
-	private class DescriptionWatcher extends AfterTextWatcher
+	private void setValueListener()
 	{
-		@Override
-		public void textChanged(String text)
-		{
-			move.Description = text;
-		}
+		EditText textMessage = (EditText) findViewById(R.id.value);
+		textMessage.addTextChangedListener(new ValueWatcher(move));
 	}
 
 
@@ -269,78 +251,39 @@ public class MovesCreateActivity extends SmartActivity {
 	public void showDatePicker(View view)
 	{
 		dialog =
-				new DatePickerDialog(
-						this,
-						new PickDate(),
-						move.getYear(),
-						move.getMonth(),
-						move.getDay()
-				);
+			new DatePickerDialog(this
+				, new PickDate(this)
+				, move.getYear(), move.getMonth(), move.getDay()
+			);
+
 		dialog.show();
 	}
 
-	private class PickDate implements DatePickerDialog.OnDateSetListener
+	@Override
+	public void setResult(int year, int month, int day)
 	{
-		@Override
-		public void onDateSet(DatePicker view, int year, int month, int day)
-		{
-			if (view.isShown())
-			{
-				move.Date.set(year, month, day);
-				form.setValue(R.id.date, move.DateString());
-				dialog.dismiss();
-			}
-		}
+		move.Date.set(year, month, day);
+		form.setValue(R.id.date, move.DateString());
+	}
+
+	@Override
+	public DatePickerDialog getDialog()
+	{
+		return dialog;
 	}
 
 
 
 	public void changeCategory(View view) throws JSONException
 	{
-		form.showChangeList(categoryList, R.string.category, new DialogCategory(categoryList));
+		form.showChangeList(categoryList, R.string.category, new DialogCategory(categoryList, form, message, move));
 	}
-
-	class DialogCategory extends DialogSelectClickListener
-	{
-		DialogCategory(JSONArray list) { super(list); }
-
-		@Override
-		public void setResult(String text, String value)
-		{
-			form.setValue(R.id.category, text);
-			move.Category = value;
-		}
-
-		@Override
-		public void handleError(JSONException exception)
-		{
-			message.alertError(R.string.error_convert_result);
-		}
-	}
-
-
 
 	public void changeNature(View view) throws JSONException
 	{
-		form.showChangeList(natureList, R.string.nature, new DialogNature(natureList));
+		form.showChangeList(natureList, R.string.nature, new DialogNature(natureList, this));
 	}
 
-	class DialogNature extends DialogSelectClickListener
-	{
-		DialogNature(JSONArray list) { super(list); }
-
-		@Override
-		public void setResult(String text, String value)
-		{
-			setNature(text, value);
-		}
-
-		@Override
-		public void handleError(JSONException exception)
-		{
-			message.alertError(R.string.error_convert_result);
-		}
-	}
 
 	public void setNature(String text, String value)
 	{
@@ -370,66 +313,12 @@ public class MovesCreateActivity extends SmartActivity {
 
 	public void changeAccountOut(View view) throws JSONException
 	{
-		form.showChangeList(accountList, R.string.account, new DialogAccountOut(accountList));
+		form.showChangeList(accountList, R.string.account, new DialogAccountOut(accountList, form, message, move));
 	}
 
 	public void changeAccountIn(View view) throws JSONException
 	{
-		form.showChangeList(accountList, R.string.account, new DialogAccountIn(accountList));
-	}
-
-	class DialogAccountOut extends DialogSelectClickListener
-	{
-		DialogAccountOut(JSONArray list) { super(list); }
-
-		@Override
-		public void setResult(String text, String value)
-		{
-			form.setValue(R.id.account_out, text);
-			move.AccountOut = value;
-		}
-
-		@Override
-		public void handleError(JSONException exception)
-		{
-			message.alertError(R.string.error_convert_result);
-		}
-	}
-
-	class DialogAccountIn extends DialogSelectClickListener
-	{
-		DialogAccountIn(JSONArray list) { super(list); }
-
-		@Override
-		public void setResult(String text, String value)
-		{
-			form.setValue(R.id.account_in, text);
-			move.AccountIn = value;
-		}
-
-		@Override
-		public void handleError(JSONException exception)
-		{
-			message.alertError(R.string.error_convert_result);
-		}
-	}
-
-
-
-	private void setValueListener()
-	{
-		EditText textMessage = (EditText) findViewById(R.id.value);
-		textMessage.addTextChangedListener(new ValueWatcher());
-	}
-
-	private class ValueWatcher extends AfterTextWatcher
-	{
-		@Override
-		public void textChanged(String text)
-		{
-			try { move.Value = Double.parseDouble(text); }
-			catch (NumberFormatException ignored) { }
-		}
+		form.showChangeList(accountList, R.string.account, new DialogAccountIn(accountList, form, message, move));
 	}
 
 
@@ -527,3 +416,4 @@ public class MovesCreateActivity extends SmartActivity {
 
 
 }
+
