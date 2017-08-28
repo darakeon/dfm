@@ -3,8 +3,7 @@
 
 	$(".input-validation-error")
 		.closest(".form-group")
-		.addClass("has-error")
-		.addClass("has-feedback");
+		.addClass("has-error");
 
 	$(".value-setter").click(function () {
 		var fieldId = $(this).data("target-id");
