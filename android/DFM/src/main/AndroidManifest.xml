@@ -65,8 +65,6 @@
 			android:name=".SettingsActivity"
 			android:label="@string/title_activity_settings">
 		</activity>
-		<activity android:name=".TestActivity">
-		</activity>
 	</application>
 
 </manifest>
