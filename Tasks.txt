@@ -93,15 +93,16 @@ VERSÃO 3.1.0.0 (Big change) - 5
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
 
-VERSÃO 3.0.0.0 (All new) - 1
+VERSÃO 3.0.0.0 (All new) - 2
 ================================================================================================
 						Layout Bootstrap
 						Android Kotlin
 
-VERSÃO 2.1.3.0 (Little change) - 2
+VERSÃO 2.1.3.0 (Little change) - 3
 ================================================================================================
 						Usar packages do Nuget
 						Trocar apache por Volley
+						Trocar licensing
 
 VERSÃO 2.1.3.0 (Little change) - 2
 ================================================================================================
