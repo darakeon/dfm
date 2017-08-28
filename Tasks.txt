@@ -98,15 +98,18 @@ VERSÃO 3.0.0.0 (All new) - 2
 						Layout Bootstrap
 						Android Kotlin
 
-VERSÃO 2.1.3.0 (Little change) - 3
+VERSÃO 2.1.4.0 (Little change) - 3
 ================================================================================================
 						Usar packages do Nuget
 						Trocar apache por Volley
 						Trocar licensing
 
-VERSÃO 2.1.3.0 (Little change) - 2
+VERSÃO 2.1.3.1 (System) - 1
 ================================================================================================
 						Ajustar layouts de android para usar formato novo
+
+VERSÃO 2.1.3.0 (Little change) - 1
+================================================================================================
 2017-01-15	2017-01-15	Ocultar coluna de movimentação marcada ou não (web/mobile)
 
 VERSÃO 2.1.2.0 (Little change) - 2
