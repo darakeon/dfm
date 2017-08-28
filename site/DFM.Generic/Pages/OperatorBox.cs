@@ -21,20 +21,17 @@ namespace DFM.Generic.Pages
 
 		public static OperatorBox<T> operator ++(OperatorBox<T> @this)
 		{
-			var result = invokeOperator<T>("++", @this.Item);
-			return new OperatorBox<T>(result);
+			return @this + 1;
 		}
 
 		public static OperatorBox<T> operator -(OperatorBox<T> @this, Int32 other)
 		{
-			var result = invokeOperator<T>("-", @this.Item, other);
-			return new OperatorBox<T>(result);
+			return @this + (-other);
 		}
 
 		public static OperatorBox<T> operator --(OperatorBox<T> @this)
 		{
-			var result = invokeOperator<T>("--", @this.Item);
-			return new OperatorBox<T>(result);
+			return @this - 1;
 		}
 
 		public static Boolean operator <(OperatorBox<T> @this, OperatorBox<T> other)
@@ -49,20 +46,12 @@ namespace DFM.Generic.Pages
 
 		public static Boolean operator <=(OperatorBox<T> @this, OperatorBox<T> other)
 		{
-			return invokeOperator<Boolean>("<=", @this.Item, other.Item);
+			return !(@this > other);
 		}
 
 		public static Boolean operator >=(OperatorBox<T> @this, OperatorBox<T> other)
 		{
-			return invokeOperator<Boolean>(">=", @this.Item, other.Item);
-		}
-
-		public static Boolean operator ==(OperatorBox<T> @this, OperatorBox<T> other)
-		{
-			if (@this == null)
-				return other == null;
-
-			return invokeOperator<Boolean>("==", @this.Item, other);
+			return !(@this < other);
 		}
 
 		public static Boolean operator !=(OperatorBox<T> @this, OperatorBox<T> other)
@@ -70,7 +59,12 @@ namespace DFM.Generic.Pages
 			if (@this == null)
 				return other != null;
 
-			return invokeOperator<Boolean>("!=", @this.Item, other);
+			return @this > other || @this < other;
+		}
+
+		public static Boolean operator ==(OperatorBox<T> @this, OperatorBox<T> other)
+		{
+			return !(@this != other);
 		}
 
 		private static TR invokeOperator<TR>(String method, params object[] @params)

@@ -215,7 +215,7 @@
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
-    <Compile Include="Helpers\Views\TimeUnit.cs" />
+    <Compile Include="Helpers\Views\MonthYearUnit.cs" />
     <Compile Include="Models\TestAnalyzeDictionary.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokensController.cs" />

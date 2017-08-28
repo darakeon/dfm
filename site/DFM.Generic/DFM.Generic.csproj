@@ -47,7 +47,7 @@
     <Compile Include="Pages\OperatorBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\GeneralAssemblyInfo.cs" />
-    <Compile Include="Pages\TimePages.cs" />
+    <Compile Include="Pages\Pages.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DK.Generic">
