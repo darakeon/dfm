@@ -35,4 +35,4 @@ CREATE TABLE Acceptance
 		UNIQUE KEY (User_ID, Contract_ID)
 );
 
-INSERT INTO Contract (BeginDate, Version) VALUES (curdate(), '003000000000');
+INSERT INTO Contract (BeginDate, Version) VALUES (now(), '003000000000');

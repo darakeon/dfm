@@ -162,7 +162,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 					INSERT INTO Contract 
 						(BeginDate, Version) 
 						VALUES 
-						(curdate(), @contractVersion);
+						(now(), @contractVersion);
 				";
 
 				using (var cmd = new MySqlCommand(query, conn))
