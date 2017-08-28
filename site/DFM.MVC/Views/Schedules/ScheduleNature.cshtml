@@ -1,0 +1,18 @@
+﻿@using DFM.Entities.Enums
+@model MoveNature
+
+@switch (Model)
+{
+	case MoveNature.In:
+		@("info")
+		break;
+	case MoveNature.Out:
+		@("danger")
+		break;
+	case MoveNature.Transfer:
+		@("success")
+		break;
+	default:
+		@("default")
+		break;
+}

@@ -284,7 +284,7 @@
     <None Include="Views\Ops\500.cshtml" />
     <None Include="Views\Ops\Error.cshtml" />
     <None Include="Views\Ops\Index.cshtml" />
-    <Content Include="Views\Schedules\Index.old" />
+    <None Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Test\AnalyzeDictionary.old" />
     <Content Include="Views\Shared\_Master.old" />
     <Content Include="Views\Tokens\Disable.old" />
@@ -296,6 +296,7 @@
     <Content Include="Views\Shared\_Table.cshtml" />
     <None Include="Views\Categories\Status.cshtml" />
     <None Include="Views\Logins\LoginType.cshtml" />
+    <None Include="Views\Schedules\ScheduleNature.cshtml" />
     <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ConfigEmail.cshtml" />

@@ -1,0 +1,63 @@
+﻿@using DFM.MVC.Helpers
+@model SchedulesIndexModel
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary["Schedules"];
+	Layout = "../Shared/_Table.cshtml";
+
+	ViewBag.HasContent = Model.ScheduleList.Any();
+	ViewBag.NoContentText = MultiLanguage.Dictionary["NoSchedules"];
+
+	var useCategories = Service.Current.User.Config.UseCategories;
+}
+
+@section TableHeader {
+	<tr class="row">
+		<th class="col-sm-2">
+			@MultiLanguage.Dictionary["Description"]
+		</th>
+
+		@if (useCategories)
+		{
+			<th class="col-sm-2 text-center">
+				@MultiLanguage.Dictionary["Category"]
+			</th>
+		}
+
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Date"]</th>
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Account", "In"]</th>
+		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Account", "Out"]</th>
+		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Value"]</th>
+		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["TODO"]</th>
+	</tr>
+
+}
+
+@foreach (var schedule in Model.ScheduleList)
+{
+	<tr class="row">
+		<td class="col-sm-2">@schedule.Description</td>
+		
+		@if (useCategories)
+		{
+			<td class="col-sm-2 text-center">@(schedule.Category == null ? "---" : schedule.Category.Name)</td>
+		}
+
+		<td class="col-sm-2 text-center">@schedule.Date.ToShortDateString()</td>
+		<td class="col-sm-2 text-center">@(schedule.In?.Name ?? " ")</td>
+		<td class="col-sm-2 text-center">@(schedule.Out?.Name ?? " ")</td>
+
+		<td  class="col-sm-1 text-@Html.Partial("ScheduleNature", schedule.Nature) text-right">
+			@schedule.Total().ToMoney(Model.Language)
+		</td>
+
+		<td class="col-sm-1 text-center">
+			<a href="@Url.Action("Delete", "Schedules", new { id = schedule.ID })"
+			   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["ConfirmDeleteSchedule"], schedule.Description)">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</td>
+
+	</tr>
+
+}
