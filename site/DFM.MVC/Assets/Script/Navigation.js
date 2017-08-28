@@ -55,7 +55,7 @@
 		
 	},
 
-	changeReport: function(obj) {
+	changeReport: function() {
 		$("input#Year_Time").attr("id", "Year");
 
 		var year = $("input#Year");
