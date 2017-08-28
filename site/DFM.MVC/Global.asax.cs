@@ -162,7 +162,7 @@ namespace DFM.MVC
 			path.StartsWith("/assets/")
 			|| path.StartsWith("/favicon.ico")
 			|| path.StartsWith("/robots.txt")
-			|| path.StartsWith("/.well-known");
+			|| path.StartsWith("/.well-known/acme-challenge");
 
 		private static Boolean isLocal => Cfg.IsLocal;
 
