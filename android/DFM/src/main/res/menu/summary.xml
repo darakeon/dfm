@@ -1,16 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<item
 		android:id="@+id/action_accounts"
 		android:orderInCategory="100"
-		android:showAsAction="never"
+		app:showAsAction="never"
 		android:title="@string/title_activity_accounts"
 		android:onClick="goToAccounts" />
 
 	<item
 		android:id="@+id/action_settings"
 		android:orderInCategory="100"
-		android:showAsAction="always"
+		app:showAsAction="ifRoom"
 		android:title="@string/title_activity_settings"
 		android:icon="@drawable/settings"
 		android:onClick="goToSettings" />

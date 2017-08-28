@@ -5,19 +5,19 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SummaryStatic
-import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
-import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SummaryActivity() : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
+class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
 
     internal val main: ListView get() = findViewById(R.id.main_table) as ListView
     internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
@@ -76,15 +76,15 @@ class SummaryActivity() : SmartActivity<SummaryStatic>(SummaryStatic), IDatePick
 
             try {
                 val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
-                pickerField.setAccessible(true)
+                pickerField.isAccessible = true
 
                 val dayField = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
-                dayField.setAccessible(true)
+                dayField.isAccessible = true
                 val dayPicker = dayField.get(pickerField.get(dialog))
                 (dayPicker as View).visibility = View.GONE
 
                 val monthField = pickerField.get(dialog).javaClass.getDeclaredField("mMonthSpinner")
-                monthField.setAccessible(true)
+                monthField.isAccessible = true
                 val monthPicker = monthField.get(pickerField.get(dialog))
                 (monthPicker as View).visibility = View.GONE
             } catch (ignored: Exception) {
@@ -126,7 +126,7 @@ class SummaryActivity() : SmartActivity<SummaryStatic>(SummaryStatic), IDatePick
         form.setValue(R.id.totalTitle, static.name)
         form.setValueColored(R.id.totalValue, static.total)
 
-        if (static.monthList == null || static.monthList?.length() == 0) {
+        if (static.monthList.length() == 0) {
             main.visibility = View.GONE
             empty.visibility = View.VISIBLE
         } else {

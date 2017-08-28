@@ -6,24 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.darakeon.dfm.uiHelpers.views.YearLine
 import com.darakeon.dfm.R
+import com.darakeon.dfm.uiHelpers.views.YearLine
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class YearAdapter @Throws(JSONException::class)
-constructor(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
-    private val yearList: MutableList<Year>
+class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
+
+    private val yearList: MutableList<Year> =
+        (0..yearJsonList.length() - 1)
+            .map { Year(yearJsonList.getJSONObject(it), accountUrl, yearNumber) }
+            .toMutableList()
+
     private val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-    init {
-        yearList =
-            (0..yearJsonList.length() - 1)
-                .map { Year(yearJsonList.getJSONObject(it), accountUrl, yearNumber) }
-                .toMutableList()
-
-    }
 
     inner class Year(jsonObject: JSONObject, var AccountUrl: String, var YearNumber: Int) {
         var MonthName: String = jsonObject.getString("Name")

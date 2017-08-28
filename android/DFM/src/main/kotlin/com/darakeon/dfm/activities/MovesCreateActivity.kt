@@ -7,23 +7,17 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
-import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
-import com.darakeon.dfm.uiHelpers.watchers.ValueWatcher
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.uiHelpers.dialogs.DialogAccountIn
-import com.darakeon.dfm.uiHelpers.dialogs.DialogAccountOut
 import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.api.entities.Nature
-import com.darakeon.dfm.uiHelpers.dialogs.DialogCategory
-import com.darakeon.dfm.uiHelpers.dialogs.DialogNature
-import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
-import com.darakeon.dfm.uiHelpers.dialogs.PickDate
-import com.darakeon.dfm.activities.ExtractActivity
-import com.darakeon.dfm.R
+import com.darakeon.dfm.uiHelpers.dialogs.*
 import com.darakeon.dfm.uiHelpers.views.DetailBox
+import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
+import com.darakeon.dfm.uiHelpers.watchers.ValueWatcher
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -67,7 +61,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
         form.setValue(R.id.date, static.move.DateString())
 
-        val list = static.natureList;
+        val list = static.natureList
 
         if (list != null) {
             for (n in 0..list.length() - 1) {
@@ -227,12 +221,10 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
     }
 
 
-    @Throws(JSONException::class)
     fun changeCategory(view: View) {
         form.showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, form, message, static.move))
     }
 
-    @Throws(JSONException::class)
     fun changeNature(view: View) {
         form.showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
     }
@@ -260,12 +252,10 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
     }
 
 
-    @Throws(JSONException::class)
     fun changeAccountOut(view: View) {
         form.showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, form, message, static.move))
     }
 
-    @Throws(JSONException::class)
     fun changeAccountIn(view: View) {
         form.showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, form, message, static.move))
     }

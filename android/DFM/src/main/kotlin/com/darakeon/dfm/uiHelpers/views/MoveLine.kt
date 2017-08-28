@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
-import com.darakeon.dfm.R
 import org.json.JSONException
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -72,14 +72,14 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 
     override fun getId(): Int {
-        return move!!.ID
+        return move?.ID ?: 0
     }
 
     val description: String
-        get() = move!!.Description
+        get() = move?.Description ?: ""
 
     val isChecked: Boolean
-        get() = move!!.Checked!!
+        get() = move?.Checked ?: false
 
 
 }

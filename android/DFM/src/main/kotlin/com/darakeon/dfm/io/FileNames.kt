@@ -1,5 +1,6 @@
 package com.darakeon.dfm.io
 
+/*
 enum class FileNames constructor(filename: String) {
     Ticket("ticket"),
     Language("language");
@@ -7,3 +8,4 @@ enum class FileNames constructor(filename: String) {
     internal var fileFullName: String = filename + File.extension
 
 }
+*/

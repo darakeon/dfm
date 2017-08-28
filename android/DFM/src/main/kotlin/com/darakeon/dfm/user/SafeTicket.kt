@@ -1,7 +1,6 @@
 package com.darakeon.dfm.user
 
 import android.content.Context
-import java.lang.Long
 import java.util.*
 
 internal class SafeTicket(context: Context) {

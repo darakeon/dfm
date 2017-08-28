@@ -2,17 +2,17 @@ package com.darakeon.dfm.activities
 
 import android.os.Bundle
 import android.widget.ImageView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.License
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.R
 import org.json.JSONObject
 import kotlin.reflect.KClass
 
 class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 
-    protected val license: License get() = License(this)
+    private val license: License get() = License(this)
 
     override fun HandleSuccess(data: JSONObject, step: Step) {
 

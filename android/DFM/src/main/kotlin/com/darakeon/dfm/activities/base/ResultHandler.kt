@@ -1,10 +1,9 @@
 package com.darakeon.dfm.activities.base
 
-import com.darakeon.dfm.user.Language
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.activities.base.Navigation
-import com.darakeon.dfm.R
+import com.darakeon.dfm.user.Language
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -34,7 +33,7 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 
     }
 
-    fun HandlePostError(error: String, step: Step) {
+    fun HandlePostError(error: String) {
         activity.message.alertError(error)
     }
 

@@ -9,16 +9,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.IYesNoDialogAnswer
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.ExtractStatic
-import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.uiHelpers.views.MoveLine
+import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
-import com.darakeon.dfm.R
+import com.darakeon.dfm.uiHelpers.views.MoveLine
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -99,18 +99,17 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
             try {
                 val pickerField = dialog!!.javaClass.getDeclaredField("mDatePicker")
-                pickerField.setAccessible(true)
+                pickerField.isAccessible = true
 
                 val field = pickerField.get(dialog).javaClass.getDeclaredField("mDaySpinner")
-                field.setAccessible(true)
+                field.isAccessible = true
                 val dayPicker = field.get(pickerField.get(dialog))
                 (dayPicker as View).visibility = View.GONE
             } catch (ignored: Exception) {
             }
-
         }
 
-        dialog!!.show()
+        dialog?.show()
     }
 
     override fun setResult(year: Int, month: Int, day: Int) {
@@ -259,16 +258,16 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
     }
 
 
-    public override fun changeContextMenu(view: View, menu: ContextMenu) {
+    public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
         val move = clickedView as MoveLine
 
         try {
             if (static.canCheck) {
-                hideMenuItem(menu, if (move.isChecked) R.id.check_move else R.id.uncheck_move)
-                showMenuItem(menu, if (move.isChecked) R.id.uncheck_move else R.id.check_move)
+                hideMenuItem(menuInfo, if (move.isChecked) R.id.check_move else R.id.uncheck_move)
+                showMenuItem(menuInfo, if (move.isChecked) R.id.uncheck_move else R.id.check_move)
             } else {
-                hideMenuItem(menu, R.id.check_move)
-                hideMenuItem(menu, R.id.uncheck_move)
+                hideMenuItem(menuInfo, R.id.check_move)
+                hideMenuItem(menuInfo, R.id.uncheck_move)
             }
         } catch (e: Exception) {
             e.printStackTrace()

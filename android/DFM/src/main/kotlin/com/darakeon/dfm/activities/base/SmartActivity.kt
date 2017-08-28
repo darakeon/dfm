@@ -3,13 +3,13 @@ package com.darakeon.dfm.activities.base
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import com.darakeon.dfm.user.Authentication
-import com.darakeon.dfm.user.Language
+import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.AccountsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.activities.AccountsActivity
-import com.darakeon.dfm.R
+import com.darakeon.dfm.user.Authentication
+import com.darakeon.dfm.user.Language
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -142,9 +142,9 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
         succeeded = true
     }
 
-    fun HandlePostError(error: String, step: Step) {
+    fun HandlePostError(error: String) {
         succeeded = false
-        resultHandler.HandlePostError(error, step)
+        resultHandler.HandlePostError(error)
     }
 
 

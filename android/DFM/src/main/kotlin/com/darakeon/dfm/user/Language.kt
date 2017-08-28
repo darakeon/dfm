@@ -8,8 +8,8 @@ import java.util.*
 object Language {
     private val spKey = "Language"
 
-    fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, language: String) {
-        var language = language
+    fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, systemLanguage: String) {
+        var language = systemLanguage
         val current = Locale.getDefault().toString()
 
         language = language.replace("-", "_")
@@ -35,16 +35,10 @@ object Language {
         val resources = activity.resources
 
         val availableLocales = Locale.getAvailableLocales()
-        var locale: Locale? = null
 
-        for (availableLocale in availableLocales) {
-            if (availableLocale.toString().equals(language, ignoreCase = true)) {
-                locale = availableLocale
-            }
-        }
-
-        if (locale == null)
-            return
+        val locale: Locale = availableLocales.lastOrNull {
+            it.toString().equals(language, ignoreCase = true)
+        } ?: return
 
         Locale.setDefault(locale)
 
@@ -55,6 +49,7 @@ object Language {
         activity.createConfigurationContext(config)
 
         //OLD
+        @Suppress("DEPRECATION")
         resources.updateConfiguration(config, null)
         resources.flushLayoutCache()
     }

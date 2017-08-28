@@ -9,10 +9,9 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
-import com.darakeon.dfm.api.InternalResponse
-import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -53,7 +52,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
         if (Internet.isOffline(activity)) {
             val error = activity.getString(R.string.u_r_offline)
-            activity.HandlePostError(error, step)
+            activity.HandlePostError(error)
             return
         }
 
@@ -148,7 +147,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
         if (internalResponse.IsSuccess())
             activity.HandlePostResult(internalResponse.GetResult(), step)
         else
-            activity.HandlePostError(internalResponse.GetError(), step)
+            activity.HandlePostError(internalResponse.GetError())
     }
 
 

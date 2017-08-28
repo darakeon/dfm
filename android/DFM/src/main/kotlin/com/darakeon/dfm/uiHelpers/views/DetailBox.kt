@@ -6,10 +6,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.R
-
+import com.darakeon.dfm.api.entities.Move
 import java.text.DecimalFormat
 
 @SuppressLint("ViewConstructor")
@@ -23,7 +21,7 @@ class DetailBox(context: Context, internal var move: Move?, internal var descrip
         addView(descriptionField)
 
         val amountField = TextView(context)
-        amountField.setText(String.format("%d", amount))
+        amountField.text = String.format("%d", amount)
         setWeight(amountField, 1f)
         addView(amountField)
 

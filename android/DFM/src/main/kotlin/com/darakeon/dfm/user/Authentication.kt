@@ -3,12 +3,8 @@ package com.darakeon.dfm.user
 import android.content.Context
 
 class Authentication(private val context: Context) {
-    private val safe: SafeTicket
+    private val safe: SafeTicket = SafeTicket(this.context)
 
-
-    init {
-        safe = SafeTicket(this.context)
-    }
 
     fun Set(ticket: String?) {
         val encryptedTicket = safe.Encrypt(ticket)

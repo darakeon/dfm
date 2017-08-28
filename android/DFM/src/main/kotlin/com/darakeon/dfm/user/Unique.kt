@@ -7,5 +7,4 @@ object Unique {
     fun GetKey(context: Context): String {
         return Secure.getString(context.contentResolver, Secure.ANDROID_ID)
     }
-
 }

@@ -8,12 +8,10 @@ internal object Internet {
     fun isOffline(context: Context): Boolean {
         val conMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        val networkInfoWifi = conMgr.getNetworkInfo(0)
-        val networkInfo3G = conMgr.getNetworkInfo(1)
+        val networkInfo = conMgr.activeNetworkInfo
 
-        val noWifi = networkInfoWifi == null || networkInfoWifi.state != NetworkInfo.State.CONNECTED
-        val no3G = networkInfo3G == null || networkInfo3G.state != NetworkInfo.State.CONNECTED
+        val noNetwork = networkInfo == null || networkInfo.state != NetworkInfo.State.CONNECTED
 
-        return noWifi && no3G
+        return noNetwork
     }
 }
