@@ -30,6 +30,16 @@ namespace DFM.MVC.Helpers.Views
 			return unit.ToDate() > other.ToDate();
 		}
 
+		public static Boolean operator !=(YearUnit @this, YearUnit other)
+		{
+			return @this > other || @this < other;
+		}
+
+		public static Boolean operator ==(YearUnit @this, YearUnit other)
+		{
+			return !(@this != other);
+		}
+
 		public String Label => $"{Year}";
 		public String Url => $"{Year}";
 

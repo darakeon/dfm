@@ -54,19 +54,6 @@ namespace DFM.Generic.Pages
 			return !(@this < other);
 		}
 
-		public static Boolean operator !=(OperatorBox<T> @this, OperatorBox<T> other)
-		{
-			if (@this == null)
-				return other != null;
-
-			return @this > other || @this < other;
-		}
-
-		public static Boolean operator ==(OperatorBox<T> @this, OperatorBox<T> other)
-		{
-			return !(@this != other);
-		}
-
 		private static TR invokeOperator<TR>(String method, params object[] @params)
 		{
 			var reflectionMethod = reflectionMethods[method];
@@ -85,8 +72,6 @@ namespace DFM.Generic.Pages
 				{">", "op_GreaterThan"},
 				{"<=", "op_LessThanOrEqual"},
 				{">=", "op_GreaterThanOrEqual"},
-				{"==", "op_Equality"},
-				{"!=", "op_Inequality"},
 			};
 
 

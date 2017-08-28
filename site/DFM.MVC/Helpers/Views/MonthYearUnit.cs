@@ -33,6 +33,16 @@ namespace DFM.MVC.Helpers.Views
 			return unit.ToDate() > other.ToDate();
 		}
 
+		public static Boolean operator !=(MonthYearUnit @this, MonthYearUnit other)
+		{
+			return @this > other || @this < other;
+		}
+
+		public static Boolean operator ==(MonthYearUnit @this, MonthYearUnit other)
+		{
+			return !(@this != other);
+		}
+
 		public String Label => $"{Year}-{Month.ToString("00")}";
 		public String Url => $"{Year}{Month.ToString("00")}";
 
