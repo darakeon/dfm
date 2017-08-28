@@ -50,7 +50,7 @@ namespace DFM.MVC.Controllers
         [HttpPost]
         public ActionResult LogOn(UsersLogOnModel model, String returnUrl)
         {
-            var logOnError = model.LogOn();
+            var logOnError = model.TryLogOn();
 
             if (logOnError == null)
             {

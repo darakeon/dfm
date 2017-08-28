@@ -16,7 +16,20 @@ namespace DFM.MVC.Models
 
 
 
-        internal void LogOn()
+	    internal DFMCoreException TryLogOn()
+	    {
+		    try
+		    {
+				LogOn();
+			    return null;
+		    }
+		    catch (DFMCoreException e)
+		    {
+			    return e;
+		    }
+	    }
+
+	    internal void LogOn()
         {
             try
             {
