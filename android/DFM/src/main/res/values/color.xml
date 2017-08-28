@@ -1,5 +1,7 @@
 <resources>
 
+	<color name="action_bar">#227F7F7F</color>
+
 	<color name="negative_dark">#FFAA0000</color>
 	<color name="positive_dark">#FF0000AA</color>
 	<color name="transfer_dark">#FF088D00</color>

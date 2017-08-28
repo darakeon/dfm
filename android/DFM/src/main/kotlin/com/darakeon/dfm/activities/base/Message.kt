@@ -14,7 +14,6 @@ class Message<T : SmartStatic> internal constructor(private val activity: SmartA
         alertError(message, R.string.ok_button, true, OnClickListener { dialog, which ->
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> answer.YesAction()
-
                 DialogInterface.BUTTON_NEGATIVE -> answer.NoAction()
             }
 
