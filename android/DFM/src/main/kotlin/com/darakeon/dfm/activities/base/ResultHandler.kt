@@ -4,6 +4,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.Language
+import com.darakeon.dfm.user.Theme
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -24,6 +25,9 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 
                 if (data.has("Language"))
                     Language.ChangeAndSave(activity, data.getString("Language"))
+
+                if (data.has("Theme"))
+                    Theme.ChangeAndSave(activity, data.getString("Theme"))
 
                 activity.HandleSuccess(data, step)
             }

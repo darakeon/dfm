@@ -10,6 +10,7 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.Authentication
 import com.darakeon.dfm.user.Language
+import com.darakeon.dfm.user.Theme
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -55,6 +56,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Language.ChangeFromSaved(this)
+        Theme.ChangeFromSaved(this)
 
         super.onCreate(savedInstanceState)
 

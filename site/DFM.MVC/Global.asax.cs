@@ -79,7 +79,8 @@ namespace DFM.MVC
 			if (isAsset || !current.IsAuthenticated)
 				return;
 
-			Thread.CurrentThread.CurrentUICulture = new CultureInfo(Service.Current.Language);
+			Thread.CurrentThread.CurrentUICulture = 
+				new CultureInfo(Service.Current.Language);
 
 			if (access.Safe.IsLastContractAccepted())
 				runSchedule();
