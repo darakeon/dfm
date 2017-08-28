@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using DK.MVC.Cookies;
 using DFM.Entities;
 using DFM.Generic;
@@ -41,9 +42,10 @@ namespace DFM.Authentication
 
 
 	    public Boolean IsAdm => IsAuthenticated && User.IsAdm();
+	    public CultureInfo Culture => new CultureInfo(Language);
 
 
-	    public void Set(String username, String password)
+		public void Set(String username, String password)
         {
             userService.ValidateUserAndCreateTicket(username, password, Ticket);
         }
