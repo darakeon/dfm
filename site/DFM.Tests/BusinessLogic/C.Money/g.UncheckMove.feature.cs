@@ -18,20 +18,20 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Toggle Move Checked")]
-    public partial class F_ToggleMoveCheckedFeature
+    [NUnit.Framework.DescriptionAttribute("g. Uncheck Move")]
+    public partial class G_UncheckMoveFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "f.ToggleMoveChecked.feature"
+#line 1 "g.UncheckMove.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Toggle Move Checked", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "g. Uncheck Move", "", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,38 +69,42 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Mark a not checked move as checked")]
-        public virtual void _01_MarkANotCheckedMoveAsChecked()
+        [NUnit.Framework.DescriptionAttribute("01. Mark a checked move as not checked")]
+        public virtual void _01_MarkACheckedMoveAsNotChecked()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Mark a not checked move as checked", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Mark a checked move as not checked", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.Given("I have a move with value 10 (Out)");
 #line 11
- testRunner.When("I try to mark it as checked");
+  testRunner.And("the move is checked");
 #line 12
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to mark it as not checked");
 #line 13
-  testRunner.And("the move will be checked");
+ testRunner.Then("I will receive no core error");
+#line 14
+  testRunner.And("the move will not be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Mark a checked move as not checked")]
-        public virtual void _02_MarkACheckedMoveAsNotChecked()
+        [NUnit.Framework.DescriptionAttribute("02. Remark a not checked move as not checked")]
+        public virtual void _02_RemarkANotCheckedMoveAsNotChecked()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Mark a checked move as not checked", ((string[])(null)));
-#line 15
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Remark a not checked move as not checked", ((string[])(null)));
 #line 16
- testRunner.Given("I have a move with value 10 (Out)");
+this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.When("I try to mark it as not checked");
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 18
- testRunner.Then("I will receive no core error");
+  testRunner.And("the move is not checked");
 #line 19
+ testRunner.When("I try to mark it as not checked");
+#line 20
+ testRunner.Then("I will receive this core error: MoveAlreadyUnchecked");
+#line 21
   testRunner.And("the move will not be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
