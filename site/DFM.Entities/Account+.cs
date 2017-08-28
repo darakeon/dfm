@@ -55,7 +55,7 @@ namespace DFM.Entities
 			return User == user;
 		}
 
-		public virtual AccountSign? Sign()
+		public virtual AccountSign Sign()
 		{
 			var hasRed = RedLimit != null;
 			var hasYellow = YellowLimit != null;
@@ -70,7 +70,7 @@ namespace DFM.Entities
 			if (hasRed || hasYellow)
 				return AccountSign.Green;
 			
-			return null;
+			return AccountSign.None;
 		}
 
 	}

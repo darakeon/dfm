@@ -292,7 +292,6 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | LanguagePtbr            |
 		| Users   | Save                    |
 		| Users   | ConfigChanged           |
-		| Users   | AndroidRobotLicenseText |
 		| Users   | CurrentPassword         |
 		| Users   | NewPassword             |
 		| Users   | EmailToChange           |
@@ -318,20 +317,21 @@ Scenario: 11. Get translate of Interface (ops)
 
 Scenario: 12. Get translate of Interface (general)
 	Given I have these keys
-		| Section | Phrase      |
-		| General | LogOff      |
-		| General | MonthMoves  |
-		| General | YearMoves   |
-		| General | Create      |
-		| General | Schedule    |
-		| General | Move        |
-		| General | Categories  |
-		| General | Accounts    |
-		| General | ScheduleRun |
-		| General | Total       |
-		| General | Schedules   |
-		| General | TheSchedule |
-		| General | Logins      |
+		| Section | Phrase                  |
+		| General | LogOff                  |
+		| General | MonthMoves              |
+		| General | YearMoves               |
+		| General | Create                  |
+		| General | Schedule                |
+		| General | Move                    |
+		| General | Categories              |
+		| General | Accounts                |
+		| General | ScheduleRun             |
+		| General | Total                   |
+		| General | Schedules               |
+		| General | TheSchedule             |
+		| General | Logins                  |
+		| General | AndroidRobotLicenseText |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

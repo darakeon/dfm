@@ -69,6 +69,9 @@
 		<YearMoves text="Year Summary" />
 		<ToMove text="Move" />
 
+		<!-- for other translates, search in http://developers.google.com -->
+		<AndroidRobotLicenseText text="The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License." />
+
 	</en-US>
 	<pt-BR>
 
@@ -138,6 +141,9 @@
 		<MonthMoves text="Extrato" />
 		<YearMoves text="Resumo Anual" />
 		<ToMove text="Mover" />
+
+		<!-- para traduzir isto, procurar em http://developers.google.com -->
+		<AndroidRobotLicenseText text="O robô Android é reproduzido ou modificado a partir de trabalhos criados e compartilhados pela Google e usado de acordo com os termos descritos na Licença de atribuição Creative Commons 3.0." />
 
 	</pt-BR>
 </general>

@@ -953,9 +953,6 @@ this.FeatureBackground();
                         "ConfigChanged"});
             table11.AddRow(new string[] {
                         "Users",
-                        "AndroidRobotLicenseText"});
-            table11.AddRow(new string[] {
-                        "Users",
                         "CurrentPassword"});
             table11.AddRow(new string[] {
                         "Users",
@@ -980,9 +977,9 @@ this.FeatureBackground();
                         "EmailSettings"});
 #line 258
  testRunner.Given("I have these keys", ((string)(null)), table11, "Given ");
-#line 304
+#line 303
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 305
+#line 304
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -993,7 +990,7 @@ this.FeatureBackground();
         public virtual void _11_GetTranslateOfInterfaceOps()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Get translate of Interface (ops)", ((string[])(null)));
-#line 308
+#line 307
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1013,11 +1010,11 @@ this.FeatureBackground();
             table12.AddRow(new string[] {
                         "Ops",
                         "CommunicationError"});
-#line 309
+#line 308
  testRunner.Given("I have these keys", ((string)(null)), table12, "Given ");
-#line 315
+#line 314
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 316
+#line 315
  testRunner.Then("I will receive no multilanguage error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1028,7 +1025,7 @@ this.FeatureBackground();
         public virtual void _12_GetTranslateOfInterfaceGeneral()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Get translate of Interface (general)", ((string[])(null)));
-#line 319
+#line 318
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -1075,7 +1072,10 @@ this.FeatureBackground();
             table13.AddRow(new string[] {
                         "General",
                         "Logins"});
-#line 320
+            table13.AddRow(new string[] {
+                        "General",
+                        "AndroidRobotLicenseText"});
+#line 319
  testRunner.Given("I have these keys", ((string)(null)), table13, "Given ");
 #line 335
  testRunner.When("I try get the translate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
