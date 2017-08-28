@@ -26,6 +26,7 @@ android/gradlew
 android/gradlew.bat
 
 */.vs/*
+site/packages/*
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
 ^(.*[\\/])?bin[\\/].*

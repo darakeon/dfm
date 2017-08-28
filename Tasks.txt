@@ -110,7 +110,7 @@ VERSÃO 3.0.0.0 (All new) - 2
 
 VERSÃO 2.1.4.0 (Little change) - 3
 ================================================================================================
-						Usar packages do Nuget
+2017-01-27	2017-01-28	Usar packages do Nuget
 2017-01-27	2017-01-27	Trocar apache por Volley
 2017-01-27	2017-01-27	Trocar licensing
 						
