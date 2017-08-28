@@ -19,7 +19,7 @@ namespace DFM.Multilanguage
 	    public static EmailLayout EmailLayout { get; private set; }
         public static PlainText Dictionary { get; private set; }
         
-        public DicList<Section> SectionList { get; private set; }
+        public DicList<Section> SectionList { get; }
 
         private static List<String> acceptedLanguages;
 

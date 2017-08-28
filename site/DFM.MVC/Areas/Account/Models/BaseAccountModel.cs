@@ -15,7 +15,7 @@ namespace DFM.MVC.Areas.Account.Models
             Account = Admin.GetAccountByUrl(CurrentAccountUrl);
         }
 
-        public String CurrentAccountUrl { get; private set; }
+        public String CurrentAccountUrl { get; }
         public Entities.Account Account { get; private set; }
 
     }

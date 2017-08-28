@@ -37,7 +37,7 @@ namespace DFM.BusinessLogic
 
         public MoneyService Money { get; private set; }
         public ReportService Report { get; private set; }
-        public SafeService Safe { get; private set; }
+        public SafeService Safe { get; }
         public AdminService Admin { get; private set; }
         public RobotService Robot { get; private set; }
 

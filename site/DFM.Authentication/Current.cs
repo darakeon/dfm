@@ -7,7 +7,7 @@ namespace DFM.Authentication
 {
     public class Current
     {
-        private ISafeService userService { get; set; }
+        private ISafeService userService { get; }
 
         public Current(ISafeService userService)
         {

@@ -142,8 +142,8 @@ namespace DFM.Tests.Multilanguage
                 Phrase = phrase;
             }
 
-            public String Section { get; private set; }
-            public String Phrase { get; private set; }
+            public String Section { get; }
+            public String Phrase { get; }
         }
 
     }

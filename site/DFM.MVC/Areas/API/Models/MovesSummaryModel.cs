@@ -36,7 +36,7 @@ namespace DFM.MVC.Areas.API.Models
             Total = account.Total();
         }
 
-        public IList<SimpleMonthJson> MonthList { get; private set; }
+        public IList<SimpleMonthJson> MonthList { get; }
         public String Name { get; private set; }
         public Decimal Total { get; private set; }
 

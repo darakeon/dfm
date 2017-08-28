@@ -72,7 +72,7 @@ namespace DFM.MVC.Helpers.Global
 
     internal class SessionList<T>
     {
-        private String name;
+        private readonly String name;
 
         internal SessionList(String name)
         {
