@@ -17,10 +17,8 @@
 		tr.addClass("hidden");
 		tr.find(".hidden-send").val("False");
 
-		tr.find("input").each(function () {
-			if (!$(this).is("[type=hidden]")) {
-				$(this).val(null);
-			}
-		});
+		tr.find(".detail-description").val("");
+		tr.find(".detail-amount").val("1");
+		tr.find(".detail-value").val("0");
 	});
 });

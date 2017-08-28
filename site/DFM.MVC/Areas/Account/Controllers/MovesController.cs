@@ -40,7 +40,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 			var model = new MovesCreateEditModel(id.Value, OperationType.Edit);
 
-			return View(model);
+			return View("CreateEditSchedule", model);
 		}
 
 		[HttpPost]
@@ -62,8 +62,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-
-
+		
 
 		public ActionResult Check(Int32 id)
 		{

@@ -11,7 +11,6 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (ModelState.IsValid)
 			{
 				var errors = model.CreateEditSchedule();
-
 				AddErrors(errors);
 			}
 

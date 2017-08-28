@@ -56,7 +56,7 @@
 
 @Html.HiddenFor(m => m.Nature)
 
-<div class="form-group row">
+<div class="row form-group">
 	<div class="btn-group btn-group-sm col-sm-12">
         @foreach (var natureUI in natureUiList)
 		{
@@ -76,12 +76,12 @@
 </div>
 
 <div class="row form-group">
-	<div class="col-sm-6">
+	<div class="col-sm-6 form-group">
 		@Html.LabelFor(m => m.AccountOutUrl, MultiLanguage.Dictionary["Account", "Out"], new { @class = "control-label" })
 		@Html.DropDownListFor(m => m.AccountOutUrl, Model.AccountOutSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control combo-account-out text-danger" })
 		@Html.ValidationMessageFor(m => m.AccountOutUrl)
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-6 form-group">
 		@Html.LabelFor(m => m.AccountInUrl, MultiLanguage.Dictionary["Account", "In"], new { @class = "control-label" })
 		@Html.DropDownListFor(m => m.AccountInUrl, Model.AccountInSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control combo-account-in text-info" })
 		@Html.ValidationMessageFor(m => m.AccountInUrl)
@@ -124,16 +124,16 @@
 				@for (var d = 0; d < Model.DetailList.Count; d++)
 				{
 					<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
-						<td class="col-sm-6">
-							@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new {@class = "form-control", maxlength = MaximumLength.DETAIL_DESCRIPTION})
+						<td class="col-sm-6 form-group">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new {@class = "form-control detail-description", maxlength = MaximumLength.DETAIL_DESCRIPTION})
 						</td>
 
-						<td class="col-sm-2">
-							@Html.TextBoxFor(m => m.DetailList[d].Detail.Amount, new { @class = "form-control text-center" })
+						<td class="col-sm-2 form-group">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Amount, new { @class = "form-control text-center detail-amount" })
 						</td>
 
-						<td class="col-sm-3">
-							@Html.TextBoxFor(m => m.DetailList[d].Detail.Value, new { @class = "form-control text-right" })
+						<td class="col-sm-3 form-group">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Value, new { @class = "form-control text-right detail-value" })
 						</td>
 
 						<td class="col-sm-1">
