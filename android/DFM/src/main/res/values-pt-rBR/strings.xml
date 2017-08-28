@@ -69,7 +69,9 @@
     <string name="add_detail">+</string>
     <string name="remove_detail">–</string>
     <string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
-    
+    <string name="edit">editar</string>
+    <string name="delete">excluir</string>
+
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="settings_warning">Estas configurações são para celular e site</string>

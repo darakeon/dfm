@@ -2,9 +2,11 @@ package com.dontflymoney.baseactivity;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -18,43 +20,25 @@ import org.json.JSONObject;
 
 public abstract class SmartActivity extends FixOrientationActivity
 {
-	protected int contentView;
-	protected int menuResource;
-    private boolean isLoggedIn;
-    private boolean hasParent;
+	protected abstract int contentView();
+    protected int optionsMenuResource(){ return 0; }
+    protected int contextMenuResource(){ return 0; }
+    protected int viewWithContext(){ return 0; }
+    protected boolean isLoggedIn() { return true; }
+    protected boolean hasParent() { return false; }
 
 	protected Authentication Authentication;
 	
-	protected Form form;
+	public Form form;
 	protected Message message;
 	protected Navigation navigation;
 	protected ResultHandler resultHandler;
 	protected License license;
 	
 	protected Request request;
-	
+
 	protected static boolean succeded = false;
 
-
-    public void init(int contentView, int menuResource)
-    {
-        init(contentView, menuResource, false);
-    }
-
-    public void init(int contentView, int menuResource, boolean isLoggedIn)
-    {
-        init(contentView, menuResource, isLoggedIn, false);
-    }
-
-	public void init(int contentView, int menuResource, boolean isLoggedIn, boolean hasParent)
-	{
-		this.contentView = contentView;
-		this.menuResource = menuResource;
-        this.isLoggedIn = isLoggedIn;
-		this.hasParent = hasParent;
-	}
-
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -63,8 +47,14 @@ public abstract class SmartActivity extends FixOrientationActivity
 
 		super.onCreate(savedInstanceState);
 		
-		setContentView(contentView);
+		setContentView(contentView());
 		setupActionBar();
+
+        if (viewWithContext() != 0)
+        {
+            TableLayout contextView = (TableLayout)findViewById(viewWithContext());
+            registerForContextMenu(contextView);
+        }
 
 		Authentication = new Authentication(this);
 		
@@ -75,18 +65,32 @@ public abstract class SmartActivity extends FixOrientationActivity
 		license = new License(this);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(menuResource, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
 
-        if (isLoggedIn)
+        if (optionsMenuResource() != 0)
+            getMenuInflater().inflate(optionsMenuResource(), menu);
+
+        if (isLoggedIn())
             getMenuInflater().inflate(R.menu.common, menu);
 
-		return true;
-	}
-	
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if (contextMenuResource() != 0)
+        {
+            getMenuInflater().inflate(contextMenuResource(), menu);
+
+        }
+    }
+
 	@Override
 	protected void onDestroy()
 	{
@@ -101,7 +105,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 
 	private void setupActionBar()
 	{
-		if (hasParent)
+		if (hasParent())
 		{
 			ActionBar actionBar = getActionBar();
 

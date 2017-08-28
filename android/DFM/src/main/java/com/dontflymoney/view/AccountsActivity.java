@@ -23,10 +23,10 @@ public class AccountsActivity extends SmartActivity
 	TableLayout main;
 	static JSONArray accountList;
 	
-	public AccountsActivity()
-	{
-		init(R.layout.activity_accounts, R.menu.accounts, true);
-	}
+
+
+    protected int contentView() { return R.layout.accounts; }
+    protected int optionsMenuResource() { return R.menu.accounts; }
 
 	
 	

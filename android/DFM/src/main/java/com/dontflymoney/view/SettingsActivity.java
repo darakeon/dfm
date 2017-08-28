@@ -18,12 +18,13 @@ public class SettingsActivity extends SmartActivity
 {
 	boolean useCategories;
 	CheckBox useCategoriesField;
-	
-	public SettingsActivity()
-	{
-		init(R.layout.activity_settings, R.menu.settings, true);
-	}
-	
+
+
+
+    protected int contentView() { return R.layout.settings; }
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

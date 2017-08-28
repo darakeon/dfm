@@ -37,9 +37,10 @@ public class MovesCreateActivity extends SmartActivity {
 
 
 	
-	public MovesCreateActivity() {
-		init(R.layout.activity_moves_create, R.menu.moves_create, true);
-	}
+    protected int contentView() { return R.layout.moves_create; }
+    protected int optionsMenuResource() { return R.menu.moves_create; }
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)

@@ -55,6 +55,8 @@
     <string name="total">%s total</string>
     <string name="change_date">change</string>
     <string name="sure_to_delete">Do you really want to DELETE Move \'%s\'?"</string>
+    <string name="edit">edit</string>
+    <string name="delete">delete</string>
 
     <!-- Moves Create -->
     <string name="title_activity_move">Move</string>

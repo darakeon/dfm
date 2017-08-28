@@ -34,13 +34,15 @@ public class SummaryActivity extends SmartActivity
 
 	DatePickerDialog dialog;
 	private static int year;
-	
-	public SummaryActivity()
-	{
-		init(R.layout.activity_summary, R.menu.summary, true);
-	}
-	
-	@Override
+
+
+
+    protected int contentView() { return R.layout.summary; }
+    protected int optionsMenuResource() { return R.menu.summary; }
+
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

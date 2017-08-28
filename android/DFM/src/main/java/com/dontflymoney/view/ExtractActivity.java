@@ -3,18 +3,14 @@ package com.dontflymoney.view;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -26,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -36,7 +31,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	static String name;
 	static double total;
 	
-	TableLayout main;
+	TableLayout table;
 	String accounturl;
 
 	DatePickerDialog dialog;
@@ -45,12 +40,15 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	
 	public int moveId;
 
-	
-	public ExtractActivity()
-	{
-		init(R.layout.activity_extract, R.menu.extract, true);
-	}
-	
+
+
+    protected int contentView() { return R.layout.extract; }
+    protected int optionsMenuResource() { return R.menu.extract; }
+    protected int contextMenuResource() { return R.menu.move_options; }
+    protected int viewWithContext(){ return R.id.main_table; }
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -79,7 +77,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	
 	private void setCurrentInfo()
 	{
-		main = (TableLayout)findViewById(R.id.main_table);
+		table = (TableLayout)findViewById(R.id.main_table);
 		accounturl = getIntent().getStringExtra("accounturl");
 	}
 	
@@ -149,7 +147,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	
 	private void getExtract()
 	{
-		main.removeAllViews();
+		table.removeAllViews();
 		
 		request = new Request(this, "Moves/Extract");
 		
@@ -193,7 +191,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		if (moveList.length() == 0)
 		{
 			View empty = form.createText(getString(R.string.no_extract), Gravity.CENTER);
-			main.addView(empty);
+			table.addView(empty);
 		}
 		else
 		{
@@ -206,84 +204,25 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		}
 	}
 
-	private void getMove(JSONObject move, int color)
-			throws JSONException
-	{
-		TableRow row = new TableRow(this);
-		row.setBackgroundColor(color);
-		
-		String description = move.getString("Description");
-		row.addView(form.createText(description, Gravity.LEFT));
-		
-		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-		{
-			JSONObject date = move.getJSONObject("Date");
-			
-			Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, date.getInt("Year"));
-			calendar.set(Calendar.MONTH, date.getInt("Month") - 1);
-            calendar.set(Calendar.DAY_OF_MONTH, date.getInt("Day"));
-            
-            DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
-			
-            TextView cell = form.createText(format.format(calendar.getTime()), Gravity.CENTER);
-            cell.setPadding(20, 20, 200, 20);
-            
-			row.addView(cell);
-		}
+    private void getMove(JSONObject move, int color)
+            throws JSONException
+    {
+        MoveRow row = new MoveRow(this);
 
-		double total = move.getDouble("Total");
-		row.addView(form.createText(total, Gravity.RIGHT));
-		
-		int id = move.getInt("ID");
+        row.setBackgroundColor(color);
 
-		setRowClick(row, description, id);
+        row.setDescription(move.getString("Description"));
+        row.setDate(move.getJSONObject("Date"));
+        row.setTotal(move.getDouble("Total"));
 
-		main.addView(row);
-	}
-	
-	
-	
-	
-	private void setRowClick(TableRow row, final String moveDescription, final int moveId)
-	{
-		row.setClickable(true);
-		
-		final ExtractActivity activity = this;
-		
-		row.setOnLongClickListener(new OnLongClickListener(){
+        row.ID = move.getInt("ID");
 
-			@Override
-			public boolean onLongClick(View v) {
-				
-				String messageText = getString(R.string.sure_to_delete);
-				
-				messageText = String.format(messageText, moveDescription);
-				
-				activity.moveId = moveId; 
-				
-				message.alertYesNo(messageText, activity);
+        row.setClickable(true);
 
-				return false;
-			}
-			
-		});
-		
-		row.setOnClickListener(new OnClickListener()
-		{
-		    public void onClick(View row)
-		    {
-		        //TableRow tablerow = (TableRow)row;
-		        //TextView sample = (TextView) tablerow.getChildAt(0);
-		        //alertError(sample.getText().toString());
-		        
-		        //redirect(MovesActivity.class);
-		    }
-		});
-	}
-	
-	
-	
+        table.addView(row);
+    }
+
+
 	public void goToSummary(MenuItem item)
 	{
 		Intent intent = new Intent(this, SummaryActivity.class);
@@ -307,9 +246,40 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 
 
-	
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        MoveRow view = (MoveRow)info.targetView;
 
-	@Override
+        switch (item.getItemId()) {
+            case R.id.edit_move:
+                edit(view);
+                return true;
+            case R.id.delete_move:
+                askDelete(view);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void edit(View view)
+    {
+    }
+
+    public boolean askDelete(MoveRow moveRow) {
+
+        String messageText = getString(R.string.sure_to_delete);
+
+        messageText = String.format(messageText, moveRow.getDescription());
+
+        message.alertYesNo(messageText, this);
+
+        return false;
+    }
+
+    @Override
 	public void YesAction() { 		
 		request = new Request(this, "Moves/Delete");
 		
@@ -324,3 +294,4 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	public void NoAction() { }
 	
 }
+

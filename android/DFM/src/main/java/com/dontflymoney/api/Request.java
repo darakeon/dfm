@@ -86,7 +86,6 @@ public class Request
         }
 
         connector = new SiteConnector(post, this, step);
-
         connector.execute();
 
         startUIWait();

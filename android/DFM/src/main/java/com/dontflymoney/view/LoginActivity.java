@@ -14,12 +14,8 @@ import org.json.JSONObject;
 
 public class LoginActivity extends SmartActivity
 {
-	public LoginActivity()
-	{
-		init(R.layout.activity_login, R.menu.login);
-	}
-
-
+    protected int contentView() { return R.layout.login; }
+    protected boolean isLoggedIn() { return false; }
 
 
 	@Override
