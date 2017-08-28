@@ -233,6 +233,8 @@ namespace DFM.MVC.Areas.Account.Models
 			public String Disable { get; private set; }
 		}
 
+
+
 		public class DetailTabUI
 		{
 			public DetailTabUI(String resourceKey, String targetId, Boolean isDetailed)
