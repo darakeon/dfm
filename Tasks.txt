@@ -111,8 +111,8 @@ VERSÃO 2.1.1.1 (Bug fix) - 2
 VERSÃO 2.1.1.0 (Little change) - 3
 ================================================================================================
 						Remover validação front do DFM (problema de data)
-						Possibilitar trocar e-mail
-						Possibilitar trocar senha
+2017-01-13	2017-01-14	Possibilitar trocar e-mail
+2017-01-13	2017-01-14	Possibilitar trocar senha
 
 VERSÃO 2.1.0.0 (Big change) - 7
 ================================================================================================
