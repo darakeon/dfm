@@ -34,6 +34,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
+      <Link>Properties\GeneralAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DFMRepositoryException.cs" />
     <Compile Include="Mappings\AccountMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />

@@ -52,6 +52,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
+      <Link>Properties\GeneralAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Bases\GenericMoveRepository.cs" />
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
