@@ -69,6 +69,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
             val contextView = findViewById(viewWithContext())
             registerForContextMenu(contextView)
         }
+
+        val highlight = findViewById(R.id.highlight);
+
+        if (highlight != null)
+            highlight.setBackgroundColor(Theme.getHighLightColor())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

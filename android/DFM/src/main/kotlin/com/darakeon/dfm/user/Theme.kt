@@ -48,9 +48,16 @@ object Theme {
         }
         else {
             when (currentTheme) {
-                android.R.style.Theme_Holo_Light -> return Color.LTGRAY
-                else -> return Color.rgb(0x17, 0x1b, 0x20)
+                android.R.style.Theme_Holo_Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
+                else -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
             }
+        }
+    }
+
+    fun getHighLightColor(): Int {
+        when (currentTheme) {
+            android.R.style.Theme_Holo_Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
+            else -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
         }
     }
 
