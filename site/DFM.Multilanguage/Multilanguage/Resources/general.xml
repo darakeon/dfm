@@ -2,7 +2,7 @@
 <general>
 	<en-US>
 
-		<language text="english" />
+		<CurrentLanguage text="english" />
 
 		<!--Actions-->
 		<Enter text="Enter" />
@@ -72,7 +72,7 @@
 	</en-US>
 	<pt-BR>
 
-		<language text="português" />
+		<CurrentLanguage text="português" />
 
 		<!--Actions-->
 		<Enter text="Entrar" />
