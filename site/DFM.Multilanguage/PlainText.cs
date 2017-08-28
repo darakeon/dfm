@@ -50,8 +50,7 @@ namespace DFM.Multilanguage
                     .Name.Replace(".xml", "").ToLower();
 
                 if (fileName != nodes[i].Name)
-                    throw new Exception(
-                        String.Format("File: {0}; Node: {1}", fileName, nodes[i].Name));
+                    throw new Exception($"File: {fileName}; Node: {nodes[i].Name}");
             }
         }
 
@@ -137,7 +136,7 @@ namespace DFM.Multilanguage
 
         private static String notFound(String section, String language, String phrase)
         {
-            throw new DicException(String.Format("S: {0} /// L: {1} /// P: {2}", section, language, phrase));
+            throw new DicException($"S: {section} /// L: {language} /// P: {phrase}");
         }
         
 

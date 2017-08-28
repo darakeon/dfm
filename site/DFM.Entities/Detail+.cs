@@ -19,7 +19,7 @@ namespace DFM.Entities
 
 		public override String ToString()
 		{
-			return String.Format("[{0}] {1}", ID, Description);
+			return $"[{ID}] {Description}";
 		}
 
 

@@ -102,12 +102,7 @@ namespace DFM.BusinessLogic.Repositories
 
             foreach (var detail in move.DetailList)
             {
-                details.Append(
-                    String.Format(
-                        "{0}: {1} x {2}<br />"
-                        , detail.Description
-                        , detail.Amount
-                        , detail.Value.ToMoney(language)));
+                details.Append($"{detail.Description}: {detail.Amount} x {detail.Value.ToMoney(language)}<br />");
             }
 
             return details.ToString();

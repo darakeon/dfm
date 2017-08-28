@@ -16,7 +16,7 @@ namespace DFM.Entities
 
 		public override String ToString()
 		{
-			return String.Format("[{0}] {1}", ID, Time);
+			return $"[{ID}] {Time}";
 		}
 
 		public virtual Summary AddSummary(Category category)

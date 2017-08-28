@@ -15,7 +15,7 @@ namespace DFM.Multilanguage.Helpers
                     .Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
                 if (item == null)
-                    throw new DicException(String.Format("No {0} {1}", typeof(T), name));
+                    throw new DicException($"No {typeof (T)} {name}");
 
                 return item;
             }

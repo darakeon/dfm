@@ -15,8 +15,8 @@ namespace DFM.Tests.BusinessLogic.Helpers
         static readonly String login = Cfg.Get("Login");
         static readonly String passwordDB = Cfg.Get("Password");
         
-        static readonly String connStr = 
-            String.Format("Server={0};Database={1};Uid={2};Pwd={3};", server, database, login, passwordDB);
+        static readonly String connStr =
+	        $"Server={server};Database={database};Uid={login};Pwd={passwordDB};";
 
 
         public static String GetLastTokenForUser(String email, String password, SecurityAction action)

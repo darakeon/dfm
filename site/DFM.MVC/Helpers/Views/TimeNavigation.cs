@@ -24,10 +24,13 @@ namespace DFM.MVC.Helpers.Views
 
         private static String button(String symbol, Int16 add, String fieldID, String @class, Navigator navigator)
         {
-            return String.Format(
-                "<button type='button' class='{0} {1}' rel='{2}' add='{3}'>{4}</button>"
-                    , @class, navigator.Class, fieldID, add, symbol
-                );
+            return $@"
+				<button type='button' 
+						class='{@class} {navigator.Class}' 
+						rel='{fieldID}' 
+						add='{add}'>
+					{symbol}
+				</button>";
         }
 
 		public static Navigator Limits(Int32 min, Int32 max)

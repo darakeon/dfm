@@ -11,7 +11,7 @@ namespace DFM.Email
 
 
         public Format(String language, MoveNature moveNature)
-            : this(language, String.Format("MoveNotification{0}", moveNature)) { }
+            : this(language, $"MoveNotification{moveNature}") { }
 
         public Format(String language, SecurityAction securityAction)
             : this(language, securityAction.ToString()) { }

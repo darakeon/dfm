@@ -29,12 +29,11 @@ namespace DFM.Email
 	            if (!String.IsNullOrEmpty(urlReferrer))
 		            urlReferrer = "origin: " + urlReferrer;
 
-                var body = String.Format(
-					"<h4>{0} at {1}</h4>" +
-					"<h5>{2}</h5>" +
-					"<h6>{3}</h6>" +
-					"{4}"
-					, user, url, parametersFormatted, urlReferrer, exceptionsFormatted);
+                var body = $@"
+					<h4>{user} at {url}</h4>
+					<h5>{parametersFormatted}</h5>
+					<h6>{urlReferrer}</h6>
+					{exceptionsFormatted}";
 
                 new Sender()
                     .ToDefault()
@@ -52,7 +51,7 @@ namespace DFM.Email
 
         private static String format(KeyValuePair<String, String> pair)
         {
-            return String.Format("{0}: {1}", pair.Key, pair.Value);
+            return $"{pair.Key}: {pair.Value}";
         }
 
 		private static String format(Exception exception)
@@ -61,16 +60,11 @@ namespace DFM.Email
             var stackTrace = realException.StackTrace
                 .Replace("\n", "<br style='border-top: 1px solid #AAA' />");
 
-            return String.Format(
-                    @"<h3>{0}</h3>
-                      <h2>{1}</h2>
+            return $@"<h3>{realException.GetType()}</h3>
+                      <h2>{realException.Message}</h2>
 					  <div style='background:#ffd;padding:20px 7px; white-space: nowrap;'>
-						  {2}
-					  </div>"
-					  , realException.GetType()
-					  , realException.Message
-					  , stackTrace
-                );
+						  {stackTrace}
+					  </div>";
         }
 
         private static String subject => DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss´fff");

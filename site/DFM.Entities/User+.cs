@@ -18,7 +18,7 @@ namespace DFM.Entities
 		}
 		public override String ToString()
 		{
-			return String.Format("[{0}] {1}", ID, Email);
+			return $"[{ID}] {Email}";
 		}
 		
 		

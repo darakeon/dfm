@@ -11,7 +11,7 @@ namespace DFM.Entities
 
 		public override String ToString()
 		{
-			return String.Format("[{0}] {1}", ID, Name);
+			return $"[{ID}] {Name}";
 		}
 		
 		public virtual Boolean AuthorizeCRUD(User user)

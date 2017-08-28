@@ -40,7 +40,11 @@ namespace DFM.MVC.Areas.API.Jsons
 
 	    public override string ToString()
 	    {
-		    return String.Format("{0}-{1}-{2}", Year.ToString("0000"), Month.ToString("00"), Day.ToString("00"));
+		    var year = Year.ToString("0000");
+		    var month = Month.ToString("00");
+		    var day = Day.ToString("00");
+
+			return $"{year}-{month}-{day}";
 	    }
     }
 }

@@ -42,7 +42,7 @@ namespace DFM.Entities
 
 	    public override String ToString()
 		{
-			return String.Format("[{0}] {1}", ID, In - Out);
+			return $"[{ID}] {In - Out}";
 		}
 
 
@@ -66,7 +66,7 @@ namespace DFM.Entities
             var category = Category;
             var categoryID = category?.ID ?? 0;
 
-            return String.Format("{0}_{1}_{2}", yearID, monthID, categoryID);
+            return $"{yearID}_{monthID}_{categoryID}";
         }
 
 
