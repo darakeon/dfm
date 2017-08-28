@@ -96,6 +96,7 @@ F						Colocar criação de categoria (mobile)
 VERSÃO 2.0.3.1 (System) - 4
 ================================================================================================
 						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
+2015-09-15	2015-09-17	Corrigir funcionamento do app no Lollipop
 2015-09-10	2015-09-10	Corrigir problema ao abrir tela de criar movimentação (mobile)
 2015-09-10	2015-09-10	Corrigir problema de deletar conta que já teve movimentações
 2015-09-10	2015-09-10	Colocar cor nos números da tela de agendamentos

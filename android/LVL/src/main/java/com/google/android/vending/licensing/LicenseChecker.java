@@ -16,9 +16,6 @@
 
 package com.google.android.vending.licensing;
 
-import com.google.android.vending.licensing.util.Base64;
-import com.google.android.vending.licensing.util.Base64DecoderException;
-
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
@@ -31,6 +28,9 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.Settings.Secure;
 import android.util.Log;
+
+import com.google.android.vending.licensing.util.Base64;
+import com.google.android.vending.licensing.util.Base64DecoderException;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -148,13 +148,13 @@ public class LicenseChecker implements ServiceConnection {
             if (mService == null) {
                 Log.i(TAG, "Binding to licensing service.");
                 try {
-                    boolean bindResult = mContext
-                            .bindService(
-                                    new Intent(
-                                            new String(
-                                                    Base64.decode("Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U="))),
-                                    this, // ServiceConnection.
-                                    Context.BIND_AUTO_CREATE);
+
+                    String action = new String(Base64.decode("Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U="));
+                    Intent serviceIntent = new Intent(action);
+                    serviceIntent.setPackage("com.android.vending");
+
+                    // ServiceConnection.
+                    boolean bindResult = mContext.bindService(serviceIntent, this, Context.BIND_AUTO_CREATE);
 
                     if (bindResult) {
                         mPendingChecks.offer(validator);
