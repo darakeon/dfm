@@ -105,7 +105,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (NonUniqueResultException)
 			{
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
 			}
 		}
 
