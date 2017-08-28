@@ -19,3 +19,8 @@ footer {
 	.validation-summary-errors ul li {
 		list-style: none;
 	}
+
+.nav > li > a {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}

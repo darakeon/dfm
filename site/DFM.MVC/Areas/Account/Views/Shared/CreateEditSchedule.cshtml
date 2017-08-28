@@ -1,0 +1,126 @@
+﻿@model BaseMovesModel
+@using DFM.Entities.Enums
+@using DFM.MVC.Helpers
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Move"];
+	Layout = "~/Views/Shared/_Form.cshtml";
+	ViewBag.FormSize = 8;
+
+	var useCategories = Service.Current.User.Config.UseCategories;
+	var firstRowWidths = useCategories ? 4 : 6;
+}
+
+<div class="row">
+	<div class="col-sm-@(firstRowWidths) form-group">
+		@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.Description)<br />
+		@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MOVE_DESCRIPTION, @class = "form-control" })
+		<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MOVE_DESCRIPTION)</small>
+	</div>
+
+	<div class="col-sm-@(firstRowWidths) form-group">
+		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.Date)<br />
+		@Html.TextBoxFor(m => m.Date, new { @class = "date_notHour form-control", disabled = "disabled" })
+		<small>&nbsp;</small>
+	</div>
+
+	@if (useCategories)
+	{
+	<div class="col-sm-@(firstRowWidths) form-group">
+		@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"], new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.CategoryName)<br />
+		@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
+	</div>
+	}
+
+	<div class="col-sm-6 form-group">
+		<div class="row">
+			<div class="btn-group col-sm-12">
+				<button type="button" class="btn btn-danger col-sm-4">
+					@MultiLanguage.Dictionary[MoveNature.Out.ToString()]
+				</button>
+				<button type="button" class="btn btn-success col-sm-4">
+					@MultiLanguage.Dictionary[MoveNature.Transfer.ToString()]
+				</button>
+				<button type="button" class="btn btn-info col-sm-4">
+					@MultiLanguage.Dictionary[MoveNature.In.ToString()]
+				</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="col-sm-6">
+					<div class="row">
+						@Html.DropDownListFor(m => m.AccountOutUrl, Model.AccountOutSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.AccountOutUrl)
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row">
+						@Html.DropDownListFor(m => m.AccountInUrl, Model.AccountInSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.AccountInUrl)
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-sm-6">
+
+		<ul class="nav nav-tabs">
+			<li>
+				<a href="#just-value" data-toggle="tab">
+					@MultiLanguage.Dictionary["JustOneValue"]
+				</a>
+			</li>
+			<li>
+				<a href="#detailed" data-toggle="tab">
+					@MultiLanguage.Dictionary["Detailed"]
+				</a>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane" id="just-value">
+				@Html.TextBoxFor(m => m.Value, new { @class = "money form-control" })
+			</div>
+			<div class="tab-pane" id="detailed">
+				<table class="createMoveScreenRight">
+					<tbody id="details">
+						<tr>
+							<th>
+								@MultiLanguage.Dictionary["Description"]
+								<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DETAIL_DESCRIPTION)</small>
+							</th>
+							<th>@MultiLanguage.Dictionary["Amount"]</th>
+							<th>@MultiLanguage.Dictionary["Value"]</th>
+						</tr>
+
+						@if (Model.IsDetailed)
+						{
+							for (var d = 0; d < Model.DetailList.Count; d++)
+							{
+								@*Html.Partial("../Details/Add", new DetailsAddModel(Model.DetailList[d], d))*@
+							}
+						}
+						else
+						{
+							@*Html.Partial("../Details/Add", new DetailsAddModel(new Detail(), 0))*@
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+@section Footer {
+	<button type="submit" class="btn btn-success">
+		@MultiLanguage.Dictionary[Model.ActionName]
+	</button>
+}

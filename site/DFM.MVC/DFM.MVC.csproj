@@ -144,6 +144,7 @@
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
     <Content Include="Views\Shared\Pagination.cshtml" />
+    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <None Include="Assets\Bootstrap\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.js" />
@@ -271,7 +272,7 @@
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Create.old" />
     <Content Include="Areas\Account\Views\Schedules\OtherFields.old" />
-    <Content Include="Areas\Account\Views\Shared\CreateEditSchedule.old" />
+    <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleCss.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleJs.old" />
     <None Include="Views\Accounts\CreateEdit.cshtml" />
