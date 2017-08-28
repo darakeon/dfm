@@ -148,8 +148,11 @@ public class MovesCreateActivity extends SmartActivity {
 			EditText descriptionView = (EditText) findViewById(R.id.description);
 			descriptionView.setText(move.Description);
 
-			EditText valueView = (EditText) findViewById(R.id.value);
-			valueView.setText(Double.toString(move.Value));
+			if (move.Value != 0)
+			{
+				EditText valueView = (EditText) findViewById(R.id.value);
+				valueView.setText(Double.toString(move.Value));
+			}
 
 		}
 	}
