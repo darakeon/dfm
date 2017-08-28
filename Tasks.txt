@@ -107,7 +107,7 @@ VERSÃO 3.0.1.0 (Little change) - 7
 
 VERSÃO 3.0.0.0 (All new) - 21
 ================================================================================================
-2017-04-01				Video do porquinho
+2017-04-01	2017-04-02	Video do porquinho
 2017-03-29	2017-03-31	Remover azul do layout Dark
 2017-03-29	2017-03-29	Arrumar ícones de lista / menu no mobile
 2017-03-28	2017-03-29	Corrigir inserção duplicada de move no mobile
