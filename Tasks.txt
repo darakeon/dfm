@@ -1,7 +1,8 @@
-﻿VERSÃO 7.0.0.0 (All new) - 2
+﻿VERSÃO 7.0.0.0 (All new) - 3
 ================================================================================================
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
 						Link unsubscribe
+						Rodar robô a cada uma hora e tirar função do request
 
 VERSÃO 6.0.0.0 (All new) - 3
 ================================================================================================
@@ -104,10 +105,11 @@ VERSÃO 3.1.1.0 (Little change) - 7
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
 
-VERSÃO 3.1.0.0 (Big change) - 2
+VERSÃO 3.1.0.0 (Big change) - 3
 ================================================================================================
 						Acessibilidade
 						Corrigir ícones de status da conta
+						This site uses cookies to store your preferences for site-specific language and display options. 
 
 VERSÃO 3.0.0.5 (System) - 6
 ================================================================================================
