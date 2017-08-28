@@ -2,6 +2,14 @@
 	margin-top: 75px;
 }
 
+a.navbar-brand {
+	height: 100%;
+	background: 
+		url('/Assets/Images/little_pig.png')
+		no-repeat left center;
+	padding-left: 50px;
+}
+
 .move-down {
 	margin-top: 25px;
 }
