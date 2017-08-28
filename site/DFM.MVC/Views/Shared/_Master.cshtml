@@ -4,8 +4,8 @@
     var isAuthenticated = Auth.Current.IsAuthenticated;
 
     var routeValues = isAuthenticated
-        ? new { controller = "Account", action = "Index" }
-        : new { controller = "User", action = "Index" };
+        ? new { controller = "Accounts", action = "Index" }
+        : new { controller = "Users", action = "Index" };
 
     var hasSummaryToShow = 
         !Html.ViewData.ModelState.IsValid
@@ -65,7 +65,7 @@
         
 	    <div id="head">
 
-            <a class="logo" href="@(Url.RouteUrl(RouteNames.Default, routeValues))">
+            <a class="logo" href="@Url.RouteUrl(RouteNames.Default, routeValues)">
                 <img alt="DFM" src="/Assets/image/pig.gif" />
                 <img alt="DFM" src="/Assets/image/logo.gif" />
             </a>
