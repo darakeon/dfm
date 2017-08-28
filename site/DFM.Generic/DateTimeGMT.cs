@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DFM.Generic
@@ -18,9 +19,9 @@ namespace DFM.Generic
 					timeZone
 				);
 			}
-			catch (TimeZoneNotFoundException)
+			catch (TimeZoneNotFoundException e)
 	        {
-		        
+		        Debug.Write(e.Message);
 		        throw;
 	        }
         }
