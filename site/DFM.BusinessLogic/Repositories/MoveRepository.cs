@@ -57,8 +57,8 @@ namespace DFM.BusinessLogic.Repositories
 			if (!config.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
 
-			var accountInName = getAccountName(move.AccIn());
-			var accountOutName = getAccountName(move.AccOut());
+			var accountInName = getAccountName(move.AccIn()) ?? "---";
+			var accountOutName = getAccountName(move.AccOut()) ?? "---";
 
 			var categoryName = move.Category?.Name ?? "---";
 			var nature = PlainText.Dictionary["general", config.Language, move.Nature.ToString()];

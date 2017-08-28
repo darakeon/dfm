@@ -114,7 +114,7 @@ VERSÃO 3.0.0.1 (System) - 9
 						Destacar signup
 						Arrumar cores no e-mail
 						Arrumar detalhes da movimentação (tabela) no e-mail
-						Arrumar conta entrada / saída vazia no e-mail
+2017-04-05	2017-04-05	Arrumar conta entrada / saída vazia no e-mail
 2017-04-05	2017-04-05	Encurtar título na caixa de e-mail
 
 VERSÃO 3.0.0.0 (All new) - 21
