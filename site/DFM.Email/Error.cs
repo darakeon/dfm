@@ -7,15 +7,16 @@ namespace DFM.Email
 {
     public class Error
     {
-        /// <summary>
-        /// Send a report e-mail with errors occured
-        /// </summary>
-        /// <param name="exceptions">Errors occured</param>
-        /// <param name="url">Current url</param>
-        /// <param name="parameters">Parameters of url (post / get)</param>
-        /// <param name="user">Name of current user logged</param>
-        /// <returns>Status of e-mail</returns>
-        public static Status SendReport(Exception[] exceptions, String url, IDictionary<String, String> parameters, String user)
+	    /// <summary>
+	    /// Send a report e-mail with errors occured
+	    /// </summary>
+	    /// <param name="exceptions">Errors occured</param>
+	    /// <param name="url">Current url</param>
+	    /// <param name="urlReferrer">Previous url</param>
+	    /// <param name="parameters">Parameters of url (post / get)</param>
+	    /// <param name="user">Name of current user logged</param>
+	    /// <returns>Status of e-mail</returns>
+		public static Status SendReport(Exception[] exceptions, String url, String urlReferrer, IDictionary<String, String> parameters, String user)
         {
             if (exceptions == null)
                 return Status.Empty;
@@ -25,7 +26,15 @@ namespace DFM.Email
                 var parametersFormatted = String.Join("; ", parameters.Select(format));
                 var exceptionsFormatted = String.Join("<br /><br />", exceptions.Select(format));
 
-                var body = String.Format("<h4>{0} at {1}</h4><h5>{2}</h5>{3}", user, url, parametersFormatted, exceptionsFormatted);
+	            if (!String.IsNullOrEmpty(urlReferrer))
+		            urlReferrer = "origin: " + urlReferrer;
+
+                var body = String.Format(
+					"<h4>{0} at {1}</h4>" +
+					"<h5>{2}</h5>" +
+					"<h6>{3}</h6>" +
+					"{4}"
+					, user, url, parametersFormatted, urlReferrer, exceptionsFormatted);
 
                 new Sender()
                     .ToDefault()
@@ -46,7 +55,7 @@ namespace DFM.Email
             return String.Format("{0}: {1}", pair.Key, pair.Value);
         }
 
-        private static String format(Exception exception)
+		private static String format(Exception exception)
         {
             var realException = exception.MostInner();
             var stackTrace = realException.StackTrace
@@ -55,12 +64,12 @@ namespace DFM.Email
             return String.Format(
                     @"<h3>{0}</h3>
                       <h2>{1}</h2>
-                        <div style='background:#ffd;padding:20px 7px; white-space: nowrap;'>
-                            {2}
-                        </div>"
-                        , realException.GetType()
-                        , realException.Message
-                        , stackTrace
+					  <div style='background:#ffd;padding:20px 7px; white-space: nowrap;'>
+						  {2}
+					  </div>"
+					  , realException.GetType()
+					  , realException.Message
+					  , stackTrace
                 );
         }
 

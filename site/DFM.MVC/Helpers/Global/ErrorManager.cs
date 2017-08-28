@@ -28,8 +28,11 @@ namespace DFM.MVC.Helpers.Global
                 )
                 .ToDictionary(p => p.Key, p => p.Value);
 
+			var urlReferrer = current.Request.UrlReferrer;
+
             EmailSent = Error.SendReport(current.AllErrors
-                , current.Request.Url.ToString()
+				, current.Request.Url.ToString()
+				, urlReferrer == null ? "typed" : urlReferrer.ToString()
                 , parameters
                 , user.IsAuthenticated ? user.Name : "Off");
 
