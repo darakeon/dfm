@@ -12,7 +12,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("C:\\Lucas\\Keon\\android\\keon.keystore")
+            storeFile file("C:\\Lucas\\Keon\\access\\keon.keystore")
             keyAlias "DFM"
         }
     }
