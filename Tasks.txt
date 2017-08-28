@@ -112,7 +112,7 @@ VERSÃO 3.0.0.1 (System) - 9
 						Arrumar logo no mobile
 						Destacar parte importante home
 						Destacar signup
-						Arrumar detalhes da movimentação (tabela) no e-mail
+2017-04-06	2017-04-06	Arrumar detalhes da movimentação (tabela) no e-mail
 2017-04-05	2017-04-06	Arrumar cores no e-mail
 2017-04-05	2017-04-05	Arrumar conta entrada / saída vazia no e-mail
 2017-04-05	2017-04-05	Encurtar título na caixa de e-mail

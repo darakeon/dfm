@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using DK.Generic.Extensions;
 
 namespace DFM.Multilanguage.Emails
 {
@@ -11,13 +12,18 @@ namespace DFM.Multilanguage.Emails
 		{
 			get
 			{
-				var masterPath = Path.Combine(path, $"{simpleTheme}Master.htm");
 				var mainPath = Path.Combine(path, $"{emailType}.htm");
-
-				var masterContent = getContent(masterPath);
 				var mainContent = getContent(mainPath);
 
-				return masterContent.Replace("{{Body}}", mainContent);
+				if (emailType < 0)
+					return mainContent;
+
+				var masterPath = Path.Combine(path, $"{simpleTheme}Master.htm");
+				var masterContent = getContent(masterPath);
+
+				return masterContent
+					.Replace("{{Body}}", mainContent)
+					.Replace("{{TokenToNotHide}}", Token.New());
 			}
 		}
 

@@ -86,6 +86,9 @@
     <Content Include="MultiLanguage\EmailLayouts\DarkMaster.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="MultiLanguage\EmailLayouts\Detail.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="MultiLanguage\EmailLayouts\LightMaster.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

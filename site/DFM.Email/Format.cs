@@ -21,7 +21,7 @@ namespace DFM.Email
 		public static Format MoveNotification(String language, SimpleTheme theme)
 		{
 			return new Format(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
-        }
+		}
 
 		public static Format SecurityAction(String language, SimpleTheme theme, SecurityAction securityAction)
 		{
@@ -36,7 +36,14 @@ namespace DFM.Email
 			var resourceSet = resourceManager.ToDictionary(new CultureInfo(language));
 
 			Subject = resourceSet["Subject"];
-			Layout = PlainText.EmailLayout[theme, type].Format(resourceSet);
+			Layout = FormatEmail(theme, type, resourceSet);
+		}
+
+		public static String FormatEmail<T>(SimpleTheme theme, EmailType type, IDictionary<String, T> dictionary)
+		{
+			var layout = PlainText.EmailLayout[theme, type];
+			var dictionaryString = dictionary.ToDictionary(i => i.Key, i => i.Value?.ToString());
+			return layout.Format(dictionaryString);
 		}
 
 		private static IEnumerable<ResourceManager> getResourceForLayout(String layoutName)

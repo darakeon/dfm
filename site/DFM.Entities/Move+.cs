@@ -27,8 +27,7 @@ namespace DFM.Entities
 
 		public virtual Decimal Total()
 		{
-			return Value ??
-				DetailList.Sum(d => d.Value * d.Amount);
+			return Value ?? DetailList.Sum(d => d.GetTotal());
 		}
 
 

@@ -2,7 +2,8 @@ namespace DFM.Multilanguage.Emails
 {
 	public enum EmailType
 	{
-		SecurityAction,
-		MoveNotification,
+		SecurityAction = 1,
+		MoveNotification = 2,
+		Detail = -1,
 	}
 }

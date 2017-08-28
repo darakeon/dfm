@@ -9,6 +9,7 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Multilanguage;
+using DFM.Multilanguage.Emails;
 using DFM.Multilanguage.Helpers;
 
 namespace DFM.BusinessLogic.Repositories
@@ -104,12 +105,28 @@ namespace DFM.BusinessLogic.Repositories
 
 		private static String detailsHTML(Move move)
 		{
+			if (!move.DetailList.Any())
+				return null;
+
 			var details = new StringBuilder();
-			var language = move.User.Config.Language;
+			var config = move.User.Config;
+			var language = config.Language;
 
 			foreach (var detail in move.DetailList)
 			{
-				details.Append($"{detail.Description}: {detail.Amount} x {detail.Value.ToMoney(language)}<br />");
+				var email = Format.FormatEmail
+				(
+					config.Theme.Simplify(),
+					EmailType.Detail,
+					new Dictionary<String, object> {
+						{ "Description", detail.Description },
+						{ "Amount", detail.Amount },
+						{ "Value", detail.Value.ToMoney(language) },
+						{ "Total", detail.GetTotal() }
+					}
+				);
+
+				details.AppendLine(email);
 			}
 
 			return details.ToString();

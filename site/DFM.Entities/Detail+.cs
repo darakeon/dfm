@@ -17,6 +17,11 @@ namespace DFM.Entities
 			set { ValueCents = value.ToCents(); }
 		}
 
+		public virtual Decimal GetTotal()
+		{
+			return Value * Amount;
+		}
+
 		public override String ToString()
 		{
 			return $"[{ID}] {Description}";
