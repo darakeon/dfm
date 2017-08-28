@@ -39,17 +39,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+      <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\Library\Elmah\Elmah.dll</HintPath>

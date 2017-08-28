@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Ak.NHibernate;
+using DK.NHibernate;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

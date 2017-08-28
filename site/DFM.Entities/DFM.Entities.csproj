@@ -75,13 +75,13 @@
     <Compile Include="Year+.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

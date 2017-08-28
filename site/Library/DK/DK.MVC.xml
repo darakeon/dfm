@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Ak.MVC</name>
+        <name>DK.MVC</name>
     </assembly>
     <members>
-        <member name="T:Ak.MVC.Authentication.AjaxAuthorizeAttribute">
+        <member name="T:DK.MVC.Authentication.AjaxAuthorizeAttribute">
             <summary>
              To Force error when the user is not logged-in
             </summary>
         </member>
-        <member name="F:Ak.MVC.Authentication.AjaxAuthorizeAttribute.Message">
+        <member name="F:DK.MVC.Authentication.AjaxAuthorizeAttribute.Message">
             <summary>
              Message of expiration of session
             </summary>
         </member>
-        <member name="T:Ak.MVC.Authentication.Authenticate">
+        <member name="T:DK.MVC.Authentication.Authenticate">
             <summary>
              To make authentication in MVC easier
             </summary>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,System.Boolean)">
+        <member name="M:DK.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,System.Boolean)">
             <summary>
              Authenticate the User
             </summary>
@@ -27,7 +27,7 @@
             <param name="response">Current Response of the Controller</param>
             <param name="isPersistent">Whether, when browser reopen, the login will be keeped</param>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,Ak.MVC.Authentication.IRole,System.Boolean)">
+        <member name="M:DK.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,DK.MVC.Authentication.IRole,System.Boolean)">
             <summary>
              Authenticate the User
             </summary>
@@ -36,7 +36,7 @@
             <param name="role">The permission of the individual</param>
             <param name="isPersistent">Whether, when browser reopen, the login will be keeped</param>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,System.Collections.Generic.IList{Ak.MVC.Authentication.IRole},System.Boolean)">
+        <member name="M:DK.MVC.Authentication.Authenticate.Set(System.String,System.Web.HttpResponseBase,System.Collections.Generic.IList{DK.MVC.Authentication.IRole},System.Boolean)">
             <summary>
              Authenticate the User
             </summary>
@@ -45,23 +45,23 @@
             <param name="roleList">The list of permissions of the individual</param>
             <param name="isPersistent">Whether, when browser reopen, the login will be keeped</param>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.Clean(System.Web.HttpRequestBase)">
+        <member name="M:DK.MVC.Authentication.Authenticate.Clean(System.Web.HttpRequestBase)">
             <summary>
              Log-out the individual, cleaning the cookies
             </summary>
             <param name="request">Current Request of the Controller</param>
         </member>
-        <member name="P:Ak.MVC.Authentication.Authenticate.IsAuthenticated">
+        <member name="P:DK.MVC.Authentication.Authenticate.IsAuthenticated">
             <summary>
              Whether there is user logged-in at the site
             </summary>
         </member>
-        <member name="P:Ak.MVC.Authentication.Authenticate.Username">
+        <member name="P:DK.MVC.Authentication.Authenticate.Username">
             <summary>
              Return the username that is logged-in
             </summary>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.CleanIfDead(System.Web.HttpRequestBase)">
+        <member name="M:DK.MVC.Authentication.Authenticate.CleanIfDead(System.Web.HttpRequestBase)">
             <summary>
             Clean the session if the login is out on core, 
             but there is authentication on browser
@@ -69,113 +69,113 @@
             <param name="request">Request context</param>
             <returns>If the login was cleaned</returns>
         </member>
-        <member name="M:Ak.MVC.Authentication.Authenticate.EncryptPassword(System.String)">
+        <member name="M:DK.MVC.Authentication.Authenticate.EncryptPassword(System.String)">
             <summary>
              Encrypt the password to write to the Database
             </summary>
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="T:Ak.MVC.Authentication.IRole">
+        <member name="T:DK.MVC.Authentication.IRole">
             <summary>
              The Interface to paas Roles (permissions) to Authenticate
             </summary>
         </member>
-        <member name="P:Ak.MVC.Authentication.IRole.Name">
+        <member name="P:DK.MVC.Authentication.IRole.Name">
             <summary>
              The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
         </member>
-        <member name="T:Ak.MVC.Cookies.MyCookie">
+        <member name="T:DK.MVC.Cookies.MyCookie">
             <summary>
             "Cookie" for browser, cellphone or local
             </summary>
         </member>
-        <member name="M:Ak.MVC.Cookies.MyCookie.Get">
+        <member name="M:DK.MVC.Cookies.MyCookie.Get">
             <summary>
             Get (if needed, create) ticket
             </summary>
         </member>
-        <member name="T:Ak.MVC.Cookies.PseudoTicket">
+        <member name="T:DK.MVC.Cookies.PseudoTicket">
             <summary>
             Ticket for cookie
             </summary>
         </member>
-        <member name="P:Ak.MVC.Cookies.PseudoTicket.Key">
+        <member name="P:DK.MVC.Cookies.PseudoTicket.Key">
             <summary>
             Name
             </summary>
         </member>
-        <member name="P:Ak.MVC.Cookies.PseudoTicket.Type">
+        <member name="P:DK.MVC.Cookies.PseudoTicket.Type">
             <summary>
             Cellphone, browser or local
             </summary>
         </member>
-        <member name="T:Ak.MVC.Cookies.TicketType">
+        <member name="T:DK.MVC.Cookies.TicketType">
             <summary>
             Cookie ticket type
             </summary>
         </member>
-        <member name="F:Ak.MVC.Cookies.TicketType.Browser">
+        <member name="F:DK.MVC.Cookies.TicketType.Browser">
             <summary>
             Web
             </summary>
         </member>
-        <member name="F:Ak.MVC.Cookies.TicketType.Cellphone">
+        <member name="F:DK.MVC.Cookies.TicketType.Cellphone">
             <summary>
             API Call
             </summary>
         </member>
-        <member name="F:Ak.MVC.Cookies.TicketType.Local">
+        <member name="F:DK.MVC.Cookies.TicketType.Local">
             <summary>
             Desktop or tests
             </summary>
         </member>
-        <member name="T:Ak.MVC.Forms.CheckBoxList">
+        <member name="T:DK.MVC.Forms.CheckBoxList">
             <summary>
             To create a CheckBoxList in Form
             (copy the View naming it CheckboxList.cshtml to Views/Shared/EditorTemplates)
             </summary>
         </member>
-        <member name="P:Ak.MVC.Forms.CheckBoxList.Items">
+        <member name="P:DK.MVC.Forms.CheckBoxList.Items">
             <summary>
             Items of CheckBoxList
             </summary>
         </member>
-        <member name="M:Ak.MVC.Forms.CheckBoxList.#ctor">
+        <member name="M:DK.MVC.Forms.CheckBoxList.#ctor">
             <summary>
             Constructor for MVC build
             </summary>
         </member>
-        <member name="M:Ak.MVC.Forms.CheckBoxList.#ctor(System.Collections.Generic.IEnumerable{Ak.MVC.Forms.IListable},System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:DK.MVC.Forms.CheckBoxList.#ctor(System.Collections.Generic.IEnumerable{DK.MVC.Forms.IListable},System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Constructor to use in your code
             </summary>
             <param name="all">All the items to show</param>
             <param name="chosen">Just the chosen items IDs</param>
         </member>
-        <member name="M:Ak.MVC.Forms.CheckBoxList.GetChosen">
+        <member name="M:DK.MVC.Forms.CheckBoxList.GetChosen">
             <summary>
             Get the chosen ids
             </summary>
         </member>
-        <member name="T:Ak.MVC.Forms.CheckBoxList.CheckBoxItem">
+        <member name="T:DK.MVC.Forms.CheckBoxList.CheckBoxItem">
             <summary>
             Item for CheckBoxList
             </summary>
         </member>
-        <member name="F:Ak.MVC.Forms.CheckBoxList.View">
+        <member name="F:DK.MVC.Forms.CheckBoxList.View">
             <summary>
             HTML to create the EditorFor
             Past it in Views/Shared/EditorTemplates/CheckboxList.cshtml
             </summary>
         </member>
-        <member name="T:Ak.MVC.Forms.HtmlHelperExtension">
+        <member name="T:DK.MVC.Forms.HtmlHelperExtension">
             <summary>
              
             </summary>
         </member>
-        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object,System.Object)">
+        <member name="M:DK.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object,System.Object)">
             <summary>
              Create a checkbox
             </summary>
@@ -186,7 +186,7 @@
             <typeparam name="TModel">The current Model</typeparam>
             <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
         </member>
-        <member name="M:Ak.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object)">
+        <member name="M:DK.MVC.Forms.HtmlHelperExtension.CheckBoxFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object)">
             <summary>
              Create a checkbox
             </summary>
@@ -196,26 +196,26 @@
             <typeparam name="TModel">The current Model</typeparam>
             <typeparam name="TProperty">The property that will receive the value in Controller</typeparam>
         </member>
-        <member name="T:Ak.MVC.Forms.IListable">
+        <member name="T:DK.MVC.Forms.IListable">
             <summary>
             Items for CheckBoxList and SelectListExtension
             </summary>
         </member>
-        <member name="P:Ak.MVC.Forms.IListable.ID">
+        <member name="P:DK.MVC.Forms.IListable.ID">
             <summary>
             Value of CheckBox / SelectList
             </summary>
         </member>
-        <member name="P:Ak.MVC.Forms.IListable.Name">
+        <member name="P:DK.MVC.Forms.IListable.Name">
             <summary>
             Text of CheckBox / SelectList
             </summary>
         </member>
-        <member name="T:Ak.MVC.Forms.SelectListExtension">
+        <member name="T:DK.MVC.Forms.SelectListExtension">
             <summary>
             </summary>
         </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
+        <member name="M:DK.MVC.Forms.SelectListExtension.CreateSelect``3(System.Collections.Generic.IList{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})">
             <summary>
              Create a SelectList from List of objects
             </summary>
@@ -223,13 +223,13 @@
             <param name="value">The property the will fill the values of the options</param>
             <param name="text">The property the will fill the text that appears in options</param>
         </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IList{``0})">
+        <member name="M:DK.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IList{``0})">
             <summary>
              Create a SelectList from List of objects (must be IListable)
             </summary>
             <param name="list">The list that will fill the SelectList</param>
         </member>
-        <member name="M:Ak.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
+        <member name="M:DK.MVC.Forms.SelectListExtension.CreateSelect``1(System.Collections.Generic.IDictionary{``0,System.String})">
             <summary>
              Create a SelectList from a Enum, using the text.
              Can't use the number value, MVC don't recognize to assign selected.
@@ -239,32 +239,32 @@
              key = value of enum // value = text to appear
              </param>
         </member>
-        <member name="T:Ak.MVC.Route.RouteInfo">
+        <member name="T:DK.MVC.Route.RouteInfo">
             <summary>
              Retrieves the routedata as the property of the controllers
             </summary>
         </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor">
+        <member name="M:DK.MVC.Route.RouteInfo.#ctor">
             <summary>
              RouteData of the current Url
             </summary>
         </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri)">
+        <member name="M:DK.MVC.Route.RouteInfo.#ctor(System.Uri)">
             <summary>
              RouteData of a specific Url
             </summary>
         </member>
-        <member name="M:Ak.MVC.Route.RouteInfo.#ctor(System.Uri,System.String)">
+        <member name="M:DK.MVC.Route.RouteInfo.#ctor(System.Uri,System.String)">
             <summary>
              RouteData of a specific Url, cutting the subfolder
             </summary>
         </member>
-        <member name="P:Ak.MVC.Route.RouteInfo.RouteData">
+        <member name="P:DK.MVC.Route.RouteInfo.RouteData">
             <summary>
              Encapsulates information about the Url
             </summary>
         </member>
-        <member name="P:Ak.MVC.Route.RouteInfo.Current">
+        <member name="P:DK.MVC.Route.RouteInfo.Current">
             <summary>
              RouteData of the current Url
             </summary>

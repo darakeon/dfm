@@ -1,5 +1,5 @@
 ﻿using System;
-using Ak.Generic.DB;
+using DK.Generic.DB;
 
 namespace DFM.Entities.Extensions
 {

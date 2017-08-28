@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Ak.MVC.Cookies;
-using Ak.NHibernate;
+using DK.MVC.Cookies;
+using DK.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;

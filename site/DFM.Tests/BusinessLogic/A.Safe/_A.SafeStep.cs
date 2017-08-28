@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ak.MVC.Cookies;
+using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
@@ -9,7 +9,7 @@ using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TK = Ak.Generic.Extensions.Token;
+using TK = DK.Generic.Extensions.Token;
 
 namespace DFM.Tests.BusinessLogic.A.Safe
 {

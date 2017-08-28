@@ -3,8 +3,8 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ak.Generic.Exceptions;
-using Ak.NHibernate;
+using DK.Generic.Exceptions;
+using DK.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
@@ -118,7 +118,7 @@ namespace DFM.MVC
             {
                 NHManager.Error();
             }
-            catch (AkException e)
+            catch (DKException e)
             {
                 if (e.Message != "Restart the Application.")
                     throw;

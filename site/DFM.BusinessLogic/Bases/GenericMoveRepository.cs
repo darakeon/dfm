@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Ak.Generic.DB;
+using DK.Generic.DB;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;

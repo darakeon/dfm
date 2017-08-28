@@ -1,5 +1,5 @@
 ﻿using System;
-using Ak.Generic.Exceptions;
+using DK.Generic.Exceptions;
 using DFM.Generic;
 
 namespace DFM.BusinessLogic.Exceptions
@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.Exceptions
 
 
 
-        public static void TestOtherIfTooLarge(AkException e)
+        public static void TestOtherIfTooLarge(DKException e)
         {
             if (e.Message.StartsWith("TooLargeData"))
                 WithMessage(ExceptionPossibilities.TooLargeData);

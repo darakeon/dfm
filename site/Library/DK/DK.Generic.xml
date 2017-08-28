@@ -1,249 +1,254 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Ak.Generic</name>
+        <name>DK.Generic</name>
     </assembly>
     <members>
-        <member name="T:Ak.Generic.Collection.IGroupable`1">
+        <member name="T:DK.Generic.Collection.IGroupable`1">
             <summary>
              Interface to use GroupedCollection
             </summary>
             <typeparam name="TG">Type of the Item that will group the objects</typeparam>
         </member>
-        <member name="M:Ak.Generic.Collection.IGroupable`1.GetGroup">
+        <member name="M:DK.Generic.Collection.IGroupable`1.GetGroup">
             <summary>
              When implemented in a class, Retrieve de Group of the object
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Ak.Generic.Collection.IsInExtension">
+        <member name="T:DK.Generic.Collection.IsInExtension">
             <summary>
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
+        <member name="M:DK.Generic.Collection.IsInExtension.IsIn``1(``0,``0[])">
             <summary>
              Whether an object is in a list
             </summary>
         </member>
-        <member name="T:Ak.Generic.Collection.GroupedCollection`2">
+        <member name="T:DK.Generic.Collection.GroupedCollection`2">
             <summary>
             Collection Grouped by one of the properties of the original IList
             </summary>
             <typeparam name="TI">Type of the Items of the Group</typeparam>
             <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
         </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.#ctor">
+        <member name="M:DK.Generic.Collection.GroupedCollection`2.#ctor">
             <summary>
             Collection Grouped by one of the properties of the original IList
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.Add(`0)">
+        <member name="M:DK.Generic.Collection.GroupedCollection`2.Add(`0)">
             <summary>
              Add an Item to the list, evaluation the Group whether it belongs
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
+        <member name="M:DK.Generic.Collection.GroupedCollection`2.AddRange(System.Collections.Generic.IList{`0})">
             <summary>
              Add an List of the Item to the list, evaluation the Group whether it belongs
             </summary>
         </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
+        <member name="P:DK.Generic.Collection.GroupedCollection`2.Item(System.Int32)">
             <summary>
              Return a Group of items
             </summary>
         </member>
-        <member name="P:Ak.Generic.Collection.GroupedCollection`2.List">
+        <member name="P:DK.Generic.Collection.GroupedCollection`2.List">
             <summary>
              Return the list of Groups and itens
              Recommended when is needed to use Linq
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.ToString">
+        <member name="M:DK.Generic.Collection.GroupedCollection`2.ToString">
             <summary> Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </summary>
             <returns> A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>. </returns>
         </member>
-        <member name="M:Ak.Generic.Collection.GroupedCollection`2.GetEnumerator">
+        <member name="M:DK.Generic.Collection.GroupedCollection`2.GetEnumerator">
             <summary>
              To make ForEach
             </summary>
         </member>
-        <member name="T:Ak.Generic.Collection.ItemGroup`2">
+        <member name="T:DK.Generic.Collection.ItemGroup`2">
             <summary>
             Item of a Grouped Collection
             </summary>
             <typeparam name="TI">Type of the Items of the Group</typeparam>
             <typeparam name="TG">Type of the property responsable for Grouping</typeparam>
         </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor">
+        <member name="M:DK.Generic.Collection.ItemGroup`2.#ctor">
             <summary>
             Item of a Grouped Collection
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.#ctor(`1)">
+        <member name="M:DK.Generic.Collection.ItemGroup`2.#ctor(`1)">
             <summary>
             Item of a Grouped Collection
             </summary>
         </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Group">
+        <member name="P:DK.Generic.Collection.ItemGroup`2.Group">
             <summary>
              The group chosen of this list
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.Add(`0)">
+        <member name="M:DK.Generic.Collection.ItemGroup`2.Add(`0)">
             <summary>
              Add an item for this Group
             </summary>
         </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.Item(System.Int32)">
+        <member name="P:DK.Generic.Collection.ItemGroup`2.Item(System.Int32)">
             <summary>
              Get an item by its position
             </summary>
         </member>
-        <member name="P:Ak.Generic.Collection.ItemGroup`2.List">
+        <member name="P:DK.Generic.Collection.ItemGroup`2.List">
             <summary>
              Return the list of objects of this group
             </summary>
         </member>
-        <member name="M:Ak.Generic.Collection.ItemGroup`2.GetEnumerator">
+        <member name="M:DK.Generic.Collection.ItemGroup`2.GetEnumerator">
             <summary>
              To make ForEach
             </summary>
         </member>
-        <member name="T:Ak.Generic.DB.IEntity">
+        <member name="T:DK.Generic.DB.IEntity">
             <summary>
             Minimum entity for DB
             </summary>
         </member>
-        <member name="P:Ak.Generic.DB.IEntity.ID">
+        <member name="P:DK.Generic.DB.IEntity.ID">
             <summary>
             DB unique identifier
             </summary>
         </member>
-        <member name="T:Ak.Generic.Enums.Str2Enum">
+        <member name="T:DK.Generic.Enums.Str2Enum">
             <summary>
              Convert String to Enum
             </summary>
         </member>
-        <member name="M:Ak.Generic.Enums.Str2Enum.Cast``1(System.String)">
+        <member name="M:DK.Generic.Enums.Str2Enum.Cast``1(System.String)">
             <summary>
             </summary>
             <typeparam name="T">Enum type</typeparam>
         </member>
-        <member name="T:Ak.Generic.Exceptions.AkException">
+        <member name="T:DK.Generic.Exceptions.DKException">
             <summary>
-             Any exception thrown by Ak library
+             Any exception thrown by DK library
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.AkException.#ctor(System.String)">
+        <member name="M:DK.Generic.Exceptions.DKException.#ctor(System.String)">
             <summary>
-             Any exception thrown by Ak library
+             Any exception thrown by DK library
             </summary>
         </member>
-        <member name="T:Ak.Generic.Exceptions.ComposedResult`2">
+        <member name="M:DK.Generic.Exceptions.DKException.TestOtherIfTooLarge(System.Exception)">
+            <summary>
+            Too Large Exception
+            </summary>
+        </member>
+        <member name="T:DK.Generic.Exceptions.ComposedResult`2">
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
             <typeparam name="TS">Success return Type</typeparam>
             <typeparam name="TE">Error return Type</typeparam>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ComposedResult`2.#ctor">
+        <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor">
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ComposedResult`2.#ctor(`0)">
+        <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor(`0)">
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ComposedResult`2.#ctor(`1)">
+        <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor(`1)">
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ComposedResult`2.#ctor(`0,`1)">
+        <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor(`0,`1)">
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
-        <member name="F:Ak.Generic.Exceptions.ComposedResult`2.Success">
+        <member name="F:DK.Generic.Exceptions.ComposedResult`2.Success">
             <summary>
             </summary>
         </member>
-        <member name="F:Ak.Generic.Exceptions.ComposedResult`2.Error">
+        <member name="F:DK.Generic.Exceptions.ComposedResult`2.Error">
             <summary>
             </summary>
         </member>
-        <member name="T:Ak.Generic.Exceptions.ExceptionExtension">
+        <member name="T:DK.Generic.Exceptions.ExceptionExtension">
             <summary>
              Extension for Exception Base Class
             </summary>
         </member>
-        <member name="M:Ak.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
+        <member name="M:DK.Generic.Exceptions.ExceptionExtension.MostInner(System.Exception)">
             <summary>
              Get the most InnerException
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.DictionaryExtension">
+        <member name="T:DK.Generic.Extensions.DictionaryExtension">
             <summary>
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.EnumExtension">
+        <member name="T:DK.Generic.Extensions.EnumExtension">
             <summary>
              Enum extensions to String
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.EnumExtension.ToCss(System.Enum)">
+        <member name="M:DK.Generic.Extensions.EnumExtension.ToCss(System.Enum)">
             <summary>
             Transform enum value in CSS class (lower case, dash separating words)
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.EnumExtension.ToReadableString(System.Enum)">
+        <member name="M:DK.Generic.Extensions.EnumExtension.ToReadableString(System.Enum)">
             <summary>
             Transform enum value em text, separating words by space
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.StringExtension">
+        <member name="T:DK.Generic.Extensions.StringExtension">
             <summary>
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Capitalize(System.String)">
+        <member name="M:DK.Generic.Extensions.StringExtension.Capitalize(System.String)">
             <summary>
              Puts the first letter in Upper and the rest in Lower
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:DK.Generic.Extensions.StringExtension.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
              String format with words instead of number (e.g. {data} instead {0})
             </summary>
         </member>
-        <member name="T:Ak.Generic.Extensions.Token">
+        <member name="T:DK.Generic.Extensions.Token">
             <summary>
             String Guid
             </summary>
         </member>
-        <member name="M:Ak.Generic.Extensions.Token.New">
+        <member name="M:DK.Generic.Extensions.Token.New">
             <summary>
             Generates new Guid
             </summary>
             <returns>Guid without dashes ("-")</returns>
         </member>
-        <member name="T:Ak.Generic.Reflection.Property">
+        <member name="T:DK.Generic.Reflection.Property">
             <summary>
              Helper of PropertyInfo
             </summary>
         </member>
-        <member name="M:Ak.Generic.Reflection.Property.GetName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+        <member name="M:DK.Generic.Reflection.Property.GetName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
              Give a name of a property, to use lambda expression, not strings
             </summary>
         </member>
-        <member name="M:Ak.Generic.Reflection.Property.GetName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="M:DK.Generic.Reflection.Property.GetName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
              Give a name of a property, to use lambda expression, not strings
             </summary>
         </member>
-        <member name="M:Ak.Generic.Reflection.Property.ReferenceType``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="M:DK.Generic.Reflection.Property.ReferenceType``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
             Parent type
             </summary>

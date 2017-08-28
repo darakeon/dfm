@@ -364,19 +364,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.MVC">
-      <HintPath>..\Library\Ak\Ak.MVC.dll</HintPath>
+    <Reference Include="DK.MVC">
+      <HintPath>..\Library\DK\DK.MVC.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.NHibernate">
-      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+    <Reference Include="DK.NHibernate">
+      <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.XML.dll</HintPath>
+      <HintPath>..\Library\DK\DK.XML.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\Library\NHibernate\Castle.Core.dll</HintPath>

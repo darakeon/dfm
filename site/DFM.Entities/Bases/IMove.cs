@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ak.Generic.DB;
+using DK.Generic.DB;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities.Bases

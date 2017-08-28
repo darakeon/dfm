@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using Ak.Generic.Collection;
+using DK.Generic.Collection;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;

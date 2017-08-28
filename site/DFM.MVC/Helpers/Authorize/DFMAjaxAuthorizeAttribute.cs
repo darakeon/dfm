@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using Ak.MVC.Authentication;
+using DK.MVC.Authentication;
 
 namespace DFM.MVC.Helpers.Authorize
 {

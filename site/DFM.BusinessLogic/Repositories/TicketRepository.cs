@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ak.MVC.Cookies;
+using DK.MVC.Cookies;
 using DFM.Entities;
 
 namespace DFM.BusinessLogic.Repositories

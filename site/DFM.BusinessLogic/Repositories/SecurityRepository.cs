@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ak.Generic.Extensions;
+using DK.Generic.Extensions;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;

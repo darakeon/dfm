@@ -71,13 +71,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ak.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.Generic.dll</HintPath>
+      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="Ak.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DK.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\Ak\Ak.NHibernate.dll</HintPath>
+      <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

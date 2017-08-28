@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ak.Generic.Exceptions;
+using DK.Generic.Exceptions;
 
 namespace DFM.Email
 {

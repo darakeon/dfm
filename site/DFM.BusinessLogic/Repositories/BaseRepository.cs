@@ -1,10 +1,10 @@
-﻿using Ak.Generic.DB;
-using Ak.Generic.Exceptions;
+﻿using DK.Generic.DB;
+using DK.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.BusinessLogic.Repositories
 {
-    public abstract class BaseRepository<T> : Ak.NHibernate.Base.BaseRepository<T> 
+    public abstract class BaseRepository<T> : DK.NHibernate.Base.BaseRepository<T> 
         where T : class, IEntity
     {
         public new T SaveOrUpdate(T entity, params DelegateAction[] actions)
@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Repositories
             {
                 return base.SaveOrUpdate(entity, actions);
             }
-            catch (AkException e)
+            catch (DKException e)
             {
                 DFMCoreException.TestOtherIfTooLarge(e);
                 throw;

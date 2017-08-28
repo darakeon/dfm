@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Ak.MVC.Cookies;
+using DK.MVC.Cookies;
 using DFM.Email;
 
 namespace DFM.MVC.Helpers.Global

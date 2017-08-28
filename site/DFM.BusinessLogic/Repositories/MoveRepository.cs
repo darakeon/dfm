@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ak.Generic.Extensions;
-using Ak.NHibernate.Base;
+using DK.Generic.Extensions;
+using DK.NHibernate.Base;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;

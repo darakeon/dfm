@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ak.MVC.Cookies;
+using DK.MVC.Cookies;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
