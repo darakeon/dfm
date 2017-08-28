@@ -24,38 +24,45 @@ else
 
         @foreach (var account in Model.AccountList)
         {
-            var endMonth = account.EndDate.Value.Month;
-            var endYear = account.EndDate.Value.Year;
-            var monthReportId = endYear * 100 + endMonth;
-            
-            var movesSum = account.Total();
-            var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
-            var className = movesSum < 0 ? "out" : "in";
+	        if (account.EndDate != null)
+	        {
+		        var endMonth = account.EndDate.Value.Month;
+		        var endYear = account.EndDate.Value.Year;
+		        var monthReportId = endYear*100 + endMonth;
 
-            var sign = account.Sign();
+		        var movesSum = account.Total();
+		        var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
+		        var className = movesSum < 0 ? "out" : "in";
 
-            //var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
-            //var reopenUrl = Url.Action("Reopen", new { id = account.Name });
-                        
-            <tr>
-                <td>
-                    @Html.RouteLink(account.Name, RouteNames.ACCOUNT, new { accounturl = account.Url, controller = "Reports", action = "ShowMoves", id = monthReportId })
-                </td>
+		        var sign = account.Sign();
 
-                <td>@account.BeginDate.ToShortDateString()</td>
-                <td>@account.EndDate.Value.ToShortDateString()</td>
+		        //var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
+		        //var reopenUrl = Url.Action("Reopen", new { id = account.Name });
 
-                <td class="numeric @className">@value</td>
-                <td class="account_sign">@if (sign != null) { <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign" /> } </td>
-                @*
-                <td class="image">
-                    <a href="@reopenUrl">
-                        <img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
-                    </a>
-                </td>
-                *@
-            </tr>
+		        <tr>
+			        <td>
+				        @Html.RouteLink(account.Name, RouteNames.ACCOUNT, new {accounturl = account.Url, controller = "Reports", action = "ShowMoves", id = monthReportId})
+			        </td>
 
+			        <td>@account.BeginDate.ToShortDateString()</td>
+			        <td>@account.EndDate.Value.ToShortDateString()</td>
+
+			        <td class="numeric @className">@value</td>
+			        <td class="account_sign">
+				        @if (sign != null)
+				        {
+					        <img src="/Assets/image/icons/@(sign)_sign.gif" alt="@sign"/>
+				        }
+			        </td>
+			        @*
+					<td class="image">
+						<a href="@reopenUrl">
+							<img src="/Assets/image/icons/reopen.gif" alt="@reopenLabel" title="@reopenLabel" />
+						</a>
+					</td>
+					*@
+		        </tr>
+	        }
         } 
 
     </table>
