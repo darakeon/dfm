@@ -54,17 +54,10 @@
 	
 	<View android:layout_width="fill_parent" android:layout_height="15dp" />
 
-	<ScrollView 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
-	    
-		<TableLayout 
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:stretchColumns="0"
-		    android:shrinkColumns="0"
-		    android:id="@+id/main_table">
-		    
-		</TableLayout>
-	</ScrollView>
+	<ListView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/main_table">
+
+	</ListView>
 </LinearLayout>

@@ -3,20 +3,20 @@ package com.dontflymoney.view;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TableLayout;
+import android.widget.ListView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.viewhelper.MoveRow;
+import com.dontflymoney.layout.MoveAdapter;
+import com.dontflymoney.layout.MoveLine;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,13 +28,13 @@ import java.util.Calendar;
 
 public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 {
+	ListView main;
+	String accounturl;
+
 	static JSONArray moveList;
 	static String name;
 	static double total;
 	static boolean canCheck;
-
-	TableLayout table;
-	String accounturl;
 
 	DatePickerDialog dialog;
 	private static int month;
@@ -74,10 +74,10 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 			getExtract();
 		}
 	}
-	
+
 	private void setCurrentInfo()
 	{
-		table = (TableLayout)findViewById(R.id.main_table);
+		main = (ListView)findViewById(R.id.main_table);
 		accounturl = getIntent().getStringExtra("accounturl");
 	}
 	
@@ -150,8 +150,6 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 	private void getExtract()
 	{
-		table.removeAllViews();
-		
 		request = new Request(this, "Moves/Extract");
 		
 		request.AddParameter("ticket", Authentication.Get());
@@ -171,8 +169,8 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 				name = data.getString("Name");
 				total = data.getDouble("Total");
 				canCheck = data.getBoolean("CanCheck");
-				
-				fillMoves();
+
+				fillScreen();
 				break;
 			}
 			case Recording: {
@@ -186,7 +184,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		}
 	}
 	
-	private void fillMoves()
+	private void fillScreen()
 		throws JSONException
 	{
 		form.setValue(R.id.totalTitle, name);
@@ -195,38 +193,21 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		if (moveList.length() == 0)
 		{
 			View empty = form.createText(getString(R.string.no_extract), Gravity.CENTER);
-			table.addView(empty);
+			main.addView(empty);
 		}
 		else
 		{
-			for(int a = 0; a < moveList.length(); a++)
-			{
-				int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-				
-				getMove(moveList.getJSONObject(a), color);
-			}
+			fillMoves();
 		}
 	}
 
-    private void getMove(final JSONObject move, int color)
-            throws JSONException
-    {
-        MoveRow row = new MoveRow(this);
 
-        row.setBackgroundColor(color);
+	private void fillMoves() throws JSONException
+	{
+		MoveAdapter accountAdapter = new MoveAdapter(this, moveList, canCheck);
+		main.setAdapter(accountAdapter);
+	}
 
-        row.setDescription(move.getString("Description"));
-        row.setDate(move.getJSONObject("Date"));
-        row.setTotal(move.getDouble("Total"));
-
-        row.setChecked(move.getBoolean("Checked"));
-
-        row.ID = move.getInt("ID");
-
-        row.setClickable(true);
-
-        table.addView(row);
-    }
 
 	public void goToSummary(MenuItem item)
 	{
@@ -237,23 +218,23 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		
 		startActivity(intent);
 	}
-	
+
 	public void goToMove(MenuItem item)
 	{
-        goToMove(0);
+		goToMove(0);
 	}
 
-    private void goToMove(int moveId)
-    {
-        Intent intent = new Intent(this, MovesCreateActivity.class);
+	private void goToMove(int moveId)
+	{
+		Intent intent = new Intent(this, MovesCreateActivity.class);
 
-        intent.putExtra("id", moveId);
-        intent.putExtra("accounturl", accounturl);
-        intent.putExtra("year", year);
-        intent.putExtra("month", month);
+		intent.putExtra("id", moveId);
+		intent.putExtra("accounturl", accounturl);
+		intent.putExtra("year", year);
+		intent.putExtra("month", month);
 
-        startActivity(intent);
-    }
+		startActivity(intent);
+	}
 
 
 
@@ -280,8 +261,8 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
     private void edit()
     {
-        MoveRow moveRow = (MoveRow)clickedView;
-        goToMove(moveRow.ID);
+		MoveLine moveLine = (MoveLine)clickedView;
+        goToMove(moveLine.getId());
     }
 
 
@@ -289,7 +270,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     public boolean askDelete()
     {
         String messageText = getString(R.string.sure_to_delete);
-        MoveRow moveRow = (MoveRow)clickedView;
+        MoveLine moveRow = (MoveLine) clickedView;
 
         messageText = String.format(messageText, moveRow.getDescription());
 
@@ -324,11 +305,11 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     {
         request = new Request(this, "Moves/" + action);
 
-        MoveRow view = (MoveRow)clickedView;
+        MoveLine view = (MoveLine) clickedView;
 
         request.AddParameter("ticket", Authentication.Get());
         request.AddParameter("accounturl", accounturl);
-        request.AddParameter("id", view.ID);
+        request.AddParameter("id", view.getId());
 
         request.Post(Step.Recording);
     }
@@ -337,14 +318,14 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	@Override
 	public void changeContextMenu(View view, ContextMenu menu)
 	{
-		MoveRow move = (MoveRow) clickedView;
+		MoveLine move = (MoveLine) clickedView;
 
 		try
 		{
 			if (canCheck)
 			{
-				hideMenuItem(menu, move.getChecked() ? R.id.check_move : R.id.uncheck_move);
-				showMenuItem(menu, move.getChecked() ? R.id.uncheck_move : R.id.check_move);
+				hideMenuItem(menu, move.isChecked() ? R.id.check_move : R.id.uncheck_move);
+				showMenuItem(menu, move.isChecked() ? R.id.uncheck_move : R.id.check_move);
 			}
 			else
 			{
@@ -373,11 +354,6 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	{
 		MenuItem buttonToHide = menu.findItem(id);
 		buttonToHide.setVisible(show);
-	}
-
-	public boolean CanCheck()
-	{
-		return canCheck;
 	}
 
 }

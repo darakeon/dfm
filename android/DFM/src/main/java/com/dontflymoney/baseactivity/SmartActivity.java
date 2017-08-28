@@ -60,9 +60,9 @@ public abstract class SmartActivity extends FixOrientationActivity
 
         if (viewWithContext() != 0)
         {
-            View contextView = findViewById(viewWithContext());
+			View contextView = findViewById(viewWithContext());
             registerForContextMenu(contextView);
-        }
+		}
 
 		Authentication = new Authentication(this);
 		
