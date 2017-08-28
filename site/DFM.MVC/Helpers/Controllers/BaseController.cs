@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using DFM.Authentication;
+using DFM.MVC.Models;
+using JetBrains.Annotations;
 
 namespace DFM.MVC.Helpers.Controllers
 {
@@ -19,6 +21,18 @@ namespace DFM.MVC.Helpers.Controllers
 			{
 				ModelState.AddModelError("", error);
 			}
+		}
+
+
+		[AspMvcView]
+		protected ActionResult BaseModelView()
+		{
+			return View(new BaseModel());
+		}
+
+		protected ActionResult BaseModelView([AspMvcView] String view)
+		{
+			return View(view, new BaseModel());
 		}
 
 
