@@ -115,7 +115,7 @@ VERSÃO 3.0.0.5 (System) - 5
 
 VERSÃO 3.0.0.4 (System) - 1
 ================================================================================================
-						Corrigir listagem de agendamentos (está mostrando de todos os usuários)
+2017-04-18	2017-04-18	Corrigir listagem de agendamentos (está mostrando de todos os usuários)
 
 VERSÃO 3.0.0.3 (System) - 1
 ================================================================================================

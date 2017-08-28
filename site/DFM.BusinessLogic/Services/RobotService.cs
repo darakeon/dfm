@@ -188,7 +188,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			Parent.Safe.VerifyUser();
 
-			return scheduleRepository.SimpleFilter(s => s.Active);
+			return scheduleRepository.SimpleFilter(
+				s => s.Active && s.User.ID == Parent.Current.User.ID
+			);
 		}
 	
 	}
