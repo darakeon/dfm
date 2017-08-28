@@ -1,10 +1,6 @@
 package com.dontflymoney.baseactivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +10,9 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.language.Language;
 import com.dontflymoney.view.AccountsActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public abstract class SmartActivity extends FixOrientationActivity
 {
@@ -87,15 +86,16 @@ public abstract class SmartActivity extends FixOrientationActivity
 			request.Cancel();
 	}
 
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar()
 	{
-		if (hasParent && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		if (hasParent)
 		{
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			ActionBar actionBar = getActionBar();
+
+			if (actionBar != null)
+			{
+				actionBar.setDisplayHomeAsUpEnabled(true);
+			}
 		}
 	}
 
