@@ -718,12 +718,27 @@ namespace DFM.Tests.BusinessLogic.C.Money
             Assert.IsNotNull(Error);
             Assert.AreEqual(ExceptionPossibilities.InvalidMove, Error.Type);
         }
-        #endregion
+		#endregion
 
+		#region ToggleMoveChecked
 
+		[When(@"I try to mark it as (not )?checked")]
+		public void WhenIMarkItAsChecked(Boolean @checked)
+		{
+			try
+			{
+				SA.Money.MarkMoveCheck(Move.ID, @checked);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
-        #region MoreThanOne
-        [Given(@"I have a move")]
+		#endregion
+
+		#region MoreThanOne
+		[Given(@"I have a move")]
         public void GivenIHaveAMoveWithValue()
         {
             makeMove(10);

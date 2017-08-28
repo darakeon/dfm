@@ -74,6 +74,12 @@ namespace DFM.Tests.BusinessLogic
         }
 
 
+		[StepArgumentTransformation(@"( not)?")]
+		[StepArgumentTransformation(@"(not )?")]
+		public bool NotToBoolTransform(string not)
+		{
+			return not.Trim() != "not";
+		}
 
-    }
+	}
 }
