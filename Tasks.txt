@@ -22,10 +22,11 @@ VERSÃO 4.5.0.0 (Big change) - 5
 						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 4.4.1.0 (Little change) - 2
+VERSÃO 4.4.1.0 (Little change) - 3
 ================================================================================================
 					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
 					>>>	Colocar nome (ou apelido) no sign up
+						Tirar unicidade de nome da conta (manter de Url)
 
 VERSÃO 4.4.0.0 (Big change) - 5
 ================================================================================================
