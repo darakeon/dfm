@@ -21,6 +21,42 @@
 	@Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control" })
 </div>
 
+<div class="text-center form-group">
+	@Html.CheckBoxFor(m => m.Accept)
+	<span class="control-label">
+		@Html.Raw(String.Format(
+			Users.ContractAccept, 
+			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Users.ContractTitle}</a>"
+		))
+	</span>
+	
+</div>
+
+<div class="modal fade" id="contract-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="modal-title">
+					@Users.ContractTitle
+				</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="contract">
+					@Html.Partial($"../Contracts/{Model.Contract.Version}")
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 @section Footer
 {
 	<button type="submit" class="btn btn-success">

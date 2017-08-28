@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.Entities;
-using DFM.MVC.Assets.Resources;
 
 namespace DFM.MVC.Models
 {
@@ -11,7 +10,7 @@ namespace DFM.MVC.Models
 			Contract = Safe.GetContract();
 		}
 
-		public Contract Contract { get; set; }
+		public Contract Contract { get; private set; }
 		public Boolean Accept { get; set; }
 
 

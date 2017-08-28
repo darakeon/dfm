@@ -45,7 +45,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, String language, String pathAction, String pathDisable)
+		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, String language, String pathAction, String pathDisable)
 		{
 			InTransaction(() =>
 			{
@@ -62,6 +62,11 @@ namespace DFM.BusinessLogic.Services
 				};
 
 				user = userRepository.Save(user);
+
+				if (acceptedContract)
+				{
+					acceptContract(user);
+				}
 
 				sendUserVerify(user, pathAction, pathDisable);
 			});
@@ -314,6 +319,7 @@ namespace DFM.BusinessLogic.Services
 			return contractRepository.GetContract();
 		}
 
+
 		public Boolean IsLastContractAccepted()
 		{
 			var contract = GetContract();
@@ -330,14 +336,18 @@ namespace DFM.BusinessLogic.Services
 			return acceptance?.Accepted ?? true;
 		}
 
+
 		public void AcceptContract()
 		{
-			var contract = GetContract();
-			var user = Parent.Current.User;
-
-			InTransaction(() => 
-				acceptanceRepository.Accept(user, contract)
+			InTransaction(() =>
+				acceptContract(Parent.Current.User)
 			);
+		}
+
+		private void acceptContract(User user)
+		{
+			var contract = GetContract();
+			acceptanceRepository.Accept(user, contract);
 		}
 
 

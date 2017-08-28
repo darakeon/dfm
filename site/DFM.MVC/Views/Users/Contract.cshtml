@@ -23,7 +23,7 @@
 		<div class="checkbox text-center form-group">
 			<label for="@Html.IdFor(m => m.Accept)">
 				@Html.CheckBoxFor(m => m.Accept)
-				@Users.ContractAccept
+				@String.Format(Users.ContractAccept, Users.ContractTitle)
 			</label>
 		</div>
 	}

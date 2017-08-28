@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContractAccept" xml:space="preserve">
-    <value>I understood and agreed with the Terms of Use</value>
+    <value>I understood and agree with the {0}</value>
   </data>
   <data name="ContractBeginDate" xml:space="preserve">
     <value>Effective Date</value>

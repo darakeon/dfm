@@ -61,7 +61,7 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I understood and agreed with the Terms of Use.
+        ///   Looks up a localized string similar to I understood and agree with the {0}.
         /// </summary>
         public static string ContractAccept {
             get {

@@ -4,12 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.Entities;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
 	public class UsersSignUpModel : BaseModel, IPasswordForm
 	{
+		public UsersSignUpModel()
+		{
+			Contract = Safe.GetContract();
+		}
+
 		[Required(ErrorMessage = "*")]
 		public String Email { get; set; }
 
@@ -18,6 +24,11 @@ namespace DFM.MVC.Models
 
 		[Required(ErrorMessage = "*")]
 		public String RetypePassword { get; set; }
+
+		[RegularExpression("True", ErrorMessage = "*")]
+		public Boolean Accept { get; set; }
+		
+		public Contract Contract { get; private set; }
 
 
 
@@ -29,7 +40,7 @@ namespace DFM.MVC.Models
 			{
 				var pathAction = Url.Action("UserVerification", "Tokens");
 				var pathDisable = Url.Action("Disable", "Tokens");
-				Safe.SaveUserAndSendVerify(Email, this, MultiLanguage.Language, pathAction, pathDisable);
+				Safe.SaveUserAndSendVerify(Email, this, Accept, MultiLanguage.Language, pathAction, pathDisable);
 			}
 			catch (DFMCoreException e)
 			{
