@@ -128,7 +128,7 @@ public class SummaryActivity extends SmartActivity
 	    {
 	        setDate(year); 
 			getSummary();
-	        dialog.hide();
+	        dialog.dismiss();
 	    }
 	    
 	}

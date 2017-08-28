@@ -119,7 +119,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 			{
 		        Field pickerField = dialog.getClass().getDeclaredField("mDatePicker");
 		        pickerField.setAccessible(true);
-		        DatePicker datePicker = (DatePicker) pickerField.get(dialog);
+                DatePicker datePicker = (DatePicker) pickerField.get(dialog);
 	            
 	            Field field = datePicker.getClass().getDeclaredField("mDaySpinner");
 	            field.setAccessible(true);
@@ -128,22 +128,22 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		    } 
 		    catch (Exception e) { }
 		}
-		
-		dialog.show();
+
+        dialog.show();
     }
-	
+
 	private class PickDate implements DatePickerDialog.OnDateSetListener
 	{
 	    @Override
 	    public void onDateSet(DatePicker view, int year, int month, int day)
 	    {
-	        setDate(month, year); 
-			getExtract();
-	        dialog.hide();
+            setDate(month, year);
+            getExtract();
+            dialog.dismiss();
 	    }
 	    
 	}
-	
+
 	private void getExtract()
 	{
 		table.removeAllViews();

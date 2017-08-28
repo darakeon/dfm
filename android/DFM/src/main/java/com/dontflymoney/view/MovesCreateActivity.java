@@ -268,7 +268,7 @@ public class MovesCreateActivity extends SmartActivity {
 		{
 			move.Date.set(year, month, day);
 			form.setValue(R.id.date, move.DateString());
-			dialog.hide();
+			dialog.dismiss();
 		}
 	}
 

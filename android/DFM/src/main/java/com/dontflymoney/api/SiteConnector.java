@@ -1,7 +1,8 @@
 package com.dontflymoney.api;
 
-import java.io.IOException;
-import java.net.SocketException;
+import android.os.AsyncTask;
+
+import com.dontflymoney.view.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -13,9 +14,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import android.os.AsyncTask;
-
-import com.dontflymoney.view.R;
+import java.io.IOException;
+import java.net.SocketException;
 
 class SiteConnector extends AsyncTask<Void, Void, String>
 {
