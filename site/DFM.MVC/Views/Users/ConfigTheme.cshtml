@@ -2,7 +2,7 @@
 
 @Html.HiddenFor(m => m.Theme.Theme, new { @class = "theme-changer-hidden" })
 
-<div class="alert alert-info text-center">
+<div class="well well-sm text-center">
 	@Users.ThemeInstruction
 </div>
 
@@ -32,6 +32,10 @@
 				<tr>
 					<td class="text-center">@ConfigThemes.RowPositive</td>
 					<td class="text-center text-info">@(1m.ToMoney(Model.Language))</td>
+				</tr>
+				<tr>
+					<td class="text-center">@ConfigThemes.RowTransfer</td>
+					<td class="text-center text-success">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 				<tr>
 					<td class="text-center">@ConfigThemes.RowNegative</td>

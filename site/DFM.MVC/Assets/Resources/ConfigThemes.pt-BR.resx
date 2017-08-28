@@ -135,4 +135,7 @@
   <data name="RowPositive" xml:space="preserve">
     <value>Valor Positivo</value>
   </data>
+  <data name="RowTransfer" xml:space="preserve">
+    <value>Valor Transferência</value>
+  </data>
 </root>

@@ -113,5 +113,14 @@ namespace DFM.MVC.Assets.Resources {
                 return ResourceManager.GetString("RowPositive", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Value.
+        /// </summary>
+        public static string RowTransfer {
+            get {
+                return ResourceManager.GetString("RowTransfer", resourceCulture);
+            }
+        }
     }
 }
