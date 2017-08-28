@@ -87,7 +87,7 @@
 	@* ReSharper disable once Html.IdNotResolved *@
 	<label for="IsDetailed">@MultiLanguage.Dictionary["Detailed"]</label>
 
-	<a href="#" id="addDetailCaller" onclick="AddDetail()">@MultiLanguage.Dictionary["Add", "Detail"]</a>
+	<a href="#" id="addDetailCaller" onclick="AddDetail('@Url.Action("Add", "Details")')">@MultiLanguage.Dictionary["Add", "Detail"]</a>
 </div>
 
 <div id="oneValue" class="createMoveScreenLeft">

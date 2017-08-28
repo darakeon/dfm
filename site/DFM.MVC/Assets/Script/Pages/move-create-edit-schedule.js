@@ -107,12 +107,12 @@ function ShowAccountList(obj) {
 
 
 
-function AddDetail() {
+function AddDetail(page) {
     $("#addDetailCaller").hide();
 
     var positionDetail = $(".moveDetailItem").length;
 
-    $.get(addDetailsPage,
+    $.get(page,
         { position: positionDetail },
 
         function (data) {
