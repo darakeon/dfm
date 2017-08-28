@@ -1,6 +1,7 @@
-﻿VERSÃO 7.0.0.0 (All new) - 1
+﻿VERSÃO 7.0.0.0 (All new) - 2
 ================================================================================================
 2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+						Link unsubscribe
 
 VERSÃO 6.0.0.0 (All new) - 3
 ================================================================================================
@@ -112,14 +113,13 @@ VERSÃO 3.1.0.0 (Big change) - 5
 						Configuração de tema
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 16
+VERSÃO 3.0.0.0 (All new) - 15
 ================================================================================================
 						Video do porquinho
 						Adicionar aviso de cookies no logon (remember me)
 						Tema dark no android (para Slate e Cyborg)
 						Mudar layouts de e-mail
 						Fazer capa nova para youtube / facebook / twitter (?)
-						Link unsubscribe
 2017-03-21	2017-03-24	Implementar necessidade de assinar TERMO
 2017-03-20	2017-03-22	Escrever Termos de Uso
 2017-03-19	2017-03-19	Permitir limite de conta negativo
