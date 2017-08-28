@@ -200,7 +200,7 @@ public class MovesCreateActivity extends SmartActivity {
         if (data.has("Move") && !data.get("Move").equals(null))
         {
             JSONObject moveToEdit = data.getJSONObject("Move");
-            move.SetData(moveToEdit);
+            move.SetData(moveToEdit, getIntent().getStringExtra("accounturl"));
             populateOldData(true);
         }
     }
@@ -349,6 +349,12 @@ public class MovesCreateActivity extends SmartActivity {
 
         int accountInVisibility = move.Nature != Nature.Out ? View.VISIBLE : View.GONE;
         findViewById(R.id.account_in_block).setVisibility(accountInVisibility);
+
+        if (move.Nature != Nature.In)
+            move.AccountIn = null;
+
+        if (move.Nature != Nature.Out)
+            move.AccountOut = null;
 	}
 
 

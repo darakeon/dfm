@@ -21,40 +21,40 @@ public class Move
 		Date = Calendar.getInstance();
 	}
 
-    public int Id;
+	public int Id;
 	public String Description;
-    public Calendar Date;
-    public String Category;
-    public String AccountOut;
-    public String AccountIn;
-    public Nature Nature;
+	public Calendar Date;
+	public String Category;
+	public String AccountOut;
+	public String AccountIn;
+	public Nature Nature;
 
-    public boolean isDetailed;
-    public double Value;
-    public List<Detail> Details;
+	public boolean isDetailed;
+	public double Value;
+	public List<Detail> Details;
 
 
 
-    public void SetNature(String number)
-    {
-        SetNature(Integer.parseInt(number));
-    }
+	public void SetNature(String number)
+	{
+		SetNature(Integer.parseInt(number));
+	}
 
-    public void SetNature(int number)
-    {
-        Nature = Nature.GetNature(number);
-    }
+	public void SetNature(int number)
+	{
+		Nature = Nature.GetNature(number);
+	}
 
-    public void Add(String description, int amount, double value)
-    {
-    	Detail detail = new Detail();
-    	
-    	detail.Description = description;
-    	detail.Amount = amount;
-    	detail.Value = value;
-    	
-    	Details.add(detail);
-    }
+	public void Add(String description, int amount, double value)
+	{
+		Detail detail = new Detail();
+
+		detail.Description = description;
+		detail.Amount = amount;
+		detail.Value = value;
+
+		Details.add(detail);
+	}
 
 	public void Remove(String description, int amount, double value)
 	{
@@ -67,19 +67,19 @@ public class Move
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public int getDay()
 	{
 		return Date.get(Calendar.DAY_OF_MONTH);
 	}
-	
+
 	public int getMonth()
 	{
 		return Date.get(Calendar.MONTH);
 	}
-	
+
 	public int getYear()
 	{
 		return Date.get(Calendar.YEAR);
@@ -87,31 +87,31 @@ public class Move
 
 	public void setParameters(Request request)
 	{
-        request.AddParameter("ID", Id);
-        request.AddParameter("Description", Description);
-        request.AddParameter("Date.Year", Date.get(Calendar.YEAR));
-        request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1);
-        request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH));
+		request.AddParameter("ID", Id);
+		request.AddParameter("Description", Description);
+		request.AddParameter("Date.Year", Date.get(Calendar.YEAR));
+		request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1);
+		request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH));
 		request.AddParameter("Category", Category);
 		request.AddParameter("AccountOutUrl", AccountOut);
 		request.AddParameter("AccountInUrl", AccountIn);
 		request.AddParameter("Nature", Nature);
 
-        if (isDetailed)
-        {
-            for (Detail detail : Details)
-            {
-                int position = Details.lastIndexOf(detail);
+		if (isDetailed)
+		{
+			for (Detail detail : Details)
+			{
+				int position = Details.lastIndexOf(detail);
 
-                request.AddParameter("DetailList[" + position + "].Description", detail.Description);
-                request.AddParameter("DetailList[" + position + "].Amount", detail.Amount);
-                request.AddParameter("DetailList[" + position + "].Value", detail.Value);
-            }
-        }
-        else
-        {
-            request.AddParameter("Value", Value);
-        }
+				request.AddParameter("DetailList[" + position + "].Description", detail.Description);
+				request.AddParameter("DetailList[" + position + "].Amount", detail.Amount);
+				request.AddParameter("DetailList[" + position + "].Value", detail.Value);
+			}
+		}
+		else
+		{
+			request.AddParameter("Value", Value);
+		}
 	}
 
 	public String DateString() {
@@ -122,35 +122,47 @@ public class Move
 
 
 
+	public void SetData(JSONObject move, String activityAccountUrl) throws JSONException
+	{
+		Id = move.getInt("ID");
 
-    public void SetData(JSONObject moveToEdit) throws JSONException
-    {
-        Id = moveToEdit.getInt("ID");
-        Description = moveToEdit.getString("Description");
-        Date = DateTime.getCalendar(moveToEdit.getJSONObject("Date"));
-        Category = moveToEdit.getString("Category");
-        AccountOut = moveToEdit.getString("AccountOutUrl");
-        AccountIn = moveToEdit.getString("AccountInUrl");
-        Nature = Nature.GetNature(moveToEdit.getInt("Nature"));
+		if (Id == 0)
+		{
+			AccountOut = activityAccountUrl;
+		}
+		else
+		{
+			setEditMoveData(move);
+		}
+	}
 
-        if (moveToEdit.has("Value") && !moveToEdit.get("Value").equals(null))
-        {
-            Value = moveToEdit.getDouble("Value");
-        }
+	private void setEditMoveData(JSONObject move) throws JSONException
+	{
+		Description = move.getString("Description");
+		Date = DateTime.getCalendar(move.getJSONObject("Date"));
+		Category = move.getString("Category");
+		AccountOut = move.getString("AccountOutUrl");
+		AccountIn = move.getString("AccountInUrl");
+		Nature = Nature.GetNature(move.getInt("Nature"));
 
-        if (moveToEdit.has("DetailList"))
-        {
-            JSONArray detailList = moveToEdit.getJSONArray("DetailList");
+		if (move.has("Value") && !move.get("Value").equals(null))
+		{
+			Value = move.getDouble("Value");
+		}
 
-            isDetailed = detailList.length() > 0;
+		if (move.has("DetailList"))
+		{
+			JSONArray detailList = move.getJSONArray("DetailList");
 
-            for (int d = 0; d < detailList.length(); d++)
-            {
-                JSONObject detail = detailList.getJSONObject(d);
-                Add(detail.getString("Description"), detail.getInt("Amount"), detail.getDouble("Value"));
-            }
-        }
-    }
-	
-	
+			isDetailed = detailList.length() > 0;
+
+			for (int d = 0; d < detailList.length(); d++)
+			{
+				JSONObject detail = detailList.getJSONObject(d);
+				Add(detail.getString("Description"), detail.getInt("Amount"), detail.getDouble("Value"));
+			}
+		}
+	}
+
+
 }

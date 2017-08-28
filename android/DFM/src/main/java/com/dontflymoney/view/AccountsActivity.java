@@ -22,19 +22,17 @@ public class AccountsActivity extends SmartActivity
 {
 	TableLayout main;
 	static JSONArray accountList;
-	
 
 
-    protected int contentView() { return R.layout.accounts; }
+	protected int contentView() { return R.layout.accounts; }
 
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		getMain();
-		
+
 		if (rotated && succeded)
 		{
 			try
@@ -51,12 +49,12 @@ public class AccountsActivity extends SmartActivity
 			getAccounts();
 		}
 	}
-	
+
 	private void getMain()
 	{
 		main = (TableLayout)findViewById(R.id.main_table);
 	}
-	
+
 	private void getAccounts()
 	{
 		request = new Request(this, "Accounts/List");
@@ -68,8 +66,8 @@ public class AccountsActivity extends SmartActivity
 	protected void HandleSuccess(JSONObject data, Step step)
 		throws JSONException
 	{
-		accountList = data.getJSONArray("AccountList"); 
-		
+		accountList = data.getJSONArray("AccountList");
+
 		if (accountList.length() == 0)
 		{
 			View empty = form.createText(getString(R.string.no_accounts), Gravity.CENTER);
@@ -80,64 +78,57 @@ public class AccountsActivity extends SmartActivity
 			fillAccounts();
 		}
 	}
-	
+
 	private void fillAccounts()
 		throws JSONException
 	{
 		for(int a = 0; a < accountList.length(); a++)
 		{
 			int color = a % 2 == 0 ? Color.TRANSPARENT : Color.LTGRAY;
-			
+
 			getAccount(accountList.getJSONObject(a), color);
 		}
 	}
 
 	private void getAccount(JSONObject account, int color)
-		throws JSONException
+			throws JSONException
 	{
 		String url = account.getString("Url");
 
 		TableRowWithExtra<String> row = new TableRowWithExtra<String>(this, url);
 		row.setBackgroundColor(color);
-		
+
 		String name = account.getString("Name");
 		row.addView(form.createText(name, Gravity.LEFT));
 
 		double total = account.getDouble("Total");
 		row.addView(form.createText(total, Gravity.RIGHT));
-		
+
 		setClick(row);
 
 		main.addView(row);
-	}	
-	
+	}
+
 	private void setClick(TableRow row)
 	{
 		row.setClickable(true);
-		
+
 		OnClickListener listener = new OnClickListener()
 		{
-		    public void onClick(View row)
-		    {
-		    	@SuppressWarnings("unchecked")
-		    	TableRowWithExtra<String> tablerow = (TableRowWithExtra<String>)row;
-		        String url = tablerow.getExtra();
-		        
+			public void onClick(View row)
+			{
+				@SuppressWarnings("unchecked")
+				TableRowWithExtra<String> tablerow = (TableRowWithExtra<String>)row;
+				String url = tablerow.getExtra();
+
 				Intent intent = new Intent(AccountsActivity.this, ExtractActivity.class);
 				intent.putExtra("accounturl", url);
 				startActivity(intent);
-		    }
-		};		
-		
+			}
+		};
+
 		row.setOnClickListener(listener);
 	}
 
 
-
-
-	
-	
-	
-	
-	
 }
