@@ -4,7 +4,7 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
-	Layout = "../Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoClosedAccounts"];

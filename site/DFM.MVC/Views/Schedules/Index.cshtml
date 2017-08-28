@@ -3,7 +3,7 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Schedules"];
-	Layout = "../Shared/_Table.cshtml";
+	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();
 	ViewBag.NoContentText = MultiLanguage.Dictionary["NoSchedules"];
