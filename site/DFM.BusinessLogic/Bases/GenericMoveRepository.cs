@@ -28,7 +28,8 @@ namespace DFM.BusinessLogic.Bases
             }
         }
 
-        private static void testDescription(T move)
+	    // ReSharper disable once UnusedParameter.Local
+		private static void testDescription(T move)
         {
             if (String.IsNullOrEmpty(move.Description))
                 throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
