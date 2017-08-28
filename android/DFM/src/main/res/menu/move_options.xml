@@ -11,4 +11,14 @@
         android:orderInCategory="100"
         android:title="@string/delete" />
 
+    <item
+        android:id="@+id/check_move"
+        android:orderInCategory="100"
+        android:title="@string/check" />
+
+    <item
+        android:id="@+id/uncheck_move"
+        android:orderInCategory="100"
+        android:title="@string/uncheck" />
+
 </menu>

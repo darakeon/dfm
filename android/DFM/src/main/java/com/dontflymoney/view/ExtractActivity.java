@@ -1,6 +1,7 @@
 package com.dontflymoney.view;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
 
@@ -206,7 +206,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 		}
 	}
 
-    private void getMove(JSONObject move, int color)
+    private void getMove(final JSONObject move, int color)
             throws JSONException
     {
         MoveRow row = new MoveRow(this);
@@ -217,9 +217,35 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
         row.setDate(move.getJSONObject("Date"));
         row.setTotal(move.getDouble("Total"));
 
+        row.setChecked(move.getBoolean("Checked"));
+
         row.ID = move.getInt("ID");
 
         row.setClickable(true);
+
+        final Activity thisParent = this;
+
+        row.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                try
+                {
+                    int idButtonToHide = move.getBoolean("Checked") ? R.id.check_move : R.id.uncheck_move;
+                    View buttonToHide = thisParent.findViewById(idButtonToHide);
+                    buttonToHide.setVisibility(View.GONE);
+
+                    int idButtonToShow = move.getBoolean("Checked") ? R.id.uncheck_move : R.id.check_move;
+                    View buttonToShow = thisParent.findViewById(idButtonToShow);
+                    buttonToShow.setVisibility(View.VISIBLE);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         table.addView(row);
     }
@@ -257,29 +283,36 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     @Override
     public boolean onContextItemSelected(MenuItem item)
     {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        MoveRow view = (MoveRow)clickedView;
-
         switch (item.getItemId()) {
             case R.id.edit_move:
-                edit(view);
+                edit();
                 return true;
             case R.id.delete_move:
-                askDelete(view);
+                askDelete();
+                return true;
+            case R.id.check_move:
+                check();
+                return true;
+            case R.id.uncheck_move:
+                uncheck();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
-    private void edit(MoveRow moveRow)
+    private void edit()
     {
+        MoveRow moveRow = (MoveRow)clickedView;
         goToMove(moveRow.ID);
     }
 
-    public boolean askDelete(MoveRow moveRow) {
 
+
+    public boolean askDelete()
+    {
         String messageText = getString(R.string.sure_to_delete);
+        MoveRow moveRow = (MoveRow)clickedView;
 
         messageText = String.format(messageText, moveRow.getDescription());
 
@@ -289,20 +322,39 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
     }
 
     @Override
-	public void YesAction() { 		
-		request = new Request(this, "Moves/Delete");
-
-        MoveRow view = (MoveRow)clickedView;
-
-		request.AddParameter("ticket", Authentication.Get());
-		request.AddParameter("accounturl", accounturl);
-		request.AddParameter("id", view.ID);
-		
-		request.Post(Step.Recording);
+	public void YesAction() {
+        submitMoveAction("Delete");
 	}
 
 	@Override
 	public void NoAction() { }
-	
+
+
+
+    private void check()
+    {
+        submitMoveAction("Check");
+    }
+
+    private void uncheck()
+    {
+        submitMoveAction("Uncheck");
+    }
+
+
+
+    private void submitMoveAction(String action)
+    {
+        request = new Request(this, "Moves/" + action);
+
+        MoveRow view = (MoveRow)clickedView;
+
+        request.AddParameter("ticket", Authentication.Get());
+        request.AddParameter("accounturl", accounturl);
+        request.AddParameter("id", view.ID);
+
+        request.Post(Step.Recording);
+    }
+
 }
 

@@ -8,7 +8,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dontflymoney.baseactivity.SmartActivity;
-import com.dontflymoney.viewhelper.DateTime;
+import com.dontflymoney.view.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +21,7 @@ public class MoveRow extends TableRow
     private final SmartActivity activity;
     private String description;
     private double total;
+    private boolean checked;
 
     public MoveRow(Context context)
     {
@@ -71,4 +72,14 @@ public class MoveRow extends TableRow
         this.total = total;
         addView(activity.form.createText(total, Gravity.RIGHT));
     }
+
+    public void setChecked(Boolean checked)
+    {
+        this.checked = checked;
+
+        int idResource = checked ? R.drawable.green_sign : R.drawable.red_sign;
+        addView(activity.form.createImage(idResource, Gravity.LEFT));
+    }
+
+
 }

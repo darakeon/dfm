@@ -12,6 +12,8 @@ namespace DFM.MVC.Areas.API.Jsons
 		public DateJson Date { get; set; }
 		public MoveNature Nature { get; set; }
 
+		public Boolean Checked { get; set; }
+
 		public Decimal Total { get; set; }
 
 		public SimpleMoveJson(Move move, String accountUrl)
@@ -24,6 +26,8 @@ namespace DFM.MVC.Areas.API.Jsons
 			var accountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
 
 			Total = move.Total() * (accountUrl == accountOut ? -1 : 1);
+
+			Checked = move.Checked;
 		}
 		
 	}
