@@ -86,12 +86,12 @@
              The Name of Permission that will be verified by Authorize decorator (MVC)
             </summary>
         </member>
-        <member name="T:DK.MVC.Cookies.MyCookie">
+        <member name="T:DK.MVC.Cookies.BrowserId">
             <summary>
-            "Cookie" for browser, cellphone or local
+            Identification for Browser
             </summary>
         </member>
-        <member name="M:DK.MVC.Cookies.MyCookie.Get">
+        <member name="M:DK.MVC.Cookies.BrowserId.Get">
             <summary>
             Get (if needed, create) ticket
             </summary>

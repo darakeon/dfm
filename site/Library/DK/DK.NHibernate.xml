@@ -531,6 +531,11 @@
             Get current NH Session
             </summary>
         </member>
+        <member name="P:DK.NHibernate.Base.SessionManager.Failed">
+            <summary>
+            Tells if the Session Transaction have Failed
+            </summary>
+        </member>
         <member name="M:DK.NHibernate.Base.SessionManager.Close">
             <summary>
             Close session

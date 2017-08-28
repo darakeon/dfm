@@ -45,7 +45,9 @@ namespace DFM.MVC.Helpers.Global
 		{
 			get
 			{
-				if (!errors.ContainsKey(key))
+				var key = BrowserId.Get();
+
+                if (!errors.ContainsKey(key))
 					return Error.Status.Empty;
 
 				var result = errors[key];
@@ -56,6 +58,8 @@ namespace DFM.MVC.Helpers.Global
 			}
 			private set
 			{
+				var key = BrowserId.Get();
+
 				if (!errors.ContainsKey(key))
 					errors.Add(key, value);
 				else
@@ -69,7 +73,5 @@ namespace DFM.MVC.Helpers.Global
 			IDictionary<String, Error.Status> errors 
 				= new Dictionary<String, Error.Status>();
 
-
-		private static String key => MyCookie.Get();
 	}
 }

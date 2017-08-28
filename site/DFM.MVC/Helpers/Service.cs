@@ -22,7 +22,7 @@ namespace DFM.MVC.Helpers
 				? TicketType.Mobile
 				: TicketType.Browser;
 
-			return new TypedTicket(getKey(type) ?? "GENERAL_" + type, type);
+			return new TypedTicket(getKey(type), type);
 		}
 
 
@@ -31,7 +31,7 @@ namespace DFM.MVC.Helpers
 			switch (type)
 			{
 				case TicketType.Browser:
-					return MyCookie.Get();
+					return BrowserId.Get();
 				
 				case TicketType.Mobile:
 					var info = new RouteInfo();

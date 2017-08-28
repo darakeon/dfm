@@ -53,7 +53,7 @@ namespace DFM.MVC
 			if (isLocal)
 				MultiLanguage.Initialize();
 
-			SessionManager.Init(MyCookie.Get);
+			SessionManager.Init(BrowserId.Get);
 		}
 
 		// ReSharper disable InconsistentNaming
