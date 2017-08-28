@@ -308,13 +308,17 @@ namespace DFM.BusinessLogic.Services
 		public Boolean IsLastContractAccepted()
 		{
 			var contract = GetContract();
+
+			if (contract == null)
+				return true;
+
 			var user = Parent.Current.User;
 
-			var acceptance = InTransaction(() => 
+			var acceptance = InTransaction(() =>
 				acceptanceRepository.GetOrCreate(user, contract)
 			);
 
-			return acceptance.Accepted;
+			return acceptance?.Accepted ?? true;
 		}
 
 		public void AcceptContract()

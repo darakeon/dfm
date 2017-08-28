@@ -8,6 +8,9 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var acceptance = GetOrCreate(user, contract);
 
+			if (acceptance == null)
+				return;
+
 			acceptance.Accepted = true;
 
 			SaveOrUpdate(acceptance);
@@ -15,7 +18,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Acceptance GetOrCreate(User user, Contract contract)
 		{
-			if (user == null)
+			if (user == null || contract == null)
 				return null;
 
 			var acceptance = NewQuery()
