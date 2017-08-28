@@ -27,7 +27,7 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpPost]
 		public ActionResult Create(MovesCreatePostModel move)
 		{
-			return JsonPost((Action) move.Save);
+			return JsonPost(move.Save);
 		}
 
 		[HttpPost]

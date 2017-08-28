@@ -24,15 +24,16 @@ public class Move
 	public int Id;
 	public String Description;
 	public Calendar Date;
+
+	public Nature Nature;
+
 	public String Category;
 	public String AccountOut;
 	public String AccountIn;
-	public Nature Nature;
 
 	public boolean isDetailed;
 	public double Value;
 	public List<Detail> Details;
-
 
 
 	public void SetNature(String number)
@@ -89,13 +90,16 @@ public class Move
 	{
 		request.AddParameter("ID", Id);
 		request.AddParameter("Description", Description);
+
 		request.AddParameter("Date.Year", Date.get(Calendar.YEAR));
 		request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1);
 		request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH));
+
+		request.AddParameter("Nature", Nature);
+
 		request.AddParameter("Category", Category);
 		request.AddParameter("AccountOutUrl", AccountOut);
 		request.AddParameter("AccountInUrl", AccountIn);
-		request.AddParameter("Nature", Nature);
 
 		if (isDetailed)
 		{
