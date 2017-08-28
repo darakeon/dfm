@@ -31,7 +31,8 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	static JSONArray moveList;
 	static String name;
 	static double total;
-	
+	static boolean canCheck;
+
 	TableLayout table;
 	String accounturl;
 
@@ -169,6 +170,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 				moveList = data.getJSONArray("MoveList");
 				name = data.getString("Name");
 				total = data.getDouble("Total");
+				canCheck = data.getBoolean("CanCheck");
 				
 				fillMoves();
 				break;
@@ -339,19 +341,43 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 
 		try
 		{
-			int idButtonToHide = move.getChecked() ? R.id.check_move : R.id.uncheck_move;
-			MenuItem buttonToHide = menu.findItem(idButtonToHide);
-			buttonToHide.setVisible(false);
-
-			int idButtonToShow = move.getChecked() ? R.id.uncheck_move : R.id.check_move;
-			MenuItem buttonToShow = menu.findItem(idButtonToShow);
-			buttonToShow.setVisible(true);
+			if (canCheck)
+			{
+				hideMenuItem(menu, move.getChecked() ? R.id.check_move : R.id.uncheck_move);
+				showMenuItem(menu, move.getChecked() ? R.id.uncheck_move : R.id.check_move);
+			}
+			else
+			{
+				hideMenuItem(menu, R.id.check_move);
+				hideMenuItem(menu, R.id.uncheck_move);
+			}
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 
+	}
+
+	public void hideMenuItem(ContextMenu menu, int id)
+	{
+		toggleMenuItem(menu, id, false);
+	}
+
+	public void showMenuItem(ContextMenu menu, int id)
+	{
+		toggleMenuItem(menu, id, true);
+	}
+
+	public void toggleMenuItem(ContextMenu menu, int id, boolean show)
+	{
+		MenuItem buttonToHide = menu.findItem(id);
+		buttonToHide.setVisible(show);
+	}
+
+	public boolean CanCheck()
+	{
+		return canCheck;
 	}
 
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.dontflymoney.baseactivity.SmartActivity;
+import com.dontflymoney.view.ExtractActivity;
 import com.dontflymoney.view.R;
 
 import org.json.JSONException;
@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class MoveRow extends TableRow
 {
-    private final SmartActivity activity;
+    private final ExtractActivity activity;
     private String description;
     private double total;
     private boolean checked;
@@ -26,7 +26,7 @@ public class MoveRow extends TableRow
     public MoveRow(Context context)
     {
         super(context);
-        activity = (SmartActivity)context;
+        activity = (ExtractActivity)context;
 
         setOnClickListener(new OnClickListener()
         {
@@ -77,8 +77,11 @@ public class MoveRow extends TableRow
     {
         this.checked = checked;
 
-        int idResource = checked ? R.drawable.green_sign : R.drawable.red_sign;
-        addView(activity.form.createImage(idResource, Gravity.LEFT));
+		if (activity.CanCheck())
+		{
+			int idResource = checked ? R.drawable.green_sign : R.drawable.red_sign;
+			addView(activity.form.createImage(idResource, Gravity.LEFT));
+		}
     }
 
 	public Boolean getChecked()

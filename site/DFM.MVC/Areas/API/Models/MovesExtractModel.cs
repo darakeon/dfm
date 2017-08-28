@@ -23,11 +23,13 @@ namespace DFM.MVC.Areas.API.Models
 
 			Name = account.Name;
 			Total = account.Total();
+			CanCheck = Current.User.Config.MoveCheck;
 		}
 
 		public IList<SimpleMoveJson> MoveList { get; private set; }
 		public String Name { get; private set; }
 		public Decimal Total { get; private set; }
+		public Boolean CanCheck { get; private set; }
 
 	}
 }
