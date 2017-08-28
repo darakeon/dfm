@@ -12,7 +12,7 @@ namespace DFM.Repositories.Mappings
 	        mapping.IgnoreProperty(d => d.Value);
 
             mapping.Map(d => d.Description)
-                .Length(MaximumLength.DetailDescription);
+                .Length(MaximumLength.DETAIL_DESCRIPTION);
 
             mapping.Map(d => d.Amount)
                 .Default("1");

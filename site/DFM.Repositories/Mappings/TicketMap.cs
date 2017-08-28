@@ -10,7 +10,7 @@ namespace DFM.Repositories.Mappings
         public void Override(AutoMapping<Ticket> mapping)
         {
             mapping.Map(t => t.Key, "Key_")
-                .Length(MaximumLength.TicketKey)
+                .Length(MaximumLength.TICKET_KEY)
                 .Unique();
 
             mapping.Map(t => t.Active)

@@ -21,17 +21,17 @@
     {
         <p>
             @Html.LabelFor(m => m.Account.Name, MultiLanguage.Dictionary["Name"])
-            @Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaximumLength.AccountName, @class = "suggest-name" })
+            @Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaximumLength.ACCOUNT_NAME, @class = "suggest-name" })
 
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountName)</span>
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_NAME)</span>
         </p>
 
         <p>
             @Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"])
-            @Html.TextBoxFor(m => m.Url, new { maxlength = MaximumLength.AccountUrl, @class = "suggest-url" })
+            @Html.TextBoxFor(m => m.Url, new { maxlength = MaximumLength.ACCOUNT_URL, @class = "suggest-url" })
 
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.AccountUrl)</span>
-            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.AccountUrl)</span>
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_URL)</span>
+            <span class='input-ps'>@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)</span>
         </p>
 
         <p class="radio">

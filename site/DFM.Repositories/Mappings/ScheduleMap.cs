@@ -12,7 +12,7 @@ namespace DFM.Repositories.Mappings
 			mapping.IgnoreProperty(m => m.Value);
 			
 			mapping.Map(m => m.Description)
-                .Length(MaximumLength.MoveDescription);
+                .Length(MaximumLength.MOVE_DESCRIPTION);
 
             mapping.References(m => m.Category)
                 .Nullable();

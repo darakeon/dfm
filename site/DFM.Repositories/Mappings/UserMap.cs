@@ -10,10 +10,10 @@ namespace DFM.Repositories.Mappings
         public void Override(AutoMapping<User> mapping)
         {
             mapping.Map(u => u.Password)
-                .Length(MaximumLength.UserPassword);
+                .Length(MaximumLength.USER_PASSWORD);
 
             mapping.Map(u => u.Email)
-                .Length(MaximumLength.UserEmail)
+                .Length(MaximumLength.USER_EMAIL)
                 .Unique();
 
             mapping.Map(u => u.Creation)

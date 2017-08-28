@@ -10,7 +10,7 @@ namespace DFM.Repositories.Mappings
         public void Override(AutoMapping<Category> mapping)
         {
             mapping.Map(c => c.Name)
-                .Length(MaximumLength.CategoryName);
+                .Length(MaximumLength.CATEGORY_NAME);
             
             mapping.Map(c => c.Active)
                 .Default("1");

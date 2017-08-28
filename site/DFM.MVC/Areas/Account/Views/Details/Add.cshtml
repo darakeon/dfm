@@ -4,7 +4,7 @@
     @Html.HiddenFor(m => m.DetailList[Model.Position].FakeID)
 
     <td>
-        @Html.TextBoxFor(m => m.DetailList[Model.Position].Description, new { maxlength = MaximumLength.DetailDescription })
+        @Html.TextBoxFor(m => m.DetailList[Model.Position].Description, new { maxlength = MaximumLength.DETAIL_DESCRIPTION })
         @Html.ValidationMessageFor(m => m.DetailList[Model.Position].Description, "*")
     </td>
     
