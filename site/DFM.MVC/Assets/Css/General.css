@@ -80,16 +80,17 @@ div#shadow-bound {
 }
 
 div#warning {
-    color: #447D99;
+	color: #447D99;
     font-style: italic;
     text-align: center;
     margin: 0 -5px;
     padding: 6px 15px 12px 15px;
     background: #E3D5B0;
-    box-shadow: 0 -4px 4px 1px 
-        rgba(110, 103, 85, 0.3) inset;
+	box-shadow: 0 -4px 4px 1px #6e6755 inset;
+	box-shadow: 0 -4px 4px 1px rgba(110, 103, 85, 0.3) inset;
 }
-    div#warning * {
+
+	div#warning * {
         font-size: 20px;
     }
     
@@ -112,7 +113,8 @@ div#main {
 	margin: 0 auto;
 	background: #FFF;
 	border-radius: 10px 0 50px 0;
-    box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 4px 2px 2px #000000;
+	box-shadow: 0 4px 2px 2px rgba(0, 0, 0, 0.7);
 }
 
 div#PS {
