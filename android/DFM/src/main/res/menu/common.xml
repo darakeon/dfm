@@ -6,6 +6,7 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/action_refresh"
+        android:icon="@drawable/refresh"
         android:onClick="refresh" />
 
     <item
@@ -13,6 +14,7 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/action_logout"
+        android:icon="@drawable/logoff"
         android:onClick="logout" />
 
 </menu>
