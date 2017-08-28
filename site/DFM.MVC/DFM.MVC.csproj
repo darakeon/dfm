@@ -274,8 +274,7 @@
     <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
     <None Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
-    <Content Include="Areas\Account\Views\Schedules\Create.old" />
-    <Content Include="Areas\Account\Views\Schedules\OtherFields.old" />
+    <None Include="Areas\Account\Views\Schedules\OtherFields.cshtml" />
     <None Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
     <None Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />

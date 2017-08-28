@@ -207,6 +207,9 @@ namespace DFM.MVC.Areas.Account.Models
 
 			try
 			{
+				if (!IsDetailed)
+					GenericMove.DetailList.Clear();
+
 				SaveOrUpdate();
 			}
 			catch (DFMCoreException e)

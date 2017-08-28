@@ -4,6 +4,8 @@
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, Model.ControllerName];
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSize = 4;
+
+	var scheduleModel = Model as SchedulesCreateModel;
 }
 
 @section Scripts {
@@ -18,6 +20,11 @@
 @Html.Partial("../Moves/Account")
 
 @Html.Partial("../Moves/ValueAndDetail")
+
+@if (scheduleModel != null)
+{
+	@Html.Partial("../Schedules/OtherFields", scheduleModel)
+}
 
 @section Footer {
 	<button type="submit" class="btn btn-success">

@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			var model = new SchedulesCreateModel();
 
-			return View("Create", model);
+			return View("CreateEditSchedule", model);
 		}
 
 		[HttpPost]

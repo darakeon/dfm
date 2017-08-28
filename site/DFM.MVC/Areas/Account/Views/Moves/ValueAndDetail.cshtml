@@ -10,9 +10,9 @@
 
 	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
 		<table class="table table-condensed">
-			@Html.Partial("DetailHeader")
-			@Html.Partial("DetailBody")
-			@Html.Partial("DetailFooter")
+			@Html.Partial("../Moves/DetailHeader")
+			@Html.Partial("../Moves/DetailBody")
+			@Html.Partial("../Moves/DetailFooter")
 		</table>
 	</div>
 
