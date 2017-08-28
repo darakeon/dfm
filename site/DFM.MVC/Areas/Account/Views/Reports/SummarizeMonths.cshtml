@@ -1,0 +1,70 @@
+﻿@using DFM.Generic.Pages
+@using DFM.MVC.Helpers
+@model ReportsSummarizeMonthsModel
+
+@{
+	ViewBag.Title = Model.Date;
+	Layout = "~/Views/Shared/_Table.cshtml";
+
+	ViewBag.HasContent = Model.Year.MonthList.Any();
+	ViewBag.NoContentText = MultiLanguage.Dictionary["NoYearMoves"];
+
+	var beginDate = new YearUnit(Model.Account.BeginDate);
+	var endDate = new YearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
+	var current = new YearUnit(Model.Year.Time);
+
+	var pages = new Pages<YearUnit>(beginDate, endDate, current, 5);
+}
+
+@section TableHeader{
+	<tr class="row">
+		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Month"]</th>
+		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["In"]</th>
+		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Out"]</th>
+		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Total"]</th>
+	</tr>
+}
+
+@foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
+{
+	var _in = month.In();
+	var _out = month.Out();
+	var sum = month.Total();
+
+	var negative = sum < 0;
+	var className = negative ? "danger" : "info";
+
+	sum *= negative ? -1 : 1;
+			
+	if (_in == 0 && _out == 0)
+	{
+		continue;
+	}
+
+	<tr class="row">
+		<td class="col-sm-3">
+			<a href="@Url.Action("ShowMoves", new {id = month.Url()})">
+				@MultiLanguage.GetMonthName(month.Time)
+			</a>
+		</td>
+		<td class="col-sm-3 text-right text-info">@_in.ToMoney(Model.Language, true) </td>
+		<td class="col-sm-3 text-right text-danger">@_out.ToMoney(Model.Language, true) </td>
+		<td class="col-sm-3 text-right text-@className">@sum.ToMoney(Model.Language) </td>
+	</tr>
+
+} 
+
+@section Footer {
+
+	<div class="row">
+		<div class="col-sm-1"></div>
+
+		<div class="col-sm-10 text-center">
+			@Html.Partial("Pagination", pages)
+		</div>
+
+		<div class="col-sm-1">
+			@Html.Partial("Total")
+		</div>
+	</div>
+}

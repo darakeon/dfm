@@ -216,6 +216,7 @@
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Helpers\Views\MonthYearUnit.cs" />
+    <Compile Include="Helpers\Views\YearUnit.cs" />
     <Compile Include="Models\TestAnalyzeDictionary.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokensController.cs" />
@@ -266,7 +267,7 @@
     <Content Include="Areas\Account\Views\Moves\Create.old" />
     <Content Include="Areas\Account\Views\Moves\Edit.old" />
     <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
-    <Content Include="Areas\Account\Views\Reports\SummarizeMonths.old" />
+    <None Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
     <None Include="Areas\Account\Views\Reports\Total.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Create.old" />
     <Content Include="Areas\Account\Views\Schedules\OtherFields.old" />
