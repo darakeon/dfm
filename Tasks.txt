@@ -102,7 +102,7 @@ VERSÃO 2.0.4.0 (Little change) - 5
 ================================================================================================
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Configuração de usuário para habilitar conferência
-2016-07-18				Possibilitar marcar uma movimentação como conferida (Conferência de movimentação)
+2016-07-18	2016-07-18	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação)
 2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
 2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
