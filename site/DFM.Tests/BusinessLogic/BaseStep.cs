@@ -327,15 +327,15 @@ namespace DFM.Tests.BusinessLogic
 
 
 
-        protected const String UserEmail = "test@dontflymoney.com";
+        protected const String USER_EMAIL = "test@dontflymoney.com";
         protected static String UserPassword = "password";
-        protected const String MainAccountUrl = "first_account";
-        protected const String MainCategoryName = "first category";
+        protected const String MAIN_ACCOUNT_URL = "first_account";
+        protected const String MAIN_CATEGORY_NAME = "first category";
 
-        protected const String AccountOutName = "Account Out";
-        protected const String AccountInName = "Account In";
-        protected static String AccountOutUrl = MakeUrlFromName(AccountOutName);
-        protected static String AccountInUrl = MakeUrlFromName(AccountInName);
+        protected const String ACCOUNT_OUT_NAME = "Account Out";
+        protected const String ACCOUNT_IN_NAME = "Account In";
+        protected static String AccountOutUrl = MakeUrlFromName(ACCOUNT_OUT_NAME);
+        protected static String AccountInUrl = MakeUrlFromName(ACCOUNT_IN_NAME);
 
 
 

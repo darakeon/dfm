@@ -12,21 +12,21 @@ namespace DFM.Tests.BusinessLogic
         [Given(@"I have an active user")]
         public void GivenIHaveAnActiveUser()
         {
-            CreateUserIfNotExists(UserEmail, UserPassword, true);
+            CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
 
-            Current.Reset(UserEmail, UserPassword);
+            Current.Reset(USER_EMAIL, UserPassword);
         }
 
         [Given(@"I have an account")]
         public void GivenIHaveAnAccount()
         {
-            Account = GetOrCreateAccount(MainAccountUrl);
+            Account = GetOrCreateAccount(MAIN_ACCOUNT_URL);
         }
 
         [Given(@"I have a category")]
         public void GivenIHaveACategory()
         {
-            Category = GetOrCreateCategory(MainCategoryName);
+            Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
         }
 
         [Given(@"I pass a valid account url")]

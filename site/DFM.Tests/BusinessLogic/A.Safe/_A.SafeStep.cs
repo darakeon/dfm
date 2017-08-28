@@ -462,7 +462,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
         [Given(@"I login the user")]
         public void GivenILoginTheUser()
         {
-            Current.Set(UserEmail, UserPassword);
+            Current.Set(USER_EMAIL, UserPassword);
         }
 
         [Given(@"I logoff the user")]

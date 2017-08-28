@@ -180,7 +180,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
             Move.DetailList.Add(newDetail);
 
-            Category = GetOrCreateCategory(MainCategoryName);
+            Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
 
             SA.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
 

@@ -127,7 +127,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
         [Given(@"I have moves of")]
         public void GivenIHaveMovesOf(Table table)
         {
-            Category = GetOrCreateCategory(MainCategoryName);
+            Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
 
             foreach (var row in table.Rows)
             {
