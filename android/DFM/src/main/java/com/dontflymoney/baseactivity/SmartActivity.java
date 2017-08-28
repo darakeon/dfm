@@ -11,6 +11,7 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.auth.Authentication;
 import com.dontflymoney.language.Language;
 import com.dontflymoney.view.AccountsActivity;
+import com.dontflymoney.view.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,7 +20,8 @@ public abstract class SmartActivity extends FixOrientationActivity
 {
 	protected int contentView;
 	protected int menuResource;
-	private boolean hasParent;
+    private boolean isLoggedIn;
+    private boolean hasParent;
 
 	protected Authentication Authentication;
 	
@@ -32,17 +34,23 @@ public abstract class SmartActivity extends FixOrientationActivity
 	protected Request request;
 	
 	protected static boolean succeded = false;
-	
-	
-	public void init(int contentView, int menuResource)
-	{
-		init(contentView, menuResource, false);
-	}
-	
-	public void init(int contentView, int menuResource, boolean hasParent)
+
+
+    public void init(int contentView, int menuResource)
+    {
+        init(contentView, menuResource, false);
+    }
+
+    public void init(int contentView, int menuResource, boolean isLoggedIn)
+    {
+        init(contentView, menuResource, isLoggedIn, false);
+    }
+
+	public void init(int contentView, int menuResource, boolean isLoggedIn, boolean hasParent)
 	{
 		this.contentView = contentView;
 		this.menuResource = menuResource;
+        this.isLoggedIn = isLoggedIn;
 		this.hasParent = hasParent;
 	}
 
@@ -71,7 +79,11 @@ public abstract class SmartActivity extends FixOrientationActivity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(menuResource, menu);
+        getMenuInflater().inflate(menuResource, menu);
+
+        if (isLoggedIn)
+            getMenuInflater().inflate(R.menu.common, menu);
+
 		return true;
 	}
 	

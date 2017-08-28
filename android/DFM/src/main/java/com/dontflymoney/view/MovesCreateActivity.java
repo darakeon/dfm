@@ -1,11 +1,5 @@
 package com.dontflymoney.view;
 
-import java.util.Calendar;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +19,12 @@ import com.dontflymoney.viewhelper.AfterTextWatcher;
 import com.dontflymoney.viewhelper.DetailBox;
 import com.dontflymoney.viewhelper.DialogSelectClickListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Calendar;
+
 public class MovesCreateActivity extends SmartActivity {
 	DatePickerDialog dialog;
 	ScrollView window;
@@ -38,7 +38,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	
 	public MovesCreateActivity() {
-		init(R.layout.activity_moves_create, R.menu.moves_create);
+		init(R.layout.activity_moves_create, R.menu.moves_create, true);
 	}
 
 	@Override

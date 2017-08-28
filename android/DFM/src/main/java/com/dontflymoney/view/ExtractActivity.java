@@ -1,14 +1,5 @@
 package com.dontflymoney.view;
 
-import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -30,6 +21,15 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.IYesNoDialogAnswer;
 import com.dontflymoney.baseactivity.SmartActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 {
 	static JSONArray moveList;
@@ -48,7 +48,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	
 	public ExtractActivity()
 	{
-		init(R.layout.activity_extract, R.menu.extract);
+		init(R.layout.activity_extract, R.menu.extract, true);
 	}
 	
 	@Override

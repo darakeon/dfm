@@ -1,12 +1,5 @@
 package com.dontflymoney.view;
 
-import java.lang.reflect.Field;
-import java.util.Calendar;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,6 +16,13 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Field;
+import java.util.Calendar;
+
 public class SummaryActivity extends SmartActivity
 {
 	static JSONArray monthList;
@@ -37,7 +37,7 @@ public class SummaryActivity extends SmartActivity
 	
 	public SummaryActivity()
 	{
-		init(R.layout.activity_summary, R.menu.summary);
+		init(R.layout.activity_summary, R.menu.summary, true);
 	}
 	
 	@Override

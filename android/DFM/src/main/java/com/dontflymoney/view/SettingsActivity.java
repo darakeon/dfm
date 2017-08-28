@@ -1,8 +1,5 @@
 package com.dontflymoney.view;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -14,6 +11,9 @@ import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SettingsActivity extends SmartActivity
 {
 	boolean useCategories;
@@ -21,7 +21,7 @@ public class SettingsActivity extends SmartActivity
 	
 	public SettingsActivity()
 	{
-		init(R.layout.activity_settings, R.menu.settings);
+		init(R.layout.activity_settings, R.menu.settings, true);
 	}
 	
 	@Override

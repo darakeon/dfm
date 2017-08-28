@@ -96,11 +96,11 @@ F						Colocar criação de categoria (mobile)
 
 VERSÃO 2.0.3.0 (Little change) - 5?
 ================================================================================================
+						Deixar salvar o programa no SD
 F						Colocar edição de movimentação (mobile)
-F						Colocar botão de sair (mobile)
 						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
 						Não deixar sleep quando já estiver no meio de uma requisição
-						Deixar salvar o programa no SD
+2015-09-05				Colocar botão de sair (mobile)
 
 VERSÃO 2.0.2.0 (Little change) - 13?
 ================================================================================================

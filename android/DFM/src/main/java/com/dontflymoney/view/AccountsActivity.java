@@ -1,9 +1,5 @@
 package com.dontflymoney.view;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +14,10 @@ import com.dontflymoney.api.Step;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.viewhelper.TableRowWithExtra;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class AccountsActivity extends SmartActivity
 {
 	TableLayout main;
@@ -25,7 +25,7 @@ public class AccountsActivity extends SmartActivity
 	
 	public AccountsActivity()
 	{
-		init(R.layout.activity_accounts, R.menu.accounts);
+		init(R.layout.activity_accounts, R.menu.accounts, true);
 	}
 
 	
