@@ -1,6 +1,7 @@
 package com.dontflymoney.baseactivity;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -26,7 +27,24 @@ public class Navigation
 		Intent intent = new Intent(activity, activityClass);
 		activity.startActivity(intent);
 	}
-	
+
+	public void redirectWithExtras()
+	{
+		Bundle extras = activity.getIntent().getExtras();
+		final Class<?> parent = (Class<?>)extras.get("__parent");
+		extras.remove("__parent");
+
+		Intent intent = new Intent(activity, parent);
+		intent.putExtras(extras);
+
+		activity.startActivity(intent);
+	}
+
+
+
+
+
+
 	protected void logout()
 	{
 		Request request = new Request(activity, "Users/Logout");
@@ -56,7 +74,10 @@ public class Navigation
     public void goToSettings()
 	{
 		Intent intent = new Intent(activity, SettingsActivity.class);
-		intent.putExtra("parent", getClass());
+
+		intent.putExtras(activity.getIntent());
+		intent.putExtra("__parent", activity.getClass());
+
 		activity.startActivity(intent);
 	}
 	

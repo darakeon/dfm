@@ -93,18 +93,15 @@ public class SettingsActivity extends SmartActivity
 	
 	private void back()
 	{
-		Bundle extras = getIntent().getExtras();
-		final Class<?> parent = (Class<?>)extras.get("parent");
-		
 		new AlertDialog.Builder(this)
 			.setTitle(R.string.title_activity_settings)
 			.setMessage(R.string.settings_saved)
 			.setPositiveButton(R.string.ok_button, new OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					navigation.redirect(parent);
+					navigation.redirectWithExtras();
 				}
-	    	})
+			})
 			.show();
 	}
 	
