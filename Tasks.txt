@@ -106,9 +106,10 @@ VERSÃO 3.0.1.0 (Little change) - 7
 						Colocar marcação para conta de entrada e de saída separadas
 						Acessibilidade
 
-VERSÃO 3.0.0.0 (All new) - 20
+VERSÃO 3.0.0.0 (All new) - 21
 ================================================================================================
 						Video do porquinho
+						Arrumar ícones de lista / menu no mobile
 						Corrigir edição de movimentação no mobile
 2017-03-28	2017-03-29	Corrigir inserção duplicada de move no mobile
 2017-03-27	2017-03-28	Tema dark no android
