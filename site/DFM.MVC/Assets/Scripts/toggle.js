@@ -7,7 +7,9 @@
 });
 
 function toggleFields(checkBox) {
-	var hasLimit = checkBox.is(":checked");
-	var targetField = checkBox.data("target");
-	$(targetField).attr("disabled", !hasLimit);
+	var isChecked = checkBox.is(":checked");
+	var toEnableField = checkBox.data("to-enable");
+	var toDisableField = checkBox.data("to-disable");
+	$(toEnableField).attr("disabled", !isChecked);
+	$(toDisableField).attr("disabled", isChecked);
 }
