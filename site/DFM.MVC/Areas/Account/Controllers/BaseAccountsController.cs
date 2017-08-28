@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using DFM.Entities.Enums;
+﻿using System.Web.Mvc;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Controllers;
 
