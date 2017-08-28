@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Cfg.cs" />
     <Compile Include="ConvertToOtherChild.cs" />
+    <Compile Include="DateTimeExtension.cs" />
     <Compile Include="DateTimeGMT.cs" />
     <Compile Include="ApiDebug.cs" />
     <Compile Include="DFMException.cs" />
