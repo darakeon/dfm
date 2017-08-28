@@ -96,8 +96,12 @@
 
 		@if (Model.CanCheck)
 		{
+			var url = move.Checked
+				? Url.Action("Uncheck", "Moves", new { id = move.ID })
+				: Url.Action("Check", "Moves", new { id = move.ID });
+
 			<td class="col-sm-1 text-center">
-				<a href="@Url.Action(move.Checked ? "Uncheck" : "Check", new {id = move.ID})"
+				<a href="@url"
 						data-toggle="tooltip" data-placement="right" 
 						data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]">
 					<span class="glyphicon glyphicon-@(move.Checked ? "remove" : "ok")"></span>
