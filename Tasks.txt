@@ -93,11 +93,13 @@ VERSÃO 3.1.0.0 (Big change) - 6
 						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
 						Mudar categoria para autocomplete (mobile)
 
-VERSÃO 3.0.1.0 (Little change) - 2
+VERSÃO 3.0.1.0 (Little change) - 5
 ================================================================================================
 						Permitir marcar todas as movimentações antes de uma data
 						Colocar campos de datetime ao lado do botão no mobile
 						Possibilitar marcar uma movimentação em conta fechada
+						Marcar movimentação sem recarregar a tela - web
+						Marcar movimentação sem recarregar a tela - mobile
 
 VERSÃO 3.0.0.0 (All new) - 2
 ================================================================================================
