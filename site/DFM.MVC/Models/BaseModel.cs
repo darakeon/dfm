@@ -65,7 +65,7 @@ namespace DFM.MVC.Models
 
 				Enum.TryParse(urlTheme, out theme);
 
-				return theme == BootstrapTheme.None ? BootstrapTheme.Cyborg : theme;
+				return theme == BootstrapTheme.None ? BootstrapTheme.Slate : theme;
 			}
 		}
 
