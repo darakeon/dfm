@@ -14,7 +14,7 @@ namespace DFM.MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                RouteNames.Default,
+                RouteNames.DEFAULT,
                 "{controller}/{action}/{id}",
                 new { controller = "Users", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(UsersController).Namespace }

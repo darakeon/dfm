@@ -11,14 +11,14 @@ namespace DFM.MVC.Areas.API
 	    public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                RouteNames.APILoggedAccount,
+                RouteNames.API_LOGGED_ACCOUNT,
                 "API-{ticket}/Account-{accounturl}/{controller}/{action}/{id}",
                 new { controller = "Moves", action = "List", id = UrlParameter.Optional },
                 new[] { typeof(UsersController).Namespace }
             );
 
             context.MapRoute(
-                RouteNames.APILogged,
+                RouteNames.API_LOGGED,
                 "API-{ticket}/{controller}/{action}/{id}",
                 new { controller = "Accounts", action = "List", id = UrlParameter.Optional },
                 new[] { typeof(UsersController).Namespace }

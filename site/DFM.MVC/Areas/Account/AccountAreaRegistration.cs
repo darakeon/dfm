@@ -7,12 +7,12 @@ namespace DFM.MVC.Areas.Account
 {
     public class AccountAreaRegistration : AreaRegistration
     {
-        public override String AreaName => RouteNames.Account;
+        public override String AreaName => RouteNames.ACCOUNT;
 
 	    public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                RouteNames.Account,
+                RouteNames.ACCOUNT,
                 "Account/{accounturl}/{controller}/{action}/{id}",
                 new { controller = "Reports", action = "Index", id = UrlParameter.Optional },
                 new[] { typeof(ReportsController).Namespace }
