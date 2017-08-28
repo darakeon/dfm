@@ -81,5 +81,6 @@
     <string name="settings_warning">Estas configurações são para celular e site</string>
     <string name="use_categories">Usar categorias</string>
     <string name="settings_saved">Configurações salvas!</string>
+	<string name="move_check">Movimentação pode ser verificada</string>
 
 </resources>

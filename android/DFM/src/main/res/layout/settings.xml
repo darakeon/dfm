@@ -16,21 +16,37 @@
 	    android:text="@string/settings_warning" />
     
 	<View android:layout_width="fill_parent" android:layout_height="35dp" />
-	
-	<LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
-	    
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+
 		<CheckBox
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:id="@+id/use_categories" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/use_categories" />
 		<TextView
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="@string/use_categories" />
-		
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/use_categories" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+
+		<CheckBox
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/move_check" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/move_check" />
+
 	</LinearLayout>
 
 	<View android:layout_width="fill_parent" android:layout_height="35dp" />

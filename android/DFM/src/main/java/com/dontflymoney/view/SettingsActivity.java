@@ -19,9 +19,12 @@ public class SettingsActivity extends SmartActivity
 	boolean useCategories;
 	CheckBox useCategoriesField;
 
+	boolean moveCheck;
+	CheckBox moveCheckField;
 
 
-    protected int contentView() { return R.layout.settings; }
+
+	protected int contentView() { return R.layout.settings; }
 
 
 
@@ -34,6 +37,7 @@ public class SettingsActivity extends SmartActivity
 		if (rotated && succeded)
 		{
 			useCategoriesField.setChecked(useCategories);
+			moveCheckField.setChecked(moveCheck);
 		}
 		else
 		{
@@ -44,6 +48,7 @@ public class SettingsActivity extends SmartActivity
 	private void getFields()
 	{
 		useCategoriesField = (CheckBox) findViewById(R.id.use_categories);
+		moveCheckField = (CheckBox) findViewById(R.id.move_check);
 	}
 
 	private void getCurrentSettings()
@@ -58,6 +63,7 @@ public class SettingsActivity extends SmartActivity
 		request = new Request(this, "Users/SaveConfig");
 		request.AddParameter("ticket", Authentication.Get());
 		request.AddParameter("UseCategories", useCategoriesField.isChecked());
+		request.AddParameter("MoveCheck", moveCheckField.isChecked());
 		request.Post(Step.Recording);
 	}
 	
@@ -88,6 +94,9 @@ public class SettingsActivity extends SmartActivity
 	{
 		useCategories = data.getBoolean("UseCategories");
 		useCategoriesField.setChecked(useCategories);
+
+		moveCheck = data.getBoolean("MoveCheck");
+		moveCheckField.setChecked(moveCheck);
 	}
 	
 	

@@ -6,10 +6,14 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public UserGetConfigModel()
 		{
-			UseCategories = Current.User.Config.UseCategories;
+			var config = Current.User.Config;
+
+			UseCategories = config.UseCategories;
+			MoveCheck = config.MoveCheck;
 		}
 
 		public Boolean UseCategories { get; set; }
+		public Boolean MoveCheck { get; set; }
 
 	}
 }

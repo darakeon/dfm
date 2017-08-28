@@ -113,7 +113,7 @@ VERSÃO 2.1.1.0 (Little change) - 3
 VERSÃO 2.1.0.0 (Big change) - 7
 ================================================================================================
 						Arrumar erro nas urls de e-mails 
-						Configuração de usuário para habilitar conferência - mobile
+2017-01-13	2017-01-13	Configuração de usuário para habilitar conferência - mobile
 2017-01-12	2017-01-13	Configuração de usuário para habilitar conferência - site
 2016-07-28	2017-01-12	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - mobile
 2016-07-18	2016-07-18	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - site
