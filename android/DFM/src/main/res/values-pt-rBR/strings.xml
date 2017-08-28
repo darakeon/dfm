@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<string name="starting_app">Acordando o porquinho...</string>
+
 	<!-- Actions -->
 	<string name="action_logout">Sair</string>
 	<string name="action_refresh">Atualizar</string>

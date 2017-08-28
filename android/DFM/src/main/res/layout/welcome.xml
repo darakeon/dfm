@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:id="@+id/welcome"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="com.dontflymoney.view.WelcomeActivity"
+	android:background="@drawable/clouds"
+	android:gravity="center">
+
+	<ImageView
+		android:id="@+id/pig"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:src="@drawable/pig"
+		android:contentDescription="@string/starting_app">
+
+	</ImageView>
+
+</RelativeLayout>

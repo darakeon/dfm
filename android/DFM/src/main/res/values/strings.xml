@@ -2,6 +2,7 @@
 <resources>
 
 	<string name="app_name" translatable="false">Don\'t fly Money</string>
+	<string name="starting_app">Waking up the pig...</string>
 
 	<!-- Actions -->
 	<string name="action_logout">Logout</string>
