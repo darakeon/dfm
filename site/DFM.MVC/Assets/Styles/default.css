@@ -20,7 +20,7 @@ footer {
 		list-style: none;
 	}
 
-.nav > li > a {
+#body .nav > li > a {
 	padding-top: 8px;
 	padding-bottom: 8px;
 }
