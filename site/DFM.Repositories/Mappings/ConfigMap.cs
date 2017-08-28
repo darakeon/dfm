@@ -9,19 +9,21 @@ namespace DFM.Repositories.Mappings
 	{
 		public void Override(AutoMapping<Config> mapping)
 		{
-			mapping.Map(u => u.Language)
+			mapping.Map(c => c.Language)
 				.Length(MaximumLength.CONFIG_LANGUAGE)
 				.Default("'" + Defaults.CONFIG_LANGUAGE + "'");
 
-			mapping.Map(u => u.TimeZone)
+			mapping.Map(c => c.TimeZone)
 				.Default("'" + Defaults.CONFIG_TIMEZONE + "'");
 
-			mapping.Map(u => u.SendMoveEmail)
+			mapping.Map(c => c.SendMoveEmail)
 				.Default("'" + Defaults.CONFIG_SEND_MOVE_EMAIL + "'");
 
-			mapping.Map(u => u.UseCategories)
+			mapping.Map(c => c.UseCategories)
 				.Default("'" + Defaults.CONFIG_USE_CATEGORIES + "'");
 
+			mapping.Map(c => c.Theme)
+				.Default("'" + (int) Defaults.DEFAULT_THEME + "'");
 		}
 	}
 }
