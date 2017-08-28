@@ -318,11 +318,23 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 				Move.DetailList.Add(newDetail);
 			}
+		}
 
+		[When(@"I change the details of the move to")]
+		public void WhenIChangeTheDetailsOfTheMoveTo(Table details)
+		{
+			Move.DetailList = new List<Detail>();
+
+			foreach (var detailData in details.Rows)
+			{
+				var newDetail = GetDetailFromTable(detailData);
+
+				Move.DetailList.Add(newDetail);
+			}
 		}
 
 
-		
+
 		[When(@"I update the move")]
 		public void WhenIUpdateTheMove()
 		{
@@ -509,6 +521,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				[(Int16)oldDate.Year];
 
 			Assert.AreEqual(YearAccountOutTotal, year.Total());
+		}
+
+		[Then(@"the move total will be (\-?\d+\.?\d*)")]
+		public void ThenTheMoveTotalWillBe(Decimal value)
+		{
+			var move = SA.Money.GetMoveById(Move.ID);
+			Assert.AreEqual(value, move.Total());
 		}
 		#endregion
 

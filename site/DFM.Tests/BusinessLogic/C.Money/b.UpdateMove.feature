@@ -173,3 +173,34 @@ Scenario: 13. Add details to the move
 	And the old-month-category-accountOut value will change in 10
 	And the old-year-category-accountOut value will change in 10
 
+
+
+Scenario: 14. Change the details of the move - remove and add
+	Given I have a move with these details (Out)
+		| Description | Amount | Value |
+		| Move Cb14a  | 1      | 10    |
+	When I change the details of the move to
+		| Description | Amount | Value |
+		| Move Cb14b  | 2      | 20    |
+	And I update the move
+	Then I will receive no core error
+	And the move total will be 40
+	And the old-accountOut value will change in -30
+	And the old-month-category-accountOut value will change in 30
+	And the old-year-category-accountOut value will change in 30
+
+Scenario: 15. Change the details of the move - remove one
+	Given I have a move with these details (Out)
+		| Description | Amount | Value |
+		| Move Cb15a  | 1      | 10    |
+		| Move Cb15b  | 2      | 20    |
+	When I change the details of the move to
+		| Description | Amount | Value |
+		| Move Cb15b  | 2      | 20    |
+	And I update the move
+	Then I will receive no core error
+	And the move total will be 40
+	And the old-accountOut value will change in -10
+	And the old-month-category-accountOut value will change in 10
+	And the old-year-category-accountOut value will change in 10
+
