@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Generic;
 using DK.Generic.Exceptions;
 
 namespace DFM.Email
@@ -43,8 +44,9 @@ namespace DFM.Email
 
 				return Status.Sent;
 			}
-			catch
+			catch (Exception exception)
 			{
+				exception.TryLog();
 				return Status.Error;
 			}
 		}

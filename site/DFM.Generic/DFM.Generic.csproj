@@ -40,6 +40,7 @@
     <Compile Include="DateTimeGMT.cs" />
     <Compile Include="ApiDebug.cs" />
     <Compile Include="DFMException.cs" />
+    <Compile Include="Elmah.cs" />
     <Compile Include="EnumExtension.cs" />
     <Compile Include="NumericExtension.cs" />
     <Compile Include="OperationType.cs" />
@@ -49,6 +50,10 @@
   <ItemGroup>
     <Reference Include="DK.Generic">
       <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>

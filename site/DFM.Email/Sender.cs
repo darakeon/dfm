@@ -99,9 +99,10 @@ namespace DFM.Email
 
 					smtp.Send(message);
 				}
-				catch (Exception e)
+				catch (Exception exception)
 				{
-					DFMEmailException.WithMessage(e);
+					exception.TryLog();
+					DFMEmailException.WithMessage(exception);
 				}
 			}
 
