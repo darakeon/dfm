@@ -46,7 +46,7 @@ namespace DFM.MVC.Areas.API.Controllers
 			{
 				action();
 
-				return Json(new { success = true });
+				return Json(new { data = new { success = true }});
 			}
 			catch (DFMCoreException e)
 			{
