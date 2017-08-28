@@ -151,7 +151,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-	    public void MarkMoveCheck(Int32 moveId, Boolean @checked)
+	    public Move ToggleMoveCheck(Int32 moveId, Boolean @checked)
 	    {
 		    var move = GetMoveById(moveId);
 
@@ -160,6 +160,8 @@ namespace DFM.BusinessLogic.Services
 		    move.Checked = @checked;
 
 		    InTransaction(() => moveRepository.SaveOrUpdate(move));
+
+		    return move;
 	    }
 
 

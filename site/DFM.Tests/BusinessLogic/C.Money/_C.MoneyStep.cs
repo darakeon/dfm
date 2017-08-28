@@ -727,7 +727,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				SA.Money.MarkMoveCheck(Move.ID, @checked);
+				SA.Money.ToggleMoveCheck(Move.ID, @checked);
 			}
 			catch (DFMCoreException e)
 			{
