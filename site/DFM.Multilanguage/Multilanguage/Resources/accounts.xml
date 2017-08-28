@@ -15,7 +15,7 @@
 		<Report text="Report" />
 		<RedLimit text="Red Limit" />
 		<YellowLimit text="Yellow Limit" />
-		<LimitExplanation text="when account goes under this, a sign is shown on account list." />
+		<LimitExplanation text="Change the account flag according to its value" />
 		<AccountHasLimit text="Account has limits" />
 		<Url text="Url" />
 		<AcceptedUrlCharacters text="Use just letters (without accents), numbers and underlines (&quot;_&quot;)" />
@@ -35,7 +35,7 @@
 		<Report text="Relatórios" />
 		<RedLimit text="Sinal Vermelho" />
 		<YellowLimit text="Sinal Amarelo" />
-		<LimitExplanation text="quando uma conta fica abaixo do valor, um sinal aparecerá na listagem de contas." />
+		<LimitExplanation text="Troca a cor da sinalização da conta de acordo com o valor dela" />
 		<AccountHasLimit text="Mostrar sinalização na Conta" />
 		<Url text="Url" />
 		<AcceptedUrlCharacters text="Use apenas letras (sem acentos), números e underlines (&quot;_&quot;)" />

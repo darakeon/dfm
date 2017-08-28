@@ -1,0 +1,65 @@
+﻿@model AccountsCreateEditModel
+
+@using DFM.Generic
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
+	
+	if (Model.Type == OperationType.Edit)
+	{
+		ViewBag.Title += " " + Model.Account.Name;
+	}
+	
+	Layout = "~/Views/Shared/_MiniForm.cshtml";
+}
+
+@section Scripts {
+	<script src="/Assets/Scripts/suggest.js" type="text/javascript"></script>
+	<script src="/Assets/Scripts/toggle.js" type="text/javascript"></script>
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Account.Name, MultiLanguage.Dictionary["Name"])
+	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaximumLength.ACCOUNT_NAME, @class = "form-control suggest-field", data_target = ".suggest-target" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_NAME)</small>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"])
+	<span class="glyphicon glyphicon-question-sign" 
+		  data-toggle="tooltip" data-placement="right" 
+		  data-original-title="@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)">
+	</span>
+
+	@Html.TextBoxFor(m => m.Url, new { maxlength = MaximumLength.ACCOUNT_URL, @class = "form-control suggest-target" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.ACCOUNT_URL)</small>
+</div>
+
+<div class="form-group text-center">
+	@Html.CheckBoxFor(m => m.HasLimit, new { @class = "check-toggle", data_target = ".limit" })
+	@Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"])
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Account.YellowLimit, MultiLanguage.Dictionary["YellowLimit"])
+	<span class="glyphicon glyphicon-tags text-warning"
+		  data-toggle="tooltip" data-placement="right"
+		  data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]">
+	</span>
+	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit money letZero" })
+</div>
+		
+<div class="form-group">
+	@Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"])
+	<span class="glyphicon glyphicon-tags text-danger"
+		  data-toggle="tooltip" data-placement="right"
+		  data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]">
+	</span>
+	@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "form-control limit money letZero" })
+</div>
+
+@section Footer {
+	<button class="btn btn-success" type="submit">
+		@MultiLanguage.Dictionary[Model.ActionName]
+	</button>
+}

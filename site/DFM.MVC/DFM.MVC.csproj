@@ -154,6 +154,9 @@
     <Content Include="Assets\Images\pig.ico" />
     <Content Include="Assets\Images\pig.png" />
     <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg" />
+    <Content Include="Assets\Scripts\default.js" />
+    <Content Include="Assets\Scripts\toggle.js" />
+    <Content Include="Assets\Scripts\suggest.js" />
     <Content Include="Assets\Scripts\tab-forms.js" />
     <Content Include="Assets\Styles\default.css" />
     <Content Include="Assets\Styles\twitter.css" />
@@ -270,7 +273,7 @@
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleCss.old" />
     <Content Include="Areas\Account\Views\Shared\CreateEditScheduleJs.old" />
     <Content Include="Areas\Account\Views\Shared\NewCategoryBox.old" />
-    <Content Include="Views\Accounts\CreateEdit.old" />
+    <None Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\ListClosed.cshtml" />
