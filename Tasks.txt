@@ -122,7 +122,7 @@ F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 2017-03-19	2017-03-19	Permitir limite de conta negativo
 2017-03-19	2017-03-19	Trocar o datepicker
-2017-03-01				Layout Bootstrap
+2017-03-01	2017-01-19	Layout Bootstrap
 2017-03-03	2017-03-05	Corrigir problema com checkbox de manter logado
 2017-02-24	2017-02-25	Arrumar packages do android
 2017-02-23	2017-02-23	Colocar imagem de início no android
