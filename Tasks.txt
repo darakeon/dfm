@@ -103,10 +103,12 @@ VERSÃO 3.0.1.0 (Little change) - 6
 						Editar desmarca a movimentação
 						Colocar marcação para conta de entrada e de saída
 
-VERSÃO 3.0.0.0 (All new) - 2
+VERSÃO 3.0.0.0 (All new) - 4
 ================================================================================================
 						Layout Bootstrap
-						Android Kotlin
+						Colocar imagem de início no android
+						Arrumar packages do android
+2017-02-09				Android Kotlin
 
 VERSÃO 2.1.4.3 (System) - 1
 ================================================================================================
