@@ -103,7 +103,7 @@ F						Colocar criação de categoria (mobile)
 VERSÃO 2.0.3.1 (System) - 4
 ================================================================================================
 						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
-						Exibir parcela no mobile
+2016-05-15	2016-05-15	Exibir parcela no mobile
 2016-05-09	2016-05-15	Consertar envio de e-mail para Amazon
 2015-09-19	2016-05-09	Testes de mudança de configuração
 2015-09-15	2015-09-17	Corrigir funcionamento do app no Lollipop

@@ -18,7 +18,7 @@ namespace DFM.MVC.Areas.API.Jsons
         {
             ID = move.ID;
 
-            Description = move.Description;
+            Description = move.GetDescriptionDetailed();
             Date = new DateJson(move.Date);
 
             var accountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
