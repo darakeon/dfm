@@ -200,7 +200,7 @@ Scenario: 15. Change the details of the move - remove one
 	And I update the move
 	Then I will receive no core error
 	And the move total will be 40
-	And the old-accountOut value will change in -10
-	And the old-month-category-accountOut value will change in 10
-	And the old-year-category-accountOut value will change in 10
+	And the old-accountOut value will change in 10
+	And the old-month-category-accountOut value will change in -10
+	And the old-year-category-accountOut value will change in -10
 

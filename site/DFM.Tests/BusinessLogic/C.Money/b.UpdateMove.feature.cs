@@ -566,11 +566,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 202
  testRunner.And("the move total will be 40");
 #line 203
- testRunner.And("the old-accountOut value will change in -10");
+ testRunner.And("the old-accountOut value will change in 10");
 #line 204
- testRunner.And("the old-month-category-accountOut value will change in 10");
+ testRunner.And("the old-month-category-accountOut value will change in -10");
 #line 205
- testRunner.And("the old-year-category-accountOut value will change in 10");
+ testRunner.And("the old-year-category-accountOut value will change in -10");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
