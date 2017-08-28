@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using DFM.Multilanguage;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
@@ -9,7 +9,7 @@ namespace DFM.MVC.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View("AnalyzeDictionary", PlainText.Dictionary);
+			return View("AnalyzeDictionary", new TestAnalyzeDictionary());
 		}
 
 	}

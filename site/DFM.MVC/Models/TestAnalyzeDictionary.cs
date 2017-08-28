@@ -1,0 +1,9 @@
+using DFM.Multilanguage;
+
+namespace DFM.MVC.Models
+{
+	public class TestAnalyzeDictionary : BaseModel
+	{
+		public readonly PlainText Dic = PlainText.Dictionary;
+	}
+}

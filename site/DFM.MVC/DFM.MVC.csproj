@@ -214,6 +214,7 @@
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\OpsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Models\TestAnalyzeDictionary.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokensController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -285,7 +286,7 @@
     <None Include="Views\Ops\Error.cshtml" />
     <None Include="Views\Ops\Index.cshtml" />
     <None Include="Views\Schedules\Index.cshtml" />
-    <Content Include="Views\Test\AnalyzeDictionary.old" />
+    <None Include="Views\Test\AnalyzeDictionary.cshtml" />
     <Content Include="Views\Tokens\Disable.old" />
     <Content Include="Views\Tokens\Index.old" />
     <Content Include="Views\Tokens\Invalid.old" />
