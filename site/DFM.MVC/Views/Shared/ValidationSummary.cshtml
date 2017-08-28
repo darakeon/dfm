@@ -1,0 +1,22 @@
+﻿@{
+	var hasSummaryToShow =
+		!Html.ViewData.ModelState.IsValid
+		&& Html.ViewData.ModelState.ContainsKey("");
+
+	var hasSomethingToShow = hasSummaryToShow; //|| ErrorAlert.Any();
+}
+
+@if (hasSomethingToShow)
+{
+	<div class="alert alert-danger">
+		@Html.ValidationSummary(true, null, new { @class = "text-center" })
+
+		<ul>
+			@foreach (var error in ErrorAlert.GetAndClean())
+			{
+				<li>@error</li>
+			}
+		</ul>
+	</div>
+}
+

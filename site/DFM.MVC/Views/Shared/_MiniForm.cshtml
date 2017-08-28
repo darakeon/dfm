@@ -1,0 +1,33 @@
+﻿@{
+	Layout = "_Master.cshtml";
+	String action = ViewBag.Action;
+	String controller = ViewBag.Controller;
+	object routeValues = ViewBag.RouteValues;
+}
+
+<div class="row">
+	<div class="col-sm-4 col-sm-push-4">
+
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h4>@ViewBag.Title</h4>
+			</div>
+
+			@using (Html.BeginForm(action, controller, routeValues))
+			{
+				<div class="panel-body">
+					@Html.Partial("ValidationSummary")
+
+					@RenderBody()
+				</div>
+
+				<div class="panel-title"></div>
+				<div class="panel-footer">@RenderSection("Footer", false)</div>
+			}
+		</div>
+
+	</div>
+</div>
+
+@section Scripts { @RenderSection("Scripts", false) }
+@section Styles { @RenderSection("Styles", false) }

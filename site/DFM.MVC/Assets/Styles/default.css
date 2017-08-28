@@ -5,3 +5,12 @@
 footer {
 	margin-top: 30px;
 }
+
+.validation-summary-errors ul {
+	margin: 0;
+	padding: 0;
+}
+
+	.validation-summary-errors ul li {
+		list-style: none;
+	}

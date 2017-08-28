@@ -308,6 +308,8 @@
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\_MiniForm.cshtml" />
+    <Content Include="Views\Shared\ValidationSummary.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Release.config">
