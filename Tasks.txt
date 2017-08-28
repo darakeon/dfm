@@ -97,11 +97,12 @@ F						Colocar criação de categoria (mobile)
 						Colocar menu de adicionar movimentação como bolinha com "+" (css absolute)
 						Permitir não exibir valores direto na tela inicial
 						
-VERSÃO 2.0.4.0 (Little change) - 4
+VERSÃO 2.0.4.0 (Little change) - 6
 ================================================================================================
 						Colocar submenu para adicionar movimentação a partir da tela inicial (mobile)
 						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
+						Corrigir mobile: move tem category, mas config atual não permite
 2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
 2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
