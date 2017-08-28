@@ -140,7 +140,11 @@ namespace DFM.MVC
 		private static Uri url => HttpContext.Current.Request.Url;
 		private static String path => url.AbsolutePath.ToLowerInvariant();
 
-		private static Boolean isAsset => path.StartsWith("/assets/");
+		private static Boolean isAsset => 
+			path.StartsWith("/assets/")
+			|| path.StartsWith("/favicon.ico")
+			|| path.StartsWith("/robots.txt");
+		
 		private static Boolean isLocal => Cfg.IsLocal;
 
 		private static readonly String elmahTestAction = getName(oc => oc.TestElmahLog);
