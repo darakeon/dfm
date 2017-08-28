@@ -9,18 +9,40 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><img alt="DFM" src="/Assets/Images/pig.png" width="25"/></a>
+			<a class="navbar-brand" href="#"><img alt="DFM" src="/Assets/Images/pig.png" width="25" /></a>
 			<a class="navbar-brand" href="#">Don't fly Money</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active">
+				@if (!Model.IsAuthenticated)
+				{
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new { action = "LogOn", controller = "Users" })</li>
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new { action = "SignUp", controller = "Users" })</li>
+					<li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
+				}
+				else if (Model.IsExternal)
+				{
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["LogOff"], RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" })</li>
+				}
+				else
+				{
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
+
+					if (Model.UseCategories)
+					{
+						<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
+					}
+
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
+					<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
+				}
+
+				@*<li class="active">
 					<a href="#">Link <span class="sr-only">(current)</span></a>
-				</li>
-				<li>
-					<a href="#">Link</a>
-				</li>
+				</li>*@
+
 			</ul>
 		</div>
 	</div>
