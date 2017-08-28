@@ -112,7 +112,7 @@ VERSÃO 3.0.0.0 (All new) - 9
 						Link unsubscribe
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
-						Layout Bootstrap
+2017-03-01				Layout Bootstrap
 2017-02-24	2017-02-25	Arrumar packages do android
 2017-02-23	2017-02-23	Colocar imagem de início no android
 2017-02-23	2017-02-23	Implementar testes de GetList da Admin/Robot
