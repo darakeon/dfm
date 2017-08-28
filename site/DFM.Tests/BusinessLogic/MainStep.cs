@@ -13,7 +13,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
 
-			Current.Reset(USER_EMAIL, UserPassword);
+			Current.Clear();
+			Current.Set(USER_EMAIL, UserPassword, false);
 		}
 
 		[Given(@"I have an account")]
@@ -69,7 +70,7 @@ namespace DFM.Tests.BusinessLogic
 				SA.Robot.DisableSchedule(pendentSchedule.ID);
 			}
 
-			Current.Clean();
+			Current.Clear();
 		}
 
 

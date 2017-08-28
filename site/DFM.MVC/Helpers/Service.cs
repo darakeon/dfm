@@ -14,7 +14,7 @@ namespace DFM.MVC.Helpers
 		public static Current Current => Access?.Current;
 
 
-		private static TypedTicket getTicket()
+		private static TypedTicket getTicket(Boolean? remember = null)
 		{
 			var url = HttpContext.Current.Request.Url;
 
@@ -22,16 +22,16 @@ namespace DFM.MVC.Helpers
 				? TicketType.Mobile
 				: TicketType.Browser;
 
-			return new TypedTicket(getKey(type), type);
+			return new TypedTicket(getKey(type, remember), type);
 		}
 
 
-		private static String getKey(TicketType type)
+		private static String getKey(TicketType type, Boolean? remember)
 		{
 			switch (type)
 			{
 				case TicketType.Browser:
-					return BrowserId.Get();
+					return BrowserId.Get(remember);
 				
 				case TicketType.Mobile:
 					return RouteInfo.Current["ticket"];

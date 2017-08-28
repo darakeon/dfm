@@ -138,7 +138,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				ticket = SA.Safe.ValidateUserAndCreateTicket(
-					email, password, Current.Ticket.Key, TicketType.Local
+					email, password, TicketKey, TicketType.Local
 				);
 			}
 			catch (DFMCoreException e)
@@ -221,7 +221,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				SA.Safe.ValidateUserAndCreateTicket(
-					email, password, Current.Ticket.Key, TicketType.Local
+					email, password, TicketKey, TicketType.Local
 				);
 			}
 			catch (DFMCoreException e)
@@ -237,7 +237,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheUserWillBeActivated()
 		{
 			var ticketKey = SA.Safe.ValidateUserAndCreateTicket(
-				email, password, Current.Ticket.Key, TicketType.Local
+				email, password, TicketKey, TicketType.Local
 			);
 			
 			User = SA.Safe.GetUserByTicket(ticketKey);
@@ -266,7 +266,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				ticket = SA.Safe.ValidateUserAndCreateTicket(
-					email, password, Current.Ticket.Key, TicketType.Local
+					email, password, TicketKey, TicketType.Local
 				);
 			}
 			catch (DFMCoreException e)
@@ -286,7 +286,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				try
 				{
 					SA.Safe.ValidateUserAndCreateTicket(
-						email, password, Current.Ticket.Key, TicketType.Local
+						email, password, TicketKey, TicketType.Local
 					);
 				}
 				catch (DFMCoreException) { }
@@ -295,7 +295,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				SA.Safe.ValidateUserAndCreateTicket(
-					email, password, Current.Ticket.Key, TicketType.Local
+					email, password, TicketKey, TicketType.Local
 				);
 			}
 			catch (DFMCoreException e)
@@ -530,13 +530,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I login the user")]
 		public void GivenILoginTheUser()
 		{
-			Current.Set(USER_EMAIL, UserPassword);
+			Current.Set(USER_EMAIL, UserPassword, false);
 		}
 
 		[Given(@"I logoff the user")]
 		public void GivenILogoffTheUser()
 		{
-			Current.Clean();
+			Current.Clear();
 		}
 
 		[When(@"I ask for current active logins")]
@@ -614,7 +614,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheEmailWillNotBeChanged()
 		{
 			Error = null;
-			var user = SA.Safe.GetUserByTicket(Current.Ticket.Key);
+			var user = SA.Safe.GetUserByTicket(TicketKey);
 			Assert.AreEqual(email, user.Email);
 		}
 
@@ -622,7 +622,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheEmailWillBeChanged()
 		{
 			Error = null;
-			var userEmail = DBHelper.GetUserEmailByTicket(Current.Ticket.Key);
+			var userEmail = DBHelper.GetUserEmailByTicket(TicketKey);
 			Assert.AreEqual(newEmail, userEmail);
 
 			//To next verification
@@ -692,7 +692,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void GivenIPassATicketThatIsOfThisDisabledUser()
 		{
 			ticket = SA.Safe.ValidateUserAndCreateTicket(
-				email, password, Current.Ticket.Key, TicketType.Local
+				email, password, TicketKey, TicketType.Local
 			);
 		}
 
@@ -713,7 +713,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void GivenIHaveATicketOfThisUser()
 		{
 			ticket = SA.Safe.ValidateUserAndCreateTicket(
-				email, password, Current.Ticket.Key, TicketType.Local
+				email, password, TicketKey, TicketType.Local
 			);
 		}
 

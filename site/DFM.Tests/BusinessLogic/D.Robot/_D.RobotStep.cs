@@ -88,7 +88,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I have no logged user \(logoff\)")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
-			Current.Clean();
+			Current.Clear();
 		}
 
 		[Given(@"its Date is (\-?\d+\.?\d*) (\w+) ago")]

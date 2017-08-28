@@ -33,7 +33,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				return Current.Set(Email, Password);
+				return Current.Set(Email, Password, RememberMe);
 			}
 			catch (DFMCoreException e)
 			{

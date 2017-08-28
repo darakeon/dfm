@@ -13,12 +13,11 @@ namespace DFM.Authentication
 		public Current(ISafeService userService, GetTicket getTicket)
 		{
 			this.userService = userService;
-			this.getTicket = getTicket;
+			this.getTicket += getTicket;
 		}
 
+		public delegate TypedTicket GetTicket(Boolean? remember = null);
 
-		public delegate TypedTicket GetTicket();
-		public TypedTicket Ticket => getTicket?.Invoke();
 
 
 		public User User
@@ -27,7 +26,12 @@ namespace DFM.Authentication
 			{
 				try
 				{
-					return userService.GetUserByTicket(Ticket.Key);
+					var ticket = getTicket?.Invoke();
+
+					if (ticket == null)
+						return null;
+
+					return userService.GetUserByTicket(ticket.Key);
 				}
 				catch (DFMException)
 				{
@@ -48,22 +52,26 @@ namespace DFM.Authentication
 		public CultureInfo Culture => new CultureInfo(Language);
 
 
-		public String Set(String username, String password)
+		public String Set(String username, String password, Boolean remember)
 		{
-			return userService.ValidateUserAndCreateTicket(username, password, Ticket.Key, Ticket.Type);
+			var ticket = getTicket?.Invoke(remember);
+
+			if (ticket == null)
+				return null;
+
+			return userService.ValidateUserAndCreateTicket(username, password, ticket.Key, ticket.Type);
 		}
 
-		public void Reset(String username, String password)
+		public void Clear()
 		{
-			Clean();
-			Set(username, password);
+			var ticket = getTicket?.Invoke();
+
+			if (ticket == null)
+				return;
+
+			userService.DisableTicket(ticket.Key);
 		}
 
-		public void Clean()
-		{
-			userService.DisableTicket(Ticket.Key);
-		}
-		
 
 
 	}

@@ -151,8 +151,8 @@ namespace DFM.MVC
 		private static Boolean isElmah => path.Contains("elmah.axd")
 			|| (!String.IsNullOrEmpty(elmahTestAction) && path.Contains(elmahTestAction));
 
-		private delegate ActionResult TestElmah();
-		private static String getName(Expression<Func<OpsController, TestElmah>> expression)
+		private delegate ActionResult testElmah();
+		private static String getName(Expression<Func<OpsController, testElmah>> expression)
 		{
 			var body = (UnaryExpression)expression.Body;
 			var operand = (MethodCallExpression)body.Operand;

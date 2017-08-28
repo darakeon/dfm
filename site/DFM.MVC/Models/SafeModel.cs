@@ -42,7 +42,7 @@ namespace DFM.MVC.Models
 
 		internal void LogOff()
 		{
-			Current.Clean();
+			Current.Clear();
 		}
 
 

@@ -91,12 +91,12 @@
             Identification for Browser
             </summary>
         </member>
-        <member name="F:DK.MVC.Cookies.BrowserId.TimeoutMinutes">
+        <member name="M:DK.MVC.Cookies.BrowserId.Get">
             <summary>
-            Time in minutes until session expire
+            Get (if needed, create) ticket
             </summary>
         </member>
-        <member name="M:DK.MVC.Cookies.BrowserId.Get">
+        <member name="M:DK.MVC.Cookies.BrowserId.Get(System.Nullable{System.Boolean})">
             <summary>
             Get (if needed, create) ticket
             </summary>

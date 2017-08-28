@@ -102,7 +102,7 @@ namespace DFM.Tests.BusinessLogic
 			try
 			{
 				SA.Safe.ValidateUserAndCreateTicket(
-					userEmail, userPassword, Current.Ticket.Key, TicketType.Local
+					userEmail, userPassword, TicketKey, TicketType.Local
 				);
 
 				return null;
@@ -156,7 +156,7 @@ namespace DFM.Tests.BusinessLogic
 		protected User GetSavedUser(String email, String password)
 		{
 			var key = SA.Safe.ValidateUserAndCreateTicket(
-				email, password, Current.Ticket.Key, TicketType.Local
+				email, password, TicketKey, TicketType.Local
 			);
 
 			return SA.Safe.GetUserByTicket(key);
@@ -166,15 +166,17 @@ namespace DFM.Tests.BusinessLogic
 
 
 		#region Context
-		private TypedTicket getTicket()
+		private TypedTicket getTicket(Boolean? remember = null)
 		{
-			return new TypedTicket(getTicketKey(), TicketType.Local);
+			return new TypedTicket(TicketKey, TicketType.Local);
 		}
 
 		private String getTicketKey()
 		{
 			return mainTicket ?? (mainTicket = Token.New());
 		}
+
+		protected String TicketKey => getTicketKey();
 
 		private static String mainTicket
 		{
