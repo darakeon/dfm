@@ -99,11 +99,11 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
 
 	private fun getDefaultRetryPolicy(step: Step): DefaultRetryPolicy {
-		val timeout = DefaultRetryPolicy.DEFAULT_TIMEOUT_MS
+		val timeoutMiliseconds = 30 * 1000
 		val maxRetries = 0
 		val backoffMult = DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
 
-		return DefaultRetryPolicy(timeout, maxRetries, backoffMult)
+		return DefaultRetryPolicy(timeoutMiliseconds, maxRetries, backoffMult)
 	}
 
 
