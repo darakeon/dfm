@@ -4,7 +4,7 @@
 		<Creation text="Creation" />
 		<Expiration text="Expiration" />
 		<Type text="Type" />
-		<Cellphone text="Cellphone" />
+		<Mobile text="Mobile" />
 		<Browser text="Browser" />
 		<ConfirmDeleteLogin text="Do you really want to DELETE the login at '{0}' ({1})? The login session will not work anymore." />
 		<LoginRegister text="Login" />
@@ -13,7 +13,7 @@
 		<Creation text="Criação" />
 		<Expiration text="Expiração" />
 		<Type text="Tipo" />
-		<Cellphone text="Telefone" />
+		<Mobile text="Mobile" />
 		<Browser text="Web" />
 		<ConfirmDeleteLogin text="Realmente deseja APAGAR o login de '{0}' ({1})? A sessão do login irá expirar." />
 		<LoginRegister text="Login" />

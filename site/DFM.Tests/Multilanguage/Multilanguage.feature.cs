@@ -1167,7 +1167,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Type"});
             table15.AddRow(new string[] {
                         "Logins",
-                        "Cellphone"});
+                        "Mobile"});
             table15.AddRow(new string[] {
                         "Logins",
                         "Browser"});

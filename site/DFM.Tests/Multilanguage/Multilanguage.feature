@@ -373,7 +373,7 @@ Scenario: 14. Get translate of Interface (logins)
 		| Logins  | Creation           |
 		| Logins  | Expiration         |
 		| Logins  | Type               |
-		| Logins  | Cellphone          |
+		| Logins  | Mobile             |
 		| Logins  | Browser            |
 		| Logins  | ConfirmDeleteLogin |
 		| Logins  | LoginRegister      |
