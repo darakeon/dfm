@@ -88,6 +88,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I will receive this core error: WrongPassword");
 #line 13
  testRunner.And("the password will not be changed");
+#line 14
+ testRunner.And("the ticket will still be valid");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -97,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_PasswordChangeWithEmptyNewPasswordE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password change with empty new password (E)", ((string[])(null)));
-#line 15
+#line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -106,9 +108,9 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Al02@dontflymoney.com",
                         "password"});
-#line 16
+#line 17
  testRunner.Given("I have this user created and activated", ((string)(null)), table3);
-#line 19
+#line 20
  testRunner.And("I have a ticket of this user");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -119,14 +121,16 @@ this.ScenarioSetup(scenarioInfo);
                         "password",
                         "",
                         "new_password"});
-#line 20
+#line 21
  testRunner.And("I pass this password", ((string)(null)), table4);
-#line 23
- testRunner.When("I try to change the password");
 #line 24
- testRunner.Then("I will receive this core error: UserPasswordRequired");
+ testRunner.When("I try to change the password");
 #line 25
+ testRunner.Then("I will receive this core error: UserPasswordRequired");
+#line 26
  testRunner.And("the password will not be changed");
+#line 27
+ testRunner.And("the ticket will still be valid");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -136,7 +140,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _03_PasswordChangeWithDifferentRetypePasswordE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Password change with different retype password (E)", ((string[])(null)));
-#line 27
+#line 29
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -145,9 +149,9 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "Al03@dontflymoney.com",
                         "password"});
-#line 28
+#line 30
  testRunner.Given("I have this user created and activated", ((string)(null)), table5);
-#line 31
+#line 33
  testRunner.And("I have a ticket of this user");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -158,14 +162,16 @@ this.ScenarioSetup(scenarioInfo);
                         "password",
                         "new_password",
                         "password_wrong"});
-#line 32
+#line 34
  testRunner.And("I pass this password", ((string)(null)), table6);
-#line 35
- testRunner.When("I try to change the password");
-#line 36
- testRunner.Then("I will receive this core error: RetypeWrong");
 #line 37
+ testRunner.When("I try to change the password");
+#line 38
+ testRunner.Then("I will receive this core error: RetypeWrong");
+#line 39
  testRunner.And("the password will not be changed");
+#line 40
+ testRunner.And("the ticket will still be valid");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -175,7 +181,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_PasswordChangeWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Password change with info all right (S)", ((string[])(null)));
-#line 40
+#line 43
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -184,9 +190,9 @@ this.ScenarioSetup(scenarioInfo);
             table7.AddRow(new string[] {
                         "Al99@dontflymoney.com",
                         "password"});
-#line 41
- testRunner.Given("I have this user created and activated", ((string)(null)), table7);
 #line 44
+ testRunner.Given("I have this user created and activated", ((string)(null)), table7);
+#line 47
  testRunner.And("I have a ticket of this user");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -197,14 +203,16 @@ this.ScenarioSetup(scenarioInfo);
                         "password",
                         "new_password",
                         "new_password"});
-#line 45
- testRunner.And("I pass this password", ((string)(null)), table8);
 #line 48
+ testRunner.And("I pass this password", ((string)(null)), table8);
+#line 51
  testRunner.When("I try to change the password");
-#line 49
+#line 52
  testRunner.Then("I will receive no core error");
-#line 50
+#line 53
  testRunner.And("the password will be changed");
+#line 54
+ testRunner.And("the ticket will not be valid anymore");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

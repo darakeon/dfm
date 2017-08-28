@@ -86,6 +86,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("I will receive this core error: WrongPassword");
 #line 13
  testRunner.And("the e-mail will not be changed");
+#line 14
+ testRunner.And("the user will be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -95,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_E_MailChangeWithEmptyNewE_MailE()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. E-mail change with empty new e-mail (E)", ((string[])(null)));
-#line 15
+#line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -104,9 +106,9 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Am02@dontflymoney.com",
                         "password"});
-#line 16
+#line 17
  testRunner.Given("I have this user created and activated", ((string)(null)), table3);
-#line 19
+#line 20
  testRunner.And("I have a ticket of this user");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -115,14 +117,16 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "",
                         "password"});
-#line 20
+#line 21
  testRunner.And("I pass this new e-mail and password", ((string)(null)), table4);
-#line 23
- testRunner.When("I try to change the e-mail");
 #line 24
- testRunner.Then("I will receive this core error: UserEmailInvalid");
+ testRunner.When("I try to change the e-mail");
 #line 25
+ testRunner.Then("I will receive this core error: UserEmailInvalid");
+#line 26
  testRunner.And("the e-mail will not be changed");
+#line 27
+ testRunner.And("the user will be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -132,7 +136,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _99_E_MailChangeWithInfoAllRightS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. E-mail change with info all right (S)", ((string[])(null)));
-#line 28
+#line 30
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -141,9 +145,9 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "Am99@dontflymoney.com",
                         "password"});
-#line 29
+#line 31
  testRunner.Given("I have this user created and activated", ((string)(null)), table5);
-#line 32
+#line 34
  testRunner.And("I have a ticket of this user");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -152,14 +156,16 @@ this.ScenarioSetup(scenarioInfo);
             table6.AddRow(new string[] {
                         "Am99_@dontflymoney.com",
                         "password"});
-#line 33
+#line 35
  testRunner.And("I pass this new e-mail and password", ((string)(null)), table6);
-#line 36
- testRunner.When("I try to change the e-mail");
-#line 37
- testRunner.Then("I will receive no core error");
 #line 38
+ testRunner.When("I try to change the e-mail");
+#line 39
+ testRunner.Then("I will receive no core error");
+#line 40
  testRunner.And("the e-mail will be changed");
+#line 41
+ testRunner.And("the user will not be activated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

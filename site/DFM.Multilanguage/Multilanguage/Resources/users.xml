@@ -24,8 +24,8 @@
 		<CurrentPassword text="Current password" />
 		<NewPassword text="New password" />
 		<EmailToChange text="New e-mail" />
-		<EmailUpdated text="E-mail successfully updated" />
-		<PasswordChanged text="Password successfully updated" />
+		<EmailUpdated text="E-mail successfully updated. New user activation is required." />
+		<PasswordChanged text="Password successfully updated. System logged out for safety." />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -51,7 +51,7 @@
 		<CurrentPassword text="Senha atual" />
 		<NewPassword text="Nova senha" />
 		<EmailToChange text="Novo e-mail" />
-		<EmailUpdated text="E-mail atualizado com sucesso" />
-		<PasswordChanged text="Senha atualizada com sucesso" />
+		<EmailUpdated text="E-mail atualizado com sucesso. Será necessária nova ativação de usuário." />
+		<PasswordChanged text="Senha atualizada com sucesso. Sistema deslogado por segurança." />
 	</pt-BR>
 </users>

@@ -4,6 +4,7 @@ using System.Text;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
+using DK.MVC.Cookies;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers
@@ -106,6 +107,47 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			return ticket;
 		}
 
+		
+
+		public static String GetUserEmailByTicket(PseudoTicket ticket)
+		{
+			String token;
+
+			using (var conn = new MySqlConnection(connStr))
+			{
+				conn.Open();
+
+				var query = @"
+					Select U.Email
+						from User U
+							inner join Ticket T
+								on U.ID = T.User_ID
+						where T.Key_ = @ticket
+							and T.Active = 1
+					order by T.ID desc
+						limit 1";
+
+				var cmd = new MySqlCommand(query, conn);
+
+				cmd.Parameters.AddWithValue("ticket", ticket.Key);
+
+				var result = cmd.ExecuteScalar();
+
+				if (result == null)
+				{
+					conn.Close();
+
+					throw new DFMRepositoryException("Bad, bad developer. No e-mail for you.");
+				}
+
+				token = result.ToString();
+
+				conn.Close();
+			}
+
+			return token;
+		}
+
 
 
 		private static String encrypt(String password)
@@ -124,6 +166,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 			return hexCode;
 		}
+
 
 
 	}

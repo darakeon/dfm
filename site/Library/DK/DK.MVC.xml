@@ -101,6 +101,13 @@
             Ticket for cookie
             </summary>
         </member>
+        <member name="M:DK.MVC.Cookies.PseudoTicket.#ctor(System.String,DK.MVC.Cookies.TicketType)">
+            <summary>
+            Unique Constructor
+            </summary>
+            <param name="key">Key value</param>
+            <param name="type">Type of ticket</param>
+        </member>
         <member name="P:DK.MVC.Cookies.PseudoTicket.Key">
             <summary>
             Name

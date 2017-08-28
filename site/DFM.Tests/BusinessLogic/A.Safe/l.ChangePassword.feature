@@ -11,6 +11,7 @@ Scenario: 01. Password change with wrong current password (E)
 	When I try to change the password
 	Then I will receive this core error: WrongPassword
 	And the password will not be changed
+	And the ticket will still be valid
 
 Scenario: 02. Password change with empty new password (E)
 	Given I have this user created and activated
@@ -23,6 +24,7 @@ Scenario: 02. Password change with empty new password (E)
 	When I try to change the password
 	Then I will receive this core error: UserPasswordRequired
 	And the password will not be changed
+	And the ticket will still be valid
 
 Scenario: 03. Password change with different retype password (E)
 	Given I have this user created and activated
@@ -35,6 +37,7 @@ Scenario: 03. Password change with different retype password (E)
 	When I try to change the password
 	Then I will receive this core error: RetypeWrong
 	And the password will not be changed
+	And the ticket will still be valid
 
 
 Scenario: 99. Password change with info all right (S)
@@ -48,3 +51,4 @@ Scenario: 99. Password change with info all right (S)
 	When I try to change the password
 	Then I will receive no core error
 	And the password will be changed
+	And the ticket will not be valid anymore

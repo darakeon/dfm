@@ -122,7 +122,9 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					Safe.UpdateEmail(CurrentPassword, Email);
+					var pathAction = Url.Action("UserVerification", "Tokens");
+					var pathDisable = Url.Action("Disable", "Tokens");
+					Safe.UpdateEmail(CurrentPassword, Email, pathAction, pathDisable);
 					ErrorAlert.Add("EmailUpdated");
 				}
 				catch (DFMCoreException e)

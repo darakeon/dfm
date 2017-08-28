@@ -68,6 +68,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var user = Get(id);
 			user.Email = email;
+			user.Active = false;
 
 			validateEmail(user);
 

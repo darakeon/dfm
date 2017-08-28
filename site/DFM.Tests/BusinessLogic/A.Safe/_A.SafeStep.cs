@@ -220,7 +220,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+				SA.Safe.ValidateUserAndCreateTicket(
+					email, password, Current.Ticket
+				);
 			}
 			catch (DFMCoreException e)
 			{
@@ -234,7 +236,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the user will be activated")]
 		public void ThenTheUserWillBeActivated()
 		{
-			var ticketKey = SA.Safe.ValidateUserAndCreateTicket(email, password, Current.Ticket);
+			var ticketKey = SA.Safe.ValidateUserAndCreateTicket(
+				email, password, Current.Ticket
+			);
 			
 			User = SA.Safe.GetUserByTicket(ticketKey);
 
@@ -486,6 +490,23 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Assert.IsNotNull(Error);
 			Assert.AreEqual(ExceptionPossibilities.Uninvited, Error.Type);
 		}
+
+		[Then(@"the ticket will still be valid")]
+		public void ThenTheTicketWillStillBeValid()
+		{
+			Error = null;
+
+			try
+			{
+				SA.Safe.GetUserByTicket(ticket);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+
+			Assert.IsNull(Error);
+		}
 		#endregion
 
 		#region ListLogins
@@ -564,7 +585,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				SA.Safe.UpdateEmail(currentPassword, newEmail);
+				SA.Safe.UpdateEmail(currentPassword, newEmail, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -584,8 +605,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheEmailWillBeChanged()
 		{
 			Error = null;
-			var user = SA.Safe.GetUserByTicket(Current.Ticket.Key);
-			Assert.AreEqual(newEmail, user.Email);
+			var userEmail = DBHelper.GetUserEmailByTicket(Current.Ticket);
+			Assert.AreEqual(newEmail, userEmail);
+
+			//To next verification
+			email = newEmail;
 		}
 		#endregion UpdateEmail
 

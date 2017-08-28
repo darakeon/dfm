@@ -9,7 +9,6 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.ObjectInterfaces;
-using DK.MVC.Authentication;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -172,6 +171,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = userRepository.ValidateAndGet(email, password);
 
+			
 			var ticket = ticketRepository.GetByKey(pseudoTicket.Key);
 
 			if (ticket == null)
@@ -268,12 +268,19 @@ namespace DFM.BusinessLogic.Services
 			{
 				user.Password = passwordForm.Password;
 				userRepository.ChangePassword(user);
+
+				var ticketList = ticketRepository.List(user);
+
+				foreach (var ticket in ticketList)
+				{
+					ticketRepository.Disable(ticket);
+				}
 			});
 		}
 
 
 
-		public void UpdateEmail(String currentPassword, String email)
+		public void UpdateEmail(String currentPassword, String email, String pathAction, String pathDisable)
 		{
 			var user = Parent.Current.User;
 
@@ -282,7 +289,8 @@ namespace DFM.BusinessLogic.Services
 
 			InTransaction(() =>
 			{
-				userRepository.UpdateEmail(user.ID, email);
+				user = userRepository.UpdateEmail(user.ID, email);
+				sendUserVerify(user, pathAction, pathDisable);
 			});
 		}
 
