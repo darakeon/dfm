@@ -126,4 +126,7 @@
   <data name="ContractTitle" xml:space="preserve">
     <value>Terms of Use</value>
   </data>
+  <data name="CookiesWarning" xml:space="preserve">
+    <value>Cookies will be used to remember you next time you access the system using this browser</value>
+  </data>
 </root>

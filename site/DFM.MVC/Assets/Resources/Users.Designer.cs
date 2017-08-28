@@ -86,5 +86,14 @@ namespace DFM.MVC.Assets.Resources {
                 return ResourceManager.GetString("ContractTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookies will be used to remember you next time you access the system using this browser.
+        /// </summary>
+        public static string CookiesWarning {
+            get {
+                return ResourceManager.GetString("CookiesWarning", resourceCulture);
+            }
+        }
     }
 }
