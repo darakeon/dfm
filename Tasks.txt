@@ -106,15 +106,15 @@ VERSÃO 3.1.1.0 (Little change) - 7
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
 
-VERSÃO 3.1.0.0 (Big change) - 3
+VERSÃO 3.1.0.0 (Big change) - 4
 ================================================================================================
 						Acessibilidade
 						Corrigir ícones de status da conta
 						This site uses cookies to store your preferences for site-specific language and display options. 
-
-VERSÃO 3.0.0.5 (System) - 6
-================================================================================================
 						Escrever testes para permissões por usuário
+
+VERSÃO 3.0.0.5 (System) - 5
+================================================================================================
 						Corrigir url de e-mails quando enviada via API
 2017-04-18	2017-04-18	Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
 2017-04-18	2017-04-18	Corrigir tela de agendamentos caso não haja uso de categorias
