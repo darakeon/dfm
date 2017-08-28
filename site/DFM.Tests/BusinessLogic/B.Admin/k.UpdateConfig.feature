@@ -61,11 +61,11 @@ Scenario: Bk06. Disable categories use and enable a category (E)
 
 Scenario: Bk11. Change language to en-US
 	When I try to change the language to zz-ZZ
-	Then I will receive this core error: LanguageUnkown
+	Then I will receive this core error: LanguageUnknown
 
 Scenario: Bk21. Change timezone to en-US
 	When I try to change the timezone to Someplace
-	Then I will receive this core error: TimezoneUnkown
+	Then I will receive this core error: TimezoneUnknown
 
 
 
@@ -112,15 +112,15 @@ Scenario: Bk95. Change language to pt-BR
 	When I try to change the language to pt-BR
 	Then I will receive no core error
 		And the translation will be
-			| Key      | Translated |
-			| language | português  |
+			| Key             | Translated |
+			| CurrentLanguage | português  |
 
 Scenario: Bk96. Change language to en-US
 	When I try to change the language to en-US
 	Then I will receive no core error
 		And the translation will be
-			| Key      | Translated |
-			| language | english    |
+			| Key             | Translated |
+			| CurrentLanguage | english    |
 
 Scenario: Bk97. Change timezone
 	When I try to change the timezone to E. South America Standard Time

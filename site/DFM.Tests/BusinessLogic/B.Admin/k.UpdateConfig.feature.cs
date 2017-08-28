@@ -272,7 +272,7 @@ this.FeatureBackground();
 #line 63
  testRunner.When("I try to change the language to zz-ZZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 64
- testRunner.Then("I will receive this core error: LanguageUnkown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will receive this core error: LanguageUnknown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -289,7 +289,7 @@ this.FeatureBackground();
 #line 67
  testRunner.When("I try to change the timezone to Someplace", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 68
- testRunner.Then("I will receive this core error: TimezoneUnkown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will receive this core error: TimezoneUnknown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -448,7 +448,7 @@ this.FeatureBackground();
                         "Key",
                         "Translated"});
             table6.AddRow(new string[] {
-                        "language",
+                        "CurrentLanguage",
                         "português"});
 #line 114
   testRunner.And("the translation will be", ((string)(null)), table6, "And ");
@@ -474,7 +474,7 @@ this.FeatureBackground();
                         "Key",
                         "Translated"});
             table7.AddRow(new string[] {
-                        "language",
+                        "CurrentLanguage",
                         "english"});
 #line 121
   testRunner.And("the translation will be", ((string)(null)), table7, "And ");
