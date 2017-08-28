@@ -103,7 +103,7 @@ VERSÃO 2.0.4.0 (Little change) - 4
 						Configuração de usuário para habilitar conferência
 						Possibilitar marcar uma movimentação como paga (Conferência de movimentação)
 						Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
-						Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
+2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
 VERSÃO 2.0.3.1 (System) - 8
 ================================================================================================

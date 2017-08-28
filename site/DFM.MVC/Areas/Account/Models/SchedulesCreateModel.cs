@@ -5,7 +5,6 @@ using Ak.MVC.Forms;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -24,9 +23,9 @@ namespace DFM.MVC.Areas.Account.Models
 
 
 
-        internal override void SaveOrUpdate(AccountSelector selector)
+        internal override void SaveOrUpdate()
         {
-            Robot.SaveOrUpdateSchedule(Schedule, selector.AccountOutUrl, selector.AccountInUrl, CategoryName);
+            Robot.SaveOrUpdateSchedule(Schedule, AccountOutUrl, AccountInUrl, CategoryName);
         }
 
 

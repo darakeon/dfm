@@ -28,13 +28,5 @@ namespace DFM.MVC.Areas.Account.Controllers
             return View(model);
         }
 
-
-        
-        [HttpPost]
-        public Boolean ShowAccountList(MoveNature nature)
-        {
-            return nature == MoveNature.Transfer;
-        }
-
     }
 }

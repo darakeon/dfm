@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Ak.MVC.Forms;
@@ -10,7 +9,6 @@ using DFM.Entities.Enums;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
-using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -21,9 +19,15 @@ namespace DFM.MVC.Areas.Account.Models
             : this(iMove)
         {
             Type = type;
-        }
 
-        protected BaseMovesModel(IMove iMove)
+			if (String.IsNullOrEmpty(AccountOutUrl))
+				AccountOutUrl = CurrentAccountUrl;
+			
+			if (String.IsNullOrEmpty(AccountInUrl))
+				AccountInUrl = CurrentAccountUrl;
+		}
+
+		protected BaseMovesModel(IMove iMove)
             : this()
         {
             GenericMove = iMove;
@@ -31,8 +35,8 @@ namespace DFM.MVC.Areas.Account.Models
             if (Date == DateTime.MinValue)
                 Date = Today;
 
-            if (iMove.Nature == MoveNature.Transfer)
-                ChosenAccountUrl = iMove.AccIn().Url;
+	        AccountOutUrl = iMove.AccOut()?.Url;
+	        AccountInUrl = iMove.AccIn()?.Url;
 
             if (iMove.Category != null)
                 CategoryName = iMove.Category.Name;
@@ -43,7 +47,7 @@ namespace DFM.MVC.Areas.Account.Models
         private BaseMovesModel()
         {
             var transferIsPossible =
-                Current.User.VisibleAccountList().Count() > 1;
+                Current.User.VisibleAccountList().Count > 1;
 
             populateDropDowns(transferIsPossible);
         }
@@ -88,13 +92,10 @@ namespace DFM.MVC.Areas.Account.Models
 
         private void makeAccountTransferList()
         {
-            var accountList =
-                Current.User.VisibleAccountList()
-                    .Where(a => a.Url != CurrentAccountUrl)
-                    .ToList();
+            var accountList = Current.User.VisibleAccountList();
 
-            AccountSelectList = SelectListExtension
-                .CreateSelect(accountList, a => a.Url, a => a.Name);
+            AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
+            AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
         }
 
         private void arrangeDetails()
@@ -147,8 +148,11 @@ namespace DFM.MVC.Areas.Account.Models
         public SelectList CategorySelectList { get; set; }
         public String CategoryName { get; set; }
 
-        public SelectList AccountSelectList { get; set; }
-        public String ChosenAccountUrl { get; set; }
+        public SelectList AccountOutSelectList { get; set; }
+		public String AccountOutUrl { get; set; }
+
+		public SelectList AccountInSelectList { get; set; }
+        public String AccountInUrl { get; set; }
 
 
         public Boolean IsDetailed { get; set; }
@@ -161,7 +165,7 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 
-        internal abstract void SaveOrUpdate(AccountSelector selector);
+        internal abstract void SaveOrUpdate();
 
 
         public IList<String> CreateEditSchedule()
@@ -170,9 +174,7 @@ namespace DFM.MVC.Areas.Account.Models
 
             try
             {
-                var selector = new AccountSelector(GenericMove.Nature, CurrentAccountUrl, ChosenAccountUrl);
-
-                SaveOrUpdate(selector);
+                SaveOrUpdate();
             }
             catch (DFMCoreException e)
             {

@@ -8,7 +8,7 @@ $(document).ready(function () {
     });
 
 
-    $('.natureSelect').change(function () {
+    $('.nature-select').change(function () {
         ShowAccountList(this);
     });
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     SetDetailLevel();
 
-    var nature = $(".natureSelect option:selected");
+    var nature = $(".nature-select option:selected");
     ShowAccountList(nature);
 
     var boundless = $(".boundlessRadio:checked");
@@ -97,12 +97,12 @@ function InsertCategoryOnDropDown(data) {
 
 
 function ShowAccountList(obj) {
-    $.post(whetherShowAccountListPage,
-        { nature: $(obj).val() },
-        function (show) {
-            $('.accountForTransfer').toggle(toBoolean(show));
-        }
-    );
+	var nature = $(obj).val();
+
+	$(".account-combo").each(function() {
+		var show = $(this).data(nature) == "1";
+		$(this).toggle(show);
+	});
 }
 
 
