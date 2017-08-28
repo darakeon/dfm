@@ -106,8 +106,10 @@ VERSÃO 3.0.1.0 (Little change) - 6
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
 
-VERSÃO 3.0.0.0 (All new) - 7
+VERSÃO 3.0.0.0 (All new) - 9
 ================================================================================================
+						Video do porquinho
+						Link unsubscribe
 F						Implementar necessidade de assinar TERMO
 2014-06-01				Escrever Termos de Uso
 						Layout Bootstrap
