@@ -14,9 +14,6 @@ namespace DFM.Repositories.Mappings
             
             mapping.Map(c => c.Active)
                 .Default("1");
-
-            mapping.References(c => c.User)
-                .Cascade.None();
         }
     }
 }

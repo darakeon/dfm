@@ -13,19 +13,16 @@ namespace DFM.Repositories.Mappings
 
             mapping.References(s => s.Month)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.None()
 				.Not.Update()
                 .Nullable();
 
             mapping.References(s => s.Year)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.None()
 				.Not.Update()
 				.Nullable();
 
             mapping.References(s => s.Category)
                 .UniqueKey("Summary_CategoryTime")
-                .Cascade.None()
                 .Nullable();
         }
 

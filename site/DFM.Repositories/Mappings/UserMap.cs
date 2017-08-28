@@ -20,11 +20,13 @@ namespace DFM.Repositories.Mappings
                 .Default("'2011-09-21'");
 
             mapping.HasMany(u => u.AccountList)
-                .Cascade.None()
                 .Not.LazyLoad();
 
             mapping.HasMany(u => u.ScheduleList)
                 .Cascade.SaveUpdate();
+
+	        mapping.References(u => u.Config)
+		        .Cascade.All();
         }
     }
 }

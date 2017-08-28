@@ -13,7 +13,6 @@ namespace DFM.Repositories.Mappings
                 .Length(MaximumLength.MoveDescription);
 
             mapping.References(m => m.Schedule)
-                .Cascade.None()
                 .Nullable();
 			
             mapping.IgnoreProperty(m => m.FakeID);
@@ -21,15 +20,12 @@ namespace DFM.Repositories.Mappings
 			mapping.IgnoreProperty(m => m.User);
 
             mapping.References(m => m.Category)
-                .Cascade.None()
                 .Nullable();
 
             mapping.References(m => m.In)
-                .Cascade.None()
                 .Nullable();
 
             mapping.References(m => m.Out)
-                .Cascade.None()
                 .Nullable();
 
             mapping.HasMany(m => m.DetailList)

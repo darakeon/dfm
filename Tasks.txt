@@ -99,7 +99,7 @@ F						Colocar edição de movimentação (mobile)
 F						Colocar botão CANCEL em Settings e Move (mobile)
 F						Colocar in e out no relatório anual
 R						Colocar URLReferrer em report de 404
-H						Remover o cascade para filhos do NH
+2015-02-14	2015-02-14	Remover o cascade para filhos do NH
 2015-02-14	2015-02-14	Arrumar urls de e-mail e de robots
 2015-01-11	2015-01-11	Rever layout empty table
 2015-01-11	2015-01-11	Aumentar versão da API Android de acordo com downloads do DFM

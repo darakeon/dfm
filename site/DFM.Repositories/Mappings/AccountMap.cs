@@ -30,8 +30,7 @@ namespace DFM.Repositories.Mappings
 
             mapping.References(a => a.User)
                 .UniqueKey("Account_NameUser")
-                .UniqueKey("Account_UrlUser")
-                .Cascade.None();
+                .UniqueKey("Account_UrlUser");
         }
     }
 }

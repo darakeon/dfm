@@ -8,12 +8,6 @@ namespace DFM.Repositories.Mappings
     {
         public void Override(AutoMapping<Month> mapping)
         {
-            mapping.HasMany(m => m.InList)
-                .Cascade.None();
-
-            mapping.HasMany(m => m.OutList)
-                .Cascade.None();
-
             mapping.Map(m => m.Time)
                 .UniqueKey("Month_TimeYear");
 
