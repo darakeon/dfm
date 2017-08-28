@@ -1,4 +1,4 @@
-﻿Feature: g. Uncheck Move 
+﻿Feature: Cg. Uncheck Move 
 
 Background:
 	Given I have an active user
@@ -7,21 +7,21 @@ Background:
 		And I have a category
 		And I enable move check
 
-Scenario: 01. Mark a checked move as not checked
+Scenario: Cg01. Mark a checked move as not checked
 	Given I have a move with value 10 (Out)
 		And the move is checked
 	When I try to mark it as not checked
 	Then I will receive no core error
 		And the move will not be checked
 
-Scenario: 02. Remark a not checked move as not checked
+Scenario: Cg02. Remark a not checked move as not checked
 	Given I have a move with value 10 (Out)
 		And the move is not checked
 	When I try to mark it as not checked
 	Then I will receive this core error: MoveAlreadyUnchecked
 		And the move will not be checked
 
-Scenario: 03. Mark a move as not checked with disabled config
+Scenario: Cg03. Mark a move as not checked with disabled config
 	Given I have a move with value 10 (Out)
 		And the move is checked
 		And I disable move check

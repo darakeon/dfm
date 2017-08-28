@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Creation of Category")]
-    public partial class F_CreationOfCategoryFeature
+    [NUnit.Framework.DescriptionAttribute("Bf. Creation of Category")]
+    public partial class Bf_CreationOfCategoryFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Creation of Category", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bf. Creation of Category", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Save Category without name (E)")]
-        public virtual void _01_SaveCategoryWithoutNameE()
+        [NUnit.Framework.DescriptionAttribute("Bf01. Save Category without name (E)")]
+        public virtual void Bf01_SaveCategoryWithoutNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Save Category without name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf01. Save Category without name (E)", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Save Category with name that already exists (E)")]
-        public virtual void _02_SaveCategoryWithNameThatAlreadyExistsE()
+        [NUnit.Framework.DescriptionAttribute("Bf02. Save Category with name that already exists (E)")]
+        public virtual void Bf02_SaveCategoryWithNameThatAlreadyExistsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save Category with name that already exists (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf02. Save Category with name that already exists (E)", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -131,10 +131,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Save Category with too big name (E)")]
-        public virtual void _03_SaveCategoryWithTooBigNameE()
+        [NUnit.Framework.DescriptionAttribute("Bf03. Save Category with too big name (E)")]
+        public virtual void Bf03_SaveCategoryWithTooBigNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save Category with too big name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf03. Save Category with too big name (E)", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -157,10 +157,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Save Category with exactly length name (S)")]
-        public virtual void _98_SaveCategoryWithExactlyLengthNameS()
+        [NUnit.Framework.DescriptionAttribute("Bf98. Save Category with exactly length name (S)")]
+        public virtual void Bf98_SaveCategoryWithExactlyLengthNameS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save Category with exactly length name (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf98. Save Category with exactly length name (S)", ((string[])(null)));
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -183,10 +183,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Save Category with info all right (S)")]
-        public virtual void _99_SaveCategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Bf99. Save Category with info all right (S)")]
+        public virtual void Bf99_SaveCategoryWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save Category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf99. Save Category with info all right (S)", ((string[])(null)));
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line 3

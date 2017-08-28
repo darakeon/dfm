@@ -770,7 +770,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Service.Safe.AcceptContract();
 		}
 
-		[Given(@"I create a new contract")]
+		[Given(@"there is a new contract")]
 		public void GivenICreateANewContract()
 		{
 			var contractVersion = TK.New().Substring(0, 12);

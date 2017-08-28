@@ -1,4 +1,4 @@
-﻿Feature: g. Reset password of user
+﻿Feature: Ag. Reset password of user
 
 Background:
 	Given I have this user created
@@ -6,7 +6,7 @@ Background:
 		| passwordreset@dontflymoney.com | password | password        |
 	And I have a token for its password reset
 
-Scenario: 01. Password reset with invalid token (E)
+Scenario: Ag01. Password reset with invalid token (E)
 	Given I pass an invalid token
 	And I pass this password
 		| Password     | Retype Password |
@@ -15,7 +15,7 @@ Scenario: 01. Password reset with invalid token (E)
 	Then I will receive this core error: InvalidToken
 	And the password will not be changed
 
-Scenario: 02. Password reset with token of user verification (E)
+Scenario: Ag02. Password reset with token of user verification (E)
 	Given I have a token for its activation
 	And I pass a valid UserVerification token
 	And I pass this password
@@ -25,14 +25,14 @@ Scenario: 02. Password reset with token of user verification (E)
 	Then I will receive this core error: InvalidToken
 	And the password will not be changed
 
-Scenario: 03. Password reset with no password (E)
+Scenario: Ag03. Password reset with no password (E)
 	Given I pass a valid PasswordReset token
 	And I pass no password
 	When I try to reset the password
 	Then I will receive this core error: UserPasswordRequired
 	And the password will not be changed
 
-Scenario: 99. Password reset with info all right (S)
+Scenario: Ag99. Password reset with info all right (S)
 	Given I pass a valid PasswordReset token
 	And I pass this password
 		| Password     | Retype Password |

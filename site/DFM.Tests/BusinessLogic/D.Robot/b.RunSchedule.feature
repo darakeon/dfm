@@ -1,4 +1,4 @@
-﻿Feature: b. Run the schedules for an user
+﻿Feature: Db. Run the schedules for an user
 
 Background:
 	Given I have an active user
@@ -7,13 +7,13 @@ Background:
 	And I have a category
 	And I run the scheduler to cleanup older tests
 
-Scenario: 01. Run with unlogged user (E)
+Scenario: Db01. Run with unlogged user (E)
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
 	Then I will receive this core error: Unauthorized
 
 
-Scenario: 91. Run with bounded schedule (S)
+Scenario: Db91. Run with bounded schedule (S)
 	Given I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -26,7 +26,7 @@ Scenario: 91. Run with bounded schedule (S)
 	Then I will receive no core error
 	And the accountOut value will change in -10
 
-Scenario: 92. Run with boundless schedule (S)
+Scenario: Db92. Run with boundless schedule (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db92   |      | Out    | 10    |       | True      | Monthly   | False           |
@@ -40,7 +40,7 @@ Scenario: 92. Run with boundless schedule (S)
 	Then I will receive no core error
 	And the accountOut value will change in -40
 
-Scenario: 93. Run schedule that will finish (S)
+Scenario: Db93. Run schedule that will finish (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db93   |      | Out    | 10    | 3     | False     | Daily     | False           |
@@ -54,7 +54,7 @@ Scenario: 93. Run schedule that will finish (S)
 	Then I will receive no core error
 	And the accountOut value will change in -30
 
-Scenario: 94. Run schedule that wont finish (S)
+Scenario: Db94. Run schedule that wont finish (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
@@ -68,7 +68,7 @@ Scenario: 94. Run schedule that wont finish (S)
 	Then I will receive no core error
 	And the accountOut value will change in -60
 
-Scenario: 95. Run with daily schedule (S)
+Scenario: Db95. Run with daily schedule (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db95   |      | Out    | 10    | 10    | False     | Daily     | False           |
@@ -82,7 +82,7 @@ Scenario: 95. Run with daily schedule (S)
 	Then I will receive no core error
 	And the accountOut value will change in -100
 
-Scenario: 96. Run with monthly schedule (S)
+Scenario: Db96. Run with monthly schedule (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db96   |      | Out    | 10    | 6     | False     | Monthly   | False           |
@@ -96,7 +96,7 @@ Scenario: 96. Run with monthly schedule (S)
 	Then I will receive no core error
 	And the accountOut value will change in -60
 
-Scenario: 97. Run with yearly schedule (S)
+Scenario: Db97. Run with yearly schedule (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db97   |      | Out    | 10    | 2     | False     | Monthly   | False           |
@@ -110,7 +110,7 @@ Scenario: 97. Run with yearly schedule (S)
 	Then I will receive no core error
 	And the accountOut value will change in -20
 
-Scenario: 98. Run with details in schedule (S)
+Scenario: Db98. Run with details in schedule (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db98   |      | Out    |       | 5     | False     | Daily     | False           |
@@ -129,7 +129,7 @@ Scenario: 98. Run with details in schedule (S)
 
 
 
-Scenario: 99. Run with e-mail system out (S)
+Scenario: Db99. Run with e-mail system out (S)
 	Given I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db99   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -142,7 +142,7 @@ Scenario: 99. Run with e-mail system out (S)
 	Then I will receive no core error
 	And the accountOut value will change in -10
 
-Scenario: 9A. Run with e-mail system ok (S)
+Scenario: Db9A. Run with e-mail system ok (S)
 	Given I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db9A   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -157,7 +157,7 @@ Scenario: 9A. Run with e-mail system ok (S)
 
 
 
-Scenario: 9B. Run with schedule start in past and end in future (S)
+Scenario: Db9B. Run with schedule start in past and end in future (S)
 	Given I have this schedule to create
 		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db9B   |      | Out    | 10    | 5     | False     | Monthly   | False           |

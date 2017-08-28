@@ -1,9 +1,9 @@
-﻿Feature: a. Creation of Account
+﻿Feature: Ba. Creation of Account
 
 Background:
 	Given I have an active user
 
-Scenario: 01. Save Account without name (E)
+Scenario: Ba01. Save Account without name (E)
 	Given I have this account to create
 		| Name | Url          | Yellow | Red |
 		|      | account_ba01 |        |     |
@@ -11,7 +11,7 @@ Scenario: 01. Save Account without name (E)
 	Then I will receive this core error: AccountNameRequired
 	And the account will not be saved
 
-Scenario: 02. Save Account with red limit bigger than yellow limit (E)
+Scenario: Ba02. Save Account with red limit bigger than yellow limit (E)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba02 | account_ba02 | 100    | 200 |
@@ -19,7 +19,7 @@ Scenario: 02. Save Account with red limit bigger than yellow limit (E)
 	Then I will receive this core error: RedLimitAboveYellowLimit
 	And the account will not be saved
 
-Scenario: 03. Save Account with name that already exists (E)
+Scenario: Ba03. Save Account with name that already exists (E)
 	Given I have this account to create
 		| Name         | Url            | Yellow | Red |
 		| Account Ba03 | account_ba03_2 |        |     |
@@ -30,7 +30,7 @@ Scenario: 03. Save Account with name that already exists (E)
 	Then I will receive this core error: AccountNameAlreadyExists
 	And the account will not be changed
 
-Scenario: 04. Save Account with too big name (E)
+Scenario: Ba04. Save Account with too big name (E)
 	Given I have this account to create
 		| Name                  | Url          | Yellow | Red |
 		| ABCDEFGHIJKLMNOPQRSTU | account_ba04 |        |     |
@@ -39,7 +39,7 @@ Scenario: 04. Save Account with too big name (E)
 	And the account will not be saved
 
 
-Scenario: 11. Save Account without url (E)
+Scenario: Ba11. Save Account without url (E)
 	Given I have this account to create
 		| Name         | Url | Yellow | Red |
 		| Account Ba11 |     |        |     |
@@ -47,7 +47,7 @@ Scenario: 11. Save Account without url (E)
 	Then I will receive this core error: AccountUrlRequired
 	And the account will not be saved
 
-Scenario: 12. Save Account with url with special character (E)
+Scenario: Ba12. Save Account with url with special character (E)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba12 | account/ba12 |        |     |
@@ -55,7 +55,7 @@ Scenario: 12. Save Account with url with special character (E)
 	Then I will receive this core error: AccountUrlInvalid
 	And the account will not be saved
 
-Scenario: 13. Save Account with url with space (E)
+Scenario: Ba13. Save Account with url with space (E)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba13 | account ba13 |        |     |
@@ -63,7 +63,7 @@ Scenario: 13. Save Account with url with space (E)
 	Then I will receive this core error: AccountUrlInvalid
 	And the account will not be saved
 
-Scenario: 14. Save Account with url that already exists (E)
+Scenario: Ba14. Save Account with url that already exists (E)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba14 | account_ba14 |        |     |
@@ -74,7 +74,7 @@ Scenario: 14. Save Account with url that already exists (E)
 	Then I will receive this core error: AccountUrlAlreadyExists
 	And the account will not be changed
 
-Scenario: 15. Save Account with url that already exists with other case (E)
+Scenario: Ba15. Save Account with url that already exists with other case (E)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba15 | account_ba15 |        |     |
@@ -85,7 +85,7 @@ Scenario: 15. Save Account with url that already exists with other case (E)
 	Then I will receive this core error: AccountUrlAlreadyExists
 	And the account will not be changed
 
-Scenario: 16. Save Account with too big name (E)
+Scenario: Ba16. Save Account with too big name (E)
 	Given I have this account to create
 		| Name         | Url                   | Yellow | Red |
 		| Account Ba16 | ABCDEFGHIJKLMNOPQRSTU |        |     |
@@ -94,7 +94,7 @@ Scenario: 16. Save Account with too big name (E)
 	And the account will not be saved
 
 
-Scenario: 91. Save Account with exactly length name (S)
+Scenario: Ba91. Save Account with exactly length name (S)
 	Given I have this account to create
 		| Name                 | Url          | Yellow | Red |
 		| ABCDEFGHIJKLMNOPQRST | account_ba91 |        |     |
@@ -102,7 +102,7 @@ Scenario: 91. Save Account with exactly length name (S)
 	Then I will receive no core error
 	And the account will be saved
 
-Scenario: 92. Save Account with info all right (without limits) (S)
+Scenario: Ba92. Save Account with info all right (without limits) (S)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba92 | account_ba92 |        |     |
@@ -110,7 +110,7 @@ Scenario: 92. Save Account with info all right (without limits) (S)
 	Then I will receive no core error
 	And the account will be saved
 
-Scenario: 93. Save Account with just yellow limit (S)
+Scenario: Ba93. Save Account with just yellow limit (S)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba93 | account_ba93 | 100    |     |
@@ -118,7 +118,7 @@ Scenario: 93. Save Account with just yellow limit (S)
 	Then I will receive no core error
 	And the account will be saved
 
-Scenario: 94. Save Account with just red limit (S)
+Scenario: Ba94. Save Account with just red limit (S)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba94 | account_ba94 |        | 100 |
@@ -126,7 +126,7 @@ Scenario: 94. Save Account with just red limit (S)
 	Then I will receive no core error
 	And the account will be saved
 
-Scenario: 95. Save Account with info all right (with limits) (S)
+Scenario: Ba95. Save Account with info all right (with limits) (S)
 	Given I have this account to create
 		| Name         | Url          | Yellow | Red |
 		| Account Ba95 | account_ba95 | 200    | 100 |
@@ -134,7 +134,7 @@ Scenario: 95. Save Account with info all right (with limits) (S)
 	Then I will receive no core error
 	And the account will be saved
 	
-Scenario: 96. Save Account with exactly length url (S)
+Scenario: Ba96. Save Account with exactly length url (S)
 	Given I have this account to create
 		| Name         | Url                  | Yellow | Red |
 		| Account Ba96 | ABCDEFGHIJKLMNOPQRST |        |     |

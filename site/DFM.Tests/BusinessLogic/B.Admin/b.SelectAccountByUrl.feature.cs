@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("b. Get Account by Url")]
-    public partial class B_GetAccountByUrlFeature
+    [NUnit.Framework.DescriptionAttribute("Bb. Get Account by Url")]
+    public partial class Bb_GetAccountByUrlFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Get Account by Url", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bb. Get Account by Url", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to get Account with wrong Url (E)")]
-        public virtual void _01_TryToGetAccountWithWrongUrlE()
+        [NUnit.Framework.DescriptionAttribute("Bb01. Try to get Account with wrong Url (E)")]
+        public virtual void Bb01_TryToGetAccountWithWrongUrlE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Account with wrong Url (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bb01. Try to get Account with wrong Url (E)", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -95,10 +95,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get the Account by Url (S)")]
-        public virtual void _99_GetTheAccountByUrlS()
+        [NUnit.Framework.DescriptionAttribute("Bb99. Get the Account by Url (S)")]
+        public virtual void Bb99_GetTheAccountByUrlS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Account by Url (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bb99. Get the Account by Url (S)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3

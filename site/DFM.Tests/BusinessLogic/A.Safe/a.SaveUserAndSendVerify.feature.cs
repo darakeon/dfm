@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("a. Creation of User")]
-    public partial class A_CreationOfUserFeature
+    [NUnit.Framework.DescriptionAttribute("Aa. Creation of User")]
+    public partial class Aa_CreationOfUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "a. Creation of User", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Aa. Creation of User", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Save user without e-mail (E)")]
-        public virtual void _01_SaveUserWithoutE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa01. Save user without e-mail (E)")]
+        public virtual void Aa01_SaveUserWithoutE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Save user without e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa01. Save user without e-mail (E)", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -92,10 +92,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Save user without password (E)")]
-        public virtual void _02_SaveUserWithoutPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Aa02. Save user without password (E)")]
+        public virtual void Aa02_SaveUserWithoutPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save user without password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa02. Save user without password (E)", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -120,10 +120,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Save user with invalid e-mail (E)")]
-        public virtual void _03_SaveUserWithInvalidE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa03. Save user with invalid e-mail (E)")]
+        public virtual void Aa03_SaveUserWithInvalidE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save user with invalid e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa03. Save user with invalid e-mail (E)", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -148,10 +148,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Save user with repeated e-mail (E)")]
-        public virtual void _04_SaveUserWithRepeatedE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa04. Save user with repeated e-mail (E)")]
+        public virtual void Aa04_SaveUserWithRepeatedE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Save user with repeated e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa04. Save user with repeated e-mail (E)", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -178,10 +178,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Save user too large e-mail (E)")]
-        public virtual void _05_SaveUserTooLargeE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa05. Save user too large e-mail (E)")]
+        public virtual void Aa05_SaveUserTooLargeE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Save user too large e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa05. Save user too large e-mail (E)", ((string[])(null)));
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -206,10 +206,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Save user wrong retype (E)")]
-        public virtual void _06_SaveUserWrongRetypeE()
+        [NUnit.Framework.DescriptionAttribute("Aa06. Save user wrong retype (E)")]
+        public virtual void Aa06_SaveUserWrongRetypeE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Save user wrong retype (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa06. Save user wrong retype (E)", ((string[])(null)));
 #line 44
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -234,10 +234,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Save user with exactly length e-mail (S)")]
-        public virtual void _98_SaveUserWithExactlyLengthE_MailS()
+        [NUnit.Framework.DescriptionAttribute("Aa98. Save user with exactly length e-mail (S)")]
+        public virtual void Aa98_SaveUserWithExactlyLengthE_MailS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Save user with exactly length e-mail (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa98. Save user with exactly length e-mail (S)", ((string[])(null)));
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -262,10 +262,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Save user with info all right (S)")]
-        public virtual void _99_SaveUserWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Aa99. Save user with info all right (S)")]
+        public virtual void Aa99_SaveUserWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Save user with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa99. Save user with info all right (S)", ((string[])(null)));
 #line 61
 this.ScenarioSetup(scenarioInfo);
 #line hidden

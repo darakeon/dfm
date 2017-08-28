@@ -1,4 +1,4 @@
-﻿Feature: c. Get Move
+﻿Feature: Cc. Get Move
 
 Background:
 	Given I have an active user
@@ -7,13 +7,13 @@ Background:
 	And I have a category
 	And I have a move
 
-Scenario: 01. Try to get Move with wrong ID (E)
+Scenario: Cc01. Try to get Move with wrong ID (E)
 	Given I pass an id of Move that doesn't exist
 	When I try to get the move
 	Then I will receive this core error: InvalidMove
 	And I will receive no move
 
-Scenario: 99. Get the Move by ID (S)
+Scenario: Cc99. Get the Move by ID (S)
 	Given I pass valid Move ID
 	When I try to get the move
 	Then I will receive no core error

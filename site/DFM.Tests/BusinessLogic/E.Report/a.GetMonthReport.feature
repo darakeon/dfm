@@ -1,4 +1,4 @@
-﻿Feature: a. Month report
+﻿Feature: Ea. Month report
 
 Background:
 	Given I have an active user
@@ -18,7 +18,7 @@ Background:
 		| 2012-04-05 |
 		| 2012-04-06 |
 
-Scenario: 01. Get with invalid Account name (E)
+Scenario: Ea01. Get with invalid Account name (E)
 	Given I pass an invalid account url
 	And I pass this date
 		| Month | Year |
@@ -27,7 +27,7 @@ Scenario: 01. Get with invalid Account name (E)
 	Then I will receive this core error: InvalidAccount
 	And I will receive no month report
 
-Scenario: 02. Get with Date Year Zero (E)
+Scenario: Ea02. Get with Date Year Zero (E)
 	Given I pass a valid account url
 	And I pass this date
 		| Month | Year |
@@ -36,7 +36,7 @@ Scenario: 02. Get with Date Year Zero (E)
 	Then I will receive this core error: InvalidYear
 	And I will receive no month report
 
-Scenario: 03. Get with Date Month less than 1 (E)
+Scenario: Ea03. Get with Date Month less than 1 (E)
 	Given I pass a valid account url
 	And I pass this date
 		| Month | Year |
@@ -45,7 +45,7 @@ Scenario: 03. Get with Date Month less than 1 (E)
 	Then I will receive this core error: InvalidMonth
 	And I will receive no month report
 
-Scenario: 04. Get with Date Month more than 12 (E)
+Scenario: Ea04. Get with Date Month more than 12 (E)
 	Given I pass a valid account url
 	And I pass this date
 		| Month | Year |
@@ -56,7 +56,7 @@ Scenario: 04. Get with Date Month more than 12 (E)
 
 
 
-Scenario: 99. Get with info all right (S)
+Scenario: Ea99. Get with info all right (S)
 	Given I pass a valid account url
 	And I pass this date
 		| Month | Year |

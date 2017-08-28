@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Check Move")]
-    public partial class F_CheckMoveFeature
+    [NUnit.Framework.DescriptionAttribute("Cf. Check Move")]
+    public partial class Cf_CheckMoveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Check Move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Cf. Check Move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,10 +80,10 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Mark a not checked move as checked")]
-        public virtual void _01_MarkANotCheckedMoveAsChecked()
+        [NUnit.Framework.DescriptionAttribute("Cf01. Mark a not checked move as checked")]
+        public virtual void Cf01_MarkANotCheckedMoveAsChecked()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Mark a not checked move as checked", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cf01. Mark a not checked move as checked", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -103,10 +103,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Remark a checked move as checked")]
-        public virtual void _02_RemarkACheckedMoveAsChecked()
+        [NUnit.Framework.DescriptionAttribute("Cf02. Remark a checked move as checked")]
+        public virtual void Cf02_RemarkACheckedMoveAsChecked()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Remark a checked move as checked", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cf02. Remark a checked move as checked", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -126,10 +126,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Mark a move as not checked with disabled config")]
-        public virtual void _03_MarkAMoveAsNotCheckedWithDisabledConfig()
+        [NUnit.Framework.DescriptionAttribute("Cf03. Mark a move as not checked with disabled config")]
+        public virtual void Cf03_MarkAMoveAsNotCheckedWithDisabledConfig()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Mark a move as not checked with disabled config", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cf03. Mark a move as not checked with disabled config", ((string[])(null)));
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line 3

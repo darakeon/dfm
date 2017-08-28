@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.D_Robot
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Disable schedule")]
-    public partial class C_DisableScheduleFeature
+    [NUnit.Framework.DescriptionAttribute("Dc. Disable schedule")]
+    public partial class Dc_DisableScheduleFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Disable schedule", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Dc. Disable schedule", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,10 +78,10 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Disable a Schedule that doesn\'t exist (E)")]
-        public virtual void _01_DisableAScheduleThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("Dc01. Disable a Schedule that doesn\'t exist (E)")]
+        public virtual void Dc01_DisableAScheduleThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Disable a Schedule that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc01. Disable a Schedule that doesn\'t exist (E)", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -97,10 +97,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Disable a Schedule already disabled (E)")]
-        public virtual void _02_DisableAScheduleAlreadyDisabledE()
+        [NUnit.Framework.DescriptionAttribute("Dc02. Disable a Schedule already disabled (E)")]
+        public virtual void Dc02_DisableAScheduleAlreadyDisabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Disable a Schedule already disabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc02. Disable a Schedule already disabled (E)", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -147,10 +147,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Disable a Schedule with info all right (S)")]
-        public virtual void _99_DisableAScheduleWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Dc99. Disable a Schedule with info all right (S)")]
+        public virtual void Dc99_DisableAScheduleWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Disable a Schedule with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc99. Disable a Schedule with info all right (S)", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 3

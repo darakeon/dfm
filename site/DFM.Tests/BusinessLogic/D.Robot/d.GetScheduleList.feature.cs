@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.D_Robot
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("d. Get Schedule List")]
-    public partial class D_GetScheduleListFeature
+    [NUnit.Framework.DescriptionAttribute("Dd. Get Schedule List")]
+    public partial class Dd_GetScheduleListFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Get Schedule List", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Dd. Get Schedule List", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,10 +78,10 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get all schedules")]
-        public virtual void _01_GetAllSchedules()
+        [NUnit.Framework.DescriptionAttribute("Dd01. Get all schedules")]
+        public virtual void Dd01_GetAllSchedules()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get all schedules", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dd01. Get all schedules", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -166,10 +166,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Get all schedules after delete one")]
-        public virtual void _02_GetAllSchedulesAfterDeleteOne()
+        [NUnit.Framework.DescriptionAttribute("Dd02. Get all schedules after delete one")]
+        public virtual void Dd02_GetAllSchedulesAfterDeleteOne()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get all schedules after delete one", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dd02. Get all schedules after delete one", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 3

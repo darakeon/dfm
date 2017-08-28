@@ -1,9 +1,9 @@
-﻿Feature: c. Update of Account
+﻿Feature: Bc. Update of Account
 
 Background:
 	Given I have an active user
 
-Scenario: 01. Change the name (S)
+Scenario: Bc01. Change the name (S)
 	Given I have this account
 		| Name         | Url          | Yellow | Red |
 		| Account Ca01 | account_ca01 |        |     |
@@ -14,7 +14,7 @@ Scenario: 01. Change the name (S)
 	Then I will receive no core error
 	And the account will be changed
 	
-Scenario: 02. Change the name when there is moves (S)
+Scenario: Bc02. Change the name when there is moves (S)
 	Given I have this account
 		| Name         | Url          | Yellow | Red |
 		| Account Ca02 | account_ca02 |        |     |
@@ -28,7 +28,7 @@ Scenario: 02. Change the name when there is moves (S)
 	And the account value will not change
 
 
-Scenario: 03. Change the url (S)
+Scenario: Bc03. Change the url (S)
 	Given I have this account
 		| Name         | Url         | Yellow | Red |
 		| Account Ca03 | accountca03 |        |     |

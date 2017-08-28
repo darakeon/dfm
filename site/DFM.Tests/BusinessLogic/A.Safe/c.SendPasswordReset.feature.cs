@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Send a password reset token to user")]
-    public partial class C_SendAPasswordResetTokenToUserFeature
+    [NUnit.Framework.DescriptionAttribute("Ac. Send a password reset token to user")]
+    public partial class Ac_SendAPasswordResetTokenToUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Send a password reset token to user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ac. Send a password reset token to user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,10 +81,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Send with email that doesn\'t exist (E)")]
-        public virtual void _01_SendWithEmailThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("Ac01. Send with email that doesn\'t exist (E)")]
+        public virtual void Ac01_SendWithEmailThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Send with email that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac01. Send with email that doesn\'t exist (E)", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Send with info all right (S)")]
-        public virtual void _99_SendWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ac99. Send with info all right (S)")]
+        public virtual void Ac99_SendWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Send with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac99. Send with info all right (S)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3

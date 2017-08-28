@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("d. Activate the user")]
-    public partial class D_ActivateTheUserFeature
+    [NUnit.Framework.DescriptionAttribute("Ad. Activate the user")]
+    public partial class Ad_ActivateTheUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Activate the user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ad. Activate the user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -83,10 +83,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Activate user with invalid token (E)")]
-        public virtual void _01_ActivateUserWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ad01. Activate user with invalid token (E)")]
+        public virtual void Ad01_ActivateUserWithInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Activate user with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad01. Activate user with invalid token (E)", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -104,10 +104,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Activate user with token of reset password (E)")]
-        public virtual void _02_ActivateUserWithTokenOfResetPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ad02. Activate user with token of reset password (E)")]
+        public virtual void Ad02_ActivateUserWithTokenOfResetPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Activate user with token of reset password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad02. Activate user with token of reset password (E)", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -127,10 +127,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Activate user with info all right (S)")]
-        public virtual void _99_ActivateUserWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ad99. Activate user with info all right (S)")]
+        public virtual void Ad99_ActivateUserWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Activate user with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad99. Activate user with info all right (S)", ((string[])(null)));
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 3

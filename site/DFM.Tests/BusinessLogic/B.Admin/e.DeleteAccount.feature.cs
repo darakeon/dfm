@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("e. Delete Account")]
-    public partial class E_DeleteAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Be. Delete Account")]
+    public partial class Be_DeleteAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "e. Delete Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Be. Delete Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E01. Delete an Account that doesn\'t exist")]
-        public virtual void E01_DeleteAnAccountThatDoesnTExist()
+        [NUnit.Framework.DescriptionAttribute("BeE01. Delete an Account that doesn\'t exist")]
+        public virtual void BeE01_DeleteAnAccountThatDoesnTExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E01. Delete an Account that doesn\'t exist", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE01. Delete an Account that doesn\'t exist", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -93,10 +93,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E02. Delete an Account already deleted")]
-        public virtual void E02_DeleteAnAccountAlreadyDeleted()
+        [NUnit.Framework.DescriptionAttribute("BeE02. Delete an Account already deleted")]
+        public virtual void BeE02_DeleteAnAccountAlreadyDeleted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E02. Delete an Account already deleted", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE02. Delete an Account already deleted", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -114,10 +114,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E03. Delete an Account that has moves")]
-        public virtual void E03_DeleteAnAccountThatHasMoves()
+        [NUnit.Framework.DescriptionAttribute("BeE03. Delete an Account that has moves")]
+        public virtual void BeE03_DeleteAnAccountThatHasMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E03. Delete an Account that has moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE03. Delete an Account that has moves", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -137,10 +137,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S01. Delete an Account that had moves")]
-        public virtual void S01_DeleteAnAccountThatHadMoves()
+        [NUnit.Framework.DescriptionAttribute("BeS01. Delete an Account that had moves")]
+        public virtual void BeS01_DeleteAnAccountThatHadMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S01. Delete an Account that had moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS01. Delete an Account that had moves", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -162,10 +162,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S02. Delete an Account without moves")]
-        public virtual void S02_DeleteAnAccountWithoutMoves()
+        [NUnit.Framework.DescriptionAttribute("BeS02. Delete an Account without moves")]
+        public virtual void BeS02_DeleteAnAccountWithoutMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S02. Delete an Account without moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS02. Delete an Account without moves", ((string[])(null)));
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -183,10 +183,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S03. Delete an Account with schedule")]
-        public virtual void S03_DeleteAnAccountWithSchedule()
+        [NUnit.Framework.DescriptionAttribute("BeS03. Delete an Account with schedule")]
+        public virtual void BeS03_DeleteAnAccountWithSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S03. Delete an Account with schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS03. Delete an Account with schedule", ((string[])(null)));
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line 3

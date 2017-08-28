@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Update of Account")]
-    public partial class C_UpdateOfAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Bc. Update of Account")]
+    public partial class Bc_UpdateOfAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Update of Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bc. Update of Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,10 +72,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Change the name (S)")]
-        public virtual void _01_ChangeTheNameS()
+        [NUnit.Framework.DescriptionAttribute("Bc01. Change the name (S)")]
+        public virtual void Bc01_ChangeTheNameS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Change the name (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc01. Change the name (S)", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -117,10 +117,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Change the name when there is moves (S)")]
-        public virtual void _02_ChangeTheNameWhenThereIsMovesS()
+        [NUnit.Framework.DescriptionAttribute("Bc02. Change the name when there is moves (S)")]
+        public virtual void Bc02_ChangeTheNameWhenThereIsMovesS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Change the name when there is moves (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc02. Change the name when there is moves (S)", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -166,10 +166,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Change the url (S)")]
-        public virtual void _03_ChangeTheUrlS()
+        [NUnit.Framework.DescriptionAttribute("Bc03. Change the url (S)")]
+        public virtual void Bc03_ChangeTheUrlS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Change the url (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc03. Change the url (S)", ((string[])(null)));
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 3

@@ -1,6 +1,6 @@
-﻿Feature: m. Update E-mail
+﻿Feature: Am. Update E-mail
 
-Scenario: 01. E-mail change with wrong current password (E)
+Scenario: Am01. E-mail change with wrong current password (E)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Am01@dontflymoney.com | password |
@@ -13,7 +13,7 @@ Scenario: 01. E-mail change with wrong current password (E)
 	And the e-mail will not be changed
 	And the user will be activated
 
-Scenario: 02. E-mail change with empty new e-mail (E)
+Scenario: Am02. E-mail change with empty new e-mail (E)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Am02@dontflymoney.com | password |
@@ -27,7 +27,7 @@ Scenario: 02. E-mail change with empty new e-mail (E)
 	And the user will be activated
 
 
-Scenario: 99. E-mail change with info all right (S)
+Scenario: Am99. E-mail change with info all right (S)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Am99@dontflymoney.com | password |

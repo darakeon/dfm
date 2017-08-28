@@ -1,9 +1,9 @@
-﻿Feature: l. Get Account List
+﻿Feature: Bl. Get Account List
 
 Background:
 	Given I have an active user
 
-Scenario: 01. Get all active accounts
+Scenario: Bl01. Get all active accounts
 	Given I have this account
 		| Name           | Url            | Yellow | Red |
 		| Account Al01.1 | account_al01_1 |        |     |
@@ -17,7 +17,7 @@ Scenario: 01. Get all active accounts
 		| Account Al01.1 | account_al01_1 |        |     |
 		| Account Al01.2 | account_al01_2 |        |     |
 
-Scenario: 02. Get all active accounts after close one
+Scenario: Bl02. Get all active accounts after close one
 	Given I have this account
 		| Name           | Url            | Yellow | Red |
 		| Account Al02.1 | account_al02_1 |        |     |
@@ -35,7 +35,7 @@ Scenario: 02. Get all active accounts after close one
 		| Name           | Url            |
 		| Account Al02.2 | account_al02_2 |
 
-Scenario: 03. Get all not active accounts after close one
+Scenario: Bl03. Get all not active accounts after close one
 	Given I have this account
 		| Name           | Url            | Yellow | Red |
 		| Account Al03.1 | account_al03_1 |        |     |

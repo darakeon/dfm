@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("o. Accept Contract")]
-    public partial class O_AcceptContractFeature
+    [NUnit.Framework.DescriptionAttribute("Ao. Accept Contract")]
+    public partial class Ao_AcceptContractFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "o. Accept Contract", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ao. Accept Contract", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Accept contract not accepted before")]
-        public virtual void _01_AcceptContractNotAcceptedBefore()
+        [NUnit.Framework.DescriptionAttribute("Ao01. Accept contract not accepted before")]
+        public virtual void Ao01_AcceptContractNotAcceptedBefore()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Accept contract not accepted before", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ao01. Accept contract not accepted before", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 2
@@ -93,10 +93,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Accept contract accepted before")]
-        public virtual void _02_AcceptContractAcceptedBefore()
+        [NUnit.Framework.DescriptionAttribute("Ao02. Accept contract accepted before")]
+        public virtual void Ao02_AcceptContractAcceptedBefore()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Accept contract accepted before", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ao02. Accept contract accepted before", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 2

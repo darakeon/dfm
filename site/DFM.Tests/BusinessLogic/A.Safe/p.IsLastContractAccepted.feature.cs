@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("p. Is last Contract accepted")]
-    public partial class P_IsLastContractAcceptedFeature
+    [NUnit.Framework.DescriptionAttribute("Ap. Is last Contract accepted")]
+    public partial class Ap_IsLastContractAcceptedFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "p. Is last Contract accepted", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ap. Is last Contract accepted", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get accepted contract")]
-        public virtual void _01_GetAcceptedContract()
+        [NUnit.Framework.DescriptionAttribute("Ap01. Get accepted contract")]
+        public virtual void Ap01_GetAcceptedContract()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get accepted contract", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ap01. Get accepted contract", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 2
@@ -95,16 +95,16 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Get not accepted contract")]
-        public virtual void _02_GetNotAcceptedContract()
+        [NUnit.Framework.DescriptionAttribute("Ap02. Get not accepted contract")]
+        public virtual void Ap02_GetNotAcceptedContract()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get not accepted contract", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ap02. Get not accepted contract", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 2
  this.FeatureBackground();
 #line 13
- testRunner.Given("I create a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
  testRunner.When("I try to get the acceptance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15

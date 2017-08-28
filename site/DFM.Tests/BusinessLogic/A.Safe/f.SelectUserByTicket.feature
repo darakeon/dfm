@@ -1,4 +1,4 @@
-﻿Feature: f. Get an user by its ticket
+﻿Feature: Af. Get an user by its ticket
 
 Background:
 	Given I have this user created and activated
@@ -6,19 +6,19 @@ Background:
 		| selectuserbyticket@dontflymoney.com | password | password        |
 	And I have a ticket of this user
 
-Scenario: 01. Select with ticket that doesn't exist (E)
+Scenario: Af01. Select with ticket that doesn't exist (E)
 	Given I pass a ticket that doesn't exist
 	When I try to get the user
 	Then I will receive this core error: Uninvited
 	And I will receive no user
 
-Scenario: 02. Select with ticket that is not active anymore (E)
+Scenario: Af02. Select with ticket that is not active anymore (E)
 	Given I pass a ticket that is already disabled
 	When I try to get the user
 	Then I will receive this core error: Uninvited
 	And I will receive no user
 
-Scenario: 99. Select with info all right (S)
+Scenario: Af99. Select with info all right (S)
 	Given I pass a ticket that exist
 	When I try to get the user
 	Then I will receive no core error

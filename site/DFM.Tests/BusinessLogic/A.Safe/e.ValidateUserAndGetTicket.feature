@@ -1,8 +1,8 @@
-﻿Feature: e. Validate User and get Ticket
+﻿Feature: Ae. Validate User and get Ticket
 
 Background: 
 
-Scenario: 01. Validate without e-mail (E)
+Scenario: Ae01. Validate without e-mail (E)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
 		| Ae01@dontflymoney.com | password | password        |
@@ -13,7 +13,7 @@ Scenario: 01. Validate without e-mail (E)
 	Then I will receive this core error: InvalidUser
 	And I will receive no ticket
 
-Scenario: 02. Validate without password (E)
+Scenario: Ae02. Validate without password (E)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
 		| Ae02@dontflymoney.com | password | password        |
@@ -24,7 +24,7 @@ Scenario: 02. Validate without password (E)
 	Then I will receive this core error: InvalidUser
 	And I will receive no ticket
 
-Scenario: 03. Validate with wrong e-mail (E)
+Scenario: Ae03. Validate with wrong e-mail (E)
 	Given I have this user data
 		| Email                       | Password |
 		| dont_exist@dontflymoney.com | password |
@@ -32,7 +32,7 @@ Scenario: 03. Validate with wrong e-mail (E)
 	Then I will receive this core error: InvalidUser
 	And I will receive no ticket
 
-Scenario: 04. Validate with wrong password (E)
+Scenario: Ae04. Validate with wrong password (E)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
 		| Ae04@dontflymoney.com | password | password        |
@@ -43,7 +43,7 @@ Scenario: 04. Validate with wrong password (E)
 	Then I will receive this core error: InvalidUser
 	And I will receive no ticket
 
-Scenario: 05. Validate user disabled (E)
+Scenario: Ae05. Validate user disabled (E)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
 		| Ae05@dontflymoney.com | password | password        |
@@ -54,7 +54,7 @@ Scenario: 05. Validate user disabled (E)
 	Then I will receive this core error: DisabledUser
 	And I will receive no ticket
 
-Scenario: 06. Disable user by excessive trying (E)
+Scenario: Ae06. Disable user by excessive trying (E)
 	Given I have this user created and activated
 		| Email                 | Password | Retype Password |
 		| Ae06@dontflymoney.com | password | password        |
@@ -65,7 +65,7 @@ Scenario: 06. Disable user by excessive trying (E)
 	Then I will receive this core error: DisabledUser
 	And I will receive no ticket
 
-Scenario: 90. Validate with info all right (S)
+Scenario: Ae90. Validate with info all right (S)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
 		| Ae90@dontflymoney.com | password | password        |
@@ -77,7 +77,7 @@ Scenario: 90. Validate with info all right (S)
 	Then I will receive no core error
 	And I will receive the ticket
 
-Scenario: 91. Enable user let login again (S)
+Scenario: Ae91. Enable user let login again (S)
 	Given I have this user created and activated
 		| Email                 | Password | Retype Password |
 		| Ae91@dontflymoney.com | password | password        |
@@ -93,7 +93,7 @@ Scenario: 91. Enable user let login again (S)
 	Then I will receive no core error
 	And I will receive the ticket
 
-Scenario: 92. Enable user resets the password trial times (S)
+Scenario: Ae92. Enable user resets the password trial times (S)
 	Given I have this user created and activated
 		| Email                 | Password | Retype Password |
 		| Ae92@dontflymoney.com | password | password        |

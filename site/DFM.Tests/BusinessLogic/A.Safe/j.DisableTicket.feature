@@ -1,4 +1,4 @@
-﻿Feature: j. Disable Ticket
+﻿Feature: Aj. Disable Ticket
 
 Background:
 	Given I have this user created and activated
@@ -6,7 +6,7 @@ Background:
 		| disableticket@dontflymoney.com | password | password        |
 	And I have a ticket of this user
 
-Scenario: 99. Select with info all right (S)
+Scenario: Aj99. Select with info all right (S)
 	Given I pass a ticket that exist
 	When I try to disable the ticket
 	Then I will receive no core error

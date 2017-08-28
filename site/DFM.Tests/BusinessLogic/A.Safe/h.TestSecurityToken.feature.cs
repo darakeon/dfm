@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("h. Test security token received by e-mail")]
-    public partial class H_TestSecurityTokenReceivedByE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("Ah. Test security token received by e-mail")]
+    public partial class Ah_TestSecurityTokenReceivedByE_MailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "h. Test security token received by e-mail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ah. Test security token received by e-mail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,10 +81,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Test with invalid token (E)")]
-        public virtual void _01_TestWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ah01. Test with invalid token (E)")]
+        public virtual void Ah01_TestWithInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Test with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah01. Test with invalid token (E)", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Test with token of UV with action PS (E)")]
-        public virtual void _02_TestWithTokenOfUVWithActionPSE()
+        [NUnit.Framework.DescriptionAttribute("Ah02. Test with token of UV with action PS (E)")]
+        public virtual void Ah02_TestWithTokenOfUVWithActionPSE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Test with token of UV with action PS (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah02. Test with token of UV with action PS (E)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -121,10 +121,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Test with token of PS with action UV (E)")]
-        public virtual void _03_TestWithTokenOfPSWithActionUVE()
+        [NUnit.Framework.DescriptionAttribute("Ah03. Test with token of PS with action UV (E)")]
+        public virtual void Ah03_TestWithTokenOfPSWithActionUVE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Test with token of PS with action UV (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah03. Test with token of PS with action UV (E)", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -142,10 +142,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Test with token when I created another one (E)")]
-        public virtual void _04_TestWithTokenWhenICreatedAnotherOneE()
+        [NUnit.Framework.DescriptionAttribute("Ah04. Test with token when I created another one (E)")]
+        public virtual void Ah04_TestWithTokenWhenICreatedAnotherOneE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Test with token when I created another one (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah04. Test with token when I created another one (E)", ((string[])(null)));
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -165,10 +165,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("90. Test with token of UV with action UV (S)")]
-        public virtual void _90_TestWithTokenOfUVWithActionUVS()
+        [NUnit.Framework.DescriptionAttribute("Ah90. Test with token of UV with action UV (S)")]
+        public virtual void Ah90_TestWithTokenOfUVWithActionUVS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("90. Test with token of UV with action UV (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah90. Test with token of UV with action UV (S)", ((string[])(null)));
 #line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -186,10 +186,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Test with token of PS with action PS (S)")]
-        public virtual void _91_TestWithTokenOfPSWithActionPSS()
+        [NUnit.Framework.DescriptionAttribute("Ah91. Test with token of PS with action PS (S)")]
+        public virtual void Ah91_TestWithTokenOfPSWithActionPSS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Test with token of PS with action PS (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah91. Test with token of PS with action PS (S)", ((string[])(null)));
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 3

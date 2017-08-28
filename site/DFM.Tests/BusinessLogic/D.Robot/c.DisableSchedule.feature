@@ -1,4 +1,4 @@
-﻿Feature: c. Disable schedule
+﻿Feature: Dc. Disable schedule
 
 Background:
 	Given I have an active user
@@ -6,12 +6,12 @@ Background:
 	And I have two accounts
 	And I have a category
 
-Scenario: 01. Disable a Schedule that doesn't exist (E)
+Scenario: Dc01. Disable a Schedule that doesn't exist (E)
 	Given I pass an id of Schedule that doesn't exist
 	When I try to disable the Schedule
 	Then I will receive this core error: InvalidSchedule
 
-Scenario: 02. Disable a Schedule already disabled (E)
+Scenario: Dc02. Disable a Schedule already disabled (E)
 	Given I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -24,7 +24,7 @@ Scenario: 02. Disable a Schedule already disabled (E)
 	When I try to disable the Schedule
 	Then I will receive this core error: DisabledSchedule
 
-Scenario: 99. Disable a Schedule with info all right (S)
+Scenario: Dc99. Disable a Schedule with info all right (S)
 	Given I have this schedule to create
 		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |

@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("l. Get Account List")]
-    public partial class L_GetAccountListFeature
+    [NUnit.Framework.DescriptionAttribute("Bl. Get Account List")]
+    public partial class Bl_GetAccountListFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "l. Get Account List", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bl. Get Account List", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,10 +72,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get all active accounts")]
-        public virtual void _01_GetAllActiveAccounts()
+        [NUnit.Framework.DescriptionAttribute("Bl01. Get all active accounts")]
+        public virtual void Bl01_GetAllActiveAccounts()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get all active accounts", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl01. Get all active accounts", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -133,10 +133,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Get all active accounts after close one")]
-        public virtual void _02_GetAllActiveAccountsAfterCloseOne()
+        [NUnit.Framework.DescriptionAttribute("Bl02. Get all active accounts after close one")]
+        public virtual void Bl02_GetAllActiveAccountsAfterCloseOne()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get all active accounts after close one", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl02. Get all active accounts after close one", ((string[])(null)));
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -198,10 +198,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Get all not active accounts after close one")]
-        public virtual void _03_GetAllNotActiveAccountsAfterCloseOne()
+        [NUnit.Framework.DescriptionAttribute("Bl03. Get all not active accounts after close one")]
+        public virtual void Bl03_GetAllNotActiveAccountsAfterCloseOne()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Get all not active accounts after close one", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl03. Get all not active accounts after close one", ((string[])(null)));
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 3

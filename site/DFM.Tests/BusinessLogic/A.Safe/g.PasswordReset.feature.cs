@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("g. Reset password of user")]
-    public partial class G_ResetPasswordOfUserFeature
+    [NUnit.Framework.DescriptionAttribute("Ag. Reset password of user")]
+    public partial class Ag_ResetPasswordOfUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "g. Reset password of user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ag. Reset password of user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -83,10 +83,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Password reset with invalid token (E)")]
-        public virtual void _01_PasswordResetWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ag01. Password reset with invalid token (E)")]
+        public virtual void Ag01_PasswordResetWithInvalidTokenE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Password reset with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag01. Password reset with invalid token (E)", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -113,10 +113,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Password reset with token of user verification (E)")]
-        public virtual void _02_PasswordResetWithTokenOfUserVerificationE()
+        [NUnit.Framework.DescriptionAttribute("Ag02. Password reset with token of user verification (E)")]
+        public virtual void Ag02_PasswordResetWithTokenOfUserVerificationE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password reset with token of user verification (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag02. Password reset with token of user verification (E)", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -145,10 +145,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Password reset with no password (E)")]
-        public virtual void _03_PasswordResetWithNoPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ag03. Password reset with no password (E)")]
+        public virtual void Ag03_PasswordResetWithNoPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Password reset with no password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag03. Password reset with no password (E)", ((string[])(null)));
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -168,10 +168,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Password reset with info all right (S)")]
-        public virtual void _99_PasswordResetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ag99. Password reset with info all right (S)")]
+        public virtual void Ag99_PasswordResetWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Password reset with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag99. Password reset with info all right (S)", ((string[])(null)));
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3

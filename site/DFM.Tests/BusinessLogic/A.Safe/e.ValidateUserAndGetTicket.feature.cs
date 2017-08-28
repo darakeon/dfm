@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("e. Validate User and get Ticket")]
-    public partial class E_ValidateUserAndGetTicketFeature
+    [NUnit.Framework.DescriptionAttribute("Ae. Validate User and get Ticket")]
+    public partial class Ae_ValidateUserAndGetTicketFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "e. Validate User and get Ticket", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ae. Validate User and get Ticket", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,10 +70,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Validate without e-mail (E)")]
-        public virtual void _01_ValidateWithoutE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Ae01. Validate without e-mail (E)")]
+        public virtual void Ae01_ValidateWithoutE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Validate without e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae01. Validate without e-mail (E)", ((string[])(null)));
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -109,10 +109,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Validate without password (E)")]
-        public virtual void _02_ValidateWithoutPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ae02. Validate without password (E)")]
+        public virtual void Ae02_ValidateWithoutPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Validate without password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae02. Validate without password (E)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -148,10 +148,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Validate with wrong e-mail (E)")]
-        public virtual void _03_ValidateWithWrongE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Ae03. Validate with wrong e-mail (E)")]
+        public virtual void Ae03_ValidateWithWrongE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Validate with wrong e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae03. Validate with wrong e-mail (E)", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -176,10 +176,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Validate with wrong password (E)")]
-        public virtual void _04_ValidateWithWrongPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ae04. Validate with wrong password (E)")]
+        public virtual void Ae04_ValidateWithWrongPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Validate with wrong password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae04. Validate with wrong password (E)", ((string[])(null)));
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -215,10 +215,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Validate user disabled (E)")]
-        public virtual void _05_ValidateUserDisabledE()
+        [NUnit.Framework.DescriptionAttribute("Ae05. Validate user disabled (E)")]
+        public virtual void Ae05_ValidateUserDisabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Validate user disabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae05. Validate user disabled (E)", ((string[])(null)));
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -254,10 +254,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Disable user by excessive trying (E)")]
-        public virtual void _06_DisableUserByExcessiveTryingE()
+        [NUnit.Framework.DescriptionAttribute("Ae06. Disable user by excessive trying (E)")]
+        public virtual void Ae06_DisableUserByExcessiveTryingE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Disable user by excessive trying (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae06. Disable user by excessive trying (E)", ((string[])(null)));
 #line 57
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -293,10 +293,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("90. Validate with info all right (S)")]
-        public virtual void _90_ValidateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ae90. Validate with info all right (S)")]
+        public virtual void Ae90_ValidateWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("90. Validate with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae90. Validate with info all right (S)", ((string[])(null)));
 #line 68
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -334,10 +334,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Enable user let login again (S)")]
-        public virtual void _91_EnableUserLetLoginAgainS()
+        [NUnit.Framework.DescriptionAttribute("Ae91. Enable user let login again (S)")]
+        public virtual void Ae91_EnableUserLetLoginAgainS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Enable user let login again (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae91. Enable user let login again (S)", ((string[])(null)));
 #line 80
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -386,10 +386,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("92. Enable user resets the password trial times (S)")]
-        public virtual void _92_EnableUserResetsThePasswordTrialTimesS()
+        [NUnit.Framework.DescriptionAttribute("Ae92. Enable user resets the password trial times (S)")]
+        public virtual void Ae92_EnableUserResetsThePasswordTrialTimesS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Enable user resets the password trial times (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae92. Enable user resets the password trial times (S)", ((string[])(null)));
 #line 96
 this.ScenarioSetup(scenarioInfo);
 #line 3

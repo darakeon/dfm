@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.E_Report
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("b. Year report")]
-    public partial class B_YearReportFeature
+    [NUnit.Framework.DescriptionAttribute("Eb. Year report")]
+    public partial class Eb_YearReportFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.E_Report
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Year report", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Eb. Year report", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -103,10 +103,10 @@ namespace DFM.Tests.BusinessLogic.E_Report
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get with invalid Account name (E)")]
-        public virtual void _01_GetWithInvalidAccountNameE()
+        [NUnit.Framework.DescriptionAttribute("Eb01. Get with invalid Account name (E)")]
+        public virtual void Eb01_GetWithInvalidAccountNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get with invalid Account name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb01. Get with invalid Account name (E)", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -131,10 +131,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Get with Date Year Zero (E)")]
-        public virtual void _02_GetWithDateYearZeroE()
+        [NUnit.Framework.DescriptionAttribute("Eb02. Get with Date Year Zero (E)")]
+        public virtual void Eb02_GetWithDateYearZeroE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get with Date Year Zero (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb02. Get with Date Year Zero (E)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -159,10 +159,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get with info all right (S)")]
-        public virtual void _99_GetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Eb99. Get with info all right (S)")]
+        public virtual void Eb99_GetWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb99. Get with info all right (S)", ((string[])(null)));
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 3

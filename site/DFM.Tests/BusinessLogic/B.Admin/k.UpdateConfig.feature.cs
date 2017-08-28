@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("k. Update Config")]
-    public partial class K_UpdateConfigFeature
+    [NUnit.Framework.DescriptionAttribute("Bk. Update Config")]
+    public partial class Bk_UpdateConfigFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "k. Update Config", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bk. Update Config", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,10 +76,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Disable categories use and save move with category (E)")]
-        public virtual void _01_DisableCategoriesUseAndSaveMoveWithCategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk01. Disable categories use and save move with category (E)")]
+        public virtual void Bk01_DisableCategoriesUseAndSaveMoveWithCategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Disable categories use and save move with category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk01. Disable categories use and save move with category (E)", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -118,10 +118,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Disable categories use and save schedule with category (E)")]
-        public virtual void _02_DisableCategoriesUseAndSaveScheduleWithCategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk02. Disable categories use and save schedule with category (E)")]
+        public virtual void Bk02_DisableCategoriesUseAndSaveScheduleWithCategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Disable categories use and save schedule with category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk02. Disable categories use and save schedule with category (E)", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -168,10 +168,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Disable categories use and create a category (E)")]
-        public virtual void _03_DisableCategoriesUseAndCreateACategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk03. Disable categories use and create a category (E)")]
+        public virtual void Bk03_DisableCategoriesUseAndCreateACategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Disable categories use and create a category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk03. Disable categories use and create a category (E)", ((string[])(null)));
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -196,10 +196,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Disable categories use and select a category (E)")]
-        public virtual void _04_DisableCategoriesUseAndSelectACategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk04. Disable categories use and select a category (E)")]
+        public virtual void Bk04_DisableCategoriesUseAndSelectACategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Disable categories use and select a category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk04. Disable categories use and select a category (E)", ((string[])(null)));
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -219,10 +219,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Disable categories use and disable a category (E)")]
-        public virtual void _05_DisableCategoriesUseAndDisableACategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk05. Disable categories use and disable a category (E)")]
+        public virtual void Bk05_DisableCategoriesUseAndDisableACategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Disable categories use and disable a category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk05. Disable categories use and disable a category (E)", ((string[])(null)));
 #line 50
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -240,10 +240,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Disable categories use and enable a category (E)")]
-        public virtual void _06_DisableCategoriesUseAndEnableACategoryE()
+        [NUnit.Framework.DescriptionAttribute("Bk06. Disable categories use and enable a category (E)")]
+        public virtual void Bk06_DisableCategoriesUseAndEnableACategoryE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Disable categories use and enable a category (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk06. Disable categories use and enable a category (E)", ((string[])(null)));
 #line 56
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -261,10 +261,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("11. Change language to en-US")]
-        public virtual void _11_ChangeLanguageToEn_US()
+        [NUnit.Framework.DescriptionAttribute("Bk11. Change language to en-US")]
+        public virtual void Bk11_ChangeLanguageToEn_US()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Change language to en-US", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk11. Change language to en-US", ((string[])(null)));
 #line 62
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -278,10 +278,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("21. Change timezone to en-US")]
-        public virtual void _21_ChangeTimezoneToEn_US()
+        [NUnit.Framework.DescriptionAttribute("Bk21. Change timezone to en-US")]
+        public virtual void Bk21_ChangeTimezoneToEn_US()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21. Change timezone to en-US", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk21. Change timezone to en-US", ((string[])(null)));
 #line 66
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -295,10 +295,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Disable categories use")]
-        public virtual void _91_DisableCategoriesUse()
+        [NUnit.Framework.DescriptionAttribute("Bk91. Disable categories use")]
+        public virtual void Bk91_DisableCategoriesUse()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Disable categories use", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk91. Disable categories use", ((string[])(null)));
 #line 72
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -314,10 +314,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("92. Enable categories use")]
-        public virtual void _92_EnableCategoriesUse()
+        [NUnit.Framework.DescriptionAttribute("Bk92. Enable categories use")]
+        public virtual void Bk92_EnableCategoriesUse()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Enable categories use", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk92. Enable categories use", ((string[])(null)));
 #line 77
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -333,10 +333,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("93. Disable categories use and save move without category (S)")]
-        public virtual void _93_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
+        [NUnit.Framework.DescriptionAttribute("Bk93. Disable categories use and save move without category (S)")]
+        public virtual void Bk93_DisableCategoriesUseAndSaveMoveWithoutCategoryS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Disable categories use and save move without category (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk93. Disable categories use and save move without category (S)", ((string[])(null)));
 #line 82
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -381,10 +381,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("94. Disable categories use and save schedule without category (S)")]
-        public virtual void _94_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
+        [NUnit.Framework.DescriptionAttribute("Bk94. Disable categories use and save schedule without category (S)")]
+        public virtual void Bk94_DisableCategoriesUseAndSaveScheduleWithoutCategoryS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Disable categories use and save schedule without category (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk94. Disable categories use and save schedule without category (S)", ((string[])(null)));
 #line 98
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -431,10 +431,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("95. Change language to pt-BR")]
-        public virtual void _95_ChangeLanguageToPt_BR()
+        [NUnit.Framework.DescriptionAttribute("Bk95. Change language to pt-BR")]
+        public virtual void Bk95_ChangeLanguageToPt_BR()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Change language to pt-BR", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk95. Change language to pt-BR", ((string[])(null)));
 #line 111
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -457,10 +457,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("96. Change language to en-US")]
-        public virtual void _96_ChangeLanguageToEn_US()
+        [NUnit.Framework.DescriptionAttribute("Bk96. Change language to en-US")]
+        public virtual void Bk96_ChangeLanguageToEn_US()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Change language to en-US", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk96. Change language to en-US", ((string[])(null)));
 #line 118
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -483,10 +483,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("97. Change timezone")]
-        public virtual void _97_ChangeTimezone()
+        [NUnit.Framework.DescriptionAttribute("Bk97. Change timezone")]
+        public virtual void Bk97_ChangeTimezone()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Change timezone", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk97. Change timezone", ((string[])(null)));
 #line 125
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -500,10 +500,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Disable move send e-mail")]
-        public virtual void _98_DisableMoveSendE_Mail()
+        [NUnit.Framework.DescriptionAttribute("Bk98. Disable move send e-mail")]
+        public virtual void Bk98_DisableMoveSendE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Disable move send e-mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk98. Disable move send e-mail", ((string[])(null)));
 #line 129
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -519,10 +519,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Enable move send e-mail")]
-        public virtual void _99_EnableMoveSendE_Mail()
+        [NUnit.Framework.DescriptionAttribute("Bk99. Enable move send e-mail")]
+        public virtual void Bk99_EnableMoveSendE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Enable move send e-mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk99. Enable move send e-mail", ((string[])(null)));
 #line 134
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -538,10 +538,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9A. Disable move check")]
-        public virtual void _9A_DisableMoveCheck()
+        [NUnit.Framework.DescriptionAttribute("Bk9A. Disable move check")]
+        public virtual void Bk9A_DisableMoveCheck()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Disable move check", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk9A. Disable move check", ((string[])(null)));
 #line 139
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -557,10 +557,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9B. Enable move check")]
-        public virtual void _9B_EnableMoveCheck()
+        [NUnit.Framework.DescriptionAttribute("Bk9B. Enable move check")]
+        public virtual void Bk9B_EnableMoveCheck()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Enable move check", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk9B. Enable move check", ((string[])(null)));
 #line 144
 this.ScenarioSetup(scenarioInfo);
 #line 3

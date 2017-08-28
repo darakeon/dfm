@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("c. Get Move")]
-    public partial class C_GetMoveFeature
+    [NUnit.Framework.DescriptionAttribute("Cc. Get Move")]
+    public partial class Cc_GetMoveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "c. Get Move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Cc. Get Move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,10 +80,10 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to get Move with wrong ID (E)")]
-        public virtual void _01_TryToGetMoveWithWrongIDE()
+        [NUnit.Framework.DescriptionAttribute("Cc01. Try to get Move with wrong ID (E)")]
+        public virtual void Cc01_TryToGetMoveWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Move with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cc01. Try to get Move with wrong ID (E)", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -101,10 +101,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get the Move by ID (S)")]
-        public virtual void _99_GetTheMoveByIDS()
+        [NUnit.Framework.DescriptionAttribute("Cc99. Get the Move by ID (S)")]
+        public virtual void Cc99_GetTheMoveByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Move by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cc99. Get the Move by ID (S)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3

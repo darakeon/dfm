@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("a. Creation of Account")]
-    public partial class A_CreationOfAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Ba. Creation of Account")]
+    public partial class Ba_CreationOfAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "a. Creation of Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ba. Creation of Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,10 +72,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Save Account without name (E)")]
-        public virtual void _01_SaveAccountWithoutNameE()
+        [NUnit.Framework.DescriptionAttribute("Ba01. Save Account without name (E)")]
+        public virtual void Ba01_SaveAccountWithoutNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Save Account without name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba01. Save Account without name (E)", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -104,10 +104,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Save Account with red limit bigger than yellow limit (E)")]
-        public virtual void _02_SaveAccountWithRedLimitBiggerThanYellowLimitE()
+        [NUnit.Framework.DescriptionAttribute("Ba02. Save Account with red limit bigger than yellow limit (E)")]
+        public virtual void Ba02_SaveAccountWithRedLimitBiggerThanYellowLimitE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Save Account with red limit bigger than yellow limit (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba02. Save Account with red limit bigger than yellow limit (E)", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -136,10 +136,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Save Account with name that already exists (E)")]
-        public virtual void _03_SaveAccountWithNameThatAlreadyExistsE()
+        [NUnit.Framework.DescriptionAttribute("Ba03. Save Account with name that already exists (E)")]
+        public virtual void Ba03_SaveAccountWithNameThatAlreadyExistsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Save Account with name that already exists (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba03. Save Account with name that already exists (E)", ((string[])(null)));
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -181,10 +181,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Save Account with too big name (E)")]
-        public virtual void _04_SaveAccountWithTooBigNameE()
+        [NUnit.Framework.DescriptionAttribute("Ba04. Save Account with too big name (E)")]
+        public virtual void Ba04_SaveAccountWithTooBigNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Save Account with too big name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba04. Save Account with too big name (E)", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -213,10 +213,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("11. Save Account without url (E)")]
-        public virtual void _11_SaveAccountWithoutUrlE()
+        [NUnit.Framework.DescriptionAttribute("Ba11. Save Account without url (E)")]
+        public virtual void Ba11_SaveAccountWithoutUrlE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Save Account without url (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba11. Save Account without url (E)", ((string[])(null)));
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -245,10 +245,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("12. Save Account with url with special character (E)")]
-        public virtual void _12_SaveAccountWithUrlWithSpecialCharacterE()
+        [NUnit.Framework.DescriptionAttribute("Ba12. Save Account with url with special character (E)")]
+        public virtual void Ba12_SaveAccountWithUrlWithSpecialCharacterE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Save Account with url with special character (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba12. Save Account with url with special character (E)", ((string[])(null)));
 #line 50
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -277,10 +277,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("13. Save Account with url with space (E)")]
-        public virtual void _13_SaveAccountWithUrlWithSpaceE()
+        [NUnit.Framework.DescriptionAttribute("Ba13. Save Account with url with space (E)")]
+        public virtual void Ba13_SaveAccountWithUrlWithSpaceE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Save Account with url with space (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba13. Save Account with url with space (E)", ((string[])(null)));
 #line 58
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -309,10 +309,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("14. Save Account with url that already exists (E)")]
-        public virtual void _14_SaveAccountWithUrlThatAlreadyExistsE()
+        [NUnit.Framework.DescriptionAttribute("Ba14. Save Account with url that already exists (E)")]
+        public virtual void Ba14_SaveAccountWithUrlThatAlreadyExistsE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Save Account with url that already exists (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba14. Save Account with url that already exists (E)", ((string[])(null)));
 #line 66
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -354,10 +354,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("15. Save Account with url that already exists with other case (E)")]
-        public virtual void _15_SaveAccountWithUrlThatAlreadyExistsWithOtherCaseE()
+        [NUnit.Framework.DescriptionAttribute("Ba15. Save Account with url that already exists with other case (E)")]
+        public virtual void Ba15_SaveAccountWithUrlThatAlreadyExistsWithOtherCaseE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15. Save Account with url that already exists with other case (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba15. Save Account with url that already exists with other case (E)", ((string[])(null)));
 #line 77
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -399,10 +399,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("16. Save Account with too big name (E)")]
-        public virtual void _16_SaveAccountWithTooBigNameE()
+        [NUnit.Framework.DescriptionAttribute("Ba16. Save Account with too big name (E)")]
+        public virtual void Ba16_SaveAccountWithTooBigNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("16. Save Account with too big name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba16. Save Account with too big name (E)", ((string[])(null)));
 #line 88
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -431,10 +431,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Save Account with exactly length name (S)")]
-        public virtual void _91_SaveAccountWithExactlyLengthNameS()
+        [NUnit.Framework.DescriptionAttribute("Ba91. Save Account with exactly length name (S)")]
+        public virtual void Ba91_SaveAccountWithExactlyLengthNameS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Save Account with exactly length name (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba91. Save Account with exactly length name (S)", ((string[])(null)));
 #line 97
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -463,10 +463,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("92. Save Account with info all right (without limits) (S)")]
-        public virtual void _92_SaveAccountWithInfoAllRightWithoutLimitsS()
+        [NUnit.Framework.DescriptionAttribute("Ba92. Save Account with info all right (without limits) (S)")]
+        public virtual void Ba92_SaveAccountWithInfoAllRightWithoutLimitsS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Save Account with info all right (without limits) (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba92. Save Account with info all right (without limits) (S)", ((string[])(null)));
 #line 105
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -495,10 +495,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("93. Save Account with just yellow limit (S)")]
-        public virtual void _93_SaveAccountWithJustYellowLimitS()
+        [NUnit.Framework.DescriptionAttribute("Ba93. Save Account with just yellow limit (S)")]
+        public virtual void Ba93_SaveAccountWithJustYellowLimitS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Save Account with just yellow limit (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba93. Save Account with just yellow limit (S)", ((string[])(null)));
 #line 113
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -527,10 +527,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("94. Save Account with just red limit (S)")]
-        public virtual void _94_SaveAccountWithJustRedLimitS()
+        [NUnit.Framework.DescriptionAttribute("Ba94. Save Account with just red limit (S)")]
+        public virtual void Ba94_SaveAccountWithJustRedLimitS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Save Account with just red limit (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba94. Save Account with just red limit (S)", ((string[])(null)));
 #line 121
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -559,10 +559,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("95. Save Account with info all right (with limits) (S)")]
-        public virtual void _95_SaveAccountWithInfoAllRightWithLimitsS()
+        [NUnit.Framework.DescriptionAttribute("Ba95. Save Account with info all right (with limits) (S)")]
+        public virtual void Ba95_SaveAccountWithInfoAllRightWithLimitsS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Save Account with info all right (with limits) (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba95. Save Account with info all right (with limits) (S)", ((string[])(null)));
 #line 129
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -591,10 +591,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("96. Save Account with exactly length url (S)")]
-        public virtual void _96_SaveAccountWithExactlyLengthUrlS()
+        [NUnit.Framework.DescriptionAttribute("Ba96. Save Account with exactly length url (S)")]
+        public virtual void Ba96_SaveAccountWithExactlyLengthUrlS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Save Account with exactly length url (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba96. Save Account with exactly length url (S)", ((string[])(null)));
 #line 137
 this.ScenarioSetup(scenarioInfo);
 #line 3

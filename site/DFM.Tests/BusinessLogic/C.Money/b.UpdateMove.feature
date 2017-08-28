@@ -1,4 +1,4 @@
-﻿Feature: b. Update move
+﻿Feature: Cb. Update move
 
 Background:
 	Given I have an active user
@@ -6,7 +6,7 @@ Background:
 	And I have two accounts
 	And I have a category
 
-Scenario: 01. Update the move date in 1 day
+Scenario: Cb01. Update the move date in 1 day
 	Given I have a move with value 10 (Out)
 	When I change the move date in -1 day
 	And I update the move
@@ -15,7 +15,7 @@ Scenario: 01. Update the move date in 1 day
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 02. Update the move date in 1 month
+Scenario: Cb02. Update the move date in 1 month
 	Given I have a move with value 10 (Out)
 	When I change the move date in -1 month
 	And I update the move
@@ -25,7 +25,7 @@ Scenario: 02. Update the move date in 1 month
 	And the old-month-category-accountOut value will change in -10
 	And the year-category-accountOut value will not change
 
-Scenario: 03. Update the move date in 1 year
+Scenario: Cb03. Update the move date in 1 year
 	Given I have a move with value 10 (Out)
 	When I change the move date in -1 year
 	And I update the move
@@ -37,7 +37,7 @@ Scenario: 03. Update the move date in 1 year
 	And the old-year-category-accountOut value will change in -10
 
 
-Scenario: 04. Update the move Category
+Scenario: Cb04. Update the move Category
 	Given I have a move with value 10 (Out)
 	When I change the category of the move
 	And I update the move
@@ -51,7 +51,7 @@ Scenario: 04. Update the move Category
 	And the old-year-category-accountOut value will change in -10
 
 
-Scenario: 05. Update the move Account Out
+Scenario: Cb05. Update the move Account Out
 	Given I have a move with value 10 (Out)
 	When I change the account out of the move
 	And I update the move
@@ -64,7 +64,7 @@ Scenario: 05. Update the move Account Out
 	And the old-year-category-accountOut value will change in -10
 
 
-Scenario: 06. Update the move Account In
+Scenario: Cb06. Update the move Account In
 	Given I have a move with value 10 (In)
 	When I change the account in of the move
 	And I update the move
@@ -77,7 +77,7 @@ Scenario: 06. Update the move Account In
 	And the old-year-category-accountIn value will change in -10
 
 
-Scenario: 07. Update the move Account Transfer (Out)
+Scenario: Cb07. Update the move Account Transfer (Out)
 	Given I have a move with value 10 (Transfer)
 	When I change the account out of the move
 	And I update the move
@@ -90,7 +90,7 @@ Scenario: 07. Update the move Account Transfer (Out)
 	And the old-year-category-accountOut value will change in -10
 
 
-Scenario: 08. Update the move Account Transfer (In)
+Scenario: Cb08. Update the move Account Transfer (In)
 	Given I have a move with value 10 (Transfer)
 	When I change the account in of the move
 	And I update the move
@@ -103,7 +103,7 @@ Scenario: 08. Update the move Account Transfer (In)
 	And the old-year-category-accountIn value will change in -10
 
 
-Scenario: 09. Update the move Account Transfer (Both)
+Scenario: Cb09. Update the move Account Transfer (Both)
 	Given I have a move with value 10 (Transfer)
 	When I change the account out of the move
 	And I change the account in of the move
@@ -123,7 +123,7 @@ Scenario: 09. Update the move Account Transfer (Both)
 	And the old-year-category-accountIn value will change in -10
 
 
-Scenario: 10. Update the move Out to In
+Scenario: Cb10. Update the move Out to In
 	Given I have a move with value 10 (Out)
 	When I change the move out to in
 	And I update the move
@@ -136,7 +136,7 @@ Scenario: 10. Update the move Out to In
 	And the new-year-category-accountIn value will change in 10
 
 
-Scenario: 11. Update the move In to Out
+Scenario: Cb11. Update the move In to Out
 	Given I have a move with value 10 (In)
 	When I change the move in to out
 	And I update the move
@@ -149,7 +149,7 @@ Scenario: 11. Update the move In to Out
 	And the new-year-category-accountOut value will change in 10
 
 
-Scenario: 12. Update the move value
+Scenario: Cb12. Update the move value
 	Given I have a move with value 10 (Out)
 	When I change the move value to 20
 	And I update the move
@@ -160,7 +160,7 @@ Scenario: 12. Update the move value
 
 
 
-Scenario: 13. Add details to the move
+Scenario: Cb13. Add details to the move
 	Given I have a move with these details (Out)
 		| Description | Amount | Value |
 		| Move Cb13a  | 1      | 10    |
@@ -175,7 +175,7 @@ Scenario: 13. Add details to the move
 
 
 
-Scenario: 14. Change the details of the move - remove and add
+Scenario: Cb14. Change the details of the move - remove and add
 	Given I have a move with these details (Out)
 		| Description | Amount | Value |
 		| Move Cb14a  | 1      | 10    |
@@ -189,7 +189,7 @@ Scenario: 14. Change the details of the move - remove and add
 	And the old-month-category-accountOut value will change in 30
 	And the old-year-category-accountOut value will change in 30
 
-Scenario: 15. Change the details of the move - remove one
+Scenario: Cb15. Change the details of the move - remove one
 	Given I have a move with these details (Out)
 		| Description | Amount | Value |
 		| Move Cb15a  | 1      | 10    |

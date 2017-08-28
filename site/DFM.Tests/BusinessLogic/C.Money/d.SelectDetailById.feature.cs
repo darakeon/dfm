@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("d. Get Detail")]
-    public partial class D_GetDetailFeature
+    [NUnit.Framework.DescriptionAttribute("Cd. Get Detail")]
+    public partial class Cd_GetDetailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Get Detail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Cd. Get Detail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,10 +80,10 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to get Detail with wrong ID (E)")]
-        public virtual void _01_TryToGetDetailWithWrongIDE()
+        [NUnit.Framework.DescriptionAttribute("Cd01. Try to get Detail with wrong ID (E)")]
+        public virtual void Cd01_TryToGetDetailWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to get Detail with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd01. Try to get Detail with wrong ID (E)", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -101,10 +101,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get the Detail by ID (S)")]
-        public virtual void _99_GetTheDetailByIDS()
+        [NUnit.Framework.DescriptionAttribute("Cd99. Get the Detail by ID (S)")]
+        public virtual void Cd99_GetTheDetailByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get the Detail by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd99. Get the Detail by ID (S)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3

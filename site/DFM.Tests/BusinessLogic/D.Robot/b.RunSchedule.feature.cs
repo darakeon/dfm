@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.D_Robot
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("b. Run the schedules for an user")]
-    public partial class B_RunTheSchedulesForAnUserFeature
+    [NUnit.Framework.DescriptionAttribute("Db. Run the schedules for an user")]
+    public partial class Db_RunTheSchedulesForAnUserFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Run the schedules for an user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Db. Run the schedules for an user", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,10 +80,10 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Run with unlogged user (E)")]
-        public virtual void _01_RunWithUnloggedUserE()
+        [NUnit.Framework.DescriptionAttribute("Db01. Run with unlogged user (E)")]
+        public virtual void Db01_RunWithUnloggedUserE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Run with unlogged user (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db01. Run with unlogged user (E)", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -99,10 +99,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("91. Run with bounded schedule (S)")]
-        public virtual void _91_RunWithBoundedScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db91. Run with bounded schedule (S)")]
+        public virtual void Db91_RunWithBoundedScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("91. Run with bounded schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db91. Run with bounded schedule (S)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -149,10 +149,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("92. Run with boundless schedule (S)")]
-        public virtual void _92_RunWithBoundlessScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db92. Run with boundless schedule (S)")]
+        public virtual void Db92_RunWithBoundlessScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("92. Run with boundless schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db92. Run with boundless schedule (S)", ((string[])(null)));
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -201,10 +201,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("93. Run schedule that will finish (S)")]
-        public virtual void _93_RunScheduleThatWillFinishS()
+        [NUnit.Framework.DescriptionAttribute("Db93. Run schedule that will finish (S)")]
+        public virtual void Db93_RunScheduleThatWillFinishS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("93. Run schedule that will finish (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db93. Run schedule that will finish (S)", ((string[])(null)));
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -253,10 +253,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("94. Run schedule that wont finish (S)")]
-        public virtual void _94_RunScheduleThatWontFinishS()
+        [NUnit.Framework.DescriptionAttribute("Db94. Run schedule that wont finish (S)")]
+        public virtual void Db94_RunScheduleThatWontFinishS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("94. Run schedule that wont finish (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db94. Run schedule that wont finish (S)", ((string[])(null)));
 #line 57
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -305,10 +305,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("95. Run with daily schedule (S)")]
-        public virtual void _95_RunWithDailyScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db95. Run with daily schedule (S)")]
+        public virtual void Db95_RunWithDailyScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95. Run with daily schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db95. Run with daily schedule (S)", ((string[])(null)));
 #line 71
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -357,10 +357,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("96. Run with monthly schedule (S)")]
-        public virtual void _96_RunWithMonthlyScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db96. Run with monthly schedule (S)")]
+        public virtual void Db96_RunWithMonthlyScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("96. Run with monthly schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db96. Run with monthly schedule (S)", ((string[])(null)));
 #line 85
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -409,10 +409,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("97. Run with yearly schedule (S)")]
-        public virtual void _97_RunWithYearlyScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db97. Run with yearly schedule (S)")]
+        public virtual void Db97_RunWithYearlyScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Run with yearly schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db97. Run with yearly schedule (S)", ((string[])(null)));
 #line 99
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -461,10 +461,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Run with details in schedule (S)")]
-        public virtual void _98_RunWithDetailsInScheduleS()
+        [NUnit.Framework.DescriptionAttribute("Db98. Run with details in schedule (S)")]
+        public virtual void Db98_RunWithDetailsInScheduleS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Run with details in schedule (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db98. Run with details in schedule (S)", ((string[])(null)));
 #line 113
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -526,10 +526,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Run with e-mail system out (S)")]
-        public virtual void _99_RunWithE_MailSystemOutS()
+        [NUnit.Framework.DescriptionAttribute("Db99. Run with e-mail system out (S)")]
+        public virtual void Db99_RunWithE_MailSystemOutS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Run with e-mail system out (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db99. Run with e-mail system out (S)", ((string[])(null)));
 #line 132
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -576,10 +576,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9A. Run with e-mail system ok (S)")]
-        public virtual void _9A_RunWithE_MailSystemOkS()
+        [NUnit.Framework.DescriptionAttribute("Db9A. Run with e-mail system ok (S)")]
+        public virtual void Db9A_RunWithE_MailSystemOkS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Run with e-mail system ok (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db9A. Run with e-mail system ok (S)", ((string[])(null)));
 #line 145
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -626,10 +626,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9B. Run with schedule start in past and end in future (S)")]
-        public virtual void _9B_RunWithScheduleStartInPastAndEndInFutureS()
+        [NUnit.Framework.DescriptionAttribute("Db9B. Run with schedule start in past and end in future (S)")]
+        public virtual void Db9B_RunWithScheduleStartInPastAndEndInFutureS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Run with schedule start in past and end in future (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Db9B. Run with schedule start in past and end in future (S)", ((string[])(null)));
 #line 160
 this.ScenarioSetup(scenarioInfo);
 #line 3

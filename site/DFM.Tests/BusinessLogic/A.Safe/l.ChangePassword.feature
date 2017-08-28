@@ -1,6 +1,6 @@
-﻿Feature: l. Change password
+﻿Feature: Al. Change password
 
-Scenario: 01. Password change with wrong current password (E)
+Scenario: Al01. Password change with wrong current password (E)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Al01@dontflymoney.com | password |
@@ -13,7 +13,7 @@ Scenario: 01. Password change with wrong current password (E)
 	And the password will not be changed
 	And the ticket will still be valid
 
-Scenario: 02. Password change with empty new password (E)
+Scenario: Al02. Password change with empty new password (E)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Al02@dontflymoney.com | password |
@@ -26,7 +26,7 @@ Scenario: 02. Password change with empty new password (E)
 	And the password will not be changed
 	And the ticket will still be valid
 
-Scenario: 03. Password change with different retype password (E)
+Scenario: Al03. Password change with different retype password (E)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Al03@dontflymoney.com | password |
@@ -40,7 +40,7 @@ Scenario: 03. Password change with different retype password (E)
 	And the ticket will still be valid
 
 
-Scenario: 99. Password change with info all right (S)
+Scenario: Al99. Password change with info all right (S)
 	Given I have this user created and activated
 		| Email                 | Password |
 		| Al99@dontflymoney.com | password |

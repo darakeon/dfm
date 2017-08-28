@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("b. Update move")]
-    public partial class B_UpdateMoveFeature
+    [NUnit.Framework.DescriptionAttribute("Cb. Update move")]
+    public partial class Cb_UpdateMoveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "b. Update move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Cb. Update move", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,10 +78,10 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Update the move date in 1 day")]
-        public virtual void _01_UpdateTheMoveDateIn1Day()
+        [NUnit.Framework.DescriptionAttribute("Cb01. Update the move date in 1 day")]
+        public virtual void Cb01_UpdateTheMoveDateIn1Day()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Update the move date in 1 day", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb01. Update the move date in 1 day", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -105,10 +105,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Update the move date in 1 month")]
-        public virtual void _02_UpdateTheMoveDateIn1Month()
+        [NUnit.Framework.DescriptionAttribute("Cb02. Update the move date in 1 month")]
+        public virtual void Cb02_UpdateTheMoveDateIn1Month()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Update the move date in 1 month", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb02. Update the move date in 1 month", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -134,10 +134,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Update the move date in 1 year")]
-        public virtual void _03_UpdateTheMoveDateIn1Year()
+        [NUnit.Framework.DescriptionAttribute("Cb03. Update the move date in 1 year")]
+        public virtual void Cb03_UpdateTheMoveDateIn1Year()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Update the move date in 1 year", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb03. Update the move date in 1 year", ((string[])(null)));
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -165,10 +165,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Update the move Category")]
-        public virtual void _04_UpdateTheMoveCategory()
+        [NUnit.Framework.DescriptionAttribute("Cb04. Update the move Category")]
+        public virtual void Cb04_UpdateTheMoveCategory()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Update the move Category", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb04. Update the move Category", ((string[])(null)));
 #line 40
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -200,10 +200,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05. Update the move Account Out")]
-        public virtual void _05_UpdateTheMoveAccountOut()
+        [NUnit.Framework.DescriptionAttribute("Cb05. Update the move Account Out")]
+        public virtual void Cb05_UpdateTheMoveAccountOut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05. Update the move Account Out", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb05. Update the move Account Out", ((string[])(null)));
 #line 54
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -233,10 +233,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06. Update the move Account In")]
-        public virtual void _06_UpdateTheMoveAccountIn()
+        [NUnit.Framework.DescriptionAttribute("Cb06. Update the move Account In")]
+        public virtual void Cb06_UpdateTheMoveAccountIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06. Update the move Account In", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb06. Update the move Account In", ((string[])(null)));
 #line 67
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -266,10 +266,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("07. Update the move Account Transfer (Out)")]
-        public virtual void _07_UpdateTheMoveAccountTransferOut()
+        [NUnit.Framework.DescriptionAttribute("Cb07. Update the move Account Transfer (Out)")]
+        public virtual void Cb07_UpdateTheMoveAccountTransferOut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07. Update the move Account Transfer (Out)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb07. Update the move Account Transfer (Out)", ((string[])(null)));
 #line 80
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -299,10 +299,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("08. Update the move Account Transfer (In)")]
-        public virtual void _08_UpdateTheMoveAccountTransferIn()
+        [NUnit.Framework.DescriptionAttribute("Cb08. Update the move Account Transfer (In)")]
+        public virtual void Cb08_UpdateTheMoveAccountTransferIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08. Update the move Account Transfer (In)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb08. Update the move Account Transfer (In)", ((string[])(null)));
 #line 93
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -332,10 +332,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("09. Update the move Account Transfer (Both)")]
-        public virtual void _09_UpdateTheMoveAccountTransferBoth()
+        [NUnit.Framework.DescriptionAttribute("Cb09. Update the move Account Transfer (Both)")]
+        public virtual void Cb09_UpdateTheMoveAccountTransferBoth()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09. Update the move Account Transfer (Both)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb09. Update the move Account Transfer (Both)", ((string[])(null)));
 #line 106
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -379,10 +379,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("10. Update the move Out to In")]
-        public virtual void _10_UpdateTheMoveOutToIn()
+        [NUnit.Framework.DescriptionAttribute("Cb10. Update the move Out to In")]
+        public virtual void Cb10_UpdateTheMoveOutToIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10. Update the move Out to In", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb10. Update the move Out to In", ((string[])(null)));
 #line 126
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -412,10 +412,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("11. Update the move In to Out")]
-        public virtual void _11_UpdateTheMoveInToOut()
+        [NUnit.Framework.DescriptionAttribute("Cb11. Update the move In to Out")]
+        public virtual void Cb11_UpdateTheMoveInToOut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11. Update the move In to Out", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb11. Update the move In to Out", ((string[])(null)));
 #line 139
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -445,10 +445,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("12. Update the move value")]
-        public virtual void _12_UpdateTheMoveValue()
+        [NUnit.Framework.DescriptionAttribute("Cb12. Update the move value")]
+        public virtual void Cb12_UpdateTheMoveValue()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12. Update the move value", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb12. Update the move value", ((string[])(null)));
 #line 152
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -472,10 +472,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("13. Add details to the move")]
-        public virtual void _13_AddDetailsToTheMove()
+        [NUnit.Framework.DescriptionAttribute("Cb13. Add details to the move")]
+        public virtual void Cb13_AddDetailsToTheMove()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13. Add details to the move", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb13. Add details to the move", ((string[])(null)));
 #line 163
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -517,10 +517,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("14. Change the details of the move - remove and add")]
-        public virtual void _14_ChangeTheDetailsOfTheMove_RemoveAndAdd()
+        [NUnit.Framework.DescriptionAttribute("Cb14. Change the details of the move - remove and add")]
+        public virtual void Cb14_ChangeTheDetailsOfTheMove_RemoveAndAdd()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14. Change the details of the move - remove and add", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb14. Change the details of the move - remove and add", ((string[])(null)));
 #line 178
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -564,10 +564,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("15. Change the details of the move - remove one")]
-        public virtual void _15_ChangeTheDetailsOfTheMove_RemoveOne()
+        [NUnit.Framework.DescriptionAttribute("Cb15. Change the details of the move - remove one")]
+        public virtual void Cb15_ChangeTheDetailsOfTheMove_RemoveOne()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15. Change the details of the move - remove one", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb15. Change the details of the move - remove one", ((string[])(null)));
 #line 192
 this.ScenarioSetup(scenarioInfo);
 #line 3

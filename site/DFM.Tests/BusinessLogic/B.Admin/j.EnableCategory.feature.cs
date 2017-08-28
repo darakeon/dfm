@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("j. Enable Category")]
-    public partial class J_EnableCategoryFeature
+    [NUnit.Framework.DescriptionAttribute("Bj. Enable Category")]
+    public partial class Bj_EnableCategoryFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "j. Enable Category", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bj. Enable Category", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,10 +76,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Enable a Category that doesn\'t exist (E)")]
-        public virtual void _01_EnableACategoryThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("Bj01. Enable a Category that doesn\'t exist (E)")]
+        public virtual void Bj01_EnableACategoryThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Enable a Category that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj01. Enable a Category that doesn\'t exist (E)", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -95,10 +95,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Enable a Category already enabled (E)")]
-        public virtual void _02_EnableACategoryAlreadyEnabledE()
+        [NUnit.Framework.DescriptionAttribute("Bj02. Enable a Category already enabled (E)")]
+        public virtual void Bj02_EnableACategoryAlreadyEnabledE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Enable a Category already enabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj02. Enable a Category already enabled (E)", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -116,10 +116,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Enable a Category with info all right (S)")]
-        public virtual void _99_EnableACategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Bj99. Enable a Category with info all right (S)")]
+        public virtual void Bj99_EnableACategoryWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Enable a Category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj99. Enable a Category with info all right (S)", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3

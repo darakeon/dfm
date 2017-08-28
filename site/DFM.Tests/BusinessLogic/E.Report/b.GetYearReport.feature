@@ -1,4 +1,4 @@
-﻿Feature: b. Year report
+﻿Feature: Eb. Year report
 
 Background:
 	Given I have an active user
@@ -18,7 +18,7 @@ Background:
 		| 2012-04-05 |
 		| 2012-04-06 |
 
-Scenario: 01. Get with invalid Account name (E)
+Scenario: Eb01. Get with invalid Account name (E)
 	Given I pass an invalid account url
 	And I pass this date
 		| Year |
@@ -27,7 +27,7 @@ Scenario: 01. Get with invalid Account name (E)
 	Then I will receive this core error: InvalidAccount
 	And I will receive no year report
 
-Scenario: 02. Get with Date Year Zero (E)
+Scenario: Eb02. Get with Date Year Zero (E)
 	Given I pass a valid account url
 	And I pass this date
 		| Year |
@@ -38,7 +38,7 @@ Scenario: 02. Get with Date Year Zero (E)
 
 
 
-Scenario: 99. Get with info all right (S)
+Scenario: Eb99. Get with info all right (S)
 	Given I pass a valid account url
 	And I pass this date
 		| Year |

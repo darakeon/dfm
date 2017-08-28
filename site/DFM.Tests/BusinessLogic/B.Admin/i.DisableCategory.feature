@@ -1,22 +1,22 @@
-﻿Feature: i. Disable of Category
+﻿Feature: Bi. Disable of Category
 
 Background:
 	Given I have an active user
 	And I enable Categories use
 	And I have a category
 
-Scenario: 01. Disable a Category that doesn't exist (E)
+Scenario: Bi01. Disable a Category that doesn't exist (E)
 	Given I pass a name of category that doesn't exist
 	When I try to disable the category
 	Then I will receive this core error: InvalidCategory
 
-Scenario: 02. Disable a Category already disabled (E)
+Scenario: Bi02. Disable a Category already disabled (E)
 	Given I give the enabled category Bi02
 	And I already have disabled the category
 	When I try to disable the category
 	Then I will receive this core error: DisabledCategory
 
-Scenario: 99. Disable a Category with info all right (S)
+Scenario: Bi99. Disable a Category with info all right (S)
 	Given I give the enabled category Bi99
 	When I try to disable the category
 	Then I will receive no core error

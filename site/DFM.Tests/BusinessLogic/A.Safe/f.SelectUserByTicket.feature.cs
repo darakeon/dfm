@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("f. Get an user by its ticket")]
-    public partial class F_GetAnUserByItsTicketFeature
+    [NUnit.Framework.DescriptionAttribute("Af. Get an user by its ticket")]
+    public partial class Af_GetAnUserByItsTicketFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "f. Get an user by its ticket", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Af. Get an user by its ticket", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -83,10 +83,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Select with ticket that doesn\'t exist (E)")]
-        public virtual void _01_SelectWithTicketThatDoesnTExistE()
+        [NUnit.Framework.DescriptionAttribute("Af01. Select with ticket that doesn\'t exist (E)")]
+        public virtual void Af01_SelectWithTicketThatDoesnTExistE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Select with ticket that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Af01. Select with ticket that doesn\'t exist (E)", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -104,10 +104,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Select with ticket that is not active anymore (E)")]
-        public virtual void _02_SelectWithTicketThatIsNotActiveAnymoreE()
+        [NUnit.Framework.DescriptionAttribute("Af02. Select with ticket that is not active anymore (E)")]
+        public virtual void Af02_SelectWithTicketThatIsNotActiveAnymoreE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Select with ticket that is not active anymore (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Af02. Select with ticket that is not active anymore (E)", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -125,10 +125,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Select with info all right (S)")]
-        public virtual void _99_SelectWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Af99. Select with info all right (S)")]
+        public virtual void Af99_SelectWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Select with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Af99. Select with info all right (S)", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3

@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("d. Close Account")]
-    public partial class D_CloseAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Bd. Close Account")]
+    public partial class Bd_CloseAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "d. Close Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Bd. Close Account", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,10 +74,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E01. Close an Account that doesn\'t exist")]
-        public virtual void E01_CloseAnAccountThatDoesnTExist()
+        [NUnit.Framework.DescriptionAttribute("BdE01. Close an Account that doesn\'t exist")]
+        public virtual void BdE01_CloseAnAccountThatDoesnTExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E01. Close an Account that doesn\'t exist", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdE01. Close an Account that doesn\'t exist", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -93,10 +93,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E02. Close an Account already closed")]
-        public virtual void E02_CloseAnAccountAlreadyClosed()
+        [NUnit.Framework.DescriptionAttribute("BdE02. Close an Account already closed")]
+        public virtual void BdE02_CloseAnAccountAlreadyClosed()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E02. Close an Account already closed", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdE02. Close an Account already closed", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -116,10 +116,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E03. Close an Account that has no moves")]
-        public virtual void E03_CloseAnAccountThatHasNoMoves()
+        [NUnit.Framework.DescriptionAttribute("BdE03. Close an Account that has no moves")]
+        public virtual void BdE03_CloseAnAccountThatHasNoMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E03. Close an Account that has no moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdE03. Close an Account that has no moves", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -137,10 +137,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S01. Close an Account with info all right")]
-        public virtual void S01_CloseAnAccountWithInfoAllRight()
+        [NUnit.Framework.DescriptionAttribute("BdS01. Close an Account with info all right")]
+        public virtual void BdS01_CloseAnAccountWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S01. Close an Account with info all right", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdS01. Close an Account with info all right", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -160,10 +160,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S02. Close an Account with schedule")]
-        public virtual void S02_CloseAnAccountWithSchedule()
+        [NUnit.Framework.DescriptionAttribute("BdS02. Close an Account with schedule")]
+        public virtual void BdS02_CloseAnAccountWithSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S02. Close an Account with schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdS02. Close an Account with schedule", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -187,10 +187,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("S03. Close an Account with disabled schedule")]
-        public virtual void S03_CloseAnAccountWithDisabledSchedule()
+        [NUnit.Framework.DescriptionAttribute("BdS03. Close an Account with disabled schedule")]
+        public virtual void BdS03_CloseAnAccountWithDisabledSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("S03. Close an Account with disabled schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BdS03. Close an Account with disabled schedule", ((string[])(null)));
 #line 42
 this.ScenarioSetup(scenarioInfo);
 #line 3

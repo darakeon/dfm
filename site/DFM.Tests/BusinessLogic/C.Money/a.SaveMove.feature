@@ -1,4 +1,4 @@
-﻿Feature: a. Creation of Move
+﻿Feature: Ca. Creation of Move
 
 Background:
 	Given I have an active user
@@ -6,7 +6,7 @@ Background:
 	And I have two accounts
 	And I have a category
 
-Scenario: 01. Save without Description (E)
+Scenario: Ca01. Save without Description (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		|             | 2012-03-31 | Out    | 10    |
@@ -21,7 +21,7 @@ Scenario: 01. Save without Description (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 02. Save without Date (E)
+Scenario: Ca02. Save without Date (E)
 	Given I have this move to create
 		| Description | Date | Nature | Value |
 		| Move Ca02   |      | Out    | 10    |
@@ -36,7 +36,7 @@ Scenario: 02. Save without Date (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 03. Save with future Date (E)
+Scenario: Ca03. Save with future Date (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca03   | 2099-03-31 | Out    | 10    |
@@ -51,7 +51,7 @@ Scenario: 03. Save with future Date (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 04. Save without Category (E)
+Scenario: Ca04. Save without Category (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca04   | 2012-03-31 | Out    | 10    |
@@ -66,7 +66,7 @@ Scenario: 04. Save without Category (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 05. Save with unknown Category (E)
+Scenario: Ca05. Save with unknown Category (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca05   | 2012-03-31 | Out    | 10    |
@@ -81,7 +81,7 @@ Scenario: 05. Save with unknown Category (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 06. Save with Description too large (E)
+Scenario: Ca06. Save with Description too large (E)
 	Given I have this move to create
 		| Description                                         | Date       | Nature | Value |
 		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    |
@@ -98,7 +98,7 @@ Scenario: 06. Save with Description too large (E)
 
 
 
-Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca11   | 2012-03-31 | Out    | 10    |
@@ -110,7 +110,7 @@ Scenario: 11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
 	Then I will receive this core error: OutMoveWrong
 	And the move will not be saved
 
-Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Ca12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca12   | 2012-03-31 | Out    | 10    |
@@ -128,7 +128,7 @@ Scenario: 12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Ca13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca13   | 2012-03-31 | Out    | 10    |
@@ -143,7 +143,7 @@ Scenario: 13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
+Scenario: Ca14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca14   | 2012-03-31 | Out    | 10    |
@@ -157,7 +157,7 @@ Scenario: 14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
 
 
 
-Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca21   | 2012-03-31 | In     | 10    |
@@ -169,7 +169,7 @@ Scenario: 21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
 	Then I will receive this core error: InMoveWrong
 	And the move will not be saved
 
-Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Ca22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca22   | 2012-03-31 | In     | 10    |
@@ -187,7 +187,7 @@ Scenario: 22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Ca23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca23   | 2012-03-31 | In     | 10    |
@@ -202,7 +202,7 @@ Scenario: 23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
+Scenario: Ca24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca24   | 2012-03-31 | In     | 10    |
@@ -216,7 +216,7 @@ Scenario: 24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
 
 
 
-Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca31   | 2012-03-31 | Transfer | 10    |
@@ -228,7 +228,7 @@ Scenario: 31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
 	Then I will receive this core error: TransferMoveWrong
 	And the move will not be saved
 
-Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Ca32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca32   | 2012-03-31 | Transfer | 10    |
@@ -243,7 +243,7 @@ Scenario: 32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Ca33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca33   | 2012-03-31 | Transfer | 10    |
@@ -258,7 +258,7 @@ Scenario: 33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
+Scenario: Ca34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca34   | 2012-03-31 | Transfer | 10    |
@@ -273,7 +273,7 @@ Scenario: 34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) 
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
+Scenario: Ca35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca35   | 2012-03-31 | Transfer | 10    |
@@ -288,7 +288,7 @@ Scenario: 35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) 
 	And the month-category-accountIn value will not change
 	And the year-category-accountIn value will not change
 
-Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
+Scenario: Ca36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca36   | 2012-03-31 | Transfer | 10    |
@@ -308,7 +308,7 @@ Scenario: 36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to 
 
 
 
-Scenario: 41. Save without Value or Details (E)
+Scenario: Ca41. Save without Value or Details (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca41   | 2012-03-31 | Out    |       |
@@ -323,7 +323,7 @@ Scenario: 41. Save without Value or Details (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 42. Save with Value zero and no Details (E)
+Scenario: Ca42. Save with Value zero and no Details (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca42   | 2012-03-31 | Out    | 0     |
@@ -338,7 +338,7 @@ Scenario: 42. Save with Value zero and no Details (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 43. Save without value and without Description in Detail (E)
+Scenario: Ca43. Save without value and without Description in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca43   | 2012-03-31 | Out    |       |
@@ -356,7 +356,7 @@ Scenario: 43. Save without value and without Description in Detail (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 44. Save without value and with Amount zero in Detail (E)
+Scenario: Ca44. Save without value and with Amount zero in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca44   | 2012-03-31 | Out    |       |
@@ -374,7 +374,7 @@ Scenario: 44. Save without value and with Amount zero in Detail (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 45. Save without value and with Value zero in Detail (E)
+Scenario: Ca45. Save without value and with Value zero in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca45   | 2012-03-31 | Out    |       |
@@ -392,7 +392,7 @@ Scenario: 45. Save without value and with Value zero in Detail (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 46. Save with Description too large in Detail (E)
+Scenario: Ca46. Save with Description too large in Detail (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca46   | 2012-03-31 | Out    |       |
@@ -411,7 +411,7 @@ Scenario: 46. Save with Description too large in Detail (E)
 
 
 
-Scenario: 51. Save with disabled Category (E)
+Scenario: Ca51. Save with disabled Category (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca51   | 2012-03-31 | Out    | 10    |
@@ -426,7 +426,7 @@ Scenario: 51. Save with disabled Category (E)
 	And the month-category-accountOut value will not change
 	And the year-category-accountOut value will not change
 
-Scenario: 52. Save with closed AccountOut (E)
+Scenario: Ca52. Save with closed AccountOut (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca52   | 2012-03-31 | Out    | 10    |
@@ -438,7 +438,7 @@ Scenario: 52. Save with closed AccountOut (E)
 	Then I will receive this core error: ClosedAccount
 	And the move will not be saved
 
-Scenario: 53. Save with closed AccountOut (E)
+Scenario: Ca53. Save with closed AccountOut (E)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca53   | 2012-03-31 | In     | 10    |
@@ -452,7 +452,7 @@ Scenario: 53. Save with closed AccountOut (E)
 
 
 
-Scenario: 91. Save with info all right (Out) (S)
+Scenario: Ca91. Save with info all right (Out) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca91   | 2012-03-31 | Out    | 10    |
@@ -467,7 +467,7 @@ Scenario: 91. Save with info all right (Out) (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 	
-Scenario: 92. Save with info all right (In) (S)
+Scenario: Ca92. Save with info all right (In) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca92   | 2012-03-31 | In     | 10    |
@@ -482,7 +482,7 @@ Scenario: 92. Save with info all right (In) (S)
 	And the month-category-accountIn value will change in 10
 	And the year-category-accountIn value will change in 10
 	
-Scenario: 93. Save with info all right (Transfer) (S)
+Scenario: Ca93. Save with info all right (Transfer) (S)
 	Given I have this move to create
 		| Description | Date       | Nature   | Value |
 		| Move Ca93   | 2012-03-31 | Transfer | 10    |
@@ -500,7 +500,7 @@ Scenario: 93. Save with info all right (Transfer) (S)
 	And the month-category-accountIn value will change in 10
 	And the year-category-accountIn value will change in 10
 
-Scenario: 94. Save with info all right (value) (S)
+Scenario: Ca94. Save with info all right (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca94   | 2012-03-31 | Out    | 10    |
@@ -515,7 +515,7 @@ Scenario: 94. Save with info all right (value) (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 95. Save with info all right (details) (S)
+Scenario: Ca95. Save with info all right (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca95   | 2012-03-31 | Out    |       |
@@ -533,7 +533,7 @@ Scenario: 95. Save with info all right (details) (S)
 	And the month-category-accountOut value will change in 20
 	And the year-category-accountOut value will change in 20
 
-Scenario: 96. Save negative (value) (S)
+Scenario: Ca96. Save negative (value) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca96   | 2012-03-31 | Out    | -10   |
@@ -548,7 +548,7 @@ Scenario: 96. Save negative (value) (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 97. Save negative (details) (S)
+Scenario: Ca97. Save negative (details) (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca97   | 2012-03-31 | Out    |       |
@@ -566,7 +566,7 @@ Scenario: 97. Save negative (details) (S)
 	And the month-category-accountOut value will change in 20
 	And the year-category-accountOut value will change in 20
 
-Scenario: 98. Save with exactly length in Description of Detail (S)
+Scenario: Ca98. Save with exactly length in Description of Detail (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca98   | 2012-03-31 | Out    |       |
@@ -583,7 +583,7 @@ Scenario: 98. Save with exactly length in Description of Detail (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 99. Save with exactly length in Description (S)
+Scenario: Ca99. Save with exactly length in Description (S)
 	Given I have this move to create
 		| Description                                        | Date       | Nature | Value |
 		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2012-03-31 | Out    | 10    |
@@ -598,7 +598,7 @@ Scenario: 99. Save with exactly length in Description (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 9A. Save with details with same description (S)
+Scenario: Ca9A. Save with details with same description (S)
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca9A   | 2012-03-31 | Out    |       |
@@ -615,7 +615,7 @@ Scenario: 9A. Save with details with same description (S)
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 
-Scenario: 9B. Save with e-mail sender system out
+Scenario: Ca9B. Save with e-mail sender system out
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca9B   | 2014-03-22 | Out    | 10    |
@@ -631,7 +631,7 @@ Scenario: 9B. Save with e-mail sender system out
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 	
-Scenario: 9C. Save with e-mail sender system ok
+Scenario: Ca9C. Save with e-mail sender system ok
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca9C   | 2014-03-22 | Out    | 10    |
@@ -647,7 +647,7 @@ Scenario: 9C. Save with e-mail sender system ok
 	And the month-category-accountOut value will change in 10
 	And the year-category-accountOut value will change in 10
 	
-Scenario: 9D. Save with e-mail sender system ok and without category
+Scenario: Ca9D. Save with e-mail sender system ok and without category
 	Given I disable Categories use
 	And I have this move to create
 		| Description | Date       | Nature | Value |
@@ -666,7 +666,7 @@ Scenario: 9D. Save with e-mail sender system ok and without category
 
 
 
-Scenario: 9E. Save with decimals
+Scenario: Ca9E. Save with decimals
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca9E   | 2014-12-30 | Out    | 9.45  |
@@ -681,7 +681,7 @@ Scenario: 9E. Save with decimals
 	And the month-category-accountOut value will change in 9.45
 	And the year-category-accountOut value will change in 9.45
 
-Scenario: 9F. Save with decimals in details
+Scenario: Ca9F. Save with decimals in details
 	Given I have this move to create
 		| Description | Date       | Nature | Value |
 		| Move Ca9F   | 2014-12-30 | Out    |       |

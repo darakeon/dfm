@@ -1,4 +1,4 @@
-﻿Feature: d. Get Schedule List
+﻿Feature: Dd. Get Schedule List
 
 Background:
 	Given I have an active user
@@ -6,7 +6,7 @@ Background:
 	And I have two accounts
 	And I have a category
 
-Scenario: 01. Get all schedules
+Scenario: Dd01. Get all schedules
 	Given I have this schedule to create
 		| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Schedule Dd01.1 | 2017-02-23 | Out    | 10    | 1     | False     | Monthly   | False           |
@@ -30,7 +30,7 @@ Scenario: 01. Get all schedules
 		| Schedule Dd01.1 |
 		| Schedule Dd01.2 |
 
-Scenario: 02. Get all schedules after delete one
+Scenario: Dd02. Get all schedules after delete one
 	Given I have this schedule to create
 		| Description     | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 		| Schedule Dd02.1 | 2017-02-23 | Out    | 10    | 1     | False     | Monthly   | False           |

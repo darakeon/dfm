@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("m. Update E-mail")]
-    public partial class M_UpdateE_MailFeature
+    [NUnit.Framework.DescriptionAttribute("Am. Update E-mail")]
+    public partial class Am_UpdateE_MailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "m. Update E-mail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Am. Update E-mail", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. E-mail change with wrong current password (E)")]
-        public virtual void _01_E_MailChangeWithWrongCurrentPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Am01. E-mail change with wrong current password (E)")]
+        public virtual void Am01_E_MailChangeWithWrongCurrentPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. E-mail change with wrong current password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am01. E-mail change with wrong current password (E)", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -103,10 +103,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. E-mail change with empty new e-mail (E)")]
-        public virtual void _02_E_MailChangeWithEmptyNewE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Am02. E-mail change with empty new e-mail (E)")]
+        public virtual void Am02_E_MailChangeWithEmptyNewE_MailE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. E-mail change with empty new e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am02. E-mail change with empty new e-mail (E)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -142,10 +142,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. E-mail change with info all right (S)")]
-        public virtual void _99_E_MailChangeWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Am99. E-mail change with info all right (S)")]
+        public virtual void Am99_E_MailChangeWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. E-mail change with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am99. E-mail change with info all right (S)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line hidden

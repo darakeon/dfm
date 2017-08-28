@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.E_Report
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("a. Month report")]
-    public partial class A_MonthReportFeature
+    [NUnit.Framework.DescriptionAttribute("Ea. Month report")]
+    public partial class Ea_MonthReportFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.E_Report
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "a. Month report", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ea. Month report", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -103,10 +103,10 @@ namespace DFM.Tests.BusinessLogic.E_Report
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Get with invalid Account name (E)")]
-        public virtual void _01_GetWithInvalidAccountNameE()
+        [NUnit.Framework.DescriptionAttribute("Ea01. Get with invalid Account name (E)")]
+        public virtual void Ea01_GetWithInvalidAccountNameE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Get with invalid Account name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea01. Get with invalid Account name (E)", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -133,10 +133,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Get with Date Year Zero (E)")]
-        public virtual void _02_GetWithDateYearZeroE()
+        [NUnit.Framework.DescriptionAttribute("Ea02. Get with Date Year Zero (E)")]
+        public virtual void Ea02_GetWithDateYearZeroE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Get with Date Year Zero (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea02. Get with Date Year Zero (E)", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -163,10 +163,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Get with Date Month less than 1 (E)")]
-        public virtual void _03_GetWithDateMonthLessThan1E()
+        [NUnit.Framework.DescriptionAttribute("Ea03. Get with Date Month less than 1 (E)")]
+        public virtual void Ea03_GetWithDateMonthLessThan1E()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Get with Date Month less than 1 (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea03. Get with Date Month less than 1 (E)", ((string[])(null)));
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -193,10 +193,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04. Get with Date Month more than 12 (E)")]
-        public virtual void _04_GetWithDateMonthMoreThan12E()
+        [NUnit.Framework.DescriptionAttribute("Ea04. Get with Date Month more than 12 (E)")]
+        public virtual void Ea04_GetWithDateMonthMoreThan12E()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04. Get with Date Month more than 12 (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea04. Get with Date Month more than 12 (E)", ((string[])(null)));
 #line 48
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -223,10 +223,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Get with info all right (S)")]
-        public virtual void _99_GetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ea99. Get with info all right (S)")]
+        public virtual void Ea99_GetWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Get with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea99. Get with info all right (S)", ((string[])(null)));
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 3

@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.C_Money
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("e. Delete of Moves")]
-    public partial class E_DeleteOfMovesFeature
+    [NUnit.Framework.DescriptionAttribute("Ce. Delete of Moves")]
+    public partial class Ce_DeleteOfMovesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "e. Delete of Moves", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ce. Delete of Moves", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,10 +78,10 @@ namespace DFM.Tests.BusinessLogic.C_Money
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Try to delete Move with wrong ID (E)")]
-        public virtual void _01_TryToDeleteMoveWithWrongIDE()
+        [NUnit.Framework.DescriptionAttribute("Ce01. Try to delete Move with wrong ID (E)")]
+        public virtual void Ce01_TryToDeleteMoveWithWrongIDE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Try to delete Move with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce01. Try to delete Move with wrong ID (E)", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -101,10 +101,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("97. Delete the Move Out by ID (S)")]
-        public virtual void _97_DeleteTheMoveOutByIDS()
+        [NUnit.Framework.DescriptionAttribute("Ce97. Delete the Move Out by ID (S)")]
+        public virtual void Ce97_DeleteTheMoveOutByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("97. Delete the Move Out by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce97. Delete the Move Out by ID (S)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -126,10 +126,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Delete the Move In by ID (S)")]
-        public virtual void _98_DeleteTheMoveInByIDS()
+        [NUnit.Framework.DescriptionAttribute("Ce98. Delete the Move In by ID (S)")]
+        public virtual void Ce98_DeleteTheMoveInByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Delete the Move In by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce98. Delete the Move In by ID (S)", ((string[])(null)));
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -151,10 +151,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Delete the Move Transfer by ID (S)")]
-        public virtual void _99_DeleteTheMoveTransferByIDS()
+        [NUnit.Framework.DescriptionAttribute("Ce99. Delete the Move Transfer by ID (S)")]
+        public virtual void Ce99_DeleteTheMoveTransferByIDS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Delete the Move Transfer by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce99. Delete the Move Transfer by ID (S)", ((string[])(null)));
 #line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -178,10 +178,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9A. Delete with e-mail sender system out")]
-        public virtual void _9A_DeleteWithE_MailSenderSystemOut()
+        [NUnit.Framework.DescriptionAttribute("Ce9A. Delete with e-mail sender system out")]
+        public virtual void Ce9A_DeleteWithE_MailSenderSystemOut()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Delete with e-mail sender system out", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce9A. Delete with e-mail sender system out", ((string[])(null)));
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -207,10 +207,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9B. Delete with e-mail sender system ok")]
-        public virtual void _9B_DeleteWithE_MailSenderSystemOk()
+        [NUnit.Framework.DescriptionAttribute("Ce9B. Delete with e-mail sender system ok")]
+        public virtual void Ce9B_DeleteWithE_MailSenderSystemOk()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Delete with e-mail sender system ok", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce9B. Delete with e-mail sender system ok", ((string[])(null)));
 #line 51
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -236,10 +236,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9C. Delete move from schedule with Category")]
-        public virtual void _9C_DeleteMoveFromScheduleWithCategory()
+        [NUnit.Framework.DescriptionAttribute("Ce9C. Delete move from schedule with Category")]
+        public virtual void Ce9C_DeleteMoveFromScheduleWithCategory()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9C. Delete move from schedule with Category", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce9C. Delete move from schedule with Category", ((string[])(null)));
 #line 61
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -292,10 +292,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9D. Delete move from schedule without Category")]
-        public virtual void _9D_DeleteMoveFromScheduleWithoutCategory()
+        [NUnit.Framework.DescriptionAttribute("Ce9D. Delete move from schedule without Category")]
+        public virtual void Ce9D_DeleteMoveFromScheduleWithoutCategory()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9D. Delete move from schedule without Category", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce9D. Delete move from schedule without Category", ((string[])(null)));
 #line 77
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -348,10 +348,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("9E. Delete all moves from schedule")]
-        public virtual void _9E_DeleteAllMovesFromSchedule()
+        [NUnit.Framework.DescriptionAttribute("Ce9E. Delete all moves from schedule")]
+        public virtual void Ce9E_DeleteAllMovesFromSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9E. Delete all moves from schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce9E. Delete all moves from schedule", ((string[])(null)));
 #line 93
 this.ScenarioSetup(scenarioInfo);
 #line 3

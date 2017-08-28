@@ -18,8 +18,8 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("l. Change password")]
-    public partial class L_ChangePasswordFeature
+    [NUnit.Framework.DescriptionAttribute("Al. Change password")]
+    public partial class Al_ChangePasswordFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "l. Change password", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Al. Change password", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Password change with wrong current password (E)")]
-        public virtual void _01_PasswordChangeWithWrongCurrentPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Al01. Password change with wrong current password (E)")]
+        public virtual void Al01_PasswordChangeWithWrongCurrentPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Password change with wrong current password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Al01. Password change with wrong current password (E)", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -105,10 +105,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Password change with empty new password (E)")]
-        public virtual void _02_PasswordChangeWithEmptyNewPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Al02. Password change with empty new password (E)")]
+        public virtual void Al02_PasswordChangeWithEmptyNewPasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Password change with empty new password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Al02. Password change with empty new password (E)", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -146,10 +146,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Password change with different retype password (E)")]
-        public virtual void _03_PasswordChangeWithDifferentRetypePasswordE()
+        [NUnit.Framework.DescriptionAttribute("Al03. Password change with different retype password (E)")]
+        public virtual void Al03_PasswordChangeWithDifferentRetypePasswordE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Password change with different retype password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Al03. Password change with different retype password (E)", ((string[])(null)));
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -187,10 +187,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Password change with info all right (S)")]
-        public virtual void _99_PasswordChangeWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Al99. Password change with info all right (S)")]
+        public virtual void Al99_PasswordChangeWithInfoAllRightS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Password change with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Al99. Password change with info all right (S)", ((string[])(null)));
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line hidden
