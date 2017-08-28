@@ -1957,6 +1957,8 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9D. Save with e-mail sender system ok and without category", ((string[])(null)));
 #line 650
 this.ScenarioSetup(scenarioInfo);
+#line 651
+ testRunner.Given("I disable Categories use");
 #line hidden
             TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
                         "Description",
@@ -1968,29 +1970,29 @@ this.ScenarioSetup(scenarioInfo);
                         "2014-03-23",
                         "Out",
                         "10"});
-#line 651
- testRunner.Given("I have this move to create", ((string)(null)), table50);
-#line 654
- testRunner.And("it has no Details");
+#line 652
+ testRunner.And("I have this move to create", ((string)(null)), table50);
 #line 655
- testRunner.And("it has no Category");
+ testRunner.And("it has no Details");
 #line 656
- testRunner.And("it has an Account Out");
+ testRunner.And("it has no Category");
 #line 657
- testRunner.And("it has no Account In");
+ testRunner.And("it has an Account Out");
 #line 658
- testRunner.When("I try to save the move with e-mail system ok and categories use disabled");
+ testRunner.And("it has no Account In");
 #line 659
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to save the move with e-mail system ok");
 #line 660
- testRunner.And("I will receive no notification");
+ testRunner.Then("I will receive no core error");
 #line 661
- testRunner.And("the move will be saved");
+ testRunner.And("I will receive no notification");
 #line 662
- testRunner.And("the accountOut value will change in -10");
+ testRunner.And("the move will be saved");
 #line 663
- testRunner.And("the month-category-accountOut value will change in 10");
+ testRunner.And("the accountOut value will change in -10");
 #line 664
+ testRunner.And("the month-category-accountOut value will change in 10");
+#line 665
  testRunner.And("the year-category-accountOut value will change in 10");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -2001,7 +2003,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _9E_SaveWithDecimals()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9E. Save with decimals", ((string[])(null)));
-#line 668
+#line 669
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
@@ -2014,27 +2016,27 @@ this.ScenarioSetup(scenarioInfo);
                         "2014-12-30",
                         "Out",
                         "9.45"});
-#line 669
+#line 670
  testRunner.Given("I have this move to create", ((string)(null)), table51);
-#line 672
- testRunner.And("it has no Details");
 #line 673
- testRunner.And("it has a Category");
+ testRunner.And("it has no Details");
 #line 674
- testRunner.And("it has an Account Out");
+ testRunner.And("it has a Category");
 #line 675
- testRunner.And("it has no Account In");
+ testRunner.And("it has an Account Out");
 #line 676
- testRunner.When("I try to save the move");
+ testRunner.And("it has no Account In");
 #line 677
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to save the move");
 #line 678
- testRunner.And("the move will be saved");
+ testRunner.Then("I will receive no core error");
 #line 679
- testRunner.And("the accountOut value will change in -9.45");
+ testRunner.And("the move will be saved");
 #line 680
- testRunner.And("the month-category-accountOut value will change in 9.45");
+ testRunner.And("the accountOut value will change in -9.45");
 #line 681
+ testRunner.And("the month-category-accountOut value will change in 9.45");
+#line 682
  testRunner.And("the year-category-accountOut value will change in 9.45");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -2045,7 +2047,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _9F_SaveWithDecimalsInDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9F. Save with decimals in details", ((string[])(null)));
-#line 683
+#line 684
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
@@ -2058,7 +2060,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2014-12-30",
                         "Out",
                         ""});
-#line 684
+#line 685
  testRunner.Given("I have this move to create", ((string)(null)), table52);
 #line hidden
             TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
@@ -2069,25 +2071,25 @@ this.ScenarioSetup(scenarioInfo);
                         "Detail Ca9F",
                         "1",
                         "9.45"});
-#line 687
+#line 688
  testRunner.And("the move has this details", ((string)(null)), table53);
-#line 690
- testRunner.And("it has a Category");
 #line 691
- testRunner.And("it has an Account Out");
+ testRunner.And("it has a Category");
 #line 692
- testRunner.And("it has no Account In");
+ testRunner.And("it has an Account Out");
 #line 693
- testRunner.When("I try to save the move");
+ testRunner.And("it has no Account In");
 #line 694
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to save the move");
 #line 695
- testRunner.And("the move will be saved");
+ testRunner.Then("I will receive no core error");
 #line 696
- testRunner.And("the accountOut value will change in -9.45");
+ testRunner.And("the move will be saved");
 #line 697
- testRunner.And("the month-category-accountOut value will change in 9.45");
+ testRunner.And("the accountOut value will change in -9.45");
 #line 698
+ testRunner.And("the month-category-accountOut value will change in 9.45");
+#line 699
  testRunner.And("the year-category-accountOut value will change in 9.45");
 #line hidden
             testRunner.CollectScenarioErrors();

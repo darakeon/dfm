@@ -186,8 +186,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             accountTotal = Account.Total();
         }
         
-        [When(@"make this changes to the account")]
-        public void WhenMakeThisChanges(Table table)
+        [When(@"I make this changes to the account")]
+        public void WhenIMakeThisChangesToTheAccount(Table table)
         {
             var accountData = table.Rows[0];
 
@@ -470,8 +470,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
             SA.Admin.CreateCategory(Category);
         }
 
-        [When(@"make this changes to the category")]
-        public void WhenMakeThisChangesToCategory(Table table)
+        [When(@"I make this changes to the category")]
+        public void WhenIMakeThisChangesToTheCategory(Table table)
         {
             var categoryData = table.Rows[0];
 

@@ -8,7 +8,7 @@ Scenario: 01. Change the name (S)
 	Given I have this category
 		| Name          |
 		| Category Ha01 |
-	When make this changes to the category
+	When I make this changes to the category
 		| Name            |
 		| Ca01 - new name |
 	And I try to update the category

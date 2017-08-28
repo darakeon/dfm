@@ -175,31 +175,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
             ConfigHelper.DeactivateEmailSystem();
         }
 
-        [When(@"I try to save the move with e-mail system ok and categories use disabled")]
-        public void WhenITryToSaveTheMoveWithEMailSystemOkAndCategoriesUseDisabled()
-        {
-            ConfigHelper.ActivateEmailSystem();
-            ConfigHelper.ActivateMoveEmailForUser(SA);
-            ConfigHelper.DeactivateCategoriesUseForUser(SA);
-
-            try
-            {
-                var accountOutUrl = AccountOut == null ? null : AccountOut.Url;
-                var accountInUrl = AccountIn == null ? null : AccountIn.Url;
-
-                var result = SA.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
-                CurrentEmailStatus = result.Error;
-            }
-            catch (DFMCoreException e)
-            {
-                Error = e;
-            }
-
-            ConfigHelper.ActivateCategoriesUseForUser(SA);
-            ConfigHelper.DeactivateMoveEmailForUser(SA);
-            ConfigHelper.DeactivateEmailSystem();
-        }
-
 
 
         [Then(@"the move will not be saved")]

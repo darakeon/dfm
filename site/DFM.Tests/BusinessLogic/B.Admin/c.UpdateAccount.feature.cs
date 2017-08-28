@@ -94,7 +94,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         ""});
 #line 10
- testRunner.When("make this changes to the account", ((string)(null)), table2);
+ testRunner.When("I make this changes to the account", ((string)(null)), table2);
 #line 13
  testRunner.And("I try to update the account");
 #line 14
@@ -139,7 +139,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         ""});
 #line 22
- testRunner.When("make this changes to the account", ((string)(null)), table4);
+ testRunner.When("I make this changes to the account", ((string)(null)), table4);
 #line 25
  testRunner.And("I try to update the account");
 #line 26
@@ -184,7 +184,7 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         ""});
 #line 35
- testRunner.When("make this changes to the account", ((string)(null)), table6);
+ testRunner.When("I make this changes to the account", ((string)(null)), table6);
 #line 38
  testRunner.And("I try to update the account");
 #line 39

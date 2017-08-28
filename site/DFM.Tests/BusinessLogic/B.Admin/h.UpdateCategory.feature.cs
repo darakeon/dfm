@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Ca01 - new name"});
 #line 11
- testRunner.When("make this changes to the category", ((string)(null)), table2);
+ testRunner.When("I make this changes to the category", ((string)(null)), table2);
 #line 14
  testRunner.And("I try to update the category");
 #line 15
