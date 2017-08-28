@@ -91,6 +91,11 @@
             Identification for Browser
             </summary>
         </member>
+        <member name="F:DK.MVC.Cookies.BrowserId.TimeoutMinutes">
+            <summary>
+            Time in minutes until session expire
+            </summary>
+        </member>
         <member name="M:DK.MVC.Cookies.BrowserId.Get">
             <summary>
             Get (if needed, create) ticket
@@ -232,6 +237,11 @@
         <member name="P:DK.MVC.Route.RouteInfo.Current">
             <summary>
              RouteData of the current Url
+            </summary>
+        </member>
+        <member name="P:DK.MVC.Route.RouteInfo.Item(System.String)">
+            <summary>
+            Values dictionary
             </summary>
         </member>
     </members>
