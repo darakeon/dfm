@@ -34,8 +34,11 @@ namespace DFM.MVC.Areas.Account.Models
 				Year
 			);
 
-		public Boolean CanCheck => 
+		public Boolean CanCheck =>
 			Current.User.Config.MoveCheck;
+
+		public Boolean UseCategories =>
+			Current.User.Config.UseCategories;
 
 	}
 }
