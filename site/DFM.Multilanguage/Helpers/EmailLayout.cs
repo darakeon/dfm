@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
 namespace DFM.Multilanguage.Helpers
 {
@@ -12,23 +11,12 @@ namespace DFM.Multilanguage.Helpers
 		{
 			get
 			{
-				var filePath =
-					Path.Combine(path, language, layout + ".htm");
+				var filePath = Path.Combine(path, language, layout + ".htm");
 
 				if (!File.Exists(filePath))
 					return "";
 
-				var content = new StringBuilder();
-
-				using (var reader = new StreamReader(filePath))
-				{
-					while (!reader.EndOfStream)
-					{
-						content.AppendLine(reader.ReadLine());
-					}
-				}
-
-				return content.ToString();
+				return File.ReadAllText(filePath);
 			}
 		}
 
