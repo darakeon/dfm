@@ -92,15 +92,15 @@ F						Colocar tela de lista de funcionalidades
 F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
-
-VERSÃO 2.0.3.0 (Little change) - 6?
-================================================================================================
 						Corrigir problema de deletar conta que já teve movimentações
-						Deixar salvar o programa no SD
-						Não deixar sleep quando já estiver no meio de uma requisição
-						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
-F						Colocar botão de sair (mobile)
+
+VERSÃO 2.0.3.0 (Little change) - 5?
+================================================================================================
 F						Colocar edição de movimentação (mobile)
+F						Colocar botão de sair (mobile)
+						Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
+						Não deixar sleep quando já estiver no meio de uma requisição
+						Deixar salvar o programa no SD
 
 VERSÃO 2.0.2.0 (Little change) - 13?
 ================================================================================================
