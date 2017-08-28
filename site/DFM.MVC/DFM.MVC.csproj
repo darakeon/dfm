@@ -143,6 +143,7 @@
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
+    <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <None Include="Assets\Bootstrap\Scripts\jquery-1.9.1.intellisense.js" />
@@ -179,12 +180,10 @@
     <Compile Include="Areas\Account\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Account\Controllers\BaseAccountsController.cs" />
-    <Compile Include="Areas\Account\Controllers\DetailsController.cs" />
     <Compile Include="Areas\Account\Controllers\MovesController.cs" />
     <Compile Include="Areas\Account\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Account\Models\BaseAccountModel.cs" />
     <Compile Include="Areas\Account\Models\BaseMovesModel.cs" />
-    <Compile Include="Areas\Account\Models\DetailsAddModel.cs" />
     <Compile Include="Areas\Account\Models\MoneyModel.cs" />
     <Compile Include="Areas\Account\Models\MovesCreateEditModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsShowMovesModel.cs" />
@@ -264,7 +263,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Areas\Account\Views\Details\Add.old" />
     <Content Include="Areas\Account\Views\Moves\Create.old" />
     <Content Include="Areas\Account\Views\Moves\Edit.old" />
     <None Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
@@ -299,7 +297,7 @@
     <Content Include="Views\Shared\_Table.cshtml" />
     <None Include="Views\Categories\Status.cshtml" />
     <None Include="Views\Logins\LoginType.cshtml" />
-    <None Include="Views\Schedules\ScheduleNature.cshtml" />
+    <None Include="Views\Shared\MoveNature.cshtml" />
     <None Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <None Include="Views\Users\ConfigEmail.cshtml" />

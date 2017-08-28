@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 				);
 			}
 
-			return View(model);
+			return View("CreateEditSchedule", model);
 		}
 
 	}

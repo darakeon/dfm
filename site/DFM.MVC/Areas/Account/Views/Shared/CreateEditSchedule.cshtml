@@ -5,117 +5,171 @@
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Move"];
 	Layout = "~/Views/Shared/_Form.cshtml";
-	ViewBag.FormSize = 8;
+	ViewBag.FormSize = 4;
 
 	var useCategories = Service.Current.User.Config.UseCategories;
-	var firstRowWidths = useCategories ? 4 : 6;
+	var rowWidths = useCategories ? 6 : 12;
+
+	var natureUiList = new List<BaseMovesModel.NatureUI>
+	{
+		new BaseMovesModel.NatureUI(MoveNature.Out, ".combo-account-out", ".combo-account-in"),
+		new BaseMovesModel.NatureUI(MoveNature.Transfer, ".combo-account-out, .combo-account-in"),
+		new BaseMovesModel.NatureUI(MoveNature.In, ".combo-account-in", ".combo-account-out")
+	};
+
+	var detailedTabUiList = new List<BaseMovesModel.DetailTabUI>
+	{
+		new BaseMovesModel.DetailTabUI("JustOneValue", "just-value", false),
+		new BaseMovesModel.DetailTabUI("Detailed", "detailed", true)
+	};
 }
 
-<div class="row">
-	<div class="col-sm-@(firstRowWidths) form-group">
-		@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
-		@Html.ValidationMessageFor(m => m.Description)<br />
-		@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MOVE_DESCRIPTION, @class = "form-control" })
-		<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MOVE_DESCRIPTION)</small>
-	</div>
+@section Scripts {
+	<script src="/Assets/Scripts/toggle.js" type="text/javascript"></script>
+	<script src="/Assets/Scripts/move-crud.js" type="text/javascript"></script>
+}
 
-	<div class="col-sm-@(firstRowWidths) form-group">
-		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new { @class = "control-label" })
-		@Html.ValidationMessageFor(m => m.Date)<br />
-		@Html.TextBoxFor(m => m.Date, new { @class = "date_notHour form-control", disabled = "disabled" })
+<div class="form-group">
+	@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
+	@Html.ValidationMessageFor(m => m.Description)<br />
+	@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MOVE_DESCRIPTION, @class = "form-control" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MOVE_DESCRIPTION)</small>
+</div>
+
+<div class="row">
+	<div class="col-sm-@(rowWidths) form-group">
+		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new {@class = "control-label"})
+		@Html.ValidationMessageFor(m => m.Date)<br/>
+		@Html.TextBoxFor(m => m.Date, new {@class = "date_notHour form-control"})
 		<small>&nbsp;</small>
 	</div>
 
 	@if (useCategories)
 	{
-	<div class="col-sm-@(firstRowWidths) form-group">
-		@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"], new { @class = "control-label" })
-		@Html.ValidationMessageFor(m => m.CategoryName)<br />
-		@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
-	</div>
+        <div class="col-sm-@(rowWidths) form-group">
+			@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"], new {@class = "control-label"})
+			@Html.ValidationMessageFor(m => m.CategoryName)<br/>
+			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new {@class = "form-control"})
+		</div>
 	}
+</div>
 
-	<div class="col-sm-6 form-group">
-		<div class="row">
-			<div class="btn-group col-sm-12">
-				<button type="button" class="btn btn-danger col-sm-4">
-					@MultiLanguage.Dictionary[MoveNature.Out.ToString()]
-				</button>
-				<button type="button" class="btn btn-success col-sm-4">
-					@MultiLanguage.Dictionary[MoveNature.Transfer.ToString()]
-				</button>
-				<button type="button" class="btn btn-info col-sm-4">
-					@MultiLanguage.Dictionary[MoveNature.In.ToString()]
-				</button>
-			</div>
-		</div>
+@Html.HiddenFor(m => m.Nature)
 
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					<div class="row">
-						@Html.DropDownListFor(m => m.AccountOutUrl, Model.AccountOutSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
-						@Html.ValidationMessageFor(m => m.AccountOutUrl)
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="row">
-						@Html.DropDownListFor(m => m.AccountInUrl, Model.AccountInSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })
-						@Html.ValidationMessageFor(m => m.AccountInUrl)
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="form-group row">
+	<div class="btn-group btn-group-sm col-sm-12">
+        @foreach (var natureUI in natureUiList)
+		{
+			<button type="button"
+			        class="btn btn-sm btn-@Html.Partial("MoveNature", natureUI.Nature)
+						col-sm-4 button-toggle value-setter
+						@(Model.Nature == natureUI.Nature ? "active" : "")"
+			        data-to-enable="@natureUI.Enable"
+			        data-to-disable="@natureUI.Disable"
+			        data-target-id="@Html.IdFor(m => m.Nature)"
+			        data-target-value="@natureUI.Nature">
+				
+				@MultiLanguage.Dictionary[natureUI.Nature.ToString()]
+			</button>
+		}
+	</div>
+</div>
 
+<div class="row form-group">
+	<div class="col-sm-6">
+		@Html.LabelFor(m => m.AccountOutUrl, MultiLanguage.Dictionary["Account", "Out"], new { @class = "control-label" })
+		@Html.DropDownListFor(m => m.AccountOutUrl, Model.AccountOutSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control combo-account-out text-danger" })
+		@Html.ValidationMessageFor(m => m.AccountOutUrl)
+	</div>
+	<div class="col-sm-6">
+		@Html.LabelFor(m => m.AccountInUrl, MultiLanguage.Dictionary["Account", "In"], new { @class = "control-label" })
+		@Html.DropDownListFor(m => m.AccountInUrl, Model.AccountInSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control combo-account-in text-info" })
+		@Html.ValidationMessageFor(m => m.AccountInUrl)
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+	@foreach (var detailedTabUi in detailedTabUiList)
+	{
+		<li class="@(Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "") value-setter" 
+				data-target-id="@Html.IdFor(m => m.IsDetailed)" data-target-value="@detailedTabUi.IsDetailed">
+			<a href="#@detailedTabUi.TargetId" data-toggle="tab">
+				@MultiLanguage.Dictionary[detailedTabUi.ResourceKey]
+			</a>
+		</li>
+	}
+</ul>
+
+@Html.HiddenFor(m => m.IsDetailed)
+
+<div class="tab-content">
+	<div class="tab-pane @(Model.IsDetailed ? "": "active")" id="just-value">
+		@Html.TextBoxFor(m => m.Value, new { @class = "money form-control" })
 	</div>
 
-	<div class="col-sm-6">
+	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
 
-		<ul class="nav nav-tabs">
-			<li>
-				<a href="#just-value" data-toggle="tab">
-					@MultiLanguage.Dictionary["JustOneValue"]
-				</a>
-			</li>
-			<li>
-				<a href="#detailed" data-toggle="tab">
-					@MultiLanguage.Dictionary["Detailed"]
-				</a>
-			</li>
-		</ul>
+		<table class="table table-condensed">
 
-		<div class="tab-content">
-			<div class="tab-pane" id="just-value">
-				@Html.TextBoxFor(m => m.Value, new { @class = "money form-control" })
-			</div>
-			<div class="tab-pane" id="detailed">
-				<table class="createMoveScreenRight">
-					<tbody id="details">
-						<tr>
-							<th>
-								@MultiLanguage.Dictionary["Description"]
-								<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.DETAIL_DESCRIPTION)</small>
-							</th>
-							<th>@MultiLanguage.Dictionary["Amount"]</th>
-							<th>@MultiLanguage.Dictionary["Value"]</th>
-						</tr>
+			<thead>
+				<tr class="row">
+					<th class="col-sm-6">@MultiLanguage.Dictionary["Description"]</th>
+					<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Amount"]</th>
+					<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Value"]</th>
+					<th class="col-sm-1"></th>
+				</tr>
+			</thead>
 
-						@if (Model.IsDetailed)
-						{
-							for (var d = 0; d < Model.DetailList.Count; d++)
-							{
-								@*Html.Partial("../Details/Add", new DetailsAddModel(Model.DetailList[d], d))*@
-							}
-						}
-						else
-						{
-							@*Html.Partial("../Details/Add", new DetailsAddModel(new Detail(), 0))*@
-						}
-					</tbody>
-				</table>
-			</div>
-		</div>
+			<tbody>
+				@for (var d = 0; d < Model.DetailList.Count; d++)
+				{
+					<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
+						<td class="col-sm-6">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new {@class = "form-control", maxlength = MaximumLength.DETAIL_DESCRIPTION})
+						</td>
 
+						<td class="col-sm-2">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Amount, new { @class = "form-control text-center" })
+						</td>
+
+						<td class="col-sm-3">
+							@Html.TextBoxFor(m => m.DetailList[d].Detail.Value, new { @class = "form-control text-right" })
+						</td>
+
+						<td class="col-sm-1">
+							<button class="btn btn-sm btn-danger btn-remove-detail" type="button">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+
+							@Html.HiddenFor(m => m.DetailList[d].Send, new { @class = "hidden-send" })
+							@Html.HiddenFor(m => m.DetailList[d].Detail.FakeID)
+						</td>
+					</tr>
+				}
+			</tbody>
+			
+			<tfoot>
+				<tr class="row">
+					
+					<td colspan="3" class="col-sm-11">
+						<small>
+							@String.Format(
+								MultiLanguage.Dictionary["CharactersMax"],
+								MaximumLength.DETAIL_DESCRIPTION
+								)
+						</small>
+					</td>
+
+					<td class="col-sm-1">
+						<button class="btn btn-sm btn-success btn-add-detail" type="button">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</td>
+
+				</tr>
+			</tfoot>
+
+		</table>
 	</div>
 </div>
 

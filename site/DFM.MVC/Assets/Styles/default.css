@@ -20,7 +20,6 @@ footer {
 		list-style: none;
 	}
 
-#body .nav > li > a {
-	padding-top: 8px;
-	padding-bottom: 8px;
+.glyphicon-plus {
+	margin-right: -2px;
 }

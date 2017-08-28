@@ -47,7 +47,7 @@
 		<td class="col-sm-2 text-center">@(schedule.In?.Name ?? " ")</td>
 		<td class="col-sm-2 text-center">@(schedule.Out?.Name ?? " ")</td>
 
-		<td  class="col-sm-1 text-@Html.Partial("ScheduleNature", schedule.Nature) text-right">
+		<td  class="col-sm-1 text-@Html.Partial("MoveNature", schedule.Nature) text-right">
 			@schedule.Total().ToMoney(Model.Language)
 		</td>
 

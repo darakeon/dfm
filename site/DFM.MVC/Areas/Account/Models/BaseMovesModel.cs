@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
 using DK.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
@@ -114,11 +115,38 @@ namespace DFM.MVC.Areas.Account.Models
 
 		protected internal IMove GenericMove { get; set; }
 
+		public const Int32 DETAIL_COUNT = 100;
 
-		public IList<Detail> DetailList
+		private IList<DetailUI> detailList;
+
+		public IList<DetailUI> DetailList
 		{
-			get { return GenericMove.DetailList; }
-			set { GenericMove.DetailList = value; }
+			get
+			{
+				if (detailList == null)
+				{
+					detailList =
+						GenericMove.DetailList
+							.Select(d => new DetailUI(d))
+							.ToList();
+
+					if (!detailList.Any())
+					{
+						detailList.Add(new DetailUI(new Detail()));
+					}
+
+					for (var d = detailList.Count; d < DETAIL_COUNT; d++)
+					{
+						detailList.Add(new DetailUI());
+					}
+				}
+
+				return detailList;
+			}
+			set
+			{
+				GenericMove.DetailList = value.Where(d => d.Send).Select(d => d.Detail).ToList();
+			}
 		}
 
 
@@ -187,6 +215,54 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 
 			return errors;
+		}
+
+
+
+		public class NatureUI
+		{
+			public NatureUI(MoveNature nature, String enable, String disable = null)
+			{
+				Nature = nature;
+				Enable = enable;
+				Disable = disable;
+			}
+
+			public MoveNature Nature { get; private set; }
+			public String Enable { get; private set; }
+			public String Disable { get; private set; }
+		}
+
+		public class DetailTabUI
+		{
+			public DetailTabUI(String resourceKey, String targetId, Boolean isDetailed)
+			{
+				ResourceKey = resourceKey;
+				TargetId = targetId;
+				IsDetailed = isDetailed;
+			}
+
+			public String ResourceKey { get; private set; }
+			public String TargetId { get; private set; }
+			public Boolean IsDetailed { get; private set; }
+		}
+
+		public class DetailUI
+		{
+			public DetailUI()
+			{
+				Detail = new Detail();
+				Send = false;
+			}
+
+			public DetailUI(Detail detail)
+			{
+				Detail = detail;
+				Send = true;
+			}
+
+			public Detail Detail { get; set; }
+			public Boolean Send { get; set; }
 		}
 
 

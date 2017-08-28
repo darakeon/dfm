@@ -5,4 +5,11 @@
 		.closest(".form-group")
 		.addClass("has-error")
 		.addClass("has-feedback");
+
+	$(".value-setter").click(function () {
+		var fieldId = $(this).data("target-id");
+		var fieldValue = $(this).data("target-value");
+
+		$("#" + fieldId).val(fieldValue);
+	});
 });
