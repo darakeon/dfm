@@ -105,12 +105,17 @@ VERSÃO 3.0.1.0 (Little change) - 7
 						Colocar marcação para conta de entrada e de saída separadas
 						Acessibilidade
 						
-VERSÃO 3.0.0.1 (System) - 4
+VERSÃO 3.0.0.1 (System) - 9
 ================================================================================================
 						Colocar data e categoria na mesma linha na move create/edit do mobile
-						Destacar signup
 						Verificar permissão read state do android
+						Arrumar logo no mobile
 						Destacar parte importante home
+						Destacar signup
+						Arrumar cores no e-mail
+						Arrumar detalhes da movimentação (tabela) no e-mail
+						Arrumar conta entrada / saída vazia no e-mail
+						Encurtar título na caixa de e-mail
 
 VERSÃO 3.0.0.0 (All new) - 21
 ================================================================================================
