@@ -39,3 +39,4 @@ syntax: regexp
 .hg*
 site/DFM.MVC/DFM.MVC.Publish.xml
 site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
+site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
