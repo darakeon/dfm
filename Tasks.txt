@@ -111,7 +111,7 @@ VERSÃO 3.0.0.0 (All new) - 2
 VERSÃO 2.1.4.1 (System) - 2
 ================================================================================================
 						Ajustar problema com licensing no android
-						Ajustar problema com cookie no browser
+2017-02-08	2017-02-08	Ajustar problema com cookie no browser
 
 VERSÃO 2.1.4.0 (Little change) - 5
 ================================================================================================

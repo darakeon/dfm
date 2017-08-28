@@ -2,7 +2,6 @@
 using System.Web;
 using DFM.Authentication;
 using DFM.BusinessLogic;
-using DK.Generic.Extensions;
 using DK.MVC.Cookies;
 using DK.MVC.Route;
 using TicketType = DFM.Entities.Enums.TicketType;
@@ -23,7 +22,7 @@ namespace DFM.MVC.Helpers
 				? TicketType.Mobile
 				: TicketType.Browser;
 
-			return new TypedTicket(getKey(type), type);
+			return new TypedTicket(getKey(type) ?? "GENERAL_" + type, type);
 		}
 
 
