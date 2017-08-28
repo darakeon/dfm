@@ -9,10 +9,10 @@ function AjaxFail(html) {
 
     alert(error);
 
-    EndAjaxPost()
+	EndAjaxPost();
 
-    if (error.match(/session expired/i))
-        SafeReload()
+	if (error.match(/session expired/i))
+		SafeReload();
 }
 function TellResultAndReload(data) {
     alert(decodeHtml(data.message));

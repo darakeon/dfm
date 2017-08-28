@@ -63,9 +63,9 @@
 
             function preventDefault(e) {
                 if (e.preventDefault) { //standard browsers
-                    e.preventDefault()
+	                e.preventDefault();
                 } else { // internet explorer
-                    e.returnValue = false
+	                e.returnValue = false;
                 }
             }
 
@@ -112,7 +112,7 @@
                 if (input.val() == setSymbol(getDefaultMask()) && !letZero) {
                     input.val("");
                 } else {
-                    input.val(input.val().replace(settings.symbol, ""))
+	                input.val(input.val().replace(settings.symbol, ""));
                 }
             }
 

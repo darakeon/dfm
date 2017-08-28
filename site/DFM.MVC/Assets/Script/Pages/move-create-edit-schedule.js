@@ -133,7 +133,7 @@ function RemoveDetail(position) {
     do {
         position++;
 
-        AdjustNumbersLess(prefix + position, "Detail", position)
+	    AdjustNumbersLess(prefix + position, "Detail", position);
 
     } while ($(prefix + position)[0]);
 
