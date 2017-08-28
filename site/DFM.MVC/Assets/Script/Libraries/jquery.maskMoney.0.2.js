@@ -59,6 +59,7 @@
                 var key = String.fromCharCode(k);  // Valor para o código da Chave
                 preventDefault(e);
                 input.val(maskValue(input.val() + key));
+	            return true;
             }
 
             function preventDefault(e) {

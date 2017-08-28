@@ -53,6 +53,8 @@
         var hasYear = year.length && !isNaN(yearTime);
         var hasMonth = month.length && !isNaN(monthTime);
 
+        var time;
+
         if (hasYear)
             if (hasMonth)
                 time = yearTime * 100 + monthTime * 1;
@@ -61,6 +63,6 @@
         else
             time = "";
 
-        location = reportPage + "/" + time;
+        window.location = reportPage + "/" + time;
     });
 }
