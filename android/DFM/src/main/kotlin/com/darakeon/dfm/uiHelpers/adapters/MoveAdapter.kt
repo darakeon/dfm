@@ -10,6 +10,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
 import com.darakeon.dfm.api.DateTime
 import com.darakeon.dfm.uiHelpers.views.MoveLine
+import com.darakeon.dfm.user.Theme
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -52,7 +53,7 @@ class MoveAdapter(private val activity: ExtractActivity, moveJsonList: JSONArray
         val line = inflater.inflate(R.layout.extract_line, null) as MoveLine
 
         try {
-            val color = if (position % 2 == 0) Color.TRANSPARENT else Color.LTGRAY
+            val color = Theme.getLineColor(position)
             line.setMove(activity, moveList[position], color, canCheck)
         } catch (e: JSONException) {
             e.printStackTrace()

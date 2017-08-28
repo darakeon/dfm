@@ -1,13 +1,13 @@
 package com.darakeon.dfm.uiHelpers.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.views.YearLine
+import com.darakeon.dfm.user.Theme
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -43,7 +43,7 @@ class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String,
         val line = inflater.inflate(R.layout.summary_line, null) as YearLine
 
         try {
-            val color = if (position % 2 == 0) Color.TRANSPARENT else Color.LTGRAY
+            val color = Theme.getLineColor(position)
             line.setYear(yearList[position], color)
         } catch (e: JSONException) {
             e.printStackTrace()

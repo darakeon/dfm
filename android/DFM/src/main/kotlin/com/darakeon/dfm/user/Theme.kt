@@ -1,6 +1,7 @@
 package com.darakeon.dfm.user
 
 import android.app.Activity
+import android.graphics.Color
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
@@ -38,6 +39,18 @@ object Theme {
         when (theme) {
             "Light" -> return android.R.style.Theme_Holo_Light
             else -> return android.R.style.Theme_Holo
+        }
+    }
+
+    fun getLineColor(position: Int): Int {
+        if (position % 2 == 0) {
+            return Color.TRANSPARENT
+        }
+        else {
+            when (currentTheme) {
+                android.R.style.Theme_Holo_Light -> return Color.LTGRAY
+                else -> return Color.rgb(0x17, 0x1b, 0x20)
+            }
         }
     }
 
