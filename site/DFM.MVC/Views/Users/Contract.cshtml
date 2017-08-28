@@ -6,26 +6,13 @@
 	ViewBag.FormSize = 8;
 }
 
-<style>
-	.contract > ol {
-		padding-left: 15px;
-	}
-	.contract > ol > li {
-		margin-top: 20px;
-	}
-	.contract > ol > li > ol {
-		padding-left: 30px;
-	}
-	.contract > ol > li > ol > li {
-		list-style-type: lower-alpha;
-		margin-top: 5px;
-	}
-</style>
-
+@section Styles {
+	<link href="~/Assets/Styles/contract.css" type="text/css" rel="stylesheet"/>
+}
 
 <div class="">
 
-	<div class="contract well-sm">
+	<div class="contract">
 		@Html.Partial($"../Contracts/{Model.Contract.Version}")
 	</div>
 
@@ -40,9 +27,13 @@
 
 
 @section Footer {
-	<span class="pull-left text-left">
+	<span class="@(canSign ? "pull-left text-left" : "")">
 		@Users.ContractBeginDate<br />
 		@Model.Contract.BeginDate.ToShortDateString()
 	</span>
-	<button class="btn btn-success">@General.Accept</button>
+	
+	@if (canSign)
+	{
+		<button class="btn btn-success">@General.Accept</button>
+	}
 }

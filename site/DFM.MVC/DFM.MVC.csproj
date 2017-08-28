@@ -153,6 +153,7 @@
     <Content Include="Assets\Bootstrap\Datepicker\moment-with-locales.min.js" />
     <Content Include="Assets\Bootstrap\Datepicker\moment.js" />
     <Content Include="Assets\Bootstrap\Datepicker\moment.min.js" />
+    <Content Include="Assets\Styles\contract.css" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Account\Views\Moves\NatureAndAccount.cshtml" />

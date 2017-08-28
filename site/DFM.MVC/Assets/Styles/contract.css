@@ -1,0 +1,20 @@
+﻿.contract {
+	padding: 10px;
+}
+
+.contract > ol {
+	padding-left: 15px;
+}
+
+.contract > ol > li {
+	margin-top: 20px;
+}
+
+.contract > ol > li > ol {
+	padding-left: 30px;
+}
+
+.contract > ol > li > ol > li {
+	list-style-type: lower-alpha;
+	margin-top: 5px;
+}
