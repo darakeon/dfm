@@ -16,9 +16,13 @@ namespace DFM.Generic.Pages
 
 		private IList<OperatorBox<T>> operatorPages { get; }
 		public IList<T> Pages => operatorPages.Select(p => p.Item).ToList();
+		
+		public T Current { get; }
 
 		public TimePages(T minimum, T maximum, T current, Int32 rangeSize)
 		{
+			Current = current;
+
 			var operatorMinimum = new OperatorBox<T>(minimum);
 			var operatorMaximum = new OperatorBox<T>(maximum);
 			var operatorCurrent = new OperatorBox<T>(current);

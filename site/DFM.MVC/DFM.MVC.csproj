@@ -143,6 +143,7 @@
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Assets\Bootstrap\Scripts\bootstrap.min.js" />
+    <Content Include="Views\Shared\Pagination.cshtml" />
     <None Include="Assets\Bootstrap\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.js" />

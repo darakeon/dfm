@@ -1,0 +1,21 @@
+﻿@model dynamic
+
+<ul class="pagination">
+
+	<li class="@(Model.HasMoreBack ? "" : "disabled")">
+		@Html.ActionLink("«", null, new { id = Model.MoreBack.Url })
+	</li>
+
+	@foreach (var page in Model.Pages)
+	{
+		String label = page.Label;
+
+		<li class="@(page == Model.Current ? "active" : "")">
+			@Html.ActionLink(label, null, new { id = page.Url })
+		</li>
+	}
+
+	<li class="@(Model.HasMoreFoward ? "" : "disabled")">
+		@Html.ActionLink("»", null, new { id = Model.MoreFoward.Url })
+	</li>
+</ul>

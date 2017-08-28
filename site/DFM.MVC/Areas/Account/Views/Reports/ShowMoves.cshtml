@@ -103,32 +103,16 @@
 }
 
 @section Footer {
+	
 	<div class="row">
 		<div class="col-sm-1"></div>
 
 		<div class="col-sm-10 text-center">
-			<ul class="pagination">
-
-				<li class="@(pages.HasMoreBack ? "" : "disabled")">
-					@Html.ActionLink("«", null, new { id = pages.MoreBack.Url })
-				</li>
-
-				@foreach (var page in pages.Pages)
-				{
-					<li class="@(page == current ? "active" : "")">
-						@Html.ActionLink(page.Label, null, new {id = page.Url})
-					</li>
-				}
-
-				<li class="@(pages.HasMoreFoward ? "" : "disabled")">
-					@Html.ActionLink("»", null, new { id = pages.MoreFoward.Url })
-				</li>
-			</ul>
+			@Html.Partial("Pagination", pages)
 		</div>
 
 		<div class="col-sm-1">
 			@Html.Partial("Total")
 		</div>
-
 	</div>
 }
