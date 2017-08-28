@@ -25,19 +25,26 @@
 }
 else
 {
+	var todoCount = Model.CanCheck ? 3 : 2;
+
 	<table class="List">
 
 		<tr>
 			<th>@MultiLanguage.Dictionary["Description"]</th>
+			
 			@if (Auth.Current.User.Config.UseCategories)
 			{
 				<th>@MultiLanguage.Dictionary["Category"]</th>
 			}
+			
 			<th>@MultiLanguage.Dictionary["Date"]</th>
 			<th>@MultiLanguage.Dictionary["In"]</th>
 			<th>@MultiLanguage.Dictionary["Out"]</th>
 			<th>@MultiLanguage.Dictionary["Check"]</th>
-			<th class="todo-column" colspan="3">@MultiLanguage.Dictionary["TODO"]</th>
+
+			<th class="todo-column" colspan="@todoCount">
+				@MultiLanguage.Dictionary["TODO"]
+			</th>
 		</tr>
 
 		@foreach (var move in Model.MoveList)
@@ -112,17 +119,18 @@ else
 				</td>
 
 
-				@{
+				@if (Model.CanCheck)
+				{
 					var toggleCheck = move.Checked ? "Uncheck" : "Check";
 					var checkLabel = MultiLanguage.Dictionary[toggleCheck, "Move"];
 					var checkUrl = Url.Action(toggleCheck, "Moves", new { id = move.ID });
-				}
 
-				<td class="image">
-					<a href="@checkUrl">
-						<img src="/Assets/image/icons/@(toggleCheck.ToLower()).gif" alt="@checkLabel" title="@checkLabel"/>
-					</a>
-				</td>
+					<td class="image">
+						<a href="@checkUrl">
+							<img src="/Assets/image/icons/@(toggleCheck.ToLower()).gif" alt="@checkLabel" title="@checkLabel" />
+						</a>
+					</td>
+				}
 
 			</tr>
 

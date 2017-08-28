@@ -136,3 +136,13 @@ Scenario: 99. Enable move send e-mail
 	When I try to enable move send e-mail
 	Then I will receive no core error
 
+Scenario: 9A. Disable move check
+	Given I enable move check
+	When I try to disable move check
+	Then I will receive no core error
+
+Scenario: 9B. Enable move check
+	Given I disable move check
+	When I try to enable move check
+	Then I will receive no core error
+

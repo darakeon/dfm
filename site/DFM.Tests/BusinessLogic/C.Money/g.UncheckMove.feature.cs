@@ -60,11 +60,13 @@ namespace DFM.Tests.BusinessLogic.C_Money
 #line 4
  testRunner.Given("I have an active user");
 #line 5
- testRunner.And("I enable Categories use");
+  testRunner.And("I enable Categories use");
 #line 6
- testRunner.And("I have two accounts");
+  testRunner.And("I have two accounts");
 #line 7
- testRunner.And("I have a category");
+  testRunner.And("I have a category");
+#line 8
+  testRunner.And("I enable move check");
 #line hidden
         }
         
@@ -73,17 +75,17 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void _01_MarkACheckedMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Mark a checked move as not checked", ((string[])(null)));
-#line 9
-this.ScenarioSetup(scenarioInfo);
 #line 10
- testRunner.Given("I have a move with value 10 (Out)");
+this.ScenarioSetup(scenarioInfo);
 #line 11
-  testRunner.And("the move is checked");
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 12
- testRunner.When("I try to mark it as not checked");
+  testRunner.And("the move is checked");
 #line 13
- testRunner.Then("I will receive no core error");
+ testRunner.When("I try to mark it as not checked");
 #line 14
+ testRunner.Then("I will receive no core error");
+#line 15
   testRunner.And("the move will not be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -94,18 +96,41 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void _02_RemarkANotCheckedMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Remark a not checked move as not checked", ((string[])(null)));
-#line 16
-this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Given("I have a move with value 10 (Out)");
+this.ScenarioSetup(scenarioInfo);
 #line 18
-  testRunner.And("the move is not checked");
+ testRunner.Given("I have a move with value 10 (Out)");
 #line 19
- testRunner.When("I try to mark it as not checked");
+  testRunner.And("the move is not checked");
 #line 20
- testRunner.Then("I will receive this core error: MoveAlreadyUnchecked");
+ testRunner.When("I try to mark it as not checked");
 #line 21
+ testRunner.Then("I will receive this core error: MoveAlreadyUnchecked");
+#line 22
   testRunner.And("the move will not be checked");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03. Mark a move as not checked with disabled config")]
+        public virtual void _03_MarkAMoveAsNotCheckedWithDisabledConfig()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Mark a move as not checked with disabled config", ((string[])(null)));
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("I have a move with value 10 (Out)");
+#line 26
+  testRunner.And("the move is checked");
+#line 27
+  testRunner.And("I disable move check");
+#line 28
+ testRunner.When("I try to mark it as not checked");
+#line 29
+ testRunner.Then("I will receive this core error: MoveCheckDisabled");
+#line 30
+  testRunner.And("the move will be checked");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

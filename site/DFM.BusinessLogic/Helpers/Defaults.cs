@@ -8,6 +8,7 @@ namespace DFM.BusinessLogic.Helpers
 		public const String CONFIG_TIMEZONE = "E. South America Standard Time";
 		public const Boolean CONFIG_SEND_MOVE_EMAIL = false;
 		public const Boolean CONFIG_USE_CATEGORIES = true;
+		public const Boolean CONFIG_MOVE_CHECK = false;
 
 		public const Int32 TICKET_SHOWED_PART = 5;
 

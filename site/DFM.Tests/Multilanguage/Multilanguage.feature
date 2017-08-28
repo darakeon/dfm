@@ -71,6 +71,8 @@ Scenario: 04. Get translations of Errors
 		| Error   | DuplicatedAccountUrl           |
 		| Error   | RedLimitAboveYellowLimit       |
 		| Error   | InvalidAccount                 |
+		| Error   | CategoriesDisabled             |
+		| Error   | MoveCheckDisabled              |
 		| Error   | CategoryNameRequired           |
 		| Error   | CategoryAlreadyExists          |
 		| Error   | DisabledCategory               |
@@ -285,6 +287,7 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | Settings                |
 		| Users   | UseCategories           |
 		| Users   | SendMoveEmail           |
+		| Users   | MoveCheck               |
 		| Users   | Language                |
 		| Users   | TimeZone                |
 		| Users   | LanguageEnus            |

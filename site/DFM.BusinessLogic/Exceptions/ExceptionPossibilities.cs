@@ -28,6 +28,7 @@
 		RedLimitAboveYellowLimit = 311,
 		InvalidAccount = 312,
 		CategoriesDisabled = 313,
+		MoveCheckDisabled = 314,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,

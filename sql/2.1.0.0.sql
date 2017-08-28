@@ -30,3 +30,6 @@ alter table user
 alter table move
 	add Checked bit not null;
 
+alter table config
+	add MoveCheck bit not null;
+

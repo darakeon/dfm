@@ -107,19 +107,19 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.Category == null && useCategories)
 			{
-				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, false);
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, false, null);
 			}
 
 			if (schedule.Category != null && !useCategories)
 			{
-				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, true);
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, true, null);
 			}
 
 			scheduleRepository.SaveOrUpdate(schedule);
 
 			if (schedule.User.Config.UseCategories != useCategories)
 			{
-				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, useCategories);
+				Parent.Admin.UpdateConfigWithinTransaction(null, null, null, useCategories, null);
 			}
 		}
 
@@ -140,22 +140,13 @@ namespace DFM.BusinessLogic.Services
 
 
 		// ReSharper disable once UnusedParameter.Local
-		private void verifyMove(Move move, Boolean? check = null)
+		private void verifyMove(Move move)
 		{
 			if (move == null)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
 
 			if (move.User.Email != Parent.Current.User.Email)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
-
-			if (check.HasValue && move.Checked == check.Value)
-			{
-				var error = move.Checked
-					? ExceptionPossibilities.MoveAlreadyChecked
-					: ExceptionPossibilities.MoveAlreadyUnchecked;
-
-				throw DFMCoreException.WithMessage(error);
-			}
 		}
 
 
@@ -170,19 +161,35 @@ namespace DFM.BusinessLogic.Services
 			return toggleMoveCheck(moveId, false);
 		}
 
-		private Move toggleMoveCheck(Int32 moveId, Boolean @checked)
+		private Move toggleMoveCheck(Int32 moveId, Boolean check)
 		{
 			var move = GetMoveById(moveId);
 
-			verifyMove(move, @checked);
+			verifyMove(move);
+			verifyMoveForCheck(move, check);
 
-			move.Checked = @checked;
+			move.Checked = check;
 
 			InTransaction(() => moveRepository.SaveOrUpdate(move));
 
 			return move;
 		}
 
+		private void verifyMoveForCheck(Move move, Boolean check)
+		{
+			if (!Parent.Current.User.Config.MoveCheck)
+			{
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCheckDisabled);
+			}
 
+			if (move.Checked == check)
+			{
+				var error = move.Checked
+					? ExceptionPossibilities.MoveAlreadyChecked
+					: ExceptionPossibilities.MoveAlreadyUnchecked;
+
+				throw DFMCoreException.WithMessage(error);
+			}
+		}
 	}
 }

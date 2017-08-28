@@ -21,16 +21,20 @@ namespace DFM.MVC.Models
 			LanguageList = SelectListExtension.CreateSelect(languageDictionary);
 			TimeZoneList = SelectListExtension.CreateSelect(DateTimeGMT.TimeZoneList());
 
-			UseCategories = Current.User.Config.UseCategories;
-			SendMoveEmail = Current.User.Config.SendMoveEmail;
-			Language = Current.User.Config.Language;
-			TimeZone = Current.User.Config.TimeZone;
+			var config = Current.User.Config;
+
+			UseCategories = config.UseCategories;
+			SendMoveEmail = config.SendMoveEmail;
+			MoveCheck = config.MoveCheck;
+			Language = config.Language;
+			TimeZone = config.TimeZone;
 		}
 
 
 
 		public Boolean UseCategories { get; set; }
 		public Boolean SendMoveEmail { get; set; }
+		public Boolean MoveCheck { get; set; }
 
 		public String Language { get; set; }
 		public String TimeZone { get; set; }
@@ -46,7 +50,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Admin.UpdateConfig(Language, TimeZone, SendMoveEmail, UseCategories);
+				Admin.UpdateConfig(Language, TimeZone, SendMoveEmail, UseCategories, MoveCheck);
 
 				ErrorAlert.Add("ConfigChanged");
 			}

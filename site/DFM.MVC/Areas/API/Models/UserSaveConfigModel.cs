@@ -4,7 +4,7 @@
 	{
 		internal void Save()
 		{
-			Admin.UpdateConfig(null, null, null, UseCategories);
+			Admin.UpdateConfig(null, null, null, UseCategories, null);
 		}
 	}
 }

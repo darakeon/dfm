@@ -12,6 +12,7 @@
 		<Settings text="Settings" />
 		<UseCategories text="Use categories" />
 		<SendMoveEmail text="Send e-mail when record move" />
+		<MoveCheck text="Move can be checked / unchecked" />
 		<Language text="Language" />
 		<TimeZone text="Time zone" />
 		<LanguageEnus text="English" />
@@ -33,6 +34,7 @@
 		<Settings text="Configurações" />
 		<UseCategories text="Usar categorias" />
 		<SendMoveEmail text="Enviar e-mail após gravar movimentação" />
+		<MoveCheck text="Movimentação pode ser verificada" />
 		<Language text="Língua" />
 		<TimeZone text="Fuso horário" />
 		<LanguageEnus text="Inglês" />

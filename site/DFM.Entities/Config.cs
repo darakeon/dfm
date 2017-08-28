@@ -11,6 +11,7 @@ namespace DFM.Entities
 		public virtual String TimeZone { get; set; }
 		public virtual Boolean SendMoveEmail { get; set; }
 		public virtual Boolean UseCategories { get; set; }
+		public virtual Boolean MoveCheck { get; set; }
 
 
 	}

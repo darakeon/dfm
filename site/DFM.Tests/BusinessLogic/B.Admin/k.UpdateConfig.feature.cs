@@ -493,6 +493,40 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9A. Disable move check")]
+        public virtual void _9A_DisableMoveCheck()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9A. Disable move check", ((string[])(null)));
+#line 139
+this.ScenarioSetup(scenarioInfo);
+#line 140
+ testRunner.Given("I enable move check");
+#line 141
+ testRunner.When("I try to disable move check");
+#line 142
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9B. Enable move check")]
+        public virtual void _9B_EnableMoveCheck()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9B. Enable move check", ((string[])(null)));
+#line 144
+this.ScenarioSetup(scenarioInfo);
+#line 145
+ testRunner.Given("I disable move check");
+#line 146
+ testRunner.When("I try to enable move check");
+#line 147
+ testRunner.Then("I will receive no core error");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

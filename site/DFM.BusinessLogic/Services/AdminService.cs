@@ -223,18 +223,17 @@ namespace DFM.BusinessLogic.Services
 
 		#region Config
 
-		public void UpdateConfig(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories)
+		public void UpdateConfig(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories, Boolean? moveCheck)
 		{
 			Parent.Safe.VerifyUser();
 
 			InTransaction(() =>
 			{
-				UpdateConfigWithinTransaction(language, timeZone, sendMoveEmail, useCategories);
+				UpdateConfigWithinTransaction(language, timeZone, sendMoveEmail, useCategories, moveCheck);
 			});
 		}
 
-		internal void UpdateConfigWithinTransaction(String language, String timeZone, Boolean? sendMoveEmail,
-			Boolean? useCategories)
+		internal void UpdateConfigWithinTransaction(String language, String timeZone, Boolean? sendMoveEmail, Boolean? useCategories, Boolean? moveCheck)
 		{
 			var config = Parent.Current.User.Config;
 
@@ -255,6 +254,9 @@ namespace DFM.BusinessLogic.Services
 
 			if (useCategories.HasValue)
 				config.UseCategories = useCategories.Value;
+
+			if (moveCheck.HasValue)
+				config.MoveCheck = moveCheck.Value;
 
 			configRepository.Update(config);
 		}

@@ -36,22 +36,22 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static void ActivateMoveEmailForUser(ServiceAccess sa)
 		{
-			sa.Admin.UpdateConfig(null, null, true, null);
+			sa.Admin.UpdateConfig(null, null, true, null, null);
 		}
 
 		internal static void DeactivateMoveEmailForUser(ServiceAccess sa)
 		{
-			sa.Admin.UpdateConfig(null, null, false, null);
+			sa.Admin.UpdateConfig(null, null, false, null, null);
 		}
 
 		internal static void ActivateCategoriesUseForUser(ServiceAccess sa)
 		{
-			sa.Admin.UpdateConfig(null, null, null, true);
+			sa.Admin.UpdateConfig(null, null, null, true, null);
 		}
 
 		internal static void DeactivateCategoriesUseForUser(ServiceAccess sa)
 		{
-			sa.Admin.UpdateConfig(null, null, null, false);
+			sa.Admin.UpdateConfig(null, null, null, false, null);
 		}
 
 

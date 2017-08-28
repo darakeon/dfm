@@ -641,7 +641,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, false);
+				SA.Admin.UpdateConfig(null, null, null, false, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -655,7 +655,35 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, null, true);
+				SA.Admin.UpdateConfig(null, null, null, true, null);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Given(@"I disable move check")]
+		[When(@"I try to disable move check")]
+		public void GivenIDisableMoveCheck()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, null, null, false);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Given(@"I enable move check")]
+		[When(@"I try to enable move check")]
+		public void GivenIEnableMoveCheck()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, null, null, true);
 			}
 			catch (DFMCoreException e)
 			{
@@ -668,7 +696,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(language, null, null, null);
+				SA.Admin.UpdateConfig(language, null, null, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -691,7 +719,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, timezone, null, null);
+				SA.Admin.UpdateConfig(null, timezone, null, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -705,7 +733,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, false, null);
+				SA.Admin.UpdateConfig(null, null, false, null, null);
 			}
 			catch (DFMCoreException e)
 			{
@@ -719,7 +747,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				SA.Admin.UpdateConfig(null, null, true, null);
+				SA.Admin.UpdateConfig(null, null, true, null, null);
 			}
 			catch (DFMCoreException e)
 			{

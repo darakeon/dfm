@@ -33,5 +33,9 @@ namespace DFM.MVC.Areas.Account.Models
 				MultiLanguage.GetMonthName(Month),
 				Year
 			);
+
+		public Boolean CanCheck => 
+			Current.User.Config.MoveCheck;
+
 	}
 }

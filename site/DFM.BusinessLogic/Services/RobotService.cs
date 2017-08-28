@@ -55,12 +55,12 @@ namespace DFM.BusinessLogic.Services
 
 			try
 			{
-				Parent.Admin.UpdateConfig(null, null, null, !useCategories);
+				Parent.Admin.UpdateConfig(null, null, null, !useCategories, null);
 				emailsSent = runSchedule(diffConfigList);
 			}
 			finally
 			{
-				Parent.Admin.UpdateConfig(null, null, null, useCategories);
+				Parent.Admin.UpdateConfig(null, null, null, useCategories, null);
 			}
 
 			return emailsSent;
