@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
@@ -106,12 +107,13 @@ namespace DFM.MVC.Controllers
 
 
 
+		[DFMAuthorize]
 		public ActionResult Config()
 		{
 			return View(new UsersConfigModel());
 		}
 
-		[HttpPost]
+		[DFMAuthorize, HttpPost]
 		public ActionResult Config(UsersConfigModel model)
 		{
 			if (ModelState.IsValid)
