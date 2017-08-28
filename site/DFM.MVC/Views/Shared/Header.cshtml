@@ -45,8 +45,16 @@
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new {action = "Index", controller = "Logins"})</li>
 					}
 
-					<li>@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "Config", controller = "Users" }, new { @class = "icon settings" })</li>
-					<li>@Html.RouteLink(" ", RouteNames.DEFAULT, new { action = "LogOff", controller = "Users" }, new { @class = "icon logoff" })</li>
+					<li>
+						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Config", controller = "Users"})">
+							<span class="glyphicon glyphicon-cog"></span>
+						</a>
+					</li>
+					<li>
+						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "LogOff", controller = "Users"})">
+							<span class="glyphicon glyphicon-off"></span>
+						</a>
+					</li>
 				}
 
 				@*<li class="active">
