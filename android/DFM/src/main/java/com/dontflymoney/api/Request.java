@@ -1,6 +1,9 @@
 package com.dontflymoney.api;
 
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.view.Surface;
 import android.view.WindowManager;
 
 import com.dontflymoney.baseactivity.SmartActivity;
@@ -224,6 +227,7 @@ public class Request
     {
         openProgressBar();
         disableSleep();
+        disableRotation();
     }
 
     private void openProgressBar()
@@ -236,10 +240,57 @@ public class Request
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
+    private void disableRotation()
+    {
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int orientation = activity.getResources().getConfiguration().orientation;
+
+        switch (orientation)
+        {
+            case Configuration.ORIENTATION_PORTRAIT:
+                handlePortrait(rotation);
+                break;
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                handleLandscape(rotation);
+                break;
+        }
+    }
+
+    private void handlePortrait(int rotation)
+    {
+        switch (rotation)
+        {
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_270:
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+            default:
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                break;
+        }
+    }
+
+    private void handleLandscape(int rotation)
+    {
+        switch (rotation)
+        {
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_90:
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                break;
+            default:
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                break;
+        }
+    }
+
+
     private void endUIWait()
     {
         closeProgressBar();
         enableSleep();
+        enableRotation();
     }
 
     private void closeProgressBar()
@@ -253,14 +304,17 @@ public class Request
         {
             progress.dismiss();
             progress = null;
-        } catch (IllegalArgumentException ignored)
-        {
-        }
+        } catch (IllegalArgumentException ignored) { }
     }
 
     private void enableSleep()
     {
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void enableRotation()
+    {
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
 
