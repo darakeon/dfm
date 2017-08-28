@@ -5,9 +5,16 @@
 	<string name="starting_app">Waking up the pig…</string>
 
 	<!-- Actions -->
-	<string name="action_logout">Logout</string>
-	<string name="action_refresh">Refresh</string>
-	<string name="action_close">Close</string>
+	<string name="action_home" translatable="false"></string>
+	<string name="action_refresh" translatable="false"></string>
+	<string name="action_settings" translatable="false"></string>
+	<string name="action_logout" translatable="false"></string>
+	<string name="action_close" translatable="false"></string>
+	<string name="label_home">Home</string>
+	<string name="label_refresh">Refresh</string>
+	<string name="label_settings">Settings</string>
+	<string name="label_logout">Logout</string>
+	<string name="label_close">Close</string>
 
 	<!-- Buttons -->
 	<string name="save">save</string>

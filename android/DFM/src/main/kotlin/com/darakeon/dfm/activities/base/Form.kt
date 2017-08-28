@@ -2,6 +2,7 @@ package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
@@ -15,6 +16,13 @@ fun TextView.setColorByAttr(attr : Int){
     val typedValue = TypedValue()
     context.theme.resolveAttribute(attr, typedValue, true)
     setTextColor(typedValue.data)
+}
+
+fun TextView.applyGlyphicon(ac: SmartActivity<*>) {
+    if (text.length != 1)
+        return
+
+    typeface = Typeface.createFromAsset(ac.assets, "fonts/glyphicons-halflings-regular.ttf")
 }
 
 class Form internal constructor(private val activity: Activity) {

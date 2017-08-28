@@ -31,10 +31,6 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
         return R.layout.summary
     }
 
-    override fun optionsMenuResource(): Int {
-        return R.menu.summary
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

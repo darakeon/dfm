@@ -12,17 +12,21 @@
 	<TextView
 		android:id="@+id/empty_list"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="0sp"
+		android:layout_weight="1"
+		android:gravity="top|center"
 		android:visibility="gone"
-		android:gravity="center"
 		android:textSize="17sp"
 		android:paddingTop="20dp"
 		android:paddingBottom="20dp"
 		android:text="@string/no_accounts" />
-	
+
 	<ListView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-	  	android:id="@+id/main_table" />
+		android:layout_height="0sp"
+		android:layout_weight="1"
+		android:id="@+id/main_table" />
+
+	<include layout="@layout/bottom_menu" />
 	
 </LinearLayout>

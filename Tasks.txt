@@ -110,7 +110,7 @@ VERSÃO 3.0.0.0 (All new) - 21
 ================================================================================================
 						Video do porquinho
 						Remover azul do layout Dark
-2017-03-29				Arrumar ícones de lista / menu no mobile
+2017-03-29	2017-03-29	Arrumar ícones de lista / menu no mobile
 2017-03-28	2017-03-29	Corrigir inserção duplicada de move no mobile
 2017-03-27	2017-03-28	Tema dark no android
 2017-03-27	2017-03-27	Corrigir problema de cache na criação/edição de movimentação (conta/categoria) - e outros caches loucos

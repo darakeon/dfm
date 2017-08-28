@@ -53,7 +53,8 @@
 
 	<LinearLayout
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="0sp"
+		android:layout_weight="1">
 
 		<Button
 			android:text="@string/cancel"
@@ -69,5 +70,7 @@
 			android:layout_height="wrap_content"
 			android:onClick="saveSettings" />
 	</LinearLayout>
+
+	<include layout="@layout/bottom_menu" />
 
 </LinearLayout>

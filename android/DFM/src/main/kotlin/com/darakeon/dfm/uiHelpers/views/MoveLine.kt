@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.activities.base.applyGlyphicon
 import com.darakeon.dfm.activities.base.setColorByAttr
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import org.json.JSONException
@@ -58,7 +59,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
             CheckedField.text = context.getString(textRes)
 
             val activity = context as ExtractActivity
-            CheckedField.setTypeface(activity.glyphicon)
+            CheckedField.applyGlyphicon(activity)
 
             val color = if (move.Checked) R.attr.checked else R.attr.unchecked
             CheckedField.setColorByAttr(color)

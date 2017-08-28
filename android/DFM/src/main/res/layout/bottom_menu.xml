@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:orientation="horizontal"
+			  android:layout_width="match_parent"
+			  android:layout_height="50sp"
+			  android:layout_margin="0sp"
+			  android:padding="0sp"
+			  android:gravity="bottom|center"
+			  android:id="@+id/menu"
+			  style="?android:attr/buttonBarStyle" >
+
+	<Button
+		android:id="@+id/action_home"
+		android:text="@string/action_home"
+		android:contentDescription="@string/label_home"
+		android:onClick="goToAccounts"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle"  />
+
+	<Button
+		android:id="@+id/action_refresh"
+		android:text="@string/action_refresh"
+		android:contentDescription="@string/label_refresh"
+		android:onClick="refresh"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle"  />
+
+	<Button
+		android:id="@+id/action_settings"
+		android:text="@string/action_settings"
+		android:contentDescription="@string/label_settings"
+		android:onClick="goToSettings"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle" />
+
+	<Button
+		android:id="@+id/action_logout"
+		android:text="@string/action_logout"
+		android:contentDescription="@string/label_logout"
+		android:onClick="logout"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle" />
+
+	<Button
+		android:id="@+id/action_close"
+		android:text="@string/action_close"
+		android:contentDescription="@string/label_close"
+		android:onClick="close"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle" />
+
+</LinearLayout>

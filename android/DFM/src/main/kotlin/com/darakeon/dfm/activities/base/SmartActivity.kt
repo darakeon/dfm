@@ -1,13 +1,13 @@
 package com.darakeon.dfm.activities.base
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
 import android.view.*
+import android.widget.Button
+import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.AccountsActivity
+import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -18,8 +18,6 @@ import org.json.JSONException
 import org.json.JSONObject
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
-
-    var glyphicon : Typeface? = null
 
     var clickedView: View? = null
 
@@ -60,14 +58,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
     var request: InternalRequest<T>? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         Language.ChangeFromSaved(this)
         Theme.ChangeFromSaved(this)
 
         super.onCreate(savedInstanceState)
-
-        glyphicon = Typeface.createFromAsset(assets, "fonts/glyphicons-halflings-regular.ttf")
 
         if (!hasTitle)
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -89,12 +84,24 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
 
-        if (optionsMenuResource() != 0) {
+        if (optionsMenuResource() != 0)
             menuInflater.inflate(optionsMenuResource(), menu)
-        }
 
-        if (isLoggedIn)
-            menuInflater.inflate(R.menu.common, menu)
+        val bottomMenu = findViewById(R.id.menu) as LinearLayout?
+
+        if (bottomMenu != null)
+        {
+            (0..bottomMenu.childCount - 1).forEach {
+                val button = bottomMenu.getChildAt(it) as Button
+                button.applyGlyphicon(this);
+
+                if (this is AccountsActivity)
+                    findViewById(R.id.action_home).isEnabled = false
+
+                if (this is SettingsActivity)
+                    findViewById(R.id.action_settings).isEnabled = false
+            }
+        }
 
         return true
     }
@@ -126,23 +133,23 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
         navigation.back()
     }
 
-    fun logout(menuItem: MenuItem) {
+    fun logout(view: View) {
         navigation.logout()
     }
 
-    fun close(menuItem: MenuItem) {
+    fun close(view: View) {
         navigation.close()
     }
 
-    fun refresh(menuItem: MenuItem) {
+    fun refresh(view: View) {
         refresh()
     }
 
-    fun goToAccounts(menuItem: MenuItem) {
+    fun goToAccounts(view: View) {
         navigation.redirect(AccountsActivity::class.java)
     }
 
-    fun goToSettings(menuItem: MenuItem) {
+    fun goToSettings(view: View) {
         navigation.goToSettings()
     }
 
