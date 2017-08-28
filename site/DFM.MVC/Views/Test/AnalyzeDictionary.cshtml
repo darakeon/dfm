@@ -15,10 +15,12 @@
 
 @foreach (var section in Model.SectionList)
 {
-    var data = new Dictionary<String, Dictionary<String, String>>();
-    data.Add("Phrase", new Dictionary<String, String>());
+	var data = new Dictionary<String, Dictionary<String, String>>
+	{
+		{ "Phrase", new Dictionary<String, String>() }
+	};
 
-    foreach (var language in section.LanguageList)
+	foreach (var language in section.LanguageList)
     {
         data["Phrase"].Add(language.Name, language.Name);
 
