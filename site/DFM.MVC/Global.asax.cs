@@ -137,10 +137,9 @@ namespace DFM.MVC
 
 
 
-        private static Uri url { get { return HttpContext.Current.Request.Url; } }
-        private static Boolean isAsset { get { return url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/"); } }
-        private static Boolean isLocal { get { return Cfg.IsLocal; } }
-        private static Boolean isElmah { get { return url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd"); } }
-
+        private static Uri url => HttpContext.Current.Request.Url;
+	    private static Boolean isAsset => url.AbsolutePath.ToLowerInvariant().StartsWith("/assets/");
+	    private static Boolean isLocal => Cfg.IsLocal;
+	    private static Boolean isElmah => url.AbsolutePath.ToLowerInvariant().Contains("elmah.axd");
     }
 }

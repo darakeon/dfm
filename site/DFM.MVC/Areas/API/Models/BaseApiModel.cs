@@ -5,10 +5,6 @@ namespace DFM.MVC.Areas.API.Models
 {
     public class BaseApiModel : BaseModel
     {
-        public String Language
-        {
-            get { return Current.Language; }
-        }
-
+        public String Language => Current.Language;
     }
 }

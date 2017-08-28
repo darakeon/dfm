@@ -15,12 +15,9 @@ namespace DFM.Authentication
         }
 
 
-        public PseudoTicket Ticket
-        {
-            get { return MyCookie.Get(); }
-        }
+        public PseudoTicket Ticket => MyCookie.Get();
 
-        public User User
+	    public User User
         {
             get
             {
@@ -37,26 +34,16 @@ namespace DFM.Authentication
 
 
 
-        public Boolean IsAuthenticated
-        {
-            get { return User != null; }
-        }
+        public Boolean IsAuthenticated => User != null;
 
 
-        public String Language
-        {
-            get { return User == null ? null : User.Config.Language; }
-        }
-
-        
-        public Boolean IsAdm
-        {
-            get { return IsAuthenticated && User.IsAdm(); }
-        }
+	    public String Language => User == null ? null : User.Config.Language;
 
 
+	    public Boolean IsAdm => IsAuthenticated && User.IsAdm();
 
-        public void Set(String username, String password)
+
+	    public void Set(String username, String password)
         {
             userService.ValidateUserAndCreateTicket(username, password, Ticket);
         }

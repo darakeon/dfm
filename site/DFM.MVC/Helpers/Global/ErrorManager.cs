@@ -70,11 +70,6 @@ namespace DFM.MVC.Helpers.Global
                 = new Dictionary<String, Error.Status>();
 
 
-        private static String key
-        {
-            get { return MyCookie.Get().Key; }
-        }
-
-
+        private static String key => MyCookie.Get().Key;
     }
 }

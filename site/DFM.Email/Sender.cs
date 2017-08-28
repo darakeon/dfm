@@ -15,13 +15,10 @@ namespace DFM.Email
         private readonly IList<String> files;
         private readonly String @default;
         
-        public static String SenderAddress
-        {
-            get { return new Sender().from; }
-        }
-        
+        public static String SenderAddress => new Sender().@from;
 
-        public Sender()
+
+	    public Sender()
         {
             files = new List<String>();
 

@@ -73,14 +73,10 @@ namespace DFM.Email
                 );
         }
 
-        private static String subject
-        {
-            get { return DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss´fff"); }
-        }
+        private static String subject => DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss´fff");
 
 
-
-        public enum Status
+	    public enum Status
         {
             Sent = 0,
             Error = 1,

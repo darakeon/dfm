@@ -6,15 +6,9 @@ namespace DFM.MVC.Areas.API
 {
     public class APIAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return RouteNames.API;
-            }
-        }
+        public override string AreaName => RouteNames.API;
 
-        public override void RegisterArea(AreaRegistrationContext context)
+	    public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 RouteNames.APILoggedAccount,

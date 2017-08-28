@@ -22,9 +22,9 @@ namespace DFM.Tests.BusinessLogic
     public abstract class BaseStep : ContextHelper
     {
         protected static ServiceAccess SA;
-        protected static Current Current { get { return SA.Current; } }
+        protected static Current Current => SA.Current;
 
-        protected BaseStep()
+	    protected BaseStep()
         {
             if (SA != null)
                 return;

@@ -7,15 +7,9 @@ namespace DFM.MVC.Areas.Account
 {
     public class AccountAreaRegistration : AreaRegistration
     {
-        public override String AreaName
-        {
-            get
-            {
-                return RouteNames.Account;
-            }
-        }
+        public override String AreaName => RouteNames.Account;
 
-        public override void RegisterArea(AreaRegistrationContext context)
+	    public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 RouteNames.Account,

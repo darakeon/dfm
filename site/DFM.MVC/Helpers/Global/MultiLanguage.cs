@@ -25,44 +25,22 @@ namespace DFM.MVC.Helpers.Global
 
         private static MultiLanguage dictionary;
 
-        public static MultiLanguage Dictionary
-        {
-            get
-            {
-                return dictionary 
-                    ?? (dictionary = new MultiLanguage());
-            }
-        }
+        public static MultiLanguage Dictionary 
+			=> dictionary ?? (dictionary = new MultiLanguage());
 
 
+	    public String this[params String[] phrase] => PlainText.Dictionary[section, Language, phrase];
 
-        public String this[params String[] phrase]
-        {
-            get { return PlainText.Dictionary[section, Language, phrase]; }
-        }
-        
-        public String this[DFMCoreException exception]
-        {
-            get { return this[exception.Type]; }
-        }
+	    public String this[DFMCoreException exception] => this[exception.Type];
 
-        public String this[ExceptionPossibilities exception]
-        {
-            get { return this["Error", exception.ToString()]; }
-        }
+	    public String this[ExceptionPossibilities exception] => this["Error", exception.ToString()];
 
-        public String this[EmailStatus exception]
-        {
-            get { return this["Email", exception.ToString()]; }
-        }
+	    public String this[EmailStatus exception] => this["Email", exception.ToString()];
 
-        private String this[String specificSection, params String[] phrase]
-        {
-            get { return PlainText.Dictionary[specificSection, Language, phrase]; }
-        }
+	    private String this[String specificSection, params String[] phrase] => PlainText.Dictionary[specificSection, Language, phrase];
 
 
-        public static String EmailLayout(String layout)
+	    public static String EmailLayout(String layout)
         {
             return PlainText.EmailLayout[Language, layout];
         }
@@ -116,13 +94,10 @@ namespace DFM.MVC.Helpers.Global
 
 
 
-        private static HttpRequest request
-        {
-            get { return HttpContext.Current.Request; }
-        }
+        private static HttpRequest request => HttpContext.Current.Request;
 
 
-        public static IDictionary<T, String> GetEnumNames<T>()
+	    public static IDictionary<T, String> GetEnumNames<T>()
         {
             return EnumHelper.GetEnumNames<T>(section, Language);
         }

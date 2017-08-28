@@ -13,10 +13,10 @@ namespace DFM.Multilanguage
     {
         private static String currentPath;
 
-        internal static String MainPath { get { return Path.Combine(currentPath, "MultiLanguage"); } }
-        private static String path { get { return Path.Combine(MainPath, "Resources"); } }
+        internal static String MainPath => Path.Combine(currentPath, "MultiLanguage");
+	    private static String path => Path.Combine(MainPath, "Resources");
 
-        public static EmailLayout EmailLayout { get; private set; }
+	    public static EmailLayout EmailLayout { get; private set; }
         public static PlainText Dictionary { get; private set; }
         
         public DicList<Section> SectionList { get; private set; }

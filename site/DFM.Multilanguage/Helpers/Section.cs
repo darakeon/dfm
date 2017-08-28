@@ -25,14 +25,10 @@ namespace DFM.Multilanguage.Helpers
             }
         }
 
-        public Language this[String language]
-        {
-            get { return LanguageList[language]; }
-        }
+        public Language this[String language] => LanguageList[language];
 
 
-
-        public override String ToString()
+	    public override String ToString()
         {
             return Name;
         }

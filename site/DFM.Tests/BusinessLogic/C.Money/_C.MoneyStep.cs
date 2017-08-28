@@ -41,22 +41,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
             set { Set("OldDate", value); }
         }
 
-        private static String newAccountOutUrl
-        {
-            get { return "new_" + AccountOutUrl; }
-        }
+        private static String newAccountOutUrl => "new_" + AccountOutUrl;
 
-        private static String newAccountInUrl
-        {
-            get { return "new_" + AccountInUrl; }
-        }
+	    private static String newAccountInUrl => "new_" + AccountInUrl;
 
-        private static String newCategoryName
-        {
-            get { return "new " + MainCategoryName; }
-        }
+	    private static String newCategoryName => "new " + MainCategoryName;
 
-        private static Decimal newAccountOutTotal
+	    private static Decimal newAccountOutTotal
         {
             get { return Get<Decimal>("NewAccountOutTotal"); }
             set { Set("NewAccountOutTotal", value); }

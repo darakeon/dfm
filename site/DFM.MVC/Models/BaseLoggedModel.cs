@@ -13,23 +13,12 @@ namespace DFM.MVC.Models
                 : RouteInfo.Current.RouteData.Values["action"].ToString();
         }
 
-        public String CurrentMonth
-        {
-            get { return MultiLanguage.GetMonthName(Today.Month); }
-        }
+        public String CurrentMonth => MultiLanguage.GetMonthName(Today.Month);
 
-        public String CurrentYear
-        {
-            get { return Today.ToString("yyyy"); }
-        }
+	    public String CurrentYear => Today.ToString("yyyy");
 
-        public String ActionName { get; set; }
+	    public String ActionName { get; set; }
 
-        public String Language
-        {
-            get { return Current.Language; }
-        }
-
-
+        public String Language => Current.Language;
     }
 }

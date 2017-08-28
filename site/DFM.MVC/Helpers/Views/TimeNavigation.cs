@@ -58,7 +58,7 @@ namespace DFM.MVC.Helpers.Views
 			public Int32 Max { get; private set; }
 			public String Parent { get; private set; }
 
-            public String Class { get { return "navigation"; } }
+            public String Class => "navigation";
         }
     }
 }

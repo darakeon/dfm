@@ -25,14 +25,10 @@ namespace DFM.Multilanguage.Helpers
             }
         }
 
-        public Phrase this[String phrase]
-        {
-            get { return PhraseList[phrase]; }
-        }
+        public Phrase this[String phrase] => PhraseList[phrase];
 
 
-
-        public override String ToString()
+	    public override String ToString()
         {
             return Name;
         }
