@@ -53,7 +53,7 @@ namespace DFM.Entities
 		{
 			get
 			{
-				var month = (Out ?? In);
+				var month = Out ?? In;
 
 				return month == null
 					? null

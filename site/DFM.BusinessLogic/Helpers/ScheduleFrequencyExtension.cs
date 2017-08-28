@@ -43,7 +43,7 @@ namespace DFM.BusinessLogic.Helpers
                 case ScheduleFrequency.Daily:
                     return (lastDate - firstDate).TotalDays.toInt();
                 case ScheduleFrequency.Monthly:
-                    return months + (years * 12);
+                    return months + years * 12;
                 case ScheduleFrequency.Yearly:
                     return years;
                 default:
