@@ -231,6 +231,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			}
 		}
 
+		[Given(@"I get the Move at position (\d+) of the Schedule")]
+		public void GivenIGetTheMoveOfTheSchedule(Int32 position)
+		{
+			Move = Schedule.MoveList[--position];
+		}
+
 
 		[When(@"I change the category of the move")]
 		public void GivenIChangeTheCategoryOfTheMove()
@@ -528,6 +534,14 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var move = Service.Money.GetMoveById(Move.ID);
 			Assert.AreEqual(value, move.Total());
+		}
+
+		[Then(@"the Move will still be at the Schedule")]
+		public void ThenTheMoveWillStillBeAtTheSchedule()
+		{
+			var move = Service.Money.GetMoveById(Move.ID);
+			Assert.IsNotNull(move.Schedule);
+			Assert.AreEqual(Schedule.ID, move.Schedule.ID);
 		}
 		#endregion
 

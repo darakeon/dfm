@@ -204,3 +204,18 @@ Scenario: Cb15. Change the details of the move - remove one
 	And the old-month-category-accountOut value will change in -10
 	And the old-year-category-accountOut value will change in -10
 
+
+Scenario: Cb16. Change move with schedule
+	Given I have this schedule to create
+			| Description   | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Schedule Cb16 | 2017-03-27 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
+		And I run the scheduler
+		And I get the Move at position 1 of the Schedule
+	When I update the move
+	Then I will receive no core error
+		And the Move will still be at the Schedule

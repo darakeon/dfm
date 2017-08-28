@@ -613,6 +613,60 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cb16. Change move with schedule")]
+        public virtual void Cb16_ChangeMoveWithSchedule()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cb16. Change move with schedule", ((string[])(null)));
+#line 208
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Description",
+                        "Date",
+                        "Nature",
+                        "Value",
+                        "Times",
+                        "Boundless",
+                        "Frequency",
+                        "ShowInstallment"});
+            table7.AddRow(new string[] {
+                        "Schedule Cb16",
+                        "2017-03-27",
+                        "Out",
+                        "10",
+                        "1",
+                        "False",
+                        "Monthly",
+                        "False"});
+#line 209
+ testRunner.Given("I have this schedule to create", ((string)(null)), table7, "Given ");
+#line 212
+  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 213
+  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 214
+  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 215
+  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 216
+  testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 217
+  testRunner.And("I run the scheduler", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 218
+  testRunner.And("I get the Move at position 1 of the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 219
+ testRunner.When("I update the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 220
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 221
+  testRunner.And("the Move will still be at the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

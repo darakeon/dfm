@@ -102,6 +102,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			}
 		}
 
+		[Given(@"I run the scheduler")]
 		[When(@"I try to run the scheduler")]
 		public void WhenITryToRunTheScheduler()
 		{
@@ -111,7 +112,10 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			}
 			catch (DFMCoreException e)
 			{
-				Error = e;
+				if (IsCurrent(ScenarioBlock.When))
+					Error = e;
+				else
+					throw;
 			}
 		}
 
