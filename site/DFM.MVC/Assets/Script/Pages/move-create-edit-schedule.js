@@ -99,8 +99,8 @@ function InsertCategoryOnDropDown(data) {
 function ShowAccountList(obj) {
 	var nature = $(obj).val();
 
-	$(".account-combo").each(function() {
-		var show = $(this).data(nature) === "1";
+	$(".account-combo").each(function () {
+		var show = $(this).data(nature) === 1;
 		$(this).toggle(show);
 	});
 }
