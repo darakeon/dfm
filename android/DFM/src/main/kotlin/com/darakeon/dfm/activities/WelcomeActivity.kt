@@ -48,6 +48,7 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
     {
         val field = findViewById(R.id.pig) as ImageView
         field.setImageResource(R.drawable.unauthorized)
+        field.scaleType = ImageView.ScaleType.CENTER
     }
 
     override fun onDestroy() {
