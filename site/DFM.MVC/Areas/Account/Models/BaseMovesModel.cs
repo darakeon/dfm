@@ -50,12 +50,12 @@ namespace DFM.MVC.Areas.Account.Models
 			: this(iMove)
 		{
 			Type = type;
+		}
 
-			if (AccountOutUrl == null)
-				AccountOutUrl = CurrentAccountUrl;
-
-			if (AccountInUrl == null)
-				AccountInUrl = CurrentAccountUrl;
+		public void SetDefaultAccount()
+		{
+			AccountOutUrl = CurrentAccountUrl;
+			AccountInUrl = CurrentAccountUrl;
 		}
 
 

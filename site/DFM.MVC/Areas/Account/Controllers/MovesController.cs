@@ -19,7 +19,8 @@ namespace DFM.MVC.Areas.Account.Controllers
 		public ActionResult Create()
 		{
 			var model = new MovesCreateEditModel(OperationType.Creation);
-			
+			model.SetDefaultAccount();
+
 			return View("CreateEditSchedule", model);
 		}
 
@@ -39,6 +40,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 				return RedirectToAction("Create");
 
 			var model = new MovesCreateEditModel(id.Value, OperationType.Edit);
+			model.SetDefaultAccount();
 
 			return View("CreateEditSchedule", model);
 		}

@@ -18,6 +18,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		public ActionResult Create()
 		{
 			var model = new SchedulesCreateModel();
+			model.SetDefaultAccount();
 
 			return View("CreateEditSchedule", model);
 		}

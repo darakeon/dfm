@@ -112,6 +112,10 @@ VERSÃO 3.1.0.0 (Big change) - 4
 						Corrigir ícones de status da conta
 						This site uses cookies to store your preferences for site-specific language and display options. 
 						Escrever testes para permissões por usuário
+						
+VERSÃO 3.0.0.6 (System) - 1
+================================================================================================
+2017-05-21	2017-05-21	Corrigir naturezas na tela de agendamento - O RETORNO
 
 VERSÃO 3.0.0.5 (System) - 6
 ================================================================================================
