@@ -69,6 +69,7 @@
     <InvalidMonth text="Invalid month" />
     <InvalidSchedule text="Invalid schedule" />
     <DisabledSchedule text="Schedule already disabled" />
+    <CategoriesDisabled text="Categories disabled" />
   </en-US>
   <pt-BR>
     <CheckErrors text="Verifique os erros e tente novamente."/>
@@ -139,5 +140,6 @@
     <InvalidMonth text="Mês inválido." />
     <InvalidSchedule text="Agendamento inexistente" />
     <DisabledSchedule text="Agendamento já desabilitado" />
+    <CategoriesDisabled text="Uso de Categorias desabilitado" />
   </pt-BR>
 </error>
