@@ -632,19 +632,48 @@ namespace DFM.Tests.BusinessLogic.B.Admin
         }
         #endregion
 
-        #region UpdateConfig
+		#region UpdateConfig
 
-        [Given(@"I disable Categories use")]
-        public void GivenIDisableCategoryForThisUser()
-        {
-            SA.Admin.UpdateConfig(null, null, null, false);
-        }
+		[Given(@"I disable Categories use")]
+		[When(@"I try to disable Categories use")]
+		public void GivenIDisableCategoryForThisUser()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, null, false);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
-        [Given(@"I enable Categories use")]
-        public void GivenIEnableCategoryForThisUser()
-        {
-            SA.Admin.UpdateConfig(null, null, null, true);
-        }
+		[Given(@"I enable Categories use")]
+		[When(@"I try to enable Categories use")]
+		public void GivenIEnableCategoryForThisUser()
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, null, true);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[When(@"I try to change the language to ([a-z]{2}-[A-Z]{2})")]
+		public void WhenITryToChangeTheLanguageTo(String language)
+		{
+			try
+			{
+				SA.Admin.UpdateConfig(null, null, null, true);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
 
         #endregion
 

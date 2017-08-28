@@ -160,6 +160,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>b.UpdateMove.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\C.Money\f.ChangePaidStatus.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>f.ChangePaidStatus.feature</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogic\C.Money\_C.MoneyStep.cs" />
     <Compile Include="BusinessLogic\C.Money\c.SelectMoveById.feature.cs">
       <DependentUpon>c.SelectMoveById.feature</DependentUpon>
@@ -297,6 +302,10 @@
     <None Include="BusinessLogic\C.Money\b.UpdateMove.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>b.UpdateMove.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\C.Money\f.ChangePaidStatus.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>f.ChangePaidStatus.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\D.Robot\b.RunSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
