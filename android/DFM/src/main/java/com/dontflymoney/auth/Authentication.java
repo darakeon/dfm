@@ -1,13 +1,14 @@
 package com.dontflymoney.auth;
 
-import com.dontflymoney.io.*;
-
 import android.content.Context;
+
+import com.dontflymoney.io.File;
+import com.dontflymoney.io.FileNames;
 
 public class Authentication
 {
-	Context context;
-	SafeTicket safe;
+	private Context context;
+	private SafeTicket safe;
 	
 	public Authentication(Context context)
 	{
@@ -37,7 +38,7 @@ public class Authentication
 	{
 		String ticket = Get();
 
-		return ticket != null && ticket != "";
+		return ticket != null && !ticket.isEmpty();
 	}
 
 	public void Clear()

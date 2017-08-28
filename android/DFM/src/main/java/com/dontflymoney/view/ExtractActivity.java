@@ -127,7 +127,7 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	            Object dayPicker = field.get(datePicker);
 	            ((View) dayPicker).setVisibility(View.GONE);
 		    } 
-		    catch (Exception e) { }
+		    catch (Exception ignored) { }
 		}
 
         dialog.show();

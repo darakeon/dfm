@@ -21,7 +21,7 @@ public class Move
 		Date = Calendar.getInstance();
 	}
 
-	public int Id;
+	private int Id;
 	public String Description;
 	public Calendar Date;
 
@@ -36,6 +36,12 @@ public class Move
 	public List<Detail> Details;
 
 
+	private Nature getNature(int number)
+	{
+		return com.dontflymoney.entities.Nature.GetNature(number);
+	}
+
+
 	public void SetNature(String number)
 	{
 		SetNature(Integer.parseInt(number));
@@ -43,7 +49,7 @@ public class Move
 
 	public void SetNature(int number)
 	{
-		Nature = Nature.GetNature(number);
+		Nature = getNature(number);
 	}
 
 	public void Add(String description, int amount, double value)
@@ -147,9 +153,9 @@ public class Move
 		Category = move.getString("Category");
 		AccountOut = move.getString("AccountOutUrl");
 		AccountIn = move.getString("AccountInUrl");
-		Nature = Nature.GetNature(move.getInt("Nature"));
+		Nature = getNature(move.getInt("Nature"));
 
-		if (move.has("Value") && !move.get("Value").equals(null))
+		if (move.has("Value") && !move.isNull("Value"))
 		{
 			Value = move.getDouble("Value");
 		}

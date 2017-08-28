@@ -1,7 +1,5 @@
 package com.dontflymoney.viewhelper;
 
-import java.text.DecimalFormat;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.TextView;
 
 import com.dontflymoney.entities.Move;
 import com.dontflymoney.view.R;
+
+import java.text.DecimalFormat;
 
 @SuppressLint("ViewConstructor")
 public class DetailBox extends LinearLayout 
@@ -35,7 +35,7 @@ public class DetailBox extends LinearLayout
 		addView(descriptionField);
 
 		TextView amountField = new TextView(context);
-		amountField.setText(Integer.toString(amount));
+		amountField.setText(String.format("%d", amount));
 		setWeight(amountField, 1);
 		addView(amountField);
 

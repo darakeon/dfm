@@ -9,7 +9,7 @@ import com.dontflymoney.view.R;
 
 public class Message
 {
-	SmartActivity activity;
+	private SmartActivity activity;
 	
 	Message(SmartActivity activity)
 	{
@@ -91,7 +91,7 @@ public class Message
 	
 
 
-	public ProgressDialog getWaitDialog()
+	ProgressDialog getWaitDialog()
 	{
 		ProgressDialog progress = new ProgressDialog(activity);
 		progress.setTitle(activity.getString(R.string.wait_title));

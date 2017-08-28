@@ -8,7 +8,7 @@ class SafeTicket
 {
 	private String key;
 	
-	public SafeTicket(Context context)
+	SafeTicket(Context context)
 	{
 		String machineId = Unique.GetKey(context);
 
@@ -28,7 +28,7 @@ class SafeTicket
 	
 	
 	
-	public String Encrypt(String ticket)
+	String Encrypt(String ticket)
 	{	
 		if (ticket == null)
 			return null;
@@ -45,7 +45,7 @@ class SafeTicket
 		return encryptedTicket;
 	}
 
-	public String Decrypt(String encryptedTicket)
+	String Decrypt(String encryptedTicket)
 	{
 		if (encryptedTicket == null)
 			return null;

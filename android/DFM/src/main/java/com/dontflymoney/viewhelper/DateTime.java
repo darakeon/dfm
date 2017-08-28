@@ -7,9 +7,6 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
-/**
- * Created by Handhara on 07/09/2015.
- */
 public class DateTime
 {
     @NonNull

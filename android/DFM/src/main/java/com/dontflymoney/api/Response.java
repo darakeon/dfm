@@ -2,33 +2,33 @@ package com.dontflymoney.api;
 
 import org.json.JSONObject;
 
-public class Response
+class Response
 {
 	private JSONObject result;
 	private String error;
 
-	public Response(JSONObject result)
+	Response(JSONObject result)
 	{
 		this.result = result;
 	}
 
-	public Response(String error)
+	Response(String error)
 	{
 		this.error = error;
 	}
 	
 
-	public boolean IsSuccess()
+	boolean IsSuccess()
 	{
 		return error == null;
 	}
 	
-	public JSONObject GetResult()
+	JSONObject GetResult()
 	{
 		return result;
 	}
 	
-	public String GetError()
+	String GetError()
 	{
 		return error;
 	}

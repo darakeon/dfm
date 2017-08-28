@@ -56,7 +56,7 @@ public class AccountLine extends LinearLayout
 		private Context context;
 		private String url;
 
-		public onClickListener(Context context, String url)
+		onClickListener(Context context, String url)
 		{
 			this.context = context;
 			this.url = url;

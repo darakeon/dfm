@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 
 public class Form
 {
-	Activity activity;
+	private Activity activity;
 	
 	Form(Activity activity)
 	{
@@ -89,7 +89,7 @@ public class Form
         return field;
     }
 
-    public ImageView createImage(int resourceId, int gravity)
+    public ImageView createImage(int resourceId)
     {
         ImageView field = new ImageView(activity);
 

@@ -11,8 +11,8 @@ import com.dontflymoney.view.SettingsActivity;
 
 public class Navigation
 {
-	SmartActivity activity;
-	Authentication authentication;
+	private SmartActivity activity;
+	private Authentication authentication;
 	
 	Navigation(SmartActivity activity, Authentication authentication)
 	{
@@ -45,7 +45,7 @@ public class Navigation
 
 
 
-	protected void logout()
+	void logout()
 	{
 		Request request = new Request(activity, "Users/Logout");
 		request.AddParameter("ticket", authentication.Get());
@@ -58,12 +58,12 @@ public class Navigation
 		}
 	}
 	
-	protected void back()
+	void back()
 	{
 		activity.finish();
 	}
 
-    protected void close()
+    void close()
     {
         Intent intent = new Intent(activity, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -71,7 +71,7 @@ public class Navigation
         activity.startActivity(intent);
     }
 
-    public void goToSettings()
+    void goToSettings()
 	{
 		Intent intent = new Intent(activity, SettingsActivity.class);
 

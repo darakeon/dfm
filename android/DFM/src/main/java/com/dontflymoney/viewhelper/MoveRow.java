@@ -20,7 +20,7 @@ public class MoveRow extends TableRow
 {
     private final ExtractActivity activity;
     private String description;
-    private double total;
+    //private double total;
     private boolean checked;
 
     public MoveRow(Context context)
@@ -44,7 +44,7 @@ public class MoveRow extends TableRow
     public void setDescription(String description)
     {
         this.description = description;
-        addView(activity.form.createText(description, Gravity.LEFT));
+        addView(activity.form.createText(description, Gravity.START));
     }
 
     public String getDescription()
@@ -69,8 +69,8 @@ public class MoveRow extends TableRow
 
     public void setTotal(double total)
     {
-        this.total = total;
-        addView(activity.form.createText(total, Gravity.RIGHT));
+        //this.total = total;
+        addView(activity.form.createText(total, Gravity.END));
     }
 
     public void setChecked(Boolean checked)
@@ -80,7 +80,7 @@ public class MoveRow extends TableRow
 		if (activity.CanCheck())
 		{
 			int idResource = checked ? R.drawable.green_sign : R.drawable.red_sign;
-			addView(activity.form.createImage(idResource, Gravity.LEFT));
+			addView(activity.form.createImage(idResource));
 		}
     }
 

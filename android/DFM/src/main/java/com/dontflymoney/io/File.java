@@ -1,5 +1,9 @@
 package com.dontflymoney.io;
 
+import android.content.Context;
+
+import com.dontflymoney.view.R;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,10 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
-import com.dontflymoney.view.R;
-
-import android.content.Context;
 
 public class File
 {
@@ -64,7 +64,7 @@ public class File
 	            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 	            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 	            
-	            String line = "";
+	            String line;
 	            StringBuilder allContent = new StringBuilder();
 
 	            while ( (line = bufferedReader.readLine()) != null )
@@ -88,12 +88,6 @@ public class File
 
 	    return result;
 	}
-	
-	
-	
-	public String GetStatus()
-	{
-		return status;
-	}
-	
+
+
 }

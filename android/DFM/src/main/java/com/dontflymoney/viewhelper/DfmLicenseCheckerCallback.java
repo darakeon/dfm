@@ -12,8 +12,8 @@ import com.google.android.vending.licensing.Policy;
 
 public class DfmLicenseCheckerCallback implements LicenseCheckerCallback
 {
-	SmartActivity activity;
-	ProgressDialog progress;
+	private SmartActivity activity;
+	private ProgressDialog progress;
 	
 	public DfmLicenseCheckerCallback(SmartActivity activity, ProgressDialog progress)
 	{

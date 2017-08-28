@@ -115,7 +115,7 @@ public class SummaryActivity extends SmartActivity
 	            Object monthPicker = monthField.get(datePicker);
 	            ((View) monthPicker).setVisibility(View.GONE);
 		    } 
-		    catch (Exception e) { }
+		    catch (Exception ignored) { }
 		}
 		
 		dialog.show();
@@ -188,14 +188,14 @@ public class SummaryActivity extends SmartActivity
 	{
 		int number = move.getInt("Number");
 		
-		TableRowWithExtra<Integer> row = new TableRowWithExtra<Integer>(this, number);
+		TableRowWithExtra<Integer> row = new TableRowWithExtra<>(this, number);
 		row.setBackgroundColor(color);
 		
 		String description = move.getString("Name");
-		row.addView(form.createText(description, Gravity.LEFT));
+		row.addView(form.createText(description, Gravity.START));
 
 		double total = move.getDouble("Total");
-		row.addView(form.createText(total, Gravity.RIGHT));
+		row.addView(form.createText(total, Gravity.END));
 
 		setClick(row);
 

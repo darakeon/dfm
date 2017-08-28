@@ -1,16 +1,16 @@
 package com.dontflymoney.baseactivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.dontflymoney.api.Step;
 import com.dontflymoney.language.Language;
 import com.dontflymoney.view.R;
 
-public class ResultHandler
+import org.json.JSONException;
+import org.json.JSONObject;
+
+class ResultHandler
 {
-	SmartActivity activity;
-	Navigation navigation;
+	private SmartActivity activity;
+	private Navigation navigation;
 	
 	ResultHandler(SmartActivity activity, Navigation navigation)
 	{
@@ -18,7 +18,7 @@ public class ResultHandler
 		this.navigation = navigation;
 	}
 	
-	public void HandlePostResult(JSONObject result, Step step)
+	void HandlePostResult(JSONObject result, Step step)
 	{
 		try
 		{
@@ -50,7 +50,7 @@ public class ResultHandler
 		}
 	}
 
-	public void HandlePostError(String error, Step step)
+	void HandlePostError(String error, Step step)
 	{
 		activity.getMessage().alertError(error);
 	}

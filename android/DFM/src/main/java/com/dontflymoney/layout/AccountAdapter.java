@@ -1,5 +1,6 @@
 package com.dontflymoney.layout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -34,13 +35,13 @@ public class AccountAdapter extends BaseAdapter
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	public class Account
+	class Account
 	{
 		String Name;
 		double Total;
 		String Url;
 
-		public Account(JSONObject jsonObject) throws JSONException
+		Account(JSONObject jsonObject) throws JSONException
 		{
 			Name = jsonObject.getString("Name");
 			Total = jsonObject.getDouble("Total");
@@ -60,6 +61,7 @@ public class AccountAdapter extends BaseAdapter
 	@Override
 	public View getView(int position, View view, ViewGroup viewGroup)
 	{
+		@SuppressLint({"ViewHolder", "InflateParams"})
 		AccountLine line = (AccountLine)inflater.inflate(R.layout.accounts_line, null);
 
 		try

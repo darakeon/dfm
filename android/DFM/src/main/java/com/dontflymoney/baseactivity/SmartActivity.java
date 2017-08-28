@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 
 import com.dontflymoney.api.Request;
 import com.dontflymoney.api.Step;
@@ -61,7 +60,7 @@ public abstract class SmartActivity extends FixOrientationActivity
 
         if (viewWithContext() != 0)
         {
-            ListView contextView = (ListView)findViewById(viewWithContext());
+            View contextView = findViewById(viewWithContext());
             registerForContextMenu(contextView);
         }
 

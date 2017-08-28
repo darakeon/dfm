@@ -11,26 +11,26 @@ import com.google.android.vending.licensing.ServerManagedPolicy;
 
 public class License
 {
-	final byte[] SALT = new byte[] {
-			-21, +84, -38, +79, -81, -74, -98, +73, -14, +93,
-			-27, -94, -87, -32, +57, +42, +62, -78, -54, -29, 
-		};
-	
-	SmartActivity activity;
-	LicenseChecker checker;
-	DfmLicenseCheckerCallback callback;
-	ProgressDialog progress;
+	private SmartActivity activity;
+	private LicenseChecker checker;
+	private DfmLicenseCheckerCallback callback;
+	private ProgressDialog progress;
 		
 	public License(SmartActivity activity)
 	{
 		this.activity = activity;
 		progress = activity.getMessage().getWaitDialog();
 
-		callback = new DfmLicenseCheckerCallback(activity, progress);			
-		
+		callback = new DfmLicenseCheckerCallback(activity, progress);
+
+		byte[] SALT = new byte[]{
+				-21, +84, -38, +79, -81, -74, -98, +73, -14, +93,
+				-27, -94, -87, -32, +57, +42, +62, -78, -54, -29,
+		};
+		String appKey = activity.getString(R.string.license_key);
+
 		AESObfuscator obfuscator = new AESObfuscator(SALT, activity.getPackageName(), Unique.GetKey(activity));
 		ServerManagedPolicy policy = new ServerManagedPolicy(activity, obfuscator); 
-		String appKey = activity.getString(R.string.license_key);
 		checker = new LicenseChecker(activity, policy, appKey);
 	}
 	
@@ -41,7 +41,7 @@ public class License
 		progress.show();
 	}
 	
-	public void Destroy()
+	void Destroy()
 	{
 		checker.onDestroy();
 

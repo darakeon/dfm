@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("deprecation")
 public class Request
 {
     private String site;
@@ -40,7 +41,7 @@ public class Request
     {
         this.activity = activity;
         this.url = url;
-        this.parameters = new HashMap<String, Object>();
+        this.parameters = new HashMap<>();
 
         setMainUrl();
     }
@@ -93,11 +94,6 @@ public class Request
         return true;
     }
 
-
-    public void Get()
-    {
-        Get(Step.NoSteps);
-    }
 
     public void Get(Step step)
     {
@@ -153,7 +149,7 @@ public class Request
 
     private List<NameValuePair> getParameters()
     {
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
 
         for (Map.Entry<String, Object> parameter : parameters.entrySet())
         {

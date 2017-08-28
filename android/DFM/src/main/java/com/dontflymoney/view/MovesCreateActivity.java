@@ -151,7 +151,7 @@ public class MovesCreateActivity extends SmartActivity {
 			if (move.Value != 0)
 			{
 				EditText valueView = (EditText) findViewById(R.id.value);
-				valueView.setText(Double.toString(move.Value));
+				valueView.setText(String.format("%1$,.2f", move.Value));
 			}
 
 		}
@@ -200,7 +200,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 		populateCategoryAndNature();
 
-		if (data.has("Move") && !data.get("Move").equals(null))
+		if (data.has("Move") && !data.isNull("Move"))
 		{
 			JSONObject moveToEdit = data.getJSONObject("Move");
 			move.SetData(moveToEdit, getIntent().getStringExtra("accounturl"));
@@ -302,7 +302,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	class DialogCategory extends DialogSelectClickListener
 	{
-		public DialogCategory(JSONArray list) { super(list); }
+		DialogCategory(JSONArray list) { super(list); }
 
 		@Override
 		public void setResult(String text, String value)
@@ -327,7 +327,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	class DialogNature extends DialogSelectClickListener
 	{
-		public DialogNature(JSONArray list) { super(list); }
+		DialogNature(JSONArray list) { super(list); }
 
 		@Override
 		public void setResult(String text, String value)
@@ -380,7 +380,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	class DialogAccountOut extends DialogSelectClickListener
 	{
-		public DialogAccountOut(JSONArray list) { super(list); }
+		DialogAccountOut(JSONArray list) { super(list); }
 
 		@Override
 		public void setResult(String text, String value)
@@ -398,7 +398,7 @@ public class MovesCreateActivity extends SmartActivity {
 
 	class DialogAccountIn extends DialogSelectClickListener
 	{
-		public DialogAccountIn(JSONArray list) { super(list); }
+		DialogAccountIn(JSONArray list) { super(list); }
 
 		@Override
 		public void setResult(String text, String value)
@@ -428,7 +428,7 @@ public class MovesCreateActivity extends SmartActivity {
 		public void textChanged(String text)
 		{
 			try { move.Value = Double.parseDouble(text); }
-			catch (NumberFormatException e) { }
+			catch (NumberFormatException ignored) { }
 		}
 	}
 

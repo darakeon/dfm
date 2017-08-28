@@ -1,7 +1,5 @@
 package com.dontflymoney.language;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -9,6 +7,8 @@ import android.content.res.Resources;
 import com.dontflymoney.baseactivity.SmartActivity;
 import com.dontflymoney.io.File;
 import com.dontflymoney.io.FileNames;
+
+import java.util.Locale;
 
 
 public class Language
@@ -43,14 +43,14 @@ public class Language
 	{
 		Resources resources = activity.getResources();
 
-		Locale[] locales = Locale.getAvailableLocales();
+		Locale[] availableLocales = Locale.getAvailableLocales();
 		Locale locale = null;
-		
-		for(int l = 0; l < locales.length; l++)
+
+		for (Locale availableLocale : availableLocales)
 		{
-			if (locales[l].toString().equalsIgnoreCase(language))
+			if (availableLocale.toString().equalsIgnoreCase(language))
 			{
-				locale = locales[l]; 
+				locale = availableLocale;
 			}
 		}
 		

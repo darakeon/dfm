@@ -3,16 +3,16 @@ package com.dontflymoney.api;
 public class Site
 {
 	private static final String publicDomain = "dontflymoney.com";
-	public static final String Domain = publicDomain;
+	static final String Domain = publicDomain;
 	
-	public static String GetProtocol()
+	static String GetProtocol()
 	{
 		return IsLocal() ? "http" : "https";
 	}
 	
 	public static Boolean IsLocal()
 	{
-		return Domain != publicDomain;
+		return !Domain.equals(publicDomain);
 	}
 	
 	

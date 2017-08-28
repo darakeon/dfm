@@ -17,22 +17,23 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.SocketException;
 
+@SuppressWarnings("deprecation")
 class SiteConnector extends AsyncTask<Void, Void, String>
 {
-	HttpPost post;
-	HttpGet get;
-	Request request;
-	Step step;
-	String error;
+	private HttpPost post;
+	private HttpGet get;
+	private Request request;
+	private Step step;
+	private String error;
 	
-	public SiteConnector(HttpPost post, Request request, Step step)
+	SiteConnector(HttpPost post, Request request, Step step)
 	{
 		this.post = post;
 		this.request = request;
 		this.step = step;
 	}
 
-	public SiteConnector(HttpGet get, Request request, Step step)
+	SiteConnector(HttpGet get, Request request, Step step)
 	{
 		this.get = get;
 		this.request = request;

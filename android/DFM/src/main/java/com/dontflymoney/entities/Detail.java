@@ -6,7 +6,7 @@ public class Detail
     public int Amount;
     public double Value;
 	
-    public boolean Equals(String description, int amount, double value)
+    boolean Equals(String description, int amount, double value)
     {
 		return Description.equals(description)
 			&& Amount == amount
