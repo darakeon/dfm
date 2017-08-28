@@ -10,21 +10,25 @@ using DFM.Entities;
 using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.MVC.Helpers.Global;
+using account = DFM.Entities.Account;
 
 namespace DFM.MVC.Areas.Account.Models
 {
     public abstract class BaseMovesModel : BaseAccountModel
     {
-        protected BaseMovesModel(IMove iMove, OperationType type)
-            : this(iMove)
-        {
-            Type = type;
+	    private readonly IList<account> accountList;
 
-			if (String.IsNullOrEmpty(AccountOutUrl))
-				AccountOutUrl = CurrentAccountUrl;
-			
-			if (String.IsNullOrEmpty(AccountInUrl))
-				AccountInUrl = CurrentAccountUrl;
+
+		private BaseMovesModel()
+		{
+			accountList = Current.User.VisibleAccountList();
+
+			AccountOutUrl = CurrentAccountUrl;
+			AccountInUrl = CurrentAccountUrl;
+
+			var transferIsPossible = accountList.Count > 1;
+
+			populateDropDowns(transferIsPossible);
 		}
 
 		protected BaseMovesModel(IMove iMove)
@@ -44,15 +48,15 @@ namespace DFM.MVC.Areas.Account.Models
             arrangeDetails();
         }
 
-        private BaseMovesModel()
-        {
-            var transferIsPossible =
-                Current.User.VisibleAccountList().Count > 1;
+		protected BaseMovesModel(IMove iMove, OperationType type)
+			: this(iMove)
+		{
+			Type = type;
+		}
 
-            populateDropDowns(transferIsPossible);
-        }
 
-        private void populateDropDowns(Boolean transferIsPossible)
+
+		private void populateDropDowns(Boolean transferIsPossible)
         {
             if (GenericMove == null)
                 GenericMove = initIMove();
@@ -92,7 +96,6 @@ namespace DFM.MVC.Areas.Account.Models
 
         private void makeAccountTransferList()
         {
-            var accountList = Current.User.VisibleAccountList();
 
             AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
             AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
