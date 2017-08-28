@@ -181,7 +181,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void CreateCategory(Category category)
 		{
-			saveOrUpdateCategory(category, OperationType.Creation);
+			saveOrUpdateCategory(category, OperationType.Creation, category.Name);
 		}
 
 		public void UpdateCategory(Category category, String newName)
@@ -189,7 +189,7 @@ namespace DFM.BusinessLogic.Services
 			saveOrUpdateCategory(category, OperationType.Edit, newName);
 		}
 
-		private void saveOrUpdateCategory(Category category, OperationType opType, String newName = null)
+		private void saveOrUpdateCategory(Category category, OperationType opType, String newName)
 		{
 			Parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
@@ -204,9 +204,7 @@ namespace DFM.BusinessLogic.Services
 
 					category.ID = oldCategory.ID;
 					category.Active = oldCategory.Active;
-
-					if (!String.IsNullOrEmpty(newName))
-						category.Name = newName;
+					category.Name = newName;
 				}
 
 				categoryRepository.SaveOrUpdate(category);
