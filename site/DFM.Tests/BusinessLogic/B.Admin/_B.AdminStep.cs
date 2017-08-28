@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.Entities;
@@ -33,8 +35,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		private static Decimal accountTotal
 		{
-			get { return Get<Decimal>("accountTotal"); } 
+			get { return Get<Decimal>("accountTotal"); }
 			set { Set("accountTotal", value); }
+		}
+
+		private static IList<Account> accountList
+		{
+			get { return Get<IList<Account>>("accountList"); }
+			set { Set("accountList", value); }
 		}
 
 
@@ -766,6 +774,60 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		#endregion
 
+
+
+		#region GetAccountList
+		[Given(@"I close the account (.+)")]
+		public void GivenICloseTheAccount(String accountUrl)
+		{
+			SA.Admin.CloseAccount(accountUrl);
+		}
+
+		[When(@"ask for the (not )?active account list")]
+		public void WhenAskForTheActiveAccountList(Boolean active)
+		{
+			try
+			{
+				accountList = SA.Admin.GetAccountList(active);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the account list will (not )?have this")]
+		public void ThenTheAccountListsWillBeThis(Boolean has, Table table)
+		{
+			var expectedList = new List<Account>(); 
+
+			foreach (var accountData in table.Rows)
+			{
+				var account = new Account
+				{
+					Name = accountData["Name"],
+					Url = accountData["Url"]
+				};
+
+				expectedList.Add(account);
+			}
+
+			foreach (var expected in expectedList)
+			{
+				var account = accountList.SingleOrDefault(a => a.Url == expected.Url);
+
+				if (has)
+				{
+					Assert.IsNotNull(account);
+					Assert.AreEqual(account.Name, expected.Name);
+				}
+				else
+				{
+					Assert.IsNull(account);
+				}
+			}
+		}
+		#endregion
 
 
 

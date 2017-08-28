@@ -108,6 +108,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.SaveAccount.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\B.Admin\l.GetAccountList.feature.cs">
+      <DependentUpon>l.GetAccountList.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\B.Admin\c.UpdateAccount.feature.cs">
       <DependentUpon>c.UpdateAccount.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -266,6 +271,10 @@
     <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>a.SaveAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\B.Admin\l.GetAccountList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>l.GetAccountList.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\B.Admin\c.UpdateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
