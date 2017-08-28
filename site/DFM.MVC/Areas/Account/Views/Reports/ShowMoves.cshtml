@@ -18,8 +18,14 @@
 
 @section TableHeader {
 
+	@{
+		var descriptionSize = 2
+			+ (Model.CanCheck ? 0 : 2)
+			+ (Model.UseCategories ? 0 : 2);
+	}
+
 	<tr class="row">
-		<th class="col-sm-2">@MultiLanguage.Dictionary["Description"]</th>
+		<th class="col-sm-@descriptionSize">@MultiLanguage.Dictionary["Description"]</th>
 
 		@if (Model.UseCategories)
 		{
@@ -35,7 +41,7 @@
 			<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Check"]</th>
 		}
 
-		<th class="col-sm-3 text-center" colspan="@(Model.CanCheck ? 3 : 2)">
+		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@(Model.CanCheck ? 3 : 2)">
 			@MultiLanguage.Dictionary["TODO"]
 		</th>
 	</tr>
