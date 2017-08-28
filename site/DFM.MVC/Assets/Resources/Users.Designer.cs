@@ -88,7 +88,7 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cookies will be used to remember you next time you access the system using this browser.
+        ///   Looks up a localized string similar to Cookies will be used to remember your session next time you access the system using this browser.
         /// </summary>
         public static string CookiesWarning {
             get {
