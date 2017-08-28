@@ -27,7 +27,7 @@
 	@{
 		var logged = Model as BaseLoggedModel;
 
-		if (logged != null && logged.Language != "en-US")
+		if (logged?.Language != null && logged.Language != "en-US")
 		{
 			<script src="~/Assets/Bootstrap/Datepicker/moment-@(logged.Language.ToLower()).js?v=@Cfg.Version"></script>
 			<script type="text/javascript">

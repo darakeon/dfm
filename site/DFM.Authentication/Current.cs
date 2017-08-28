@@ -45,7 +45,7 @@ namespace DFM.Authentication
 		public Boolean IsAuthenticated => User != null;
 
 
-		public String Language => User?.Config.Language;
+		public String Language => User?.Config?.Language;
 
 
 		public Boolean IsAdm => IsAuthenticated && User.IsAdm();
