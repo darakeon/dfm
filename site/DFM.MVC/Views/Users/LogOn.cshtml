@@ -1,0 +1,35 @@
+﻿@model UsersLogOnModel
+
+@{
+	ViewBag.Title = MultiLanguage.Dictionary["Logon"];
+	Layout = "../Shared/_MiniForm.cshtml";
+
+	ViewBag.RouteValues = new {returnUrl = Request.QueryString["returnUrl"]};
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"])
+	@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"])
+	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+</div>
+
+<div id="Remember" class="form-group text-center">
+	@Html.CheckBoxFor(m => m.RememberMe)
+	@Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"])
+</div>
+
+@section Footer
+{
+	@Html.ActionLink(
+		MultiLanguage.Dictionary["ForgotPassword"], 
+		"ForgotPassword", null, new { @class = "btn btn-default" }
+	)
+
+	<button type="submit" class="btn btn-success pull-right">
+		@MultiLanguage.Dictionary["Login"]
+	</button>
+}

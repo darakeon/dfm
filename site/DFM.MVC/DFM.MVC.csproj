@@ -287,7 +287,6 @@
     <Content Include="Views\Users\ForgotPassword.old" />
     <Content Include="Views\Users\ForgotPasswordSuccess.old" />
     <Content Include="Views\Users\Index.old" />
-    <Content Include="Views\Users\LogOn.old" />
     <Content Include="Views\Users\SendVerification.old" />
     <Content Include="Views\Users\SignUp.old" />
     <Content Include="Views\Users\SignUpSuccess.old" />
@@ -311,6 +310,7 @@
     <Content Include="Views\Shared\_MiniForm.cshtml" />
     <Content Include="Views\Shared\ValidationSummary.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
+    <None Include="Views\Users\LogOn.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
