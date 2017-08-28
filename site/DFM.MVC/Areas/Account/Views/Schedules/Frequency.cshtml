@@ -5,14 +5,14 @@
 	<div class="btn-group-vertical btn-group-sm col-sm-12">
 		@foreach (ScheduleFrequency frequency in Enum.GetValues(typeof(ScheduleFrequency)))
 		{
-		<button type="button"
-				class="btn btn-sm btn-warning col-sm-4 button-toggle value-setter
-							@(Model.Frequency == frequency ? "active" : "")"
-				data-target-id="@Html.IdFor(m => m.Frequency)"
-				data-target-value="@frequency">
+			<button type="button"
+					class="btn btn-sm btn-warning col-sm-4 button-toggle value-setter
+								@(Model.Frequency == frequency ? "active" : "")"
+					data-target-id="@Html.IdFor(m => m.Frequency)"
+					data-target-value="@frequency">
 
-			@MultiLanguage.Dictionary[frequency.ToString()]
-		</button>
+				@MultiLanguage.Dictionary[frequency.ToString()]
+			</button>
 		}
 	</div>
 </div>

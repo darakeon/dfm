@@ -12,9 +12,9 @@
 
 @Html.HiddenFor(m => m.Nature)
 
-<div class="row form-group">
+<div class="row">
 
-	<div class="btn-group btn-group-sm col-sm-12">
+	<div class="col-lg-4 col-sm-12 btn-group-vertical btn-group-sm">
 		@foreach (var natureUI in natureUiList)
 		{
 			<button type="button"
@@ -31,4 +31,16 @@
 		}
 	</div>
 
+	<div class="col-lg-4 col-sm-6 form-group side-vertical-button">
+		@Html.LabelFor(m => m.AccountOutUrl, MultiLanguage.Dictionary["Account", "Out"], new {@class = "control-label"})
+		@Html.DropDownListFor(m => m.AccountOutUrl, Model.AccountOutSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new {@class = "form-control combo-account-out text-danger"})
+		@Html.ValidationMessageFor(m => m.AccountOutUrl)
+	</div>
+
+	<div class="col-lg-4 col-sm-6 form-group side-vertical-button">
+		@Html.LabelFor(m => m.AccountInUrl, MultiLanguage.Dictionary["Account", "In"], new { @class = "control-label" })
+		@Html.DropDownListFor(m => m.AccountInUrl, Model.AccountInSelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control combo-account-in text-info" })
+		@Html.ValidationMessageFor(m => m.AccountInUrl)
+	</div>
 </div>
+
