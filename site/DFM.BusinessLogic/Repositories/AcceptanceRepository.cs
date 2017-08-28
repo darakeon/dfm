@@ -1,3 +1,4 @@
+using System;
 using DFM.Entities;
 
 namespace DFM.BusinessLogic.Repositories
@@ -12,6 +13,7 @@ namespace DFM.BusinessLogic.Repositories
 				return;
 
 			acceptance.Accepted = true;
+			acceptance.AcceptDate = DateTime.Now;
 
 			SaveOrUpdate(acceptance);
 		}
