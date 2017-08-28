@@ -2,5 +2,4 @@
     AdjustMoneyAndDate();
     AdjustMenuButtons();
     AdjustLinkButtons();
-    SetNavigation();
 });
