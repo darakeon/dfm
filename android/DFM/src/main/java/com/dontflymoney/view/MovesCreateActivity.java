@@ -266,9 +266,12 @@ public class MovesCreateActivity extends SmartActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int month, int day)
 		{
-			move.Date.set(year, month, day);
-			form.setValue(R.id.date, move.DateString());
-			dialog.dismiss();
+            if (view.isShown())
+            {
+                move.Date.set(year, month, day);
+                form.setValue(R.id.date, move.DateString());
+                dialog.dismiss();
+            }
 		}
 	}
 

@@ -126,9 +126,12 @@ public class SummaryActivity extends SmartActivity
 	    @Override
 	    public void onDateSet(DatePicker view, int year, int month, int day)
 	    {
-	        setDate(year); 
-			getSummary();
-	        dialog.dismiss();
+            if (view.isShown())
+            {
+                setDate(year);
+                getSummary();
+                dialog.dismiss();
+            }
 	    }
 	    
 	}

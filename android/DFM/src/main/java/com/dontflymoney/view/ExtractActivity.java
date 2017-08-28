@@ -137,9 +137,12 @@ public class ExtractActivity extends SmartActivity implements IYesNoDialogAnswer
 	    @Override
 	    public void onDateSet(DatePicker view, int year, int month, int day)
 	    {
-            setDate(month, year);
-            getExtract();
-            dialog.dismiss();
+            if (view.isShown())
+            {
+                setDate(month, year);
+                getExtract();
+                dialog.dismiss();
+            }
 	    }
 	    
 	}
