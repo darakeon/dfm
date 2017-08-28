@@ -100,7 +100,7 @@ function ShowAccountList(obj) {
 	var nature = $(obj).val();
 
 	$(".account-combo").each(function() {
-		var show = $(this).data(nature) == "1";
+		var show = $(this).data(nature) === "1";
 		$(this).toggle(show);
 	});
 }
@@ -163,7 +163,7 @@ function SetDetailLevel() {
     var firstIsDetailed = valueToBoolean(first);
     var firstIsChecked = first.checked;
 
-    var detailedIsChecked = firstIsDetailed == firstIsChecked;
+    var detailedIsChecked = firstIsDetailed === firstIsChecked;
 
     ChangeDetailLevel(detailedIsChecked);
 }

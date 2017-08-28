@@ -14,13 +14,13 @@ function AdjustMoney(discriminator) {
 
         var letZero = $(this).hasClass('letZero');
 
-        if (this.value == '')
+        if (this.value === '')
             return;
 
-        if (this.value == '0' && !letZero)
+        if (this.value === '0' && !letZero)
             this.value = '';
 
-        else if (dotPosition == -1)
+        else if (dotPosition === -1)
             this.value += '.00';
 
         else if (dotPosition + 3 > numberSize)
@@ -34,7 +34,7 @@ function AdjustDate(discriminator) {
     $(discriminator).mask("99/99/9999");
 
     $(discriminator).each(function () {
-        if (this.value == '01/01/0001')
+        if (this.value === '01/01/0001')
             this.value = '';
     });
 }

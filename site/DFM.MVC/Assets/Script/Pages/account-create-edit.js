@@ -19,7 +19,7 @@ function suggestUrl(obj) {
     var name = $(".suggest-name").val();
     var url = $(".suggest-url").val();
 
-    if (name != "" && url == "") {
+    if (name !== "" && url === "") {
         url = name
             .toLowerCase()
             .replace(/[ ]/g, "_")

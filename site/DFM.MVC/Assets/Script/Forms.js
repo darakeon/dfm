@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     $(".validation-summary-errors:visible").each(function () {
-        if ($(this).find("li:visible").length == 0) {
+        if ($(this).find("li:visible").length === 0) {
             $(this).remove();
         }
     });
@@ -18,5 +18,5 @@ function valueToBoolean(obj) {
 }
 
 function toBoolean(value) {
-    return value.toLowerCase() == "true";
+    return value.toLowerCase() === "true";
 }

@@ -1,4 +1,5 @@
-﻿@model AccountsIndexModel
+﻿@using DFM.Generic
+@model AccountsIndexModel
 
 @{
     ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
@@ -45,7 +46,7 @@ else
 			        </td>
 
 			        <td>@account.BeginDate.ToShortDateString()</td>
-			        <td>@account.EndDate.Value.ToShortDateString()</td>
+			        <td>@account.EndDate.ToShortDateString()</td>
 
 			        <td class="numeric @className">@value</td>
 			        <td class="account_sign">
