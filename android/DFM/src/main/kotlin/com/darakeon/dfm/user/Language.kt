@@ -1,10 +1,9 @@
-package com.dontflymoney.userdata
+package com.darakeon.dfm.user
 
 import android.app.Activity
-import com.dontflymoney.activityObjects.SmartStatic
-import com.dontflymoney.baseactivity.SmartActivity
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.SmartStatic
 import java.util.*
-
 
 object Language {
     private val spKey = "Language"

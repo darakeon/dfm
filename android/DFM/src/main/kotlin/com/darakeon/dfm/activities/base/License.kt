@@ -1,9 +1,9 @@
-package com.dontflymoney.baseactivity
+package com.darakeon.dfm.activities.base
 
-import com.dontflymoney.userdata.Unique
-import com.dontflymoney.view.R
-import com.dontflymoney.view.WelcomeActivity
-import com.dontflymoney.viewhelper.DfmLicenseCheckerCallback
+import com.darakeon.dfm.user.DfmLicenseCheckerCallback
+import com.darakeon.dfm.user.Unique
+import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.WelcomeActivity
 import com.google.android.vending.licensing.AESObfuscator
 import com.google.android.vending.licensing.LicenseChecker
 import com.google.android.vending.licensing.ServerManagedPolicy

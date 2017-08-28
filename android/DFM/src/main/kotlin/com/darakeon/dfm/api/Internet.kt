@@ -1,4 +1,4 @@
-package com.dontflymoney.api
+package com.darakeon.dfm.api
 
 import android.content.Context
 import android.net.ConnectivityManager

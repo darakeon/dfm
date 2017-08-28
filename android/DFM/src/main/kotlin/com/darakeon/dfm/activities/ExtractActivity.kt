@@ -1,4 +1,4 @@
-package com.dontflymoney.view
+package com.darakeon.dfm.activities
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -9,15 +9,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
-import com.dontflymoney.activityObjects.ExtractStatic
-import com.dontflymoney.adapters.MoveAdapter
-import com.dontflymoney.api.InternalRequest
-import com.dontflymoney.api.Step
-import com.dontflymoney.baseactivity.IYesNoDialogAnswer
-import com.dontflymoney.baseactivity.SmartActivity
-import com.dontflymoney.layout.MoveLine
-import com.dontflymoney.listeners.IDatePickerActivity
-import com.dontflymoney.listeners.PickDate
+import com.darakeon.dfm.activities.base.IYesNoDialogAnswer
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.ExtractStatic
+import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.uiHelpers.views.MoveLine
+import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
+import com.darakeon.dfm.uiHelpers.dialogs.PickDate
+import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat

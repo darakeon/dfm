@@ -1,13 +1,14 @@
-package com.dontflymoney.view
+package com.darakeon.dfm.activities
 
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
-import com.dontflymoney.activityObjects.SettingsStatic
-import com.dontflymoney.api.InternalRequest
-import com.dontflymoney.api.Step
-import com.dontflymoney.baseactivity.SmartActivity
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.SettingsStatic
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 

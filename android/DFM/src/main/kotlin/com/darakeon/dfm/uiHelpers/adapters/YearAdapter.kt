@@ -1,4 +1,4 @@
-package com.dontflymoney.adapters
+package com.darakeon.dfm.uiHelpers.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.dontflymoney.layout.YearLine
-import com.dontflymoney.view.R
+import com.darakeon.dfm.uiHelpers.views.YearLine
+import com.darakeon.dfm.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

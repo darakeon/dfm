@@ -1,4 +1,4 @@
-package com.dontflymoney.baseactivity
+package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.content.pm.ActivityInfo

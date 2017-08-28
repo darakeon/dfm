@@ -1,6 +1,7 @@
-package com.dontflymoney.activityObjects
+package com.darakeon.dfm.activities.objects
 
 import android.view.LayoutInflater
+import com.darakeon.dfm.activities.objects.SmartStatic
 import org.json.JSONArray
 
 object SummaryStatic : SmartStatic

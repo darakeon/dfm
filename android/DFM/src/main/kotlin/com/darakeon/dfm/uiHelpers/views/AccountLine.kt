@@ -1,4 +1,4 @@
-package com.dontflymoney.layout
+package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
 import android.content.Intent
@@ -7,13 +7,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import com.dontflymoney.adapters.AccountAdapter
-import com.dontflymoney.view.ExtractActivity
-import com.dontflymoney.view.R
-
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
+import com.darakeon.dfm.R
 import org.json.JSONException
-
 import java.text.DecimalFormat
 
 class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
@@ -43,7 +40,7 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
         setOnClickListener(onClickListener(context, account.Url))
     }
 
-    inner class onClickListener internal constructor(private val context: Context, private val url: String) : View.OnClickListener {
+    inner class onClickListener internal constructor(private val context: Context, private val url: String) : OnClickListener {
 
         override fun onClick(v: View) {
             val intent = Intent(context, ExtractActivity::class.java)

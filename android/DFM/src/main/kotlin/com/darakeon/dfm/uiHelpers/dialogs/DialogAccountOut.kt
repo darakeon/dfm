@@ -1,12 +1,10 @@
-package com.dontflymoney.dialogs
+package com.darakeon.dfm.uiHelpers.dialogs
 
-import com.dontflymoney.activityObjects.SmartStatic
-import com.dontflymoney.baseactivity.Form
-import com.dontflymoney.baseactivity.Message
-import com.dontflymoney.entities.Move
-import com.dontflymoney.view.R
-import com.dontflymoney.viewhelper.DialogSelectClickListener
-
+import com.darakeon.dfm.activities.base.Form
+import com.darakeon.dfm.activities.base.Message
+import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.R
 import org.json.JSONArray
 import org.json.JSONException
 

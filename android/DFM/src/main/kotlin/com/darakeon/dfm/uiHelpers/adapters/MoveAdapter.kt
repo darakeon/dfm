@@ -1,4 +1,4 @@
-package com.dontflymoney.adapters
+package com.darakeon.dfm.uiHelpers.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.dontflymoney.layout.MoveLine
-import com.dontflymoney.view.ExtractActivity
-import com.dontflymoney.view.R
-import com.dontflymoney.viewhelper.DateTime
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.api.DateTime
+import com.darakeon.dfm.uiHelpers.views.MoveLine
+import com.darakeon.dfm.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

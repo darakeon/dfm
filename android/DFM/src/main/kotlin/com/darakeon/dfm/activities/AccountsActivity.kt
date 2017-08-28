@@ -1,14 +1,15 @@
-package com.dontflymoney.view
+package com.darakeon.dfm.activities
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
-import com.dontflymoney.activityObjects.AccountsStatic
-import com.dontflymoney.adapters.AccountAdapter
-import com.dontflymoney.api.InternalRequest
-import com.dontflymoney.api.Step
-import com.dontflymoney.baseactivity.SmartActivity
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.AccountsStatic
+import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 

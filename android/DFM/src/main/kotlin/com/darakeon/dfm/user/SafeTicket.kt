@@ -1,8 +1,8 @@
-package com.dontflymoney.userdata
+package com.darakeon.dfm.user
 
 import android.content.Context
-
-import java.util.Locale
+import java.lang.Long
+import java.util.*
 
 internal class SafeTicket(context: Context) {
     private var key: String? = null

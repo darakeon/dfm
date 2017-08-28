@@ -1,11 +1,12 @@
-package com.dontflymoney.view
+package com.darakeon.dfm.activities
 
 import android.os.Bundle
 import android.widget.ImageView
-import com.dontflymoney.activityObjects.WelcomeStatic
-import com.dontflymoney.api.Step
-import com.dontflymoney.baseactivity.License
-import com.dontflymoney.baseactivity.SmartActivity
+import com.darakeon.dfm.activities.base.License
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.WelcomeStatic
+import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.R
 import org.json.JSONObject
 import kotlin.reflect.KClass
 

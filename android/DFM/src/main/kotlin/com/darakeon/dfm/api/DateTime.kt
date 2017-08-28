@@ -1,9 +1,8 @@
-package com.dontflymoney.viewhelper
+package com.darakeon.dfm.api
 
 import org.json.JSONException
 import org.json.JSONObject
-
-import java.util.Calendar
+import java.util.*
 
 object DateTime {
     @Throws(JSONException::class)

@@ -1,4 +1,4 @@
-package com.dontflymoney.viewhelper
+package com.darakeon.dfm.uiHelpers.dialogs
 
 import android.content.DialogInterface
 

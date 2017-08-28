@@ -1,7 +1,7 @@
-package com.dontflymoney.activityObjects
+package com.darakeon.dfm.activities.objects
 
 import android.view.LayoutInflater
-import com.dontflymoney.entities.Move
+import com.darakeon.dfm.api.entities.Move
 import org.json.JSONArray
 
 object MovesCreateStatic : SmartStatic

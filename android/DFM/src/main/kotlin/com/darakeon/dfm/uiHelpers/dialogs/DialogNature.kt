@@ -1,9 +1,7 @@
-package com.dontflymoney.listeners
+package com.darakeon.dfm.uiHelpers.dialogs
 
-import com.dontflymoney.view.MovesCreateActivity
-import com.dontflymoney.view.R
-import com.dontflymoney.viewhelper.DialogSelectClickListener
-
+import com.darakeon.dfm.activities.MovesCreateActivity
+import com.darakeon.dfm.R
 import org.json.JSONArray
 import org.json.JSONException
 

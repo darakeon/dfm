@@ -1,10 +1,10 @@
-package com.dontflymoney.viewhelper
+package com.darakeon.dfm.user
 
 import android.content.Intent
 import android.net.Uri
-import com.dontflymoney.api.Site
-import com.dontflymoney.view.R
-import com.dontflymoney.view.WelcomeActivity
+import com.darakeon.dfm.api.Site
+import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.WelcomeActivity
 import com.google.android.vending.licensing.LicenseCheckerCallback
 import com.google.android.vending.licensing.Policy
 

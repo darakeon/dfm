@@ -1,4 +1,4 @@
-package com.dontflymoney.entities
+package com.darakeon.dfm.api.entities
 
 enum class Nature {
     Out,

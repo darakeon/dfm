@@ -1,4 +1,4 @@
-package com.dontflymoney.layout
+package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
 import android.content.Intent
@@ -7,13 +7,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import com.dontflymoney.adapters.YearAdapter
-import com.dontflymoney.view.ExtractActivity
-import com.dontflymoney.view.R
-
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
+import com.darakeon.dfm.R
 import org.json.JSONException
-
 import java.text.DecimalFormat
 
 class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
@@ -43,7 +40,7 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
         setOnClickListener(onClickListener(context, year))
     }
 
-    inner class onClickListener internal constructor(private val context: Context, private val year: YearAdapter.Year) : View.OnClickListener {
+    inner class onClickListener internal constructor(private val context: Context, private val year: YearAdapter.Year) : OnClickListener {
 
         override fun onClick(v: View) {
             val intent = Intent(context, ExtractActivity::class.java)

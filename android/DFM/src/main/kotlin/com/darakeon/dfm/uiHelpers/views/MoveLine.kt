@@ -1,4 +1,4 @@
-package com.dontflymoney.layout
+package com.darakeon.dfm.uiHelpers.views
 
 import android.content.Context
 import android.graphics.Color
@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.dontflymoney.adapters.MoveAdapter
-import com.dontflymoney.view.ExtractActivity
-import com.dontflymoney.view.R
+import com.darakeon.dfm.activities.ExtractActivity
+import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
+import com.darakeon.dfm.R
 import org.json.JSONException
 import java.text.DateFormat
 import java.text.DecimalFormat

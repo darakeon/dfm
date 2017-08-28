@@ -1,4 +1,4 @@
-package com.dontflymoney.entities
+package com.darakeon.dfm.api.entities
 
 class Detail {
     var Description: String? = null

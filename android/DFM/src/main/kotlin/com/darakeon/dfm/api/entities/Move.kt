@@ -1,8 +1,9 @@
-package com.dontflymoney.entities
+package com.darakeon.dfm.api.entities
 
-import com.dontflymoney.activityObjects.MovesCreateStatic
-import com.dontflymoney.api.InternalRequest
-import com.dontflymoney.viewhelper.DateTime
+import com.darakeon.dfm.activities.objects.MovesCreateStatic
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.entities.Detail
+import com.darakeon.dfm.api.DateTime
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -26,7 +27,7 @@ class Move {
 
 
     private fun getNature(number: Int?): Nature {
-        return com.dontflymoney.entities.Nature.GetNature(number)
+        return com.darakeon.dfm.api.entities.Nature.GetNature(number)
     }
 
 

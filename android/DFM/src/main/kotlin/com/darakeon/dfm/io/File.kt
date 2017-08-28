@@ -1,7 +1,7 @@
-package com.dontflymoney.io
+package com.darakeon.dfm.io
 
 import android.content.Context
-import com.dontflymoney.view.R
+import com.darakeon.dfm.R
 import java.io.*
 
 class File(private val context: Context, name: FileNames) {

@@ -1,4 +1,4 @@
-package com.dontflymoney.viewhelper
+package com.darakeon.dfm.uiHelpers.watchers
 
 import android.text.Editable
 import android.text.TextWatcher

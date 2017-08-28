@@ -1,4 +1,4 @@
-package com.dontflymoney.api
+package com.darakeon.dfm.api
 
 import android.app.ProgressDialog
 import android.content.pm.ActivityInfo
@@ -9,9 +9,10 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.dontflymoney.activityObjects.SmartStatic
-import com.dontflymoney.baseactivity.SmartActivity
-import com.dontflymoney.view.R
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.api.InternalResponse
+import com.darakeon.dfm.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*

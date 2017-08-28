@@ -1,12 +1,12 @@
-package com.dontflymoney.baseactivity
+package com.darakeon.dfm.activities.base
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
-import com.dontflymoney.activityObjects.SmartStatic
-
-import com.dontflymoney.view.R
+import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.activities.base.IYesNoDialogAnswer
+import com.darakeon.dfm.R
 
 class Message<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
 

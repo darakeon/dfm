@@ -1,4 +1,4 @@
-package com.dontflymoney.baseactivity
+package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import com.dontflymoney.viewhelper.DialogSelectClickListener
+import com.darakeon.dfm.uiHelpers.dialogs.DialogSelectClickListener
 import org.json.JSONArray
 import org.json.JSONException
 

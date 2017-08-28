@@ -1,4 +1,4 @@
-package com.dontflymoney.io
+package com.darakeon.dfm.io
 
 enum class FileNames constructor(filename: String) {
     Ticket("ticket"),

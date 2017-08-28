@@ -1,4 +1,4 @@
-package com.dontflymoney.viewhelper
+package com.darakeon.dfm.uiHelpers.views
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 
-import com.dontflymoney.entities.Move
-import com.dontflymoney.view.R
+import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.R
 
 import java.text.DecimalFormat
 
@@ -41,11 +41,11 @@ class DetailBox(context: Context, internal var move: Move?, internal var descrip
     }
 
     private fun setWeight(field: TextView, weight: Float) {
-        val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, weight)
+        val params = LayoutParams(0, LayoutParams.WRAP_CONTENT, weight)
         field.layoutParams = params
     }
 
-    private inner class RemoveDetail : View.OnClickListener {
+    private inner class RemoveDetail : OnClickListener {
         override fun onClick(button: View) {
             move?.Remove(description, amount, value)
 

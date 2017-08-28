@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.dontflymoney.layout.MoveLine xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="horizontal"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+<com.darakeon.dfm.uiHelpers.views.MoveLine
+	xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
 	<TextView android:id="@+id/name"
 			  android:padding="10dp"
@@ -36,4 +37,4 @@
 			   android:contentDescription="@string/check"
 		/>
 
-</com.dontflymoney.layout.MoveLine>
+</com.darakeon.dfm.uiHelpers.views.MoveLine>

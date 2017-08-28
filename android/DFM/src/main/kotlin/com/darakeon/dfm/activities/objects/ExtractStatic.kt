@@ -1,4 +1,4 @@
-package com.dontflymoney.activityObjects
+package com.darakeon.dfm.activities.objects
 
 import android.view.LayoutInflater
 import org.json.JSONArray

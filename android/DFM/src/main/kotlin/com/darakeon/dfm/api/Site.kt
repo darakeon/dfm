@@ -1,4 +1,4 @@
-package com.dontflymoney.api
+package com.darakeon.dfm.api
 
 object Site {
     private val publicDomain = "dontflymoney.com"

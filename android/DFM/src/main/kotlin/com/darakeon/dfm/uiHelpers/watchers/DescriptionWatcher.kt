@@ -1,7 +1,6 @@
-package com.dontflymoney.watchers
+package com.darakeon.dfm.uiHelpers.watchers
 
-import com.dontflymoney.entities.Move
-import com.dontflymoney.viewhelper.AfterTextWatcher
+import com.darakeon.dfm.api.entities.Move
 
 class DescriptionWatcher(private val move: Move) : AfterTextWatcher() {
 

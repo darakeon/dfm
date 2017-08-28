@@ -1,4 +1,4 @@
-package com.dontflymoney.userdata
+package com.darakeon.dfm.user
 
 import android.content.Context
 

@@ -1,15 +1,13 @@
-package com.dontflymoney.baseactivity
+package com.darakeon.dfm.activities.base
 
 import android.content.Intent
-import android.os.Bundle
-import com.dontflymoney.activityObjects.SmartStatic
-
-import com.dontflymoney.api.InternalRequest
-import com.dontflymoney.api.Step
-import com.dontflymoney.userdata.Authentication
-import com.dontflymoney.view.LoginActivity
-import com.dontflymoney.view.SettingsActivity
-import com.dontflymoney.view.WelcomeActivity
+import com.darakeon.dfm.user.Authentication
+import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.activities.LoginActivity
+import com.darakeon.dfm.activities.SettingsActivity
+import com.darakeon.dfm.activities.WelcomeActivity
 
 class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>, private val authentication: Authentication) {
 
