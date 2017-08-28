@@ -105,9 +105,12 @@ VERSÃO 3.0.1.0 (Little change) - 7
 						Colocar marcação para conta de entrada e de saída separadas
 						Acessibilidade
 						
-VERSÃO 3.0.0.1 (System) - 9
+VERSÃO 3.0.0.1 (System) - 11
 ================================================================================================
 						Colocar data e categoria na mesma linha na move create/edit do mobile
+						"Cancelar" não deve recarregar a página quando não dá pra verificar licença
+						Corrigir layout paisagem do extrato
+						Resolver OutOfMemoryError ao carregar a imagem da entrada
 2017-04-08	2017-04-08	Verificar permissão read state do android
 2017-04-06	2017-04-06	Arrumar logo no mobile
 2017-04-06	2017-04-06	Destacar signup
