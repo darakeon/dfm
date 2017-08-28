@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.io;
+package com.dontflymoney.io;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

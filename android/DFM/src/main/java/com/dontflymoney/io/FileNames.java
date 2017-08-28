@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.io;
+package com.dontflymoney.io;
 
 public enum FileNames
 {

@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.view;
+package com.dontflymoney.view;
 
 import org.json.JSONException;
 import org.json.JSONObject;

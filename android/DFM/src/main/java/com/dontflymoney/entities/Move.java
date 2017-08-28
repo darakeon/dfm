@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.entities;
+package com.dontflymoney.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

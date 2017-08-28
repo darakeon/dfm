@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.viewhelper;
+package com.dontflymoney.viewhelper;
 
 import android.text.Editable;
 import android.text.TextWatcher;

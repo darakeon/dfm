@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.view;
+package com.dontflymoney.view;
 
 import java.util.Calendar;
 

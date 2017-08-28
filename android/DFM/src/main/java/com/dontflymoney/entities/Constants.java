@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.entities;
+package com.dontflymoney.entities;
 
 public class Constants
 {

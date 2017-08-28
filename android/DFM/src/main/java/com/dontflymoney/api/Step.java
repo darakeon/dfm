@@ -1,4 +1,4 @@
-﻿package com.dontflymoney.api;
+package com.dontflymoney.api;
 
 public enum Step
 {
