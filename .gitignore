@@ -27,6 +27,7 @@ android/gradlew.bat
 
 */.vs/*
 site/packages/*
+site/Library/DK/*.pdb
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
 ^(.*[\\/])?bin[\\/].*
