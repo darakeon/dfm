@@ -33,19 +33,19 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpPost]
 		public ActionResult Delete(Int32 id)
 		{
-			return JsonPost(() => MovesDeleteModel.Delete(id));
+			return JsonPost(() => MovesModel.Delete(id));
 		}
 
 		[HttpPost]
 		public ActionResult Check(Int32 id)
 		{
-			return JsonPost(() => MovesDeleteModel.Check(id));
+			return JsonPost(() => MovesModel.Check(id));
 		}
 
 		[HttpPost]
 		public ActionResult Uncheck(Int32 id)
 		{
-			return JsonPost(() => MovesDeleteModel.Uncheck(id));
+			return JsonPost(() => MovesModel.Uncheck(id));
 		}
 
 	}

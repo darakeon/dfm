@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Areas.API.Models
 {
-	public class MovesDeleteModel : BaseApiModel
+	public class MovesModel : BaseApiModel
 	{
 		public static void Delete(Int32 id)
 		{
