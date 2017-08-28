@@ -36,10 +36,6 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		return R.layout.extract
 	}
 
-	override fun optionsMenuResource(): Int {
-		return R.menu.extract
-	}
-
 	override fun contextMenuResource(): Int {
 		return R.menu.move_options
 	}
@@ -168,17 +164,13 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 
-	fun goToSummary(item: MenuItem) {
+	fun goToSummary(view: View) {
 		val intent = Intent(this, SummaryActivity::class.java)
 
 		intent.putExtra("accountUrl", accountUrl)
 		intent.putExtra("year", static.year)
 
 		startActivity(intent)
-	}
-
-	fun goToMove(item: MenuItem) {
-		goToMove(0)
 	}
 
 	private fun goToMove(moveId: Int) {

@@ -51,7 +51,14 @@
 			android:text="@string/change_date"
 			android:onClick="changeDate" />
 	</LinearLayout>
-	
+
+	<Button
+		android:id="@+id/action_summary"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/title_activity_summary"
+		android:onClick="goToSummary" />
+
 	<View android:layout_width="fill_parent" android:layout_height="15dp" />
 
 	<TextView
