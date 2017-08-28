@@ -2,8 +2,16 @@
 <manifest package="com.darakeon.dfm"
 		  xmlns:android="http://schemas.android.com/apk/res/android"
 		  android:installLocation="auto"
-		  android:versionCode="002001004004"
-		  android:versionName="2.1.4.4">
+		  android:versionCode="002003000000"
+		  android:versionName="3.0.0.0">
+	<!--
+		Cannot put
+		003 000 000 000
+		replaced old pattern
+		New Max Min Sys
+		by
+		0020 ne ma mi sy
+	-->
 
 	<uses-sdk
 		android:maxSdkVersion="25"/>
