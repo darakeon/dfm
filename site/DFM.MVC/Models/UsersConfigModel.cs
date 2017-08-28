@@ -79,7 +79,6 @@ namespace DFM.MVC.Models
 				try
 				{
 					Admin.UpdateConfig(this);
-
 					ErrorAlert.Add("ConfigChanged");
 				}
 				catch (DFMCoreException e)
@@ -102,15 +101,36 @@ namespace DFM.MVC.Models
 
 			public IList<String> ChangePassword()
 			{
+				var errors = new List<String>();
+
 				try
 				{
 					Safe.ChangePassword(CurrentPassword, this);
-					return null;
+					ErrorAlert.Add("PasswordChanged");
 				}
 				catch (DFMCoreException e)
 				{
-					return new List<String> { MultiLanguage.Dictionary[e] };
+					errors.Add(MultiLanguage.Dictionary[e]);
 				}
+
+				return errors;
+			}
+
+			public IList<String> UpdateEmail()
+			{
+				var errors = new List<String>();
+
+				try
+				{
+					Safe.UpdateEmail(CurrentPassword, Email);
+					ErrorAlert.Add("EmailUpdated");
+				}
+				catch (DFMCoreException e)
+				{
+					errors.Add(MultiLanguage.Dictionary[e]);
+				}
+
+				return errors;
 			}
 		}
 

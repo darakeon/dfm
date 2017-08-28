@@ -71,6 +71,27 @@
 				<button type="submit">@MultiLanguage.Dictionary["Save"]</button>
 			</p>
 		}
+
+		<div class="divRowForm">
+			<hr />
+		</div>
+
+		@using (Html.BeginForm("UpdateEmail", null))
+		{
+			<p>
+				@Html.LabelFor(m => m.Info.Email, MultiLanguage.Dictionary["EmailToChange"])
+				@Html.TextBoxFor(m => m.Info.Email)
+			</p>
+
+			<p>
+				@Html.LabelFor(m => m.Info.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"])
+				@Html.PasswordFor(m => m.Info.CurrentPassword)
+			</p>
+
+			<p>
+				<button type="submit">@MultiLanguage.Dictionary["Save"]</button>
+			</p>
+		}
 	</div>
 
 </div>

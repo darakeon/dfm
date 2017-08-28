@@ -254,7 +254,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		
+
 		public void ChangePassword(String currentPassword, IPasswordForm passwordForm)
 		{
 			passwordForm.Verify();
@@ -268,6 +268,21 @@ namespace DFM.BusinessLogic.Services
 			{
 				user.Password = passwordForm.Password;
 				userRepository.ChangePassword(user);
+			});
+		}
+
+
+
+		public void UpdateEmail(String currentPassword, String email)
+		{
+			var user = Parent.Current.User;
+
+			if (!userRepository.VerifyPassword(user, currentPassword))
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongPassword);
+
+			InTransaction(() =>
+			{
+				userRepository.UpdateEmail(user.ID, email);
 			});
 		}
 

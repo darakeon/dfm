@@ -37,6 +37,11 @@
     <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\m.UpdateEmail.feature.cs">
+      <DependentUpon>m.UpdateEmail.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\l.ChangePassword.feature.cs">
       <DependentUpon>l.ChangePassword.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -241,6 +246,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="BusinessLogic\A.Safe\m.UpdateEmail.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>m.UpdateEmail.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\A.Safe\l.ChangePassword.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

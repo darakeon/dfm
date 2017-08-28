@@ -145,5 +145,21 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Accounts");
 		}
 
+		[DFMAuthorize, HttpPost]
+		public ActionResult UpdateEmail(UsersConfigModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var errors = model.Info.UpdateEmail();
+
+				AddErrors(errors);
+			}
+
+			if (!ModelState.IsValid)
+				return View("Config", model);
+
+			return RedirectToAction("Index", "Accounts");
+		}
+
 	}
 }

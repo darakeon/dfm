@@ -64,6 +64,17 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 
+		internal User UpdateEmail(Int32 id, String email)
+		{
+			var user = Get(id);
+			user.Email = email;
+
+			validateEmail(user);
+
+			return update(user);
+		}
+
+
 		private User update(User user)
 		{
 			if (user.ID == 0)
@@ -85,6 +96,11 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(user.Password))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
+			validateEmail(user);
+		}
+
+		private void validateEmail(User user)
+		{
 			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)

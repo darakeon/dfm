@@ -295,6 +295,9 @@ Scenario: 10. Get translate of Interface (users)
 		| Users   | AndroidRobotLicenseText |
 		| Users   | CurrentPassword         |
 		| Users   | NewPassword             |
+		| Users   | EmailToChange           |
+		| Users   | EmailUpdated            |
+		| Users   | PasswordChanged         |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

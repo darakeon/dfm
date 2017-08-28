@@ -58,7 +58,7 @@ input:disabled
 	padding: 10px 0;
 }
 
-form hr
+form hr, .divRowForm hr
 {
 	background-color: #AA8E55;
 	height: 1px;

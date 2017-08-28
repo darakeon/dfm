@@ -31,6 +31,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			set { Set("Email", value); }
 		}
 
+		private static String newEmail
+		{
+			get { return Get<String>("NewEmail"); }
+			set { Set("NewEmail", value); }
+		}
+
 		private static String ticket
 		{
 			get { return Get<String>("ticket"); }
@@ -544,6 +550,44 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 		#endregion ChangePassword
+
+		#region UpdateEmail
+		[Given(@"I pass this new e-mail and password")]
+		public void GivenIPassThisNewEmailAndPassword(Table table)
+		{
+			currentPassword = table.Rows[0]["Current Password"];
+			newEmail = table.Rows[0]["New E-mail"];
+		}
+
+		[When(@"I try to change the e-mail")]
+		public void WhenITryToChangeTheEmail()
+		{
+			try
+			{
+				SA.Safe.UpdateEmail(currentPassword, newEmail);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Then(@"the e-mail will not be changed")]
+		public void ThenTheEmailWillNotBeChanged()
+		{
+			Error = null;
+			var user = SA.Safe.GetUserByTicket(Current.Ticket.Key);
+			Assert.AreEqual(email, user.Email);
+		}
+
+		[Then(@"the e-mail will be changed")]
+		public void ThenTheEmailWillBeChanged()
+		{
+			Error = null;
+			var user = SA.Safe.GetUserByTicket(Current.Ticket.Key);
+			Assert.AreEqual(newEmail, user.Email);
+		}
+		#endregion UpdateEmail
 
 
 
