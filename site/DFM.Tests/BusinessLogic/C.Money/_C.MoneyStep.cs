@@ -200,14 +200,14 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		#endregion
 
 		#region UpdateMove
-		[When(@"I change the move date in (\-?\d+\.?\d*) (\w+)")]
+		[Given(@"I change the move date in (\-?\d+\.?\d*) (day|month|year)s?")]
 		public void GivenIChangeTheMoveDateIn1Day(Int32 count, String frequency)
 		{
 			switch (frequency)
 			{
-				case "day": case "days": Move.Date = Move.Date.AddDays(count); break;
-				case "month": case "months": Move.Date = Move.Date.AddMonths(count); break;
-				case "year": case "years": Move.Date = Move.Date.AddYears(count); break;
+				case "day": Move.Date = Move.Date.AddDays(count); break;
+				case "month": Move.Date = Move.Date.AddMonths(count); break;
+				case "year": Move.Date = Move.Date.AddYears(count); break;
 			}
 
 			if (AccountOut != null)

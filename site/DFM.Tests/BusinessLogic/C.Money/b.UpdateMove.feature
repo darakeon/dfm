@@ -8,8 +8,8 @@ Background:
 
 Scenario: Cb01. Update the move date in 1 day
 	Given I have a move with value 10 (Out)
-	When I change the move date in -1 day
-	And I update the move
+	And I change the move date in -1 day
+	When I update the move
 	Then I will receive no core error
 	And the accountOut value will not change
 	And the month-category-accountOut value will not change
@@ -17,8 +17,8 @@ Scenario: Cb01. Update the move date in 1 day
 
 Scenario: Cb02. Update the move date in 1 month
 	Given I have a move with value 10 (Out)
-	When I change the move date in -1 month
-	And I update the move
+	And I change the move date in -1 month
+	When I update the move
 	Then I will receive no core error
 	And the accountOut value will not change
 	And the new-month-category-accountOut value will change in 10
@@ -27,8 +27,8 @@ Scenario: Cb02. Update the move date in 1 month
 
 Scenario: Cb03. Update the move date in 1 year
 	Given I have a move with value 10 (Out)
-	When I change the move date in -1 year
-	And I update the move
+	And I change the move date in -1 year
+	When I update the move
 	Then I will receive no core error
 	And the accountOut value will not change
 	And the new-month-category-accountOut value will change in 10

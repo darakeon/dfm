@@ -91,14 +91,14 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			Current.Clear();
 		}
 
-		[Given(@"its Date is (\-?\d+\.?\d*) (\w+) ago")]
+		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
 		public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
 		{
 			switch (frequency)
 			{
-				case "day": case "days": Schedule.Date = Current.User.Now().AddDays(-count); break;
-				case "month":case "months": Schedule.Date = Current.User.Now().AddMonths(-count); break;
-				case "year": case "years": Schedule.Date = Current.User.Now().AddYears(-count); break;
+				case "day": Schedule.Date = Current.User.Now().AddDays(-count); break;
+				case "month": Schedule.Date = Current.User.Now().AddMonths(-count); break;
+				case "year": Schedule.Date = Current.User.Now().AddYears(-count); break;
 			}
 		}
 
