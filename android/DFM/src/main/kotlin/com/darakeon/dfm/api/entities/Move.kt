@@ -1,9 +1,8 @@
 package com.darakeon.dfm.api.entities
 
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
-import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.entities.Detail
 import com.darakeon.dfm.api.DateTime
+import com.darakeon.dfm.api.InternalRequest
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -103,11 +102,12 @@ class Move {
 
 
 	@Throws(JSONException::class)
-	fun SetData(move: JSONObject, activityAccountUrl: String) {
+	fun SetData(move: JSONObject, activityAccountUrl: String?) {
 		Id = move.getInt("ID")
 
 		if (Id == 0) {
 			AccountOut = activityAccountUrl
+			AccountIn = activityAccountUrl
 		} else {
 			setEditMoveData(move)
 		}

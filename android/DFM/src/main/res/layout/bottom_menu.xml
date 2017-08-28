@@ -20,16 +20,6 @@
 		style="?android:attr/buttonBarButtonStyle"  />
 
 	<Button
-		android:id="@+id/action_refresh"
-		android:text="@string/action_refresh"
-		android:contentDescription="@string/label_refresh"
-		android:onClick="refresh"
-		android:layout_height="wrap_content"
-		android:layout_weight="1"
-		android:layout_width="0sp"
-		style="?android:attr/buttonBarButtonStyle"  />
-
-	<Button
 		android:id="@+id/action_settings"
 		android:text="@string/action_settings"
 		android:contentDescription="@string/label_settings"
@@ -38,6 +28,26 @@
 		android:layout_weight="1"
 		android:layout_width="0sp"
 		style="?android:attr/buttonBarButtonStyle" />
+
+	<Button
+		android:id="@+id/action_move"
+		android:text="@string/action_move"
+		android:contentDescription="@string/label_move"
+		android:onClick="createMove"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle" />
+
+	<Button
+		android:id="@+id/action_refresh"
+		android:text="@string/action_refresh"
+		android:contentDescription="@string/label_refresh"
+		android:onClick="refresh"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_width="0sp"
+		style="?android:attr/buttonBarButtonStyle"  />
 
 	<Button
 		android:id="@+id/action_logout"

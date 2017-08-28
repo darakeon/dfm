@@ -1,7 +1,6 @@
 package com.darakeon.dfm.activities
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -137,7 +136,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 				populateScreen(data)
 			}
 			Step.Recording -> {
-				backToExtract()
+				back()
 			}
 			else -> {
 				message.alertError(R.string.this_is_not_happening)
@@ -159,7 +158,14 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 		if (data.has("Move") && !data.isNull("Move")) {
 			val moveToEdit = data.getJSONObject("Move")
-			static.move.SetData(moveToEdit, intent.getStringExtra("accountUrl"))
+
+			val accountUrl =
+				if (intent.hasExtra("accountUrl"))
+					intent.getStringExtra("accountUrl")
+				else
+					null
+
+			static.move.SetData(moveToEdit, accountUrl)
 			populateOldData(true)
 		}
 	}
@@ -320,13 +326,8 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		request.Post(Step.Recording)
 	}
 
-	private fun backToExtract() {
-		val intent = Intent(this, ExtractActivity::class.java)
-		intent.putExtra("accountUrl", getIntent().getStringExtra("accountUrl"))
-		intent.putExtra("month", static.move.month)
-		intent.putExtra("year", static.move.year)
-
-		startActivity(intent)
+	private fun back() {
+		navigation.redirectWithExtras()
 	}
 
 

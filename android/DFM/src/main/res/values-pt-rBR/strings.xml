@@ -5,8 +5,9 @@
 
 	<!-- Actions -->
 	<string name="label_home">Início</string>
-	<string name="label_refresh">Atualizar</string>
 	<string name="label_settings">Configurações</string>
+	<string name="label_move">Mover</string>
+	<string name="label_refresh">Atualizar</string>
 	<string name="label_logout">Sair</string>
 	<string name="label_close">Fechar</string>
 

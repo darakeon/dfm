@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.AccountsActivity
+import com.darakeon.dfm.activities.MovesCreateActivity
 import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
@@ -100,6 +101,9 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 				if (this is SettingsActivity)
 					findViewById(R.id.action_settings).isEnabled = false
+
+				if (this is MovesCreateActivity)
+					findViewById(R.id.action_move).isEnabled = false
 			}
 		}
 
@@ -151,6 +155,14 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 	fun goToSettings(view: View) {
 		navigation.goToSettings()
+	}
+
+	fun createMove(view: View) {
+		navigation.createMove()
+	}
+
+	protected fun createMove(extras: Bundle) {
+		navigation.createMove(extras)
 	}
 
 	fun refresh() {

@@ -179,14 +179,15 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 	private fun goToMove(moveId: Int) {
-		val intent = Intent(this, MovesCreateActivity::class.java)
 
-		intent.putExtra("id", moveId)
-		intent.putExtra("accountUrl", accountUrl)
-		intent.putExtra("year", static.year)
-		intent.putExtra("month", static.month)
+		val extras = Bundle()
 
-		startActivity(intent)
+		extras.putInt("id", moveId)
+		extras.putString("accountUrl", accountUrl)
+		extras.putInt("year", static.year)
+		extras.putInt("month", static.month)
+
+		createMove(extras)
 	}
 
 

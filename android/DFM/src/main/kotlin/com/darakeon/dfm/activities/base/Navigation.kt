@@ -1,13 +1,15 @@
 package com.darakeon.dfm.activities.base
 
 import android.content.Intent
-import com.darakeon.dfm.user.Authentication
+import android.os.Bundle
+import com.darakeon.dfm.activities.LoginActivity
+import com.darakeon.dfm.activities.MovesCreateActivity
+import com.darakeon.dfm.activities.SettingsActivity
+import com.darakeon.dfm.activities.WelcomeActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.activities.LoginActivity
-import com.darakeon.dfm.activities.SettingsActivity
-import com.darakeon.dfm.activities.WelcomeActivity
+import com.darakeon.dfm.user.Authentication
 
 class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>, private val authentication: Authentication) {
 
@@ -52,7 +54,18 @@ class Navigation<T : SmartStatic> internal constructor(private val activity: Sma
 	}
 
 	internal fun goToSettings() {
-		val intent = Intent(activity, SettingsActivity::class.java)
+		goToActivityWithBack(SettingsActivity::class.java)
+	}
+
+	internal fun createMove(extras: Bundle? = null) {
+		goToActivityWithBack(MovesCreateActivity::class.java, extras)
+	}
+
+	private fun goToActivityWithBack(newActivity: Class<*>, extras: Bundle? = null) {
+		val intent = Intent(activity, newActivity)
+
+		if (extras != null)
+			intent.putExtras(extras)
 
 		intent.putExtras(activity.intent)
 		intent.putExtra("__parent", activity.javaClass)
