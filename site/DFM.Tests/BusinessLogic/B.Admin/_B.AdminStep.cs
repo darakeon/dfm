@@ -507,8 +507,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			}
 		}
 
-		[Then(@"the category will be changed")]
-		public void ThenTheCategoryWillBeChanged()
+		[Then(@"the category will (not )?be changed")]
+		public void ThenTheCategoryWillBeChanged(Boolean changed)
 		{
 			Category = null;
 			Error = null;
@@ -520,6 +520,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			catch (DFMCoreException e)
 			{
 				Error = e;
+			}
+
+			if (!changed)
+			{
+				Assert.IsNotNull(Category);
+				Assert.IsNull(Error);
+				return;
 			}
 
 			Assert.IsNull(Category);
