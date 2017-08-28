@@ -82,7 +82,7 @@ S						Arrumar para web usar fakeId, não id
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 
-VERSÃO 2.1.0.0 (Big change) - 9?
+VERSÃO 2.1.0.0 (Big change) - 8?
 ================================================================================================
 F						Disponibilizar Task list no site
 F						Guardar dados localmente, para quando está sem internet (Mobile)
@@ -92,7 +92,12 @@ F						Colocar tela de lista de funcionalidades
 F						Resolver problema de tab na tela de criação de Move (mobile)
 F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
+
+VERSÃO 2.0.3.1 (System) - 3
+================================================================================================
 						Corrigir problema de deletar conta que já teve movimentações
+						Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
+						Corrigir problema ao abrir tela de criar movimentação (mobile)
 
 VERSÃO 2.0.3.0 (Little change) - 5
 ================================================================================================
