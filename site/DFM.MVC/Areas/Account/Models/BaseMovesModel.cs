@@ -65,7 +65,7 @@ namespace DFM.MVC.Areas.Account.Models
 
             makeCategoryList();
 
-            makeAccountTransferList();
+            makeAccountList();
 
             arrangeDetails();
         }
@@ -94,9 +94,8 @@ namespace DFM.MVC.Areas.Account.Models
                 .CreateSelect(categoryList, mv => mv.Name, mv => mv.Name);
         }
 
-        private void makeAccountTransferList()
+        private void makeAccountList()
         {
-
             AccountOutSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
             AccountInSelectList = SelectListExtension.CreateSelect(accountList, a => a.Url, a => a.Name);
         }
