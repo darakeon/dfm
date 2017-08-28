@@ -95,6 +95,11 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
+		internal new Move GetNonCached(int id)
+		{
+			return base.GetNonCached(id);
+		}
+
 		private static String detailsHTML(Move move)
 		{
 			var details = new StringBuilder();
@@ -118,14 +123,14 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Decimal GetIn(Month month, Category category)
 		{
-			var query = NewQuery().Filter(m => m.In.ID == month.ID);
+			var query = NewQuery().SimpleFilter(m => m.In.ID == month.ID);
 
 			return get(query, category);
 		}
 
 		internal Decimal GetOut(Month month, Category category)
 		{
-			var query = NewQuery().Filter(m => m.Out.ID == month.ID);
+			var query = NewQuery().SimpleFilter(m => m.Out.ID == month.ID);
 
 			return get(query, category);
 		}
@@ -133,8 +138,8 @@ namespace DFM.BusinessLogic.Repositories
 		private Decimal get(Query<Move> query, Category category)
 		{
 			query = category == null
-				? query.Filter(m => m.Category == null)
-				: query.Filter(m => m.Category != null && m.Category.ID == category.ID);
+				? query.SimpleFilter(m => m.Category == null)
+				: query.SimpleFilter(m => m.Category != null && m.Category.ID == category.ID);
 
 			return query.Result.Sum(m => m.Total());
 		}

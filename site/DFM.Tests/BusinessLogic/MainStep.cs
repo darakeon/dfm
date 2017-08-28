@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DK.NHibernate;
+using DK.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -54,7 +54,7 @@ namespace DFM.Tests.BusinessLogic
 		[AfterScenarioBlock]
 		public static void CloseSession()
 		{
-			NHManager.Close();
+			SessionManager.Close();
 		}
 
 		[AfterScenario]

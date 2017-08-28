@@ -113,6 +113,9 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			var expected = Account[year].SummaryList.Sum(s => s.Value());
 
+			//TODO: Temporary code - the access to move will be refactored
+			yearReport = SA.Report.GetYearReport(AccountUrl, year);
+
 			var actual = yearReport.MonthList.Sum(m =>
 					m.SummaryList.Sum(s => s.Value())
 				);

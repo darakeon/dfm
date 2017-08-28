@@ -37,7 +37,7 @@ namespace DFM.BusinessLogic.Services
 
 			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
-			var oldMove = moveRepository.GetOldById(move.ID);
+			var oldMove = moveRepository.GetNonCached(move.ID);
 
 			if (oldMove != null)
 			{
@@ -89,7 +89,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (move.ID == 0) return;
 
-			var oldMove = moveRepository.GetOldById(move.ID);
+			var oldMove = moveRepository.GetNonCached(move.ID);
 
 			move.Schedule = oldMove?.Schedule;
 		}
@@ -123,7 +123,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void BreakSummaries(Move move)
 		{
-			var oldMove = moveRepository.GetOldById(move.ID);
+			var oldMove = moveRepository.GetNonCached(move.ID);
 
 			breakSummaries(oldMove);
 		}
@@ -132,18 +132,22 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (move.Nature != MoveNature.Out)
 			{
-				summaryRepository.CreateIfNotExists(move.In, move.Category);
+				var monthIn = monthRepository.Get(move.In.ID);
 
-				summaryRepository.Break(move.In, move.Category);
-				summaryRepository.Break(move.In.Year, move.Category);
+				summaryRepository.CreateIfNotExists(monthIn, move.Category);
+
+				summaryRepository.Break(monthIn, move.Category);
+				summaryRepository.Break(monthIn.Year, move.Category);
 			}
 
 			if (move.Nature != MoveNature.In)
 			{
-				summaryRepository.CreateIfNotExists(move.Out, move.Category);
+				var monthOut = monthRepository.Get(move.Out.ID);
 
-				summaryRepository.Break(move.Out, move.Category);
-				summaryRepository.Break(move.Out.Year, move.Category);
+				summaryRepository.CreateIfNotExists(monthOut, move.Category);
+
+				summaryRepository.Break(monthOut, move.Category);
+				summaryRepository.Break(monthOut.Year, move.Category);
 			}
 
 		}

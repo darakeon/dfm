@@ -110,7 +110,6 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			SA.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, Defaults.CONFIG_LANGUAGE, null, null);
 
 			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
-
 			SA.Safe.ActivateUser(tokenActivate);
 		}
 

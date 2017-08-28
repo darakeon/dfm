@@ -15,6 +15,7 @@ using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories.Mappings;
 using DK.MVC.Cookies;
+using DK.NHibernate.Base;
 using log4net.Config;
 
 namespace DFM.MVC
@@ -31,7 +32,7 @@ namespace DFM.MVC
 			
 			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
-			NHManager.Start<UserMap, User>(MyCookie.Get);
+			SessionFactoryManager.Initialize<UserMap, User>();
 			MultiLanguage.Initialize();
 
 			XmlConfigurator.Configure();
@@ -50,7 +51,7 @@ namespace DFM.MVC
 			if (isLocal)
 				MultiLanguage.Initialize();
 
-			NHManager.Open();
+			SessionManager.Init(MyCookie.Get);
 		}
 
 		// ReSharper disable InconsistentNaming
@@ -92,7 +93,7 @@ namespace DFM.MVC
 			if (!isLocal)
 				ErrorManager.SendEmail();
 
-			error();
+			closeSession();
 		}
 
 
@@ -102,10 +103,7 @@ namespace DFM.MVC
 		{
 			if (isAsset) return;
 
-			if (DFMCoreException.ErrorCounter > 0)
-				error();
-
-			NHManager.Close();
+			closeSession();
 
 			if (Request["Error"] == "Force")
 				throw new Exception("Forced error.");
@@ -113,11 +111,11 @@ namespace DFM.MVC
 
 
 
-		private static void error()
+		private static void closeSession()
 		{
 			try
 			{
-				NHManager.Error();
+				SessionManager.Close();
 			}
 			catch (DKException e)
 			{
@@ -131,7 +129,7 @@ namespace DFM.MVC
 		protected void Application_End()
 		// ReSharper restore InconsistentNaming
 		{
-			NHManager.End();
+			SessionFactoryManager.End();
 
 			IP.SaveOnline();
 		}

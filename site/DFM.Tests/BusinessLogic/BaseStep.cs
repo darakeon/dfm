@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DK.NHibernate;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
@@ -15,6 +14,7 @@ using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
 using DK.Generic.Extensions;
+using DK.NHibernate.Base;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic
@@ -29,7 +29,8 @@ namespace DFM.Tests.BusinessLogic
 			if (SA != null)
 				return;
 
-			NHManager.Start<UserMap, User>(getTicketKey);
+			SessionFactoryManager.Initialize<UserMap, User>();
+			SessionManager.Init(getTicketKey);
 
 			SA = new ServiceAccess(getTicket);
 
@@ -40,7 +41,7 @@ namespace DFM.Tests.BusinessLogic
 
 		public void Dispose()
 		{
-			NHManager.End();
+			SessionFactoryManager.End();
 		}
 
 

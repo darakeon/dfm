@@ -72,7 +72,7 @@ namespace DFM.BusinessLogic.Repositories
 		private IEnumerable<Summary> get(Year year, Category category)
 		{
 			var summaryList = NewQuery()
-				.Filter(m => m.Year.ID == year.ID)
+				.SimpleFilter(m => m.Year.ID == year.ID)
 				.Result
 				.SelectMany(m => m.SummaryList);
 

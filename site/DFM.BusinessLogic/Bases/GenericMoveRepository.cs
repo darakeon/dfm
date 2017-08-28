@@ -11,7 +11,7 @@ using DFM.Entities.Extensions;
 namespace DFM.BusinessLogic.Bases
 {
 	public class GenericMoveRepository<T> : BaseRepository<T>
-		where T : class, IEntity, IMove
+		where T : class, IEntity, IMove, new()
 	{
 		#region Validate
 		protected static void Validate(T move, Boolean validateParents = true)
