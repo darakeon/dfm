@@ -2,6 +2,7 @@
 
 Background: 
 	Given I have an active user
+	And I enable Categories use
 
 Scenario: Aq001. List Logins
 	Given I have an active user

@@ -68,6 +68,8 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 3
 #line 4
  testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 5
+ testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -76,7 +78,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Bc01_ChangeTheNameS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc01. Change the name (S)", ((string[])(null)));
-#line 6
+#line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -91,7 +93,7 @@ this.FeatureBackground();
                         "account_ca01",
                         "",
                         ""});
-#line 7
+#line 8
  testRunner.Given("I have this account", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -104,13 +106,13 @@ this.FeatureBackground();
                         "account_ca01",
                         "",
                         ""});
-#line 10
+#line 11
  testRunner.When("I make this changes to the account", ((string)(null)), table2, "When ");
-#line 13
- testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
  testRunner.And("the account will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -121,7 +123,7 @@ this.FeatureBackground();
         public virtual void Bc02_ChangeTheNameWhenThereIsMovesS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc02. Change the name when there is moves (S)", ((string[])(null)));
-#line 17
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -136,9 +138,9 @@ this.FeatureBackground();
                         "account_ca02",
                         "",
                         ""});
-#line 18
+#line 19
  testRunner.Given("I have this account", ((string)(null)), table3, "Given ");
-#line 21
+#line 22
  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -151,15 +153,15 @@ this.FeatureBackground();
                         "account_ca02",
                         "",
                         ""});
-#line 22
+#line 23
  testRunner.When("I make this changes to the account", ((string)(null)), table4, "When ");
-#line 25
- testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.And("the account will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
+ testRunner.And("the account will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
  testRunner.And("the account value will not change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -170,7 +172,7 @@ this.FeatureBackground();
         public virtual void Bc03_ChangeTheUrlS()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc03. Change the url (S)", ((string[])(null)));
-#line 31
+#line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -185,7 +187,7 @@ this.FeatureBackground();
                         "accountca03",
                         "",
                         ""});
-#line 32
+#line 33
  testRunner.Given("I have this account", ((string)(null)), table5, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -198,13 +200,13 @@ this.FeatureBackground();
                         "accountca03_url",
                         "",
                         ""});
-#line 35
+#line 36
  testRunner.When("I make this changes to the account", ((string)(null)), table6, "When ");
-#line 38
- testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
  testRunner.And("the account will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

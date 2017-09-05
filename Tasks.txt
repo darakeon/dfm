@@ -128,7 +128,7 @@ VERSÃO 4.0.1.0 (Little change) - 5
 
 VERSÃO 4.0.0.0 (All new) - 3
 ================================================================================================
-						Change password encryption
+2017-09-05	2017-09-05	Change password encryption
 2017-09-04	2017-09-05	Redirect known 404 to HELP
 2017-09-04	2017-09-04	Add Open Source to Contract
 2017-07-01	2017-09-04	Refactor commits to GIT
