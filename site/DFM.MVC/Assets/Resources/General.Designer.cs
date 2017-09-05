@@ -68,5 +68,23 @@ namespace DFM.MVC.Assets.Resources {
                 return ResourceManager.GetString("Accept", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, don&apos;t hack me!.
+        /// </summary>
+        public static string Ops_DontHack {
+            get {
+                return ResourceManager.GetString("Ops_DontHack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help me! =).
+        /// </summary>
+        public static string Ops_Help {
+            get {
+                return ResourceManager.GetString("Ops_Help", resourceCulture);
+            }
+        }
     }
 }

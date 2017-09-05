@@ -160,6 +160,7 @@
     <Content Include="Assets\Bootstrap\Themes\bootstrap-united.min.css" />
     <Content Include="Assets\Bootstrap\Themes\bootstrap-yeti.min.css" />
     <Content Include="Assets\Images\big_pig.png" />
+    <Content Include="Assets\Images\github.png" />
     <Content Include="Assets\Scripts\dynamic-theme-change.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.js" />
@@ -410,6 +411,7 @@
     <Content Include="Views\Users\LogOn.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Contracts\004000000000.cshtml" />
+    <Content Include="Views\Ops\Help.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

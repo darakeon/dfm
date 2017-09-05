@@ -1,0 +1,19 @@
+﻿@model BaseModel
+
+@{
+	ViewBag.Title = General.Ops_DontHack;
+	Layout = "~/Views/Shared/_form.cshtml";
+
+	ViewBag.Style = "info";
+}
+
+<div class="text-center">
+	<a target='_blank' href='https://github.com/darakeon/dfm'>
+		<img src="~/Assets/Images/github.png" alt="GitHub" title="GitHub" />
+	</a>
+</div>
+
+@section Footer
+{
+	@General.Ops_Help
+}

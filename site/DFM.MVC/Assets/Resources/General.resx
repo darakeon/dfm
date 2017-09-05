@@ -120,4 +120,10 @@
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="Ops_DontHack" xml:space="preserve">
+    <value>Please, don't hack me!</value>
+  </data>
+  <data name="Ops_Help" xml:space="preserve">
+    <value>Help me! =)</value>
+  </data>
 </root>

@@ -41,6 +41,14 @@ namespace DFM.MVC.Controllers
 		}
 
 
+		public ActionResult Help()
+		{
+			var model = new BaseModel();
+
+			return View(model);
+		}
+
+
 		public ActionResult TestElmahLog()
 		{
 			var errorOnLog = elmah.TryLog(new Exception("Logging right!"));
