@@ -250,6 +250,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfigThemes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Resources\Contracts\004000000000.Designer.cs">
+      <DependentUpon>004000000000.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Assets\Resources\Contracts\003000000000.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -329,6 +334,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigThemes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\Contracts\004000000000.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>004000000000.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\Contracts\004000000000.pt-BR.resx" />
     <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.pt-BR.resx" />
     <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -399,6 +409,7 @@
     <Content Include="Views\Users\SignUp.cshtml" />
     <Content Include="Views\Users\LogOn.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Contracts\004000000000.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
