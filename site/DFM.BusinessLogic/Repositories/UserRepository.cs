@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -24,9 +23,8 @@ namespace DFM.BusinessLogic.Repositories
 		internal User ValidateAndGet(String email, String password)
 		{
 			var user = GetByEmail(email);
-			password = encrypt(password);
 
-			if (user == null || user.Password != password)
+			if (user == null || !Crypt.Check(password, user.Password))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
 
 			if (!user.Active)
@@ -58,7 +56,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal User ChangePassword(User user)
 		{
-			user.Password = encrypt(user.Password);
+			user.Password = Crypt.Do(user.Password);
 
 			return update(user);
 		}
@@ -132,33 +130,14 @@ namespace DFM.BusinessLogic.Repositories
 			user.Config.Theme = Defaults.DEFAULT_THEME;
 
 			user.Creation = DateTime.UtcNow;
-			user.Password = encrypt(user.Password);
-		}
-
-
-
-		private static String encrypt(String password)
-		{
-			if (String.IsNullOrEmpty(password))
-				return null;
-
-			var md5 = new MD5CryptoServiceProvider();
-
-			var originalBytes = Encoding.Default.GetBytes(password);
-			var encodedBytes = md5.ComputeHash(originalBytes);
-
-			var hexCode = BitConverter
-							.ToString(encodedBytes)
-							.Replace("-", "");
-
-			return hexCode;
+			user.Password = Crypt.Do(user.Password);
 		}
 
 
 
 		public Boolean VerifyPassword(User user, String password)
 		{
-			return user.Password == encrypt(password);
+			return Crypt.Check(password, user.Password);
 		}
 
 	}

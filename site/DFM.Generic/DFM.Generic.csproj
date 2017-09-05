@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Cfg.cs" />
     <Compile Include="ConvertToOtherChild.cs" />
+    <Compile Include="Crypt.cs" />
     <Compile Include="DateTimeExtension.cs" />
     <Compile Include="DateTimeGMT.cs" />
     <Compile Include="ApiDebug.cs" />
@@ -51,6 +52,10 @@
     <Compile Include="ResourceManagerExtension.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=2.1.1.0, Culture=neutral, PublicKeyToken=748c6c715e2d42e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.2.1.1\lib\net45\BCrypt.Net-Next.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DK.Generic">
       <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
     </Reference>

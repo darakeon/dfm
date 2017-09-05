@@ -11,7 +11,7 @@ namespace DFM.BusinessLogic.Helpers
 		public const Int16 MOVE_DESCRIPTION = 50;
 		public const Int16 SECURITY_TOKEN = 50;
 		public const Int16 TICKET_KEY = 52;
-		public const Int16 USER_PASSWORD = 50;
+		public const Int16 USER_PASSWORD = 60;
 		public const Int16 USER_EMAIL = 50;
 		public const Int16 CONFIG_LANGUAGE = 5;
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
@@ -34,7 +31,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 							inner join User U
 								on S.User_ID = U.ID
 						where U.Email = @email
-							and U.Password = @password
 							and S.Action = @action
 							and S.Expire >= @expire
 					order by S.ID desc, S.Expire desc
@@ -43,7 +39,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				using (var cmd = new MySqlCommand(query, conn))
 				{
 					cmd.Parameters.AddWithValue("email", email);
-					cmd.Parameters.AddWithValue("password", encrypt(password));
 					cmd.Parameters.AddWithValue("action", (Int32) action);
 					cmd.Parameters.AddWithValue("expire", DateTime.Now);
 
@@ -81,7 +76,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 							inner join User U
 								on T.User_ID = U.ID
 						where U.Email = @email
-							and U.Password = @password
 							and T.Expiration is null
 					order by T.ID desc
 						limit 1";
@@ -89,7 +83,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				using (var cmd = new MySqlCommand(query, conn))
 				{
 					cmd.Parameters.AddWithValue("email", email);
-					cmd.Parameters.AddWithValue("password", encrypt(password));
 
 					var result = cmd.ExecuteScalar();
 
@@ -175,26 +168,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				conn.Close();
 			}
 		}
-
-
-
-		private static String encrypt(String password)
-		{
-			if (String.IsNullOrEmpty(password))
-				return null;
-
-			var md5 = new MD5CryptoServiceProvider();
-
-			var originalBytes = Encoding.Default.GetBytes(password);
-			var encodedBytes = md5.ComputeHash(originalBytes);
-
-			var hexCode = BitConverter
-							.ToString(encodedBytes)
-							.Replace("-", "");
-
-			return hexCode;
-		}
-
 
 	}
 }
