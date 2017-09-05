@@ -97,7 +97,7 @@ VERSÃO 3.2.0.0 (Big change) - 4
 						Mudar categoria para autocomplete (mobile)
 						Colocar spinner de datetime ao lado do botão no mobile (tirar modal)
 
-VERSÃO 3.1.1.0 (Little change) - 7
+VERSÃO 3.1.1.0 (Little change) - 6
 ================================================================================================
 						Permitir marcar todas as movimentações antes de uma data
 						Possibilitar marcar uma movimentação em conta fechada
