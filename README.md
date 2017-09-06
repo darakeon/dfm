@@ -18,10 +18,19 @@ anymore. The system is made to control the money one spent. And has a
 long list of features to implement, just like any project one do by
 itself. Well, we are always our most demanding client.
 
-## Links of running project
+## Links
+
+### Running project
 
 - [Website](https://dontflymoney.com/)
 - [Android App](http://play.google.com/store/apps/details?id=com.dontflymoney.view)
+
+### Social
+
 - [Twitter](https://twitter.com/dfm_grunt)
 - [Facebook](https://www.facebook.com/dontflymoney/)
 - [Youtube presentation (in portuguese)](https://www.youtube.com/watch?v=S_i1N5nMRa4)
+
+### Docs
+
+- [Collaborate](docs/COLLABORATE.md)
