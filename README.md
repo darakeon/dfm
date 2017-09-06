@@ -25,12 +25,13 @@ itself. Well, we are always our most demanding client.
 - [Website](https://dontflymoney.com/)
 - [Android App](http://play.google.com/store/apps/details?id=com.dontflymoney.view)
 
-### Social
+### Social (portuguese)
 
 - [Twitter](https://twitter.com/dfm_grunt)
 - [Facebook](https://www.facebook.com/dontflymoney/)
-- [Youtube presentation (in portuguese)](https://www.youtube.com/watch?v=S_i1N5nMRa4)
+- [Youtube presentation](https://www.youtube.com/watch?v=S_i1N5nMRa4)
 
 ### Docs
 
 - [Collaborate](docs/COLLABORATE.md)
+- [License (MIT)](LICENSE.md)
