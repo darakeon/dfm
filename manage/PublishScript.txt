@@ -1,0 +1,11 @@
+Trocar número de versão em android/site
+Executar Sql não destrutivo
+Subir Site
+Testar Site
+Executar Sql destrutivo
+Subir APK
+Subir imagens novas do play
+Criar tag de número de versão
+Subir Vídeo (se tiver)
+Post Twitter
+Post Facebook
