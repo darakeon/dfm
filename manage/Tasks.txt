@@ -111,20 +111,30 @@ VERSÃO 4.2.0.0 (Big change) - 2
 						Acessibilidade
 						Corrigir ícones de status da conta
 
-VERSÃO 4.0.1.1 (System) - 4
+VERSÃO 4.0.2.1 (System) - 4
 ================================================================================================
 						Transformar recebimento / retorno do serviço em DTO
 						Int64 nos IDs
 						Colocar lock no get session do NH
 						Arrumar chamada de transaction para uma chamar a outra (Action/Func<>)
 
-VERSÃO 4.0.1.0 (Little change) - 5
+VERSÃO 4.0.2.0 (Little change) - 5
 ================================================================================================
 						This site uses cookies to store your preferences for site-specific language and display options. 
 						Corrigir edição de transferência
 						Arrumar centavos do total de detalhes no e-mail
 						Teste deletar categoria com filhos deletados
 						Testes para permissões por usuário
+
+VERSÃO 4.0.1.0 (Little change) - 7
+================================================================================================
+						Make tasks file as MD
+						Translate tasks file to english
+						Make SVG pig
+2017-09-06	2017-09-06	Organize files used to manage project
+2017-09-06	2017-09-08	Create license file
+2017-09-06	2017-09-06	Make collaborate docs
+2017-09-06	2017-09-06	Config gitcop
 
 VERSÃO 4.0.0.0 (All new) - 3
 ================================================================================================
