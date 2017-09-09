@@ -333,17 +333,17 @@ VERSÃO 2.0.1.1 (System) - 4
 2014-12-30	2014-12-31	Fix move error with decimal value
 2014-12-30	2014-12-30	Fix login redirect bug
 
-VERSÃO 2.0.1.0 (Little Change) - 9
+VERSION 2.0.1.0 (Little Change) - 9
 ================================================================================================
-2014-12-21	2014-12-25	Colocar delete de move (mobile)
-2014-12-07	2014-12-07	Extrato: fazer combo de ano mudar se o combo de mês reiniciar
-2014-12-07	2014-12-07	Procurar TO-DOs no projeto
-2014-12-07	2014-12-07	Refactor em controllers e areas, inverter plural
-2014-12-07	2014-12-07	Trocar Extensions Sum para Total
-2014-12-06	2014-12-07	Em Move, colocar Value como campo gravado e usar Total para exibição
-2014-12-01	2014-12-01	Colocar valores em inteiro (double > int) no banco
-2014-11-29	2014-11-29	Criar teste unitário para deletar todas as movimentações de um agendamento
-2014-11-29	2014-11-29	Criar teste unitário agendamento meio antes / meio depois
+2014-12-21	2014-12-25	Put move delete (mobile)
+2014-12-07	2014-12-07	Extract: make year combo change if month combo restart
+2014-12-07	2014-12-07	Find TO-DOs at project
+2014-12-07	2014-12-07	Refactor at controllers and areas, inverse plural
+2014-12-07	2014-12-07	Change Extensions Sum to Total
+2014-12-06	2014-12-07	At Move, put Value as recorded field and use Total to show
+2014-12-01	2014-12-01	Put integer values at DB (double > int)
+2014-11-29	2014-11-29	Create unit test of deleting all the moves of a schedule
+2014-11-29	2014-11-29	Create unit test of schedule half past / half future
 
 VERSION 2.0.0.3 (System) - 12
 ================================================================================================
