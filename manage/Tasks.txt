@@ -241,9 +241,9 @@ VERSÃO 2.1.4.0 (Little change) - 5
 2017-01-27	2017-01-27	Trocar apache por Volley
 2017-01-27	2017-01-27	Trocar licensing
 						
-VERSÃO 2.1.3.4 (System) - 1
+VERSION 2.1.3.4 (System) - 1
 ================================================================================================
-2017-01-27	2017-01-27	Arrumar problema de duplicação de details
+2017-01-27	2017-01-27	Fix duplication os details
 
 VERSION 2.1.3.3 (System) - 1
 ================================================================================================
