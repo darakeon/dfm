@@ -451,13 +451,13 @@ VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
 2013-09-28	2013-10-02	Rever layout (http://goodui.org/)
 2013-09-02	2013-09-02	Criar área Json
 
-VERSÃO 1.1.0.0 (Big change) - 5
+VERSION 1.1.0.0 (Big change) - 5
 ================================================================================================
-2013-09-28	2013-09-28	Impedir datepicker de preencher hoje em edição
-2013-09-28	2013-09-28	Consertar datepicker no chrome
-2013-09-27	2013-09-27	Colocar Entrar / Sair como botões no topo (externo)
-2013-09-27	2013-09-27	Colocar Categorias / Contas / Sair como botões no topo (interno)
-2013-09-27	2013-09-27	Remover topo do usuário logado
+2013-09-28	2013-09-28	Stop datepicker from filling today at edit
+2013-09-28	2013-09-28	Fix datepicker at chrome
+2013-09-27	2013-09-27	Put Enter / Logoff as buttons at top menu (external)
+2013-09-27	2013-09-27	Put Categories / Accounts / Logoff as buttons at top menu (internal)
+2013-09-27	2013-09-27	Remove loggedin user top menu
 
 VERSION 1.0.4.0 (Little change) - 2
 ================================================================================================
