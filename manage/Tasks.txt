@@ -48,9 +48,9 @@ S						Configurar max request length
 					>>>	Mostrar movimentações futuras e total contando com estas no mês
 						Possibilitar mudar início do mês por conta
 
-VERSÃO 5.1.0.0 (Big change) - 1
+VERSION 5.1.0.0 (Big change) - 1
 ================================================================================================
-					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
+						>>>	Create Market - group of moves, each one of one category, to when you are shopping
 
 VERSION 5.0.0.0 (All new) - 1
 ================================================================================================
