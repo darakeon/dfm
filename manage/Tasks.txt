@@ -61,12 +61,12 @@ VERSÃO 4.5.0.0 (Big change) - 2
 						Colocar Negativo / Positivo / Total no Resumo anual
 						Colocar linha de Totais de (Negativo / Positivo / Total) no Resumo Anual
 
-VERSÃO 4.4.0.0 (Big change) - 4
+VERSION 4.4.0.0 (Big change) - 4
 ========================================================================================
-						Colocar Template no Mobile
-						Criar Template (Move)
-						Buscar por categoria
-						Busca por movimentação
+						Add Template to Mobile
+						Create Template (Move)
+						Search by categoria
+						Search by move
 
 VERSION 4.3.1.0 (Little change) - 4
 ================================================================================================
