@@ -284,17 +284,17 @@ VERSÃO 2.1.0.0 (Big change) - 7
 2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
 2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
 
-VERSÃO 2.0.3.1 (System) - 9
+VERSION 2.0.3.1 (System) - 9
 ================================================================================================
-2016-05-15	2016-05-15	Corrigir problema de duplicação quando buscar um extrato mensal/anual (mobile)
-2016-05-15	2016-05-15	Exibir parcela no mobile
-2016-05-15	2016-05-15	Sair do sandbox da Amazon
-2016-05-09	2016-05-15	Consertar envio de e-mail para Amazon
-2015-09-19	2016-05-09	Testes de mudança de configuração
-2015-09-15	2015-09-17	Corrigir funcionamento do app no Lollipop
-2015-09-10	2015-09-10	Corrigir problema ao abrir tela de criar movimentação (mobile)
-2015-09-10	2015-09-10	Corrigir problema de deletar conta que já teve movimentações
-2015-09-10	2015-09-10	Colocar cor nos números da tela de agendamentos
+2016-05-15	2016-05-15	Fix duplication when request reports (mobile)
+2016-05-15	2016-05-15	Show installment at mobile
+2016-05-15	2016-05-15	Leave Amazon sandbox
+2016-05-09	2016-05-15	Fix e-mail send by Amazon
+2015-09-19	2016-05-09	Config change tests
+2015-09-15	2015-09-17	Fix app at Lollipop
+2015-09-10	2015-09-10	Fix problem on open move creation (mobile)
+2015-09-10	2015-09-10	Fix delete account when it had moves
+2015-09-10	2015-09-10	Use colors at number on schedule screen
 
 VERSION 2.0.3.0 (Little change) - 5
 ================================================================================================
