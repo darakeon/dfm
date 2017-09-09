@@ -490,50 +490,50 @@ VERSÃO 1.0.3.0 (Little change) - 18
 2013-03-16	2013-03-17	Substituir SelectByEmail de User por SelectByTicket
 2013-03-11	2013-03-14	Fazer ValidateAndGet pegar String de Ticket
 
-VERSÃO 1.0.2.3 (System) - 17
+VERSION 1.0.2.3 (System) - 17
 ================================================================================================
-2013-03-07	2013-03-07	Proteger edição de hiddens, onde for necessário
-2013-03-07	2013-03-07	Verificar deleção de Move com Schedule (ScheduleTimesCantBeZero)
-2013-03-07	2013-03-07	Não enviar e-mail caso dê erro ao mexer na movimentação
-2013-03-07	2013-03-07	Proteger edição de objeto (user) no core
-2013-03-07	2013-03-07	Numerar enums (segurança para o banco)
-2013-03-03	2013-03-07	Usar url da conta no MVC
-2013-03-03	2013-03-03	Possibilitar url escolhida para a conta
-2013-02-24	2013-03-03	Criar edição de nome de Categoria / Conta (incluindo mvc)
-2013-02-21	2013-02-22	Substituir SelectById de Account / Category por SelectByName
-2013-02-21	2013-02-22	Mudar lugares onde qualquer entidade, exceto move e detail, são identificados por ID (inclusive MVC)
-2013-02-21	2013-02-21	Passar Accounts / Category como name para a save move
-2013-02-21	2013-02-21	Consertar e-mail de transferência
-2013-02-20	2013-02-21	Proteção por usuário no Core (verificar active também)
-2013-02-20	2013-02-20	Isolar projeto de autenticação
-2012-10-17	2013-02-20	Arrumar MVC para passar Category e Schedule de move separados da move
-2012-10-17	2012-10-17	Colocar log por visita no site (IP, Data/Hora, Endereço)
-2012-10-17	2012-10-17	Arrumar configuração de e-mail para usar direito web.config
+2013-03-07	2013-03-07	Protect hiddens edition, where its necessary
+2013-03-07	2013-03-07	Verify Move deletion with Schedule (ScheduleTimesCantBeZero)
+2013-03-07	2013-03-07	Do not send e-mail in case of error when edit move
+2013-03-07	2013-03-07	Protect object edit (user) at core
+2013-03-07	2013-03-07	Put numbers at enums (safer to DB)
+2013-03-03	2013-03-07	Use account url at MVC
+2013-03-03	2013-03-03	Add url choice to account
+2013-02-24	2013-03-03	Create Category / Account name edit (including mvc)
+2013-02-21	2013-02-22	Replace SelectById of Account / Category by SelectByName
+2013-02-21	2013-02-22	Change places where any entity except move and detail are called by its ID (including MVC)
+2013-02-21	2013-02-21	Send Accounts / Category as name to save move
+2013-02-21	2013-02-21	Fix transfer e-mail
+2013-02-20	2013-02-21	User protection at Core (verify active too)
+2013-02-20	2013-02-20	Isolate authentication project
+2012-10-17	2013-02-20	Fix MVC to send category and schedule separated from move
+2012-10-17	2012-10-17	Put visit log (IP, Date/Time, Address)
+2012-10-17	2012-10-17	Fix e-mail config at web.config
 
-VERSÃO 1.0.2.2 (System) - 22
+VERSION 1.0.2.2 (System) - 22
 ================================================================================================
-2012-08-20	2012-08-21	Testes de Multilanguage
-2012-08-20	2012-08-20	Testar fechar conta e desativar categoria (MVC)
-2012-08-17	2012-08-17	Adicionar configuração de SMTP no web.config
-2012-08-16	2012-08-16	Testar entrar com user não validado ainda (MVC)
-2012-08-16	2012-08-16	Colocar robot.txt para google
-2012-08-16	2012-08-16	Reorganização da ordem das funções nos serviços
-2012-08-09	2012-08-09	Arrumar configuração de DB no webconfig release
-2012-08-09	2012-08-09	Colocar dados de Post no e-mail de erro
-2012-07-18	2012-07-18	Passar parent para superservices, ao invés de passar todos os services
-2012-07-18	2012-07-18	Criar classe Session para Begin/Commit/Rollback
-2012-07-18	2012-07-18	Modificar this[] para retornar objeto novo caso não exista o procurado
-2012-06-17	2012-07-04	Criar testes de edição de Move
-2012-06-14	2012-06-14	Adicionar Assert para ver se soma mês/ano não muda quando dá erro (moneyservice)
-2012-06-14	2012-06-14	Verificar em testes se summaries não são alterados em caso de erro
-2012-06-14	2012-06-14	Criar testes de nomes muito grandes
-2012-06-14	2012-06-14	Criar testes de inserção de move/schedule em Conta Fechada
-2012-06-14	2012-06-14	Criar testes de inserção de move/schedule em Categoria Desabilitada
-2012-06-14	2012-06-14	Colocar category/schedule como parâmetro na Save da Move
-2012-06-03	2012-06-03	Retirar retorno da Transaction no Begin (usar da session)
-2012-04-07	2012-04-07	Save User deve receber e-mail e senha
-2012-04-06	2012-06-13	Implementar BDD
-2012-03-18	2012-04-06	Escrever BDD
+2012-08-20	2012-08-21	Multilanguage tests
+2012-08-20	2012-08-20	Test close account and disable category (MVC)
+2012-08-17	2012-08-17	Add SMTP to web.config
+2012-08-16	2012-08-16	Test enter with invalid user (MVC)
+2012-08-16	2012-08-16	Put robot.txt for google
+2012-08-16	2012-08-16	Remake service method order
+2012-08-09	2012-08-09	Fix DB config at webconfig release
+2012-08-09	2012-08-09	Put Post data on error e-mail
+2012-07-18	2012-07-18	Send parent to superservices, instead of all services
+2012-07-18	2012-07-18	Create Session class to Begin/Commit/Rollback
+2012-07-18	2012-07-18	Change this[] to return new object if none is found
+2012-06-17	2012-07-04	Create move edit tests
+2012-06-14	2012-06-14	Add Assert to check whether month/year do not change in case of error (moneyservice)
+2012-06-14	2012-06-14	Verify at tests if summaries are not changed in case of error
+2012-06-14	2012-06-14	Create too big names test
+2012-06-14	2012-06-14	Create move/schedule creation at closed account test
+2012-06-14	2012-06-14	Create move/schedule creation at disabled category test
+2012-06-14	2012-06-14	Put category/schedule as move save parameter
+2012-06-03	2012-06-03	Remove Transaction return from Begin (use session transaction)
+2012-04-07	2012-04-07	Save User should receive e-mail and password
+2012-04-06	2012-06-13	Implement BDD
+2012-03-18	2012-04-06	Write BDD
 
 VERSION 1.0.2.1 (System) - 2
 ================================================================================================
