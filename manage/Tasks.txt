@@ -216,9 +216,9 @@ VERSÃO 3.0.0.0 (All new) - 21
 2017-02-23	2017-02-23	Implementar testes de GetList da Admin/Robot
 2017-02-09	2017-02-22	Android Kotlin
 
-VERSÃO 2.1.4.4 (System) - 1
+VERSION 2.1.4.4 (System) - 1
 ================================================================================================
-2017-02-14	2017-02-15	Corrigir problema com lista de contas / categorias quando cria uma
+2017-02-14	2017-02-15	Fix account / categories list when one more is created
 
 VERSION 2.1.4.3 (System) - 1
 ================================================================================================
