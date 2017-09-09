@@ -106,10 +106,10 @@ VERSÃO 4.1.1.0 (Little change) - 6
 						Editar precisa desmarcar a movimentação (aviso ao editar)
 						Colocar marcação para conta de entrada e de saída separadas
 
-VERSÃO 4.2.0.0 (Big change) - 2
+VERSION 4.1.0.0 (Big change) - 2
 ================================================================================================
-						Acessibilidade
-						Corrigir ícones de status da conta
+						Fix places where the understanding depends on colors
+						Fix account stati icons - should not be all the same
 
 VERSION 4.0.2.1 (System) - 4
 ================================================================================================
