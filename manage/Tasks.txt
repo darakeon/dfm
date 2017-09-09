@@ -373,9 +373,9 @@ VERSÃO 2.0.0.2 (System) - 10
 2014-06-04	2014-06-05	Handle differentely EConnReset
 2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
 
-VERSÃO 2.0.0.1 (System) - 1
+VERSION 2.0.0.1 (System) - 1
 ================================================================================================
-2014-06-01	2014-06-02	Ajustar perda de dados da movimentação quando muda a orientação
+2014-06-01	2014-06-02	Adjust move data loosing when orientation changes
 
 VERSION 2.0.0.0 (All new) - 71
 ================================================================================================
