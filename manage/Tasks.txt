@@ -82,13 +82,13 @@ B						Tratar DFMCoreException em Robot
 B						Corrigir mobile no caso: move tem category, mas config atual não permite
 F						Mudar campos para usar campos que firefox e chrome personalizam
 
-VERSÃO 4.3.0.0 (Big change) - 5
+VERSION 4.3.0.0 (Big change) - 5
 ================================================================================================
-F						Colocar tela descrevendo que é possível derrubar o login em caso de roubo do celular
-F						Resolver problema de tab na tela de criação de Move (mobile)
-F						Colocar criação de conta (mobile)
-F						Colocar criação de categoria (mobile)
-						Trocar menu superior por inferior (mobile)
+F						Put info that you can disabled mobile login if your cellphone is stolen
+F						Adjust tab order at move screen (mobile)
+F						Add account creation (mobile)
+F						Add category creation (mobile)
+						Change top menu by bottom menu (mobile)
 
 VERSION 4.2.0.0 (Big change) - 4
 ================================================================================================
