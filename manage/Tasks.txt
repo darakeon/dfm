@@ -556,12 +556,12 @@ VERSÃO 1.0.2.0 (Little change) - 13
 2011-12-05	2011-12-19	Separar BusinessLogic de NHibernate
 2011-12-02	2011-12-05	Reorganização primária de camadas
 
-VERSÃO 1.0.1.0 (Little change) - 5
+VERSION 1.0.1.0 (Little change) - 5
 ================================================================================================
-2011-11-25	2011-11-30	Testes e Publicação
-2011-10-25	2011-10-25	Erros tratados
-2011-10-25	2011-10-25	Proteção para log do Elmah
-2011-10-24	2011-10-25	Tentativa de passar Log4Net / Elmah para MySql: FAIL
+2011-11-25	2011-11-30	Tests and Publish
+2011-10-25	2011-10-25	Error handling
+2011-10-25	2011-10-25	Protection for Elmah log
+2011-10-24	2011-10-25	Try to pass Log4Net / Elmah to MySql: FAIL
 2011-10-19	2011-10-19	Log4Net / Elmah
 
 VERSION 1.0.0.4 (System) - 6
