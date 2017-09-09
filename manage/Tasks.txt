@@ -14,13 +14,13 @@ VERSÃO 6.0.0.0 (All new) - 1
 ================================================================================================
 						OCR de nota fiscal
 
-VERSÃO 5.5.0.0 (Big change) - 5
+VERSION 5.5.0.0 (Big change) - 5
 ================================================================================================
-						Mock de envio de e-mail
-						"Adivinhar" categoria
-						relatórios de mais de uma conta
-						relatórios mensal por categoria (http://www.chartjs.org/)
-						relatórios anual por categoria (http://www.chartjs.org/)
+						E-mail send mock
+						"Guess" the category
+						report with more than one account
+						year report by category (http://www.chartjs.org/)
+						month report by category (http://www.chartjs.org/)
 
 VERSION 5.4.1.0 (Little change) - 3
 ================================================================================================
