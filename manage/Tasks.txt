@@ -564,14 +564,14 @@ VERSÃO 1.0.1.0 (Little change) - 5
 2011-10-24	2011-10-25	Tentativa de passar Log4Net / Elmah para MySql: FAIL
 2011-10-19	2011-10-19	Log4Net / Elmah
 
-VERSÃO 1.0.0.4 (System) - 6
+VERSION 1.0.0.4 (System) - 6
 ================================================================================================
-2011-11-11	2011-11-11	Tornar possível valor ZERO em sinais (vermelho / amarelo)
-2011-11-09	2011-11-09	Verificar se recuperação de senha está desativando usuário
-2011-11-09	2011-11-22	Envio de e-mail ao criar movimentação (usuário poderá optar no futuro)
-2011-11-09	2011-11-09	Substituir links por desenhos na lista de Categorias
-2011-11-08	2011-11-08	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
-2011-10-23	2011-10-23	Corrigido erro na movimentação de Transferência: não estava trazendo contas
+2011-11-11	2011-11-11	Enable ZERO for red and yellow signs
+2011-11-09	2011-11-09	Verify if password recover disable user
+2011-11-09	2011-11-22	Send e-mail on move creation (user will be able to disable in the future)
+2011-11-09	2011-11-09	Replace links by icons at categories
+2011-11-08	2011-11-08	Alphabetical order at accounts (menu, opened, closed) and categories
+2011-10-23	2011-10-23	Fix error on transfer move: was not getting accounts
 
 VERSION 1.0.0.3 (System) - 4
 ================================================================================================
