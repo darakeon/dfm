@@ -178,19 +178,19 @@ VERSÃO 3.0.0.2 (System) - 7
 2017-04-10	2017-04-10	Correção de alertas no manifest
 2017-04-10	2017-04-10	Nome curto para app mobile na listagem
 						
-VERSÃO 3.0.0.1 (System) - 11
+VERSION 3.0.0.1 (System) - 11
 ================================================================================================
-2017-04-08	2017-04-08	Colocar data e categoria na mesma linha na move create/edit do mobile
-2017-04-08	2017-04-08	"Cancelar" não deve recarregar a página quando não dá pra verificar licença
-2017-04-08	2017-04-08	Corrigir layout paisagem do extrato
-2017-04-08	2017-04-08	Resolver OutOfMemoryError ao carregar a imagem da entrada
-2017-04-08	2017-04-08	Verificar permissão read state do android
-2017-04-06	2017-04-06	Arrumar logo no mobile
-2017-04-06	2017-04-06	Destacar signup
-2017-04-06	2017-04-06	Arrumar detalhes da movimentação (tabela) no e-mail
-2017-04-05	2017-04-06	Arrumar cores no e-mail
-2017-04-05	2017-04-05	Arrumar conta entrada / saída vazia no e-mail
-2017-04-05	2017-04-05	Encurtar título na caixa de e-mail
+2017-04-08	2017-04-08	Put date and category at same line on create/edit at mobile
+2017-04-08	2017-04-08	"Cancel" should not reload the page when cannot verify license
+2017-04-08	2017-04-08	Fix extract landscape layout
+2017-04-08	2017-04-08	Solve OutOfMemoryError when load welcome image
+2017-04-08	2017-04-08	Check android read state permission
+2017-04-06	2017-04-06	Fix mobile logo
+2017-04-06	2017-04-06	Highlight signup
+2017-04-06	2017-04-06	Fix move details (table) at e-mail
+2017-04-05	2017-04-06	Fix e-mail colors
+2017-04-05	2017-04-05	Fix empty account in / out at e-mail
+2017-04-05	2017-04-05	Shorten e-mail title
 
 VERSION 3.0.0.0 (All new) - 21
 ================================================================================================
