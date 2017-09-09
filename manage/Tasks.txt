@@ -143,7 +143,7 @@ VERSÃO 4.0.0.0 (All new) - 3
 2017-09-04	2017-09-04	Add Open Source to Contract
 2017-07-01	2017-09-04	Refactor commits to GIT
 
-VERSÃO 3.0.0.7 (System) - 1
+VERSION 3.0.0.7 (System) - 1
 ================================================================================================
 2017-06-04	2017-08-26	Fix let's encrypt
 
