@@ -304,21 +304,21 @@ VERSÃO 2.0.3.0 (Little change) - 5
 2015-09-06	2015-09-06	Não deixar sleep quando já estiver no meio de uma requisição
 2015-09-05	2015-09-05	Colocar botão de sair (mobile)
 
-VERSÃO 2.0.2.0 (Little change) - 13
+VERSION 2.0.2.0 (Little change) - 13
 ================================================================================================
-2015-09-02	2015-09-03	Usar versão de projeto no .NET
-2015-09-02	2015-09-02	Corrigir url do logo
-2015-08-31	2015-08-31	Corrigido erro no tablet (falta de 3G)
-2015-08-30	2015-08-30	Migrar para android studio
-2015-02-14	2015-09-02	Colocar botão CANCEL em Settings e Move (mobile)
-2015-02-14	2015-02-14	Colocar in e out no relatório anual
-2015-02-14	2015-02-14	Colocar URLReferrer em report de 404
-2015-02-14	2015-02-14	Remover o cascade para filhos do NH
-2015-02-14	2015-02-14	Arrumar urls de e-mail e de robots
-2015-01-11	2015-01-11	Rever layout empty table
-2015-01-11	2015-01-11	Aumentar versão da API Android de acordo com downloads do DFM
-2015-01-11	2015-01-11	Arrumar clique do menu (clique botões direito e meio do mouse)
-2015-01-11	2015-01-11	Tratar queda de sessão quando cria a categoria na move (ajax authorize)
+2015-09-02	2015-09-03	Put project version at .NET
+2015-09-02	2015-09-02	Fix logo url
+2015-08-31	2015-08-31	Fix tablet error (no 3G)
+2015-08-30	2015-08-30	Migrate to android studio
+2015-02-14	2015-09-02	Put CANCEL button at Settings and Move (mobile)
+2015-02-14	2015-02-14	Put in and out at year report
+2015-02-14	2015-02-14	Put URLReferrer at 404 report
+2015-02-14	2015-02-14	Remove parent > child cascade from NH
+2015-02-14	2015-02-14	Fix e-mail and robots urls
+2015-01-11	2015-01-11	Review empty table layout
+2015-01-11	2015-01-11	Increase android version accordly with DFM downloads
+2015-01-11	2015-01-11	Fix menu click (right and middle mouse click)
+2015-01-11	2015-01-11	Handle logoff in the middle of ajax category creation
 
 VERSION 2.0.1.2 (System) - 2
 ================================================================================================
