@@ -151,14 +151,14 @@ VERSÃO 3.0.0.6 (System) - 1
 ================================================================================================
 2017-05-21	2017-05-21	Corrigir naturezas na tela de agendamento - O RETORNO
 
-VERSÃO 3.0.0.5 (System) - 6
+VERSION 3.0.0.5 (System) - 6
 ================================================================================================
-2017-05-01	2017-05-01	Corrigir url de e-mails quando enviada via API
-2017-05-01	2017-05-01	Corrigir url de uncheck/check na página de relatórios
-2017-04-18	2017-04-18	Corrigir problema na edição com valor único no mobile (ver move tarifa em bb)
-2017-04-18	2017-04-18	Corrigir tela de agendamentos caso não haja uso de categorias
-2017-04-18	2017-04-18	Corrigir naturezas na tela de agendamento
-2017-04-18	2017-04-18	Corrigir tamanho da caixa de saldo no browser mobile
+2017-05-01	2017-05-01	Fix e-mail urls when the e-mail is sent by API
+2017-05-01	2017-05-01	Fiz uncheck/check url at report
+2017-04-18	2017-04-18	Fix move single value edit at mobile
+2017-04-18	2017-04-18	Fix schedule list with categories disabled
+2017-04-18	2017-04-18	Fix schedule list natures
+2017-04-18	2017-04-18	Fix balance box size at mobile browser
 
 VERSION 3.0.0.4 (System) - 1
 ================================================================================================
