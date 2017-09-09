@@ -52,9 +52,9 @@ VERSÃO 5.1.0.0 (Big change) - 1
 ================================================================================================
 					>>>	Criar Market - agrupamento de movimentações, cada uma de uma categoria, possibilitando a inserção de várias moves quando se está fazendo compras
 
-VERSÃO 5.0.0.0 (All new) - 1
+VERSION 5.0.0.0 (All new) - 1
 ================================================================================================
-F						Guardar dados localmente, para quando está sem internet (Mobile)
+F						Store data locally, to use when there is no internet (Mobile)
 
 VERSION 4.5.0.0 (Big change) - 2
 ================================================================================================
