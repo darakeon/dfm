@@ -41,12 +41,12 @@ VERSÃO 5.3.0.0 (Big change) - 2
 						Exportação de Dados
 						Importação de Dados
 
-VERSÃO 5.2.0.0 (Big change) - 4
+VERSION 5.2.0.0 (Big change) - 4
 ================================================================================================
-						Possibilitar reabrir conta
-S						Configurar max request length 
-					>>>	Mostrar movimentações futuras e total contando com estas no mês
-						Possibilitar mudar início do mês por conta
+						Enable reopen account
+S						Config max request length
+						>>>	Show future moves and foreseen balance
+						Add config for first day of account
 
 VERSION 5.1.0.0 (Big change) - 1
 ================================================================================================
