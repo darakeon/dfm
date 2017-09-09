@@ -97,14 +97,14 @@ VERSÃO 4.2.0.0 (Big change) - 4
 						Mudar categoria para autocomplete (mobile)
 						Colocar spinner de datetime ao lado do botão no mobile (tirar modal)
 
-VERSÃO 4.1.1.0 (Little change) - 6
+VERSION 4.1.1.0 (Little change) - 6
 ================================================================================================
-						Permitir marcar todas as movimentações antes de uma data
-						Possibilitar marcar uma movimentação em conta fechada
-						Marcar movimentação sem recarregar a tela - web
-						Marcar movimentação sem recarregar a tela - mobile
-						Editar precisa desmarcar a movimentação (aviso ao editar)
-						Colocar marcação para conta de entrada e de saída separadas
+						Allow check all the moves before a date
+						Enable to check moves on closed accounts
+						Check move without reload screen - web
+						Check move without reload screen - mobile
+						Edit must uncheck move (warn before and after edit)
+						Split move check to account in / out
 
 VERSION 4.1.0.0 (Big change) - 2
 ================================================================================================
