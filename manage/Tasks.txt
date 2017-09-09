@@ -540,21 +540,21 @@ VERSÃO 1.0.2.1 (System) - 2
 2012-03-21	2012-03-22	Fornecer detalhes do erro no e-mail de report
 2012-03-20	2012-03-20	Refactor Resharper
 
-VERSÃO 1.0.2.0 (Little change) - 13
+VERSION 1.0.2.0 (Little change) - 13
 ================================================================================================
-2012-03-17	2012-03-17	Publicar, testar se os logs estão funcionando, e retirar erro do report Year 18967
-2012-03-16	2012-03-17	Testar Elmah com página tratada (Report > SeeYear)
-2012-03-14	2012-03-16	Retirar delegates de Getters para envio de e-mail
-2012-03-14	2012-03-14	Separar Multilanguage de MVC
-2012-03-14	2012-03-14	Retirar delegate DeleteSummary / outros try de duplicata
-2012-02-02	2012-03-14	Quando o agendamento é ilimitado, ao transformar uma future em move, deve criar outra
-2012-01-30	2012-01-31	Layout com sombras e 3D
-2012-01-30	2012-01-31	Opção de colocar (atual/total) na descrição de agendadas
-2012-01-28	2012-01-28	Iluminar conta escolhida (na area account)
-2012-01-04	2012-01-27	Mudar Scheduler para usar FutureMove
-2011-12-28	2012-01-03	Criar superServices e migrar uso para ele
-2011-12-05	2011-12-19	Separar BusinessLogic de NHibernate
-2011-12-02	2011-12-05	Reorganização primária de camadas
+2012-03-17	2012-03-17	Publish, test if logs are working, and remove erro from report Year 18967
+2012-03-16	2012-03-17	Test Elmah with forced error (Report > SeeYear)
+2012-03-14	2012-03-16	Remove delegates from Getters to send e-mail
+2012-03-14	2012-03-14	Separate Multilanguage from MVC
+2012-03-14	2012-03-14	Remove delegate DeleteSummary / another tries duplicated
+2012-02-02	2012-03-14	When the schedule is boundless, when the futuremove becomes a move, it should create another future move
+2012-01-30	2012-01-31	Layout with shadows and 3D
+2012-01-30	2012-01-31	Option to put (current/total) on scheduled move descriptions
+2012-01-28	2012-01-28	Highlight chosen account (account area)
+2012-01-04	2012-01-27	Change Scheduler to use FutureMove
+2011-12-28	2012-01-03	Create superServices and migrate use to them
+2011-12-05	2011-12-19	Separate BusinessLogic from NHibernate
+2011-12-02	2011-12-05	Reorganizing layers
 
 VERSION 1.0.1.0 (Little change) - 5
 ================================================================================================
