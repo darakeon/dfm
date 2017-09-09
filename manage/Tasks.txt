@@ -360,18 +360,18 @@ VERSÃO 2.0.0.3 (System) - 12
 2014-06-29	2014-06-29	Arrumar testes de e-mail falhando
 2014-06-26	2014-06-26	Arrumar agendamento detalhado
 
-VERSÃO 2.0.0.2 (System) - 10
+VERSION 2.0.0.2 (System) - 10
 ================================================================================================
-2014-06-20	2014-06-20	Colocar versão no rodapé
-2014-06-20	2014-06-20	Colocar link de logon no password reset
-2014-06-18	2014-06-19	Parar request no Destroy da Activity
-2014-06-11	2014-06-17	Atualizar projeto: MVC 5
-2014-06-09	2014-06-09	Atualizar projeto: .NET 4.5
-2014-06-09	2014-06-09	Atualizar projeto: VS 2013
+2014-06-20	2014-06-20	Put version at footer
+2014-06-20	2014-06-20	Put logon link at password reset
+2014-06-18	2014-06-19	Stop request at activity destroy
+2014-06-11	2014-06-17	Update project: MVC 5
+2014-06-09	2014-06-09	Update project: .NET 4.5
+2014-06-09	2014-06-09	Update project: VS 2013
 2014-06-09	2014-06-09	Fix transform for rewrite
 2014-06-05	2014-06-16	Review rotate logic
 2014-06-04	2014-06-05	Handle differentely EConnReset
-2014-06-03	2014-06-04	Fazer licença do google impedir o usuário de continuar caso dê negativo
+2014-06-03	2014-06-04	Stop user google license is denied
 
 VERSION 2.0.0.1 (System) - 1
 ================================================================================================
