@@ -75,12 +75,12 @@ VERSÃO 4.3.1.0 (Little change) - 4
 D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
 D						Remover GetOrCreate
 						
-VERSÃO 4.3.0.1 (System) - 4
+VERSION 4.3.0.1 (System) - 4
 ================================================================================================
-S						Arrumar para web usar fakeId, não id
-B						Tratar DFMCoreException em Robot
-B						Corrigir mobile no caso: move tem category, mas config atual não permite
-F						Mudar campos para usar campos que firefox e chrome personalizam
+S						Make web use fakeId, not id
+B						Handle DFMCoreException at Robot
+B						Fix mobile to edit move with category when categories use are disabled
+F						Change fields to use the ones firefox and chrome customize
 
 VERSION 4.3.0.0 (Big change) - 5
 ================================================================================================
