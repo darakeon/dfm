@@ -469,26 +469,26 @@ VERSÃO 1.0.3.1 (System) - 2
 2013-08-30	2013-08-30	http://www.dontflymoney.com/Token/Received
 2013-08-24	2013-08-30	Mover lógica dos Controllers para os Models
 
-VERSÃO 1.0.3.0 (Little change) - 18
+VERSION 1.0.3.0 (Little change) - 18
 ================================================================================================
-2013-08-18	2013-08-22	Colocar Broken em summary, e usar RobotService para consertar
-2013-08-09	2013-08-22	Resolver problema da atualização de Summaries em caso de mudança de valor
-2013-08-06	2013-08-09	Usar apenas um cookie para pegar tudo no servidor
-2013-08-05	2013-08-06	Adicionar link para tela de login na tela de User Verification
-2013-08-02	2013-08-02	Separar Controller Move em Move / Schedule / Detail
-2013-07-22	2013-08-01	Rever Schedule para ser IMove / Matar FutureMove
-2013-07-17	2013-07-30	Consertar testes
-2013-07-16	2013-07-16	Trocar Select por Get
-2013-07-15	2013-07-16	Criar SessionOld para usar em GetByIdOld
+2013-08-18	2013-08-22	Add Broken to summary, and use RobotService to fix
+2013-08-09	2013-08-22	Solve update Summaries problem when something change the value
+2013-08-06	2013-08-09	Use just one cookie to get everything from server
+2013-08-05	2013-08-06	Add link to login screen at User Verification screen
+2013-08-02	2013-08-02	Split Controller Move in Move / Schedule / Detail
+2013-07-22	2013-08-01	Review Schedule to implement IMove / kill FutureMove
+2013-07-17	2013-07-30	Fix tests
+2013-07-16	2013-07-16	Replace Select by Get
+2013-07-15	2013-07-16	Create SessionOld to use at GetByIdOld
 2013-07-15	2013-07-15	http://www.dontflymoney.com/Token/ (put Index)
 2013-07-15	2013-07-15	http://dontflymoney.com/?dgcr=1 / http://dontflymoney.com/?author=1 (Dic)
-2013-03-24	2013-03-24	Sugerir url para conta
-2013-03-24	2013-03-24	Corrigir NullReference quando passa url de conta inexistente (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
-2013-03-18	2013-03-24	Usar Identity (Generic) para guardar usuário logado
-2013-03-18	2013-03-18	Tirar retorno de setter do Authentication
-2013-03-17	2013-03-17	Fazer logout de ticket
-2013-03-16	2013-03-17	Substituir SelectByEmail de User por SelectByTicket
-2013-03-11	2013-03-14	Fazer ValidateAndGet pegar String de Ticket
+2013-03-24	2013-03-24	Suggest account url
+2013-03-24	2013-03-24	Fix NullReference when access non-existent account url (http://www.dontflymoney.com/Accounts/19/Report/ShowMoves)
+2013-03-18	2013-03-24	Use Identity (Generic) to store logged user
+2013-03-18	2013-03-18	Remove Authentication setter return
+2013-03-17	2013-03-17	Make ticket logout
+2013-03-16	2013-03-17	Replace SelectByEmail of User by SelectByTicket
+2013-03-11	2013-03-14	Make ValidateAndGet get Ticket String
 
 VERSION 1.0.2.3 (System) - 17
 ================================================================================================
