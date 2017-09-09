@@ -90,12 +90,12 @@ F						Colocar criação de conta (mobile)
 F						Colocar criação de categoria (mobile)
 						Trocar menu superior por inferior (mobile)
 
-VERSÃO 4.2.0.0 (Big change) - 4
+VERSION 4.2.0.0 (Big change) - 4
 ================================================================================================
-						Permitir não exibir valores direto na tela inicial
-						Mudar data para campo digitável com botão de datepicker ao lado (mobile)
-						Mudar categoria para autocomplete (mobile)
-						Colocar spinner de datetime ao lado do botão no mobile (tirar modal)
+						Allow to hide values at start screen (mobile)
+						Change date to field with datepicker button (mobile)
+						Change category to autocomplete (mobile)
+						Move datetime spinner to the side of the button (remove modal)
 
 VERSION 4.1.1.0 (Little change) - 6
 ================================================================================================
