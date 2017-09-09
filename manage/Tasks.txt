@@ -459,10 +459,10 @@ VERSÃO 1.1.0.0 (Big change) - 5
 2013-09-27	2013-09-27	Colocar Categorias / Contas / Sair como botões no topo (interno)
 2013-09-27	2013-09-27	Remover topo do usuário logado
 
-VERSÃO 1.0.4.0 (Little change) - 2
+VERSION 1.0.4.0 (Little change) - 2
 ================================================================================================
-2013-09-26	2013-09-27	Consertar inserção de movimentação detalhada
-2013-09-26	2013-09-26	Colocar ponto em milhar
+2013-09-26	2013-09-27	Fix detailed move creation
+2013-09-26	2013-09-26	Put dot at thousand
 
 VERSION 1.0.3.1 (System) - 2
 ================================================================================================
