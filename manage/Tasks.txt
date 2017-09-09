@@ -580,13 +580,13 @@ VERSÃO 1.0.0.3 (System) - 4
 2011-10-10	2011-10-10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
 2011-10-02	2011-10-09	Recuperação de Senha - hashcode
 
-VERSÃO 1.0.0.2 (System) - 5
+VERSION 1.0.0.2 (System) - 5
 ================================================================================================
-2011-10-01	2011-10-01	Colocar BETA no logo do site
-2011-10-01	2011-10-01	Escurecer mensagem de erro (inverter cor?)
-2011-10-01	2011-10-01	Data de cadastro do usuário
-2011-09-28	2011-10-01	Confirmação de senha
-2011-09-25	2011-09-26	Conflito de formato de data
+2011-10-01	2011-10-01	Put BETA at site logo
+2011-10-01	2011-10-01	Make error message darker (inverse color?)
+2011-10-01	2011-10-01	User register date
+2011-09-28	2011-10-01	Password confirm
+2011-09-25	2011-09-26	Date format conflict
 
 VERSION 1.0.0.1 (System) - 2
 ================================================================================================
