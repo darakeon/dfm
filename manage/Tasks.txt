@@ -68,13 +68,13 @@ VERSÃO 4.4.0.0 (Big change) - 4
 						Buscar por categoria
 						Busca por movimentação
 
-VERSÃO 4.3.1.0 (Little change) - 4
+VERSION 4.3.1.0 (Little change) - 4
 ================================================================================================
-					>>>	Se for post, fazer login chamar history.go(-2)
-						Atualizar versão do SpecFlow
-D						Remover acesso direto de Month e Year a Summary (refactor em Summary)
-D						Remover GetOrCreate
-						
+						>>>	If session drop, call history.go(-2) after re-login
+						Update SpecFlow version
+D						Remove direct access of Month and Year to Summary (refactor Summary)
+D						Remove GetOrCreate
+
 VERSION 4.3.0.1 (System) - 4
 ================================================================================================
 S						Make web use fakeId, not id
