@@ -111,12 +111,12 @@ VERSÃO 4.2.0.0 (Big change) - 2
 						Acessibilidade
 						Corrigir ícones de status da conta
 
-VERSÃO 4.0.2.1 (System) - 4
+VERSION 4.0.2.1 (System) - 4
 ================================================================================================
-						Transformar recebimento / retorno do serviço em DTO
-						Int64 nos IDs
-						Colocar lock no get session do NH
-						Arrumar chamada de transaction para uma chamar a outra (Action/Func<>)
+						Transform service receiving / returns into DTO
+						IDs Int64
+						Put lock at NH get session
+						Fix transaction call to avoid code duplication (Action/Func<>)
 
 VERSION 4.0.2.0 (Little change) - 5
 ================================================================================================
