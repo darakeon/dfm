@@ -192,28 +192,28 @@ VERSÃO 3.0.0.1 (System) - 11
 2017-04-05	2017-04-05	Arrumar conta entrada / saída vazia no e-mail
 2017-04-05	2017-04-05	Encurtar título na caixa de e-mail
 
-VERSÃO 3.0.0.0 (All new) - 21
+VERSION 3.0.0.0 (All new) - 21
 ================================================================================================
-2017-04-01	2017-04-02	Video do porquinho
-2017-03-29	2017-03-31	Remover azul do layout Dark
-2017-03-29	2017-03-29	Arrumar ícones de lista / menu no mobile
-2017-03-28	2017-03-29	Corrigir inserção duplicada de move no mobile
-2017-03-27	2017-03-28	Tema dark no android
-2017-03-27	2017-03-27	Corrigir problema de cache na criação/edição de movimentação (conta/categoria) - e outros caches loucos
-2017-03-27	2017-03-27	Corrigir edição de movimentação com schedule
-2017-03-26	2017-03-27	Mudar layouts de e-mail - light / dark
-2017-03-25	2017-03-26	Configuração de tema
-2017-03-24	2017-03-25	Adicionar aviso de cookies no logon (remember me)
-2017-03-24	2017-03-24	Fazer capa nova para youtube / facebook / twitter (?)
-2017-03-21	2017-03-24	Implementar necessidade de assinar TERMO
-2017-03-20	2017-03-22	Escrever Termos de Uso
-2017-03-19	2017-03-19	Permitir limite de conta negativo
-2017-03-19	2017-03-19	Trocar o datepicker
+2017-04-01	2017-04-02	Pig video
+2017-03-29	2017-03-31	Remove blue from dark layout
+2017-03-29	2017-03-29	Fix icon list / menu mobile
+2017-03-28	2017-03-29	Fix move duplication (mobile)
+2017-03-27	2017-03-28	Android dark theme
+2017-03-27	2017-03-27	Fix cache on create/edit move (account/category) - and other crazy caches
+2017-03-27	2017-03-27	Fix move with schedule edition
+2017-03-26	2017-03-27	Change e-mail layouts - light / dark
+2017-03-25	2017-03-26	Theme config
+2017-03-24	2017-03-25	Add cookies warning at logon (remember me)
+2017-03-24	2017-03-24	Make new cover for youtube / facebook / twitter (?)
+2017-03-21	2017-03-24	Implement mandatory Term sign
+2017-03-20	2017-03-22	Write Terms of Use
+2017-03-19	2017-03-19	Allow negative account limit
+2017-03-19	2017-03-19	Change datepicker
 2017-03-01	2017-01-19	Layout Bootstrap
-2017-03-03	2017-03-05	Corrigir problema com checkbox de manter logado
-2017-02-24	2017-02-25	Arrumar packages do android
-2017-02-23	2017-02-23	Colocar imagem de início no android
-2017-02-23	2017-02-23	Implementar testes de GetList da Admin/Robot
+2017-03-03	2017-03-05	Fix remember at login
+2017-02-24	2017-02-25	Fix android packages
+2017-02-23	2017-02-23	Add android start image
+2017-02-23	2017-02-23	Implement Admin/Robot GetList tests 
 2017-02-09	2017-02-22	Android Kotlin
 
 VERSION 2.1.4.4 (System) - 1
