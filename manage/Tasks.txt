@@ -268,11 +268,11 @@ VERSÃO 2.1.2.0 (Little change) - 2
 2017-01-15	2017-01-15	Arrumar problema com movimentação de saída/entrada
 2017-01-14	2017-01-15	Ajustar NH de site para novas formas
 
-VERSÃO 2.1.1.0 (Little change) - 3
+VERSION 2.1.1.0 (Little change) - 3
 ================================================================================================
-2017-01-14	2017-01-14	Remover validação front do DFM (problema de data)
-2017-01-13	2017-01-14	Possibilitar trocar e-mail
-2017-01-13	2017-01-14	Possibilitar trocar senha
+2017-01-14	2017-01-14	Remove front validation (date problem)
+2017-01-13	2017-01-14	Make e-mail change
+2017-01-13	2017-01-14	Make password change
 
 VERSION 2.1.0.0 (Big change) - 7
 ================================================================================================
