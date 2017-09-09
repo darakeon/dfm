@@ -160,9 +160,9 @@ VERSÃO 3.0.0.5 (System) - 6
 2017-04-18	2017-04-18	Corrigir naturezas na tela de agendamento
 2017-04-18	2017-04-18	Corrigir tamanho da caixa de saldo no browser mobile
 
-VERSÃO 3.0.0.4 (System) - 1
+VERSION 3.0.0.4 (System) - 1
 ================================================================================================
-2017-04-18	2017-04-18	Corrigir listagem de agendamentos (está mostrando de todos os usuários)
+2017-04-18	2017-04-18	Fix schedule list (shows all the schedules of the system)
 
 VERSION 3.0.0.3 (System) - 1
 ================================================================================================
