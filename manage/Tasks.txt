@@ -377,79 +377,79 @@ VERSÃO 2.0.0.1 (System) - 1
 ================================================================================================
 2014-06-01	2014-06-02	Ajustar perda de dados da movimentação quando muda a orientação
 
-VERSÃO 2.0.0.0 (All new) - 46? (2014-04-20)
+VERSION 2.0.0.0 (All new) - 71
 ================================================================================================
-2014-05-31	2014-05-31	Forçar acessar apenas por HTTPS
-2014-05-31	2014-05-31	Remover BETA
-2014-05-28	2014-05-28	Colocar o link do play no site
-2014-05-25	2014-05-31	Criar produto no google play
+2014-05-31	2014-05-31	Force HTTPS access
+2014-05-31	2014-05-31	Remove BETA
+2014-05-28	2014-05-28	Put play link at site
+2014-05-25	2014-05-31	Create product at google play
 2014-05-25	2014-05-28	HTTPS!!!
-2014-05-19	2014-05-19	Mudança de orientação na move deve setar funções dos campos
-2014-05-19	2014-05-19	Mudança de orientação nos relatórios deve manter filtro de tempo
-2014-05-19	2014-05-19	Scroll nos detalhes da move
-2014-05-19	2014-05-19	Corrigir mês e ano do extract mobile nas movimentações
-2014-05-19	2014-05-19	Consertar edit da movimentação transfer
-2014-05-18	2014-05-19	Revisar texto de introdução
-2014-05-12	2014-05-16	Remover Release do versionamento, mudar nome do db, usuário e senha
-2014-05-11	2014-05-11	Retirar dados do post se forem senhas ou valores
-2014-05-10	2014-05-11	Consertar lentidão no server
-2014-05-04	2014-05-04	Deletar PageLog
-2014-05-04	2014-05-04	Consertar problema de salvar língua
-2014-05-04	2014-05-04	Arrumar tabela em caso de texto grande
-2014-05-04	2014-05-04	Exibir apenas dois dígitos nos centavos no mobile
-2014-05-04	2014-05-04	Trocar língua antes de renderizar a tela
-2014-05-04	2014-05-04	Gravar a língua localmente
-2014-05-04	2014-05-04	Consertar logoff (M)
-2014-04-18	2014-04-18	Fazer activity só chamar porquinho se não foi só mudança de orientation
-2014-04-18	2014-04-18	Arrumar tradução de nature
-2014-04-18	2014-04-18	Fazer valor zero aparecer como azul
-2014-04-18	2014-04-18	Arrumar layout e-mail para não ficar com marca de link
-2014-04-14	2014-04-14	Arrumar quando vira tela, que dá erro
-2014-04-14	2014-04-14	Listar logins para derrubar
-2014-04-14	2014-04-14	Colocar língua padrão do usuário como língua do browser dele
-2014-04-14	2014-04-14	Impedir de abrir o dfm em iframe / X-frame-options
-2014-04-14	2014-04-14	Listar schedule / permitir parar ("deletar") schedule
-2014-04-14	2014-04-14	Label do limite de agendamento / Label do detalhado
-2014-04-14	2014-04-14	Mostrar data da move em modo paisagem
-2014-04-08	2014-04-14	Trocar língua do mobile para língua do usuário
-2014-04-07	2014-04-07	Criar tela de configuração para usuário (Web)
-2014-04-07	2014-04-07	Redirecionar, após criar move, para tela de extrato do mês daquela move
-2014-03-31	2014-03-31	Ordenar Moves por ID também
-2014-03-31	2014-03-31	Arrumar amount default de tela de move
-2014-03-23	2014-03-24	Colocar Saldo Atual na tela de Extrato
-2014-03-23	2014-03-23	Colocar lista de Categorias / Contas no combo em ordem alfabética
-2014-03-23	2014-03-23	Trocar botão de Contas por imagem de Home, botão de Sair por imagem de logout
-2014-03-23	2014-03-23	Consertar esquema de session do NH
-2014-03-23	2014-03-23	Consertar problema dos testes de não mudar os summaries quando não tem categoria
-2014-03-16	2014-03-23	Tratar FailOnEmailSend em Robot / Move > gravar e avisar que não enviou e-mail
-2014-03-05	2014-03-05	Criar box de avisos
-2014-03-05	2014-03-05	Criar tela de configuração para usuário (Mobile)
-2014-03-05	2014-03-05	Ocultar categoria quando usuário não quiser usar categoria
-2014-03-04	2014-03-05	Possibilitar não escolher categoria
-2014-03-04	2014-03-04	Separar dados adicionais de User em Config
-2014-03-04	2014-03-04	Corrigir erro ao virar tela de inserção de movimentação (Mobile)
-2014-03-04	2014-03-04	Colocar amount default 1 (Mobile)
-2014-03-03	2014-03-03	Colocar ok no alert de erro (Mobile)
-2014-03-03	2014-03-03	Trocar [busca por nome] por [busca por url] da conta
-2014-02-25	2014-03-03	Possibilitar gravar movimentação (Mobile)
-2014-01-25	2014-02-23	Criar tela para gravar movimentação (Mobile)
-2014-01-25	2014-01-25	Criar resumo das contas (Mobile)
-2014-01-25	2014-01-25	Colocar scroll e loading
-2014-01-23	2014-01-23	Tornar chamada ao site assíncrona
-2014-01-06	2014-01-06	Mover strings para resource
-2014-01-01	2014-01-06	Criar relatório mensal (Mobile)
-2013-12-30	2014-01-01	Colocar lista de contas (Mobile)
-2013-12-28	2013-12-31	Refazer app
-2013-11-08	2013-11-08	Arrumar data e hora de limite de inserção de movimentação
-2013-10-04	2013-10-16	Fazer login por ticket no site
-2013-10-04	2013-10-04	Criar App Mobile
-2013-09-04	2013-10-04	Decidir sobre passagem de objetos para externo
-2013-10-03	2013-10-03	Consertar bug ao adicionar detalhes a uma movimentação existente
-2013-10-03	2013-10-03	Consertar agendamento com detalhes
-2013-10-02	2013-10-02	Ocultar Mover e Agendar da conta fechada
-2013-10-02	2013-10-02	Alterar contas fechadas para ficar igual abertas, mas sem edição
-2013-09-28	2013-10-02	Rever layout (http://goodui.org/)
-2013-09-02	2013-09-02	Criar área Json
+2014-05-19	2014-05-19	Orientation change at move must set fields functions
+2014-05-19	2014-05-19	Orientation change at reports must keep time filter
+2014-05-19	2014-05-19	Scroll at move details
+2014-05-19	2014-05-19	Fix mobile extract month and year do extract
+2014-05-19	2014-05-19	Fix transfer move edit
+2014-05-18	2014-05-19	Review intro text
+2014-05-12	2014-05-16	Remove Release from versioning, change db name, user and password
+2014-05-11	2014-05-11	Remove post data if it's passwords or values
+2014-05-10	2014-05-11	Fix server slowness
+2014-05-04	2014-05-04	Delete PageLog
+2014-05-04	2014-05-04	Fix language saving
+2014-05-04	2014-05-04	Fix table for too big texts
+2014-05-04	2014-05-04	Show just 2 digits as cents (mobile)
+2014-05-04	2014-05-04	Change language before screen render
+2014-05-04	2014-05-04	Record language locally
+2014-05-04	2014-05-04	Fix logoff (M)
+2014-04-18	2014-04-18	Make activity do not call the pig if it's just orientation change
+2014-04-18	2014-04-18	Fix nature translation
+2014-04-18	2014-04-18	Make zero show up as blue
+2014-04-18	2014-04-18	Fix e-mail layout links
+2014-04-14	2014-04-14	Fix when turn device
+2014-04-14	2014-04-14	List logins to logoff
+2014-04-14	2014-04-14	Put user default language as browser language
+2014-04-14	2014-04-14	Deny open dfm at iframe / X-frame-options
+2014-04-14	2014-04-14	List schedule / allow stop ("delete") schedule
+2014-04-14	2014-04-14	Schedule limite label / Detailed label
+2014-04-14	2014-04-14	Show move date at landscape
+2014-04-08	2014-04-14	Change mobile language to user language
+2014-04-07	2014-04-07	Create config screen to user (Web)
+2014-04-07	2014-04-07	Redirect, after create move, to extract of that move
+2014-03-31	2014-03-31	Order Moves by ID too
+2014-03-31	2014-03-31	Fix amount default at move screen
+2014-03-23	2014-03-24	Put current balance at Extract
+2014-03-23	2014-03-23	Put categories / account combo list on alphabetical order
+2014-03-23	2014-03-23	Change Accounts button by Home image, Logoff button by Logoff image
+2014-03-23	2014-03-23	Fix session schema NH
+2014-03-23	2014-03-23	Fix tests from not changing summaries when there is no category
+2014-03-16	2014-03-23	Handle FailOnEmailSend at Robot / Move > record and warn that it doesn't sent the e-mail
+2014-03-05	2014-03-05	Create warning box
+2014-03-05	2014-03-05	Make config screen for user (Mobile)
+2014-03-05	2014-03-05	Hide category when user do not want categories
+2014-03-04	2014-03-05	Make possible to not choose category
+2014-03-04	2014-03-04	Separate User additional data (Config)
+2014-03-04	2014-03-04	Fix error at turning device at move creation screen (Mobile)
+2014-03-04	2014-03-04	Put amount default 1 (Mobile)
+2014-03-03	2014-03-03	Put [ok] at error alert (Mobile)
+2014-03-03	2014-03-03	Change [search by name] by [search by url] at account
+2014-02-25	2014-03-03	Make move recording (Mobile)
+2014-01-25	2014-02-23	Create screen to save move (Mobile)
+2014-01-25	2014-01-25	Create accounts summary (Mobile)
+2014-01-25	2014-01-25	Put scroll and loading
+2014-01-23	2014-01-23	Make assync site call
+2014-01-06	2014-01-06	Move strings to resource
+2014-01-01	2014-01-06	Create month report (Mobile)
+2013-12-30	2014-01-01	Put account list (Mobile)
+2013-12-28	2013-12-31	Remake app
+2013-11-08	2013-11-08	Fix move insertion date and time limit
+2013-10-04	2013-10-16	Make login by ticket at website
+2013-10-04	2013-10-04	Create App Mobile
+2013-09-04	2013-10-04	Decide about objects passing to external
+2013-10-03	2013-10-03	Fix bug when adding details to an already created move
+2013-10-03	2013-10-03	Fix detailed scheduling
+2013-10-02	2013-10-02	Hide Move and Schedule from closed accounts
+2013-10-02	2013-10-02	Change closed account to be same as opened, but without edit possibility
+2013-09-28	2013-10-02	Review layout (http://goodui.org/)
+2013-09-02	2013-09-02	Create Json area
 
 VERSION 1.1.0.0 (Big change) - 5
 ================================================================================================
