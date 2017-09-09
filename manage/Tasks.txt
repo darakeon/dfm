@@ -325,10 +325,10 @@ VERSÃO 2.0.1.2 (System) - 2
 2015-01-11	2015-01-11	Arrumar lista de contas fechadas
 2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
 
-VERSÃO 2.0.1.1 (System) - 4
+VERSION 2.0.1.1 (System) - 5
 ================================================================================================
 2015-01-01	2015-01-03	Fix test errors
-2015-01-03	2015-01-03	Trocar YellowLimit e RedLimit para Cents
+2015-01-03	2015-01-03	Change YellowLimit and RedLimit to Cents
 2015-01-01	2015-01-03	Fix error on mobile detailed move
 2014-12-30	2014-12-31	Fix move error with decimal value
 2014-12-30	2014-12-30	Fix login redirect bug
