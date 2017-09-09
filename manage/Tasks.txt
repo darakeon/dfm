@@ -573,12 +573,12 @@ VERSÃO 1.0.0.4 (System) - 6
 2011-11-08	2011-11-08	Ordem alfabética nas contas (menu, abertas, fechadas) e categorias
 2011-10-23	2011-10-23	Corrigido erro na movimentação de Transferência: não estava trazendo contas
 
-VERSÃO 1.0.0.3 (System) - 4
+VERSION 1.0.0.3 (System) - 4
 ================================================================================================
-2011-10-13	2011-10-14	Corrigido erro com inserção de movimentação (falha na chave estrangeira)
-2011-10-11	2011-10-13	Ícones ao invés de palavras nas listagem de contas
-2011-10-10	2011-10-10	Validar usuário por e-mail - hashcode (AVISAR DO NÃO-VÍNCULO COM INSTITUIÇÕES FINANCEIRAS)
-2011-10-02	2011-10-09	Recuperação de Senha - hashcode
+2011-10-13	2011-10-14	Fix error with move creation (foreign key fail)
+2011-10-11	2011-10-13	Use icons instead of words at accounts list
+2011-10-10	2011-10-10	Validate user by e-mail - hashcode (WARN ABOUT NO LINK TO FINANCIAL INSTITUTIONS)
+2011-10-02	2011-10-09	Password recover - hashcode
 
 VERSION 1.0.0.2 (System) - 5
 ================================================================================================
