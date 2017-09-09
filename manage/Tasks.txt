@@ -129,7 +129,7 @@ VERSÃO 4.0.2.0 (Little change) - 5
 VERSÃO 4.0.1.0 (Little change) - 7
 ================================================================================================
 						Make tasks file as MD
-						Translate tasks file to english
+2017-09-09  			Translate tasks file to english
 2017-09-09	2017-09-09	Make SVG pig
 2017-09-06	2017-09-06	Organize files used to manage project
 2017-09-06	2017-09-08	Create license file
@@ -593,57 +593,57 @@ VERSÃO 1.0.0.1 (System) - 2
 2011-09-24	2011-09-24	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
 2011-09-24	2011-09-24	Consertar acesso NH no publicado
 
-VERSÃO 1.0.0.0 (All new) - 52
+VERSION 1.0.0.0 (All new) - 52
 ================================================================================================
-2011-09-22	2011-09-22	Publicar
-2011-09-22	2011-09-22	Verificar no IE
-2011-09-21	2011-09-22	Limitar tamanhos dos campos de texto
-2011-09-21	2011-09-21	Cifrar senha
-2011-09-18	2011-09-19	Implementar Limites na conta (e aviso de Limite da conta) - sinal amarelo / vermelho
-2011-09-18	2011-09-18	Arrancar a Natureza da Conta. ESQUECE: Mudar inserção / edição de conta para englobar detalhes
-2011-09-15	2011-09-15	Robô para Taxas Fixas
-2011-09-15	2011-09-15	Bank: Taxa da conta + Data / Debt: Percentual de crescimento + Data / Credit: Taxa do cartão + Data, Limite / Charge: Previsão de gasto diário, Máximo de carga
-2011-09-15	2011-09-15	Refactor: centralizar textos de erro em enum
-2011-09-15	2011-09-15	Retirar campo Login
-2011-09-15	2011-09-15	Proteger alteração / deleção de itens que não pertencem ao usuário logado
-2011-09-13	2011-09-15	Quebrar Value de Summary em In e Out
-2011-09-12	2011-09-12	Implementar Frequência Daily em Scheduler (testar funções ligadas aos valores postas no Enum)
-2011-09-11	2011-09-12	-- Se a 1ª vez do robô for futura, inserir Move e salvar de novo ao rodar, para afetar Summary
+2011-09-22	2011-09-22	Publish
+2011-09-22	2011-09-22	Verify IE
+2011-09-21	2011-09-22	Limit text field sizes
+2011-09-21	2011-09-21	Encrypt password
+2011-09-18	2011-09-19	Implement account limits (and warning about limits) - yellow / red sign
+2011-09-18	2011-09-18	Remove account nature. FORGET IT: Change account creation / edit to add details
+2011-09-15	2011-09-15	Robot for fix taxes
+2011-09-15	2011-09-15	Bank: taxes + date / Debt: grow percent + date / Credit: taxes + data, limit / Charge: daily spending, max charge
+2011-09-15	2011-09-15	Refactor: put error texts in enum
+2011-09-15	2011-09-15	Remove Login field
+2011-09-15	2011-09-15	Protect edit / delete that do not belongs to logged in user
+2011-09-13	2011-09-15	Break Summary Value by In / Out
+2011-09-12	2011-09-12	Implement frequency Daily at Scheduler (test functions that use Enum values)
+2011-09-11	2011-09-12	-- if the first schedule is future, insert Move and save new when run, to change Summary
 2011-09-10	2011-09-10	-- Arrancar IsValid de Summary
-2011-09-07	2011-09-11	Criar robô executor da Agenda (controlar request) - pega a última e duplica
-2011-09-05	2011-09-06	Interface do agendador ilimitado
-2011-09-04	2011-09-05	Refactor: Criar extensions das entidades, para deixar apenas as propriedades nas entidades
+2011-09-07	2011-09-11	Create schedule robot (control by request) - get last and copy
+2011-09-05	2011-09-06	Interface of boundless schedule
+2011-09-04	2011-09-05	Refactor: extensions of entities, so just the props stay with entities
 2011-09-02	2011-09-02	Refactor: kill SelectOne and Select with lambda
-2011-08-28	2011-09-02	Despesa Fixa (criar Agenda)
-2011-08-27	2011-08-27	Mudar cor para amarelo / colocar ícone
-2011-08-23	2011-08-27	Revisar o layout (verificar faixa no topo, se fica legal)
-2011-08-23	2011-08-23	Submenu com relatórios
-2011-08-22	2011-08-22	Link do Relatório de Conta fechada aponta para últimos relatórios
-2011-08-22	2011-08-22	Conta vazia - Deletar / Conta com Movimentações - Desativar
-2011-08-22	2011-08-22	Colocar apenas botão de entrar, quando já logado
-2011-08-22	2011-08-22	Fazer EntityData static
-2011-08-19	2011-08-21	Unificar página layout
-2011-08-18	2011-08-22	Navegação Mês / Ano
-2011-08-18	2011-08-18	tirar Quantidade de Valor único
+2011-08-28	2011-09-02	Fix moves (create Schedule)
+2011-08-27	2011-08-27	Change color to yellow / put icon
+2011-08-23	2011-08-27	Review layout (verify top menu, if it fits)
+2011-08-23	2011-08-23	Submenu with reports
+2011-08-22	2011-08-22	Report link of closed account goes to last reports
+2011-08-22	2011-08-22	Empty account - delete / Account with Moves - close
+2011-08-22	2011-08-22	Put enter button, when already logged in
+2011-08-22	2011-08-22	Make EntityData static
+2011-08-19	2011-08-21	Unify layout page
+2011-08-18	2011-08-22	Navigation Month / Year
+2011-08-18	2011-08-18	Remove quantity from single value
 2011-08-16	2011-08-17	Layout
-2011-08-15	2011-08-16	-- WCF Iniciado
-2011-08-14	2011-08-14	-- Implementar "manter logado"
-2011-08-10	2011-08-14	-- Agendamento de Movimentação
+2011-08-15	2011-08-16	-- WCF started
+2011-08-14	2011-08-14	-- Implement "keep logged in"
+2011-08-10	2011-08-14	-- Move schedule
 2011-08-09	2011-08-10	REFACTORING
-2011-08-03	2011-08-08	-- Criar Select com lambda expression no BaseData
-2011-08-01	2011-08-03	Saldo mensal (adaptar edição / criação de movimentação)
-2011-08-01	2011-08-01	-- Edição de Categoria
-2011-08-01	2011-08-01	-- Desativação de Categoria
-2011-07-31	2011-08-01	-- Listagem de Categorias
-2011-07-25	2011-07-31	-- Tradução
-2011-07-24	2011-07-25	-- Multi-língue
-2011-07-24	2011-07-24	Listagem de Contas desativadas
-2011-07-24	2011-07-24	Desativação de Conta
-2011-07-23	2011-07-24	Edição de Conta
-2011-07-23	2011-07-23	-- Possibilitar deleção de Detalhes
-2011-07-23	2011-07-23	-- Implementar Quantidade em Detalhes
-2011-07-23	2011-07-23	Deleção de Movimentação
-2011-07-18	2011-07-23	-- Arrancar entidade Transferência
-2011-06-29	2011-07-18	Edição de Movimentação
-2011-06-20	2011-06-29	-- Refazer roteamento para uma conta entrar em uma url
-2011-06-01	2011-06-20	Detalhes na Movimentação
+2011-08-03	2011-08-08	-- Select with lambda expression at BaseData
+2011-08-01	2011-08-03	Month balance (adapt move edit / creation)
+2011-08-01	2011-08-01	-- Category edit
+2011-08-01	2011-08-01	-- Category disable
+2011-07-31	2011-08-01	-- Categories list
+2011-07-25	2011-07-31	-- Translation
+2011-07-24	2011-07-25	-- Multilanguage
+2011-07-24	2011-07-24	Listing disabled accounts
+2011-07-24	2011-07-24	Account disable
+2011-07-23	2011-07-24	Account edit
+2011-07-23	2011-07-23	-- Details delete
+2011-07-23	2011-07-23	-- Implement quantity at details
+2011-07-23	2011-07-23	Move delete
+2011-07-18	2011-07-23	-- Remove Transfer entity
+2011-06-29	2011-07-18	Move edit
+2011-06-20	2011-06-29	-- Remake routing to have route by account
+2011-06-01	2011-06-20	Move details
