@@ -56,10 +56,10 @@ VERSÃO 5.0.0.0 (All new) - 1
 ================================================================================================
 F						Guardar dados localmente, para quando está sem internet (Mobile)
 
-VERSÃO 4.5.0.0 (Big change) - 2
+VERSION 4.5.0.0 (Big change) - 2
 ================================================================================================
-						Colocar Negativo / Positivo / Total no Resumo anual
-						Colocar linha de Totais de (Negativo / Positivo / Total) no Resumo Anual
+						Add Negative / Positive / Sum to Year summary
+						Add Balance Negative / Positive / Sum to Year summary
 
 VERSION 4.4.0.0 (Big change) - 4
 ========================================================================================
