@@ -320,10 +320,10 @@ VERSÃO 2.0.2.0 (Little change) - 13
 2015-01-11	2015-01-11	Arrumar clique do menu (clique botões direito e meio do mouse)
 2015-01-11	2015-01-11	Tratar queda de sessão quando cria a categoria na move (ajax authorize)
 
-VERSÃO 2.0.1.2 (System) - 2
+VERSION 2.0.1.2 (System) - 2
 ================================================================================================
-2015-01-11	2015-01-11	Arrumar lista de contas fechadas
-2015-01-08	2015-01-08	Arrumar tela de criação de movimentação / agendamento na parte de valor
+2015-01-11	2015-01-11	Fix closed account list
+2015-01-08	2015-01-08	Fix move / schedule creation screen - value problem
 
 VERSION 2.0.1.1 (System) - 5
 ================================================================================================
