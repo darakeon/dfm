@@ -345,20 +345,20 @@ VERSÃO 2.0.1.0 (Little Change) - 9
 2014-11-29	2014-11-29	Criar teste unitário para deletar todas as movimentações de um agendamento
 2014-11-29	2014-11-29	Criar teste unitário agendamento meio antes / meio depois
 
-VERSÃO 2.0.0.3 (System) - 12
+VERSION 2.0.0.3 (System) - 12
 ================================================================================================
-2014-10-20	2014-10-21	Arrumar apk para kitkat
-2014-07-25	2014-07-25	Deletar schedule de conta deletada
-2014-07-25	2014-07-25	Travar schedule de conta fechada
-2014-07-06	2014-07-06	Security desativa os anteriores
-2014-07-06	2014-07-06	Desativar user a cada 5 senhas erradas
-2014-07-06	2014-07-06	Verificar se password reset inativa usuário
-2014-07-06	2014-07-06	Tratar erro ao enviar e-mail (Security)
-2014-07-06	2014-07-06	Consertar problema ao pedir relatório que ainda não tem Month/Year
-2014-07-05	2014-07-06	Mover itens genéricos para a Ak
-2014-06-29	2014-06-29	Corrigir para que movimentação sem categoria conserte realmente os summaries
-2014-06-29	2014-06-29	Arrumar testes de e-mail falhando
-2014-06-26	2014-06-26	Arrumar agendamento detalhado
+2014-10-20	2014-10-21	Fix apk for kitkat
+2014-07-25	2014-07-25	Delete schedule of deleted account
+2014-07-25	2014-07-25	Lock schedule of closed account
+2014-07-06	2014-07-06	Security disable the older securities
+2014-07-06	2014-07-06	Deactivate user if it use wrong password 5 times
+2014-07-06	2014-07-06	Check if password reset disables user
+2014-07-06	2014-07-06	Handle error at e-mail send (Security)
+2014-07-06	2014-07-06	Fix error when requesting report that doesn't have Month/Year
+2014-07-05	2014-07-06	Move generic itens do Ak
+2014-06-29	2014-06-29	Make move without category fix its summaries
+2014-06-29	2014-06-29	Fix tests of e-mail error
+2014-06-26	2014-06-26	Fix detailed schedule
 
 VERSION 2.0.0.2 (System) - 10
 ================================================================================================
