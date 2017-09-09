@@ -296,13 +296,13 @@ VERSÃO 2.0.3.1 (System) - 9
 2015-09-10	2015-09-10	Corrigir problema de deletar conta que já teve movimentações
 2015-09-10	2015-09-10	Colocar cor nos números da tela de agendamentos
 
-VERSÃO 2.0.3.0 (Little change) - 5
+VERSION 2.0.3.0 (Little change) - 5
 ================================================================================================
-2015-09-07	2015-09-07	Deixar salvar o programa no SD
-2015-09-06	2015-09-07	Colocar edição de movimentação (mobile)
-2015-09-06	2015-09-06	Não deixar virar a tela quando já estiver salvando ou deletando a movimentação
-2015-09-06	2015-09-06	Não deixar sleep quando já estiver no meio de uma requisição
-2015-09-05	2015-09-05	Colocar botão de sair (mobile)
+2015-09-07	2015-09-07	Let save the program at SD card
+2015-09-06	2015-09-07	Add move edit (mobile)
+2015-09-06	2015-09-06	Do not change orientation when its saving or deleting a move
+2015-09-06	2015-09-06	Do not let sleep when its waiting a request response
+2015-09-05	2015-09-05	Add close button (mobile)
 
 VERSION 2.0.2.0 (Little change) - 13
 ================================================================================================
