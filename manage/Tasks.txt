@@ -22,11 +22,11 @@ VERSÃO 5.5.0.0 (Big change) - 5
 						relatórios mensal por categoria (http://www.chartjs.org/)
 						relatórios anual por categoria (http://www.chartjs.org/)
 
-VERSÃO 5.4.1.0 (Little change) - 3
+VERSION 5.4.1.0 (Little change) - 3
 ================================================================================================
-					>>>	Arrumar tratamento de erro para ir tudo para o cabeçalho
-					>>>	Colocar nome (ou apelido) no sign up
-						Tirar unicidade de nome da conta (manter de Url)
+						>>>	Fix error handling to have all at header
+						>>>	Put name (nickname?) on sign up
+						Remove account name oneness (keep for Url)
 
 VERSION 5.4.0.0 (Big change) - 5
 ================================================================================================
