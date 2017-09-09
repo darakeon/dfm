@@ -126,10 +126,10 @@ VERSÃO 4.0.2.0 (Little change) - 5
 						Teste deletar categoria com filhos deletados
 						Testes para permissões por usuário
 
-VERSÃO 4.0.1.0 (Little change) - 7
+VERSION 4.0.1.0 (Little change) - 7
 ================================================================================================
 						Make tasks file as MD
-2017-09-09  			Translate tasks file to english
+2017-09-09				Translate tasks file to english
 2017-09-09	2017-09-09	Make SVG pig
 2017-09-06	2017-09-06	Organize files used to manage project
 2017-09-06	2017-09-08	Create license file
