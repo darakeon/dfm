@@ -118,13 +118,13 @@ VERSÃO 4.0.2.1 (System) - 4
 						Colocar lock no get session do NH
 						Arrumar chamada de transaction para uma chamar a outra (Action/Func<>)
 
-VERSÃO 4.0.2.0 (Little change) - 5
+VERSION 4.0.2.0 (Little change) - 5
 ================================================================================================
-						This site uses cookies to store your preferences for site-specific language and display options. 
-						Corrigir edição de transferência
-						Arrumar centavos do total de detalhes no e-mail
-						Teste deletar categoria com filhos deletados
-						Testes para permissões por usuário
+						This site uses cookies to store your preferences for site-specific language and display options.
+						Fix transfer edit
+						Fix detailed sum cents at e-mail
+						Tests category delete with children deleted
+						Tests for user permission
 
 VERSION 4.0.1.0 (Little change) - 7
 ================================================================================================
