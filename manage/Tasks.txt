@@ -249,11 +249,11 @@ VERSÃO 2.1.3.3 (System) - 1
 ================================================================================================
 2017-01-15	2017-01-22	Ajustar layouts de android para usar formato novo
 
-VERSÃO 2.1.3.2 (System) - 2
+VERSION 2.1.3.2 (System) - 3
 ================================================================================================
-2017-01-17	2017-01-17	Ajuste do número na criação de movimentação
-2017-01-17	2017-01-17	Ajuste de site (de novo)
-2017-01-17	2017-01-17	Ajuste de multilanguage
+2017-01-17	2017-01-17	Adjust of number at move creation
+2017-01-17	2017-01-17	Adjust site (again)
+2017-01-17	2017-01-17	Adjust multilanguage
 
 VERSION 2.1.3.1 (System) - 1
 ================================================================================================
