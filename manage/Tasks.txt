@@ -4,11 +4,11 @@
 						Link unsubscribe
 						Rodar robô a cada uma hora e tirar função do request
 
-VERSÃO 7.0.0.0 (All new) - 3
+VERSION 7.0.0.0 (All new) - 3
 ================================================================================================
-						Criar serviço de traduzir o site caso a pessoa esteja numa língua diferentes de Inglês e Português
-						Usar resources do .NET
-F						Colocar tela de lista de funcionalidades
+						Create service to translate site ("put in your language")
+						Use .NET resources
+F						Put list of feature on screen
 
 VERSION 6.0.0.0 (All new) - 1
 ================================================================================================
