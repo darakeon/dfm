@@ -10,9 +10,9 @@ VERSÃO 7.0.0.0 (All new) - 3
 						Usar resources do .NET
 F						Colocar tela de lista de funcionalidades
 
-VERSÃO 6.0.0.0 (All new) - 1
+VERSION 6.0.0.0 (All new) - 1
 ================================================================================================
-						OCR de nota fiscal
+						OCR to add values to system
 
 VERSION 5.5.0.0 (Big change) - 5
 ================================================================================================
