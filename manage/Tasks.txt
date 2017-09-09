@@ -36,10 +36,10 @@ VERSÃO 5.4.0.0 (Big change) - 5
 						Relatório com valores: selecione para mostrar soma
 						Enviar e-mail se a move está abaixo dos limites amarelo e vermelho (configurável)
 
-VERSÃO 5.3.0.0 (Big change) - 2
+VERSION 5.3.0.0 (Big change) - 2
 ================================================================================================
-						Exportação de Dados
-						Importação de Dados
+						Data export
+						Data import
 
 VERSION 5.2.0.0 (Big change) - 4
 ================================================================================================
