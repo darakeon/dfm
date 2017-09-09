@@ -588,10 +588,10 @@ VERSÃO 1.0.0.2 (System) - 5
 2011-09-28	2011-10-01	Confirmação de senha
 2011-09-25	2011-09-26	Conflito de formato de data
 
-VERSÃO 1.0.0.1 (System) - 2
+VERSION 1.0.0.1 (System) - 2
 ================================================================================================
-2011-09-24	2011-09-24	Movimentação, ao ser alterada de In>Out ou Out>In, reclamava da presença da outra conta
-2011-09-24	2011-09-24	Consertar acesso NH no publicado
+2011-09-24	2011-09-24	Move, when change In>Out or Out>In, was showing error about the other account
+2011-09-24	2011-09-24	Fix NH access at publish site
 
 VERSION 1.0.0.0 (All new) - 52
 ================================================================================================
