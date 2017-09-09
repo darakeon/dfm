@@ -1,4 +1,4 @@
-<img src="../site/DFM.MVC/Assets/Images/big_pig.png" align="left"/>
+<img src="../pig.svg" width="85" align="left"/>
 
 # COLLABORATE
 
