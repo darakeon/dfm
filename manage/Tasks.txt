@@ -274,15 +274,15 @@ VERSÃO 2.1.1.0 (Little change) - 3
 2017-01-13	2017-01-14	Possibilitar trocar e-mail
 2017-01-13	2017-01-14	Possibilitar trocar senha
 
-VERSÃO 2.1.0.0 (Big change) - 7
+VERSION 2.1.0.0 (Big change) - 7
 ================================================================================================
-2017-01-13	2017-01-13	Arrumar erro nas urls de e-mails 
-2017-01-13	2017-01-13	Configuração de usuário para habilitar conferência - mobile
-2017-01-12	2017-01-13	Configuração de usuário para habilitar conferência - site
-2016-07-28	2017-01-12	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - mobile
-2016-07-18	2016-07-18	Possibilitar marcar uma movimentação como conferida (Conferência de movimentação) - site
-2016-05-23	2016-05-24	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - mobile
-2016-05-23	2016-05-23	Colocar combo de conta possibilitando trocar qualquer conta (out/in/transfer) - site
+2017-01-13	2017-01-13	Fix e-mail urls
+2017-01-13	2017-01-13	Config to user enable move check - mobile
+2017-01-12	2017-01-13	Config to user enable move check - site
+2016-07-28	2017-01-12	Make check move - mobile
+2016-07-18	2016-07-18	Make check move - site
+2016-05-23	2016-05-24	Put account combos to enable change any account (out/in/transfer) - mobile
+2016-05-23	2016-05-23	Put account combos to enable change any account (out/in/transfer) - site
 
 VERSION 2.0.3.1 (System) - 9
 ================================================================================================
