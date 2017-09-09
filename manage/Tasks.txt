@@ -255,9 +255,9 @@ VERSÃO 2.1.3.2 (System) - 2
 2017-01-17	2017-01-17	Ajuste de site (de novo)
 2017-01-17	2017-01-17	Ajuste de multilanguage
 
-VERSÃO 2.1.3.1 (System) - 1
+VERSION 2.1.3.1 (System) - 1
 ================================================================================================
-2017-01-17	2017-01-17	Arrumar endereço do site (subiu errado)
+2017-01-17	2017-01-17	Fix site address (published with error)
 
 VERSION 2.1.3.0 (Little change) - 1
 ================================================================================================
