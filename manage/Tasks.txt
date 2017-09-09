@@ -1,8 +1,8 @@
-﻿VERSÃO 8.0.0.0 (All new) - 3
+﻿VERSION 8.0.0.0 (All new) - 3
 ================================================================================================
-2014-06-01				Registrar marca (http://www.inpi.gov.br/portal/artigo/emarcas)
+2014-06-01				Register logo (http://www.inpi.gov.br/portal/artigo/emarcas)
 						Link unsubscribe
-						Rodar robô a cada uma hora e tirar função do request
+						Run robot each hour and remove it from request (GO?)
 
 VERSION 7.0.0.0 (All new) - 3
 ================================================================================================
