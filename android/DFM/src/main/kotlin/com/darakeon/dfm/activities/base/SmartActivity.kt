@@ -52,7 +52,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 	protected val Authentication: Authentication get() = Authentication(this)
 
-	protected val form: Form get() = Form(this)
 	val message: Message<T> get() = Message(this)
 	protected val navigation: Navigation<T> get() = Navigation(this, Authentication)
 	internal val resultHandler: ResultHandler<T> get() = ResultHandler(this, navigation)

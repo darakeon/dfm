@@ -2,13 +2,12 @@ package com.darakeon.dfm.activities
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import org.json.JSONException
 import org.json.JSONObject
-
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	override fun contentView(): Int {
@@ -25,8 +24,8 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	fun login(view: View) {
 		val request = InternalRequest(this, "Users/Login")
 
-		request.AddParameter("email", form.getValue(R.id.email))
-		request.AddParameter("password", form.getValue(R.id.password))
+		request.AddParameter("email", getValue(R.id.email))
+		request.AddParameter("password", getValue(R.id.password))
 
 		request.Post()
 	}

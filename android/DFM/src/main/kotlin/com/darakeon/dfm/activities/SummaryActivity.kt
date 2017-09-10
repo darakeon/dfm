@@ -6,8 +6,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.base.getChildOrMe
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.SummaryStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -64,7 +63,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 	private fun setDate(year: Int) {
 		static.year = year
-		form.setValue(R.id.reportChange, Integer.toString(year))
+		setValue(R.id.reportChange, Integer.toString(year))
 	}
 
 	fun changeDate(v: View) {
@@ -117,8 +116,8 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 	@Throws(JSONException::class)
 	private fun fillSummary() {
-		form.setValue(R.id.totalTitle, static.name)
-		form.setValueColored(R.id.totalValue, static.total)
+		setValue(R.id.totalTitle, static.name)
+		setValueColored(R.id.totalValue, static.total)
 
 		if (static.monthList.length() == 0) {
 			main.visibility = View.GONE

@@ -37,55 +37,50 @@ fun Any.getChildOrMe(fieldName: String): Any {
 	return this
 }
 
-class Form internal constructor(private val activity: Activity) {
+fun Activity.getValue(id: Int): String {
+	val field = getField<EditText>(id)
 
-	fun getValue(id: Int): String {
-		val field = getField<EditText>(id)
+	return field.text.toString()
+}
 
-		return field.text.toString()
-	}
+fun Activity.setValueColored(id: Int, value: Double) {
+	val field = getField<TextView>(id)
 
+	field.text = String.format("%1$,.2f", value)
 
-	fun setValueColored(id: Int, value: Double) {
-		val field = getField<TextView>(id)
+	val color = if (value < 0) R.attr.negative else R.attr.positive
+	field.setColorByAttr(color)
+}
 
-		field.text = String.format("%1$,.2f", value)
+fun Activity.setValue(id: Int, text: Any?) {
+	setValue(id, text.toString())
+}
 
-		val color = if (value < 0) R.attr.negative else R.attr.positive
-		field.setColorByAttr(color)
-	}
+fun Activity.setValue(id: Int, text: String?) {
+	val field = getField<TextView>(id)
 
-	fun setValue(id: Int, text: Any?) {
-		setValue(id, text.toString())
-	}
+	field.text = text
+}
 
-	fun setValue(id: Int, text: String?) {
-		val field = getField<TextView>(id)
-
-		field.text = text
-	}
-
-	private fun <T : View> getField(id: Int): T {
-		@Suppress("UNCHECKED_CAST")
-		return activity.findViewById(id) as T
-	}
+private fun <T : View> Activity.getField(id: Int): T {
+	@Suppress("UNCHECKED_CAST")
+	return findViewById(id) as T
+}
 
 
-	@Throws(JSONException::class)
-	fun showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSelectClickListener) {
-		if (list != null) {
-			val adapter = arrayOfNulls<CharSequence>(list.length())
+@Throws(JSONException::class)
+fun Activity.showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSelectClickListener) {
+	if (list != null) {
+		val adapter = arrayOfNulls<CharSequence>(list.length())
 
-			for (c in 0..list.length() - 1) {
-				val item = list.getJSONObject(c)
-				adapter[c] = item.getString("Text")
-			}
-
-			val title = activity.getString(titleId)
-
-			AlertDialog.Builder(activity).setTitle(title)
-					.setItems(adapter, selectList).show()
+		for (c in 0..list.length() - 1) {
+			val item = list.getJSONObject(c)
+			adapter[c] = item.getString("Text")
 		}
-	}
 
+		val title = getString(titleId)
+
+		AlertDialog.Builder(this).setTitle(title)
+				.setItems(adapter, selectList).show()
+	}
 }
