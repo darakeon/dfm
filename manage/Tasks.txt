@@ -140,7 +140,7 @@ VERSION 4.0.2.0 (Little change) - 2
 						Add warning on move with category editing when categories are disabled
 						Fix mobile to edit move with category when categories use are disabled
 
-VERSION 4.0.1.1 (System) - 7
+VERSION 4.0.1.1 (System) - 8
 ================================================================================================
 						Change password should drop logins
 						Verify create / edit / schedule transfer move (browser)
@@ -149,6 +149,7 @@ VERSION 4.0.1.1 (System) - 7
 						Remove license check from android
 						Fix delete empty account with detailed schedule
 						Tests for delete empty account with detailed schedule
+						Warning the you need to create categories on site to use app
 
 VERSION 4.0.1.0 (Little change) - 8
 ================================================================================================
