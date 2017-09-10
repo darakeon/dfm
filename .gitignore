@@ -48,3 +48,5 @@ site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
 
 *.user
 *.iml
+
+smtp.config

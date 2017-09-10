@@ -472,6 +472,9 @@
       <LastGenOutput>Multilanguage.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="smtp.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -412,6 +412,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Contracts\004000000000.cshtml" />
     <Content Include="Views\Ops\Help.cshtml" />
+    <Content Include="smtp.config" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
