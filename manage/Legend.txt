@@ -1,7 +1,0 @@
-D	Doubt
-F	Feature
-R	Refactor
-T	Test
-S	Security
-H	Hidden bug
-B	Bug
