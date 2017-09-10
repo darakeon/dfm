@@ -7,6 +7,7 @@ all planned. =)
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
+- [dev version state](../../4.0.1.1/manage/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -150,7 +151,7 @@ disabled
 - [ ] Remove license check from android
 - [ ] Fix delete empty account with detailed schedule
 - [ ] Tests for delete empty account with detailed schedule
-- [ ] Warning the you need to create categories on site to use app
+- [ ] Warning that you need to create categories on site to use app
 
 ## <a name="publish"></a>4.0.1.0 :sheep: <sup>`8`</sup>
 - [x] `2017-09-09 > 2017-09-09` Make tasks file as MD
