@@ -266,6 +266,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>General.resx</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Resources\Moves.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Moves.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
@@ -451,6 +456,11 @@
     <EmbeddedResource Include="Assets\Resources\General.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>General.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\Moves.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\Moves.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Moves.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\Users.pt-BR.resx">
       <SubType>Designer</SubType>

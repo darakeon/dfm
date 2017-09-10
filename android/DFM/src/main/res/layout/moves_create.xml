@@ -9,6 +9,35 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:visibility="gone"
+		android:orientation="vertical"
+		android:id="@+id/warnings">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/no_accounts"
+			android:text="@string/no_accounts_move"
+			android:visibility="gone"
+			android:textSize="20sp"
+			android:gravity="top|center"
+			android:paddingBottom="20sp" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/no_categories"
+			android:text="@string/no_categories_move"
+			android:visibility="gone"
+			android:textSize="20sp"
+			android:gravity="top|center" />
+
+	</LinearLayout>
+
 	<ScrollView
 		android:id="@+id/window"
 		android:layout_width="match_parent"

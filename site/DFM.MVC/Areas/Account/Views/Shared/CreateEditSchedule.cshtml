@@ -1,4 +1,6 @@
-﻿@model BaseMovesModel
+﻿@using DFM.Generic
+@using DFM.MVC.Assets.Resources
+@model BaseMovesModel
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, Model.ControllerName];
@@ -9,29 +11,64 @@
 	var scheduleModel = Model as SchedulesCreateModel;
 }
 
-@section Scripts {
-	<script src="~/Assets/Scripts/toggle.js" type="text/javascript"></script>
-	<script src="~/Assets/Scripts/move-crud.js" type="text/javascript"></script>
-}
-
-@if (scheduleModel != null)
+@if (Model.BlockScreen)
 {
-	@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
-	<hr />
+	if (Model.ShowNoAccounts)
+	{
+		<div class="alert alert-danger text-center">
+			@Html.Raw(Moves.NoAccountsMove.BreakLines())
+		</div>
+	}
+
+	if (Model.ShowNoCategories)
+	{
+		<div class="alert alert-danger text-center">
+			@Html.Raw(Moves.NoCategoriesMove.BreakLines())
+		</div>
+	}
+
+	@section Footer {
+		@if (Model.ShowNoAccounts)
+		{
+			@Html.RouteLink(MultiLanguage.Dictionary["Accounts"],
+				RouteNames.DEFAULT, new { controller = "Accounts" },
+				new { @class = "btn btn-success" })
+		}
+
+		@if (Model.ShowNoCategories)
+		{
+			@Html.RouteLink(MultiLanguage.Dictionary["Categories"],
+				RouteNames.DEFAULT, new { controller = "Categories" },
+				new { @class = "btn btn-success" })
+		}
+	}
 }
+else
+{
+	@section Scripts {
+		<script src="~/Assets/Scripts/toggle.js" type="text/javascript"></script>
+		<script src="~/Assets/Scripts/move-crud.js" type="text/javascript"></script>
+	}
 
-@Html.Partial("../Moves/MoveMainData")
+	if (scheduleModel != null)
+	{
+		@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
+		<hr/>
+	}
 
-<hr />
+	@Html.Partial("../Moves/MoveMainData")
 
-@Html.Partial("../Moves/NatureAndAccount")
+	<hr/>
 
-<hr />
+	@Html.Partial("../Moves/NatureAndAccount")
 
-@Html.Partial("../Moves/ValueAndDetail")
+	<hr/>
 
-@section Footer {
-	<button type="submit" class="btn btn-success">
-		@MultiLanguage.Dictionary[Model.ActionName]
-	</button>
+	@Html.Partial("../Moves/ValueAndDetail")
+
+	@section Footer {
+		<button type="submit" class="btn btn-success">
+			@MultiLanguage.Dictionary[Model.ActionName]
+		</button>
+	}
 }

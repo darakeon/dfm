@@ -197,6 +197,10 @@ namespace DFM.MVC.Areas.Account.Models
 			set { GenericMove.Value = value; }
 		}
 
+		public Boolean ShowNoCategories => UseCategories && !CategorySelectList.Any();
+		public Boolean ShowNoAccounts => !accountList.Any();
+		public Boolean BlockScreen => ShowNoCategories || ShowNoAccounts;
+
 
 		internal abstract void SaveOrUpdate();
 

@@ -154,7 +154,8 @@ disabled
 - [ ] Remove license check from android
 - [ ] Fix delete empty account with detailed schedule
 - [ ] Tests for delete empty account with detailed schedule
-- [ ] Warning that you need to create categories on site to use app
+- [x] `2017-09-10 > 2017-09-10` Warning that you need to create
+categories on site to make moves
 
 ## <a name="publish"></a>4.0.1.0 :sheep: <sup>`8`</sup>
 - [x] `2017-09-09 > 2017-09-09` Make tasks file as MD

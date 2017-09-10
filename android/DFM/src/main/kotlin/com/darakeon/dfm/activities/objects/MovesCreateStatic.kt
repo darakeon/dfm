@@ -11,8 +11,8 @@ object MovesCreateStatic : SmartStatic
 
 	var move: Move = Move()
 	var useCategories: Boolean = false
-	var categoryList: JSONArray? = null
-	var natureList: JSONArray? = null
-	var accountList: JSONArray? = null
+	var categoryList: JSONArray = JSONArray()
+	var natureList: JSONArray = JSONArray()
+	var accountList: JSONArray = JSONArray()
 }
 

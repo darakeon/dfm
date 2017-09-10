@@ -80,6 +80,8 @@
 	<string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
 	<string name="account_in">conta entrada</string>
 	<string name="account_out">conta saída</string>
+	<string name="no_accounts_move">Não há contas.\nSem contas, não é possível criar Movimentações.</string>
+	<string name="no_categories_move">Não há categorias.\nVocê pode criar Movimentações sem Categorias, mas precisa desabilitar o uso de Categorias nas Configurações.</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>
