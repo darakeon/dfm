@@ -90,6 +90,8 @@
 	<string name="fill_all">Fill all fields to add a detail.</string>
 	<string name="account_in">account in</string>
 	<string name="account_out">account out</string>
+	<string name="no_accounts_move">There are no accounts.\nWithout accounts, you cannot create Moves.</string>
+	<string name="no_categories_move">There is no categories.\nYou can create a Move without Category, but you need to go to Settings and disable categories use.</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>

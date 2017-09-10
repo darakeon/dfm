@@ -27,14 +27,12 @@ import org.json.JSONObject
 import java.util.*
 
 class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic), IDatePickerActivity {
-	internal val window: ScrollView get() = findViewById(R.id.window) as ScrollView
+	private val window: ScrollView get() = findViewById(R.id.window) as ScrollView
 
 	override var dialog: DatePickerDialog? = null
 
 
-	override fun contentView(): Int {
-		return R.layout.moves_create
-	}
+	override fun contentView(): Int = R.layout.moves_create
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,25 +55,42 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 	@Throws(NumberFormatException::class, JSONException::class)
 	private fun populateOldData(populateAll: Boolean) {
+
+		var canMove = true
+
+		if (static.accountList.length() == 0) {
+			canMove = false
+			findViewById(R.id.no_accounts).visibility = View.VISIBLE
+		}
+
 		if (static.useCategories) {
-			setDataFromList(static.categoryList, static.move.Category, R.id.category)
+			if (static.categoryList.length() == 0) {
+				canMove = false
+				findViewById(R.id.no_categories).visibility = View.VISIBLE
+			} else {
+				setDataFromList(static.categoryList, static.move.Category, R.id.category)
+			}
+		}
+
+		if (!canMove) {
+			findViewById(R.id.window).visibility = View.GONE
+			findViewById(R.id.warnings).visibility = View.VISIBLE
+			return
 		}
 
 		setValue(R.id.date, static.move.DateString())
 
 		val list = static.natureList
 
-		if (list != null) {
-			for (n in 0..list.length() - 1) {
-				val nature = list.getJSONObject(n)
-				val comparValue = nature.getInt("Value")
+		for (n in 0 until list.length()) {
+			val nature = list.getJSONObject(n)
+			val compareValue = nature.getInt("Value")
 
-				if (comparValue == static.move.Nature?.GetNumber()) {
-					val text = nature.getString("Text")
-					val value = nature.getString("Value")
-					setNature(text, value)
-					break
-				}
+			if (compareValue == static.move.Nature?.GetNumber()) {
+				val text = nature.getString("Text")
+				val value = nature.getString("Value")
+				setNature(text, value)
+				break
 			}
 		}
 
@@ -85,7 +100,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		if (static.move.isDetailed) {
 			for (d in static.move.Details.indices) {
 				val detail = static.move.Details[d]
-
 				addViewDetail(static.move, detail.Description, detail.Amount, detail.Value)
 			}
 
@@ -107,7 +121,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	@Throws(JSONException::class)
 	private fun setDataFromList(list: JSONArray?, dataSaved: String?, resourceId: Int) {
 		if (list != null) {
-			for (n in 0..list.length() - 1) {
+			for (n in 0 until list.length()) {
 				val `object` = list.getJSONObject(n)
 				val value = `object`.getString("Value")
 
@@ -184,9 +198,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 				View.GONE
 
 		if (static.move.Nature == null) {
-			val firstNature = static.natureList?.getJSONObject(0)
-			setValue(R.id.nature, firstNature?.getString("Text"))
-			static.move.SetNature(firstNature?.getInt("Value"))
+			val firstNature = static.natureList.getJSONObject(0)
+			setValue(R.id.nature, firstNature.getString("Text"))
+			static.move.SetNature(firstNature.getInt("Value"))
 		}
 	}
 

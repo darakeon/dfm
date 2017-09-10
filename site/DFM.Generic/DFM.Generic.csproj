@@ -50,6 +50,7 @@
     <Compile Include="Properties\GeneralAssemblyInfo.cs" />
     <Compile Include="Pages\Pages.cs" />
     <Compile Include="ResourceManagerExtension.cs" />
+    <Compile Include="StringExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BCrypt.Net-Next, Version=2.1.1.0, Culture=neutral, PublicKeyToken=748c6c715e2d42e3, processorArchitecture=MSIL">
