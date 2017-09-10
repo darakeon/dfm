@@ -91,7 +91,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		setValue(R.id.reportChange, dateInFull)
 	}
 
-	fun changeDate(v: View) {
+	fun changeDate(view: View) {
 		if (dialog == null) {
 			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
