@@ -96,9 +96,9 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
 			try {
-				val picker = dialog!!.getChildOrMe("mDatePicker")
-				val delegate = picker.getChildOrMe("mDelegate")
-				val day = delegate.getChildOrMe("mDaySpinner")
+				val picker = dialog?.getChildOrMe("mDatePicker")
+				val delegate = picker?.getChildOrMe("mDelegate")
+				val day = delegate?.getChildOrMe("mDaySpinner")
 				(day as View).visibility = View.GONE
 			} catch (ignored: Exception) {
 			}
