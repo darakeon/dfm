@@ -10,9 +10,10 @@ VERSION 7.0.0.0 (All new) - 3
 						Use .NET resources
 F						Put list of feature on screen
 
-VERSION 6.0.0.0 (All new) - 1
+VERSION 6.0.0.0 (All new) - 2
 ================================================================================================
 						OCR to add values to system
+						Integrate Authy (if it's free)
 
 VERSION 5.5.0.0 (Big change) - 5
 ================================================================================================
@@ -75,11 +76,10 @@ VERSION 4.3.1.0 (Little change) - 4
 D						Remove direct access of Month and Year to Summary (refactor Summary)
 D						Remove GetOrCreate
 
-VERSION 4.3.0.1 (System) - 4
+VERSION 4.3.0.1 (System) - 3
 ================================================================================================
 S						Make web use fakeId, not id
 B						Handle DFMCoreException at Robot
-B						Fix mobile to edit move with category when categories use are disabled
 F						Change fields to use the ones firefox and chrome customize
 
 VERSION 4.3.0.0 (Big change) - 5
@@ -111,20 +111,44 @@ VERSION 4.1.0.0 (Big change) - 2
 						Fix places where the understanding depends on colors
 						Fix account stati icons - should not be all the same
 
-VERSION 4.0.2.1 (System) - 4
+VERSION 4.0.3.1 (System) - 4
 ================================================================================================
 						Transform service receiving / returns into DTO
 						IDs Int64
 						Put lock at NH get session
 						Fix transaction call to avoid code duplication (Action/Func<>)
 
-VERSION 4.0.2.0 (Little change) - 5
+VERSION 4.0.3.0 (Little change) - 5
 ================================================================================================
 						This site uses cookies to store your preferences for site-specific language and display options.
 						Fix transfer edit
 						Fix detailed sum cents at e-mail
 						Tests category delete with children deleted
 						Tests for user permission
+
+VERSION 4.0.2.1 (System) - 6
+================================================================================================
+						Make/find app to verify DFM status
+						AntiForgery
+						Add IsAdm to User
+						Add package for JS libraries
+						Avoid weird layout on changing theme
+						Upgrade to Android Studio 3.0
+
+VERSION 4.0.2.0 (Little change) - 2
+================================================================================================
+						Add warning on move with category editing when categories are disabled
+						Fix mobile to edit move with category when categories use are disabled
+
+VERSION 4.0.1.1 (System) - 7
+================================================================================================
+						Change password should drop logins
+						Verify create / edit / schedule transfer move (browser)
+						Add contract accept datetime (IP?)
+						Contract acceptance warning at android
+						Remove license check from android
+						Fix delete empty account with detailed schedule
+						Tests for delete empty account with detailed schedule
 
 VERSION 4.0.1.0 (Little change) - 8
 ================================================================================================
