@@ -8,6 +8,9 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.getValue
+import com.darakeon.dfm.activities.base.setValue
+import com.darakeon.dfm.activities.base.showChangeList
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -37,7 +40,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-
 		if (rotated && succeeded) {
 			try {
 				populateCategoryAndNature()
@@ -59,7 +61,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 			setDataFromList(static.categoryList, static.move.Category, R.id.category)
 		}
 
-		form.setValue(R.id.date, static.move.DateString())
+		setValue(R.id.date, static.move.DateString())
 
 		val list = static.natureList
 
@@ -111,7 +113,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 				if (value == dataSaved) {
 					val text = `object`.getString("Text")
-					form.setValue(resourceId, text)
+					setValue(resourceId, text)
 					break
 				}
 			}
@@ -183,7 +185,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 		if (static.move.Nature == null) {
 			val firstNature = static.natureList?.getJSONObject(0)
-			form.setValue(R.id.nature, firstNature?.getString("Text"))
+			setValue(R.id.nature, firstNature?.getString("Text"))
 			static.move.SetNature(firstNature?.getInt("Value"))
 		}
 	}
@@ -198,7 +200,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 	private fun setControls() {
-		form.setValue(R.id.date, static.move.DateString())
+		setValue(R.id.date, static.move.DateString())
 
 		setDescriptionListener()
 		setValueListener()
@@ -226,21 +228,21 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 	override fun setResult(year: Int, month: Int, day: Int) {
 		static.move.Date.set(year, month, day)
-		form.setValue(R.id.date, static.move.DateString())
+		setValue(R.id.date, static.move.DateString())
 	}
 
 
 	fun changeCategory(view: View) {
-		form.showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, form, message, static.move))
+		showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, this, message, static.move))
 	}
 
 	fun changeNature(view: View) {
-		form.showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
+		showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
 	}
 
 
 	fun setNature(text: String, value: String) {
-		form.setValue(R.id.nature, text)
+		setValue(R.id.nature, text)
 		static.move.SetNature(value)
 
 		val accountOutVisibility = if (static.move.Nature != Nature.In) View.VISIBLE else View.GONE
@@ -251,22 +253,22 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 		if (static.move.Nature == Nature.Out) {
 			static.move.AccountIn = null
-			form.setValue(R.id.account_in, getString(R.string.account_in))
+			setValue(R.id.account_in, getString(R.string.account_in))
 		}
 
 		if (static.move.Nature == Nature.In) {
 			static.move.AccountOut = null
-			form.setValue(R.id.account_out, getString(R.string.account_out))
+			setValue(R.id.account_out, getString(R.string.account_out))
 		}
 	}
 
 
 	fun changeAccountOut(view: View) {
-		form.showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, form, message, static.move))
+		showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, this, message, static.move))
 	}
 
 	fun changeAccountIn(view: View) {
-		form.showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, form, message, static.move))
+		showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, this, message, static.move))
 	}
 
 	@JvmOverloads fun useDetailed(view: View? = null) {
@@ -288,9 +290,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 	fun addDetail(view: View) {
-		val description = form.getValue(R.id.detail_description)
-		val amountStr = form.getValue(R.id.detail_amount)
-		val valueStr = form.getValue(R.id.detail_value)
+		val description = getValue(R.id.detail_description)
+		val amountStr = getValue(R.id.detail_amount)
+		val valueStr = getValue(R.id.detail_value)
 
 		val value = valueStr.toDoubleByCulture()
 
@@ -301,9 +303,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 		val amountDefault = resources.getInteger(R.integer.amount_default)
 
-		form.setValue(R.id.detail_description, "")
-		form.setValue(R.id.detail_amount, amountDefault)
-		form.setValue(R.id.detail_value, "")
+		setValue(R.id.detail_description, "")
+		setValue(R.id.detail_amount, amountDefault)
+		setValue(R.id.detail_value, "")
 
 		val amount = amountStr.toInt()
 

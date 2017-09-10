@@ -10,9 +10,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.IYesNoDialogAnswer
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.base.getChildOrMe
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.ExtractStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -90,7 +88,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		val formatter = SimpleDateFormat("MMM/yyyy")
 		val dateInFull = formatter.format(date.time)
 
-		form.setValue(R.id.reportChange, dateInFull)
+		setValue(R.id.reportChange, dateInFull)
 	}
 
 	fun changeDate(v: View) {
@@ -146,8 +144,8 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 	@Throws(JSONException::class)
 	private fun fillMoves() {
-		form.setValue(R.id.totalTitle, static.name)
-		form.setValueColored(R.id.totalValue, static.total)
+		setValue(R.id.totalTitle, static.name)
+		setValueColored(R.id.totalValue, static.total)
 
 		if (static.moveList.length() == 0) {
 			main.visibility = View.GONE
