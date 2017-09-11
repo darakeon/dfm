@@ -18,9 +18,7 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 	internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
 
 
-	override fun contentView(): Int {
-		return R.layout.accounts
-	}
+	override fun contentView(): Int = R.layout.accounts
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +42,6 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 		request.Post()
 	}
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		static.accountList = data.getJSONArray("AccountList")
 		fillAccounts()

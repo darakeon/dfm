@@ -32,7 +32,6 @@ android {
 }
 
 dependencies {
-	compile project(':LVL')
 	compile 'com.android.volley:volley:1.0.0'
 	compile 'com.android.support:support-v13:25.3.1'
 	compile 'com.android.support:appcompat-v7:25.3.1'
