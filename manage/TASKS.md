@@ -151,7 +151,7 @@ disabled
 - [ ] Verify create / edit / schedule transfer move (browser)
 - [ ] Add contract accept datetime (IP?)
 - [ ] Contract acceptance warning at android
-- [ ] Remove license check from android
+- [x] `2017-09-10 > 2017-09-10` Remove license check from android
 - [ ] Fix delete empty account with detailed schedule
 - [ ] Tests for delete empty account with detailed schedule
 - [x] `2017-09-10 > 2017-09-10` Warning that you need to create
