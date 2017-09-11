@@ -50,3 +50,5 @@ site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
 *.iml
 
 smtp.config
+
+android/DFM/src/main/res/values/license.xml
