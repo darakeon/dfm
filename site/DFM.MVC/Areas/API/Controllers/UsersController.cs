@@ -50,7 +50,7 @@ namespace DFM.MVC.Areas.API.Controllers
 		[DFMApiAuthorize, HttpPost]
 		public ActionResult SaveConfig(UserSaveConfigModel model)
 		{
-			return JsonPost((Action) model.Save);
+			return JsonPost(model.Save);
 		}
 
 

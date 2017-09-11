@@ -4,13 +4,9 @@ object Site {
 	private val publicDomain = "dontflymoney.com"
 	internal val Domain = publicDomain
 
-	internal fun GetProtocol(): String {
-		return if (IsLocal()) "http" else "https"
-	}
+	internal fun GetProtocol(): String = if (isLocal) "http" else "https"
 
-	fun IsLocal(): Boolean {
-		return Domain != publicDomain
-	}
+	private val isLocal: Boolean get() = Domain != publicDomain
 
 
 }

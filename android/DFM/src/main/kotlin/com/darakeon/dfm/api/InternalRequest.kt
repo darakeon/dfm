@@ -45,6 +45,10 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		return true
 	}
 
+	fun Get() {
+		Get(Step.NoSteps)
+	}
+
 	fun Get(step: Step) {
 		makeRequest(step, Request.Method.GET)
 	}

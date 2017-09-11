@@ -229,6 +229,7 @@
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
+    <Compile Include="Areas\API\Controllers\StatusController.cs" />
     <Compile Include="Areas\API\Models\MovesModel.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\Jsons\DateJson.cs" />
@@ -470,6 +471,9 @@
       <LastGenOutput>Users.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\API\Views\Status\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

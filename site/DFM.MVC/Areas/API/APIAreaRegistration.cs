@@ -27,8 +27,8 @@ namespace DFM.MVC.Areas.API
 			context.MapRoute(
 				RouteNames.API,
 				"API/{controller}/{action}/{id}",
-				new { controller = "Users", action = "Index", id = UrlParameter.Optional },
-				new[] { typeof(UsersController).Namespace }
+				new { controller = "Status", action = "Index", id = UrlParameter.Optional },
+				new[] { typeof(StatusController).Namespace }
 			);
 
 		}
