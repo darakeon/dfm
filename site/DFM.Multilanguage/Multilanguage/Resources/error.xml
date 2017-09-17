@@ -8,7 +8,7 @@
 		<AccountUrlInvalid text="Account url invalid." />
 		<AccountUrlAlreadyExists text="Account url already exists." />
 		<CantCloseEmptyAccount text="Can't close empty Account. Delete it instead." />
-		<CantDeleteAccountWithMoves text="Can't delete Account with Moves. Delete it instead." />
+		<CantDeleteAccountWithMoves text="Can't delete Account with Moves. The Account can be closed or the Moves can be deleted, so the Account can be deleted." />
 		<CategoryAlreadyExists text="Category already exists." />
 		<DuplicatedCategoryName text="Duplicated category." />
 		<CategoryNotFound text="Category not found." />
@@ -86,7 +86,7 @@
 		<AccountUrlInvalid text="Url da conta inválida." />
 		<AccountUrlAlreadyExists text="Url da conta já usada." />
 		<CantCloseEmptyAccount text="Não é possível fechar uma Conta vazia. Ao invés disso, apague-a." />
-		<CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. Ao invés disso, feche-a." />
+		<CantDeleteAccountWithMoves text="Não é possível apagar uma Conta com Movimentações. A Conta pode ser fechada ou as Movimentações deletadas, para assim deletar a Conta." />
 		<CategoryAlreadyExists text="Categoria já existe." />
 		<DuplicatedCategoryName text="Categoria duplicada." />
 		<CategoryNotFound text="Categoria não encontrada." />
