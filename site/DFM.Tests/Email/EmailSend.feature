@@ -2,15 +2,15 @@
 
 Scenario: 01. Send an e-mail without subject
 	Given I have this e-mail to send
-		| Subject | Body            | To                |
-		|         | without subject | [email-test-here] |
+		| Subject | Body            | To                   |
+		|         | without subject | dfm@dontflymoney.com |
 	When I try to send the e-mail
 	Then I will receive this e-mail error: InvalidSubject
 
 Scenario: 02. Send an e-mail without body
 	Given I have this e-mail to send
-		| Subject      | Body | To                |
-		| without body |      | [email-test-here] |
+		| Subject      | Body | To                   |
+		| without body |      | dfm@dontflymoney.com |
 	When I try to send the e-mail
 	Then I will receive this e-mail error: InvalidBody
 
@@ -23,8 +23,8 @@ Scenario: 03. Send an e-mail without address
 
 Scenario: 98. Send an e-mail successfuly
 	Given I have this e-mail to send
-		| Subject | Body  | To                |
-		| right   | right | [email-test-here] |
+		| Subject | Body  | To                   |
+		| right   | right | dfm@dontflymoney.com |
 	When I try to send the e-mail
 	Then I will receive no e-mail error
 
