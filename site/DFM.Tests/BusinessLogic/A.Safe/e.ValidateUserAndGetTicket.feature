@@ -65,6 +65,17 @@ Scenario: Ae06. Disable user by excessive trying (E)
 	Then I will receive this core error: DisabledUser
 	And I will receive no ticket
 
+Scenario: Ae07. Validate disabled with wrong password (E)
+	Given I have this user created
+		| Email                 | Password | Retype Password |
+		| Ae07@dontflymoney.com | password | password        |
+	And I have this user data
+		| Email | Password       |
+		|       | wrong_password |
+	When I try to get the ticket
+	Then I will receive this core error: InvalidUser
+	And I will receive no ticket
+
 Scenario: Ae90. Validate with info all right (S)
 	Given I have this user created
 		| Email                 | Password | Retype Password |
