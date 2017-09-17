@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "",
                         "without subject",
-                        "[email-test-here]"});
+                        "dfm@dontflymoney.com"});
 #line 4
  testRunner.Given("I have this e-mail to send", ((string)(null)), table1, "Given ");
 #line 7
@@ -104,7 +104,7 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "without body",
                         "",
-                        "[email-test-here]"});
+                        "dfm@dontflymoney.com"});
 #line 11
  testRunner.Given("I have this e-mail to send", ((string)(null)), table2, "Given ");
 #line 14
@@ -156,7 +156,7 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "right",
                         "right",
-                        "[email-test-here]"});
+                        "dfm@dontflymoney.com"});
 #line 25
  testRunner.Given("I have this e-mail to send", ((string)(null)), table4, "Given ");
 #line 28
