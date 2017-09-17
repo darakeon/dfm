@@ -152,8 +152,10 @@ disabled
 - [ ] Add contract accept datetime (IP?)
 - [ ] Contract acceptance warning at android
 - [x] `2017-09-10 > 2017-09-10` Remove license check from android
-- [ ] Fix delete empty account with detailed schedule
-- [ ] Tests for delete empty account with detailed schedule
+- [x] `2017-09-16 > 2017-09-16` Fix delete empty account with detailed
+schedule
+- [x] `2017-09-16 > 2017-09-16` Tests for delete empty account with
+detailed schedule
 - [x] `2017-09-10 > 2017-09-10` Warning that you need to create
 categories on site to make moves
 

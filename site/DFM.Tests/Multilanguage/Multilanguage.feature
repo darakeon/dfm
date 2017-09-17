@@ -64,6 +64,7 @@ Scenario: 03. Get translations of Errors
 		| Error   | InvalidAccount                 |
 		| Error   | CategoriesDisabled             |
 		| Error   | MoveCheckDisabled              |
+		| Error   | CantDeleteAccountWithSchedules |
 		| Error   | CategoryNameRequired           |
 		| Error   | CategoryAlreadyExists          |
 		| Error   | DisabledCategory               |

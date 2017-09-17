@@ -22,6 +22,22 @@ Scenario: BeE03. Delete an Account that has moves
 	Then I will receive this core error: CantDeleteAccountWithMoves
 	And the account will not be deleted
 
+Scenario: BeE04. Delete an Account with schedule
+	Given I have a category
+	And I give a url of the account BeE04 without moves
+	And the account has a schedule
+	When I try to delete the account
+	Then I will receive this core error: CantDeleteAccountWithSchedules
+	And the account will not be deleted
+
+Scenario: BeE05. Delete an Account with detailed schedule
+	Given I have a category
+	And I give a url of the account BeE05 without moves
+	And the account has a schedule with details
+	When I try to delete the account
+	Then I will receive this core error: CantDeleteAccountWithSchedules
+	And the account will not be deleted
+
 
 Scenario: BeS01. Delete an Account that had moves
 	Given I have a category
@@ -40,7 +56,15 @@ Scenario: BeS02. Delete an Account without moves
 Scenario: BeS03. Delete an Account with schedule
 	Given I have a category
 	And I give a url of the account BeS03 without moves
-	And the account has a schedule
+	And the account has a disabled schedule
+	When I try to delete the account
+	Then I will receive no core error
+	And the account will be deleted
+
+Scenario: BeS04. Delete an Account with detailed schedule
+	Given I have a category
+	And I give a url of the account BeS04 without moves
+	And the account has a disabled schedule with details
 	When I try to delete the account
 	Then I will receive no core error
 	And the account will be deleted

@@ -1005,8 +1005,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			AccountUrl = Account.Url;
 		}
 
-		[Given(@"the account has a schedule")]
-		public void GivenTheAccountHasSchedules()
+		[Given(@"the account has a schedule( with details)?")]
+		public void GivenTheAccountHasSchedules(String withDetails)
 		{
 			Schedule = new Schedule
 			{
@@ -1016,14 +1016,29 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
-				Value = 10
 			};
+
+			if (String.IsNullOrEmpty(withDetails))
+			{
+				Schedule.Value = 10;
+			}
+			else
+			{
+				var detail = new Detail
+				{
+					Description = "Detail",
+					Amount = 42,
+					Value = 27
+				};
+
+				Schedule.DetailList.Add(detail);
+			}
 
 			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
 		}
 
-		[Given(@"the account has a disabled schedule")]
-		public void GivenTheAccountHasADisabledSchedule()
+		[Given(@"the account has a disabled schedule( with details)?")]
+		public void GivenTheAccountHasADisabledSchedule(String withDetails)
 		{
 			Schedule = new Schedule
 			{
@@ -1033,8 +1048,23 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
-				Value = 10
 			};
+
+			if (String.IsNullOrEmpty(withDetails))
+			{
+				Schedule.Value = 10;
+			}
+			else
+			{
+				var detail = new Detail
+				{
+					Description = "Detail",
+					Amount = 42,
+					Value = 27
+				};
+
+				Schedule.DetailList.Add(detail);
+			}
 
 			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
 
