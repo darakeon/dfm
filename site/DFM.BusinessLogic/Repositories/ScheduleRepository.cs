@@ -103,6 +103,11 @@ namespace DFM.BusinessLogic.Repositories
 
 			foreach (var schedule in scheduleList)
 			{
+				if (schedule.Active)
+				{
+					throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithSchedules);
+				}
+
 				Delete(schedule);
 			}
 		}

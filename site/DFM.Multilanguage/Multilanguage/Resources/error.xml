@@ -73,6 +73,7 @@
 		<DisabledSchedule text="Schedule already disabled" />
 		<CategoriesDisabled text="Categories disabled" />
 		<MoveCheckDisabled text="Move check is disabled" />
+		<CantDeleteAccountWithSchedules text="Can't delete Account with Schedules. The Account can be closed or the Schedules can be deleted, so the Account can be deleted." />
 		<WrongPassword text="Wrong password for current user" />
 		<LanguageUnknown text="Unknown language"/>
 		<TimezoneUnknown text="Unknown timezone"/>
@@ -151,6 +152,7 @@
 		<DisabledSchedule text="Agendamento já desabilitado" />
 		<CategoriesDisabled text="Uso de Categorias desabilitado" />
 		<MoveCheckDisabled text="A verificação de movimentação está desabilitada" />
+		<CantDeleteAccountWithSchedules text="Não é possível apagar uma Conta com Agendamentos. A Conta pode ser fechada ou os Agendamentos deletados, para assim deletar a Conta." />
 		<WrongPassword text="Senha errada para usuário atual" />
 		<LanguageUnknown text="Língua desconhecida"/>
 		<TimezoneUnknown text="Fuso horário desconhecido"/>

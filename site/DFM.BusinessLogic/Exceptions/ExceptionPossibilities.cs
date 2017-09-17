@@ -33,6 +33,7 @@
 		InvalidAccount = 312,
 		CategoriesDisabled = 313,
 		MoveCheckDisabled = 314,
+		CantDeleteAccountWithSchedules = 315,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,
