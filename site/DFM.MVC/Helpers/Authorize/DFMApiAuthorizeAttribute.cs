@@ -6,12 +6,16 @@ namespace DFM.MVC.Helpers.Authorize
 {
 	public class DFMApiAuthorizeAttribute : DFMAuthorizeAttribute
 	{
-		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+		protected override void GoToContractPage(AuthorizationContext filterContext)
 		{
-			var route = new RouteValueDictionary(new { controller = "Users", action = "Uninvited" });
-
+			var route = new RouteValueDictionary(new { controller = "Users", action = "AcceptOnlineContract" });
 			filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
 		}
 
+		protected override void GoToUninvited(AuthorizationContext filterContext)
+		{
+			var route = new RouteValueDictionary(new { controller = "Users", action = "Uninvited" });
+			filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
+		}
 	}
 }

@@ -2,7 +2,8 @@ package com.darakeon.dfm.activities
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.*
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.getValue
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
