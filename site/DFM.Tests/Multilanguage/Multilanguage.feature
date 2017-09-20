@@ -98,6 +98,7 @@ Scenario: 03. Get translations of Errors
 		| Error   | DisabledSchedule               |
 		| Error   | LanguageUnknown                |
 		| Error   | TimezoneUnknown                |
+		| Error   | NotSignedLastContract          |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
