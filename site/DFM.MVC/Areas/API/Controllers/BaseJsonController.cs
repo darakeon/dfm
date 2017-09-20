@@ -33,7 +33,15 @@ namespace DFM.MVC.Areas.API.Controllers
 		public JsonResult Uninvited()
 		{
 			return Json(
-				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited] }, 
+				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited] },
+				JsonRequestBehavior.AllowGet
+			);
+		}
+
+		public JsonResult AcceptOnlineContract()
+		{
+			return Json(
+				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.NotSignedLastContract] },
 				JsonRequestBehavior.AllowGet
 			);
 		}

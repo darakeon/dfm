@@ -29,15 +29,23 @@ namespace DFM.MVC.Helpers.Authorize
 		{
 			if (isAuthenticated && denyByContract)
 			{
-				var url = BaseModel.Url.Action("Contract", "Users");
-				filterContext.Result = new RedirectResult(url);
+				GoToContractPage(filterContext);
 			}
 			else
 			{
-				base.HandleUnauthorizedRequest(filterContext);
+				GoToUninvited(filterContext);
 			}
 		}
 
+		protected virtual void GoToContractPage(AuthorizationContext filterContext)
+		{
+			var url = BaseModel.Url.Action("Contract", "Users");
+			filterContext.Result = new RedirectResult(url);
+		}
 
+		protected virtual void GoToUninvited(AuthorizationContext filterContext)
+		{
+			base.HandleUnauthorizedRequest(filterContext);
+		}
 	}
 }

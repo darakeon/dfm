@@ -150,7 +150,7 @@ disabled
 - [ ] Change password should drop logins
 - [ ] Verify create / edit / schedule transfer move (browser)
 - [ ] Add contract accept datetime (IP?)
-- [ ] Contract acceptance warning at android
+- [x] `2017-09-19 > 2017-09-20` Contract acceptance warning at android
 - [x] `2017-09-10 > 2017-09-10` Remove license check from android
 - [x] `2017-09-16 > 2017-09-16` Fix delete empty account with detailed
 schedule
