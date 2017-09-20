@@ -71,10 +71,11 @@ you are shopping
 - [ ] Add Negative / Positive / Sum to Year summary
 - [ ] Add Balance Negative / Positive / Sum to Year summary
 
-## 4.4.0.0 :whale: <sup>`4`</sup>
+## 4.4.0.0 :whale: <sup>`5`</sup>
 - [ ] Add Template to Mobile
 - [ ] Create Template (Move)
-- [ ] Search by categoria
+- [ ] Enable Copy Move (web+mobile)
+- [ ] Search by category
 - [ ] Search by move
 
 ## 4.3.1.0 :sheep: <sup>`4`</sup>
