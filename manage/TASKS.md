@@ -138,11 +138,12 @@ language and display options.
 - [ ] Avoid weird layout on changing theme
 - [ ] Upgrade to Android Studio 3.0
 
-## 4.0.2.0 :sheep: <sup>`2`</sup>
+## 4.0.2.0 :sheep: <sup>`3`</sup>
 - [ ] Add warning on move with category editing when categories are
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
+- [ ] Add link to github Issues
 
 ## <a name="dev"></a>4.0.1.1 :ant: <sup>`8`</sup>
 - [ ] Change password should drop logins
