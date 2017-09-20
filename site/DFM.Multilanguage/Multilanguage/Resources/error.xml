@@ -78,6 +78,7 @@
 		<LanguageUnknown text="Unknown language"/>
 		<TimezoneUnknown text="Unknown timezone"/>
 		<InvalidTheme text="Invalid Theme"/>
+		<NotSignedLastContract text="Need to sign last system contract version! See at the site" />
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -157,5 +158,6 @@
 		<LanguageUnknown text="Língua desconhecida"/>
 		<TimezoneUnknown text="Fuso horário desconhecido"/>
 		<InvalidTheme text="Layout desconhecido"/>
+		<NotSignedLastContract text="É necessário assinar a última versão do contrato do sistema! Veja no site" />
 	</pt-BR>
 </error>
