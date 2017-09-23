@@ -1,7 +1,7 @@
 ﻿Feature: Ea. Month report
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I enable Categories use
 	And I have an account
 	And I have moves of

@@ -69,7 +69,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
  #line 3
   testRunner.Given("I have a contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 4
-  testRunner.And("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         

@@ -1,7 +1,7 @@
 ﻿Feature: Be. Delete Account
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I have an account
 
 Scenario: BeE01. Delete an Account that doesn't exist

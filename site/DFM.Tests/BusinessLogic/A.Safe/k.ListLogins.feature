@@ -1,7 +1,7 @@
 ﻿Feature: Ak. List logins
 
 Scenario: Ak99. List all logins
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I login the user
 	And I logoff the user
 	And I login the user

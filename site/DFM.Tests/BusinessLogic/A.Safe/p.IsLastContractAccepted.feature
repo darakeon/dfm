@@ -1,7 +1,7 @@
 ﻿Feature: Ap. Is last Contract accepted
 	Background: 
 		Given I have a contract
-		And I have an active user
+		And I have an active user who have accepted the contract
 
 Scenario: Ap01. Get accepted contract
 	Given I have accepted the contract

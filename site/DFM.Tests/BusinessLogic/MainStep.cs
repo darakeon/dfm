@@ -9,15 +9,19 @@ namespace DFM.Tests.BusinessLogic
 	[Binding]
 	public class MainStep : BaseStep
 	{
-		[Given(@"I have an active user")]
-		public void GivenIHaveAnActiveUser()
+		[Given(@"I have an active user( who have accepted the contract)?")]
+		public void GivenIHaveAnActiveUser(String acceptance)
 		{
 			CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
 
 			Current.Clear();
 			Current.Set(USER_EMAIL, UserPassword, false);
 
-			Service.Safe.AcceptContract();
+			var accepted = !String.IsNullOrEmpty(acceptance);
+			if (accepted)
+			{
+				Service.Safe.AcceptContract();
+			}
 		}
 
 		[Given(@"I have an account")]
@@ -38,7 +42,7 @@ namespace DFM.Tests.BusinessLogic
 			AccountUrl = Account.Url;
 		}
 
-		
+
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(String error)
 		{
