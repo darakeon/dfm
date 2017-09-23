@@ -146,10 +146,9 @@ disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
-## <a name="dev"></a>4.0.1.1 :ant: <sup>`8`</sup>
+## <a name="dev"></a>4.0.1.1 :ant: <sup>`7`</sup>
 - [ ] Change password should drop logins
 - [ ] Verify create / edit / schedule transfer move (browser)
-- [ ] Add contract accept datetime (IP?)
 - [x] `2017-09-19 > 2017-09-20` Contract acceptance warning at android
 - [x] `2017-09-10 > 2017-09-10` Remove license check from android
 - [x] `2017-09-16 > 2017-09-16` Fix delete empty account with detailed
