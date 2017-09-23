@@ -340,7 +340,7 @@ namespace DFM.BusinessLogic.Services
 				acceptanceRepository.GetOrCreate(user, contract)
 			);
 
-			return acceptance?.Accepted ?? true;
+			return acceptance?.Accepted ?? false;
 		}
 
 
