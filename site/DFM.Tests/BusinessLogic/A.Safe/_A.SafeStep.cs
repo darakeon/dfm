@@ -115,7 +115,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			var passwordForm = new PasswordForm(otherUser.Password, otherUser.Password);
 			Service.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, false, Defaults.CONFIG_LANGUAGE);
 
-			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, otherUser.Password, SecurityAction.UserVerification);
+			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, SecurityAction.UserVerification);
 			Service.Safe.ActivateUser(tokenActivate);
 		}
 
@@ -168,7 +168,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the user will be saved")]
 		public void ThenTheUserWillBeSaved()
 		{
-			var tokenActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
+			var tokenActivate = DBHelper.GetLastTokenForUser(email, SecurityAction.UserVerification);
 			
 			Service.Safe.ActivateUser(tokenActivate);
 
@@ -203,7 +203,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			Service.Safe.SendPasswordReset(User.Email);
 
-			token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.PasswordReset);
+			token = DBHelper.GetLastTokenForUser(User.Email, SecurityAction.PasswordReset);
 		}
 		
 		[When(@"I try to activate the user")]
@@ -258,7 +258,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			Service.Safe.SendUserVerify(email);
 
-			var tokenToActivate = DBHelper.GetLastTokenForUser(email, password, SecurityAction.UserVerification);
+			var tokenToActivate = DBHelper.GetLastTokenForUser(email, SecurityAction.UserVerification);
 
 			Service.Safe.ActivateUser(tokenToActivate);
 		}
@@ -348,7 +348,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a token of user verification")]
 		public void GivenIPassATokenOfUserVerification()
 		{
-			token = DBHelper.GetLastTokenForUser(User.Email, User.Password, SecurityAction.UserVerification);
+			token = DBHelper.GetLastTokenForUser(User.Email, SecurityAction.UserVerification);
 		}
 
 		[Given(@"I pass this password")]
@@ -432,7 +432,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void GivenIPassATokenOfUserVerificationWithActionPasswordReset(String strTokenOf, String strAction)
 		{
 			var tokenOf = EnumX.Parse<SecurityAction>(strTokenOf);
-			token = DBHelper.GetLastTokenForUser(email, password, tokenOf);
+			token = DBHelper.GetLastTokenForUser(email, tokenOf);
 
 			action = EnumX.Parse<SecurityAction>(strAction);
 		}
@@ -712,7 +712,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void GivenIPassTheValidToken(String strAction)
 		{
 			action = EnumX.Parse<SecurityAction>(strAction);
-			token = DBHelper.GetLastTokenForUser(email, password, action);
+			token = DBHelper.GetLastTokenForUser(email, action);
 		}
 
 		[Given(@"I have a ticket of this user")]

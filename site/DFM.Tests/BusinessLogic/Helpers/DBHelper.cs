@@ -17,7 +17,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			$"Server={server};Database={database};Uid={login};Pwd={passwordDB};";
 
 
-		public static String GetLastTokenForUser(String email, String password, SecurityAction action)
+		public static String GetLastTokenForUser(String email, SecurityAction action)
 		{
 			String token;
 
