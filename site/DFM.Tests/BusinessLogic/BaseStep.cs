@@ -82,7 +82,7 @@ namespace DFM.Tests.BusinessLogic
 
 					if (shouldActivateUser)
 					{
-						var token = DBHelper.GetLastTokenForUser(userEmail, userPassword, SecurityAction.UserVerification);
+						var token = DBHelper.GetLastTokenForUser(userEmail, SecurityAction.UserVerification);
 						Service.Safe.ActivateUser(token);
 					}
 
