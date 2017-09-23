@@ -1,7 +1,7 @@
 ﻿Feature: Bl. Get Account List
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 
 Scenario: Bl01. Get all active accounts
 	Given I have this account

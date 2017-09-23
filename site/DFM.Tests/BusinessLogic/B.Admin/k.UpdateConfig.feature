@@ -1,7 +1,7 @@
 ﻿Feature: Bk. Update Config
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I enable Categories use
 	And I have a category
 

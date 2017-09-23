@@ -1,7 +1,7 @@
 ﻿Feature: Bh. Update of Category
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I enable Categories use
 
 Scenario: Bh01. Change the name (S)

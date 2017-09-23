@@ -1,7 +1,7 @@
 ﻿Feature: Bb. Get Account by Url
 
 Background:
-	Given I have an active user
+	Given I have an active user who have accepted the contract
 	And I have an account
 
 Scenario: Bb01. Try to get Account with wrong Url (E)

@@ -1,7 +1,7 @@
 ﻿Feature: Ao. Accept Contract
 	Background: 
 		Given I have a contract
-		And I have an active user
+		And I have an active user who have accepted the contract
 
 Scenario: Ao01. Accept contract not accepted before
 	When I try to accept the contract

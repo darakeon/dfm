@@ -67,7 +67,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         

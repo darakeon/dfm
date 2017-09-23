@@ -71,7 +71,7 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
  testRunner.And("I login the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
