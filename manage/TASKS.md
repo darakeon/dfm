@@ -144,6 +144,7 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 - [ ] Add link to github Issues
+- [ ] Add to github README the libraries used
 
 ## <a name="dev"></a>4.0.1.1 :ant: <sup>`8`</sup>
 - [ ] Change password should drop logins
