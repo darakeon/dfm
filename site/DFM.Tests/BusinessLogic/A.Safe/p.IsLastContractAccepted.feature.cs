@@ -68,8 +68,6 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line 2
  #line 3
   testRunner.Given("I have a contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 4
-  testRunner.And("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -78,12 +76,14 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void Ap01_GetAcceptedContract()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ap01. Get accepted contract", ((string[])(null)));
-#line 6
+#line 5
 this.ScenarioSetup(scenarioInfo);
 #line 2
  this.FeatureBackground();
+#line 6
+ testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Given("I have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("I have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
  testRunner.When("I try to get the acceptance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
@@ -104,13 +104,40 @@ this.ScenarioSetup(scenarioInfo);
 #line 2
  this.FeatureBackground();
 #line 13
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.When("I try to get the acceptance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to get the acceptance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
  testRunner.And("the contract status will be not accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Ap03. Get accepted if previous is not accepted")]
+        public virtual void Ap03_GetAcceptedIfPreviousIsNotAccepted()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ap03. Get accepted if previous is not accepted", ((string[])(null)));
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 2
+ this.FeatureBackground();
+#line 20
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+ testRunner.And("I have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+ testRunner.When("I try to get the acceptance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+ testRunner.And("the contract status will be accepted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
