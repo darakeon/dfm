@@ -130,15 +130,18 @@ language and display options.
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.0.2.1 :ant: <sup>`6`</sup>
+## 4.0.2.1 :ant: <sup>`5`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
-- [ ] Upgrade to Android Studio 3.0
 
-## 4.0.2.0 :sheep: <sup>`4`</sup>
+## 4.0.2.0 :sheep: <sup>`8`</sup>
+- [ ] Upgrade to Android Studio 3.0
+- [ ] Upgrade to VS 2017
+- [ ] Improve messages for empty table
+- [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
