@@ -149,6 +149,9 @@ disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
+## 4.0.1.2 :ant: <sup>`1`</sup>
+- [x] `2017-09-24 > 2017-09-24` Fix mobile site communication
+
 ## 4.0.1.1 :ant: <sup>`7`</sup>
 - [x] `2017-09-23 > 2017-09-23` Change password should drop logins
 - [x] `2017-09-23 > 2017-09-23` Verify create / edit / schedule

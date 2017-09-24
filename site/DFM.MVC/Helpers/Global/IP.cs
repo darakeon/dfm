@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace DFM.MVC.Helpers.Global
 {
 	public class IP
 	{
-		private const string relative_path = @"../../android/DFM/src/main/kotlin/com/darakeon/dfm/api/Site.kt";
-		private const string domain_declaration = "	internal val Domain = ";
+		private const string relative_path = @"../../android/DFM/src/main/res/values/localaddress.xml";
 
 		internal static String Get()
 		{
@@ -27,11 +27,6 @@ namespace DFM.MVC.Helpers.Global
 			save("\"" + Get() + "\"");
 		}
 
-		internal static void SaveOnline()
-		{
-			save("publicDomain");
-		}
-
 		private static void save(String address)
 		{
 			var currentPath = Directory.GetCurrentDirectory();
@@ -47,18 +42,16 @@ namespace DFM.MVC.Helpers.Global
 
 			for (var l = 0; l < lines.Length; l++)
 			{
-				if (lines[l].StartsWith(domain_declaration))
+				var regex = new Regex(@"\d*\.\d*\.\d*\.\d*");
+				if (regex.IsMatch(lines[l]))
 				{
-					lines[l] = domain_declaration + address;
+					lines[l] = regex.Replace(lines[l], Get());
 					break;
 				}
 			}
 
 			File.WriteAllLines(path, lines);
 		}
-
-
-
 
 	}
 }

@@ -149,8 +149,6 @@ namespace DFM.MVC
 		// ReSharper restore InconsistentNaming
 		{
 			SessionFactoryManager.End();
-
-			IP.SaveOnline();
 		}
 
 

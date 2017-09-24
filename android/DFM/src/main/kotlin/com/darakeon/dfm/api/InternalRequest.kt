@@ -113,7 +113,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
 
 	private fun getUrl(): String {
-		var completeUrl = Site.GetProtocol() + "://" + Site.Domain + "/Api"
+		var completeUrl = getSite("Api")
 
 		if (parameters.containsKey("ticket")) {
 			completeUrl += "-" + parameters["ticket"]
@@ -135,6 +135,24 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		return completeUrl
 	}
 
+	fun getSite(path: String) : String {
+		val publicDomain = "dontflymoney.com"
+		val googlePlay = "com.android.vending"
+
+		val installer = activity.packageManager
+				.getInstallerPackageName(activity.packageName)
+		val isProd = installer == googlePlay
+
+		val domain =
+			if (isProd)
+				publicDomain
+			else
+				activity.getString(R.string.local_address)
+
+		val protocol = if (isProd) "http" else "https"
+
+		return "$protocol://$domain/$path"
+	}
 
 	private fun handleResponse(response: JSONObject, step: Step) {
 		val internalResponse = InternalResponse(response)
