@@ -147,7 +147,7 @@ disabled
 - [ ] Add to github README the libraries used
 
 ## <a name="dev"></a>4.0.1.1 :ant: <sup>`7`</sup>
-- [ ] Change password should drop logins
+- [x] `2017-09-23 > 2017-09-23` Change password should drop logins
 - [x] `2017-09-23 > 2017-09-23` Verify create / edit / schedule
 transfer move (browser)
 - [x] `2017-09-19 > 2017-09-20` Contract acceptance warning at android
