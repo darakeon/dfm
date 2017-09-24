@@ -137,7 +137,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.0.2.0 :sheep: <sup>`8`</sup>
+## <a name="dev"></a>4.0.2.0 :sheep: <sup>`8`</sup>
 - [ ] Upgrade to Android Studio 3.0
 - [ ] Upgrade to VS 2017
 - [ ] Improve messages for empty table
@@ -149,7 +149,7 @@ disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
-## <a name="dev"></a>4.0.1.1 :ant: <sup>`7`</sup>
+## 4.0.1.1 :ant: <sup>`7`</sup>
 - [x] `2017-09-23 > 2017-09-23` Change password should drop logins
 - [x] `2017-09-23 > 2017-09-23` Verify create / edit / schedule
 transfer move (browser)
