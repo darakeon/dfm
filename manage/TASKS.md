@@ -149,7 +149,7 @@ disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
-## 4.0.1.2 :ant: <sup>`1`</sup>
+## <a name="publish"></a>4.0.1.2 :ant: <sup>`1`</sup>
 - [x] `2017-09-24 > 2017-09-24` Fix mobile site communication
 
 ## 4.0.1.1 :ant: <sup>`7`</sup>
@@ -165,7 +165,7 @@ detailed schedule
 - [x] `2017-09-10 > 2017-09-10` Warning that you need to create
 categories on site to make moves
 
-## <a name="publish"></a>4.0.1.0 :sheep: <sup>`8`</sup>
+## 4.0.1.0 :sheep: <sup>`8`</sup>
 - [x] `2017-09-09 > 2017-09-09` Make tasks file as MD
 - [x] `2017-09-09 > 2017-09-09` Update twitter with recent versions
 - [x] `2017-09-09 > 2017-09-09` Translate tasks file to english
