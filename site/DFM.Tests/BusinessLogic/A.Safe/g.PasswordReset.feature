@@ -41,3 +41,4 @@ Scenario: Ag99. Password reset with info all right (S)
 	Then I will receive no core error
 	And the password will be changed
 	And the token will not be valid anymore
+	And only the last ticket will be active

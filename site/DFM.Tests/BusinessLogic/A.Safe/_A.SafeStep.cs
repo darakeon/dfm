@@ -407,23 +407,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
-			Error = null;
+			Service.Safe.SendUserVerify(email);
+			token = DBHelper.GetLastTokenForUser(email, SecurityAction.UserVerification);
+			Service.Safe.ActivateUser(token);
+			
+			var newTicket = Service.Safe.ValidateUserAndCreateTicket(
+				email, newPassword, TicketKey, TicketType.Local
+			);
 
-			try
-			{
-				var testLocalTicket = TK.New();
-				
-				Service.Safe.ValidateUserAndCreateTicket(
-					email, newPassword, testLocalTicket, TicketType.Local
-				);
-			}
-			catch (DFMCoreException e)
-			{
-				if (e.Type != ExceptionPossibilities.DisabledUser)
-					Error = e;
-			}
-
-			Assert.IsNull(Error);
+			Assert.IsNotNull(newTicket);
 		}
 		#endregion
 
@@ -592,6 +584,18 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Error = e;
 			}
+		}
+
+		[Then(@"only the last ticket will be active")]
+		public void ThenThereWillBeNoActiveLogins()
+		{
+			logins = Service.Safe.ListLogins();
+			Assert.IsNotNull(logins);
+			Assert.AreEqual(1, logins.Count);
+
+			var safeTicketPart = 
+				TicketKey.Substring(0, Defaults.TICKET_SHOWED_PART);
+            Assert.AreEqual(safeTicketPart, logins.First().Key);
 		}
 		#endregion ChangePassword
 

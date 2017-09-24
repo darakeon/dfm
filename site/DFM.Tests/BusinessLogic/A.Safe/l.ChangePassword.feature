@@ -51,4 +51,4 @@ Scenario: Al99. Password change with info all right (S)
 	When I try to change the password
 	Then I will receive no core error
 	And the password will be changed
-	And the ticket will not be valid anymore
+	And only the last ticket will be active
