@@ -54,3 +54,5 @@ smtp.config
 android/DFM/src/main/res/values/license.xml
 
 site/TestResults/*
+
+android/*/*.apk
