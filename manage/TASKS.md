@@ -150,8 +150,8 @@ disabled
 - [ ] Fix account stati icons - should not be all the same
 
 ## <a name="dev"></a>4.0.2.0 :sheep: <sup>`4`</sup>
-- [ ] Upgrade to Android Studio 3.0
-- [ ] Upgrade to VS 2017
+- [ ] `2017-09-24 > ...` Upgrade to Android Studio 3.0
+- [ ] `2017-09-24 > ...` Upgrade to VS 2017
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
