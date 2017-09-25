@@ -153,7 +153,7 @@ disabled
 - [ ] `2017-09-24 > ...` Upgrade to Android Studio 3.0
 - [ ] `2017-09-24 > ...` Upgrade to VS 2017
 - [ ] Add link to github Issues
-- [ ] Add to github README the libraries used
+- [x] `2017-09-24 > 2017-09-24` Add to github README the libraries used
 
 ## <a name="publish"></a>4.0.1.3 :ant: <sup>`1`</sup>
 - [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug

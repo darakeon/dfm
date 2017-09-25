@@ -36,3 +36,15 @@ itself. Well, we are always our most demanding client.
 - [Collaborate](docs/COLLABORATE.md)
 - [License (GPL)](LICENSE.md)
 - [Task list](manage/TASKS.md)
+
+### Technologies
+
+- [Kotlin - Android](https://kotlinlang.org/)
+- [SpecFlow - BDD](http://specflow.org/)
+- [NHibernate - ORM](http://nhibernate.info/)
+- [DK](https://github.com/darakeon/dk-lib)
+
+### Tools
+
+- [Android Studio](https://developer.android.com/studio/index.html)
+- [Visual Studio Community](https://www.visualstudio.com/vs/)
