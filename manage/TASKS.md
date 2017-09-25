@@ -152,7 +152,7 @@ disabled
 ## <a name="dev"></a>4.0.2.0 :sheep: <sup>`4`</sup>
 - [ ] `2017-09-24 > ...` Upgrade to Android Studio 3.0
 - [ ] `2017-09-24 > ...` Upgrade to VS 2017
-- [ ] Add link to github Issues
+- [x] `2017-09-24 > 2017-09-24` Add link to github Issues
 - [x] `2017-09-24 > 2017-09-24` Add to github README the libraries used
 
 ## <a name="publish"></a>4.0.1.3 :ant: <sup>`1`</sup>

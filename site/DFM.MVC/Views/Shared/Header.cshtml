@@ -21,6 +21,12 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="https://github.com/darakeon/dfm/issues" target="_blank">
+						<span class="glyphicon glyphicon-fire"></span>
+					</a>
+				</li>
+
 				@if (!Model.IsAuthenticated)
 				{
 					<li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new {action = "LogOn", controller = "Users"})</li>
