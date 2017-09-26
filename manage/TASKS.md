@@ -149,6 +149,10 @@ disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
 
+## 4.0.1.3 :ant: <sup>`2`</sup>
+- [ ] Really fix mobile site communication
+- [ ] Record log on error at mobile
+
 ## <a name="publish"></a>4.0.1.2 :ant: <sup>`1`</sup>
 - [x] `2017-09-24 > 2017-09-24` Fix mobile site communication
 
