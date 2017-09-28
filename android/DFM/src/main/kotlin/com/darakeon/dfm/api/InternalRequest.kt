@@ -149,7 +149,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 			else
 				activity.getString(R.string.local_address)
 
-		val protocol = if (isProd) "http" else "https"
+		val protocol = if (isProd) "https" else "http"
 
 		return "$protocol://$domain/$path"
 	}
