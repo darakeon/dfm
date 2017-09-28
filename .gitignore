@@ -1,6 +1,10 @@
 syntax: glob
 *.orig
+.hg*
+
 pseudo-debug.txt
+
+# Site (.NET)
 site/*ReSharper*
 site/*/bin
 site/*/obj
@@ -9,11 +13,20 @@ site/**.user
 site/*dotCover
 site/DFM.MVC/data/log_files
 site/DFM.MVC/Web.Release.config
-android/**.class
-android/**.apk
-android/**.dex
-android/**.ap_
-android/.metadata/.plugins/org.eclipse.cdt.core/.log
+site/packages/*
+site/Library/DK/*.pdb
+site/DFM.MVC/DFM.MVC.Publish.xml
+site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
+site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
+site/TestResults/*
+*/.vs/*
+*.user
+smtp.config
+
+# Android (Kotlin)
+android/*/*.apk
+android/*/*.dex
+android/*/*.ap_
 android/res/values/license.xml
 android/.gradle
 android/local.properties
@@ -24,37 +37,5 @@ android/build
 android/**.iml
 android/gradlew
 android/gradlew.bat
-
-*/.vs/*
-site/packages/*
-site/Library/DK/*.pdb
-syntax: regexp
-^(.*[\\/])?gen[\\/].*
-^(.*[\\/])?bin[\\/].*
-^(.*[\\/])?obj[\\/].*
-^(.*[\\/])?log[\\/].*
-^(.*[\\/])?obf[\\/].*
-^(.*[\\/])?jars[\\/].*
-^(.*[\\/])?jar-sources[\\/].*
-^(.*[\\/])?javadoc[\\/].*
-^(.*[\\/])?\.metadata[\\/].*
-^(.*[\\/])?\.settings[\\/].*
-
-site/Library/DK/*.pdb
-.hg*
-site/DFM.MVC/DFM.MVC.Publish.xml
-site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
-site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
-
-*.user
 *.iml
-
-smtp.config
-
-android/DFM/src/main/res/values/license.xml
-
-site/TestResults/*
-
-android/*/*.apk
-
-/android/DFM/src/main/res/values/localaddress.xml
+android/DFM/src/main/res/values/localaddress.xml
