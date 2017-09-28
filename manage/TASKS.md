@@ -126,10 +126,9 @@ is stolen
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## 4.0.3.0 :sheep: <sup>`5`</sup>
+## 4.0.3.0 :sheep: <sup>`4`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific
 language and display options.
-- [ ] Fix transfer edit
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
