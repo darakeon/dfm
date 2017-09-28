@@ -112,6 +112,10 @@ is stolen
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
+## 4.1.0.1 :sheep: <sup>`2`</sup>
+- [ ] Make android automated tests
+- [ ] Make selenium automated tests - web
+
 ## 4.1.0.0 :whale: <sup>`2`</sup>
 - [ ] Fix places where the understanding depends on colors
 - [ ] Fix account stati icons - should not be all the same
@@ -150,7 +154,7 @@ disabled
 - [ ] Add to github README the libraries used
 
 ## 4.0.1.3 :ant: <sup>`2`</sup>
-- [ ] Really fix mobile site communication
+- [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug
 - [ ] Record log on error at mobile
 
 ## <a name="publish"></a>4.0.1.2 :ant: <sup>`1`</sup>
