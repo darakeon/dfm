@@ -140,7 +140,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.0.2.0 :sheep: <sup>`8`</sup>
+## <a name="dev"></a>4.0.2.0 :sheep: <sup>`9`</sup>
 - [ ] Upgrade to Android Studio 3.0
 - [ ] Upgrade to VS 2017
 - [ ] Improve messages for empty table
@@ -151,10 +151,10 @@ disabled
 disabled
 - [ ] Add link to github Issues
 - [ ] Add to github README the libraries used
-
-## 4.0.1.3 :ant: <sup>`2`</sup>
-- [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug
 - [ ] Record log on error at mobile
+
+## 4.0.1.3 :ant: <sup>`1`</sup>
+- [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug
 
 ## <a name="publish"></a>4.0.1.2 :ant: <sup>`1`</sup>
 - [x] `2017-09-24 > 2017-09-24` Fix mobile site communication
