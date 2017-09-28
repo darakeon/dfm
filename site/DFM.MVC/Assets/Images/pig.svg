@@ -30,12 +30,12 @@
   <circle cx="350" cy="331" r="256" fill="#FAA" />
   
   <ellipse cx="232" cy="259" rx="94" ry="96" fill="#FFF" />
-  <circle cx="256" cy="274" r="29" fill="#000" />
+  <circle cx="255" cy="274" r="28" fill="#000" />
 
   <ellipse cx="468" cy="259" rx="94" ry="96" fill="#FFF" />
-  <circle cx="444" cy="274" r="29" fill="#000" />
+  <circle cx="445" cy="274" r="28" fill="#000" />
   
-  <ellipse cx="350" cy="415" rx="149" ry="125" fill="#FAA" stroke="#000" stroke-width="10" />
+  <ellipse cx="350" cy="415" rx="144" ry="120" fill="#FAA" stroke="#000" stroke-width="8" />
   <circle cx="283" cy="405" r="29" fill="#000" />
   <circle cx="417" cy="405" r="29" fill="#000" />
 </svg>

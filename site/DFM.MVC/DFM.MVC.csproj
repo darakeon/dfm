@@ -159,8 +159,8 @@
     <Content Include="Assets\Bootstrap\Themes\bootstrap-superhero.min.css" />
     <Content Include="Assets\Bootstrap\Themes\bootstrap-united.min.css" />
     <Content Include="Assets\Bootstrap\Themes\bootstrap-yeti.min.css" />
-    <Content Include="Assets\Images\big_pig.png" />
     <Content Include="Assets\Images\github.png" />
+    <Content Include="Assets\Images\pig.svg" />
     <Content Include="Assets\Scripts\dynamic-theme-change.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.js" />
@@ -191,7 +191,6 @@
     <Content Include="Assets\Bootstrap\Themes\bootstrap-spacelab.min.css" />
     <Content Include="Assets\Images\android.png" />
     <Content Include="Assets\Images\pig.ico" />
-    <Content Include="Assets\Images\little_pig.png" />
     <Content Include="Assets\Images\ptbr_apps_rgb_wo.jpg" />
     <Content Include="Assets\Scripts\default.js" />
     <Content Include="Assets\Scripts\toggle.js" />
