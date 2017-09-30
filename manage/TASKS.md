@@ -104,7 +104,7 @@ is stolen
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
 
-## 4.1.1.0 :sheep: <sup>`6`</sup>
+## 4.1.3.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
 - [ ] Enable to check moves on closed accounts
 - [ ] Check move without reload screen - web
@@ -112,51 +112,53 @@ is stolen
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.0.1 :sheep: <sup>`2`</sup>
+## 4.1.2.2 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 
-## 4.1.0.0 :whale: <sup>`2`</sup>
-- [ ] Fix places where the understanding depends on colors
-- [ ] Fix account stati icons - should not be all the same
-
-## 4.0.3.1 :ant: <sup>`4`</sup>
+## 4.1.2.1 :ant: <sup>`4`</sup>
 - [ ] Transform service receiving / returns into DTO
 - [ ] IDs Int64
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## 4.0.3.0 :sheep: <sup>`4`</sup>
+## 4.1.2.0 :sheep: <sup>`4`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific
 language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.0.2.1 :ant: <sup>`5`</sup>
+## 4.1.1.1 :ant: <sup>`5`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.0.2.0 :sheep: <sup>`9`</sup>
-- [ ] Upgrade to Android Studio 3.0
-- [ ] Upgrade to VS 2017
+## 4.1.1.0 :sheep: <sup>`5`</sup>
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
-- [ ] Add link to github Issues
-- [ ] Add to github README the libraries used
 - [ ] Record log on error at mobile
 
-## 4.0.1.3 :ant: <sup>`1`</sup>
+## 4.1.0.0 :whale: <sup>`2`</sup>
+- [ ] Fix places where the understanding depends on colors
+- [ ] Fix account stati icons - should not be all the same
+
+## <a name="dev"></a>4.0.2.0 :sheep: <sup>`4`</sup>
+- [ ] Upgrade to Android Studio 3.0
+- [ ] Upgrade to VS 2017
+- [ ] Add link to github Issues
+- [ ] Add to github README the libraries used
+
+## <a name="publish"></a>4.0.1.3 :ant: <sup>`1`</sup>
 - [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug
 
-## <a name="publish"></a>4.0.1.2 :ant: <sup>`1`</sup>
+## 4.0.1.2 :ant: <sup>`1`</sup>
 - [x] `2017-09-24 > 2017-09-24` Fix mobile site communication
 
 ## 4.0.1.1 :ant: <sup>`7`</sup>
