@@ -404,7 +404,6 @@
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Assets\Bootstrap\Scripts\jquery-1.9.1.min.map" />
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />

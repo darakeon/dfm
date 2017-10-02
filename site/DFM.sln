@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Console4Tests", "DFM.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.AssetPackages", "DFM.AssetPackages\DFM.AssetPackages.csproj", "{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,16 @@ Global
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}.Release|x86.ActiveCfg = Release|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Debug|x86.Build.0 = Debug|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|x86.ActiveCfg = Release|Any CPU
+		{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
