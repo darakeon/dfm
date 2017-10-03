@@ -1,18 +1,6 @@
 ﻿@using DFM.Entities.Enums
 @model AccountSign
 
-@switch (Model)
-{
-	case AccountSign.Green:
-		@("success")
-		break;
-	case AccountSign.Yellow:
-		@("warning")
-		break;
-	case AccountSign.Red:
-		@("danger")
-		break;
-	default:
-		@("default")
-		break;
-}
+glyphicon
+glyphicon-@Html.Partial("AccountSignIcon", Model)
+text-@Html.Partial("AccountSignColor", Model)
