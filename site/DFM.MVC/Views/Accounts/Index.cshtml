@@ -29,15 +29,18 @@
 	var movesSum = account.Total();
 	var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
 	var className = movesSum < 0 ? "danger" : "info";
+	var sign = MultiLanguage.Dictionary[$"{account.Sign()}Limit"];
 
 	<tr class="row">
 		<td class="col-sm-6">
-			@Html.RouteLink(account.Name, RouteNames.ACCOUNT, new {accounturl = account.Url, controller = String.Empty})
+			@Html.RouteLink(account.Name, RouteNames.ACCOUNT, new { accounturl = account.Url, controller = String.Empty })
 		</td>
 
 		<td class="col-sm-1"></td>
 		<td class="col-sm-2 text-right">
-			<span class="glyphicon glyphicon-tags pull-left text-@Html.Partial("AccountSign", account.Sign())"></span>
+			<span class="@Html.Partial("AccountSign", account.Sign()) pull-left"
+				  data-toggle="tooltip" data-placement="bottom" title="@sign"
+				  data-original-title="@sign" />
 			<span class="text-@className">@value</span>
 		</td>
 		<td class="col-sm-1"></td>
@@ -51,19 +54,18 @@
 		<td class="col-sm-1 text-center">
 			@if (account.HasMoves())
 			{
-				<a href="@Url.Action("Close", new {id = account.Url})" 
+				<a href="@Url.Action("Close", new {id = account.Url})"
 				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)">
 					<span class="glyphicon glyphicon-eye-close"></span>
 				</a>
 			}
 			else
 			{
-				<a href="@Url.Action("Delete", new {id = account.Url})" 
+				<a href="@Url.Action("Delete", new {id = account.Url})"
 				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)">
 					<span class="glyphicon glyphicon-trash"></span>
 				</a>
 			}
 		</td>
 	</tr>
-
 }

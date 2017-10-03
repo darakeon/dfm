@@ -357,7 +357,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Views\Accounts\CreateEdit.cshtml" />
-    <Content Include="Views\Accounts\AccountSign.cshtml" />
+    <Content Include="Views\Accounts\AccountSignIcon.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\ListClosed.cshtml" />
     <Content Include="Views\Categories\CreateEdit.cshtml" />
@@ -420,6 +420,8 @@
     <Content Include="Views\Contracts\004000000000.cshtml" />
     <Content Include="Views\Ops\Help.cshtml" />
     <Content Include="smtp.config" />
+    <Content Include="Views\Accounts\AccountSignColor.cshtml" />
+    <Content Include="Views\Accounts\AccountSign.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

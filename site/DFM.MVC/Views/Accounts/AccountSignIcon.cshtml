@@ -1,0 +1,18 @@
+﻿@using DFM.Entities.Enums
+@model AccountSign
+
+@switch (Model)
+{
+	case AccountSign.Green:
+		@("thumbs-up")
+		break;
+	case AccountSign.Yellow:
+		@("adjust")
+		break;
+	case AccountSign.Red:
+		@("thumbs-down")
+		break;
+	default:
+		@("ban-circle")
+		break;
+}
