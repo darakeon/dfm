@@ -145,7 +145,8 @@ disabled
 disabled
 - [ ] Record log on error at mobile
 
-## <a name="dev"></a>4.1.0.0 :whale: <sup>`2`</sup>
+## <a name="dev"></a>4.1.0.0 :whale: <sup>`3`</sup>
+- [ ] Put tooltips and titles on glyphicons
 - [ ] Fix places where the understanding depends on colors
 - [ ] Fix account stati icons - should not be all the same
 
