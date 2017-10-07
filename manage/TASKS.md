@@ -145,17 +145,17 @@ disabled
 disabled
 - [ ] Record log on error at mobile
 
-## 4.1.0.0 :whale: <sup>`2`</sup>
+## <a name="dev"></a>4.1.0.0 :whale: <sup>`2`</sup>
 - [ ] Fix places where the understanding depends on colors
 - [ ] Fix account stati icons - should not be all the same
 
-## <a name="dev"></a>4.0.2.0 :sheep: <sup>`4`</sup>
+## <a name="publish"></a>4.0.2.0 :sheep: <sup>`4`</sup>
 - [x] `2017-09-24 > 2017-10-07` Upgrade to Android Studio 3.0
 - [x] `2017-09-24 > 2017-10-07` Upgrade to VS 2017
 - [x] `2017-09-24 > 2017-09-24` Add link to github Issues
 - [x] `2017-09-24 > 2017-09-24` Add to github README the libraries used
 
-## <a name="publish"></a>4.0.1.3 :ant: <sup>`1`</sup>
+## 4.0.1.3 :ant: <sup>`1`</sup>
 - [x] `2017-09-27 > 2017-09-27` Fix THE NEW communication bug
 
 ## 4.0.1.2 :ant: <sup>`1`</sup>
