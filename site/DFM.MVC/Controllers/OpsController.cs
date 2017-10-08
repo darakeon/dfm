@@ -56,5 +56,13 @@ namespace DFM.MVC.Controllers
 		}
 
 
+		public ActionResult Legend()
+		{
+			var model = new BaseModel();
+
+			return View(model);
+		}
+
+
 	}
 }

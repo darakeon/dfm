@@ -13,10 +13,6 @@
 		<AccountClosed text="Account '{0}' closed." />
 		<AccountDeleted text="Account '{0}' deleted." />
 		<Report text="Report" />
-		<RedLimit text="Danger" />
-		<YellowLimit text="Watchout" />
-		<GreenLimit text="All right" />
-		<NoneLimit text="No limit" />
 		<LimitExplanation text="Change the account sign according to its value." />
 		<AccountHasLimit text="Account has limits" />
 		<Url text="Url" />
@@ -35,10 +31,6 @@
 		<AccountClosed text="Conta '{0}' fechada." />
 		<AccountDeleted text="Conta '{0}' apagada." />
 		<Report text="Relatórios" />
-		<RedLimit text="Cuidado" />
-		<YellowLimit text="Atenção" />
-		<GreenLimit text="Tudo bem" />
-		<NoneLimit text="Sem limites" />
 		<LimitExplanation text="Troca a sinalização da conta de acordo com o valor dela" />
 		<AccountHasLimit text="Mostrar sinalização na Conta" />
 		<Url text="Url" />

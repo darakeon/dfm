@@ -81,7 +81,13 @@
 		@if (Model.CanCheck)
 		{
 			<td class="text-center">
-				<span class="glyphicon glyphicon-@(move.Checked ? "exclamation-sign text-success" : "question-sign text-danger")"></span>
+				<span class="
+					glyphicon glyphicon-@(
+						move.Checked 
+							? "exclamation-sign text-success"
+							: "question-sign text-danger"
+					)
+				"></span>
 			</td>
 		}
 

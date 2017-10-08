@@ -7,10 +7,6 @@
 		<ShortDateFormat text="{1} {0}" />
 		<Month text="Month" />
 		<Summary text="Summary" />
-		<Check text="Check"/>
-		<Uncheck text="Uncheck"/>
-		<Checked text="Checked"/>
-		<Unchecked text="Unchecked"/>
 	</en-US>
 	<pt-BR>
 		<NoMonthMoves text="Não há Movimentações para este mês." />
@@ -19,9 +15,5 @@
 		<ShortDateFormat text="{0} de {1}" />
 		<Month text="Mês" />
 		<Summary text="Resumo" />
-		<Check text="Marcar"/>
-		<Uncheck text="Desmarcar"/>
-		<Checked text="Verificado"/>
-		<Unchecked text="Pendente"/>
 	</pt-BR>
 </reports>

@@ -10,7 +10,6 @@
 		<ForgotPassword text="Forgot my password" />
 		<FollowEmailIntructions text="Follow the instructions in the e-mail sent." />
 		<PayAttentionSender text="Pay attention to the sender address: it MUST be " />
-		<Settings text="Settings" />
 		<UseCategories text="Use categories" />
 		<SendMoveEmail text="Send e-mail when record move" />
 		<MoveCheck text="Move can be checked / unchecked" />
@@ -40,7 +39,6 @@
 		<ForgotPassword text="Esqueci minha senha" />
 		<FollowEmailIntructions text="Siga as instruções no e-mail enviado." />
 		<PayAttentionSender text="Atenção para o remetente do e-mail: PRECISA ser " />
-		<Settings text="Configurações" />
 		<UseCategories text="Usar categorias" />
 		<SendMoveEmail text="Enviar e-mail ao gravar movimentação" />
 		<MoveCheck text="Movimentação pode ser verificada" />

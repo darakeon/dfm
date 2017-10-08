@@ -22,6 +22,10 @@
 		<New text="New" />
 		<Logon text="Logon" />
 		<ScheduleRun text="Schedule: {0}, but the moves were inserted successfuly"/>
+		<Check text="Check"/>
+		<Uncheck text="Uncheck"/>
+		<Enable text="Enable" />
+		<Disable text="Disable" />
 
 		<!--Status-->
 		<Status text="Status" />
@@ -37,6 +41,13 @@
 		<and text="and" />
 		<CharactersMax text="max. {0} characters" />
 		<DayNames text="S, M, T, W, T, F, S" />
+		<Checked text="Checked"/>
+		<Unchecked text="Unchecked"/>
+		<RedLimit text="Danger" />
+		<YellowLimit text="Watchout" />
+		<GreenLimit text="All right" />
+		<NoneLimit text="No limit" />
+		<Settings text="Settings" />
 
 		<!--Entities-->
 		<Account text="Account" />
@@ -100,6 +111,10 @@
 		<New text="Novo" />
 		<Logon text="Entrar" />
 		<ScheduleRun text="Agendamentos: {0}, mas movimentações foram inseridas com sucesso"/>
+		<Check text="Marcar"/>
+		<Uncheck text="Desmarcar"/>
+		<Enable text="Ativar" />
+		<Disable text="Desativar" />
 
 		<!--Status-->
 		<Status text="Status" />
@@ -115,6 +130,13 @@
 		<and text="e" />
 		<CharactersMax text="max. {0} caracteres" />
 		<DayNames text="D, S, T, Q, Q, S, S" />
+		<Checked text="Verificado"/>
+		<Unchecked text="Pendente"/>
+		<RedLimit text="Cuidado" />
+		<YellowLimit text="Atenção" />
+		<GreenLimit text="Tudo bem" />
+		<NoneLimit text="Sem limites" />
+		<Settings text="Configurações" />
 
 		<!--Entities-->
 		<Account text="Conta" />
