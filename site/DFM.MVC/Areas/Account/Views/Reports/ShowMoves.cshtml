@@ -1,6 +1,5 @@
 ﻿@using DFM.Generic.Pages
 @using DFM.MVC.Helpers
-@using DFM.Entities.Enums
 @using DFM.MVC.Models
 
 @model ReportsShowMovesModel
@@ -41,7 +40,7 @@
 
 		@if (Model.CanCheck)
 		{
-			<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Check"]</th>
+			<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Status"]</th>
 		}
 
 		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@(Model.CanCheck ? 3 : 2)">
@@ -81,26 +80,39 @@
 		@if (Model.CanCheck)
 		{
 			<td class="text-center">
-				<span class="
-					glyphicon glyphicon-@(
-						move.Checked 
-							? "exclamation-sign text-success"
-							: "question-sign text-danger"
-					)
-				"></span>
+				<span 
+					class="
+						glyphicon glyphicon-@(
+							move.Checked
+								? "exclamation-sign text-success"
+								: "question-sign text-danger"
+						)
+					"
+					title="@MultiLanguage.Dictionary[move.Checked ? "Checked" : "Unchecked"]"
+				></span>
 			</td>
 		}
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Edit", "Moves", new { id = move.ID })">
-				<span class="glyphicon glyphicon-edit"></span>
+				<span 
+					class="glyphicon glyphicon-edit"
+					title="@MultiLanguage.Dictionary["Edit"]"
+				></span>
 			</a>
 		</td>
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Delete", "Moves", new {id = move.ID})" 
-					class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed())">
-				<span class="glyphicon glyphicon-trash"></span>
+				class="withConfirm" 
+				confirm="@String.Format(
+					MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed()
+				)"
+			>
+				<span 
+					class="glyphicon glyphicon-trash"
+					title="@MultiLanguage.Dictionary["Delete"]"
+				></span>
 			</a>
 		</td>
 
@@ -110,12 +122,17 @@
 			var url = move.Checked
 				? Url.Action("Uncheck", "Moves", new { id = move.ID })
 				: Url.Action("Check", "Moves", new { id = move.ID });
+			var action = move.Checked ? "Uncheck" : "Check";
 
 			<td class="col-sm-1 text-center">
 				<a href="@url"
-						data-toggle="tooltip" data-placement="right" 
-						data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]">
-					<span class="glyphicon glyphicon-@(move.Checked ? "remove" : "ok")"></span>
+					data-toggle="tooltip" data-placement="right" 
+					data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]"
+				>
+					<span
+						class="glyphicon glyphicon-@(move.Checked ? "remove" : "ok")"
+						title="@MultiLanguage.Dictionary[action]"
+					></span>
 				</a>
 			</td>
 		}

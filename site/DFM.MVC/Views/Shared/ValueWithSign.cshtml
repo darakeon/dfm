@@ -1,14 +1,20 @@
 ﻿@model ValueWithSign
 
+@using DFM.Entities.Enums
+
 @{
 	var value = 
 		(Model.Value < 0 ? -Model.Value : Model.Value)
 			.ToMoney(Model.Language, Model.DifferentIfZero);
 
 	var className = Model.Value < 0 ? "danger" : "info";
+
+	var title = MultiLanguage.Dictionary[
+		(Model.Value > 0 ? MoveNature.In : MoveNature.Out).ToString()
+	];
 }
 
-<span class="text-@className">
+<span class="text-@className" title="@title">
 	<span class="@Html.Partial("Sign", Model.Value > 0)"></span>
 	@value
 </span>

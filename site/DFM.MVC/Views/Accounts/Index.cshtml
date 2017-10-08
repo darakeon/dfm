@@ -35,9 +35,11 @@
 
 		<td class="col-sm-1"></td>
 		<td class="col-sm-2 text-right">
-			<span class="@Html.Partial("AccountSign", account.Sign()) pull-left"
-				  data-toggle="tooltip" data-placement="bottom" title="@sign"
-				  data-original-title="@sign"></span>
+			<span
+				class="@Html.Partial("AccountSign", account.Sign()) pull-left"
+				data-toggle="tooltip" data-placement="bottom" title="@sign"
+				data-original-title="@sign"
+			></span>
 
 			@Html.Partial("ValueWithSign", 
 				new ValueWithSign(account.Total(), Model.Language))
@@ -46,7 +48,10 @@
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
-				<span class="glyphicon glyphicon-edit"></span>
+				<span
+					class="glyphicon glyphicon-edit"
+					title="@MultiLanguage.Dictionary["Edit"]"
+				></span>
 			</a>
 		</td>
 
@@ -54,15 +59,25 @@
 			@if (account.HasMoves())
 			{
 				<a href="@Url.Action("Close", new {id = account.Url})"
-				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)">
-					<span class="glyphicon glyphicon-eye-close"></span>
+					class="withConfirm" 
+					confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)"
+				>
+					<span
+						class="glyphicon glyphicon-eye-close"
+						title="@MultiLanguage.Dictionary["Close"]"
+					></span>
 				</a>
 			}
 			else
 			{
 				<a href="@Url.Action("Delete", new {id = account.Url})"
-				   class="withConfirm" confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)">
-					<span class="glyphicon glyphicon-trash"></span>
+					class="withConfirm" 
+					confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)"
+				>
+					<span
+						class="glyphicon glyphicon-trash"
+						title="@MultiLanguage.Dictionary["Delete"]"
+					></span>
 				</a>
 			}
 		</td>

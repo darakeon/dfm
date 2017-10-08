@@ -88,7 +88,7 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issue Tracker.
+        ///   Looks up a localized string similar to Any issues? Register here!.
         /// </summary>
         public static string IssueTracker {
             get {
