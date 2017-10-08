@@ -7,7 +7,7 @@ all planned. =)
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.0.0/manage/TASKS.md#dev)
+- [dev version state](../../4.1.1.0/manage/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.1.0 :sheep: <sup>`5`</sup>
+## <a name="dev"></a>4.1.1.0 :sheep: <sup>`5`</sup>
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
@@ -145,12 +145,12 @@ disabled
 disabled
 - [ ] Record log on error at mobile
 
-## <a name="dev"></a>4.1.0.0 :whale: <sup>`3`</sup>
+## <a name="publish"></a>4.1.0.0 :whale: <sup>`3`</sup>
 - [x] `2017-10-07 > 2017-10-08` Put titles on glyphicons
 - [x] `2017-10-07 > 2017-10-07` Fix places where the understanding depends on colors
 - [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be all the same
 
-## <a name="publish"></a>4.0.2.0 :sheep: <sup>`4`</sup>
+## 4.0.2.0 :sheep: <sup>`4`</sup>
 - [x] `2017-09-24 > 2017-10-07` Upgrade to Android Studio 3.0
 - [x] `2017-09-24 > 2017-10-07` Upgrade to VS 2017
 - [x] `2017-09-24 > 2017-09-24` Add link to github Issues
