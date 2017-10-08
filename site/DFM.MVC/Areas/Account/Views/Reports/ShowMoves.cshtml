@@ -1,5 +1,8 @@
 ﻿@using DFM.Generic.Pages
 @using DFM.MVC.Helpers
+@using DFM.Entities.Enums
+@using DFM.MVC.Models
+
 @model ReportsShowMovesModel
 
 @{
@@ -59,17 +62,19 @@
 
 		<td class="text-center">@move.Date.ToShortDateString() </td>
 
-		<td class="text-right text-info">
+		<td class="text-right">
 			@if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
 			{
-				@move.Total().ToMoney(Model.Language)
+				@Html.Partial("ValueWithSign",
+					new ValueWithSign(move.Total(), Model.Language))
 			}
 		</td>
 
-		<td class="text-right text-danger">
+		<td class="text-right">
 			@if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
 			{
-				@move.Total().ToMoney(Model.Language)
+				@Html.Partial("ValueWithSign",
+					new ValueWithSign(-move.Total(), Model.Language))
 			}
 		</td>
 

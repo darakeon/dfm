@@ -26,9 +26,6 @@
 
 @foreach (var account in Model.AccountList)
 {
-	var movesSum = account.Total();
-	var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
-	var className = movesSum < 0 ? "danger" : "info";
 	var sign = MultiLanguage.Dictionary[$"{account.Sign()}Limit"];
 
 	<tr class="row">
@@ -40,8 +37,10 @@
 		<td class="col-sm-2 text-right">
 			<span class="@Html.Partial("AccountSign", account.Sign()) pull-left"
 				  data-toggle="tooltip" data-placement="bottom" title="@sign"
-				  data-original-title="@sign" />
-			<span class="text-@className">@value</span>
+				  data-original-title="@sign"></span>
+
+			@Html.Partial("ValueWithSign", 
+				new ValueWithSign(account.Total(), Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
 

@@ -147,7 +147,7 @@ disabled
 
 ## <a name="dev"></a>4.1.0.0 :whale: <sup>`3`</sup>
 - [ ] Put tooltips and titles on glyphicons
-- [ ] Fix places where the understanding depends on colors
+- [x] `2017-10-07 > 2017-10-07` Fix places where the understanding depends on colors
 - [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be all the same
 
 ## <a name="publish"></a>4.0.2.0 :sheep: <sup>`4`</sup>

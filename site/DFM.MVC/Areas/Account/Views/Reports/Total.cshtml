@@ -1,17 +1,10 @@
 ﻿@model BaseAccountModel
 
-@{
-	var value = Model.Account.Total();
-	var negative = value < 0;
-	var signClass = negative ? "danger" : "info";
-
-	value *= negative ? -1 : 1;
-	var valueToShow = value.ToMoney(Model.Language);
-}
+@using DFM.MVC.Models
 
 <div class="well well-sm text-center">
 	<h6>@MultiLanguage.Dictionary["Total"]</h6>
-	<span class="text-@signClass">
-		@valueToShow
-	</span>
+	@Html.Partial("ValueWithSign", 
+		new ValueWithSign(Model.Account.Total(), Model.Language)
+	)
 </div>

@@ -1,6 +1,8 @@
-﻿@using DFM.Generic.Pages
+﻿@model ReportsSummarizeMonthsModel
+
+@using DFM.Generic.Pages
 @using DFM.MVC.Helpers
-@model ReportsSummarizeMonthsModel
+@using DFM.MVC.Models
 
 @{
 	ViewBag.Title = Model.Date;
@@ -31,13 +33,7 @@
 {
 	var _in = month.In();
 	var _out = month.Out();
-	var sum = month.Total();
 
-	var negative = sum < 0;
-	var className = negative ? "danger" : "info";
-
-	sum *= negative ? -1 : 1;
-			
 	if (_in == 0 && _out == 0)
 	{
 		continue;
@@ -49,9 +45,15 @@
 				@MultiLanguage.GetMonthName(month.Time)
 			</a>
 		</td>
-		<td class="col-sm-3 text-right text-info">@_in.ToMoney(Model.Language, true) </td>
-		<td class="col-sm-3 text-right text-danger">@_out.ToMoney(Model.Language, true) </td>
-		<td class="col-sm-3 text-right text-@className">@sum.ToMoney(Model.Language) </td>
+		<td class="col-sm-3 text-right">
+			@Html.Partial("ValueWithSign", new ValueWithSign(_in, Model.Language, true))
+		</td>
+		<td class="col-sm-3 text-right">
+			@Html.Partial("ValueWithSign", new ValueWithSign(-_out, Model.Language, true))
+		</td>
+		<td class="col-sm-3 text-right">
+			@Html.Partial("ValueWithSign", new ValueWithSign(month.Total(), Model.Language))
+		</td>
 	</tr>
 
 } 
