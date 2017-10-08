@@ -269,6 +269,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>General.resx</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Resources\Legend.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Legend.resx</DependentUpon>
+    </Compile>
     <Compile Include="Assets\Resources\Moves.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -426,6 +431,7 @@
     <Content Include="Views\Shared\Sign.cshtml" />
     <Content Include="Views\Shared\NatureIcon.cshtml" />
     <Content Include="Views\Shared\ValueWithSign.cshtml" />
+    <Content Include="Views\Ops\Legend.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -464,6 +470,11 @@
     <EmbeddedResource Include="Assets\Resources\General.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>General.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Resources\Legend.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\Legend.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Legend.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\Resources\Moves.pt-BR.resx" />
     <EmbeddedResource Include="Assets\Resources\Moves.resx">

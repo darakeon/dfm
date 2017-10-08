@@ -1,0 +1,54 @@
+﻿@{
+	ViewBag.Title = Legend.LegendTitle;
+	Layout = "~/Views/Shared/_Table.cshtml";
+
+	ViewBag.HasContent = true;
+	ViewBag.TableLgSize = 8;
+}
+
+@section TableHeader {
+	<tr>
+		<th class="text-center">@Legend.Icon</th>
+		<th>@Legend.Meaning</th>
+	</tr>
+}
+
+@{ 
+	var icons = new Dictionary<String, String> {
+		{ "plus", MultiLanguage.Dictionary["Create"] },
+		{ "edit", MultiLanguage.Dictionary["Edit"] },
+		{ "trash", MultiLanguage.Dictionary["Delete"] },
+		{ "calendar", Legend.OpenCalendar },
+		{ "ok", MultiLanguage.Dictionary["Move", "Check"] },
+		{ "remove", MultiLanguage.Dictionary["Move", "Uncheck"] },
+		{ "exclamation-sign", MultiLanguage.Dictionary["Move", "Checked"] },
+		{ "question-sign", MultiLanguage.Dictionary["Move", "Unchecked"] },
+		{ "thumbs-up", MultiLanguage.Dictionary["Account", "GreenLimit"] },
+		{ "adjust", MultiLanguage.Dictionary["Account", "YellowLimit"] },
+		{ "thumbs-down", MultiLanguage.Dictionary["Account", "RedLimit"] },
+		{ "ban-circle", MultiLanguage.Dictionary["Account", "NoneLimit"] },
+		{ "eye-close", MultiLanguage.Dictionary["Disable"] },
+		{ "eye-open", MultiLanguage.Dictionary["Enable"] },
+		{ "fire", Legend.IssueTracker },
+		{ "home", Legend.Home },
+		{ "cog", MultiLanguage.Dictionary["Settings"] },
+		{ "off", MultiLanguage.Dictionary["Logoff"] },
+		{ "transfer", MultiLanguage.Dictionary["Transfer"] },
+		{ "plus-sign", MultiLanguage.Dictionary["In"] },
+		{ "minus-sign", MultiLanguage.Dictionary["Out"] },
+		{ "info-sign", Legend.Info },
+	};
+}
+
+@foreach(var key in icons.Keys)
+{
+	<tr>
+		<td class="text-center">
+			<span class="glyphicon glyphicon-@key" title="@icons[key]"></span>
+		</td>
+		<td>
+			@icons[key]
+		</td>
+	</tr>
+}
+
