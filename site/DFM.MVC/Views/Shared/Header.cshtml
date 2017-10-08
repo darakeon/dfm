@@ -23,7 +23,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a href="https://github.com/darakeon/dfm/issues" target="_blank">
-						<span class="glyphicon glyphicon-fire"></span>
+						<span 
+							class="glyphicon glyphicon-fire"
+							title="@Legend.IssueTracker"
+						></span>
 					</a>
 				</li>
 
@@ -64,20 +67,20 @@
 
 						<li>
 							<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})">
-								<span class="glyphicon glyphicon-home"></span>
+								<span class="glyphicon glyphicon-home" title="@Legend.Home"></span>
 							</a>
 						</li>
 					}
 
 					<li>
 						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Config", controller = "Users"})">
-							<span class="glyphicon glyphicon-cog"></span>
+							<span class="glyphicon glyphicon-cog" title="@MultiLanguage.Dictionary["Settings"]"></span>
 						</a>
 					</li>
 
 					<li>
 						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "LogOff", controller = "Users"})">
-							<span class="glyphicon glyphicon-off"></span>
+							<span class="glyphicon glyphicon-off" title="@MultiLanguage.Dictionary["Logoff"]"></span>
 						</a>
 					</li>
 				}

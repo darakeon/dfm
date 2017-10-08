@@ -41,7 +41,10 @@
 		<td class="col-sm-4 text-center">
 			<a href="@Url.Action("Delete", "Logins", new { id = login.Key })"
 			   class="withConfirm" confirm="@deleteConfirm">
-				<span class="glyphicon glyphicon-trash"></span>
+				<span
+					class="glyphicon glyphicon-trash"
+					title="@MultiLanguage.Dictionary["Delete"]"
+				></span>
 			</a>
 		</td>
 				

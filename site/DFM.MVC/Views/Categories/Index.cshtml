@@ -35,7 +35,10 @@
 
 		<td class="col-sm-2 text-center">
 			<a href="@Url.Action("Edit", "Categories", new { id = category.Name })">
-				<span class="glyphicon glyphicon-edit"></span>
+				<span
+					class="glyphicon glyphicon-edit"
+					title="@MultiLanguage.Dictionary["Edit"]"
+				></span>
 			</a>
 		</td>
 
@@ -43,13 +46,19 @@
 			@if (category.Active)
 			{
 				<a href="@Url.Action("Disable", new { id = category.Name })">
-					<span class="glyphicon glyphicon-eye-close"></span>
+					<span
+						class="glyphicon glyphicon-eye-close"
+						title="@MultiLanguage.Dictionary["Disable"]"
+					></span>
 				</a>
 			}
 			else
 			{
 				<a href="@Url.Action("Enable", new { id = category.Name })">
-					<span class="glyphicon glyphicon-eye-open"></span>
+					<span
+						class="glyphicon glyphicon-eye-open"
+						title="@MultiLanguage.Dictionary["Enable"]"
+					></span>
 				</a>
 			}
 		</td>

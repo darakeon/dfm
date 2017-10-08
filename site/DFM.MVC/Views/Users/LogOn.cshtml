@@ -21,8 +21,10 @@
 	@Html.CheckBoxFor(m => m.RememberMe)
 	@Html.LabelFor(m => m.RememberMe, MultiLanguage.Dictionary["RememberMe"], new { @class = "control-label" })
 	<span class="glyphicon glyphicon-info-sign" 
-		  data-toggle="tooltip" data-placement="bottom" 
-		  data-original-title="@Users.CookiesWarning"></span>
+		data-toggle="tooltip" data-placement="bottom" 
+		data-original-title="@Users.CookiesWarning"
+		title="@Users.CookiesWarning"
+	></span>
 </div>
 
 @section Footer

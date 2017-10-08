@@ -49,7 +49,10 @@
 		<td class="col-sm-2 text-center">@(schedule.Out?.Name ?? " ")</td>
 
 		<td  class="col-sm-1 text-@Html.Partial("NatureColor", schedule.Nature) text-right">
-			<span class="@Html.Partial("NatureIcon", schedule.Nature)"></span>
+			<span
+				class="@Html.Partial("NatureIcon", schedule.Nature)"
+				title="@MultiLanguage.Dictionary[schedule.Nature.ToString()]"
+			></span>
 			@schedule.Total().ToMoney(Model.Language)
 		</td>
 
@@ -59,7 +62,10 @@
 				confirm="@String.Format(
 					MultiLanguage.Dictionary["ConfirmDeleteSchedule"], schedule.Description)
 				">
-				<span class="glyphicon glyphicon-trash"></span>
+				<span
+					class="glyphicon glyphicon-trash"
+					title="@MultiLanguage.Dictionary["Delete"]"
+				></span>
 			</a>
 		</td>
 
