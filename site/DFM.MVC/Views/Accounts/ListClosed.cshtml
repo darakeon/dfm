@@ -27,6 +27,7 @@
 		var movesSum = account.Total();
 		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
 		var className = movesSum < 0 ? "danger" : "info";
+		var sign = MultiLanguage.Dictionary[$"{account.Sign()}Limit"];
 
 		//var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
@@ -44,14 +45,21 @@
 					})
 			</td>
 
-			<td class="col-sm-2 text-center">@account.BeginDate.ToShortDateString()</td>
-			<td class="col-sm-2 text-center">@account.EndDate.ToShortDateString()</td>
+			<td class="col-sm-2 text-center">
+				@account.BeginDate.ToShortDateString()
+			</td>
+			<td class="col-sm-2 text-center">
+				@account.EndDate.ToShortDateString()
+			</td>
 
 			<td class="col-sm-1"></td>
 			<td class="col-sm-2 text-right">
-				<span class="glyphicon glyphicon-tags pull-left text-@Html.Partial("AccountSign", account.Sign())"></span>
-				<span class="text-@className">@value</span>
-			</td>
+				<span class="@Html.Partial("AccountSign", account.Sign()) pull-left"
+					  data-toggle="tooltip" data-placement="bottom" title="@sign"
+					  data-original-title="@sign"></span>
+
+				@Html.Partial("ValueWithSign",
+					new ValueWithSign(account.Total(), Model.Language))
 			<td class="col-sm-1"></td>
 
 			@*

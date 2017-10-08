@@ -1,0 +1,14 @@
+﻿@model ValueWithSign
+
+@{
+	var value = 
+		(Model.Value < 0 ? -Model.Value : Model.Value)
+			.ToMoney(Model.Language, Model.DifferentIfZero);
+
+	var className = Model.Value < 0 ? "danger" : "info";
+}
+
+<span class="text-@className">
+	<span class="@Html.Partial("Sign", Model.Value > 0)"></span>
+	@value
+</span>

@@ -323,6 +323,7 @@
     <Compile Include="Models\UsersForgotPasswordModel.cs" />
     <Compile Include="Models\UsersLogOnModel.cs" />
     <Compile Include="Models\UsersSignUpModel.cs" />
+    <Compile Include="Models\ValueWithSign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\Resources\Users.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -383,7 +384,7 @@
     <Content Include="Views\Shared\_Table.cshtml" />
     <Content Include="Views\Categories\Status.cshtml" />
     <Content Include="Views\Logins\LoginType.cshtml" />
-    <Content Include="Views\Shared\MoveNature.cshtml" />
+    <Content Include="Views\Shared\NatureColor.cshtml" />
     <Content Include="Views\Users\Config.cshtml" />
     <Content Include="Views\Users\EmailSent.cshtml" />
     <Content Include="Views\Users\ConfigEmail.cshtml" />
@@ -422,6 +423,9 @@
     <Content Include="smtp.config" />
     <Content Include="Views\Accounts\AccountSignColor.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
+    <Content Include="Views\Shared\Sign.cshtml" />
+    <Content Include="Views\Shared\NatureIcon.cshtml" />
+    <Content Include="Views\Shared\ValueWithSign.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
