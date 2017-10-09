@@ -143,7 +143,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 				back()
 			}
 			else -> {
-				message.alertError(R.string.this_is_not_happening)
+				alertError(R.string.this_is_not_happening)
 			}
 		}
 	}
@@ -231,7 +231,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 
 	fun changeCategory(@Suppress(onClick) view: View) {
-		showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, this, message, static.move))
+		showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, this, static.move))
 	}
 
 	fun changeNature(@Suppress(onClick) view: View) {
@@ -262,11 +262,11 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 
 	fun changeAccountOut(@Suppress(onClick) view: View) {
-		showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, this, message, static.move))
+		showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, this, static.move))
 	}
 
 	fun changeAccountIn(@Suppress(onClick) view: View) {
-		showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, this, message, static.move))
+		showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, this, static.move))
 	}
 
 	fun useDetailed(@Suppress(onClick) view: View) {
@@ -299,7 +299,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		val value = valueStr.toDoubleByCulture()
 
 		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty() || value == null) {
-			message.alertError(R.string.fill_all)
+			alertError(R.string.fill_all)
 			return
 		}
 

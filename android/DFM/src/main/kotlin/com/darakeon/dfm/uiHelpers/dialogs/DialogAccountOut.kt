@@ -2,13 +2,11 @@ package com.darakeon.dfm.uiHelpers.dialogs
 
 import android.app.Activity
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.Message
 import com.darakeon.dfm.activities.base.setValue
-import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.entities.Move
 import org.json.JSONArray
 
-class DialogAccountOut<T : SmartStatic>(list: JSONArray?, private val activity: Activity, private val message: Message<T>, private val move: Move?) : DialogSelectClickListener(list) {
+class DialogAccountOut(list: JSONArray?, private val activity: Activity, private val move: Move?) : DialogSelectClickListener(list) {
 	override fun setResult(text: String, value: String) {
 		activity.setValue(R.id.account_out, text)
 		move?.AccountOut = value

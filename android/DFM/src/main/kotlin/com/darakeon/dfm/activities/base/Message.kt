@@ -1,87 +1,69 @@
 package com.darakeon.dfm.activities.base
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.objects.SmartStatic
 
-class Message<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
+val cancelClickListener: OnClickListener = OnClickListener {
+	dialog, _ -> dialog.cancel()
+}
 
-	val cancelClickListener: OnClickListener = OnClickListener {
-		dialog, _ -> dialog.cancel()
-	}
+fun Activity.alertYesNo(message: String, answer: IYesNoDialogAnswer) {
 
-
-	fun alertYesNo(message: String, answer: IYesNoDialogAnswer) {
-
-		val listener = OnClickListener { dialog, which ->
-			when (which) {
-				DialogInterface.BUTTON_POSITIVE -> answer.YesAction()
-				DialogInterface.BUTTON_NEGATIVE -> answer.NoAction()
-			}
-
-			dialog.cancel()
+	val listener = OnClickListener { dialog, which ->
+		when (which) {
+			DialogInterface.BUTTON_POSITIVE -> answer.YesAction()
+			DialogInterface.BUTTON_NEGATIVE -> answer.NoAction()
 		}
 
-		alertError(message, R.string.ok_button, listener, true)
+		dialog.cancel()
 	}
 
+	alertError(message, R.string.ok_button, listener, true)
+}
 
-	fun alertError(resMessage: Int) {
-		alertError(activity.getString(resMessage))
-	}
+fun Activity.alertError(resMessage: Int) {
+	alertError(getString(resMessage))
+}
 
-	fun alertError(resMessage: Int, e: Exception) {
-		alertError(activity.getString(resMessage) + ": " + e.message)
-	}
+fun Activity.alertError(resMessage: Int, e: Exception) {
+	alertError(getString(resMessage) + ": " + e.message)
+}
 
-	fun alertError(message: String) {
-		alertError(message, R.string.ok_button, cancelClickListener, false)
-	}
+fun Activity.alertError(message: String) {
+	alertError(message, R.string.ok_button, cancelClickListener, false)
+}
 
-	fun alertRetryLicense() {
-		val message = activity.getString(R.string.license_retry)
+private fun Activity.alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
+	val builder = AlertDialog.Builder(this)
+			.setTitle(R.string.error_title)
+			.setMessage(message)
 
-		val listener = OnClickListener { dialog, _ ->
-			dialog.cancel()
-			activity.refresh()
-		}
+	if (resOkButton != 0)
+		builder.setPositiveButton(resOkButton, okClickListener)
 
-		alertError(message, R.string.try_again, listener, true)
-	}
+	if (hasCancelButton)
+		builder.setNegativeButton(R.string.cancel_button, cancelClickListener)
 
-	private fun alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
-		val builder = AlertDialog.Builder(activity)
-				.setTitle(R.string.error_title)
-				.setMessage(message)
-
-		if (resOkButton != 0)
-			builder.setPositiveButton(resOkButton, okClickListener)
-
-		if (hasCancelButton)
-			builder.setNegativeButton(R.string.cancel_button, cancelClickListener)
-
-		builder.show()
-	}
+	builder.show()
+}
 
 
-	internal val waitDialog: ProgressDialog
-		get() {
-			val progress = ProgressDialog(activity)
-			progress.setTitle(activity.getString(R.string.wait_title))
-			progress.setMessage(activity.getString(R.string.wait_text))
-
-			return progress
-		}
-
-	fun showWaitDialog(): ProgressDialog {
-		val progress = waitDialog
-		progress.show()
+internal val Activity.waitDialog: ProgressDialog
+	get() {
+		val progress = ProgressDialog(this)
+		progress.setTitle(getString(R.string.wait_title))
+		progress.setMessage(getString(R.string.wait_text))
 
 		return progress
 	}
 
+fun Activity.showWaitDialog(): ProgressDialog {
+	val progress = waitDialog
+	progress.show()
 
+	return progress
 }

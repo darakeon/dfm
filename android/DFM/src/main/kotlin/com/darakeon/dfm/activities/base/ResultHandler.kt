@@ -13,7 +13,7 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 		if (result.has("error")) {
 			val error = result.getString("error")
 
-			activity.message.alertError(error)
+			activity.alertError(error)
 
 			if (error.contains(activity.getString(R.string.uninvited)) || error.contains("uninvited")) {
 				navigation.logout()
@@ -32,7 +32,7 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 	}
 
 	fun HandlePostError(error: String) {
-		activity.message.alertError(error)
+		activity.alertError(error)
 	}
 
 
