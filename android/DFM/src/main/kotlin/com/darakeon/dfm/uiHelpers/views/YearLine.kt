@@ -10,7 +10,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
 import com.darakeon.dfm.activities.base.setColorByAttr
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
-import org.json.JSONException
 import java.text.DecimalFormat
 
 class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
@@ -22,7 +21,6 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	val MonthField: TextView get() = findViewById(R.id.month) as TextView
 	val TotalField: TextView get() = findViewById(R.id.value) as TextView
 
-	@Throws(JSONException::class)
 	fun setYear(year: YearAdapter.Year, color: Int) {
 		setBackgroundColor(color)
 

@@ -15,7 +15,6 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.Authentication
 import com.darakeon.dfm.user.Language
 import com.darakeon.dfm.user.Theme
-import org.json.JSONException
 import org.json.JSONObject
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
@@ -170,7 +169,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 	}
 
 
-	@Throws(JSONException::class)
 	abstract fun HandleSuccess(data: JSONObject, step: Step)
 
 	fun HandlePostResult(result: JSONObject, step: Step) {

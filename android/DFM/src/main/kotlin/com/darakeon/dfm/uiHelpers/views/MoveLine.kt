@@ -10,7 +10,6 @@ import com.darakeon.dfm.activities.ExtractActivity
 import com.darakeon.dfm.activities.base.applyGlyphicon
 import com.darakeon.dfm.activities.base.setColorByAttr
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
-import org.json.JSONException
 import java.text.DateFormat
 import java.text.DecimalFormat
 
@@ -27,7 +26,6 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	val TotalField: TextView get() = findViewById(R.id.value) as TextView
 	val CheckedField: TextView get() = findViewById(R.id.check_move) as TextView
 
-	@Throws(JSONException::class)
 	fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
 		setBackgroundColor(color)
 

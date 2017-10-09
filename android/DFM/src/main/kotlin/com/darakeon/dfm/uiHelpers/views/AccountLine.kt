@@ -10,10 +10,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
 import com.darakeon.dfm.activities.base.setColorByAttr
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
-import org.json.JSONException
 import java.text.DecimalFormat
-
-
 
 class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
@@ -24,7 +21,6 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 	val NameField: TextView get() = findViewById(R.id.name) as TextView
 	val TotalField: TextView get() = findViewById(R.id.value) as TextView
 
-	@Throws(JSONException::class)
 	fun setAccount(account: AccountAdapter.Account, color: Int) {
 		setBackgroundColor(color)
 
@@ -50,5 +46,4 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 			context.startActivity(intent)
 		}
 	}
-
 }

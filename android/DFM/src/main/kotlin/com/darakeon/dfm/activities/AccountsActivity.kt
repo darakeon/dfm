@@ -10,7 +10,6 @@ import com.darakeon.dfm.activities.objects.AccountsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
-import org.json.JSONException
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
@@ -25,12 +24,7 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 		super.onCreate(savedInstanceState)
 
 		if (rotated && succeeded) {
-			try {
-				fillAccounts()
-			} catch (e: JSONException) {
-				message.alertError(R.string.error_activity_json, e)
-			}
-
+			fillAccounts()
 		} else {
 			getAccounts()
 		}

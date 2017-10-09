@@ -1,7 +1,6 @@
 package com.darakeon.dfm.uiHelpers.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.darakeon.dfm.api.DateTime
 import com.darakeon.dfm.uiHelpers.views.MoveLine
 import com.darakeon.dfm.user.Theme
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
@@ -52,12 +50,8 @@ class MoveAdapter(private val activity: ExtractActivity, moveJsonList: JSONArray
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.extract_line, null) as MoveLine
 
-		try {
-			val color = Theme.getLineColor(position)
-			line.setMove(activity, moveList[position], color, canCheck)
-		} catch (e: JSONException) {
-			e.printStackTrace()
-		}
+		val color = Theme.getLineColor(position)
+		line.setMove(activity, moveList[position], color, canCheck)
 
 		return line
 	}

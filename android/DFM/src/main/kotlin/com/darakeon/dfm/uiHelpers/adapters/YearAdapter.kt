@@ -9,7 +9,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.views.YearLine
 import com.darakeon.dfm.user.Theme
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 
 class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
@@ -42,12 +41,8 @@ class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String,
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.summary_line, null) as YearLine
 
-		try {
-			val color = Theme.getLineColor(position)
-			line.setYear(yearList[position], color)
-		} catch (e: JSONException) {
-			e.printStackTrace()
-		}
+		val color = Theme.getLineColor(position)
+		line.setYear(yearList[position], color)
 
 		return line
 	}

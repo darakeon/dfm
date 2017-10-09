@@ -9,7 +9,6 @@ import com.darakeon.dfm.activities.objects.SettingsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
-import org.json.JSONException
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
@@ -51,7 +50,6 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 	}
 
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		when (step) {
 			Step.Populate -> {
@@ -68,7 +66,6 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 	}
 
 
-	@Throws(JSONException::class)
 	private fun populateScreen(data: JSONObject) {
 		useCategories = data.getBoolean("UseCategories")
 		useCategoriesField.isChecked = useCategories

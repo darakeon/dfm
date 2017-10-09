@@ -13,7 +13,6 @@ import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
@@ -83,17 +82,9 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		val jsonParameters = JSONObject()
 
 		for ((key, rawValue) in parameters) {
-
 			if (rawValue != null) {
 				val value = rawValue.toString()
-
-				try {
-					jsonParameters.put(key, value)
-				} catch (e: JSONException) {
-					handleError(e, step)
-					return null
-				}
-
+				jsonParameters.put(key, value)
 			}
 		}
 
@@ -163,15 +154,6 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		}
 
 		handleResponse(internalResponse, step)
-	}
-
-	private fun handleError(e: JSONException, step: Step) {
-		val response = InternalResponse(
-				activity.getString(R.string.error_convert_result)
-						+ ": [json] " + e.message
-		)
-
-		handleResponse(response, step)
 	}
 
 	private fun handleError(e: Exception, step: Step) {
