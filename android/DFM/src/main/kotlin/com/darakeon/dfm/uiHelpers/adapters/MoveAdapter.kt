@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.ExtractActivity
-import com.darakeon.dfm.api.DateTime
+import com.darakeon.dfm.api.getCalendar
 import com.darakeon.dfm.uiHelpers.views.MoveLine
 import com.darakeon.dfm.user.Theme
 import org.json.JSONArray
@@ -28,7 +28,7 @@ class MoveAdapter(private val activity: ExtractActivity, moveJsonList: JSONArray
 
 	inner class Move(jsonObject: JSONObject) {
 		var Description: String = jsonObject.getString("Description")
-		var Date: Calendar = DateTime.getCalendar(jsonObject.getJSONObject("Date"))
+		var Date: Calendar = jsonObject.getCalendar("Date")
 		var Total: Double = jsonObject.getDouble("Total")
 		var Checked: Boolean = jsonObject.getBoolean("Checked")
 		var ID: Int = jsonObject.getInt("ID")
