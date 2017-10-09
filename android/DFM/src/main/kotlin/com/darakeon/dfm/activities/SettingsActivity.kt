@@ -11,6 +11,7 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.onClick
+import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
@@ -39,13 +40,13 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 
 	private fun getCurrentSettings() {
 		val request = InternalRequest(this, "Users/GetConfig")
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.Get(Step.Populate)
 	}
 
 	fun saveSettings(@Suppress(onClick) view: View) {
 		val request = InternalRequest(this, "Users/SaveConfig")
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("UseCategories", useCategoriesField.isChecked)
 		request.AddParameter("MoveCheck", moveCheckField.isChecked)
 		request.Post(Step.Recording)

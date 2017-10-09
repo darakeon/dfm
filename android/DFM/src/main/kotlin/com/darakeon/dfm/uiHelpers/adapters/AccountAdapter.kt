@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.views.AccountLine
-import com.darakeon.dfm.user.Theme
+import com.darakeon.dfm.user.getThemeLineColor
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -45,7 +45,7 @@ class AccountAdapter(context: Context, accountJsonList: JSONArray) : BaseAdapter
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.accounts_line, null) as AccountLine
 
-		val color = Theme.getLineColor(position)
+		val color = getThemeLineColor(position)
 		line.setAccount(accountList[position], color)
 
 		return line

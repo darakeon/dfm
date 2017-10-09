@@ -9,9 +9,10 @@ import com.darakeon.dfm.activities.WelcomeActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.user.Authentication
+import com.darakeon.dfm.user.ClearAuth
+import com.darakeon.dfm.user.GetAuth
 
-class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>, private val authentication: Authentication) {
+class Navigation<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
 
 
 	fun redirect(activityClass: Class<*>) {
@@ -33,11 +34,11 @@ class Navigation<T : SmartStatic> internal constructor(private val activity: Sma
 
 	internal fun logout() {
 		val request = InternalRequest(activity, "Users/Logout")
-		request.AddParameter("ticket", authentication.Get()!!)
+		request.AddParameter("ticket", activity.GetAuth())
 		val tryResult = request.Post(Step.Logout)
 
 		if (tryResult) {
-			authentication.Clear()
+			activity.ClearAuth()
 			redirect(LoginActivity::class.java)
 		}
 	}

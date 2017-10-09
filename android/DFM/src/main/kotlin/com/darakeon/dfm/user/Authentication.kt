@@ -2,32 +2,23 @@ package com.darakeon.dfm.user
 
 import android.content.Context
 
-class Authentication(private val context: Context) {
-	private val safe: SafeTicket = SafeTicket(this.context)
+private val spKey = "Ticket"
 
-
-	fun Set(ticket: String) {
-		val encryptedTicket = safe.Encrypt(ticket)
-		SP.setValue(context, spKey, encryptedTicket)
-	}
-
-	fun Get(): String {
-		val encryptedTicket = SP.getValue(context, spKey)
-		return safe.Decrypt(encryptedTicket)
-	}
-
-	fun IsLoggedIn(): Boolean {
-		return !Get().isEmpty()
-	}
-
-	fun Clear() {
-		Set("")
-	}
-
-	companion object {
-
-		private val spKey = "Ticket"
-	}
-
-
+fun Context.SetAuth(ticket: String) {
+	val encryptedTicket = Encrypt(ticket)
+	setValue(spKey, encryptedTicket)
 }
+
+fun Context.GetAuth(): String {
+	val encryptedTicket = getValue(spKey)
+	return Decrypt(encryptedTicket)
+}
+
+fun Context.IsLoggedIn(): Boolean {
+	return !GetAuth().isEmpty()
+}
+
+fun Context.ClearAuth() {
+	SetAuth("")
+}
+

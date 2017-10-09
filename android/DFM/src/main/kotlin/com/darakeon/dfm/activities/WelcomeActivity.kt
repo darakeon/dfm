@@ -6,6 +6,7 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
+import com.darakeon.dfm.user.IsLoggedIn
 import org.json.JSONObject
 import kotlin.reflect.KClass
 
@@ -13,7 +14,7 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		val nextActivity : KClass<*> =
-			if (Authentication.IsLoggedIn())
+			if (IsLoggedIn())
 				AccountsActivity::class
 			else
 				LoginActivity::class

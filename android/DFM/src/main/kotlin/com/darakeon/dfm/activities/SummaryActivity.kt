@@ -13,6 +13,7 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
+import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
 import java.util.*
 
@@ -91,7 +92,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 		val request = InternalRequest(this, "Moves/Summary")
 
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
 		request.AddParameter("id", static.year)
 
