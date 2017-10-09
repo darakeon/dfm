@@ -92,7 +92,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		{
 			(0..bottomMenu.childCount - 1).forEach {
 				val button = bottomMenu.getChildAt(it) as Button
-				button.applyGlyphicon(this);
+				button.applyGlyphicon(this)
 
 				if (this is AccountsActivity)
 					findViewById(R.id.action_home).isEnabled = false
@@ -131,31 +131,31 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 	}
 
 
-	fun back(view: View) {
+	fun back(@Suppress(onClick) view: View) {
 		navigation.back()
 	}
 
-	fun logout(view: View) {
+	fun logout(@Suppress(onClick) view: View) {
 		navigation.logout()
 	}
 
-	fun close(view: View) {
+	fun close(@Suppress(onClick) view: View) {
 		navigation.close()
 	}
 
-	fun refresh(view: View) {
+	fun refresh(@Suppress(onClick) view: View) {
 		refresh()
 	}
 
-	fun goToAccounts(view: View) {
+	fun goToAccounts(@Suppress(onClick) view: View) {
 		navigation.redirect(AccountsActivity::class.java)
 	}
 
-	fun goToSettings(view: View) {
+	fun goToSettings(@Suppress(onClick) view: View) {
 		navigation.goToSettings()
 	}
 
-	fun createMove(view: View) {
+	fun createMove(@Suppress(onClick) view: View) {
 		navigation.createMove()
 	}
 
@@ -189,7 +189,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 	fun Reset() {
 		succeeded = false
 	}
-
-
-
 }
+
+const val onClick: String = "UNUSED_PARAMETER"

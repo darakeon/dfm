@@ -59,7 +59,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 		setValue(R.id.reportChange, Integer.toString(year))
 	}
 
-	fun changeDate(v: View) {
+	fun changeDate(@Suppress(onClick) view: View) {
 		if (dialog == null) {
 			dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
 
@@ -72,7 +72,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 				val month = delegate.getChildOrMe("mMonthSpinner") as View
 				month.visibility = View.GONE
-				
+
 			} catch (ignored: Exception) {
 			}
 
@@ -123,3 +123,4 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 	}
 }
+

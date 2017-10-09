@@ -9,6 +9,7 @@ import com.darakeon.dfm.activities.objects.SettingsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.base.onClick
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
@@ -41,7 +42,7 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		request.Get(Step.Populate)
 	}
 
-	fun saveSettings(view: View) {
+	fun saveSettings(@Suppress(onClick) view: View) {
 		val request = InternalRequest(this, "Users/SaveConfig")
 		request.AddParameter("ticket", Authentication.Get())
 		request.AddParameter("UseCategories", useCategoriesField.isChecked)
@@ -79,7 +80,7 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		AlertDialog.Builder(this)
 				.setTitle(R.string.title_activity_settings)
 				.setMessage(R.string.settings_saved)
-				.setPositiveButton(R.string.ok_button) { dialog, which -> navigation.redirectWithExtras() }
+				.setPositiveButton(R.string.ok_button) { _, _ -> navigation.redirectWithExtras() }
 				.show()
 	}
 
