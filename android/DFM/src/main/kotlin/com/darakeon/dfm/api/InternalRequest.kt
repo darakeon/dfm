@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.showWaitDialog
 import com.darakeon.dfm.activities.objects.SmartStatic
 import org.json.JSONObject
 import java.util.*
@@ -184,7 +185,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 	}
 
 	private fun openProgressBar() {
-		progress = activity.message.showWaitDialog()
+		progress = activity.showWaitDialog()
 	}
 
 	private fun disableSleep() {

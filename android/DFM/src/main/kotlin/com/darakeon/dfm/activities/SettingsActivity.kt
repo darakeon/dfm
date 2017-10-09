@@ -9,6 +9,7 @@ import com.darakeon.dfm.activities.objects.SettingsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
+import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.onClick
 import org.json.JSONObject
 
@@ -60,7 +61,7 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 				back()
 			}
 			else -> {
-				message.alertError(R.string.this_is_not_happening)
+				alertError(R.string.this_is_not_happening)
 			}
 		}
 

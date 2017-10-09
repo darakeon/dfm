@@ -127,7 +127,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 				refresh()
 			}
 			else -> {
-				message.alertError(R.string.this_is_not_happening)
+				alertError(R.string.this_is_not_happening)
 			}
 		}
 	}
@@ -205,7 +205,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 		messageText = String.format(messageText, moveRow.description)
 
-		message.alertYesNo(messageText, this)
+		alertYesNo(messageText, this)
 
 		return false
 	}
