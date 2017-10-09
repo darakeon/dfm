@@ -13,10 +13,7 @@ internal class SafeTicket(context: Context) {
 	}
 
 
-	fun Encrypt(ticket: String?): String? {
-		if (ticket == null)
-			return null
-
+	fun Encrypt(ticket: String): String {
 		var encryptedTicket = ""
 
 		for (s in 0..ticket.length - 1) {
@@ -26,11 +23,8 @@ internal class SafeTicket(context: Context) {
 		return encryptedTicket
 	}
 
-	fun Decrypt(encryptedTicket: String?): String? {
-		if (encryptedTicket == null)
-			return null
-
-		var ticket: String? = ""
+	fun Decrypt(encryptedTicket: String): String {
+		var ticket: String = ""
 
 		var s = 0
 		while (s < encryptedTicket.length) {
@@ -38,7 +32,7 @@ internal class SafeTicket(context: Context) {
 			val encryptedChar = encryptedTicket.substring(s, s + 1)
 
 			if (keyChar != encryptedChar) {
-				ticket = null
+				ticket = ""
 				break
 			}
 

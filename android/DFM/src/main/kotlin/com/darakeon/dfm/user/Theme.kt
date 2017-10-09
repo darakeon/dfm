@@ -26,7 +26,7 @@ object Theme {
 	fun ChangeFromSaved(activity: Activity) {
 		val theme = SP.getValue(activity, Theme.spKey)
 
-		if (theme != null)
+		if (theme != "")
 			Theme.change(activity, theme.toInt())
 	}
 
