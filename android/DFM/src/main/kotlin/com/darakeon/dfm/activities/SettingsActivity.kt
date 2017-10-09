@@ -11,6 +11,7 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.onClick
+import com.darakeon.dfm.activities.base.redirectWithExtras
 import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
 
@@ -82,7 +83,7 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		AlertDialog.Builder(this)
 				.setTitle(R.string.title_activity_settings)
 				.setMessage(R.string.settings_saved)
-				.setPositiveButton(R.string.ok_button) { _, _ -> navigation.redirectWithExtras() }
+				.setPositiveButton(R.string.ok_button) { _, _ -> redirectWithExtras() }
 				.show()
 	}
 

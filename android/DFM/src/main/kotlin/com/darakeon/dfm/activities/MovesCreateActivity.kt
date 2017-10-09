@@ -336,7 +336,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 	private fun back() {
-		navigation.redirectWithExtras()
+		redirectWithExtras()
 	}
 
 

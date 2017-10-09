@@ -3,6 +3,7 @@ package com.darakeon.dfm.activities
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -19,7 +20,7 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 			else
 				LoginActivity::class
 
-		navigation.redirect(nextActivity.java)
+		redirect(nextActivity.java)
 	}
 
 	override fun contentView(): Int = R.layout.welcome
