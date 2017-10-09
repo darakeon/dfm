@@ -3,13 +3,13 @@ package com.darakeon.dfm.api
 import org.json.JSONObject
 import java.util.*
 
-object DateTime {
-	fun getCalendar(date: JSONObject): Calendar {
-		val calendar = Calendar.getInstance()
-		calendar.set(Calendar.YEAR, date.getInt("Year"))
-		calendar.set(Calendar.MONTH, date.getInt("Month") - 1)
-		calendar.set(Calendar.DAY_OF_MONTH, date.getInt("Day"))
+fun JSONObject.getCalendar(name: String): Calendar {
+	val child = getJSONObject(name)
 
-		return calendar
-	}
+	val calendar = Calendar.getInstance()
+	calendar.set(Calendar.YEAR, child.getInt("Year"))
+	calendar.set(Calendar.MONTH, child.getInt("Month") - 1)
+	calendar.set(Calendar.DAY_OF_MONTH, child.getInt("Day"))
+
+	return calendar
 }

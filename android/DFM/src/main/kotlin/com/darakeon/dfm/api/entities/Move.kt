@@ -1,8 +1,8 @@
 package com.darakeon.dfm.api.entities
 
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
-import com.darakeon.dfm.api.DateTime
 import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.getCalendar
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -113,7 +113,7 @@ class Move {
 
 	private fun setEditMoveData(move: JSONObject) {
 		Description = move.getString("Description")
-		Date = DateTime.getCalendar(move.getJSONObject("Date"))
+		Date = move.getCalendar("Date")
 		Category = move.getString("Category")
 		AccountOut = move.getString("AccountOutUrl")
 		AccountIn = move.getString("AccountInUrl")
