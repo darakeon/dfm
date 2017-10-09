@@ -4,6 +4,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.getValue
+import com.darakeon.dfm.activities.base.onClick
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -21,7 +22,7 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 		get() = false
 
 
-	fun login(view: View) {
+	fun login(@Suppress(onClick) view: View) {
 		val request = InternalRequest(this, "Users/Login")
 
 		request.AddParameter("email", getValue(R.id.email))

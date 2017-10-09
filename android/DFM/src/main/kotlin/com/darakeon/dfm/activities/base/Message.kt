@@ -10,7 +10,7 @@ import com.darakeon.dfm.activities.objects.SmartStatic
 class Message<T : SmartStatic> internal constructor(private val activity: SmartActivity<T>) {
 
 	val cancelClickListener: OnClickListener = OnClickListener {
-		dialog, which -> dialog.cancel()
+		dialog, _ -> dialog.cancel()
 	}
 
 
@@ -44,7 +44,7 @@ class Message<T : SmartStatic> internal constructor(private val activity: SmartA
 	fun alertRetryLicense() {
 		val message = activity.getString(R.string.license_retry)
 
-		val listener = OnClickListener { dialog, which ->
+		val listener = OnClickListener { dialog, _ ->
 			dialog.cancel()
 			activity.refresh()
 		}

@@ -7,10 +7,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.base.getValue
-import com.darakeon.dfm.activities.base.setValue
-import com.darakeon.dfm.activities.base.showChangeList
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -91,9 +88,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		setDataFromList(static.accountList, static.move.AccountIn, R.id.account_in)
 
 		if (static.move.isDetailed) {
-			for (d in static.move.Details.indices) {
-				val detail = static.move.Details[d]
-				addViewDetail(static.move, detail.Description, detail.Amount, detail.Value)
+
+			static.move.Details.forEach {
+				addViewDetail(static.move, it.Description, it.Amount, it.Value)
 			}
 
 			useDetailed()
@@ -220,7 +217,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 
-	fun showDatePicker(view: View) {
+	fun showDatePicker(@Suppress(onClick) view: View) {
 		dialog = DatePickerDialog(
 			this, PickDate(this),
 				static.move.year, static.move.month, static.move.day
@@ -235,11 +232,11 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 
-	fun changeCategory(view: View) {
+	fun changeCategory(@Suppress(onClick) view: View) {
 		showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, this, message, static.move))
 	}
 
-	fun changeNature(view: View) {
+	fun changeNature(@Suppress(onClick) view: View) {
 		showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
 	}
 
@@ -266,15 +263,19 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 
-	fun changeAccountOut(view: View) {
+	fun changeAccountOut(@Suppress(onClick) view: View) {
 		showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, this, message, static.move))
 	}
 
-	fun changeAccountIn(view: View) {
+	fun changeAccountIn(@Suppress(onClick) view: View) {
 		showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, this, message, static.move))
 	}
 
-	@JvmOverloads fun useDetailed(view: View? = null) {
+	fun useDetailed(@Suppress(onClick) view: View) {
+		useDetailed()
+	}
+
+	fun useDetailed() {
 		static.move.isDetailed = true
 
 		findViewById(R.id.simple_value).visibility = View.GONE
@@ -283,7 +284,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		scrollToTheEnd()
 	}
 
-	fun useSimple(view: View) {
+	fun useSimple(@Suppress(onClick) view: View) {
 		static.move.isDetailed = false
 
 		findViewById(R.id.simple_value).visibility = View.VISIBLE
@@ -292,7 +293,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		scrollToTheEnd()
 	}
 
-	fun addDetail(view: View) {
+	fun addDetail(@Suppress(onClick) view: View) {
 		val description = getValue(R.id.detail_description)
 		val amountStr = getValue(R.id.detail_amount)
 		val valueStr = getValue(R.id.detail_value)
@@ -326,7 +327,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 
-	fun save(view: View) {
+	fun save(@Suppress(onClick) view: View) {
 		val request = InternalRequest(this, "Moves/Create")
 
 		request.AddParameter("ticket", Authentication.Get())

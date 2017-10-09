@@ -82,7 +82,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		setValue(R.id.reportChange, dateInFull)
 	}
 
-	fun changeDate(view: View) {
+	fun changeDate(@Suppress(onClick) view: View) {
 		if (dialog == null) {
 			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
@@ -149,7 +149,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 
-	fun goToSummary(view: View) {
+	fun goToSummary(@Suppress(onClick) view: View) {
 		val intent = Intent(this, SummaryActivity::class.java)
 
 		intent.putExtra("accountUrl", accountUrl)

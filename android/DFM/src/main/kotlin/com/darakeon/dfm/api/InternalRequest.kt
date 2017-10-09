@@ -18,16 +18,11 @@ import java.util.*
 
 class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private val url: String) {
 
-	private val parameters: HashMap<String, Any?>
+	private val parameters: HashMap<String, Any?> = HashMap()
 
 	private var jsonRequest: JsonObjectRequest? = null
 
 	private var progress: ProgressDialog? = null
-
-
-	init {
-		this.parameters = HashMap<String, Any?>()
-	}
 
 
 	fun AddParameter(key: String, value: Any?) {
@@ -61,7 +56,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 			return
 		}
 
-		val parameters = getParameters(step) ?: return
+		val parameters = getParameters() ?: return
 
 		val completeUrl = getUrl()
 
@@ -69,7 +64,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 				Response.Listener<JSONObject> { response -> handleResponse(response, step) },
 				Response.ErrorListener { error -> handleError(error, step) })
 
-		jsonRequest?.retryPolicy = getDefaultRetryPolicy(step)
+		jsonRequest?.retryPolicy = getDefaultRetryPolicy()
 
 		Volley.newRequestQueue(activity).add(jsonRequest!!)
 
@@ -78,7 +73,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
 
 
-	private fun getParameters(step: Step): JSONObject? {
+	private fun getParameters(): JSONObject? {
 		val jsonParameters = JSONObject()
 
 		for ((key, rawValue) in parameters) {
@@ -93,7 +88,7 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 
 
 
-	private fun getDefaultRetryPolicy(step: Step): DefaultRetryPolicy {
+	private fun getDefaultRetryPolicy(): DefaultRetryPolicy {
 		val timeoutMilliseconds = 30 * 1000
 		val maxRetries = 0
 		val backoffMulti = DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
