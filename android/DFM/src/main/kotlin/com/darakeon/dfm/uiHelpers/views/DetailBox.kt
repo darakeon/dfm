@@ -1,6 +1,5 @@
 package com.darakeon.dfm.uiHelpers.views
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.Button
@@ -10,7 +9,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Move
 import java.text.DecimalFormat
 
-@SuppressLint("ViewConstructor")
 class DetailBox(context: Context, internal var move: Move?, internal var description: String?, internal var amount: Int, internal var value: Double) : LinearLayout(context) {
 
 	init {

@@ -1,6 +1,5 @@
 package com.darakeon.dfm.activities
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -66,7 +65,6 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		setDate(startMonth, startYear)
 	}
 
-	@SuppressLint("SimpleDateFormat")
 	private fun setDate(month: Int, year: Int) {
 		static.month = month
 		static.year = year
