@@ -14,10 +14,10 @@ import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 	internal var useCategories: Boolean = false
-	internal val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories) as CheckBox
+	internal val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories)
 
 	internal var moveCheck: Boolean = false
-	internal val moveCheckField: CheckBox get() = findViewById(R.id.move_check) as CheckBox
+	internal val moveCheckField: CheckBox get() = findViewById(R.id.move_check)
 
 
 	override fun contentView(): Int {

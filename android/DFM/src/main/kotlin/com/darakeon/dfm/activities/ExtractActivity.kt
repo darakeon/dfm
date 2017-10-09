@@ -22,8 +22,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer, IDatePickerActivity {
-	internal val main: ListView get() = findViewById(R.id.main_table) as ListView
-	internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
+	internal val main: ListView get() = findViewById(R.id.main_table)
+	internal val empty: TextView get() = findViewById(R.id.empty_list)
 
 	internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
 	override var dialog: DatePickerDialog? = null

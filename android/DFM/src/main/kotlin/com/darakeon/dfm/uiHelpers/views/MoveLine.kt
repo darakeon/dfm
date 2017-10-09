@@ -21,10 +21,10 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 	private var move: MoveAdapter.Move? = null
 
-	val NameField: TextView get() = findViewById(R.id.name) as TextView
-	val DateField: TextView? get() = findViewById(R.id.date) as? TextView
-	val TotalField: TextView get() = findViewById(R.id.value) as TextView
-	val CheckedField: TextView get() = findViewById(R.id.check_move) as TextView
+	val NameField: TextView get() = findViewById(R.id.name)
+	val DateField: TextView? get() = findViewById(R.id.date)
+	val TotalField: TextView get() = findViewById(R.id.value)
+	val CheckedField: TextView get() = findViewById(R.id.check_move)
 
 	fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
 		setBackgroundColor(color)
