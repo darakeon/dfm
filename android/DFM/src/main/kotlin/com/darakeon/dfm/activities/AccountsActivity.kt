@@ -10,6 +10,7 @@ import com.darakeon.dfm.activities.objects.AccountsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
+import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
@@ -32,7 +33,7 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 
 	private fun getAccounts() {
 		val request = InternalRequest(this, "Accounts/List")
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.Post()
 	}
 

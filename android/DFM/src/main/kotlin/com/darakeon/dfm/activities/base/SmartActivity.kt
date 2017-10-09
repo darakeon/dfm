@@ -12,9 +12,9 @@ import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.user.Authentication
-import com.darakeon.dfm.user.Language
-import com.darakeon.dfm.user.Theme
+import com.darakeon.dfm.user.LanguageChangeFromSaved
+import com.darakeon.dfm.user.ThemeChangeFromSaved
+import com.darakeon.dfm.user.getHighLightColor
 import org.json.JSONObject
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
@@ -49,16 +49,14 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
-	protected val Authentication: Authentication get() = Authentication(this)
-
-	protected val navigation: Navigation<T> get() = Navigation(this, Authentication)
+	protected val navigation: Navigation<T> get() = Navigation(this)
 	internal val resultHandler: ResultHandler<T> get() = ResultHandler(this, navigation)
 
 	var request: InternalRequest<T>? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		Language.ChangeFromSaved(this)
-		Theme.ChangeFromSaved(this)
+		LanguageChangeFromSaved()
+		ThemeChangeFromSaved()
 
 		super.onCreate(savedInstanceState)
 
@@ -76,7 +74,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		}
 
 		findViewById<LinearLayout>(R.id.highlight)
-			?.setBackgroundColor(Theme.getHighLightColor())
+			?.setBackgroundColor(getHighLightColor())
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {

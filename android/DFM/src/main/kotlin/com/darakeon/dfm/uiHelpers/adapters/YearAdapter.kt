@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.views.YearLine
-import com.darakeon.dfm.user.Theme
+import com.darakeon.dfm.user.getThemeLineColor
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -41,7 +41,7 @@ class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String,
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.summary_line, null) as YearLine
 
-		val color = Theme.getLineColor(position)
+		val color = getThemeLineColor(position)
 		line.setYear(yearList[position], color)
 
 		return line

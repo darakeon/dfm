@@ -16,6 +16,7 @@ import com.darakeon.dfm.uiHelpers.dialogs.*
 import com.darakeon.dfm.uiHelpers.views.DetailBox
 import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
 import com.darakeon.dfm.uiHelpers.watchers.ValueWatcher
+import com.darakeon.dfm.user.GetAuth
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
@@ -124,7 +125,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	private fun populateScreen() {
 		val request = InternalRequest(this, "Moves/Create")
 
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", intent.getStringExtra("accountUrl"))
 		request.AddParameter("id", intent.getIntExtra("id", 0))
 		request.Get(Step.Populate)
@@ -328,7 +329,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	fun save(@Suppress(onClick) view: View) {
 		val request = InternalRequest(this, "Moves/Create")
 
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		static.move.setParameters(request)
 
 		request.Post(Step.Recording)

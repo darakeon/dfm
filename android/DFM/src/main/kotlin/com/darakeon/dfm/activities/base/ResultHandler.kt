@@ -3,8 +3,8 @@ package com.darakeon.dfm.activities.base
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.user.Language
-import com.darakeon.dfm.user.Theme
+import com.darakeon.dfm.user.LanguageChangeAndSave
+import com.darakeon.dfm.user.ThemeChangeAndSave
 import org.json.JSONObject
 
 internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivity<T>, private val navigation: Navigation<T>) {
@@ -22,10 +22,10 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 			val data = result.getJSONObject("data")
 
 			if (data.has("Language"))
-				Language.ChangeAndSave(activity, data.getString("Language"))
+				activity.LanguageChangeAndSave(data.getString("Language"))
 
 			if (data.has("Theme"))
-				Theme.ChangeAndSave(activity, data.getString("Theme"))
+				activity.ThemeChangeAndSave(data.getString("Theme"))
 
 			activity.HandleSuccess(data, step)
 		}

@@ -5,53 +5,48 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import java.util.*
 
-object Language {
-	private val spKey = "Language"
+private val spKey = "Language"
 
-	fun <T : SmartStatic> ChangeAndSave(activity: SmartActivity<T>, systemLanguage: String) {
-		var language = systemLanguage
-		val current = Locale.getDefault().toString()
+fun <T : SmartStatic> SmartActivity<T>.LanguageChangeAndSave(systemLanguage: String) {
+	var language = systemLanguage
+	val current = Locale.getDefault().toString()
 
-		language = language.replace("-", "_")
+	language = language.replace("-", "_")
 
-		if (language.equals(current, ignoreCase = true))
-			return
+	if (language.equals(current, ignoreCase = true))
+		return
 
-		change(activity, language)
+	change(language)
 
-		SP.setValue(activity, spKey, language)
+	setValue(spKey, language)
 
-		activity.refresh()
-	}
+	refresh()
+}
 
-	fun ChangeFromSaved(activity: Activity) {
-		val language = SP.getValue(activity, spKey)
+fun Activity.LanguageChangeFromSaved() {
+	val language = getValue(spKey)
 
-		if (language != "")
-			change(activity, language)
-	}
+	if (language != "")
+		change(language)
+}
 
-	private fun change(activity: Activity, language: String) {
-		val resources = activity.resources
+private fun Activity.change(language: String) {
+	val availableLocales = Locale.getAvailableLocales()
 
-		val availableLocales = Locale.getAvailableLocales()
+	val locale: Locale = availableLocales.lastOrNull {
+		it.toString().equals(language, ignoreCase = true)
+	} ?: return
 
-		val locale: Locale = availableLocales.lastOrNull {
-			it.toString().equals(language, ignoreCase = true)
-		} ?: return
+	Locale.setDefault(locale)
 
-		Locale.setDefault(locale)
+	val config = resources.configuration
+	config.setLocale(locale)
 
-		val config = resources.configuration
-		config.setLocale(locale)
+	//NEW
+	createConfigurationContext(config)
 
-		//NEW
-		activity.createConfigurationContext(config)
-
-		//OLD
-		@Suppress("DEPRECATION")
-		resources.updateConfiguration(config, null)
-		resources.flushLayoutCache()
-	}
-
+	//OLD
+	@Suppress("DEPRECATION")
+	resources.updateConfiguration(config, null)
+	resources.flushLayoutCache()
 }

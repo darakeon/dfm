@@ -17,6 +17,7 @@ import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
 import com.darakeon.dfm.uiHelpers.views.MoveLine
+import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -106,7 +107,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	private fun getExtract() {
 		val request = InternalRequest(this, "Moves/Extract")
 
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
 		request.AddParameter("id", static.year * 100 + static.month + 1)
 
@@ -231,7 +232,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 		val request = InternalRequest(this, "Moves/" + action)
 
-		request.AddParameter("ticket", Authentication.Get())
+		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
 		request.AddParameter("id", view.id)
 
