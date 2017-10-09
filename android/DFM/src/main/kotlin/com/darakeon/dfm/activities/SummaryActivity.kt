@@ -13,7 +13,6 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
@@ -37,13 +36,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 		if (rotated && succeeded) {
 			setDateFromLast()
-
-			try {
-				fillSummary()
-			} catch (e: JSONException) {
-				message.alertError(R.string.error_activity_json, e)
-			}
-
+			fillSummary()
 		} else {
 			setDateFromCaller()
 			getSummary()
@@ -105,7 +98,6 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 		request.Post()
 	}
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		static.monthList = data.getJSONArray("MonthList")
 		static.name = data.getString("Name")
@@ -114,7 +106,6 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 		fillSummary()
 	}
 
-	@Throws(JSONException::class)
 	private fun fillSummary() {
 		setValue(R.id.totalTitle, static.name)
 		setValueColored(R.id.totalValue, static.total)

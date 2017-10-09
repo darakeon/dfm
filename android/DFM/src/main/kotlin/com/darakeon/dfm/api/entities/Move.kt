@@ -3,7 +3,6 @@ package com.darakeon.dfm.api.entities
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
 import com.darakeon.dfm.api.DateTime
 import com.darakeon.dfm.api.InternalRequest
-import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -101,7 +100,6 @@ class Move {
 	}
 
 
-	@Throws(JSONException::class)
 	fun SetData(move: JSONObject, activityAccountUrl: String?) {
 		Id = move.getInt("ID")
 
@@ -113,7 +111,6 @@ class Move {
 		}
 	}
 
-	@Throws(JSONException::class)
 	private fun setEditMoveData(move: JSONObject) {
 		Description = move.getString("Description")
 		Date = DateTime.getCalendar(move.getJSONObject("Date"))

@@ -18,7 +18,6 @@ import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
 import com.darakeon.dfm.uiHelpers.views.MoveLine
-import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,13 +48,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 		if (rotated && succeeded) {
 			setDateFromLast()
-
-			try {
-				fillMoves()
-			} catch (e: JSONException) {
-				message.alertError(R.string.error_activity_json, e)
-			}
-
+			fillMoves()
 		} else {
 			setDateFromCaller()
 			getExtract()
@@ -122,7 +115,6 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		request.Post(Step.Populate)
 	}
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		when (step) {
 			Step.Populate -> {
@@ -142,7 +134,6 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		}
 	}
 
-	@Throws(JSONException::class)
 	private fun fillMoves() {
 		setValue(R.id.totalTitle, static.name)
 		setValueColored(R.id.totalValue, static.total)

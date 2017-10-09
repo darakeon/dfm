@@ -22,7 +22,6 @@ import com.darakeon.dfm.uiHelpers.views.DetailBox
 import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
 import com.darakeon.dfm.uiHelpers.watchers.ValueWatcher
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
@@ -39,21 +38,15 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		super.onCreate(savedInstanceState)
 
 		if (rotated && succeeded) {
-			try {
-				populateCategoryAndNature()
-				setControls()
-				populateOldData(false)
-			} catch (e: JSONException) {
-				message.alertError(R.string.error_activity_json, e)
-			}
-
+			populateCategoryAndNature()
+			setControls()
+			populateOldData(false)
 		} else {
 			static.move = Move()
 			populateScreen()
 		}
 	}
 
-	@Throws(NumberFormatException::class, JSONException::class)
 	private fun populateOldData(populateAll: Boolean) {
 
 		var canMove = true
@@ -118,7 +111,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		}
 	}
 
-	@Throws(JSONException::class)
 	private fun setDataFromList(list: JSONArray?, dataSaved: String?, resourceId: Int) {
 		if (list != null) {
 			for (n in 0 until list.length()) {
@@ -146,7 +138,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		setControls()
 	}
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		when (step) {
 			Step.Populate -> {
@@ -162,7 +153,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		}
 	}
 
-	@Throws(JSONException::class)
 	private fun populateScreen(data: JSONObject) {
 		static.useCategories = data.getBoolean("UseCategories")
 
@@ -188,7 +178,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 		}
 	}
 
-	@Throws(JSONException::class)
 	private fun populateCategoryAndNature() {
 
 		findViewById(R.id.category).visibility =

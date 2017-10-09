@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.uiHelpers.dialogs.DialogSelectClickListener
 import org.json.JSONArray
-import org.json.JSONException
 
 fun TextView.setColorByAttr(attr : Int){
 	val typedValue = TypedValue()
@@ -68,7 +67,6 @@ private fun <T : View> Activity.getField(id: Int): T {
 }
 
 
-@Throws(JSONException::class)
 fun Activity.showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSelectClickListener) {
 	if (list != null) {
 		val adapter = arrayOfNulls<CharSequence>(list.length())

@@ -7,7 +7,6 @@ import com.darakeon.dfm.activities.base.getValue
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import org.json.JSONException
 import org.json.JSONObject
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
@@ -31,7 +30,6 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 		request.Post()
 	}
 
-	@Throws(JSONException::class)
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		val ticket = data.getString("ticket")
 		Authentication.Set(ticket)
