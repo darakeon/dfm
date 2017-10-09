@@ -1,10 +1,8 @@
 package com.darakeon.dfm.user
 
 import android.content.Context
-import android.provider.Settings.Secure
+import com.google.android.gms.iid.InstanceID
 
-object Unique {
-	fun GetKey(context: Context): String {
-		return Secure.getString(context.contentResolver, Secure.ANDROID_ID)
-	}
+fun Context.GetId(): String {
+	return InstanceID.getInstance(this).id
 }
