@@ -12,9 +12,7 @@ import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.user.LanguageChangeFromSaved
-import com.darakeon.dfm.user.ThemeChangeFromSaved
-import com.darakeon.dfm.user.getHighLightColor
+import com.darakeon.dfm.user.*
 import org.json.JSONObject
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
@@ -48,8 +46,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		get() = true
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
-
-	internal val resultHandler: ResultHandler<T> get() = ResultHandler(this)
 
 	var request: InternalRequest<T>? = null
 
@@ -164,13 +160,32 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 	abstract fun HandleSuccess(data: JSONObject, step: Step)
 
 	fun HandlePostResult(result: JSONObject, step: Step) {
-		resultHandler.HandlePostResult(result, step)
+		if (result.has("error")) {
+			val error = result.getString("error")
+
+			alertError(error)
+
+			if (error.contains(getString(R.string.uninvited)) || error.contains("uninvited")) {
+				logout()
+			}
+		} else {
+			val data = result.getJSONObject("data")
+
+			if (data.has("Language"))
+				LanguageChangeAndSave(data.getString("Language"))
+
+			if (data.has("Theme"))
+				ThemeChangeAndSave(data.getString("Theme"))
+
+			HandleSuccess(data, step)
+		}
+
 		succeeded = true
 	}
 
 	fun HandlePostError(error: String) {
 		succeeded = false
-		resultHandler.HandlePostError(error)
+		alertError(error)
 	}
 
 
