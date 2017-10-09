@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
 import android.util.TypedValue
-import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.darakeon.dfm.R
@@ -37,13 +36,13 @@ fun Any.getChildOrMe(fieldName: String): Any {
 }
 
 fun Activity.getValue(id: Int): String {
-	val field = getField<EditText>(id)
+	val field = findViewById<EditText>(id)
 
 	return field.text.toString()
 }
 
 fun Activity.setValueColored(id: Int, value: Double) {
-	val field = getField<TextView>(id)
+	val field = findViewById<TextView>(id)
 
 	field.text = String.format("%1$,.2f", value)
 
@@ -56,14 +55,8 @@ fun Activity.setValue(id: Int, text: Any?) {
 }
 
 fun Activity.setValue(id: Int, text: String?) {
-	val field = getField<TextView>(id)
-
+	val field = findViewById<TextView>(id)
 	field.text = text
-}
-
-private fun <T : View> Activity.getField(id: Int): T {
-	@Suppress("UNCHECKED_CAST")
-	return findViewById(id) as T
 }
 
 

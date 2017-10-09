@@ -72,12 +72,12 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		setupActionBar()
 
 		if (viewWithContext() != 0) {
-			val contextView = findViewById(viewWithContext())
+			val contextView = findViewById<View>(viewWithContext())
 			registerForContextMenu(contextView)
 		}
 
-		findViewById(R.id.highlight)?.
-			setBackgroundColor(Theme.getHighLightColor())
+		findViewById<LinearLayout>(R.id.highlight)
+			?.setBackgroundColor(Theme.getHighLightColor())
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -86,7 +86,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		if (optionsMenuResource() != 0)
 			menuInflater.inflate(optionsMenuResource(), menu)
 
-		val bottomMenu = findViewById(R.id.menu) as LinearLayout?
+		val bottomMenu = findViewById<LinearLayout>(R.id.menu)
 
 		if (bottomMenu != null)
 		{
@@ -95,13 +95,13 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 				button.applyGlyphicon(this)
 
 				if (this is AccountsActivity)
-					findViewById(R.id.action_home).isEnabled = false
+					findViewById<Button>(R.id.action_home).isEnabled = false
 
 				if (this is SettingsActivity)
-					findViewById(R.id.action_settings).isEnabled = false
+					findViewById<Button>(R.id.action_settings).isEnabled = false
 
 				if (this is MovesCreateActivity)
-					findViewById(R.id.action_move).isEnabled = false
+					findViewById<Button>(R.id.action_move).isEnabled = false
 			}
 		}
 

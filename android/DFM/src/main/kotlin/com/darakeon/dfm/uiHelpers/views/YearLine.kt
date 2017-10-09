@@ -18,8 +18,8 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		super.onFinishInflate()
 	}
 
-	val MonthField: TextView get() = findViewById(R.id.month) as TextView
-	val TotalField: TextView get() = findViewById(R.id.value) as TextView
+	val MonthField: TextView get() = findViewById(R.id.month)
+	val TotalField: TextView get() = findViewById(R.id.value)
 
 	fun setYear(year: YearAdapter.Year, color: Int) {
 		setBackgroundColor(color)

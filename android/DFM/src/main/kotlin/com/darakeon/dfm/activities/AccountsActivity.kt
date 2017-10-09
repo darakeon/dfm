@@ -13,8 +13,8 @@ import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
-	internal val main: ListView get() = findViewById(R.id.main_table) as ListView
-	internal val empty: TextView get() = findViewById(R.id.empty_list) as TextView
+	internal val main: ListView get() = findViewById(R.id.main_table)
+	internal val empty: TextView get() = findViewById(R.id.empty_list)
 
 
 	override fun contentView(): Int = R.layout.accounts

@@ -18,8 +18,8 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 		super.onFinishInflate()
 	}
 
-	val NameField: TextView get() = findViewById(R.id.name) as TextView
-	val TotalField: TextView get() = findViewById(R.id.value) as TextView
+	val NameField: TextView get() = findViewById(R.id.name)
+	val TotalField: TextView get() = findViewById(R.id.value)
 
 	fun setAccount(account: AccountAdapter.Account, color: Int) {
 		setBackgroundColor(color)
