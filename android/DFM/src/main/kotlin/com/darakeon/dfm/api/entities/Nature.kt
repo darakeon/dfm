@@ -6,21 +6,20 @@ enum class Nature {
 	Transfer;
 
 	fun GetNumber(): Int {
-		when (this) {
-			Out -> return 0
-			In -> return 1
-			Transfer -> return 2
-			else -> throw UnsupportedOperationException()
+		return when (this) {
+			Out -> 0
+			In -> 1
+			Transfer -> 2
 		}
 	}
 
 	companion object {
 
 		fun GetNature(number: Int?): Nature {
-			when (number) {
-				0 -> return Out
-				1 -> return In
-				2 -> return Transfer
+			return when (number) {
+				0 -> Out
+				1 -> In
+				2 -> Transfer
 				else -> throw UnsupportedOperationException()
 			}
 		}
