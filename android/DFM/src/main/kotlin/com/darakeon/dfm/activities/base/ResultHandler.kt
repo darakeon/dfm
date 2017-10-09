@@ -7,7 +7,7 @@ import com.darakeon.dfm.user.LanguageChangeAndSave
 import com.darakeon.dfm.user.ThemeChangeAndSave
 import org.json.JSONObject
 
-internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivity<T>, private val navigation: Navigation<T>) {
+internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivity<T>) {
 
 	fun HandlePostResult(result: JSONObject, step: Step) {
 		if (result.has("error")) {
@@ -16,7 +16,7 @@ internal class ResultHandler<T : SmartStatic>(private val activity: SmartActivit
 			activity.alertError(error)
 
 			if (error.contains(activity.getString(R.string.uninvited)) || error.contains("uninvited")) {
-				navigation.logout()
+				activity.logout()
 			}
 		} else {
 			val data = result.getJSONObject("data")

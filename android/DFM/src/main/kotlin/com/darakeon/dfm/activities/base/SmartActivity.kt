@@ -49,8 +49,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
-	protected val navigation: Navigation<T> get() = Navigation(this)
-	internal val resultHandler: ResultHandler<T> get() = ResultHandler(this, navigation)
+	internal val resultHandler: ResultHandler<T> get() = ResultHandler(this)
 
 	var request: InternalRequest<T>? = null
 
@@ -129,15 +128,15 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 
 
 	fun back(@Suppress(onClick) view: View) {
-		navigation.back()
+		back()
 	}
 
 	fun logout(@Suppress(onClick) view: View) {
-		navigation.logout()
+		logout()
 	}
 
 	fun close(@Suppress(onClick) view: View) {
-		navigation.close()
+		close()
 	}
 
 	fun refresh(@Suppress(onClick) view: View) {
@@ -145,19 +144,15 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 	}
 
 	fun goToAccounts(@Suppress(onClick) view: View) {
-		navigation.redirect(AccountsActivity::class.java)
+		redirect(AccountsActivity::class.java)
 	}
 
 	fun goToSettings(@Suppress(onClick) view: View) {
-		navigation.goToSettings()
+		goToSettings()
 	}
 
 	fun createMove(@Suppress(onClick) view: View) {
-		navigation.createMove()
-	}
-
-	protected fun createMove(extras: Bundle) {
-		navigation.createMove(extras)
+		createMove()
 	}
 
 	fun refresh() {
@@ -187,5 +182,3 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		succeeded = false
 	}
 }
-
-const val onClick: String = "UNUSED_PARAMETER"

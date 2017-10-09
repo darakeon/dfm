@@ -5,6 +5,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.getValue
 import com.darakeon.dfm.activities.base.onClick
+import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.Step
@@ -35,7 +36,7 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	override fun HandleSuccess(data: JSONObject, step: Step) {
 		val ticket = data.getString("ticket")
 		SetAuth(ticket)
-		navigation.redirect(WelcomeActivity::class.java)
+		redirect(WelcomeActivity::class.java)
 	}
 
 
