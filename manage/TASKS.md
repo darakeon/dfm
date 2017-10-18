@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.1.0 :sheep: <sup>`7`</sup>
+## <a name="dev"></a>4.1.1.0 :sheep: <sup>`7`</sup>
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
@@ -147,11 +147,11 @@ disabled
 - [ ] Refactor android dialog handling
 - [ ] Refactor android post/get handling
 
-## <a name="dev"></a>4.1.0.1 :ant: <sup>`2`</sup>
+## <a name="publish"></a>4.1.0.1 :ant: <sup>`2`</sup>
 - [x] `2017-10-18 > 2017-10-18` Fix error when enter cents on mobile
 - [x] `2017-10-08 > 2017-10-18` Refactor android activity helper classes
 
-## <a name="publish"></a>4.1.0.0 :whale: <sup>`3`</sup>
+## 4.1.0.0 :whale: <sup>`3`</sup>
 - [x] `2017-10-07 > 2017-10-08` Put titles on glyphicons
 - [x] `2017-10-07 > 2017-10-07` Fix places where the understanding depends on colors
 - [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be all the same
