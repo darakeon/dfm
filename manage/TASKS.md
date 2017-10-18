@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.1.0 :sheep: <sup>`5`</sup>
+## 4.1.1.0 :sheep: <sup>`7`</sup>
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
@@ -144,6 +144,8 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 - [ ] Record log on error at mobile
+- [ ] Refactor android dialog handling
+- [ ] Refactor android post/get handling
 
 ## <a name="dev"></a>4.1.0.1 :ant: <sup>`2`</sup>
 - [ ] Fix error when enter cents on mobile
