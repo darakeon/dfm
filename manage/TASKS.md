@@ -148,8 +148,8 @@ disabled
 - [ ] Refactor android post/get handling
 
 ## <a name="dev"></a>4.1.0.1 :ant: <sup>`2`</sup>
-- [ ] Fix error when enter cents on mobile
-- [ ] Refactor android activity helper classes
+- [x] `2017-10-18 > 2017-10-18` Fix error when enter cents on mobile
+- [x] `2017-10-08 > 2017-10-18` Refactor android activity helper classes
 
 ## <a name="publish"></a>4.1.0.0 :whale: <sup>`3`</sup>
 - [x] `2017-10-07 > 2017-10-08` Put titles on glyphicons
