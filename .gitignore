@@ -24,6 +24,8 @@ site/TestResults/*
 */.vs/*
 *.user
 smtp.config
+site/DFM.MVC/Assets/Bootstrap/*/*.js
+site/DFM.MVC/Assets/Bootstrap/Fonts/*
 
 # Android (Kotlin)
 android/*/*.apk
@@ -41,6 +43,4 @@ android/gradlew
 android/gradlew.bat
 *.iml
 android/DFM/src/main/res/values/localaddress.xml
-
-/site/DFM.MVC/Assets/Bootstrap/*/*.js
-/site/DFM.MVC/Assets/Bootstrap/Fonts/*
+android/DFM/release
