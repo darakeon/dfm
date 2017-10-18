@@ -1,6 +1,8 @@
 package com.darakeon.dfm.activities.base
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -15,9 +17,10 @@ import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.*
 import org.json.JSONObject
 
-abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationActivity() {
+abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	var clickedView: View? = null
+	var rotated: Boolean = false
 
 	var succeeded: Boolean
 		get() = static.succeeded
@@ -54,6 +57,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		ThemeChangeFromSaved()
 
 		super.onCreate(savedInstanceState)
+
+		rotated = oldConfigInt and ActivityInfo.CONFIG_ORIENTATION == ActivityInfo.CONFIG_ORIENTATION
 
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -109,15 +114,24 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : FixOrientationAc
 		}
 	}
 
+	override fun onResume() {
+		super.onResume()
+		oldConfigInt = 0
+	}
+
+	companion object {
+		private var oldConfigInt: Int = 0
+	}
+
 	override fun onDestroy() {
 		super.onDestroy()
+		oldConfigInt = changingConfigurations
 		request?.Cancel()
 	}
 
 	private fun setupActionBar() {
 		if (hasParent) {
 			val actionBar = actionBar
-
 			actionBar?.setDisplayHomeAsUpEnabled(true)
 		}
 	}
