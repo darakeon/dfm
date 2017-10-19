@@ -12,23 +12,21 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
-import com.darakeon.dfm.user.GetAuth
+import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 import java.util.*
 
 class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
 
-	internal val main: ListView get() = findViewById(R.id.main_table)
-	internal val empty: TextView get() = findViewById(R.id.empty_list)
+	private val main: ListView get() = findViewById(R.id.main_table)
+	private val empty: TextView get() = findViewById(R.id.empty_list)
 
-	internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
+	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
 	override var dialog: DatePickerDialog? = null
 
 
 
-	override fun contentView(): Int {
-		return R.layout.summary
-	}
+	override fun contentView(): Int = R.layout.summary
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +57,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 		setValue(R.id.reportChange, Integer.toString(year))
 	}
 
-	fun changeDate(@Suppress(onClick) view: View) {
+	fun changeDate(@Suppress(ON_CLICK) view: View) {
 		if (dialog == null) {
 			dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
 
@@ -93,11 +91,11 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 			this, "Moves/Summary", { d -> handleSummary(d) }
 		)
 
-		request.AddParameter("ticket", GetAuth())
-		request.AddParameter("accountUrl", accountUrl)
-		request.AddParameter("id", static.year)
+		request.addParameter("ticket", getAuth())
+		request.addParameter("accountUrl", accountUrl)
+		request.addParameter("id", static.year)
 
-		request.Post()
+		request.post()
 	}
 
 	private fun handleSummary(data: JSONObject) {

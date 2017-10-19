@@ -13,8 +13,8 @@ import com.darakeon.dfm.activities.MovesCreateActivity
 import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.user.LanguageChangeFromSaved
-import com.darakeon.dfm.user.ThemeChangeFromSaved
+import com.darakeon.dfm.user.languageChangeFromSaved
+import com.darakeon.dfm.user.themeChangeFromSaved
 import com.darakeon.dfm.user.getHighLightColor
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
@@ -27,23 +27,12 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		set(value) { static.succeeded = value }
 
 	protected abstract fun contentView(): Int
-	protected open fun optionsMenuResource(): Int {
-		return 0
-	}
-
-	protected open fun contextMenuResource(): Int {
-		return 0
-	}
-
-	protected open fun viewWithContext(): Int {
-		return 0
-	}
+	protected open fun optionsMenuResource(): Int = 0
+	protected open fun contextMenuResource(): Int = 0
+	protected open fun viewWithContext(): Int = 0
 
 	protected open val isLoggedIn: Boolean
 		get() = true
-
-	protected val hasParent: Boolean
-		get() = false
 
 	protected open val hasTitle: Boolean
 		get() = true
@@ -53,8 +42,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	var request: InternalRequest<T>? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		LanguageChangeFromSaved()
-		ThemeChangeFromSaved()
+		languageChangeFromSaved()
+		themeChangeFromSaved()
 
 		super.onCreate(savedInstanceState)
 
@@ -66,7 +55,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		static.inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 		setContentView(contentView())
-		setupActionBar()
 
 		if (viewWithContext() != 0) {
 			val contextView = findViewById<View>(viewWithContext())
@@ -87,7 +75,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		if (bottomMenu != null)
 		{
-			(0..bottomMenu.childCount - 1).forEach {
+			(0 until bottomMenu.childCount).forEach {
 				val button = bottomMenu.getChildAt(it) as Button
 				button.applyGlyphicon(this)
 
@@ -126,42 +114,35 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		oldConfigInt = changingConfigurations
-		request?.Cancel()
-	}
-
-	private fun setupActionBar() {
-		if (hasParent) {
-			val actionBar = actionBar
-			actionBar?.setDisplayHomeAsUpEnabled(true)
-		}
+		request?.cancel()
 	}
 
 
-	fun back(@Suppress(onClick) view: View) {
+	fun back(@Suppress(ON_CLICK) view: View) {
 		back()
 	}
 
-	fun logout(@Suppress(onClick) view: View) {
+	fun logout(@Suppress(ON_CLICK) view: View) {
 		logout()
 	}
 
-	fun close(@Suppress(onClick) view: View) {
+	fun close(@Suppress(ON_CLICK) view: View) {
 		close()
 	}
 
-	fun refresh(@Suppress(onClick) view: View) {
+	fun refresh(@Suppress(ON_CLICK) view: View) {
 		refresh()
 	}
 
-	fun goToAccounts(@Suppress(onClick) view: View) {
+	fun goToAccounts(@Suppress(ON_CLICK) view: View) {
 		redirect(AccountsActivity::class.java)
 	}
 
-	fun goToSettings(@Suppress(onClick) view: View) {
+	fun goToSettings(@Suppress(ON_CLICK) view: View) {
 		goToSettings()
 	}
 
-	fun createMove(@Suppress(onClick) view: View) {
+	fun createMove(@Suppress(ON_CLICK) view: View) {
 		createMove()
 	}
 
@@ -170,11 +151,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		startActivity(intent)
 	}
 
-	open fun EnableScreen() {
+	open fun enableScreen() {
 		succeeded = true
 	}
 
-	fun Reset() {
+	fun reset() {
 		succeeded = false
 	}
 }

@@ -15,17 +15,9 @@ internal class InternalResponse {
 	}
 
 
-	fun IsSuccess(): Boolean {
-		return error == null
-	}
-
-	fun GetResult(): JSONObject {
-		return result!!
-	}
-
-	fun GetError(): String {
-		return error!!
-	}
+	fun isSuccess(): Boolean = error == null
+	fun getResult(): JSONObject = result!!
+	fun getError(): String = error!!
 
 
 }

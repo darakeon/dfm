@@ -4,21 +4,19 @@ import android.content.Context
 
 private val spKey = "Ticket"
 
-fun Context.SetAuth(ticket: String) {
-	val encryptedTicket = Encrypt(ticket)
+fun Context.setAuth(ticket: String) {
+	val encryptedTicket = encrypt(ticket)
 	setValue(spKey, encryptedTicket)
 }
 
-fun Context.GetAuth(): String {
+fun Context.getAuth(): String {
 	val encryptedTicket = getValue(spKey)
-	return Decrypt(encryptedTicket)
+	return decrypt(encryptedTicket)
 }
 
-fun Context.IsLoggedIn(): Boolean {
-	return !GetAuth().isEmpty()
-}
+fun Context.isLoggedIn(): Boolean = !getAuth().isEmpty()
 
-fun Context.ClearAuth() {
-	SetAuth("")
+fun Context.clearAuth() {
+	setAuth("")
 }
 

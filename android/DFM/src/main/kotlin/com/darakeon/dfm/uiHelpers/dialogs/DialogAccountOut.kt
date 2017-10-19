@@ -9,7 +9,7 @@ import org.json.JSONArray
 class DialogAccountOut(list: JSONArray?, private val activity: Activity, private val move: Move?) : DialogSelectClickListener(list) {
 	override fun setResult(text: String, value: String) {
 		activity.setValue(R.id.account_out, text)
-		move?.AccountOut = value
+		move?.accountOut = value
 	}
 }
 

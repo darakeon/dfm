@@ -21,31 +21,23 @@ class MoveAdapter(private val activity: ExtractActivity, moveJsonList: JSONArray
 
 	init {
 		moveList =
-			(0..moveJsonList.length() - 1)
+			(0 until moveJsonList.length())
 				.map { Move(moveJsonList.getJSONObject(it)) }
 				.toMutableList()
 	}
 
 	inner class Move(jsonObject: JSONObject) {
-		var Description: String = jsonObject.getString("Description")
-		var Date: Calendar = jsonObject.getCalendar("Date")
-		var Total: Double = jsonObject.getDouble("Total")
-		var Checked: Boolean = jsonObject.getBoolean("Checked")
-		var ID: Int = jsonObject.getInt("ID")
+		var description: String = jsonObject.getString("Description")
+		var date: Calendar = jsonObject.getCalendar("Date")
+		var total: Double = jsonObject.getDouble("Total")
+		var checked: Boolean = jsonObject.getBoolean("Checked")
+		var id: Int = jsonObject.getInt("ID")
 	}
 
 
-	override fun getCount(): Int {
-		return moveList.size
-	}
-
-	override fun getItem(position: Int): Any {
-		return position
-	}
-
-	override fun getItemId(position: Int): Long {
-		return position.toLong()
-	}
+	override fun getCount(): Int = moveList.size
+	override fun getItem(position: Int): Any = position
+	override fun getItemId(position: Int): Long = position.toLong()
 
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.extract_line, null) as MoveLine

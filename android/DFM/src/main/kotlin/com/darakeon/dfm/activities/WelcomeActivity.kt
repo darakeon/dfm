@@ -6,8 +6,7 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.user.IsLoggedIn
-import org.json.JSONObject
+import com.darakeon.dfm.user.isLoggedIn
 import kotlin.reflect.KClass
 
 class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
@@ -26,14 +25,14 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 		}
 
 		val request = InternalRequest(
-			this, "", { d -> startProgram(d) }
+			this, "", { startProgram() }
 		)
-		request.Get()
+		request.get()
 	}
 
-	private fun startProgram(data: JSONObject) {
+	private fun startProgram() {
 		val nextActivity : KClass<*> =
-			if (IsLoggedIn())
+			if (isLoggedIn())
 				AccountsActivity::class
 			else
 				LoginActivity::class

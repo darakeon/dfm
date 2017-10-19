@@ -9,7 +9,7 @@ import com.darakeon.dfm.activities.objects.SmartStatic
 private val spKey = "Theme"
 private var currentTheme = R.style.AppTheme
 
-fun <T : SmartStatic> SmartActivity<T>.ThemeChangeAndSave(systemTheme: String) {
+fun <T : SmartStatic> SmartActivity<T>.themeChangeAndSave(systemTheme: String) {
 	val theme = getRes(systemTheme)
 
 	if (theme == currentTheme)
@@ -22,7 +22,7 @@ fun <T : SmartStatic> SmartActivity<T>.ThemeChangeAndSave(systemTheme: String) {
 	refresh()
 }
 
-fun Activity.ThemeChangeFromSaved() {
+fun Activity.themeChangeFromSaved() {
 	val theme = getValue(spKey)
 
 	if (theme != "")
@@ -31,34 +31,31 @@ fun Activity.ThemeChangeFromSaved() {
 
 private fun Activity.changeTheme(theme: Int) {
 	setTheme(theme)
-	currentTheme = theme;
+	currentTheme = theme
 }
 
-private fun getRes(theme: String): Int {
+private fun getRes(theme: String): Int =
 	when (theme) {
-		"Light" -> return R.style.Light
-		"Dark" -> return R.style.Dark
-		else -> return R.style.AppTheme
+		"Light" -> R.style.Light
+		"Dark" -> R.style.Dark
+		else -> R.style.AppTheme
 	}
-}
 
-fun getThemeLineColor(position: Int): Int {
+fun getThemeLineColor(position: Int): Int =
 	if (position % 2 == 0) {
-		return Color.TRANSPARENT
-	}
-	else {
+		Color.TRANSPARENT
+	} else {
 		when (currentTheme) {
-			R.style.Light -> return Color.argb(0x11, 0x00, 0x00, 0x00)
-			R.style.Dark -> return Color.argb(0x11, 0xFF, 0xFF, 0xFF)
-			else -> return 0
+			R.style.Light -> Color.argb(0x11, 0x00, 0x00, 0x00)
+			R.style.Dark -> Color.argb(0x11, 0xFF, 0xFF, 0xFF)
+			else -> 0
 		}
 	}
-}
 
-fun getHighLightColor(): Int {
+
+fun getHighLightColor(): Int =
 	when (currentTheme) {
-		R.style.Light -> return Color.argb(0x22, 0x00, 0x00, 0x00)
-		R.style.Dark -> return Color.argb(0x22, 0xFF, 0xFF, 0xFF)
-		else -> return 0
+		R.style.Light -> Color.argb(0x22, 0x00, 0x00, 0x00)
+		R.style.Dark -> Color.argb(0x22, 0xFF, 0xFF, 0xFF)
+		else -> 0
 	}
-}

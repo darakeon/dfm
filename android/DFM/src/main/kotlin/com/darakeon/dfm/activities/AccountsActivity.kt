@@ -9,12 +9,12 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.AccountsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
-import com.darakeon.dfm.user.GetAuth
+import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
-	internal val main: ListView get() = findViewById(R.id.main_table)
-	internal val empty: TextView get() = findViewById(R.id.empty_list)
+	private val main: ListView get() = findViewById(R.id.main_table)
+	private val empty: TextView get() = findViewById(R.id.empty_list)
 
 
 	override fun contentView(): Int = R.layout.accounts
@@ -34,8 +34,8 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 		val request = InternalRequest(
 			this, "Accounts/List", { d -> handleAccounts(d) }
 		)
-		request.AddParameter("ticket", GetAuth())
-		request.Post()
+		request.addParameter("ticket", getAuth())
+		request.post()
 	}
 
 	private fun handleAccounts(data: JSONObject) {

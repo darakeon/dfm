@@ -4,17 +4,15 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.getValue
-import com.darakeon.dfm.activities.base.onClick
+import com.darakeon.dfm.activities.base.ON_CLICK
 import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.user.SetAuth
+import com.darakeon.dfm.user.setAuth
 import org.json.JSONObject
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
-	override fun contentView(): Int {
-		return R.layout.login
-	}
+	override fun contentView(): Int = R.layout.login
 
 	override val isLoggedIn: Boolean
 		get() = false
@@ -23,20 +21,20 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 		get() = false
 
 
-	fun login(@Suppress(onClick) view: View) {
+	fun login(@Suppress(ON_CLICK) view: View) {
 		val request = InternalRequest(
 			this, "Users/Login", { d -> handleLogin(d) }
 		)
 
-		request.AddParameter("email", getValue(R.id.email))
-		request.AddParameter("password", getValue(R.id.password))
+		request.addParameter("email", getValue(R.id.email))
+		request.addParameter("password", getValue(R.id.password))
 
-		request.Post()
+		request.post()
 	}
 
 	private fun handleLogin(data: JSONObject) {
 		val ticket = data.getString("ticket")
-		SetAuth(ticket)
+		setAuth(ticket)
 		redirect(WelcomeActivity::class.java)
 	}
 

@@ -16,30 +16,22 @@ import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
 import com.darakeon.dfm.uiHelpers.views.MoveLine
-import com.darakeon.dfm.user.GetAuth
+import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer, IDatePickerActivity {
-	internal val main: ListView get() = findViewById(R.id.main_table)
-	internal val empty: TextView get() = findViewById(R.id.empty_list)
+	private val main: ListView get() = findViewById(R.id.main_table)
+	private val empty: TextView get() = findViewById(R.id.empty_list)
 
-	internal val accountUrl: String get() = intent.getStringExtra("accountUrl")
+	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
 	override var dialog: DatePickerDialog? = null
 
 
-	override fun contentView(): Int {
-		return R.layout.extract
-	}
-
-	override fun contextMenuResource(): Int {
-		return R.menu.move_options
-	}
-
-	override fun viewWithContext(): Int {
-		return R.id.main_table
-	}
+	override fun contentView(): Int = R.layout.extract
+	override fun contextMenuResource(): Int = R.menu.move_options
+	override fun viewWithContext(): Int = R.id.main_table
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,13 +68,13 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		date.set(Calendar.MONTH, month)
 		date.set(Calendar.YEAR, year)
 
-		val formatter = SimpleDateFormat("MMM/yyyy")
+		val formatter = SimpleDateFormat("MMM/yyyy", Locale.getDefault())
 		val dateInFull = formatter.format(date.time)
 
 		setValue(R.id.reportChange, dateInFull)
 	}
 
-	fun changeDate(@Suppress(onClick) view: View) {
+	fun changeDate(@Suppress(ON_CLICK) view: View) {
 		if (dialog == null) {
 			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
 
@@ -108,14 +100,14 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 			this, "Moves/Extract", { d -> handleMoves(d) }
 		)
 
-		request.AddParameter("ticket", GetAuth())
-		request.AddParameter("accountUrl", accountUrl)
-		request.AddParameter("id", static.year * 100 + static.month + 1)
+		request.addParameter("ticket", getAuth())
+		request.addParameter("accountUrl", accountUrl)
+		request.addParameter("id", static.year * 100 + static.month + 1)
 
-		request.Post()
+		request.post()
 	}
 
-	fun handleMoves(data: JSONObject) {
+	private fun handleMoves(data: JSONObject) {
 		static.moveList = data.getJSONArray("MoveList")
 		static.name = data.getString("Name")
 		static.total = data.getDouble("Total")
@@ -141,7 +133,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 
-	fun goToSummary(@Suppress(onClick) view: View) {
+	fun goToSummary(@Suppress(ON_CLICK) view: View) {
 		val intent = Intent(this, SummaryActivity::class.java)
 
 		intent.putExtra("accountUrl", accountUrl)
@@ -191,7 +183,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 
-	fun askDelete(): Boolean {
+	private fun askDelete(): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
 		val moveRow = clickedView as MoveLine
 
@@ -202,11 +194,11 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		return false
 	}
 
-	override fun YesAction() {
+	override fun yesAction() {
 		submitMoveAction("Delete")
 	}
 
-	override fun NoAction() {}
+	override fun noAction() {}
 
 
 	private fun check() {
@@ -225,11 +217,11 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 			this, "Moves/" + action, { refresh() }
 		)
 
-		request.AddParameter("ticket", GetAuth())
-		request.AddParameter("accountUrl", accountUrl)
-		request.AddParameter("id", view.id)
+		request.addParameter("ticket", getAuth())
+		request.addParameter("accountUrl", accountUrl)
+		request.addParameter("id", view.id)
 
-		request.Post()
+		request.post()
 	}
 
 
@@ -250,15 +242,15 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 	}
 
-	fun hideMenuItem(menu: ContextMenu, id: Int) {
+	private fun hideMenuItem(menu: ContextMenu, id: Int) {
 		toggleMenuItem(menu, id, false)
 	}
 
-	fun showMenuItem(menu: ContextMenu, id: Int) {
+	private fun showMenuItem(menu: ContextMenu, id: Int) {
 		toggleMenuItem(menu, id, true)
 	}
 
-	fun toggleMenuItem(menu: ContextMenu, id: Int, show: Boolean) {
+	private fun toggleMenuItem(menu: ContextMenu, id: Int, show: Boolean) {
 		val buttonToHide = menu.findItem(id)
 		buttonToHide.isVisible = show
 	}

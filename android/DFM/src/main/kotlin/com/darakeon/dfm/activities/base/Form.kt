@@ -64,7 +64,7 @@ fun Activity.showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSe
 	if (list != null) {
 		val adapter = arrayOfNulls<CharSequence>(list.length())
 
-		for (c in 0..list.length() - 1) {
+		for (c in 0 until list.length()) {
 			val item = list.getJSONObject(c)
 			adapter[c] = item.getString("Text")
 		}

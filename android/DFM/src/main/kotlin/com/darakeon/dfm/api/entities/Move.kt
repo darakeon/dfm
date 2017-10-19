@@ -9,48 +9,47 @@ import java.util.*
 
 class Move {
 
-	private var Id: Int = 0
-	var Description: String? = null
-	var Date: Calendar = Calendar.getInstance()
+	private var id: Int = 0
+	var description: String? = null
+	var date: Calendar = Calendar.getInstance()
 
-	var Nature: Nature? = null
+	var nature: Nature? = null
 
-	var Category: String? = null
-	var AccountOut: String? = null
-	var AccountIn: String? = null
+	var category: String? = null
+	var accountOut: String? = null
+	var accountIn: String? = null
 
 	var isDetailed: Boolean = false
-	var Value: Double = 0.toDouble()
-	var Details: MutableList<Detail> = ArrayList<Detail>()
+	var value: Double = 0.toDouble()
+	var details: MutableList<Detail> = ArrayList()
 
 
-	private fun getNature(number: Int?): Nature {
-		return com.darakeon.dfm.api.entities.Nature.GetNature(number)
+	private fun getNature(number: Int?): Nature =
+		com.darakeon.dfm.api.entities.Nature.getNature(number)
+
+
+	fun setNature(number: String) {
+		setNature(number.toInt())
 	}
 
-
-	fun SetNature(number: String) {
-		SetNature(number.toInt())
+	fun setNature(number: Int?) {
+		nature = getNature(number)
 	}
 
-	fun SetNature(number: Int?) {
-		Nature = getNature(number)
-	}
-
-	fun Add(description: String, amount: Int, value: Double) {
+	fun add(description: String, amount: Int, value: Double) {
 		val detail = Detail()
 
-		detail.Description = description
-		detail.Amount = amount
-		detail.Value = value
+		detail.description = description
+		detail.amount = amount
+		detail.value = value
 
-		Details.add(detail)
+		details.add(detail)
 	}
 
-	fun Remove(description: String?, amount: Int, value: Double) {
-		for (detail in Details) {
-			if (detail.Equals(description, amount, value)) {
-				Details.remove(detail)
+	fun remove(description: String?, amount: Int, value: Double) {
+		for (detail in details) {
+			if (detail.equals(description, amount, value)) {
+				details.remove(detail)
 				return
 			}
 		}
@@ -58,69 +57,69 @@ class Move {
 
 
 	val day: Int
-		get() = Date.get(Calendar.DAY_OF_MONTH)
+		get() = date.get(Calendar.DAY_OF_MONTH)
 
 	val month: Int
-		get() = Date.get(Calendar.MONTH)
+		get() = date.get(Calendar.MONTH)
 
 	val year: Int
-		get() = Date.get(Calendar.YEAR)
+		get() = date.get(Calendar.YEAR)
 
 	fun setParameters(request: InternalRequest<MovesCreateStatic>) {
-		request.AddParameter("ID", Id)
-		request.AddParameter("Description", Description)
+		request.addParameter("ID", id)
+		request.addParameter("Description", description)
 
-		request.AddParameter("Date.Year", Date.get(Calendar.YEAR))
-		request.AddParameter("Date.Month", Date.get(Calendar.MONTH) + 1)
-		request.AddParameter("Date.Day", Date.get(Calendar.DAY_OF_MONTH))
+		request.addParameter("Date.Year", date.get(Calendar.YEAR))
+		request.addParameter("Date.Month", date.get(Calendar.MONTH) + 1)
+		request.addParameter("Date.Day", date.get(Calendar.DAY_OF_MONTH))
 
-		request.AddParameter("Nature", Nature)
+		request.addParameter("Nature", nature)
 
-		request.AddParameter("Category", Category)
-		request.AddParameter("AccountOutUrl", AccountOut)
-		request.AddParameter("AccountInUrl", AccountIn)
+		request.addParameter("Category", category)
+		request.addParameter("AccountOutUrl", accountOut)
+		request.addParameter("AccountInUrl", accountIn)
 
 		if (isDetailed) {
-			for (detail in Details) {
-				val position = Details.lastIndexOf(detail)
+			for (detail in details) {
+				val position = details.lastIndexOf(detail)
 
-				request.AddParameter("DetailList[$position].Description", detail.Description!!)
-				request.AddParameter("DetailList[$position].Amount", detail.Amount)
-				request.AddParameter("DetailList[$position].Value", detail.Value)
+				request.addParameter("DetailList[$position].Description", detail.description!!)
+				request.addParameter("DetailList[$position].Amount", detail.amount)
+				request.addParameter("DetailList[$position].Value", detail.value)
 			}
 		} else {
-			request.AddParameter("Value", Value)
+			request.addParameter("Value", value)
 		}
 	}
 
-	fun DateString(): String {
+	fun dateString(): String {
 		val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
-		return formatter.format(Date.time)
+		return formatter.format(date.time)
 	}
 
 
-	fun SetData(move: JSONObject, activityAccountUrl: String?) {
-		Id = move.getInt("ID")
+	fun setData(move: JSONObject, activityAccountUrl: String?) {
+		id = move.getInt("ID")
 
-		if (Id == 0) {
-			AccountOut = activityAccountUrl
-			AccountIn = activityAccountUrl
+		if (id == 0) {
+			accountOut = activityAccountUrl
+			accountIn = activityAccountUrl
 		} else {
 			setEditMoveData(move)
 		}
 	}
 
 	private fun setEditMoveData(move: JSONObject) {
-		Description = move.getString("Description")
-		Date = move.getCalendar("Date")
-		Category = move.getString("Category")
-		AccountOut = move.getString("AccountOutUrl")
-		AccountIn = move.getString("AccountInUrl")
-		Nature = getNature(move.getInt("Nature"))
+		description = move.getString("Description")
+		date = move.getCalendar("Date")
+		category = move.getString("Category")
+		accountOut = move.getString("AccountOutUrl")
+		accountIn = move.getString("AccountInUrl")
+		nature = getNature(move.getInt("Nature"))
 
 		if (move.has("Value") && !move.isNull("Value")) {
-			Value = move.getDouble("Value")
+			value = move.getDouble("Value")
 		}
 
 		if (move.has("DetailList")) {
@@ -128,10 +127,13 @@ class Move {
 
 			isDetailed = detailList.length() > 0
 
-			for (d in 0..detailList.length() - 1) {
-				val detail = detailList.getJSONObject(d)
-				Add(detail.getString("Description"), detail.getInt("Amount"), detail.getDouble("Value"))
-			}
+			(0 until detailList.length())
+				.map { detailList.getJSONObject(it) }
+				.forEach { add(
+					it.getString("Description"),
+					it.getInt("Amount"),
+					it.getDouble("Value")
+				) }
 		}
 	}
 

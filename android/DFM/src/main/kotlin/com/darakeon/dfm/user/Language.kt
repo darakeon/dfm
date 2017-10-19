@@ -7,7 +7,7 @@ import java.util.*
 
 private val spKey = "Language"
 
-fun <T : SmartStatic> SmartActivity<T>.LanguageChangeAndSave(systemLanguage: String) {
+fun <T : SmartStatic> SmartActivity<T>.languageChangeAndSave(systemLanguage: String) {
 	var language = systemLanguage
 	val current = Locale.getDefault().toString()
 
@@ -23,7 +23,7 @@ fun <T : SmartStatic> SmartActivity<T>.LanguageChangeAndSave(systemLanguage: Str
 	refresh()
 }
 
-fun Activity.LanguageChangeFromSaved() {
+fun Activity.languageChangeFromSaved() {
 	val language = getValue(spKey)
 
 	if (language != "")

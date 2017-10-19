@@ -14,29 +14,21 @@ import org.json.JSONObject
 class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
 
 	private val yearList: MutableList<Year> =
-		(0..yearJsonList.length() - 1)
+		(0 until yearJsonList.length())
 			.map { Year(yearJsonList.getJSONObject(it), accountUrl, yearNumber) }
 			.toMutableList()
 
 	private val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 	inner class Year(jsonObject: JSONObject, var AccountUrl: String, var YearNumber: Int) {
-		var MonthName: String = jsonObject.getString("Name")
-		var MonthNumber: Int = jsonObject.getInt("Number")
-		var Total: Double = jsonObject.getDouble("Total")
+		var monthName: String = jsonObject.getString("Name")
+		var monthNumber: Int = jsonObject.getInt("Number")
+		var total: Double = jsonObject.getDouble("Total")
 	}
 
-	override fun getCount(): Int {
-		return yearList.size
-	}
-
-	override fun getItem(position: Int): Any {
-		return position
-	}
-
-	override fun getItemId(position: Int): Long {
-		return position.toLong()
-	}
+	override fun getCount(): Int = yearList.size
+	override fun getItem(position: Int): Any = position
+	override fun getItemId(position: Int): Long = position.toLong()
 
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.summary_line, null) as YearLine

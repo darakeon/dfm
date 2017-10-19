@@ -8,22 +8,19 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SettingsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.onClick
+import com.darakeon.dfm.activities.base.ON_CLICK
 import com.darakeon.dfm.activities.base.redirectWithExtras
-import com.darakeon.dfm.user.GetAuth
+import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
-	internal var useCategories: Boolean = false
-	internal val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories)
+	private var useCategories: Boolean = false
+	private val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories)
 
-	internal var moveCheck: Boolean = false
-	internal val moveCheckField: CheckBox get() = findViewById(R.id.move_check)
+	private var moveCheck: Boolean = false
+	private val moveCheckField: CheckBox get() = findViewById(R.id.move_check)
 
-
-	override fun contentView(): Int {
-		return R.layout.settings
-	}
+	override fun contentView(): Int = R.layout.settings
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,18 +38,18 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		val request = InternalRequest(
 			this, "Users/GetConfig", { d -> populateScreen(d) }
 		)
-		request.AddParameter("ticket", GetAuth())
-		request.Get()
+		request.addParameter("ticket", getAuth())
+		request.get()
 	}
 
-	fun saveSettings(@Suppress(onClick) view: View) {
+	fun saveSettings(@Suppress(ON_CLICK) view: View) {
 		val request = InternalRequest(
 			this, "Users/SaveConfig", { back() }
 		)
-		request.AddParameter("ticket", GetAuth())
-		request.AddParameter("UseCategories", useCategoriesField.isChecked)
-		request.AddParameter("MoveCheck", moveCheckField.isChecked)
-		request.Post()
+		request.addParameter("ticket", getAuth())
+		request.addParameter("UseCategories", useCategoriesField.isChecked)
+		request.addParameter("MoveCheck", moveCheckField.isChecked)
+		request.post()
 	}
 
 

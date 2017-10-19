@@ -2,7 +2,6 @@ package com.darakeon.dfm.user
 
 import android.content.Context
 import com.google.android.gms.iid.InstanceID
-import java.util.*
 
 private fun Context.getKey(): String {
 	var result = InstanceID.getInstance(this).id
@@ -13,19 +12,19 @@ private fun Context.getKey(): String {
 	return result
 }
 
-fun Context.Encrypt(ticket: String): String {
+fun Context.encrypt(ticket: String): String {
 	var encryptedTicket = ""
 	val key = getKey()
 
-	for (s in 0..ticket.length - 1) {
+	for (s in 0 until ticket.length) {
 		encryptedTicket += key.substring(s, s + 1) + ticket.substring(s, s + 1)
 	}
 
 	return encryptedTicket
 }
 
-fun Context.Decrypt(encryptedTicket: String): String {
-	var ticket: String = ""
+fun Context.decrypt(encryptedTicket: String): String {
+	var ticket = ""
 	val key = getKey()
 
 	var s = 0
