@@ -8,7 +8,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.MovesCreateStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.api.entities.Nature
 import com.darakeon.dfm.api.toDoubleByCulture
@@ -123,30 +122,17 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 	}
 
 	private fun populateScreen() {
-		val request = InternalRequest(this, "Moves/Create")
+		val request = InternalRequest(
+			this, "Moves/Create", { d -> populateScreen(d) }
+		)
 
 		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", intent.getStringExtra("accountUrl"))
 		request.AddParameter("id", intent.getIntExtra("id", 0))
-		request.Get(Step.Populate)
+		request.Get()
 
 		setCurrentDate()
 		setControls()
-	}
-
-	override fun HandleSuccess(data: JSONObject, step: Step) {
-		when (step) {
-			Step.Populate -> {
-				populateScreen(data)
-			}
-			Step.Recording -> {
-				intent.removeExtra("id")
-				back()
-			}
-			else -> {
-				alertError(R.string.this_is_not_happening)
-			}
-		}
 	}
 
 	private fun populateScreen(data: JSONObject) {
@@ -327,12 +313,19 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 
 	fun save(@Suppress(onClick) view: View) {
-		val request = InternalRequest(this, "Moves/Create")
+		val request = InternalRequest(
+			this, "Moves/Create", { cleanAndBack() }
+		)
 
 		request.AddParameter("ticket", GetAuth())
 		static.move.setParameters(request)
 
-		request.Post(Step.Recording)
+		request.Post()
+	}
+
+	private fun cleanAndBack() {
+		intent.removeExtra("id")
+		back()
 	}
 
 	private fun back() {

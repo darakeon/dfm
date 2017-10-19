@@ -6,28 +6,16 @@ import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.IsLoggedIn
 import org.json.JSONObject
 import kotlin.reflect.KClass
 
 class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 
-	override fun HandleSuccess(data: JSONObject, step: Step) {
-		val nextActivity : KClass<*> =
-			if (IsLoggedIn())
-				AccountsActivity::class
-			else
-				LoginActivity::class
-
-		redirect(nextActivity.java)
-	}
-
 	override fun contentView(): Int = R.layout.welcome
 
 	override val hasTitle: Boolean
 		get() = false
-
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -37,7 +25,20 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 			return
 		}
 
-		val request = InternalRequest(this, "")
+		val request = InternalRequest(
+			this, "", { d -> startProgram(d) }
+		)
 		request.Get()
 	}
+
+	private fun startProgram(data: JSONObject) {
+		val nextActivity : KClass<*> =
+			if (IsLoggedIn())
+				AccountsActivity::class
+			else
+				LoginActivity::class
+
+		redirect(nextActivity.java)
+	}
+
 }

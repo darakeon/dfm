@@ -12,12 +12,23 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.alertError
+import com.darakeon.dfm.activities.base.logout
 import com.darakeon.dfm.activities.base.showWaitDialog
 import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.user.LanguageChangeAndSave
+import com.darakeon.dfm.user.ThemeChangeAndSave
 import org.json.JSONObject
 import java.util.*
 
-class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private val url: String) {
+class InternalRequest<T : SmartStatic>(
+	private var activity: SmartActivity<T>,
+	private val url: String,
+	private var handleSuccess: ((JSONObject) -> Unit)?
+) {
+
+	constructor(activity: SmartActivity<T>, url: String)
+		: this(activity, url, null)
 
 	private val parameters: HashMap<String, Any?> = HashMap()
 
@@ -31,29 +42,21 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 	}
 
 
-	fun Post() {
-		Post(Step.NoSteps)
-	}
-
-	fun Post(step: Step): Boolean {
-		makeRequest(step, Request.Method.POST)
+	fun Post(): Boolean {
+		makeRequest(Request.Method.POST)
 		return true
 	}
 
 	fun Get() {
-		Get(Step.NoSteps)
+		makeRequest(Request.Method.GET)
 	}
 
-	fun Get(step: Step) {
-		makeRequest(step, Request.Method.GET)
-	}
-
-	private fun makeRequest(step: Step, method: Int) {
+	private fun makeRequest(method: Int) {
 		activity.request = this
 
 		if (Internet.isOffline(activity)) {
 			val error = activity.getString(R.string.u_r_offline)
-			activity.HandlePostError(error)
+			HandlePostError(error)
 			return
 		}
 
@@ -62,8 +65,8 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		val completeUrl = getUrl()
 
 		jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
-				Response.Listener<JSONObject> { response -> handleResponse(response, step) },
-				Response.ErrorListener { error -> handleError(error, step) })
+				Response.Listener<JSONObject> { response -> handleResponse(response) },
+				Response.ErrorListener { error -> handleError(error) })
 
 		jsonRequest?.retryPolicy = getDefaultRetryPolicy()
 
@@ -141,34 +144,63 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 		return "$protocol://$domain/$path"
 	}
 
-	private fun handleResponse(response: JSONObject, step: Step) {
+	private fun handleResponse(response: JSONObject) {
 		val internalResponse = InternalResponse(response)
 
-		if (step == Step.Logout) {
+		if (handleSuccess == null) {
 			endUIWait()
 			return
 		}
 
-		handleResponse(internalResponse, step)
+		handleResponse(internalResponse)
 	}
 
-	private fun handleError(e: Exception, step: Step) {
+	private fun handleError(e: Exception) {
 		val response = InternalResponse(
 				activity.getString(R.string.error_contact_url)
 						+ ": " + this.url
 						+ "\r\n " + e.message
 		)
 
-		handleResponse(response, step)
+		handleResponse(response)
 	}
 
-	private fun handleResponse(internalResponse: InternalResponse, step: Step) {
+	private fun handleResponse(internalResponse: InternalResponse) {
 		endUIWait()
 
 		if (internalResponse.IsSuccess())
-			activity.HandlePostResult(internalResponse.GetResult(), step)
+			HandlePostResult(internalResponse.GetResult())
 		else
-			activity.HandlePostError(internalResponse.GetError())
+			HandlePostError(internalResponse.GetError())
+	}
+
+	fun HandlePostResult(result: JSONObject) {
+		if (result.has("error")) {
+			val error = result.getString("error")
+
+			activity.alertError(error)
+
+			if (error.contains(activity.getString(R.string.uninvited)) || error.contains("uninvited")) {
+				activity.logout()
+			}
+		} else {
+			val data = result.getJSONObject("data")
+
+			if (data.has("Language"))
+				activity.LanguageChangeAndSave(data.getString("Language"))
+
+			if (data.has("Theme"))
+				activity.ThemeChangeAndSave(data.getString("Theme"))
+
+			handleSuccess?.invoke(data)
+		}
+
+		activity.succeeded = true
+	}
+
+	fun HandlePostError(error: String) {
+		activity.succeeded = false
+		activity.alertError(error)
 	}
 
 
@@ -245,6 +277,5 @@ class InternalRequest<T : SmartStatic>(var activity: SmartActivity<T>, private v
 	private fun enableRotation() {
 		activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
 	}
-
 
 }

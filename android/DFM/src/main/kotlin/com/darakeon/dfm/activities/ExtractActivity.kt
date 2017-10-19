@@ -12,7 +12,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.ExtractStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
@@ -105,32 +104,24 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 	private fun getExtract() {
-		val request = InternalRequest(this, "Moves/Extract")
+		val request = InternalRequest(
+			this, "Moves/Extract", { d -> handleMoves(d) }
+		)
 
 		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
 		request.AddParameter("id", static.year * 100 + static.month + 1)
 
-		request.Post(Step.Populate)
+		request.Post()
 	}
 
-	override fun HandleSuccess(data: JSONObject, step: Step) {
-		when (step) {
-			Step.Populate -> {
-				static.moveList = data.getJSONArray("MoveList")
-				static.name = data.getString("Name")
-				static.total = data.getDouble("Total")
-				static.canCheck = data.getBoolean("CanCheck")
+	fun handleMoves(data: JSONObject) {
+		static.moveList = data.getJSONArray("MoveList")
+		static.name = data.getString("Name")
+		static.total = data.getDouble("Total")
+		static.canCheck = data.getBoolean("CanCheck")
 
-				fillMoves()
-			}
-			Step.Recording -> {
-				refresh()
-			}
-			else -> {
-				alertError(R.string.this_is_not_happening)
-			}
-		}
+		fillMoves()
 	}
 
 	private fun fillMoves() {
@@ -230,13 +221,15 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	private fun submitMoveAction(action: String) {
 		val view = clickedView as MoveLine
 
-		val request = InternalRequest(this, "Moves/" + action)
+		val request = InternalRequest(
+			this, "Moves/" + action, { refresh() }
+		)
 
 		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
 		request.AddParameter("id", view.id)
 
-		request.Post(Step.Recording)
+		request.Post()
 	}
 
 

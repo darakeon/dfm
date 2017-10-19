@@ -7,9 +7,7 @@ import android.widget.CheckBox
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.SettingsStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.onClick
 import com.darakeon.dfm.activities.base.redirectWithExtras
 import com.darakeon.dfm.user.GetAuth
@@ -40,33 +38,21 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 	}
 
 	private fun getCurrentSettings() {
-		val request = InternalRequest(this, "Users/GetConfig")
+		val request = InternalRequest(
+			this, "Users/GetConfig", { d -> populateScreen(d) }
+		)
 		request.AddParameter("ticket", GetAuth())
-		request.Get(Step.Populate)
+		request.Get()
 	}
 
 	fun saveSettings(@Suppress(onClick) view: View) {
-		val request = InternalRequest(this, "Users/SaveConfig")
+		val request = InternalRequest(
+			this, "Users/SaveConfig", { back() }
+		)
 		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("UseCategories", useCategoriesField.isChecked)
 		request.AddParameter("MoveCheck", moveCheckField.isChecked)
-		request.Post(Step.Recording)
-	}
-
-
-	override fun HandleSuccess(data: JSONObject, step: Step) {
-		when (step) {
-			Step.Populate -> {
-				populateScreen(data)
-			}
-			Step.Recording -> {
-				back()
-			}
-			else -> {
-				alertError(R.string.this_is_not_happening)
-			}
-		}
-
+		request.Post()
 	}
 
 
@@ -81,10 +67,10 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 
 	private fun back() {
 		AlertDialog.Builder(this)
-				.setTitle(R.string.title_activity_settings)
-				.setMessage(R.string.settings_saved)
-				.setPositiveButton(R.string.ok_button) { _, _ -> redirectWithExtras() }
-				.show()
+			.setTitle(R.string.title_activity_settings)
+			.setMessage(R.string.settings_saved)
+			.setPositiveButton(R.string.ok_button) { _, _ -> redirectWithExtras() }
+			.show()
 	}
 
 

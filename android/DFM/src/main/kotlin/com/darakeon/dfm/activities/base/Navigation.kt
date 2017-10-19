@@ -9,7 +9,6 @@ import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.WelcomeActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.ClearAuth
 import com.darakeon.dfm.user.GetAuth
 
@@ -35,7 +34,7 @@ fun Activity.redirectWithExtras() {
 internal fun <T : SmartStatic> SmartActivity<T>.logout() {
 	val request = InternalRequest(this, "Users/Logout")
 	request.AddParameter("ticket", GetAuth())
-	val tryResult = request.Post(Step.Logout)
+	val tryResult = request.Post()
 
 	if (tryResult) {
 		ClearAuth()
