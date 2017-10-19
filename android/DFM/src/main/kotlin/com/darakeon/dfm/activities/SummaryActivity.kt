@@ -9,7 +9,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.SummaryStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
 import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
 import com.darakeon.dfm.uiHelpers.dialogs.PickDate
@@ -90,7 +89,9 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 	private fun getSummary() {
 		val accountUrl = intent.getStringExtra("accountUrl")
 
-		val request = InternalRequest(this, "Moves/Summary")
+		val request = InternalRequest(
+			this, "Moves/Summary", { d -> handleSummary(d) }
+		)
 
 		request.AddParameter("ticket", GetAuth())
 		request.AddParameter("accountUrl", accountUrl)
@@ -99,7 +100,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 		request.Post()
 	}
 
-	override fun HandleSuccess(data: JSONObject, step: Step) {
+	private fun handleSummary(data: JSONObject) {
 		static.monthList = data.getJSONArray("MonthList")
 		static.name = data.getString("Name")
 		static.total = data.getDouble("Total")

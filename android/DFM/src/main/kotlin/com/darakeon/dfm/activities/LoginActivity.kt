@@ -8,7 +8,6 @@ import com.darakeon.dfm.activities.base.onClick
 import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.user.SetAuth
 import org.json.JSONObject
 
@@ -25,7 +24,9 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 
 
 	fun login(@Suppress(onClick) view: View) {
-		val request = InternalRequest(this, "Users/Login")
+		val request = InternalRequest(
+			this, "Users/Login", { d -> handleLogin(d) }
+		)
 
 		request.AddParameter("email", getValue(R.id.email))
 		request.AddParameter("password", getValue(R.id.password))
@@ -33,7 +34,7 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 		request.Post()
 	}
 
-	override fun HandleSuccess(data: JSONObject, step: Step) {
+	private fun handleLogin(data: JSONObject) {
 		val ticket = data.getString("ticket")
 		SetAuth(ticket)
 		redirect(WelcomeActivity::class.java)

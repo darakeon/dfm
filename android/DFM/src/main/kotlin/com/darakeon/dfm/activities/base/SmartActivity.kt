@@ -13,9 +13,9 @@ import com.darakeon.dfm.activities.MovesCreateActivity
 import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
-import com.darakeon.dfm.user.*
-import org.json.JSONObject
+import com.darakeon.dfm.user.LanguageChangeFromSaved
+import com.darakeon.dfm.user.ThemeChangeFromSaved
+import com.darakeon.dfm.user.getHighLightColor
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
@@ -169,39 +169,6 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		finish()
 		startActivity(intent)
 	}
-
-
-	abstract fun HandleSuccess(data: JSONObject, step: Step)
-
-	fun HandlePostResult(result: JSONObject, step: Step) {
-		if (result.has("error")) {
-			val error = result.getString("error")
-
-			alertError(error)
-
-			if (error.contains(getString(R.string.uninvited)) || error.contains("uninvited")) {
-				logout()
-			}
-		} else {
-			val data = result.getJSONObject("data")
-
-			if (data.has("Language"))
-				LanguageChangeAndSave(data.getString("Language"))
-
-			if (data.has("Theme"))
-				ThemeChangeAndSave(data.getString("Theme"))
-
-			HandleSuccess(data, step)
-		}
-
-		succeeded = true
-	}
-
-	fun HandlePostError(error: String) {
-		succeeded = false
-		alertError(error)
-	}
-
 
 	open fun EnableScreen() {
 		succeeded = true

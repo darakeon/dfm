@@ -146,7 +146,7 @@ disabled
 disabled
 - [ ] Record log on error at mobile
 - [ ] Refactor android dialog handling
-- [ ] Refactor android post/get handling
+- [x] `2017-10-19 > 2017-10-19` Refactor android post/get handling
 
 ## <a name="publish"></a>4.1.0.1 :ant: <sup>`2`</sup>
 - [x] `2017-10-18 > 2017-10-18` Fix error when enter cents on mobile

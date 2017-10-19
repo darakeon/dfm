@@ -8,7 +8,6 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.AccountsStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.Step
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import com.darakeon.dfm.user.GetAuth
 import org.json.JSONObject
@@ -32,12 +31,14 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 	}
 
 	private fun getAccounts() {
-		val request = InternalRequest(this, "Accounts/List")
+		val request = InternalRequest(
+			this, "Accounts/List", { d -> handleAccounts(d) }
+		)
 		request.AddParameter("ticket", GetAuth())
 		request.Post()
 	}
 
-	override fun HandleSuccess(data: JSONObject, step: Step) {
+	private fun handleAccounts(data: JSONObject) {
 		static.accountList = data.getJSONArray("AccountList")
 		fillAccounts()
 	}
