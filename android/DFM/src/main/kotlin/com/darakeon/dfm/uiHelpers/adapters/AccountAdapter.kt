@@ -18,29 +18,21 @@ class AccountAdapter(context: Context, accountJsonList: JSONArray) : BaseAdapter
 
 	init {
 		accountList =
-			(0..accountJsonList.length() - 1)
+			(0 until accountJsonList.length())
 				.map { Account(accountJsonList.getJSONObject(it)) }
 				.toMutableList()
 
 	}
 
 	inner class Account(jsonObject: JSONObject) {
-		var Name: String = jsonObject.getString("Name")
-		var Total: Double = jsonObject.getDouble("Total")
-		var Url: String = jsonObject.getString("Url")
+		var name: String = jsonObject.getString("Name")
+		var total: Double = jsonObject.getDouble("Total")
+		var url: String = jsonObject.getString("Url")
 	}
 
-	override fun getCount(): Int {
-		return accountList.size
-	}
-
-	override fun getItem(position: Int): Any {
-		return position
-	}
-
-	override fun getItemId(position: Int): Long {
-		return position.toLong()
-	}
+	override fun getCount(): Int = accountList.size
+	override fun getItem(position: Int): Any = position
+	override fun getItemId(position: Int): Long = position.toLong()
 
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
 		val line = inflater.inflate(R.layout.accounts_line, null) as AccountLine

@@ -6,6 +6,6 @@ import com.darakeon.dfm.api.toDoubleByCulture
 class ValueWatcher(private val move: Move) : AfterTextWatcher() {
 
 	override fun textChanged(text: String) {
-		move.Value = text.toDoubleByCulture() ?: 0.toDouble()
+		move.value = text.toDoubleByCulture() ?: 0.toDouble()
 	}
 }

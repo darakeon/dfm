@@ -14,38 +14,37 @@ import java.text.DecimalFormat
 
 class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	override fun onFinishInflate() {
-		super.onFinishInflate()
-	}
-
-	val MonthField: TextView get() = findViewById(R.id.month)
-	val TotalField: TextView get() = findViewById(R.id.value)
+	private val monthField: TextView get() = findViewById(R.id.month)
+	private val totalField: TextView get() = findViewById(R.id.value)
 
 	fun setYear(year: YearAdapter.Year, color: Int) {
 		setBackgroundColor(color)
 
-		MonthField.text = year.MonthName
+		monthField.text = year.monthName
 
-		val totalColor = if (year.Total < 0) R.attr.negative else R.attr.positive
-		val totalToShow = if (year.Total < 0) -year.Total else year.Total
+		val totalColor = if (year.total < 0) R.attr.negative else R.attr.positive
+		val totalToShow = if (year.total < 0) -year.total else year.total
 		val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
 
-		TotalField.setColorByAttr(totalColor)
-		TotalField.text = totalStr
+		totalField.setColorByAttr(totalColor)
+		totalField.text = totalStr
 
 		isClickable = true
 
-		setOnClickListener(onClickListener(context, year))
+		setOnClickListener(OnClickListener(context, year))
 	}
 
-	inner class onClickListener internal constructor(private val context: Context, private val year: YearAdapter.Year) : OnClickListener {
+	inner class OnClickListener internal constructor(
+		private val context: Context,
+		private val year: YearAdapter.Year
+	) : View.OnClickListener {
 
 		override fun onClick(v: View) {
 			val intent = Intent(context, ExtractActivity::class.java)
 
 			intent.putExtra("accountUrl", year.AccountUrl)
 			intent.putExtra("year", year.YearNumber)
-			intent.putExtra("month", year.MonthNumber - 1)
+			intent.putExtra("month", year.monthNumber - 1)
 
 			context.startActivity(intent)
 		}

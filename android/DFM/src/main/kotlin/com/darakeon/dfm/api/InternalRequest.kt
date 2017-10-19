@@ -16,8 +16,8 @@ import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.logout
 import com.darakeon.dfm.activities.base.showWaitDialog
 import com.darakeon.dfm.activities.objects.SmartStatic
-import com.darakeon.dfm.user.LanguageChangeAndSave
-import com.darakeon.dfm.user.ThemeChangeAndSave
+import com.darakeon.dfm.user.languageChangeAndSave
+import com.darakeon.dfm.user.themeChangeAndSave
 import org.json.JSONObject
 import java.util.*
 
@@ -37,17 +37,17 @@ class InternalRequest<T : SmartStatic>(
 	private var progress: ProgressDialog? = null
 
 
-	fun AddParameter(key: String, value: Any?) {
+	fun addParameter(key: String, value: Any?) {
 		parameters.put(key, value)
 	}
 
 
-	fun Post(): Boolean {
+	fun post(): Boolean {
 		makeRequest(Request.Method.POST)
 		return true
 	}
 
-	fun Get() {
+	fun get() {
 		makeRequest(Request.Method.GET)
 	}
 
@@ -56,7 +56,7 @@ class InternalRequest<T : SmartStatic>(
 
 		if (Internet.isOffline(activity)) {
 			val error = activity.getString(R.string.u_r_offline)
-			HandlePostError(error)
+			handlePostError(error)
 			return
 		}
 
@@ -125,7 +125,7 @@ class InternalRequest<T : SmartStatic>(
 		return completeUrl
 	}
 
-	fun getSite(path: String) : String {
+	private fun getSite(path: String) : String {
 		val publicDomain = "dontflymoney.com"
 		val googlePlay = "com.android.vending"
 
@@ -168,13 +168,13 @@ class InternalRequest<T : SmartStatic>(
 	private fun handleResponse(internalResponse: InternalResponse) {
 		endUIWait()
 
-		if (internalResponse.IsSuccess())
-			HandlePostResult(internalResponse.GetResult())
+		if (internalResponse.isSuccess())
+			handlePostResult(internalResponse.getResult())
 		else
-			HandlePostError(internalResponse.GetError())
+			handlePostError(internalResponse.getError())
 	}
 
-	fun HandlePostResult(result: JSONObject) {
+	private fun handlePostResult(result: JSONObject) {
 		if (result.has("error")) {
 			val error = result.getString("error")
 
@@ -187,10 +187,10 @@ class InternalRequest<T : SmartStatic>(
 			val data = result.getJSONObject("data")
 
 			if (data.has("Language"))
-				activity.LanguageChangeAndSave(data.getString("Language"))
+				activity.languageChangeAndSave(data.getString("Language"))
 
 			if (data.has("Theme"))
-				activity.ThemeChangeAndSave(data.getString("Theme"))
+				activity.themeChangeAndSave(data.getString("Theme"))
 
 			handleSuccess?.invoke(data)
 		}
@@ -198,13 +198,13 @@ class InternalRequest<T : SmartStatic>(
 		activity.succeeded = true
 	}
 
-	fun HandlePostError(error: String) {
+	private fun handlePostError(error: String) {
 		activity.succeeded = false
 		activity.alertError(error)
 	}
 
 
-	fun Cancel() {
+	fun cancel() {
 		endUIWait()
 		jsonRequest?.cancel()
 	}

@@ -9,10 +9,10 @@ import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.WelcomeActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.user.ClearAuth
-import com.darakeon.dfm.user.GetAuth
+import com.darakeon.dfm.user.clearAuth
+import com.darakeon.dfm.user.getAuth
 
-const val onClick: String = "UNUSED_PARAMETER"
+const val ON_CLICK: String = "UNUSED_PARAMETER"
 
 fun Activity.redirect(activityClass: Class<*>) {
 	val intent = Intent(this, activityClass)
@@ -33,11 +33,11 @@ fun Activity.redirectWithExtras() {
 
 internal fun <T : SmartStatic> SmartActivity<T>.logout() {
 	val request = InternalRequest(this, "Users/Logout")
-	request.AddParameter("ticket", GetAuth())
-	val tryResult = request.Post()
+	request.addParameter("ticket", getAuth())
+	val tryResult = request.post()
 
 	if (tryResult) {
-		ClearAuth()
+		clearAuth()
 		redirect(LoginActivity::class.java)
 	}
 }

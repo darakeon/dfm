@@ -15,23 +15,19 @@ import java.text.DecimalFormat
 
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	override fun onFinishInflate() {
-		super.onFinishInflate()
-	}
-
 	private var move: MoveAdapter.Move? = null
 
-	val NameField: TextView get() = findViewById(R.id.name)
-	val DateField: TextView? get() = findViewById(R.id.date)
-	val TotalField: TextView get() = findViewById(R.id.value)
-	val CheckedField: TextView get() = findViewById(R.id.check_move)
+	private val nameField: TextView get() = findViewById(R.id.name)
+	private val dateField: TextView? get() = findViewById(R.id.date)
+	private val totalField: TextView get() = findViewById(R.id.value)
+	private val checkedField: TextView get() = findViewById(R.id.check_move)
 
 	fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
 		setBackgroundColor(color)
 
 		this.move = move
 
-		NameField.text = move.Description
+		nameField.text = move.description
 		setTotalField(move)
 		setCheckField(move, canCheck)
 		setDateField(move)
@@ -43,48 +39,46 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	}
 
 	private fun setTotalField(move: MoveAdapter.Move) {
-		val totalColor = if (move.Total < 0) R.attr.negative else R.attr.positive
-		val totalToShow = if (move.Total < 0) -move.Total else move.Total
+		val totalColor = if (move.total < 0) R.attr.negative else R.attr.positive
+		val totalToShow = if (move.total < 0) -move.total else move.total
 		val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
 
-		TotalField.setColorByAttr(totalColor)
-		TotalField.text = totalStr
+		totalField.setColorByAttr(totalColor)
+		totalField.text = totalStr
 	}
 
 	private fun setCheckField(move: MoveAdapter.Move, canCheck: Boolean) {
 		if (canCheck) {
-			val textRes = if (move.Checked) R.string.checked else R.string.unchecked
-			CheckedField.text = context.getString(textRes)
+			val textRes = if (move.checked) R.string.checked else R.string.unchecked
+			checkedField.text = context.getString(textRes)
 
 			val activity = context as ExtractActivity
-			CheckedField.applyGlyphicon(activity)
+			checkedField.applyGlyphicon(activity)
 
-			val color = if (move.Checked) R.attr.checked else R.attr.unchecked
-			CheckedField.setColorByAttr(color)
+			val color = if (move.checked) R.attr.checked else R.attr.unchecked
+			checkedField.setColorByAttr(color)
 
 		} else {
-			CheckedField.visibility = View.GONE
+			checkedField.visibility = View.GONE
 		}
 	}
 
 	private fun setDateField(move: MoveAdapter.Move) {
-		if (DateField != null) {
+		if (dateField != null) {
 			val formatter = DateFormat.getDateInstance(DateFormat.SHORT)
-			val dateInFull = formatter.format(move.Date.time)
-			DateField!!.text = dateInFull
+			val dateInFull = formatter.format(move.date.time)
+			dateField!!.text = dateInFull
 		}
 	}
 
 
-	override fun getId(): Int {
-		return move?.ID ?: 0
-	}
+	override fun getId(): Int = move?.id ?: 0
 
 	val description: String
-		get() = move?.Description ?: ""
+		get() = move?.description ?: ""
 
 	val isChecked: Boolean
-		get() = move?.Checked ?: false
+		get() = move?.checked ?: false
 
 
 }

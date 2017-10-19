@@ -15,8 +15,8 @@ fun Activity.alertYesNo(message: String, answer: IYesNoDialogAnswer) {
 
 	val listener = OnClickListener { dialog, which ->
 		when (which) {
-			DialogInterface.BUTTON_POSITIVE -> answer.YesAction()
-			DialogInterface.BUTTON_NEGATIVE -> answer.NoAction()
+			DialogInterface.BUTTON_POSITIVE -> answer.yesAction()
+			DialogInterface.BUTTON_NEGATIVE -> answer.noAction()
 		}
 
 		dialog.cancel()
@@ -27,10 +27,6 @@ fun Activity.alertYesNo(message: String, answer: IYesNoDialogAnswer) {
 
 fun Activity.alertError(resMessage: Int) {
 	alertError(getString(resMessage))
-}
-
-fun Activity.alertError(resMessage: Int, e: Exception) {
-	alertError(getString(resMessage) + ": " + e.message)
 }
 
 fun Activity.alertError(message: String) {

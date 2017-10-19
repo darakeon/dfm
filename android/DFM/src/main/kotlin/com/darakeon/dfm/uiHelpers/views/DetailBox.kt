@@ -43,7 +43,7 @@ class DetailBox(context: Context, internal var move: Move?, internal var descrip
 
 	private inner class RemoveDetail : OnClickListener {
 		override fun onClick(button: View) {
-			move?.Remove(description, amount, value)
+			move?.remove(description, amount, value)
 
 			val item = button.parent as LinearLayout
 			(item.parent as LinearLayout).removeView(item)
