@@ -47,7 +47,9 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		super.onCreate(savedInstanceState)
 
-		rotated = oldConfigInt and ActivityInfo.CONFIG_ORIENTATION == ActivityInfo.CONFIG_ORIENTATION
+		rotated =
+			(oldConfigInt and ActivityInfo.CONFIG_ORIENTATION) ==
+				ActivityInfo.CONFIG_ORIENTATION
 
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
