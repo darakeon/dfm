@@ -56,7 +56,8 @@ class InternalRequest<T : SmartStatic>(
 
 		if (Internet.isOffline(activity)) {
 			val error = activity.getString(R.string.u_r_offline)
-			handlePostError(error)
+			activity.alertError(error)
+			activity.succeeded = false
 			return
 		}
 
@@ -152,35 +153,37 @@ class InternalRequest<T : SmartStatic>(
 			return
 		}
 
-		handleResponse(internalResponse)
+		assemblyResponse(internalResponse)
 	}
 
 	private fun handleError(e: Exception) {
 		val response = InternalResponse(
-				activity.getString(R.string.error_contact_url)
-						+ ": " + this.url
-						+ "\r\n " + e.message
+			activity.getString(R.string.error_contact_url)
+					+ ": " + this.url
+					+ "\r\n " + e.message
 		)
 
-		handleResponse(response)
+		assemblyResponse(response)
 	}
 
-	private fun handleResponse(internalResponse: InternalResponse) {
+	private fun assemblyResponse(internalResponse: InternalResponse) {
 		endUIWait()
 
-		if (internalResponse.isSuccess())
-			handlePostResult(internalResponse.getResult())
-		else
-			handlePostError(internalResponse.getError())
-	}
+		activity.succeeded = internalResponse.isSuccess()
 
-	private fun handlePostResult(result: JSONObject) {
+		if (!activity.succeeded) {
+			activity.alertError(internalResponse.getError())
+			return
+		}
+
+		val result = internalResponse.getResult()
+
 		if (result.has("error")) {
 			val error = result.getString("error")
 
 			activity.alertError(error)
 
-			if (error.contains(activity.getString(R.string.uninvited)) || error.contains("uninvited")) {
+			if (error.contains("uninvited")) {
 				activity.logout()
 			}
 		} else {
@@ -195,12 +198,6 @@ class InternalRequest<T : SmartStatic>(
 			handleSuccess?.invoke(data)
 		}
 
-		activity.succeeded = true
-	}
-
-	private fun handlePostError(error: String) {
-		activity.succeeded = false
-		activity.alertError(error)
 	}
 
 
