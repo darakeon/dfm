@@ -1,5 +1,6 @@
 package com.darakeon.dfm.api
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -65,15 +66,16 @@ class InternalRequest<T : SmartStatic>(
 
 		val completeUrl = getUrl()
 
-		jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
-				Response.Listener<JSONObject> { response -> handleResponse(response) },
-				Response.ErrorListener { error -> handleError(error) })
+		val jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
+			Response.Listener<JSONObject> { response -> handleResponse(response) },
+			Response.ErrorListener { error -> handleError(error) })
 
-		jsonRequest?.retryPolicy = getDefaultRetryPolicy()
+		jsonRequest.retryPolicy = getDefaultRetryPolicy()
+		Volley.newRequestQueue(activity).add(jsonRequest)
 
-		Volley.newRequestQueue(activity).add(jsonRequest!!)
+		this.jsonRequest = jsonRequest
 
-		startUIWait()
+		activity.startUIWait()
 	}
 
 	private fun getParameters(): JSONObject? {
@@ -143,7 +145,7 @@ class InternalRequest<T : SmartStatic>(
 		val internalResponse = InternalResponse(response)
 
 		if (handleSuccess == null) {
-			endUIWait()
+			activity.endUIWait()
 			return
 		}
 
@@ -161,7 +163,7 @@ class InternalRequest<T : SmartStatic>(
 	}
 
 	private fun assemblyResponse(internalResponse: InternalResponse) {
-		endUIWait()
+		activity.endUIWait()
 
 		activity.succeeded = internalResponse.isSuccess()
 
@@ -196,30 +198,30 @@ class InternalRequest<T : SmartStatic>(
 
 
 	fun cancel() {
-		endUIWait()
+		activity.endUIWait()
 		jsonRequest?.cancel()
 	}
 
 
-	private fun startUIWait() {
+	private fun Activity.startUIWait() {
 		openProgressBar()
 		disableSleep()
 		disableRotation()
 	}
 
-	private fun openProgressBar() {
-		progress = activity.showWaitDialog()
+	private fun Activity.openProgressBar() {
+		progress = showWaitDialog()
 	}
 
-	private fun disableSleep() {
-		activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+	private fun Activity.disableSleep() {
+		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 	}
 
-	private fun disableRotation() {
-		val rotation = activity.windowManager.defaultDisplay.rotation
-		val orientation = activity.resources.configuration.orientation
+	private fun Activity.disableRotation() {
+		val rotation = windowManager.defaultDisplay.rotation
+		val orientation = resources.configuration.orientation
 
-		activity.requestedOrientation = when (orientation) {
+		requestedOrientation = when (orientation) {
 			Configuration.ORIENTATION_PORTRAIT -> handlePortrait(rotation)
 			Configuration.ORIENTATION_LANDSCAPE -> handleLandscape(rotation)
 			else -> 0
@@ -242,7 +244,7 @@ class InternalRequest<T : SmartStatic>(
 				ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
 		}
 
-	private fun endUIWait() {
+	private fun Activity.endUIWait() {
 		closeProgressBar()
 		enableSleep()
 		enableRotation()
@@ -250,14 +252,15 @@ class InternalRequest<T : SmartStatic>(
 
 	private fun closeProgressBar() {
 		progress?.dismiss()
+		progress = null
 	}
 
-	private fun enableSleep() {
-		activity.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+	private fun Activity.enableSleep() {
+		window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 	}
 
-	private fun enableRotation() {
-		activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+	private fun Activity.enableRotation() {
+		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
 	}
 
 }
