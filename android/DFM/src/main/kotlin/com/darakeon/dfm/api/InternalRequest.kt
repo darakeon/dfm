@@ -1,6 +1,6 @@
 package com.darakeon.dfm.api
 
-import android.app.ProgressDialog
+import android.app.Dialog
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.view.Surface
@@ -34,7 +34,7 @@ class InternalRequest<T : SmartStatic>(
 
 	private var jsonRequest: JsonObjectRequest? = null
 
-	private var progress: ProgressDialog? = null
+	private var progress: Dialog? = null
 
 
 	fun addParameter(key: String, value: Any?) {
@@ -76,8 +76,6 @@ class InternalRequest<T : SmartStatic>(
 		startUIWait()
 	}
 
-
-
 	private fun getParameters(): JSONObject? {
 		val jsonParameters = JSONObject()
 
@@ -91,8 +89,6 @@ class InternalRequest<T : SmartStatic>(
 		return jsonParameters
 	}
 
-
-
 	private fun getDefaultRetryPolicy(): DefaultRetryPolicy {
 		val timeoutMilliseconds = 30 * 1000
 		val maxRetries = 0
@@ -100,8 +96,6 @@ class InternalRequest<T : SmartStatic>(
 
 		return DefaultRetryPolicy(timeoutMilliseconds, maxRetries, backoffMulti)
 	}
-
-
 
 	private fun getUrl(): String {
 		var completeUrl = getSite("Api")
@@ -225,27 +219,28 @@ class InternalRequest<T : SmartStatic>(
 		val rotation = activity.windowManager.defaultDisplay.rotation
 		val orientation = activity.resources.configuration.orientation
 
-		when (orientation) {
+		activity.requestedOrientation = when (orientation) {
 			Configuration.ORIENTATION_PORTRAIT -> handlePortrait(rotation)
-
 			Configuration.ORIENTATION_LANDSCAPE -> handleLandscape(rotation)
+			else -> 0
 		}
 	}
 
-	private fun handlePortrait(rotation: Int) {
+	private fun handlePortrait(rotation: Int): Int =
 		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_270 -> activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-			else -> activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
+			Surface.ROTATION_0, Surface.ROTATION_270 ->
+				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+			else ->
+				ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
 		}
-	}
 
-	private fun handleLandscape(rotation: Int) {
+	private fun handleLandscape(rotation: Int): Int =
 		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_90 -> activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-			else -> activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+			Surface.ROTATION_0, Surface.ROTATION_90 ->
+				ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+			else ->
+				ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
 		}
-	}
-
 
 	private fun endUIWait() {
 		closeProgressBar()
@@ -254,17 +249,7 @@ class InternalRequest<T : SmartStatic>(
 	}
 
 	private fun closeProgressBar() {
-		if (progress == null)
-			return
-
-		// This try is a fix for user turn the screen
-		// it recharges the activity and fucks the dialog
-		try {
-			progress!!.dismiss()
-			progress = null
-		} catch (ignored: IllegalArgumentException) {
-		}
-
+		progress?.dismiss()
 	}
 
 	private fun enableSleep() {
