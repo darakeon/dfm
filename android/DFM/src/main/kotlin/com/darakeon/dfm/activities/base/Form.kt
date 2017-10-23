@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.widget.EditText
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.uiHelpers.dialogs.DialogSelectClickListener
 import org.json.JSONArray
 
 fun TextView.setColorByAttr(attr : Int){
@@ -60,7 +59,7 @@ fun Activity.setValue(id: Int, text: String?) {
 }
 
 
-fun Activity.showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSelectClickListener) {
+fun Activity.showChangeList(list: JSONArray?, titleId: Int, setResult: (String, String) -> Unit) {
 	if (list != null) {
 		val adapter = arrayOfNulls<CharSequence>(list.length())
 
@@ -72,6 +71,11 @@ fun Activity.showChangeList(list: JSONArray?, titleId: Int, selectList: DialogSe
 		val title = getString(titleId)
 
 		AlertDialog.Builder(this).setTitle(title)
-				.setItems(adapter, selectList).show()
+			.setItems(adapter, { _, w -> run {
+				setResult(
+					list.getJSONObject(w).getString("Text"),
+					list.getJSONObject(w).getString("Value")
+				)
+			}}).show()
 	}
 }
