@@ -144,7 +144,7 @@ language and display options.
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
-- [ ] Record log on error at mobile
+- [x] `2017-10-22 > 2017-10-22` Fix show error at mobile
 - [x] `2017-10-22 > 2017-10-22` Refactor android dialog handling
 - [x] `2017-10-19 > 2017-10-19` Refactor android post/get handling
 
