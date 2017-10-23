@@ -13,20 +13,18 @@ import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.ExtractStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
-import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
-import com.darakeon.dfm.uiHelpers.dialogs.PickDate
 import com.darakeon.dfm.uiHelpers.views.MoveLine
 import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer, IDatePickerActivity {
+class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer {
 	private val main: ListView get() = findViewById(R.id.main_table)
 	private val empty: TextView get() = findViewById(R.id.empty_list)
 
 	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
-	override var dialog: DatePickerDialog? = null
+	private lateinit var dialog: DatePickerDialog
 
 
 	override fun contentView(): Int = R.layout.extract
@@ -36,6 +34,25 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
+		dialog = DatePickerDialog(
+			this,
+			{ v, y, m, _ -> run {
+				if (v.isShown) {
+					setDate(m, y)
+					getExtract()
+					dialog.dismiss()
+				}
+			} },
+			static.year,
+			static.month,
+			1
+		)
+
+		val picker = dialog.getChildOrMe("mDatePicker")
+		val delegate = picker.getChildOrMe("mDelegate")
+		val day = delegate.getChildOrMe("mDaySpinner")
+		(day as View).visibility = View.GONE
 
 		if (rotated && succeeded) {
 			setDateFromLast()
@@ -75,24 +92,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		if (dialog == null) {
-			dialog = DatePickerDialog(this, PickDate(this), static.year, static.month, 1)
-
-			try {
-				val picker = dialog?.getChildOrMe("mDatePicker")
-				val delegate = picker?.getChildOrMe("mDelegate")
-				val day = delegate?.getChildOrMe("mDaySpinner")
-				(day as View).visibility = View.GONE
-			} catch (ignored: Exception) {
-			}
-		}
-
-		dialog?.show()
-	}
-
-	override fun setResult(year: Int, month: Int, day: Int) {
-		setDate(month, year)
-		getExtract()
+		dialog.show()
 	}
 
 	private fun getExtract() {

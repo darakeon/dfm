@@ -21,6 +21,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	var clickedView: View? = null
 	var rotated: Boolean = false
+	lateinit var inflater: LayoutInflater
 
 	var succeeded: Boolean
 		get() = static.succeeded
@@ -54,7 +55,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-		static.inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+		inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 		setContentView(contentView())
 

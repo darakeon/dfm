@@ -11,7 +11,6 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.api.entities.Nature
 import com.darakeon.dfm.api.toDoubleByCulture
-import com.darakeon.dfm.uiHelpers.dialogs.*
 import com.darakeon.dfm.uiHelpers.views.DetailBox
 import com.darakeon.dfm.uiHelpers.watchers.DescriptionWatcher
 import com.darakeon.dfm.uiHelpers.watchers.ValueWatcher
@@ -20,15 +19,29 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 
-class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic), IDatePickerActivity {
+class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) {
 	private val window: ScrollView get() = findViewById(R.id.window)
 
-	override var dialog: DatePickerDialog? = null
+	private lateinit var dialog: DatePickerDialog
 
 	override fun contentView(): Int = R.layout.moves_create
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
+		dialog = DatePickerDialog(
+			this,
+			{ v, y, m, d -> run {
+				if (v.isShown) {
+					static.move.date.set(y, m, d)
+					setValue(R.id.date, static.move.dateString())
+					dialog.dismiss()
+				}
+			} },
+			static.move.year,
+			static.move.month,
+			static.move.day
+		)
 
 		if (rotated && succeeded) {
 			populateCategoryAndNature()
@@ -201,30 +214,23 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 
 	fun showDatePicker(@Suppress(ON_CLICK) view: View) {
-		dialog = DatePickerDialog(
-			this, PickDate(this),
-				static.move.year, static.move.month, static.move.day
-		)
-
-		dialog?.show()
+		dialog.show()
 	}
-
-	override fun setResult(year: Int, month: Int, day: Int) {
-		static.move.date.set(year, month, day)
-		setValue(R.id.date, static.move.dateString())
-	}
-
 
 	fun changeCategory(@Suppress(ON_CLICK) view: View) {
-		showChangeList(static.categoryList, R.string.category, DialogCategory(static.categoryList, this, static.move))
+		showChangeList(static.categoryList, R.string.category, { t, v -> setCategory(t, v) })
+	}
+
+	private fun setCategory(text: String, value: String) {
+		setValue(R.id.category, text)
+		static.move.category = value
 	}
 
 	fun changeNature(@Suppress(ON_CLICK) view: View) {
-		showChangeList(static.natureList, R.string.nature, DialogNature(static.natureList, this))
+		showChangeList(static.natureList, R.string.nature, { t, v -> setNature(t, v) })
 	}
 
-
-	fun setNature(text: String, value: String) {
+	private fun setNature(text: String, value : String) {
 		setValue(R.id.nature, text)
 		static.move.setNature(value)
 
@@ -247,11 +253,21 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic),
 
 
 	fun changeAccountOut(@Suppress(ON_CLICK) view: View) {
-		showChangeList(static.accountList, R.string.account, DialogAccountOut(static.accountList, this, static.move))
+		showChangeList(static.accountList, R.string.account, { t,v -> setAccountOut(t, v) })
+	}
+
+	private fun setAccountOut(text: String, value: String) {
+		setValue(R.id.account_out, text)
+		static.move.accountOut = value
 	}
 
 	fun changeAccountIn(@Suppress(ON_CLICK) view: View) {
-		showChangeList(static.accountList, R.string.account, DialogAccountIn(static.accountList, this, static.move))
+		showChangeList(static.accountList, R.string.account, { t, v -> setAccountIn(t, v) })
+	}
+
+	private fun setAccountIn(text: String, value: String) {
+		setValue(R.id.account_in, text)
+		static.move.accountIn = value
 	}
 
 	fun useDetailed(@Suppress(ON_CLICK) view: View) {

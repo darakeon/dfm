@@ -10,19 +10,17 @@ import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.SummaryStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.YearAdapter
-import com.darakeon.dfm.uiHelpers.dialogs.IDatePickerActivity
-import com.darakeon.dfm.uiHelpers.dialogs.PickDate
 import com.darakeon.dfm.user.getAuth
 import org.json.JSONObject
 import java.util.*
 
-class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePickerActivity {
+class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 
 	private val main: ListView get() = findViewById(R.id.main_table)
 	private val empty: TextView get() = findViewById(R.id.empty_list)
 
 	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
-	override var dialog: DatePickerDialog? = null
+	private lateinit var dialog: DatePickerDialog
 
 
 
@@ -31,6 +29,29 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
+		dialog = DatePickerDialog(
+			this,
+			{ v, y, _, _ -> run {
+				if (v.isShown) {
+					setDate(y)
+					getSummary()
+					dialog.dismiss()
+				}
+			} },
+			static.year,
+			1,
+			1
+		)
+
+		val picker = dialog.getChildOrMe("mDatePicker")
+		val delegate = picker.getChildOrMe("mDelegate")
+
+		val day = delegate.getChildOrMe("mDaySpinner") as View
+		day.visibility = View.GONE
+
+		val month = delegate.getChildOrMe("mMonthSpinner") as View
+		month.visibility = View.GONE
 
 		if (rotated && succeeded) {
 			setDateFromLast()
@@ -58,30 +79,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic), IDatePicker
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		if (dialog == null) {
-			dialog = DatePickerDialog(this, PickDate(this), static.year, 1, 1)
-
-			try {
-				val picker = dialog!!.getChildOrMe("mDatePicker")
-				val delegate = picker.getChildOrMe("mDelegate")
-
-				val day = delegate.getChildOrMe("mDaySpinner") as View
-				day.visibility = View.GONE
-
-				val month = delegate.getChildOrMe("mMonthSpinner") as View
-				month.visibility = View.GONE
-
-			} catch (ignored: Exception) {
-			}
-
-		}
-
-		dialog!!.show()
-	}
-
-	override fun setResult(year: Int, month: Int, day: Int) {
-		setDate(year)
-		getSummary()
+		dialog.show()
 	}
 
 	private fun getSummary() {
