@@ -154,8 +154,10 @@ disabled
 
 ## 4.1.0.0 :whale: <sup>`3`</sup>
 - [x] `2017-10-07 > 2017-10-08` Put titles on glyphicons
-- [x] `2017-10-07 > 2017-10-07` Fix places where the understanding depends on colors
-- [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be all the same
+- [x] `2017-10-07 > 2017-10-07` Fix places where the understanding
+depends on colors
+- [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be
+all the same
 
 ## 4.0.2.0 :sheep: <sup>`4`</sup>
 - [x] `2017-09-24 > 2017-10-07` Upgrade to Android Studio 3.0
