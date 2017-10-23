@@ -68,7 +68,7 @@ class InternalRequest<T : SmartStatic>(
 
 		val jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
 			Response.Listener<JSONObject> { response -> handleResponse(response) },
-			Response.ErrorListener { error -> handleError(error) })
+			Response.ErrorListener { handleError() })
 
 		jsonRequest.retryPolicy = getDefaultRetryPolicy()
 		Volley.newRequestQueue(activity).add(jsonRequest)
@@ -152,11 +152,9 @@ class InternalRequest<T : SmartStatic>(
 		assemblyResponse(internalResponse)
 	}
 
-	private fun handleError(e: Exception) {
+	private fun handleError() {
 		val response = InternalResponse(
 			activity.getString(R.string.error_contact_url)
-					+ ": " + this.url
-					+ "\r\n " + e.message
 		)
 
 		assemblyResponse(response)
