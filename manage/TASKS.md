@@ -136,7 +136,8 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.1.0 :sheep: <sup>`7`</sup>
+## <a name="dev"></a>4.1.1.0 :sheep: <sup>`8`</sup>
+- [ ] Implement Google Authenticator
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
