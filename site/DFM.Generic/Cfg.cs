@@ -26,5 +26,7 @@ namespace DFM.Generic
 		public static Boolean IsLocal => appSettings["IsLocal"] == "1";
 
 		public static Int32 PasswordErrorLimit => Int32.Parse(appSettings["PasswordErrorLimit"]);
+
+		public static String GooglePlay => appSettings["GooglePlay"];
 	}
 }

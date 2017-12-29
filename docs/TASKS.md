@@ -146,7 +146,7 @@ disabled
 disabled
 
 ## <a name="dev"></a>4.1.1.0 :sheep: <sup>`4`</sup>
-- [ ] Mobile home link goes to app if it exists
+- [ ] `2017-12-29 > (...)` Mobile home link goes to app if it exists
 - [x] `2017-10-22 > 2017-10-22` Fix show error at mobile
 - [x] `2017-10-22 > 2017-10-22` Refactor android dialog handling
 - [x] `2017-10-19 > 2017-10-19` Refactor android post/get handling

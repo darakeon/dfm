@@ -1,12 +1,18 @@
 ﻿@using DFM.Generic
 
+@{
+	var controller = ViewContext.RouteData.Values["Controller"];
+	var action = ViewContext.RouteData.Values["Action"];
+	var currentUrl = $"{controller}-{action}";
+}
+
 <footer class="container">
 	<hr />
 
 	<div class="row">
 
 		<div class="col-lg-1 col-sm-2">
-			<a href="https://play.google.com/store/apps/details?id=com.dontflymoney.view"
+			<a href="@Url.Action("Mobile", "Users", new { id = currentUrl })"
 			   target="_blank" class="android-link"></a>
 		</div>
 
