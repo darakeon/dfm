@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name" translatable="false">Don\'t fly Money</string>
+	<string name="app_short_name" translatable="false">DfM</string>
+
+	<string name="action_home" translatable="false"></string>
+	<string name="action_move" translatable="false"></string>
+	<string name="action_settings" translatable="false"></string>
+	<string name="action_refresh" translatable="false"></string>
+	<string name="action_logout" translatable="false"></string>
+	<string name="action_close" translatable="false"></string>
+
+	<string name="checked" translatable="false"></string>
+	<string name="unchecked" translatable="false"></string>
+
+</resources>
