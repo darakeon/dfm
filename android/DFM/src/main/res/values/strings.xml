@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name" translatable="false">Don\'t fly Money</string>
-	<string name="app_short_name" translatable="false">DfM</string>
-	<string name="starting_app">Waking up the pig…</string>
-
 	<!-- Actions -->
-	<string name="action_home" translatable="false"></string>
-	<string name="action_move" translatable="false"></string>
-	<string name="action_settings" translatable="false"></string>
-	<string name="action_refresh" translatable="false"></string>
-	<string name="action_logout" translatable="false"></string>
-	<string name="action_close" translatable="false"></string>
 	<string name="label_home">Home</string>
 	<string name="label_settings">Settings</string>
 	<string name="label_move">Move</string>
@@ -26,13 +16,11 @@
 	<!-- Alert dialog -->
 	<string name="error_title">Ops!</string>
 	<string name="ok_button">OK</string>
-	<string name="license_retry">Could not get app license. Verify your internet connection and try again.</string>
-	<string name="try_again">Try again</string>
 	<string name="cancel_button">Cancel</string>
-	<string name="license_error">Error on getting license: %d. Contact us.</string>
 
 	<!-- Wait dialog -->
 	<string name="wait_title">Wait!</string>
+	<string name="starting_app">Waking up the pig…</string>
 	<string name="wait_text">Calling the Pig&#8230;</string>
 
 	<!-- Errors -->
@@ -43,7 +31,6 @@
 		If it\'s the second option, the error is recorded and we will solve it as soon as possible.
 	</string>
 	<string name="uninvited">You are uninvited!</string>
-	<string name="this_is_not_happening">You should not be here. Contact us.</string>
 
 	<!-- Login -->
 	<string name="email">e-mail</string>
@@ -66,8 +53,6 @@
 	<string name="delete">delete</string>
 	<string name="check">check</string>
 	<string name="uncheck">uncheck</string>
-	<string name="checked" translatable="false"></string>
-	<string name="unchecked" translatable="false"></string>
 
 	<!-- Move -->
 	<string name="title_activity_move">Move</string>
@@ -86,8 +71,13 @@
 	<string name="fill_all">Fill all fields to add a detail.</string>
 	<string name="account_in">account in</string>
 	<string name="account_out">account out</string>
-	<string name="no_accounts_move">There are no accounts.\nWithout accounts, you cannot create Moves.</string>
-	<string name="no_categories_move">There is no categories.\nYou can create a Move without Category, but you need to go to Settings and disable categories use.</string>
+	<string name="no_accounts_move">
+		There are no accounts.\nWithout accounts, you cannot create Moves.
+	</string>
+	<string name="no_categories_move">
+		There is no categories.\nYou can create a Move without Category,
+		but you need to go to Settings and disable categories use.
+	</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>

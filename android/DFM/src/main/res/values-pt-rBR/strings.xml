@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="starting_app">Acordando o porquinho…</string>
-
 	<!-- Actions -->
 	<string name="label_home">Início</string>
 	<string name="label_settings">Configurações</string>
@@ -18,13 +16,11 @@
 	<!-- Alert dialog -->
 	<string name="error_title">Ops!</string>
 	<string name="ok_button">OK</string>
-	<string name="license_retry">Não foi possível checar a licença do aplicativo. Verifique sua conexão de internet e tente novamente.</string>
-	<string name="try_again">Tentar novamente</string>
 	<string name="cancel_button">Cancelar</string>
-	<string name="license_error">Erro ao verificar licença: %d. Entre em contato conosco.</string>
 
 	<!-- Wait dialog -->
 	<string name="wait_title">Um segundo!</string>
+	<string name="starting_app">Acordando o porquinho…</string>
 	<string name="wait_text">Chamando o porquinho&#8230;</string>
 
 	<!-- Errors -->
@@ -35,8 +31,7 @@
 		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.
 	</string>
 	<string name="uninvited">Tchau!</string>
-	<string name="this_is_not_happening">Você não deveria ver isso. Entre em contato conosco.</string>
-	
+
 	<!-- Login -->
 	<string name="email">e-mail</string>
 	<string name="password">senha</string>
@@ -76,8 +71,13 @@
 	<string name="fill_all">Preencha todos os campos para adicionar um detalhe.</string>
 	<string name="account_in">conta entrada</string>
 	<string name="account_out">conta saída</string>
-	<string name="no_accounts_move">Não há contas.\nSem contas, não é possível criar Movimentações.</string>
-	<string name="no_categories_move">Não há categorias.\nVocê pode criar Movimentações sem Categorias, mas precisa desabilitar o uso de Categorias nas Configurações.</string>
+	<string name="no_accounts_move">
+		Não há contas.\nSem contas, não é possível criar Movimentações.
+	</string>
+	<string name="no_categories_move">
+		Não há categorias.\nVocê pode criar Movimentações sem Categorias,
+		mas precisa desabilitar o uso de Categorias nas Configurações.
+	</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>
