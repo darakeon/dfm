@@ -5,6 +5,7 @@ using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
+using DFM.Generic;
 
 namespace DFM.MVC.Controllers
 {
@@ -197,6 +198,13 @@ namespace DFM.MVC.Controllers
 			}
 
 			return View(model);
+		}
+
+
+
+		public ActionResult Mobile()
+		{
+			return Redirect(Cfg.GooglePlay);
 		}
 
 	}
