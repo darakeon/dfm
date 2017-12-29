@@ -15,7 +15,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.alertError
 import com.darakeon.dfm.activities.base.logout
-import com.darakeon.dfm.activities.base.showWaitDialog
+import com.darakeon.dfm.activities.base.createWaitDialog
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.user.languageChangeAndSave
 import com.darakeon.dfm.user.themeChangeAndSave
@@ -208,7 +208,7 @@ class InternalRequest<T : SmartStatic>(
 	}
 
 	private fun Activity.openProgressBar() {
-		progress = showWaitDialog()
+		progress = createWaitDialog()
 	}
 
 	private fun Activity.disableSleep() {
