@@ -38,3 +38,11 @@ paragraphs by one blank line.
 And, please, explain what you have done the simplest way you can.
 Coding is our form of art, but the beautiful on it is other people 
 understanding what you did. This rule applies to your code too.
+
+## Don't know what to do?
+
+It's probably not the case, but... There is a [task list](TASKS.md).
+You can pickup a task from any place of the list, the order set to this
+file is the order @darakeon intend to do them. Once it's ready, the new
+system version number will depend on the documentation inside the task
+list and the current version number.
