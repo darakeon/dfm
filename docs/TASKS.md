@@ -7,7 +7,7 @@ all planned. =)
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.1.0/manage/TASKS.md#dev)
+- [dev version state](../../4.1.1.0/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
