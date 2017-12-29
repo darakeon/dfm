@@ -104,7 +104,7 @@ is stolen
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
 
-## 4.1.3.0 :sheep: <sup>`6`</sup>
+## 4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
 - [ ] Enable to check moves on closed accounts
 - [ ] Check move without reload screen - web
@@ -112,31 +112,31 @@ is stolen
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.2.2 :ant: <sup>`2`</sup>
+## 4.1.3.2 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 
-## 4.1.2.1 :ant: <sup>`4`</sup>
+## 4.1.3.1 :ant: <sup>`4`</sup>
 - [ ] Transform service receiving / returns into DTO
 - [ ] IDs Int64
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## 4.1.2.0 :sheep: <sup>`4`</sup>
+## 4.1.3.0 :sheep: <sup>`4`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific
 language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.1.1 :ant: <sup>`5`</sup>
+## 4.1.2.1 :ant: <sup>`5`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.1.0 :sheep: <sup>`8`</sup>
+## 4.1.2.0 :sheep: <sup>`5`</sup>
 - [ ] Implement Google Authenticator
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
@@ -144,6 +144,9 @@ language and display options.
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
+
+## <a name="dev"></a>4.1.1.0 :sheep: <sup>`4`</sup>
+- [ ] Mobile home link goes to app if it exists
 - [x] `2017-10-22 > 2017-10-22` Fix show error at mobile
 - [x] `2017-10-22 > 2017-10-22` Refactor android dialog handling
 - [x] `2017-10-19 > 2017-10-19` Refactor android post/get handling
