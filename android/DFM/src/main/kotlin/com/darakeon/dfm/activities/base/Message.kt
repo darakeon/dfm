@@ -2,11 +2,8 @@ package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
-import android.widget.TextView
 import com.darakeon.dfm.R
 
 val cancelClickListener: OnClickListener = OnClickListener {
@@ -50,21 +47,8 @@ private fun Activity.alertError(message: String, resOkButton: Int, okClickListen
 }
 
 
-internal val Activity.waitDialog: Dialog
-	get() {
-		val progress = Dialog(this)
-		progress.setTitle(getString(R.string.wait_title))
-
-		val message = TextView(this)
-		message.text = getString(com.darakeon.dfm.R.string.wait_text)
-		progress.setContentView(message)
-
-		return progress
-	}
-
-fun Activity.showWaitDialog(): Dialog {
-	val progress = waitDialog
-	progress.show()
-
-	return progress
+fun Activity.createWaitDialog(): AlertDialog? {
+	return AlertDialog.Builder(this)
+		.setTitle(getString(R.string.wait_title))
+		.setMessage(R.string.wait_text)?.show()
 }
