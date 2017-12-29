@@ -8,13 +8,8 @@ namespace DFM.Tests.BusinessLogic.Helpers
 {
 	internal class DBHelper
 	{
-		static readonly String server = Cfg.Get("Server");
-		static readonly String database = Cfg.Get("DataBase");
-		static readonly String login = Cfg.Get("Login");
-		static readonly String passwordDB = Cfg.Get("Password");
-
 		static readonly String connStr =
-			$"Server={server};Database={database};Uid={login};Pwd={passwordDB};";
+			$"Server={Cfg.Server};Database={Cfg.DataBase};Uid={Cfg.Login};Pwd={Cfg.Password};";
 
 
 		public static String GetLastTokenForUser(String email, SecurityAction action)
