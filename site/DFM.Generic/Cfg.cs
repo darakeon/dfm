@@ -1,27 +1,30 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Configuration;
 
 namespace DFM.Generic
 {
 	public class Cfg
 	{
+		private static NameValueCollection appSettings => ConfigurationManager.AppSettings;
+
 		public static String EmailSender
 		{
-			get { return ConfigurationManager.AppSettings["EmailSender"]; }
-			set { ConfigurationManager.AppSettings["EmailSender"] = value; }
+			get { return appSettings["EmailSender"]; }
+			set { appSettings["EmailSender"] = value; }
 		}
 
-		public static String Email => ConfigurationManager.AppSettings["Email"];
+		public static String Email => appSettings["Email"];
 
 		public static String Version => typeof(Cfg).Assembly.GetName().Version.ToString();
 
-		public static Boolean IsLocal => ConfigurationManager.AppSettings["IsLocal"] == "1";
+		public static Boolean IsLocal => appSettings["IsLocal"] == "1";
 
-		public static Int32 PasswordErrorLimit => Int32.Parse(ConfigurationManager.AppSettings["PasswordErrorLimit"]);
+		public static Int32 PasswordErrorLimit => Int32.Parse(appSettings["PasswordErrorLimit"]);
 
 		public static String Get(String key)
 		{
-			return ConfigurationManager.AppSettings[key];
+			return appSettings[key];
 		}
 	}
 }
