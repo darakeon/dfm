@@ -1,6 +1,7 @@
 package com.darakeon.dfm.activities
 
 import android.os.Bundle
+import android.view.Window
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.redirect
@@ -17,6 +18,8 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 		get() = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		super.onCreate(savedInstanceState)
 
 		if (intent.getBooleanExtra("EXIT", false)) {
