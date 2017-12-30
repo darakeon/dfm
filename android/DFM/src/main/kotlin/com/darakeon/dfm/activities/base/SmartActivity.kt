@@ -16,6 +16,7 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.user.languageChangeFromSaved
 import com.darakeon.dfm.user.themeChangeFromSaved
 import com.darakeon.dfm.user.getHighLightColor
+import java.util.*
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
@@ -42,6 +43,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	var request: InternalRequest<T>? = null
 
+	val query = HashMap<String, String>()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		languageChangeFromSaved()
 		themeChangeFromSaved()
@@ -66,6 +69,13 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		findViewById<LinearLayout>(R.id.highlight)
 			?.setBackgroundColor(getHighLightColor())
+
+		val data = intent.data
+		if (data?.queryParameterNames != null) {
+			for (param: String in data.queryParameterNames) {
+				query.put(param, data.getQueryParameter(param))
+			}
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -161,4 +171,20 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	fun reset() {
 		succeeded = false
 	}
+
+	protected fun getExtraOrUrl(key: String, default: Int) : Int =
+			getExtraOrUrl(key, default.toString()).toInt()
+
+	protected fun getExtraOrUrl(key: String, default: String = "") : String {
+		if (intent.extras.containsKey(key)) {
+			return intent.extras[key].toString()
+		}
+
+		if (query.containsKey(key)) {
+			return query[key] ?: default
+		}
+
+		return default
+	}
+
 }

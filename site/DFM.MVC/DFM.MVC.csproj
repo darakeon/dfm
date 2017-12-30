@@ -232,6 +232,7 @@
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
+    <Compile Include="Areas\API\Helpers\MobileUrls.cs" />
     <Compile Include="Areas\API\Models\MovesModel.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\Jsons\DateJson.cs" />

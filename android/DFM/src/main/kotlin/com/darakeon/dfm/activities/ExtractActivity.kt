@@ -23,7 +23,8 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	private val main: ListView get() = findViewById(R.id.main_table)
 	private val empty: TextView get() = findViewById(R.id.empty_list)
 
-	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
+	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
+
 	private lateinit var dialog: DatePickerDialog
 
 
@@ -68,10 +69,17 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 	private fun setDateFromCaller() {
-		val today = Calendar.getInstance()
-		val startMonth = intent.getIntExtra("month", today.get(Calendar.MONTH))
-		val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
-		setDate(startMonth, startYear)
+		if (query.containsKey("id")) {
+			val id = query["id"]?.toInt() ?: 0
+			val startMonth = id.mod(100) - 1
+			val startYear = id / 100
+			setDate(startMonth, startYear)
+		} else {
+			val today = Calendar.getInstance()
+			val startMonth = intent.getIntExtra("month", today.get(Calendar.MONTH))
+			val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
+			setDate(startMonth, startYear)
+		}
 	}
 
 	private fun setDate(month: Int, year: Int) {
