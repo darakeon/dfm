@@ -19,7 +19,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 	private val main: ListView get() = findViewById(R.id.main_table)
 	private val empty: TextView get() = findViewById(R.id.empty_list)
 
-	private val accountUrl: String get() = intent.getStringExtra("accountUrl")
+	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 	private lateinit var dialog: DatePickerDialog
 
 
@@ -67,10 +67,14 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 	}
 
 	private fun setDateFromCaller() {
-		val today = Calendar.getInstance()
-
-		val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
-		setDate(startYear)
+		if (query.containsKey("id")) {
+			val startYear = query["id"]?.toInt() ?: 0
+			setDate(startYear)
+		} else {
+			val today = Calendar.getInstance()
+			val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
+			setDate(startYear)
+		}
 	}
 
 	private fun setDate(year: Int) {
@@ -83,8 +87,6 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 	}
 
 	private fun getSummary() {
-		val accountUrl = intent.getStringExtra("accountUrl")
-
 		val request = InternalRequest(
 			this, "Moves/Summary", { d -> handleSummary(d) }
 		)

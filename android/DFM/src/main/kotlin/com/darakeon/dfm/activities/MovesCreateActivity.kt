@@ -138,8 +138,8 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		)
 
 		request.addParameter("ticket", getAuth())
-		request.addParameter("accountUrl", intent.getStringExtra("accountUrl"))
-		request.addParameter("id", intent.getIntExtra("id", 0))
+		request.addParameter("accountUrl", getExtraOrUrl("accountUrl"))
+		request.addParameter("id", getExtraOrUrl("id", 0))
 		request.get()
 
 		setCurrentDate()
@@ -160,11 +160,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		if (data.has("Move") && !data.isNull("Move")) {
 			val moveToEdit = data.getJSONObject("Move")
 
-			val accountUrl =
-				if (intent.hasExtra("accountUrl"))
-					intent.getStringExtra("accountUrl")
-				else
-					null
+			val accountUrl = getExtraOrUrl("accountUrl")
 
 			static.move.setData(moveToEdit, accountUrl)
 			populateOldData(true)

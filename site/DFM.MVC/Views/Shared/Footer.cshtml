@@ -1,9 +1,18 @@
 ﻿@using DFM.Generic
+@using DFM.MVC.Areas.API.Helpers;
 
 @{
 	var controller = ViewContext.RouteData.Values["Controller"];
 	var action = ViewContext.RouteData.Values["Action"];
-	var currentUrl = $"{controller}-{action}";
+	var id = ViewContext.RouteData.Values["id"];
+	var accountUrl = ViewContext.RouteData.Values["AccountUrl"];
+	var currentUrl = MobileUrls.Get[controller, action];
+
+	var route = new {
+		activity = currentUrl,
+		id = id,
+		accountUrl = accountUrl,
+	};
 }
 
 <footer class="container">
@@ -12,7 +21,7 @@
 	<div class="row">
 
 		<div class="col-lg-1 col-sm-2">
-			<a href="@Url.Action("Mobile", "Users", new { id = currentUrl })"
+			<a href="@Url.RouteUrl(RouteNames.MOBILE, route)"
 			   target="_blank" class="android-link"></a>
 		</div>
 
