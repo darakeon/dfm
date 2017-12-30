@@ -7,7 +7,7 @@ all planned. =)
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.1.0/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.0/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.2.0 :sheep: <sup>`5`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
 - [ ] Implement Google Authenticator
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
@@ -145,13 +145,13 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 
-## <a name="dev"></a>4.1.1.0 :sheep: <sup>`4`</sup>
+## <a name="publish"></a>4.1.1.0 :sheep: <sup>`4`</sup>
 - [x] `2017-12-29 > 2017-12-30` Mobile home link goes to app if it exists
 - [x] `2017-10-22 > 2017-10-22` Fix show error at mobile
 - [x] `2017-10-22 > 2017-10-22` Refactor android dialog handling
 - [x] `2017-10-19 > 2017-10-19` Refactor android post/get handling
 
-## <a name="publish"></a>4.1.0.1 :ant: <sup>`2`</sup>
+## 4.1.0.1 :ant: <sup>`2`</sup>
 - [x] `2017-10-18 > 2017-10-18` Fix error when enter cents on mobile
 - [x] `2017-10-08 > 2017-10-18` Refactor android activity helper classes
 
