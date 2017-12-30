@@ -120,11 +120,11 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	private fun setDataFromList(list: JSONArray?, dataSaved: String?, resourceId: Int) {
 		if (list != null) {
 			for (n in 0 until list.length()) {
-				val `object` = list.getJSONObject(n)
-				val value = `object`.getString("Value")
+				val item = list.getJSONObject(n)
+				val value = item.getString("Value")
 
 				if (value == dataSaved) {
-					val text = `object`.getString("Text")
+					val text = item.getString("Text")
 					setValue(resourceId, text)
 					break
 				}
