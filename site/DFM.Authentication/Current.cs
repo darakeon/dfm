@@ -26,12 +26,12 @@ namespace DFM.Authentication
 			{
 				try
 				{
-					var ticket = getTicket?.Invoke();
+					var ticket = getTicket?.Invoke()?.Key;
 
 					if (ticket == null)
 						return null;
 
-					return userService.GetUserByTicket(ticket.Key);
+					return userService.GetUserByTicket(ticket);
 				}
 				catch (DFMException)
 				{
