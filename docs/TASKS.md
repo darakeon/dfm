@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.2.0 :sheep: <sup>`5`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
 - [ ] Implement Google Authenticator
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
@@ -145,11 +145,11 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 
-## <a name="dev"></a>4.1.1.1 :ant: <sup>`2`</sup>
+## <a name="publish"></a>4.1.1.1 :ant: <sup>`2`</sup>
 - [x] `2017-12-31 > 2017-12-31` Fix facebook image
 - [x] `2017-12-31 > 2017-12-31` Fix android pig redirection
 
-## <a name="publish"></a>4.1.1.0 :sheep: <sup>`4`</sup>
+## 4.1.1.0 :sheep: <sup>`4`</sup>
 - [x] `2017-12-29 > 2017-12-30` Mobile home link goes to app if it exists
 - [x] `2017-10-22 > 2017-10-22` Fix show error at mobile
 - [x] `2017-10-22 > 2017-10-22` Refactor android dialog handling
