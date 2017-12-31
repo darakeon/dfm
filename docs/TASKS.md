@@ -145,7 +145,8 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 
-## <a name="dev"></a>4.1.1.1 :ant: <sup>`1`</sup>
+## <a name="dev"></a>4.1.1.1 :ant: <sup>`2`</sup>
+- [x] `2017-12-31 > 2017-12-31` Fix facebook image
 - [x] `2017-12-31 > 2017-12-31` Fix android pig redirection
 
 ## <a name="publish"></a>4.1.1.0 :sheep: <sup>`4`</sup>
