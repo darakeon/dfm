@@ -14,16 +14,16 @@ namespace DFM.MVC
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
-				RouteNames.DEFAULT,
-				"{controller}/{action}/{id}",
-				new { controller = "Users", action = "Index", id = UrlParameter.Optional },
+				RouteNames.MOBILE,
+				"@{activity}",
+				new { controller = "Users", action = "Mobile" },
 				new[] { typeof(UsersController).Namespace }
 			);
 
 			routes.MapRoute(
-				RouteNames.MOBILE,
-				"@{activity}",
-				new { controller = "Users", action = "Mobile" },
+				RouteNames.DEFAULT,
+				"{controller}/{action}/{id}",
+				new { controller = "Users", action = "Index", id = UrlParameter.Optional },
 				new[] { typeof(UsersController).Namespace }
 			);
 		}
