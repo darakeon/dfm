@@ -56,6 +56,19 @@ Scenario: Ea04. Get with Date Month more than 12 (E)
 
 
 
+Scenario: Ea98. Get with next year date (S)
+	Given I have moves of
+		| Date       |
+		| +0         |
+	And I pass a valid account url
+	And I pass this date
+		| Month | Year |
+		| +0    | +1   |
+	When I try to get the month report
+	Then I will receive no core error
+	And I will receive the month report
+	And there will be no moves
+
 Scenario: Ea99. Get with info all right (S)
 	Given I pass a valid account url
 	And I pass this date

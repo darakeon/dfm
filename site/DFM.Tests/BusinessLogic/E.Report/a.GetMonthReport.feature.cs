@@ -223,32 +223,71 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea99. Get with info all right (S)")]
-        public virtual void Ea99_GetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ea98. Get with next year date (S)")]
+        public virtual void Ea98_GetWithNextYearDateS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea99. Get with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea98. Get with next year date (S)", ((string[])(null)));
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 60
- testRunner.Given("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Date"});
+            table6.AddRow(new string[] {
+                        "+0"});
+#line 60
+ testRunner.Given("I have moves of", ((string)(null)), table6, "Given ");
+#line 63
+ testRunner.And("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Month",
                         "Year"});
-            table6.AddRow(new string[] {
+            table7.AddRow(new string[] {
+                        "+0",
+                        "+1"});
+#line 64
+ testRunner.And("I pass this date", ((string)(null)), table7, "And ");
+#line 67
+ testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 69
+ testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And("there will be no moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Ea99. Get with info all right (S)")]
+        public virtual void Ea99_GetWithInfoAllRightS()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea99. Get with info all right (S)", ((string[])(null)));
+#line 72
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 73
+ testRunner.Given("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Month",
+                        "Year"});
+            table8.AddRow(new string[] {
                         "4",
                         "2012"});
-#line 61
- testRunner.And("I pass this date", ((string)(null)), table6, "And ");
-#line 64
+#line 74
+ testRunner.And("I pass this date", ((string)(null)), table8, "And ");
+#line 77
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 65
+#line 78
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 66
+#line 79
  testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 80
  testRunner.And("its sum value will be equal to its moves sum value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

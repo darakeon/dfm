@@ -80,6 +80,12 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Then(@"there will be no moves")]
+		public void ThenThereWillBeNoMoves()
+		{
+			Assert.IsEmpty(monthReport);
+		}
 		#endregion
 
 		#region GetYearReport
@@ -134,7 +140,10 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 			foreach (var row in table.Rows)
 			{
-				var date = DateTime.Parse(row["Date"]);
+				var dateString = row["Date"];
+				var date = isRelative(dateString)
+					? DateTime.Today.AddDays(Int32.Parse(dateString))
+					: DateTime.Parse(dateString);
 
 				var move = new Move
 				{
@@ -160,13 +169,31 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			var dateData = table.Rows[0];
 
 			if (table.Header.Contains("Month"))
-				month = Int16.Parse(dateData["Month"]);
+			{
+				var monthString = dateData["Month"];
+				month = Int16.Parse(monthString);
+				
+				if (isRelative(monthString))
+				{
+					month = (Int16) DateTime.Today.AddMonths(month).Month;
+				}
+			}
 
-			year = Int16.Parse(dateData["Year"]);
+			var yearString = dateData["Year"];
+			year = Int16.Parse(yearString);
+				
+			if (isRelative(yearString))
+			{
+				year = (Int16) DateTime.Today.AddYears(year).Year;
+			}
 		}
 
 		#endregion
 
+		private Boolean isRelative(String date)
+		{
+			return date.StartsWith("+") || date.StartsWith("-");
+		}
 
 	}
 }

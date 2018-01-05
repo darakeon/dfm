@@ -145,7 +145,7 @@ disabled
 - [ ] Fix date combo start value (mobile)
 - [ ] Offer send e-mail on error (mobile)
 - [ ] Fix move add from home (mobile)
-- [ ] Fix month future year report
+- [x] `2018-01-05 > 2018-01-07` Fix month future year report
 - [x] `2018-01-05 > 2018-01-05` Fix account list on transfer
 - [x] `2018-01-05 > 2018-01-05` Fix task list duplication and already done
 
