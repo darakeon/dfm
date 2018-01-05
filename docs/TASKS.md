@@ -26,9 +26,8 @@ Legend:
 - [ ] Use .NET resources
 - [ ] Put list of feature on screen
 
-## 6.0.0.0 :dragon: <sup>`2`</sup>
+## 6.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] OCR to add values to system
-- [ ] Integrate Authy (if it's free)
 
 ## 5.5.0.0 :whale: <sup>`5`</sup>
 - [ ] E-mail send mock
@@ -136,7 +135,7 @@ language and display options.
 - [ ] Avoid weird layout on changing theme
 
 ## 4.1.2.0 :sheep: <sup>`6`</sup>
-- [ ] Implement Google Authenticator
+- [ ] Implement Google Authenticator &| Authy (if it's free)
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
