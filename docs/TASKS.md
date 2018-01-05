@@ -129,11 +129,10 @@ language and display options.
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.2.1 :ant: <sup>`5`</sup>
+## 4.1.2.1 :ant: <sup>`4`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
-- [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
 ## 4.1.2.0 :sheep: <sup>`6`</sup>
@@ -152,7 +151,7 @@ disabled
 - [ ] Fix move add from home (mobile)
 - [ ] Fix month future year report
 - [ ] Fix account list on transfer (closed account?)
-- [ ] Fix task list duplication and already done
+- [ ] `2018-01-05 > (...)` Fix task list duplication and already done
 
 ## <a name="publish"></a>4.1.1.1 :ant: <sup>`2`</sup>
 - [x] `2017-12-31 > 2017-12-31` Fix facebook image
@@ -175,7 +174,8 @@ depends on colors
 - [x] `2017-10-02 > 2017-10-03` Fix account stati icons - should not be
 all the same
 
-## 4.0.2.0 :sheep: <sup>`4`</sup>
+## 4.0.2.0 :sheep: <sup>`5`</sup>
+- [x] `2017-10-02 > 2017-10-02` Add package for JS libraries
 - [x] `2017-09-24 > 2017-10-07` Upgrade to Android Studio 3.0
 - [x] `2017-09-24 > 2017-10-07` Upgrade to VS 2017
 - [x] `2017-09-24 > 2017-09-24` Add link to github Issues
