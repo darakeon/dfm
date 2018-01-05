@@ -9,10 +9,13 @@
              To Force error when the user is not logged-in
             </summary>
         </member>
-        <member name="F:DK.MVC.Authentication.AjaxAuthorizeAttribute.Message">
+        <member name="F:DK.MVC.Authentication.AjaxAuthorizeAttribute.message">
             <summary>
              Message of expiration of session
             </summary>
+        </member>
+        <member name="M:DK.MVC.Authentication.AjaxAuthorizeAttribute.HandleUnauthorizedRequest(System.Web.Mvc.AuthorizationContext)">
+            <inheritdoc />
         </member>
         <member name="T:DK.MVC.Authentication.Authenticate">
             <summary>
@@ -118,6 +121,7 @@
             </summary>
         </member>
         <member name="M:DK.MVC.Forms.CheckBoxList.#ctor(System.Collections.Generic.IEnumerable{DK.MVC.Forms.IListable},System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc />
             <summary>
             Constructor to use in your code
             </summary>
@@ -138,6 +142,24 @@
             <summary>
             HTML to create the EditorFor
             Past it in Views/Shared/EditorTemplates/CheckboxList.cshtml
+            </summary>
+        </member>
+        <member name="T:DK.MVC.Forms.Captcha">
+            <summary>
+            Generate captach for form validations
+            </summary>
+        </member>
+        <member name="M:DK.MVC.Forms.Captcha.#ctor(System.Boolean)">
+            <param name="newText">Which the text shoud be renegerated</param>
+        </member>
+        <member name="P:DK.MVC.Forms.Captcha.Image">
+            <summary>
+            Captcha image generated
+            </summary>
+        </member>
+        <member name="M:DK.MVC.Forms.Captcha.ValidateAndRenew(System.String)">
+            <summary>
+            Validate and change captach
             </summary>
         </member>
         <member name="T:DK.MVC.Forms.HtmlHelperExtension">
@@ -215,11 +237,13 @@
             </summary>
         </member>
         <member name="M:DK.MVC.Route.RouteInfo.#ctor">
+            <inheritdoc />
             <summary>
              RouteData of the current Url
             </summary>
         </member>
         <member name="M:DK.MVC.Route.RouteInfo.#ctor(System.Uri)">
+            <inheritdoc />
             <summary>
              RouteData of a specific Url
             </summary>

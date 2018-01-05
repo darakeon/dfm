@@ -15,6 +15,7 @@
             </summary>
         </member>
         <member name="M:DK.XML.Node.#ctor(System.String,System.String)">
+            <inheritdoc />
             <summary>
             	Xml node structure
             </summary>
@@ -22,6 +23,7 @@
             <param name="value">Text Content for the new Node</param>
         </member>
         <member name="M:DK.XML.Node.#ctor(System.Xml.XmlNode,System.Boolean)">
+            <inheritdoc />
             <summary>
              Xml node structure
             </summary>
@@ -29,6 +31,7 @@
             <param name="readChilds">Whether is to read all the childs (recursive read)</param>
         </member>
         <member name="M:DK.XML.Node.#ctor(System.String,System.Boolean)">
+            <inheritdoc />
              <summary>
              Xml node structure
              </summary>

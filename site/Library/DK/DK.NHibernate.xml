@@ -557,11 +557,13 @@
             </summary>
         </member>
         <member name="T:DK.NHibernate.Conventions.StringTypeConvention">
+            <inheritdoc />
             <summary>
             Convention for String Types
             </summary>
         </member>
         <member name="M:DK.NHibernate.Conventions.StringTypeConvention.Apply(FluentNHibernate.Conventions.Instances.IPropertyInstance)">
+            <inheritdoc />
             <summary>
             Apply changes to the target
             </summary>
@@ -625,6 +627,16 @@
             <summary>
              Verify errors on entities and mapping.
              Avoid error to just appear when entities are accessed.
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Helpers.SchemaChanger">
+            <summary>
+            Make changes to database tables
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Helpers.SchemaChanger.#ctor(System.String)">
+            <summary>
+            Construct class with the name of the script
             </summary>
         </member>
         <member name="T:DK.NHibernate.UserPassed.AutoMappingInfo`2">
@@ -704,6 +716,11 @@
         <member name="M:DK.NHibernate.UserPassed.IDataInitializer.PopulateDB">
             <summary>
             Fill the Database.
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.UserPassed.IDataInitializer.DBAction">
+            <summary>
+            Which action to take when start NHibernate
             </summary>
         </member>
     </members>

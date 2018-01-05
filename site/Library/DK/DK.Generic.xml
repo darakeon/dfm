@@ -26,6 +26,7 @@
             </summary>
         </member>
         <member name="T:DK.Generic.Collection.GroupedCollection`2">
+            <inheritdoc />
             <summary>
             Collection Grouped by one of the properties of the original IList
             </summary>
@@ -68,6 +69,7 @@
             </summary>
         </member>
         <member name="T:DK.Generic.Collection.ItemGroup`2">
+            <inheritdoc />
             <summary>
             Item of a Grouped Collection
             </summary>
@@ -80,6 +82,7 @@
             </summary>
         </member>
         <member name="M:DK.Generic.Collection.ItemGroup`2.#ctor(`1)">
+            <inheritdoc />
             <summary>
             Item of a Grouped Collection
             </summary>
@@ -130,11 +133,13 @@
             <typeparam name="T">Enum type</typeparam>
         </member>
         <member name="T:DK.Generic.Exceptions.DKException">
+            <inheritdoc />
             <summary>
              Any exception thrown by DK library
             </summary>
         </member>
         <member name="M:DK.Generic.Exceptions.DKException.#ctor(System.String)">
+            <inheritdoc />
             <summary>
              Any exception thrown by DK library
             </summary>
@@ -152,16 +157,19 @@
             <typeparam name="TE">Error return Type</typeparam>
         </member>
         <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor">
+            <inheritdoc />
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
         <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor(`0)">
+            <inheritdoc />
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
         </member>
         <member name="M:DK.Generic.Exceptions.ComposedResult`2.#ctor(`1)">
+            <inheritdoc />
             <summary>
             Class to return an object composed by the return error and the success return
             </summary>
