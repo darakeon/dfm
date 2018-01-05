@@ -89,13 +89,12 @@ you are shopping
 - [ ] Handle DFMCoreException at Robot
 - [ ] Change fields to use the ones firefox and chrome customize
 
-## 4.3.0.0 :whale: <sup>`5`</sup>
+## 4.3.0.0 :whale: <sup>`4`</sup>
 - [ ] Put info that you can disabled mobile login if your cellphone
 is stolen
 - [ ] Adjust tab order at move screen (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add category creation (mobile)
-- [ ] Change top menu by bottom menu (mobile)
 
 ## 4.2.0.0 :whale: <sup>`4`</sup>
 - [ ] Allow to hide values at start screen (mobile)
@@ -150,7 +149,7 @@ disabled
 - [ ] Fix move add from home (mobile)
 - [ ] Fix month future year report
 - [ ] Fix account list on transfer (closed account?)
-- [ ] `2018-01-05 > (...)` Fix task list duplication and already done
+- [x] `2018-01-05 > 2018-01-05` Fix task list duplication and already done
 
 ## <a name="publish"></a>4.1.1.1 :ant: <sup>`2`</sup>
 - [x] `2017-12-31 > 2017-12-31` Fix facebook image
@@ -264,8 +263,9 @@ image
 - [x] `2017-04-05 > 2017-04-05` Fix empty account in / out at e-mail
 - [x] `2017-04-05 > 2017-04-05` Shorten e-mail title
 
-## 3.0.0.0 :dragon: <sup>`21`</sup>
+## 3.0.0.0 :dragon: <sup>`22`</sup>
 - [x] `2017-04-01 > 2017-04-02` Pig video
+- [x] `2017-03-29 > 2017-03-29` Change top menu by bottom menu (mobile)
 - [x] `2017-03-29 > 2017-03-31` Remove blue from dark layout
 - [x] `2017-03-29 > 2017-03-29` Fix icon list / menu mobile
 - [x] `2017-03-28 > 2017-03-29` Fix move duplication (mobile)
