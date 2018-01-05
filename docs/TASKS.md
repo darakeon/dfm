@@ -136,7 +136,7 @@ language and display options.
 - [ ] Add package for JS libraries
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
+## 4.1.2.0 :sheep: <sup>`6`</sup>
 - [ ] Implement Google Authenticator
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
@@ -144,6 +144,15 @@ language and display options.
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
+- [ ] Add link to task list to the site
+
+## <a name="dev"></a>4.1.1.2 :sheep: <sup>`6`</sup>
+- [ ] Fix date combo start value (mobile)
+- [ ] Offer send e-mail on error (mobile)
+- [ ] Fix move add from home (mobile)
+- [ ] Fix month future year report
+- [ ] Fix account list on transfer (closed account?)
+- [ ] Fix task list duplication and already done
 
 ## <a name="publish"></a>4.1.1.1 :ant: <sup>`2`</sup>
 - [x] `2017-12-31 > 2017-12-31` Fix facebook image
