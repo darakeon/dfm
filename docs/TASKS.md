@@ -15,9 +15,7 @@ Legend:
 - :sheep:: little changes, as a change in an existing feature
 - :ant:: the developer is just fixing some sh*t it did
 
-## 8.0.0.0 :dragon: <sup>`3`</sup>
-- [ ] `2014-06-01 > (...)` Register logo
-[(site)](http://www.inpi.gov.br/portal/artigo/emarcas)
+## 8.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Link unsubscribe
 - [ ] Run robot each hour and remove it from request (GO?)
 
