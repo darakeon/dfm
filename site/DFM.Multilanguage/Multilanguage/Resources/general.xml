@@ -26,6 +26,7 @@
 		<Uncheck text="Uncheck"/>
 		<Enable text="Enable" />
 		<Disable text="Disable" />
+		<Close text="Close" />
 
 		<!--Status-->
 		<Status text="Status" />
@@ -115,6 +116,7 @@
 		<Uncheck text="Desmarcar"/>
 		<Enable text="Ativar" />
 		<Disable text="Desativar" />
+		<Close text="Fechar" />
 
 		<!--Status-->
 		<Status text="Status" />
