@@ -191,6 +191,7 @@
     <Content Include="Areas\Account\Views\Schedules\Frequency.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Repeating.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Installment.cshtml" />
+    <Content Include=".well-known\assetlinks.json" />
     <None Include="Assets\Bootstrap\Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-3.2.1.js" />
     <Content Include="Assets\Bootstrap\Scripts\jquery-3.2.1.min.js" />
