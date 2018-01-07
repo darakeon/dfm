@@ -5,7 +5,6 @@
 		<NoClosedAccounts text="There's no closed Accounts." />
 		<BeginDate text="Begin" />
 		<EndDate text="End" />
-		<Close text="Close" />
 		<Reopen text="Reopen" />
 		<DeleteConfirm text="Do you really want to DELETE Account '{0}'?\nThis action cannot be undone." />
 		<CloseConfirm text="Do you really want to CLOSE Account '{0}'?\nThis action cannot be undone and this\naccount schedules will be stopped." />
@@ -23,7 +22,6 @@
 		<NoClosedAccounts text="Não há Contas Fechadas." />
 		<BeginDate text="Início" />
 		<EndDate text="Fim" />
-		<Close text="Fechar" />
 		<Reopen text="Reabrir" />
 		<DeleteConfirm text="Realmente deseja APAGAR a Conta '{0}'?\nEsta ação não poderá ser revertida." />
 		<CloseConfirm text="Realmente deseja FECHAR a Conta '{0}'?\nEsta ação não poderá ser revertida e\nos agendamentos serão parados." />
