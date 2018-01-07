@@ -172,8 +172,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		succeeded = false
 	}
 
-	protected fun getExtraOrUrl(key: String, default: Int) : Int =
-			getExtraOrUrl(key, default.toString()).toInt()
+	protected fun getExtraOrUrl(key: String, default: Int?) : String =
+			getExtraOrUrl(key, default.toString())
 
 	protected fun getExtraOrUrl(key: String, default: String = "") : String {
 		if (intent.extras.containsKey(key)) {

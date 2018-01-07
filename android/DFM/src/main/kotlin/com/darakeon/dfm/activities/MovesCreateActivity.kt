@@ -139,7 +139,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 		request.addParameter("ticket", getAuth())
 		request.addParameter("accountUrl", getExtraOrUrl("accountUrl"))
-		request.addParameter("id", getExtraOrUrl("id", 0))
+		request.addParameter("id", getExtraOrUrl("id", null))
 		request.get()
 
 		setCurrentDate()
