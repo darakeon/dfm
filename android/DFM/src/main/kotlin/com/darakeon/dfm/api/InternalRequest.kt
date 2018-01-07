@@ -124,19 +124,14 @@ class InternalRequest<T : SmartStatic>(
 
 	private fun getSite(path: String) : String {
 		val publicDomain = "dontflymoney.com"
-		val googlePlay = "com.android.vending"
-
-		val installer = activity.packageManager
-				.getInstallerPackageName(activity.packageName)
-		val isProd = installer == googlePlay
 
 		val domain =
-			if (isProd)
+			if (activity.isProd)
 				publicDomain
 			else
 				activity.getString(R.string.local_address)
 
-		val protocol = if (isProd) "https" else "http"
+		val protocol = if (activity.isProd) "https" else "http"
 
 		return "$protocol://$domain/$path"
 	}

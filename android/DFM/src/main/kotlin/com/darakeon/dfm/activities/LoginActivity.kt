@@ -1,11 +1,9 @@
 package com.darakeon.dfm.activities
 
+import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.base.getValue
-import com.darakeon.dfm.activities.base.ON_CLICK
-import com.darakeon.dfm.activities.base.redirect
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.user.setAuth
@@ -13,6 +11,15 @@ import org.json.JSONObject
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	override fun contentView(): Int = R.layout.login
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+
+		if (!isProd) {
+			setValue(R.id.email, getString(R.string.local_email))
+			setValue(R.id.password, getString(R.string.local_password))
+		}
+	}
 
 	override val isLoggedIn: Boolean
 		get() = false
