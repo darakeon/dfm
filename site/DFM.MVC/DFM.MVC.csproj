@@ -147,10 +147,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.css" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.min.css" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap.css" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap.min.css" />
     <Content Include="Assets\Bootstrap\Datepicker\bootstrap-datetimepicker.css" />
     <Content Include="Assets\Bootstrap\Datepicker\moment-pt-br.js" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -416,10 +412,6 @@
     <Content Include="Areas\Account\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.css.map" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap-theme.min.css.map" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap.css.map" />
-    <Content Include="Assets\Bootstrap\Content\bootstrap.min.css.map" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
