@@ -144,7 +144,7 @@ disabled
 ## <a name="dev"></a>4.1.1.2 :sheep: <sup>`6`</sup>
 - [ ] Fix date combo start value (mobile)
 - [ ] Offer send e-mail on error (mobile)
-- [ ] Fix move add from home (mobile)
+- [x] `2018-01-07 > 2018-01-07` Fix move add from home (mobile)
 - [x] `2018-01-05 > 2018-01-07` Fix month future year report
 - [x] `2018-01-05 > 2018-01-05` Fix account list on transfer
 - [x] `2018-01-05 > 2018-01-05` Fix task list duplication and already done

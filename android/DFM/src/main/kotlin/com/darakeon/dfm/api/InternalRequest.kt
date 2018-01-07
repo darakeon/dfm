@@ -12,10 +12,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.base.alertError
-import com.darakeon.dfm.activities.base.logout
-import com.darakeon.dfm.activities.base.createWaitDialog
+import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.user.languageChangeAndSave
 import com.darakeon.dfm.user.themeChangeAndSave
@@ -100,26 +97,25 @@ class InternalRequest<T : SmartStatic>(
 	}
 
 	private fun getUrl(): String {
-		var completeUrl = getSite("Api")
+		val main = getSite("Api")
+		val auth = getParameterUrl(parameters, "ticket", "-")
+		val account = getParameterUrl(parameters, "accountUrl", "/Account-")
+		val path =  "/$url"
+		val id = getParameterUrl(parameters, "id", "/")
 
-		if (parameters.containsKey("ticket")) {
-			completeUrl += "-" + parameters["ticket"]
-			parameters.remove("ticket")
+		return main + auth + account + path + id
+	}
+
+	private fun getParameterUrl(parameters: HashMap<String, Any?>, key: String, prefix: String): String {
+		if (parameters.containsKey(key)) {
+			val result = prefix + parameters[key]
+			parameters.remove(key)
+			if (result != prefix) {
+				return result
+			}
 		}
 
-		if (parameters.containsKey("accountUrl")) {
-			completeUrl += "/Account-" + parameters["accountUrl"]
-			parameters.remove("accountUrl")
-		}
-
-		completeUrl += "/" + url
-
-		if (parameters.containsKey("id")) {
-			completeUrl += "/" + parameters["id"]
-			parameters.remove("id")
-		}
-
-		return completeUrl
+		return ""
 	}
 
 	private fun getSite(path: String) : String {
