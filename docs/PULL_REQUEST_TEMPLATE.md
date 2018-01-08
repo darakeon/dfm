@@ -12,9 +12,9 @@
 - [ ] Execute destructive Sql
 - [ ] Upload APK
 - [ ] Upload new mobile prints
-- [ ] Create branch of other version
-- [ ] Merge PR
-- [ ] Create tag on master
 - [ ] Upload video
 - [ ] Post Twitter
 - [ ] Post Facebook
+- [ ] Create branch of other version
+- [ ] Merge PR
+- [ ] Create tag on master
