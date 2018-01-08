@@ -2,18 +2,19 @@ package com.darakeon.dfm.api
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.view.Surface
 import android.view.WindowManager
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.Request
-import com.android.volley.Response
+import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.extensions.info
+import com.darakeon.dfm.extensions.stackTraceText
 import com.darakeon.dfm.user.languageChangeAndSave
 import com.darakeon.dfm.user.themeChangeAndSave
 import org.json.JSONObject
@@ -65,7 +66,7 @@ class InternalRequest<T : SmartStatic>(
 
 		val jsonRequest = JsonObjectRequest(method, completeUrl, parameters,
 			Response.Listener<JSONObject> { response -> handleResponse(response) },
-			Response.ErrorListener { handleError() })
+			Response.ErrorListener { e -> handleError(completeUrl, e) })
 
 		jsonRequest.retryPolicy = getDefaultRetryPolicy()
 		Volley.newRequestQueue(activity).add(jsonRequest)
@@ -143,21 +144,52 @@ class InternalRequest<T : SmartStatic>(
 		assemblyResponse(internalResponse)
 	}
 
-	private fun handleError() {
+	private fun handleError(url: String, error: VolleyError) {
+		if (error is TimeoutError) {
+			handleTimeout()
+		} else {
+			handleOtherErrors(url, error)
+		}
+	}
+
+	private fun handleTimeout() {
+		val response = InternalResponse(activity.getString(R.string.timeout))
+		assemblyResponse(response)
+	}
+
+	private fun handleOtherErrors(url: String, error: VolleyError) {
 		val response = InternalResponse(
 			activity.getString(R.string.error_contact_url)
 		)
 
-		assemblyResponse(response)
+		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
+			dialog.dismiss()
+
+			val subject = activity.getString(R.string.error_mail_title)
+
+			val reportUrl =
+				Regex("Api-\\w{32}")
+					.replace(url, "Api-{ticket}")
+
+			val body = reportUrl + "\n\n" +
+					error.info + "\n\n" +
+					error.stackTraceText
+
+			val emails = activity.getString(R.string.error_mail_address)
+
+			activity.composeEmail(subject, body, emails)
+		})
+
+		assemblyResponse(response, sendReport)
 	}
 
-	private fun assemblyResponse(internalResponse: InternalResponse) {
+	private fun assemblyResponse(internalResponse: InternalResponse, sendEmailReport: DialogInterface.OnClickListener? = null) {
 		activity.endUIWait()
 
 		activity.succeeded = internalResponse.isSuccess()
 
 		if (!activity.succeeded) {
-			activity.alertError(internalResponse.getError())
+			activity.alertError(internalResponse.getError(), sendEmailReport)
 			return
 		}
 

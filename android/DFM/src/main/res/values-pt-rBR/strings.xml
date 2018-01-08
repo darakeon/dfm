@@ -85,5 +85,8 @@
 	<string name="use_categories">Usar categorias</string>
 	<string name="settings_saved">Configurações salvas!</string>
 	<string name="move_check">Movimentação pode ser verificada</string>
+	<string name="send_report_button">Reportar</string>
+	<string name="error_mail_title">Erro no aplicativo DfM</string>
+	<string name="timeout">Tempo de conexão expirado</string>
 
 </resources>

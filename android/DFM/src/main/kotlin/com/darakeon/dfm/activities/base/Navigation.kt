@@ -2,6 +2,7 @@ package com.darakeon.dfm.activities.base
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.activities.LoginActivity
 import com.darakeon.dfm.activities.MovesCreateActivity
@@ -73,3 +74,17 @@ private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle?
 	startActivity(intent)
 }
 
+fun Activity.composeEmail(subject: String, body: String, vararg addresses: String) {
+	val intent = Intent(Intent.ACTION_SENDTO)
+
+	// only email apps should handle this
+	intent.data = Uri.parse("mailto:")
+
+	intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+	intent.putExtra(Intent.EXTRA_TEXT, body)
+
+	if (intent.resolveActivity(packageManager) != null) {
+		startActivity(intent)
+	}
+}
