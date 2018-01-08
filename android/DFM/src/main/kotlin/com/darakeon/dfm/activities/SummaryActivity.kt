@@ -20,38 +20,22 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 	private val empty: TextView get() = findViewById(R.id.empty_list)
 
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
-	private lateinit var dialog: DatePickerDialog
 
-
+	private val dialog: DatePickerDialog
+		get() = getDateDialog(
+			{ y, _, _ -> updateScreen(y) },
+			static.year
+		)
 
 	override fun contentView(): Int = R.layout.summary
 
+	private fun updateScreen(year: Int) {
+		setDate(year)
+		getSummary()
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		dialog = DatePickerDialog(
-			this,
-			{ v, y, _, _ -> run {
-				if (v.isShown) {
-					setDate(y)
-					getSummary()
-					dialog.dismiss()
-				}
-			} },
-			static.year,
-			1,
-			1
-		)
-
-		val picker = dialog.getChildOrMe("mDatePicker")
-		val delegate = picker.getChildOrMe("mDelegate")
-
-		val day = delegate.getChildOrMe("mDaySpinner") as View
-		day.visibility = View.GONE
-
-		val month = delegate.getChildOrMe("mMonthSpinner") as View
-		month.visibility = View.GONE
 
 		if (rotated && succeeded) {
 			setDateFromLast()

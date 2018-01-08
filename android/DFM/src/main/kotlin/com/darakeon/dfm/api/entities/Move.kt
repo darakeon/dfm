@@ -137,5 +137,8 @@ class Move {
 		}
 	}
 
-
+	// Kotlin, shame on you
+	operator fun component1(): Int = year
+	operator fun component2(): Int = month
+	operator fun component3(): Int = day
 }
