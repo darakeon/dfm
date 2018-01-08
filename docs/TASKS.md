@@ -130,7 +130,7 @@ language and display options.
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.2.0 :sheep: <sup>`6`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`6`</sup>
 - [ ] Implement Google Authenticator &| Authy (if it's free)
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
@@ -140,7 +140,7 @@ disabled
 disabled
 - [ ] Put list of feature on screen
 
-## <a name="dev"></a>4.1.1.2 :sheep: <sup>`6`</sup>
+## <a name="publish"></a>4.1.1.2 :sheep: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
 - [x] `2018-01-07 > 2018-01-07` Offer send e-mail on error (mobile)
 - [x] `2018-01-07 > 2018-01-07` Fix move add from home (mobile)
@@ -148,7 +148,7 @@ disabled
 - [x] `2018-01-05 > 2018-01-05` Fix account list on transfer
 - [x] `2018-01-05 > 2018-01-05` Fix task list duplication and already done
 
-## <a name="publish"></a>4.1.1.1 :ant: <sup>`2`</sup>
+## 4.1.1.1 :ant: <sup>`2`</sup>
 - [x] `2017-12-31 > 2017-12-31` Fix facebook image
 - [x] `2017-12-31 > 2017-12-31` Fix android pig redirection
 
