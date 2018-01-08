@@ -19,10 +19,9 @@ Legend:
 - [ ] Link unsubscribe
 - [ ] Run robot each hour and remove it from request (GO?)
 
-## 7.0.0.0 :dragon: <sup>`3`</sup>
+## 7.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Create service to translate site ("put in your language")
 - [ ] Use .NET resources
-- [ ] Put list of feature on screen
 
 ## 6.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] OCR to add values to system
@@ -139,7 +138,7 @@ language and display options.
 disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
-- [ ] Add link to task list to the site
+- [ ] Put list of feature on screen
 
 ## <a name="dev"></a>4.1.1.2 :sheep: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
