@@ -142,7 +142,7 @@ disabled
 - [ ] Add link to task list to the site
 
 ## <a name="dev"></a>4.1.1.2 :sheep: <sup>`6`</sup>
-- [ ] Fix date combo start value (mobile)
+- [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
 - [x] `2018-01-07 > 2018-01-07` Offer send e-mail on error (mobile)
 - [x] `2018-01-07 > 2018-01-07` Fix move add from home (mobile)
 - [x] `2018-01-05 > 2018-01-07` Fix month future year report

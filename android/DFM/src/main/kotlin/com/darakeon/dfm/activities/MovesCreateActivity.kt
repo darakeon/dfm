@@ -22,26 +22,25 @@ import java.util.*
 class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) {
 	private val window: ScrollView get() = findViewById(R.id.window)
 
-	private lateinit var dialog: DatePickerDialog
+	private val dialog: DatePickerDialog
+		get() {
+			val ( year, month, day ) = static.move
+
+			return getDateDialog(
+				{ y, m, d -> updateDateCombo(y, m, d) },
+				year, month, day
+			)
+		}
 
 	override fun contentView(): Int = R.layout.moves_create
 
+	private fun updateDateCombo(year: Int, month: Int, day: Int) {
+		static.move.date.set(year, month, day)
+		setValue(R.id.date, static.move.dateString())
+	}
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		dialog = DatePickerDialog(
-			this,
-			{ v, y, m, d -> run {
-				if (v.isShown) {
-					static.move.date.set(y, m, d)
-					setValue(R.id.date, static.move.dateString())
-					dialog.dismiss()
-				}
-			} },
-			static.move.year,
-			static.move.month,
-			static.move.day
-		)
 
 		if (rotated && succeeded) {
 			populateCategoryAndNature()

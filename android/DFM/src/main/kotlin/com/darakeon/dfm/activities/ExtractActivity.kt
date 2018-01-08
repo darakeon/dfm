@@ -25,35 +25,23 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
-	private lateinit var dialog: DatePickerDialog
-
+	private val dialog: DatePickerDialog
+		get() = getDateDialog(
+			{ y, m, _ -> updateScreen(y, m) },
+			static.year, static.month
+		)
 
 	override fun contentView(): Int = R.layout.extract
 	override fun contextMenuResource(): Int = R.menu.move_options
 	override fun viewWithContext(): Int = R.id.main_table
 
+	private fun updateScreen(year: Int, month: Int) {
+		setDate(month, year)
+		getExtract()
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		dialog = DatePickerDialog(
-			this,
-			{ v, y, m, _ -> run {
-				if (v.isShown) {
-					setDate(m, y)
-					getExtract()
-					dialog.dismiss()
-				}
-			} },
-			static.year,
-			static.month,
-			1
-		)
-
-		val picker = dialog.getChildOrMe("mDatePicker")
-		val delegate = picker.getChildOrMe("mDelegate")
-		val day = delegate.getChildOrMe("mDaySpinner")
-		(day as View).visibility = View.GONE
 
 		if (rotated && succeeded) {
 			setDateFromLast()
