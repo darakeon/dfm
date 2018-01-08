@@ -15,6 +15,7 @@
 
 	<!-- Alert dialog -->
 	<string name="error_title">Ops!</string>
+	<string name="send_report_button">Send error</string>
 	<string name="ok_button">OK</string>
 	<string name="cancel_button">Cancel</string>
 
@@ -85,5 +86,7 @@
 	<string name="use_categories">Use categories</string>
 	<string name="settings_saved">Settings applied!</string>
 	<string name="move_check">Move can be checked / unchecked</string>
+	<string name="error_mail_title">Error on DfM App</string>
+	<string name="timeout">Request timeout</string>
 
 </resources>

@@ -28,8 +28,10 @@ fun Activity.alertError(resMessage: Int) {
 	alertError(getString(resMessage))
 }
 
-fun Activity.alertError(message: String) {
-	alertError(message, R.string.ok_button, cancelClickListener, false)
+fun Activity.alertError(message: String, sendEmailReport: OnClickListener? = null) {
+	val clickOk = sendEmailReport ?: cancelClickListener
+	val cancelButton = sendEmailReport != null
+	alertError(message, R.string.send_report_button, clickOk, cancelButton)
 }
 
 private fun Activity.alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
