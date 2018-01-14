@@ -140,7 +140,7 @@ disabled
 disabled
 - [ ] Put list of feature on screen
 
-## <a name="publish"></a>4.1.1.2 :sheep: <sup>`6`</sup>
+## <a name="publish"></a>4.1.1.2 :ant: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
 - [x] `2018-01-07 > 2018-01-07` Offer send e-mail on error (mobile)
 - [x] `2018-01-07 > 2018-01-07` Fix move add from home (mobile)
