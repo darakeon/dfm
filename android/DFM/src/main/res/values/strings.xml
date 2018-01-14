@@ -25,7 +25,7 @@
 	<string name="wait_text">Calling the Pig&#8230;</string>
 
 	<!-- Errors -->
-	<string name="u_r_offline">You\'re current offline</string>
+	<string name="u_r_offline">You\'re offline</string>
 	<string name="error_set_parameters">Error on set parameters</string>
 	<string name="error_contact_url">
 		Error on contacting the Pig. It\'s either a internet problem or a system issue.
