@@ -141,7 +141,7 @@ disabled
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 - [ ] Put list of feature on screen
-- [ ] Fix button name on "You are offline"
+- [x] `2018-01-14 > 2018-01-14` Fix button name on "You are offline"
 
 ## <a name="publish"></a>4.1.1.2 :ant: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
