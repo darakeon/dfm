@@ -7,7 +7,7 @@ all planned. =)
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.2.0/docs/TASKS.md#dev)
+- [dev version state](../../4.1.1.3/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -130,15 +130,18 @@ language and display options.
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`6`</sup>
+## 4.1.2.0 :sheep: <sup>`4`</sup>
 - [ ] Implement Google Authenticator &| Authy (if it's free)
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are
 disabled
+
+## <a name="dev"></a>4.1.1.3 :ant: <sup>`3`</sup>
 - [ ] Fix mobile to edit move with category when categories use are
 disabled
 - [ ] Put list of feature on screen
+- [ ] Fix button name on "You are offline"
 
 ## <a name="publish"></a>4.1.1.2 :ant: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
