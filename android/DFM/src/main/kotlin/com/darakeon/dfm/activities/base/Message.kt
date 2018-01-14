@@ -31,7 +31,8 @@ fun Activity.alertError(resMessage: Int) {
 fun Activity.alertError(message: String, sendEmailReport: OnClickListener? = null) {
 	val clickOk = sendEmailReport ?: cancelClickListener
 	val cancelButton = sendEmailReport != null
-	alertError(message, R.string.send_report_button, clickOk, cancelButton)
+	val text = if (cancelButton) R.string.send_report_button else R.string.ok_button
+	alertError(message, text, clickOk, cancelButton)
 }
 
 private fun Activity.alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
