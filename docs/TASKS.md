@@ -138,8 +138,8 @@ language and display options.
 disabled
 
 ## <a name="dev"></a>4.1.1.3 :ant: <sup>`3`</sup>
-- [ ] Fix mobile to edit move with category when categories use are
-disabled
+- [x] `2018-01-15 > 2018-01-15` Fix mobile to edit move with category
+when categories use are disabled
 - [ ] Put list of feature on screen
 - [x] `2018-01-14 > 2018-01-14` Fix button name on "You are offline"
 
