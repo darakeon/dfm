@@ -99,21 +99,24 @@ class Move {
 	}
 
 
-	fun setData(move: JSONObject, activityAccountUrl: String?) {
+	fun setData(move: JSONObject, activityAccountUrl: String?, useCategories: Boolean) {
 		id = move.getInt("ID")
 
 		if (id == 0) {
 			accountOut = activityAccountUrl
 			accountIn = activityAccountUrl
 		} else {
-			setEditMoveData(move)
+			setEditMoveData(move, useCategories)
 		}
 	}
 
-	private fun setEditMoveData(move: JSONObject) {
+	private fun setEditMoveData(move: JSONObject, useCategories: Boolean) {
 		description = move.getString("Description")
 		date = move.getCalendar("Date")
-		category = move.getString("Category")
+
+		if (useCategories)
+			category = move.getString("Category")
+
 		accountOut = move.getString("AccountOutUrl")
 		accountIn = move.getString("AccountInUrl")
 		nature = getNature(move.getInt("Nature"))

@@ -161,7 +161,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 			val accountUrl = getExtraOrUrl("accountUrl")
 
-			static.move.setData(moveToEdit, accountUrl)
+			static.move.setData(moveToEdit, accountUrl, static.useCategories)
 			populateOldData(true)
 		}
 	}
