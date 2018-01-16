@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.1.3/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.0/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -124,18 +124,18 @@ Legend:
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## 4.1.2.0 :sheep: <sup>`4`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`4`</sup>
 - [ ] Implement Google Authenticator &| Authy (if it's free)
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
 - [ ] Add warning on move with category editing when categories are disabled
 
-## <a name="dev"></a>4.1.1.3 :ant: <sup>`3`</sup>
+## <a name="publish"></a>4.1.1.3 :ant: <sup>`3`</sup>
 - [x] `2018-01-15 > 2018-01-15` Fix mobile to edit move with category when categories use are disabled
 - [x] `2018-01-16 > 2018-01-16` Put list of feature on screen
 - [x] `2018-01-14 > 2018-01-14` Fix button name on "You are offline"
 
-## <a name="publish"></a>4.1.1.2 :ant: <sup>`6`</sup>
+## 4.1.1.2 :ant: <sup>`6`</sup>
 - [x] `2018-01-07 > 2018-01-07` Fix date combo start value (mobile)
 - [x] `2018-01-07 > 2018-01-07` Offer send e-mail on error (mobile)
 - [x] `2018-01-07 > 2018-01-07` Fix move add from home (mobile)
