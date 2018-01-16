@@ -132,7 +132,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.1.3 :ant: <sup>`3`</sup>
 - [x] `2018-01-15 > 2018-01-15` Fix mobile to edit move with category when categories use are disabled
-- [ ] Put list of feature on screen
+- [x] `2018-01-16 > 2018-01-16` Put list of feature on screen
 - [x] `2018-01-14 > 2018-01-14` Fix button name on "You are offline"
 
 ## <a name="publish"></a>4.1.1.2 :ant: <sup>`6`</sup>

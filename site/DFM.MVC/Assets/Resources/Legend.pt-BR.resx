@@ -135,4 +135,7 @@
   <data name="OpenCalendar" xml:space="preserve">
     <value>Abrir Calendário</value>
   </data>
+  <data name="TaskList" xml:space="preserve">
+    <value>Lista de Tarefas (em inglês)</value>
+  </data>
 </root>
