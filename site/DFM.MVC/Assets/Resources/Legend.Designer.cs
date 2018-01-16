@@ -122,5 +122,14 @@ namespace DFM.MVC.Assets.Resources {
                 return ResourceManager.GetString("OpenCalendar", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task List.
+        /// </summary>
+        public static string TaskList {
+            get {
+                return ResourceManager.GetString("TaskList", resourceCulture);
+            }
+        }
     }
 }

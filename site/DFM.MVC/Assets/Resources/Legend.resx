@@ -138,4 +138,7 @@
   <data name="OpenCalendar" xml:space="preserve">
     <value>Open Calendar</value>
   </data>
+  <data name="TaskList" xml:space="preserve">
+    <value>Task List</value>
+  </data>
 </root>
