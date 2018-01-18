@@ -87,6 +87,14 @@
 					android:layout_height="wrap_content"
 					android:onClick="changeCategory" />
 
+				<Button
+					android:text="@string/category"
+					android:id="@+id/lose_category"
+					android:layout_width="0sp"
+					android:layout_weight="1"
+					android:layout_height="wrap_content"
+					android:onClick="warnLoseCategory" />
+
 			</LinearLayout>
 
 			<include layout="@layout/separator" />

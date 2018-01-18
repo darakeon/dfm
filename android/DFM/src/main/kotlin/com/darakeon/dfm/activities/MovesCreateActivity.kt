@@ -1,6 +1,7 @@
 package com.darakeon.dfm.activities
 
 import android.app.DatePickerDialog
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -154,8 +155,6 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		static.natureList = data.getJSONArray("NatureList")
 		static.accountList = data.getJSONArray("AccountList")
 
-		populateCategoryAndNature()
-
 		if (data.has("Move") && !data.isNull("Move")) {
 			val moveToEdit = data.getJSONObject("Move")
 
@@ -164,6 +163,8 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 			static.move.setData(moveToEdit, accountUrl, static.useCategories)
 			populateOldData(true)
 		}
+
+		populateCategoryAndNature()
 	}
 
 	private fun populateCategoryAndNature() {
@@ -173,6 +174,15 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 				View.VISIBLE
 			else
 				View.GONE
+
+		val loseCategory = findViewById<Button>(R.id.lose_category)
+
+		if (static.move.warnCategory) {
+			loseCategory.paintFlags =
+				loseCategory.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+		} else {
+			loseCategory.visibility = View.GONE
+		}
 
 		if (static.move.nature == null) {
 			val firstNature = static.natureList.getJSONObject(0)
@@ -214,6 +224,10 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 	fun changeCategory(@Suppress(ON_CLICK) view: View) {
 		showChangeList(static.categoryList, R.string.category, { t, v -> setCategory(t, v) })
+	}
+
+	fun warnLoseCategory(@Suppress(ON_CLICK) view: View) {
+		this.alertError(R.string.losingCategory)
 	}
 
 	private fun setCategory(text: String, value: String) {

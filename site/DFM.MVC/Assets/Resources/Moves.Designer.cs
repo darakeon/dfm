@@ -61,6 +61,16 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This move has a Category, but Categories use is DISABLED.
+        ///When you save this move, the Category will be lost..
+        /// </summary>
+        public static string MoveLosingCategory {
+            get {
+                return ResourceManager.GetString("MoveLosingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no accounts.
         ///Without accounts, you cannot create Moves..
         /// </summary>

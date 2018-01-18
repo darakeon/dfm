@@ -50,6 +50,13 @@ else
 		<script src="~/Assets/Scripts/move-crud.js" type="text/javascript"></script>
 	}
 
+	if (Model.ShowLosingCategory)
+	{
+		<div class="alert alert-info text-center">
+			@Html.Raw(Moves.MoveLosingCategory.BreakLines())
+		</div>
+	}
+
 	if (scheduleModel != null)
 	{
 		@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
