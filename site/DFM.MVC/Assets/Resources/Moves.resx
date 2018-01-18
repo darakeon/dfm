@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MoveLosingCategory" xml:space="preserve">
+    <value>This move has a Category, but Categories use is DISABLED.
+When you save this move, the Category will be lost.</value>
+  </data>
   <data name="NoAccountsMove" xml:space="preserve">
     <value>There are no accounts.
 Without accounts, you cannot create Moves.</value>

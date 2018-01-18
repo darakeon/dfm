@@ -128,7 +128,7 @@ Legend:
 - [ ] Implement Google Authenticator &| Authy (if it's free)
 - [ ] Improve messages for empty table
 - [ ] Add option to create user with accounts and categories
-- [ ] Add warning on move with category editing when categories are disabled
+- [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled
 
 ## <a name="publish"></a>4.1.1.3 :ant: <sup>`3`</sup>
 - [x] `2018-01-15 > 2018-01-15` Fix mobile to edit move with category when categories use are disabled

@@ -15,6 +15,7 @@ class Move {
 
 	var nature: Nature? = null
 
+	var warnCategory: Boolean = false
 	var category: String? = null
 	var accountOut: String? = null
 	var accountIn: String? = null
@@ -114,8 +115,11 @@ class Move {
 		description = move.getString("Description")
 		date = move.getCalendar("Date")
 
-		if (useCategories)
+		if (useCategories) {
 			category = move.getString("Category")
+		} else if (move.has("Category")) {
+			warnCategory = true
+		}
 
 		accountOut = move.getString("AccountOutUrl")
 		accountIn = move.getString("AccountInUrl")

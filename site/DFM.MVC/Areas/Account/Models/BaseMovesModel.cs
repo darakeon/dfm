@@ -200,6 +200,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public Boolean ShowNoCategories => UseCategories && !CategorySelectList.Any();
 		public Boolean ShowNoAccounts => !accountList.Any();
 		public Boolean BlockScreen => ShowNoCategories || ShowNoAccounts;
+		public Boolean ShowLosingCategory => !UseCategories && !String.IsNullOrEmpty(CategoryName);
 
 
 		internal abstract void SaveOrUpdate();

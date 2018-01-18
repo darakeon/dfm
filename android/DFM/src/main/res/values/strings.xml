@@ -79,6 +79,10 @@
 		There is no categories.\nYou can create a Move without Category,
 		but you need to go to Settings and disable categories use.
 	</string>
+	<string name="losingCategory">
+		This move has a category originally, but the Categories use are disabled.\n
+		The category will be lost if you edit this move.
+	</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>
