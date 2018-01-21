@@ -287,6 +287,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Moves.resx</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Resources\Wizard.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Wizard.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
@@ -417,6 +422,11 @@
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <EmbeddedResource Include="Assets\Resources\Wizard.pt-BR.resx" />
+    <EmbeddedResource Include="Assets\Resources\Wizard.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Wizard.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
