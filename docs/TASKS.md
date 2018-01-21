@@ -124,10 +124,9 @@ Legend:
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`4`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`3`</sup>
 - [ ] Implement Google Authenticator &| Authy (if it's free)
-- [ ] `2018-01-19 > (...)` Improve messages for empty table
-- [ ] `2018-01-19 > (...)` Add option to create user with accounts and categories
+- [ ] `2018-01-19 > (...)` Create option of starting with wizard at sign up
 - [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled
 
 ## <a name="publish"></a>4.1.1.3 :ant: <sup>`3`</sup>
