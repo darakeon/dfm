@@ -197,6 +197,7 @@ namespace DFM.MVC.Models
 				try
 				{
 					admin.ChangeTheme(Theme);
+					ErrorAlert.Add("ConfigChanged");
 				}
 				catch (DFMCoreException e)
 				{
