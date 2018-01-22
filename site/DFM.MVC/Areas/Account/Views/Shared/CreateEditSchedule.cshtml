@@ -3,12 +3,18 @@
 @model BaseMovesModel
 
 @{
+	var scheduleModel = Model as SchedulesCreateModel;
+
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, Model.ControllerName];
+
+	ViewBag.WizardMessage =
+		scheduleModel == null
+			? Wizard.MovesCreate
+			: Wizard.SchedulesCreate;
+
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;
-
-	var scheduleModel = Model as SchedulesCreateModel;
 }
 
 @if (Model.BlockScreen)

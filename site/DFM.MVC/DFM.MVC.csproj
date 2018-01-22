@@ -239,6 +239,8 @@
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
+    <Compile Include="Helpers\Views\WizardMenu.cs" />
+    <Compile Include="Models\UsersEndWizard.cs" />
     <Compile Include="Areas\API\Helpers\MobileUrls.cs" />
     <Compile Include="Areas\API\Models\MovesModel.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
@@ -446,6 +448,11 @@
     <Content Include="Views\Shared\NatureIcon.cshtml" />
     <Content Include="Views\Shared\ValueWithSign.cshtml" />
     <Content Include="Views\Ops\Legend.cshtml" />
+    <Content Include="Views\Shared\Wizard.cshtml" />
+    <Content Include="Views\Users\EndWizard.cshtml" />
+    <Content Include="Views\Shared\MenuIssues.cshtml" />
+    <Content Include="Views\Shared\MenuTasks.cshtml" />
+    <Content Include="Views\Shared\MenuSettings.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

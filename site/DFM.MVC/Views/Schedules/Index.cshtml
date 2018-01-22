@@ -3,6 +3,12 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Schedules"];
+
+	ViewBag.WizardMessage =
+		Model.ScheduleList.Any()
+			? Wizard.SchedulesIndexFilled
+			: Wizard.SchedulesIndexEmpty;
+
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();

@@ -207,5 +207,14 @@ namespace DFM.MVC.Controllers
 			return Redirect(Cfg.GooglePlay);
 		}
 
+
+
+		[DFMAuthorize]
+		public ActionResult EndWizard()
+		{
+			var model = new UsersEndWizard();
+			return View(model);
+		}
+
 	}
 }
