@@ -22,21 +22,11 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="https://github.com/darakeon/dfm/issues" target="_blank">
-						<span 
-							class="glyphicon glyphicon-fire"
-							title="@Legend.IssueTracker"
-						></span>
-					</a>
+					@Html.Partial("MenuIssues")
 				</li>
 
 				<li>
-					<a href="https://github.com/darakeon/dfm/blob/master/docs/TASKS.md" target="_blank">
-						<span 
-							class="glyphicon glyphicon-road"
-							title="@Legend.TaskList"
-						></span>
-					</a>
+					@Html.Partial("MenuTasks")
 				</li>
 
 				@if (!Model.IsAuthenticated)
@@ -82,9 +72,7 @@
 					}
 
 					<li>
-						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Config", controller = "Users"})">
-							<span class="glyphicon glyphicon-cog" title="@MultiLanguage.Dictionary["Settings"]"></span>
-						</a>
+						@Html.Partial("MenuSettings")
 					</li>
 
 					<li>

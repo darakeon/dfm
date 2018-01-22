@@ -299,6 +299,10 @@ namespace DFM.BusinessLogic.Services
 			configRepository.Update(config);
 		}
 
+		public void EndWizard()
+		{
+			UpdateConfig(new MainConfig { Wizard = false });
+		}
 		#endregion Config
 
 

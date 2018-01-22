@@ -1,0 +1,25 @@
+﻿using System;
+using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Global;
+
+namespace DFM.MVC.Models
+{
+	public class UsersEndWizard : BaseModel
+	{
+		public UsersEndWizard()
+		{
+			try
+			{
+				Admin.EndWizard();
+			}
+			catch (DFMCoreException e)
+			{
+				Error = MultiLanguage.Dictionary[e];
+			}
+		}
+
+		public String Error { get; }
+		public Boolean HasError => !String.IsNullOrEmpty(Error);
+
+	}
+}

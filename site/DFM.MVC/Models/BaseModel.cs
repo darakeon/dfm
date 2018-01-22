@@ -57,5 +57,7 @@ namespace DFM.MVC.Models
 
 		public BootstrapTheme UserTheme => Current.User?.Config?.Theme ?? Defaults.DEFAULT_THEME;
 
+		public Boolean ShowWizard => Current.User?.Config?.Wizard ?? false;
+
 	}
 }

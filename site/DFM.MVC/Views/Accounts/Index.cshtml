@@ -4,6 +4,12 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Accounts"];
+
+	ViewBag.WizardMessage =
+		Model.AccountList.Any()
+			? Wizard.AccountsIndexFilled
+			: Wizard.AccountsIndexEmpty;
+
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();

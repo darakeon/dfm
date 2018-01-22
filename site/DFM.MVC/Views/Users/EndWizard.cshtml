@@ -1,0 +1,67 @@
+﻿@using DFM.Generic
+@model UsersEndWizard
+
+@{
+	Layout = Model.HasError
+		? "~/Views/Shared/_Result.cshtml"
+		: "~/Views/Shared/_Form.cshtml";
+
+	ViewBag.Style = Model.HasError ? "danger" : "";
+	ViewBag.Title = Wizard.Title;
+	ViewBag.FormSizeSm = 10;
+	ViewBag.FormSizeLg = 6;
+}
+
+@if (Model.HasError)
+{
+	@Model.Error
+}
+else
+{
+	var menus = new List<WizardMenu>
+	{
+		new WizardMenu(Wizard.EndTextMenuSettings, "MenuSettings"),
+		new WizardMenu(Wizard.EndTextMenuTasks, "MenuTasks"),
+		new WizardMenu(Wizard.EndTextMenuIssues, "MenuIssues"),
+	};
+
+	<p class="text-center">
+		@Html.Raw(Wizard.EndTextThanks.BreakLines())
+	</p>
+
+	<p class="text-center">
+		@Wizard.EndTextMenu
+	</p>
+
+	<div class="well well-sm">
+		@foreach (var menu in menus)
+		{
+			<div class="row">
+				<div class="col-md-9 col-md-push-1">
+					@menu.Resource
+				</div>
+				<div class="col-md-2 text-right">
+					@Html.Partial(menu.Partial)
+				</div>
+			</div>
+		}
+	</div>
+
+	<p class="text-center">
+		@Wizard.EndTextAndroid
+	</p>
+
+	<p class="text-center">
+		<a href="@Url.RouteUrl(RouteNames.MOBILE)"
+			target="_blank" class="android-link"></a>
+	</p>
+
+	@section Footer {
+		<p class="text-center">
+			@Html.Raw(String.Format(
+				Wizard.EndTextContact.BreakLines(),
+				"<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>"
+				))
+		</p>
+	}
+}

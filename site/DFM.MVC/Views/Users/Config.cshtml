@@ -2,6 +2,7 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Settings"];
+	ViewBag.WizardMessage = Wizard.Settings;
 	Layout = "~/Views/Shared/_Form.cshtml";
 
 	var tabs = Enum.GetValues(typeof (UsersConfigModel.Form));

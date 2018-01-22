@@ -132,6 +132,31 @@
   <data name="Categories" xml:space="preserve">
     <value>Categorias são usadas para dizer o tipo de Movimentação, por exemplo: Lazer, Saúde, Alimentação, Doação. Assim fica mais simples uma olhada rápida no Relatório Mensal dizer onde o dinheiro mais foi gasto.</value>
   </data>
+  <data name="End" xml:space="preserve">
+    <value>parar de ver isso</value>
+  </data>
+  <data name="EndTextAndroid" xml:space="preserve">
+    <value>Don't fly Money tem um aplicativo android na Play Store:</value>
+  </data>
+  <data name="EndTextContact" xml:space="preserve">
+    <value>Se tiver algo a nos dizer, também pode entrar em contato pelo e-mail {0}. Responderemos assim que possível.</value>
+  </data>
+  <data name="EndTextMenu" xml:space="preserve">
+    <value>Apenas algumas últimas coisas que pode encontrar no menu!</value>
+  </data>
+  <data name="EndTextMenuIssues" xml:space="preserve">
+    <value>Se você tiver problemas, pode registrar clicando neste</value>
+  </data>
+  <data name="EndTextMenuSettings" xml:space="preserve">
+    <value>Você pode reabilitar o Tutorial nas Configurações</value>
+  </data>
+  <data name="EndTextMenuTasks" xml:space="preserve">
+    <value>Você pode ver as coisas feitas e a fazer (em inglês)</value>
+  </data>
+  <data name="EndTextThanks" xml:space="preserve">
+    <value>Agradecemos por ler as mensagens do Tutorial.
+Esperamos que agora conheça melhor o sistema Don't fly Money.</value>
+  </data>
   <data name="Logins" xml:space="preserve">
     <value>Aqui você pode ver e desabilitar Logins feitos no sistema. Se desconfiar de algum acesso, ou algum dispositivo logado tenha sido acessado por terceiros não autorizados, é sugerido que os Logins sejam excluídos. Isso impedirá novo acesso sem uso de senha.</value>
   </data>
@@ -160,5 +185,8 @@ LEMBRANDO QUE O SISTEMA NÃO POSSUI LIGAÇÃO COM NENHUMA INSTITUIÇÃO EXTERNA,
   </data>
   <data name="SummarizeMonths" xml:space="preserve">
     <value>Aqui são mostradas as somas do ano divididas por mês, assim é possível ter uma visão mais geral e comparativa do ano.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tutorial</value>
   </data>
 </root>

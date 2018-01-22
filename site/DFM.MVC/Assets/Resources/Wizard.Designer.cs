@@ -106,6 +106,79 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to stop seeing this.
+        /// </summary>
+        public static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t fly Money has an android app available at Play Store:.
+        /// </summary>
+        public static string EndTextAndroid {
+            get {
+                return ResourceManager.GetString("EndTextAndroid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have something to tell us, you also can send an e-mail to {0}. We will answer as soon as possible..
+        /// </summary>
+        public static string EndTextContact {
+            get {
+                return ResourceManager.GetString("EndTextContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Just some last things to see on top menu!.
+        /// </summary>
+        public static string EndTextMenu {
+            get {
+                return ResourceManager.GetString("EndTextMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have issues, you can register them at this one.
+        /// </summary>
+        public static string EndTextMenuIssues {
+            get {
+                return ResourceManager.GetString("EndTextMenuIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can re-enable the Wizard by going to Settings.
+        /// </summary>
+        public static string EndTextMenuSettings {
+            get {
+                return ResourceManager.GetString("EndTextMenuSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can see tasks done and future tasks in development.
+        /// </summary>
+        public static string EndTextMenuTasks {
+            get {
+                return ResourceManager.GetString("EndTextMenuTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for reading our wizard messages.
+        ///We hope now you know Don&apos;t fly Money better..
+        /// </summary>
+        public static string EndTextThanks {
+            get {
+                return ResourceManager.GetString("EndTextThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here is a security area: you can see and disable system logins, accesses to your registries. If something seems suspect or some device logged in was accessed by other people without authorization, we suggest you take down the Logins, and the next request will need to know the login credentials to enter again..
         /// </summary>
         public static string Logins {
@@ -185,6 +258,15 @@ namespace DFM.MVC.Assets.Resources {
         public static string SummarizeMonths {
             get {
                 return ResourceManager.GetString("SummarizeMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

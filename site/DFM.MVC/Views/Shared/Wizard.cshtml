@@ -1,0 +1,28 @@
+﻿@model BaseModel
+
+@if (Model.ShowWizard && ViewBag.WizardMessage != null)
+{
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<h3 class="panel-title">@Wizard.Title</h3>
+		</div>
+
+		<div class="panel-body">
+
+			<div class="row">
+				<div class="col-lg-8 col-sm-12 col-lg-push-2 text-center">
+					@ViewBag.WizardMessage
+				</div>
+			</div>
+
+			@Html.RouteLink(
+				Wizard.End,
+				RouteNames.DEFAULT,
+				new { action = "EndWizard", controller = "Users" },
+				new { @class = "btn btn-sm btn-default pull-right" }
+			)
+		</div>
+
+	</div>
+}

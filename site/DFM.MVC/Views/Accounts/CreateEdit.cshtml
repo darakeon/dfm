@@ -5,6 +5,7 @@
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
+	ViewBag.WizardMessage = Wizard.AccountsCreate;
 	
 	if (Model.Type == OperationType.Edit)
 	{

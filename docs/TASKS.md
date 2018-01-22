@@ -126,7 +126,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.2.0 :sheep: <sup>`3`</sup>
 - [ ] Implement Google Authenticator &| Authy (if it's free)
-- [ ] `2018-01-19 > (...)` Create option of starting with wizard at sign up
+- [x] `2018-01-19 > 2018-01-22` Create option of starting with wizard at sign up
 - [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled
 
 ## <a name="publish"></a>4.1.1.3 :ant: <sup>`3`</sup>

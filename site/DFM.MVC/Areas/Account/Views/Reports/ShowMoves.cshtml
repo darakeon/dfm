@@ -1,11 +1,18 @@
 ﻿@using DFM.Generic.Pages
+@using DFM.MVC.Assets.Resources
 @using DFM.MVC.Helpers
 @using DFM.MVC.Models
 
 @model ReportsShowMovesModel
 
 @{
-	ViewBag.Title = String.Format("{0} - {1}", Model.Account.Name.ToUpper(), Model.Date);
+	ViewBag.Title = $"{Model.Account.Name.ToUpper()} - {Model.Date}";
+
+	ViewBag.WizardMessage =
+		Model.MoveList.Any()
+			? Wizard.ShowMovesFilled
+			: Wizard.ShowMovesEmpty;
+
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.MoveList.Any();
