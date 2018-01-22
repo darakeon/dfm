@@ -574,6 +574,44 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bk9C. Disable wizard")]
+        public virtual void Bk9C_DisableWizard()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk9C. Disable wizard", ((string[])(null)));
+#line 149
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 150
+ testRunner.Given("I enable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 151
+ testRunner.When("I try to disable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 152
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bk9D. Enable wizard")]
+        public virtual void Bk9D_EnableWizard()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk9D. Enable wizard", ((string[])(null)));
+#line 154
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 155
+ testRunner.Given("I disable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 156
+ testRunner.When("I try to enable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 157
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

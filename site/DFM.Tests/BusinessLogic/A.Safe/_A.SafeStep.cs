@@ -113,7 +113,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			};
 
 			var passwordForm = new PasswordForm(otherUser.Password, otherUser.Password);
-			Service.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, false, Defaults.CONFIG_LANGUAGE);
+			Service.Safe.SaveUserAndSendVerify(otherUser.Email, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
 
 			var tokenActivate = DBHelper.GetLastTokenForUser(otherUser.Email, SecurityAction.UserVerification);
 			Service.Safe.ActivateUser(tokenActivate);
@@ -127,7 +127,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			try
 			{
 				var passwordForm = new PasswordForm(password, retypePassword);
-				Service.Safe.SaveUserAndSendVerify(email, passwordForm, false, Defaults.CONFIG_LANGUAGE);
+				Service.Safe.SaveUserAndSendVerify(email, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
 			}
 			catch (DFMCoreException e)
 			{

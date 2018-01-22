@@ -52,7 +52,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, String language)
+		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, Boolean enableWizard, String language)
 		{
 			InTransaction(() =>
 			{
@@ -64,7 +64,8 @@ namespace DFM.BusinessLogic.Services
 					Password = passwordForm.Password,
 					Config = new Config
 					{
-						Language = language
+						Language = language,
+						Wizard = enableWizard,
 					}
 				};
 

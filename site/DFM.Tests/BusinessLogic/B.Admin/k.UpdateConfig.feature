@@ -146,3 +146,13 @@ Scenario: Bk9B. Enable move check
 	When I try to enable move check
 	Then I will receive no core error
 
+Scenario: Bk9C. Disable wizard
+	Given I enable wizard
+	When I try to disable wizard
+	Then I will receive no core error
+
+Scenario: Bk9D. Enable wizard
+	Given I disable wizard
+	When I try to enable wizard
+	Then I will receive no core error
+

@@ -30,3 +30,10 @@
 		@Html.CheckBoxFor(m => m.Main.MoveCheckCheck)
 	</label>
 </div>
+
+<div class="checkbox row">
+	@Html.LabelFor(m => m.Main.WizardCheck, Users.EnableWizard, new { @class = "col-sm-10 control-label" })
+	<label class="col-sm-2 text-right">
+		@Html.CheckBoxFor(m => m.Main.WizardCheck)
+	</label>
+</div>
