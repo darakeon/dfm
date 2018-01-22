@@ -14,6 +14,7 @@ namespace DFM.MVC.Models
 		public UsersSignUpModel()
 		{
 			Contract = Safe.GetContract();
+			EnableWizard = true;
 		}
 
 		[Required(ErrorMessage = "*")]
@@ -27,8 +28,10 @@ namespace DFM.MVC.Models
 
 		[RegularExpression("True", ErrorMessage = "*")]
 		public Boolean Accept { get; set; }
-		
-		public Contract Contract { get; private set; }
+
+		public Boolean EnableWizard { get; set; }
+
+		public Contract Contract { get; }
 
 
 
@@ -38,7 +41,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Safe.SaveUserAndSendVerify(Email, this, Accept, MultiLanguage.Language);
+				Safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, MultiLanguage.Language);
 			}
 			catch (DFMCoreException e)
 			{

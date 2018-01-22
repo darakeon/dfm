@@ -855,6 +855,36 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			}
 		}
 
+		[Given(@"I disable wizard")]
+		[When(@"I try to disable wizard")]
+		public void GivenIDisableWizard()
+		{
+			try
+			{
+				var mainConfig = new MainConfig { Wizard = false };
+				Service.Admin.UpdateConfig(mainConfig);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
+		[Given(@"I enable wizard")]
+		[When(@"I try to enable wizard")]
+		public void GivenIEnableWizard()
+		{
+			try
+			{
+				var mainConfig = new MainConfig { Wizard = true };
+				Service.Admin.UpdateConfig(mainConfig);
+			}
+			catch (DFMCoreException e)
+			{
+				Error = e;
+			}
+		}
+
 		[When(@"I try to change the language to ([a-z]{2}-[A-Z]{2})")]
 		public void WhenITryToChangeTheLanguageTo(String language)
 		{

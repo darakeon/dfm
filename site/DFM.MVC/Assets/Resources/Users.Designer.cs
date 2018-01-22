@@ -97,6 +97,15 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Wizard.
+        /// </summary>
+        public static string EnableWizard {
+            get {
+                return ResourceManager.GetString("EnableWizard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chose a theme at the menu on the left and verify the examples at right. Save to use the chosen theme at the site for now on..
         /// </summary>
         public static string ThemeInstruction {

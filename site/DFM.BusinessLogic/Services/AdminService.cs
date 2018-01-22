@@ -293,6 +293,9 @@ namespace DFM.BusinessLogic.Services
 			if (mainConfig.MoveCheck.HasValue)
 				config.MoveCheck = mainConfig.MoveCheck.Value;
 
+			if (mainConfig.Wizard.HasValue)
+				config.Wizard = mainConfig.Wizard.Value;
+
 			configRepository.Update(config);
 		}
 

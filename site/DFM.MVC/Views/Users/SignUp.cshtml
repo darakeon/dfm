@@ -42,7 +42,16 @@
 
 @section Footer
 {
-	<button type="submit" class="btn btn-success">
-		@MultiLanguage.Dictionary["Create"]
-	</button>
+	<div class="row">
+		<div class="col-lg-8 col-sm-8 form-group text-left">
+			@Html.CheckBoxFor(m => m.EnableWizard)
+			@Html.LabelFor(m => m.EnableWizard, Users.EnableWizard, new { @class = "control-label" })
+		</div>
+		<div class="col-lg-4 col-sm-4">
+			<button type="submit" class="btn btn-success">
+				@MultiLanguage.Dictionary["Create"]
+			</button>
+
+		</div>
+	</div>
 }

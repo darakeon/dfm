@@ -129,6 +129,9 @@
   <data name="CookiesWarning" xml:space="preserve">
     <value>Cookies serão usados para manter a sessão na próxima vez que você acessar o sistema por este browser</value>
   </data>
+  <data name="EnableWizard" xml:space="preserve">
+    <value>Habilitar Tutorial</value>
+  </data>
   <data name="ThemeInstruction" xml:space="preserve">
     <value>Escolha um layout no menu a esquerda e verifique os exemplos a direita. Salve para usar no site  de agora em diante o layout que escolher.</value>
   </data>

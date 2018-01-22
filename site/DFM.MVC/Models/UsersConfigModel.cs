@@ -54,6 +54,8 @@ namespace DFM.MVC.Models
 				UseCategories = config.UseCategories;
 				SendMoveEmail = config.SendMoveEmail;
 				MoveCheck = config.MoveCheck;
+				Wizard = config.Wizard;
+
 				Language = config.Language;
 				TimeZone = config.TimeZone;
 			}
@@ -64,6 +66,7 @@ namespace DFM.MVC.Models
 			public Boolean? UseCategories { get; set; }
 			public Boolean? SendMoveEmail { get; set; }
 			public Boolean? MoveCheck { get; set; }
+			public Boolean? Wizard { get; set; }
 
 			public Boolean UseCategoriesCheck
 			{
@@ -81,6 +84,12 @@ namespace DFM.MVC.Models
 			{
 				get { return MoveCheck.HasValue && MoveCheck.Value; }
 				set { MoveCheck = value; }
+			}
+
+			public Boolean WizardCheck
+			{
+				get { return Wizard.HasValue && Wizard.Value; }
+				set { Wizard = value; }
 			}
 
 			public String Language { get; set; }
