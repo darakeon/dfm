@@ -70,26 +70,26 @@ namespace DFM.MVC.Models
 
 			public Boolean UseCategoriesCheck
 			{
-				get { return UseCategories.HasValue && UseCategories.Value; }
-				set { UseCategories = value; }
+				get => UseCategories.HasValue && UseCategories.Value;
+				set => UseCategories = value;
 			}
 
 			public Boolean SendMoveEmailCheck
 			{
-				get { return SendMoveEmail.HasValue && SendMoveEmail.Value; }
-				set { SendMoveEmail = value; }
+				get => SendMoveEmail.HasValue && SendMoveEmail.Value;
+				set => SendMoveEmail = value;
 			}
 
 			public Boolean MoveCheckCheck
 			{
-				get { return MoveCheck.HasValue && MoveCheck.Value; }
-				set { MoveCheck = value; }
+				get => MoveCheck.HasValue && MoveCheck.Value;
+				set => MoveCheck = value;
 			}
 
 			public Boolean WizardCheck
 			{
-				get { return Wizard.HasValue && Wizard.Value; }
-				set { Wizard = value; }
+				get => Wizard.HasValue && Wizard.Value;
+				set => Wizard = value;
 			}
 
 			public String Language { get; set; }
