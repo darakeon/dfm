@@ -16,6 +16,9 @@ namespace DFM.Repositories.Mappings
 				.Length(MaximumLength.USER_EMAIL)
 				.Unique();
 
+			mapping.Map(u => u.TFASecret)
+				.Nullable();
+
 			mapping.Map(u => u.Creation)
 				.Default("'2011-09-21'");
 

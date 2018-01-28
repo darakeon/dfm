@@ -140,5 +140,10 @@ namespace DFM.BusinessLogic.Repositories
 			return Crypt.Check(password, user.Password);
 		}
 
+		public void SaveTFA(User user, String secret)
+		{
+			user.TFASecret = secret;
+			update(user);
+		}
 	}
 }

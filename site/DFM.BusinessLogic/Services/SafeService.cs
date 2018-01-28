@@ -9,6 +9,7 @@ using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.ObjectInterfaces;
 using DK.Generic.Extensions;
+using DK.TwoFactorAuth;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -359,6 +360,39 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
+		public void UpdateTFA(String secret, String code, String currentPassword)
+		{
+			InTransaction(() =>
+			{
+				if (String.IsNullOrEmpty(secret))
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFAEmptySecret);
+
+				var codes = CodeGenerator.Generate(secret, 2);
+
+				if (!codes.Contains(code))
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongCode);
+
+				var user = Parent.Current.User;
+
+				if (!userRepository.VerifyPassword(user, currentPassword))
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongPassword);
+
+				userRepository.SaveTFA(user, secret);
+			});
+		}
+
+		public void RemoveTFA(String currentPassword)
+		{
+			InTransaction(() =>
+			{
+				var user = Parent.Current.User;
+
+				if (!userRepository.VerifyPassword(user, currentPassword))
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongPassword);
+
+				userRepository.SaveTFA(user, null);
+			});
+		}
 
 	}
 }
