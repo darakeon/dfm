@@ -18,6 +18,9 @@
 		RetypeWrong = 208,
 		WrongPassword = 209,
 		InvalidTheme = 210,
+		TFAEmptySecret = 211,
+		TFAWrongCode = 212,
+		TFAWrongPassword = 213,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,

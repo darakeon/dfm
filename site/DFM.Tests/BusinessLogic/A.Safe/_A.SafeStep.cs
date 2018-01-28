@@ -8,8 +8,10 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
+using DK.TwoFactorAuth;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using TK = DK.Generic.Extensions.Token;
 
 namespace DFM.Tests.BusinessLogic.A.Safe
@@ -88,6 +90,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			get => Get<Boolean?>("accepted");
 			set => Set("accepted", value);
+		}
+
+		private static TFATable tfa
+		{
+			get => Get<TFATable>("tfa");
+			set => Set("tfa", value);
 		}
 		#endregion
 
@@ -832,5 +840,91 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Assert.AreEqual(expectAccepted, accepted);
 		}
 		#endregion Contract
+
+
+
+		#region TFA
+
+		public class TFATable
+		{
+			public String Secret { get; set; }
+			public String Code { get; set; }
+			public String Password { get; set; }
+		}
+
+		public class UserTable
+		{
+			public String Email { get; set; }
+			public String Password { get; set; }
+		}
+
+		[Given(@"I login this user")]
+		public void GivenILoginThisUser(Table table)
+		{
+			var user = table.CreateInstance<UserTable>();
+
+			ticket = Service.Safe.ValidateUserAndCreateTicket(
+				user.Email, user.Password, TicketKey, TicketType.Local
+			);
+		}
+
+		[Given(@"I have this two-factor data")]
+		public void GivenIHaveThisTwoFactorData(Table table)
+		{
+			tfa = table.CreateInstance<TFATable>();
+
+			if (tfa.Code == "{generated}")
+			{
+				tfa.Code = CodeGenerator.Generate(tfa.Secret);
+			}
+		}
+
+		[Given(@"I set two-factor")]
+		[When(@"I try to set two-factor")]
+		public void WhenITryToSetTwoFactor()
+		{
+			try
+			{
+				Service.Safe.UpdateTFA(tfa.Secret, tfa.Code, tfa.Password);
+			}
+			catch (DFMCoreException e)
+			{
+				if (IsCurrent(ScenarioBlock.When))
+					Error = e;
+				else
+					throw;
+			}
+		}
+
+		[When(@"I try to remove two-factor")]
+		public void WhenITryToRemoveTwoFactor()
+		{
+			try
+			{
+				Service.Safe.RemoveTFA(tfa.Password);
+			}
+			catch (DFMCoreException e)
+			{
+				if (IsCurrent(ScenarioBlock.When))
+					Error = e;
+				else
+					throw;
+			}
+		}
+
+		[Then(@"the two-factor will be empty")]
+		public void ThenTheTwoFactorWillStillBeEmpty()
+		{
+			var tfaSecret = DBHelper.GetTFAUser(Service.Current.User.Email);
+			Assert.AreEqual(String.Empty, tfaSecret);
+		}
+
+		[Then(@"the two-factor will be \[(.*)\]")]
+		public void ThenTheTwoFactorWillStillBe(String secret)
+		{
+			var tfaSecret = DBHelper.GetTFAUser(Service.Current.User.Email);
+			Assert.AreEqual(secret, tfaSecret);
+		}
+		#endregion TFA
 	}
 }

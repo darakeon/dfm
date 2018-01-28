@@ -60,6 +60,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="DK.TwoFactorAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\DK\DK.TwoFactorAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
@@ -84,6 +88,7 @@
     <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.10.5\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="NHibernate, Version=5.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.5.0.3\lib\net461\NHibernate.dll</HintPath>
     </Reference>
@@ -171,6 +176,8 @@
     <Content Include="Assets\Images\mail-pig.png" />
     <Content Include="Assets\Images\pig.svg" />
     <Content Include="Assets\Scripts\dynamic-theme-change.js" />
+    <Content Include="Assets\Scripts\qrcode.js" />
+    <Content Include="Assets\Libs\Scripts\jquery.qrcode.min.js" />
     <Content Include="Assets\Scripts\move-crud.js" />
     <Content Include="Assets\Libs\Datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Assets\Libs\Datepicker\bootstrap-datetimepicker.min.js" />
@@ -178,7 +185,9 @@
     <Content Include="Assets\Libs\Datepicker\moment-with-locales.min.js" />
     <Content Include="Assets\Libs\Datepicker\moment.js" />
     <Content Include="Assets\Libs\Datepicker\moment.min.js" />
+    <Content Include="Assets\Libs\Scripts\qrcode.min.js" />
     <Content Include="Assets\Styles\contract.css" />
+    <Content Include="Assets\Styles\qrcode.css" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Account\Views\Moves\NatureAndAccount.cshtml" />
@@ -450,6 +459,7 @@
     <Content Include="Views\Ops\Legend.cshtml" />
     <Content Include="Views\Shared\Wizard.cshtml" />
     <Content Include="Views\Users\EndWizard.cshtml" />
+    <Content Include="Views\Users\ConfigTFA.cshtml" />
     <Content Include="Views\Shared\MenuIssues.cshtml" />
     <Content Include="Views\Shared\MenuTasks.cshtml" />
     <Content Include="Views\Shared\MenuSettings.cshtml" />

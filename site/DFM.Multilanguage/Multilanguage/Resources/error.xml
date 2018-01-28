@@ -79,6 +79,9 @@
 		<TimezoneUnknown text="Unknown timezone"/>
 		<InvalidTheme text="Invalid Theme"/>
 		<NotSignedLastContract text="Need to sign last system contract version! See at the site" />
+		<TFAWrongCode text="Invalid Code" />
+		<TFAWrongPassword text="Invalid Password" />
+		<TFAEmptySecret	text="To enable two-factor a secret key is needed" />
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -159,5 +162,8 @@
 		<TimezoneUnknown text="Fuso horário desconhecido"/>
 		<InvalidTheme text="Layout desconhecido"/>
 		<NotSignedLastContract text="É necessário assinar a última versão do contrato do sistema! Veja no site" />
+		<TFAWrongCode text="Código inválido" />
+		<TFAWrongPassword text="Senha inválida" />
+		<TFAEmptySecret	text="Para habilitar a autenticação em duas etapas, é necessário uma chave" />
 	</pt-BR>
 </error>

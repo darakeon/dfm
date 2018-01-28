@@ -117,6 +117,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>p.IsLastContractAccepted.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\s.RemoveTFA.feature.cs">
+      <DependentUpon>s.RemoveTFA.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="BusinessLogic\A.Safe\r.UpdateTFA.feature.cs">
+      <DependentUpon>r.UpdateTFA.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature.cs">
       <DependentUpon>q.OperationsWithNotSignedContract.feature</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -315,6 +325,14 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>p.IsLastContractAccepted.feature.cs</LastGenOutput>
     </None>
+    <None Include="BusinessLogic\A.Safe\s.RemoveTFA.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>s.RemoveTFA.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\r.UpdateTFA.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>r.UpdateTFA.feature.cs</LastGenOutput>
+    </None>
     <None Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>q.OperationsWithNotSignedContract.feature.cs</LastGenOutput>
@@ -486,6 +504,10 @@
     </Reference>
     <Reference Include="DK.NHibernate">
       <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="DK.TwoFactorAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\DK\DK.TwoFactorAuth.dll</HintPath>
     </Reference>
     <Reference Include="DK.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

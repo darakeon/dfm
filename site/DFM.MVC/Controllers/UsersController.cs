@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Authorize;
@@ -114,68 +115,51 @@ namespace DFM.MVC.Controllers
 			return View(new UsersConfigModel());
 		}
 
-		[DFMAuthorize, HttpPost]
-		public ActionResult ConfigOptions(UsersConfigModel model)
+		private ActionResult config(UsersConfigModel model, Func<IList<String>> save)
 		{
 			if (ModelState.IsValid)
 			{
-				var errors = model.Main.Save();
-
+				var errors = save();
 				AddErrors(errors);
 			}
 
 			if (!ModelState.IsValid)
+			{
 				return View("Config", model);
+			}
 
 			return RedirectToAction("Index", "Accounts");
+
+		}
+
+		[DFMAuthorize, HttpPost]
+		public ActionResult ConfigOptions(UsersConfigModel model)
+		{
+			return config(model, () => model.Main.Save());
 		}
 
 		[DFMAuthorize, HttpPost]
 		public ActionResult ConfigPassword(UsersConfigModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				var errors = model.Info.ChangePassword();
-
-				AddErrors(errors);
-			}
-
-			if (!ModelState.IsValid)
-				return View("Config", model);
-
-			return RedirectToAction("Index", "Accounts");
+			return config(model, () => model.Info.ChangePassword());
 		}
 
 		[DFMAuthorize, HttpPost]
 		public ActionResult ConfigEmail(UsersConfigModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				var errors = model.Info.UpdateEmail();
-
-				AddErrors(errors);
-			}
-
-			if (!ModelState.IsValid)
-				return View("Config", model);
-
-			return RedirectToAction("Index", "Accounts");
+			return config(model, () => model.Info.UpdateEmail());
 		}
 
 		[DFMAuthorize, HttpPost]
 		public ActionResult ConfigTheme(UsersConfigModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				var errors = model.Theme.Change();
+			return config(model, () => model.Theme.Change());
+		}
 
-				AddErrors(errors);
-			}
-
-			if (!ModelState.IsValid)
-				return View("Config", model);
-
-			return RedirectToAction("Index", "Accounts");
+		[DFMAuthorize, HttpPost]
+		public ActionResult ConfigTFA(UsersConfigModel model)
+		{
+			return config(model, () => model.TFA.Activate());
 		}
 
 

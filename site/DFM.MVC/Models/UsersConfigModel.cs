@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using DFM.Authentication;
 using DK.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.ObjectInterfaces;
@@ -11,6 +12,8 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Multilanguage;
 using DFM.MVC.Helpers.Global;
+using DK.TwoFactorAuth;
+using secret = DK.TwoFactorAuth.Secret;
 
 namespace DFM.MVC.Models
 {
@@ -20,11 +23,13 @@ namespace DFM.MVC.Models
 		{
 			Main = new MainConfig(Admin, Current.User.Config);
 			Info = new UserInfo(Safe);
+			TFA = new TFAForm(Safe, Current);
 			Theme = new ThemeOptions(Admin, Current.User.Config);
 		}
 
 		public MainConfig Main { get; set; }
 		public UserInfo Info { get; set; }
+		public TFAForm TFA { get; set; }
 		public ThemeOptions Theme { get; set; }
 		
 		public Form ActiveForm { get; set; }
@@ -34,7 +39,8 @@ namespace DFM.MVC.Models
 			Options,
 			Password,
 			Email,
-			Theme
+			Theme,
+			TFA,
 		}
 
 
@@ -129,7 +135,7 @@ namespace DFM.MVC.Models
 			public String Email { get; set; }
 
 			public String CurrentPassword { get; set; }
-			
+
 			public String Password { get; set; }
 			public String RetypePassword { get; set; }
 
@@ -157,8 +163,47 @@ namespace DFM.MVC.Models
 				try
 				{
 					safe.UpdateEmail(CurrentPassword, Email);
-					
+
 					ErrorAlert.Add("EmailUpdated");
+				}
+				catch (DFMCoreException e)
+				{
+					errors.Add(MultiLanguage.Dictionary[e]);
+				}
+
+				return errors;
+			}
+		}
+
+		public class TFAForm
+		{
+			public TFAForm(SafeService safe, Current current)
+			{
+				this.safe = safe;
+				this.current = current;
+				Secret = secret.Generate();
+			}
+
+			private readonly SafeService safe;
+			private readonly Current current;
+
+			public String CurrentPassword { get; set; }
+
+			public String Secret { get; set; }
+			public String Code { get; set; }
+
+			private String identifier => current.User.Email;
+			private String key => Base32.Convert(Secret);
+			public String Url => $"otpauth://totp/DfM:{identifier}?secret={key}";
+
+			public IList<String> Activate()
+			{
+				var errors = new List<String>();
+
+				try
+				{
+					safe.UpdateTFA(Secret, Code, CurrentPassword);
+					ErrorAlert.Add("TFAAuthenticated");
 				}
 				catch (DFMCoreException e)
 				{

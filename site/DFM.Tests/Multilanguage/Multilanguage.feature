@@ -99,6 +99,10 @@ Scenario: 03. Get translations of Errors
 		| Error   | LanguageUnknown                |
 		| Error   | TimezoneUnknown                |
 		| Error   | NotSignedLastContract          |
+		| Error   | TFAEmptySecret                 |
+		| Error   | TFAWrongCode                   |
+		| Error   | TFAWrongPassword               |
+
 	When I try get the translate
 	Then I will receive no multilanguage error
 

@@ -164,5 +164,39 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
+		public static String GetTFAUser(String email)
+		{
+			String ticket;
+
+			using (var conn = new MySqlConnection(connStr))
+			{
+				conn.Open();
+
+				var query = @"
+					Select TFASecret
+						from User
+						where Email = @email";
+
+				using (var cmd = new MySqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("email", email);
+
+					var result = cmd.ExecuteScalar();
+
+					if (result == null)
+					{
+						conn.Close();
+
+						throw new DFMRepositoryException("Bad, bad developer. No two-factor for you.");
+					}
+
+					ticket = result.ToString();
+				}
+
+				conn.Close();
+			}
+
+			return ticket;
+		}
 	}
 }
