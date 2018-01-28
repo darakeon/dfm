@@ -20,74 +20,74 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		#region Variables
 		private static User otherUser
 		{
-			get { return Get<User>("OtherUser"); }
-			set { Set("OtherUser", value); }
+			get => Get<User>("OtherUser");
+			set => Set("OtherUser", value);
 		}
 
 		private static String email
 		{
-			get { return Get<String>("Email"); }
-			set { Set("Email", value); }
+			get => Get<String>("Email");
+			set => Set("Email", value);
 		}
 
 		private static String newEmail
 		{
-			get { return Get<String>("NewEmail"); }
-			set { Set("NewEmail", value); }
+			get => Get<String>("NewEmail");
+			set => Set("NewEmail", value);
 		}
 
 		private static String ticket
 		{
-			get { return Get<String>("ticket"); }
-			set { Set("ticket", value); }
+			get => Get<String>("ticket");
+			set => Set("ticket", value);
 		}
 
 		private static String password
 		{
-			get { return Get<String>("Password"); }
-			set { Set("Password", value); }
+			get => Get<String>("Password");
+			set => Set("Password", value);
 		}
 
 		private static String retypePassword
 		{
-			get { return Get<String>("RetypePassword"); }
-			set { Set("RetypePassword", value); }
+			get => Get<String>("RetypePassword");
+			set => Set("RetypePassword", value);
 		}
 
 		private static String newPassword
 		{
-			get { return Get<String>("NewPassword"); }
-			set { Set("NewPassword", value); }
+			get => Get<String>("NewPassword");
+			set => Set("NewPassword", value);
 		}
 
 		private static String currentPassword
 		{
-			get { return Get<String>("CurrentPassword"); }
-			set { Set("CurrentPassword", value); }
+			get => Get<String>("CurrentPassword");
+			set => Set("CurrentPassword", value);
 		}
 
 		private static String token
 		{
-			get { return Get<String>("Token"); }
-			set { Set("Token", value); }
+			get => Get<String>("Token");
+			set => Set("Token", value);
 		}
 
 		private static SecurityAction action
 		{
-			get { return Get<SecurityAction>("Action"); }
-			set { Set("Action", value); }
+			get => Get<SecurityAction>("Action");
+			set => Set("Action", value);
 		}
 
 		private static IList<Ticket> logins
 		{
-			get { return Get<IList<Ticket>>("logins"); }
-			set { Set("logins", value); }
+			get => Get<IList<Ticket>>("logins");
+			set => Set("logins", value);
 		}
 
 		private static Boolean? accepted
 		{
-			get { return Get<Boolean?>("accepted"); }
-			set { Set("accepted", value); }
+			get => Get<Boolean?>("accepted");
+			set => Set("accepted", value);
 		}
 		#endregion
 
