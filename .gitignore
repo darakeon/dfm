@@ -24,8 +24,8 @@ site/TestResults/*
 */.vs/*
 *.user
 smtp.config
-site/DFM.MVC/Assets/Bootstrap/*/*.js
-site/DFM.MVC/Assets/Bootstrap/Fonts/*
+site/DFM.MVC/Assets/Libs/*/*.js
+site/DFM.MVC/Assets/Libs/Fonts/*
 
 # Android (Kotlin)
 android/*/*.apk
