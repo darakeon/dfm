@@ -10,27 +10,27 @@
 	<link rel="icon" href="/Assets/Images/pig.ico" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/Images/face-pig.png" />
 
-	<link href="~/Assets/Bootstrap/Themes/bootstrap-@(Model.UserTheme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<link href="~/Assets/Libs/Themes/bootstrap-@(Model.UserTheme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/Styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/Styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
-	<link href="~/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Libs/Datepicker/bootstrap-datetimepicker.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
-	<script src="~/Assets/Bootstrap/Scripts/jquery-3.2.1.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Bootstrap/Datepicker/moment.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Scripts/jquery-3.2.1.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Datepicker/moment.min.js?v=@Cfg.Version" type="text/javascript"></script>
 
-	<script src="~/Assets/Bootstrap/Scripts/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Bootstrap/Datepicker/bootstrap-datetimepicker.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Scripts/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/Datepicker/bootstrap-datetimepicker.min.js?v=@Cfg.Version" type="text/javascript"></script>
 
-	<script src="~/Assets/Bootstrap/MaskedMoney/jquery.maskMoney.js?v=@Cfg.Version" type="text/javascript"></script>
+	<script src="~/Assets/Libs/MaskedMoney/jquery.maskMoney.js?v=@Cfg.Version" type="text/javascript"></script>
 
 	@{
 		var logged = Model as BaseLoggedModel;
 
 		if (logged?.Language != null && logged.Language != "en-US")
 		{
-			<script src="~/Assets/Bootstrap/Datepicker/moment-@(logged.Language.ToLower()).js?v=@Cfg.Version"></script>
+			<script src="~/Assets/Libs/Datepicker/moment-@(logged.Language.ToLower()).js?v=@Cfg.Version"></script>
 			<script type="text/javascript">
 				window.language = "@logged.Language.ToLower()";
 			</script>
