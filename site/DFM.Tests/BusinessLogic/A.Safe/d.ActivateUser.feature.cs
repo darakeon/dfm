@@ -78,15 +78,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line 4
  testRunner.Given("I have this user created", ((string)(null)), table1, "Given ");
 #line 7
- testRunner.And("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ad01. Activate user with invalid token (E)")]
-        public virtual void Ad01_ActivateUserWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ad01. Activate user with invalid token")]
+        public virtual void Ad01_ActivateUserWithInvalidToken()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad01. Activate user with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad01. Activate user with invalid token", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -98,16 +98,16 @@ this.FeatureBackground();
 #line 12
  testRunner.Then("I will receive this core error: InvalidToken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ad02. Activate user with token of reset password (E)")]
-        public virtual void Ad02_ActivateUserWithTokenOfResetPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ad02. Activate user with token of reset password")]
+        public virtual void Ad02_ActivateUserWithTokenOfResetPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad02. Activate user with token of reset password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad02. Activate user with token of reset password", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -115,22 +115,22 @@ this.FeatureBackground();
 #line 16
  testRunner.Given("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
- testRunner.And("I pass a valid PasswordReset token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a valid PasswordReset token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
  testRunner.When("I try to activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19
  testRunner.Then("I will receive this core error: InvalidToken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
- testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ad99. Activate user with info all right (S)")]
-        public virtual void Ad99_ActivateUserWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ad03. Activate user with info all right")]
+        public virtual void Ad03_ActivateUserWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad99. Activate user with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ad03. Activate user with info all right", ((string[])(null)));
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -142,9 +142,9 @@ this.FeatureBackground();
 #line 25
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

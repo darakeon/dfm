@@ -81,10 +81,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah01. Test with invalid token (E)")]
-        public virtual void Ah01_TestWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ah01. Test with invalid token")]
+        public virtual void Ah01_TestWithInvalidToken()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah01. Test with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah01. Test with invalid token", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah02. Test with token of UV with action PS (E)")]
-        public virtual void Ah02_TestWithTokenOfUVWithActionPSE()
+        [NUnit.Framework.DescriptionAttribute("Ah02. Test with token of UV with action PS")]
+        public virtual void Ah02_TestWithTokenOfUVWithActionPS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah02. Test with token of UV with action PS (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah02. Test with token of UV with action PS", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -111,7 +111,7 @@ this.FeatureBackground();
 #line 14
  testRunner.Given("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("I pass a token of UserVerification with action PasswordReset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a token of UserVerification with action PasswordReset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.When("I test the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
@@ -121,10 +121,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah03. Test with token of PS with action UV (E)")]
-        public virtual void Ah03_TestWithTokenOfPSWithActionUVE()
+        [NUnit.Framework.DescriptionAttribute("Ah03. Test with token of PS with action UV")]
+        public virtual void Ah03_TestWithTokenOfPSWithActionUV()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah03. Test with token of PS with action UV (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah03. Test with token of PS with action UV", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -132,7 +132,7 @@ this.FeatureBackground();
 #line 20
  testRunner.Given("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
- testRunner.And("I pass a token of PasswordReset with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a token of PasswordReset with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
  testRunner.When("I test the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
@@ -142,10 +142,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah04. Test with token when I created another one (E)")]
-        public virtual void Ah04_TestWithTokenWhenICreatedAnotherOneE()
+        [NUnit.Framework.DescriptionAttribute("Ah04. Test with token when I created another one")]
+        public virtual void Ah04_TestWithTokenWhenICreatedAnotherOne()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah04. Test with token when I created another one (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah04. Test with token when I created another one", ((string[])(null)));
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -153,9 +153,9 @@ this.FeatureBackground();
 #line 26
  testRunner.Given("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
- testRunner.And("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
- testRunner.And("I pass a token of UserVerification with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a token of UserVerification with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
  testRunner.When("I test the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
@@ -165,10 +165,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah90. Test with token of UV with action UV (S)")]
-        public virtual void Ah90_TestWithTokenOfUVWithActionUVS()
+        [NUnit.Framework.DescriptionAttribute("Ah05. Test with token of UV with action UV")]
+        public virtual void Ah05_TestWithTokenOfUVWithActionUV()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah90. Test with token of UV with action UV (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah05. Test with token of UV with action UV", ((string[])(null)));
 #line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -176,7 +176,7 @@ this.FeatureBackground();
 #line 33
  testRunner.Given("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 34
- testRunner.And("I pass a token of UserVerification with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a token of UserVerification with action UserVerification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
  testRunner.When("I test the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
@@ -186,10 +186,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ah91. Test with token of PS with action PS (S)")]
-        public virtual void Ah91_TestWithTokenOfPSWithActionPSS()
+        [NUnit.Framework.DescriptionAttribute("Ah06. Test with token of PS with action PS")]
+        public virtual void Ah06_TestWithTokenOfPSWithActionPS()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah91. Test with token of PS with action PS (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ah06. Test with token of PS with action PS", ((string[])(null)));
 #line 38
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -197,7 +197,7 @@ this.FeatureBackground();
 #line 39
  testRunner.Given("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 40
- testRunner.And("I pass a token of PasswordReset with action PasswordReset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a token of PasswordReset with action PasswordReset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
  testRunner.When("I test the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 42

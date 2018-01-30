@@ -78,15 +78,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line 4
  testRunner.Given("I have this user created and activated", ((string)(null)), table1, "Given ");
 #line 7
- testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aj99. Select with info all right (S)")]
-        public virtual void Aj99_SelectWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Aj01. Select with info all right")]
+        public virtual void Aj01_SelectWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj99. Select with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj01. Select with info all right", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -98,7 +98,7 @@ this.FeatureBackground();
 #line 12
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("the ticket will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the ticket will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

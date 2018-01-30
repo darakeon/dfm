@@ -69,21 +69,21 @@ namespace DFM.Tests.BusinessLogic.C_Money
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
- testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
- testRunner.And("I have a move with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a move with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cd01. Try to get Detail with wrong ID (E)")]
-        public virtual void Cd01_TryToGetDetailWithWrongIDE()
+        [NUnit.Framework.DescriptionAttribute("Cd01. Try to get Detail with wrong ID")]
+        public virtual void Cd01_TryToGetDetailWithWrongID()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd01. Try to get Detail with wrong ID (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd01. Try to get Detail with wrong ID", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -95,16 +95,16 @@ this.FeatureBackground();
 #line 13
  testRunner.Then("I will receive this core error: InvalidDetail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.And("I will receive no detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cd99. Get the Detail by ID (S)")]
-        public virtual void Cd99_GetTheDetailByIDS()
+        [NUnit.Framework.DescriptionAttribute("Cd02. Get the Detail by ID")]
+        public virtual void Cd02_GetTheDetailByID()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd99. Get the Detail by ID (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cd02. Get the Detail by ID", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -116,7 +116,7 @@ this.FeatureBackground();
 #line 19
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
- testRunner.And("I will receive the detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive the detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

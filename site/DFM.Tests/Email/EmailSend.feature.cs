@@ -64,10 +64,10 @@ namespace DFM.Tests.Email
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01. Send an e-mail without subject")]
-        public virtual void _01_SendAnE_MailWithoutSubject()
+        [NUnit.Framework.DescriptionAttribute("MS01. Send an e-mail without subject")]
+        public virtual void MS01_SendAnE_MailWithoutSubject()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01. Send an e-mail without subject", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS01. Send an e-mail without subject", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -90,10 +90,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02. Send an e-mail without body")]
-        public virtual void _02_SendAnE_MailWithoutBody()
+        [NUnit.Framework.DescriptionAttribute("MS02. Send an e-mail without body")]
+        public virtual void MS02_SendAnE_MailWithoutBody()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02. Send an e-mail without body", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS02. Send an e-mail without body", ((string[])(null)));
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -116,10 +116,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03. Send an e-mail without address")]
-        public virtual void _03_SendAnE_MailWithoutAddress()
+        [NUnit.Framework.DescriptionAttribute("MS03. Send an e-mail without address")]
+        public virtual void MS03_SendAnE_MailWithoutAddress()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03. Send an e-mail without address", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS03. Send an e-mail without address", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -142,10 +142,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("98. Send an e-mail successfuly")]
-        public virtual void _98_SendAnE_MailSuccessfuly()
+        [NUnit.Framework.DescriptionAttribute("MS04. Send an e-mail successfuly")]
+        public virtual void MS04_SendAnE_MailSuccessfuly()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("98. Send an e-mail successfuly", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS04. Send an e-mail successfuly", ((string[])(null)));
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -168,10 +168,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("99. Send an e-mail to default")]
-        public virtual void _99_SendAnE_MailToDefault()
+        [NUnit.Framework.DescriptionAttribute("MS05. Send an e-mail to default")]
+        public virtual void MS05_SendAnE_MailToDefault()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99. Send an e-mail to default", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS05. Send an e-mail to default", ((string[])(null)));
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line hidden

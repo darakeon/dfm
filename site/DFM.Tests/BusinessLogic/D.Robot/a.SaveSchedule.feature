@@ -2,603 +2,591 @@
 
 Background:
 	Given I have an active user who have accepted the contract
-	And I enable Categories use
-	And I have two accounts
-	And I have a category
+		And I enable Categories use
+		And I have two accounts
+		And I have a category
 
-Scenario: Da01. Save without Description (E)
+Scenario: Da01. Save without Description
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		|             | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			|             | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveDescriptionRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da02. Save without Date (E)
+Scenario: Da02. Save without Date
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da02   |      | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da02   |      | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveDateRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da03. Save without Category (E)
+Scenario: Da03. Save without Category
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da03   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has no Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da03   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has no Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidCategory
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da04. Save with unknown Category (E)
+Scenario: Da04. Save with unknown Category
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da04   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has an unknown Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da04   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has an unknown Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidCategory
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da05. Save with Description too large (E)
+Scenario: Da05. Save with Description too large
 	Given I have this schedule to create
-		| Description                                         | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description                                         | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: TooLargeData
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-
-
-Scenario: Da11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Da06. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da11   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da11   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: OutMoveWrong
-	And the schedule will not be saved
+		And the schedule will not be saved
 
-Scenario: Da12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Da07. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da12   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da12   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive this core error: OutMoveWrong
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Da08. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da13   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da13   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive this core error: OutMoveWrong
-	And the schedule will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
+Scenario: Da09. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da14   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an unknown Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da14   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an unknown Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidAccount
-	And the schedule will not be saved
+		And the schedule will not be saved
 
-
-
-Scenario: Da21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Da10. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da21   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da21   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: InMoveWrong
-	And the schedule will not be saved
+		And the schedule will not be saved
 
-Scenario: Da22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Da11. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da22   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da22   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive this core error: InMoveWrong
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Da12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da23   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da23   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: InMoveWrong
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
+Scenario: Da13. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da24   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an unknown Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da24   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an unknown Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidAccount
-	And the schedule will not be saved
+		And the schedule will not be saved
 
-
-
-Scenario: Da31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Da14. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da31   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da31   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: TransferMoveWrong
-	And the schedule will not be saved
+		And the schedule will not be saved
 
-Scenario: Da32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Da15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da32   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da32   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive this core error: TransferMoveWrong
-	And the schedule will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Da16. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da33   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da33   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: TransferMoveWrong
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
+Scenario: Da17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da34   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an unknown Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da34   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an unknown Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidAccount
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
+Scenario: Da18. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da35   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an unknown Account Out
-	And it has an Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da35   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an unknown Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive this core error: InvalidAccount
-	And the schedule will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
+Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da36   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In equal to Out
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da36   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In equal to Out
 	When I try to save the schedule
 	Then I will receive this core error: MoveCircularTransfer
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-
-
-Scenario: Da41. Save without Value or Details (E)
+Scenario: Da20. Save without Value or Details
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da41   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da41   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveValueOrDetailRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da42. Save with Value zero and no Details (E)
+Scenario: Da21. Save with Value zero and no Details
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da42   | 2012-03-31 | Out    | 0     | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da42   | 2012-03-31 | Out    | 0     | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveValueOrDetailRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da43. Save without value and without Description in Detail (E)
+Scenario: Da22. Save without value and without Description in Detail
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da43   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description | Amount | Value |
-		|             | 1      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da43   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description | Amount | Value |
+			|             | 1      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveDetailDescriptionRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da44. Save without value and with Amount zero in Detail (E)
+Scenario: Da23. Save without value and with Amount zero in Detail
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da44   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 0      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da44   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 0      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveDetailAmountRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da45. Save without value and with Value zero in Detail (E)
+Scenario: Da24. Save without value and with Value zero in Detail
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da45   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | 0     |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da45   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 0     |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: MoveDetailValueRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da46. Save with Description too large in Detail (E)
+Scenario: Da25. Save with Description too large in Detail
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da46   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description                                         | Amount | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da46   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description                                         | Amount | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: TooLargeData
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-
-
-Scenario: Da51. Save without Schedule (E)
+Scenario: Da26. Save without Schedule
 	Given I have no schedule
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: ScheduleRequired
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da52. Save with Schedule Times zero and bounded (E)
+Scenario: Da27. Save with Schedule Times zero and bounded
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da52   | 2012-03-31 | Out    | 10    | 0     | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da52   | 2012-03-31 | Out    | 10    | 0     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive this core error: ScheduleTimesCantBeZero
-	And the schedule will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
+Scenario: Da28. Save with info all right (Out)
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the schedule
+	Then I will receive no core error
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
+Scenario: Da29. Save with info all right (In)
+	Given I have this schedule to create
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da92   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
+	When I try to save the schedule
+	Then I will receive no core error
+		And the schedule will be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da91. Save with info all right (Out) (S)
+Scenario: Da30. Save with info all right (Transfer)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da91   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da93   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Da92. Save with info all right (In) (S)
+Scenario: Da31. Save with info all right (value)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da92   | 2012-03-31 | In     | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da94   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
-	
-Scenario: Da93. Save with info all right (Transfer) (S)
-	Given I have this schedule to create
-		| Description | Date       | Nature   | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da93   | 2012-03-31 | Transfer | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
-	When I try to save the schedule
-	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da94. Save with info all right (value) (S)
+Scenario: Da32. Save with info all right (details)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da94   | 2012-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da95   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	
-Scenario: Da95. Save with info all right (details) (S)
-	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da95   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	When I try to save the schedule
-	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da96. Save negative (value) (S)
+Scenario: Da33. Save negative (value)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da96   | 2012-03-31 | Out    | -10   | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da96   | 2012-03-31 | Out    | -10   | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da97. Save negative (details) (S)
+Scenario: Da34. Save negative (details)
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da97   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | -10   |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da97   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | -10   |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da98. Save with future Date (E)
+Scenario: Da35. Save with future Date
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da98   | 2099-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da98   | 2099-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da99. Save with exactly length in Description of Detail (S)
+Scenario: Da36. Save with exactly length in Description of Detail
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da99   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the move has this details
-		| Description                                        | Amount | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da99   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the move has this details
+			| Description                                        | Amount | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Da9A. Save with exactly length in Description (S)
+Scenario: Da37. Save with exactly length in Description
 	Given I have this schedule to create
-		| Description                                        | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2010-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description                                        | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2010-03-31 | Out    | 10    | 10    | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	
-Scenario: Da9B. Save with details with same description (S)
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+
+Scenario: Da38. Save with details with same description
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Da9D   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-	And the schedule has this details
-		| Description | Amount | Value |
-		| Move Da9D   | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Da9D   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
+		And the schedule has this details
+			| Description | Amount | Value |
+			| Move Da9D   | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the schedule
 	Then I will receive no core error
-	And the schedule will be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the schedule will be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change

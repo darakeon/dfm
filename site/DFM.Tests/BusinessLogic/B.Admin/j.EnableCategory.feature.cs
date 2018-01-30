@@ -69,17 +69,17 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
- testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bj01. Enable a Category that doesn\'t exist (E)")]
-        public virtual void Bj01_EnableACategoryThatDoesntExistE()
+        [NUnit.Framework.DescriptionAttribute("Bj01. Enable a Category that doesn\'t exist")]
+        public virtual void Bj01_EnableACategoryThatDoesntExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj01. Enable a Category that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj01. Enable a Category that doesn\'t exist", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -95,10 +95,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bj02. Enable a Category already enabled (E)")]
-        public virtual void Bj02_EnableACategoryAlreadyEnabledE()
+        [NUnit.Framework.DescriptionAttribute("Bj02. Enable a Category already enabled")]
+        public virtual void Bj02_EnableACategoryAlreadyEnabled()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj02. Enable a Category already enabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj02. Enable a Category already enabled", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -106,7 +106,7 @@ this.FeatureBackground();
 #line 14
  testRunner.Given("I give the disabled category Bj02", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("I already have enabled the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I already have enabled the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.When("I try to enable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
@@ -116,10 +116,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bj99. Enable a Category with info all right (S)")]
-        public virtual void Bj99_EnableACategoryWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Bj03. Enable a Category with info all right")]
+        public virtual void Bj03_EnableACategoryWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj99. Enable a Category with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bj03. Enable a Category with info all right", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -131,7 +131,7 @@ this.FeatureBackground();
 #line 22
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
- testRunner.And("the category will be enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the category will be enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

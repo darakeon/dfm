@@ -69,9 +69,9 @@ namespace DFM.Tests.BusinessLogic.E_Report
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
- testRunner.And("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Date"});
@@ -98,15 +98,15 @@ namespace DFM.Tests.BusinessLogic.E_Report
             table1.AddRow(new string[] {
                         "2012-04-06"});
 #line 7
- testRunner.And("I have moves of", ((string)(null)), table1, "And ");
+  testRunner.And("I have moves of", ((string)(null)), table1, "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea01. Get with invalid Account name (E)")]
-        public virtual void Ea01_GetWithInvalidAccountNameE()
+        [NUnit.Framework.DescriptionAttribute("Ea01. Get with invalid Account name")]
+        public virtual void Ea01_GetWithInvalidAccountName()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea01. Get with invalid Account name (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea01. Get with invalid Account name", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -121,22 +121,22 @@ this.FeatureBackground();
                         "4",
                         "2012"});
 #line 23
- testRunner.And("I pass this date", ((string)(null)), table2, "And ");
+  testRunner.And("I pass this date", ((string)(null)), table2, "And ");
 #line 26
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 27
  testRunner.Then("I will receive this core error: InvalidAccount", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
- testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea02. Get with Date Year Zero (E)")]
-        public virtual void Ea02_GetWithDateYearZeroE()
+        [NUnit.Framework.DescriptionAttribute("Ea02. Get with Date Year Zero")]
+        public virtual void Ea02_GetWithDateYearZero()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea02. Get with Date Year Zero (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea02. Get with Date Year Zero", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -151,22 +151,22 @@ this.FeatureBackground();
                         "4",
                         "0"});
 #line 32
- testRunner.And("I pass this date", ((string)(null)), table3, "And ");
+  testRunner.And("I pass this date", ((string)(null)), table3, "And ");
 #line 35
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
  testRunner.Then("I will receive this core error: InvalidYear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 37
- testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea03. Get with Date Month less than 1 (E)")]
-        public virtual void Ea03_GetWithDateMonthLessThan1E()
+        [NUnit.Framework.DescriptionAttribute("Ea03. Get with Date Month less than 1")]
+        public virtual void Ea03_GetWithDateMonthLessThan1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea03. Get with Date Month less than 1 (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea03. Get with Date Month less than 1", ((string[])(null)));
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -181,22 +181,22 @@ this.FeatureBackground();
                         "0",
                         "2012"});
 #line 41
- testRunner.And("I pass this date", ((string)(null)), table4, "And ");
+  testRunner.And("I pass this date", ((string)(null)), table4, "And ");
 #line 44
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 45
  testRunner.Then("I will receive this core error: InvalidMonth", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 46
- testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea04. Get with Date Month more than 12 (E)")]
-        public virtual void Ea04_GetWithDateMonthMoreThan12E()
+        [NUnit.Framework.DescriptionAttribute("Ea04. Get with Date Month more than 12")]
+        public virtual void Ea04_GetWithDateMonthMoreThan12()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea04. Get with Date Month more than 12 (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea04. Get with Date Month more than 12", ((string[])(null)));
 #line 48
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -211,23 +211,23 @@ this.FeatureBackground();
                         "13",
                         "2012"});
 #line 50
- testRunner.And("I pass this date", ((string)(null)), table5, "And ");
+  testRunner.And("I pass this date", ((string)(null)), table5, "And ");
 #line 53
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 54
  testRunner.Then("I will receive this core error: InvalidMonth", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 55
- testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea98. Get with next year date (S)")]
-        public virtual void Ea98_GetWithNextYearDateS()
+        [NUnit.Framework.DescriptionAttribute("Ea05. Get with next year date")]
+        public virtual void Ea05_GetWithNextYearDate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea98. Get with next year date (S)", ((string[])(null)));
-#line 59
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea05. Get with next year date", ((string[])(null)));
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -236,10 +236,10 @@ this.FeatureBackground();
                         "Date"});
             table6.AddRow(new string[] {
                         "+0"});
-#line 60
+#line 58
  testRunner.Given("I have moves of", ((string)(null)), table6, "Given ");
-#line 63
- testRunner.And("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 61
+  testRunner.And("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Month",
@@ -247,30 +247,30 @@ this.FeatureBackground();
             table7.AddRow(new string[] {
                         "+0",
                         "+1"});
-#line 64
- testRunner.And("I pass this date", ((string)(null)), table7, "And ");
-#line 67
+#line 62
+  testRunner.And("I pass this date", ((string)(null)), table7, "And ");
+#line 65
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 68
+#line 66
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 69
- testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 70
- testRunner.And("there will be no moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+  testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
+  testRunner.And("there will be no moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ea99. Get with info all right (S)")]
-        public virtual void Ea99_GetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ea06. Get with info all right")]
+        public virtual void Ea06_GetWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea99. Get with info all right (S)", ((string[])(null)));
-#line 72
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ea06. Get with info all right", ((string[])(null)));
+#line 70
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 73
+#line 71
  testRunner.Given("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -279,16 +279,16 @@ this.FeatureBackground();
             table8.AddRow(new string[] {
                         "4",
                         "2012"});
-#line 74
- testRunner.And("I pass this date", ((string)(null)), table8, "And ");
-#line 77
+#line 72
+  testRunner.And("I pass this date", ((string)(null)), table8, "And ");
+#line 75
  testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 78
+#line 76
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 79
- testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 80
- testRunner.And("its sum value will be equal to its moves sum value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+  testRunner.And("I will receive the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+  testRunner.And("its sum value will be equal to its moves sum value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

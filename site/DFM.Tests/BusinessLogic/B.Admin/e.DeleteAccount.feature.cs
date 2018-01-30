@@ -69,15 +69,15 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeE01. Delete an Account that doesn\'t exist")]
-        public virtual void BeE01_DeleteAnAccountThatDoesntExist()
+        [NUnit.Framework.DescriptionAttribute("Be01. Delete an Account that doesn\'t exist")]
+        public virtual void Be01_DeleteAnAccountThatDoesntExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE01. Delete an Account that doesn\'t exist", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be01. Delete an Account that doesn\'t exist", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -93,10 +93,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeE02. Delete an Account already deleted")]
-        public virtual void BeE02_DeleteAnAccountAlreadyDeleted()
+        [NUnit.Framework.DescriptionAttribute("Be02. Delete an Account already deleted")]
+        public virtual void Be02_DeleteAnAccountAlreadyDeleted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE02. Delete an Account already deleted", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be02. Delete an Account already deleted", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -104,7 +104,7 @@ this.FeatureBackground();
 #line 13
  testRunner.Given("I give a url of the account BeE02 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.And("I already have deleted the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I already have deleted the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
@@ -114,10 +114,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeE03. Delete an Account that has moves")]
-        public virtual void BeE03_DeleteAnAccountThatHasMoves()
+        [NUnit.Framework.DescriptionAttribute("Be03. Delete an Account that has moves")]
+        public virtual void Be03_DeleteAnAccountThatHasMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE03. Delete an Account that has moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be03. Delete an Account that has moves", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -125,22 +125,22 @@ this.FeatureBackground();
 #line 19
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
- testRunner.And("I give a url of the account BeE03 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I give a url of the account BeE03 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
  testRunner.Then("I will receive this core error: CantDeleteAccountWithMoves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
- testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeE04. Delete an Account with schedule")]
-        public virtual void BeE04_DeleteAnAccountWithSchedule()
+        [NUnit.Framework.DescriptionAttribute("Be04. Delete an Account with schedule")]
+        public virtual void Be04_DeleteAnAccountWithSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE04. Delete an Account with schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be04. Delete an Account with schedule", ((string[])(null)));
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -148,24 +148,24 @@ this.FeatureBackground();
 #line 26
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
- testRunner.And("I give a url of the account BeE04 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I give a url of the account BeE04 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
- testRunner.And("the account has a schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account has a schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
  testRunner.Then("I will receive this core error: CantDeleteAccountWithSchedules", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
- testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeE05. Delete an Account with detailed schedule")]
-        public virtual void BeE05_DeleteAnAccountWithDetailedSchedule()
+        [NUnit.Framework.DescriptionAttribute("Be05. Delete an Account with detailed schedule")]
+        public virtual void Be05_DeleteAnAccountWithDetailedSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeE05. Delete an Account with detailed schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be05. Delete an Account with detailed schedule", ((string[])(null)));
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -173,111 +173,111 @@ this.FeatureBackground();
 #line 34
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 35
- testRunner.And("I give a url of the account BeE05 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I give a url of the account BeE05 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
- testRunner.And("the account has a schedule with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account has a schedule with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
  testRunner.Then("I will receive this core error: CantDeleteAccountWithSchedules", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 39
- testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeS01. Delete an Account that had moves")]
-        public virtual void BeS01_DeleteAnAccountThatHadMoves()
+        [NUnit.Framework.DescriptionAttribute("Be06. Delete an Account that had moves")]
+        public virtual void Be06_DeleteAnAccountThatHadMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS01. Delete an Account that had moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be06. Delete an Account that had moves", ((string[])(null)));
+#line 41
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
 #line 42
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 43
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.And("I give a url of the account BeS01 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
- testRunner.And("I give a url of the account BeS01 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I delete the moves of BeS01", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
- testRunner.And("I delete the moves of BeS01", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 46
- testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 47
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 48
- testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeS02. Delete an Account without moves")]
-        public virtual void BeS02_DeleteAnAccountWithoutMoves()
+        [NUnit.Framework.DescriptionAttribute("Be07. Delete an Account without moves")]
+        public virtual void Be07_DeleteAnAccountWithoutMoves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS02. Delete an Account without moves", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be07. Delete an Account without moves", ((string[])(null)));
+#line 49
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
 #line 50
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 51
  testRunner.Given("I give a url of the account BeS02 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 51
+ testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
- testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 53
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 54
- testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeS03. Delete an Account with schedule")]
-        public virtual void BeS03_DeleteAnAccountWithSchedule()
+        [NUnit.Framework.DescriptionAttribute("Be08. Delete an Account with schedule")]
+        public virtual void Be08_DeleteAnAccountWithSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS03. Delete an Account with schedule", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be08. Delete an Account with schedule", ((string[])(null)));
+#line 55
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
 #line 56
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 57
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 57
+  testRunner.And("I give a url of the account BeS03 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
- testRunner.And("I give a url of the account BeS03 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account has a disabled schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
- testRunner.And("the account has a disabled schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 61
+#line 60
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 62
- testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 61
+  testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("BeS04. Delete an Account with detailed schedule")]
-        public virtual void BeS04_DeleteAnAccountWithDetailedSchedule()
+        [NUnit.Framework.DescriptionAttribute("Be09. Delete an Account with detailed schedule")]
+        public virtual void Be09_DeleteAnAccountWithDetailedSchedule()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("BeS04. Delete an Account with detailed schedule", ((string[])(null)));
-#line 64
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be09. Delete an Account with detailed schedule", ((string[])(null)));
+#line 63
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 65
+#line 64
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 65
+  testRunner.And("I give a url of the account BeS04 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 66
- testRunner.And("I give a url of the account BeS04 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the account has a disabled schedule with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 67
- testRunner.And("the account has a disabled schedule with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
  testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 69
+#line 68
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 70
- testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+  testRunner.And("the account will be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

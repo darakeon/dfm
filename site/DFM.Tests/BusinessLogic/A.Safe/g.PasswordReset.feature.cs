@@ -78,15 +78,15 @@ namespace DFM.Tests.BusinessLogic.A_Safe
 #line 4
  testRunner.Given("I have this user created", ((string)(null)), table1, "Given ");
 #line 7
- testRunner.And("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ag01. Password reset with invalid token (E)")]
-        public virtual void Ag01_PasswordResetWithInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ag01. Password reset with invalid token")]
+        public virtual void Ag01_PasswordResetWithInvalidToken()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag01. Password reset with invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag01. Password reset with invalid token", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -101,22 +101,22 @@ this.FeatureBackground();
                         "new_password",
                         "new_password"});
 #line 11
- testRunner.And("I pass this password", ((string)(null)), table2, "And ");
+  testRunner.And("I pass this password", ((string)(null)), table2, "And ");
 #line 14
  testRunner.When("I try to reset the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
  testRunner.Then("I will receive this core error: InvalidToken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
- testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ag02. Password reset with token of user verification (E)")]
-        public virtual void Ag02_PasswordResetWithTokenOfUserVerificationE()
+        [NUnit.Framework.DescriptionAttribute("Ag02. Password reset with token of user verification")]
+        public virtual void Ag02_PasswordResetWithTokenOfUserVerification()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag02. Password reset with token of user verification (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag02. Password reset with token of user verification", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -124,7 +124,7 @@ this.FeatureBackground();
 #line 19
  testRunner.Given("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
- testRunner.And("I pass a valid UserVerification token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a valid UserVerification token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Password",
@@ -133,22 +133,22 @@ this.FeatureBackground();
                         "new_password",
                         "new_password"});
 #line 21
- testRunner.And("I pass this password", ((string)(null)), table3, "And ");
+  testRunner.And("I pass this password", ((string)(null)), table3, "And ");
 #line 24
  testRunner.When("I try to reset the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
  testRunner.Then("I will receive this core error: InvalidToken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ag03. Password reset with no password (E)")]
-        public virtual void Ag03_PasswordResetWithNoPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ag03. Password reset with no password")]
+        public virtual void Ag03_PasswordResetWithNoPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag03. Password reset with no password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag03. Password reset with no password", ((string[])(null)));
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -156,22 +156,22 @@ this.FeatureBackground();
 #line 29
  testRunner.Given("I pass a valid PasswordReset token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 30
- testRunner.And("I pass no password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass no password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
  testRunner.When("I try to reset the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 32
  testRunner.Then("I will receive this core error: UserPasswordRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
- testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the password will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ag99. Password reset with info all right (S)")]
-        public virtual void Ag99_PasswordResetWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ag04. Password reset with info all right")]
+        public virtual void Ag04_PasswordResetWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag99. Password reset with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ag04. Password reset with info all right", ((string[])(null)));
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -186,17 +186,17 @@ this.FeatureBackground();
                         "new_password",
                         "new_password"});
 #line 37
- testRunner.And("I pass this password", ((string)(null)), table4, "And ");
+  testRunner.And("I pass this password", ((string)(null)), table4, "And ");
 #line 40
  testRunner.When("I try to reset the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 41
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 42
- testRunner.And("the password will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the password will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 43
- testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
- testRunner.And("only the last ticket will be active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("only the last ticket will be active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

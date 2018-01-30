@@ -1,6 +1,6 @@
 ﻿Feature: Ar. Update Two factor Authentication
 
-Scenario: Ar001. With empty secret key
+Scenario: Ar01. With empty secret key
 	Given I have this user created and activated
 			| Email                  | Password |
 			| Ar001@dontflymoney.com | password |
@@ -14,7 +14,7 @@ Scenario: Ar001. With empty secret key
 	Then I will receive this core error: TFAEmptySecret
 		And the two-factor will be empty
 
-Scenario: Ar002. With wrong code
+Scenario: Ar02. With wrong code
 	Given I have this user created and activated
 			| Email                  | Password |
 			| Ar002@dontflymoney.com | password |
@@ -28,7 +28,7 @@ Scenario: Ar002. With wrong code
 	Then I will receive this core error: TFAWrongCode
 		And the two-factor will be empty
 
-Scenario: Ar003. With wrong password
+Scenario: Ar03. With wrong password
 	Given I have this user created and activated
 			| Email                  | Password |
 			| Ar003@dontflymoney.com | password |
@@ -42,7 +42,7 @@ Scenario: Ar003. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be empty
 
-Scenario: Ar004. With all info right
+Scenario: Ar04. With all info right
 	Given I have this user created and activated
 			| Email                  | Password |
 			| Ar004@dontflymoney.com | password |
@@ -56,7 +56,7 @@ Scenario: Ar004. With all info right
 	Then I will receive no core error
 		And the two-factor will be [123]
 
-Scenario: Ar005. Update two-factor
+Scenario: Ar05. Update two-factor
 	Given I have this user created and activated
 			| Email                  | Password |
 			| Ar005@dontflymoney.com | password |

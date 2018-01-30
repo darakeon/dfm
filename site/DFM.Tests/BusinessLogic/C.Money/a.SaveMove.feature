@@ -2,698 +2,684 @@
 
 Background:
 	Given I have an active user who have accepted the contract
-	And I enable Categories use
-	And I have two accounts
-	And I have a category
+		And I enable Categories use
+		And I have two accounts
+		And I have a category
 
-Scenario: Ca01. Save without Description (E)
+Scenario: Ca01. Save without Description
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		|             | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			|             | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDescriptionRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca02. Save without Date (E)
+Scenario: Ca02. Save without Date
 	Given I have this move to create
-		| Description | Date | Nature | Value |
-		| Move Ca02   |      | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date | Nature | Value |
+			| Move Ca02   |      | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDateRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca03. Save with future Date (E)
+Scenario: Ca03. Save with future Date
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca03   | 2099-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca03   | 2099-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDateInvalid
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca04. Save without Category (E)
+Scenario: Ca04. Save without Category
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca04   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has no Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca04   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has no Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidCategory
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca05. Save with unknown Category (E)
+Scenario: Ca05. Save with unknown Category
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca05   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has an unknown Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca05   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has an unknown Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidCategory
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca06. Save with Description too large (E)
+Scenario: Ca06. Save with Description too large
 	Given I have this move to create
-		| Description                                         | Date       | Nature | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description                                         | Date       | Nature | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: TooLargeData
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-
-
-Scenario: Ca11. Save with (Nature: Out) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca07. Save with (Nature: Out) (AccountOut:No) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca11   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca11   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: OutMoveWrong
-	And the move will not be saved
+		And the move will not be saved
 
-Scenario: Ca12. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Ca08. Save with (Nature: Out) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca12   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca12   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive this core error: OutMoveWrong
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Ca13. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Ca09. Save with (Nature: Out) (AccountOut:No) (AccountIn:Yes)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca13   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca13   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive this core error: OutMoveWrong
-	And the move will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Ca14. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No) (E)
+Scenario: Ca10. Save with (Nature: Out) (AccountOut:Unknown) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca14   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an unknown Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca14   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an unknown Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidAccount
-	And the move will not be saved
+		And the move will not be saved
 
-
-
-Scenario: Ca21. Save with (Nature: In) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca11. Save with (Nature: In) (AccountOut:No) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca21   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca21   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: InMoveWrong
-	And the move will not be saved
+		And the move will not be saved
 
-Scenario: Ca22. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes) (E)
+Scenario: Ca12. Save with (Nature: In) (AccountOut:Yes) (AccountIn:Yes)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca22   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca22   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive this core error: InMoveWrong
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Ca23. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Ca13. Save with (Nature: In) (AccountOut:Yes) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca23   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca23   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: InMoveWrong
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca24. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown) (E)
+Scenario: Ca14. Save with (Nature: In) (AccountOut:No) (AccountIn:Unknown)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca24   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an unknown Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca24   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an unknown Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidAccount
-	And the move will not be saved
+		And the move will not be saved
 
-
-
-Scenario: Ca31. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No) (E)
+Scenario: Ca15. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca31   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca31   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: TransferMoveWrong
-	And the move will not be saved
+		And the move will not be saved
 
-Scenario: Ca32. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes) (E)
+Scenario: Ca16. Save with (Nature: Transfer) (AccountOut:No) (AccountIn:Yes)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca32   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca32   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive this core error: TransferMoveWrong
-	And the move will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Ca33. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No) (E)
+Scenario: Ca17. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:No)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca33   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca33   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: TransferMoveWrong
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca34. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown) (E)
+Scenario: Ca18. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Unknown)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca34   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an unknown Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca34   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an unknown Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidAccount
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca35. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes) (E)
+Scenario: Ca19. Save with (Nature: Transfer) (AccountOut:Unknown) (AccountIn:Yes)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca35   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an unknown Account Out
-	And it has an Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca35   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an unknown Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive this core error: InvalidAccount
-	And the move will not be saved
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-Scenario: Ca36. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out) (E)
+Scenario: Ca20. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal to Out)
 	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca36   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In equal to Out
+			| Description | Date       | Nature   | Value |
+			| Move Ca36   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In equal to Out
 	When I try to save the move
 	Then I will receive this core error: MoveCircularTransfer
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
-	And the accountIn value will not change
-	And the month-category-accountIn value will not change
-	And the year-category-accountIn value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
+		And the accountIn value will not change
+		And the month-category-accountIn value will not change
+		And the year-category-accountIn value will not change
 
-
-
-Scenario: Ca41. Save without Value or Details (E)
+Scenario: Ca21. Save without Value or Details
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca41   | 2012-03-31 | Out    |       |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca41   | 2012-03-31 | Out    |       |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveValueOrDetailRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca42. Save with Value zero and no Details (E)
+Scenario: Ca22. Save with Value zero and no Details
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca42   | 2012-03-31 | Out    | 0     |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca42   | 2012-03-31 | Out    | 0     |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveValueOrDetailRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca43. Save without value and without Description in Detail (E)
+Scenario: Ca23. Save without value and without Description in Detail
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca43   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		|             | 1      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca43   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			|             | 1      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDetailDescriptionRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca44. Save without value and with Amount zero in Detail (E)
+Scenario: Ca24. Save without value and with Amount zero in Detail
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca44   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 0      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca44   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 0      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDetailAmountRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca45. Save without value and with Value zero in Detail (E)
+Scenario: Ca25. Save without value and with Value zero in Detail
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca45   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | 0     |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca45   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 0     |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: MoveDetailValueRequired
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca46. Save with Description too large in Detail (E)
+Scenario: Ca26. Save with Description too large in Detail
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca46   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description                                         | Amount | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca46   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description                                         | Amount | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: TooLargeData
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-
-
-Scenario: Ca51. Save with disabled Category (E)
+Scenario: Ca27. Save with disabled Category
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca51   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a disabled Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca51   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a disabled Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: DisabledCategory
-	And the move will not be saved
-	And the accountOut value will not change
-	And the month-category-accountOut value will not change
-	And the year-category-accountOut value will not change
+		And the move will not be saved
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
 
-Scenario: Ca52. Save with closed AccountOut (E)
+Scenario: Ca28. Save with closed AccountOut
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca52   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has a closed Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca52   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has a closed Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive this core error: ClosedAccount
-	And the move will not be saved
+		And the move will not be saved
 
-Scenario: Ca53. Save with closed AccountOut (E)
+Scenario: Ca29. Save with closed AccountOut
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca53   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has a closed Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca53   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has a closed Account In
 	When I try to save the move
 	Then I will receive this core error: ClosedAccount
-	And the move will not be saved
+		And the move will not be saved
 
-
-
-Scenario: Ca91. Save with info all right (Out) (S)
+Scenario: Ca30. Save with info all right (Out)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca91   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca91   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
-	
-Scenario: Ca92. Save with info all right (In) (S)
-	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca92   | 2012-03-31 | In     | 10    |
-	And it has no Details
-	And it has a Category
-	And it has no Account Out
-	And it has an Account In
-	When I try to save the move
-	Then I will receive no core error
-	And the move will be saved
-	And the accountIn value will change in 10
-	And the month-category-accountIn value will change in 10
-	And the year-category-accountIn value will change in 10
-	
-Scenario: Ca93. Save with info all right (Transfer) (S)
-	Given I have this move to create
-		| Description | Date       | Nature   | Value |
-		| Move Ca93   | 2012-03-31 | Transfer | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has an Account In
-	When I try to save the move
-	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
-	And the accountIn value will change in 10
-	And the month-category-accountIn value will change in 10
-	And the year-category-accountIn value will change in 10
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
 
-Scenario: Ca94. Save with info all right (value) (S)
+Scenario: Ca31. Save with info all right (In)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca94   | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca92   | 2012-03-31 | In     | 10    |
+		And it has no Details
+		And it has a Category
+		And it has no Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And the move will be saved
+		And the accountIn value will change in 10
+		And the month-category-accountIn value will change in 10
+		And the year-category-accountIn value will change in 10
 
-Scenario: Ca95. Save with info all right (details) (S)
+Scenario: Ca32. Save with info all right (Transfer)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca95   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature   | Value |
+			| Move Ca93   | 2012-03-31 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -20
-	And the month-category-accountOut value will change in 20
-	And the year-category-accountOut value will change in 20
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+		And the accountIn value will change in 10
+		And the month-category-accountIn value will change in 10
+		And the year-category-accountIn value will change in 10
 
-Scenario: Ca96. Save negative (value) (S)
+Scenario: Ca33. Save with info all right (value)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca96   | 2012-03-31 | Out    | -10   |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca94   | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
 
-Scenario: Ca97. Save negative (details) (S)
+Scenario: Ca34. Save with info all right (details)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca97   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | -10   |
-		| Detail 2    | 1      | -10   |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca95   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -20
-	And the month-category-accountOut value will change in 20
-	And the year-category-accountOut value will change in 20
+		And the move will be saved
+		And the accountOut value will change in -20
+		And the month-category-accountOut value will change in 20
+		And the year-category-accountOut value will change in 20
 
-Scenario: Ca98. Save with exactly length in Description of Detail (S)
+Scenario: Ca35. Save negative (value)
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca98   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description                                        | Amount | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca96   | 2012-03-31 | Out    | -10   |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
 
-Scenario: Ca99. Save with exactly length in Description (S)
+Scenario: Ca36. Save negative (details)
 	Given I have this move to create
-		| Description                                        | Date       | Nature | Value |
-		| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2012-03-31 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca97   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | -10   |
+			| Detail 2    | 1      | -10   |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And the move will be saved
+		And the accountOut value will change in -20
+		And the month-category-accountOut value will change in 20
+		And the year-category-accountOut value will change in 20
 
-Scenario: Ca9A. Save with details with same description (S)
+Scenario: Ca37. Save with exactly length in Description of Detail
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9A   | 2012-03-31 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Move Ca9A   | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca98   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description                                        | Amount | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
 
-Scenario: Ca9B. Save with e-mail sender system out
+Scenario: Ca38. Save with exactly length in Description
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9B   | 2014-03-22 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description                                        | Date       | Nature | Value |
+			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 2012-03-31 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+
+Scenario: Ca39. Save with details with same description
+	Given I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca9A   | 2012-03-31 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Move Ca9A   | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+
+Scenario: Ca40. Save with e-mail sender system out
+	Given I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca9B   | 2014-03-22 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move with e-mail system out
 	Then I will receive no core error
-	And I will receive the notification
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
-	
-Scenario: Ca9C. Save with e-mail sender system ok
+		And I will receive the notification
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+
+Scenario: Ca41. Save with e-mail sender system ok
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9C   | 2014-03-22 | Out    | 10    |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca9C   | 2014-03-22 | Out    | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move with e-mail system ok
 	Then I will receive no core error
-	And I will receive no notification
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
-	
-Scenario: Ca9D. Save with e-mail sender system ok and without category
+		And I will receive no notification
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
+
+Scenario: Ca42. Save with e-mail sender system ok and without category
 	Given I disable Categories use
-	And I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9D   | 2014-03-23 | Out    | 10    |
-	And it has no Details
-	And it has no Category
-	And it has an Account Out
-	And it has no Account In
+		And I have this move to create
+			| Description | Date       | Nature | Value |
+			| Move Ca9D   | 2014-03-23 | Out    | 10    |
+		And it has no Details
+		And it has no Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move with e-mail system ok
 	Then I will receive no core error
-	And I will receive no notification
-	And the move will be saved
-	And the accountOut value will change in -10
-	And the month-category-accountOut value will change in 10
-	And the year-category-accountOut value will change in 10
+		And I will receive no notification
+		And the move will be saved
+		And the accountOut value will change in -10
+		And the month-category-accountOut value will change in 10
+		And the year-category-accountOut value will change in 10
 
-
-
-Scenario: Ca9E. Save with decimals
+Scenario: Ca43. Save with decimals
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9E   | 2014-12-30 | Out    | 9.45  |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca9E   | 2014-12-30 | Out    | 9.45  |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -9.45
-	And the month-category-accountOut value will change in 9.45
-	And the year-category-accountOut value will change in 9.45
+		And the move will be saved
+		And the accountOut value will change in -9.45
+		And the month-category-accountOut value will change in 9.45
+		And the year-category-accountOut value will change in 9.45
 
-Scenario: Ca9F. Save with decimals in details
+Scenario: Ca44. Save with decimals in details
 	Given I have this move to create
-		| Description | Date       | Nature | Value |
-		| Move Ca9F   | 2014-12-30 | Out    |       |
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail Ca9F | 1      | 9.45  |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
+			| Description | Date       | Nature | Value |
+			| Move Ca9F   | 2014-12-30 | Out    |       |
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail Ca9F | 1      | 9.45  |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
 	When I try to save the move
 	Then I will receive no core error
-	And the move will be saved
-	And the accountOut value will change in -9.45
-	And the month-category-accountOut value will change in 9.45
-	And the year-category-accountOut value will change in 9.45
+		And the move will be saved
+		And the accountOut value will change in -9.45
+		And the month-category-accountOut value will change in 9.45
+		And the year-category-accountOut value will change in 9.45

@@ -105,7 +105,7 @@ this.FeatureBackground();
                         "",
                         ""});
 #line 10
- testRunner.And("I have this account", ((string)(null)), table2, "And ");
+  testRunner.And("I have this account", ((string)(null)), table2, "And ");
 #line 13
  testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
@@ -127,7 +127,7 @@ this.FeatureBackground();
                         "",
                         ""});
 #line 15
- testRunner.And("the account list will have this", ((string)(null)), table3, "And ");
+  testRunner.And("the account list will have this", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -166,11 +166,11 @@ this.FeatureBackground();
                         "",
                         ""});
 #line 24
- testRunner.And("I have this account", ((string)(null)), table5, "And ");
+  testRunner.And("I have this account", ((string)(null)), table5, "And ");
 #line 27
- testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
- testRunner.And("I close the account account_al02_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I close the account account_al02_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
  testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
@@ -183,7 +183,7 @@ this.FeatureBackground();
                         "Account Al02.1",
                         "account_al02_1"});
 #line 31
- testRunner.And("the account list will have this", ((string)(null)), table6, "And ");
+  testRunner.And("the account list will have this", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
@@ -192,7 +192,7 @@ this.FeatureBackground();
                         "Account Al02.2",
                         "account_al02_2"});
 #line 34
- testRunner.And("the account list will not have this", ((string)(null)), table7, "And ");
+  testRunner.And("the account list will not have this", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -231,11 +231,11 @@ this.FeatureBackground();
                         "",
                         ""});
 #line 42
- testRunner.And("I have this account", ((string)(null)), table9, "And ");
+  testRunner.And("I have this account", ((string)(null)), table9, "And ");
 #line 45
- testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
- testRunner.And("I close the account account_al03_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I close the account account_al03_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 47
  testRunner.When("ask for the not active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 48
@@ -248,7 +248,7 @@ this.FeatureBackground();
                         "Account Al03.2",
                         "account_al03_2"});
 #line 49
- testRunner.And("the account list will have this", ((string)(null)), table10, "And ");
+  testRunner.And("the account list will have this", ((string)(null)), table10, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
@@ -257,7 +257,7 @@ this.FeatureBackground();
                         "Account Al03.1",
                         "account_al03_1"});
 #line 52
- testRunner.And("the account list will not have this", ((string)(null)), table11, "And ");
+  testRunner.And("the account list will not have this", ((string)(null)), table11, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

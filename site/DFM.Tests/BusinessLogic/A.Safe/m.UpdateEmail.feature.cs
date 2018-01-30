@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Am01. E-mail change with wrong current password (E)")]
-        public virtual void Am01_E_MailChangeWithWrongCurrentPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Am01. E-mail change with wrong current password")]
+        public virtual void Am01_E_MailChangeWithWrongCurrentPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am01. E-mail change with wrong current password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am01. E-mail change with wrong current password", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
  testRunner.Given("I have this user created and activated", ((string)(null)), table1, "Given ");
 #line 7
- testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "New E-mail",
@@ -89,24 +89,24 @@ this.ScenarioSetup(scenarioInfo);
                         "Am01_@dontflymoney.com",
                         "password_wrong"});
 #line 8
- testRunner.And("I pass this new e-mail and password", ((string)(null)), table2, "And ");
+  testRunner.And("I pass this new e-mail and password", ((string)(null)), table2, "And ");
 #line 11
  testRunner.When("I try to change the e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
  testRunner.Then("I will receive this core error: WrongPassword", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("the e-mail will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the e-mail will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Am02. E-mail change with empty new e-mail (E)")]
-        public virtual void Am02_E_MailChangeWithEmptyNewE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Am02. E-mail change with empty new e-mail")]
+        public virtual void Am02_E_MailChangeWithEmptyNewE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am02. E-mail change with empty new e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am02. E-mail change with empty new e-mail", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -119,7 +119,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.Given("I have this user created and activated", ((string)(null)), table3, "Given ");
 #line 20
- testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "New E-mail",
@@ -128,25 +128,25 @@ this.ScenarioSetup(scenarioInfo);
                         "",
                         "password"});
 #line 21
- testRunner.And("I pass this new e-mail and password", ((string)(null)), table4, "And ");
+  testRunner.And("I pass this new e-mail and password", ((string)(null)), table4, "And ");
 #line 24
  testRunner.When("I try to change the e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
  testRunner.Then("I will receive this core error: UserEmailInvalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.And("the e-mail will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the e-mail will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Am99. E-mail change with info all right (S)")]
-        public virtual void Am99_E_MailChangeWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Am03. E-mail change with info all right")]
+        public virtual void Am03_E_MailChangeWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am99. E-mail change with info all right (S)", ((string[])(null)));
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Am03. E-mail change with info all right", ((string[])(null)));
+#line 29
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -155,10 +155,10 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "Am99@dontflymoney.com",
                         "password"});
-#line 31
+#line 30
  testRunner.Given("I have this user created and activated", ((string)(null)), table5, "Given ");
-#line 34
- testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+  testRunner.And("I have a ticket of this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "New E-mail",
@@ -166,16 +166,16 @@ this.ScenarioSetup(scenarioInfo);
             table6.AddRow(new string[] {
                         "Am99_@dontflymoney.com",
                         "password"});
-#line 35
- testRunner.And("I pass this new e-mail and password", ((string)(null)), table6, "And ");
-#line 38
+#line 34
+  testRunner.And("I pass this new e-mail and password", ((string)(null)), table6, "And ");
+#line 37
  testRunner.When("I try to change the e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
+#line 38
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 39
+  testRunner.And("the e-mail will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
- testRunner.And("the e-mail will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

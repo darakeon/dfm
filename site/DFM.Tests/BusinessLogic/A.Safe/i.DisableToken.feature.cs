@@ -81,10 +81,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ai01. Disable invalid token (E)")]
-        public virtual void Ai01_DisableInvalidTokenE()
+        [NUnit.Framework.DescriptionAttribute("Ai01. Disable invalid token")]
+        public virtual void Ai01_DisableInvalidToken()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai01. Disable invalid token (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai01. Disable invalid token", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ai98. Disable UV with info all right (S)")]
-        public virtual void Ai98_DisableUVWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ai02. Disable UV with info all right")]
+        public virtual void Ai02_DisableUVWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai98. Disable UV with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai02. Disable UV with info all right", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -111,22 +111,22 @@ this.FeatureBackground();
 #line 14
  testRunner.Given("I have a token for its activation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("I pass a valid UserVerification token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a valid UserVerification token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.When("I try do disable the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
- testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ai99. Disable PR with info all right (S)")]
-        public virtual void Ai99_DisablePRWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ai03. Disable PR with info all right")]
+        public virtual void Ai03_DisablePRWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai99. Disable PR with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ai03. Disable PR with info all right", ((string[])(null)));
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -134,13 +134,13 @@ this.FeatureBackground();
 #line 21
  testRunner.Given("I have a token for its password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 22
- testRunner.And("I pass a valid PasswordReset token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I pass a valid PasswordReset token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
  testRunner.When("I try do disable the token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
- testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the token will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

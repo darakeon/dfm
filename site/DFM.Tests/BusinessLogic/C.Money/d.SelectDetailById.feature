@@ -2,19 +2,19 @@
 
 Background:
 	Given I have an active user who have accepted the contract
-	And I enable Categories use
-	And I have two accounts
-	And I have a category
-	And I have a move with details
+		And I enable Categories use
+		And I have two accounts
+		And I have a category
+		And I have a move with details
 
-Scenario: Cd01. Try to get Detail with wrong ID (E)
+Scenario: Cd01. Try to get Detail with wrong ID
 	Given I pass an id of Detail that doesn't exist
 	When I try to get the detail
 	Then I will receive this core error: InvalidDetail
-	And I will receive no detail
+		And I will receive no detail
 
-Scenario: Cd99. Get the Detail by ID (S)
+Scenario: Cd02. Get the Detail by ID
 	Given I pass valid Detail ID
 	When I try to get the detail
 	Then I will receive no core error
-	And I will receive the detail
+		And I will receive the detail

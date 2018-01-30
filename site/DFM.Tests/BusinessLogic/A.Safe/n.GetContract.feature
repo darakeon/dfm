@@ -1,5 +1,5 @@
 ﻿Feature: An. Get Contract
-	Background: 
+	Background:
 		Given I have a contract
 
 Scenario: An01. Get contract
