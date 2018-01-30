@@ -81,10 +81,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ac01. Send with email that doesn\'t exist (E)")]
-        public virtual void Ac01_SendWithEmailThatDoesntExistE()
+        [NUnit.Framework.DescriptionAttribute("Ac01. Send with email that doesn\'t exist")]
+        public virtual void Ac01_SendWithEmailThatDoesntExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac01. Send with email that doesn\'t exist (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac01. Send with email that doesn\'t exist", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -100,10 +100,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ac99. Send with info all right (S)")]
-        public virtual void Ac99_SendWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ac02. Send with info all right")]
+        public virtual void Ac02_SendWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac99. Send with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ac02. Send with info all right", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 3

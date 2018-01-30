@@ -2,26 +2,26 @@
 
 Background:
 	Given I have this user created
-		| Email                         | Password | Retype Password |
-		| activateuser@dontflymoney.com | password | password        |
-	And I have a token for its activation
+			| Email                         | Password | Retype Password |
+			| activateuser@dontflymoney.com | password | password        |
+		And I have a token for its activation
 
-Scenario: Ad01. Activate user with invalid token (E)
+Scenario: Ad01. Activate user with invalid token
 	Given I pass an invalid token
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
-	And the user will not be activated
+		And the user will not be activated
 
-Scenario: Ad02. Activate user with token of reset password (E)
+Scenario: Ad02. Activate user with token of reset password
 	Given I have a token for its password reset
-	And I pass a valid PasswordReset token
+		And I pass a valid PasswordReset token
 	When I try to activate the user
 	Then I will receive this core error: InvalidToken
-	And the user will not be activated
+		And the user will not be activated
 
-Scenario: Ad99. Activate user with info all right (S)
+Scenario: Ad03. Activate user with info all right
 	Given I pass a valid UserVerification token
 	When I try to activate the user
 	Then I will receive no core error
-	And the user will be activated
-	And the token will not be valid anymore
+		And the user will be activated
+		And the token will not be valid anymore

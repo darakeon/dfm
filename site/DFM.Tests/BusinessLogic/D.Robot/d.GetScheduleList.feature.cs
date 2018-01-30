@@ -69,11 +69,11 @@ namespace DFM.Tests.BusinessLogic.D_Robot
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
- testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -137,7 +137,7 @@ this.FeatureBackground();
                         "Monthly",
                         "False"});
 #line 18
- testRunner.And("I have this schedule to create", ((string)(null)), table2, "And ");
+  testRunner.And("I have this schedule to create", ((string)(null)), table2, "And ");
 #line 21
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
@@ -160,7 +160,7 @@ this.FeatureBackground();
             table3.AddRow(new string[] {
                         "Schedule Dd01.2"});
 #line 28
- testRunner.And("the schedule list will have this", ((string)(null)), table3, "And ");
+  testRunner.And("the schedule list will have this", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -225,7 +225,7 @@ this.FeatureBackground();
                         "Monthly",
                         "False"});
 #line 42
- testRunner.And("I have this schedule to create", ((string)(null)), table5, "And ");
+  testRunner.And("I have this schedule to create", ((string)(null)), table5, "And ");
 #line 45
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
@@ -237,7 +237,7 @@ this.FeatureBackground();
 #line 49
   testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 50
- testRunner.And("I disable the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I disable the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 51
  testRunner.When("ask for the schedule list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
@@ -248,14 +248,14 @@ this.FeatureBackground();
             table6.AddRow(new string[] {
                         "Schedule Dd02.1"});
 #line 53
- testRunner.And("the schedule list will have this", ((string)(null)), table6, "And ");
+  testRunner.And("the schedule list will have this", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table7.AddRow(new string[] {
                         "Schedule Dd02.2"});
 #line 56
- testRunner.And("the schedule list will not have this", ((string)(null)), table7, "And ");
+  testRunner.And("the schedule list will not have this", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

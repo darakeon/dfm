@@ -69,15 +69,15 @@ namespace DFM.Tests.BusinessLogic.B_Admin
 #line 4
  testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bh01. Change the name (S)")]
-        public virtual void Bh01_ChangeTheNameS()
+        [NUnit.Framework.DescriptionAttribute("Bh01. Change the name")]
+        public virtual void Bh01_ChangeTheName()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh01. Change the name (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh01. Change the name", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -95,22 +95,22 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "Ca01 - new name"});
 #line 11
- testRunner.And("I make this changes to the category", ((string)(null)), table2, "And ");
+  testRunner.And("I make this changes to the category", ((string)(null)), table2, "And ");
 #line 14
  testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
- testRunner.And("the category will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the category will be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bh02. Change the name to repeated (E)")]
-        public virtual void Bh02_ChangeTheNameToRepeatedE()
+        [NUnit.Framework.DescriptionAttribute("Bh02. Change the name to repeated")]
+        public virtual void Bh02_ChangeTheNameToRepeated()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh02. Change the name to repeated (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh02. Change the name to repeated", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -128,29 +128,29 @@ this.FeatureBackground();
             table4.AddRow(new string[] {
                         "Category Ha02.2"});
 #line 22
- testRunner.And("I have this category", ((string)(null)), table4, "And ");
+  testRunner.And("I have this category", ((string)(null)), table4, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table5.AddRow(new string[] {
                         "Category Ha02.1"});
 #line 25
- testRunner.And("I make this changes to the category", ((string)(null)), table5, "And ");
+  testRunner.And("I make this changes to the category", ((string)(null)), table5, "And ");
 #line 28
  testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
  testRunner.Then("I will receive this core error: CategoryAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
- testRunner.And("the category will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the category will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bh03. Change the name to empty (E)")]
-        public virtual void Bh03_ChangeTheNameToEmptyE()
+        [NUnit.Framework.DescriptionAttribute("Bh03. Change the name to empty")]
+        public virtual void Bh03_ChangeTheNameToEmpty()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh03. Change the name to empty (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh03. Change the name to empty", ((string[])(null)));
 #line 32
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -168,13 +168,13 @@ this.FeatureBackground();
             table7.AddRow(new string[] {
                         ""});
 #line 36
- testRunner.And("I make this changes to the category", ((string)(null)), table7, "And ");
+  testRunner.And("I make this changes to the category", ((string)(null)), table7, "And ");
 #line 39
  testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
  testRunner.Then("I will receive this core error: CategoryNameRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 41
- testRunner.And("the category will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the category will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

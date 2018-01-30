@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As001. With wrong password")]
-        public virtual void As001_WithWrongPassword()
+        [NUnit.Framework.DescriptionAttribute("As01. With wrong password")]
+        public virtual void As01_WithWrongPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As001. With wrong password", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As01. With wrong password", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -119,10 +119,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As002. With all info right")]
-        public virtual void As002_WithAllInfoRight()
+        [NUnit.Framework.DescriptionAttribute("As02. With all info right")]
+        public virtual void As02_WithAllInfoRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As002. With all info right", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As02. With all info right", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line hidden

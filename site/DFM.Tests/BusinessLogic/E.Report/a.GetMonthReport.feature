@@ -2,79 +2,77 @@
 
 Background:
 	Given I have an active user who have accepted the contract
-	And I enable Categories use
-	And I have an account
-	And I have moves of
-		| Date       |
-		| 2012-03-27 |
-		| 2012-03-28 |
-		| 2012-03-29 |
-		| 2012-03-30 |
-		| 2012-03-31 |
-		| 2012-04-01 |
-		| 2012-04-02 |
-		| 2012-04-03 |
-		| 2012-04-04 |
-		| 2012-04-05 |
-		| 2012-04-06 |
+		And I enable Categories use
+		And I have an account
+		And I have moves of
+			| Date       |
+			| 2012-03-27 |
+			| 2012-03-28 |
+			| 2012-03-29 |
+			| 2012-03-30 |
+			| 2012-03-31 |
+			| 2012-04-01 |
+			| 2012-04-02 |
+			| 2012-04-03 |
+			| 2012-04-04 |
+			| 2012-04-05 |
+			| 2012-04-06 |
 
-Scenario: Ea01. Get with invalid Account name (E)
+Scenario: Ea01. Get with invalid Account name
 	Given I pass an invalid account url
-	And I pass this date
-		| Month | Year |
-		| 4     | 2012 |
+		And I pass this date
+			| Month | Year |
+			| 4     | 2012 |
 	When I try to get the month report
 	Then I will receive this core error: InvalidAccount
-	And I will receive no month report
+		And I will receive no month report
 
-Scenario: Ea02. Get with Date Year Zero (E)
+Scenario: Ea02. Get with Date Year Zero
 	Given I pass a valid account url
-	And I pass this date
-		| Month | Year |
-		| 4     | 0    |
+		And I pass this date
+			| Month | Year |
+			| 4     | 0    |
 	When I try to get the month report
 	Then I will receive this core error: InvalidYear
-	And I will receive no month report
+		And I will receive no month report
 
-Scenario: Ea03. Get with Date Month less than 1 (E)
+Scenario: Ea03. Get with Date Month less than 1
 	Given I pass a valid account url
-	And I pass this date
-		| Month | Year |
-		| 0     | 2012 |
+		And I pass this date
+			| Month | Year |
+			| 0     | 2012 |
 	When I try to get the month report
 	Then I will receive this core error: InvalidMonth
-	And I will receive no month report
+		And I will receive no month report
 
-Scenario: Ea04. Get with Date Month more than 12 (E)
+Scenario: Ea04. Get with Date Month more than 12
 	Given I pass a valid account url
-	And I pass this date
-		| Month | Year |
-		| 13    | 2012 |
+		And I pass this date
+			| Month | Year |
+			| 13    | 2012 |
 	When I try to get the month report
 	Then I will receive this core error: InvalidMonth
-	And I will receive no month report
+		And I will receive no month report
 
-
-
-Scenario: Ea98. Get with next year date (S)
+Scenario: Ea05. Get with next year date
 	Given I have moves of
-		| Date       |
-		| +0         |
-	And I pass a valid account url
-	And I pass this date
-		| Month | Year |
-		| +0    | +1   |
+			| Date       |
+			| +0         |
+		And I pass a valid account url
+		And I pass this date
+			| Month | Year |
+			| +0    | +1   |
 	When I try to get the month report
 	Then I will receive no core error
-	And I will receive the month report
-	And there will be no moves
+		And I will receive the month report
+		And there will be no moves
 
-Scenario: Ea99. Get with info all right (S)
+Scenario: Ea06. Get with info all right
 	Given I pass a valid account url
-	And I pass this date
-		| Month | Year |
-		| 4     | 2012 |
+		And I pass this date
+			| Month | Year |
+			| 4     | 2012 |
 	When I try to get the month report
 	Then I will receive no core error
-	And I will receive the month report
-	And its sum value will be equal to its moves sum value
+		And I will receive the month report
+		And its sum value will be equal to its moves sum value

@@ -2,171 +2,166 @@
 
 Background:
 	Given I have an active user who have accepted the contract
-	And I enable Categories use
-	And I have two accounts
-	And I have a category
-	And I run the scheduler to cleanup older tests
+		And I enable Categories use
+		And I have two accounts
+		And I have a category
+		And I run the scheduler to cleanup older tests
 
-Scenario: Db01. Run with unlogged user (E)
+Scenario: Db01. Run with unlogged user
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
 	Then I will receive this core error: Unauthorized
 
-
-Scenario: Db91. Run with bounded schedule (S)
+Scenario: Db02. Run with bounded schedule
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db91   | 2012-03-31 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -10
+		And the accountOut value will change in -10
 
-Scenario: Db92. Run with boundless schedule (S)
+Scenario: Db03. Run with boundless schedule
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db92   |      | Out    | 10    |       | True      | Monthly   | False           |
-	And its Date is 3 months ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db92   |      | Out    | 10    |       | True      | Monthly   | False           |
+		And its Date is 3 months ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -40
+		And the accountOut value will change in -40
 
-Scenario: Db93. Run schedule that will finish (S)
+Scenario: Db04. Run schedule that will finish
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db93   |      | Out    | 10    | 3     | False     | Daily     | False           |
-	And its Date is 5 days ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db93   |      | Out    | 10    | 3     | False     | Daily     | False           |
+		And its Date is 5 days ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -30
+		And the accountOut value will change in -30
 
-Scenario: Db94. Run schedule that wont finish (S)
+Scenario: Db05. Run schedule that wont finish
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
-	And its Date is 5 days ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db94   |      | Out    | 10    | 7     | False     | Daily     | False           |
+		And its Date is 5 days ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -60
+		And the accountOut value will change in -60
 
-Scenario: Db95. Run with daily schedule (S)
+Scenario: Db06. Run with daily schedule
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db95   |      | Out    | 10    | 10    | False     | Daily     | False           |
-	And its Date is 20 days ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db95   |      | Out    | 10    | 10    | False     | Daily     | False           |
+		And its Date is 20 days ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -100
+		And the accountOut value will change in -100
 
-Scenario: Db96. Run with monthly schedule (S)
+Scenario: Db07. Run with monthly schedule
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db96   |      | Out    | 10    | 6     | False     | Monthly   | False           |
-	And its Date is 7 months ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db96   |      | Out    | 10    | 6     | False     | Monthly   | False           |
+		And its Date is 7 months ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -60
+		And the accountOut value will change in -60
 
-Scenario: Db97. Run with yearly schedule (S)
+Scenario: Db08. Run with yearly schedule
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db97   |      | Out    | 10    | 2     | False     | Monthly   | False           |
-	And its Date is 2 years ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db97   |      | Out    | 10    | 2     | False     | Monthly   | False           |
+		And its Date is 2 years ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -20
+		And the accountOut value will change in -20
 
-Scenario: Db98. Run with details in schedule (S)
+Scenario: Db09. Run with details in schedule
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db98   |      | Out    |       | 5     | False     | Daily     | False           |
-	And its Date is 10 days ago
-	And the move has this details
-		| Description | Amount | Value |
-		| Detail 1    | 1      | 10    |
-		| Detail 2    | 1      | 10    |
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db98   |      | Out    |       | 5     | False     | Daily     | False           |
+		And its Date is 10 days ago
+		And the move has this details
+			| Description | Amount | Value |
+			| Detail 1    | 1      | 10    |
+			| Detail 2    | 1      | 10    |
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -100
+		And the accountOut value will change in -100
 
-
-
-Scenario: Db99. Run with e-mail system out (S)
+Scenario: Db10. Run with e-mail system out
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db99   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db99   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler with e-mail system out
 	Then I will receive no core error
-	And the accountOut value will change in -10
+		And the accountOut value will change in -10
 
-Scenario: Db9A. Run with e-mail system ok (S)
+Scenario: Db11. Run with e-mail system ok
 	Given I have this schedule to create
-		| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db9A   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db9A   | 2014-03-22 | Out    | 10    | 1     | False     | Monthly   | False           |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler with e-mail system ok
 	Then I will receive no core error
-	And the accountOut value will change in -10
+		And the accountOut value will change in -10
 
-
-
-Scenario: Db9B. Run with schedule start in past and end in future (S)
+Scenario: Db12. Run with schedule start in past and end in future
 	Given I have this schedule to create
-		| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
-		| Move Db9B   |      | Out    | 10    | 5     | False     | Monthly   | False           |
-	And its Date is 2 months ago
-	And it has no Details
-	And it has a Category
-	And it has an Account Out
-	And it has no Account In
-	And I save the schedule
+			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
+			| Move Db9B   |      | Out    | 10    | 5     | False     | Monthly   | False           |
+		And its Date is 2 months ago
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has no Account In
+		And I save the schedule
 	When I try to run the scheduler
 	Then I will receive no core error
-	And the accountOut value will change in -30
+		And the accountOut value will change in -30

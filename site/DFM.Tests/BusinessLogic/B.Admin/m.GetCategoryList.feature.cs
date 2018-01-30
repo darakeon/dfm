@@ -93,7 +93,7 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "Category Bm01.2"});
 #line 10
- testRunner.And("I have this category", ((string)(null)), table2, "And ");
+  testRunner.And("I have this category", ((string)(null)), table2, "And ");
 #line 13
  testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
@@ -106,7 +106,7 @@ this.FeatureBackground();
             table3.AddRow(new string[] {
                         "Category Bm01.2"});
 #line 15
- testRunner.And("the category list will have this", ((string)(null)), table3, "And ");
+  testRunner.And("the category list will have this", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -133,9 +133,9 @@ this.FeatureBackground();
             table5.AddRow(new string[] {
                         "Category Bm02.2"});
 #line 24
- testRunner.And("I have this category", ((string)(null)), table5, "And ");
+  testRunner.And("I have this category", ((string)(null)), table5, "And ");
 #line 27
- testRunner.And("I disable the category Category Bm02.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I disable the category Category Bm02.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
  testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
@@ -146,14 +146,14 @@ this.FeatureBackground();
             table6.AddRow(new string[] {
                         "Category Bm02.1"});
 #line 30
- testRunner.And("the category list will have this", ((string)(null)), table6, "And ");
+  testRunner.And("the category list will have this", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table7.AddRow(new string[] {
                         "Category Bm02.2"});
 #line 33
- testRunner.And("the category list will not have this", ((string)(null)), table7, "And ");
+  testRunner.And("the category list will not have this", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -180,9 +180,9 @@ this.FeatureBackground();
             table9.AddRow(new string[] {
                         "Category Bm03.2"});
 #line 41
- testRunner.And("I have this category", ((string)(null)), table9, "And ");
+  testRunner.And("I have this category", ((string)(null)), table9, "And ");
 #line 44
- testRunner.And("I disable the category Category Bm03.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I disable the category Category Bm03.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
  testRunner.When("ask for the not active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 46
@@ -193,14 +193,14 @@ this.FeatureBackground();
             table10.AddRow(new string[] {
                         "Category Bm03.2"});
 #line 47
- testRunner.And("the category list will have this", ((string)(null)), table10, "And ");
+  testRunner.And("the category list will have this", ((string)(null)), table10, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table11.AddRow(new string[] {
                         "Category Bm03.1"});
 #line 50
- testRunner.And("the category list will not have this", ((string)(null)), table11, "And ");
+  testRunner.And("the category list will not have this", ((string)(null)), table11, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -227,9 +227,9 @@ this.FeatureBackground();
             table13.AddRow(new string[] {
                         "Category Bm04.2"});
 #line 58
- testRunner.And("I have this category", ((string)(null)), table13, "And ");
+  testRunner.And("I have this category", ((string)(null)), table13, "And ");
 #line 61
- testRunner.And("I disable the category Category Bm04.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I disable the category Category Bm04.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 62
  testRunner.When("ask for all the category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 63
@@ -242,7 +242,7 @@ this.FeatureBackground();
             table14.AddRow(new string[] {
                         "Category Bm04.1"});
 #line 64
- testRunner.And("the category list will have this", ((string)(null)), table14, "And ");
+  testRunner.And("the category list will have this", ((string)(null)), table14, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

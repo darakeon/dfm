@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa01. Save user without e-mail (E)")]
-        public virtual void Aa01_SaveUserWithoutE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa01. Save user without e-mail")]
+        public virtual void Aa01_SaveUserWithoutE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa01. Save user without e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa01. Save user without e-mail", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -86,16 +86,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Then("I will receive this core error: UserEmailInvalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa02. Save user without password (E)")]
-        public virtual void Aa02_SaveUserWithoutPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Aa02. Save user without password")]
+        public virtual void Aa02_SaveUserWithoutPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa02. Save user without password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa02. Save user without password", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -114,16 +114,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.Then("I will receive this core error: UserPasswordRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
- testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa03. Save user with invalid e-mail (E)")]
-        public virtual void Aa03_SaveUserWithInvalidE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa03. Save user with invalid e-mail")]
+        public virtual void Aa03_SaveUserWithInvalidE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa03. Save user with invalid e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa03. Save user with invalid e-mail", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -142,16 +142,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
  testRunner.Then("I will receive this core error: UserEmailInvalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
- testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa04. Save user with repeated e-mail (E)")]
-        public virtual void Aa04_SaveUserWithRepeatedE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa04. Save user with repeated e-mail")]
+        public virtual void Aa04_SaveUserWithRepeatedE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa04. Save user with repeated e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa04. Save user with repeated e-mail", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -166,22 +166,22 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.Given("I have this user data", ((string)(null)), table4, "Given ");
 #line 31
- testRunner.And("I already have created this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I already have created this user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
  testRunner.When("I try to save the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
  testRunner.Then("I will receive this core error: UserAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
- testRunner.And("the user will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa05. Save user too large e-mail (E)")]
-        public virtual void Aa05_SaveUserTooLargeE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Aa05. Save user too large e-mail")]
+        public virtual void Aa05_SaveUserTooLargeE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa05. Save user too large e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa05. Save user too large e-mail", ((string[])(null)));
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -200,16 +200,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
  testRunner.Then("I will receive this core error: TooLargeData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 42
- testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa06. Save user wrong retype (E)")]
-        public virtual void Aa06_SaveUserWrongRetypeE()
+        [NUnit.Framework.DescriptionAttribute("Aa06. Save user wrong retype")]
+        public virtual void Aa06_SaveUserWrongRetype()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa06. Save user wrong retype (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa06. Save user wrong retype", ((string[])(null)));
 #line 44
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -228,17 +228,17 @@ this.ScenarioSetup(scenarioInfo);
 #line 49
  testRunner.Then("I will receive this core error: RetypeWrong", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 50
- testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa98. Save user with exactly length e-mail (S)")]
-        public virtual void Aa98_SaveUserWithExactlyLengthE_MailS()
+        [NUnit.Framework.DescriptionAttribute("Aa07. Save user with exactly length e-mail")]
+        public virtual void Aa07_SaveUserWithExactlyLengthE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa98. Save user with exactly length e-mail (S)", ((string[])(null)));
-#line 53
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa07. Save user with exactly length e-mail", ((string[])(null)));
+#line 52
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -249,24 +249,24 @@ this.ScenarioSetup(scenarioInfo);
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg@dontflymoney.com",
                         "password",
                         "password"});
-#line 54
+#line 53
  testRunner.Given("I have this user data", ((string)(null)), table7, "Given ");
-#line 57
+#line 56
  testRunner.When("I try to save the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
+#line 57
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 59
- testRunner.And("the user will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+  testRunner.And("the user will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aa99. Save user with info all right (S)")]
-        public virtual void Aa99_SaveUserWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Aa08. Save user with info all right")]
+        public virtual void Aa08_SaveUserWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa99. Save user with info all right (S)", ((string[])(null)));
-#line 61
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aa08. Save user with info all right", ((string[])(null)));
+#line 60
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -277,14 +277,14 @@ this.ScenarioSetup(scenarioInfo);
                         "saveuser@dontflymoney.com",
                         "password",
                         "password"});
-#line 62
+#line 61
  testRunner.Given("I have this user data", ((string)(null)), table8, "Given ");
-#line 65
+#line 64
  testRunner.When("I try to save the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 66
+#line 65
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 67
- testRunner.And("the user will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+  testRunner.And("the user will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

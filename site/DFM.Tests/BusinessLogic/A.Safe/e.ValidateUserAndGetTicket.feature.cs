@@ -70,10 +70,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae01. Validate without e-mail (E)")]
-        public virtual void Ae01_ValidateWithoutE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Ae01. Validate without e-mail")]
+        public virtual void Ae01_ValidateWithoutE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae01. Validate without e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae01. Validate without e-mail", ((string[])(null)));
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -97,22 +97,22 @@ this.FeatureBackground();
                         "",
                         "password"});
 #line 9
- testRunner.And("I have this user data", ((string)(null)), table2, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table2, "And ");
 #line 12
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.Then("I will receive this core error: InvalidUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae02. Validate without password (E)")]
-        public virtual void Ae02_ValidateWithoutPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ae02. Validate without password")]
+        public virtual void Ae02_ValidateWithoutPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae02. Validate without password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae02. Validate without password", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -136,22 +136,22 @@ this.FeatureBackground();
                         "Ae02@dontflymoney.com",
                         ""});
 #line 20
- testRunner.And("I have this user data", ((string)(null)), table4, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table4, "And ");
 #line 23
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
  testRunner.Then("I will receive this core error: InvalidUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae03. Validate with wrong e-mail (E)")]
-        public virtual void Ae03_ValidateWithWrongE_MailE()
+        [NUnit.Framework.DescriptionAttribute("Ae03. Validate with wrong e-mail")]
+        public virtual void Ae03_ValidateWithWrongE_Mail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae03. Validate with wrong e-mail (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae03. Validate with wrong e-mail", ((string[])(null)));
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -170,16 +170,16 @@ this.FeatureBackground();
 #line 32
  testRunner.Then("I will receive this core error: InvalidUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae04. Validate with wrong password (E)")]
-        public virtual void Ae04_ValidateWithWrongPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ae04. Validate with wrong password")]
+        public virtual void Ae04_ValidateWithWrongPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae04. Validate with wrong password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae04. Validate with wrong password", ((string[])(null)));
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -203,22 +203,22 @@ this.FeatureBackground();
                         "Ae04@dontflymoney.com",
                         "password_wrong"});
 #line 39
- testRunner.And("I have this user data", ((string)(null)), table7, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table7, "And ");
 #line 42
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
  testRunner.Then("I will receive this core error: InvalidUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 44
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae05. Validate user disabled (E)")]
-        public virtual void Ae05_ValidateUserDisabledE()
+        [NUnit.Framework.DescriptionAttribute("Ae05. Validate user disabled")]
+        public virtual void Ae05_ValidateUserDisabled()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae05. Validate user disabled (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae05. Validate user disabled", ((string[])(null)));
 #line 46
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -242,22 +242,22 @@ this.FeatureBackground();
                         "Ae05@dontflymoney.com",
                         "password"});
 #line 50
- testRunner.And("I have this user data", ((string)(null)), table9, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table9, "And ");
 #line 53
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 54
  testRunner.Then("I will receive this core error: DisabledUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 55
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae06. Disable user by excessive trying (E)")]
-        public virtual void Ae06_DisableUserByExcessiveTryingE()
+        [NUnit.Framework.DescriptionAttribute("Ae06. Disable user by excessive trying")]
+        public virtual void Ae06_DisableUserByExcessiveTrying()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae06. Disable user by excessive trying (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae06. Disable user by excessive trying", ((string[])(null)));
 #line 57
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -281,22 +281,22 @@ this.FeatureBackground();
                         "Ae06@dontflymoney.com",
                         "password_wrong"});
 #line 61
- testRunner.And("I have this user data", ((string)(null)), table11, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table11, "And ");
 #line 64
  testRunner.When("I try to get the ticket 5 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 65
  testRunner.Then("I will receive this core error: DisabledUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 66
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae07. Validate disabled with wrong password (E)")]
-        public virtual void Ae07_ValidateDisabledWithWrongPasswordE()
+        [NUnit.Framework.DescriptionAttribute("Ae07. Validate disabled with wrong password")]
+        public virtual void Ae07_ValidateDisabledWithWrongPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae07. Validate disabled with wrong password (E)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae07. Validate disabled with wrong password", ((string[])(null)));
 #line 68
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -320,22 +320,22 @@ this.FeatureBackground();
                         "",
                         "wrong_password"});
 #line 72
- testRunner.And("I have this user data", ((string)(null)), table13, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table13, "And ");
 #line 75
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 76
  testRunner.Then("I will receive this core error: InvalidUser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 77
- testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive no ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae90. Validate with info all right (S)")]
-        public virtual void Ae90_ValidateWithInfoAllRightS()
+        [NUnit.Framework.DescriptionAttribute("Ae08. Validate with info all right")]
+        public virtual void Ae08_ValidateWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae90. Validate with info all right (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae08. Validate with info all right", ((string[])(null)));
 #line 79
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -359,24 +359,24 @@ this.FeatureBackground();
                         "Ae90@dontflymoney.com",
                         "password"});
 #line 83
- testRunner.And("I have this user data", ((string)(null)), table15, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table15, "And ");
 #line 86
- testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 87
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 88
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 89
- testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae91. Enable user let login again (S)")]
-        public virtual void Ae91_EnableUserLetLoginAgainS()
+        [NUnit.Framework.DescriptionAttribute("Ae09. Enable user let login again")]
+        public virtual void Ae09_EnableUserLetLoginAgain()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae91. Enable user let login again (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae09. Enable user let login again", ((string[])(null)));
 #line 91
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -400,9 +400,9 @@ this.FeatureBackground();
                         "Ae91@dontflymoney.com",
                         "password_wrong"});
 #line 95
- testRunner.And("I have this user data", ((string)(null)), table17, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table17, "And ");
 #line 98
- testRunner.And("I tried to get the ticket 5 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I tried to get the ticket 5 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
@@ -411,24 +411,24 @@ this.FeatureBackground();
                         "Ae91@dontflymoney.com",
                         "password"});
 #line 99
- testRunner.And("I have this user data", ((string)(null)), table18, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table18, "And ");
 #line 102
- testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 103
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 104
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 105
- testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ae92. Enable user resets the password trial times (S)")]
-        public virtual void Ae92_EnableUserResetsThePasswordTrialTimesS()
+        [NUnit.Framework.DescriptionAttribute("Ae10. Enable user resets the password trial times")]
+        public virtual void Ae10_EnableUserResetsThePasswordTrialTimes()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae92. Enable user resets the password trial times (S)", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ae10. Enable user resets the password trial times", ((string[])(null)));
 #line 107
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -452,9 +452,9 @@ this.FeatureBackground();
                         "Ae92@dontflymoney.com",
                         "password_wrong"});
 #line 111
- testRunner.And("I have this user data", ((string)(null)), table20, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table20, "And ");
 #line 114
- testRunner.And("I tried to get the ticket 5 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I tried to get the ticket 5 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
@@ -463,9 +463,9 @@ this.FeatureBackground();
                         "Ae92@dontflymoney.com",
                         "password"});
 #line 115
- testRunner.And("I have this user data", ((string)(null)), table21, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table21, "And ");
 #line 118
- testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I activate the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
@@ -474,9 +474,9 @@ this.FeatureBackground();
                         "Ae92@dontflymoney.com",
                         "password_wrong"});
 #line 119
- testRunner.And("I have this user data", ((string)(null)), table22, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table22, "And ");
 #line 122
- testRunner.And("I tried to get the ticket 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I tried to get the ticket 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                         "Email",
@@ -485,13 +485,13 @@ this.FeatureBackground();
                         "Ae92@dontflymoney.com",
                         "password"});
 #line 123
- testRunner.And("I have this user data", ((string)(null)), table23, "And ");
+  testRunner.And("I have this user data", ((string)(null)), table23, "And ");
 #line 126
  testRunner.When("I try to get the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 127
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 128
- testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I will receive the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

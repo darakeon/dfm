@@ -1,6 +1,6 @@
 ﻿Feature: As. Remove Two factor Authentication
 
-Scenario: As001. With wrong password
+Scenario: As01. With wrong password
 	Given I have this user created and activated
 			| Email                  | Password |
 			| As001@dontflymoney.com | password |
@@ -18,7 +18,7 @@ Scenario: As001. With wrong password
 	Then I will receive this core error: TFAWrongPassword
 		And the two-factor will be [123]
 
-Scenario: As002. With all info right
+Scenario: As02. With all info right
 	Given I have this user created and activated
 			| Email                  | Password |
 			| As002@dontflymoney.com | password |

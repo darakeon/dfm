@@ -1,4 +1,4 @@
-﻿Feature: Cg. Uncheck Move 
+﻿Feature: Cg. Uncheck Move
 
 Background:
 	Given I have an active user who have accepted the contract

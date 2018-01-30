@@ -1,25 +1,25 @@
 ﻿Feature: Ap. Is last Contract accepted
-	Background: 
+	Background:
 		Given I have a contract
 
 Scenario: Ap01. Get accepted contract
 	Given I have an active user who have accepted the contract
-	And I have accepted the contract
+		And I have accepted the contract
 	When I try to get the acceptance
 	Then I will receive no core error
-	And the contract status will be accepted
+		And the contract status will be accepted
 
 Scenario: Ap02. Get not accepted contract
 	Given I have an active user who have accepted the contract
-	And there is a new contract
+		And there is a new contract
 	When I try to get the acceptance
 	Then I will receive no core error
-	And the contract status will be not accepted
+		And the contract status will be not accepted
 
 Scenario: Ap03. Get accepted if previous is not accepted
 	Given there is a new contract
 	Given I have an active user
-	And I have accepted the contract
+		And I have accepted the contract
 	When I try to get the acceptance
 	Then I will receive no core error
-	And the contract status will be accepted
+		And the contract status will be accepted

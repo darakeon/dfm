@@ -64,10 +64,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ar001. With empty secret key")]
-        public virtual void Ar001_WithEmptySecretKey()
+        [NUnit.Framework.DescriptionAttribute("Ar01. With empty secret key")]
+        public virtual void Ar01_WithEmptySecretKey()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar001. With empty secret key", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar01. With empty secret key", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -110,10 +110,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ar002. With wrong code")]
-        public virtual void Ar002_WithWrongCode()
+        [NUnit.Framework.DescriptionAttribute("Ar02. With wrong code")]
+        public virtual void Ar02_WithWrongCode()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar002. With wrong code", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar02. With wrong code", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -156,10 +156,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ar003. With wrong password")]
-        public virtual void Ar003_WithWrongPassword()
+        [NUnit.Framework.DescriptionAttribute("Ar03. With wrong password")]
+        public virtual void Ar03_WithWrongPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar003. With wrong password", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar03. With wrong password", ((string[])(null)));
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -202,10 +202,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ar004. With all info right")]
-        public virtual void Ar004_WithAllInfoRight()
+        [NUnit.Framework.DescriptionAttribute("Ar04. With all info right")]
+        public virtual void Ar04_WithAllInfoRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar004. With all info right", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar04. With all info right", ((string[])(null)));
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -248,10 +248,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Ar005. Update two-factor")]
-        public virtual void Ar005_UpdateTwo_Factor()
+        [NUnit.Framework.DescriptionAttribute("Ar05. Update two-factor")]
+        public virtual void Ar05_UpdateTwo_Factor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar005. Update two-factor", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ar05. Update two-factor", ((string[])(null)));
 #line 59
 this.ScenarioSetup(scenarioInfo);
 #line hidden
