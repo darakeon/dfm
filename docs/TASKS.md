@@ -124,7 +124,8 @@ Legend:
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`3`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`4`</sup>
+- [ ] Remove findViewById
 - [ ] `2018-01-27 > (...)` Implement 2FA
 - [x] `2018-01-19 > 2018-01-22` Create option of starting with wizard at sign up
 - [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled
