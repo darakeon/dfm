@@ -44,7 +44,9 @@ Legend:
 - [ ] Report with values: select to see sum
 - [ ] Send e-mail if account is above yellow and red (add config to allow)
 
-## 5.3.0.0 :whale: <sup>`2`</sup>
+## 5.3.0.0 :whale: <sup>`4`</sup>
+- [ ] Delete not accessed accounts
+- [ ] Last login date
 - [ ] Data export
 - [ ] Data import
 
