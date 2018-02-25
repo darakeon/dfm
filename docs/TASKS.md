@@ -129,7 +129,7 @@ Legend:
 - [ ] Make slide menu, not bottom anymore
 
 ## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
-- [ ] Update Volley
+- [x] `2018-02-25 > 2018-02-25` Update Volley
 - [ ] Remove findViewById
 - [ ] `2018-01-27 > (...)` Implement 2FA
 - [x] `2018-01-19 > 2018-01-22` Create option of starting with wizard at sign up
