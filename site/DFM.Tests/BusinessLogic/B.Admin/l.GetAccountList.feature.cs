@@ -67,7 +67,9 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 5
+  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -76,7 +78,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Bl01_GetAllActiveAccounts()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl01. Get all active accounts", ((string[])(null)));
-#line 6
+#line 7
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -91,7 +93,7 @@ this.FeatureBackground();
                         "account_al01_1",
                         "",
                         ""});
-#line 7
+#line 8
  testRunner.Given("I have this account", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -104,11 +106,11 @@ this.FeatureBackground();
                         "account_al01_2",
                         "",
                         ""});
-#line 10
+#line 11
   testRunner.And("I have this account", ((string)(null)), table2, "And ");
-#line 13
- testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
+ testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -126,7 +128,7 @@ this.FeatureBackground();
                         "account_al01_2",
                         "",
                         ""});
-#line 15
+#line 16
   testRunner.And("the account list will have this", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -137,7 +139,7 @@ this.FeatureBackground();
         public virtual void Bl02_GetAllActiveAccountsAfterCloseOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl02. Get all active accounts after close one", ((string[])(null)));
-#line 20
+#line 21
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -152,7 +154,7 @@ this.FeatureBackground();
                         "account_al02_1",
                         "",
                         ""});
-#line 21
+#line 22
  testRunner.Given("I have this account", ((string)(null)), table4, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -165,15 +167,15 @@ this.FeatureBackground();
                         "account_al02_2",
                         "",
                         ""});
-#line 24
+#line 25
   testRunner.And("I have this account", ((string)(null)), table5, "And ");
-#line 27
-  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-  testRunner.And("I close the account account_al02_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
- testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I close the account account_al02_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
+ testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -182,7 +184,7 @@ this.FeatureBackground();
             table6.AddRow(new string[] {
                         "Account Al02.1",
                         "account_al02_1"});
-#line 31
+#line 32
   testRunner.And("the account list will have this", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -191,7 +193,7 @@ this.FeatureBackground();
             table7.AddRow(new string[] {
                         "Account Al02.2",
                         "account_al02_2"});
-#line 34
+#line 35
   testRunner.And("the account list will not have this", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -202,7 +204,7 @@ this.FeatureBackground();
         public virtual void Bl03_GetAllNotActiveAccountsAfterCloseOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bl03. Get all not active accounts after close one", ((string[])(null)));
-#line 38
+#line 39
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -217,7 +219,7 @@ this.FeatureBackground();
                         "account_al03_1",
                         "",
                         ""});
-#line 39
+#line 40
  testRunner.Given("I have this account", ((string)(null)), table8, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -230,15 +232,15 @@ this.FeatureBackground();
                         "account_al03_2",
                         "",
                         ""});
-#line 42
+#line 43
   testRunner.And("I have this account", ((string)(null)), table9, "And ");
-#line 45
-  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
-  testRunner.And("I close the account account_al03_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("this account has moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 47
- testRunner.When("ask for the not active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I close the account account_al03_2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 48
+ testRunner.When("ask for the not active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 49
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -247,7 +249,7 @@ this.FeatureBackground();
             table10.AddRow(new string[] {
                         "Account Al03.2",
                         "account_al03_2"});
-#line 49
+#line 50
   testRunner.And("the account list will have this", ((string)(null)), table10, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -256,7 +258,7 @@ this.FeatureBackground();
             table11.AddRow(new string[] {
                         "Account Al03.1",
                         "account_al03_1"});
-#line 52
+#line 53
   testRunner.And("the account list will not have this", ((string)(null)), table11, "And ");
 #line hidden
             this.ScenarioCleanup();

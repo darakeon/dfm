@@ -1,11 +1,13 @@
 ﻿Feature: Aq. Operations with not signed Contract
 
 Background:
-	Given I have an active user who have accepted the contract
+	Given I have an active user
+		And the user have accepted the contract
 		And I enable Categories use
 
 Scenario: Aq01. List Logins
-	Given I have an active user who have accepted the contract
+	Given I have an active user
+		And the user have accepted the contract
 		And I login the user
 		And I logoff the user
 		And I login the user

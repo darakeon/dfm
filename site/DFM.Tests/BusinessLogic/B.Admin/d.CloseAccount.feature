@@ -1,7 +1,8 @@
 ﻿Feature: Bd. Close Account
 
 Background:
-	Given I have an active user who have accepted the contract
+	Given I have an active user
+		And the user have accepted the contract
 		And I have an account
 		And I enable Categories use
 
