@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Typeface
 import android.util.TypedValue
-import android.widget.EditText
 import android.widget.TextView
 import com.darakeon.dfm.R
 import org.json.JSONArray
@@ -34,30 +33,12 @@ fun Any.getChildOrMe(fieldName: String): Any {
 	return this
 }
 
-fun Activity.getValue(id: Int): String {
-	val field = findViewById<EditText>(id)
-
-	return field.text.toString()
-}
-
-fun Activity.setValueColored(id: Int, value: Double) {
-	val field = findViewById<TextView>(id)
-
+fun setValueColored(field: TextView, value: Double) {
 	field.text = String.format("%1$,.2f", value)
 
 	val color = if (value < 0) R.attr.negative else R.attr.positive
 	field.setColorByAttr(color)
 }
-
-fun Activity.setValue(id: Int, text: Any?) {
-	setValue(id, text.toString())
-}
-
-fun Activity.setValue(id: Int, text: String?) {
-	val field = findViewById<TextView>(id)
-	field.text = text
-}
-
 
 fun Activity.showChangeList(list: JSONArray?, titleId: Int, setResult: (String, String) -> Unit) {
 	if (list != null) {

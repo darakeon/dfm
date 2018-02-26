@@ -1,12 +1,14 @@
 package com.darakeon.dfm.activities
 
-import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.*
+import com.darakeon.dfm.activities.base.ON_CLICK
+import com.darakeon.dfm.activities.base.SmartActivity
+import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.LoginStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.user.setAuth
+import kotlinx.android.synthetic.main.login.*
 import org.json.JSONObject
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
@@ -24,8 +26,8 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 			this, "Users/Login", { d -> handleLogin(d) }
 		)
 
-		request.addParameter("email", getValue(R.id.email))
-		request.addParameter("password", getValue(R.id.password))
+		request.addParameter("email", email.text)
+		request.addParameter("password", password.text)
 
 		request.post()
 	}

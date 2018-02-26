@@ -131,7 +131,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
 - [x] `2018-02-25 > 2018-02-25` Update Volley
-- [ ] Remove findViewById
+- [x] `2018-02-26 > 2018-02-26` Remove findViewById
 - [x] `2018-01-27 > 2018-02-26` Implement 2FA
 - [x] `2018-01-19 > 2018-01-22` Create option of starting with wizard at sign up
 - [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled

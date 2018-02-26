@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ListView
-import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.*
 import com.darakeon.dfm.activities.objects.ExtractStatic
@@ -15,14 +13,12 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.MoveAdapter
 import com.darakeon.dfm.uiHelpers.views.MoveLine
 import com.darakeon.dfm.user.getAuth
+import kotlinx.android.synthetic.main.extract.*
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer {
-	private val main: ListView get() = findViewById(R.id.main_table)
-	private val empty: TextView get() = findViewById(R.id.empty_list)
-
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	private val dialog: DatePickerDialog
@@ -33,7 +29,8 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 	override fun contentView(): Int = R.layout.extract
 	override fun contextMenuResource(): Int = R.menu.move_options
-	override fun viewWithContext(): Int = R.id.main_table
+	override fun viewWithContext(): View? = main_table
+	override fun highlight(): View? = highlight
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
@@ -84,7 +81,7 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 		val formatter = SimpleDateFormat("MMM/yyyy", Locale.getDefault())
 		val dateInFull = formatter.format(date.time)
 
-		setValue(R.id.reportChange, dateInFull)
+		reportChange.text = dateInFull
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
@@ -113,18 +110,18 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	}
 
 	private fun fillMoves() {
-		setValue(R.id.totalTitle, static.name)
-		setValueColored(R.id.totalValue, static.total)
+		totalTitle.text = static.name
+		setValueColored(totalValue, static.total)
 
 		if (static.moveList.length() == 0) {
-			main.visibility = View.GONE
-			empty.visibility = View.VISIBLE
+			main_table.visibility = View.GONE
+			empty_list.visibility = View.VISIBLE
 		} else {
-			main.visibility = View.VISIBLE
-			empty.visibility = View.GONE
+			main_table.visibility = View.VISIBLE
+			empty_list.visibility = View.GONE
 
 			val accountAdapter = MoveAdapter(this, static.moveList, static.canCheck)
-			main.adapter = accountAdapter
+			main_table.adapter = accountAdapter
 		}
 	}
 
