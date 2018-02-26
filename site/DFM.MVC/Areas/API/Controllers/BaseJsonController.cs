@@ -21,32 +21,36 @@ namespace DFM.MVC.Areas.API.Controllers
 			}
 			catch (DFMCoreException e)
 			{
-				return Json(
-					new { error = MultiLanguage.Dictionary[e] }, 
-					JsonRequestBehavior.AllowGet
-				);
+				return error(e.Type);
 			}
 		}
 
-
-
 		public JsonResult Uninvited()
 		{
-			return Json(
-				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.Uninvited] },
-				JsonRequestBehavior.AllowGet
-			);
+			return error(ExceptionPossibilities.Uninvited);
 		}
 
 		public JsonResult AcceptOnlineContract()
 		{
+			return error(ExceptionPossibilities.NotSignedLastContract);
+		}
+
+		public JsonResult OpenTFA()
+		{
+			return error(ExceptionPossibilities.TFANotVerified);
+		}
+
+		private JsonResult error(ExceptionPossibilities error)
+		{
 			return Json(
-				new { error = MultiLanguage.Dictionary[ExceptionPossibilities.NotSignedLastContract] },
+				new
+				{
+					error = MultiLanguage.Dictionary[error],
+					code = (Int32) error
+				},
 				JsonRequestBehavior.AllowGet
 			);
 		}
-
-
 
 		protected JsonResult JsonPost(Action action)
 		{
@@ -61,7 +65,5 @@ namespace DFM.MVC.Areas.API.Controllers
 				return Json(new { error = MultiLanguage.Dictionary[e] });
 			}
 		}
-
-
 	}
 }

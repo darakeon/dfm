@@ -92,5 +92,7 @@
 	<string name="send_report_button">Reportar</string>
 	<string name="error_mail_title">Erro no aplicativo DfM</string>
 	<string name="timeout">Tempo de conexão expirado</string>
+	<string name="verify">verificar</string>
+	<string name="two_factor_code">código de verificação em duas etapas</string>
 
 </resources>

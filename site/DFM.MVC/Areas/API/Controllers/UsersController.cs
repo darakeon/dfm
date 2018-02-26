@@ -53,7 +53,10 @@ namespace DFM.MVC.Areas.API.Controllers
 			return JsonPost(model.Save);
 		}
 
-
-
+		[DFMApiAuthorize(false), HttpPost]
+		public ActionResult TFA(UserTFAModel model)
+		{
+			return JsonPost(model.Validate);
+		}
 	}
 }

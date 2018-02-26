@@ -17,6 +17,7 @@ import com.darakeon.dfm.extensions.info
 import com.darakeon.dfm.extensions.stackTraceText
 import com.darakeon.dfm.user.languageChangeAndSave
 import com.darakeon.dfm.user.themeChangeAndSave
+import com.darakeon.dfm.activities.TFAActivity
 import org.json.JSONObject
 import java.util.*
 
@@ -198,10 +199,23 @@ class InternalRequest<T : SmartStatic>(
 		if (result.has("error")) {
 			val error = result.getString("error")
 
-			activity.alertError(error)
+			val code =
+				if (result.has("code"))
+					result.getInt("code")
+				else
+					0
 
-			if (error.contains("uninvited")) {
-				activity.logout()
+			val tfa = activity.resources.getInteger(R.integer.TFA)
+			val uninvited = activity.resources.getInteger(R.integer.uninvited)
+
+			if (code == tfa) {
+				activity.redirect<TFAActivity>()
+			} else {
+				activity.alertError(error)
+
+				if (code == uninvited) {
+					activity.logout()
+				}
 			}
 		} else {
 			val data = result.getJSONObject("data")
