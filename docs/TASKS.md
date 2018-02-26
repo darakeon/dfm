@@ -129,7 +129,8 @@ Legend:
 - [ ] Kill all java click listeners
 - [ ] Make slide menu, not bottom anymore
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
+## <a name="dev"></a>4.1.2.0 :sheep: <sup>`6`</sup>
+- [ ] Remove license permission (not used anymore)
 - [x] `2018-02-25 > 2018-02-25` Update Volley
 - [x] `2018-02-26 > 2018-02-26` Remove findViewById
 - [x] `2018-01-27 > 2018-02-26` Implement 2FA
