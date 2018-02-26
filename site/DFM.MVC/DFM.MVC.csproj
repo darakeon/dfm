@@ -248,6 +248,7 @@
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
+    <Compile Include="Areas\API\Models\UserTFAModel.cs" />
     <Compile Include="Helpers\Views\WizardMenu.cs" />
     <Compile Include="Models\UsersEndWizard.cs" />
     <Compile Include="Areas\API\Helpers\MobileUrls.cs" />
@@ -320,7 +321,6 @@
     </Compile>
     <Compile Include="Helpers\Button.cs" />
     <Compile Include="Helpers\Service.cs" />
-    <Compile Include="Helpers\Authorize\DFMAjaxAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />

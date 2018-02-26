@@ -92,5 +92,7 @@
 	<string name="move_check">Move can be checked / unchecked</string>
 	<string name="error_mail_title">Error on DfM App</string>
 	<string name="timeout">Request timeout</string>
+	<string name="verify">verify</string>
+	<string name="two_factor_code">two factor code</string>
 
 </resources>
