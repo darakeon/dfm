@@ -12,5 +12,6 @@ namespace DFM.Authentication
 
 		void DisableTicket(String ticket);
 
+		Boolean VerifyTicket();
 	}
 }

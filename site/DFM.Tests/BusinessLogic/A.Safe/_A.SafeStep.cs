@@ -97,6 +97,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			get => Get<TFATable>("tfa");
 			set => Set("tfa", value);
 		}
+
+		private static Boolean? ticketVerified
+		{
+			get => Get<Boolean?>("ticketVerified");
+			set => Set("ticketVerified", value);
+		}
 		#endregion
 
 
@@ -896,6 +902,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 
+		[Given(@"I remove two-factor")]
 		[When(@"I try to remove two-factor")]
 		public void WhenITryToRemoveTwoFactor()
 		{
@@ -924,6 +931,64 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			var tfaSecret = DBHelper.GetTFAUser(Service.Current.User.Email);
 			Assert.AreEqual(secret, tfaSecret);
+		}
+
+		[Given(@"I have not valid ticket key")]
+		public void GivenIHaveRandomTicketKey()
+		{
+			ticket = new Random().Next().ToString();
+		}
+
+		[Given(@"I have a ticket key")]
+		public void GivenIHaveATicketKey()
+		{
+			ticket = Service.Safe.ValidateUserAndCreateTicket(
+				email, password, TicketKey, TicketType.Local
+			);
+		}
+
+		[Given(@"I validate the ticket two factor")]
+		[When(@"I try to validate the ticket two factor")]
+		public void ValidateTheTicketTwoFactor()
+		{
+			try
+			{
+				Service.Safe.ValidateTicketTFA(tfa.Code);
+			}
+			catch (DFMCoreException exception)
+			{
+				if (IsCurrent(ScenarioBlock.When))
+					Error = exception;
+				else
+					throw;
+			}
+		}
+
+		[When(@"I try to verify the ticket")]
+		public void WhenITryToCheckTicket()
+		{
+			try
+			{
+				ticketVerified = Service.Safe.VerifyTicket();
+			}
+			catch (DFMCoreException exception)
+			{
+				Error = exception;
+			}
+		}
+
+		[Then(@"the ticket will (not )?be verified")]
+		public void ThenTheTicketWillBeVerified(Boolean verified)
+		{
+			var recordedVerified = ticketVerified == true;
+			Assert.AreEqual(verified, recordedVerified);
+		}
+
+		[Then(@"the ticket will (not )?be valid")]
+		public void ThenTheTicketWillBeValidated(Boolean valid)
+		{
+			var recordedValidated = Service.Safe.VerifyTicket();
+			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA
 	}

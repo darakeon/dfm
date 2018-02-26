@@ -8,17 +8,25 @@ namespace DFM.Authentication
 	public class Current
 	{
 		private ISafeService userService { get; }
-		private event GetTicket getTicket;
 
 		public Current(ISafeService userService, GetTicket getTicket)
 		{
 			this.userService = userService;
-			this.getTicket += getTicket;
+			clientGetTicket += getTicket;
 		}
 
-		public delegate TypedTicket GetTicket(Boolean? remember = null);
+		private event GetTicket clientGetTicket;
+		public delegate ClientTicket GetTicket(Boolean? remember = null);
 
+		private ClientTicket ticket => getTicket();
+		public String TicketKey => ticket?.Key;
 
+		private ClientTicket getTicket(Boolean? remember = null)
+		{
+			return clientGetTicket?.Invoke(remember);
+		}
+
+		public Boolean IsVerified => userService.VerifyTicket();
 
 		public User User
 		{
@@ -26,12 +34,11 @@ namespace DFM.Authentication
 			{
 				try
 				{
-					var ticket = getTicket?.Invoke()?.Key;
+					var key = ticket?.Key;
 
-					if (ticket == null)
-						return null;
-
-					return userService.GetUserByTicket(ticket);
+					return key == null 
+						? null
+						: userService.GetUserByTicket(key);
 				}
 				catch (DFMException)
 				{
@@ -39,8 +46,6 @@ namespace DFM.Authentication
 				}
 			}
 		}
-
-
 
 		public Boolean IsAuthenticated => User != null;
 
@@ -54,18 +59,21 @@ namespace DFM.Authentication
 
 		public String Set(String username, String password, Boolean remember)
 		{
-			var ticket = getTicket?.Invoke(remember);
+			var rememberableTicket = getTicket(remember);
 
-			if (ticket == null)
+			if (rememberableTicket == null)
 				return null;
 
-			return userService.ValidateUserAndCreateTicket(username, password, ticket.Key, ticket.Type);
+			return userService.ValidateUserAndCreateTicket(
+				username,
+				password,
+				rememberableTicket.Key,
+				rememberableTicket.Type
+			);
 		}
 
 		public void Clear()
 		{
-			var ticket = getTicket?.Invoke();
-
 			if (ticket == null)
 				return;
 

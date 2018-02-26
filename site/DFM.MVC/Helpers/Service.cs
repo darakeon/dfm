@@ -36,7 +36,7 @@ namespace DFM.MVC.Helpers
 		}
 
 
-		private static TypedTicket getTicket(Boolean? remember = null)
+		private static ClientTicket getTicket(Boolean? remember = null)
 		{
 			var url = HttpContext.Current.Request.Url;
 
@@ -44,7 +44,7 @@ namespace DFM.MVC.Helpers
 				? TicketType.Mobile
 				: TicketType.Browser;
 
-			return new TypedTicket(getKey(type, remember), type);
+			return new ClientTicket(getKey(type, remember), type);
 		}
 
 

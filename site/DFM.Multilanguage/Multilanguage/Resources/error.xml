@@ -82,6 +82,8 @@
 		<TFAWrongCode text="Invalid Code" />
 		<TFAWrongPassword text="Invalid Password" />
 		<TFAEmptySecret	text="To enable two-factor a secret key is needed" />
+		<TFANotConfigured text="Two-factor not configured" />
+		<TFANotVerified text="It's necessary to verify your login with two-factor authentication" />
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -165,5 +167,7 @@
 		<TFAWrongCode text="Código inválido" />
 		<TFAWrongPassword text="Senha inválida" />
 		<TFAEmptySecret	text="Para habilitar a autenticação em duas etapas, é necessário uma chave" />
+		<TFANotConfigured text="Verificação em duas etapas não configurada" />
+		<TFANotVerified text="É necessário verificar o seu login com a verificação em duas etapas" />
 	</pt-BR>
 </error>
