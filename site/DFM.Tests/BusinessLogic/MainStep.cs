@@ -9,19 +9,19 @@ namespace DFM.Tests.BusinessLogic
 	[Binding]
 	public class MainStep : BaseStep
 	{
-		[Given(@"I have an active user( who have accepted the contract)?")]
-		public void GivenIHaveAnActiveUser(String acceptance)
+		[Given(@"I have an active user")]
+		public void GivenIHaveAnActiveUser()
 		{
 			CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
 
 			Current.Clear();
 			Current.Set(USER_EMAIL, UserPassword, false);
+		}
 
-			var accepted = !String.IsNullOrEmpty(acceptance);
-			if (accepted)
-			{
-				Service.Safe.AcceptContract();
-			}
+		[Given(@"the user have accepted the contract")]
+		public void GivenTheUserHaveAcceptedTheContract()
+		{
+			Service.Safe.AcceptContract();
 		}
 
 		[Given(@"I have an account")]

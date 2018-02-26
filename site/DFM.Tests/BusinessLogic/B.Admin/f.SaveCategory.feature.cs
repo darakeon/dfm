@@ -67,8 +67,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
+  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -78,7 +80,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Bf01_SaveCategoryWithoutName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf01. Save Category without name", ((string[])(null)));
-#line 7
+#line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -87,13 +89,13 @@ this.FeatureBackground();
                         "Name"});
             table1.AddRow(new string[] {
                         ""});
-#line 8
+#line 9
  testRunner.Given("I have this category to create", ((string)(null)), table1, "Given ");
-#line 11
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("I will receive this core error: CategoryNameRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
+ testRunner.Then("I will receive this core error: CategoryNameRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
   testRunner.And("the category will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -104,7 +106,7 @@ this.FeatureBackground();
         public virtual void Bf02_SaveCategoryWithNameThatAlreadyExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf02. Save Category with name that already exists", ((string[])(null)));
-#line 15
+#line 16
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -113,18 +115,18 @@ this.FeatureBackground();
                         "Name"});
             table2.AddRow(new string[] {
                         "Category Bf02"});
-#line 16
+#line 17
  testRunner.Given("I have this category to create", ((string)(null)), table2, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table3.AddRow(new string[] {
                         "Category Bf02"});
-#line 19
+#line 20
   testRunner.And("I already have this category", ((string)(null)), table3, "And ");
-#line 22
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
  testRunner.Then("I will receive this core error: CategoryAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -135,7 +137,7 @@ this.FeatureBackground();
         public virtual void Bf03_SaveCategoryWithTooBigName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf03. Save Category with too big name", ((string[])(null)));
-#line 26
+#line 27
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -144,13 +146,13 @@ this.FeatureBackground();
                         "Name"});
             table4.AddRow(new string[] {
                         "ABCDEFGHIJKLMNOPQRSTU"});
-#line 27
+#line 28
  testRunner.Given("I have this category to create", ((string)(null)), table4, "Given ");
-#line 30
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
- testRunner.Then("I will receive this core error: TooLargeData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 32
+ testRunner.Then("I will receive this core error: TooLargeData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
   testRunner.And("the category will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -161,7 +163,7 @@ this.FeatureBackground();
         public virtual void Bf04_SaveCategoryWithExactlyLengthName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf04. Save Category with exactly length name", ((string[])(null)));
-#line 34
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -170,13 +172,13 @@ this.FeatureBackground();
                         "Name"});
             table5.AddRow(new string[] {
                         "ABCDEFGHIJKLMNOPQRST"});
-#line 35
+#line 36
  testRunner.Given("I have this category to create", ((string)(null)), table5, "Given ");
-#line 38
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 39
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
   testRunner.And("the category will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -187,7 +189,7 @@ this.FeatureBackground();
         public virtual void Bf05_SaveCategoryWithInfoAllRight()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bf05. Save Category with info all right", ((string[])(null)));
-#line 42
+#line 43
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -196,13 +198,13 @@ this.FeatureBackground();
                         "Name"});
             table6.AddRow(new string[] {
                         "Category Bf99"});
-#line 43
+#line 44
  testRunner.Given("I have this category to create", ((string)(null)), table6, "Given ");
-#line 46
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 47
- testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 48
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 49
   testRunner.And("the category will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

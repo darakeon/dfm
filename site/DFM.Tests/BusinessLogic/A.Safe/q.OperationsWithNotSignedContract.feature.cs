@@ -67,8 +67,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
+  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -78,23 +80,25 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         public virtual void Aq01_ListLogins()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq01. List Logins", ((string[])(null)));
-#line 7
+#line 8
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 8
- testRunner.Given("I have an active user who have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-  testRunner.And("I login the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-  testRunner.And("I logoff the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
   testRunner.And("I login the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I logoff the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.When("I ask for current active logins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I login the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 15
+ testRunner.When("I ask for current active logins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -105,7 +109,7 @@ this.FeatureBackground();
         public virtual void Aq02_ChangePassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq02. Change Password", ((string[])(null)));
-#line 16
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -118,13 +122,13 @@ this.FeatureBackground();
                         "password",
                         "new_password",
                         "new_password"});
-#line 17
+#line 19
  testRunner.Given("I pass this password", ((string)(null)), table1, "Given ");
-#line 20
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 21
- testRunner.When("I try to change the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 23
+ testRunner.When("I try to change the password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -135,7 +139,7 @@ this.FeatureBackground();
         public virtual void Aq03_UpdateE_Mail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq03. Update E-mail", ((string[])(null)));
-#line 24
+#line 26
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -146,13 +150,13 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "Aq003_@dontflymoney.com",
                         "password"});
-#line 25
+#line 27
  testRunner.Given("I pass this new e-mail and password", ((string)(null)), table2, "Given ");
-#line 28
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 29
- testRunner.When("I try to change the e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 31
+ testRunner.When("I try to change the e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -163,7 +167,7 @@ this.FeatureBackground();
         public virtual void Aq04_SaveAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq04. Save Account", ((string[])(null)));
-#line 32
+#line 34
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -178,13 +182,13 @@ this.FeatureBackground();
                         "account_aq101",
                         "",
                         ""});
-#line 33
+#line 35
  testRunner.Given("I have this account to create", ((string)(null)), table3, "Given ");
-#line 36
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 37
- testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 39
+ testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -195,19 +199,19 @@ this.FeatureBackground();
         public virtual void Aq05_SelectAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq05. Select Account", ((string[])(null)));
-#line 40
+#line 42
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 41
- testRunner.Given("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 42
-  testRunner.And("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 43
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+ testRunner.Given("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 44
- testRunner.When("I try to get the account by its url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 46
+ testRunner.When("I try to get the account by its url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 47
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -218,7 +222,7 @@ this.FeatureBackground();
         public virtual void Aq06_UpdateAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq06. Update Account", ((string[])(null)));
-#line 47
+#line 49
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -233,9 +237,9 @@ this.FeatureBackground();
                         "account_aq103",
                         "",
                         ""});
-#line 48
+#line 50
  testRunner.Given("I have this account", ((string)(null)), table4, "Given ");
-#line 51
+#line 53
  testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -248,11 +252,11 @@ this.FeatureBackground();
                         "account_aq103",
                         "",
                         ""});
-#line 52
+#line 54
  testRunner.When("I make this changes to the account", ((string)(null)), table5, "When ");
-#line 55
+#line 57
   testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 56
+#line 58
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -263,19 +267,19 @@ this.FeatureBackground();
         public virtual void Aq07_CloseAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq07. Close Account", ((string[])(null)));
-#line 58
+#line 60
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 59
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 60
-  testRunner.And("I give a url of the account Aq104 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 61
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 62
- testRunner.When("I try to close the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I give a url of the account Aq104 with moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 64
+ testRunner.When("I try to close the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 65
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -286,17 +290,17 @@ this.FeatureBackground();
         public virtual void Aq08_DeleteAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq08. Delete Account", ((string[])(null)));
-#line 65
+#line 67
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 66
- testRunner.Given("I give a url of the account Aq105 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 67
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line 68
- testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I give a url of the account Aq105 without moves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 69
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 70
+ testRunner.When("I try to delete the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 71
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -307,7 +311,7 @@ this.FeatureBackground();
         public virtual void Aq09_SaveCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq09. Save Category", ((string[])(null)));
-#line 71
+#line 73
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -316,13 +320,13 @@ this.FeatureBackground();
                         "Name"});
             table6.AddRow(new string[] {
                         "Category Aq106"});
-#line 72
+#line 74
  testRunner.Given("I have this category to create", ((string)(null)), table6, "Given ");
-#line 75
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 76
- testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 77
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 78
+ testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 79
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -333,19 +337,19 @@ this.FeatureBackground();
         public virtual void Aq10_SelectCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq10. Select Category", ((string[])(null)));
-#line 79
+#line 81
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 80
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 81
-  testRunner.And("I pass a valid category name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 82
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 83
- testRunner.When("I try to get the category by its name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I pass a valid category name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 84
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 85
+ testRunner.When("I try to get the category by its name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -356,7 +360,7 @@ this.FeatureBackground();
         public virtual void Aq11_UpdateCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq11. Update Category", ((string[])(null)));
-#line 86
+#line 88
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
@@ -365,20 +369,20 @@ this.FeatureBackground();
                         "Name"});
             table7.AddRow(new string[] {
                         "Category Aq108"});
-#line 87
+#line 89
  testRunner.Given("I have this category", ((string)(null)), table7, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table8.AddRow(new string[] {
                         "Aq108 - new name"});
-#line 90
+#line 92
   testRunner.And("I make this changes to the category", ((string)(null)), table8, "And ");
-#line 93
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 94
- testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 95
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 96
+ testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 97
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -389,17 +393,17 @@ this.FeatureBackground();
         public virtual void Aq12_DisableCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq12. Disable Category", ((string[])(null)));
-#line 97
+#line 99
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 98
- testRunner.Given("I give the enabled category Aq109", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 99
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line 100
- testRunner.When("I try to disable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I give the enabled category Aq109", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 101
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 102
+ testRunner.When("I try to disable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 103
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -410,17 +414,17 @@ this.FeatureBackground();
         public virtual void Aq13_EnableCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq13. Enable Category", ((string[])(null)));
-#line 103
+#line 105
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 104
- testRunner.Given("I give the disabled category Aq110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 105
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line 106
- testRunner.When("I try to enable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I give the disabled category Aq110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 107
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 108
+ testRunner.When("I try to enable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 109
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -431,15 +435,15 @@ this.FeatureBackground();
         public virtual void Aq14_UpdateConfig_CategoriesDisable()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq14. Update Config - Categories Disable", ((string[])(null)));
-#line 109
+#line 111
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 110
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 111
- testRunner.When("I try to disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 112
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 113
+ testRunner.When("I try to disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 114
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -450,15 +454,15 @@ this.FeatureBackground();
         public virtual void Aq15_UpdateConfig_CategoriesEnable()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq15. Update Config - Categories Enable", ((string[])(null)));
-#line 114
+#line 116
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 115
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 116
- testRunner.When("I try to enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 117
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 118
+ testRunner.When("I try to enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 119
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -469,15 +473,15 @@ this.FeatureBackground();
         public virtual void Aq16_UpdateConfig_MoveSendE_MailDisable()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq16. Update Config - Move Send E-mail Disable", ((string[])(null)));
-#line 119
+#line 121
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 120
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 121
- testRunner.When("I try to disable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 122
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 123
+ testRunner.When("I try to disable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 124
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -488,15 +492,15 @@ this.FeatureBackground();
         public virtual void Aq17_UpdateConfig_MoveSendE_MailEnable()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq17. Update Config - Move Send E-mail Enable", ((string[])(null)));
-#line 124
+#line 126
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 125
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 126
- testRunner.When("I try to enable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 127
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 128
+ testRunner.When("I try to enable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 129
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -507,15 +511,15 @@ this.FeatureBackground();
         public virtual void Aq18_UpdateConfig_ChangeLanguage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq18. Update Config - Change Language", ((string[])(null)));
-#line 129
+#line 131
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 130
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 131
- testRunner.When("I try to change the language to en-US", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 132
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 133
+ testRunner.When("I try to change the language to en-US", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 134
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -526,15 +530,15 @@ this.FeatureBackground();
         public virtual void Aq19_UpdateConfig_ChangeTimeZone()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq19. Update Config - Change TimeZone", ((string[])(null)));
-#line 134
+#line 136
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 135
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 136
- testRunner.When("I try to change the timezone to E. South America Standard Time", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 137
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 138
+ testRunner.When("I try to change the timezone to E. South America Standard Time", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 139
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -545,15 +549,15 @@ this.FeatureBackground();
         public virtual void Aq20_GetActiveAccountList()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq20. Get active Account list", ((string[])(null)));
-#line 139
+#line 141
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 140
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 141
- testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 142
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 143
+ testRunner.When("ask for the active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 144
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -564,15 +568,15 @@ this.FeatureBackground();
         public virtual void Aq21_GetNotActiveAccountList()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq21. Get not active Account list", ((string[])(null)));
-#line 144
+#line 146
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 145
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 146
- testRunner.When("ask for the not active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 147
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 148
+ testRunner.When("ask for the not active account list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 149
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -583,15 +587,15 @@ this.FeatureBackground();
         public virtual void Aq22_GetCategoryList()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq22. Get Category list", ((string[])(null)));
-#line 149
+#line 151
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 150
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 151
- testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 152
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 153
+ testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 154
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -602,13 +606,13 @@ this.FeatureBackground();
         public virtual void Aq23_SaveMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq23. Save Move", ((string[])(null)));
-#line 154
+#line 156
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 155
+#line 157
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 156
+#line 158
   testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -621,21 +625,21 @@ this.FeatureBackground();
                         "2012-03-31",
                         "Out",
                         "10"});
-#line 157
+#line 159
   testRunner.And("I have this move to create", ((string)(null)), table9, "And ");
-#line 160
-  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 161
-  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 162
-  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 163
-  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 164
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 165
- testRunner.When("I try to save the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 166
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 167
+ testRunner.When("I try to save the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 168
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -646,23 +650,23 @@ this.FeatureBackground();
         public virtual void Aq24_UpdateMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq24. Update Move", ((string[])(null)));
-#line 168
+#line 170
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 169
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 170
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 171
-  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 172
-  testRunner.And("I change the move date in -1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 173
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 174
- testRunner.When("I update the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I change the move date in -1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 175
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 176
+ testRunner.When("I update the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 177
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -673,25 +677,25 @@ this.FeatureBackground();
         public virtual void Aq25_SelectMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq25. Select Move", ((string[])(null)));
-#line 177
+#line 179
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 178
- testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 179
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 180
-  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 181
-  testRunner.And("I have a move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 182
-  testRunner.And("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 183
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 184
- testRunner.When("I try to get the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 185
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 186
+ testRunner.When("I try to get the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 187
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -702,25 +706,25 @@ this.FeatureBackground();
         public virtual void Aq26_SelectDetail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq26. Select Detail", ((string[])(null)));
-#line 187
+#line 189
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 188
- testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 189
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 190
-  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 191
-  testRunner.And("I have a move with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 192
-  testRunner.And("I pass valid Detail ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 193
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move with details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 194
- testRunner.When("I try to get the detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I pass valid Detail ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 195
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 196
+ testRunner.When("I try to get the detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 197
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -731,23 +735,23 @@ this.FeatureBackground();
         public virtual void Aq27_DeleteMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq27. Delete Move", ((string[])(null)));
-#line 197
+#line 199
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 198
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 199
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 200
-  testRunner.And("I have a move with value 10 (In)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 201
-  testRunner.And("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 202
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move with value 10 (In)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 203
- testRunner.When("I try to delete the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 204
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 205
+ testRunner.When("I try to delete the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 206
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -758,25 +762,25 @@ this.FeatureBackground();
         public virtual void Aq28_CheckMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq28. Check Move", ((string[])(null)));
-#line 206
+#line 208
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 207
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 208
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 209
-  testRunner.And("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 210
-  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 211
-  testRunner.And("the move is not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 212
-  testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 213
- testRunner.When("I try to mark it as checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("the move is not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 214
+  testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 215
+ testRunner.When("I try to mark it as checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 216
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -787,25 +791,25 @@ this.FeatureBackground();
         public virtual void Aq29_UncheckMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq29. Uncheck Move", ((string[])(null)));
-#line 216
+#line 218
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 217
- testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 218
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 219
-  testRunner.And("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 220
-  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 221
-  testRunner.And("the move is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 222
-  testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 223
- testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("the move is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 224
+  testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 225
+ testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 226
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -816,13 +820,13 @@ this.FeatureBackground();
         public virtual void Aq30_SaveSchedule()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq30. Save Schedule", ((string[])(null)));
-#line 226
+#line 228
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 227
+#line 229
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 228
+#line 230
   testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -843,21 +847,21 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 229
+#line 231
   testRunner.And("I have this schedule to create", ((string)(null)), table10, "And ");
-#line 232
-  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 233
-  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 234
-  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 235
-  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 236
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 237
- testRunner.When("I try to save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 238
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 239
+ testRunner.When("I try to save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 240
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -868,13 +872,13 @@ this.FeatureBackground();
         public virtual void Aq31_RunSchedule()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq31. Run Schedule", ((string[])(null)));
-#line 240
+#line 242
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 241
+#line 243
  testRunner.Given("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 242
+#line 244
   testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -895,25 +899,25 @@ this.FeatureBackground();
                         "False",
                         "Daily",
                         "False"});
-#line 243
+#line 245
   testRunner.And("I have this schedule to create", ((string)(null)), table11, "And ");
-#line 246
-  testRunner.And("its Date is 5 days ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 247
-  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 248
-  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("its Date is 5 days ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 249
-  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 250
-  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 251
-  testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 252
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 253
- testRunner.When("I try to run the scheduler", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 254
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 255
+ testRunner.When("I try to run the scheduler", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 256
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -924,15 +928,15 @@ this.FeatureBackground();
         public virtual void Aq32_DisableSchedule()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq32. Disable Schedule", ((string[])(null)));
-#line 256
+#line 258
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 257
- testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 258
-  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 259
+ testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 260
+  testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 261
   testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -953,23 +957,23 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 260
+#line 262
   testRunner.And("I have this schedule to create", ((string)(null)), table12, "And ");
-#line 263
-  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 264
-  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 265
-  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 266
-  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 267
-  testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 268
- testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+  testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 269
- testRunner.When("I try to disable the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 270
+ testRunner.But("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 271
+ testRunner.When("I try to disable the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 272
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -980,15 +984,15 @@ this.FeatureBackground();
         public virtual void Aq33_GetScheduleList()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq33. Get Schedule List", ((string[])(null)));
-#line 272
+#line 274
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 273
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 274
- testRunner.When("ask for the schedule list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 275
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 276
+ testRunner.When("ask for the schedule list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 277
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -999,15 +1003,15 @@ this.FeatureBackground();
         public virtual void Aq34_GetMonthReport()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq34. Get Month Report", ((string[])(null)));
-#line 277
+#line 279
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 278
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 279
- testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 280
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 281
+ testRunner.When("I try to get the month report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 282
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -1018,15 +1022,15 @@ this.FeatureBackground();
         public virtual void Aq35_GetYearReport()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aq35. Get Year Report", ((string[])(null)));
-#line 282
+#line 284
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 283
- testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 284
- testRunner.When("I try to get the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 285
+ testRunner.Given("there is a new contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 286
+ testRunner.When("I try to get the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 287
  testRunner.Then("I will receive this core error: NotSignedLastContract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
