@@ -184,168 +184,157 @@ namespace DFM.Tests.BusinessLogic
 
 		private static String mainTicket
 		{
-			get { return Get<String>("mainTicket"); }
-			set { Set("mainTicket", value); }
+			get => Get<String>("mainTicket");
+			set => Set("mainTicket", value);
 		}
 
 		protected static DFMCoreException Error
 		{
-			get { return Get<DFMCoreException>("error"); }
-			set { Set("error", value); }
+			get => Get<DFMCoreException>("error");
+			set => Set("error", value);
 		}
 
 		protected static User User
 		{
-			get { return Get<User>("user"); }
-			set { Set("user", value); }
+			get => Get<User>("user");
+			set => Set("user", value);
 		}
 
 		protected static Account Account
 		{
-			get { return Get<Account>("Account"); }
-			set { Set("Account", value); }
+			get => Get<Account>("Account");
+			set => Set("Account", value);
 		}
 
 		protected static Category Category
 		{
-			get { return Get<Category>("Category"); }
-			set { Set("Category", value); }
+			get => Get<Category>("Category");
+			set => Set("Category", value);
 		}
 
 
 		protected static Account AccountOut
 		{
-			get { return Get<Account>("AccountOut"); }
-			set { Set("AccountOut", value); }
+			get => Get<Account>("AccountOut");
+			set => Set("AccountOut", value);
 		}
 
 		protected static Decimal AccountOutTotal
 		{
-			get { return Get<Decimal>("AccountOutTotal"); }
-			set { Set("AccountOutTotal", value); }
+			get => Get<Decimal>("AccountOutTotal");
+			set => Set("AccountOutTotal", value);
 		}
 
 		protected static Decimal YearAccountOutTotal
 		{
-			get { return Get<Decimal>("YearAccountOutTotal"); }
-			set { Set("YearAccountOutTotal", value); }
+			get => Get<Decimal>("YearAccountOutTotal");
+			set => Set("YearAccountOutTotal", value);
 		}
 
 		protected static Decimal MonthAccountOutTotal
 		{
-			get { return Get<Decimal>("MonthAccountOutTotal"); }
-			set { Set("MonthAccountOutTotal", value); }
+			get => Get<Decimal>("MonthAccountOutTotal");
+			set => Set("MonthAccountOutTotal", value);
 		}
 
 		protected static Decimal YearCategoryAccountOutTotal
 		{
-			get { return Get<Decimal>("YearCategoryAccountOutTotal"); }
-			set { Set("YearCategoryAccountOutTotal", value); }
+			get => Get<Decimal>("YearCategoryAccountOutTotal");
+			set => Set("YearCategoryAccountOutTotal", value);
 		}
 
 		protected static Decimal MonthCategoryAccountOutTotal
 		{
-			get { return Get<Decimal>("MonthCategoryAccountOutTotal"); }
-			set { Set("MonthCategoryAccountOutTotal", value); }
+			get => Get<Decimal>("MonthCategoryAccountOutTotal");
+			set => Set("MonthCategoryAccountOutTotal", value);
 		}
 
 
 		protected static Account AccountIn
 		{
-			get { return Get<Account>("AccountIn"); }
-			set { Set("AccountIn", value); }
+			get => Get<Account>("AccountIn");
+			set => Set("AccountIn", value);
 		}
 
 		protected static Decimal AccountInTotal
 		{
-			get { return Get<Decimal>("AccountInTotal"); }
-			set { Set("AccountInTotal", value); }
+			get => Get<Decimal>("AccountInTotal");
+			set => Set("AccountInTotal", value);
 		}
 
 		protected static Decimal YearAccountInTotal
 		{
-			get { return Get<Decimal>("YearAccountInTotal"); }
-			set { Set("YearAccountInTotal", value); }
+			get => Get<Decimal>("YearAccountInTotal");
+			set => Set("YearAccountInTotal", value);
 		}
 
 		protected static Decimal MonthAccountInTotal
 		{
-			get { return Get<Decimal>("MonthAccountInTotal"); }
-			set { Set("MonthAccountInTotal", value); }
+			get => Get<Decimal>("MonthAccountInTotal");
+			set => Set("MonthAccountInTotal", value);
 		}
 
 		protected static Decimal YearCategoryAccountInTotal
 		{
-			get { return Get<Decimal>("YearCategoryAccountInTotal"); }
-			set { Set("YearCategoryAccountInTotal", value); }
+			get => Get<Decimal>("YearCategoryAccountInTotal");
+			set => Set("YearCategoryAccountInTotal", value);
 		}
 
 		protected static Decimal MonthCategoryAccountInTotal
 		{
-			get { return Get<Decimal>("MonthCategoryAccountInTotal"); }
-			set { Set("MonthCategoryAccountInTotal", value); }
+			get => Get<Decimal>("MonthCategoryAccountInTotal");
+			set => Set("MonthCategoryAccountInTotal", value);
 		}
 
 
 		protected static String AccountUrl
 		{
-			get { return Get<String>("AccountUrl"); }
-			set { Set("AccountUrl", value); }
+			get => Get<String>("AccountUrl");
+			set => Set("AccountUrl", value);
 		}
 
 		protected static String CategoryName
 		{
-			get { return Get<String>("CategoryName"); }
-			set { Set("CategoryName", value); }
+			get => Get<String>("CategoryName");
+			set => Set("CategoryName", value);
 		}
 
 
 
 		protected static EmailStatus? CurrentEmailStatus
 		{
-			get { return Get<EmailStatus?>("CurrentEmailStatus"); }
-			set { Set("CurrentEmailStatus", value); }
+			get => Get<EmailStatus?>("CurrentEmailStatus");
+			set => Set("CurrentEmailStatus", value);
 		}
 
 		protected static Move Move
 		{
-			get { return Get<Move>("Move"); }
-			set { Set("Move", value); }
+			get => Get<Move>("Move");
+			set => Set("Move", value);
 		}
 
 		protected static Schedule Schedule
 		{
-			get { return Get<Schedule>("Schedule"); }
-			set { Set("Schedule", value); }
+			get => Get<Schedule>("Schedule");
+			set => Set("Schedule", value);
 		}
 
 		protected static DateTime Date
 		{
-			get
-			{
-				return Move?.Date ?? 
-					(Schedule?.Date ?? DateTime.MinValue);
-			}
-			set
-			{
-				Set("Date", value);
-			}
+			get => Move?.Date ?? 
+			       Schedule?.Date ??
+			       DateTime.MinValue;
+			set => Set("Date", value);
 		}
 
 		protected static IList<Detail> DetailList
 		{
-			get
-			{
-				return Move == null
-					? Schedule == null 
-						? new List<Detail>() 
-						: Schedule.DetailList 
-					: Move.DetailList;
-			}
-			set
-			{
-				Set("DetailList", value);
-			}
+			get => Move == null
+				? Schedule == null 
+					? new List<Detail>() 
+					: Schedule.DetailList 
+				: Move.DetailList;
+			set => Set("DetailList", value);
 		}
 		#endregion
 
