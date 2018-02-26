@@ -1,6 +1,7 @@
 package com.darakeon.dfm.activities.base
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,9 +16,14 @@ import com.darakeon.dfm.user.getAuth
 
 const val ON_CLICK: String = "UNUSED_PARAMETER"
 
-fun Activity.redirect(activityClass: Class<*>) {
-	val intent = Intent(this, activityClass)
+inline fun <reified T : Activity> Context.redirect () {
+	val intent = Intent(this, T::class.java)
 	startActivity(intent)
+}
+
+inline fun <reified T : Activity> Activity.redirectAndFinish () {
+	redirect<T>()
+	finish()
 }
 
 fun Activity.redirectWithExtras() {
@@ -39,7 +45,7 @@ internal fun <T : SmartStatic> SmartActivity<T>.logout() {
 
 	if (tryResult) {
 		clearAuth()
-		redirect(LoginActivity::class.java)
+		redirect<LoginActivity>()
 	}
 }
 
