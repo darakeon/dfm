@@ -12,15 +12,6 @@ import org.json.JSONObject
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	override fun contentView(): Int = R.layout.login
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-
-		if (!isProd) {
-			setValue(R.id.email, getString(R.string.local_email))
-			setValue(R.id.password, getString(R.string.local_password))
-		}
-	}
-
 	override val isLoggedIn: Boolean
 		get() = false
 
