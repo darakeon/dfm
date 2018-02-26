@@ -1,0 +1,25 @@
+﻿@model UsersTFAModel
+
+@{
+	Layout = "~/Views/Shared/_Form.cshtml";
+	ViewBag.Title = MultiLanguage.Dictionary["TFASettings"];
+}
+
+<div class="form-group">
+	@Html.LabelFor(m => m.Code, Users.Code)
+
+	<span class="glyphicon glyphicon-info-sign control-label"
+		  data-toggle="tooltip" data-placement="right"
+		  title="@Users.TFAVerification"
+		  data-original-title="@Users.TFAVerification">
+	</span>
+
+	@Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
+	@Html.ValidationMessageFor(m => m.Code)
+</div>
+
+@section Footer {
+	<button type="submit" class="btn btn-success">
+		@MultiLanguage.Dictionary["Go"]
+	</button>
+}

@@ -61,6 +61,15 @@ namespace DFM.MVC.Assets.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I understood and agree with the {0}.
         /// </summary>
         public static string ContractAccept {
@@ -102,6 +111,15 @@ namespace DFM.MVC.Assets.Resources {
         public static string EnableWizard {
             get {
                 return ResourceManager.GetString("EnableWizard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the two factor verification code of the app used when the two factor was enabled.
+        /// </summary>
+        public static string TFAVerification {
+            get {
+                return ResourceManager.GetString("TFAVerification", resourceCulture);
             }
         }
         
