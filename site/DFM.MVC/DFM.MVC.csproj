@@ -352,6 +352,7 @@
     <Compile Include="Models\UsersForgotPasswordModel.cs" />
     <Compile Include="Models\UsersLogOnModel.cs" />
     <Compile Include="Models\UsersSignUpModel.cs" />
+    <Compile Include="Models\UsersRemoveTFAModel.cs" />
     <Compile Include="Models\UsersTFAModel.cs" />
     <Compile Include="Models\ValueWithSign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -462,6 +463,7 @@
     <Content Include="Views\Users\EndWizard.cshtml" />
     <Content Include="Views\Users\ConfigTFA.cshtml" />
     <Content Include="Views\Users\TFA.cshtml" />
+    <Content Include="Views\Users\RemoveTFA.cshtml" />
     <Content Include="Views\Shared\MenuIssues.cshtml" />
     <Content Include="Views\Shared\MenuTasks.cshtml" />
     <Content Include="Views\Shared\MenuSettings.cshtml" />

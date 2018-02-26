@@ -27,3 +27,7 @@
 	@Html.LabelFor(m => m.TFA.CurrentPassword, MultiLanguage.Dictionary["CurrentPassword"], new { @class = "control-label" })
 	@Html.PasswordFor(m => m.TFA.CurrentPassword, new { @class = "form-control" })
 </div>
+
+<small>
+	@Html.ActionLink(MultiLanguage.Dictionary["TFARemove"], "RemoveTFA")
+</small>

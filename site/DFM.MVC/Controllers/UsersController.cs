@@ -215,5 +215,25 @@ namespace DFM.MVC.Controllers
 
 			return View(model);
 		}
+
+		[DFMAuthorize]
+		public ActionResult RemoveTFA()
+		{
+			var model = new UsersRemoveTFAModel();
+			return View(model);
+		}
+
+		[DFMAuthorize, HttpPost]
+		public ActionResult RemoveTFA(UsersRemoveTFAModel model)
+		{
+			model.Remove(ModelState.AddModelError);
+
+			if (ModelState.IsValid)
+			{
+				return RedirectToAction("Index", "Accounts");
+			}
+
+			return View(model);
+		}
 	}
 }
