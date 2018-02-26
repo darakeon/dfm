@@ -6,16 +6,16 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.AccountsActivity
 import com.darakeon.dfm.activities.MovesCreateActivity
 import com.darakeon.dfm.activities.SettingsActivity
 import com.darakeon.dfm.activities.objects.SmartStatic
 import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.user.getHighLightColor
 import com.darakeon.dfm.user.languageChangeFromSaved
 import com.darakeon.dfm.user.themeChangeFromSaved
-import com.darakeon.dfm.user.getHighLightColor
+import kotlinx.android.synthetic.main.bottom_menu.*
 import java.util.*
 
 abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
@@ -31,7 +31,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	protected abstract fun contentView(): Int
 	protected open fun optionsMenuResource(): Int = 0
 	protected open fun contextMenuResource(): Int = 0
-	protected open fun viewWithContext(): Int = 0
+	protected open fun viewWithContext(): View? = null
+	protected open fun highlight(): View? = null
 
 	protected open val isLoggedIn: Boolean
 		get() = true
@@ -62,13 +63,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		setContentView(contentView())
 
-		if (viewWithContext() != 0) {
-			val contextView = findViewById<View>(viewWithContext())
-			registerForContextMenu(contextView)
+		if (viewWithContext() != null) {
+			registerForContextMenu(viewWithContext())
 		}
 
-		findViewById<LinearLayout>(R.id.highlight)
-			?.setBackgroundColor(getHighLightColor())
+		highlight()?.setBackgroundColor(getHighLightColor())
 
 		val data = intent.data
 		if (data?.queryParameterNames != null) {
@@ -84,22 +83,20 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 		if (optionsMenuResource() != 0)
 			menuInflater.inflate(optionsMenuResource(), menu)
 
-		val bottomMenu = findViewById<LinearLayout>(R.id.menu)
-
-		if (bottomMenu != null)
+		if (bottom_menu != null)
 		{
-			(0 until bottomMenu.childCount).forEach {
-				val button = bottomMenu.getChildAt(it) as Button
+			(0 until bottom_menu.childCount).forEach {
+				val button = bottom_menu.getChildAt(it) as Button
 				button.applyGlyphicon(this)
 
 				if (this is AccountsActivity)
-					findViewById<Button>(R.id.action_home).isEnabled = false
+					action_home.isEnabled = false
 
 				if (this is SettingsActivity)
-					findViewById<Button>(R.id.action_settings).isEnabled = false
+					action_settings.isEnabled = false
 
 				if (this is MovesCreateActivity)
-					findViewById<Button>(R.id.action_move).isEnabled = false
+					action_move.isEnabled = false
 			}
 		}
 

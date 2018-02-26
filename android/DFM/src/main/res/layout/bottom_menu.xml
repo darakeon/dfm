@@ -6,7 +6,7 @@
 			  android:layout_margin="0sp"
 			  android:padding="0sp"
 			  android:gravity="bottom|center"
-			  android:id="@+id/menu"
+			  android:id="@+id/bottom_menu"
 			  style="?android:attr/buttonBarStyle" >
 
 	<Button

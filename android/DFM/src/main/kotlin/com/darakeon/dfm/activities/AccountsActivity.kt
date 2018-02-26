@@ -2,23 +2,17 @@ package com.darakeon.dfm.activities
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ListView
-import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.objects.AccountsStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.uiHelpers.adapters.AccountAdapter
 import com.darakeon.dfm.user.getAuth
+import kotlinx.android.synthetic.main.accounts.*
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
-	private val main: ListView get() = findViewById(R.id.main_table)
-	private val empty: TextView get() = findViewById(R.id.empty_list)
-
-
 	override fun contentView(): Int = R.layout.accounts
-
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -45,13 +39,13 @@ class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
 
 	private fun fillAccounts() {
 		if (static.accountList.length() == 0) {
-			main.visibility = View.GONE
-			empty.visibility = View.VISIBLE
+			main_table.visibility = View.GONE
+			empty_list.visibility = View.VISIBLE
 		} else {
-			main.visibility = View.VISIBLE
-			empty.visibility = View.GONE
+			main_table.visibility = View.VISIBLE
+			empty_list.visibility = View.GONE
 
-			main.adapter = AccountAdapter(this, static.accountList)
+			main_table.adapter = AccountAdapter(this, static.accountList)
 		}
 	}
 

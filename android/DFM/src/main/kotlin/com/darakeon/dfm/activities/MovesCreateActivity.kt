@@ -19,10 +19,9 @@ import com.darakeon.dfm.user.getAuth
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
+import kotlinx.android.synthetic.main.moves_create.*
 
 class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) {
-	private val window: ScrollView get() = findViewById(R.id.window)
-
 	private val dialog: DatePickerDialog
 		get() {
 			val ( year, month, day ) = static.move
@@ -37,7 +36,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 	private fun updateDateCombo(year: Int, month: Int, day: Int) {
 		static.move.date.set(year, month, day)
-		setValue(R.id.date, static.move.dateString())
+		date.text = static.move.dateString()
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,25 +58,25 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 		if (static.accountList.length() == 0) {
 			canMove = false
-			findViewById<TextView>(R.id.no_accounts).visibility = View.VISIBLE
+			no_accounts.visibility = View.VISIBLE
 		}
 
 		if (static.useCategories) {
 			if (static.categoryList.length() == 0) {
 				canMove = false
-				findViewById<TextView>(R.id.no_categories).visibility = View.VISIBLE
+				no_categories.visibility = View.VISIBLE
 			} else {
-				setDataFromList(static.categoryList, static.move.category, R.id.category)
+				setDataFromList(static.categoryList, static.move.category, category)
 			}
 		}
 
 		if (!canMove) {
-			findViewById<ScrollView>(R.id.window).visibility = View.GONE
-			findViewById<LinearLayout>(R.id.warnings).visibility = View.VISIBLE
+			form.visibility = View.GONE
+			warnings.visibility = View.VISIBLE
 			return
 		}
 
-		setValue(R.id.date, static.move.dateString())
+		date.text = static.move.dateString()
 
 		val list = static.natureList
 
@@ -93,8 +92,8 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 			}
 		}
 
-		setDataFromList(static.accountList, static.move.accountOut, R.id.account_out)
-		setDataFromList(static.accountList, static.move.accountIn, R.id.account_in)
+		setDataFromList(static.accountList, static.move.accountOut, account_out)
+		setDataFromList(static.accountList, static.move.accountIn, account_in)
 
 		if (static.move.isDetailed) {
 
@@ -108,24 +107,21 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		if (!populateAll)
 			return
 
-		val descriptionView = findViewById<EditText>(R.id.description)
-		descriptionView.setText(static.move.description)
+		description.setText(static.move.description)
 
 		if (static.move.value != 0.0) {
-			val valueView = findViewById<EditText>(R.id.value)
-			valueView.setText(String.format("%1$,.2f", static.move.value))
+			value.setText(String.format("%1$,.2f", static.move.value))
 		}
 	}
 
-	private fun setDataFromList(list: JSONArray?, dataSaved: String?, resourceId: Int) {
+	private fun setDataFromList(list: JSONArray?, dataSaved: String?, field: TextView) {
 		if (list != null) {
 			for (n in 0 until list.length()) {
 				val item = list.getJSONObject(n)
 				val value = item.getString("Value")
 
 				if (value == dataSaved) {
-					val text = item.getString("Text")
-					setValue(resourceId, text)
+					field.text = item.getString("Text")
 					break
 				}
 			}
@@ -169,24 +165,22 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 	private fun populateCategoryAndNature() {
 
-		findViewById<Button>(R.id.category).visibility =
+		category.visibility =
 			if (static.useCategories)
 				View.VISIBLE
 			else
 				View.GONE
 
-		val loseCategory = findViewById<Button>(R.id.lose_category)
-
 		if (static.move.warnCategory) {
-			loseCategory.paintFlags =
-				loseCategory.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+			lose_category.paintFlags =
+				lose_category.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 		} else {
-			loseCategory.visibility = View.GONE
+			lose_category.visibility = View.GONE
 		}
 
 		if (static.move.nature == null) {
 			val firstNature = static.natureList.getJSONObject(0)
-			setValue(R.id.nature, firstNature.getString("Text"))
+			nature.text = firstNature.getString("Text")
 			static.move.setNature(firstNature.getInt("Value"))
 		}
 	}
@@ -201,20 +195,18 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun setControls() {
-		setValue(R.id.date, static.move.dateString())
+		date.text = static.move.dateString()
 
 		setDescriptionListener()
 		setValueListener()
 	}
 
 	private fun setDescriptionListener() {
-		val textMessage = findViewById<EditText>(R.id.description)
-		textMessage.addTextChangedListener(DescriptionWatcher(static.move))
+		description.addTextChangedListener(DescriptionWatcher(static.move))
 	}
 
 	private fun setValueListener() {
-		val textMessage = findViewById<EditText>(R.id.value)
-		textMessage.addTextChangedListener(ValueWatcher(static.move))
+		value.addTextChangedListener(ValueWatcher(static.move))
 	}
 
 
@@ -231,7 +223,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun setCategory(text: String, value: String) {
-		setValue(R.id.category, text)
+		category.text = text
 		static.move.category = value
 	}
 
@@ -240,23 +232,23 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun setNature(text: String, value : String) {
-		setValue(R.id.nature, text)
+		nature.text = text
 		static.move.setNature(value)
 
 		val accountOutVisibility = if (static.move.nature != Nature.In) View.VISIBLE else View.GONE
-		findViewById<Button>(R.id.account_out).visibility = accountOutVisibility
+		account_out.visibility = accountOutVisibility
 
 		val accountInVisibility = if (static.move.nature != Nature.Out) View.VISIBLE else View.GONE
-		findViewById<Button>(R.id.account_in).visibility = accountInVisibility
+		account_in.visibility = accountInVisibility
 
 		if (static.move.nature == Nature.Out) {
 			static.move.accountIn = null
-			setValue(R.id.account_in, getString(R.string.account_in))
+			account_in.text = getString(R.string.account_in)
 		}
 
 		if (static.move.nature == Nature.In) {
 			static.move.accountOut = null
-			setValue(R.id.account_out, getString(R.string.account_out))
+			account_out.text = getString(R.string.account_out)
 		}
 	}
 
@@ -266,7 +258,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun setAccountOut(text: String, value: String) {
-		setValue(R.id.account_out, text)
+		account_out.text = text
 		static.move.accountOut = value
 	}
 
@@ -275,7 +267,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun setAccountIn(text: String, value: String) {
-		setValue(R.id.account_in, text)
+		account_in.text = text
 		static.move.accountIn = value
 	}
 
@@ -286,8 +278,8 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	private fun useDetailed() {
 		static.move.isDetailed = true
 
-		findViewById<LinearLayout>(R.id.simple_value).visibility = View.GONE
-		findViewById<LinearLayout>(R.id.detailed_value).visibility = View.VISIBLE
+		simple_value.visibility = View.GONE
+		detailed_value.visibility = View.VISIBLE
 
 		scrollToTheEnd()
 	}
@@ -295,16 +287,16 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	fun useSimple(@Suppress(ON_CLICK) view: View) {
 		static.move.isDetailed = false
 
-		findViewById<LinearLayout>(R.id.simple_value).visibility = View.VISIBLE
-		findViewById<LinearLayout>(R.id.detailed_value).visibility = View.GONE
+		simple_value.visibility = View.VISIBLE
+		detailed_value.visibility = View.GONE
 
 		scrollToTheEnd()
 	}
 
 	fun addDetail(@Suppress(ON_CLICK) view: View) {
-		val description = getValue(R.id.detail_description)
-		val amountStr = getValue(R.id.detail_amount)
-		val valueStr = getValue(R.id.detail_value)
+		val description = detail_description.text.toString()
+		val amountStr = detail_amount.text.toString()
+		val valueStr = detail_value.text.toString()
 
 		val value = valueStr.toDoubleByCulture()
 
@@ -315,9 +307,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 		val amountDefault = resources.getInteger(R.integer.amount_default)
 
-		setValue(R.id.detail_description, "")
-		setValue(R.id.detail_amount, amountDefault)
-		setValue(R.id.detail_value, "")
+		detail_description.setText("")
+		detail_amount.setText(amountDefault)
+		detail_value.setText("")
 
 		val amount = amountStr.toInt()
 
@@ -330,8 +322,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 	private fun addViewDetail(move: Move?, description: String?, amount: Int, value: Double) {
 		val row = DetailBox(this, move, description, amount, value)
-		val list = findViewById<LinearLayout>(R.id.details)
-		list.addView(row)
+		details.addView(row)
 	}
 
 
@@ -357,7 +348,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 
 	private fun scrollToTheEnd() {
-		window.postDelayed({ window.fullScroll(ScrollView.FOCUS_DOWN) }, 100)
+		form.postDelayed({ form.fullScroll(ScrollView.FOCUS_DOWN) }, 100)
 	}
 
 

@@ -3,22 +3,17 @@ package com.darakeon.dfm.activities
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.CheckBox
-import com.darakeon.dfm.activities.base.SmartActivity
-import com.darakeon.dfm.activities.objects.SettingsStatic
-import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.R
 import com.darakeon.dfm.activities.base.ON_CLICK
+import com.darakeon.dfm.activities.base.SmartActivity
 import com.darakeon.dfm.activities.base.redirectWithExtras
+import com.darakeon.dfm.activities.objects.SettingsStatic
+import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.user.getAuth
+import kotlinx.android.synthetic.main.settings.*
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
-	private var useCategories: Boolean = false
-	private val useCategoriesField: CheckBox get() = findViewById(R.id.use_categories)
-
-	private var moveCheck: Boolean = false
-	private val moveCheckField: CheckBox get() = findViewById(R.id.move_check)
 
 	override fun contentView(): Int = R.layout.settings
 
@@ -27,8 +22,8 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		super.onCreate(savedInstanceState)
 
 		if (rotated && succeeded) {
-			useCategoriesField.isChecked = useCategories
-			moveCheckField.isChecked = moveCheck
+			use_categories.isChecked = static.useCategories
+			move_check.isChecked = static.moveCheck
 		} else {
 			getCurrentSettings()
 		}
@@ -47,18 +42,18 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 			this, "Users/SaveConfig", { back() }
 		)
 		request.addParameter("ticket", getAuth())
-		request.addParameter("UseCategories", useCategoriesField.isChecked)
-		request.addParameter("MoveCheck", moveCheckField.isChecked)
+		request.addParameter("UseCategories", use_categories.isChecked)
+		request.addParameter("MoveCheck", move_check.isChecked)
 		request.post()
 	}
 
 
 	private fun populateScreen(data: JSONObject) {
-		useCategories = data.getBoolean("UseCategories")
-		useCategoriesField.isChecked = useCategories
+		static.useCategories = data.getBoolean("UseCategories")
+		use_categories.isChecked = static.useCategories
 
-		moveCheck = data.getBoolean("MoveCheck")
-		moveCheckField.isChecked = moveCheck
+		static.moveCheck = data.getBoolean("MoveCheck")
+		move_check.isChecked = static.moveCheck
 	}
 
 
