@@ -120,12 +120,13 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.2.1 :ant: <sup>`6`</sup>
+## 4.1.2.1 :ant: <sup>`7`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 - [ ] Remove ticket from url (mobile)
+- [ ] Kill all java click listeners
 - [ ] Make slide menu, not bottom anymore
 
 ## <a name="dev"></a>4.1.2.0 :sheep: <sup>`5`</sup>
