@@ -42,7 +42,7 @@ class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
 	private fun handleLogin(data: JSONObject) {
 		val ticket = data.getString("ticket")
 		setAuth(ticket)
-		redirect(WelcomeActivity::class.java)
+		redirect<WelcomeActivity>()
 	}
 
 

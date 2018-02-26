@@ -148,7 +148,7 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	}
 
 	fun goToAccounts(@Suppress(ON_CLICK) view: View) {
-		redirect(AccountsActivity::class.java)
+		redirect<AccountsActivity>()
 	}
 
 	fun goToSettings(@Suppress(ON_CLICK) view: View) {

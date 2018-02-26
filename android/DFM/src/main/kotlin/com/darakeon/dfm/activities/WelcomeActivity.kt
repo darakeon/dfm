@@ -8,7 +8,6 @@ import com.darakeon.dfm.activities.base.redirect
 import com.darakeon.dfm.activities.objects.WelcomeStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.user.isLoggedIn
-import kotlin.reflect.KClass
 
 class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 
@@ -18,7 +17,7 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 		get() = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
 		super.onCreate(savedInstanceState)
 
@@ -34,13 +33,10 @@ class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
 	}
 
 	private fun startProgram() {
-		val nextActivity : KClass<*> =
-			if (isLoggedIn())
-				AccountsActivity::class
-			else
-				LoginActivity::class
-
-		redirect(nextActivity.java)
+		if (isLoggedIn())
+			redirect<AccountsActivity>()
+		else
+			redirect<LoginActivity>()
 	}
 
 }
