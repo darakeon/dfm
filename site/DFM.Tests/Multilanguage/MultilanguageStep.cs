@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Enums;
 using DFM.Multilanguage.Helpers;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
@@ -35,12 +37,41 @@ namespace DFM.Tests.Multilanguage
 				.ToList();
 		}
 
+		[Given(@"I have these entity enums")]
+		public void GivenIHaveTheseEntityEnums(Table table)
+		{
+			keys = new List<Pair>();
+
+			foreach (var row in table.Rows)
+			{
+				var section = row["Section"];
+				var type = row["Enum"];
+
+				var origin = typeof(SecurityAction);
+				var assembly = origin.Assembly;
+				var @namespace = origin.Namespace;
+				var @enum = assembly.GetType(@namespace + "." + type);
+
+				Enum.GetNames(@enum)
+					.Select(m => new Pair(section, m))
+					.ToList()
+					.ForEach(keys.Add);
+			}
+		}
+
+		[Given(@"I have the error enum")]
+		public void GivenIHaveTheErrorEnum()
+		{
+			keys = Enum.GetNames(typeof(ExceptionPossibilities))
+				.Select(m => new Pair("Error", m))
+				.ToList();
+		}
 
 		[Given(@"I have these keys")]
 		public void GivenIHaveTheseKeys(Table table)
 		{
 			keys = table.Rows
-				.Select(r => new Triad(r["Section"], r["Phrase"]))
+				.Select(r => new Pair(r["Section"], r["Phrase"]))
 				.ToList();
 		}
 
@@ -130,9 +161,9 @@ namespace DFM.Tests.Multilanguage
 			set { Set("languages", value); }
 		}
 
-		private static IList<Triad> keys
+		private static IList<Pair> keys
 		{
-			get { return Get<IList<Triad>>("keys"); }
+			get { return Get<IList<Pair>>("keys"); }
 			set { Set("keys", value); }
 		}
 
@@ -150,9 +181,9 @@ namespace DFM.Tests.Multilanguage
 
 
 
-		class Triad
+		class Pair
 		{
-			public Triad(String section, String phrase)
+			public Pair(String section, String phrase)
 			{
 				Section = section;
 				Phrase = phrase;
