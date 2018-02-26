@@ -184,14 +184,10 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
-
 		public ActionResult Mobile()
 		{
 			return Redirect(Cfg.GooglePlay);
 		}
-
-
 
 		[DFMAuthorize]
 		public ActionResult EndWizard()
@@ -200,5 +196,24 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
+		[DFMAuthorize(needContract: false, needTFA: false)]
+		public ActionResult TFA()
+		{
+			var model = new UsersTFAModel();
+			return View(model);
+		}
+
+		[DFMAuthorize(needContract: false, needTFA: false), HttpPost]
+		public ActionResult TFA(UsersTFAModel model)
+		{
+			model.Validate(ModelState.AddModelError);
+
+			if (ModelState.IsValid)
+			{
+				return RedirectToAction("Index", "Accounts");
+			}
+
+			return View(model);
+		}
 	}
 }

@@ -82,8 +82,14 @@ namespace DFM.MVC
 			Thread.CurrentThread.CurrentUICulture = 
 				new CultureInfo(Service.Current.Language);
 
-			if (access.Safe.IsLastContractAccepted())
+			var canRunSchedule =
+				access.Safe.IsLastContractAccepted()
+				&& access.Safe.VerifyTicket();
+
+			if (canRunSchedule)
+			{
 				runSchedule();
+			}
 		}
 
 		private void runSchedule()
@@ -168,8 +174,8 @@ namespace DFM.MVC
 		private static Boolean isElmah => path.Contains("elmah.axd")
 			|| (!String.IsNullOrEmpty(elmahTestAction) && path.Contains(elmahTestAction));
 
-		private delegate ActionResult testElmah();
-		private static String getName(Expression<Func<OpsController, testElmah>> expression)
+		private delegate ActionResult TestElmah();
+		private static String getName(Expression<Func<OpsController, TestElmah>> expression)
 		{
 			var body = (UnaryExpression)expression.Body;
 			var operand = (MethodCallExpression)body.Operand;
