@@ -20,87 +20,16 @@ Scenario: ML01. Get layouts of e-mails
 	Then I will receive no multilanguage error
 
 Scenario: ML02. Get translations of Enums
-	Given I have these keys
-			| Section   | Phrase           |
-			| Moves     | In               |
-			| Moves     | Out              |
-			| Moves     | Transfer         |
-			| Schedules | Daily            |
-			| Schedules | Monthly          |
-			| Schedules | Yearly           |
-			| Tokens    | UserVerification |
-			| Tokens    | PasswordReset    |
+	Given I have these entity enums
+			| Section   | Enum              |
+			| Moves     | MoveNature        |
+			| Schedules | ScheduleFrequency |
+			| Tokens    | SecurityAction    |
 	When I try get the translate
 	Then I will receive no multilanguage error
 
 Scenario: ML03. Get translations of Errors
-	Given I have these keys
-			| Section | Phrase                         |
-			| Error   | Unauthorized                   |
-			| Error   | FailOnEmailSend                |
-			| Error   | TooLargeData                   |
-			| Error   | InvalidToken                   |
-			| Error   | InvalidUser                    |
-			| Error   | UserAlreadyExists              |
-			| Error   | UserEmailInvalid               |
-			| Error   | UserPasswordRequired           |
-			| Error   | DisabledUser                   |
-			| Error   | Uninvited                      |
-			| Error   | RetypeWrong                    |
-			| Error   | WrongPassword                  |
-			| Error   | AccountNameRequired            |
-			| Error   | AccountUrlRequired             |
-			| Error   | AccountUrlInvalid              |
-			| Error   | AccountNameAlreadyExists       |
-			| Error   | AccountUrlAlreadyExists        |
-			| Error   | CantCloseEmptyAccount          |
-			| Error   | CantDeleteAccountWithMoves     |
-			| Error   | ClosedAccount                  |
-			| Error   | DuplicatedAccountName          |
-			| Error   | DuplicatedAccountUrl           |
-			| Error   | RedLimitAboveYellowLimit       |
-			| Error   | InvalidAccount                 |
-			| Error   | CategoriesDisabled             |
-			| Error   | MoveCheckDisabled              |
-			| Error   | CantDeleteAccountWithSchedules |
-			| Error   | CategoryNameRequired           |
-			| Error   | CategoryAlreadyExists          |
-			| Error   | DisabledCategory               |
-			| Error   | EnabledCategory                |
-			| Error   | DuplicatedCategoryName         |
-			| Error   | InvalidCategory                |
-			| Error   | InMoveWrong                    |
-			| Error   | OutMoveWrong                   |
-			| Error   | TransferMoveWrong              |
-			| Error   | MoveCircularTransfer           |
-			| Error   | MoveDescriptionRequired        |
-			| Error   | MoveDateRequired               |
-			| Error   | MoveDateInvalid                |
-			| Error   | MoveValueOrDetailRequired      |
-			| Error   | InvalidMove                    |
-			| Error   | DetailWithoutParent            |
-			| Error   | MoveDetailDescriptionRequired  |
-			| Error   | MoveDetailAmountRequired       |
-			| Error   | MoveDetailValueRequired        |
-			| Error   | InvalidDetail                  |
-			| Error   | MoveAlreadyChecked             |
-			| Error   | MoveAlreadyUnchecked           |
-			| Error   | ScheduleRequired               |
-			| Error   | ScheduleFrequencyNotRecognized |
-			| Error   | ScheduleWithNoMoves            |
-			| Error   | ScheduleTimesCantBeZero        |
-			| Error   | SummaryNatureNotFound          |
-			| Error   | InvalidYear                    |
-			| Error   | InvalidMonth                   |
-			| Error   | InvalidSchedule                |
-			| Error   | DisabledSchedule               |
-			| Error   | LanguageUnknown                |
-			| Error   | TimezoneUnknown                |
-			| Error   | NotSignedLastContract          |
-			| Error   | TFAEmptySecret                 |
-			| Error   | TFAWrongCode                   |
-			| Error   | TFAWrongPassword               |
-
+	Given I have the error enum
 	When I try get the translate
 	Then I will receive no multilanguage error
 
