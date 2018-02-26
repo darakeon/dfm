@@ -165,9 +165,9 @@ namespace DFM.Tests.BusinessLogic
 
 
 		#region Context
-		private TypedTicket getTicket(Boolean? remember = null)
+		private ClientTicket getTicket(Boolean? remember = null)
 		{
-			return new TypedTicket(TicketKey, TicketType.Local);
+			return new ClientTicket(TicketKey, TicketType.Local);
 		}
 
 		private String getPath(PathType pathType)

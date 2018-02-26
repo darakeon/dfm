@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DK.NHibernate.Base;
 using NUnit.Framework;
@@ -44,10 +44,10 @@ namespace DFM.Tests.BusinessLogic
 
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
-		public void ThenIWillReceiveThisError(String error)
+		public void ThenIWillReceiveThisError(ExceptionPossibilities error)
 		{
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(error, Error.Type.ToString());
+			Assert.AreEqual(error, Error.Type);
 		}
 
 		[Then(@"I will receive no core error")]
@@ -81,7 +81,12 @@ namespace DFM.Tests.BusinessLogic
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type != ExceptionPossibilities.NotSignedLastContract)
+				var ignored = new [] {
+					ExceptionPossibilities.NotSignedLastContract,
+					ExceptionPossibilities.TFANotVerified,
+				};
+
+				if (!ignored.Contains(e.Type))
 				{
 					throw;
 				}

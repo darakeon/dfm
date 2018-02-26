@@ -3,9 +3,9 @@ using DFM.Entities.Enums;
 
 namespace DFM.Authentication
 {
-	public class TypedTicket
+	public class ClientTicket
 	{
-		public TypedTicket(String key, TicketType type)
+		public ClientTicket(String key, TicketType type)
 		{
 			Key = key;
 			Type = type;

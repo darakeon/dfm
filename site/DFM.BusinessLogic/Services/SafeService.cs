@@ -10,6 +10,7 @@ using DFM.Authentication;
 using DFM.BusinessLogic.ObjectInterfaces;
 using DK.Generic.Extensions;
 using DK.TwoFactorAuth;
+using Ticket = DFM.Entities.Ticket;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -240,12 +241,13 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-
-
 		internal void VerifyUser()
 		{
 			if (Parent.Current.User == null || !Parent.Current.User.Active)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+
+			if (!Parent.Current.IsVerified)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TFANotVerified);
 
 			if (!IsLastContractAccepted())
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.NotSignedLastContract);
@@ -392,6 +394,40 @@ namespace DFM.BusinessLogic.Services
 
 				userRepository.SaveTFA(user, null);
 			});
+		}
+
+		public void ValidateTicketTFA(String code)
+		{
+			InTransaction(() =>
+			{
+				var secret = Parent.Current.User.TFASecret;
+
+				if (secret == null)
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFANotConfigured);
+
+				var codes = CodeGenerator.Generate(secret, 2);
+
+				if (!codes.Contains(code))
+					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongCode);
+
+				var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+				ticket.ValidTFA = true;
+				ticketRepository.SaveOrUpdate(ticket);
+			});
+		}
+
+		public Boolean VerifyTicket()
+		{
+			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+
+			if (ticket == null)
+			{
+				DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				return false;
+			}
+
+			return String.IsNullOrEmpty(ticket.User.TFASecret)
+				|| ticket.ValidTFA;
 		}
 
 	}

@@ -3,3 +3,6 @@ alter table Config
 
 alter table User
 	add TFASecret varchar(32) null;
+
+alter table Ticket
+	add ValidTFA bit not null;

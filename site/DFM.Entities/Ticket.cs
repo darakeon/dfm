@@ -11,7 +11,6 @@ namespace DFM.Entities
 			init();
 		}
 
-
 		
 		public virtual Int32 ID { get; set; }
 
@@ -21,6 +20,8 @@ namespace DFM.Entities
 		public virtual DateTime Creation { get; set; }
 		public virtual DateTime? Expiration { get; set; }
 		public virtual Boolean Active { get; set; }
+
+		public virtual Boolean ValidTFA { get; set; }
 
 		public virtual User User { get; set; }
 

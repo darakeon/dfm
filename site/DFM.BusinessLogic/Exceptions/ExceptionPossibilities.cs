@@ -21,6 +21,8 @@
 		TFAEmptySecret = 211,
 		TFAWrongCode = 212,
 		TFAWrongPassword = 213,
+		TFANotConfigured = 214,
+		TFANotVerified = 215,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,
