@@ -42,6 +42,7 @@
 			(we recommend using {1} or {2}), scan the QRCode below, and type
 			the code generated here.
 		" />
+		<TFARemove text="Remove two factor authentication" />
 	</en-US>
 	<pt-BR>
 		<Email text="E-mail" />
@@ -85,5 +86,6 @@
 			(recomendamos {1} ou {2}), aponte para o QRCode, e digite aqui
 			o código que aparecer no aplicativo.
 		" />
+		<TFARemove text="Remover autenticação em duas etapas" />
 	</pt-BR>
 </users>
