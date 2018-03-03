@@ -6,7 +6,9 @@ namespace DFM.Generic
 	{
 		public static String BreakLines(this String original)
 		{
-			return original.Replace(Environment.NewLine, "<br />");
+			return original
+				.Replace(Environment.NewLine, "<br />")
+				.Replace("\n", "<br />");
 		}
 	}
 }
