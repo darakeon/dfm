@@ -29,8 +29,6 @@ namespace DFM.MVC.Areas.API.Models
 				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
 				.ToList();
 
-			UseCategories = Current.User.Config.UseCategories;
-
 			if (UseCategories)
 			{
 				CategoryList = Admin.GetCategoryList(true)
@@ -42,8 +40,6 @@ namespace DFM.MVC.Areas.API.Models
 				? SelectItemEnum.SelectItem<MoveNature>() 
 				: SelectItemEnum.SelectItem<PrimalMoveNature>();
 		}
-
-		public Boolean UseCategories { get; set; }
 
 		public MovesCreatePostModel Move { get; set; }
 
