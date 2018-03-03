@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#publish)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.2.0/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.1/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -120,7 +120,7 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.2.1 :ant: <sup>`7`</sup>
+## <a name="dev"></a>4.1.2.1 :ant: <sup>`7`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
@@ -129,7 +129,7 @@ Legend:
 - [ ] Kill all java click listeners
 - [ ] Make slide menu, not bottom anymore
 
-## <a name="dev"></a>4.1.2.0 :sheep: <sup>`6`</sup>
+## <a name="publish"></a>4.1.2.0 :sheep: <sup>`6`</sup>
 - [x] `2018-03-02 > 2018-03-02` Remove license permission (not used anymore)
 - [x] `2018-02-25 > 2018-02-25` Update Volley
 - [x] `2018-02-26 > 2018-02-26` Remove findViewById
@@ -137,7 +137,7 @@ Legend:
 - [x] `2018-01-19 > 2018-01-22` Create option of starting with wizard at sign up
 - [x] `2018-01-18 > 2018-01-18` Add warning on move with category editing when categories are disabled
 
-## <a name="publish"></a>4.1.1.3 :ant: <sup>`3`</sup>
+## 4.1.1.3 :ant: <sup>`3`</sup>
 - [x] `2018-01-15 > 2018-01-15` Fix mobile to edit move with category when categories use are disabled
 - [x] `2018-01-16 > 2018-01-16` Put list of feature on screen
 - [x] `2018-01-14 > 2018-01-14` Fix button name on "You are offline"
