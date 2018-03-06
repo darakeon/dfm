@@ -308,7 +308,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		val amountDefault = resources.getInteger(R.integer.amount_default)
 
 		detail_description.setText("")
-		detail_amount.setText(amountDefault)
+		detail_amount.setText(amountDefault.toString())
 		detail_value.setText("")
 
 		val amount = amountStr.toInt()

@@ -132,7 +132,7 @@ Legend:
 ## <a name="dev"></a>4.1.2.1 :ant: <sup>`3`</sup>
 - [ ] Fix category repeated block at mobile/moves
 - [ ] Fix nature issue on create at mobile/moves
-- [ ] Fix add detail at mobile/moves
+- [x] `2018-03-06 > 2018-03-06` Fix add detail at mobile/moves
 
 ## <a name="publish"></a>4.1.2.0 :sheep: <sup>`6`</sup>
 - [x] `2018-03-02 > 2018-03-02` Remove license permission (not used anymore)
