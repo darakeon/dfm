@@ -15,6 +15,6 @@
 - [ ] Upload video
 - [ ] Post Twitter
 - [ ] Post Facebook
-- [ ] Create branch of other version
 - [ ] Merge PR
+- [ ] Create branch of other version
 - [ ] Create tag on master
