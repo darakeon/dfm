@@ -163,22 +163,29 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		populateCategoryAndNature()
 	}
 
-	private fun populateCategoryAndNature() {
-
+	private fun populateCategoryAndNature()
+	{
 		category.visibility =
 			if (static.useCategories)
 				View.VISIBLE
 			else
 				View.GONE
 
-		if (static.move.warnCategory) {
+		lose_category.visibility =
+			if (static.move.warnCategory)
+				View.VISIBLE
+			else
+				View.GONE
+
+		if (static.move.warnCategory)
+		{
 			lose_category.paintFlags =
-				lose_category.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-		} else {
-			lose_category.visibility = View.GONE
+				lose_category.paintFlags or
+					Paint.STRIKE_THRU_TEXT_FLAG
 		}
 
-		if (static.move.nature == null) {
+		if (static.move.nature == null)
+		{
 			val firstNature = static.natureList.getJSONObject(0)
 			val text = firstNature.getString("Text")
 			val value = firstNature.getInt("Value")

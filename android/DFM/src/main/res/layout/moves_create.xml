@@ -93,7 +93,8 @@
 					android:layout_width="0sp"
 					android:layout_weight="1"
 					android:layout_height="wrap_content"
-					android:onClick="warnLoseCategory" />
+					android:onClick="warnLoseCategory"
+					android:visibility="gone" />
 
 			</LinearLayout>
 
