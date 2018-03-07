@@ -130,7 +130,7 @@ Legend:
 - [ ] Make slide menu, not bottom anymore
 
 ## <a name="dev"></a>4.1.2.1 :ant: <sup>`3`</sup>
-- [ ] Fix category repeated block at mobile/moves
+- [x] `2018-03-07 > 2018-03-07` Fix category repeated block at mobile/moves
 - [x] `2018-03-07 > 2018-03-07` Fix nature issue on create at mobile/moves
 - [x] `2018-03-06 > 2018-03-06` Fix add detail at mobile/moves
 
