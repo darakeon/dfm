@@ -28,11 +28,6 @@ class Move {
 	private fun getNature(number: Int?): Nature =
 		com.darakeon.dfm.api.entities.Nature.getNature(number)
 
-
-	fun setNature(number: String) {
-		setNature(number.toInt())
-	}
-
 	fun setNature(number: Int?) {
 		nature = getNature(number)
 	}
