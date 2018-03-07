@@ -180,8 +180,9 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 
 		if (static.move.nature == null) {
 			val firstNature = static.natureList.getJSONObject(0)
-			nature.text = firstNature.getString("Text")
-			static.move.setNature(firstNature.getInt("Value"))
+			val text = firstNature.getString("Text")
+			val value = firstNature.getInt("Value")
+			setNature(text, value)
 		}
 	}
 
@@ -231,7 +232,11 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 		showChangeList(static.natureList, R.string.nature, { t, v -> setNature(t, v) })
 	}
 
-	private fun setNature(text: String, value : String) {
+	private fun setNature(text: String, value: String) {
+		setNature(text, value.toInt())
+	}
+
+	private fun setNature(text: String, value: Int?) {
 		nature.text = text
 		static.move.setNature(value)
 
