@@ -7,7 +7,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.auth.highLightColor
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.setValueColored
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.summary.total_value
 import org.json.JSONObject
 import java.util.Calendar
 
-class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
+class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 

@@ -6,14 +6,14 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.use_categories
 import org.json.JSONObject
 
-class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
+class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
 
 	override val contentView = R.layout.settings
 

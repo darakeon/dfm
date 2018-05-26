@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.auth.languageChangeAndSave
 import com.darakeon.dfm.auth.themeChangeAndSave
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.createWaitDialog
@@ -32,12 +32,12 @@ import org.json.JSONObject
 import java.util.HashMap
 
 class InternalRequest<T : SmartStatic>(
-	private var activity: SmartActivity<T>,
+	private var activity: BaseActivity<T>,
 	private val url: String,
 	private var handleSuccess: ((JSONObject) -> Unit)?
 ) {
 
-	constructor(activity: SmartActivity<T>, url: String)
+	constructor(activity: BaseActivity<T>, url: String)
 		: this(activity, url, null)
 
 	private val parameters: HashMap<String, Any?> = HashMap()

@@ -1,13 +1,13 @@
 package com.darakeon.dfm.auth
 
 import android.app.Activity
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 import java.util.*
 
 private val spKey = "Language"
 
-fun <T : SmartStatic> SmartActivity<T>.languageChangeAndSave(systemLanguage: String) {
+fun <T : SmartStatic> BaseActivity<T>.languageChangeAndSave(systemLanguage: String) {
 	var language = systemLanguage
 	val current = Locale.getDefault().toString()
 

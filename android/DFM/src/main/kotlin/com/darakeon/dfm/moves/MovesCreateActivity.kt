@@ -12,7 +12,7 @@ import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.api.entities.Nature
 import com.darakeon.dfm.api.toDoubleByCulture
 import com.darakeon.dfm.auth.getAuth
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -40,7 +40,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.Calendar
 
-class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) {
+class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	private val dialog: DatePickerDialog
 		get() {
 			val ( year, month, day ) = static.move

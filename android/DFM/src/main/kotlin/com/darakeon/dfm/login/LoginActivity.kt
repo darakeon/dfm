@@ -4,7 +4,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.setAuth
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.welcome.WelcomeActivity
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.login.email
 import kotlinx.android.synthetic.main.login.password
 import org.json.JSONObject
 
-class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
+class LoginActivity : BaseActivity<LoginStatic>(LoginStatic) {
 	override val contentView = R.layout.login
 
 	override val isLoggedIn: Boolean

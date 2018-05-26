@@ -9,7 +9,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.auth.highLightColor
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.IYesNoDialogAnswer
 import com.darakeon.dfm.dialogs.alertYesNo
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer {
+class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	private val dialog: DatePickerDialog
