@@ -1,6 +1,6 @@
 package com.darakeon.dfm.api.entities
 
-import com.darakeon.dfm.activities.objects.MovesCreateStatic
+import com.darakeon.dfm.moves.MovesCreateStatic
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.api.getCalendar
 import org.json.JSONObject

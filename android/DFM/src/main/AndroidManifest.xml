@@ -37,7 +37,7 @@
 			android:resource="@string/asset_statements"/>
 
 		<activity
-			android:name=".activities.WelcomeActivity"
+			android:name=".welcome.WelcomeActivity"
 			android:label="@string/app_short_name">
 			<tools:validation testUrl="https://dontflymoney.com/@Welcome"/>
 			<intent-filter>
@@ -58,7 +58,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.LoginActivity"
+			android:name=".login.LoginActivity"
 			android:label="@string/login">
 			<tools:validation testUrl="https://dontflymoney.com/@Login"/>
 			<intent-filter>
@@ -75,7 +75,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.AccountsActivity"
+			android:name=".accounts.AccountsActivity"
 			android:label="@string/title_activity_accounts">
 			<tools:validation testUrl="https://dontflymoney.com/@Accounts"/>
 			<intent-filter>
@@ -92,7 +92,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.ExtractActivity"
+			android:name=".extract.ExtractActivity"
 			android:label="@string/title_activity_extract">
 			<tools:validation testUrl="https://dontflymoney.com/@Extract"/>
 			<intent-filter>
@@ -109,7 +109,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.SummaryActivity"
+			android:name=".summary.SummaryActivity"
 			android:label="@string/title_activity_summary">
 			<tools:validation testUrl="https://dontflymoney.com/@Summary"/>
 			<intent-filter>
@@ -126,7 +126,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.MovesCreateActivity"
+			android:name=".moves.MovesCreateActivity"
 			android:label="@string/title_activity_move">
 			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate"/>
 			<intent-filter>
@@ -143,7 +143,7 @@
 		</activity>
 
 		<activity
-			android:name=".activities.SettingsActivity"
+			android:name=".settings.SettingsActivity"
 			android:label="@string/title_activity_settings">
 			<tools:validation testUrl="https://dontflymoney.com/@Settings"/>
 			<intent-filter>
@@ -159,7 +159,7 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".activities.TFAActivity" />
+		<activity android:name=".tfa.TFAActivity" />
 	</application>
 
 </manifest>

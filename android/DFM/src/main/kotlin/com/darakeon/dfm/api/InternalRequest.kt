@@ -11,13 +11,19 @@ import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
-import com.darakeon.dfm.activities.base.*
-import com.darakeon.dfm.activities.objects.SmartStatic
+import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.extensions.info
 import com.darakeon.dfm.extensions.stackTraceText
-import com.darakeon.dfm.user.languageChangeAndSave
-import com.darakeon.dfm.user.themeChangeAndSave
-import com.darakeon.dfm.activities.TFAActivity
+import com.darakeon.dfm.auth.languageChangeAndSave
+import com.darakeon.dfm.auth.themeChangeAndSave
+import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.dialogs.alertError
+import com.darakeon.dfm.extensions.composeEmail
+import com.darakeon.dfm.dialogs.createWaitDialog
+import com.darakeon.dfm.extensions.isProd
+import com.darakeon.dfm.extensions.logout
+import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.tfa.TFAActivity
 import org.json.JSONObject
 import java.util.*
 
