@@ -10,7 +10,7 @@ import com.darakeon.dfm.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
 
 class TFAActivity : SmartActivity<TFAStatic>(TFAStatic) {
-	override fun contentView(): Int = R.layout.tfa
+	override val contentView = R.layout.tfa
 	override val hasTitle: Boolean get() = false
 
 	fun verify(@Suppress("UNUSED_PARAMETER") view: View) {

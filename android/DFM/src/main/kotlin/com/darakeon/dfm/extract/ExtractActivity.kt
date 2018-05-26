@@ -1,7 +1,6 @@
 package com.darakeon.dfm.extract
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
@@ -9,16 +8,16 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.SmartActivity
 import com.darakeon.dfm.dialogs.IYesNoDialogAnswer
 import com.darakeon.dfm.dialogs.alertYesNo
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
+import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
-import com.darakeon.dfm.summary.SummaryActivity
 import kotlinx.android.synthetic.main.extract.empty_list
-import kotlinx.android.synthetic.main.extract.highlight
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
@@ -37,10 +36,9 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 			static.year, static.month
 		)
 
-	override fun contentView(): Int = R.layout.extract
-	override fun contextMenuResource(): Int = R.menu.move_options
-	override fun viewWithContext(): View? = main_table
-	override fun highlight(): View? = highlight
+	override val contentView = R.layout.extract
+	override val contextMenuResource = R.menu.move_options
+	override val viewWithContext get() = main_table
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
@@ -50,7 +48,9 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && succeeded) {
+		highlight?.setBackgroundColor(highLightColor)
+
+		if (rotated && static.succeeded) {
 			setDateFromLast()
 			fillMoves()
 		} else {
@@ -137,16 +137,13 @@ class ExtractActivity : SmartActivity<ExtractStatic>(ExtractStatic), IYesNoDialo
 
 
 	fun goToSummary(@Suppress(ON_CLICK) view: View) {
-		val intent = Intent(this, SummaryActivity::class.java)
-
-		intent.putExtra("accountUrl", accountUrl)
-		intent.putExtra("year", static.year)
-
-		startActivity(intent)
+		redirect<ExtractActivity> {
+			it.putExtra("accountUrl", accountUrl)
+			it.putExtra("year", static.year)
+		}
 	}
 
 	private fun goToMove(moveId: Int) {
-
 		val extras = Bundle()
 
 		extras.putInt("id", moveId)

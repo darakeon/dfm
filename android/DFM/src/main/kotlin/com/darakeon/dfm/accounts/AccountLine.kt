@@ -1,11 +1,11 @@
 package com.darakeon.dfm.accounts
 
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
+import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setColorByAttr
 import com.darakeon.dfm.extract.ExtractActivity
 import kotlinx.android.synthetic.main.accounts_line.view.name
@@ -31,12 +31,14 @@ class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(c
 		setOnClickListener(OnClickListener(context, account.url))
 	}
 
-	inner class OnClickListener internal constructor(private val context: Context, private val url: String) : View.OnClickListener {
-
+	inner class OnClickListener internal constructor(
+		private val context: Context,
+		private val url: String
+	) : View.OnClickListener {
 		override fun onClick(v: View) {
-			val intent = Intent(context, ExtractActivity::class.java)
-			intent.putExtra("accountUrl", url)
-			context.startActivity(intent)
+			context.redirect<ExtractActivity> {
+				it.putExtra("accountUrl", url)
+			}
 		}
 	}
 }

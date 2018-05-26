@@ -12,7 +12,6 @@ import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.auth.getHighLightColor
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -37,21 +36,13 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	var rotated: Boolean = false
 	lateinit var inflater: LayoutInflater
 
-	var succeeded: Boolean
-		get() = static.succeeded
-		set(value) { static.succeeded = value }
-
-	protected abstract fun contentView(): Int
-	protected open fun optionsMenuResource(): Int = 0
-	protected open fun contextMenuResource(): Int = 0
-	protected open fun viewWithContext(): View? = null
-	protected open fun highlight(): View? = null
-
-	protected open val isLoggedIn: Boolean
-		get() = true
-
-	protected open val hasTitle: Boolean
-		get() = true
+	protected abstract val contentView: Int
+	protected open val optionsMenuResource = 0
+	protected open val contextMenuResource = 0
+	protected open val viewWithContext: View? = null
+	protected open val highlight: View? = null
+	protected open val isLoggedIn = true
+	protected open val hasTitle = true
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
@@ -74,13 +65,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-		setContentView(contentView())
+		setContentView(contentView)
 
-		if (viewWithContext() != null) {
-			registerForContextMenu(viewWithContext())
+		if (viewWithContext != null) {
+			registerForContextMenu(viewWithContext)
 		}
-
-		highlight()?.setBackgroundColor(getHighLightColor())
 
 		val data = intent.data
 		if (data?.queryParameterNames != null) {
@@ -93,8 +82,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		super.onCreateOptionsMenu(menu)
 
-		if (optionsMenuResource() != 0)
-			menuInflater.inflate(optionsMenuResource(), menu)
+		if (optionsMenuResource != 0)
+			menuInflater.inflate(optionsMenuResource, menu)
 
 		if (bottom_menu != null)
 		{
@@ -119,8 +108,8 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo)
 
-		if (contextMenuResource() != 0) {
-			menuInflater.inflate(contextMenuResource(), menu)
+		if (contextMenuResource != 0) {
+			menuInflater.inflate(contextMenuResource, menu)
 			changeContextMenu(v, menu)
 		}
 	}
@@ -175,11 +164,11 @@ abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
 	}
 
 	open fun enableScreen() {
-		succeeded = true
+		static.succeeded = true
 	}
 
 	fun reset() {
-		succeeded = false
+		static.succeeded = false
 	}
 
 	protected fun getExtraOrUrl(key: String, default: Int?) : String =

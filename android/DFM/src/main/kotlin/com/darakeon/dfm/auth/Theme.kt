@@ -53,7 +53,7 @@ fun getThemeLineColor(position: Int): Int =
 	}
 
 
-fun getHighLightColor(): Int =
+val highLightColor =
 	when (currentTheme) {
 		R.style.Light -> Color.argb(0x22, 0x00, 0x00, 0x00)
 		R.style.Dark -> Color.argb(0x22, 0xFF, 0xFF, 0xFF)

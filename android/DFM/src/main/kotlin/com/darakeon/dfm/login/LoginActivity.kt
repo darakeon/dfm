@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.login.password
 import org.json.JSONObject
 
 class LoginActivity : SmartActivity<LoginStatic>(LoginStatic) {
-	override fun contentView(): Int = R.layout.login
+	override val contentView = R.layout.login
 
 	override val isLoggedIn: Boolean
 		get() = false

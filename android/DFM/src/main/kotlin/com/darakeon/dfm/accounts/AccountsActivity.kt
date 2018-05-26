@@ -11,12 +11,12 @@ import kotlinx.android.synthetic.main.accounts.main_table
 import org.json.JSONObject
 
 class AccountsActivity : SmartActivity<AccountsStatic>(AccountsStatic) {
-	override fun contentView(): Int = R.layout.accounts
+	override val contentView = R.layout.accounts
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && succeeded) {
+		if (rotated && static.succeeded) {
 			fillAccounts()
 		} else {
 			getAccounts()

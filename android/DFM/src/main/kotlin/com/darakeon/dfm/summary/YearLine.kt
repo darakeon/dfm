@@ -1,11 +1,11 @@
 package com.darakeon.dfm.summary
 
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
+import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setColorByAttr
 import com.darakeon.dfm.extract.ExtractActivity
 import kotlinx.android.synthetic.main.summary_line.view.month
@@ -37,13 +37,11 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	) : View.OnClickListener {
 
 		override fun onClick(v: View) {
-			val intent = Intent(context, ExtractActivity::class.java)
-
-			intent.putExtra("accountUrl", year.AccountUrl)
-			intent.putExtra("year", year.YearNumber)
-			intent.putExtra("month", year.monthNumber - 1)
-
-			context.startActivity(intent)
+			context.redirect<ExtractActivity> {
+				it.putExtra("accountUrl", year.AccountUrl)
+				it.putExtra("year", year.YearNumber)
+				it.putExtra("month", year.monthNumber - 1)
+			}
 		}
 	}
 

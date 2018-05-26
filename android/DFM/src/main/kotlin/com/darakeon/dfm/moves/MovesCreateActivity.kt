@@ -16,7 +16,7 @@ import com.darakeon.dfm.base.SmartActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
-import com.darakeon.dfm.extensions.redirectWithExtras
+import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.showChangeList
 import kotlinx.android.synthetic.main.moves_create.account_in
 import kotlinx.android.synthetic.main.moves_create.account_out
@@ -51,7 +51,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 			)
 		}
 
-	override fun contentView(): Int = R.layout.moves_create
+	override val contentView = R.layout.moves_create
 
 	private fun updateDateCombo(year: Int, month: Int, day: Int) {
 		static.move.date.set(year, month, day)
@@ -61,7 +61,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && succeeded) {
+		if (rotated && static.succeeded) {
 			populateCategoryAndNature()
 			setControls()
 			populateOldData(false)
@@ -374,7 +374,7 @@ class MovesCreateActivity : SmartActivity<MovesCreateStatic>(MovesCreateStatic) 
 	}
 
 	private fun back() {
-		redirectWithExtras()
+		backWithExtras()
 	}
 
 

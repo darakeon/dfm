@@ -8,20 +8,20 @@ import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.SmartActivity
 import com.darakeon.dfm.extensions.ON_CLICK
-import com.darakeon.dfm.extensions.redirectWithExtras
+import com.darakeon.dfm.extensions.backWithExtras
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.use_categories
 import org.json.JSONObject
 
 class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 
-	override fun contentView(): Int = R.layout.settings
+	override val contentView = R.layout.settings
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && succeeded) {
+		if (rotated && static.succeeded) {
 			use_categories.isChecked = static.useCategories
 			move_check.isChecked = static.moveCheck
 		} else {
@@ -61,7 +61,7 @@ class SettingsActivity : SmartActivity<SettingsStatic>(SettingsStatic) {
 		AlertDialog.Builder(this)
 			.setTitle(R.string.title_activity_settings)
 			.setMessage(R.string.settings_saved)
-			.setPositiveButton(R.string.ok_button) { _, _ -> redirectWithExtras() }
+			.setPositiveButton(R.string.ok_button) { _, _ -> backWithExtras() }
 			.show()
 	}
 
