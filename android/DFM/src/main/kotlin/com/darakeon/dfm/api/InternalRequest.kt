@@ -7,25 +7,29 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.view.Surface
 import android.view.WindowManager
-import com.android.volley.*
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.TimeoutError
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
-import com.darakeon.dfm.base.SmartStatic
-import com.darakeon.dfm.extensions.info
-import com.darakeon.dfm.extensions.stackTraceText
 import com.darakeon.dfm.auth.languageChangeAndSave
 import com.darakeon.dfm.auth.themeChangeAndSave
 import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.dialogs.alertError
-import com.darakeon.dfm.extensions.composeEmail
 import com.darakeon.dfm.dialogs.createWaitDialog
+import com.darakeon.dfm.extensions.composeEmail
+import com.darakeon.dfm.extensions.info
 import com.darakeon.dfm.extensions.isProd
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.extensions.stackTraceText
 import com.darakeon.dfm.tfa.TFAActivity
 import org.json.JSONObject
-import java.util.*
+import java.util.HashMap
 
 class InternalRequest<T : SmartStatic>(
 	private var activity: SmartActivity<T>,
@@ -44,7 +48,7 @@ class InternalRequest<T : SmartStatic>(
 
 
 	fun addParameter(key: String, value: Any?) {
-		parameters.put(key, value)
+		parameters[key] = value
 	}
 
 
@@ -63,7 +67,7 @@ class InternalRequest<T : SmartStatic>(
 		if (Internet.isOffline(activity)) {
 			val error = activity.getString(R.string.u_r_offline)
 			activity.alertError(error)
-			activity.succeeded = false
+			activity.static.succeeded = false
 			return
 		}
 
@@ -193,9 +197,9 @@ class InternalRequest<T : SmartStatic>(
 	private fun assemblyResponse(internalResponse: InternalResponse, sendEmailReport: DialogInterface.OnClickListener? = null) {
 		activity.endUIWait()
 
-		activity.succeeded = internalResponse.isSuccess()
+		activity.static.succeeded = internalResponse.isSuccess()
 
-		if (!activity.succeeded) {
+		if (!activity.static.succeeded) {
 			activity.alertError(internalResponse.getError(), sendEmailReport)
 			return
 		}

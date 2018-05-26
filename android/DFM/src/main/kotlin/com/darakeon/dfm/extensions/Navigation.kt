@@ -5,29 +5,36 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.auth.clearAuth
+import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.SmartActivity
 import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesCreateActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.welcome.WelcomeActivity
-import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.auth.clearAuth
-import com.darakeon.dfm.auth.getAuth
 
 const val ON_CLICK: String = "UNUSED_PARAMETER"
 
-inline fun <reified T : Activity> Context.redirect () {
+inline fun <reified T : Activity> Context.redirect(
+	function: (Intent) -> Unit
+) {
 	val intent = Intent(this, T::class.java)
+	function(intent)
 	startActivity(intent)
 }
 
-inline fun <reified T : Activity> Activity.redirectAndFinish () {
+inline fun <reified T : Activity> Context.redirect() {
+	redirect<T>({})
+}
+
+inline fun <reified T : Activity> Activity.redirectAndFinish() {
 	redirect<T>()
 	finish()
 }
 
-fun Activity.redirectWithExtras() {
+fun Activity.backWithExtras() {
 	val extras = intent.extras
 	val parent = extras.get("__parent") as Class<*>
 	extras.remove("__parent")
@@ -55,10 +62,10 @@ internal fun Activity.back() {
 }
 
 internal fun Activity.close() {
-	val intent = Intent(this, WelcomeActivity::class.java)
-	intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-	intent.putExtra("EXIT", true)
-	startActivity(intent)
+	redirect<WelcomeActivity> {
+		it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+		it.putExtra("EXIT", true)
+	}
 }
 
 internal fun Activity.goToSettings() {

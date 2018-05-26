@@ -6,18 +6,18 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.SmartActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.setValueColored
 import kotlinx.android.synthetic.main.summary.empty_list
-import kotlinx.android.synthetic.main.summary.highlight
 import kotlinx.android.synthetic.main.summary.main_table
 import kotlinx.android.synthetic.main.summary.reportChange
 import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import org.json.JSONObject
-import java.util.*
+import java.util.Calendar
 
 class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 
@@ -29,8 +29,7 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 			static.year
 		)
 
-	override fun contentView(): Int = R.layout.summary
-	override fun highlight(): View? = highlight
+	override val contentView = R.layout.summary
 
 	private fun updateScreen(year: Int) {
 		setDate(year)
@@ -40,7 +39,9 @@ class SummaryActivity : SmartActivity<SummaryStatic>(SummaryStatic) {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && succeeded) {
+		highlight?.setBackgroundColor(highLightColor)
+
+		if (rotated && static.succeeded) {
 			setDateFromLast()
 			fillSummary()
 		} else {
