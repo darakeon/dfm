@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api
+package com.darakeon.dfm.extensions
 
 import java.text.NumberFormat
 import java.util.*

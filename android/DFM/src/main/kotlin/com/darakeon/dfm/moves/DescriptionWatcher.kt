@@ -1,6 +1,6 @@
 package com.darakeon.dfm.moves
 
-import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.api.old.entities.Move
 
 class DescriptionWatcher(private val move: Move) : AfterTextWatcher() {
 

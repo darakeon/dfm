@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.getCalendar
+import com.darakeon.dfm.api.old.getCalendar
 import com.darakeon.dfm.auth.getThemeLineColor
 import org.json.JSONArray
 import org.json.JSONObject

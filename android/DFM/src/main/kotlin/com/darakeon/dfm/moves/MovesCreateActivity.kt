@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.entities.Move
-import com.darakeon.dfm.api.entities.Nature
-import com.darakeon.dfm.api.toDoubleByCulture
+import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.old.entities.Move
+import com.darakeon.dfm.api.old.entities.Nature
+import com.darakeon.dfm.extensions.toDoubleByCulture
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError

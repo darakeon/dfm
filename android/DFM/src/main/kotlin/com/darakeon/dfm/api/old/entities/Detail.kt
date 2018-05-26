@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.old.entities
 
 class Detail {
 	var description: String? = null

@@ -2,7 +2,7 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.setAuth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK

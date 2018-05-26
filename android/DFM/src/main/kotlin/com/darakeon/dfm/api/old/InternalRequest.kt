@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api
+package com.darakeon.dfm.api.old
 
 import android.app.Activity
 import android.app.Dialog
@@ -15,6 +15,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.Internet
 import com.darakeon.dfm.auth.languageChangeAndSave
 import com.darakeon.dfm.auth.themeChangeAndSave
 import com.darakeon.dfm.base.BaseActivity
