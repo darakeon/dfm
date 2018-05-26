@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.BaseActivity

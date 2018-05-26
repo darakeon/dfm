@@ -11,7 +11,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
 import com.darakeon.dfm.extensions.ON_CLICK

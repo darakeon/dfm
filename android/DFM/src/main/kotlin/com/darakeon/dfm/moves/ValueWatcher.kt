@@ -1,8 +1,7 @@
 package com.darakeon.dfm.moves
 
-import com.darakeon.dfm.api.entities.Move
-import com.darakeon.dfm.api.toDoubleByCulture
-import com.darakeon.dfm.moves.AfterTextWatcher
+import com.darakeon.dfm.api.old.entities.Move
+import com.darakeon.dfm.extensions.toDoubleByCulture
 
 class ValueWatcher(private val move: Move) : AfterTextWatcher() {
 

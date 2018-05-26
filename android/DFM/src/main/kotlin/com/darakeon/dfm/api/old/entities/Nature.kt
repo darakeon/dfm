@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.old.entities
 
 enum class Nature {
 	Out,

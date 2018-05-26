@@ -1,7 +1,7 @@
 package com.darakeon.dfm.moves
 
 import com.darakeon.dfm.base.SmartStatic
-import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.api.old.entities.Move
 import org.json.JSONArray
 
 object MovesCreateStatic : SmartStatic

@@ -6,7 +6,7 @@ import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.InternalRequest
+import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity

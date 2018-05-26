@@ -1,8 +1,8 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.old.entities
 
 import com.darakeon.dfm.moves.MovesCreateStatic
-import com.darakeon.dfm.api.InternalRequest
-import com.darakeon.dfm.api.getCalendar
+import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.old.getCalendar
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,7 +26,7 @@ class Move {
 
 
 	private fun getNature(number: Int?): Nature =
-		com.darakeon.dfm.api.entities.Nature.getNature(number)
+		com.darakeon.dfm.api.old.entities.Nature.getNature(number)
 
 	fun setNature(number: Int?) {
 		nature = getNature(number)

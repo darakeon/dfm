@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.api.old.entities.Move
 import java.text.DecimalFormat
 
 class DetailBox(context: Context, internal var move: Move?, internal var description: String?, internal var amount: Int, internal var value: Double) : LinearLayout(context) {
