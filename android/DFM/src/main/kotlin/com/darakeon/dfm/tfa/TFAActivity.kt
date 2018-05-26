@@ -5,11 +5,11 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.getAuth
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
 
-class TFAActivity : SmartActivity<TFAStatic>(TFAStatic) {
+class TFAActivity : BaseActivity<TFAStatic>(TFAStatic) {
 	override val contentView = R.layout.tfa
 	override val hasTitle: Boolean get() = false
 

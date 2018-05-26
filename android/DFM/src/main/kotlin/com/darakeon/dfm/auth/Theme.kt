@@ -3,13 +3,13 @@ package com.darakeon.dfm.auth
 import android.app.Activity
 import android.graphics.Color
 import com.darakeon.dfm.R
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 
 private val spKey = "Theme"
 private var currentTheme = R.style.AppTheme
 
-fun <T : SmartStatic> SmartActivity<T>.themeChangeAndSave(systemTheme: String) {
+fun <T : SmartStatic> BaseActivity<T>.themeChangeAndSave(systemTheme: String) {
 	val theme = getRes(systemTheme)
 
 	if (theme == currentTheme)

@@ -6,11 +6,11 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.InternalRequest
 import com.darakeon.dfm.auth.isLoggedIn
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 
-class WelcomeActivity : SmartActivity<WelcomeStatic>(WelcomeStatic) {
+class WelcomeActivity : BaseActivity<WelcomeStatic>(WelcomeStatic) {
 
 	override val contentView = R.layout.welcome
 	override val hasTitle = false

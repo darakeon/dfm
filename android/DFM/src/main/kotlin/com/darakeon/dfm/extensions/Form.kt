@@ -6,7 +6,7 @@ import android.graphics.Typeface
 import android.util.TypedValue
 import android.widget.TextView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.base.SmartActivity
+import com.darakeon.dfm.base.BaseActivity
 import org.json.JSONArray
 
 fun TextView.setColorByAttr(attr : Int){
@@ -15,7 +15,7 @@ fun TextView.setColorByAttr(attr : Int){
 	setTextColor(typedValue.data)
 }
 
-fun TextView.applyGlyphicon(ac: SmartActivity<*>) {
+fun TextView.applyGlyphicon(ac: BaseActivity<*>) {
 	if (text.length != 1)
 		return
 

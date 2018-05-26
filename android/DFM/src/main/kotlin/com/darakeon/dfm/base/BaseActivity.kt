@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
-abstract class SmartActivity<T : SmartStatic>(var static : T) : Activity() {
+abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	var clickedView: View? = null
 	var rotated: Boolean = false
