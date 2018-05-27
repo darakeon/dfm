@@ -4,20 +4,26 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Account
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.extensions.fromJson
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
 
-class AccountsActivity : BaseActivity<AccountsStatic>(AccountsStatic) {
+class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 	override val contentView = R.layout.accounts
 
-	private var accountList: List<Account>? = null
+	private var accountList: Array<Account> = emptyArray()
+	private var accountListKey = "accountList"
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && static.succeeded) {
+		val accountsJson = savedInstanceState?.get(accountListKey)
+		if (accountsJson != null) {
+			accountList = Gson().fromJson(accountsJson)
 			fillAccounts()
 		} else {
 			api.listAccounts(
@@ -28,22 +34,26 @@ class AccountsActivity : BaseActivity<AccountsStatic>(AccountsStatic) {
 		}
 	}
 
-	private fun handleAccounts(accountList: List<Account>) {
-		static.accountList = accountList
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		val json = Gson().toJson(accountList)
+		outState.putCharSequence(accountListKey, json)
+	}
+
+	private fun handleAccounts(accountList: Array<Account>) {
+		this.accountList = accountList
 		fillAccounts()
 	}
 
 	private fun fillAccounts() {
-		if (static.accountList.isEmpty()) {
+		if (accountList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			main_table.adapter = AccountAdapter(this, static.accountList)
+			main_table.adapter = AccountAdapter(this, accountList)
 		}
 	}
-
-
 }

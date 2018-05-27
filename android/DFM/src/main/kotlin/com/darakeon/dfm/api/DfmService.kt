@@ -8,5 +8,5 @@ internal interface DfmService {
 	@GET("Api-{ticket}/accounts/list")
 	fun listAccounts(
 		@Path("ticket") ticket: String
-	): Call<Body<List<Account>>>
+	): Call<Body<Array<Account>>>
 }

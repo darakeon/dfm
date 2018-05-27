@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.Account
 import com.darakeon.dfm.auth.getThemeLineColor
 
 class AccountAdapter(
 	context: Context,
-	private val accountList: List<com.darakeon.dfm.api.Account>
+	private val accountList: Array<Account>
 ) : BaseAdapter() {
 	private var inflater: LayoutInflater =
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
