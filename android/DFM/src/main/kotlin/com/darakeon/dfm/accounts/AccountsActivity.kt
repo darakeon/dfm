@@ -3,15 +3,16 @@ package com.darakeon.dfm.accounts
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.Account
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.BaseActivity
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
-import org.json.JSONObject
 
 class AccountsActivity : BaseActivity<AccountsStatic>(AccountsStatic) {
 	override val contentView = R.layout.accounts
+
+	private var accountList: List<Account>? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -19,25 +20,21 @@ class AccountsActivity : BaseActivity<AccountsStatic>(AccountsStatic) {
 		if (rotated && static.succeeded) {
 			fillAccounts()
 		} else {
-			getAccounts()
+			api.listAccounts(
+				getAuth(),
+				this::handleAccounts,
+				{ throw it }
+			)
 		}
 	}
 
-	private fun getAccounts() {
-		val request = InternalRequest(
-			this, "Accounts/List", { d -> handleAccounts(d) }
-		)
-		request.addParameter("ticket", getAuth())
-		request.post()
-	}
-
-	private fun handleAccounts(data: JSONObject) {
-		static.accountList = data.getJSONArray("AccountList")
+	private fun handleAccounts(accountList: List<Account>) {
+		static.accountList = accountList
 		fillAccounts()
 	}
 
 	private fun fillAccounts() {
-		if (static.accountList.length() == 0) {
+		if (static.accountList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {

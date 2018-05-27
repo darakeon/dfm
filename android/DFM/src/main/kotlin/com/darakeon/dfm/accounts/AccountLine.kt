@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.Account
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setColorByAttr
 import com.darakeon.dfm.extract.ExtractActivity
@@ -14,7 +15,7 @@ import java.text.DecimalFormat
 
 class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	fun setAccount(account: AccountAdapter.Account, color: Int) {
+	fun setAccount(account: Account, color: Int) {
 		setBackgroundColor(color)
 
 		name.text = account.name
