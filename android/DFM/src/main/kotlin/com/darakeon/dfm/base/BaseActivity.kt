@@ -11,6 +11,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.accounts.AccountsActivity
+import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
@@ -34,7 +35,8 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	var clickedView: View? = null
 	var rotated: Boolean = false
-	lateinit var inflater: LayoutInflater
+	private lateinit var inflater: LayoutInflater
+	lateinit var api: Api
 
 	protected abstract val contentView: Int
 	protected open val optionsMenuResource = 0
@@ -55,6 +57,8 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 		themeChangeFromSaved()
 
 		super.onCreate(savedInstanceState)
+
+		api = Api(this)
 
 		rotated =
 			(oldConfigInt and ActivityInfo.CONFIG_ORIENTATION) ==
