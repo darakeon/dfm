@@ -131,7 +131,7 @@ Legend:
 ## <a name="dev"></a>4.1.2.2 :ant: <sup>`4`</sup>
 - [ ] Encrypt sharedPreferences (and logoff all mobile)
 - [ ] Remove ticket from url (mobile)
-- [ ] Kill state objects (mobile)
+- [ ] `2018-05-26 > ...` Kill state objects (mobile)
 - [ ] `2018-05-26 > ...` Replace volley by retrofit
 
 ## <a name="prod"></a>4.1.2.1 :ant: <sup>`3`</sup>

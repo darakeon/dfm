@@ -45,7 +45,7 @@ class Api(
 
 	fun listAccounts(
 		username: String,
-		onSuccess: (List<Account>) -> Unit,
+		onSuccess: (Array<Account>) -> Unit,
 		onError: (Throwable) -> Unit
 	) {
 		api.listAccounts(username).call(onSuccess, onError)
