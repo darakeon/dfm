@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.auth.getAuth
@@ -45,16 +46,19 @@ fun Activity.backWithExtras() {
 	startActivity(intent)
 }
 
-
 internal fun <T : SmartStatic> BaseActivity<T>.logout() {
 	val request = InternalRequest(this, "Users/Logout")
 	request.addParameter("ticket", getAuth())
 	val tryResult = request.post()
 
 	if (tryResult) {
-		clearAuth()
-		redirect<LoginActivity>()
+		logoutLocal()
 	}
+}
+
+internal fun Activity.logoutLocal() {
+	clearAuth()
+	redirect<LoginActivity>()
 }
 
 internal fun Activity.back() {
@@ -101,4 +105,20 @@ fun Activity.composeEmail(subject: String, body: String, vararg addresses: Strin
 	if (intent.resolveActivity(packageManager) != null) {
 		startActivity(intent)
 	}
+}
+
+fun Activity.composeErrorEmail(url: String, error: Throwable) {
+	val subject = getString(R.string.error_mail_title)
+
+	val reportUrl =
+		Regex("Api-\\w{32}")
+			.replace(url, "Api-{ticket}")
+
+	val body = reportUrl + "\n\n" +
+		error.message + "\n\n" +
+		error.stackTrace
+
+	val emails = getString(R.string.error_mail_address)
+
+	composeEmail(subject, body, emails)
 }

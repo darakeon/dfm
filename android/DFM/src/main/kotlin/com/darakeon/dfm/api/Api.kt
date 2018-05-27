@@ -2,6 +2,7 @@ package com.darakeon.dfm.api
 
 import android.app.Activity
 import com.darakeon.dfm.R
+import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -35,19 +36,24 @@ class Api(
 		return "$protocol://$domain/"
 	}
 
-	private fun <T> Call<Body<T>>.call(
-		onSuccess: (T) -> Unit,
-		onError: (Throwable) -> Unit
-	) {
-		val handler = Handler(onSuccess, onError)
+	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
+		if (Internet.isOffline(context)) {
+			val error = context.getString(R.string.u_r_offline)
+			context.alertError(error)
+			return
+		}
+
+		val handler = Handler(context, onSuccess)
+
 		enqueue(handler)
+
+		context.startUIWait()
 	}
 
 	fun listAccounts(
-		username: String,
-		onSuccess: (Array<Account>) -> Unit,
-		onError: (Throwable) -> Unit
+		authKey: String,
+		onSuccess: (Array<Account>) -> Unit
 	) {
-		api.listAccounts(username).call(onSuccess, onError)
+		api.listAccounts(authKey).call(onSuccess)
 	}
 }

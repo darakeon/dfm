@@ -28,8 +28,7 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 		} else {
 			api.listAccounts(
 				getAuth(),
-				this::handleAccounts,
-				{ throw it }
+				this::handleAccounts
 			)
 		}
 	}

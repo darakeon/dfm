@@ -1,12 +1,6 @@
 package com.darakeon.dfm.api.old
 
-import android.app.Activity
-import android.app.Dialog
 import android.content.DialogInterface
-import android.content.pm.ActivityInfo
-import android.content.res.Configuration
-import android.view.Surface
-import android.view.WindowManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
@@ -16,18 +10,17 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Internet
+import com.darakeon.dfm.api.endUIWait
+import com.darakeon.dfm.api.startUIWait
 import com.darakeon.dfm.auth.languageChangeAndSave
 import com.darakeon.dfm.auth.themeChangeAndSave
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.dialogs.alertError
-import com.darakeon.dfm.dialogs.createWaitDialog
-import com.darakeon.dfm.extensions.composeEmail
-import com.darakeon.dfm.extensions.info
+import com.darakeon.dfm.extensions.composeErrorEmail
 import com.darakeon.dfm.extensions.isProd
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.redirect
-import com.darakeon.dfm.extensions.stackTraceText
 import com.darakeon.dfm.tfa.TFAActivity
 import org.json.JSONObject
 import java.util.HashMap
@@ -45,7 +38,6 @@ class InternalRequest<T : SmartStatic>(
 
 	private var jsonRequest: JsonObjectRequest? = null
 
-	private var progress: Dialog? = null
 
 
 	fun addParameter(key: String, value: Any?) {
@@ -176,20 +168,7 @@ class InternalRequest<T : SmartStatic>(
 
 		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
 			dialog.dismiss()
-
-			val subject = activity.getString(R.string.error_mail_title)
-
-			val reportUrl =
-				Regex("Api-\\w{32}")
-					.replace(url, "Api-{ticket}")
-
-			val body = reportUrl + "\n\n" +
-					error.info + "\n\n" +
-					error.stackTraceText
-
-			val emails = activity.getString(R.string.error_mail_address)
-
-			activity.composeEmail(subject, body, emails)
+			activity.composeErrorEmail(url, error)
 		})
 
 		assemblyResponse(response, sendReport)
@@ -249,64 +228,5 @@ class InternalRequest<T : SmartStatic>(
 	}
 
 
-	private fun Activity.startUIWait() {
-		openProgressBar()
-		disableSleep()
-		disableRotation()
-	}
-
-	private fun Activity.openProgressBar() {
-		progress = createWaitDialog()
-	}
-
-	private fun Activity.disableSleep() {
-		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-	}
-
-	private fun Activity.disableRotation() {
-		val rotation = windowManager.defaultDisplay.rotation
-		val orientation = resources.configuration.orientation
-
-		requestedOrientation = when (orientation) {
-			Configuration.ORIENTATION_PORTRAIT -> handlePortrait(rotation)
-			Configuration.ORIENTATION_LANDSCAPE -> handleLandscape(rotation)
-			else -> 0
-		}
-	}
-
-	private fun handlePortrait(rotation: Int): Int =
-		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_270 ->
-				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-			else ->
-				ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-		}
-
-	private fun handleLandscape(rotation: Int): Int =
-		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_90 ->
-				ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-			else ->
-				ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-		}
-
-	private fun Activity.endUIWait() {
-		closeProgressBar()
-		enableSleep()
-		enableRotation()
-	}
-
-	private fun closeProgressBar() {
-		progress?.dismiss()
-		progress = null
-	}
-
-	private fun Activity.enableSleep() {
-		window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-	}
-
-	private fun Activity.enableRotation() {
-		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
-	}
 
 }
