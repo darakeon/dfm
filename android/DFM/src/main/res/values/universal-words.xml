@@ -16,6 +16,6 @@
 
 	<string name="error_mail_address" translatable="false">dfm@dontflymoney.com</string>
 
-	<string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://dontflymoney.com\",\n  }\n}]</string>
+	<string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n	\"namespace\": \"web\",\n	\"site\": \"https://dontflymoney.com\",\n  }\n}]</string>
 
 </resources>
