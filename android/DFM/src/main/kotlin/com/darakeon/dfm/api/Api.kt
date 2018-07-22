@@ -2,6 +2,7 @@ package com.darakeon.dfm.api
 
 import android.app.Activity
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.Account
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call

@@ -3,7 +3,7 @@ package com.darakeon.dfm.accounts
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.Account
+import com.darakeon.dfm.api.entities.Account
 import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.getAuth
 import com.darakeon.dfm.base.BaseActivity
