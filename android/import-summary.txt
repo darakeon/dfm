@@ -9,7 +9,7 @@ path, or characters like ", ' and &, have had issues. We're working to
 eliminate these bugs, but to save yourself headaches you may want to
 move your project to a location where this is not a problem.
 C:\Lucas\Keon\03 - DFM\Projeto\android
-                - -                   
+				- -
 
 Manifest Merging:
 -----------------
