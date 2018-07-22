@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.getAuth
@@ -38,7 +39,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 
 	override val contentView = R.layout.extract
 	override val contextMenuResource = R.menu.move_options
-	override val viewWithContext get() = main_table
+	override val viewWithContext: ListView get() = main_table
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
