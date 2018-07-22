@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.Account
+import com.darakeon.dfm.api.entities.Account
 import com.darakeon.dfm.auth.getThemeLineColor
 
 class AccountAdapter(
