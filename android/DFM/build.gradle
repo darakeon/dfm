@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion 27
-	buildToolsVersion '27.0.2'
+	buildToolsVersion '27.0.3'
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
@@ -32,13 +32,13 @@ android {
 }
 
 dependencies {
-	compile 'com.android.volley:volley:1.1.0'
-	compile 'com.android.support:support-v13:27.0.2'
-	compile 'com.android.support:appcompat-v7:27.0.2'
-	compile 'com.google.android.gms:play-services-iid:11.8.0'
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	compile 'com.squareup.retrofit2:retrofit:2.4.0'
-	compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+	implementation 'com.android.volley:volley:1.1.0'
+	implementation "com.android.support:support-v13:$support_version"
+	implementation "com.android.support:appcompat-v7:$support_version"
+	implementation "com.google.android.gms:play-services-iid:$play_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
 repositories {
 	mavenCentral()
