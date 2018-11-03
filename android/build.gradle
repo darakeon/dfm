@@ -6,12 +6,8 @@ buildscript {
 	ext.play_version = '15.0.1'
 	ext.retrofit_version = '2.4.0'
 	repositories {
-		jcenter()
-		maven {
-			url 'https://maven.google.com/'
-			name 'Google'
-		}
 		google()
+		jcenter()
 	}
 	dependencies {
 		classpath "com.android.tools.build:gradle:$gradle_version"
