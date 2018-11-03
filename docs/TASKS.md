@@ -120,7 +120,7 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.3 :ant: <sup>`6`</sup>
+## 4.1.2.3 :ant: <sup>`6`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
