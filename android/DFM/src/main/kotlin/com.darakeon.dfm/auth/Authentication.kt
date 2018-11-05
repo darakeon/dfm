@@ -9,12 +9,12 @@ fun Context.setAuth(ticket: String) {
 	setValue(spKey, encryptedTicket)
 }
 
-fun Context.getAuth(): String {
+val Context.auth: String get() {
 	val encryptedTicket = getValue(spKey)
 	return decrypt(encryptedTicket)
 }
 
-fun Context.isLoggedIn(): Boolean = !getAuth().isEmpty()
+val Context.isLoggedIn get() = !auth.isEmpty()
 
 fun Context.clearAuth() {
 	setAuth("")

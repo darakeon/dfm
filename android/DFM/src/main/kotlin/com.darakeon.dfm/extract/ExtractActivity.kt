@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.IYesNoDialogAnswer
@@ -104,7 +104,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 			this, "Moves/Extract", { d -> handleMoves(d) }
 		)
 
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("accountUrl", accountUrl)
 		request.addParameter("id", static.year * 100 + static.month + 1)
 
@@ -218,7 +218,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 			this, "Moves/" + action, { refresh() }
 		)
 
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("accountUrl", accountUrl)
 		request.addParameter("id", view.id)
 

@@ -4,7 +4,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
@@ -17,7 +17,7 @@ class TFAActivity : BaseActivity<TFAStatic>(TFAStatic) {
 		val request = InternalRequest(
 			this, "Users/TFA", { redirect<AccountsActivity>() }
 		)
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("Code", code.text)
 		request.post()
 	}

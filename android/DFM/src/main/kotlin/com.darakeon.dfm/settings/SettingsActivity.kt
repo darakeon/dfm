@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
@@ -33,7 +33,7 @@ class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
 		val request = InternalRequest(
 			this, "Users/GetConfig", { d -> populateScreen(d) }
 		)
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.get()
 	}
 
@@ -41,7 +41,7 @@ class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
 		val request = InternalRequest(
 			this, "Users/SaveConfig", { back() }
 		)
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("UseCategories", use_categories.isChecked)
 		request.addParameter("MoveCheck", move_check.isChecked)
 		request.post()
