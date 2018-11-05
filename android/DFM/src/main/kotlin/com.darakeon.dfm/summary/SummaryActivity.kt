@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -79,7 +79,7 @@ class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 			this, "Moves/Summary", { d -> handleSummary(d) }
 		)
 
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("accountUrl", accountUrl)
 		request.addParameter("id", static.year)
 

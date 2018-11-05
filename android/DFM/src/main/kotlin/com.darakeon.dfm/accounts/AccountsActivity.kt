@@ -5,7 +5,7 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Account
 import com.darakeon.dfm.api.old.DELETE
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.fromJson
 import com.google.gson.Gson
@@ -27,7 +27,7 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 			fillAccounts()
 		} else {
 			api.listAccounts(
-				getAuth(),
+				auth,
 				this::handleAccounts
 			)
 		}

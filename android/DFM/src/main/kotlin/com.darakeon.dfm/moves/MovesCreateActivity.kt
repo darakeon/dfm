@@ -11,7 +11,7 @@ import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.api.old.entities.Move
 import com.darakeon.dfm.api.old.entities.Nature
 import com.darakeon.dfm.extensions.toDoubleByCulture
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -152,7 +152,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 			this, "Moves/Create", { d -> populateScreen(d) }
 		)
 
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		request.addParameter("accountUrl", getExtraOrUrl("accountUrl"))
 		request.addParameter("id", getExtraOrUrl("id", null))
 		request.get()
@@ -362,7 +362,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 			this, "Moves/Create", { cleanAndBack() }
 		)
 
-		request.addParameter("ticket", getAuth())
+		request.addParameter("ticket", auth)
 		static.move.setParameters(request)
 
 		request.post()

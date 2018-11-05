@@ -8,7 +8,7 @@ import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.clearAuth
-import com.darakeon.dfm.auth.getAuth
+import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.login.LoginActivity
@@ -48,7 +48,7 @@ fun Activity.backWithExtras() {
 
 internal fun <T : SmartStatic> BaseActivity<T>.logout() {
 	val request = InternalRequest(this, "Users/Logout")
-	request.addParameter("ticket", getAuth())
+	request.addParameter("ticket", auth)
 	val tryResult = request.post()
 
 	if (tryResult) {

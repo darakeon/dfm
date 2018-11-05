@@ -32,7 +32,7 @@ class WelcomeActivity : BaseActivity<WelcomeStatic>(WelcomeStatic) {
 	}
 
 	private fun startProgram() {
-		if (isLoggedIn())
+		if (isLoggedIn)
 			redirect<AccountsActivity>()
 		else
 			redirect<LoginActivity>()
