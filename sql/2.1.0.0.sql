@@ -28,6 +28,9 @@ alter table user
 
 
 alter table move
+	drop checked;
+
+alter table move
 	add Checked bit not null;
 
 alter table config
