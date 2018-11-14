@@ -448,7 +448,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Contracts\004000000000.cshtml" />
     <Content Include="Views\Ops\Help.cshtml" />
-    <Content Include="smtp.config" />
+    <None Include="smtp.config" />
     <Content Include="Views\Accounts\AccountSignColor.cshtml" />
     <Content Include="Views\Accounts\AccountSign.cshtml" />
     <Content Include="Views\Shared\Sign.cshtml" />
