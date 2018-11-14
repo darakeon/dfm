@@ -36,7 +36,7 @@ internal class Handler<T>(
 			return
 		}
 
-		onSuccess(body.data.accountList)
+		onSuccess(body.data)
 
 		context.endUIWait()
 	}
