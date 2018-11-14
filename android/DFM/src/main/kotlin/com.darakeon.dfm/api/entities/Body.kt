@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api
+package com.darakeon.dfm.api.entities
 
 data class Body<T>(
 	val data: T?,

@@ -3,6 +3,7 @@ package com.darakeon.dfm.api
 import android.app.Activity
 import android.content.DialogInterface
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.composeErrorEmail
 import com.darakeon.dfm.extensions.logoutLocal
