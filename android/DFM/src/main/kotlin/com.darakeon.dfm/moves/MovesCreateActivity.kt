@@ -17,6 +17,7 @@ import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
+import com.darakeon.dfm.extensions.format
 import com.darakeon.dfm.extensions.showChangeList
 import kotlinx.android.synthetic.main.moves_create.account_in
 import kotlinx.android.synthetic.main.moves_create.account_out
@@ -55,7 +56,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 
 	private fun updateDateCombo(year: Int, month: Int, day: Int) {
 		static.move.date.set(year, month, day)
-		date.text = static.move.dateString()
+		date.text = static.move.date.format()
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,7 +96,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 			return
 		}
 
-		date.text = static.move.dateString()
+		date.text = static.move.date.format()
 
 		val list = static.natureList
 
@@ -222,7 +223,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	}
 
 	private fun setControls() {
-		date.text = static.move.dateString()
+		date.text = static.move.date.format()
 
 		setDescriptionListener()
 		setValueListener()
