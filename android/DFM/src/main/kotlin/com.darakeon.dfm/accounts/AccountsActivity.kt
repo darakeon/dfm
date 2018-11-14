@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Account
+import com.darakeon.dfm.api.entities.AccountList
 import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
@@ -39,8 +40,8 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 		outState.putCharSequence(accountListKey, json)
 	}
 
-	private fun handleAccounts(accountList: Array<Account>) {
-		this.accountList = accountList
+	private fun handleAccounts(accountList: AccountList) {
+		this.accountList = accountList.list
 		fillAccounts()
 	}
 
