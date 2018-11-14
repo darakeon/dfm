@@ -78,7 +78,7 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 		val data = intent.data
 		if (data?.queryParameterNames != null) {
 			for (param: String in data.queryParameterNames) {
-				query.put(param, data.getQueryParameter(param))
+				query[param] = data.getQueryParameter(param) ?: ""
 			}
 		}
 	}
@@ -179,8 +179,10 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 			getExtraOrUrl(key, default.toString())
 
 	protected fun getExtraOrUrl(key: String, default: String = "") : String {
-		if (intent.extras.containsKey(key)) {
-			return intent.extras[key].toString()
+		val extras = intent?.extras
+
+		if (extras?.containsKey(key) == true) {
+			return extras[key]?.toString() ?: ""
 		}
 
 		if (query.containsKey(key)) {
