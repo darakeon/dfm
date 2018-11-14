@@ -3,6 +3,7 @@ package com.darakeon.dfm.api
 import android.app.Activity
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.AccountList
+import com.darakeon.dfm.api.entities.Extract
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call
@@ -37,6 +38,11 @@ class Api(
 		return "$protocol://$domain/"
 	}
 
+	private fun Call<Body<Any>>.call(onSuccess: () -> Unit) {
+		val onSuccessAny: (Any) -> Unit = { onSuccess() }
+		call(onSuccessAny)
+	}
+
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
 		if (Internet.isOffline(context)) {
 			val error = context.getString(R.string.u_r_offline)
@@ -56,5 +62,41 @@ class Api(
 		onSuccess: (AccountList) -> Unit
 	) {
 		api.listAccounts(authKey).call(onSuccess)
+	}
+
+	fun getExtract(
+		authKey: String,
+		accountUrl: String,
+		time: Int,
+		onSuccess: (Extract) -> Unit
+	) {
+		api.getExtract(authKey, accountUrl, time).call(onSuccess)
+	}
+
+	fun check(
+		authKey: String,
+		accountUrl: String,
+		id: Int,
+		onSuccess: () -> Unit
+	) {
+		api.check(authKey, accountUrl, id).call(onSuccess)
+	}
+
+	fun uncheck(
+		authKey: String,
+		accountUrl: String,
+		id: Int,
+		onSuccess: () -> Unit
+	) {
+		api.uncheck(authKey, accountUrl, id).call(onSuccess)
+	}
+
+	fun delete(
+		authKey: String,
+		accountUrl: String,
+		id: Int,
+		onSuccess: () -> Unit
+	) {
+		api.delete(authKey, accountUrl, id).call(onSuccess)
 	}
 }

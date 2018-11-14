@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.Move
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
 import kotlinx.android.synthetic.main.extract_line.view.check_move
@@ -16,9 +17,9 @@ import java.text.DecimalFormat
 
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	private var move: MoveAdapter.Move? = null
+	private var move: Move? = null
 
-	fun setMove(activity: ExtractActivity, move: MoveAdapter.Move, color: Int, canCheck: Boolean) {
+	fun setMove(activity: ExtractActivity, move: Move, color: Int, canCheck: Boolean) {
 		setBackgroundColor(color)
 
 		this.move = move
@@ -34,7 +35,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		}
 	}
 
-	private fun setTotalField(move: MoveAdapter.Move) {
+	private fun setTotalField(move: Move) {
 		val totalColor = if (move.total < 0) R.attr.negative else R.attr.positive
 		val totalToShow = if (move.total < 0) -move.total else move.total
 		val totalStr = DecimalFormat("#,##0.00").format(totalToShow)
@@ -43,7 +44,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		value.text = totalStr
 	}
 
-	private fun setCheckField(move: MoveAdapter.Move, canCheck: Boolean) {
+	private fun setCheckField(move: Move, canCheck: Boolean) {
 		if (canCheck) {
 			val textRes = if (move.checked) R.string.checked else R.string.unchecked
 			check_move.text = context.getString(textRes)
@@ -59,7 +60,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		}
 	}
 
-	private fun setDateField(move: MoveAdapter.Move) {
+	private fun setDateField(move: Move) {
 		if (date != null) {
 			val formatter = DateFormat.getDateInstance(DateFormat.SHORT)
 			val dateInFull = formatter.format(move.date.time)
