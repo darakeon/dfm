@@ -22,24 +22,21 @@ internal interface DfmService {
 		@Path("time") time: Int
 	): Call<Body<Extract>>
 
-	@POST("Api-{ticket}/Account-{accountUrl}/moves/check/{id}")
+	@POST("Api-{ticket}/moves/check/{id}")
 	fun check(
 		@Path("ticket") ticket: String,
-		@Path("accountUrl") accountUrl: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
-	@POST("Api-{ticket}/Account-{accountUrl}/moves/uncheck/{id}")
+	@POST("Api-{ticket}/moves/uncheck/{id}")
 	fun uncheck(
 		@Path("ticket") ticket: String,
-		@Path("accountUrl") accountUrl: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
-	@POST("Api-{ticket}/Account-{accountUrl}/moves/delete/{id}")
+	@POST("Api-{ticket}/moves/delete/{id}")
 	fun delete(
 		@Path("ticket") ticket: String,
-		@Path("accountUrl") accountUrl: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 

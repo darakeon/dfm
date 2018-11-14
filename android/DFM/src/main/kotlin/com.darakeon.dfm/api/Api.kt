@@ -77,29 +77,26 @@ class Api(
 
 	fun check(
 		authKey: String,
-		accountUrl: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.check(authKey, accountUrl, id).call(onSuccess)
+		api.check(authKey, id).call(onSuccess)
 	}
 
 	fun uncheck(
 		authKey: String,
-		accountUrl: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.uncheck(authKey, accountUrl, id).call(onSuccess)
+		api.uncheck(authKey, id).call(onSuccess)
 	}
 
 	fun delete(
-		authKey: String,
-		accountUrl: String,
+		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.delete(authKey, accountUrl, id).call(onSuccess)
+		api.delete(ticket, id).call(onSuccess)
 	}
 
 	fun login(
