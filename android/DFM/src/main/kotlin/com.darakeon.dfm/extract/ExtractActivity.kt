@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.entities.Extract
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
-import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -40,6 +39,8 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	override val contentView = R.layout.extract
 	override val contextMenuResource = R.menu.move_options
 	override val viewWithContext: ListView get() = main_table
+
+	private val clickedMove get() = clickedView as MoveLine
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
@@ -100,22 +101,16 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	}
 
 	private fun getExtract() {
-		val request = InternalRequest(
-			this, "Moves/Extract", { d -> handleMoves(d) }
-		)
+		val time = static.year * 100 + static.month + 1
 
-		request.addParameter("ticket", auth)
-		request.addParameter("accountUrl", accountUrl)
-		request.addParameter("id", static.year * 100 + static.month + 1)
-
-		request.post()
+		api.getExtract(auth, accountUrl, time, this::handleMoves)
 	}
 
-	private fun handleMoves(data: JSONObject) {
-		static.moveList = data.getJSONArray("MoveList")
-		static.name = data.getString("Name")
-		static.total = data.getDouble("Total")
-		static.canCheck = data.getBoolean("CanCheck")
+	private fun handleMoves(data: Extract) {
+		static.moveList = data.moveList
+		static.name = data.name
+		static.total = data.total
+		static.canCheck = data.canCheck
 
 		fillMoves()
 	}
@@ -124,7 +119,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 		total_title.text = static.name
 		setValueColored(total_value, static.total)
 
-		if (static.moveList.length() == 0) {
+		if (static.moveList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {
@@ -167,11 +162,11 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 				return true
 			}
 			R.id.check_move -> {
-				check()
+				api.check(auth, accountUrl, clickedMove.id, this::refresh)
 				return true
 			}
 			R.id.uncheck_move -> {
-				uncheck()
+				api.uncheck(auth, accountUrl, clickedMove.id, this::refresh)
 				return true
 			}
 			else -> return super.onContextItemSelected(item)
@@ -179,16 +174,14 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	}
 
 	private fun edit() {
-		val moveLine = clickedView as MoveLine
-		goToMove(moveLine.id)
+		goToMove(clickedMove.id)
 	}
 
 
 	private fun askDelete(): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
-		val moveRow = clickedView as MoveLine
 
-		messageText = String.format(messageText, moveRow.description)
+		messageText = String.format(messageText, clickedMove.description)
 
 		alertYesNo(messageText, this)
 
@@ -196,43 +189,16 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	}
 
 	override fun yesAction() {
-		submitMoveAction("Delete")
+		api.delete(auth, accountUrl, clickedMove.id, this::refresh)
 	}
 
 	override fun noAction() {}
 
-
-	private fun check() {
-		submitMoveAction("Check")
-	}
-
-	private fun uncheck() {
-		submitMoveAction("Uncheck")
-	}
-
-
-	private fun submitMoveAction(action: String) {
-		val view = clickedView as MoveLine
-
-		val request = InternalRequest(
-			this, "Moves/" + action, { refresh() }
-		)
-
-		request.addParameter("ticket", auth)
-		request.addParameter("accountUrl", accountUrl)
-		request.addParameter("id", view.id)
-
-		request.post()
-	}
-
-
 	public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
-		val move = clickedView as MoveLine
-
 		try {
 			if (static.canCheck) {
-				hideMenuItem(menuInfo, if (move.isChecked) R.id.check_move else R.id.uncheck_move)
-				showMenuItem(menuInfo, if (move.isChecked) R.id.uncheck_move else R.id.check_move)
+				hideMenuItem(menuInfo, if (clickedMove.isChecked) R.id.check_move else R.id.uncheck_move)
+				showMenuItem(menuInfo, if (clickedMove.isChecked) R.id.uncheck_move else R.id.check_move)
 			} else {
 				hideMenuItem(menuInfo, R.id.check_move)
 				hideMenuItem(menuInfo, R.id.uncheck_move)
@@ -255,6 +221,4 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 		val buttonToHide = menu.findItem(id)
 		buttonToHide.isVisible = show
 	}
-
 }
-
