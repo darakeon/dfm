@@ -4,7 +4,6 @@ import com.darakeon.dfm.moves.MovesCreateStatic
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.api.old.getCalendar
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.util.*
 
 class Move {
@@ -86,12 +85,6 @@ class Move {
 		} else {
 			request.addParameter("Value", value)
 		}
-	}
-
-	fun dateString(): String {
-		val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-
-		return formatter.format(date.time)
 	}
 
 
