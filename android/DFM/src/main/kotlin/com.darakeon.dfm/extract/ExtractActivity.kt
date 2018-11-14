@@ -175,11 +175,11 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 				return true
 			}
 			R.id.check_move -> {
-				api.check(auth, accountUrl, clickedMove.id, this::refresh)
+				api.check(auth, clickedMove.id, this::refresh)
 				return true
 			}
 			R.id.uncheck_move -> {
-				api.uncheck(auth, accountUrl, clickedMove.id, this::refresh)
+				api.uncheck(auth, clickedMove.id, this::refresh)
 				return true
 			}
 			else -> return super.onContextItemSelected(item)
@@ -202,7 +202,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 	}
 
 	override fun yesAction() {
-		api.delete(auth, accountUrl, clickedMove.id, this::refresh)
+		api.delete(auth, clickedMove.id, this::refresh)
 	}
 
 	override fun noAction() {}
