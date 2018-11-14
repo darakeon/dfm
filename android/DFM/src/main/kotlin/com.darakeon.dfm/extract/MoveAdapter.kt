@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Move
-import com.darakeon.dfm.api.old.getCalendar
 import com.darakeon.dfm.auth.getThemeLineColor
-import org.json.JSONArray
-import org.json.JSONObject
-import java.util.*
 
 class MoveAdapter(private val activity: ExtractActivity, moveJsonList: Array<Move>, private val canCheck: Boolean) : BaseAdapter() {
 
