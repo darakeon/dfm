@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.extract_line.view.check_move
 import kotlinx.android.synthetic.main.extract_line.view.date
 import kotlinx.android.synthetic.main.extract_line.view.name
 import kotlinx.android.synthetic.main.extract_line.view.value
-import java.text.DateFormat
 import java.text.DecimalFormat
 
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
@@ -62,9 +61,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 	private fun setDateField(move: Move) {
 		if (date != null) {
-			val formatter = DateFormat.getDateInstance(DateFormat.SHORT)
-			val dateInFull = formatter.format(move.date.time)
-			date?.text = dateInFull
+			date?.text = move.date.format()
 		}
 	}
 
