@@ -2,7 +2,7 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.entities.Login
 import com.darakeon.dfm.auth.setAuth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -10,7 +10,6 @@ import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.welcome.WelcomeActivity
 import kotlinx.android.synthetic.main.login.email
 import kotlinx.android.synthetic.main.login.password
-import org.json.JSONObject
 
 class LoginActivity : BaseActivity<LoginStatic>(LoginStatic) {
 	override val contentView = R.layout.login
@@ -21,23 +20,15 @@ class LoginActivity : BaseActivity<LoginStatic>(LoginStatic) {
 	override val hasTitle: Boolean
 		get() = false
 
-
 	fun login(@Suppress(ON_CLICK) view: View) {
-		val request = InternalRequest(
-			this, "Users/Login", { d -> handleLogin(d) }
+		val login = Login.Request(
+			email.text.toString(),
+			password.text.toString()
 		)
 
-		request.addParameter("email", email.text)
-		request.addParameter("password", password.text)
-
-		request.post()
+		api.login(login) {
+			setAuth(it.ticket)
+			redirect<WelcomeActivity>()
+		}
 	}
-
-	private fun handleLogin(data: JSONObject) {
-		val ticket = data.getString("ticket")
-		setAuth(ticket)
-		redirect<WelcomeActivity>()
-	}
-
-
 }

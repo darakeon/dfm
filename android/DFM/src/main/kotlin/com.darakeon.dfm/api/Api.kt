@@ -4,6 +4,7 @@ import android.app.Activity
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.AccountList
 import com.darakeon.dfm.api.entities.Body
+import com.darakeon.dfm.api.entities.Login
 import com.darakeon.dfm.api.entities.Extract
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
@@ -99,5 +100,12 @@ class Api(
 		onSuccess: () -> Unit
 	) {
 		api.delete(authKey, accountUrl, id).call(onSuccess)
+	}
+
+	fun login(
+		login: Login.Request,
+		onSuccess: (Login.Response) -> Unit
+	) {
+		api.login(login).call(onSuccess)
 	}
 }

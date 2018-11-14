@@ -2,6 +2,7 @@ package com.darakeon.dfm.api
 
 import com.darakeon.dfm.api.entities.AccountList
 import com.darakeon.dfm.api.entities.Body
+import com.darakeon.dfm.api.entities.Login
 import com.darakeon.dfm.api.entities.Extract
 import retrofit2.Call
 import retrofit2.http.GET
@@ -41,4 +42,9 @@ internal interface DfmService {
 		@Path("accountUrl") accountUrl: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
+
+	@POST("Api/Users/Login")
+	fun login(
+		@retrofit2.http.Body login: Login.Request
+	): Call<Body<Login.Response>>
 }
