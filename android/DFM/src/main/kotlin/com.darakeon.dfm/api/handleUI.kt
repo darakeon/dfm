@@ -8,7 +8,7 @@ import android.view.Surface
 import android.view.WindowManager
 import com.darakeon.dfm.dialogs.createWaitDialog
 
-private var progress: Dialog? = null
+private var dialog: Dialog? = null
 
 fun Activity.startUIWait() {
 	openProgressBar()
@@ -17,7 +17,7 @@ fun Activity.startUIWait() {
 }
 
 private fun Activity.openProgressBar() {
-	progress = createWaitDialog()
+	dialog = createWaitDialog()
 }
 
 private fun Activity.disableSleep() {
@@ -52,14 +52,14 @@ private fun handleLandscape(rotation: Int): Int =
 	}
 
 fun Activity.endUIWait() {
-	closeProgressBar()
+	closeDialog()
 	enableSleep()
 	enableRotation()
 }
 
-private fun closeProgressBar() {
-	progress?.dismiss()
-	progress = null
+private fun closeDialog() {
+	dialog?.dismiss()
+	dialog = null
 }
 
 private fun Activity.enableSleep() {

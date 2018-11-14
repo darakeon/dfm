@@ -27,17 +27,15 @@ internal class Handler<T>(
 
 		val body = response.body()
 
-		if (body == null) {
-			onError(url, Exception("Null body"))
-			return
-		}
+		when {
+			body == null ->
+				onError(url, Exception("Null body"))
 
-		if (body.data == null) {
-			assemblyResponse(body.code, body.error)
-			return
-		}
+			body.data == null ->
+				assemblyResponse(body.code, body.error)
 
-		onSuccess(body.data)
+			else -> onSuccess(body.data)
+		}
 
 		context.endUIWait()
 	}
