@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Extract
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
@@ -16,31 +17,41 @@ import com.darakeon.dfm.dialogs.alertYesNo
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
+import com.darakeon.dfm.extensions.formatNoDay
+import com.darakeon.dfm.extensions.fromJson
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
 import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
-class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialogAnswer {
+class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
-
-	private val dialog: DatePickerDialog
-		get() = getDateDialog(
-			{ y, m, _ -> updateScreen(y, m) },
-			static.year, static.month
-		)
 
 	override val contentView = R.layout.extract
 	override val contextMenuResource = R.menu.move_options
 	override val viewWithContext: ListView get() = main_table
 
 	private val clickedMove get() = clickedView as MoveLine
+
+	private lateinit var extract: Extract
+	private var extractKey = "extract"
+
+	private val now = Calendar.getInstance()
+	private var year: Int = now.get(Calendar.YEAR)
+	private var month: Int = now.get(Calendar.MONTH)
+	private var yearKey = "year"
+	private var monthKey = "month"
+
+	private val dialog: DatePickerDialog
+		get() = getDateDialog(
+			{ y, m, _ -> updateScreen(y, m) },
+			year, month
+		)
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
@@ -52,17 +63,20 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 
 		highlight?.setBackgroundColor(highLightColor)
 
-		if (rotated && static.succeeded) {
-			setDateFromLast()
+		val extractJson = savedInstanceState?.get(extractKey)
+		if (extractJson != null) {
+			extract = Gson().fromJson(extractJson)
+
+			setDate(
+				savedInstanceState.getInt(monthKey),
+				savedInstanceState.getInt(yearKey)
+			)
+
 			fillMoves()
 		} else {
 			setDateFromCaller()
 			getExtract()
 		}
-	}
-
-	private fun setDateFromLast() {
-		setDate(static.month, static.year)
 	}
 
 	private fun setDateFromCaller() {
@@ -72,16 +86,15 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 			val startYear = id / 100
 			setDate(startMonth, startYear)
 		} else {
-			val today = Calendar.getInstance()
-			val startMonth = intent.getIntExtra("month", today.get(Calendar.MONTH))
-			val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
+			val startMonth = intent.getIntExtra("month", month)
+			val startYear = intent.getIntExtra("year", year)
 			setDate(startMonth, startYear)
 		}
 	}
 
 	private fun setDate(month: Int, year: Int) {
-		static.month = month
-		static.year = year
+		this.month = month
+		this.year = year
 
 		intent.putExtra("month", month)
 		intent.putExtra("year", year)
@@ -89,11 +102,15 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 		val date = Calendar.getInstance()
 		date.set(Calendar.MONTH, month)
 		date.set(Calendar.YEAR, year)
+		reportChange.text = date.formatNoDay()
+	}
 
-		val formatter = SimpleDateFormat("MMM/yyyy", Locale.getDefault())
-		val dateInFull = formatter.format(date.time)
-
-		reportChange.text = dateInFull
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		val json = Gson().toJson(extract)
+		outState.putCharSequence(extractKey, json)
+		outState.putInt(yearKey, year)
+		outState.putInt(monthKey, month)
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
@@ -101,32 +118,28 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	}
 
 	private fun getExtract() {
-		val time = static.year * 100 + static.month + 1
+		val time = year * 100 + month + 1
 
 		api.getExtract(auth, accountUrl, time, this::handleMoves)
 	}
 
 	private fun handleMoves(data: Extract) {
-		static.moveList = data.moveList
-		static.name = data.name
-		static.total = data.total
-		static.canCheck = data.canCheck
-
+		extract = data
 		fillMoves()
 	}
 
 	private fun fillMoves() {
-		total_title.text = static.name
-		setValueColored(total_value, static.total)
+		total_title.text = extract.name
+		setValueColored(total_value, extract.total)
 
-		if (static.moveList.isEmpty()) {
+		if (extract.moveList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			val accountAdapter = MoveAdapter(this, static.moveList, static.canCheck)
+			val accountAdapter = MoveAdapter(this, extract.moveList, extract.canCheck)
 			main_table.adapter = accountAdapter
 		}
 	}
@@ -135,7 +148,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 	fun goToSummary(@Suppress(ON_CLICK) view: View) {
 		redirect<ExtractActivity> {
 			it.putExtra("accountUrl", accountUrl)
-			it.putExtra("year", static.year)
+			it.putExtra("year", year)
 		}
 	}
 
@@ -144,8 +157,8 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 
 		extras.putInt("id", moveId)
 		extras.putString("accountUrl", accountUrl)
-		extras.putInt("year", static.year)
-		extras.putInt("month", static.month)
+		extras.putInt("year", year)
+		extras.putInt("month", month)
 
 		createMove(extras)
 	}
@@ -196,7 +209,7 @@ class ExtractActivity : BaseActivity<ExtractStatic>(ExtractStatic), IYesNoDialog
 
 	public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
 		try {
-			if (static.canCheck) {
+			if (extract.canCheck) {
 				hideMenuItem(menuInfo, if (clickedMove.isChecked) R.id.check_move else R.id.uncheck_move)
 				showMenuItem(menuInfo, if (clickedMove.isChecked) R.id.uncheck_move else R.id.check_move)
 			} else {
