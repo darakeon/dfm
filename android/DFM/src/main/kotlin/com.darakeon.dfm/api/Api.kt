@@ -6,6 +6,7 @@ import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
+import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call
@@ -104,5 +105,17 @@ class Api(
 		onSuccess: (Login.Response) -> Unit
 	) {
 		api.login(login).call(onSuccess)
+	}
+
+	fun getMove(
+		ticket: String,
+		accountUrl: String?,
+		id: Int,
+		onSuccess: (MoveCreation) -> Unit
+	) {
+		if (accountUrl == null)
+			api.getMove(ticket, id).call(onSuccess)
+		else
+			api.getMove(ticket, accountUrl, id).call(onSuccess)
 	}
 }

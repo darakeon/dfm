@@ -6,8 +6,8 @@ import android.graphics.Typeface
 import android.util.TypedValue
 import android.widget.TextView
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.ComboItem
 import com.darakeon.dfm.base.BaseActivity
-import org.json.JSONArray
 
 fun TextView.setColorByAttr(attr : Int){
 	val typedValue = TypedValue()
@@ -41,23 +41,16 @@ fun setValueColored(field: TextView, value: Double) {
 	field.setColorByAttr(color)
 }
 
-fun Activity.showChangeList(list: JSONArray?, titleId: Int, setResult: (String, String) -> Unit) {
-	if (list != null) {
-		val adapter = arrayOfNulls<CharSequence>(list.length())
+fun Activity.showChangeList(list: Array<ComboItem>, titleId: Int, setResult: (String, String) -> Unit) {
+	val adapter = list.map { it.text as CharSequence }.toTypedArray()
 
-		for (c in 0 until list.length()) {
-			val item = list.getJSONObject(c)
-			adapter[c] = item.getString("Text")
-		}
+	val title = getString(titleId)
 
-		val title = getString(titleId)
-
-		AlertDialog.Builder(this).setTitle(title)
-			.setItems(adapter, { _, w -> run {
-				setResult(
-					list.getJSONObject(w).getString("Text"),
-					list.getJSONObject(w).getString("Value")
-				)
-			}}).show()
-	}
+	AlertDialog.Builder(this).setTitle(title)
+		.setItems(adapter) { _, w -> run {
+			setResult(
+				list[w].text,
+				list[w].value
+			)
+		}}.show()
 }
