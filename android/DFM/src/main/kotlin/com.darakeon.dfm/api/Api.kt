@@ -63,35 +63,35 @@ class Api(
 	}
 
 	fun listAccounts(
-		authKey: String,
+		ticket: String,
 		onSuccess: (AccountList) -> Unit
 	) {
-		api.listAccounts(authKey).call(onSuccess)
+		api.listAccounts(ticket).call(onSuccess)
 	}
 
 	fun getExtract(
-		authKey: String,
+		ticket: String,
 		accountUrl: String,
 		time: Int,
 		onSuccess: (Extract) -> Unit
 	) {
-		api.getExtract(authKey, accountUrl, time).call(onSuccess)
+		api.getExtract(ticket, accountUrl, time).call(onSuccess)
 	}
 
 	fun check(
-		authKey: String,
+		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.check(authKey, id).call(onSuccess)
+		api.check(ticket, id).call(onSuccess)
 	}
 
 	fun uncheck(
-		authKey: String,
+		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.uncheck(authKey, id).call(onSuccess)
+		api.uncheck(ticket, id).call(onSuccess)
 	}
 
 	fun delete(
