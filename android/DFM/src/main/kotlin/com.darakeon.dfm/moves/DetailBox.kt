@@ -9,10 +9,14 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.moves.Move
 import java.text.DecimalFormat
 
-class DetailBox(context: Context, internal var move: Move?, internal var description: String?, internal var amount: Int, internal var value: Double) : LinearLayout(context) {
-
+class DetailBox(
+	context: Context,
+	internal var move: Move?,
+	internal var description: String?,
+	internal var amount: Int,
+	internal var value: Double
+) : LinearLayout(context) {
 	init {
-
 		val descriptionField = TextView(context)
 		descriptionField.text = description
 		setWeight(descriptionField, 4f)
@@ -31,23 +35,21 @@ class DetailBox(context: Context, internal var move: Move?, internal var descrip
 
 		val buttonField = Button(context)
 		buttonField.setText(R.string.remove_detail)
-		buttonField.setOnClickListener(RemoveDetail())
+		buttonField.setOnClickListener(this::removeDetail)
+
 		setWeight(buttonField, 1f)
 		addView(buttonField)
+	}
+
+	private fun removeDetail(button: View) {
+		move?.remove(description, amount, value)
+
+		val item = button.parent as LinearLayout
+		(item.parent as LinearLayout).removeView(item)
 	}
 
 	private fun setWeight(field: TextView, weight: Float) {
 		val params = LayoutParams(0, LayoutParams.WRAP_CONTENT, weight)
 		field.layoutParams = params
 	}
-
-	private inner class RemoveDetail : OnClickListener {
-		override fun onClick(button: View) {
-			move?.remove(description, amount, value)
-
-			val item = button.parent as LinearLayout
-			(item.parent as LinearLayout).removeView(item)
-		}
-	}
-
 }
