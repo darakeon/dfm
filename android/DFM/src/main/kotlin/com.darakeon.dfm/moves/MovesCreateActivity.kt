@@ -12,13 +12,16 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
+import com.darakeon.dfm.extensions.fromJson
 import com.darakeon.dfm.extensions.onChange
+import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.showChangeList
 import com.darakeon.dfm.extensions.toDoubleByCulture
 import kotlinx.android.synthetic.main.moves_create.account_in
@@ -40,7 +43,7 @@ import kotlinx.android.synthetic.main.moves_create.simple_value
 import kotlinx.android.synthetic.main.moves_create.value
 import kotlinx.android.synthetic.main.moves_create.warnings
 
-class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
+class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 	private val dialog: DatePickerDialog
 		get() = with(move.date) {
 			return getDateDialog(
@@ -51,13 +54,10 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 
 	override val contentView = R.layout.moves_create
 
-	private var moveCreation
-		get() = static.moveCreation
-		set(value) { static.moveCreation = value }
-
-	private var move
-		get() = static.move
-		set(value) { static.move = value }
+	private var move = Move()
+	private val moveKey = "move"
+	private var moveCreation = MoveCreation()
+	private val moveCreationKey = "moveCreation"
 
 	private fun updateFromDateCombo(year: Int, month: Int, day: Int) {
 		move.date = Date(year, month, day)
@@ -70,20 +70,33 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (!rotated || !static.succeeded) {
-			populateScreen()
+		if (savedInstanceState == null) {
+			initScreen()
 		} else {
-			populateCategoryAndNature()
-			setControls()
-			populateOldData()
+			startScreenFromSaved(savedInstanceState)
 		}
 	}
 
-	private fun populateScreen() {
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		outState.putJson(moveKey, move)
+		outState.putJson(moveCreationKey, moveCreation)
+	}
+
+	private fun initScreen() {
 		api.getMove(auth, accountUrl, id, this::populateScreen)
 
 		setCurrentDate()
 		setControls()
+	}
+
+	private fun startScreenFromSaved(savedInstanceState: Bundle) {
+		moveCreation = savedInstanceState.fromJson(moveCreationKey, MoveCreation())
+		populateCategoryAndNature()
+		setControls()
+
+		move = savedInstanceState.fromJson(moveKey, Move())
+		populateOldData()
 	}
 
 	private fun populateScreen(data: MoveCreation) {
