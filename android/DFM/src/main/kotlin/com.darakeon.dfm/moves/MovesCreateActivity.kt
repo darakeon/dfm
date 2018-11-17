@@ -9,9 +9,8 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
 import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.api.entities.moves.MoveCreation
-import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.api.entities.moves.Move
+import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
@@ -318,14 +317,8 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	}
 
 	fun save(@Suppress(ON_CLICK) view: View) {
-		val request = InternalRequest(
-			this, "Moves/Create"
-		) { cleanAndBack() }
-
-		request.addParameter("ticket", auth)
-		move.setParameters(request)
-
-		request.post()
+		move.clearNotUsedValues()
+		api.saveMove(auth, move, this::cleanAndBack)
 	}
 
 	private fun cleanAndBack() {

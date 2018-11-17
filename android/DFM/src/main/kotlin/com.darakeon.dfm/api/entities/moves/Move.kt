@@ -1,9 +1,7 @@
 package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.Date
-import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.extensions.toDoubleByCulture
-import com.darakeon.dfm.moves.MovesCreateStatic
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
@@ -36,7 +34,7 @@ class Move {
 	var accountIn: String? = null
 
 	@SerializedName("Value")
-	var value: Double = 0.0
+	var value: Double? = null
 
 	@SerializedName("DetailList")
 	var details: MutableList<Detail> = ArrayList()
@@ -75,30 +73,11 @@ class Move {
 		}
 	}
 
-	fun setParameters(request: InternalRequest<MovesCreateStatic>) {
-		request.addParameter("ID", id)
-		request.addParameter("Description", description)
-
-		request.addParameter("Date.Year", date.year)
-		request.addParameter("Date.Month", date.month)
-		request.addParameter("Date.Day", date.day)
-
-		request.addParameter("Nature", nature)
-
-		request.addParameter("Category", category)
-		request.addParameter("AccountOutUrl", accountOut)
-		request.addParameter("AccountInUrl", accountIn)
-
+	fun clearNotUsedValues() {
 		if (isDetailed) {
-			for (detail in details) {
-				val position = details.lastIndexOf(detail)
-
-				request.addParameter("DetailList[$position].Description", detail.description!!)
-				request.addParameter("DetailList[$position].Amount", detail.amount)
-				request.addParameter("DetailList[$position].Value", detail.value)
-			}
+			value = null
 		} else {
-			request.addParameter("Value", value)
+			details = ArrayList()
 		}
 	}
 }
