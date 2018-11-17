@@ -6,6 +6,7 @@ import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
+import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
@@ -117,5 +118,13 @@ class Api(
 			api.getMove(ticket, id).call(onSuccess)
 		else
 			api.getMove(ticket, accountUrl, id).call(onSuccess)
+	}
+
+	fun saveMove(
+		ticket: String,
+		move: Move,
+		onSuccess: () -> Unit
+	) {
+		api.saveMove(ticket, move.id, move).call(onSuccess)
 	}
 }

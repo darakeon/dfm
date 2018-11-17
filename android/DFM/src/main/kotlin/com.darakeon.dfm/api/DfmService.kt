@@ -4,11 +4,13 @@ import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
+import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Body as RetrofitBody
 
 internal interface DfmService {
 	@GET("Api-{ticket}/accounts/list")
@@ -43,7 +45,7 @@ internal interface DfmService {
 
 	@POST("Api/Users/Login")
 	fun login(
-		@retrofit2.http.Body login: Login.Request
+		@RetrofitBody login: Login.Request
 	): Call<Body<Login.Response>>
 
 	@GET("Api-{ticket}/moves/create/{id}")
@@ -58,4 +60,11 @@ internal interface DfmService {
 		@Path("accountUrl") accountUrl: String,
 		@Path("id") id: Int
 	): Call<Body<MoveCreation>>
+
+	@POST("Api-{ticket}/moves/create/{id}")
+	fun saveMove(
+		@Path("ticket") ticket: String,
+		@Path("id") id: Int,
+		@RetrofitBody move: Move
+	): Call<Body<Any>>
 }
