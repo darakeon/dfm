@@ -9,3 +9,7 @@ inline fun <reified T> String.fromJson(): T {
 inline fun <reified T> Any.fromJson(): T {
 	return toString().fromJson()
 }
+
+fun Any.toJson(): String {
+	return Gson().toJson(this)
+}

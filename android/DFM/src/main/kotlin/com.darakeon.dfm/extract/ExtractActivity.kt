@@ -21,7 +21,7 @@ import com.darakeon.dfm.extensions.formatNoDay
 import com.darakeon.dfm.extensions.fromJson
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
-import com.google.gson.Gson
+import com.darakeon.dfm.extensions.toJson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
@@ -107,7 +107,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
-		val json = Gson().toJson(extract)
+		val json = extract.toJson()
 		outState.putCharSequence(extractKey, json)
 		outState.putInt(yearKey, year)
 		outState.putInt(monthKey, month)
