@@ -61,23 +61,14 @@ namespace DFM.MVC
 
 
 		// ReSharper disable InconsistentNaming
-		protected void Application_AuthenticateRequest()
-		// ReSharper restore InconsistentNaming
-		{
-			if (isAsset) return;
-
-			if (isElmah && !current.IsAdm)
-				Response.Redirect("/");
-		}
-
-
-
-		// ReSharper disable InconsistentNaming
 		protected void Application_AcquireRequestState()
 		// ReSharper restore InconsistentNaming
 		{
 			if (isAsset || !current.IsAuthenticated)
 				return;
+
+			if (isElmah && !current.IsAdm)
+				Response.Redirect("/");
 
 			Thread.CurrentThread.CurrentUICulture = 
 				new CultureInfo(Service.Current.Language);
