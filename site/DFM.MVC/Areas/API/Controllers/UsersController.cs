@@ -42,13 +42,13 @@ namespace DFM.MVC.Areas.API.Controllers
 
 
 		[DFMApiAuthorize, HttpGet]
-		public ActionResult GetConfig()
+		public ActionResult Config()
 		{
-			return JsonGet(() => new UserGetConfigModel());
+			return JsonGet(() => new UserConfigModel());
 		}
 
 		[DFMApiAuthorize, HttpPost]
-		public ActionResult SaveConfig(UserSaveConfigModel model)
+		public ActionResult Config(UserConfigModel model)
 		{
 			return JsonPost(model.Save);
 		}

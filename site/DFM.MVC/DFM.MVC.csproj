@@ -262,8 +262,7 @@
     <Compile Include="Areas\API\Models\MovesCreatePostModel.cs" />
     <Compile Include="Areas\API\Models\MovesExtractModel.cs" />
     <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
-    <Compile Include="Areas\API\Models\UserGetConfigModel.cs" />
-    <Compile Include="Areas\API\Models\UserSaveConfigModel.cs" />
+    <Compile Include="Areas\API\Models\UserConfigModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
     <Compile Include="Assets\Resources\ConfigThemes.Designer.cs">
       <AutoGen>True</AutoGen>
