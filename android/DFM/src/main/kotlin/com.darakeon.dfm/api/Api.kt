@@ -72,9 +72,11 @@ class Api(
 	fun getExtract(
 		ticket: String,
 		accountUrl: String,
-		time: Int,
+		year: Int,
+		month: Int,
 		onSuccess: (Extract) -> Unit
 	) {
+		val time = year * 100 + month + 1
 		api.getExtract(ticket, accountUrl, time).call(onSuccess)
 	}
 
