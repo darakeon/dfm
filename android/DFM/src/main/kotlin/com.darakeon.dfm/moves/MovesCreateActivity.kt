@@ -148,16 +148,16 @@ class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 
 		description.setText(move.description)
 
-		if (move.details.isEmpty()) {
-			useSimple()
-
-			value.setText(String.format("%1$,.2f", move.value))
-		} else {
+		if (move.details.isNotEmpty()) {
 			useDetailed()
 
 			move.details.forEach {
 				addViewDetail(move, it.description, it.amount, it.value)
 			}
+		} else if (move.value != null) {
+			useSimple()
+
+			value.setText(String.format("%1$,.2f", move.value))
 		}
 	}
 
