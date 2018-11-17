@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName
 
 data class MoveCreation(
 	@SerializedName("Move")
-	var move: Move = Move(),
+	val move: Move? = Move(),
 
 	@SerializedName("UseCategories")
-	var useCategories: Boolean = false,
+	val useCategories: Boolean = false,
 
 	@SerializedName("CategoryList")
-	var categoryList: Array<ComboItem>? = emptyArray(),
+	val categoryList: Array<ComboItem>? = emptyArray(),
 
 	@SerializedName("NatureList")
-	var natureList: Array<ComboItem> = emptyArray(),
+	val natureList: Array<ComboItem> = emptyArray(),
 
 	@SerializedName("AccountList")
-	var accountList: Array<ComboItem> = emptyArray()
+	val accountList: Array<ComboItem> = emptyArray()
 ) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true

@@ -14,10 +14,12 @@ data class Date(
 	@SerializedName("Day")
 	val day: Int
 ) {
-	constructor() : this(
-		Calendar.getInstance().get(Calendar.YEAR),
-		Calendar.getInstance().get(Calendar.MONTH),
-		Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+	constructor() : this(Calendar.getInstance())
+
+	constructor(calendar: Calendar) : this(
+		calendar.get(Calendar.YEAR),
+		calendar.get(Calendar.MONTH) + 1,
+		calendar.get(Calendar.DAY_OF_MONTH)
 	)
 
 	val javaMonth get() = month - 1
