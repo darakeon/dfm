@@ -117,9 +117,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 	}
 
 	private fun getExtract() {
-		val time = year * 100 + month + 1
-
-		api.getExtract(auth, accountUrl, time, this::handleMoves)
+		api.getExtract(auth, accountUrl, year, month, this::handleMoves)
 	}
 
 	private fun handleMoves(data: Extract) {
