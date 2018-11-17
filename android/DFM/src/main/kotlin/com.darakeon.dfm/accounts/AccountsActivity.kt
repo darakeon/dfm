@@ -17,7 +17,7 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 	override val contentView = R.layout.accounts
 
 	private var accountList: Array<Account> = emptyArray()
-	private var accountListKey = "accountList"
+	private val accountListKey = "accountList"
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
