@@ -30,13 +30,13 @@
 	@{
 		var descriptionSize = 2
 			+ (Model.CanCheck ? 0 : 2)
-			+ (Model.UseCategories ? 0 : 2);
+			+ (Model.IsUsingCategories ? 0 : 2);
 	}
 
 	<tr class="row">
 		<th class="col-sm-@descriptionSize">@MultiLanguage.Dictionary["Description"]</th>
 
-		@if (Model.UseCategories)
+		@if (Model.IsUsingCategories)
 		{
 			<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Category"]</th>
 		}
@@ -61,7 +61,7 @@
 	<tr class="row">
 		<td>@move.GetDescriptionDetailed()</td>
 
-		@if (Model.UseCategories)
+		@if (Model.IsUsingCategories)
 		{
 			<td class="text-center">@(move.Category?.Name ?? "---")</td>
 		}

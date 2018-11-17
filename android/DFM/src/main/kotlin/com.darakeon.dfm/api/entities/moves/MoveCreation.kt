@@ -7,7 +7,7 @@ data class MoveCreation(
 	@SerializedName("Move")
 	val move: Move? = Move(),
 
-	@SerializedName("UseCategories")
+	@SerializedName("IsUsingCategories")
 	val useCategories: Boolean = false,
 
 	@SerializedName("CategoryList")

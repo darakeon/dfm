@@ -45,7 +45,7 @@
 					{
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
 
-						if (Model.UseCategories)
+						if (Model.IsUsingCategories)
 						{
 						<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
 						}
