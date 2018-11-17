@@ -8,4 +8,6 @@ data class Settings(
 
 	@SerializedName("MoveCheck")
 	var moveCheck: Boolean
-)
+) {
+	constructor() : this(false, false)
+}
