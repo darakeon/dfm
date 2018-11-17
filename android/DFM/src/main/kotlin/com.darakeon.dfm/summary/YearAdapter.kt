@@ -6,26 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.summary.Month
 import com.darakeon.dfm.auth.getThemeLineColor
-import org.json.JSONArray
-import org.json.JSONObject
 
-class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String, yearNumber: Int) : BaseAdapter() {
+class YearAdapter(context: Context, monthList: Array<Month>, accountUrl: String, yearNumber: Int) : BaseAdapter() {
 
-	private val yearList: MutableList<Year> =
-		(0 until yearJsonList.length())
-			.map { Year(yearJsonList.getJSONObject(it), accountUrl, yearNumber) }
-			.toMutableList()
+	private val monthList: MutableList<CompleteMonth> =
+		monthList.map { CompleteMonth(it, accountUrl, yearNumber) }
+				.toMutableList()
 
 	private val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-	inner class Year(jsonObject: JSONObject, var AccountUrl: String, var YearNumber: Int) {
-		var monthName: String = jsonObject.getString("Name")
-		var monthNumber: Int = jsonObject.getInt("Number")
-		var total: Double = jsonObject.getDouble("Total")
+	inner class CompleteMonth(month: Month, var accountUrl: String, var yearNumber: Int) {
+		var monthName: String = month.name
+		var monthNumber: Int = month.number
+		var total: Double = month.total
 	}
 
-	override fun getCount(): Int = yearList.size
+	override fun getCount(): Int = monthList.size
 	override fun getItem(position: Int): Any = position
 	override fun getItemId(position: Int): Long = position.toLong()
 
@@ -33,7 +31,7 @@ class YearAdapter(context: Context, yearJsonList: JSONArray, accountUrl: String,
 		val line = inflater.inflate(R.layout.summary_line, null) as YearLine
 
 		val color = getThemeLineColor(position)
-		line.setYear(yearList[position], color)
+		line.setYear(monthList[position], color)
 
 		return line
 	}
