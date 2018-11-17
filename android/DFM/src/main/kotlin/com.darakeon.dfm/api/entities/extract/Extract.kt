@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class Extract(
 	@SerializedName("MoveList")
-	val moveList: Array<Move>,
+	val moveList: Array<Move> = emptyArray(),
 
 	@SerializedName("Name")
-	var name: String,
+	var name: String = "",
 
 	@SerializedName("Total")
-	var total: Double,
+	var total: Double = 0.0,
 
 	@SerializedName("CanCheck")
-	var canCheck: Boolean
+	var canCheck: Boolean = false
 ) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true

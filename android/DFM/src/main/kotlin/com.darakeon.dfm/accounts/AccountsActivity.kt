@@ -9,7 +9,7 @@ import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.fromJson
-import com.darakeon.dfm.extensions.toJson
+import com.darakeon.dfm.extensions.putJson
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
 
@@ -22,9 +22,11 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		val accountsJson = savedInstanceState?.get(accountListKey)
-		if (accountsJson != null) {
-			accountList = accountsJson.fromJson()
+		if (savedInstanceState != null)
+		{
+			accountList = savedInstanceState
+				.fromJson(accountListKey, emptyArray())
+
 			fillAccounts()
 		} else {
 			api.listAccounts(
@@ -36,7 +38,7 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
-		outState.putCharSequence(accountListKey, accountList.toJson())
+		outState.putJson(accountListKey, accountList)
 	}
 
 	private fun handleAccounts(accountList: AccountList) {

@@ -19,9 +19,9 @@ import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.formatNoDay
 import com.darakeon.dfm.extensions.fromJson
+import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
-import com.darakeon.dfm.extensions.toJson
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
@@ -38,7 +38,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 	private val clickedMove get() = clickedView as MoveLine
 
-	private lateinit var extract: Extract
+	private var extract = Extract()
 	private val extractKey = "extract"
 
 	private val now = Calendar.getInstance()
@@ -63,9 +63,9 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 		highlight?.setBackgroundColor(highLightColor)
 
-		val extractJson = savedInstanceState?.get(extractKey)
-		if (extractJson != null) {
-			extract = extractJson.fromJson()
+		if (savedInstanceState != null) {
+			extract = savedInstanceState
+				.fromJson(extractKey, Extract())
 
 			setDate(
 				savedInstanceState.getInt(monthKey),
@@ -107,8 +107,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
-		val json = extract.toJson()
-		outState.putCharSequence(extractKey, json)
+		outState.putJson(extractKey, extract)
 		outState.putInt(yearKey, year)
 		outState.putInt(monthKey, month)
 	}
