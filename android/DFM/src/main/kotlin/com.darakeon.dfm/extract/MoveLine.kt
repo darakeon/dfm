@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
 import kotlinx.android.synthetic.main.extract_line.view.check_move

@@ -1,9 +1,9 @@
 package com.darakeon.dfm.api
 
-import com.darakeon.dfm.api.entities.AccountList
 import com.darakeon.dfm.api.entities.Body
-import com.darakeon.dfm.api.entities.Login
-import com.darakeon.dfm.api.entities.Extract
+import com.darakeon.dfm.api.entities.accounts.AccountList
+import com.darakeon.dfm.api.entities.extract.Extract
+import com.darakeon.dfm.api.entities.login.Login
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST

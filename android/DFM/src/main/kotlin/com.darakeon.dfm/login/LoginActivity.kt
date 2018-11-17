@@ -2,7 +2,7 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Login
+import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.setAuth
 import com.darakeon.dfm.base.BaseActivity
