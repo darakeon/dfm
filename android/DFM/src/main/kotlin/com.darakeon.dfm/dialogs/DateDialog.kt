@@ -13,18 +13,18 @@ fun Activity.getDateDialog(
 	var dialog: DatePickerDialog? = null;
 
 	dialog = DatePickerDialog(
-			this,
-			{ v, y, m, d ->
-				run {
-					if (v.isShown) {
-						getAnswer(y, m, d)
-						dialog?.dismiss()
-					}
+		this,
+		{ v, y, m, d ->
+			run {
+				if (v.isShown) {
+					getAnswer(y, m, d)
+					dialog?.dismiss()
 				}
-			},
-			year,
-			month ?: 1,
-			day ?: 1
+			}
+		},
+		year,
+		month ?: 1,
+		day ?: 1
 	)
 
 	val picker = dialog.getChildOrMe("mDatePicker")

@@ -1,5 +1,6 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.entities.extract
 
+import com.darakeon.dfm.api.entities.Date
 import com.google.gson.annotations.SerializedName
 
 data class Move(

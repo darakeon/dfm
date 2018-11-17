@@ -2,10 +2,10 @@ package com.darakeon.dfm.api
 
 import android.app.Activity
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.AccountList
 import com.darakeon.dfm.api.entities.Body
-import com.darakeon.dfm.api.entities.Login
-import com.darakeon.dfm.api.entities.Extract
+import com.darakeon.dfm.api.entities.accounts.AccountList
+import com.darakeon.dfm.api.entities.extract.Extract
+import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call

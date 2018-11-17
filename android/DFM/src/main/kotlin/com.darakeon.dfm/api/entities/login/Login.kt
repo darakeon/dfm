@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.entities.login
 
 class Login {
 	data class Request(

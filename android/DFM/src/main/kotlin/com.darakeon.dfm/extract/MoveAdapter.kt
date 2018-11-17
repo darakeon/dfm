@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Move
+import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.auth.getThemeLineColor
 
 class MoveAdapter(private val activity: ExtractActivity, moveJsonList: Array<Move>, private val canCheck: Boolean) : BaseAdapter() {

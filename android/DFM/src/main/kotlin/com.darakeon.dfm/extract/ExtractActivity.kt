@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.Extract
+import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
