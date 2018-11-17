@@ -40,7 +40,6 @@ import kotlinx.android.synthetic.main.moves_create.no_categories
 import kotlinx.android.synthetic.main.moves_create.simple_value
 import kotlinx.android.synthetic.main.moves_create.value
 import kotlinx.android.synthetic.main.moves_create.warnings
-import java.util.Calendar
 
 class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	private val dialog: DatePickerDialog
@@ -58,8 +57,8 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 		set(value) { static.moveCreation = value }
 
 	private var move
-		get() = moveCreation.move
-		set(value) { moveCreation.move = value }
+		get() = static.move
+		set(value) { static.move = value }
 
 	private fun updateFromDateCombo(year: Int, month: Int, day: Int) {
 		move.date = Date(year, month, day)
@@ -91,9 +90,11 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	private fun populateScreen(data: MoveCreation) {
 		moveCreation = data
 
-		data.move.setDefaultData(accountUrl, data.useCategories)
-		populateOldData()
+		if (data.move != null)
+			move = data.move
 
+		move.setDefaultData(accountUrl, data.useCategories)
+		populateOldData()
 		populateCategoryAndNature()
 	}
 
@@ -133,16 +134,18 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 		setDataFromList(moveCreation.accountList, move.accountOut, account_out)
 		setDataFromList(moveCreation.accountList, move.accountIn, account_in)
 
-		move.details.forEach {
-			addViewDetail(move, it.description, it.amount, it.value)
-		}
-
-		useDetailed()
-
 		description.setText(move.description)
 
-		if (move.value != 0.0) {
+		if (move.details.isEmpty()) {
+			useSimple()
+
 			value.setText(String.format("%1$,.2f", move.value))
+		} else {
+			useDetailed()
+
+			move.details.forEach {
+				addViewDetail(move, it.description, it.amount, it.value)
+			}
 		}
 	}
 
@@ -184,11 +187,7 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	}
 
 	private fun setCurrentDate() {
-		val today = Calendar.getInstance()
-		val day = intent.getIntExtra("day", today.get(Calendar.DAY_OF_MONTH))
-		val month = intent.getIntExtra("month", today.get(Calendar.MONTH))
-		val year = intent.getIntExtra("year", today.get(Calendar.YEAR))
-		move.date = Date(year, month, day)
+		move.date = Date()
 	}
 
 	private fun setControls() {
@@ -274,6 +273,10 @@ class MovesCreateActivity : BaseActivity<MovesCreateStatic>(MovesCreateStatic) {
 	}
 
 	fun useSimple(@Suppress(ON_CLICK) view: View) {
+		useSimple()
+	}
+
+	private fun useSimple() {
 		move.isDetailed = false
 
 		simple_value.visibility = View.VISIBLE

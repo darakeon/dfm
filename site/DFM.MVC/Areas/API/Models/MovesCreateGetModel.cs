@@ -16,14 +16,6 @@ namespace DFM.MVC.Areas.API.Models
 
 				Move = new MovesCreatePostModel(move);
 			}
-			else
-			{
-				Move = new MovesCreatePostModel
-				{
-					AccountInUrl = accountUrl,
-					AccountOutUrl = accountUrl
-				};
-			}
 
 			AccountList = Admin.GetAccountList(true)
 				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
