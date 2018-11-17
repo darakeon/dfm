@@ -2,6 +2,10 @@ package com.darakeon.dfm.extensions
 
 import com.google.gson.Gson
 
-inline fun <reified T> Gson.fromJson(json: Any): T {
-	return this.fromJson(json.toString(), T::class.java)
+inline fun <reified T> String.fromJson(): T {
+	return Gson().fromJson(this, T::class.java)
+}
+
+inline fun <reified T> Any.fromJson(): T {
+	return toString().fromJson()
 }

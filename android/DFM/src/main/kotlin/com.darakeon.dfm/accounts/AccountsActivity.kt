@@ -24,7 +24,7 @@ class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 
 		val accountsJson = savedInstanceState?.get(accountListKey)
 		if (accountsJson != null) {
-			accountList = Gson().fromJson(accountsJson)
+			accountList = accountsJson.fromJson()
 			fillAccounts()
 		} else {
 			api.listAccounts(

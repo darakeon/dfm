@@ -65,7 +65,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 		val extractJson = savedInstanceState?.get(extractKey)
 		if (extractJson != null) {
-			extract = Gson().fromJson(extractJson)
+			extract = extractJson.fromJson()
 
 			setDate(
 				savedInstanceState.getInt(monthKey),
