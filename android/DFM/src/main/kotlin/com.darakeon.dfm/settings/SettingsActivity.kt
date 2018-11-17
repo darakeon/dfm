@@ -5,47 +5,64 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.settings.Settings
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
+import com.darakeon.dfm.extensions.fromJson
+import com.darakeon.dfm.extensions.putJson
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.use_categories
 
-class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
+class SettingsActivity : BaseActivity<DELETE>(DELETE) {
 
 	override val contentView = R.layout.settings
 
+	private var settings = Settings()
+	private val settingsKey = "settings"
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (rotated && static.succeeded) {
-			this.populateScreen(static.settings)
-		} else {
+		if (savedInstanceState == null) {
 			api.getConfig(auth) {
-				static.settings = it
 				this.populateScreen(it)
 			}
+		} else {
+			this.populateScreen(
+				savedInstanceState.fromJson(settingsKey, Settings())
+			)
 		}
+
+		setControls()
 	}
 
 	private fun populateScreen(data: Settings) {
+		settings = data
+
 		use_categories.isChecked = data.useCategories
 		move_check.isChecked = data.moveCheck
+	}
 
+	private fun setControls() {
 		use_categories.setOnCheckedChangeListener { _, isChecked ->
-			data.useCategories = isChecked
+			settings.useCategories = isChecked
 		}
 
 		move_check.setOnCheckedChangeListener { _, isChecked ->
-			data.moveCheck = isChecked
+			settings.moveCheck = isChecked
 		}
 	}
 
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		outState.putJson(settingsKey, settings)
+	}
+
 	fun saveSettings(@Suppress(ON_CLICK) view: View) {
-		api.saveConfig(auth, static.settings, this::back)
+		api.saveConfig(auth, settings, this::back)
 	}
 
 	private fun back() {
