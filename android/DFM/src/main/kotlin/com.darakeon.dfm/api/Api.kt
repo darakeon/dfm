@@ -8,6 +8,7 @@ import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import retrofit2.Call
@@ -126,5 +127,20 @@ class Api(
 		onSuccess: () -> Unit
 	) {
 		api.saveMove(ticket, move.id, move).call(onSuccess)
+	}
+
+	fun getConfig(
+		ticket: String,
+		onSuccess: (Settings) -> Unit
+	) {
+		api.getConfig(ticket).call(onSuccess)
+	}
+
+	fun saveConfig(
+		ticket: String,
+		settings: Settings,
+		onSuccess: () -> Unit
+	) {
+		api.saveConfig(ticket, settings).call(onSuccess)
 	}
 }

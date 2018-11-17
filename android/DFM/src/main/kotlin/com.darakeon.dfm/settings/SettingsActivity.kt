@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
@@ -11,7 +12,6 @@ import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.use_categories
-import org.json.JSONObject
 
 class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
 
@@ -22,40 +22,31 @@ class SettingsActivity : BaseActivity<SettingsStatic>(SettingsStatic) {
 		super.onCreate(savedInstanceState)
 
 		if (rotated && static.succeeded) {
-			use_categories.isChecked = static.useCategories
-			move_check.isChecked = static.moveCheck
+			this.populateScreen(static.settings)
 		} else {
-			getCurrentSettings()
+			api.getConfig(auth) {
+				static.settings = it
+				this.populateScreen(it)
+			}
 		}
 	}
 
-	private fun getCurrentSettings() {
-		val request = InternalRequest(
-			this, "Users/GetConfig", { d -> populateScreen(d) }
-		)
-		request.addParameter("ticket", auth)
-		request.get()
+	private fun populateScreen(data: Settings) {
+		use_categories.isChecked = data.useCategories
+		move_check.isChecked = data.moveCheck
+
+		use_categories.setOnCheckedChangeListener { _, isChecked ->
+			data.useCategories = isChecked
+		}
+
+		move_check.setOnCheckedChangeListener { _, isChecked ->
+			data.moveCheck = isChecked
+		}
 	}
 
 	fun saveSettings(@Suppress(ON_CLICK) view: View) {
-		val request = InternalRequest(
-			this, "Users/SaveConfig", { back() }
-		)
-		request.addParameter("ticket", auth)
-		request.addParameter("UseCategories", use_categories.isChecked)
-		request.addParameter("MoveCheck", move_check.isChecked)
-		request.post()
+		api.saveConfig(auth, static.settings, this::back)
 	}
-
-
-	private fun populateScreen(data: JSONObject) {
-		static.useCategories = data.getBoolean("UseCategories")
-		use_categories.isChecked = static.useCategories
-
-		static.moveCheck = data.getBoolean("MoveCheck")
-		move_check.isChecked = static.moveCheck
-	}
-
 
 	private fun back() {
 		AlertDialog.Builder(this)

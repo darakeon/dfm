@@ -6,6 +6,7 @@ import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.settings.Settings
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -66,5 +67,16 @@ internal interface DfmService {
 		@Path("ticket") ticket: String,
 		@Path("id") id: Int,
 		@RetrofitBody move: Move
+	): Call<Body<Any>>
+
+	@GET("Api-{ticket}/users/config")
+	fun getConfig(
+		@Path("ticket") ticket: String
+	): Call<Body<Settings>>
+
+	@POST("Api-{ticket}/users/config")
+	fun saveConfig(
+		@Path("ticket") ticket: String,
+		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
 }
