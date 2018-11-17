@@ -6,6 +6,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.composeErrorEmail
+import com.darakeon.dfm.extensions.isProd
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.tfa.TFAActivity
@@ -41,13 +42,10 @@ internal class Handler<T>(
 	}
 
 	override fun onFailure(call: Call<Body<T>>?, throwable: Throwable?) {
-		val url = getUrl(call)
-
-		if (throwable == null) {
-			onError(url, Exception("Null error"))
-		} else {
-			onError(url, throwable)
-		}
+		onError(
+			getUrl(call),
+			throwable ?: Exception("Null error")
+		)
 	}
 
 	private fun getUrl(call: Call<Body<T>>?): String {
@@ -55,6 +53,8 @@ internal class Handler<T>(
 	}
 
 	private fun onError(url: String?, error: Throwable) {
+		if (!context.isProd) throw error
+
 		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
 			dialog.dismiss()
 			context.composeErrorEmail(url ?: "", error)
