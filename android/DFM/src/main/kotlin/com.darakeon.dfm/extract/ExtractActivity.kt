@@ -39,13 +39,13 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 	private val clickedMove get() = clickedView as MoveLine
 
 	private lateinit var extract: Extract
-	private var extractKey = "extract"
+	private val extractKey = "extract"
 
 	private val now = Calendar.getInstance()
 	private var year: Int = now.get(Calendar.YEAR)
+	private val yearKey = "year"
 	private var month: Int = now.get(Calendar.MONTH)
-	private var yearKey = "year"
-	private var monthKey = "month"
+	private val monthKey = "month"
 
 	private val dialog: DatePickerDialog
 		get() = getDateDialog(
