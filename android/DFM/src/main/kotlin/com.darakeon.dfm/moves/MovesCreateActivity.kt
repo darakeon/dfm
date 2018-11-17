@@ -47,7 +47,7 @@ class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 	private val dialog: DatePickerDialog
 		get() = with(move.date) {
 			return getDateDialog(
-				{ y, m, d -> updateFromDateCombo(y, m, d) },
+				{ y, m, d -> updateFromDateCombo(y, m+1, d) },
 				year, javaMonth, day
 			)
 		}
