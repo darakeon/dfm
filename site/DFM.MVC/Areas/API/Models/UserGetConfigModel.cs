@@ -8,10 +8,11 @@ namespace DFM.MVC.Areas.API.Models
 		{
 			var config = Current.User.Config;
 
+			UseCategories = config.UseCategories;
 			MoveCheck = config.MoveCheck;
 		}
 
-		public new Boolean UseCategories { get; set; }
+		public Boolean UseCategories { get; set; }
 		public Boolean MoveCheck { get; set; }
 
 	}

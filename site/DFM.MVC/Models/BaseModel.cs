@@ -51,7 +51,7 @@ namespace DFM.MVC.Models
 		}
 
 
-		public Boolean UseCategories => Current.User?.Config?.UseCategories ?? false;
+		public Boolean IsUsingCategories => Current.User?.Config?.UseCategories ?? false;
 
 		public DateTime Today => Current.User?.Now().Date ?? DateTime.UtcNow;
 

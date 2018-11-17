@@ -21,7 +21,7 @@ namespace DFM.MVC.Areas.API.Models
 				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
 				.ToList();
 
-			if (UseCategories)
+			if (IsUsingCategories)
 			{
 				CategoryList = Admin.GetCategoryList(true)
 					.Select(a => new SelectItem<String, String>(a.Name, a.Name))
