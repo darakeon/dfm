@@ -22,6 +22,7 @@ import com.darakeon.dfm.extensions.fromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
+import com.darakeon.dfm.summary.SummaryActivity
 import kotlinx.android.synthetic.main.extract.empty_list
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.extract.reportChange
@@ -143,7 +144,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 
 	fun goToSummary(@Suppress(ON_CLICK) view: View) {
-		redirect<ExtractActivity> {
+		redirect<SummaryActivity> {
 			it.putExtra("accountUrl", accountUrl)
 			it.putExtra("year", year)
 		}
