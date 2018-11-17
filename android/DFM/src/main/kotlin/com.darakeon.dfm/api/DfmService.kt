@@ -7,6 +7,7 @@ import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.settings.Settings
+import com.darakeon.dfm.api.entities.summary.Summary
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -79,4 +80,11 @@ internal interface DfmService {
 		@Path("ticket") ticket: String,
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
+
+	@GET("Api-{ticket}/Account-{accountUrl}/moves/summary/{time}")
+	fun getSummary(
+		@Path("ticket") ticket: String,
+		@Path("accountUrl") accountUrl: String,
+		@Path("time") time: Int
+	): Call<Body<Summary>>
 }

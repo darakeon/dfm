@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.summary.main_table
 import kotlinx.android.synthetic.main.summary.reportChange
 import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
-import org.json.JSONObject
 import java.util.Calendar
 
 class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
@@ -75,21 +74,13 @@ class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 	}
 
 	private fun getSummary() {
-		val request = InternalRequest(
-			this, "Moves/Summary", { d -> handleSummary(d) }
-		)
-
-		request.addParameter("ticket", auth)
-		request.addParameter("accountUrl", accountUrl)
-		request.addParameter("id", static.year)
-
-		request.post()
+		api.getSummary(auth, accountUrl, static.year, this::handleSummary)
 	}
 
-	private fun handleSummary(data: JSONObject) {
-		static.monthList = data.getJSONArray("MonthList")
-		static.name = data.getString("Name")
-		static.total = data.getDouble("Total")
+	private fun handleSummary(data: Summary) {
+		static.monthList = data.monthList
+		static.name = data.name
+		static.total = data.total
 
 		fillSummary()
 	}
@@ -98,7 +89,7 @@ class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 		total_title.text = static.name
 		setValueColored(total_value, static.total)
 
-		if (static.monthList.length() == 0) {
+		if (static.monthList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {

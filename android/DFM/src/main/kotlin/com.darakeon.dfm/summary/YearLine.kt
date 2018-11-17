@@ -14,7 +14,7 @@ import java.text.DecimalFormat
 
 class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	fun setYear(year: YearAdapter.Year, color: Int) {
+	fun setYear(year: YearAdapter.CompleteMonth, color: Int) {
 		setBackgroundColor(color)
 
 		month.text = year.monthName
@@ -33,13 +33,13 @@ class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 	inner class OnClickListener internal constructor(
 		private val context: Context,
-		private val year: YearAdapter.Year
+		private val year: YearAdapter.CompleteMonth
 	) : View.OnClickListener {
 
 		override fun onClick(v: View) {
 			context.redirect<ExtractActivity> {
-				it.putExtra("accountUrl", year.AccountUrl)
-				it.putExtra("year", year.YearNumber)
+				it.putExtra("accountUrl", year.accountUrl)
+				it.putExtra("year", year.yearNumber)
 				it.putExtra("month", year.monthNumber - 1)
 			}
 		}
