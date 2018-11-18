@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.summary.Summary
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
+import com.darakeon.dfm.extensions.getFromJson
+import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.setValueColored
 import kotlinx.android.synthetic.main.summary.empty_list
 import kotlinx.android.synthetic.main.summary.main_table
@@ -18,14 +21,20 @@ import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import java.util.Calendar
 
-class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
+class SummaryActivity : BaseActivity<DELETE>(DELETE) {
 
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
+
+	private var year: Int = 0
+	private val yearKey = "yearKey"
+
+	private var summary = Summary()
+	private val summaryKey = "summaryKey"
 
 	private val dialog: DatePickerDialog
 		get() = getDateDialog(
 			{ y, _, _ -> updateScreen(y) },
-			static.year
+			year
 		)
 
 	override val contentView = R.layout.summary
@@ -40,17 +49,16 @@ class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 
 		highlight?.setBackgroundColor(highLightColor)
 
-		if (rotated && static.succeeded) {
-			setDateFromLast()
+		if (savedInstanceState != null) {
+			year = savedInstanceState.getInt(yearKey)
+			summary = savedInstanceState.getFromJson(summaryKey, Summary())
+
+			setDate(year)
 			fillSummary()
 		} else {
 			setDateFromCaller()
 			getSummary()
 		}
-	}
-
-	private fun setDateFromLast() {
-		setDate(static.year)
 	}
 
 	private fun setDateFromCaller() {
@@ -65,41 +73,41 @@ class SummaryActivity : BaseActivity<SummaryStatic>(SummaryStatic) {
 	}
 
 	private fun setDate(year: Int) {
-		static.year = year
+		this.year = year
 		reportChange.text = year.toString()
 	}
 
-	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		dialog.show()
-	}
-
 	private fun getSummary() {
-		api.getSummary(auth, accountUrl, static.year, this::handleSummary)
-	}
-
-	private fun handleSummary(data: Summary) {
-		static.monthList = data.monthList
-		static.name = data.name
-		static.total = data.total
-
-		fillSummary()
+		api.getSummary(auth, accountUrl, year) {
+			summary = it
+			fillSummary()
+		}
 	}
 
 	private fun fillSummary() {
-		total_title.text = static.name
-		setValueColored(total_value, static.total)
+		total_title.text = summary.name
+		setValueColored(total_value, summary.total)
 
-		if (static.monthList.isEmpty()) {
+		if (summary.monthList.isEmpty()) {
 			main_table.visibility = View.GONE
 			empty_list.visibility = View.VISIBLE
 		} else {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			val yearAdapter = YearAdapter(this, static.monthList, accountUrl, static.year)
+			val yearAdapter = YearAdapter(this, summary.monthList, accountUrl, year)
 			main_table.adapter = yearAdapter
 		}
+	}
 
+	fun changeDate(@Suppress(ON_CLICK) view: View) {
+		dialog.show()
+	}
+
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+
+		outState.putJson(summaryKey, summary)
+		outState.putInt(yearKey, year)
 	}
 }
-
