@@ -8,7 +8,7 @@ fun Bundle.putJson(key: String, thing: Any) {
 	putCharSequence(key, json)
 }
 
-inline fun <reified T> Bundle.fromJson(key: String, default: T) : T {
+inline fun <reified T> Bundle.getFromJson(key: String, default: T) : T {
 	val json = get(key)?.toString()
 	return Gson().fromJson(json, T::class.java) ?: default
 }

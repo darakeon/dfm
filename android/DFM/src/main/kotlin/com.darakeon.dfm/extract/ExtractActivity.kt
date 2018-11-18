@@ -18,7 +18,7 @@ import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.formatNoDay
-import com.darakeon.dfm.extensions.fromJson
+import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.setValueColored
@@ -66,7 +66,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 
 		if (savedInstanceState != null) {
 			extract = savedInstanceState
-				.fromJson(extractKey, Extract())
+				.getFromJson(extractKey, Extract())
 
 			setDate(
 				savedInstanceState.getInt(monthKey),
