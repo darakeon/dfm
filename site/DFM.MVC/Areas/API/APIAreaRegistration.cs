@@ -12,7 +12,7 @@ namespace DFM.MVC.Areas.API
 		{
 			context.MapRoute(
 				RouteNames.API_LOGGED_ACCOUNT,
-				"API-{ticket}/Account-{accounturl}/{controller}/{action}/{id}",
+				"API-{ticket}/Account-{accountUrl}/{controller}/{action}/{id}",
 				new { controller = "Moves", action = "List", id = UrlParameter.Optional },
 				new[] { typeof(UsersController).Namespace }
 			);

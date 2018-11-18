@@ -8,14 +8,14 @@ namespace DFM.MVC.Areas.API.Controllers
 	[DFMApiAuthorize]
 	public class MovesController : BaseJsonController
 	{
-		public ActionResult Extract(String accounturl, Int32 id)
+		public ActionResult Extract(String accountUrl, Int32 id)
 		{
-			return JsonGet(() => new MovesExtractModel(accounturl, id));
+			return JsonGet(() => new MovesExtractModel(accountUrl, id));
 		}
 
-		public ActionResult Summary(String accounturl, Int16 id)
+		public ActionResult Summary(String accountUrl, Int16 id)
 		{
-			return JsonGet(() => new MovesSummaryModel(accounturl, id));
+			return JsonGet(() => new MovesSummaryModel(accountUrl, id));
 		}
 
 		[HttpGet]
