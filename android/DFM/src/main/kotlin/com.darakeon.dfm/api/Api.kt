@@ -106,10 +106,15 @@ class Api(
 	}
 
 	fun login(
-		login: Login.Request,
-		onSuccess: (Login.Response) -> Unit
+		email: String,
+		password: String,
+		onSuccess: (String) -> Unit
 	) {
-		api.login(login).call(onSuccess)
+		api.login(
+			Login.Request(email, password)
+		).call {
+			onSuccess(it.ticket)
+		}
 	}
 
 	fun getMove(
