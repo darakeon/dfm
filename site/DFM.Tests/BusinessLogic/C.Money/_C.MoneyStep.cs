@@ -102,7 +102,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			if (!String.IsNullOrEmpty(moveData["Value"]))
 				Move.Value = Decimal.Parse(moveData["Value"]);
 		}
-		
+
 
 		[When(@"I try to save the move")]
 		public void WhenITryToSaveTheMove()
@@ -837,7 +837,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			makeJustMove(nature);
 
 			Move.Value = value;
-			
+
 			setMoveExternals(nature);
 		}
 
@@ -855,11 +855,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 		private void setMoveExternals(MoveNature nature)
 		{
-			var accountOutUrl = 
+			var accountOutUrl =
 				nature == MoveNature.In
 					? null : AccountOutUrl;
 
-			var accountInUrl = 
+			var accountInUrl =
 				nature == MoveNature.Out
 					? null : AccountInUrl;
 
@@ -869,7 +869,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			if (accountOutUrl != null)
 			{
-				AccountOut = Service.Admin.GetAccountByUrl(accountOutUrl); 
+				AccountOut = Service.Admin.GetAccountByUrl(accountOutUrl);
 
 				var year = AccountOut[Move.Date.Year, true];
 				var month = year[Move.Date.Month, true];

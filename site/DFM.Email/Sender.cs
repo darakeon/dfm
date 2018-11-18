@@ -14,7 +14,7 @@ namespace DFM.Email
 		private String to, subject, body;
 		private readonly IList<String> files;
 		private readonly String @default;
-		
+
 		public static String SenderAddress => new Sender().@from;
 
 
@@ -23,7 +23,7 @@ namespace DFM.Email
 			files = new List<String>();
 
 			var mailSettings = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
-			
+
 			if (mailSettings != null)
 				from = mailSettings.From;
 

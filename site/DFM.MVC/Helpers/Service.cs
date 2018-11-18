@@ -54,7 +54,7 @@ namespace DFM.MVC.Helpers
 			{
 				case TicketType.Browser:
 					return BrowserId.Get(remember);
-				
+
 				case TicketType.Mobile:
 					return RouteInfo.Current["ticket"];
 

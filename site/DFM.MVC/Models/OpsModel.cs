@@ -15,6 +15,6 @@ namespace DFM.MVC.Models
 
 		public ExceptionPossibilities Error { get; set; }
 
-		
+
 	}
 }

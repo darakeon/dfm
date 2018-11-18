@@ -12,7 +12,7 @@ namespace DFM.Entities
 		{
 			YearList = new List<Year>();
 		}
-		
+
 		public override String ToString()
 		{
 			return $"[{ID}] {Name}";
@@ -30,7 +30,7 @@ namespace DFM.Entities
 					? new Year() : year;
 			}
 		}
-		
+
 		public virtual Decimal Total()
 		{
 			return YearList.Sum(m => m.Total());
@@ -63,13 +63,13 @@ namespace DFM.Entities
 
 			if (hasRed && sum < RedLimit)
 				return AccountSign.Red;
-			
+
 			if (hasYellow && sum < YellowLimit)
 				return AccountSign.Yellow;
 
 			if (hasRed || hasYellow)
 				return AccountSign.Green;
-			
+
 			return AccountSign.None;
 		}
 

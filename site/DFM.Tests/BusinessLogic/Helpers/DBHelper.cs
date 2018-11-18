@@ -97,7 +97,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			return ticket;
 		}
 
-		
+
 
 		public static String GetUserEmailByTicket(String ticket)
 		{
@@ -147,9 +147,9 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				conn.Open();
 
 				var query = @"
-					INSERT INTO Contract 
-						(BeginDate, Version) 
-						VALUES 
+					INSERT INTO Contract
+						(BeginDate, Version)
+						VALUES
 						(now(), @contractVersion);
 				";
 

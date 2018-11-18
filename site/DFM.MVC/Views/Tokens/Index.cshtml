@@ -9,7 +9,7 @@
 	@Html.LabelFor(m => m.Token, MultiLanguage.Dictionary["Token"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Token, new { @class = "form-control" })
 </div>
-		
+
 <div class="form-group">
 	@Html.LabelFor(m => m.SecurityAction, MultiLanguage.Dictionary["SecurityAction"], new { @class = "control-label" })
 	@Html.DropDownListFor(m => m.SecurityAction, Model.SecurityActionList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new { @class = "form-control" })

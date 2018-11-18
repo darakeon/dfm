@@ -54,8 +54,8 @@ namespace DFM.BusinessLogic.Services
 				.ToList();
 		}
 
-		
-		
+
+
 		public Year GetYearReport(String accountUrl, Int16 dateYear)
 		{
 			Parent.Safe.VerifyUser();

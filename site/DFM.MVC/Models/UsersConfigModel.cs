@@ -31,7 +31,7 @@ namespace DFM.MVC.Models
 		public UserInfo Info { get; set; }
 		public TFAForm TFA { get; set; }
 		public ThemeOptions Theme { get; set; }
-		
+
 		public Form ActiveForm { get; set; }
 
 		public enum Form
@@ -221,7 +221,7 @@ namespace DFM.MVC.Models
 				this.admin = admin;
 				Theme = config.Theme;
 
-				ThemeList = 
+				ThemeList =
 					Enum.GetValues(typeof (BootstrapTheme))
 						.Cast<BootstrapTheme>()
 						.Where(bt => bt != 0)

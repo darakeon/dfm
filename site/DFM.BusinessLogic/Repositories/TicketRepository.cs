@@ -10,7 +10,7 @@ namespace DFM.BusinessLogic.Repositories
 	{
 		internal Ticket Create(User user, String key, TicketType type)
 		{
-			var ticket = 
+			var ticket =
 				new Ticket
 				{
 					ID = 0,

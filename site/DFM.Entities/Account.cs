@@ -21,8 +21,8 @@ namespace DFM.Entities
 
 		public virtual Int32? RedLimitCents { get; set; }
 		public virtual Int32? YellowLimitCents { get; set; }
-		
-		public virtual Decimal? RedLimit 
+
+		public virtual Decimal? RedLimit
 		{
 			get { return RedLimitCents.ToVisual(); }
 			set { RedLimitCents = value.ToCents(); }
@@ -37,14 +37,14 @@ namespace DFM.Entities
 
 		public virtual DateTime BeginDate { get; set; }
 		public virtual DateTime? EndDate { get; set; }
-		
+
 		public virtual User User { get; set; }
 
 		public virtual IList<Year> YearList { get; set; }
 
 
 
-		
+
 
 	}
 }

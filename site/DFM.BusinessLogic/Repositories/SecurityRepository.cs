@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal Security GetByToken(String token)
 		{
 			var security = SingleOrDefault(s => s.Token == token);
-			
+
 			return security != null
 					&& security.Active
 					&& security.Expire >= security.User.Now()
@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 
-		
+
 		internal Boolean TokenExist(String token)
 		{
 			return GetByToken(token) != null;

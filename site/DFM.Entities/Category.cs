@@ -18,7 +18,7 @@ namespace DFM.Entities
 		public virtual User User { get; set; }
 
 
-		
+
 
 
 

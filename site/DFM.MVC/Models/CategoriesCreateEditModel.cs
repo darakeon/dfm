@@ -23,7 +23,7 @@ namespace DFM.MVC.Models
 			Category = Admin.GetCategoryByName(categoryName);
 		}
 
-		
+
 
 		public OperationType Type { get; set; }
 

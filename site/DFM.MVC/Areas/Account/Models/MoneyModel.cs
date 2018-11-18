@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Account.Models
 				ErrorAlert.Add("MoveNotFound");
 				return;
 			}
-			
+
 			var result = Money.DeleteMove(id);
 
 			if (result.Error.IsWrong())

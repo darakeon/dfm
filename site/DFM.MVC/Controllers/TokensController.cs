@@ -63,8 +63,8 @@ namespace DFM.MVC.Controllers
 				AddErrors(errors);
 			}
 
-			return ModelState.IsValid 
-				? BaseModelView("PasswordResetSuccess") 
+			return ModelState.IsValid
+				? BaseModelView("PasswordResetSuccess")
 				: View(model);
 		}
 

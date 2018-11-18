@@ -108,10 +108,10 @@ namespace DFM.Entities
 			if (schedule == null || !schedule.ShowInstallment)
 				return Description;
 
-			
+
 			var total = schedule.Times;
 			var executed = positionInSchedule();
-				
+
 			var format = schedule.Boundless ? boundlessFormat : boundedFormat;
 
 			return String.Format(format, Description, executed, total);

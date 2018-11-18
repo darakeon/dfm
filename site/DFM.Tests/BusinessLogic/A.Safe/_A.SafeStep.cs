@@ -148,7 +148,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Error = e;
 			}
 		}
-		
+
 		[Then(@"the user will not be saved")]
 		public void ThenTheUserWillNotBeSaved()
 		{
@@ -183,7 +183,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheUserWillBeSaved()
 		{
 			var tokenActivate = DBHelper.GetLastTokenForUser(email, SecurityAction.UserVerification);
-			
+
 			Service.Safe.ActivateUser(tokenActivate);
 
 			var savedUser = GetSavedUser(email, password);
@@ -210,7 +210,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 		#endregion
-		
+
 		#region ActivateUser
 		[Given(@"I pass a token of password reset")]
 		public void GivenIPassATokenOfPasswordReset()
@@ -219,7 +219,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			token = DBHelper.GetLastTokenForUser(User.Email, SecurityAction.PasswordReset);
 		}
-		
+
 		[When(@"I try to activate the user")]
 		public void WhenITryToActivateTheUser()
 		{
@@ -246,7 +246,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 			catch (DFMCoreException e)
 			{
-				Error = e;				
+				Error = e;
 			}
 
 			Assert.IsNotNull(Error);
@@ -259,7 +259,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			var ticketKey = Service.Safe.ValidateUserAndCreateTicket(
 				email, password, TicketKey, TicketType.Local
 			);
-			
+
 			User = Service.Safe.GetUserByTicket(ticketKey);
 
 			Assert.IsTrue(User.Active);
@@ -340,7 +340,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Assert.AreEqual(email, user.Email);
 		}
 		#endregion
-		
+
 		#region GetUserByTicket
 		[When(@"I try to get the user")]
 		public void WhenITryToGetTheUser()
@@ -380,7 +380,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			newPassword = null;
 		}
-		
+
 
 		[When(@"I try to reset the password")]
 		public void WhenITryToResetThePassword()
@@ -424,7 +424,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Service.Safe.SendUserVerify(email);
 			token = DBHelper.GetLastTokenForUser(email, SecurityAction.UserVerification);
 			Service.Safe.ActivateUser(token);
-			
+
 			var newTicket = Service.Safe.ValidateUserAndCreateTicket(
 				email, newPassword, TicketKey, TicketType.Local
 			);
@@ -456,7 +456,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 		#endregion
-		
+
 		#region DisableToken
 		[When(@"I try do disable the token")]
 		public void WhenITryDoDisableTheToken()
@@ -572,7 +572,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Assert.IsTrue(login.Active);
 			}
 		}
-		
+
 		[Then(@"they will not have sensible information")]
 		public void ThenTheyWillNotHaveSensibleInformation()
 		{
@@ -607,7 +607,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			Assert.IsNotNull(logins);
 			Assert.AreEqual(1, logins.Count);
 
-			var safeTicketPart = 
+			var safeTicketPart =
 				TicketKey.Substring(0, Defaults.TICKET_SHOWED_PART);
             Assert.AreEqual(safeTicketPart, logins.First().Key);
 		}
@@ -741,7 +741,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			);
 		}
 
-		
+
 		[When(@"I try to send the e-mail of user verify")]
 		public void WhenITryToSendTheEMailOfUserVerify()
 		{

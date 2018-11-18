@@ -38,7 +38,7 @@ namespace DFM.MVC.Controllers
 
 		public ActionResult Edit(String id)
 		{
-			if (String.IsNullOrEmpty(id)) 
+			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
 			var model = new CategoriesCreateEditModel(OperationType.Edit, id);
@@ -93,7 +93,7 @@ namespace DFM.MVC.Controllers
 			var model = new AdminModel();
 
 			model.Enable(id);
-			
+
 			return RedirectToAction("Index");
 		}
 

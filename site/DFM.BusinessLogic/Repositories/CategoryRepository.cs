@@ -26,7 +26,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var otherCategory = GetByName(category.Name, category.User);
 
-			var categoryExistsForUser = 
+			var categoryExistsForUser =
 				otherCategory != null
 					&& otherCategory.ID != category.ID;
 
@@ -79,7 +79,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (category.Active == enable)
 				throw DFMCoreException.WithMessage(
 					category.Active ? ExceptionPossibilities.EnabledCategory : ExceptionPossibilities.DisabledCategory);
-			
+
 
 			category.Active = enable;
 			SaveOrUpdate(category);

@@ -21,7 +21,7 @@ namespace DFM.BusinessLogic.Services
 		private readonly TicketRepository ticketRepository;
 		private readonly ContractRepository contractRepository;
 		private readonly AcceptanceRepository acceptanceRepository;
-		
+
 		private readonly Func<PathType, String> getPath;
 
 		internal SafeService(ServiceAccess serviceAccess
@@ -62,7 +62,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = new User
 				{
-					Email = email, 
+					Email = email,
 					Password = passwordForm.Password,
 					Config = new Config
 					{

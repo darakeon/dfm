@@ -15,7 +15,7 @@
 		<th class="col-sm-4">@MultiLanguage.Dictionary["Creation"]</th>
 		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["Type"]</th>
 		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["TODO"]</th>
-	</tr>	
+	</tr>
 }
 
 
@@ -31,10 +31,10 @@
 		</td>
 
 		@{
-			var deleteConfirm = 
+			var deleteConfirm =
 				String.Format(
 					MultiLanguage.Dictionary["ConfirmDeleteLogin"],
-						login.Creation, 
+						login.Creation,
 						MultiLanguage.Dictionary[login.Type.ToString()]
 				);
 		}
@@ -48,7 +48,7 @@
 				></span>
 			</a>
 		</td>
-				
+
 	</tr>
 
 } 

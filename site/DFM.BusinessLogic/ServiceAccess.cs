@@ -6,7 +6,7 @@ using DFM.BusinessLogic.Services;
 
 namespace DFM.BusinessLogic
 {
-	public class ServiceAccess 
+	public class ServiceAccess
 	{
 		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath)
 		{

@@ -42,7 +42,7 @@ namespace DFM.Entities
 					: SummaryList.SingleOrDefault(m => m.Category != null && m.Category.Name == categoryName);
 			}
 		}
-		
+
 		public virtual User User()
 		{
 			return Account().User;

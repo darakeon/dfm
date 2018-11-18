@@ -36,6 +36,6 @@ namespace DFM.Entities
 		public virtual Year Year { get; set; }
 
 
-		
+
 	}
 }

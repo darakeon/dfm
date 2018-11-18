@@ -24,11 +24,11 @@ namespace DFM.MVC.Controllers
 			var themes = new[] {SimpleTheme.Dark, SimpleTheme.Light};
 			var languages = PlainText.AcceptedLanguage();
 
-			var result = 
-				from language in languages 
-				from theme in themes 
-				select getLayout(Format.MoveNotification(language, theme)) 
-					 + getLayout(Format.SecurityAction(language, theme, SecurityAction.PasswordReset)) 
+			var result =
+				from language in languages
+				from theme in themes
+				select getLayout(Format.MoveNotification(language, theme))
+					 + getLayout(Format.SecurityAction(language, theme, SecurityAction.PasswordReset))
 					 + getLayout(Format.SecurityAction(language, theme, SecurityAction.UserVerification));
 
 			return View(result);
@@ -37,7 +37,7 @@ namespace DFM.MVC.Controllers
 		private String getLayout(Format format)
 		{
 			return format.Layout.Replace(
-				"{{Url}}", 
+				"{{Url}}",
 				Request.Url?.GetComponents(
 					UriComponents.Scheme | UriComponents.HostAndPort, UriFormat.UriEscaped
 				)

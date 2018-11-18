@@ -14,8 +14,8 @@ namespace DFM.Entities
 		{
 			return $"[{ID}] {Email}";
 		}
-		
-		
+
+
 		public virtual Boolean IsAdm()
 		{
 			return Email == "{admin-email}";

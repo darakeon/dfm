@@ -3,7 +3,7 @@
 @using DFM.Entities.Enums
 
 @{
-	var value = 
+	var value =
 		(Model.Value < 0 ? -Model.Value : Model.Value)
 			.ToMoney(Model.Language, Model.DifferentIfZero);
 

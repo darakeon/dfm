@@ -6,12 +6,12 @@
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
 	ViewBag.WizardMessage = Wizard.AccountsCreate;
-	
+
 	if (Model.Type == OperationType.Edit)
 	{
 		ViewBag.Title += " [" + Model.Account.Name + "]";
 	}
-	
+
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -28,8 +28,8 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"], new { @class = "control-label" })
-	<span class="glyphicon glyphicon-info-sign control-label" 
-		  data-toggle="tooltip" data-placement="right" 
+	<span class="glyphicon glyphicon-info-sign control-label"
+		  data-toggle="tooltip" data-placement="right"
 		  title="@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)"
 		  data-original-title="@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaximumLength.ACCOUNT_URL)">
 	</span>
@@ -41,7 +41,7 @@
 <div class="form-group text-center">
 	@Html.CheckBoxFor(m => m.HasLimit, new { @class = "check-toggle", data_to_enable = ".limit" })
 	@Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"], new { @class = "control-label" })
-	<span 
+	<span
 		class="glyphicon glyphicon-info-sign"
 		data-toggle="tooltip" data-placement="right"
 		data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]"
@@ -75,7 +75,7 @@
     )
 	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
-		
+
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"], new { @class = "control-label" })
 	(
@@ -90,5 +90,5 @@
 @section Footer {
 	<button class="btn btn-success" type="submit">
 		@MultiLanguage.Dictionary[Model.ActionName]
-	</button>		
+	</button>
 }
