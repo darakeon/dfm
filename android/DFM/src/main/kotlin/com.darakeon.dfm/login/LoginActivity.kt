@@ -2,7 +2,6 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.setAuth
 import com.darakeon.dfm.base.BaseActivity
@@ -22,13 +21,11 @@ class LoginActivity : BaseActivity<DELETE>(DELETE) {
 		get() = false
 
 	fun login(@Suppress(ON_CLICK) view: View) {
-		val login = Login.Request(
+		api.login(
 			email.text.toString(),
 			password.text.toString()
-		)
-
-		api.login(login) {
-			setAuth(it.ticket)
+		) {
+			setAuth(it)
 			redirect<WelcomeActivity>()
 		}
 	}
