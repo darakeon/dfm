@@ -19,9 +19,9 @@ namespace DFM.MVC.Areas.API.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Create(String accounturl, Int32? id)
+		public ActionResult Create(Int32? id)
 		{
-			return JsonGet(() => new MovesCreateGetModel(accounturl, id));
+			return JsonGet(() => new MovesCreateGetModel(id));
 		}
 
 		[HttpPost]

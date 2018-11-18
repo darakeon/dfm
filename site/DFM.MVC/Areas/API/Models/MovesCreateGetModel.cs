@@ -8,7 +8,7 @@ namespace DFM.MVC.Areas.API.Models
 {
 	internal class MovesCreateGetModel : BaseApiModel
 	{
-		public MovesCreateGetModel(String accountUrl, Int32? id)
+		public MovesCreateGetModel(Int32? id)
 		{
 			if (id.HasValue && id != 0)
 			{
