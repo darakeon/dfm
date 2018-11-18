@@ -169,4 +169,8 @@ class Api(
 	) {
 		api.validateTFA(ticket, TFA(text)).call(onSuccess)
 	}
+
+	fun wakeupSite(onSuccess: () -> Unit) {
+		api.wakeupSite().call(onSuccess)
+	}
 }
