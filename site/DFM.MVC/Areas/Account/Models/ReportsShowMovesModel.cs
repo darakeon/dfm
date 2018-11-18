@@ -10,10 +10,10 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public ReportsShowMovesModel(Int32? id)
 		{
-			var dateMonth = DateFromInt.GetDateMonth(id, Today);
-			var dateYear = DateFromInt.GetDateYear(id, Today);
+			var dateMonth = DateFromInt.GetDateMonth(id, today);
+			var dateYear = DateFromInt.GetDateYear(id, today);
 
-			MoveList = Report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
+			MoveList = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
 			
 			Month = dateMonth;
 			Year = dateYear;
@@ -31,7 +31,6 @@ namespace DFM.MVC.Areas.Account.Models
 				Year
 			);
 
-		public Boolean CanCheck =>
-			Current.User.Config.MoveCheck;
+		public Boolean CanCheck => moveCheckingEnabled;
 	}
 }

@@ -43,7 +43,7 @@ namespace DFM.MVC.Areas.API.Models
 		{
 			var move = convertToEntity();
 
-			Money.SaveOrUpdateMove(move, AccountOutUrl, AccountInUrl, Category);
+			money.SaveOrUpdateMove(move, AccountOutUrl, AccountInUrl, Category);
 		}
 
 		private Move convertToEntity()

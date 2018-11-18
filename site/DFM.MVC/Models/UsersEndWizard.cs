@@ -4,13 +4,13 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersEndWizard : BaseModel
+	public class UsersEndWizard : BaseSiteModel
 	{
 		public UsersEndWizard()
 		{
 			try
 			{
-				Admin.EndWizard();
+				admin.EndWizard();
 			}
 			catch (DFMCoreException e)
 			{

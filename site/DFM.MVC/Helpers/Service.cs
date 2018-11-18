@@ -22,13 +22,13 @@ namespace DFM.MVC.Helpers
 			switch (pathType)
 			{
 				case PathType.PasswordReset:
-					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "PasswordReset", controller = "Tokens" });
+					return BaseSiteModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "PasswordReset", controller = "Tokens" });
 
 				case PathType.UserVerification:
-					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "UserVerification", controller = "Tokens" });
+					return BaseSiteModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "UserVerification", controller = "Tokens" });
 
 				case PathType.DisableToken:
-					return BaseModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "Disable", controller = "Tokens" });
+					return BaseSiteModel.Url.RouteUrl(RouteNames.DEFAULT, new { action = "Disable", controller = "Tokens" });
 
 				default:
 					throw new NotImplementedException();

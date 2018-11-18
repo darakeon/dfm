@@ -10,20 +10,20 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public MovesExtractModel(String accountUrl, Int32 id)
 		{
-			var monthDate = DateFromInt.GetDateMonth(id, Today);
-			var yearDate = DateFromInt.GetDateYear(id, Today);
+			var monthDate = DateFromInt.GetDateMonth(id, today);
+			var yearDate = DateFromInt.GetDateYear(id, today);
 
 			MoveList =
-				Report.GetMonthReport(accountUrl, monthDate, yearDate)
+				report.GetMonthReport(accountUrl, monthDate, yearDate)
 					.Reverse()
 					.Select(m => new SimpleMoveJson(m, accountUrl))
 					.ToList();
 
-			var account = Admin.GetAccountByUrl(accountUrl);
+			var account = admin.GetAccountByUrl(accountUrl);
 
 			Name = account.Name;
 			Total = account.Total();
-			CanCheck = Current.User.Config.MoveCheck;
+			CanCheck = moveCheckingEnabled;
 		}
 
 		public IList<SimpleMoveJson> MoveList { get; private set; }

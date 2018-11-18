@@ -3,11 +3,11 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-	public class UsersContractModel : BaseLoggedModel
+	public class UsersContractModel : BaseSiteModel
 	{
 		public UsersContractModel()
 		{
-			Contract = Safe.GetContract();
+			Contract = safe.GetContract();
 		}
 
 		public Contract Contract { get; private set; }
@@ -19,7 +19,7 @@ namespace DFM.MVC.Models
 			if (!Accept)
 				addModelError("Accept", String.Empty);
 			else
-				Safe.AcceptContract();
+				safe.AcceptContract();
 		}
 
 

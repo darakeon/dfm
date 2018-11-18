@@ -4,7 +4,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersRemoveTFAModel : BaseLoggedModel
+	public class UsersRemoveTFAModel : BaseSiteModel
 	{
 		public String Password { get; set; }
 
@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Safe.RemoveTFA(Password);
+				safe.RemoveTFA(Password);
 			}
 			catch (DFMCoreException exception)
 			{

@@ -54,13 +54,13 @@ namespace DFM.MVC.Helpers.Authorize
 
 		protected virtual void GoToContractPage(AuthorizationContext filterContext)
 		{
-			var url = BaseModel.Url.Action("Contract", "Users");
+			var url = BaseSiteModel.Url.Action("Contract", "Users");
 			filterContext.Result = new RedirectResult(url);
 		}
 
 		protected virtual void GoToTFA(AuthorizationContext filterContext)
 		{
-			var url = BaseModel.Url.Action("TFA", "Users");
+			var url = BaseSiteModel.Url.Action("TFA", "Users");
 			filterContext.Result = new RedirectResult(url);
 		}
 

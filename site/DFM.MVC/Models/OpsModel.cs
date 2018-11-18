@@ -2,7 +2,7 @@
 
 namespace DFM.MVC.Models
 {
-	public class OpsModel : BaseLoggedModel
+	public class OpsModel : BaseSiteModel
 	{
 		public OpsModel()
 		{

@@ -1,5 +1,5 @@
 ﻿@using DFM.Generic
-@model BaseModel
+@model BaseSiteModel
 
 <!DOCTYPE html>
 
@@ -10,7 +10,7 @@
 	<link rel="icon" href="/Assets/Images/pig.ico" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/Images/face-pig.png" />
 
-	<link href="~/Assets/Libs/Themes/bootstrap-@(Model.UserTheme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
+	<link href="~/Assets/Libs/Themes/bootstrap-@(Model.Theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/Styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/Styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/Libs/Datepicker/bootstrap-datetimepicker.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
@@ -26,13 +26,11 @@
 	<script src="~/Assets/Libs/MaskedMoney/jquery.maskMoney.js?v=@Cfg.Version" type="text/javascript"></script>
 
 	@{
-		var logged = Model as BaseLoggedModel;
-
-		if (logged?.Language != null && logged.Language != "en-US")
+		if (Model.Language != "en-US")
 		{
-			<script src="~/Assets/Libs/Datepicker/moment-@(logged.Language.ToLower()).js?v=@Cfg.Version"></script>
+			<script src="~/Assets/Libs/Datepicker/moment-@(Model.Language.ToLower()).js?v=@Cfg.Version"></script>
 			<script type="text/javascript">
-				window.language = "@logged.Language.ToLower()";
+				window.language = "@Model.Language.ToLower()";
 			</script>
 		}
 	}

@@ -4,13 +4,13 @@ using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
 {
-	public class SafeModel : BaseModel
+	public class SafeModel : BaseSiteModel
 	{
 		internal Boolean Disable(String token)
 		{
 			try
 			{
-				Safe.DisableToken(token);
+				safe.DisableToken(token);
 			}
 			catch (DFMCoreException)
 			{
@@ -24,26 +24,26 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Safe.TestSecurityToken(token, SecurityAction.UserVerification);
+				safe.TestSecurityToken(token, SecurityAction.UserVerification);
 			}
 			catch (DFMCoreException)
 			{
 				return false;
 			}
 
-			Safe.ActivateUser(token);
+			safe.ActivateUser(token);
 
 			return true;
 		}
 
 		internal void LogOff()
 		{
-			Current.Clear();
+			logout();
 		}
 
 		internal void DisableLogin(String key)
 		{
-			Safe.DisableTicket(key);
+			safe.DisableTicket(key);
 		}
 	}
 }

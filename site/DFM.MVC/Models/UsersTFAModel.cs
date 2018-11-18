@@ -4,7 +4,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersTFAModel : BaseLoggedModel
+	public class UsersTFAModel : BaseSiteModel
 	{
 		public String Code { get; set; }
 
@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Safe.ValidateTicketTFA(Code);
+				safe.ValidateTicketTFA(Code);
 			}
 			catch (DFMCoreException exception)
 			{

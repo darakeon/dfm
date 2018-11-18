@@ -21,7 +21,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		internal override void SaveOrUpdate()
 		{
-			var result = Money.SaveOrUpdateMove(Move, AccountOutUrl, AccountInUrl, CategoryName);
+			var result = money.SaveOrUpdateMove(Move, AccountOutUrl, AccountInUrl, CategoryName);
 
 			if (result.Error.IsWrong())
 			{

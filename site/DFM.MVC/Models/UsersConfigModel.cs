@@ -17,20 +17,20 @@ using secret = DK.TwoFactorAuth.Secret;
 
 namespace DFM.MVC.Models
 {
-	public class UsersConfigModel : BaseLoggedModel
+	public class UsersConfigModel : BaseSiteModel
 	{
 		public UsersConfigModel()
 		{
-			Main = new MainConfig(Admin, Current.User.Config);
-			Info = new UserInfo(Safe);
-			TFA = new TFAForm(Safe, Current);
-			Theme = new ThemeOptions(Admin, Current.User.Config);
+			Main = new MainConfig(admin, config);
+			Info = new UserInfo(safe);
+			TFA = new TFAForm(safe, current);
+			ThemeOpt = new ThemeOptions(admin, config);
 		}
 
 		public MainConfig Main { get; set; }
 		public UserInfo Info { get; set; }
 		public TFAForm TFA { get; set; }
-		public ThemeOptions Theme { get; set; }
+		public ThemeOptions ThemeOpt { get; set; }
 
 		public Form ActiveForm { get; set; }
 
@@ -194,7 +194,7 @@ namespace DFM.MVC.Models
 
 			private String identifier => current.User.Email;
 			private String key => Base32.Convert(Secret);
-			public String Url => $"otpauth://totp/DfM:{identifier}?secret={key}";
+			public String UrlPath => $"otpauth://totp/DfM:{identifier}?secret={key}";
 
 			public IList<String> Activate()
 			{

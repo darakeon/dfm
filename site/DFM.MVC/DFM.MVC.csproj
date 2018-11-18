@@ -331,7 +331,7 @@
     <Compile Include="Models\AccountsCreateEditModel.cs" />
     <Compile Include="Models\AccountsIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
-    <Compile Include="Models\BaseLoggedModel.cs" />
+    <Compile Include="Models\BaseSiteModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CategoriesCreateEditModel.cs" />
     <Compile Include="Models\CategoriesIndexModel.cs" />

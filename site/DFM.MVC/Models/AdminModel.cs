@@ -4,13 +4,13 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class AdminModel : BaseModel
+	public class AdminModel : BaseSiteModel
 	{
 		internal void CloseAccount(String url)
 		{
 			try
 			{
-				Admin.CloseAccount(url);
+				admin.CloseAccount(url);
 			}
 			catch (DFMCoreException e)
 			{
@@ -24,7 +24,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Admin.DeleteAccount(url);
+				admin.DeleteAccount(url);
 			}
 			catch (DFMCoreException e)
 			{
@@ -37,7 +37,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Admin.DisableCategory(name);
+				admin.DisableCategory(name);
 			}
 			catch (DFMCoreException e)
 			{
@@ -51,7 +51,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Admin.EnableCategory(name);
+				admin.EnableCategory(name);
 			}
 			catch (DFMCoreException e)
 			{

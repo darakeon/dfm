@@ -1,63 +1,40 @@
 ﻿using System;
-using System.Web;
-using System.Web.Mvc;
 using DFM.Authentication;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
+using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.MVC.Controllers;
 using DFM.MVC.Helpers;
-using DK.Generic.Collection;
-using DK.MVC.Route;
 
 namespace DFM.MVC.Models
 {
-	public class BaseModel
+	public abstract class BaseModel
 	{
-		protected AdminService Admin => Service.Access.Admin;
-		protected MoneyService Money => Service.Access.Money;
-		protected ReportService Report => Service.Access.Report;
-		protected RobotService Robot => Service.Access.Robot;
-		protected SafeService Safe => Service.Access.Safe;
+		protected AdminService admin => Service.Access.Admin;
+		protected MoneyService money => Service.Access.Money;
+		protected ReportService report => Service.Access.Report;
+		protected RobotService robot => Service.Access.Robot;
+		protected SafeService safe => Service.Access.Safe;
 
-		protected Current Current => Service.Access.Current;
+		protected Current current => Service.Access.Current;
+		protected Config config => current.User?.Config;
 
-		public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
+		protected BootstrapTheme theme => config?.Theme ?? Defaults.DEFAULT_THEME;
+		protected String language => current.Language ?? Defaults.CONFIG_LANGUAGE;
 
+		protected Boolean isUsingCategories => config?.UseCategories ?? Defaults.CONFIG_USE_CATEGORIES;
+		protected Boolean moveCheckingEnabled => config?.MoveCheck ?? Defaults.CONFIG_MOVE_CHECK;
 
-		public Boolean IsAuthenticated => Current.IsAuthenticated;
-		public Boolean IsLastContractAccepted => Safe.IsLastContractAccepted();
-		
+		protected DateTime today => current.User?.Now().Date ?? DateTime.UtcNow;
 
-		public Boolean IsExternal
+		protected String login(String email, String password, Boolean rememberMe)
 		{
-			get
-			{
-				var usersControllerUrl = getControllerUrl<UsersController>();
-				var tokensControllerUrl = getControllerUrl<TokensController>();
-				var opsControllerUrl = getControllerUrl<OpsController>();
-
-				var controller = RouteInfo.Current["controller"];
-
-				return controller.IsIn(usersControllerUrl, tokensControllerUrl, opsControllerUrl);
-			}
+			return current.Set(email, password, rememberMe);
 		}
 
-		private static string getControllerUrl<T>()
-			where T : Controller
+		protected void logout()
 		{
-			var name = typeof (T).Name;
-			return name.Substring(0, name.Length - 10);
+			current.Clear();
 		}
-
-
-		public Boolean IsUsingCategories => Current.User?.Config?.UseCategories ?? false;
-
-		public DateTime Today => Current.User?.Now().Date ?? DateTime.UtcNow;
-
-		public BootstrapTheme UserTheme => Current.User?.Config?.Theme ?? Defaults.DEFAULT_THEME;
-
-		public Boolean ShowWizard => Current.User?.Config?.Wizard ?? false;
-
 	}
 }

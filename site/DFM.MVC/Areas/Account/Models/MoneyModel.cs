@@ -8,7 +8,7 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-	public class MoneyModel : BaseModel
+	public class MoneyModel : BaseSiteModel
 	{
 		public void DeleteMove(Int32 id)
 		{
@@ -20,7 +20,7 @@ namespace DFM.MVC.Areas.Account.Models
 				return;
 			}
 
-			var result = Money.DeleteMove(id);
+			var result = money.DeleteMove(id);
 
 			if (result.Error.IsWrong())
 			{
@@ -43,7 +43,7 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			try
 			{
-				var move = Money.CheckMove(id);
+				var move = money.CheckMove(id);
 
 				ReportUrl = (move.Out ?? move.In).Url();
 			}
@@ -57,7 +57,7 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			try
 			{
-				var move = Money.UncheckMove(id);
+				var move = money.UncheckMove(id);
 
 				ReportUrl = (move.Out ?? move.In).Url();
 			}
@@ -72,7 +72,7 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			try
 			{
-				return Money.GetMoveById(id);
+				return money.GetMoveById(id);
 			}
 			catch (DFMCoreException)
 			{

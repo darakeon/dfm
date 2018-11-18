@@ -10,20 +10,22 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public MovesCreateGetModel(Int32? id)
 		{
+			IsUsingCategories = isUsingCategories;
+
 			if (id.HasValue && id != 0)
 			{
-				var move = Money.GetMoveById(id.Value);
+				var move = money.GetMoveById(id.Value);
 
 				Move = new MovesCreatePostModel(move);
 			}
 
-			AccountList = Admin.GetAccountList(true)
+			AccountList = admin.GetAccountList(true)
 				.Select(a => new SelectItem<String, String>(a.Name, a.Url))
 				.ToList();
 
-			if (IsUsingCategories)
+			if (isUsingCategories)
 			{
-				CategoryList = Admin.GetCategoryList(true)
+				CategoryList = admin.GetCategoryList(true)
 					.Select(a => new SelectItem<String, String>(a.Name, a.Name))
 					.ToList();
 			}
@@ -32,6 +34,8 @@ namespace DFM.MVC.Areas.API.Models
 				? SelectItemEnum.SelectItem<MoveNature>()
 				: SelectItemEnum.SelectItem<PrimalMoveNature>();
 		}
+
+		public Boolean IsUsingCategories { get; }
 
 		public MovesCreatePostModel Move { get; set; }
 

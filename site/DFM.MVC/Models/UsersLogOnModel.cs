@@ -4,7 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Models
 {
-	public class UsersLogOnModel : BaseModel
+	public class UsersLogOnModel : BaseSiteModel
 	{
 		[Required(ErrorMessage = "*")]
 		public String Email { get; set; }
@@ -31,7 +31,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				return Current.Set(Email, Password, RememberMe);
+				return login(Email, Password, RememberMe);
 			}
 			catch (DFMCoreException e)
 			{
@@ -53,7 +53,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Safe.SendUserVerify(Email);
+				safe.SendUserVerify(Email);
 			}
 			catch (DFMCoreException e)
 			{

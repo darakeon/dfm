@@ -27,12 +27,12 @@ namespace DFM.MVC.Helpers.Controllers
 		[AspMvcView]
 		protected ActionResult BaseModelView()
 		{
-			return View(new BaseModel());
+			return View(new BaseSiteModel());
 		}
 
 		protected ActionResult BaseModelView([AspMvcView] String view)
 		{
-			return View(view, new BaseModel());
+			return View(view, new BaseSiteModel());
 		}
 
 

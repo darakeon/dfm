@@ -153,7 +153,7 @@ namespace DFM.MVC.Controllers
 		[DFMAuthorize, HttpPost]
 		public ActionResult ConfigTheme(UsersConfigModel model)
 		{
-			return config(model, () => model.Theme.Change());
+			return config(model, () => model.ThemeOpt.Change());
 		}
 
 		[DFMAuthorize, HttpPost]
