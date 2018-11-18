@@ -57,13 +57,6 @@ internal interface DfmService {
 		@Path("id") id: Int
 	): Call<Body<MoveCreation>>
 
-	@GET("api-{ticket}/account-{accountUrl}/moves/create/{id}")
-	fun getMove(
-		@Path("ticket") ticket: String,
-		@Path("accountUrl") accountUrl: String,
-		@Path("id") id: Int
-	): Call<Body<MoveCreation>>
-
 	@POST("api-{ticket}/moves/create/{id}")
 	fun saveMove(
 		@Path("ticket") ticket: String,

@@ -120,14 +120,10 @@ class Api(
 
 	fun getMove(
 		ticket: String,
-		accountUrl: String?,
 		id: Int,
 		onSuccess: (MoveCreation) -> Unit
 	) {
-		if (accountUrl == null)
-			api.getMove(ticket, id).call(onSuccess)
-		else
-			api.getMove(ticket, accountUrl, id).call(onSuccess)
+		api.getMove(ticket, id).call(onSuccess)
 	}
 
 	fun saveMove(
