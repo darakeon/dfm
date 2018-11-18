@@ -84,7 +84,7 @@ class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 	}
 
 	private fun initScreen() {
-		api.getMove(auth, accountUrl, id, this::populateScreen)
+		api.getMove(auth, id, this::populateScreen)
 
 		setCurrentDate()
 		setControls()
