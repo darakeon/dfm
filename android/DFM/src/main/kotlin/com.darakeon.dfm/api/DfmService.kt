@@ -1,6 +1,7 @@
 package com.darakeon.dfm.api
 
 import com.darakeon.dfm.api.entities.Body
+import com.darakeon.dfm.api.entities.TFA
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
@@ -87,4 +88,10 @@ internal interface DfmService {
 		@Path("accountUrl") accountUrl: String,
 		@Path("time") time: Int
 	): Call<Body<Summary>>
+
+	@POST("Api-{ticket}/Account-{accountUrl}/users/tfa")
+	fun validateTFA(
+		@Path("ticket") ticket: String,
+		@RetrofitBody tfa: TFA
+	): Call<Body<Any>>
 }
