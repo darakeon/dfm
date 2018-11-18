@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.Window
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.isLoggedIn
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
@@ -25,17 +23,11 @@ class WelcomeActivity : BaseActivity<WelcomeStatic>(WelcomeStatic) {
 			return
 		}
 
-		val request = InternalRequest(
-			this, "", { startProgram() }
-		)
-		request.get()
+		api.wakeupSite {
+			if (isLoggedIn)
+				redirect<AccountsActivity>()
+			else
+				redirect<LoginActivity>()
+		}
 	}
-
-	private fun startProgram() {
-		if (isLoggedIn)
-			redirect<AccountsActivity>()
-		else
-			redirect<LoginActivity>()
-	}
-
 }

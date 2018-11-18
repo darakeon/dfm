@@ -94,4 +94,7 @@ internal interface DfmService {
 		@Path("ticket") ticket: String,
 		@RetrofitBody tfa: TFA
 	): Call<Body<Any>>
+
+	@GET("Api")
+	fun wakeupSite(): Call<Body<Any>>
 }
