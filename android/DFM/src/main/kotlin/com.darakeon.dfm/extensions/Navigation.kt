@@ -31,7 +31,8 @@ inline fun <reified T : Activity> Context.redirect() {
 }
 
 fun Activity.backWithExtras() {
-	val extras = intent.extras
+	val extras = intent.extras ?: throw Exception("no extras")
+
 	val parent = extras.get("__parent") as Class<*>
 	extras.remove("__parent")
 
