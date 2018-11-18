@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.Window
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
+import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.login.LoginActivity
 
-class WelcomeActivity : BaseActivity<WelcomeStatic>(WelcomeStatic) {
+class WelcomeActivity : BaseActivity<DELETE>(DELETE) {
 
 	override val contentView = R.layout.welcome
 	override val hasTitle = false
