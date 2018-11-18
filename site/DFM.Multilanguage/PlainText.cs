@@ -19,12 +19,12 @@ namespace DFM.Multilanguage
 
 		public static EmailLayout EmailLayout { get; private set; }
 		public static PlainText Dictionary { get; private set; }
-		
+
 		public DicList<Section> SectionList { get; }
 
 		private static List<String> acceptedLanguages;
 
-		
+
 
 
 
@@ -80,7 +80,7 @@ namespace DFM.Multilanguage
 			var list = new List<String>();
 
 			Dictionary.SectionList.ForEach(
-				s => list.AddRange( 
+				s => list.AddRange(
 						s.LanguageList.Select(l => l.Name.ToLower())
 					)
 				);
@@ -110,7 +110,7 @@ namespace DFM.Multilanguage
 				var entire = String.Empty;
 
 				phrase.ToList().ForEach(p => entire += this[section, language, p] + " ");
-				
+
 				return entire.Trim();
 			}
 		}
@@ -139,7 +139,7 @@ namespace DFM.Multilanguage
 		{
 			throw new DicException($"S: {section} /// L: {language} /// P: {phrase}");
 		}
-		
+
 
 
 		public static String GetMonthName(Int32 month, String language)
@@ -153,6 +153,6 @@ namespace DFM.Multilanguage
 			return CultureInfo.GetCultureInfo(language).NumberFormat;
 		}
 
-	
+
 	}
 }

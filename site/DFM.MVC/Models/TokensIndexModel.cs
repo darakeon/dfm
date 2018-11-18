@@ -48,7 +48,7 @@ namespace DFM.MVC.Models
 				errors.Add(MultiLanguage.Dictionary[e]);
 			}
 
-			if (SecurityAction != SecurityAction.PasswordReset 
+			if (SecurityAction != SecurityAction.PasswordReset
 				&& SecurityAction != SecurityAction.UserVerification)
 			{
 				errors.Add(MultiLanguage.Dictionary["NotRecognizedAction"]);

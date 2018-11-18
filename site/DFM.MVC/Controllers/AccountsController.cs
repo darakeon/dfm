@@ -44,14 +44,14 @@ namespace DFM.MVC.Controllers
 
 		public ActionResult Edit(String id)
 		{
-			if (String.IsNullOrEmpty(id)) 
+			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
 			var model = new AccountsCreateEditModel(OperationType.Edit, id);
 
 			if (model.Account == null)
 				return RedirectToAction("Create");
-			
+
 			return View("CreateEdit", model);
 		}
 

@@ -15,7 +15,7 @@ namespace DFM.Repositories.Mappings
 			mapping.References(m => m.Schedule)
 				.Not.Update()
 				.Nullable();
-			
+
 			mapping.IgnoreProperty(m => m.FakeID);
 			mapping.IgnoreProperty(m => m.Value);
 			mapping.IgnoreProperty(m => m.User);

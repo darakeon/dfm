@@ -24,7 +24,7 @@ namespace DFM.Multilanguage.Helpers
 			return Name;
 		}
 
-		
+
 		public static String RemoveWrongCharacters(String phrase)
 		{
 			var regex = new Regex(@"[^a-zA-Z0-9_]*");

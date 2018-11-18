@@ -19,10 +19,10 @@ namespace DFM.Entities
 		public virtual DateTime Date { get; set; }
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32? ValueCents { get; set; }
-		
+
 		public virtual Boolean ShowInstallment { get; set; }
 
-		
+
 
 		public virtual Int16 LastRun { get; set; }
 		public virtual Int16 Deleted { get; set; }
@@ -30,9 +30,9 @@ namespace DFM.Entities
 
 		public virtual ScheduleFrequency Frequency { get; set; }
 		public virtual Boolean Boundless { get; set; }
-		
+
 		public virtual Boolean Active { get; set; }
-		
+
 
 		public virtual Category Category { get; set; }
 		public virtual Account In { get; set; }
@@ -42,10 +42,10 @@ namespace DFM.Entities
 
 		public virtual IList<Detail> DetailList { get; set; }
 		public virtual IList<Move> MoveList { get; set; }
-		
 
 
-		
+
+
 
 
 	}

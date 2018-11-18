@@ -50,8 +50,8 @@ namespace DFM.Tests.Email
 			ConfigHelper.DeactivateEmailSystem();
 		}
 
-		
-		
+
+
 		[Then(@"I will receive this e-mail error: ([A-Za-z]+)")]
 		public void ThenIWillReceiveThisError(String errorMessage)
 		{

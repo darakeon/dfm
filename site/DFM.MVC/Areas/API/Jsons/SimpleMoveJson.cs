@@ -7,7 +7,7 @@ namespace DFM.MVC.Areas.API.Jsons
 	internal class SimpleMoveJson
 	{
 		public Int64 ID { get; set; }
-		
+
 		public String Description { get; set; }
 		public DateJson Date { get; set; }
 		public MoveNature Nature { get; set; }
@@ -29,6 +29,6 @@ namespace DFM.MVC.Areas.API.Jsons
 
 			Checked = move.Checked;
 		}
-		
+
 	}
 }

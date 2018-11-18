@@ -87,7 +87,7 @@
 		@if (Model.CanCheck)
 		{
 			<td class="text-center">
-				<span 
+				<span
 					class="
 						glyphicon glyphicon-@(
 							move.Checked
@@ -102,7 +102,7 @@
 
 		<td class="col-sm-1 text-center">
 			<a href="@Url.Action("Edit", "Moves", new { id = move.ID })">
-				<span 
+				<span
 					class="glyphicon glyphicon-edit"
 					title="@MultiLanguage.Dictionary["Edit"]"
 				></span>
@@ -110,13 +110,13 @@
 		</td>
 
 		<td class="col-sm-1 text-center">
-			<a href="@Url.Action("Delete", "Moves", new {id = move.ID})" 
-				class="withConfirm" 
+			<a href="@Url.Action("Delete", "Moves", new {id = move.ID})"
+				class="withConfirm"
 				confirm="@String.Format(
 					MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed()
 				)"
 			>
-				<span 
+				<span
 					class="glyphicon glyphicon-trash"
 					title="@MultiLanguage.Dictionary["Delete"]"
 				></span>
@@ -133,7 +133,7 @@
 
 			<td class="col-sm-1 text-center">
 				<a href="@url"
-					data-toggle="tooltip" data-placement="right" 
+					data-toggle="tooltip" data-placement="right"
 					data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]"
 				>
 					<span

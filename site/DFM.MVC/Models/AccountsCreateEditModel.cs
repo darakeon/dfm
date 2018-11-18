@@ -74,7 +74,7 @@ namespace DFM.MVC.Models
 			{
 				if (Account.RedLimit == null)
 					Account.RedLimit = 0;
-					
+
 				if (Account.YellowLimit == null)
 					Account.YellowLimit = 0;
 			}
@@ -85,7 +85,7 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		
+
 
 		internal void ResetAccountUrl(OperationType type, string id)
 		{
@@ -95,7 +95,7 @@ namespace DFM.MVC.Models
 			Account.Url = oldAccount.Url;
 		}
 
-		
+
 
 		internal IList<String> CreateOrUpdate()
 		{

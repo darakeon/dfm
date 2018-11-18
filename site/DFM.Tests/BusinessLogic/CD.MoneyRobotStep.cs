@@ -333,7 +333,7 @@ namespace DFM.Tests.BusinessLogic
 
 			Assert.AreEqual(YearCategoryAccountInTotal + change, currentTotal);
 		}
-		
+
 
 
 	}

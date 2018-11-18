@@ -63,7 +63,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		
+
 
 		public ActionResult Check(Int32 id)
 		{

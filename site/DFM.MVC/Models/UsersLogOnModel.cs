@@ -14,8 +14,6 @@ namespace DFM.MVC.Models
 
 		public Boolean RememberMe { get; set; }
 
-
-
 		internal DFMCoreException TryLogOn()
 		{
 			try

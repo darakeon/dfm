@@ -10,7 +10,7 @@ function suggestUrl(obj) {
 	var url = targetField.val();
 
 	if (name !== "" && url === "") {
-		url = name	
+		url = name
 			.toLowerCase()
 			.replace(/[ ]/g, "_")
 			.replace(/[^a-z0-9_]/g, "");

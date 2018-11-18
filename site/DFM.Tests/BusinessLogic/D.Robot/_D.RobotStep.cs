@@ -84,7 +84,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			Service.Robot.RunSchedule();
 		}
-		
+
 		[Given(@"I have no logged user \(logoff\)")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
@@ -222,7 +222,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 				Error = e;
 			}
 		}
-		
+
 		[Then(@"the schedule list will (not )?have this")]
 		public void ThenTheScheduleListsWillBeThis(Boolean has, Table table)
 		{

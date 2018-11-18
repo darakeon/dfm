@@ -70,9 +70,9 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			var expected = Account[year][month]
 				.SummaryList.Sum(s => s.Value());
-			
-			var actual = monthReport.Sum(m => 
-					m.AccOut() != null 
+
+			var actual = monthReport.Sum(m =>
+					m.AccOut() != null
 							&& m.AccOut().ID == Account.ID
 						? - m.Total()
 						: m.Total()
@@ -172,7 +172,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			{
 				var monthString = dateData["Month"];
 				month = Int16.Parse(monthString);
-				
+
 				if (isRelative(monthString))
 				{
 					month = (Int16) DateTime.Today.AddMonths(month).Month;
@@ -181,7 +181,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 			var yearString = dateData["Year"];
 			year = Int16.Parse(yearString);
-				
+
 			if (isRelative(yearString))
 			{
 				year = (Int16) DateTime.Today.AddYears(year).Year;

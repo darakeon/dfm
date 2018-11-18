@@ -34,7 +34,7 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 
-		
+
 		internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
 		{
 			return getRunnableAndDisableOthers(user, hasCategory).ToList();
@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
 		{
-			var scheduleList = 
+			var scheduleList =
 				SimpleFilter(s => s.User == user && s.Active)
 					.Where(s => s.HasCategory() == hasCategory);
 

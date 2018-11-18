@@ -9,7 +9,7 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class ErrorAlert
 	{
-		private static readonly SessionList<ExceptionPossibilities> errors = 
+		private static readonly SessionList<ExceptionPossibilities> errors =
 			new SessionList<ExceptionPossibilities>("errors");
 
 		public static void Add(ExceptionPossibilities error)
@@ -62,7 +62,7 @@ namespace DFM.MVC.Helpers.Global
 
 		public static Boolean Any()
 		{
-			return errors.List.Any() 
+			return errors.List.Any()
 				|| emailsStati.List.Any()
 				|| texts.List.Any();
 		}

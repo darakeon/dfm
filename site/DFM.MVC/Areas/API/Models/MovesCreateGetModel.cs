@@ -29,7 +29,7 @@ namespace DFM.MVC.Areas.API.Models
 			}
 
 			NatureList = AccountList.Count > 1
-				? SelectItemEnum.SelectItem<MoveNature>() 
+				? SelectItemEnum.SelectItem<MoveNature>()
 				: SelectItemEnum.SelectItem<PrimalMoveNature>();
 		}
 

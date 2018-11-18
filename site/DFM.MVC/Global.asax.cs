@@ -70,7 +70,7 @@ namespace DFM.MVC
 			if (isElmah && !current.IsAdm)
 				Response.Redirect("/");
 
-			Thread.CurrentThread.CurrentUICulture = 
+			Thread.CurrentThread.CurrentUICulture =
 				new CultureInfo(Service.Current.Language);
 
 			var canRunSchedule =

@@ -16,7 +16,7 @@ namespace DFM.Generic.Pages
 
 		private IList<OperatorBox<T>> operatorList { get; }
 		public IList<T> List => operatorList.Select(p => p.Item).ToList();
-		
+
 		public T Current { get; }
 
 		public Pages(T minimum, T maximum, T current, Int32 rangeSize)

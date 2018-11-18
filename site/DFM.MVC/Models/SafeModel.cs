@@ -20,8 +20,6 @@ namespace DFM.MVC.Models
 			return true;
 		}
 
-
-
 		internal Boolean TestAndActivate(String token)
 		{
 			try
@@ -38,20 +36,14 @@ namespace DFM.MVC.Models
 			return true;
 		}
 
-
-
 		internal void LogOff()
 		{
 			Current.Clear();
 		}
 
-
-
 		internal void DisableLogin(String key)
 		{
 			Safe.DisableTicket(key);
 		}
-
-
 	}
 }

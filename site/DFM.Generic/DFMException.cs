@@ -4,7 +4,7 @@ namespace DFM.Generic
 {
 	public class DFMException : Exception
 	{
-		public DFMException(String message) 
+		public DFMException(String message)
 			: base(message) { }
 
 	}

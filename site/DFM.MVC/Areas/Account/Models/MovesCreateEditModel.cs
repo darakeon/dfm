@@ -9,13 +9,13 @@ namespace DFM.MVC.Areas.Account.Models
 {
 	public class MovesCreateEditModel : BaseMovesModel
 	{
-		public MovesCreateEditModel() 
+		public MovesCreateEditModel()
 			: base(new Move())  { }
 
-		public MovesCreateEditModel(OperationType type) 
+		public MovesCreateEditModel(OperationType type)
 			: base(new Move(), type) { }
 
-		public MovesCreateEditModel(Int32 id, OperationType type) 
+		public MovesCreateEditModel(Int32 id, OperationType type)
 			: base(Service.Access.Money.GetMoveById(id), type) { }
 
 

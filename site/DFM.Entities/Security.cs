@@ -7,7 +7,7 @@ namespace DFM.Entities
 	public partial class Security : IEntity
 	{
 		public virtual Int32 ID { get; set; }
-		
+
 		public virtual String Token { get; set; }
 		public virtual Boolean Active { get; set; }
 		public virtual DateTime Expire { get; set; }
@@ -18,7 +18,7 @@ namespace DFM.Entities
 
 
 
-		
+
 
 	}
 }

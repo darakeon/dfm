@@ -29,7 +29,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var otherAccount = getByName(account.Name, account.User);
 
-			var accountExistsForUser = 
+			var accountExistsForUser =
 				otherAccount != null
 					&& otherAccount.ID != account.ID;
 
@@ -50,7 +50,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var otherAccount = GetByUrl(account.Url, account.User);
 
-			var accountUrlExistsForUser = 
+			var accountUrlExistsForUser =
 				otherAccount != null
 					&& otherAccount.ID != account.ID;
 

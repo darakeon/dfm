@@ -10,9 +10,9 @@ namespace DFM.BusinessLogic.Repositories
 	internal class UserRepository : BaseRepository<User>
 	{
 		private const string email_pattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
-		
-		
-		
+
+
+
 		internal User GetByEmail(String email)
 		{
 			return SingleOrDefault(u => u.Email == email);
@@ -114,15 +114,15 @@ namespace DFM.BusinessLogic.Repositories
 		private void complete(User user)
 		{
 			var oldUser = GetByEmail(user.Email);
-			
+
 			var userIsNew = oldUser == null;
 
 			if (!userIsNew) return;
 
 			user.Active = false;
-			
+
 			user.Config.TimeZone = Defaults.CONFIG_TIMEZONE;
-			
+
 			user.Config.SendMoveEmail = Defaults.CONFIG_SEND_MOVE_EMAIL;
 			user.Config.UseCategories = Defaults.CONFIG_USE_CATEGORIES;
 			user.Config.MoveCheck = Defaults.CONFIG_MOVE_CHECK;

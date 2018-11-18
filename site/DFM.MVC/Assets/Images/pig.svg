@@ -12,7 +12,7 @@
     C 65 25 102 7 125 4
     C 209 -9 267 24 308 78
   z" fill="#FAA"/>
-  
+
   <path d="M 568 198
     C 567 197 566 193 567 193
     C 593 166 630 111 639 97
@@ -26,15 +26,15 @@
     C 635 25 598 7 575 4
     C 491 -9 433 24 392 78
   z" fill="#FAA" />
-  
+
   <circle cx="350" cy="331" r="256" fill="#FAA" />
-  
+
   <ellipse cx="232" cy="259" rx="94" ry="96" fill="#FFF" />
   <circle cx="255" cy="274" r="28" fill="#000" />
 
   <ellipse cx="468" cy="259" rx="94" ry="96" fill="#FFF" />
   <circle cx="445" cy="274" r="28" fill="#000" />
-  
+
   <ellipse cx="350" cy="415" rx="144" ry="120" fill="#FAA" stroke="#000" stroke-width="8" />
   <circle cx="283" cy="405" r="29" fill="#000" />
   <circle cx="417" cy="405" r="29" fill="#000" />

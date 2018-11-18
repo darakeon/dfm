@@ -47,7 +47,7 @@
 				data-original-title="@sign"
 			></span>
 
-			@Html.Partial("ValueWithSign", 
+			@Html.Partial("ValueWithSign",
 				new ValueWithSign(account.Total(), Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
@@ -65,7 +65,7 @@
 			@if (account.HasMoves())
 			{
 				<a href="@Url.Action("Close", new {id = account.Url})"
-					class="withConfirm" 
+					class="withConfirm"
 					confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)"
 				>
 					<span
@@ -77,7 +77,7 @@
 			else
 			{
 				<a href="@Url.Action("Delete", new {id = account.Url})"
-					class="withConfirm" 
+					class="withConfirm"
 					confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)"
 				>
 					<span

@@ -36,27 +36,27 @@ namespace DFM.MVC.Areas.Account.Models
 		[Required]
 		public ScheduleFrequency Frequency
 		{
-			get { return Schedule.Frequency; } 
+			get { return Schedule.Frequency; }
 			set { Schedule.Frequency = value; }
 		}
 
 		[Required]
 		public Boolean Boundless
 		{
-			get { return Schedule.Boundless; } 
+			get { return Schedule.Boundless; }
 			set { Schedule.Boundless = value; }
 		}
 
 		[Required]
 		public Int16 Times
 		{
-			get { return Schedule.Times; } 
+			get { return Schedule.Times; }
 			set { Schedule.Times = value; }
 		}
 
 		public Boolean ShowInstallment
 		{
-			get { return Schedule.ShowInstallment; } 
+			get { return Schedule.ShowInstallment; }
 			set { Schedule.ShowInstallment = value; }
 		}
 

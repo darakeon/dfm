@@ -21,7 +21,7 @@ namespace DFM.Entities
 		public virtual IList<Month> MonthList { get; set; }
 		public virtual IList<Summary> SummaryList { get; set; }
 
-		
+
 
 	}
 }

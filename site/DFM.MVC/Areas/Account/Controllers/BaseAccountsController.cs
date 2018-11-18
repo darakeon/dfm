@@ -17,7 +17,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (ModelState.IsValid)
 			{
 				return RedirectToAction(
-					"ShowMoves", "Reports", 
+					"ShowMoves", "Reports",
 					new { id = model.Date.ToString("yyyyMM") }
 				);
 			}

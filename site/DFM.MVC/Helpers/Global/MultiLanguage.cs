@@ -24,7 +24,7 @@ namespace DFM.MVC.Helpers.Global
 
 		private static MultiLanguage dictionary;
 
-		public static MultiLanguage Dictionary 
+		public static MultiLanguage Dictionary
 			=> dictionary ?? (dictionary = new MultiLanguage());
 
 

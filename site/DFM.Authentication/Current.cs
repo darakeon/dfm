@@ -36,7 +36,7 @@ namespace DFM.Authentication
 				{
 					var key = ticket?.Key;
 
-					return key == null 
+					return key == null
 						? null
 						: userService.GetUserByTicket(key);
 				}
@@ -49,13 +49,10 @@ namespace DFM.Authentication
 
 		public Boolean IsAuthenticated => User != null;
 
-
 		public String Language => User?.Config?.Language;
-
 
 		public Boolean IsAdm => IsAuthenticated && User.IsAdm();
 		public CultureInfo Culture => new CultureInfo(Language);
-
 
 		public String Set(String username, String password, Boolean remember)
 		{

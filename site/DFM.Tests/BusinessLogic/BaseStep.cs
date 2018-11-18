@@ -32,7 +32,7 @@ namespace DFM.Tests.BusinessLogic
 			SessionManager.Init(getTicketKey);
 
 			Service = new ServiceAccess(getTicket, getPath);
-			
+
 			PlainText.Initialize(RunPath);
 		}
 
@@ -127,8 +127,8 @@ namespace DFM.Tests.BusinessLogic
 				Service.Admin.CreateAccount(
 					new Account
 						{
-							Name = accountUrl, 
-							Url = accountUrl, 
+							Name = accountUrl,
+							Url = accountUrl,
 							User = User
 						});
 
@@ -321,7 +321,7 @@ namespace DFM.Tests.BusinessLogic
 
 		protected static DateTime Date
 		{
-			get => Move?.Date ?? 
+			get => Move?.Date ??
 			       Schedule?.Date ??
 			       DateTime.MinValue;
 			set => Set("Date", value);
@@ -330,9 +330,9 @@ namespace DFM.Tests.BusinessLogic
 		protected static IList<Detail> DetailList
 		{
 			get => Move == null
-				? Schedule == null 
-					? new List<Detail>() 
-					: Schedule.DetailList 
+				? Schedule == null
+					? new List<Detail>()
+					: Schedule.DetailList
 				: Move.DetailList;
 			set => Set("DetailList", value);
 		}

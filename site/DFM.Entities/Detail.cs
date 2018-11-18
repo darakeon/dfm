@@ -11,7 +11,7 @@ namespace DFM.Entities
 		}
 
 		public virtual Int32 ID { get; set; }
-		
+
 		public virtual String Description { get; set; }
 		public virtual Int16 Amount { get; set; }
 		public virtual Int32 ValueCents { get; set; }

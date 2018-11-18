@@ -69,8 +69,8 @@ namespace DFM.MVC.Helpers.Global
 
 
 
-		private static readonly 
-			IDictionary<String, Error.Status> errors 
+		private static readonly
+			IDictionary<String, Error.Status> errors
 				= new Dictionary<String, Error.Status>();
 
 	}

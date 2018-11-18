@@ -13,9 +13,9 @@ namespace DFM.MVC.Areas.API.Controllers
 			try
 			{
 				var model = action();
-				
+
 				return Json(
-					new { data = model }, 
+					new { data = model },
 					JsonRequestBehavior.AllowGet
 				);
 			}

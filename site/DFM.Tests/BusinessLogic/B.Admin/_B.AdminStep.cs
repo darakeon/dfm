@@ -29,7 +29,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		private static String newAccountUrl
 		{
-			get { return Get<String>("newAccountUrl"); } 
+			get { return Get<String>("newAccountUrl"); }
 			set { Set("newAccountUrl", value); }
 		}
 
@@ -235,7 +235,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			accountTotal = Account.Total();
 		}
-		
+
 		[When(@"I make this changes to the account")]
 		public void WhenIMakeThisChangesToTheAccount(Table table)
 		{
@@ -385,7 +385,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		public void ThenTheAccountWillNotBeDeleted()
 		{
 			Account = Service.Admin.GetAccountByUrl(AccountUrl);
-			
+
 			Assert.IsNotNull(Account);
 		}
 
@@ -527,7 +527,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Assert.IsNotNull(Error);
 			Assert.IsNull(Category);
 		}
-		
+
 		[Then(@"the category will be saved")]
 		public void ThenTheCategoryWillBeSaved()
 		{
@@ -722,7 +722,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Assert.IsTrue(Category.Active);
 		}
 		#endregion
-		
+
 		#region GetCategoryList
 		[Given(@"I disable the category (.+)")]
 		public void GivenICloseTheCategory(String categoryName)
@@ -954,7 +954,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		}
 
 		#endregion
-		
+
 		#region ChangeTheme
 		[Given(@"a theme (\w+)")]
 		public void GivenAThemeSlate(BootstrapTheme chosenTheme)
@@ -1003,7 +1003,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Account = new Account
 			{
 				Name = givenAccountUrl,
-				Url = givenAccountUrl, 
+				Url = givenAccountUrl,
 			};
 
 			Service.Admin.CreateAccount(Account);
@@ -1101,8 +1101,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Service.Robot.DisableSchedule(Schedule.ID);
 		}
 
-		
-		
+
+
 		[Then(@"I will receive no account")]
 		public void ThenIWillReceiveNoAccount()
 		{
