@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class Summary(
 	@SerializedName("Name")
-	val name: String,
+	val name: String = "",
 
 	@SerializedName("Total")
-	val total: Double,
+	val total: Double = 0.0,
 
 	@SerializedName("MonthList")
-	val monthList: Array<Month>
+	val monthList: Array<Month> = emptyArray()
 ) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
