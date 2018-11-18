@@ -19,7 +19,7 @@ import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
-import com.darakeon.dfm.extensions.fromJson
+import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.onChange
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.showChangeList
@@ -91,11 +91,11 @@ class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 	}
 
 	private fun startScreenFromSaved(savedInstanceState: Bundle) {
-		moveCreation = savedInstanceState.fromJson(moveCreationKey, MoveCreation())
+		moveCreation = savedInstanceState.getFromJson(moveCreationKey, MoveCreation())
 		populateCategoryAndNature()
 		setControls()
 
-		move = savedInstanceState.fromJson(moveKey, Move())
+		move = savedInstanceState.getFromJson(moveKey, Move())
 		populateOldData()
 	}
 
