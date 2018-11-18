@@ -84,7 +84,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private void makeNatureList(bool transferIsPossible)
 		{
-			NatureSelectList = 
+			NatureSelectList =
 				transferIsPossible
 					? SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>())
 					: SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
@@ -153,15 +153,15 @@ namespace DFM.MVC.Areas.Account.Models
 		[Required(ErrorMessage = "*")]
 		public String Description
 		{
-			get { return GenericMove.Description; } 
+			get { return GenericMove.Description; }
 			set { GenericMove.Description = value; }
 		}
 
-		
+
 		[Required(ErrorMessage = "*")]
 		public DateTime Date
 		{
-			get { return GenericMove.Date; } 
+			get { return GenericMove.Date; }
 			set { GenericMove.Date = value; }
 		}
 
@@ -169,13 +169,13 @@ namespace DFM.MVC.Areas.Account.Models
 		[Required(ErrorMessage = "*")]
 		public MoveNature Nature
 		{
-			get { return GenericMove.Nature; } 
+			get { return GenericMove.Nature; }
 			set { GenericMove.Nature = value; }
 		}
 
 		public SelectList NatureSelectList { get; set; }
 
-		
+
 
 		[Required(ErrorMessage = "*")]
 		public SelectList CategorySelectList { get; set; }
