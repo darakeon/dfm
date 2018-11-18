@@ -27,12 +27,7 @@ inline fun <reified T : Activity> Context.redirect(
 }
 
 inline fun <reified T : Activity> Context.redirect() {
-	redirect<T>({})
-}
-
-inline fun <reified T : Activity> Activity.redirectAndFinish() {
-	redirect<T>()
-	finish()
+	redirect<T> {}
 }
 
 fun Activity.backWithExtras() {
