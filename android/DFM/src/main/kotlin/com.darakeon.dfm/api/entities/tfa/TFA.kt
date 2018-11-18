@@ -1,4 +1,4 @@
-package com.darakeon.dfm.api.entities
+package com.darakeon.dfm.api.entities.tfa
 
 import com.google.gson.annotations.SerializedName
 

@@ -3,7 +3,7 @@ package com.darakeon.dfm.api
 import android.app.Activity
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
-import com.darakeon.dfm.api.entities.TFA
+import com.darakeon.dfm.api.entities.tfa.TFA
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
