@@ -14,11 +14,8 @@ class TFAActivity : BaseActivity<TFAStatic>(TFAStatic) {
 	override val hasTitle: Boolean get() = false
 
 	fun verify(@Suppress("UNUSED_PARAMETER") view: View) {
-		val request = InternalRequest(
-			this, "Users/TFA", { redirect<AccountsActivity>() }
-		)
-		request.addParameter("ticket", auth)
-		request.addParameter("Code", code.text)
-		request.post()
+		api.validateTFA(auth, code.text.toString()) {
+			redirect<AccountsActivity>()
+		}
 	}
 }
