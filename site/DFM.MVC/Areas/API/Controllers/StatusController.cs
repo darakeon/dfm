@@ -6,7 +6,7 @@ namespace DFM.MVC.Areas.API.Controllers
 	{
         public ActionResult Index()
         {
-            return JsonGet(() => new { status = "online" });
+            return json(() => new { status = "online" });
         }
     }
 }

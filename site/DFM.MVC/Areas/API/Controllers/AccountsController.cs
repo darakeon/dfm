@@ -9,7 +9,7 @@ namespace DFM.MVC.Areas.API.Controllers
 	{
 		public ActionResult List()
 		{
-			return JsonGet(() => new AccountsListModel());
+			return json(() => new AccountsListModel());
 		}
 
 	}

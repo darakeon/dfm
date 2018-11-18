@@ -8,21 +8,35 @@ namespace DFM.MVC.Areas.API.Controllers
 {
 	public class BaseJsonController : BaseController
 	{
-		protected JsonResult JsonGet(Func<object> action)
+		protected JsonResult json(Action action)
+		{
+			return json(() =>
+			{
+				action();
+				return new { success = true };
+			});
+		}
+
+		protected JsonResult json<T>(Func<T> action)
+			where T : class
 		{
 			try
 			{
 				var model = action();
 
-				return Json(
-					new { data = model },
-					JsonRequestBehavior.AllowGet
-				);
+				var result = makeResult(model);
+
+				return makeMvcActionResponse(result);
 			}
 			catch (DFMCoreException e)
 			{
 				return error(e.Type);
 			}
+		}
+
+		private object makeResult(object model)
+		{
+			return new { data = model };
 		}
 
 		public JsonResult Uninvited()
@@ -42,28 +56,18 @@ namespace DFM.MVC.Areas.API.Controllers
 
 		private JsonResult error(ExceptionPossibilities error)
 		{
-			return Json(
-				new
-				{
-					error = MultiLanguage.Dictionary[error],
-					code = (Int32) error
-				},
-				JsonRequestBehavior.AllowGet
-			);
+			var result = new
+			{
+				error = MultiLanguage.Dictionary[error],
+				code = (Int32) error
+			};
+
+			return makeMvcActionResponse(result);
 		}
 
-		protected JsonResult JsonPost(Action action)
+		private JsonResult makeMvcActionResponse(object result)
 		{
-			try
-			{
-				action();
-
-				return Json(new { data = new { success = true }});
-			}
-			catch (DFMCoreException e)
-			{
-				return Json(new { error = MultiLanguage.Dictionary[e] });
-			}
+			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

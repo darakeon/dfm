@@ -8,9 +8,10 @@ namespace DFM.MVC.Areas.API.Controllers
 {
 	public class UsersController : BaseJsonController
 	{
+		[HttpPost]
 		public ActionResult Login(String email, String password)
 		{
-			return JsonGet(() =>
+			return json(() =>
 			{
 				var model =
 					new UsersLoginModel
@@ -25,38 +26,30 @@ namespace DFM.MVC.Areas.API.Controllers
 			});
 		}
 
-
-
 		public ActionResult Logout()
 		{
-			return JsonGet(() =>
+			return json(() =>
 			{
-				var model = new SafeModel();
-
-				model.LogOff();
-
-				return new {success = true};
+				new SafeModel().LogOff();
 			});
 		}
-
-
 
 		[DFMApiAuthorize, HttpGet]
 		public ActionResult Config()
 		{
-			return JsonGet(() => new UserConfigModel());
+			return json(() => new UserConfigModel());
 		}
 
 		[DFMApiAuthorize, HttpPost]
 		public ActionResult Config(UserConfigModel model)
 		{
-			return JsonPost(model.Save);
+			return json(model.Save);
 		}
 
 		[DFMApiAuthorize(false), HttpPost]
 		public ActionResult TFA(UserTFAModel model)
 		{
-			return JsonPost(model.Validate);
+			return json(model.Validate);
 		}
 	}
 }
