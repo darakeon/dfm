@@ -40,7 +40,7 @@ namespace DFM.MVC.Helpers
 		{
 			var url = HttpContext.Current.Request.Url;
 
-			var type = url.AbsolutePath.StartsWith("/Api")
+			var type = url.AbsolutePath.ToLower().StartsWith("/api")
 				? TicketType.Mobile
 				: TicketType.Browser;
 
