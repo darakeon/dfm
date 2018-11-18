@@ -56,16 +56,16 @@ namespace DFM.Authentication
 
 		public String Set(String username, String password, Boolean remember)
 		{
-			var rememberableTicket = getTicket(remember);
+			var newTicket = getTicket(remember);
 
-			if (rememberableTicket == null)
+			if (newTicket == null)
 				return null;
 
 			return userService.ValidateUserAndCreateTicket(
 				username,
 				password,
-				rememberableTicket.Key,
-				rememberableTicket.Type
+				newTicket.Key,
+				newTicket.Type
 			);
 		}
 
