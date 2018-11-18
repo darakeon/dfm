@@ -13,7 +13,7 @@ namespace DFM.MVC.Areas.Account
 		{
 			context.MapRoute(
 				RouteNames.ACCOUNT,
-				"Account/{accounturl}/{controller}/{action}/{id}",
+				"Account/{accountUrl}/{controller}/{action}/{id}",
 				new { controller = "Reports", action = "Index", id = UrlParameter.Optional },
 				new[] { typeof(ReportsController).Namespace }
 			);
