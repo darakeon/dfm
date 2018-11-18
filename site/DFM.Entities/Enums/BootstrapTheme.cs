@@ -1,6 +1,4 @@
-﻿using DFM.Generic;
-
-namespace DFM.Entities.Enums
+﻿namespace DFM.Entities.Enums
 {
 	public enum BootstrapTheme
 	{
