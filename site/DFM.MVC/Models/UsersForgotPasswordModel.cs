@@ -6,7 +6,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersForgotPasswordModel : BaseModel
+	public class UsersForgotPasswordModel : BaseSiteModel
 	{
 		[Required(ErrorMessage = "*")]
 		public String Email { get; set; }
@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Safe.SendPasswordReset(Email);
+				safe.SendPasswordReset(Email);
 			}
 			catch (DFMCoreException e)
 			{

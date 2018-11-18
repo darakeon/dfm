@@ -9,7 +9,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class TokensIndexModel : BaseModel
+	public class TokensIndexModel : BaseSiteModel
 	{
 		public TokensIndexModel()
 		{
@@ -41,7 +41,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Safe.TestSecurityToken(Token, SecurityAction);
+				safe.TestSecurityToken(Token, SecurityAction);
 			}
 			catch (DFMCoreException e)
 			{

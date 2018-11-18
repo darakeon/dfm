@@ -8,7 +8,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class TokensPasswordResetModel : BaseModel, IPasswordForm
+	public class TokensPasswordResetModel : BaseSiteModel, IPasswordForm
 	{
 		[Required(ErrorMessage = "*")]
 		public String Password { get; set; }
@@ -21,7 +21,7 @@ namespace DFM.MVC.Models
 		{
 			try
 			{
-				Safe.TestSecurityToken(token, SecurityAction.PasswordReset);
+				safe.TestSecurityToken(token, SecurityAction.PasswordReset);
 			}
 			catch (DFMCoreException)
 			{
@@ -37,7 +37,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Safe.PasswordReset(token, this);
+				safe.PasswordReset(token, this);
 			}
 			catch (DFMCoreException e)
 			{

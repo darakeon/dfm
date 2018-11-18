@@ -6,7 +6,7 @@ using DFM.Generic;
 
 namespace DFM.MVC.Models
 {
-	public class CategoriesCreateEditModel : BaseLoggedModel
+	public class CategoriesCreateEditModel : BaseSiteModel
 	{
 		public CategoriesCreateEditModel()
 		{
@@ -20,7 +20,7 @@ namespace DFM.MVC.Models
 
 		public CategoriesCreateEditModel(OperationType type, String categoryName) : this(type)
 		{
-			Category = Admin.GetCategoryByName(categoryName);
+			Category = admin.GetCategoryByName(categoryName);
 		}
 
 
@@ -59,14 +59,12 @@ namespace DFM.MVC.Models
 
 		internal DFMCoreException CreateEdit()
 		{
-			Category.User = Current.User;
-
 			try
 			{
 				if (Type == OperationType.Creation)
-					Admin.CreateCategory(Category);
+					admin.CreateCategory(Category);
 				else
-					Admin.UpdateCategory(Category, Name);
+					admin.UpdateCategory(Category, Name);
 			}
 			catch (DFMCoreException e)
 			{

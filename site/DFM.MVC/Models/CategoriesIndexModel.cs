@@ -3,11 +3,11 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-	public class CategoriesIndexModel : BaseLoggedModel
+	public class CategoriesIndexModel : BaseSiteModel
 	{
 		public CategoriesIndexModel()
 		{
-			CategoryList = Admin.GetCategoryList();
+			CategoryList = admin.GetCategoryList();
 		}
 
 		public IList<Category> CategoryList;

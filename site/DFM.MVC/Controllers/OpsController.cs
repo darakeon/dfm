@@ -43,7 +43,7 @@ namespace DFM.MVC.Controllers
 
 		public ActionResult Help()
 		{
-			var model = new BaseModel();
+			var model = new BaseSiteModel();
 
 			return View(model);
 		}
@@ -58,7 +58,7 @@ namespace DFM.MVC.Controllers
 
 		public ActionResult Legend()
 		{
-			var model = new BaseModel();
+			var model = new BaseSiteModel();
 
 			return View(model);
 		}

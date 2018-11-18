@@ -9,11 +9,11 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersSignUpModel : BaseModel, IPasswordForm
+	public class UsersSignUpModel : BaseSiteModel, IPasswordForm
 	{
 		public UsersSignUpModel()
 		{
-			Contract = Safe.GetContract();
+			Contract = safe.GetContract();
 			EnableWizard = true;
 		}
 
@@ -41,7 +41,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, MultiLanguage.Language);
+				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, MultiLanguage.Language);
 			}
 			catch (DFMCoreException e)
 			{

@@ -4,13 +4,13 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class RobotModel : BaseModel
+	public class RobotModel : BaseSiteModel
 	{
 		internal void Disable(Int32 id)
 		{
 			try
 			{
-				Robot.DisableSchedule(id);
+				robot.DisableSchedule(id);
 			}
 			catch (DFMCoreException e)
 			{

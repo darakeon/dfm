@@ -7,10 +7,8 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public UserConfigModel()
 		{
-			var config = Current.User.Config;
-
-			UseCategories = config.UseCategories;
-			MoveCheck = config.MoveCheck;
+			UseCategories = isUsingCategories;
+			MoveCheck = moveCheckingEnabled;
 		}
 
 		public Boolean UseCategories { get; set; }
@@ -24,7 +22,7 @@ namespace DFM.MVC.Areas.API.Models
 				MoveCheck = MoveCheck
 			};
 
-			Admin.UpdateConfig(mainConfig);
+			admin.UpdateConfig(mainConfig);
 		}
 	}
 }

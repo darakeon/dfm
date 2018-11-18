@@ -4,12 +4,12 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-	public class SchedulesIndexModel : BaseLoggedModel
+	public class SchedulesIndexModel : BaseSiteModel
 	{
 		public SchedulesIndexModel()
 		{
 			ScheduleList =
-				Robot.GetScheduleList()
+				robot.GetScheduleList()
 					.OrderByDescending(a => a.Date)
 					.ToList();
 		}

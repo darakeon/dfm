@@ -4,11 +4,11 @@ using DFM.Entities;
 
 namespace DFM.MVC.Models
 {
-	public class AccountsIndexModel : BaseLoggedModel
+	public class AccountsIndexModel : BaseSiteModel
 	{
 		public AccountsIndexModel(Boolean open = true)
 		{
-			AccountList = Admin.GetAccountList(open);
+			AccountList = admin.GetAccountList(open);
 		}
 
 		public IList<Account> AccountList { get; set; }

@@ -10,10 +10,10 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public MovesSummaryModel(String accountUrl, Int16 id)
 		{
-			var yearDate = DateFromInt.GetDateYear(id, Today);
+			var yearDate = DateFromInt.GetDateYear(id, today);
 
 			MonthList =
-				Report.GetYearReport(accountUrl, yearDate)
+				report.GetYearReport(accountUrl, yearDate)
 					.MonthList
 					.Select(m => new SimpleMonthJson(m))
 					.ToList();
@@ -30,7 +30,7 @@ namespace DFM.MVC.Areas.API.Models
 				.OrderByDescending(m => m.Number)
 				.ToList();
 
-			var account = Admin.GetAccountByUrl(accountUrl);
+			var account = admin.GetAccountByUrl(accountUrl);
 
 			Name = account.Name;
 			Total = account.Total();

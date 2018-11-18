@@ -1,9 +1,9 @@
-﻿@model BaseModel
+﻿@model BaseSiteModel
 
 @{
 	ViewBag.HideTopLogo = true;
 
-	var twitterTheme = Model != null ? Model.UserTheme.Simplify().ToString().ToLower() : null;
+	var twitterTheme = Model?.Theme.Simplify().ToString().ToLower();
 }
 
 @section Scripts {

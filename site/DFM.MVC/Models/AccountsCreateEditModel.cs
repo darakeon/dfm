@@ -8,7 +8,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class AccountsCreateEditModel : BaseLoggedModel
+	public class AccountsCreateEditModel : BaseSiteModel
 	{
 		public AccountsCreateEditModel()
 		{
@@ -22,7 +22,7 @@ namespace DFM.MVC.Models
 
 		public AccountsCreateEditModel(OperationType type, String id) : this(type)
 		{
-			Account = Admin.GetAccountByUrl(id);
+			Account = admin.GetAccountByUrl(id);
 		}
 
 
@@ -89,7 +89,7 @@ namespace DFM.MVC.Models
 
 		internal void ResetAccountUrl(OperationType type, string id)
 		{
-			var oldAccount = Admin.GetAccountByUrl(id);
+			var oldAccount = admin.GetAccountByUrl(id);
 
 			Type = type;
 			Account.Url = oldAccount.Url;
@@ -103,12 +103,10 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				Account.User = Current.User;
-
 				if (Type == OperationType.Creation)
-					Admin.CreateAccount(Account);
+					admin.CreateAccount(Account);
 				else
-					Admin.UpdateAccount(Account, Url);
+					admin.UpdateAccount(Account, Url);
 			}
 			catch (DFMCoreException e)
 			{
