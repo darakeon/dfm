@@ -12,6 +12,7 @@ import com.darakeon.dfm.login.LoginActivity
 class WelcomeActivity : BaseActivity<DELETE>(DELETE) {
 
 	override val contentView = R.layout.welcome
+	override val title = 0
 	override val hasTitle = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {

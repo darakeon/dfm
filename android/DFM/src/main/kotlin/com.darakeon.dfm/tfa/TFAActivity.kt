@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.tfa.code
 
 class TFAActivity : BaseActivity<DELETE>(DELETE) {
 	override val contentView = R.layout.tfa
+	override val title = 0
 	override val hasTitle: Boolean get() = false
 
 	fun verify(@Suppress("UNUSED_PARAMETER") view: View) {

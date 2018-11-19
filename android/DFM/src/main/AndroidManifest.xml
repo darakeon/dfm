@@ -58,8 +58,7 @@
 		</activity>
 
 		<activity
-			android:name=".login.LoginActivity"
-			android:label="@string/login">
+			android:name=".login.LoginActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@Login"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -75,8 +74,7 @@
 		</activity>
 
 		<activity
-			android:name=".accounts.AccountsActivity"
-			android:label="@string/title_activity_accounts">
+			android:name=".accounts.AccountsActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@Accounts"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -92,8 +90,7 @@
 		</activity>
 
 		<activity
-			android:name=".extract.ExtractActivity"
-			android:label="@string/title_activity_extract">
+			android:name=".extract.ExtractActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@Extract"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -109,8 +106,7 @@
 		</activity>
 
 		<activity
-			android:name=".summary.SummaryActivity"
-			android:label="@string/title_activity_summary">
+			android:name=".summary.SummaryActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@Summary"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -126,8 +122,7 @@
 		</activity>
 
 		<activity
-			android:name=".moves.MovesCreateActivity"
-			android:label="@string/title_activity_move">
+			android:name=".moves.MovesCreateActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -143,8 +138,7 @@
 		</activity>
 
 		<activity
-			android:name=".settings.SettingsActivity"
-			android:label="@string/title_activity_settings">
+			android:name=".settings.SettingsActivity">
 			<tools:validation testUrl="https://dontflymoney.com/@Settings"/>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>

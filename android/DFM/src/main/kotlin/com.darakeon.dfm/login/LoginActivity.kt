@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.login.password
 
 class LoginActivity : BaseActivity<DELETE>(DELETE) {
 	override val contentView = R.layout.login
+	override val title = R.string.login
 
 	override val isLoggedIn: Boolean
 		get() = false

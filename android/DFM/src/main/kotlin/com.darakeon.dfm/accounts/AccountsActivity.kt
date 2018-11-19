@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.accounts.main_table
 
 class AccountsActivity : BaseActivity<DELETE>(DELETE) {
 	override val contentView = R.layout.accounts
+	override val title = R.string.title_activity_accounts
 
 	private var accountList: Array<Account> = emptyArray()
 	private val accountListKey = "accountList"

@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.settings.use_categories
 class SettingsActivity : BaseActivity<DELETE>(DELETE) {
 
 	override val contentView = R.layout.settings
+	override val title = R.string.title_activity_settings
 
 	private var settings = Settings()
 	private val settingsKey = "settings"
