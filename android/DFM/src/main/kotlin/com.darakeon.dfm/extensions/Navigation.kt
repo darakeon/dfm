@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.old.InternalRequest
+import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.base.BaseActivity
@@ -47,14 +47,8 @@ fun Activity.refresh() {
 	startActivity(intent)
 }
 
-internal fun <T : SmartStatic> BaseActivity<T>.logout() {
-	val request = InternalRequest(this, "Users/Logout")
-	request.addParameter("ticket", auth)
-	val tryResult = request.post()
-
-	if (tryResult) {
-		logoutLocal()
-	}
+internal fun <T : SmartStatic> BaseActivity<T>.logout(api: Api) {
+	api.logout(auth, this::logoutLocal)
 }
 
 internal fun Activity.logoutLocal() {

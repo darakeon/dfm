@@ -118,6 +118,13 @@ class Api(
 		}
 	}
 
+	fun logout(
+		ticket: String,
+		onSuccess: () -> Unit
+	) {
+		api.logout(ticket).call(onSuccess)
+	}
+
 	fun getMove(
 		ticket: String,
 		id: Int,
