@@ -135,7 +135,7 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		oldConfigInt = changingConfigurations
-		request?.cancel()
+		api.cancel()
 	}
 
 

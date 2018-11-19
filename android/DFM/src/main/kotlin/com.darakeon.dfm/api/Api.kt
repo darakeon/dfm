@@ -13,6 +13,8 @@ import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.api.entities.tfa.TFA
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
+import okhttp3.Dispatcher
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,10 +23,15 @@ class Api(
 	private val context: Activity
 ) {
 	private val api: DfmService
+	private val dispatcher = Dispatcher()
 
 	init {
+		val clientBuilder = OkHttpClient.Builder()
+		clientBuilder.dispatcher(dispatcher)
+
 		val retrofit = Retrofit.Builder()
 			.baseUrl(getSite())
+			.client(clientBuilder.build())
 			.addConverterFactory(GsonConverterFactory.create())
 			.build()
 
@@ -62,6 +69,10 @@ class Api(
 		enqueue(handler)
 
 		context.startUIWait()
+	}
+
+	fun cancel() {
+		dispatcher.cancelAll()
 	}
 
 	fun listAccounts(
