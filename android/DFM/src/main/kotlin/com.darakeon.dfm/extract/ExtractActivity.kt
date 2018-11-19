@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Extract
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
@@ -31,7 +30,7 @@ import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
 
-class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
+class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	override val contentView = R.layout.extract

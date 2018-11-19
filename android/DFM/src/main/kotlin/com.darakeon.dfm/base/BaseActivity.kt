@@ -2,7 +2,6 @@ package com.darakeon.dfm.base
 
 import android.app.Activity
 import android.content.Context
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.LayoutInflater
@@ -31,10 +30,9 @@ import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
-abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
+abstract class BaseActivity : Activity() {
 
 	var clickedView: View? = null
-	var rotated: Boolean = false
 	private lateinit var inflater: LayoutInflater
 	lateinit var api: Api
 
@@ -58,10 +56,6 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 		super.onCreate(savedInstanceState)
 
 		api = Api(this)
-
-		rotated =
-			(oldConfigInt and ActivityInfo.CONFIG_ORIENTATION) ==
-				ActivityInfo.CONFIG_ORIENTATION
 
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -120,21 +114,10 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 		}
 	}
 
-	override fun onResume() {
-		super.onResume()
-		oldConfigInt = 0
-	}
-
-	companion object {
-		private var oldConfigInt: Int = 0
-	}
-
 	override fun onDestroy() {
 		super.onDestroy()
-		oldConfigInt = changingConfigurations
 		api.cancel()
 	}
-
 
 	fun back(@Suppress(ON_CLICK) view: View) {
 		back()
@@ -164,14 +147,6 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 		createMove()
 	}
 
-	open fun enableScreen() {
-		static.succeeded = true
-	}
-
-	fun reset() {
-		static.succeeded = false
-	}
-
 	protected fun getExtraOrUrl(key: String, default: Int?) : String =
 			getExtraOrUrl(key, default.toString())
 
@@ -188,5 +163,4 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 
 		return default
 	}
-
 }

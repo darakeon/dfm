@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.settings.Settings
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -15,8 +14,7 @@ import com.darakeon.dfm.extensions.putJson
 import kotlinx.android.synthetic.main.settings.move_check
 import kotlinx.android.synthetic.main.settings.use_categories
 
-class SettingsActivity : BaseActivity<DELETE>(DELETE) {
-
+class SettingsActivity : BaseActivity() {
 	override val contentView = R.layout.settings
 	override val title = R.string.title_activity_settings
 

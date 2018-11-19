@@ -3,13 +3,12 @@ package com.darakeon.dfm.tfa
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
 
-class TFAActivity : BaseActivity<DELETE>(DELETE) {
+class TFAActivity : BaseActivity() {
 	override val contentView = R.layout.tfa
 	override val title = 0
 	override val hasTitle: Boolean get() = false
