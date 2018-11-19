@@ -111,7 +111,7 @@ fun Activity.composeErrorEmail(url: String, error: Throwable) {
 
 	val body = reportUrl + "\n\n" +
 		error.message + "\n\n" +
-		error.stackTrace
+		error.stackTraceText
 
 	val emails = getString(R.string.error_mail_address)
 
