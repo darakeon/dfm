@@ -21,6 +21,7 @@ import com.darakeon.dfm.extensions.formatNoDay
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.extensions.refresh
 import com.darakeon.dfm.extensions.setValueColored
 import com.darakeon.dfm.summary.SummaryActivity
 import kotlinx.android.synthetic.main.extract.empty_list

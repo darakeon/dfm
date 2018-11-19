@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.DialogInterface
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
+import com.darakeon.dfm.auth.setEnvironment
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.composeErrorEmail
 import com.darakeon.dfm.extensions.isProd
@@ -27,6 +28,10 @@ internal class Handler<T>(
 		}
 
 		val body = response.body()
+
+		if (body?.environment != null) {
+			context.setEnvironment(body.environment)
+		}
 
 		when {
 			body == null ->
