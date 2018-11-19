@@ -14,8 +14,6 @@ val Context.auth: String get() {
 	return decrypt(encryptedTicket)
 }
 
-val Context.isLoggedIn get() = !auth.isEmpty()
-
 fun Context.clearAuth() {
 	setAuth("")
 }
