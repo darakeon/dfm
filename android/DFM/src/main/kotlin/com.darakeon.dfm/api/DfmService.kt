@@ -51,6 +51,11 @@ internal interface DfmService {
 		@RetrofitBody login: Login.Request
 	): Call<Body<Login.Response>>
 
+	@POST("api-{ticket}/users/logout")
+	fun logout(
+		@Path("ticket") ticket: String
+	): Call<Body<Any>>
+
 	@GET("api-{ticket}/moves/create/{id}")
 	fun getMove(
 		@Path("ticket") ticket: String,

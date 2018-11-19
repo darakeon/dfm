@@ -144,7 +144,7 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 	}
 
 	fun logout(@Suppress(ON_CLICK) view: View) {
-		logout()
+		logout(api)
 	}
 
 	fun close(@Suppress(ON_CLICK) view: View) {
