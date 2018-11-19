@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 
@@ -36,6 +37,15 @@ namespace DFM.MVC.Areas.API.Controllers
 
 		private object makeResult(object model)
 		{
+			if (model is BaseApiModel apiModel)
+			{
+				return new
+				{
+					data = apiModel,
+					environment = apiModel.Environment
+				};
+			}
+
 			return new { data = model };
 		}
 

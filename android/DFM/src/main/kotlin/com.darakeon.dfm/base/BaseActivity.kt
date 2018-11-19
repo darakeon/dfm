@@ -23,6 +23,7 @@ import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.redirect
+import com.darakeon.dfm.extensions.refresh
 import com.darakeon.dfm.moves.MovesCreateActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import kotlinx.android.synthetic.main.bottom_menu.action_home
@@ -160,11 +161,6 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 
 	fun createMove(@Suppress(ON_CLICK) view: View) {
 		createMove()
-	}
-
-	fun refresh() {
-		finish()
-		startActivity(intent)
 	}
 
 	open fun enableScreen() {

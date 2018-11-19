@@ -42,6 +42,11 @@ fun Activity.backWithExtras() {
 	startActivity(intent)
 }
 
+fun Activity.refresh() {
+	finish()
+	startActivity(intent)
+}
+
 internal fun <T : SmartStatic> BaseActivity<T>.logout() {
 	val request = InternalRequest(this, "Users/Logout")
 	request.addParameter("ticket", auth)
