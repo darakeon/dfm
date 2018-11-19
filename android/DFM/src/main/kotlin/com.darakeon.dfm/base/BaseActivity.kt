@@ -12,7 +12,6 @@ import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
-import com.darakeon.dfm.api.old.InternalRequest
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -49,8 +48,6 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 	protected open val hasTitle = true
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
-
-	var request: InternalRequest<T>? = null
 
 	val query = HashMap<String, String>()
 

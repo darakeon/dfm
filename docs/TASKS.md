@@ -132,7 +132,7 @@ Legend:
 - [ ] Encrypt sharedPreferences (and logoff all mobile)
 - [ ] Remove ticket from url (mobile)
 - [ ] `2018-05-26 > ...` Kill state objects (mobile)
-- [ ] `2018-05-26 > ...` Replace volley by retrofit
+- [x] `2018-05-26 > 2018-11-18` Replace volley by retrofit
 
 ## <a name="prod"></a>4.1.2.1 :ant: <sup>`3`</sup>
 - [x] `2018-03-07 > 2018-03-07` Fix category repeated block at mobile/moves
