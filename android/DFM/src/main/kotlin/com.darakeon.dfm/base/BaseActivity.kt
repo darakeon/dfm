@@ -37,7 +37,7 @@ abstract class BaseActivity : Activity() {
 	lateinit var api: Api
 
 	protected abstract val contentView: Int
-	protected abstract val title: Int
+	protected open val title: Int = 0
 	protected open val optionsMenuResource = 0
 	protected open val contextMenuResource = 0
 	protected open val viewWithContext: View? = null
