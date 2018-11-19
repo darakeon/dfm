@@ -15,7 +15,7 @@ fun TextView.setColorByAttr(attr : Int){
 	setTextColor(typedValue.data)
 }
 
-fun TextView.applyGlyphicon(ac: BaseActivity<*>) {
+fun TextView.applyGlyphicon(ac: BaseActivity) {
 	if (text.length != 1)
 		return
 

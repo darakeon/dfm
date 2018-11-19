@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
@@ -21,8 +20,7 @@ import kotlinx.android.synthetic.main.summary.total_title
 import kotlinx.android.synthetic.main.summary.total_value
 import java.util.Calendar
 
-class SummaryActivity : BaseActivity<DELETE>(DELETE) {
-
+class SummaryActivity : BaseActivity() {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	private var year: Int = 0

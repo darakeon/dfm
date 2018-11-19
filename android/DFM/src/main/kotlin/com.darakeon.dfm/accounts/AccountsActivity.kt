@@ -5,7 +5,6 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.accounts.Account
 import com.darakeon.dfm.api.entities.accounts.AccountList
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.getFromJson
@@ -13,7 +12,7 @@ import com.darakeon.dfm.extensions.putJson
 import kotlinx.android.synthetic.main.accounts.empty_list
 import kotlinx.android.synthetic.main.accounts.main_table
 
-class AccountsActivity : BaseActivity<DELETE>(DELETE) {
+class AccountsActivity : BaseActivity() {
 	override val contentView = R.layout.accounts
 	override val title = R.string.title_activity_accounts
 

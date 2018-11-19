@@ -12,7 +12,6 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.api.old.DELETE
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
@@ -43,7 +42,7 @@ import kotlinx.android.synthetic.main.moves_create.simple_value
 import kotlinx.android.synthetic.main.moves_create.value
 import kotlinx.android.synthetic.main.moves_create.warnings
 
-class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
+class MovesCreateActivity : BaseActivity() {
 	private val dialog: DatePickerDialog
 		get() = with(move.date) {
 			return getDateDialog(

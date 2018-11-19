@@ -10,7 +10,6 @@ import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.login.LoginActivity
 import com.darakeon.dfm.moves.MovesCreateActivity
 import com.darakeon.dfm.settings.SettingsActivity
@@ -47,7 +46,7 @@ fun Activity.refresh() {
 	startActivity(intent)
 }
 
-internal fun <T : SmartStatic> BaseActivity<T>.logout(api: Api) {
+internal fun BaseActivity.logout(api: Api) {
 	api.logout(auth, this::logoutLocal)
 }
 
