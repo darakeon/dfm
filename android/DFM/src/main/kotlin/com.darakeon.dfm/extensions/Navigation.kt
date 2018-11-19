@@ -7,8 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.old.InternalRequest
-import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.auth.auth
+import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.base.SmartStatic
 import com.darakeon.dfm.login.LoginActivity
