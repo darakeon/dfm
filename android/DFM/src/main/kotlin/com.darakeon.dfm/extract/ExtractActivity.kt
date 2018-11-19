@@ -35,6 +35,7 @@ class ExtractActivity : BaseActivity<DELETE>(DELETE), IYesNoDialogAnswer {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	override val contentView = R.layout.extract
+	override val title = R.string.title_activity_extract
 	override val contextMenuResource = R.menu.move_options
 	override val viewWithContext: ListView get() = main_table
 

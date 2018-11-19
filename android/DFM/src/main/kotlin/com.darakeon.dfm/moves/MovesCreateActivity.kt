@@ -53,6 +53,7 @@ class MovesCreateActivity : BaseActivity<DELETE>(DELETE) {
 		}
 
 	override val contentView = R.layout.moves_create
+	override val title = R.string.title_activity_move
 
 	private var move = Move()
 	private val moveKey = "move"

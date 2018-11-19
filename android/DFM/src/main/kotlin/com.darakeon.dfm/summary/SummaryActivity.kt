@@ -38,6 +38,7 @@ class SummaryActivity : BaseActivity<DELETE>(DELETE) {
 		)
 
 	override val contentView = R.layout.summary
+	override val title = R.string.title_activity_summary
 
 	private fun updateScreen(year: Int) {
 		setDate(year)

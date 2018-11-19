@@ -40,6 +40,7 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 	lateinit var api: Api
 
 	protected abstract val contentView: Int
+	protected abstract val title: Int
 	protected open val optionsMenuResource = 0
 	protected open val contextMenuResource = 0
 	protected open val viewWithContext: View? = null
@@ -69,6 +70,9 @@ abstract class BaseActivity<T : SmartStatic>(var static : T) : Activity() {
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
 
 		inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+		if (hasTitle)
+			setTitle(title)
 
 		setContentView(contentView)
 
