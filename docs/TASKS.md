@@ -130,7 +130,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.2.2 :ant: <sup>`5`</sup>
 - [ ] Encrypt sharedPreferences
-- [ ] Given two security changes in this version, logoff all mobile
+- [x] `2018-11-21 > 2018-11-21` Given two security changes in this version, logoff all mobile
 - [x] `2018-11-20 > 2018-11-21` Remove ticket from url (mobile)
 - [x] `2018-05-26 > 2018-11-18` Kill state objects (mobile)
 - [x] `2018-05-26 > 2018-11-18` Replace volley by retrofit
