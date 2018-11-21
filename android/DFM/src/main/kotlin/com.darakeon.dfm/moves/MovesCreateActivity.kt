@@ -12,7 +12,6 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -84,7 +83,7 @@ class MovesCreateActivity : BaseActivity() {
 	}
 
 	private fun initScreen() {
-		api.getMove(auth, id, this::populateScreen)
+		api.getMove(id, this::populateScreen)
 
 		setCurrentDate()
 		setControls()
@@ -331,7 +330,7 @@ class MovesCreateActivity : BaseActivity() {
 
 	fun save(@Suppress(ON_CLICK) view: View) {
 		move.clearNotUsedValues()
-		api.saveMove(auth, move, this::cleanAndBack)
+		api.saveMove(move, this::cleanAndBack)
 	}
 
 	private fun cleanAndBack() {

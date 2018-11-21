@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Extract
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.IYesNoDialogAnswer
@@ -119,7 +118,7 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	private fun getExtract() {
-		api.getExtract(auth, accountUrl, year, month, this::handleMoves)
+		api.getExtract(accountUrl, year, month, this::handleMoves)
 	}
 
 	private fun handleMoves(data: Extract) {
@@ -174,11 +173,11 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 				return true
 			}
 			R.id.check_move -> {
-				api.check(auth, clickedMove.id, this::refresh)
+				api.check(clickedMove.id, this::refresh)
 				return true
 			}
 			R.id.uncheck_move -> {
-				api.uncheck(auth, clickedMove.id, this::refresh)
+				api.uncheck(clickedMove.id, this::refresh)
 				return true
 			}
 			else -> return super.onContextItemSelected(item)
@@ -201,7 +200,7 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	override fun yesAction() {
-		api.delete(auth, clickedMove.id, this::refresh)
+		api.delete(clickedMove.id, this::refresh)
 	}
 
 	override fun noAction() {}

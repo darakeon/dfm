@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.settings.Settings
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.backWithExtras
@@ -25,7 +24,7 @@ class SettingsActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 
 		if (savedInstanceState == null) {
-			api.getConfig(auth) {
+			api.getConfig {
 				this.populateScreen(it)
 			}
 		} else {
@@ -60,7 +59,7 @@ class SettingsActivity : BaseActivity() {
 	}
 
 	fun saveSettings(@Suppress(ON_CLICK) view: View) {
-		api.saveConfig(auth, settings, this::back)
+		api.saveConfig(settings, this::back)
 	}
 
 	private fun back() {

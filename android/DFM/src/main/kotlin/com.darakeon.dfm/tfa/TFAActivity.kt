@@ -3,7 +3,6 @@ package com.darakeon.dfm.tfa
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.redirect
 import kotlinx.android.synthetic.main.tfa.code
@@ -13,7 +12,7 @@ class TFAActivity : BaseActivity() {
 	override val hasTitle: Boolean get() = false
 
 	fun verify(@Suppress("UNUSED_PARAMETER") view: View) {
-		api.validateTFA(auth, code.text.toString()) {
+		api.validateTFA(code.text.toString()) {
 			redirect<AccountsActivity>()
 		}
 	}

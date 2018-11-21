@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Api
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.clearAuth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.login.LoginActivity
@@ -47,7 +46,7 @@ fun Activity.refresh() {
 }
 
 internal fun BaseActivity.logout(api: Api) {
-	api.logout(auth, this::logoutLocal)
+	api.logout(this::logoutLocal)
 }
 
 internal fun Activity.logoutLocal() {

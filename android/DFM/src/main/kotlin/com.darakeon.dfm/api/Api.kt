@@ -1,7 +1,6 @@
 package com.darakeon.dfm.api
 
 import android.app.Activity
-import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.api.entities.accounts.AccountList
 import com.darakeon.dfm.api.entities.extract.Extract
@@ -11,110 +10,59 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.api.entities.tfa.TFA
-import com.darakeon.dfm.dialogs.alertError
-import com.darakeon.dfm.extensions.isProd
-import okhttp3.Dispatcher
-import okhttp3.OkHttpClient
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class Api(
-	private val context: Activity
-) {
-	private val api: DfmService
-	private val dispatcher = Dispatcher()
-
-	init {
-		val clientBuilder = OkHttpClient.Builder()
-		clientBuilder.dispatcher(dispatcher)
-
-		val retrofit = Retrofit.Builder()
-			.baseUrl(getSite())
-			.client(clientBuilder.build())
-			.addConverterFactory(GsonConverterFactory.create())
-			.build()
-
-		api = retrofit.create(DfmService::class.java)
-	}
-
-	private fun getSite() : String {
-		val publicDomain = "dontflymoney.com"
-
-		val domain =
-			if (context.isProd)
-				publicDomain
-			else
-				context.getString(R.string.local_address)
-
-		val protocol = if (context.isProd) "https" else "http"
-
-		return "$protocol://$domain/"
-	}
+class Api(activity: Activity) {
+	private val requestHandler = RequestHandler(activity)
+	private val service = requestHandler.service
 
 	private fun Call<Body<Any>>.call(onSuccess: () -> Unit) {
-		val onSuccessAny: (Any) -> Unit = { onSuccess() }
-		call(onSuccessAny)
+		requestHandler.call(this, onSuccess)
 	}
 
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
-		if (Internet.isOffline(context)) {
-			val error = context.getString(R.string.u_r_offline)
-			context.alertError(error)
-			return
-		}
-
-		val handler = Handler(context, onSuccess)
-
-		enqueue(handler)
-
-		context.startUIWait()
+		requestHandler.call(this, onSuccess)
 	}
 
 	fun cancel() {
-		dispatcher.cancelAll()
+		requestHandler.cancel()
 	}
 
 	fun listAccounts(
-		ticket: String,
 		onSuccess: (AccountList) -> Unit
 	) {
-		api.listAccounts(ticket).call(onSuccess)
+		service.listAccounts().call(onSuccess)
 	}
 
 	fun getExtract(
-		ticket: String,
 		accountUrl: String,
 		year: Int,
 		month: Int,
 		onSuccess: (Extract) -> Unit
 	) {
 		val time = year * 100 + month + 1
-		api.getExtract(ticket, accountUrl, time).call(onSuccess)
+		service.getExtract(accountUrl, time).call(onSuccess)
 	}
 
 	fun check(
-		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.check(ticket, id).call(onSuccess)
+		service.check(id).call(onSuccess)
 	}
 
 	fun uncheck(
-		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.uncheck(ticket, id).call(onSuccess)
+		service.uncheck(id).call(onSuccess)
 	}
 
 	fun delete(
-		ticket: String,
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		api.delete(ticket, id).call(onSuccess)
+		service.delete(id).call(onSuccess)
 	}
 
 	fun login(
@@ -122,7 +70,7 @@ class Api(
 		password: String,
 		onSuccess: (String) -> Unit
 	) {
-		api.login(
+		service.login(
 			Login.Request(email, password)
 		).call {
 			onSuccess(it.ticket)
@@ -130,61 +78,54 @@ class Api(
 	}
 
 	fun logout(
-		ticket: String,
 		onSuccess: () -> Unit
 	) {
-		api.logout(ticket).call(onSuccess)
+		service.logout().call(onSuccess)
 	}
 
 	fun getMove(
-		ticket: String,
 		id: Int,
 		onSuccess: (MoveCreation) -> Unit
 	) {
-		api.getMove(ticket, id).call(onSuccess)
+		service.getMove(id).call(onSuccess)
 	}
 
 	fun saveMove(
-		ticket: String,
 		move: Move,
 		onSuccess: () -> Unit
 	) {
-		api.saveMove(ticket, move.id, move).call(onSuccess)
+		service.saveMove(move.id, move).call(onSuccess)
 	}
 
 	fun getConfig(
-		ticket: String,
 		onSuccess: (Settings) -> Unit
 	) {
-		api.getConfig(ticket).call(onSuccess)
+		service.getConfig().call(onSuccess)
 	}
 
 	fun saveConfig(
-		ticket: String,
 		settings: Settings,
 		onSuccess: () -> Unit
 	) {
-		api.saveConfig(ticket, settings).call(onSuccess)
+		service.saveConfig(settings).call(onSuccess)
 	}
 
 	fun getSummary(
-		ticket: String,
 		accountUrl: String,
 		year: Int,
 		onSuccess: (Summary) -> Unit
 	) {
-		api.getSummary(ticket, accountUrl, year).call(onSuccess)
+		service.getSummary(accountUrl, year).call(onSuccess)
 	}
 
 	fun validateTFA(
-		ticket: String,
 		text: String,
 		onSuccess: () -> Unit
 	) {
-		api.validateTFA(ticket, TFA(text)).call(onSuccess)
+		service.validateTFA(TFA(text)).call(onSuccess)
 	}
 
 	fun wakeupSite(onSuccess: () -> Unit) {
-		api.wakeupSite().call(onSuccess)
+		service.wakeupSite().call(onSuccess)
 	}
 }

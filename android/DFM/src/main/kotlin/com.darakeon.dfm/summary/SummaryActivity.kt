@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -77,7 +76,7 @@ class SummaryActivity : BaseActivity() {
 	}
 
 	private fun getSummary() {
-		api.getSummary(auth, accountUrl, year) {
+		api.getSummary(accountUrl, year) {
 			summary = it
 			fillSummary()
 		}

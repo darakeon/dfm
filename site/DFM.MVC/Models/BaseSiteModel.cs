@@ -20,10 +20,15 @@ namespace DFM.MVC.Models
 
 		public Boolean ShowWizard => config?.Wizard ?? false;
 
-		public static UrlHelper Url => new UrlHelper(HttpContext.Current.Request.RequestContext);
+		public static UrlHelper Url => new UrlHelper(
+				HttpContext.Current.Request.RequestContext
+			);
 
-		public String ActionName => RouteInfo.Current["action"] ?? String.Empty;
-		public String ControllerName => RouteInfo.Current["controller"] ?? String.Empty;
+		public String ActionName => 
+			RouteInfo.Current["action"] ?? String.Empty;
+
+		public String ControllerName => 
+			RouteInfo.Current["controller"] ?? String.Empty;
 
 		public Boolean IsExternal
 		{

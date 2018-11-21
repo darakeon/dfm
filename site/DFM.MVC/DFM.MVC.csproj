@@ -239,7 +239,7 @@
     <Compile Include="Areas\Account\Models\ReportsShowMovesModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsSummarizeMonthsModel.cs" />
     <Compile Include="Areas\Account\Models\SchedulesCreateModel.cs" />
-    <Compile Include="Areas\API\APIAreaRegistration.cs" />
+    <Compile Include="Areas\API\ApiAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\AccountsController.cs" />
     <Compile Include="Areas\API\Controllers\BaseJsonController.cs" />
     <Compile Include="Areas\API\Controllers\MovesController.cs" />
