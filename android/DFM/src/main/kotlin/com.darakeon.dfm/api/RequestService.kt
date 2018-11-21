@@ -15,34 +15,28 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Body as RetrofitBody
 
-internal interface DfmService {
-	@GET("api-{ticket}/accounts/list")
-	fun listAccounts(
-		@Path("ticket") ticket: String
-	): Call<Body<AccountList>>
+internal interface RequestService {
+	@GET("api/accounts/list")
+	fun listAccounts(): Call<Body<AccountList>>
 
-	@GET("api-{ticket}/account-{accountUrl}/moves/extract/{time}")
+	@GET("api/account-{accountUrl}/moves/extract/{time}")
 	fun getExtract(
-		@Path("ticket") ticket: String,
 		@Path("accountUrl") accountUrl: String,
 		@Path("time") time: Int
 	): Call<Body<Extract>>
 
-	@POST("api-{ticket}/moves/check/{id}")
+	@POST("api/moves/check/{id}")
 	fun check(
-		@Path("ticket") ticket: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
-	@POST("api-{ticket}/moves/uncheck/{id}")
+	@POST("api/moves/uncheck/{id}")
 	fun uncheck(
-		@Path("ticket") ticket: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
-	@POST("api-{ticket}/moves/delete/{id}")
+	@POST("api/moves/delete/{id}")
 	fun delete(
-		@Path("ticket") ticket: String,
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
@@ -51,45 +45,36 @@ internal interface DfmService {
 		@RetrofitBody login: Login.Request
 	): Call<Body<Login.Response>>
 
-	@POST("api-{ticket}/users/logout")
-	fun logout(
-		@Path("ticket") ticket: String
-	): Call<Body<Any>>
+	@POST("api/users/logout")
+	fun logout(): Call<Body<Any>>
 
-	@GET("api-{ticket}/moves/create/{id}")
+	@GET("api/moves/create/{id}")
 	fun getMove(
-		@Path("ticket") ticket: String,
 		@Path("id") id: Int
 	): Call<Body<MoveCreation>>
 
-	@POST("api-{ticket}/moves/create/{id}")
+	@POST("api/moves/create/{id}")
 	fun saveMove(
-		@Path("ticket") ticket: String,
 		@Path("id") id: Int,
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@GET("api-{ticket}/users/config")
-	fun getConfig(
-		@Path("ticket") ticket: String
-	): Call<Body<Settings>>
+	@GET("api/users/config")
+	fun getConfig(): Call<Body<Settings>>
 
-	@POST("api-{ticket}/users/config")
+	@POST("api/users/config")
 	fun saveConfig(
-		@Path("ticket") ticket: String,
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
 
-	@GET("api-{ticket}/account-{accountUrl}/moves/summary/{time}")
+	@GET("api/account-{accountUrl}/moves/summary/{time}")
 	fun getSummary(
-		@Path("ticket") ticket: String,
 		@Path("accountUrl") accountUrl: String,
 		@Path("time") time: Int
 	): Call<Body<Summary>>
 
-	@POST("api-{ticket}/account-{accountUrl}/users/tfa")
+	@POST("api/account-{accountUrl}/users/tfa")
 	fun validateTFA(
-		@Path("ticket") ticket: String,
 		@RetrofitBody tfa: TFA
 	): Call<Body<Any>>
 

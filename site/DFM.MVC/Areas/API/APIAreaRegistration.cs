@@ -4,33 +4,25 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API
 {
-	public class APIAreaRegistration : AreaRegistration
+	public class ApiAreaRegistration : AreaRegistration
 	{
 		public override string AreaName => RouteNames.API;
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
 			context.MapRoute(
-				RouteNames.API_LOGGED_ACCOUNT,
-				"API-{ticket}/Account-{accountUrl}/{controller}/{action}/{id}",
+				RouteNames.API_ACCOUNT,
+				"api/account-{accountUrl}/{controller}/{action}/{id}",
 				new { controller = "Moves", action = "List", id = UrlParameter.Optional },
 				new[] { typeof(UsersController).Namespace }
 			);
 
 			context.MapRoute(
-				RouteNames.API_LOGGED,
-				"API-{ticket}/{controller}/{action}/{id}",
-				new { controller = "Accounts", action = "List", id = UrlParameter.Optional },
-				new[] { typeof(UsersController).Namespace }
-			);
-
-			context.MapRoute(
 				RouteNames.API,
-				"API/{controller}/{action}/{id}",
+				"api/{controller}/{action}/{id}",
 				new { controller = "Status", action = "Index", id = UrlParameter.Optional },
 				new[] { typeof(StatusController).Namespace }
 			);
-
 		}
 	}
 }

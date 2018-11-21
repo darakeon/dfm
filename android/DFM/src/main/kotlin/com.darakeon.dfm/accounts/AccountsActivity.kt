@@ -5,7 +5,6 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.accounts.Account
 import com.darakeon.dfm.api.entities.accounts.AccountList
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
@@ -29,10 +28,7 @@ class AccountsActivity : BaseActivity() {
 
 			fillAccounts()
 		} else {
-			api.listAccounts(
-				auth,
-				this::handleAccounts
-			)
+			api.listAccounts(this::handleAccounts)
 		}
 	}
 

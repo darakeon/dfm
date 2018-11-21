@@ -2,7 +2,7 @@ package com.darakeon.dfm.auth
 
 import android.content.Context
 
-private val spKey = "Ticket"
+private const val spKey = "Ticket"
 
 fun Context.setAuth(ticket: String) {
 	val encryptedTicket = encrypt(ticket)

@@ -15,10 +15,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-internal class Handler<T>(
-	private val context: Activity,
+internal class ResponseHandler<T>(
+	private val activity: Activity,
+	private val uiHandler: UIHandler,
 	private val onSuccess: (T) -> Unit
 )  : Callback<Body<T>> {
+
 	override fun onResponse(call: Call<Body<T>>?, response: Response<Body<T>>?) {
 		val url = getUrl(call)
 
@@ -30,7 +32,7 @@ internal class Handler<T>(
 		val body = response.body()
 
 		if (body?.environment != null) {
-			context.setEnvironment(body.environment)
+			activity.setEnvironment(body.environment)
 		}
 
 		when {
@@ -43,7 +45,7 @@ internal class Handler<T>(
 			else -> onSuccess(body.data)
 		}
 
-		context.endUIWait()
+		uiHandler.endUIWait()
 	}
 
 	override fun onFailure(call: Call<Body<T>>?, throwable: Throwable?) {
@@ -58,30 +60,30 @@ internal class Handler<T>(
 	}
 
 	private fun onError(url: String?, error: Throwable) {
-		if (!context.isProd) throw error
+		if (!activity.isProd) throw error
 
 		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
 			dialog.dismiss()
-			context.composeErrorEmail(url ?: "", error)
+			activity.composeErrorEmail(url ?: "", error)
 		})
 
-		context.alertError(context.getString(R.string.error_contact_url), sendReport)
+		activity.alertError(activity.getString(R.string.error_contact_url), sendReport)
 	}
 
 	private fun assemblyResponse(
 		code: Int?,
 		error: String?
 	) {
-		val tfa = context.resources.getInteger(R.integer.TFA)
-		val uninvited = context.resources.getInteger(R.integer.uninvited)
+		val tfa = activity.resources.getInteger(R.integer.TFA)
+		val uninvited = activity.resources.getInteger(R.integer.uninvited)
 
 		if (code == tfa) {
-			context.redirect<TFAActivity>()
+			activity.redirect<TFAActivity>()
 		} else {
-			context.alertError(error ?: "")
+			activity.alertError(error ?: "")
 
 			if (code == uninvited) {
-				context.logoutLocal()
+				activity.logoutLocal()
 			}
 		}
 	}
