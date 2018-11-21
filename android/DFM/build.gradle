@@ -7,7 +7,7 @@ android {
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
-		minSdkVersion 17
+		minSdkVersion 18
 		targetSdkVersion 28
 	}
 
