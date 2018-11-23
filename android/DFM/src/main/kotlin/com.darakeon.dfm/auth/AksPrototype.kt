@@ -18,84 +18,85 @@ import javax.crypto.Cipher
 import javax.security.auth.x500.X500Principal
 
 class AksPrototype(private val context: Context) {
-	private val keyStore: KeyStore = createAndroidKeyStore()
+	private val keyStoreType = "AndroidKeyStore"
+	private val keyStoreAlias = "MASTER_KEY"
+	private val algorithm = "RSA"
+	private val transformationAsymmetric = "RSA/ECB/PKCS1Padding"
+
 	private val hasMarshmallow = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
-	private fun createAndroidKeyStore(): KeyStore {
-		val keyStore = KeyStore.getInstance("AndroidKeyStore")
+	private val keyStore = createKeyStore()
+	private val cipher = createCipher()
+
+	private fun createKeyStore(): KeyStore {
+		val keyStore = KeyStore.getInstance(keyStoreType)
 		keyStore.load(null)
 		return keyStore
 	}
 
-	fun getKeys(): KeyPair {
-		var masterKey = getAndroidKeyStoreAsymmetricKeyPair("MASTER_KEY")
+	private fun createCipher() =
+		Cipher.getInstance(transformationAsymmetric)
 
-		if (masterKey == null)
-			masterKey = createAndroidKeyStoreAsymmetricKey("MASTER_KEY")
+	fun getKeys() = getKeyPair() ?: createKeyPair()
 
-		return masterKey
+	private fun getKeyPair(): KeyPair? {
+		val privateKey = getPrivateKey() ?: return null
+		val publicKey = getPublicKey() ?: return null
+
+		return KeyPair(publicKey, privateKey)
 	}
 
-	private fun createAndroidKeyStoreAsymmetricKey(alias: String): KeyPair {
-		val generator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore")
+	private fun getPublicKey() =
+		keyStore.getCertificate(keyStoreAlias)?.publicKey
+
+	private fun getPrivateKey() =
+		keyStore.getKey(keyStoreAlias, null) as PrivateKey?
+
+	private fun createKeyPair(): KeyPair {
+		val generator = createGenerator()
 
 		if (hasMarshmallow) {
-			initGeneratorWithKeyGenParameterSpec(generator, alias)
+			initGenerator(generator)
 		} else {
-			initGeneratorWithKeyPairGeneratorSpec(generator, alias)
+			initOldGenerator(generator)
 		}
 
-		// Generates Key with given spec and saves it to the KeyStore
 		return generator.generateKeyPair()
 	}
 
-	@Suppress("DEPRECATION")
-	private fun initGeneratorWithKeyPairGeneratorSpec(generator: KeyPairGenerator, alias: String) {
-		val startDate = Calendar.getInstance()
-		val endDate = Calendar.getInstance()
-		endDate.add(Calendar.YEAR, 20)
-
-		val builder = KeyPairGeneratorSpec.Builder(context)
-			.setAlias(alias)
-			.setSerialNumber(BigInteger.ONE)
-			.setSubject(X500Principal("CN=${alias} CA Certificate"))
-			.setStartDate(startDate.time)
-			.setEndDate(endDate.time)
-
-		generator.initialize(builder.build())
-	}
+	private fun createGenerator() =
+		KeyPairGenerator.getInstance(algorithm, keyStoreType)
 
 	@TargetApi(Build.VERSION_CODES.M)
-	private fun initGeneratorWithKeyGenParameterSpec(generator: KeyPairGenerator, alias: String) {
-		val builder = KeyGenParameterSpec.Builder(
-			alias, KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-		)
+	private fun initGenerator(generator: KeyPairGenerator) {
+		val purpose =
+			KeyProperties.PURPOSE_ENCRYPT or
+			KeyProperties.PURPOSE_DECRYPT
+
+		val builder = KeyGenParameterSpec.Builder(keyStoreAlias, purpose)
 			.setBlockModes(KeyProperties.BLOCK_MODE_ECB)
 			.setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
 
 		generator.initialize(builder.build())
 	}
 
-	private fun getAndroidKeyStoreAsymmetricKeyPair(alias: String): KeyPair? {
-		val privateKey = keyStore.getKey(alias, null) as PrivateKey?
+	@Suppress("DEPRECATION")
+	private fun initOldGenerator(generator: KeyPairGenerator) {
+		val startDate = Calendar.getInstance()
+		val endDate = Calendar.getInstance()
+		endDate.add(Calendar.YEAR, 20)
 
-		if (keyStore.getKey(alias, null) != keyStore.getKey(alias, null)) {
-			throw Exception("Oh, goddess!")
-		}
+		val builder = KeyPairGeneratorSpec.Builder(context)
+			.setAlias(keyStoreAlias)
+			.setSerialNumber(BigInteger.ONE)
+			.setSubject(X500Principal("CN=$keyStoreAlias CA Certificate"))
+			.setStartDate(startDate.time)
+			.setEndDate(endDate.time)
 
-		val publicKey = keyStore.getCertificate(alias)?.publicKey
-		return if (privateKey != null && publicKey != null) {
-			KeyPair(publicKey, privateKey)
-		} else {
-			null
-		}
+		generator.initialize(builder.build())
 	}
 
-	fun removeAndroidKeyStoreKey(alias: String) = keyStore.deleteEntry(alias)
-
-	val TRANSFORMATION_ASYMMETRIC = "RSA/ECB/PKCS1Padding"
-
-	val cipher: Cipher = Cipher.getInstance(TRANSFORMATION_ASYMMETRIC)
+	fun removeKey(alias: String) = keyStore.deleteEntry(alias)
 
 	fun encrypt(data: String, key: Key?): String {
 		cipher.init(Cipher.ENCRYPT_MODE, key)
