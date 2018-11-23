@@ -1,10 +1,10 @@
 package com.darakeon.dfm.api
 
-import android.app.Activity
 import android.content.DialogInterface
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.auth.setEnvironment
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.composeErrorEmail
 import com.darakeon.dfm.extensions.isProd
@@ -16,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 internal class ResponseHandler<T>(
-	private val activity: Activity,
+	private val activity: BaseActivity,
 	private val uiHandler: UIHandler,
 	private val onSuccess: (T) -> Unit
 )  : Callback<Body<T>> {

@@ -1,9 +1,8 @@
 package com.darakeon.dfm.api
 
-import android.app.Activity
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
-import com.darakeon.dfm.auth.auth
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.isProd
 import okhttp3.Dispatcher
@@ -15,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 internal open class RequestHandler(
-	private val activity: Activity
+	private val activity: BaseActivity
 ) {
 	internal val service: RequestService
 	private val dispatcher = Dispatcher()
@@ -40,7 +39,7 @@ internal open class RequestHandler(
 	private fun addAuthTicket(chain: Interceptor.Chain): Response {
 		val request = chain.request()
 			.newBuilder()
-			.addHeader("ticket", activity.auth)
+			.addHeader("ticket", activity.ticket)
 			.build()
 
 		return chain.proceed(request)

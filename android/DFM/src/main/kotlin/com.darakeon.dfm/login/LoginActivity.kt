@@ -2,7 +2,6 @@ package com.darakeon.dfm.login
 
 import android.view.View
 import com.darakeon.dfm.R
-import com.darakeon.dfm.auth.auth
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.redirect
@@ -25,7 +24,7 @@ class LoginActivity : BaseActivity() {
 			email.text.toString(),
 			password.text.toString()
 		) {
-			auth = it
+			ticket = it
 			redirect<WelcomeActivity>()
 		}
 	}
