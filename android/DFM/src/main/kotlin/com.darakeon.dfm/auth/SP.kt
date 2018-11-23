@@ -2,11 +2,11 @@ package com.darakeon.dfm.auth
 
 import android.content.Context
 
-private val sharedPreferencesDFM = "DfM"
+private const val sharedPreferencesDFM = "DfM"
 
 fun Context.getValue(key: String): String {
 	val sp = getSharedPreferences(sharedPreferencesDFM, Context.MODE_PRIVATE)
-	return sp.getString(key, "")
+	return sp.getString(key, "") ?: ""
 }
 
 fun Context.setValue(key: String, value: String) {
