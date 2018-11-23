@@ -3,8 +3,8 @@
 		  xmlns:android="http://schemas.android.com/apk/res/android"
 		  xmlns:tools="http://schemas.android.com/tools"
 		  android:installLocation="auto"
-		  android:versionCode="002004010201"
-		  android:versionName="4.1.2.1">
+		  android:versionCode="002004010202"
+		  android:versionName="4.1.2.2">
 	<!--
 		Cannot put
 		003 000 000 000
