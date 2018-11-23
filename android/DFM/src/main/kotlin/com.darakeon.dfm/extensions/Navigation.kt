@@ -102,11 +102,7 @@ fun Activity.composeEmail(subject: String, body: String, vararg addresses: Strin
 fun Activity.composeErrorEmail(url: String, error: Throwable) {
 	val subject = getString(R.string.error_mail_title)
 
-	val reportUrl =
-		Regex("Api-\\w{32}")
-			.replace(url, "Api-{ticket}")
-
-	val body = reportUrl + "\n\n" +
+	val body = url + "\n\n" +
 		error.message + "\n\n" +
 		error.stackTraceText
 
