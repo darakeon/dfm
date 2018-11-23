@@ -125,7 +125,7 @@ class Api(activity: Activity) {
 		service.validateTFA(TFA(text)).call(onSuccess)
 	}
 
-	fun wakeupSite(onSuccess: () -> Unit) {
+	fun wakeUpSite(onSuccess: () -> Unit) {
 		service.wakeupSite().call(onSuccess)
 	}
 }

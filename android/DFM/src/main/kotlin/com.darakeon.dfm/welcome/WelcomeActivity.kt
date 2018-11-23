@@ -22,7 +22,7 @@ class WelcomeActivity : BaseActivity() {
 			return
 		}
 
-		api.wakeupSite {
+		api.wakeUpSite {
 			if (isLoggedIn)
 				redirect<AccountsActivity>()
 			else
