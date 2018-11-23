@@ -2,19 +2,21 @@ package com.darakeon.dfm.auth
 
 import android.content.Context
 
-private const val spKey = "Ticket"
+class Authentication(private val context: Context) {
+	private val aks = Aks(context)
+	private val spKey = "Ticket"
 
-var Context.auth: String
-	get() {
-		val encryptedTicket = getValue(spKey)
-		return decrypt(encryptedTicket)
-	}
-	set(value) {
-		val encryptedTicket = encrypt(value)
-		setValue(spKey, encryptedTicket)
-	}
+	var ticket: String
+		get() {
+			val encryptedTicket = context.getValue(spKey)
+			return aks.decrypt(encryptedTicket)
+		}
+		set(value) {
+			val encryptedTicket = aks.encrypt(value)
+			context.setValue(spKey, encryptedTicket)
+		}
 
-fun Context.clearAuth() {
-	auth = ""
+	fun clear() {
+		ticket = ""
+	}
 }
-

@@ -129,7 +129,7 @@ Legend:
 - [ ] Make slide menu, not bottom anymore
 
 ## <a name="dev"></a>4.1.2.2 :ant: <sup>`5`</sup>
-- [ ] `2018-11-21 > ...` Encrypt sharedPreferences
+- [x] `2018-11-21 > 2018-11-23` Encrypt sharedPreferences
 - [x] `2018-11-21 > 2018-11-21` Given two security changes in this version, logoff all mobile
 - [x] `2018-11-20 > 2018-11-21` Remove ticket from url (mobile)
 - [x] `2018-05-26 > 2018-11-18` Kill state objects (mobile)

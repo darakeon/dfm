@@ -11,6 +11,7 @@ import android.view.Window
 import android.widget.Button
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
+import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -34,7 +35,15 @@ abstract class BaseActivity : Activity() {
 
 	var clickedView: View? = null
 	private lateinit var inflater: LayoutInflater
-	lateinit var api: Api
+
+	protected lateinit var api: Api
+	private lateinit var auth: Authentication
+
+	var ticket
+		get() = auth.ticket
+		set(value) { auth.ticket = value }
+
+	fun clearAuth() = auth.clear()
 
 	protected abstract val contentView: Int
 	protected open val title: Int = 0
@@ -56,6 +65,7 @@ abstract class BaseActivity : Activity() {
 		super.onCreate(savedInstanceState)
 
 		api = Api(this)
+		auth = Authentication(this)
 
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
