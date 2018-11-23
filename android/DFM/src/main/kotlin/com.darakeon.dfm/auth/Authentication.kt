@@ -4,17 +4,17 @@ import android.content.Context
 
 private const val spKey = "Ticket"
 
-fun Context.setAuth(ticket: String) {
-	val encryptedTicket = encrypt(ticket)
-	setValue(spKey, encryptedTicket)
-}
-
-val Context.auth: String get() {
-	val encryptedTicket = getValue(spKey)
-	return decrypt(encryptedTicket)
-}
+var Context.auth: String
+	get() {
+		val encryptedTicket = getValue(spKey)
+		return decrypt(encryptedTicket)
+	}
+	set(value) {
+		val encryptedTicket = encrypt(value)
+		setValue(spKey, encryptedTicket)
+	}
 
 fun Context.clearAuth() {
-	setAuth("")
+	auth = ""
 }
 
