@@ -3,12 +3,10 @@ package com.darakeon.dfm.auth
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
-import android.security.KeyPairGeneratorSpec
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
 import java.math.BigInteger
-import java.security.Key
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.security.KeyStore
@@ -25,19 +23,18 @@ class AksPrototype(private val context: Context) {
 
 	private val hasMarshmallow = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
-	private val keyStore = createKeyStore()
-	private val cipher = createCipher()
+	private val keyStore: KeyStore
+	private val cipher: Cipher
+	private val keyPair: KeyPair
 
-	private fun createKeyStore(): KeyStore {
-		val keyStore = KeyStore.getInstance(keyStoreType)
+	init {
+		keyStore = KeyStore.getInstance(keyStoreType)
 		keyStore.load(null)
-		return keyStore
+
+		cipher = Cipher.getInstance(transformationAsymmetric)
+
+		keyPair = getKeyPair() ?: createKeyPair()
 	}
-
-	private fun createCipher() =
-		Cipher.getInstance(transformationAsymmetric)
-
-	fun getKeys() = getKeyPair() ?: createKeyPair()
 
 	private fun getKeyPair(): KeyPair? {
 		val privateKey = getPrivateKey() ?: return null
@@ -86,7 +83,8 @@ class AksPrototype(private val context: Context) {
 		val endDate = Calendar.getInstance()
 		endDate.add(Calendar.YEAR, 20)
 
-		val builder = KeyPairGeneratorSpec.Builder(context)
+		val builder = android.security.KeyPairGeneratorSpec
+			.Builder(context)
 			.setAlias(keyStoreAlias)
 			.setSerialNumber(BigInteger.ONE)
 			.setSubject(X500Principal("CN=$keyStoreAlias CA Certificate"))
@@ -96,16 +94,14 @@ class AksPrototype(private val context: Context) {
 		generator.initialize(builder.build())
 	}
 
-	fun removeKey(alias: String) = keyStore.deleteEntry(alias)
-
-	fun encrypt(data: String, key: Key?): String {
-		cipher.init(Cipher.ENCRYPT_MODE, key)
+	fun encrypt(data: String): String {
+		cipher.init(Cipher.ENCRYPT_MODE, keyPair.public)
 		val bytes = cipher.doFinal(data.toByteArray())
 		return Base64.encodeToString(bytes, Base64.DEFAULT)
 	}
 
-	fun decrypt(data: String, key: Key?): String {
-		cipher.init(Cipher.DECRYPT_MODE, key)
+	fun decrypt(data: String): String {
+		cipher.init(Cipher.DECRYPT_MODE, keyPair.private)
 		val encryptedData = Base64.decode(data, Base64.DEFAULT)
 		val decodedData = cipher.doFinal(encryptedData)
 		return String(decodedData)
@@ -114,19 +110,11 @@ class AksPrototype(private val context: Context) {
 	companion object {
 		fun test(context: Context) {
 			val aks = AksPrototype(context)
-			val keys1 = aks.getKeys()
-			val keys2 = aks.getKeys()
 
 			val message = "Hey, listen!"
 
-			if (keys1.private != keys2.private)
-				throw Exception("Wow, keys?!")
-
-			if (keys1.public != keys2.public)
-				throw Exception("Ahaaaaa!!!")
-
-			val cipher = aks.encrypt(message, keys1.public)
-			val result = aks.decrypt(cipher, keys2.private)
+			val cipher = aks.encrypt(message)
+			val result = aks.decrypt(cipher)
 
 			if (result != message)
 				throw Exception("Crypto messed up!")
