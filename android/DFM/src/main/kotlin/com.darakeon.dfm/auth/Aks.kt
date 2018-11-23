@@ -15,7 +15,7 @@ import java.util.Calendar
 import javax.crypto.Cipher
 import javax.security.auth.x500.X500Principal
 
-class AksPrototype(private val context: Context) {
+class Aks(private val context: Context) {
 	private val keyStoreType = "AndroidKeyStore"
 	private val keyStoreAlias = "MASTER_KEY"
 	private val algorithm = "RSA"
@@ -105,19 +105,5 @@ class AksPrototype(private val context: Context) {
 		val encryptedData = Base64.decode(data, Base64.DEFAULT)
 		val decodedData = cipher.doFinal(encryptedData)
 		return String(decodedData)
-	}
-
-	companion object {
-		fun test(context: Context) {
-			val aks = AksPrototype(context)
-
-			val message = "Hey, listen!"
-
-			val cipher = aks.encrypt(message)
-			val result = aks.decrypt(cipher)
-
-			if (result != message)
-				throw Exception("Crypto messed up!")
-		}
 	}
 }
