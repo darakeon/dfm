@@ -7,8 +7,11 @@ android {
 
 	defaultConfig {
 		applicationId "com.dontflymoney.view"
+
 		minSdkVersion 18
 		targetSdkVersion 28
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
 	signingConfigs {
@@ -43,6 +46,10 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+	testImplementation 'junit:junit:4.12'
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
 apply plugin: 'kotlin-android-extensions'
