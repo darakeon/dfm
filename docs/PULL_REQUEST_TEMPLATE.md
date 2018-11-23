@@ -5,13 +5,13 @@
 ## Tasks to publish
 
 - [ ] Change android/site version number
-- [ ] Update links at task list
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
 - [ ] Execute destructive Sql
 - [ ] Upload APK
 - [ ] Upload new mobile prints
+- [ ] Update links at task list
 - [ ] Upload video
 - [ ] Post Twitter
 - [ ] Post Facebook
