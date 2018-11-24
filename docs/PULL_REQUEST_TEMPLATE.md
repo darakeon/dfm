@@ -8,8 +8,8 @@
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
-- [ ] Execute destructive Sql
 - [ ] Upload APK
+- [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
 - [ ] Update links at task list
 - [ ] Upload video
