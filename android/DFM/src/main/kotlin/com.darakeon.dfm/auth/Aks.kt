@@ -12,7 +12,9 @@ import java.security.KeyPairGenerator
 import java.security.KeyStore
 import java.security.PrivateKey
 import java.util.Calendar
+import javax.crypto.BadPaddingException
 import javax.crypto.Cipher
+import javax.crypto.IllegalBlockSizeException
 import javax.security.auth.x500.X500Principal
 
 class Aks(private val context: Context) {
@@ -95,15 +97,26 @@ class Aks(private val context: Context) {
 	}
 
 	fun encrypt(data: String): String {
+		if (data == "") return ""
+
 		cipher.init(Cipher.ENCRYPT_MODE, keyPair.public)
 		val bytes = cipher.doFinal(data.toByteArray())
+
 		return Base64.encodeToString(bytes, Base64.DEFAULT)
 	}
 
 	fun decrypt(data: String): String {
-		cipher.init(Cipher.DECRYPT_MODE, keyPair.private)
-		val encryptedData = Base64.decode(data, Base64.DEFAULT)
-		val decodedData = cipher.doFinal(encryptedData)
-		return String(decodedData)
+		if (data == "") return ""
+
+		return try {
+			cipher.init(Cipher.DECRYPT_MODE, keyPair.private)
+
+			val encryptedData = Base64.decode(data, Base64.DEFAULT)
+			val decodedData = cipher.doFinal(encryptedData)
+
+			String(decodedData)
+		}
+		catch (e: IllegalBlockSizeException) { "" }
+		catch (e: BadPaddingException) { "" }
 	}
 }

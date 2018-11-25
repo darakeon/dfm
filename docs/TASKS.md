@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.2.4/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.5/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -120,13 +120,16 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.4 :ant: <sup>`4`</sup>
+## <a name="dev"></a>4.1.2.5 :ant: <sup>`4`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 
-## <a name="prod"></a>4.1.2.3 :ant: <sup>`1`</sup>
+## <a name="prod"></a>4.1.2.4 :ant: <sup>`1`</sup>
+- [x] `2018-11-25 > 2018-11-25` Fix empty decryption
+
+## 4.1.2.3 :ant: <sup>`1`</sup>
 - [x] `2018-11-24 > 2018-11-24` Fix android max version number
 
 ## 4.1.2.2 :ant: <sup>`5`</sup>
