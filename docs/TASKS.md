@@ -120,11 +120,12 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.5 :ant: <sup>`4`</sup>
+## <a name="dev"></a>4.1.2.5 :ant: <sup>`5`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
+- [ ] Fix Image in Welcome
 
 ## <a name="prod"></a>4.1.2.4 :ant: <sup>`1`</sup>
 - [x] `2018-11-25 > 2018-11-25` Fix empty decryption
