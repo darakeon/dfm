@@ -129,7 +129,7 @@ Legend:
 - [ ] Make slide menu, not bottom anymore
 
 ## <a name="dev"></a>4.1.2.3 :ant: <sup>`1`</sup>
-- [ ] Fix android max version number
+- [x] `2018-11-24 > 2018-11-24` Fix android max version number
 
 ## <a name="prod"></a>4.1.2.2 :ant: <sup>`5`</sup>
 - [x] `2018-11-21 > 2018-11-23` Encrypt sharedPreferences

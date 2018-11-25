@@ -13,8 +13,6 @@
 		by
 		0020 ne ma mi sy
 	-->
-	<uses-sdk android:maxSdkVersion="25"/>
-
 	<uses-permission
 		android:name="android.permission.INTERNET"
 		android:protectionLevel="signature"/>
