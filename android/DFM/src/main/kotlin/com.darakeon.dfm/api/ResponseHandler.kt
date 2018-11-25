@@ -1,13 +1,13 @@
 package com.darakeon.dfm.api
 
 import android.content.DialogInterface
+import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.auth.setEnvironment
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.composeErrorEmail
-import com.darakeon.dfm.extensions.isProd
 import com.darakeon.dfm.extensions.logoutLocal
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.tfa.TFAActivity
@@ -60,7 +60,7 @@ internal class ResponseHandler<T>(
 	}
 
 	private fun onError(url: String?, error: Throwable) {
-		if (!activity.isProd) throw error
+		if (BuildConfig.DEBUG) throw error
 
 		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
 			dialog.dismiss()

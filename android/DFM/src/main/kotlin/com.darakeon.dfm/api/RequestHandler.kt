@@ -1,10 +1,10 @@
 package com.darakeon.dfm.api
 
+import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
-import com.darakeon.dfm.extensions.isProd
 import okhttp3.Dispatcher
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -46,17 +46,13 @@ internal open class RequestHandler(
 	}
 
 	private fun getSite() : String {
-		val publicDomain = "dontflymoney.com"
+		if (!BuildConfig.DEBUG)
+			return "https://dontflymoney.com/"
 
-		val domain =
-			if (activity.isProd)
-				publicDomain
-			else
-				activity.getString(R.string.local_address)
+		val localAddress =
+			activity.getString(R.string.local_address)
 
-		val protocol = if (activity.isProd) "https" else "http"
-
-		return "$protocol://$domain/"
+		return "http://$localAddress/"
 	}
 
 	internal fun call(response: Call<Body<Any>>, onSuccess: () -> Unit) {
