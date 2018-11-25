@@ -126,7 +126,7 @@ Legend:
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 - [ ] Fix Image in Welcome
-- [ ] Fix requests for pre-launch report
+- [x] `2018-11-25 > 2018-11-25` Fix requests for pre-launch report
 
 ## <a name="prod"></a>4.1.2.4 :ant: <sup>`1`</sup>
 - [x] `2018-11-25 > 2018-11-25` Fix empty decryption
