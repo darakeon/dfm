@@ -5,14 +5,6 @@
 		  android:installLocation="auto"
 		  android:versionCode="002004010202"
 		  android:versionName="4.1.2.2">
-	<!--
-		Cannot put
-		003 000 000 000
-		replaced old pattern
-		New Max Min Sys
-		by
-		0020 ne ma mi sy
-	-->
 	<uses-permission
 		android:name="android.permission.INTERNET"
 		android:protectionLevel="signature"/>
