@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.2.2/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.3/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -120,7 +120,7 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.2.3 :ant: <sup>`6`</sup>
+## <a name="dev"></a>4.1.2.3 :ant: <sup>`6`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
@@ -128,14 +128,14 @@ Legend:
 - [ ] Kill all java click listeners
 - [ ] Make slide menu, not bottom anymore
 
-## <a name="dev"></a>4.1.2.2 :ant: <sup>`5`</sup>
+## <a name="prod"></a>4.1.2.2 :ant: <sup>`5`</sup>
 - [x] `2018-11-21 > 2018-11-23` Encrypt sharedPreferences
 - [x] `2018-11-21 > 2018-11-21` Given two security changes in this version, logoff all mobile
 - [x] `2018-11-20 > 2018-11-21` Remove ticket from url (mobile)
 - [x] `2018-05-26 > 2018-11-18` Kill state objects (mobile)
 - [x] `2018-05-26 > 2018-11-18` Replace volley by retrofit
 
-## <a name="prod"></a>4.1.2.1 :ant: <sup>`3`</sup>
+## 4.1.2.1 :ant: <sup>`3`</sup>
 - [x] `2018-03-07 > 2018-03-07` Fix category repeated block at mobile/moves
 - [x] `2018-03-07 > 2018-03-07` Fix nature issue on create at mobile/moves
 - [x] `2018-03-06 > 2018-03-06` Fix add detail at mobile/moves
