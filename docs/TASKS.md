@@ -120,13 +120,16 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.3 :ant: <sup>`6`</sup>
+## 4.1.2.4 :ant: <sup>`6`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
 - [ ] Kill all java click listeners
 - [ ] Make slide menu, not bottom anymore
+
+## <a name="dev"></a>4.1.2.3 :ant: <sup>`1`</sup>
+- [ ] Fix android max version number
 
 ## <a name="prod"></a>4.1.2.2 :ant: <sup>`5`</sup>
 - [x] `2018-11-21 > 2018-11-23` Encrypt sharedPreferences
