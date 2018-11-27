@@ -125,7 +125,7 @@ Legend:
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
 - [ ] Avoid weird layout on changing theme
-- [ ] Fix Image in Welcome
+- [x] `181126>181127` Fix Image in Welcome
 - [x] `181125>181125` Fix requests for pre-launch report
 
 ## <a name="prod"></a>4.1.2.4 :ant: <sup>`1`</sup>
