@@ -26,11 +26,13 @@
 	<script src="~/Assets/Libs/MaskedMoney/jquery.maskMoney.js?v=@Cfg.Version" type="text/javascript"></script>
 
 	@{
-		if (Model.Language != "en-US")
+		var language = Model.Language.ToLower();
+
+		if (language != "en-us")
 		{
-			<script src="~/Assets/Libs/Datepicker/moment-@(Model.Language.ToLower()).js?v=@Cfg.Version"></script>
+			<script src="~/Assets/Libs/Datepicker/moment-@(language).js?v=@Cfg.Version"></script>
 			<script type="text/javascript">
-				window.language = "@Model.Language.ToLower()";
+				window.language = "@language";
 			</script>
 		}
 	}
