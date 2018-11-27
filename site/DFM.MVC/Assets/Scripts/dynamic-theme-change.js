@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+	$(".delete-me").remove();
+
+	$("body").css("display", "block");
+
 	$(".theme-changer").click(function() {
 		var currentHref = $("#bootstrap-theme").attr("href");
 		var newTheme = $(this).data("theme");

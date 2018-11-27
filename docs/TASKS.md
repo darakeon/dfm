@@ -124,7 +124,7 @@ Legend:
 - [ ] Make/find app to verify DFM status
 - [ ] AntiForgery
 - [ ] Add IsAdm to User
-- [ ] Avoid weird layout on changing theme
+- [x] `181127>181127` Avoid weird layout on changing theme
 - [x] `181126>181127` Fix Image in Welcome
 - [x] `181125>181125` Fix requests for pre-launch report
 
