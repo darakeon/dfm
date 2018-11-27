@@ -1,5 +1,5 @@
-﻿@model UsersConfigModel
-
+﻿@using DFM.Generic
+@model UsersConfigModel
 @{
 	ViewBag.Title = MultiLanguage.Dictionary["Settings"];
 	ViewBag.WizardMessage = Wizard.Settings;
@@ -13,6 +13,14 @@
 
 @section Styles {
 	<link rel="stylesheet" type="text/css" href="~/Assets/Styles/qrcode.css" />
+	
+	<style>body { display: none }</style>
+
+	@foreach (var theme in Model.ThemeOpt.ThemeList)
+	{
+		<link rel="stylesheet" type="text/css" class="delete-me" style="display: none"
+			  href="/Assets/Libs/Themes/bootstrap-@(theme).min.css?v=@Cfg.Version" />
+	}
 }
 
 @section Scripts {
