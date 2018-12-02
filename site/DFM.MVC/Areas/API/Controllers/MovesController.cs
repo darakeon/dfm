@@ -8,11 +8,13 @@ namespace DFM.MVC.Areas.API.Controllers
 	[DFMApiAuthorize]
 	public class MovesController : BaseJsonController
 	{
+		[HttpGet]
 		public ActionResult Extract(String accountUrl, Int32 id)
 		{
 			return json(() => new MovesExtractModel(accountUrl, id));
 		}
 
+		[HttpGet]
 		public ActionResult Summary(String accountUrl, Int16 id)
 		{
 			return json(() => new MovesSummaryModel(accountUrl, id));
@@ -47,6 +49,5 @@ namespace DFM.MVC.Areas.API.Controllers
 		{
 			return json(() => MovesModel.Uncheck(id));
 		}
-
 	}
 }

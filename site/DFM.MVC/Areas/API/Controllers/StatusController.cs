@@ -2,11 +2,12 @@
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-    public class StatusController : BaseJsonController
+	public class StatusController : BaseJsonController
 	{
-        public ActionResult Index()
-        {
-            return json(() => new { status = "online" });
-        }
-    }
+		[HttpGet]
+		public ActionResult Index()
+		{
+			return json(() => new { status = "online" });
+		}
+	}
 }

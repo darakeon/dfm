@@ -246,6 +246,7 @@
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
     <Compile Include="Areas\API\Models\Environment.cs" />
     <Compile Include="Areas\API\Models\UserTFAModel.cs" />
+    <Compile Include="Helpers\Authorize\HttpShouldBePostAttribute.cs" />
     <Compile Include="Helpers\Views\WizardMenu.cs" />
     <Compile Include="Models\UsersEndWizard.cs" />
     <Compile Include="Areas\API\Helpers\MobileUrls.cs" />

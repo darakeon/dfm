@@ -12,13 +12,13 @@ namespace DFM.MVC.Controllers
 {
 	public class UsersController : BaseController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return BaseModelView();
 		}
 
-
-
+		[HttpGet]
 		public ActionResult SignUp()
 		{
 			var model = new UsersSignUpModel();
@@ -41,8 +41,7 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-
-
+		[HttpGet]
 		public ActionResult LogOn(String returnUrl)
 		{
 			var model = new UsersLogOnModel();
@@ -72,8 +71,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult LogOff()
 		{
 			var model = new SafeModel();
@@ -83,8 +81,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Users");
 		}
 
-
-
+		[HttpGet]
 		public ActionResult ForgotPassword()
 		{
 			var model = new UsersForgotPasswordModel();
@@ -107,71 +104,61 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-
-
-		[DFMAuthorize]
+		[HttpGet, DFMAuthorize]
 		public ActionResult Config()
 		{
 			return View(new UsersConfigModel());
 		}
 
-		private ActionResult config(UsersConfigModel model, Func<IList<String>> save)
-		{
-			if (ModelState.IsValid)
-			{
-				var errors = save();
-				AddErrors(errors);
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View("Config", model);
-			}
-
-			return RedirectToAction("Index", "Accounts");
-
-		}
-
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult ConfigOptions(UsersConfigModel model)
 		{
 			return config(model, () => model.Main.Save());
 		}
 
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult ConfigPassword(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.ChangePassword());
 		}
 
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult ConfigEmail(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.UpdateEmail());
 		}
 
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult ConfigTheme(UsersConfigModel model)
 		{
 			return config(model, () => model.ThemeOpt.Change());
 		}
 
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult ConfigTFA(UsersConfigModel model)
 		{
 			return config(model, () => model.TFA.Activate());
 		}
 
+		private ActionResult config(UsersConfigModel model, Func<IList<String>> save)
+		{
+			if (ModelState.IsValid)
+				AddErrors(save());
 
+			if (ModelState.IsValid)
+				return RedirectToAction("Index", "Accounts");
 
-		[DFMAuthorize(needContract: false)]
+			return View("Config", model);
+		}
+
+		[HttpGet, DFMAuthorize(needContract: false)]
 		public ActionResult Contract()
 		{
 			var model = new UsersContractModel();
 			return View(model);
 		}
 
-		[DFMAuthorize(needContract: false), HttpPost]
+		[HttpPost, DFMAuthorize(needContract: false)]
 		public ActionResult Contract(UsersContractModel model)
 		{
 			model.AcceptContract(ModelState.AddModelError);
@@ -184,26 +171,27 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
+		[HttpGet]
 		public ActionResult Mobile()
 		{
 			return Redirect(Cfg.GooglePlay);
 		}
 
-		[DFMAuthorize]
+		[HttpShouldBePost, DFMAuthorize]
 		public ActionResult EndWizard()
 		{
 			var model = new UsersEndWizard();
 			return View(model);
 		}
 
-		[DFMAuthorize(needContract: false, needTFA: false)]
+		[HttpGet, DFMAuthorize(needContract: false, needTFA: false)]
 		public ActionResult TFA()
 		{
 			var model = new UsersTFAModel();
 			return View(model);
 		}
 
-		[DFMAuthorize(needContract: false, needTFA: false), HttpPost]
+		[HttpPost, DFMAuthorize(needContract: false, needTFA: false)]
 		public ActionResult TFA(UsersTFAModel model)
 		{
 			model.Validate(ModelState.AddModelError);
@@ -216,14 +204,14 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[DFMAuthorize]
+		[HttpGet, DFMAuthorize]
 		public ActionResult RemoveTFA()
 		{
 			var model = new UsersRemoveTFAModel();
 			return View(model);
 		}
 
-		[DFMAuthorize, HttpPost]
+		[HttpPost, DFMAuthorize]
 		public ActionResult RemoveTFA(UsersRemoveTFAModel model)
 		{
 			model.Remove(ModelState.AddModelError);

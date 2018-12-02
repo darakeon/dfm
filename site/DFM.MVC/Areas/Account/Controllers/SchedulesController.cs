@@ -8,13 +8,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 	[DFMAuthorize]
 	public class SchedulesController : BaseAccountsController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
-
-
+		[HttpGet]
 		public ActionResult Create()
 		{
 			var model = new SchedulesCreateModel();
@@ -28,10 +28,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			model.Type = OperationType.Scheduling;
 
-			return CreateEditSchedule(model);
+			return createEditSchedule(model);
 		}
-
-
-
 	}
 }

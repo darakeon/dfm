@@ -9,11 +9,13 @@ namespace DFM.MVC.Controllers
 	[DFMAuthorize]
 	public class LoginsController : BaseController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return View(new LoginsIndexModel());
 		}
 
+		[HttpShouldBePost]
 		public ActionResult Delete(String id)
 		{
 			var model = new SafeModel();
@@ -22,8 +24,5 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-
-
 	}
 }

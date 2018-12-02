@@ -9,13 +9,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 	[DFMAuthorize]
 	public class MovesController : BaseAccountsController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
-
-
+		[HttpGet]
 		public ActionResult Create()
 		{
 			var model = new MovesCreateEditModel(OperationType.Creation);
@@ -29,11 +29,10 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			model.Type = OperationType.Creation;
 
-			return CreateEditSchedule(model);
+			return createEditSchedule(model);
 		}
 
-
-
+		[HttpGet]
 		public ActionResult Edit(Int32? id)
 		{
 			if (!id.HasValue)
@@ -49,11 +48,10 @@ namespace DFM.MVC.Areas.Account.Controllers
 		{
 			model.Move.ID = id;
 
-			return CreateEditSchedule(model);
+			return createEditSchedule(model);
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Delete(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -63,8 +61,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Check(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -74,6 +71,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
+		[HttpShouldBePost]
 		public ActionResult Uncheck(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -82,8 +80,5 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
-
-
-
 	}
 }
