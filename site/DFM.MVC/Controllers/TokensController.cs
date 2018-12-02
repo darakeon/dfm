@@ -93,15 +93,5 @@ namespace DFM.MVC.Controllers
 				? BaseModelView()
 				: BaseModelView("Invalid");
 		}
-
-
-
-		public ActionResult Received()
-		{
-			return RedirectToActionPermanent("Index");
-		}
-
-
-
 	}
 }
