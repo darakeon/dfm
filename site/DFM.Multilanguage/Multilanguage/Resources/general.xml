@@ -72,6 +72,10 @@
 		<Yearly text="Yearly" />
 		<UserVerification text="User Verification" />
 		<PasswordReset text="Password Reset" />
+		<Creation text="Creation" />
+		<Edition text="Edition" />
+		<Deletion text="Deletion" />
+		<Scheduling text="Scheduled Creation" />
 
 		<!--Index-->
 		<Index_Welcome text="Welcome!" />
@@ -162,6 +166,10 @@
 		<Yearly text="Anual" />
 		<UserVerification text="Verificação de Usuário" />
 		<PasswordReset text="Redefinição de Senha" />
+		<Creation text="Criação" />
+		<Edition text="Edição" />
+		<Deletion text="Deleção" />
+		<Scheduling text="Criação Agendada" />
 
 		<!--Index-->
 		<Index_Welcome text="Bem-vindo!" />

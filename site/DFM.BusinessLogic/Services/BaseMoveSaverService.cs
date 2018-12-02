@@ -8,6 +8,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -31,8 +32,11 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
-		{
+		internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(
+			Move move,
+			string accountOutUrl, string accountInUrl, string categoryName,
+			OperationType operationType
+		) {
 			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
 			var oldMove = moveRepository.GetNonCached(move.ID);
@@ -41,7 +45,6 @@ namespace DFM.BusinessLogic.Services
 			{
 				move.Checked = oldMove.Checked;
 			}
-
 
 			if (move.ID == 0 || !move.IsDetailed())
 			{
@@ -54,13 +57,12 @@ namespace DFM.BusinessLogic.Services
 				move = moveRepository.SaveOrUpdate(move);
 			}
 
-
 			if (oldMove != null)
 				breakSummaries(oldMove);
 
 			breakSummaries(move);
 
-			var emailStatus = moveRepository.SendEmail(move);
+			var emailStatus = moveRepository.SendEmail(move, operationType);
 
 			return new ComposedResult<Move, EmailStatus>(move, emailStatus);
 		}

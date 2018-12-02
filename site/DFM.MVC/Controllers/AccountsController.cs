@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Generic;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
@@ -47,7 +47,7 @@ namespace DFM.MVC.Controllers
 			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
-			var model = new AccountsCreateEditModel(OperationType.Edit, id);
+			var model = new AccountsCreateEditModel(OperationType.Edition, id);
 
 			if (model.Account == null)
 				return RedirectToAction("Create");
@@ -58,7 +58,7 @@ namespace DFM.MVC.Controllers
 		[HttpPost]
 		public ActionResult Edit(String id, AccountsCreateEditModel model)
 		{
-			model.ResetAccountUrl(OperationType.Edit, id);
+			model.ResetAccountUrl(OperationType.Edition, id);
 
 			return createEdit(model);
 		}

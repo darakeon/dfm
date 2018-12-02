@@ -1,11 +1,11 @@
 ﻿@model CategoriesCreateEditModel
 
-@using DFM.Generic
+@using DFM.Entities.Enums
 
 @{
 	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
 
-	if (Model.Type == OperationType.Edit)
+	if (Model.Type == OperationType.Edition)
 	{
 		ViewBag.Title += " [" + Model.Name + "]";
 	}

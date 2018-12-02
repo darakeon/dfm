@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateAccount(Account account, String newUrl)
 		{
-			saveOrUpdateAccount(account, OperationType.Edit, newUrl);
+			saveOrUpdateAccount(account, OperationType.Edition, newUrl);
 		}
 
 		private void saveOrUpdateAccount(Account account, OperationType opType, String newUrl = null)
@@ -87,7 +87,7 @@ namespace DFM.BusinessLogic.Services
 
 			InTransaction(() =>
 			{
-				if (opType == OperationType.Edit)
+				if (opType == OperationType.Edition)
 				{
 					var oldAccount = GetAccountByUrlInternal(account.Url);
 
@@ -200,7 +200,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateCategory(Category category, String newName)
 		{
-			saveOrUpdateCategory(category, OperationType.Edit, newName);
+			saveOrUpdateCategory(category, OperationType.Edition, newName);
 		}
 
 		private void saveOrUpdateCategory(Category category, OperationType opType, String newName)
@@ -212,7 +212,7 @@ namespace DFM.BusinessLogic.Services
 
 			InTransaction(() =>
 			{
-				if (opType == OperationType.Edit)
+				if (opType == OperationType.Edition)
 				{
 					var oldCategory = GetCategoryByNameInternal(category.Name);
 
