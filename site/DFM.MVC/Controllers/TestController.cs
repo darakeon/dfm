@@ -13,11 +13,13 @@ namespace DFM.MVC.Controllers
 	[DFMAuthorize(true)]
 	public class TestController : Controller
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return View("AnalyzeDictionary", new TestAnalyzeDictionary());
 		}
 
+		[HttpGet]
 		public ActionResult Email()
 		{
 			var themes = new[] {SimpleTheme.Dark, SimpleTheme.Light};
@@ -42,7 +44,5 @@ namespace DFM.MVC.Controllers
 				)
 			);
 		}
-
-
 	}
 }

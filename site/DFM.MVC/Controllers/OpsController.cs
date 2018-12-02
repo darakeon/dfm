@@ -10,6 +10,7 @@ namespace DFM.MVC.Controllers
 {
 	public class OpsController : Controller
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			var model = new OpsModel();
@@ -17,6 +18,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
+		[HttpGet]
 		public ActionResult Code(Int32 id)
 		{
 			if (!id.IsIn(404, 500))
@@ -32,7 +34,7 @@ namespace DFM.MVC.Controllers
 			return View(id.ToString(), model);
 		}
 
-
+		[HttpGet]
 		public ActionResult Error(ExceptionPossibilities id)
 		{
 			var model = new OpsModel(id);
@@ -40,7 +42,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
+		[HttpGet]
 		public ActionResult Help()
 		{
 			var model = new BaseSiteModel();
@@ -48,21 +50,19 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
+		[HttpGet]
 		public ActionResult TestElmahLog()
 		{
 			var errorOnLog = elmah.TryLog(new Exception("Logging right!"));
 			return Content(errorOnLog?.ToString());
 		}
 
-
+		[HttpGet]
 		public ActionResult Legend()
 		{
 			var model = new BaseSiteModel();
 
 			return View(model);
 		}
-
-
 	}
 }

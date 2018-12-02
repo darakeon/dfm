@@ -8,13 +8,13 @@ namespace DFM.MVC.Areas.Account.Controllers
 	[DFMAuthorize]
 	public class ReportsController : BaseAccountsController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return RedirectToAction("ShowMoves");
 		}
 
-
-
+		[HttpGet]
 		public ActionResult ShowMoves(Int32? id)
 		{
 			var model = new ReportsShowMovesModel(id);
@@ -22,17 +22,12 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View(model);
 		}
 
-
-
+		[HttpGet]
 		public ActionResult SummarizeMonths(Int16? id)
 		{
 			var model = new ReportsSummarizeMonthsModel(id);
 
 			return View(model);
 		}
-
-
-
-
 	}
 }

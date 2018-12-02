@@ -20,6 +20,5 @@ namespace DFM.MVC.Models
 
 		public String Error { get; }
 		public Boolean HasError => !String.IsNullOrEmpty(Error);
-
 	}
 }

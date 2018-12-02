@@ -10,6 +10,7 @@ namespace DFM.MVC.Controllers
 	[DFMAuthorize]
 	public class AccountsController : BaseController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			var model = new AccountsIndexModel();
@@ -17,6 +18,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
+		[HttpGet]
 		public ActionResult ListClosed()
 		{
 			var model = new AccountsIndexModel(false);
@@ -24,9 +26,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
-
-
+		[HttpGet]
 		public ActionResult Create()
 		{
 			var model = new AccountsCreateEditModel(OperationType.Creation);
@@ -42,6 +42,7 @@ namespace DFM.MVC.Controllers
 			return createEdit(model);
 		}
 
+		[HttpGet]
 		public ActionResult Edit(String id)
 		{
 			if (String.IsNullOrEmpty(id))
@@ -78,8 +79,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Close(String id)
 		{
 			var model = new AdminModel();
@@ -89,8 +89,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Delete(String id)
 		{
 			var model = new AdminModel();
@@ -99,8 +98,5 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-
-
 	}
 }

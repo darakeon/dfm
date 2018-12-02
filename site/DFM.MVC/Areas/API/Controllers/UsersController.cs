@@ -26,6 +26,7 @@ namespace DFM.MVC.Areas.API.Controllers
 			});
 		}
 
+		[HttpPost]
 		public ActionResult Logout()
 		{
 			return json(() =>
@@ -34,19 +35,19 @@ namespace DFM.MVC.Areas.API.Controllers
 			});
 		}
 
-		[DFMApiAuthorize, HttpGet]
+		[HttpGet, DFMApiAuthorize]
 		public ActionResult Config()
 		{
 			return json(() => new UserConfigModel());
 		}
 
-		[DFMApiAuthorize, HttpPost]
+		[HttpPost, DFMApiAuthorize]
 		public ActionResult Config(UserConfigModel model)
 		{
 			return json(model.Save);
 		}
 
-		[DFMApiAuthorize(false), HttpPost]
+		[HttpPost, DFMApiAuthorize(false)]
 		public ActionResult TFA(UserTFAModel model)
 		{
 			return json(model.Validate);

@@ -11,6 +11,7 @@ namespace DFM.MVC.Controllers
 	[DFMAuthorize]
 	public class CategoriesController : BaseController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			var model = new CategoriesIndexModel();
@@ -18,8 +19,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-
-
+		[HttpGet]
 		public ActionResult Create()
 		{
 			var model = new CategoriesCreateEditModel(OperationType.Creation);
@@ -35,7 +35,7 @@ namespace DFM.MVC.Controllers
 			return createEditForHtmlForm(model);
 		}
 
-
+		[HttpGet]
 		public ActionResult Edit(String id)
 		{
 			if (String.IsNullOrEmpty(id))
@@ -55,8 +55,6 @@ namespace DFM.MVC.Controllers
 			return createEditForHtmlForm(model);
 		}
 
-
-
 		private ActionResult createEditForHtmlForm(CategoriesCreateEditModel model)
 		{
 			if (ModelState.IsValid)
@@ -75,8 +73,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Disable(String id)
 		{
 			var model = new AdminModel();
@@ -86,8 +83,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-
-
+		[HttpShouldBePost]
 		public ActionResult Enable(String id)
 		{
 			var model = new AdminModel();
@@ -96,7 +92,5 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-
 	}
 }

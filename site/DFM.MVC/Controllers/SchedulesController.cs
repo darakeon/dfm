@@ -9,11 +9,13 @@ namespace DFM.MVC.Controllers
 	[DFMAuthorize]
 	public class SchedulesController : BaseController
 	{
+		[HttpGet]
 		public ActionResult Index()
 		{
 			return View(new SchedulesIndexModel());
 		}
 
+		[HttpShouldBePost]
 		public ActionResult Delete(Int32 id)
 		{
 			var model = new RobotModel();
@@ -22,8 +24,5 @@ namespace DFM.MVC.Controllers
 
 			return RedirectToAction("Index");
 		}
-
-
-
 	}
 }
