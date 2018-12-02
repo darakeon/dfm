@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Generic;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
@@ -43,7 +43,7 @@ namespace DFM.MVC.Models
 				{
 					case OperationType.Creation:
 						return Account.Name;
-					case OperationType.Edit:
+					case OperationType.Edition:
 						return url ?? Account.Url;
 					default:
 						throw new NotImplementedException();

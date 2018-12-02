@@ -5,7 +5,7 @@ using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;
 using DFM.Entities;
-using DFM.Generic;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -56,10 +56,12 @@ namespace DFM.BusinessLogic.Services
 			var operationType =
 				move.ID == 0
 					? OperationType.Creation
-					: OperationType.Edit;
+					: OperationType.Edition;
 
 			return InTransaction(
-				() => Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName),
+				() => Parent.BaseMove.SaveOrUpdateMove(
+					move, accountOutUrl, accountInUrl, categoryName, operationType
+				),
 				() => resetMove(move, operationType)
 			);
 		}
@@ -99,7 +101,7 @@ namespace DFM.BusinessLogic.Services
 				updateScheduleDeleted(move.Schedule);
 			}
 
-			var emailStatus = moveRepository.SendEmail(move);
+			var emailStatus = moveRepository.SendEmail(move, OperationType.Deletion);
 
 			return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
 		}

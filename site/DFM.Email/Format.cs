@@ -17,7 +17,6 @@ namespace DFM.Email
 		public String Subject { get; set; }
 		public String Layout { get; set; }
 
-
 		public static Format MoveNotification(String language, SimpleTheme theme)
 		{
 			return new Format(language, theme, EmailType.MoveNotification, EmailType.MoveNotification);
@@ -59,7 +58,5 @@ namespace DFM.Email
 				 General.ResourceManager
 			};
 		}
-
-
 	}
 }

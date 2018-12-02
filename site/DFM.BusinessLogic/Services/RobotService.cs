@@ -7,8 +7,8 @@ using DFM.BusinessLogic.ObjectInterfaces;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -112,10 +112,14 @@ namespace DFM.BusinessLogic.Services
 			return emailsStati;
 		}
 
-		private ComposedResult<Move, EmailStatus> saveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl,
-			String categoryName)
-		{
-			return InTransaction(() => Parent.BaseMove.SaveOrUpdateMove(move, accountOutUrl, accountInUrl, categoryName));
+		private ComposedResult<Move, EmailStatus> saveOrUpdateMove(
+			Move move, String accountOutUrl, String accountInUrl, String categoryName
+		) {
+			return InTransaction(() => 
+				Parent.BaseMove.SaveOrUpdateMove(
+					move, accountOutUrl, accountInUrl, categoryName, OperationType.Scheduling
+				)
+			);
 		}
 
 		private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
@@ -138,7 +142,7 @@ namespace DFM.BusinessLogic.Services
 			var operationType =
 				schedule.ID == 0
 					? OperationType.Creation
-					: OperationType.Edit;
+					: OperationType.Edition;
 
 			return InTransaction(
 				() => saveOrUpdate(schedule, accountOutUrl, accountInUrl, categoryName),

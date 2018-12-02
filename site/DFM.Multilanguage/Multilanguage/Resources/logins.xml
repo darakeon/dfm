@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logins>
 	<en-US>
-		<Creation text="Creation" />
 		<Expiration text="Expiration" />
 		<Type text="Type" />
 		<Mobile text="Mobile" />
@@ -11,7 +10,6 @@
 		<NoLogins text="There is no active logins" />
 	</en-US>
 	<pt-BR>
-		<Creation text="Criação" />
 		<Expiration text="Expiração" />
 		<Type text="Tipo" />
 		<Mobile text="Mobile" />

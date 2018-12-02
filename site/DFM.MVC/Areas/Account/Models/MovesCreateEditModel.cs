@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Email;
-using DFM.Generic;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
-using DFM.Generic;
+using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
 {
@@ -40,7 +40,7 @@ namespace DFM.MVC.Models
 				{
 					case OperationType.Creation:
 						return Category.Name;
-					case OperationType.Edit:
+					case OperationType.Edition:
 						return name ?? Category.Name;
 					default:
 						throw new NotImplementedException();

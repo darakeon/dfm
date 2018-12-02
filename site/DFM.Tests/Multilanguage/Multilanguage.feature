@@ -25,6 +25,7 @@ Scenario: ML02. Get translations of Enums
 			| Moves     | MoveNature        |
 			| Schedules | ScheduleFrequency |
 			| Tokens    | SecurityAction    |
+			| General   | OperationType     |
 	When I try get the translate
 	Then I will receive no multilanguage error
 

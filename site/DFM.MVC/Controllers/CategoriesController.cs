@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DFM.Generic;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
@@ -41,7 +41,7 @@ namespace DFM.MVC.Controllers
 			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
-			var model = new CategoriesCreateEditModel(OperationType.Edit, id);
+			var model = new CategoriesCreateEditModel(OperationType.Edition, id);
 
 			return View("CreateEdit", model);
 		}
@@ -49,7 +49,7 @@ namespace DFM.MVC.Controllers
 		[HttpPost]
 		public ActionResult Edit(String id, CategoriesCreateEditModel model)
 		{
-			model.Type = OperationType.Edit;
+			model.Type = OperationType.Edition;
 			model.Category.Name = id;
 
 			return createEditForHtmlForm(model);

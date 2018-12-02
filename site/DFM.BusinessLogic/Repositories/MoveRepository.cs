@@ -8,6 +8,7 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Emails;
 using DFM.Multilanguage.Helpers;
@@ -50,13 +51,15 @@ namespace DFM.BusinessLogic.Repositories
 
 
 		#region SendEmail
-		internal EmailStatus SendEmail(Move move)
+		internal EmailStatus SendEmail(Move move, OperationType operationType)
 		{
 			var user = move.User;
 			var config = user.Config;
 
 			if (!config.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
+
+			var operation = PlainText.Dictionary["general", config.Language, operationType.ToString()];
 
 			var accountInName = getAccountName(move.AccIn()) ?? "---";
 			var accountOutName = getAccountName(move.AccOut()) ?? "---";
@@ -69,6 +72,7 @@ namespace DFM.BusinessLogic.Repositories
 			var dic = new Dictionary<String, String>
 			{
 				{ "Url", Dfm.Url },
+				{ "Operation", operation },
 				{ "AccountIn", accountInName },
 				{ "AccountOut", accountOutName },
 				{ "Date", move.Date.ToShortDateString() },

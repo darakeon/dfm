@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using DFM.Generic;
+using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
 
@@ -26,7 +26,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		[HttpPost]
 		public ActionResult Create(SchedulesCreateModel model)
 		{
-			model.Type = OperationType.Schedule;
+			model.Type = OperationType.Scheduling;
 
 			return CreateEditSchedule(model);
 		}

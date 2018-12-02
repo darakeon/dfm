@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
-using DFM.Generic;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
@@ -39,7 +39,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (!id.HasValue)
 				return RedirectToAction("Create");
 
-			var model = new MovesCreateEditModel(id.Value, OperationType.Edit);
+			var model = new MovesCreateEditModel(id.Value, OperationType.Edition);
 
 			return View("CreateEditSchedule", model);
 		}
