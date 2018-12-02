@@ -122,8 +122,8 @@ Legend:
 
 ## <a name="dev"></a>4.1.2.5 :ant: <sup>`6`</sup>
 - [ ] Make/find app to verify DFM status
-- [ ] AntiForgery
 - [ ] Add IsAdm to User
+- [ ] `181201>......` AntiForgery
 - [x] `181127>181127` Avoid weird layout on changing theme
 - [x] `181126>181127` Fix Image in Welcome
 - [x] `181125>181125` Fix requests for pre-launch report
