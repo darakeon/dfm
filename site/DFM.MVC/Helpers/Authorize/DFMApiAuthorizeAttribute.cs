@@ -7,7 +7,8 @@ namespace DFM.MVC.Helpers.Authorize
 {
 	public class DFMApiAuthorizeAttribute : DFMAuthorizeAttribute
 	{
-		public DFMApiAuthorizeAttribute(Boolean needTFA = true) : base(needTFA: needTFA) { }
+		public DFMApiAuthorizeAttribute(Boolean needTFA = true)
+			: base(needTFA: needTFA, isMobile: true) { }
 
 		protected override void GoToContractPage(AuthorizationContext filterContext)
 		{
