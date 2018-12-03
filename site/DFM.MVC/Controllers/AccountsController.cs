@@ -79,7 +79,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Close(String id)
 		{
 			var model = new AdminModel();
@@ -89,7 +89,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Delete(String id)
 		{
 			var model = new AdminModel();

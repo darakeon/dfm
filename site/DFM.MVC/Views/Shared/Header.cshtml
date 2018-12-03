@@ -76,8 +76,11 @@
 					</li>
 
 					<li>
-						<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "LogOff", controller = "Users"})">
-							<span class="glyphicon glyphicon-off" title="@MultiLanguage.Dictionary["Logoff"]"></span>
+						<a>
+							@Html.Partial("MicroForm",
+								MicroForm.WithGlyph("off", "Logoff")
+									.AddRouteUrl(RouteNames.DEFAULT, "Users", "LogOff")
+							)
 						</a>
 					</li>
 				}

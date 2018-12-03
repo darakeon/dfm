@@ -71,7 +71,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult LogOff()
 		{
 			var model = new SafeModel();
@@ -177,7 +177,7 @@ namespace DFM.MVC.Controllers
 			return Redirect(Cfg.GooglePlay);
 		}
 
-		[HttpShouldBePost, DFMAuthorize]
+		[HttpPost, DFMAuthorize]
 		public ActionResult EndWizard()
 		{
 			var model = new UsersEndWizard();

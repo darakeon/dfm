@@ -46,21 +46,17 @@
 		<td class="col-sm-2 text-center">
 			@if (category.Active)
 			{
-				<a href="@Url.Action("Disable", new { id = category.Name })">
-					<span
-						class="glyphicon glyphicon-eye-close"
-						title="@MultiLanguage.Dictionary["Disable"]"
-					></span>
-				</a>
+				@Html.Partial("MicroForm",
+					MicroForm.WithGlyph("eye-close", "Disable")
+						.AddIdUrl("Disable", category.Name)
+				)
 			}
 			else
 			{
-				<a href="@Url.Action("Enable", new { id = category.Name })">
-					<span
-						class="glyphicon glyphicon-eye-open"
-						title="@MultiLanguage.Dictionary["Enable"]"
-					></span>
-				</a>
+				@Html.Partial("MicroForm",
+					MicroForm.WithGlyph("eye-open", "Enable")
+						.AddIdUrl("Enable", category.Name)
+				)
 			}
 		</td>
 	</tr>

@@ -110,37 +110,22 @@
 		</td>
 
 		<td class="col-sm-1 text-center">
-			<a href="@Url.Action("Delete", "Moves", new {id = move.ID})"
-				class="withConfirm"
-				confirm="@String.Format(
-					MultiLanguage.Dictionary["ConfirmDeleteMove"], move.GetDescriptionDetailed()
-				)"
-			>
-				<span
-					class="glyphicon glyphicon-trash"
-					title="@MultiLanguage.Dictionary["Delete"]"
-				></span>
-			</a>
+			@Html.Partial("MicroForm",
+				MicroForm.WithGlyph("trash", "Delete")
+					.AddIdUrl("Moves", "Delete", move.ID)
+			)
 		</td>
-
 
 		@if (Model.CanCheck)
 		{
-			var url = move.Checked
-				? Url.Action("Uncheck", "Moves", new { id = move.ID })
-				: Url.Action("Check", "Moves", new { id = move.ID });
 			var action = move.Checked ? "Uncheck" : "Check";
+			var glyph = move.Checked ? "remove" : "ok";
 
 			<td class="col-sm-1 text-center">
-				<a href="@url"
-					data-toggle="tooltip" data-placement="right"
-					data-original-title="@MultiLanguage.Dictionary[move.Checked ? "Uncheck" : "Check"]"
-				>
-					<span
-						class="glyphicon glyphicon-@(move.Checked ? "remove" : "ok")"
-						title="@MultiLanguage.Dictionary[action]"
-					></span>
-				</a>
+				@Html.Partial("MicroForm",
+					MicroForm.WithGlyph(glyph, action)
+						.AddIdUrl("Moves", action, move.ID)
+				)
 			</td>
 		}
 
