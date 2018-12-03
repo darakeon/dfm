@@ -18,20 +18,20 @@ namespace DFM.Tests.BusinessLogic.A_Safe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Au. Verify Ticket")]
-    public partial class Au_VerifyTicketFeature
+    [NUnit.Framework.DescriptionAttribute("Au. Verify Ticket TFA")]
+    public partial class Au_VerifyTicketTFAFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "u.VerifyTicket.feature"
+#line 1 "u.VerifyTicketTFA.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Au. Verify Ticket", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Au. Verify Ticket TFA", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -107,10 +107,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("At01. Check not verified ticket")]
-        public virtual void At01_CheckNotVerifiedTicket()
+        [NUnit.Framework.DescriptionAttribute("Au01. Check not verified ticket")]
+        public virtual void Au01_CheckNotVerifiedTicket()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("At01. Check not verified ticket", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Au01. Check not verified ticket", null, ((string[])(null)));
 #line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -129,10 +129,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("At02. Check verified ticket")]
-        public virtual void At02_CheckVerifiedTicket()
+        [NUnit.Framework.DescriptionAttribute("Au02. Check verified ticket")]
+        public virtual void Au02_CheckVerifiedTicket()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("At02. Check verified ticket", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Au02. Check verified ticket", null, ((string[])(null)));
 #line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -162,10 +162,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("At03. Check ticket without two factor")]
-        public virtual void At03_CheckTicketWithoutTwoFactor()
+        [NUnit.Framework.DescriptionAttribute("Au03. Check ticket without two factor")]
+        public virtual void Au03_CheckTicketWithoutTwoFactor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("At03. Check ticket without two factor", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Au03. Check ticket without two factor", null, ((string[])(null)));
 #line 31
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
