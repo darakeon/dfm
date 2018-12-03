@@ -145,6 +145,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>u.VerifyTicketTFA.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\A.Safe\v.VerifyTicketType.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>v.VerifyTicketType.feature</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogic\A.Safe\_A.SafeStep.cs" />
     <Compile Include="BusinessLogic\B.Admin\a.SaveAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -353,6 +358,10 @@
     <None Include="BusinessLogic\A.Safe\t.ValidateTicketTFA.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>t.ValidateTicketTFA.feature.cs</LastGenOutput>
+    </None>
+    <None Include="BusinessLogic\A.Safe\v.VerifyTicketType.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>v.VerifyTicketType.feature.cs</LastGenOutput>
     </None>
     <None Include="BusinessLogic\A.Safe\u.VerifyTicketTFA.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

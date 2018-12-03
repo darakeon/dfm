@@ -977,6 +977,19 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 
+		[When(@"I try to verify the ticket type to be (\w+)")]
+		public void WhenITryToCheckTicketType(TicketType type)
+		{
+			try
+			{
+				ticketVerified = Service.Safe.VerifyTicket(type);
+			}
+			catch (DFMCoreException exception)
+			{
+				Error = exception;
+			}
+		}
+
 		[Then(@"the ticket will (not )?be verified")]
 		public void ThenTheTicketWillBeVerified(Boolean verified)
 		{

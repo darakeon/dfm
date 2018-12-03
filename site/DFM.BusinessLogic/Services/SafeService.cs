@@ -430,5 +430,17 @@ namespace DFM.BusinessLogic.Services
 				|| ticket.ValidTFA;
 		}
 
+		public Boolean VerifyTicket(TicketType type)
+		{
+			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+
+			if (ticket == null)
+			{
+				DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				return false;
+			}
+
+			return ticket.Type == type;
+		}
 	}
 }

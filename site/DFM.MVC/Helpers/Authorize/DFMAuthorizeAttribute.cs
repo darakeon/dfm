@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using DFM.Entities.Enums;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Helpers.Authorize
@@ -10,27 +11,35 @@ namespace DFM.MVC.Helpers.Authorize
 		private readonly Boolean needAdmin;
 		private readonly Boolean needContract;
 		private readonly Boolean needTFA;
+		private readonly Boolean isMobile;
 
 		public DFMAuthorizeAttribute(
 			Boolean needAdmin = false,
 			Boolean needContract = true,
-			Boolean needTFA = true
+			Boolean needTFA = true,
+			Boolean isMobile = false
 		)
 		{
 			this.needContract = needContract;
 			this.needAdmin = needAdmin;
 			this.needTFA = needTFA;
+			this.isMobile = isMobile;
 		}
 
 		protected override bool AuthorizeCore(HttpContextBase httpContext)
 		{
-			return isAuthenticated && !denyByAdmin && !denyByContract && !denyByTFA;
+			return isAuthenticated 
+			       && !denyByAdmin 
+			       && !denyByContract 
+			       && !denyByTFA
+			       && !denyByMobile;
 		}
 
 		private Boolean isAuthenticated => Service.Current.IsAuthenticated;
 		private Boolean denyByAdmin => needAdmin && !Service.Current.IsAdm;
 		private Boolean denyByContract => needContract && !Service.Access.Safe.IsLastContractAccepted();
 		private Boolean denyByTFA => needTFA && !Service.Access.Safe.VerifyTicket();
+		private Boolean denyByMobile => isMobile && !Service.Access.Safe.VerifyTicket(TicketType.Mobile);
 
 		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
 		{
