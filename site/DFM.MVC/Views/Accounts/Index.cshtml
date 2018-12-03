@@ -64,27 +64,17 @@
 		<td class="col-sm-1 text-center">
 			@if (account.HasMoves())
 			{
-				<a href="@Url.Action("Close", new {id = account.Url})"
-					class="withConfirm"
-					confirm="@String.Format(MultiLanguage.Dictionary["CloseConfirm"], account.Name)"
-				>
-					<span
-						class="glyphicon glyphicon-eye-close"
-						title="@MultiLanguage.Dictionary["Close"]"
-					></span>
-				</a>
+				@Html.Partial("MicroForm",
+					MicroForm.WithGlyph("eye-close", "Close")
+						.AddIdUrl("Close", account.Url)
+				)
 			}
 			else
 			{
-				<a href="@Url.Action("Delete", new {id = account.Url})"
-					class="withConfirm"
-					confirm="@String.Format(MultiLanguage.Dictionary["DeleteConfirm"], account.Name)"
-				>
-					<span
-						class="glyphicon glyphicon-trash"
-						title="@MultiLanguage.Dictionary["Delete"]"
-					></span>
-				</a>
+				@Html.Partial("MicroForm",
+					MicroForm.WithGlyph("trash", "Delete")
+						.AddIdUrl("Delete", account.Url)
+				)
 			}
 		</td>
 	</tr>

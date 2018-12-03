@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 			return View(new LoginsIndexModel());
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Delete(String id)
 		{
 			var model = new SafeModel();

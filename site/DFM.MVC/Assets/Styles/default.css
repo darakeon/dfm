@@ -46,3 +46,10 @@ footer {
 	padding: 13px 0 17px 95px;
 	margin-left: 5px;
 }
+
+.btn-clear {
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	border: none;
+}

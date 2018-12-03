@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return createEditSchedule(model);
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Delete(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -61,7 +61,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Check(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -71,7 +71,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		[HttpShouldBePost]
+		[HttpPost]
 		public ActionResult Uncheck(Int32 id)
 		{
 			var model = new MoneyModel();

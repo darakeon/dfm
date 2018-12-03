@@ -37,7 +37,6 @@
 		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Value"]</th>
 		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["TODO"]</th>
 	</tr>
-
 }
 
 @foreach (var schedule in Model.ScheduleList)
@@ -63,18 +62,10 @@
 		</td>
 
 		<td class="col-sm-1 text-center">
-			<a href="@Url.Action("Delete", "Schedules", new { id = schedule.ID })"
-				class="withConfirm"
-				confirm="@String.Format(
-					MultiLanguage.Dictionary["ConfirmDeleteSchedule"], schedule.Description)
-				">
-				<span
-					class="glyphicon glyphicon-trash"
-					title="@MultiLanguage.Dictionary["Delete"]"
-				></span>
-			</a>
+			@Html.Partial("MicroForm",
+				MicroForm.WithGlyph("trash", "Delete")
+					.AddIdUrl("Delete", schedule.ID)
+			)
 		</td>
-
 	</tr>
-
 }

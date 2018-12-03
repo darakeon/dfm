@@ -1,0 +1,26 @@
+﻿@model MicroForm
+
+@{
+	var @class = Model.Class ?? "btn-clear";
+}
+
+@using (
+	Model.RouteName == null
+		? Html.BeginForm(Model.RouteValues)
+		: Html.BeginRouteForm(Model.RouteName, Model.RouteValues)
+) {
+	<button type="submit" class="@(@class)" title="@Model.Text"
+	        data-toggle="tooltip" data-placement="right"
+	        data-original-title="@Model.Text">
+
+		@if (Model.Glyphicon == null)
+		{
+			@Model.Text
+		}
+		else
+		{
+			<span class="glyphicon glyphicon-@Model.Glyphicon"></span>
+		}
+
+	</button>
+}

@@ -15,12 +15,10 @@
 					@ViewBag.WizardMessage
 				</div>
 			</div>
-
-			@Html.RouteLink(
-				Wizard.End,
-				RouteNames.DEFAULT,
-				new { action = "EndWizard", controller = "Users" },
-				new { @class = "btn btn-sm btn-default pull-right" }
+			
+			@Html.Partial("MicroForm",
+				MicroForm.WithResource(Wizard.End, "btn btn-sm btn-default pull-right")
+					.AddRouteUrl(RouteNames.DEFAULT, "Users", "EndWizard")
 			)
 		</div>
 
