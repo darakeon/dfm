@@ -27,7 +27,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Create(CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
@@ -46,7 +46,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Edit(String id, CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Edition;
@@ -73,7 +73,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Disable(String id)
 		{
 			var model = new AdminModel();
@@ -83,7 +83,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Enable(String id)
 		{
 			var model = new AdminModel();

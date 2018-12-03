@@ -34,7 +34,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Create(AccountsCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
@@ -56,7 +56,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Edit(String id, AccountsCreateEditModel model)
 		{
 			model.ResetAccountUrl(OperationType.Edition, id);
@@ -79,7 +79,7 @@ namespace DFM.MVC.Controllers
 			return View("CreateEdit", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Close(String id)
 		{
 			var model = new AdminModel();
@@ -89,7 +89,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Delete(String id)
 		{
 			var model = new AdminModel();

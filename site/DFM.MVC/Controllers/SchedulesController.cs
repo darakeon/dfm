@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 			return View(new SchedulesIndexModel());
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Delete(Int32 id)
 		{
 			var model = new RobotModel();

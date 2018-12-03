@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Index(TokensIndexModel model)
 		{
 			if (ModelState.IsValid)
@@ -48,7 +48,7 @@ namespace DFM.MVC.Controllers
 				: BaseModelView("Invalid");
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult PasswordReset(String id, TokensPasswordResetModel model)
 		{
 			var isValid = model.TestToken(id);
