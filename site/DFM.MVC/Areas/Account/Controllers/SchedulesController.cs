@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View("CreateEditSchedule", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Create(SchedulesCreateModel model)
 		{
 			model.Type = OperationType.Scheduling;

@@ -23,6 +23,8 @@
 
 			@using (Html.BeginForm(action, controller, routeValues))
 			{
+				@Html.AntiForgeryToken()
+
 				<div class="panel-body">
 					@Html.Partial("ValidationSummary")
 

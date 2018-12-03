@@ -24,7 +24,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View("CreateEditSchedule", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Create(MovesCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
@@ -43,7 +43,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View("CreateEditSchedule", model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Edit(Int32 id, MovesCreateEditModel model)
 		{
 			model.Move.ID = id;
@@ -51,7 +51,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return createEditSchedule(model);
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Delete(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -61,7 +61,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Check(Int32 id)
 		{
 			var model = new MoneyModel();
@@ -71,7 +71,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Uncheck(Int32 id)
 		{
 			var model = new MoneyModel();
