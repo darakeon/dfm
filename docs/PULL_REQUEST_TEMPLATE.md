@@ -4,6 +4,7 @@
 
 ## Tasks to publish
 
+- [ ] RUN TESTS (.NET AND ANDROID)
 - [ ] Change android/site version number
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
