@@ -120,9 +120,11 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.5 :ant: <sup>`7`</sup>
+## 4.1.2.6 :ant: <sup>`2`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Add IsAdm to User
+
+## <a name="dev"></a>4.1.2.5 :ant: <sup>`5`</sup>
 - [x] `181202>181202` Add action to Move Notification
 - [x] `181201>181203` AntiForgery
 - [x] `181127>181127` Avoid weird layout on changing theme
