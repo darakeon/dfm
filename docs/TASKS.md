@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.2.5/docs/TASKS.md#dev)
+- [dev version state](../../4.1.2.6/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -120,18 +120,18 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.2.6 :ant: <sup>`2`</sup>
+## <a name="dev"></a>4.1.2.6 :ant: <sup>`2`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Add IsAdm to User
 
-## <a name="dev"></a>4.1.2.5 :ant: <sup>`5`</sup>
+## <a name="prod"></a>4.1.2.5 :ant: <sup>`5`</sup>
 - [x] `181202>181202` Add action to Move Notification
 - [x] `181201>181203` AntiForgery
 - [x] `181127>181127` Avoid weird layout on changing theme
 - [x] `181126>181127` Fix Image in Welcome
 - [x] `181125>181125` Fix requests for pre-launch report
 
-## <a name="prod"></a>4.1.2.4 :ant: <sup>`1`</sup>
+## 4.1.2.4 :ant: <sup>`1`</sup>
 - [x] `181125>181125` Fix empty decryption
 
 ## 4.1.2.3 :ant: <sup>`1`</sup>
