@@ -107,11 +107,12 @@ namespace DFM.Multilanguage
 				if (phrase.Length == 0)
 					throw new ArgumentException("Need at least one phrase.");
 
-				var entire = String.Empty;
-
-				phrase.ToList().ForEach(p => entire += this[section, language, p] + " ");
-
-				return entire.Trim();
+				return String.Join(
+					" ",
+					phrase.ToList().Select(
+						p => this[section, language, p]
+					)
+				);
 			}
 		}
 
