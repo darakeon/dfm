@@ -2,7 +2,9 @@
 using System.Web;
 using System.Web.Mvc;
 using DFM.Entities.Enums;
+using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
+using JetBrains.Annotations;
 
 namespace DFM.MVC.Helpers.Authorize
 {
@@ -47,33 +49,45 @@ namespace DFM.MVC.Helpers.Authorize
 			{
 				if (denyByContract)
 				{
-					GoToContractPage(filterContext);
+					goToContractPage(filterContext);
 					return;
 				}
 
 				if (denyByTFA)
 				{
-					GoToTFA(filterContext);
+					goToTFA(filterContext);
 					return;
 				}
 			}
 
-			GoToUninvited(filterContext);
+			goToUninvited(filterContext);
 		}
 
-		protected virtual void GoToContractPage(AuthorizationContext filterContext)
+		protected virtual void goToContractPage(AuthorizationContext filterContext)
 		{
-			var url = BaseSiteModel.Url.Action("Contract", "Users");
+			goTo(filterContext, RouteNames.DEFAULT, "Users", "Contract");
+		}
+
+		protected virtual void goToTFA(AuthorizationContext filterContext)
+		{
+			goTo(filterContext, RouteNames.DEFAULT, "Users", "TFA");
+		}
+
+		protected void goTo(
+			AuthorizationContext filterContext,
+			String routeName,
+			[AspMvcController] String controller,
+			[AspMvcAction] String action)
+		{
+			var url = BaseSiteModel.Url.RouteUrl(
+				routeName,
+				new { action, controller }
+			);
+
 			filterContext.Result = new RedirectResult(url);
 		}
 
-		protected virtual void GoToTFA(AuthorizationContext filterContext)
-		{
-			var url = BaseSiteModel.Url.Action("TFA", "Users");
-			filterContext.Result = new RedirectResult(url);
-		}
-
-		protected virtual void GoToUninvited(AuthorizationContext filterContext)
+		protected virtual void goToUninvited(AuthorizationContext filterContext)
 		{
 			base.HandleUnauthorizedRequest(filterContext);
 		}

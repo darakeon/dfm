@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using System.Web.Routing;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Helpers.Authorize
@@ -10,22 +9,19 @@ namespace DFM.MVC.Helpers.Authorize
 		public DFMApiAuthorizeAttribute(Boolean needTFA = true)
 			: base(needTFA: needTFA, isMobile: true) { }
 
-		protected override void GoToContractPage(AuthorizationContext filterContext)
+		protected override void goToContractPage(AuthorizationContext filterContext)
 		{
-			var route = new RouteValueDictionary(new { controller = "Users", action = "AcceptOnlineContract" });
-			filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
+			goTo(filterContext, RouteNames.API, "Users", "AcceptOnlineContract");
 		}
 
-		protected override void GoToUninvited(AuthorizationContext filterContext)
+		protected override void goToUninvited(AuthorizationContext filterContext)
 		{
-			var route = new RouteValueDictionary(new { controller = "Users", action = "Uninvited" });
-			filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
+			goTo(filterContext, RouteNames.API, "Users", "Uninvited");
 		}
 
-		protected override void GoToTFA(AuthorizationContext filterContext)
+		protected override void goToTFA(AuthorizationContext filterContext)
 		{
-			var route = new RouteValueDictionary(new { controller = "Users", action = "OpenTFA" });
-			filterContext.Result = new RedirectToRouteResult(RouteNames.API, route);
+			goTo(filterContext, RouteNames.API, "Users", "OpenTFA");
 		}
 	}
 }
