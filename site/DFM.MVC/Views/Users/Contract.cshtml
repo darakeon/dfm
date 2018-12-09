@@ -6,7 +6,7 @@
 	ViewBag.FormSizeSm = 12;
 	ViewBag.FormSizeLg = 8;
 
-	var canSign = !Model.IsLastContractAccepted;
+	var canSign = Model.IsAuthenticated && !Model.IsLastContractAccepted;
 }
 
 @section Styles {

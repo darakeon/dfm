@@ -151,7 +151,7 @@ namespace DFM.MVC.Controllers
 			return View("Config", model);
 		}
 
-		[HttpGet, DFMAuthorize(needContract: false)]
+		[HttpGet]
 		public ActionResult Contract()
 		{
 			var model = new UsersContractModel();
