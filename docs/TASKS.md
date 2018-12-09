@@ -120,9 +120,12 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.2.6 :ant: <sup>`2`</sup>
+## 4.1.2.7 :ant: <sup>`2`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Add IsAdm to User
+
+## <a name="dev"></a>4.1.2.6 :ant: <sup>`1`</sup>
+- [ ] Check and fix errors that arrived on e-mail
 
 ## <a name="prod"></a>4.1.2.5 :ant: <sup>`5`</sup>
 - [x] `181202>181202` Add action to Move Notification
