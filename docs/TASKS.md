@@ -123,7 +123,7 @@ Legend:
 ## <a name="dev"></a>4.1.3.0 :sheep: <sup>`4`</sup>
 - [ ] Fix transient detail insertion
 - [ ] Make/find app to verify DFM status
-- [ ] Add press-and-hold to logout and exit
+- [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
 
 ## <a name="prod"></a>4.1.2.9 :ant: <sup>`1`</sup>

@@ -9,6 +9,8 @@ import android.view.Menu
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.Toast
+import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.Authentication
@@ -25,7 +27,9 @@ import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.refresh
 import com.darakeon.dfm.moves.MovesCreateActivity
 import com.darakeon.dfm.settings.SettingsActivity
+import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_home
+import kotlinx.android.synthetic.main.bottom_menu.action_logout
 import kotlinx.android.synthetic.main.bottom_menu.action_move
 import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
@@ -67,6 +71,12 @@ abstract class BaseActivity : Activity() {
 		api = Api(this)
 		auth = Authentication(this)
 
+		handleScreen()
+		setMenuLongClicks()
+		processQuery()
+	}
+
+	private fun handleScreen() {
 		if (!hasTitle)
 			requestWindowFeature(Window.FEATURE_NO_TITLE)
 
@@ -80,7 +90,21 @@ abstract class BaseActivity : Activity() {
 		if (viewWithContext != null) {
 			registerForContextMenu(viewWithContext)
 		}
+	}
 
+	private fun setMenuLongClicks() {
+		action_logout?.setOnLongClickListener {
+			logout(api)
+			true
+		}
+
+		action_close?.setOnLongClickListener {
+			close()
+			true
+		}
+	}
+
+	private fun processQuery() {
 		val data = intent.data
 		if (data?.queryParameterNames != null) {
 			for (param: String in data.queryParameterNames) {
@@ -133,16 +157,16 @@ abstract class BaseActivity : Activity() {
 		back()
 	}
 
-	fun logout(@Suppress(ON_CLICK) view: View) {
-		logout(api)
-	}
-
-	fun close(@Suppress(ON_CLICK) view: View) {
-		close()
-	}
-
 	fun refresh(@Suppress(ON_CLICK) view: View) {
 		refresh()
+	}
+
+	fun showLongClickWarning(@Suppress(ON_CLICK) view: View) {
+		Toast.makeText(
+			this,
+			R.string.long_click_warning,
+			Toast.LENGTH_LONG
+		).show()
 	}
 
 	fun goToAccounts(@Suppress(ON_CLICK) view: View) {
