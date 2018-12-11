@@ -121,10 +121,10 @@ Legend:
 - [ ] Tests for user permission
 
 ## <a name="dev"></a>4.1.3.0 :sheep: <sup>`4`</sup>
+- [ ] Fix transient detail insertion
 - [ ] Make/find app to verify DFM status
 - [ ] Add press-and-hold to logout and exit
 - [ ] Add IsAdm to User
-- [ ] Fix transient detail insertion
 
 ## <a name="prod"></a>4.1.2.9 :ant: <sup>`1`</sup>
 - [x] `190703>190703` Adapt to new server
