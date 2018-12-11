@@ -59,7 +59,8 @@ internal fun Activity.back() {
 
 internal fun Activity.close() {
 	redirect<WelcomeActivity> {
-		it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+		it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP +
+			Intent.FLAG_ACTIVITY_CLEAR_TASK
 		it.putExtra("EXIT", true)
 	}
 }

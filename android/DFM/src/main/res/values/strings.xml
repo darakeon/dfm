@@ -94,5 +94,6 @@
 	<string name="timeout">Request timeout</string>
 	<string name="verify">verify</string>
 	<string name="two_factor_code">two factor code</string>
+	<string name="long_click_warning">hold for a while to execute the action</string>
 
 </resources>
