@@ -24,6 +24,10 @@ namespace DFM.Repositories.Mappings
 
 			mapping.References(u => u.Config)
 				.Cascade.All();
+
+			mapping.Map(u => u.IsAdm)
+				.Default("0")
+				.Not.Update();
 		}
 	}
 }
