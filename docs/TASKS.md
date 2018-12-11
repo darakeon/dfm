@@ -124,7 +124,7 @@ Legend:
 - [ ] Fix transient detail insertion
 - [ ] Make/find app to verify DFM status
 - [ ] Add press-and-hold to logout and exit
-- [ ] Add IsAdm to User
+- [x] `181210>181210` Add IsAdm to User
 
 ## <a name="prod"></a>4.1.2.9 :ant: <sup>`1`</sup>
 - [x] `190703>190703` Adapt to new server

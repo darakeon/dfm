@@ -10,7 +10,6 @@ namespace DFM.Entities
 			init();
 		}
 
-
 		public virtual Int32 ID { get; set; }
 
 		public virtual String Password { get; set; }
@@ -24,5 +23,7 @@ namespace DFM.Entities
 		public virtual String TFASecret { get; set; }
 
 		public virtual Config Config { get; set; }
+
+		public virtual Boolean IsAdm { get; set; }
 	}
 }

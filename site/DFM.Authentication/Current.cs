@@ -51,7 +51,7 @@ namespace DFM.Authentication
 
 		public String Language => User?.Config?.Language;
 
-		public Boolean IsAdm => IsAuthenticated && User.IsAdm();
+		public Boolean IsAdm => IsAuthenticated && User.IsAdm;
 		public CultureInfo Culture => new CultureInfo(Language);
 
 		public String Set(String username, String password, Boolean remember)
