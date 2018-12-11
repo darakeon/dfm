@@ -58,17 +58,18 @@ namespace DFM.MVC
 			SessionManager.Init(BrowserId.Get);
 		}
 
-
-
 		// ReSharper disable InconsistentNaming
 		protected void Application_AcquireRequestState()
 		// ReSharper restore InconsistentNaming
 		{
-			if (isAsset || !current.IsAuthenticated)
+			if (isAsset)
 				return;
 
 			if (isElmah && !current.IsAdm)
 				Response.Redirect("/");
+
+			if (!current.IsAuthenticated)
+				return;
 
 			Thread.CurrentThread.CurrentUICulture =
 				new CultureInfo(Service.Current.Language);
