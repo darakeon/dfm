@@ -97,7 +97,7 @@ Legend:
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
 
-## 4.1.5.0 :sheep: <sup>`6`</sup>
+## 4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
 - [ ] Enable to check moves on closed accounts
 - [ ] Check move without reload screen - web
@@ -105,23 +105,19 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.4.2 :ant: <sup>`2`</sup>
+## 4.1.3.1 :ant: <sup>`6`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
-
-## 4.1.4.1 :ant: <sup>`4`</sup>
 - [ ] Transform service receiving / returns into DTO
 - [ ] IDs Int64
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## 4.1.4.0 :sheep: <sup>`4`</sup>
+## <a name="dev"></a>4.1.3.0 :sheep: <sup>`7`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
-
-## <a name="dev"></a>4.1.3.0 :sheep: <sup>`3`</sup>
 - [ ] Fix transient detail insertion
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
