@@ -14,7 +14,8 @@ Legend:
 - :sheep:: little changes, as a change in an existing feature
 - :ant:: the developer is just fixing some sh*t it did
 
-## 8.0.0.0 :dragon: <sup>`2`</sup>
+## 8.0.0.0 :dragon: <sup>`3`</sup>
+- [ ] Make/find app to verify DFM status
 - [ ] Link unsubscribe
 - [ ] Run robot each hour and remove it from request (GO?)
 
@@ -120,9 +121,8 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.3.0 :sheep: <sup>`4`</sup>
+## <a name="dev"></a>4.1.3.0 :sheep: <sup>`3`</sup>
 - [ ] Fix transient detail insertion
-- [ ] Make/find app to verify DFM status
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
 
