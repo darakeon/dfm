@@ -89,10 +89,10 @@ namespace DFM.Tests.BusinessLogic.A_Safe
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Aj01. Select with info all right")]
-        public virtual void Aj01_SelectWithInfoAllRight()
+        [NUnit.Framework.DescriptionAttribute("Aj01. Disable with info all right")]
+        public virtual void Aj01_DisableWithInfoAllRight()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj01. Select with info all right", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj01. Disable with info all right", null, ((string[])(null)));
 #line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -106,6 +106,46 @@ this.FeatureBackground();
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
   testRunner.And("the ticket will not be valid anymore", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Aj02. Disable with inexistent ticket")]
+        public virtual void Aj02_DisableWithInexistentTicket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj02. Disable with inexistent ticket", null, ((string[])(null)));
+#line 15
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 16
+ testRunner.Given("I pass a ticket that doesn\'t exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 17
+ testRunner.When("I try to disable the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Aj03. Disable with null ticket")]
+        public virtual void Aj03_DisableWithNullTicket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Aj03. Disable with null ticket", null, ((string[])(null)));
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 21
+ testRunner.Given("I pass a null ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+ testRunner.When("I try to disable the ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
