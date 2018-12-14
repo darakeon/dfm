@@ -236,10 +236,13 @@ namespace DFM.BusinessLogic.Services
 					? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
 					: ticketRepository.GetByKey(ticketKey);
 
-				if (ticket != null && ticket.Active)
-				{
+				if (ticket == null) return;
+
+				if (ticket.User.ID != Parent.Current.User.ID)
+					DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+
+				if (ticket.Active)
 					ticketRepository.Disable(ticket);
-				}
 			});
 		}
 

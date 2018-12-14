@@ -117,8 +117,8 @@ Legend:
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
-- [ ] Tests for user permission
 - [ ] Fix transient detail insertion
+- [ ] `181213>......` Tests for user permission
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
 

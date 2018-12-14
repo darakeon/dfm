@@ -14,15 +14,12 @@ namespace DFM.BusinessLogic.Exceptions
 			throw new DFMCoreException(type);
 		}
 
-
 		private DFMCoreException(ExceptionPossibilities type)
 			: base(type.ToString())
 		{
 			ErrorCounter++;
 			Type = type;
 		}
-
-
 
 		public static void TestOtherIfTooLarge(DKException e)
 		{
@@ -31,7 +28,5 @@ namespace DFM.BusinessLogic.Exceptions
 
 			throw e;
 		}
-
-
 	}
 }
