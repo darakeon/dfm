@@ -246,7 +246,7 @@ namespace DFM.BusinessLogic.Services
 		internal void VerifyUser()
 		{
 			if (Parent.Current.User == null || !Parent.Current.User.Active)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Unauthorized);
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
 
 			if (!Parent.Current.IsVerified)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.TFANotVerified);
