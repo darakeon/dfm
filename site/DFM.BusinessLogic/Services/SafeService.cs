@@ -230,6 +230,8 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
+				if (ticketKey == null) return;
+
 				var ticket = ticketKey.Length == Defaults.TICKET_SHOWED_PART
 					? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
 					: ticketRepository.GetByKey(ticketKey);
