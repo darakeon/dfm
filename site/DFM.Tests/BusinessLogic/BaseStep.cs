@@ -180,6 +180,11 @@ namespace DFM.Tests.BusinessLogic
 			return mainTicket ?? (mainTicket = Token.New());
 		}
 
+		protected void resetTicket()
+		{
+			mainTicket = null;
+		}
+
 		protected String TicketKey => getTicketKey();
 
 		private static String mainTicket
@@ -341,6 +346,8 @@ namespace DFM.Tests.BusinessLogic
 
 
 		protected const String USER_EMAIL = "test@dontflymoney.com";
+		protected const String BAD_PERSON_USER = "badperson@dontflymoney.com";
+
 		protected static String UserPassword = "password";
 		protected const String MAIN_ACCOUNT_URL = "first_account";
 		protected const String MAIN_CATEGORY_NAME = "first category";

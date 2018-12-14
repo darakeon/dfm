@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DK.NHibernate.Base;
 using NUnit.Framework;
@@ -12,10 +13,20 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"I have an active user")]
 		public void GivenIHaveAnActiveUser()
 		{
-			CreateUserIfNotExists(USER_EMAIL, UserPassword, true);
+			createLogoffLogin(USER_EMAIL, UserPassword);
+		}
 
-			Current.Clear();
-			Current.Set(USER_EMAIL, UserPassword, false);
+		[Given(@"there is a bad person logged in")]
+		public void GivenIHaveABadPersonLoggedIn()
+		{
+			createLogoffLogin(BAD_PERSON_USER, UserPassword);
+		}
+
+		private void createLogoffLogin(String email, String password)
+		{
+			resetTicket();
+			CreateUserIfNotExists(email, password, true);
+			Current.Set(email, password, false);
 		}
 
 		[Given(@"the user have accepted the contract")]

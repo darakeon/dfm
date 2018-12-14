@@ -21,3 +21,9 @@ Scenario: Aj03. Disable with null ticket
 	Given I pass a null ticket
 	When I try to disable the ticket
 	Then I will receive no core error
+
+Scenario: Aj04. Disable with wrong user
+	Given I pass a ticket that exist
+		But there is a bad person logged in
+	When I try to disable the ticket
+	Then I will receive this core error: Uninvited
