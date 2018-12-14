@@ -102,7 +102,7 @@ this.FeatureBackground();
 #line 13
  testRunner.When("I try to run the scheduler", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Then("I will receive this core error: Unauthorized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will receive this core error: Uninvited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

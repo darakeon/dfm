@@ -11,7 +11,7 @@ Background:
 Scenario: Db01. Run with unlogged user
 	Given I have no logged user (logoff)
 	When I try to run the scheduler
-	Then I will receive this core error: Unauthorized
+	Then I will receive this core error: Uninvited
 
 Scenario: Db02. Run with bounded schedule
 	Given I have this schedule to create

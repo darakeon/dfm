@@ -2,7 +2,7 @@
 {
 	public enum ExceptionPossibilities
 	{
-		Unauthorized = 27,
+		Uninvited = 207,
 		NotSignedLastContract = 42,
 
 		FailOnEmailSend = 101,
@@ -14,7 +14,6 @@
 		UserEmailInvalid = 204,
 		UserPasswordRequired = 205,
 		DisabledUser = 206,
-		Uninvited = 207,
 		RetypeWrong = 208,
 		WrongPassword = 209,
 		InvalidTheme = 210,
