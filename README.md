@@ -49,3 +49,7 @@ itself. Well, we are always our most demanding client.
 - [Android Studio](https://developer.android.com/studio/index.html)
 - [Visual Studio Community](https://www.visualstudio.com/vs/)
 - [Resharper](https://www.jetbrains.com/resharper/)
+- [Git](https://git-scm.com/)
+- [GitExtensions](https://github.com/gitextensions/gitextensions)
+- [KDiff3](https://www.kde.org/applications/development/kdiff3/)
+- [Notepad++](https://notepad-plus-plus.org/)
