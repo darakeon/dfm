@@ -17,7 +17,7 @@ Legend:
 ## 8.0.0.0 :dragon: <sup>`3`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Link unsubscribe
-- [ ] Run robot each hour and remove it from request (GO?)
+- [ ] Run robot each hour and remove it from request (Rust)
 
 ## 7.0.0.0 :dragon: <sup>`2`</sup>
 - [ ] Create service to translate site ("put in your language")
