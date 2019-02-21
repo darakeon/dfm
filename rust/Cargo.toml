@@ -1,0 +1,8 @@
+[package]
+name = "dfm"
+version = "401.3.0"
+authors = ["Dara Keon <lc.sales.duarte@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rand = "0.4.6"
