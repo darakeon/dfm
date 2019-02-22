@@ -120,15 +120,15 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## 4.1.3.0 :sheep: <sup>`3`</sup>
+## <a name="dev"></a>4.1.3.0 :sheep: <sup>`3`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Add press-and-hold to logout and exit
 - [ ] Add IsAdm to User
 
-## <a name="dev"></a>4.1.2.7 :ant: <sup>`1`</sup>
+## <a name="prod"></a>4.1.2.7 :ant: <sup>`1`</sup>
 - [x] `190222>190222` Update dependencies in .NET project
 
-## <a name="prod"></a>4.1.2.6 :ant: <sup>`1`</sup>
+## 4.1.2.6 :ant: <sup>`1`</sup>
 - [x] `181209>181209` Check and fix errors that arrived on e-mail
 
 ## 4.1.2.5 :ant: <sup>`5`</sup>
