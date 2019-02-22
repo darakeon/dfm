@@ -126,7 +126,7 @@ Legend:
 - [ ] Add IsAdm to User
 
 ## <a name="dev"></a>4.1.2.7 :ant: <sup>`1`</sup>
-- [ ] Update dependencies in .NET project
+- [x] `190222>190222` Update dependencies in .NET project
 
 ## <a name="prod"></a>4.1.2.6 :ant: <sup>`1`</sup>
 - [x] `181209>181209` Check and fix errors that arrived on e-mail
