@@ -53,7 +53,7 @@
 			m => m.AccountInUrl,
 			Model.AccountInSelectList,
 			"-- " + MultiLanguage.Dictionary["Select"] + " --",
-			new { @class = "form-control combo-account-in text-info" }
+			new { @class = "form-control combo-account-in alert-info" }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountInUrl)
@@ -70,7 +70,7 @@
 			m => m.AccountOutUrl,
 			Model.AccountOutSelectList,
 			"-- " + MultiLanguage.Dictionary["Select"] + " --",
-			new { @class = "form-control combo-account-out text-danger" }
+			new { @class = "form-control combo-account-out alert-danger" }
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountOutUrl)
