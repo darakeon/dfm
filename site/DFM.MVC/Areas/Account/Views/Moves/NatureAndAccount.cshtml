@@ -43,23 +43,6 @@
 	</div>
 
 	<div class="col-sm-4 form-group side-vertical-button">
-		@Html.LabelFor(m => m.AccountOutUrl, MultiLanguage.Dictionary["Account", "Out"], new { @class = "control-label" })
-		<span
-			class="@Html.Partial("NatureIcon", MoveNature.In)"
-			title="@MultiLanguage.Dictionary[MoveNature.In.ToString()]"
-		></span>
-
-		@Html.DropDownListFor(
-			m => m.AccountOutUrl,
-			Model.AccountOutSelectList,
-			"-- " + MultiLanguage.Dictionary["Select"] + " --",
-			new { @class = "form-control combo-account-out text-danger" }
-		)
-
-		@Html.ValidationMessageFor(m => m.AccountOutUrl)
-	</div>
-
-	<div class="col-sm-4 form-group side-vertical-button">
 		@Html.LabelFor(m => m.AccountInUrl, MultiLanguage.Dictionary["Account", "In"], new { @class = "control-label" })
 		<span
 			class="@Html.Partial("NatureIcon", MoveNature.Out)"
@@ -74,6 +57,23 @@
 		)
 
 		@Html.ValidationMessageFor(m => m.AccountInUrl)
+	</div>
+
+	<div class="col-sm-4 form-group side-vertical-button">
+		@Html.LabelFor(m => m.AccountOutUrl, MultiLanguage.Dictionary["Account", "Out"], new { @class = "control-label" })
+		<span
+			class="@Html.Partial("NatureIcon", MoveNature.In)"
+			title="@MultiLanguage.Dictionary[MoveNature.In.ToString()]"
+		></span>
+
+		@Html.DropDownListFor(
+			m => m.AccountOutUrl,
+			Model.AccountOutSelectList,
+			"-- " + MultiLanguage.Dictionary["Select"] + " --",
+			new { @class = "form-control combo-account-out text-danger" }
+		)
+
+		@Html.ValidationMessageFor(m => m.AccountOutUrl)
 	</div>
 </div>
 
