@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using DFM.Authentication;
+using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 using JetBrains.Annotations;
 
@@ -35,7 +37,31 @@ namespace DFM.MVC.Helpers.Controllers
 			return View(view, new BaseSiteModel());
 		}
 
+		protected override void HandleUnknownAction(String actionName)
+		{
+			var ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 
+			var wrongHttpMethod = 
+				GetType().GetMethods().Any(
+					m => m.IsPublic && m.Name.Equals(actionName, ignoreCase)
+				);
+
+			if (wrongHttpMethod)
+			{
+				RedirectToRoute(
+					RouteNames.DEFAULT,
+					new
+					{
+						controller = "Ops",
+						action = "Code",
+						id = "404"
+					}
+				).ExecuteResult(ControllerContext);
+			}
+			else
+			{
+				base.HandleUnknownAction(actionName);
+			}
+		}
 	}
-
 }
