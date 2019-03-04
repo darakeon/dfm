@@ -20,22 +20,22 @@ namespace DFM.MVC.Helpers.Global
 			var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
 			var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
 
-			Decimal value;
 			var parameters = getDictionary.Union(postDictionary)
 				.Where(
 					p => !p.Key.Contains("Password")
-						&& !Decimal.TryParse(p.Value, out value)
+						&& !Decimal.TryParse(p.Value, out _)
 				)
 				.ToDictionary(p => p.Key, p => p.Value);
 
 			var urlReferrer = current.Request.UrlReferrer;
 
-			EmailSent = Error.SendReport(current.AllErrors
-				, current.Request.Url.ToString()
-				, urlReferrer?.ToString() ?? "typed"
-				, parameters
-				, user.IsAuthenticated ? user.Name : "Off");
-
+			EmailSent = Error.SendReport(
+				current.AllErrors,
+				current.Request.Url.ToString(),
+				urlReferrer?.ToString() ?? "typed",
+				parameters,
+				user.IsAuthenticated ? user.Name : "Off"
+			);
 		}
 
 		/// <summary>
