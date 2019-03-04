@@ -19,13 +19,20 @@ namespace DFM.Email
 		/// <returns>Status of e-mail</returns>
 		public static Status SendReport(Exception[] exceptions, String url, String urlReferrer, IDictionary<String, String> parameters, String user)
 		{
-			if (exceptions == null)
+			if (exceptions == null || !exceptions.Any())
 				return Status.Empty;
 
 			try
 			{
-				var parametersFormatted = String.Join("; ", parameters.Select(format));
-				var exceptionsFormatted = String.Join("<br /><br />", exceptions.Select(format));
+				var parametersFormatted = String.Join(
+					"; ",
+					parameters.Select(format)
+				);
+
+				var exceptionsFormatted = String.Join(
+					"<br /><br />",
+					exceptions.Select(format)
+				);
 
 				if (!String.IsNullOrEmpty(urlReferrer))
 					urlReferrer = "origin: " + urlReferrer;
