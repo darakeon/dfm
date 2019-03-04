@@ -14,10 +14,15 @@ namespace DFM.Email
 		/// <param name="exceptions">Errors occured</param>
 		/// <param name="url">Current url</param>
 		/// <param name="urlReferrer">Previous url</param>
+		/// <param name="httpMethod">Get, Post, Delete, etc</param>
 		/// <param name="parameters">Parameters of url (post / get)</param>
 		/// <param name="user">Name of current user logged</param>
 		/// <returns>Status of e-mail</returns>
-		public static Status SendReport(Exception[] exceptions, String url, String urlReferrer, IDictionary<String, String> parameters, String user)
+		public static Status SendReport(
+			Exception[] exceptions,
+			String url, String urlReferrer, String httpMethod,
+			IDictionary<String, String> parameters,
+			String user)
 		{
 			if (exceptions == null || !exceptions.Any())
 				return Status.Empty;
@@ -34,13 +39,15 @@ namespace DFM.Email
 					exceptions.Select(format)
 				);
 
-				if (!String.IsNullOrEmpty(urlReferrer))
-					urlReferrer = "origin: " + urlReferrer;
+				urlReferrer = $"origin: {urlReferrer ?? "typed"}";
+
+				httpMethod = $"http method: {httpMethod}";
 
 				var body = $@"
 					<h4>{user} at {url}</h4>
 					<h5>{parametersFormatted}</h5>
 					<h6>{urlReferrer}</h6>
+					<h6>{httpMethod}</h6>
 					{exceptionsFormatted}";
 
 				new Sender()
