@@ -131,7 +131,7 @@ Legend:
 - [ ] Fix duplicated month entities
 - [ ] Add 404 from e-mail on web.config
 - [ ] Add http method on 404 reporting e-mail
-- [ ] Fix account not found on accounts area
+- [x] `190304>190304` Fix account not found on accounts area
 
 ## <a name="prod"></a>4.1.2.7 :ant: <sup>`1`</sup>
 - [x] `190222>190222` Update dependencies in .NET project
