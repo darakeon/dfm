@@ -130,7 +130,7 @@ Legend:
 - [ ] Fix report when url year / month is out of range
 - [ ] Fix duplicated month entities
 - [ ] Add 404 from e-mail on web.config
-- [ ] Add http method on 404 reporting e-mail
+- [ ] `190304>......` Add http method on 404 reporting e-mail
 - [x] `190304>190304` Fix account not found on accounts area
 
 ## <a name="prod"></a>4.1.2.7 :ant: <sup>`1`</sup>
