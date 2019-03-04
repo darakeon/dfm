@@ -120,10 +120,18 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Tests for user permission
 
-## <a name="dev"></a>4.1.3.0 :sheep: <sup>`3`</sup>
+## 4.1.3.0 :sheep: <sup>`4`</sup>
 - [ ] Make/find app to verify DFM status
 - [ ] Add press-and-hold to logout and exit
 - [ ] Add IsAdm to User
+- [ ] Fix transient detail insertion
+
+## <a name="dev"></a>4.1.2.8 :sheep: <sup>`5`</sup>
+- [ ] Fix report when url year / month is out of range
+- [ ] Fix duplicated month entities
+- [ ] Add 404 from e-mail on web.config
+- [ ] Add http method on 404 reporting e-mail
+- [ ] Fix account not found on accounts area
 
 ## <a name="prod"></a>4.1.2.7 :ant: <sup>`1`</sup>
 - [x] `190222>190222` Update dependencies in .NET project
