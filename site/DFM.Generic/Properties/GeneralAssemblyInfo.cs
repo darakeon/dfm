@@ -9,12 +9,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
-// Version information for an assembly consists of the following four values:
-//
-//		Major Version
-//		Minor Version
-//		Build Number
-//		Revision
-//
-[assembly: AssemblyVersion("4.1.2.7")]
-[assembly: AssemblyFileVersion("4.1.2.7")]
+[assembly: AssemblyVersion("4.1.2.8")]
+[assembly: AssemblyFileVersion("4.1.2.8")]
