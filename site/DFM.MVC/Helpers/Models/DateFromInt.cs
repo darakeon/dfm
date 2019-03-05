@@ -13,7 +13,7 @@ namespace DFM.MVC.Helpers.Models
 				? (Int16)(year.Value / 100)
 				: currentYear;
 
-			return dateYear.ForceBetween(1900, Int16.MaxValue);
+			return dateYear.ForceBetween(1900, 9998);
 		}
 
 		internal static Int16 GetDateMonth(Int32? month, DateTime today)
