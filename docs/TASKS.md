@@ -127,7 +127,7 @@ Legend:
 - [ ] Fix transient detail insertion
 
 ## <a name="dev"></a>4.1.2.8 :sheep: <sup>`5`</sup>
-- [ ] Fix report when url year / month is out of range
+- [x] `190304>190304` Fix report when url year / month is out of range
 - [x] `190304>190304` Fix duplicated month entities
 - [x] `190304>190304` Add 404 from e-mail on web.config
 - [x] `190304>190304` Add http method on 404 reporting e-mail
