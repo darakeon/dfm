@@ -8,7 +8,6 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -37,14 +36,15 @@ namespace DFM.BusinessLogic.Services
 			string accountOutUrl, string accountInUrl, string categoryName,
 			OperationType operationType
 		) {
-			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
-
 			var oldMove = moveRepository.GetNonCached(move.ID);
 
 			if (oldMove != null)
 			{
+				Parent.BaseMove.VerifyMove(oldMove);
 				move.Checked = oldMove.Checked;
 			}
+
+			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
 			if (move.ID == 0 || !move.IsDetailed())
 			{
@@ -185,6 +185,13 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
+		internal void VerifyMove(Move move)
+		{
+			if (move == null)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
 
+			if (move.User.Email != Parent.Current.User.Email)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+		}
 	}
 }
