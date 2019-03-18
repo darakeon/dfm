@@ -96,6 +96,10 @@ namespace DFM.BusinessLogic.Services
 					if (!String.IsNullOrEmpty(newUrl))
 						account.Url = newUrl;
 				}
+				else
+				{
+					account.ID = 0;
+				}
 
 				accountRepository.SaveOrUpdate(account);
 			});
@@ -219,6 +223,10 @@ namespace DFM.BusinessLogic.Services
 					category.ID = oldCategory.ID;
 					category.Active = oldCategory.Active;
 					category.Name = newName;
+				}
+				else
+				{
+					category.ID = 0;
 				}
 
 				categoryRepository.SaveOrUpdate(category);
