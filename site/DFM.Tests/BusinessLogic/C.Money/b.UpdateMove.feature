@@ -206,3 +206,14 @@ Scenario: Cb16. Change move with schedule
 	When I update the move
 	Then I will receive no core error
 		And the Move will still be at the Schedule
+
+Scenario: Cb17. Update the move of another user
+	Given I have a move with value 10 (Out)
+		But there is a bad person logged in
+			And I enable Categories use
+	When I change the move value to 20
+		And I update the move
+	Then I will receive this core error: Uninvited
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change
