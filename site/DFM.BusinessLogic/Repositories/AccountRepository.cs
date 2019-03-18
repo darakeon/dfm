@@ -114,7 +114,7 @@ namespace DFM.BusinessLogic.Repositories
 			try
 			{
 				return SingleOrDefault(
-						a => a.Url == url
+						a => a.Url == url.ToLower()
 							&& a.User.ID == user.ID
 					);
 			}
