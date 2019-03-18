@@ -222,6 +222,98 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bc04. Change the name of another user account")]
+        public virtual void Bc04_ChangeTheNameOfAnotherUserAccount()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc04. Change the name of another user account", null, ((string[])(null)));
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table7.AddRow(new string[] {
+                        "Account Bc04",
+                        "account_bc04",
+                        "",
+                        ""});
+#line 44
+ testRunner.Given("I have this account", ((string)(null)), table7, "Given ");
+#line 47
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table8.AddRow(new string[] {
+                        "Bc04 - new name",
+                        "account_bc04",
+                        "",
+                        ""});
+#line 48
+ testRunner.When("I make this changes to the account", ((string)(null)), table8, "When ");
+#line 51
+  testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+ testRunner.Then("I will receive this core error: InvalidAccount", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bc05. Change the url of another user account")]
+        public virtual void Bc05_ChangeTheUrlOfAnotherUserAccount()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bc05. Change the url of another user account", null, ((string[])(null)));
+#line 54
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table9.AddRow(new string[] {
+                        "Account Bc05",
+                        "account_bc05",
+                        "",
+                        ""});
+#line 55
+ testRunner.Given("I have this account", ((string)(null)), table9, "Given ");
+#line 58
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Url",
+                        "Yellow",
+                        "Red"});
+            table10.AddRow(new string[] {
+                        "Account Bc05",
+                        "account_bc05_url",
+                        "",
+                        ""});
+#line 59
+ testRunner.When("I make this changes to the account", ((string)(null)), table10, "When ");
+#line 62
+  testRunner.And("I try to update the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.Then("I will receive this core error: InvalidAccount", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

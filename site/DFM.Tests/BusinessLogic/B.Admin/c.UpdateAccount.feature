@@ -39,3 +39,25 @@ Scenario: Bc03. Change the url
 		And I try to update the account
 	Then I will receive no core error
 		And the account will be changed
+
+Scenario: Bc04. Change the name of another user account
+	Given I have this account
+			| Name         | Url          | Yellow | Red |
+			| Account Bc04 | account_bc04 |        |     |
+		But there is a bad person logged in
+	When I make this changes to the account
+			| Name            | Url          | Yellow | Red |
+			| Bc04 - new name | account_bc04 |        |     |
+		And I try to update the account
+	Then I will receive this core error: InvalidAccount
+
+Scenario: Bc05. Change the url of another user account
+	Given I have this account
+			| Name         | Url          | Yellow | Red |
+			| Account Bc05 | account_bc05 |        |     |
+		But there is a bad person logged in
+	When I make this changes to the account
+			| Name         | Url              | Yellow | Red |
+			| Account Bc05 | account_bc05_url |        |     |
+		And I try to update the account
+	Then I will receive this core error: InvalidAccount

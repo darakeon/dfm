@@ -189,6 +189,42 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bh04. Change the name of another user category")]
+        public virtual void Bh04_ChangeTheNameOfAnotherUserCategory()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bh04. Change the name of another user category", null, ((string[])(null)));
+#line 44
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table8.AddRow(new string[] {
+                        "Category Bh01"});
+#line 45
+ testRunner.Given("I have this category", ((string)(null)), table8, "Given ");
+#line 48
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 49
+   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table9.AddRow(new string[] {
+                        "Bh04 - new name"});
+#line 50
+  testRunner.And("I make this changes to the category", ((string)(null)), table9, "And ");
+#line 53
+ testRunner.When("I try to update the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 54
+ testRunner.Then("I will receive this core error: InvalidCategory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
