@@ -146,14 +146,18 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Decimal GetIn(Month month, Category category)
 		{
-			var query = NewQuery().SimpleFilter(m => m.In.ID == month.ID);
+			var query = NewQuery().SimpleFilter(
+				m => m.In != null && m.In.ID == month.ID
+			);
 
 			return get(query, category);
 		}
 
 		internal Decimal GetOut(Month month, Category category)
 		{
-			var query = NewQuery().SimpleFilter(m => m.Out.ID == month.ID);
+			var query = NewQuery().SimpleFilter(
+				m => m.Out != null && m.Out.ID == month.ID
+			);
 
 			return get(query, category);
 		}
