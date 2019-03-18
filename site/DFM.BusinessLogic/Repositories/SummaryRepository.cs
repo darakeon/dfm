@@ -16,8 +16,10 @@ namespace DFM.BusinessLogic.Repositories
 
 		private Summary getByYearAndCategory(Year year, Category category)
 		{
-			return SimpleFilter(s => s.Year.ID == year.ID)
-				.SingleOrDefault(s => s.Category.Is(category));
+			return SimpleFilter(
+				s => s.Year != null
+				&& s.Year.ID == year.ID
+			).SingleOrDefault(s => s.Category.Is(category));
 		}
 
 		internal void Break(Month month, Category category)
@@ -29,9 +31,10 @@ namespace DFM.BusinessLogic.Repositories
 
 		private Summary getByMonthAndCategory(Month month, Category category)
 		{
-			var list = SimpleFilter(s => s.Month.ID == month.ID);
-
-			return list.SingleOrDefault(s => s.Category.Is(category));
+			return SimpleFilter(
+				s => s.Month != null 
+				&& s.Month.ID == month.ID
+			).SingleOrDefault(s => s.Category.Is(category));
 		}
 
 		private void @break(Summary summary)
