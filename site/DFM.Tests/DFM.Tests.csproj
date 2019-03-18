@@ -294,6 +294,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>a.GetMonthReport.feature</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogic\Helpers\FakeRepos.cs" />
     <Compile Include="BusinessLogic\MainStep.cs" />
     <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="Email\EmailSend.feature.cs">

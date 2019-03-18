@@ -80,7 +80,7 @@
             Get old data of the entity
             </summary>
         </member>
-        <member name="M:DK.NHibernate.Base.BaseRepository`1.NewNonCachedQuery``1(System.Func{DK.NHibernate.Base.Query{`0},``0})">
+        <member name="M:DK.NHibernate.Base.BaseRepository`1.NewNonCachedQuery``1(System.Func{DK.NHibernate.Queries.IQuery{`0},``0})">
             <summary>
             Get old data of query
             </summary>
@@ -222,259 +222,6 @@
             <param name="autoMappingInfo">About mappings on the entities</param>
             <param name="dbAction">Action into DB when start project</param>
         </member>
-        <member name="T:DK.NHibernate.Base.Query`1">
-            <summary>
-            Object to handle database fluently
-            </summary>
-            <typeparam name="T">Entity Type</typeparam>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.#ctor(NHibernate.ISession)">
-            <summary></summary>
-            <param name="session">NH Session</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
-            <summary>
-            Make a filter with lambda expression
-            </summary>
-            <param name="where">Lambda expression</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            Make a filter with lambda expression
-            </summary>
-            <param name="entityRelation">Lambda expression for parent entity</param>
-            <param name="where">Lambda expression of condition</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            Make a filter with lambda expression
-            </summary>
-            <param name="entityRelation">Lambda expression for child entity</param>
-            <param name="where">Lambda expression of condition</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.InCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Collections.Generic.IList{``0})">
-            <summary>
-            List of entities where certain property is in a list of possibilities
-            </summary>
-            <param name="property">Lambda of property to test</param>
-            <param name="contains">List to be verified</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.IsNotEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
-            <summary>
-            Test whether a list is not empty
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.IsEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
-            <summary>
-            Test whether a list is empty
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,DK.NHibernate.Base.Query{`0}.LikeType)">
-            <summary>
-            Search for text inside entity property values
-            </summary>
-            <param name="property">Lambda of property</param>
-            <param name="term">Text to search</param>
-            <param name="likeType">Start, End, Both</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)">
-            <summary>
-            Search for text inside entity property values
-            </summary>
-            <param name="ascendingRelation">Relation to parent entity</param>
-            <param name="property">Property of parent</param>
-            <param name="term">Terms of search</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LikeCondition(System.Collections.Generic.IList{DK.NHibernate.Base.SearchItem{`0}})">
-            <summary>
-            Search for text inside entity property values
-            </summary>
-            <param name="searchTerms">Fields and texts to search</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
-            <summary>
-            Show primary entity even if the other entity doesn't exists
-            </summary>
-            <param name="entityRelation">Parent entity</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
-            <summary>
-            Show primary entity even if the other entity doesn't exists
-            </summary>
-            <param name="entityRelation">Child entity</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.FetchModeEager``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
-            <summary>
-            Fetch eagerly, using a separate select.
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.HasFlag``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},``0)">
-            <summary>
-            Verify if a flagged enum has a specific flag
-            </summary>
-            <param name="func">Property to be checked</param>
-            <param name="value">Value to find</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
-            <summary>
-            Reordering results
-            </summary>
-            <param name="order">Property to order</param>
-            <param name="ascending">Whether the order is ascending (true) or descending (false)</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.OrderByParent``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
-            <summary>
-            Ordering using parent entity
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Take(System.Int32)">
-            <summary>
-            Take just the first items
-            </summary>
-            <param name="topItems">Number of items to take</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Any">
-            <summary>
-            Verify if there is any item that corresponds to the query
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Page(DK.NHibernate.Base.ISearch)">
-            <summary>
-            To get a page of the results
-            </summary>
-            <param name="search">Parameters of paging</param>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.DistinctMainEntity">
-            <summary>
-            To do not duplicate main entity
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.TransformResult``3(System.Collections.Generic.IList{``1},System.Collections.Generic.IList{``2})">
-            <summary>
-            Group and summarize result
-            </summary>
-            <param name="groupProperties">Group by</param>
-            <param name="summarizeProperties">Summarize properties (Count, Max, Sum)</param>
-            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
-            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
-            <typeparam name="TSummarize">Need to construct from Query.Summarize</typeparam>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.TransformResult``2(System.Collections.Generic.IList{``1})">
-            <summary>
-            Group and summarize result
-            </summary>
-            <param name="groupProperties">Group by</param>
-            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
-            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
-        </member>
-        <member name="P:DK.NHibernate.Base.Query`1.Count">
-            <summary>
-            Execute the query, getting just the amount of items
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.Base.Query`1.Result">
-            <summary>
-            Execute the query, getting all the results
-            </summary>
-        </member>
-        <member name="P:DK.NHibernate.Base.Query`1.UniqueResult">
-            <summary>
-            Execute the query, return just one result
-            </summary>
-            <exception cref="T:NHibernate.NonUniqueResultException">If there is more than one result from constructed query</exception>
-        </member>
-        <member name="P:DK.NHibernate.Base.Query`1.FirstOrDefault">
-            <summary>
-            Return first result of list, or null if list is empty
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.ResultAs``1">
-            <summary>
-            Result for summarized queries
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SumInt(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
-            <summary>
-            Sum for Int32 field
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SumLong(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
-            <summary>
-            Sum for Int64 field
-            </summary>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.SumDecimal(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
-            <summary>
-            Sum for Decimal field
-            </summary>
-        </member>
-        <member name="T:DK.NHibernate.Base.Query`1.Summarize`1">
-            <summary>
-            Class to construct Summarize parameters
-            </summary>
-            <typeparam name="TDestiny">Result class of summarize</typeparam>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.Summarize`1.GetSummarize``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`1,``0}},DK.NHibernate.Base.Query{`0}.SummarizeType)">
-            <summary>
-            To construct each parameter of summarize
-            </summary>
-            <param name="origin">Property on original entity</param>
-            <param name="destiny">Corresponding property on result class</param>
-            <param name="type">(Count, Max, Sum)</param>
-        </member>
-        <member name="T:DK.NHibernate.Base.Query`1.GroupBy`1">
-            <summary>
-            Class to construct Summarize parameters
-            </summary>
-            <typeparam name="TDestiny">Result class of grouping</typeparam>
-        </member>
-        <member name="M:DK.NHibernate.Base.Query`1.GroupBy`1.GetGroupBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`1,``0}})">
-            <summary>
-            To construct each parameter of grouping
-            </summary>
-            <param name="origin">Property on original entity</param>
-            <param name="destiny">Corresponding property on result class</param>
-        </member>
-        <member name="T:DK.NHibernate.Base.Query`1.SummarizeType">
-            <summary>
-            Type of summarize
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Count">
-            <summary>
-            Count items
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Max">
-            <summary>
-            Get biggest item
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.SummarizeType.Sum">
-            <summary>
-            Sum all items
-            </summary>
-        </member>
-        <member name="T:DK.NHibernate.Base.Query`1.LikeType">
-            <summary>
-            Type of like comparison
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.LikeType.Both">
-            <summary>
-            Look start and end of string
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.LikeType.JustStart">
-            <summary>
-            Look just at start of string
-            </summary>
-        </member>
-        <member name="F:DK.NHibernate.Base.Query`1.LikeType.JustEnd">
-            <summary>
-            Look just at end of string
-            </summary>
-        </member>
         <member name="T:DK.NHibernate.Base.ISearch">
             <summary>
             Interface for searches by Query
@@ -498,6 +245,11 @@
         <member name="P:DK.NHibernate.Base.SessionFactoryManager.Instance">
             <summary>
             Singleton
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Base.SessionFactoryManager.FakeDB">
+            <summary>
+            Use in-memory data with lists, for tests
             </summary>
         </member>
         <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2(DK.NHibernate.UserPassed.IDataInitializer)">
@@ -637,6 +389,448 @@
         <member name="M:DK.NHibernate.Helpers.SchemaChanger.#ctor(System.String)">
             <summary>
             Construct class with the name of the script
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Queries.GroupBy`3">
+            <summary>
+            Class to construct Summarize parameters
+            </summary>
+            <typeparam name="T">Main entity</typeparam>
+            <typeparam name="TDestiny">Result class of grouping</typeparam>
+            <typeparam name="TProp">Type of the property in both entities</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.GroupBy`3.GetGroupBy(System.Linq.Expressions.Expression{System.Func{`0,`2}},System.Linq.Expressions.Expression{System.Func{`1,`2}})">
+            <summary>
+            To construct each parameter of grouping
+            </summary>
+            <param name="origin">Property on original entity</param>
+            <param name="destiny">Corresponding property on result class</param>
+        </member>
+        <member name="T:DK.NHibernate.Queries.IQuery`1">
+            <summary>
+            Object to handle database fluently
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SimpleFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="where">Lambda expression</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="entityRelation">Lambda expression for parent entity</param>
+            <param name="where">Lambda expression of condition</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="entityRelation">Lambda expression for child entity</param>
+            <param name="where">Lambda expression of condition</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.InCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Collections.Generic.IList{``0})">
+            <summary>
+            List of entities where certain property is in a list of possibilities
+            </summary>
+            <param name="property">Lambda of property to test</param>
+            <param name="contains">List to be verified</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.IsNotEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is not empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.IsEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,DK.NHibernate.Queries.LikeType)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="property">Lambda of property</param>
+            <param name="term">Text to search</param>
+            <param name="likeType">Start, End, Both</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.LikeCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="ascendingRelation">Relation to parent entity</param>
+            <param name="property">Property of parent</param>
+            <param name="term">Terms of search</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.LikeCondition(System.Collections.Generic.IList{DK.NHibernate.Base.SearchItem{`0}})">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="searchTerms">Fields and texts to search</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Parent entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Child entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.FetchModeEager``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Fetch eagerly, using a separate select.
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.HasFlag``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},``0)">
+            <summary>
+            Verify if a flagged enum has a specific flag
+            </summary>
+            <param name="func">Property to be checked</param>
+            <param name="value">Value to find</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Reordering results
+            </summary>
+            <param name="order">Property to order</param>
+            <param name="ascending">Whether the order is ascending (true) or descending (false)</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.OrderByParent``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Ordering using parent entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.Take(System.Int32)">
+            <summary>
+            Take just the first items
+            </summary>
+            <param name="topItems">Number of items to take</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.Any">
+            <summary>
+            Verify if there is any item that corresponds to the query
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.Page(DK.NHibernate.Base.ISearch)">
+            <summary>
+            To get a page of the results
+            </summary>
+            <param name="search">Parameters of paging</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.DistinctMainEntity">
+            <summary>
+            To do not duplicate main entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.TransformResult``4(System.Collections.Generic.IList{``2},System.Collections.Generic.IList{``3})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <param name="summarizeProperties">Summarize properties (Count, Max, Sum)</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TProp">Type of the property in both entities</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
+            <typeparam name="TSummarize">Need to construct from Query.Summarize</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.TransformResult``3(System.Collections.Generic.IList{``2})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TProp">Type of the property in both entities</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
+        </member>
+        <member name="P:DK.NHibernate.Queries.IQuery`1.Count">
+            <summary>
+            Execute the query, getting just the amount of items
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Queries.IQuery`1.Result">
+            <summary>
+            Execute the query, getting all the results
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Queries.IQuery`1.UniqueResult">
+            <summary>
+            Execute the query, return just one result
+            </summary>
+            <exception cref="T:NHibernate.NonUniqueResultException">If there is more than one result from constructed query</exception>
+        </member>
+        <member name="P:DK.NHibernate.Queries.IQuery`1.FirstOrDefault">
+            <summary>
+            Return first result of list, or null if list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.ResultAs``1">
+            <summary>
+            Result for summarized queries
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SumInt(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int32 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SumLong(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int64 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.IQuery`1.SumDecimal(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Decimal field
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Queries.LikeType">
+            <summary>
+            Type of like comparison
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.LikeType.Both">
+            <summary>
+            Look start and end of string
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.LikeType.JustStart">
+            <summary>
+            Look just at start of string
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.LikeType.JustEnd">
+            <summary>
+            Look just at end of string
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Queries.Query`1">
+            <summary>
+            Object to handle database fluently
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.#ctor(NHibernate.ISession)">
+            <summary></summary>
+            <param name="session">NH Session</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SimpleFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="where">Lambda expression</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="entityRelation">Lambda expression for parent entity</param>
+            <param name="where">Lambda expression of condition</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SimpleFilter``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Make a filter with lambda expression
+            </summary>
+            <param name="entityRelation">Lambda expression for child entity</param>
+            <param name="where">Lambda expression of condition</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.InCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Collections.Generic.IList{``0})">
+            <summary>
+            List of entities where certain property is in a list of possibilities
+            </summary>
+            <param name="property">Lambda of property to test</param>
+            <param name="contains">List to be verified</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.IsNotEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is not empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.IsEmpty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Test whether a list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.LikeCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,DK.NHibernate.Queries.LikeType)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="property">Lambda of property</param>
+            <param name="term">Text to search</param>
+            <param name="likeType">Start, End, Both</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.LikeCondition``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="ascendingRelation">Relation to parent entity</param>
+            <param name="property">Property of parent</param>
+            <param name="term">Terms of search</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.LikeCondition(System.Collections.Generic.IList{DK.NHibernate.Base.SearchItem{`0}})">
+            <summary>
+            Search for text inside entity property values
+            </summary>
+            <param name="searchTerms">Fields and texts to search</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Parent entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Show primary entity even if the other entity doesn't exists
+            </summary>
+            <param name="entityRelation">Child entity</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.FetchModeEager``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IList{``0}}})">
+            <summary>
+            Fetch eagerly, using a separate select.
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.HasFlag``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},``0)">
+            <summary>
+            Verify if a flagged enum has a specific flag
+            </summary>
+            <param name="func">Property to be checked</param>
+            <param name="value">Value to find</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Reordering results
+            </summary>
+            <param name="order">Property to order</param>
+            <param name="ascending">Whether the order is ascending (true) or descending (false)</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.OrderByParent``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Nullable{System.Boolean})">
+            <summary>
+            Ordering using parent entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.Take(System.Int32)">
+            <summary>
+            Take just the first items
+            </summary>
+            <param name="topItems">Number of items to take</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.Any">
+            <summary>
+            Verify if there is any item that corresponds to the query
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.Page(DK.NHibernate.Base.ISearch)">
+            <summary>
+            To get a page of the results
+            </summary>
+            <param name="search">Parameters of paging</param>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.DistinctMainEntity">
+            <summary>
+            To do not duplicate main entity
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.TransformResult``4(System.Collections.Generic.IList{``2},System.Collections.Generic.IList{``3})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <param name="summarizeProperties">Summarize properties (Count, Max, Sum)</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TProp">Type of the property in both entities</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
+            <typeparam name="TSummarize">Need to construct from Query.Summarize</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.TransformResult``3(System.Collections.Generic.IList{``2})">
+            <summary>
+            Group and summarize result
+            </summary>
+            <param name="groupProperties">Group by</param>
+            <typeparam name="TDestiny">Type of class to be returned (summarized)</typeparam>
+            <typeparam name="TProp">Type of the property in both entities</typeparam>
+            <typeparam name="TGroupBy">Need to construct from Query.GroupBy</typeparam>
+        </member>
+        <member name="P:DK.NHibernate.Queries.Query`1.Count">
+            <summary>
+            Execute the query, getting just the amount of items
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Queries.Query`1.Result">
+            <summary>
+            Execute the query, getting all the results
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Queries.Query`1.UniqueResult">
+            <summary>
+            Execute the query, return just one result
+            </summary>
+            <exception cref="T:NHibernate.NonUniqueResultException">If there is more than one result from constructed query</exception>
+        </member>
+        <member name="P:DK.NHibernate.Queries.Query`1.FirstOrDefault">
+            <summary>
+            Return first result of list, or null if list is empty
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.ResultAs``1">
+            <summary>
+            Result for summarized queries
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SumInt(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int32 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SumLong(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Int64 field
+            </summary>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Query`1.SumDecimal(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Sum for Decimal field
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Queries.Summarize`3">
+            <summary>
+            Class to construct Summarize parameters
+            </summary>
+            <typeparam name="T">Main entity</typeparam>
+            <typeparam name="TDestiny">Result class of summarize</typeparam>
+        </member>
+        <member name="M:DK.NHibernate.Queries.Summarize`3.GetSummarize(System.Linq.Expressions.Expression{System.Func{`0,`2}},System.Linq.Expressions.Expression{System.Func{`1,`2}},DK.NHibernate.Queries.SummarizeType)">
+            <summary>
+            To construct each parameter of summarize
+            </summary>
+            <param name="origin">Property on original entity</param>
+            <param name="destiny">Corresponding property on result class</param>
+            <param name="type">(Count, Max, Sum)</param>
+        </member>
+        <member name="T:DK.NHibernate.Queries.SummarizeType">
+            <summary>
+            Type of summarize
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.SummarizeType.Count">
+            <summary>
+            Count items
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.SummarizeType.Max">
+            <summary>
+            Get biggest item
+            </summary>
+        </member>
+        <member name="F:DK.NHibernate.Queries.SummarizeType.Sum">
+            <summary>
+            Sum all items
             </summary>
         </member>
         <member name="T:DK.NHibernate.UserPassed.AutoMappingInfo`2">

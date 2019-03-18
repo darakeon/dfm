@@ -729,7 +729,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a ticket that exist")]
 		public void GivenIPassATicketThatExist()
 		{
-			ticket = DBHelper.GetLastTicketForUser(email, password);
+			ticket = DBHelper.GetLastTicketForUser(email);
 		}
 
 		[Given(@"I pass a valid ([A-Za-z]+) token")]
