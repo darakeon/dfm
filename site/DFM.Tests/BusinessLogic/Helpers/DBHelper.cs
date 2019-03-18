@@ -2,6 +2,7 @@
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
+using DK.NHibernate.Base;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers
@@ -11,9 +12,13 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		static readonly String connStr =
 			$"Server={Cfg.Server};Database={Cfg.DataBase};Uid={Cfg.Login};Pwd={Cfg.Password};";
 
-
-		public static String GetLastTokenForUser(String email, SecurityAction action)
+		internal static String GetLastTokenForUser(String email, SecurityAction action)
 		{
+			if (SessionFactoryManager.FakeDB)
+			{
+				return FakeRepos.Security.GetLastTokenForUser(email, action);
+			}
+
 			String token;
 
 			using (var conn = new MySqlConnection(connStr))
@@ -55,10 +60,13 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			return token;
 		}
 
-
-
-		internal static String GetLastTicketForUser(String email, String password)
+		internal static String GetLastTicketForUser(String email)
 		{
+			if (SessionFactoryManager.FakeDB)
+			{
+				return FakeRepos.Ticket.GetLastTicketForUser(email);
+			}
+
 			String ticket;
 
 			using (var conn = new MySqlConnection(connStr))
@@ -97,10 +105,13 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			return ticket;
 		}
 
-
-
-		public static String GetUserEmailByTicket(String ticket)
+		internal static String GetUserEmailByTicket(String ticket)
 		{
+			if (SessionFactoryManager.FakeDB)
+			{
+				return FakeRepos.Ticket.GetUserEmailByTicket(ticket);
+			}
+
 			String token;
 
 			using (var conn = new MySqlConnection(connStr))
@@ -139,9 +150,14 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			return token;
 		}
 
-
-		public static void CreateContract(String contractVersion)
+		internal static void CreateContract(String contractVersion)
 		{
+			if (SessionFactoryManager.FakeDB)
+			{
+				FakeRepos.Contract.Create(contractVersion);
+				return;
+			}
+
 			using (var conn = new MySqlConnection(connStr))
 			{
 				conn.Open();
@@ -164,8 +180,13 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
-		public static String GetTFAUser(String email)
+		internal static String GetTFAUser(String email)
 		{
+			if (SessionFactoryManager.FakeDB)
+			{
+				return FakeRepos.User.GetTFAUser(email);
+			}
+
 			String ticket;
 
 			using (var conn = new MySqlConnection(connStr))

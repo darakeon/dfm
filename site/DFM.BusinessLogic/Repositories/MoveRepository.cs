@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DK.Generic.Extensions;
-using DK.NHibernate.Base;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
@@ -12,6 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Emails;
 using DFM.Multilanguage.Helpers;
+using DK.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -158,7 +158,7 @@ namespace DFM.BusinessLogic.Repositories
 			return get(query, category);
 		}
 
-		private Decimal get(Query<Move> query, Category category)
+		private Decimal get(IQuery<Move> query, Category category)
 		{
 			query = category == null
 				? query.SimpleFilter(m => m.Category == null)
