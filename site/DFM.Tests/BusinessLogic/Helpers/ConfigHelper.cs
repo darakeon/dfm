@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.Generic;
 
 namespace DFM.Tests.BusinessLogic.Helpers
@@ -37,25 +37,25 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static void ActivateMoveEmailForUser(ServiceAccess sa)
 		{
-			var mainConfig = new MainConfig { SendMoveEmail = true };
+			var mainConfig = new ConfigOptions { SendMoveEmail = true };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
 
 		internal static void DeactivateMoveEmailForUser(ServiceAccess sa)
 		{
-			var mainConfig = new MainConfig { SendMoveEmail = false };
+			var mainConfig = new ConfigOptions { SendMoveEmail = false };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
 
 		internal static void ActivateCategoriesUseForUser(ServiceAccess sa)
 		{
-			var mainConfig = new MainConfig { UseCategories = true };
+			var mainConfig = new ConfigOptions { UseCategories = true };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
 
 		internal static void DeactivateCategoriesUseForUser(ServiceAccess sa)
 		{
-			var mainConfig = new MainConfig { UseCategories = false };
+			var mainConfig = new ConfigOptions { UseCategories = false };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 
 namespace DFM.Tests.Helpers
 {

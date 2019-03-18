@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.Entities;
 using DFM.MVC.Helpers.Global;
 

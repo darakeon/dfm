@@ -1,7 +1,7 @@
 ﻿using System;
 using DK.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;
 using DFM.Entities;
@@ -114,13 +114,13 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.Category == null && useCategories)
 			{
-				var mainConfig = new MainConfig { UseCategories = false };
+				var mainConfig = new ConfigOptions { UseCategories = false };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
 			if (schedule.Category != null && !useCategories)
 			{
-				var mainConfig = new MainConfig { UseCategories = true };
+				var mainConfig = new ConfigOptions { UseCategories = true };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
@@ -128,7 +128,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.User.Config.UseCategories != useCategories)
 			{
-				var mainConfig = new MainConfig { UseCategories = useCategories };
+				var mainConfig = new ConfigOptions { UseCategories = useCategories };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 		}

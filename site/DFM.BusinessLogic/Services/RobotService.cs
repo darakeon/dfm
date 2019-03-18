@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DK.Generic.Exceptions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
 using DFM.Email;
 using DFM.Entities;
@@ -56,13 +56,13 @@ namespace DFM.BusinessLogic.Services
 
 			try
 			{
-				var mainConfig = new MainConfig { UseCategories = !useCategories };
+				var mainConfig = new ConfigOptions { UseCategories = !useCategories };
 				Parent.Admin.UpdateConfig(mainConfig);
 				emailsSent = runSchedule(diffConfigList);
 			}
 			finally
 			{
-				var mainConfig = new MainConfig { UseCategories = useCategories };
+				var mainConfig = new ConfigOptions { UseCategories = useCategories };
 				Parent.Admin.UpdateConfig(mainConfig);
 			}
 

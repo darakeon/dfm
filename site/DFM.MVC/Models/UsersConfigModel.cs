@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using DFM.Authentication;
 using DK.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -44,7 +44,7 @@ namespace DFM.MVC.Models
 		}
 
 
-		public class MainConfig : IMainConfig
+		public class MainConfig : ConfigOptions
 		{
 			public MainConfig(AdminService admin, Config config)
 			{
@@ -69,11 +69,6 @@ namespace DFM.MVC.Models
 
 			private readonly AdminService admin;
 
-			public Boolean? UseCategories { get; set; }
-			public Boolean? SendMoveEmail { get; set; }
-			public Boolean? MoveCheck { get; set; }
-			public Boolean? Wizard { get; set; }
-
 			public Boolean UseCategoriesCheck
 			{
 				get => UseCategories.HasValue && UseCategories.Value;
@@ -97,9 +92,6 @@ namespace DFM.MVC.Models
 				get => Wizard.HasValue && Wizard.Value;
 				set => Wizard = value;
 			}
-
-			public String Language { get; set; }
-			public String TimeZone { get; set; }
 
 			public SelectList TimeZoneList { get; set; }
 			public SelectList LanguageList { get; set; }
