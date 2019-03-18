@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DK.NHibernate.Base;
@@ -68,6 +69,38 @@ namespace DFM.Tests.BusinessLogic
 		}
 
 
+
+		private static String logFileName;
+		
+		[BeforeTestRun]
+		public static void SetLogName()
+		{
+			var date = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+
+			var path = 
+				Path.Combine(
+					AppDomain.CurrentDomain.BaseDirectory,
+					@"..\..\",
+					"log"
+				);
+
+			if (!Directory.Exists(path))
+				Directory.CreateDirectory(path);
+
+			logFileName = Path.Combine(path, $"tests_{date}.log");
+		}
+
+		[BeforeScenario]
+		public static void RegisterRun()
+		{
+			var title = ScenarioContext.Current
+				.ScenarioInfo.Title;
+
+			File.AppendAllLines(
+				logFileName,
+				new[] { title }
+			);
+		}
 
 		[AfterScenarioBlock]
 		public static void CloseSession()
