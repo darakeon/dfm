@@ -34,7 +34,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = moveRepository.Get(id);
 
-			verifyMove(move);
+			Parent.BaseMove.VerifyMove(move);
 
 			return move;
 		}
@@ -90,7 +90,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = GetMoveByIdInternal(id);
 
-			verifyMove(move);
+			Parent.BaseMove.VerifyMove(move);
 
 			moveRepository.Delete(id);
 
@@ -143,22 +143,10 @@ namespace DFM.BusinessLogic.Services
 			if (detail == null)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
 
-			verifyMove(detail.Move);
+			Parent.BaseMove.VerifyMove(detail.Move);
 
 			return detail;
 		}
-
-
-		// ReSharper disable once UnusedParameter.Local
-		private void verifyMove(Move move)
-		{
-			if (move == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
-
-			if (move.User.Email != Parent.Current.User.Email)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
-		}
-
 
 
 		public Move CheckMove(Int32 moveId)
@@ -177,7 +165,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = GetMoveByIdInternal(moveId);
 
-			verifyMove(move);
+			Parent.BaseMove.VerifyMove(move);
 			verifyMoveForCheck(move, check);
 
 			move.Checked = check;
