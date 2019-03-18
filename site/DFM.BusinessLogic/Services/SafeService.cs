@@ -7,7 +7,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DK.Generic.Extensions;
 using DK.TwoFactorAuth;
 using Ticket = DFM.Entities.Ticket;

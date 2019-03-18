@@ -74,8 +74,8 @@
     <Compile Include="Bases\GenericMoveRepository.cs" />
     <Compile Include="Helpers\ThemeExtension.cs" />
     <Compile Include="Helpers\Defaults.cs" />
-    <Compile Include="ObjectInterfaces\IPasswordForm.cs" />
-    <Compile Include="ObjectInterfaces\MainConfig.cs" />
+    <Compile Include="InterfacesAndBases\IPasswordForm.cs" />
+    <Compile Include="InterfacesAndBases\ConfigOptions.cs" />
     <Compile Include="Repositories\AcceptanceRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />

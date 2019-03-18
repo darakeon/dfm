@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Multilanguage;
@@ -801,7 +801,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { UseCategories = false };
+				var mainConfig = new ConfigOptions { UseCategories = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -816,7 +816,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { UseCategories = true };
+				var mainConfig = new ConfigOptions { UseCategories = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -831,7 +831,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { MoveCheck = false };
+				var mainConfig = new ConfigOptions { MoveCheck = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -846,7 +846,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { MoveCheck = true };
+				var mainConfig = new ConfigOptions { MoveCheck = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -861,7 +861,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { Wizard = false };
+				var mainConfig = new ConfigOptions { Wizard = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -876,7 +876,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { Wizard = true };
+				var mainConfig = new ConfigOptions { Wizard = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -890,7 +890,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { Language = language };
+				var mainConfig = new ConfigOptions { Language = language };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -914,7 +914,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { TimeZone = timezone };
+				var mainConfig = new ConfigOptions { TimeZone = timezone };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -929,7 +929,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { SendMoveEmail = false };
+				var mainConfig = new ConfigOptions { SendMoveEmail = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)
@@ -944,7 +944,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new MainConfig { SendMoveEmail = true };
+				var mainConfig = new ConfigOptions { SendMoveEmail = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (DFMCoreException e)

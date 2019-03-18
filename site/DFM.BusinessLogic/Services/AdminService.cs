@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.ObjectInterfaces;
+using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -258,50 +258,50 @@ namespace DFM.BusinessLogic.Services
 
 		#region Config
 
-		public void UpdateConfig(IMainConfig mainConfig)
+		public void UpdateConfig(ConfigOptions configOptions)
 		{
 			Parent.Safe.VerifyUser();
 
 			InTransaction(() =>
 			{
-				UpdateConfigWithinTransaction(mainConfig);
+				UpdateConfigWithinTransaction(configOptions);
 			});
 		}
 
-		internal void UpdateConfigWithinTransaction(IMainConfig mainConfig)
+		internal void UpdateConfigWithinTransaction(ConfigOptions configOptions)
 		{
 			var config = Parent.Current.User.Config;
 
-			if (!String.IsNullOrEmpty(mainConfig.Language) && !PlainText.AcceptedLanguage().Contains(mainConfig.Language.ToLower()))
+			if (!String.IsNullOrEmpty(configOptions.Language) && !PlainText.AcceptedLanguage().Contains(configOptions.Language.ToLower()))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnknown);
 
-			if (!String.IsNullOrEmpty(mainConfig.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(mainConfig.TimeZone))
+			if (!String.IsNullOrEmpty(configOptions.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(configOptions.TimeZone))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnknown);
 
-			if (!String.IsNullOrEmpty(mainConfig.Language))
-				config.Language = mainConfig.Language;
+			if (!String.IsNullOrEmpty(configOptions.Language))
+				config.Language = configOptions.Language;
 
-			if (!String.IsNullOrEmpty(mainConfig.TimeZone))
-				config.TimeZone = mainConfig.TimeZone;
+			if (!String.IsNullOrEmpty(configOptions.TimeZone))
+				config.TimeZone = configOptions.TimeZone;
 
-			if (mainConfig.SendMoveEmail.HasValue)
-				config.SendMoveEmail = mainConfig.SendMoveEmail.Value;
+			if (configOptions.SendMoveEmail.HasValue)
+				config.SendMoveEmail = configOptions.SendMoveEmail.Value;
 
-			if (mainConfig.UseCategories.HasValue)
-				config.UseCategories = mainConfig.UseCategories.Value;
+			if (configOptions.UseCategories.HasValue)
+				config.UseCategories = configOptions.UseCategories.Value;
 
-			if (mainConfig.MoveCheck.HasValue)
-				config.MoveCheck = mainConfig.MoveCheck.Value;
+			if (configOptions.MoveCheck.HasValue)
+				config.MoveCheck = configOptions.MoveCheck.Value;
 
-			if (mainConfig.Wizard.HasValue)
-				config.Wizard = mainConfig.Wizard.Value;
+			if (configOptions.Wizard.HasValue)
+				config.Wizard = configOptions.Wizard.Value;
 
 			configRepository.Update(config);
 		}
 
 		public void EndWizard()
 		{
-			UpdateConfig(new MainConfig { Wizard = false });
+			UpdateConfig(new ConfigOptions { Wizard = false });
 		}
 		#endregion Config
 
