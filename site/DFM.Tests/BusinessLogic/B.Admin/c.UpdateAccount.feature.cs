@@ -98,8 +98,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table1.AddRow(new string[] {
-                        "Account Ca01",
-                        "account_ca01",
+                        "Account Bc01",
+                        "account_bc01",
                         "",
                         ""});
 #line 9
@@ -111,8 +111,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table2.AddRow(new string[] {
-                        "Ca01 - new name",
-                        "account_ca01",
+                        "Bc01 - new name",
+                        "account_bc01",
                         "",
                         ""});
 #line 12
@@ -144,8 +144,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table3.AddRow(new string[] {
-                        "Account Ca02",
-                        "account_ca02",
+                        "Account Bc02",
+                        "account_bc02",
                         "",
                         ""});
 #line 20
@@ -159,8 +159,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table4.AddRow(new string[] {
-                        "Ca02 - new name",
-                        "account_ca02",
+                        "Bc02 - new name",
+                        "account_bc02",
                         "",
                         ""});
 #line 24
@@ -194,8 +194,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table5.AddRow(new string[] {
-                        "Account Ca03",
-                        "accountca03",
+                        "Account Bc03",
+                        "account_bc03",
                         "",
                         ""});
 #line 33
@@ -207,8 +207,8 @@ this.FeatureBackground();
                         "Yellow",
                         "Red"});
             table6.AddRow(new string[] {
-                        "Account Ca03",
-                        "accountca03_url",
+                        "Account Bc03",
+                        "account_bc03_url",
                         "",
                         ""});
 #line 36

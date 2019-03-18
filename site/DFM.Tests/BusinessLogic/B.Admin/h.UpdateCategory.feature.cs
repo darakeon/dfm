@@ -95,14 +95,14 @@ this.FeatureBackground();
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table1.AddRow(new string[] {
-                        "Category Ha01"});
+                        "Category Bh01"});
 #line 9
  testRunner.Given("I have this category", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table2.AddRow(new string[] {
-                        "Ca01 - new name"});
+                        "Bh01 - new name"});
 #line 12
   testRunner.And("I make this changes to the category", ((string)(null)), table2, "And ");
 #line 15
@@ -129,21 +129,21 @@ this.FeatureBackground();
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table3.AddRow(new string[] {
-                        "Category Ha02.1"});
+                        "Category Bh02.1"});
 #line 20
  testRunner.Given("I have this category", ((string)(null)), table3, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table4.AddRow(new string[] {
-                        "Category Ha02.2"});
+                        "Category Bh02.2"});
 #line 23
   testRunner.And("I have this category", ((string)(null)), table4, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table5.AddRow(new string[] {
-                        "Category Ha02.1"});
+                        "Category Bh02.1"});
 #line 26
   testRunner.And("I make this changes to the category", ((string)(null)), table5, "And ");
 #line 29
@@ -170,7 +170,7 @@ this.FeatureBackground();
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table6.AddRow(new string[] {
-                        "Category Ha03"});
+                        "Category Bh03"});
 #line 34
  testRunner.Given("I have this category", ((string)(null)), table6, "Given ");
 #line hidden
