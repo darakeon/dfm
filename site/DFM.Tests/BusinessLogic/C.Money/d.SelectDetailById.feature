@@ -19,3 +19,10 @@ Scenario: Cd02. Get the Detail by ID
 	When I try to get the detail
 	Then I will receive no core error
 		And I will receive the detail
+
+Scenario: Cd03. Get another user's Detail
+	Given I pass valid Detail ID
+		But there is a bad person logged in
+	When I try to get the detail
+	Then I will receive this core error: InvalidMove
+		And I will receive no detail

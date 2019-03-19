@@ -104,3 +104,13 @@ Scenario: Ce09. Delete all moves from schedule
 	When I try to delete all the moves
 	Then I will receive no core error
 		And the accountOut value will not change
+
+Scenario: Ce10. Delete another user's Move
+	Given I have a move
+		And I pass valid Move ID
+		But there is a bad person logged in
+	When I try to delete the move
+	Then I will receive this core error: InvalidMove
+	Given I have an active user
+	Then the move will not be deleted
+		And the accountOut value will not change

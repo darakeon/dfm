@@ -29,3 +29,12 @@ Scenario: Cg03. Mark a move as not checked with disabled config
 	When I try to mark it as not checked
 	Then I will receive this core error: MoveCheckDisabled
 		And the move will be checked
+
+Scenario: Cg04. Mark another user's move as not checked
+	Given I have a move with value 10 (Out)
+		And the move is checked
+		But there is a bad person logged in
+	When I try to mark it as not checked
+	Then I will receive this core error: InvalidMove
+	Given I have an active user
+	Then the move will be checked

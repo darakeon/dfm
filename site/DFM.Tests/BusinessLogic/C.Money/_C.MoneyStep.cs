@@ -734,8 +734,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			ConfigHelper.DeactivateMoveEmailForUser(Service);
 		}
 
-		[Then(@"the move will be deleted")]
-		public void ThenTheMoveWillBeDeleted()
+		[Then(@"the move will (not )?be deleted")]
+		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
 			Error = null;
 
@@ -748,8 +748,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				Error = e;
 			}
 
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.InvalidMove, Error.Type);
+			if (deleted)
+			{
+				Assert.IsNotNull(Error);
+				Assert.AreEqual(ExceptionPossibilities.InvalidMove, Error.Type);
+			}
+			else
+			{
+				Assert.IsNull(Error);
+			}
 		}
 		#endregion
 
