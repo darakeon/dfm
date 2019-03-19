@@ -160,6 +160,34 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cf04. Mark another user\'s move as not checked")]
+        public virtual void Cf04_MarkAnotherUsersMoveAsNotChecked()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cf04. Mark another user\'s move as not checked", null, ((string[])(null)));
+#line 33
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 34
+ testRunner.Given("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+  testRunner.And("the move is not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 37
+ testRunner.When("I try to mark it as checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+ testRunner.Then("I will receive this core error: InvalidMove", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 39
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 40
+ testRunner.Then("the move will not be checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -19,3 +19,10 @@ Scenario: Cc02. Get the Move by ID
 	When I try to get the move
 	Then I will receive no core error
 		And I will receive the move
+
+Scenario: Cc03. Get another user's Move
+	Given I pass valid Move ID
+		But there is a bad person logged in
+	When I try to get the move
+	Then I will receive this core error: InvalidMove
+		And I will receive no move

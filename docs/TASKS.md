@@ -118,7 +118,7 @@ Legend:
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Fix transient detail insertion
-- [ ] `181213>til A*` Tests for user permission
+- [ ] `181213>til Cg` Tests for user permission
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
 

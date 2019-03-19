@@ -415,6 +415,36 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Ce10. Delete another user\'s Move")]
+        public virtual void Ce10_DeleteAnotherUsersMove()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ce10. Delete another user\'s Move", null, ((string[])(null)));
+#line 108
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 109
+ testRunner.Given("I have a move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 110
+  testRunner.And("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 111
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 112
+ testRunner.When("I try to delete the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 113
+ testRunner.Then("I will receive this core error: InvalidMove", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 114
+ testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 115
+ testRunner.Then("the move will not be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 116
+  testRunner.And("the accountOut value will not change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

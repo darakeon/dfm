@@ -130,6 +130,30 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cc03. Get another user\'s Move")]
+        public virtual void Cc03_GetAnotherUsersMove()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cc03. Get another user\'s Move", null, ((string[])(null)));
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line 24
+ testRunner.Given("I pass valid Move ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 25
+  testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 26
+ testRunner.When("I try to get the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
+ testRunner.Then("I will receive this core error: InvalidMove", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 28
+  testRunner.And("I will receive no move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
