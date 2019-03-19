@@ -713,7 +713,7 @@ this.FeatureBackground();
 #line 215
   testRunner.And("I update the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 216
- testRunner.Then("I will receive this core error: Uninvited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will receive this core error: InvalidMove", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 217
   testRunner.And("the accountOut value will not change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 218

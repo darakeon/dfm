@@ -213,7 +213,7 @@ Scenario: Cb17. Update the move of another user
 			And I enable Categories use
 	When I change the move value to 20
 		And I update the move
-	Then I will receive this core error: Uninvited
+	Then I will receive this core error: InvalidMove
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
