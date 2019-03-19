@@ -40,7 +40,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (oldMove != null)
 			{
-				Parent.BaseMove.VerifyMove(oldMove);
+				VerifyMove(oldMove);
 				move.Checked = oldMove.Checked;
 			}
 
@@ -187,11 +187,8 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyMove(Move move)
 		{
-			if (move == null)
+			if (move == null || move.User.ID != Parent.Current.User.ID)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
-
-			if (move.User.Email != Parent.Current.User.Email)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
 		}
 	}
 }
