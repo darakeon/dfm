@@ -272,6 +272,7 @@
     </Compile>
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
+    <Compile Include="BusinessLogic\Helpers\FakeHelper.cs" />
     <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
     <Compile Include="BusinessLogic\Helpers\DBHelper.cs" />
     <Compile Include="BusinessLogic\D.Robot\b.RunSchedule.feature.cs">

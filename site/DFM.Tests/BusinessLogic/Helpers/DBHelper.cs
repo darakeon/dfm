@@ -2,7 +2,6 @@
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
-using DK.NHibernate.Base;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers
@@ -14,7 +13,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static String GetLastTokenForUser(String email, SecurityAction action)
 		{
-			if (SessionFactoryManager.FakeDB)
+			if (FakeHelper.IsFake)
 			{
 				return FakeRepos.Security.GetLastTokenForUser(email, action);
 			}
@@ -62,7 +61,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static String GetLastTicketForUser(String email)
 		{
-			if (SessionFactoryManager.FakeDB)
+			if (FakeHelper.IsFake)
 			{
 				return FakeRepos.Ticket.GetLastTicketForUser(email);
 			}
@@ -107,7 +106,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static String GetUserEmailByTicket(String ticket)
 		{
-			if (SessionFactoryManager.FakeDB)
+			if (FakeHelper.IsFake)
 			{
 				return FakeRepos.Ticket.GetUserEmailByTicket(ticket);
 			}
@@ -152,7 +151,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static void CreateContract(String contractVersion)
 		{
-			if (SessionFactoryManager.FakeDB)
+			if (FakeHelper.IsFake)
 			{
 				FakeRepos.Contract.Create(contractVersion);
 				return;
@@ -182,7 +181,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 		internal static String GetTFAUser(String email)
 		{
-			if (SessionFactoryManager.FakeDB)
+			if (FakeHelper.IsFake)
 			{
 				return FakeRepos.User.GetTFAUser(email);
 			}
