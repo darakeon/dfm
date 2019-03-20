@@ -1,8 +1,7 @@
 ﻿Feature: Db. Run the schedules for an user
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 		And I have two accounts
 		And I have a category

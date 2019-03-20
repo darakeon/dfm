@@ -1,8 +1,7 @@
 ﻿Feature: Bm. Get Category List
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 
 Scenario: Bm01. Get all active categories
 	Given I have this category

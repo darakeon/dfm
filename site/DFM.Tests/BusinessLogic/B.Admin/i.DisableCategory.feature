@@ -1,8 +1,7 @@
 ﻿Feature: Bi. Disable of Category
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 		And I have a category
 

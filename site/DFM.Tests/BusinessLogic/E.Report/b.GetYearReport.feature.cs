@@ -73,12 +73,10 @@ namespace DFM.Tests.BusinessLogic.E_Report
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
+#line 6
   testRunner.And("I have an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -105,7 +103,7 @@ namespace DFM.Tests.BusinessLogic.E_Report
                         "2012-04-05"});
             table1.AddRow(new string[] {
                         "2012-04-06"});
-#line 8
+#line 7
   testRunner.And("I have moves of", ((string)(null)), table1, "And ");
 #line hidden
         }
@@ -115,25 +113,25 @@ namespace DFM.Tests.BusinessLogic.E_Report
         public virtual void Eb01_GetWithInvalidAccountName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb01. Get with invalid Account name", null, ((string[])(null)));
-#line 22
+#line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 23
+#line 22
  testRunner.Given("I pass an invalid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table2.AddRow(new string[] {
                         "2012"});
-#line 24
+#line 23
   testRunner.And("I pass this date", ((string)(null)), table2, "And ");
-#line 27
+#line 26
  testRunner.When("I try to get the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 28
+#line 27
  testRunner.Then("I will receive this core error: InvalidAccount", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 29
+#line 28
   testRunner.And("I will receive no year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -144,25 +142,25 @@ this.FeatureBackground();
         public virtual void Eb02_GetWithDateYearZero()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb02. Get with Date Year Zero", null, ((string[])(null)));
-#line 31
+#line 30
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 32
+#line 31
  testRunner.Given("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table3.AddRow(new string[] {
                         "0"});
-#line 33
+#line 32
   testRunner.And("I pass this date", ((string)(null)), table3, "And ");
-#line 36
+#line 35
  testRunner.When("I try to get the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 37
+#line 36
  testRunner.Then("I will receive this core error: InvalidYear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 38
+#line 37
   testRunner.And("I will receive no year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -173,27 +171,27 @@ this.FeatureBackground();
         public virtual void Eb03_GetWithInfoAllRight()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Eb03. Get with info all right", null, ((string[])(null)));
-#line 40
+#line 39
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 41
+#line 40
  testRunner.Given("I pass a valid account url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year"});
             table4.AddRow(new string[] {
                         "2012"});
-#line 42
+#line 41
   testRunner.And("I pass this date", ((string)(null)), table4, "And ");
-#line 45
+#line 44
  testRunner.When("I try to get the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 46
+#line 45
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 47
+#line 46
   testRunner.And("I will receive the year report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 47
   testRunner.And("its sum value will be equal to its months sum value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -202,3 +200,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+

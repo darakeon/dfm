@@ -1,8 +1,7 @@
 ﻿Feature: Ce. Delete of Moves
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 		And I have two accounts
 		And I have a category
@@ -111,6 +110,6 @@ Scenario: Ce10. Delete another user's Move
 		But there is a bad person logged in
 	When I try to delete the move
 	Then I will receive this core error: InvalidMove
-	Given I have an active user
+	Given the right user login again
 	Then the move will not be deleted
 		And the accountOut value will not change

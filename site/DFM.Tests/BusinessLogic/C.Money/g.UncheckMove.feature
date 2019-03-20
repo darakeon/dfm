@@ -1,8 +1,7 @@
 ﻿Feature: Cg. Uncheck Move
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 		And I have two accounts
 		And I have a category
@@ -36,5 +35,5 @@ Scenario: Cg04. Mark another user's move as not checked
 		But there is a bad person logged in
 	When I try to mark it as not checked
 	Then I will receive this core error: InvalidMove
-	Given I have an active user
+	Given the right user login again
 	Then the move will be checked

@@ -1,8 +1,7 @@
 ﻿Feature: Bn. Change Theme
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 
 Scenario: Bn01. Change sistema Theme
 	Given a theme Slate

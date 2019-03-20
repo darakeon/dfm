@@ -11,7 +11,7 @@ namespace DFM.Tests.BusinessLogic
 	[Binding]
 	public class MainStep : BaseStep
 	{
-		[Given(@"I have an active user")]
+		[Given(@"I have a complete user logged in")]
 		public void GivenIHaveAnActiveUser()
 		{
 			createLogoffLogin(USER_EMAIL, UserPassword);
@@ -28,6 +28,13 @@ namespace DFM.Tests.BusinessLogic
 			resetTicket();
 			CreateUserIfNotExists(email, password, true);
 			Current.Set(email, password, false);
+			Service.Safe.AcceptContract();
+		}
+
+		[Given(@"the right user login again")]
+		public void GivenTheRightUserLoginAgain()
+		{
+			Current.Set(USER_EMAIL, UserPassword, false);
 		}
 
 		[Given(@"the user have accepted the contract")]

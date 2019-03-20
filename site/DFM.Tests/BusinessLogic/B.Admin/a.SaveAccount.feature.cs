@@ -73,9 +73,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -84,7 +82,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Ba01_SaveAccountWithoutName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba01. Save Account without name", null, ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -100,13 +98,13 @@ this.FeatureBackground();
                         "account_ba01",
                         "",
                         ""});
-#line 8
+#line 7
  testRunner.Given("I have this account to create", ((string)(null)), table1, "Given ");
-#line 11
+#line 10
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
  testRunner.Then("I will receive this core error: AccountNameRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
+#line 12
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -117,7 +115,7 @@ this.FeatureBackground();
         public virtual void Ba02_SaveAccountWithRedLimitBiggerThanYellowLimit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba02. Save Account with red limit bigger than yellow limit", null, ((string[])(null)));
-#line 15
+#line 14
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -133,13 +131,13 @@ this.FeatureBackground();
                         "account_ba02",
                         "100",
                         "200"});
-#line 16
+#line 15
  testRunner.Given("I have this account to create", ((string)(null)), table2, "Given ");
-#line 19
+#line 18
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 19
  testRunner.Then("I will receive this core error: RedLimitAboveYellowLimit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
+#line 20
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -150,7 +148,7 @@ this.FeatureBackground();
         public virtual void Ba03_SaveAccountWithNameThatAlreadyExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba03. Save Account with name that already exists", null, ((string[])(null)));
-#line 23
+#line 22
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -166,7 +164,7 @@ this.FeatureBackground();
                         "account_ba03_2",
                         "",
                         ""});
-#line 24
+#line 23
  testRunner.Given("I have this account to create", ((string)(null)), table3, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -179,13 +177,13 @@ this.FeatureBackground();
                         "account_ba03",
                         "200",
                         "100"});
-#line 27
+#line 26
   testRunner.And("I already have this account", ((string)(null)), table4, "And ");
-#line 30
+#line 29
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 31
+#line 30
  testRunner.Then("I will receive this core error: AccountNameAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 32
+#line 31
   testRunner.And("the account will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -196,7 +194,7 @@ this.FeatureBackground();
         public virtual void Ba04_SaveAccountWithTooBigName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba04. Save Account with too big name", null, ((string[])(null)));
-#line 34
+#line 33
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -212,13 +210,13 @@ this.FeatureBackground();
                         "account_ba04",
                         "",
                         ""});
-#line 35
+#line 34
  testRunner.Given("I have this account to create", ((string)(null)), table5, "Given ");
-#line 38
+#line 37
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
+#line 38
  testRunner.Then("I will receive this core error: TooLargeData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 40
+#line 39
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -229,7 +227,7 @@ this.FeatureBackground();
         public virtual void Ba05_SaveAccountWithoutUrl()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba05. Save Account without url", null, ((string[])(null)));
-#line 42
+#line 41
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -245,13 +243,13 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 43
+#line 42
  testRunner.Given("I have this account to create", ((string)(null)), table6, "Given ");
-#line 46
+#line 45
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 47
+#line 46
  testRunner.Then("I will receive this core error: AccountUrlRequired", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 48
+#line 47
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -262,7 +260,7 @@ this.FeatureBackground();
         public virtual void Ba06_SaveAccountWithUrlWithSpecialCharacter()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba06. Save Account with url with special character", null, ((string[])(null)));
-#line 50
+#line 49
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -278,13 +276,13 @@ this.FeatureBackground();
                         "account/ba12",
                         "",
                         ""});
-#line 51
+#line 50
  testRunner.Given("I have this account to create", ((string)(null)), table7, "Given ");
-#line 54
+#line 53
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 55
+#line 54
  testRunner.Then("I will receive this core error: AccountUrlInvalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 56
+#line 55
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -295,7 +293,7 @@ this.FeatureBackground();
         public virtual void Ba07_SaveAccountWithUrlWithSpace()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba07. Save Account with url with space", null, ((string[])(null)));
-#line 58
+#line 57
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -311,13 +309,13 @@ this.FeatureBackground();
                         "account ba13",
                         "",
                         ""});
-#line 59
+#line 58
  testRunner.Given("I have this account to create", ((string)(null)), table8, "Given ");
-#line 62
+#line 61
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 63
+#line 62
  testRunner.Then("I will receive this core error: AccountUrlInvalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 64
+#line 63
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -328,7 +326,7 @@ this.FeatureBackground();
         public virtual void Ba08_SaveAccountWithUrlThatAlreadyExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba08. Save Account with url that already exists", null, ((string[])(null)));
-#line 66
+#line 65
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -344,7 +342,7 @@ this.FeatureBackground();
                         "account_ba14",
                         "",
                         ""});
-#line 67
+#line 66
  testRunner.Given("I have this account to create", ((string)(null)), table9, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -357,13 +355,13 @@ this.FeatureBackground();
                         "account_ba14",
                         "",
                         ""});
-#line 70
+#line 69
   testRunner.And("I already have this account", ((string)(null)), table10, "And ");
-#line 73
+#line 72
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 74
+#line 73
  testRunner.Then("I will receive this core error: AccountUrlAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 75
+#line 74
   testRunner.And("the account will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -374,7 +372,7 @@ this.FeatureBackground();
         public virtual void Ba09_SaveAccountWithUrlThatAlreadyExistsWithOtherCase()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba09. Save Account with url that already exists with other case", null, ((string[])(null)));
-#line 77
+#line 76
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -390,7 +388,7 @@ this.FeatureBackground();
                         "account_ba15",
                         "",
                         ""});
-#line 78
+#line 77
  testRunner.Given("I have this account to create", ((string)(null)), table11, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -403,13 +401,13 @@ this.FeatureBackground();
                         "Account_Ba15",
                         "",
                         ""});
-#line 81
+#line 80
   testRunner.And("I already have this account", ((string)(null)), table12, "And ");
-#line 84
+#line 83
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 85
+#line 84
  testRunner.Then("I will receive this core error: AccountUrlAlreadyExists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 86
+#line 85
   testRunner.And("the account will not be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -420,7 +418,7 @@ this.FeatureBackground();
         public virtual void Ba10_SaveAccountWithTooBigName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba10. Save Account with too big name", null, ((string[])(null)));
-#line 88
+#line 87
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -436,13 +434,13 @@ this.FeatureBackground();
                         "ABCDEFGHIJKLMNOPQRSTU",
                         "",
                         ""});
-#line 89
+#line 88
  testRunner.Given("I have this account to create", ((string)(null)), table13, "Given ");
-#line 92
+#line 91
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 93
+#line 92
  testRunner.Then("I will receive this core error: TooLargeData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 94
+#line 93
   testRunner.And("the account will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -453,7 +451,7 @@ this.FeatureBackground();
         public virtual void Ba11_SaveAccountWithExactlyLengthName()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba11. Save Account with exactly length name", null, ((string[])(null)));
-#line 96
+#line 95
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -469,13 +467,13 @@ this.FeatureBackground();
                         "account_ba91",
                         "",
                         ""});
-#line 97
+#line 96
  testRunner.Given("I have this account to create", ((string)(null)), table14, "Given ");
-#line 100
+#line 99
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 101
+#line 100
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 102
+#line 101
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -486,7 +484,7 @@ this.FeatureBackground();
         public virtual void Ba12_SaveAccountWithInfoAllRightWithoutLimits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba12. Save Account with info all right (without limits)", null, ((string[])(null)));
-#line 104
+#line 103
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -502,13 +500,13 @@ this.FeatureBackground();
                         "account_ba92",
                         "",
                         ""});
-#line 105
+#line 104
  testRunner.Given("I have this account to create", ((string)(null)), table15, "Given ");
-#line 108
+#line 107
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 109
+#line 108
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 110
+#line 109
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -519,7 +517,7 @@ this.FeatureBackground();
         public virtual void Ba13_SaveAccountWithJustYellowLimit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba13. Save Account with just yellow limit", null, ((string[])(null)));
-#line 112
+#line 111
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -535,13 +533,13 @@ this.FeatureBackground();
                         "account_ba93",
                         "100",
                         ""});
-#line 113
+#line 112
  testRunner.Given("I have this account to create", ((string)(null)), table16, "Given ");
-#line 116
+#line 115
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 117
+#line 116
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 118
+#line 117
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -552,7 +550,7 @@ this.FeatureBackground();
         public virtual void Ba14_SaveAccountWithJustRedLimit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba14. Save Account with just red limit", null, ((string[])(null)));
-#line 120
+#line 119
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -568,13 +566,13 @@ this.FeatureBackground();
                         "account_ba94",
                         "",
                         "100"});
-#line 121
+#line 120
  testRunner.Given("I have this account to create", ((string)(null)), table17, "Given ");
-#line 124
+#line 123
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 125
+#line 124
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 126
+#line 125
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -585,7 +583,7 @@ this.FeatureBackground();
         public virtual void Ba15_SaveAccountWithInfoAllRightWithLimits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba15. Save Account with info all right (with limits)", null, ((string[])(null)));
-#line 128
+#line 127
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -601,13 +599,13 @@ this.FeatureBackground();
                         "account_ba95",
                         "200",
                         "100"});
-#line 129
+#line 128
  testRunner.Given("I have this account to create", ((string)(null)), table18, "Given ");
-#line 132
+#line 131
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 133
+#line 132
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 134
+#line 133
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -618,7 +616,7 @@ this.FeatureBackground();
         public virtual void Ba16_SaveAccountWithExactlyLengthUrl()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ba16. Save Account with exactly length url", null, ((string[])(null)));
-#line 136
+#line 135
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -634,13 +632,13 @@ this.FeatureBackground();
                         "ABCDEFGHIJKLMNOPQRST",
                         "",
                         ""});
-#line 137
+#line 136
  testRunner.Given("I have this account to create", ((string)(null)), table19, "Given ");
-#line 140
+#line 139
  testRunner.When("I try to save the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 141
+#line 140
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 142
+#line 141
   testRunner.And("the account will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -649,3 +647,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+
