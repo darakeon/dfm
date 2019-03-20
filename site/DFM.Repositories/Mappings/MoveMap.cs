@@ -10,7 +10,7 @@ namespace DFM.Repositories.Mappings
 		public void Override(AutoMapping<Move> mapping)
 		{
 			mapping.Map(m => m.Description)
-				.Length(MaximumLength.MOVE_DESCRIPTION);
+				.Length(MaximumLength.Move_Description);
 
 			mapping.References(m => m.Schedule)
 				.Not.Update()

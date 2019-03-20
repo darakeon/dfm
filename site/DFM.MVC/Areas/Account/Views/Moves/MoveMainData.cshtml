@@ -12,8 +12,8 @@
 
 	@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
 	@Html.ValidationMessageFor(m => m.Description)<br />
-	@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.MOVE_DESCRIPTION, @class = "form-control" })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.MOVE_DESCRIPTION)</small>
+	@Html.TextBoxFor(m => m.Description, new { maxlength = MaximumLength.Move_Description, @class = "form-control" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.Move_Description)</small>
 
 </div>
 

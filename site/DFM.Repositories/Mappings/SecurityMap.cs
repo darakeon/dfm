@@ -10,7 +10,7 @@ namespace DFM.Repositories.Mappings
 		public void Override(AutoMapping<Security> mapping)
 		{
 			mapping.Map(s => s.Token)
-				.Length(MaximumLength.SECURITY_TOKEN)
+				.Length(MaximumLength.Security_Token)
 				.Unique();
 
 		}

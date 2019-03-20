@@ -15,8 +15,8 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"], new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.CATEGORY_NAME, @class = "form-control" })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.CATEGORY_NAME)</small>
+	@Html.TextBoxFor(m => m.Name, new { maxlength = MaximumLength.Category_Name, @class = "form-control" })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.Category_Name)</small>
 </div>
 
 @section Footer {
