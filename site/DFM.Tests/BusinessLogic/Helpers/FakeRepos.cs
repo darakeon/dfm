@@ -16,11 +16,15 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		{
 			public String GetLastTokenForUser(String email, SecurityAction action)
 			{
-				return SingleOrDefault(
-					s => s.User.Email == email
-					     && s.Action == action
-					     && s.Expire >= DateTime.Now
-				).Token;
+				return NewQuery()
+					.SimpleFilter(
+						s => s.User.Email == email
+						     && s.Action == action
+						     && s.Expire >= DateTime.Now
+					)
+					.OrderBy(s => s.ID, false)
+					.FirstOrDefault
+					.Token;
 			}
 		}
 
