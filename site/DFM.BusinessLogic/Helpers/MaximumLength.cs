@@ -4,16 +4,16 @@ namespace DFM.BusinessLogic.Helpers
 {
 	public class MaximumLength
 	{
-		public const Int16 ACCOUNT_NAME = 20;
-		public const Int16 ACCOUNT_URL = 20;
-		public const Int16 CATEGORY_NAME = 20;
-		public const Int16 DETAIL_DESCRIPTION = 50;
-		public const Int16 MOVE_DESCRIPTION = 50;
-		public const Int16 SECURITY_TOKEN = 50;
-		public const Int16 TICKET_KEY = 52;
-		public const Int16 USER_PASSWORD = 60;
-		public const Int16 USER_EMAIL = 50;
-		public const Int16 CONFIG_LANGUAGE = 5;
+		public const Int16 Account_Name = 20;
+		public const Int16 Account_Url = 20;
+		public const Int16 Category_Name = 20;
+		public const Int16 Detail_Description = 50;
+		public const Int16 Move_Description = 50;
+		public const Int16 Security_Token = 50;
+		public const Int16 Ticket_Key = 52;
+		public const Int16 User_Password = 60;
+		public const Int16 User_Email = 50;
+		public const Int16 Config_Language = 5;
 
 	}
 }

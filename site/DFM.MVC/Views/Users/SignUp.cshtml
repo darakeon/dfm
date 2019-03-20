@@ -11,8 +11,8 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"], new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = MaximumLength.USER_EMAIL })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.USER_EMAIL)</small>
+	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = MaximumLength.User_Email })
+	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaximumLength.User_Email)</small>
 </div>
 
 <div class="form-group">

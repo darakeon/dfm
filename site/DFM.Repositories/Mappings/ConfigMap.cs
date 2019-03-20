@@ -10,7 +10,7 @@ namespace DFM.Repositories.Mappings
 		public void Override(AutoMapping<Config> mapping)
 		{
 			mapping.Map(c => c.Language)
-				.Length(MaximumLength.CONFIG_LANGUAGE)
+				.Length(MaximumLength.Config_Language)
 				.Default("'" + Defaults.CONFIG_LANGUAGE + "'");
 
 			mapping.Map(c => c.TimeZone)
