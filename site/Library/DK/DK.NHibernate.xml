@@ -247,9 +247,9 @@
             Singleton
             </summary>
         </member>
-        <member name="P:DK.NHibernate.Base.SessionFactoryManager.FakeDB">
+        <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2">
             <summary>
-            Use in-memory data with lists, for tests
+            Initialize function, need to be called before use instance
             </summary>
         </member>
         <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2(DK.NHibernate.UserPassed.IDataInitializer)">
@@ -257,6 +257,19 @@
             Initialize function, need to be called before use instance
             </summary>
             <param name="dbInitializer">Object to pre-populate DB</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2(System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Int16}})">
+            <summary>
+            Initialize function, need to be called before use instance
+            </summary>
+            <param name="sizesForFakeDb">Sizes to initialize with fake DB</param>
+        </member>
+        <member name="M:DK.NHibernate.Base.SessionFactoryManager.Initialize``2(DK.NHibernate.UserPassed.IDataInitializer,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IDictionary{System.String,System.Int16}})">
+            <summary>
+            Initialize function, need to be called before use instance
+            </summary>
+            <param name="dbInitializer">Object to pre-populate DB</param>
+            <param name="sizesForFakeDb">Sizes to initialize with fake DB</param>
         </member>
         <member name="M:DK.NHibernate.Base.SessionFactoryManager.End">
             <summary>
@@ -379,6 +392,21 @@
             <summary>
              Verify errors on entities and mapping.
              Avoid error to just appear when entities are accessed.
+            </summary>
+        </member>
+        <member name="T:DK.NHibernate.Helpers.FakeHelper">
+            <summary>
+            Helper for Fake DB
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Helpers.FakeHelper.IsFake">
+            <summary>
+            Use in-memory data with lists, for tests
+            </summary>
+        </member>
+        <member name="P:DK.NHibernate.Helpers.FakeHelper.FakeFieldSizes">
+            <summary>
+            Use in-memory data with lists, for tests
             </summary>
         </member>
         <member name="T:DK.NHibernate.Helpers.SchemaChanger">

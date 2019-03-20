@@ -28,7 +28,7 @@ namespace DFM.Tests.BusinessLogic
 			if (Service != null)
 				return;
 
-			SessionFactoryManager.Initialize<UserMap, User>();
+			SessionFactoryManager.Initialize<UserMap, User>(FakeHelper.FieldSizes);
 			SessionManager.Init(getTicketKey);
 
 			Service = new ServiceAccess(getTicket, getPath);
@@ -384,7 +384,5 @@ namespace DFM.Tests.BusinessLogic
 		}
 
 		#endregion
-
-
 	}
 }
