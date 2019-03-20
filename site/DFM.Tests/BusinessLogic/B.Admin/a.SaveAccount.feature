@@ -1,8 +1,7 @@
 ﻿Feature: Ba. Creation of Account
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 
 Scenario: Ba01. Save Account without name
 	Given I have this account to create

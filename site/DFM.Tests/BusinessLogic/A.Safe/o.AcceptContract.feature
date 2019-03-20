@@ -2,8 +2,7 @@
 
 Background:
 	Given I have a contract
-	And I have an active user
-	And the user have accepted the contract
+	And I have a complete user logged in
 
 Scenario: Ao01. Accept contract not accepted before
 	When I try to accept the contract

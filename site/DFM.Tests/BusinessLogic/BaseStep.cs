@@ -66,7 +66,11 @@ namespace DFM.Tests.BusinessLogic
 
 
 		#region Get or Create
-		protected void CreateUserIfNotExists(String userEmail, String userPassword, Boolean shouldActivateUser = false)
+		protected void CreateUserIfNotExists(
+			String userEmail,
+			String userPassword,
+			Boolean shouldActivateUser = false
+		)
 		{
 			var userError = verifyUser(userEmail, userPassword);
 

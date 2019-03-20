@@ -1,8 +1,7 @@
 ﻿Feature: Bc. Update of Account
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 
 Scenario: Bc01. Change the name

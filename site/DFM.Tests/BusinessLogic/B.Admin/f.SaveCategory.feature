@@ -1,8 +1,7 @@
 ﻿Feature: Bf. Creation of Category
 
 Background:
-	Given I have an active user
-		And the user have accepted the contract
+	Given I have a complete user logged in
 		And I enable Categories use
 
 Scenario: Bf01. Save Category without name

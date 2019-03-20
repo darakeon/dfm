@@ -73,16 +73,14 @@ namespace DFM.Tests.BusinessLogic.C_Money
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
+#line 6
   testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
+#line 7
   testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
+#line 8
   testRunner.And("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -92,20 +90,20 @@ namespace DFM.Tests.BusinessLogic.C_Money
         public virtual void Cg01_MarkACheckedMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cg01. Mark a checked move as not checked", null, ((string[])(null)));
-#line 11
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 12
+#line 11
  testRunner.Given("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 12
   testRunner.And("the move is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
  testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 14
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
+#line 15
   testRunner.And("the move will not be checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -116,20 +114,20 @@ this.FeatureBackground();
         public virtual void Cg02_RemarkANotCheckedMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cg02. Remark a not checked move as not checked", null, ((string[])(null)));
-#line 18
+#line 17
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 19
+#line 18
  testRunner.Given("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 19
   testRunner.And("the move is not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 20
  testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 22
+#line 21
  testRunner.Then("I will receive this core error: MoveAlreadyUnchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 23
+#line 22
   testRunner.And("the move will not be checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -140,22 +138,22 @@ this.FeatureBackground();
         public virtual void Cg03_MarkAMoveAsNotCheckedWithDisabledConfig()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cg03. Mark a move as not checked with disabled config", null, ((string[])(null)));
-#line 25
+#line 24
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 26
+#line 25
  testRunner.Given("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
+#line 26
   testRunner.And("the move is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 27
   testRunner.And("I disable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 28
  testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 29
  testRunner.Then("I will receive this core error: MoveCheckDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 31
+#line 30
   testRunner.And("the move will be checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -166,24 +164,24 @@ this.FeatureBackground();
         public virtual void Cg04_MarkAnotherUsersMoveAsNotChecked()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cg04. Mark another user\'s move as not checked", null, ((string[])(null)));
-#line 33
+#line 32
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 34
+#line 33
  testRunner.Given("I have a move with value 10 (Out)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
+#line 34
   testRunner.And("the move is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 35
   testRunner.But("there is a bad person logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
-#line 37
+#line 36
  testRunner.When("I try to mark it as not checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 37
  testRunner.Then("I will receive this core error: InvalidMove", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
+ testRunner.Given("the right user login again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 39
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 40
  testRunner.Then("the move will be checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -192,3 +190,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+

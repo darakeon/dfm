@@ -73,9 +73,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -84,7 +82,7 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Bm01_GetAllActiveCategories()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bm01. Get all active categories", null, ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -94,18 +92,18 @@ this.FeatureBackground();
                         "Name"});
             table1.AddRow(new string[] {
                         "Category Bm01.1"});
-#line 8
+#line 7
  testRunner.Given("I have this category", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table2.AddRow(new string[] {
                         "Category Bm01.2"});
-#line 11
+#line 10
   testRunner.And("I have this category", ((string)(null)), table2, "And ");
-#line 14
+#line 13
  testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 14
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -114,7 +112,7 @@ this.FeatureBackground();
                         "Category Bm01.1"});
             table3.AddRow(new string[] {
                         "Category Bm01.2"});
-#line 16
+#line 15
   testRunner.And("the category list will have this", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -125,7 +123,7 @@ this.FeatureBackground();
         public virtual void Bm02_GetAllActiveCategoriesAfterCloseOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bm02. Get all active categories after close one", null, ((string[])(null)));
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -135,34 +133,34 @@ this.FeatureBackground();
                         "Name"});
             table4.AddRow(new string[] {
                         "Category Bm02.1"});
-#line 22
+#line 21
  testRunner.Given("I have this category", ((string)(null)), table4, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table5.AddRow(new string[] {
                         "Category Bm02.2"});
-#line 25
+#line 24
   testRunner.And("I have this category", ((string)(null)), table5, "And ");
-#line 28
+#line 27
   testRunner.And("I disable the category Category Bm02.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 28
  testRunner.When("ask for the active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 29
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table6.AddRow(new string[] {
                         "Category Bm02.1"});
-#line 31
+#line 30
   testRunner.And("the category list will have this", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table7.AddRow(new string[] {
                         "Category Bm02.2"});
-#line 34
+#line 33
   testRunner.And("the category list will not have this", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -173,7 +171,7 @@ this.FeatureBackground();
         public virtual void Bm03_GetAllNotActiveCategoriesAfterCloseOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bm03. Get all not active categories after close one", null, ((string[])(null)));
-#line 38
+#line 37
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -183,34 +181,34 @@ this.FeatureBackground();
                         "Name"});
             table8.AddRow(new string[] {
                         "Category Bm03.1"});
-#line 39
+#line 38
  testRunner.Given("I have this category", ((string)(null)), table8, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table9.AddRow(new string[] {
                         "Category Bm03.2"});
-#line 42
+#line 41
   testRunner.And("I have this category", ((string)(null)), table9, "And ");
-#line 45
+#line 44
   testRunner.And("I disable the category Category Bm03.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
+#line 45
  testRunner.When("ask for the not active category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 47
+#line 46
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table10.AddRow(new string[] {
                         "Category Bm03.2"});
-#line 48
+#line 47
   testRunner.And("the category list will have this", ((string)(null)), table10, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table11.AddRow(new string[] {
                         "Category Bm03.1"});
-#line 51
+#line 50
   testRunner.And("the category list will not have this", ((string)(null)), table11, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -221,7 +219,7 @@ this.FeatureBackground();
         public virtual void Bm04_GetAllCategoriesAfterCloseOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bm04. Get all categories after close one", null, ((string[])(null)));
-#line 55
+#line 54
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -231,20 +229,20 @@ this.FeatureBackground();
                         "Name"});
             table12.AddRow(new string[] {
                         "Category Bm04.1"});
-#line 56
+#line 55
  testRunner.Given("I have this category", ((string)(null)), table12, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table13.AddRow(new string[] {
                         "Category Bm04.2"});
-#line 59
+#line 58
   testRunner.And("I have this category", ((string)(null)), table13, "And ");
-#line 62
+#line 61
   testRunner.And("I disable the category Category Bm04.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 62
  testRunner.When("ask for all the category list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 64
+#line 63
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -253,7 +251,7 @@ this.FeatureBackground();
                         "Category Bm04.2"});
             table14.AddRow(new string[] {
                         "Category Bm04.1"});
-#line 65
+#line 64
   testRunner.And("the category list will have this", ((string)(null)), table14, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -262,3 +260,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+

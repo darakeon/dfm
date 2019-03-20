@@ -73,14 +73,12 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
+#line 6
   testRunner.And("I have two accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
+#line 7
   testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -90,16 +88,16 @@ namespace DFM.Tests.BusinessLogic.D_Robot
         public virtual void Dc01_DisableAScheduleThatDoesntExist()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc01. Disable a Schedule that doesn\'t exist", null, ((string[])(null)));
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 11
+#line 10
  testRunner.Given("I pass an id of Schedule that doesn\'t exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 11
  testRunner.When("I try to disable the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 12
  testRunner.Then("I will receive this core error: InvalidSchedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -110,7 +108,7 @@ this.FeatureBackground();
         public virtual void Dc02_DisableAScheduleAlreadyDisabled()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc02. Disable a Schedule already disabled", null, ((string[])(null)));
-#line 15
+#line 14
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -134,23 +132,23 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 16
+#line 15
  testRunner.Given("I have this schedule to create", ((string)(null)), table1, "Given ");
-#line 19
+#line 18
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
+#line 19
   testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 20
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+#line 21
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
+#line 22
   testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 23
   testRunner.And("I already have disabled the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 24
  testRunner.When("I try to disable the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
+#line 25
  testRunner.Then("I will receive this core error: DisabledSchedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -161,7 +159,7 @@ this.FeatureBackground();
         public virtual void Dc03_DisableAScheduleWithInfoAllRight()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dc03. Disable a Schedule with info all right", null, ((string[])(null)));
-#line 28
+#line 27
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
@@ -185,23 +183,23 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 29
+#line 28
  testRunner.Given("I have this schedule to create", ((string)(null)), table2, "Given ");
-#line 32
+#line 31
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 32
   testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 33
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
+#line 34
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 35
   testRunner.And("I save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
+#line 36
  testRunner.When("I try to disable the Schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 37
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 39
+#line 38
   testRunner.And("the Schedule will be disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -210,3 +208,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+

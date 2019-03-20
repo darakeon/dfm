@@ -73,12 +73,10 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         {
 #line 3
 #line 4
- testRunner.Given("I have an active user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a complete user logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
-  testRunner.And("the user have accepted the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 6
   testRunner.And("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
+#line 6
   testRunner.And("I have a category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -88,12 +86,12 @@ namespace DFM.Tests.BusinessLogic.B_Admin
         public virtual void Bk01_DisableCategoriesUseAndSaveMoveWithCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk01. Disable categories use and save move with category", null, ((string[])(null)));
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 10
+#line 9
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -106,21 +104,21 @@ this.FeatureBackground();
                         "2014-03-04",
                         "Out",
                         "10"});
-#line 11
+#line 10
   testRunner.And("I have this move to create", ((string)(null)), table1, "And ");
-#line 14
+#line 13
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 14
   testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 15
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 16
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
+#line 17
  testRunner.When("I try to save the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 18
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 20
+#line 19
   testRunner.And("the move will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -131,12 +129,12 @@ this.FeatureBackground();
         public virtual void Bk02_DisableCategoriesUseAndSaveScheduleWithCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk02. Disable categories use and save schedule with category", null, ((string[])(null)));
-#line 22
+#line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 23
+#line 22
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -157,21 +155,21 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 24
+#line 23
   testRunner.And("I have this schedule to create", ((string)(null)), table2, "And ");
-#line 27
+#line 26
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 27
   testRunner.And("it has a Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 28
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 29
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 30
  testRunner.When("I try to save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 31
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
+#line 32
   testRunner.And("the schedule will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -182,25 +180,25 @@ this.FeatureBackground();
         public virtual void Bk03_DisableCategoriesUseAndCreateACategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk03. Disable categories use and create a category", null, ((string[])(null)));
-#line 35
+#line 34
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 36
+#line 35
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name"});
             table3.AddRow(new string[] {
                         "Category Bk03"});
-#line 37
+#line 36
   testRunner.And("I have this category to create", ((string)(null)), table3, "And ");
-#line 40
+#line 39
  testRunner.When("I try to save the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 41
+#line 40
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
+#line 41
   testRunner.And("the category will not be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -211,20 +209,20 @@ this.FeatureBackground();
         public virtual void Bk04_DisableCategoriesUseAndSelectACategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk04. Disable categories use and select a category", null, ((string[])(null)));
-#line 44
+#line 43
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 45
+#line 44
  testRunner.Given("I pass a valid category name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 46
+#line 45
   testRunner.And("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
+#line 46
  testRunner.When("I try to get the category by its name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 48
+#line 47
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 49
+#line 48
   testRunner.And("I will receive no category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -235,18 +233,18 @@ this.FeatureBackground();
         public virtual void Bk05_DisableCategoriesUseAndDisableACategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk05. Disable categories use and disable a category", null, ((string[])(null)));
-#line 51
+#line 50
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 52
+#line 51
  testRunner.Given("I give the enabled category Bk05", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 53
+#line 52
   testRunner.And("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 54
+#line 53
  testRunner.When("I try to disable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 55
+#line 54
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -257,18 +255,18 @@ this.FeatureBackground();
         public virtual void Bk06_DisableCategoriesUseAndEnableACategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk06. Disable categories use and enable a category", null, ((string[])(null)));
-#line 57
+#line 56
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 58
+#line 57
  testRunner.Given("I give the disabled category Bk06", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 59
+#line 58
   testRunner.And("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
+#line 59
  testRunner.When("I try to enable the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 61
+#line 60
  testRunner.Then("I will receive this core error: CategoriesDisabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -279,14 +277,14 @@ this.FeatureBackground();
         public virtual void Bk07_ChangeLanguageToEn_US()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk07. Change language to en-US", null, ((string[])(null)));
-#line 63
+#line 62
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 64
+#line 63
  testRunner.When("I try to change the language to zz-ZZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 65
+#line 64
  testRunner.Then("I will receive this core error: LanguageUnknown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -297,14 +295,14 @@ this.FeatureBackground();
         public virtual void Bk08_ChangeTimezoneToEn_US()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk08. Change timezone to en-US", null, ((string[])(null)));
-#line 67
+#line 66
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 68
+#line 67
  testRunner.When("I try to change the timezone to Someplace", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 69
+#line 68
  testRunner.Then("I will receive this core error: TimezoneUnknown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -315,16 +313,16 @@ this.FeatureBackground();
         public virtual void Bk09_DisableCategoriesUse()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk09. Disable categories use", null, ((string[])(null)));
-#line 71
+#line 70
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 72
+#line 71
  testRunner.Given("I enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 73
+#line 72
  testRunner.When("I try to disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 74
+#line 73
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -335,16 +333,16 @@ this.FeatureBackground();
         public virtual void Bk10_EnableCategoriesUse()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk10. Enable categories use", null, ((string[])(null)));
-#line 76
+#line 75
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 77
+#line 76
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 78
+#line 77
  testRunner.When("I try to enable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 79
+#line 78
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -355,12 +353,12 @@ this.FeatureBackground();
         public virtual void Bk11_DisableCategoriesUseAndSaveMoveWithoutCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk11. Disable categories use and save move without category", null, ((string[])(null)));
-#line 81
+#line 80
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 82
+#line 81
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -373,27 +371,27 @@ this.FeatureBackground();
                         "2014-03-04",
                         "Out",
                         "10"});
-#line 83
+#line 82
   testRunner.And("I have this move to create", ((string)(null)), table4, "And ");
-#line 86
+#line 85
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 87
+#line 86
   testRunner.And("it has no Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 88
+#line 87
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 89
+#line 88
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 90
+#line 89
  testRunner.When("I try to save the move", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 91
+#line 90
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 92
+#line 91
   testRunner.And("the move will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 93
+#line 92
   testRunner.And("the accountOut value will change in -10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 94
+#line 93
   testRunner.And("the month-category-accountOut value will change in 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
+#line 94
   testRunner.And("the year-category-accountOut value will change in 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -404,12 +402,12 @@ this.FeatureBackground();
         public virtual void Bk12_DisableCategoriesUseAndSaveScheduleWithoutCategory()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk12. Disable categories use and save schedule without category", null, ((string[])(null)));
-#line 97
+#line 96
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 98
+#line 97
  testRunner.Given("I disable Categories use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -430,21 +428,21 @@ this.FeatureBackground();
                         "False",
                         "Monthly",
                         "False"});
-#line 99
+#line 98
   testRunner.And("I have this schedule to create", ((string)(null)), table5, "And ");
-#line 102
+#line 101
   testRunner.And("it has no Details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 103
+#line 102
   testRunner.And("it has no Category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 104
+#line 103
   testRunner.And("it has an Account Out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 105
+#line 104
   testRunner.And("it has no Account In", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 106
+#line 105
  testRunner.When("I try to save the schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 107
+#line 106
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 108
+#line 107
   testRunner.And("the schedule will be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -455,14 +453,14 @@ this.FeatureBackground();
         public virtual void Bk13_ChangeLanguageToPt_BR()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk13. Change language to pt-BR", null, ((string[])(null)));
-#line 110
+#line 109
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 111
+#line 110
  testRunner.When("I try to change the language to pt-BR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 112
+#line 111
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -471,7 +469,7 @@ this.FeatureBackground();
             table6.AddRow(new string[] {
                         "CurrentLanguage",
                         "português"});
-#line 113
+#line 112
   testRunner.And("the translation will be", ((string)(null)), table6, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -482,14 +480,14 @@ this.FeatureBackground();
         public virtual void Bk14_ChangeLanguageToEn_US()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk14. Change language to en-US", null, ((string[])(null)));
-#line 117
+#line 116
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 118
+#line 117
  testRunner.When("I try to change the language to en-US", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 119
+#line 118
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -498,7 +496,7 @@ this.FeatureBackground();
             table7.AddRow(new string[] {
                         "CurrentLanguage",
                         "english"});
-#line 120
+#line 119
   testRunner.And("the translation will be", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -509,14 +507,14 @@ this.FeatureBackground();
         public virtual void Bk15_ChangeTimezone()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk15. Change timezone", null, ((string[])(null)));
-#line 124
+#line 123
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 125
+#line 124
  testRunner.When("I try to change the timezone to E. South America Standard Time", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 126
+#line 125
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -527,16 +525,16 @@ this.FeatureBackground();
         public virtual void Bk16_DisableMoveSendE_Mail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk16. Disable move send e-mail", null, ((string[])(null)));
-#line 128
+#line 127
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 129
+#line 128
  testRunner.Given("I enable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 130
+#line 129
  testRunner.When("I try to disable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 131
+#line 130
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -547,16 +545,16 @@ this.FeatureBackground();
         public virtual void Bk17_EnableMoveSendE_Mail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk17. Enable move send e-mail", null, ((string[])(null)));
-#line 133
+#line 132
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 134
+#line 133
  testRunner.Given("I disable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 135
+#line 134
  testRunner.When("I try to enable move send e-mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 136
+#line 135
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -567,16 +565,16 @@ this.FeatureBackground();
         public virtual void Bk18_DisableMoveCheck()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk18. Disable move check", null, ((string[])(null)));
-#line 138
+#line 137
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 139
+#line 138
  testRunner.Given("I enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 140
+#line 139
  testRunner.When("I try to disable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 141
+#line 140
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -587,16 +585,16 @@ this.FeatureBackground();
         public virtual void Bk19_EnableMoveCheck()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk19. Enable move check", null, ((string[])(null)));
-#line 143
+#line 142
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 144
+#line 143
  testRunner.Given("I disable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 145
+#line 144
  testRunner.When("I try to enable move check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 146
+#line 145
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -607,16 +605,16 @@ this.FeatureBackground();
         public virtual void Bk20_DisableWizard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk20. Disable wizard", null, ((string[])(null)));
-#line 148
+#line 147
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 149
+#line 148
  testRunner.Given("I enable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 150
+#line 149
  testRunner.When("I try to disable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 151
+#line 150
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -627,16 +625,16 @@ this.FeatureBackground();
         public virtual void Bk21_EnableWizard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bk21. Enable wizard", null, ((string[])(null)));
-#line 153
+#line 152
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 154
+#line 153
  testRunner.Given("I disable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 155
+#line 154
  testRunner.When("I try to enable wizard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 156
+#line 155
  testRunner.Then("I will receive no core error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -645,3 +643,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+
