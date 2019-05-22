@@ -37,4 +37,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>$(ProjectDir)/copy-to-mvc.bat</PreBuildEvent>
+  </PropertyGroup>
 </Project>
