@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities", "DFM.Entities\DFM.Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
 EndProject
@@ -22,6 +22,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.AssetPackages", "DFM.AssetPackages\DFM.AssetPackages.csproj", "{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EB84316-3CE2-4426-AA5E-7234811CA5BB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
