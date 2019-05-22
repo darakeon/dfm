@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Helpers;
-using DK.NHibernate.UserPassed;
 using fieldSizes = System.Collections.Generic.Dictionary<
 	System.String, 
 	System.Collections.Generic.IDictionary<
 		System.String, System.Int16
 	>
 >;
+using fakeHelper = Keon.NHibernate.Fakes.FakeHelper;
 
 namespace DFM.Tests.BusinessLogic.Helpers
 {
@@ -15,7 +15,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 	{
 		public static fieldSizes FieldSizes = getSizes();
 
-		public static Boolean IsFake => DK.NHibernate.Helpers.FakeHelper.IsFake;
+		public static Boolean IsFake => fakeHelper.IsFake;
 
 		private static fieldSizes getSizes()
 		{

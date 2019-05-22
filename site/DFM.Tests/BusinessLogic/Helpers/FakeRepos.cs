@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DK.NHibernate.Base;
+using Keon.NHibernate.Base;
 
 namespace DFM.Tests.BusinessLogic.Helpers
 {

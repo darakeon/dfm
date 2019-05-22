@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.Entities.Enums;
-using DK.Generic.DB;
+using Keon.Util.DB;
 
 namespace DFM.Entities
 {

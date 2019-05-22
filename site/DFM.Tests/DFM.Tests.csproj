@@ -530,21 +530,6 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
-    </Reference>
-    <Reference Include="DK.NHibernate">
-      <HintPath>..\Library\DK\DK.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="DK.TwoFactorAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.TwoFactorAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="DK.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.XML.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -553,6 +538,18 @@
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Keon.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.NHibernate.1.0.0\lib\net47\Keon.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Keon.TwoFactorAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.TwoFactorAuth.1.0.0\lib\netstandard2.0\Keon.TwoFactorAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Keon.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.Util.1.0.0\lib\net47\Keon.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Keon.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.XML.1.0.0\lib\net47\Keon.XML.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">

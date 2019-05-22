@@ -5,7 +5,7 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Helpers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
-using DK.MVC.Cookies;
+using Keon.MVC.Cookies;
 using TicketType = DFM.Entities.Enums.TicketType;
 
 namespace DFM.MVC.Helpers

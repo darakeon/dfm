@@ -4,8 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using DFM.Multilanguage.Emails;
-using DK.XML;
-using DK.Generic.Extensions;
+using Keon.XML;
+using Keon.Util.Extensions;
 using DFM.Multilanguage.Helpers;
 
 namespace DFM.Multilanguage

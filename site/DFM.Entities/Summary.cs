@@ -1,5 +1,5 @@
 ﻿using System;
-using DK.Generic.DB;
+using Keon.Util.DB;
 using DFM.Entities.Enums;
 
 namespace DFM.Entities

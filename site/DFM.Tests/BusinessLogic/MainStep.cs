@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DK.NHibernate.Base;
+using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

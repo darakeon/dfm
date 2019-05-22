@@ -8,7 +8,7 @@ using DFM.Generic;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Emails;
 using DFM.Multilanguage.MultiLanguage.EmailLayouts;
-using DK.Generic.Extensions;
+using Keon.Util.Extensions;
 
 namespace DFM.Email
 {

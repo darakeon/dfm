@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using DK.Generic.Extensions;
+using Keon.Util.Extensions;
 
 namespace DFM.Multilanguage.Emails
 {
