@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DFM.Authentication;
-using DK.MVC.Forms;
+using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Services;
@@ -12,8 +12,8 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Multilanguage;
 using DFM.MVC.Helpers.Global;
-using DK.TwoFactorAuth;
-using secret = DK.TwoFactorAuth.Secret;
+using Keon.TwoFactorAuth;
+using secret = Keon.TwoFactorAuth.Secret;
 
 namespace DFM.MVC.Models
 {
@@ -247,6 +247,3 @@ namespace DFM.MVC.Models
 
 	}
 }
-
-
-

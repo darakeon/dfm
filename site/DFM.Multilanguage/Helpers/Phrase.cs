@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using DK.XML;
+using Keon.XML;
 
 namespace DFM.Multilanguage.Helpers
 {

@@ -8,11 +8,11 @@ using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
-using DK.TwoFactorAuth;
+using Keon.TwoFactorAuth;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using TK = DK.Generic.Extensions.Token;
+using TK = Keon.Util.Extensions.Token;
 
 namespace DFM.Tests.BusinessLogic.A.Safe
 {

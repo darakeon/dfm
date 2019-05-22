@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DK.Generic.DB;
+using Keon.Util.DB;
 
 namespace DFM.Entities.Bases
 {

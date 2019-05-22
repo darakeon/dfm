@@ -80,9 +80,8 @@
     <Compile Include="Year+.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
+    <Reference Include="Keon.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.Util.1.0.0\lib\net47\Keon.Util.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -91,6 +90,9 @@
       <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
       <Name>DFM.Generic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

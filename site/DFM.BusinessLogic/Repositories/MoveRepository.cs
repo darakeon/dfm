@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DK.Generic.Extensions;
+using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
@@ -11,7 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Multilanguage;
 using DFM.Multilanguage.Emails;
 using DFM.Multilanguage.Helpers;
-using DK.NHibernate.Queries;
+using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
 {

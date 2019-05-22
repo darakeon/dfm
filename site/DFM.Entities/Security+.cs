@@ -1,4 +1,4 @@
-﻿using token = DK.Generic.Extensions.Token;
+﻿using token = Keon.Util.Extensions.Token;
 
 namespace DFM.Entities
 {

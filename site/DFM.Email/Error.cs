@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Generic;
-using DK.Generic.Exceptions;
+using Keon.Util.Exceptions;
 
 namespace DFM.Email
 {

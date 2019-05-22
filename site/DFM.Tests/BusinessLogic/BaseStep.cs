@@ -12,8 +12,8 @@ using DFM.Repositories.Mappings;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
-using DK.Generic.Extensions;
-using DK.NHibernate.Base;
+using Keon.Util.Extensions;
+using Keon.NHibernate.Base;
 using TechTalk.SpecFlow;
 
 namespace DFM.Tests.BusinessLogic

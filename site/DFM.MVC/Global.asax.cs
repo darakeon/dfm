@@ -7,7 +7,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DK.Generic.Exceptions;
+using Keon.Util.Exceptions;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.Email;
@@ -17,8 +17,8 @@ using DFM.MVC.Controllers;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
 using DFM.Repositories.Mappings;
-using DK.MVC.Cookies;
-using DK.NHibernate.Base;
+using Keon.MVC.Cookies;
+using Keon.NHibernate.Base;
 using log4net.Config;
 
 namespace DFM.MVC

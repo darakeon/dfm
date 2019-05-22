@@ -34,13 +34,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DK.Generic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.Generic.dll</HintPath>
+    <Reference Include="Keon.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.Util.1.0.0\lib\net47\Keon.Util.dll</HintPath>
     </Reference>
-    <Reference Include="DK.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\DK\DK.XML.dll</HintPath>
+    <Reference Include="Keon.XML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.XML.1.0.0\lib\net47\Keon.XML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -164,6 +162,9 @@
       <Project>{fd6843e9-6dc1-464a-a6d6-74ae215bd16d}</Project>
       <Name>DFM.Generic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

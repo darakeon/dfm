@@ -8,8 +8,8 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.InterfacesAndBases;
-using DK.Generic.Extensions;
-using DK.TwoFactorAuth;
+using Keon.Util.Extensions;
+using Keon.TwoFactorAuth;
 using Ticket = DFM.Entities.Ticket;
 
 namespace DFM.BusinessLogic.Services
