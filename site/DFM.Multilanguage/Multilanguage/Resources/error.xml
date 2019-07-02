@@ -143,7 +143,7 @@
 		<DetailWithoutParent text="Detalhe perdido." />
 		<MoveDetailDescriptionRequired text="A descrição do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
 		<MoveDetailAmountRequired text="A quantidade do detalhe é obrigatória. Você pode criar uma movimentação sem detalhes." />
-		<MoveDetailValueRequired text="P valor do detalhe é obrigatório. Você pode criar uma movimentação sem detalhes." />
+		<MoveDetailValueRequired text="O valor do detalhe é obrigatório. Você pode criar uma movimentação sem detalhes." />
 		<InvalidDetail text="Detalhe inválido." />
 		<MoveAlreadyChecked text="Movimentação já verificada" />
 		<MoveAlreadyUnchecked text="Movimentação não está verificada" />
