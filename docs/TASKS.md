@@ -126,7 +126,10 @@ Legend:
 - [ ] Add IsAdm to User
 - [ ] Fix transient detail insertion
 
-## <a name="prod"></a>4.1.2.8 :sheep: <sup>`5`</sup>
+## <a name="prod"></a>4.1.2.9 :ant: <sup>`1`</sup>
+- [x] `190703>190703` Adapt to new server
+
+## 4.1.2.8 :ant: <sup>`5`</sup>
 - [x] `190304>190304` Fix report when url year / month is out of range
 - [x] `190304>190304` Fix duplicated month entities
 - [x] `190304>190304` Add 404 from e-mail on web.config
