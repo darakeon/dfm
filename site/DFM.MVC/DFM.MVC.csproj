@@ -361,7 +361,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <None Include="packages.config" />
     <Content Include="Areas\Account\Views\Reports\ShowMoves.cshtml" />
     <Content Include="Areas\Account\Views\Reports\SummarizeMonths.cshtml" />
     <Content Include="Areas\Account\Views\Reports\Total.cshtml" />
