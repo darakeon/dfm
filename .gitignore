@@ -15,8 +15,7 @@ site/DFM.MVC/Web.Release.config
 site/packages/*
 site/Library/DK/*.pdb
 site/DFM.MVC/DFM.MVC.Publish.xml
-site/DFM.MVC/Properties/PublishProfiles/Arvixe.pubxml
-site/DFM.MVC/Properties/PublishProfiles/Amazon.pubxml
+site/DFM.MVC/Properties/PublishProfiles
 site/DFM.AssetPackages/*
 !site/DFM.AssetPackages/DFM.AssetPackages.csproj
 !site/DFM.AssetPackages/packages.config
