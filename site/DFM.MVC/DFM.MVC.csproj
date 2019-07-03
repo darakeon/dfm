@@ -437,6 +437,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Wizard.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\PublishProfiles\Amazon 2019.pubxml" />
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
