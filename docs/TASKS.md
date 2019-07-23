@@ -48,8 +48,8 @@ Legend:
 ## 5.3.0.0 :whale: <sup>`4`</sup>
 - [ ] Delete not accessed accounts
 - [ ] Last login date
-- [ ] Data export
-- [ ] Data import
+- [ ] Data export (csv, json)
+- [ ] Data import (csv, json)
 
 ## 5.2.0.0 :whale: <sup>`4`</sup>
 - [ ] Enable reopen account
