@@ -1,11 +1,10 @@
-use dfm;
-
 /* before publish */
 alter table Detail
 	add ValueCents int null;
 
 update detail
-	set ValueCents = Value * 100;
+	set ValueCents = Value * 100
+	where id <> 0;
 
 alter table detail
 	modify ValueCents int not null;
@@ -14,7 +13,8 @@ alter table Summary
 	add InCents int null;
 
 update Summary
-	set InCents = In_ * 100;
+	set InCents = In_ * 100
+	where id <> 0;
 
 alter table Summary
 	modify InCents int not null;
@@ -23,7 +23,8 @@ alter table Summary
 	add OutCents int null;
 
 update Summary
-	set OutCents = Out_ * 100;
+	set OutCents = Out_ * 100
+	where id <> 0;
 
 alter table Summary
 	modify OutCents int not null;
@@ -37,7 +38,7 @@ alter table Schedule
 update move m
 	inner join detail d
 		on m.ID = d.move_id
-	inner join 
+	inner join
 		(select d.Move_ID
 			from detail d
 				inner join move m
@@ -47,16 +48,15 @@ update move m
 			group by d.Move_ID
 			having count(*) = 1) g
 		on m.ID = g.move_id
-	set m.ValueCents = d.ValueCents;
+	set m.ValueCents = d.ValueCents
+	where m.id <> 0;
 
 delete from detail
 	where move_id in (
 		select id
 			from move
-            where ValueCents is not null
-	);
-    
-    
+			where ValueCents is not null
+	) and id <> 0;
 
 /* after publish */
 alter table detail

@@ -1,13 +1,13 @@
 ALTER TABLE User
-	ADD COLUMN Active tinyint(1) not null default 0;
+	ADD COLUMN Active bit not null default 0;
 
 CREATE TABLE Security (
-	ID int(11) NOT NULL AUTO_INCREMENT,
-	Active tinyint(1) NOT NULL,
+	ID INTEGER NOT NULL AUTO_INCREMENT,
+	Active BIT NOT NULL,
 	Expire datetime NOT NULL,
-	Action int(11) NOT NULL,
-	Sent tinyint(1) NOT NULL,
-	User_ID int(11) NOT NULL,
+	Action TINYINT NOT NULL,
+	Sent BIT NOT NULL,
+	User_ID INTEGER NOT NULL,
 	Token varchar(50) NOT NULL,
 	PRIMARY KEY (ID),
 	UNIQUE KEY Token (Token),

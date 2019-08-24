@@ -6,7 +6,7 @@ CREATE TABLE Contract
 
 	CONSTRAINT PK_Contract
 		PRIMARY KEY (ID),
-		
+
 	CONSTRAINT UK_Contract
 		UNIQUE KEY (Version)
 );
@@ -19,29 +19,26 @@ CREATE TABLE Acceptance
 	AcceptDate DATETIME NOT NULL,
 	Contract_ID INT NOT NULL,
 	User_ID INT NOT NULL,
-	
+
 	CONSTRAINT PK_Acceptance
 		PRIMARY KEY (ID),
-		
+
 	CONSTRAINT FK_Acceptance_Contract
 		FOREIGN KEY (Contract_ID)
 		REFERENCES Contract (ID),
-		
+
 	CONSTRAINT FK_Acceptance_User
 		FOREIGN KEY (User_ID)
 		REFERENCES User (ID),
-		
+
 	CONSTRAINT UK_Acceptance
 		UNIQUE KEY (User_ID, Contract_ID)
 );
 
 INSERT INTO Contract (BeginDate, Version) VALUES (now(), '003000000000');
 
-
-
 ALTER TABLE Config
 	ADD COLUMN Theme SMALLINT;
-
 
 SET SQL_SAFE_UPDATES = 0;
 
@@ -49,4 +46,3 @@ UPDATE Config
 	SET Theme = 2;
 
 SET SQL_SAFE_UPDATES = 1;
-
