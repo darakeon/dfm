@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props')" />
-  <Import Project="..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.props" Condition="Exists('..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.props')" />
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props')" />
+  <Import Project="..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.props" Condition="Exists('..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.props')" />
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,276 +42,21 @@
     <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="BusinessLogic\A.Safe\m.UpdateEmail.feature.cs">
-      <DependentUpon>m.UpdateEmail.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\l.ChangePassword.feature.cs">
-      <DependentUpon>l.ChangePassword.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\j.DisableTicket.feature.cs">
-      <DependentUpon>j.DisableTicket.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\d.ActivateUser.feature.cs">
-      <DependentUpon>d.ActivateUser.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\e.ValidateUserAndGetTicket.feature.cs">
-      <DependentUpon>e.ValidateUserAndGetTicket.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\f.SelectUserByTicket.feature.cs">
-      <DependentUpon>f.SelectUserByTicket.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\b.SendUserVerify.feature.cs">
-      <DependentUpon>b.SendUserVerify.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\c.SendPasswordReset.feature.cs">
-      <DependentUpon>c.SendPasswordReset.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\g.PasswordReset.feature.cs">
-      <DependentUpon>g.PasswordReset.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\h.TestSecurityToken.feature.cs">
-      <DependentUpon>h.TestSecurityToken.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\i.DisableToken.feature.cs">
-      <DependentUpon>i.DisableToken.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\a.SaveUserAndSendVerify.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveUserAndSendVerify.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\k.ListLogins.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>k.ListLogins.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\n.GetContract.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>n.GetContract.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\o.AcceptContract.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>o.AcceptContract.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>p.IsLastContractAccepted.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\s.RemoveTFA.feature.cs">
-      <DependentUpon>s.RemoveTFA.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\r.UpdateTFA.feature.cs">
-      <DependentUpon>r.UpdateTFA.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature.cs">
-      <DependentUpon>q.OperationsWithNotSignedContract.feature</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\t.ValidateTicketTFA.feature.cs">
-      <DependentUpon>t.ValidateTicketTFA.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\u.VerifyTicketTFA.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>u.VerifyTicketTFA.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\A.Safe\v.VerifyTicketType.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>v.VerifyTicketType.feature</DependentUpon>
-    </Compile>
     <Compile Include="BusinessLogic\A.Safe\_A.SafeStep.cs" />
-    <Compile Include="BusinessLogic\B.Admin\a.SaveAccount.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveAccount.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\m.GetCategoryList.feature.cs">
-      <DependentUpon>m.GetCategoryList.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\l.GetAccountList.feature.cs">
-      <DependentUpon>l.GetAccountList.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\c.UpdateAccount.feature.cs">
-      <DependentUpon>c.UpdateAccount.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\b.SelectAccountByUrl.feature.cs">
-      <DependentUpon>b.SelectAccountByUrl.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\h.UpdateCategory.feature.cs">
-      <DependentUpon>h.UpdateCategory.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\g.SelectCategoryByName.feature.cs">
-      <DependentUpon>g.SelectCategoryByName.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\k.UpdateConfig.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>k.UpdateConfig.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\n. ChangeTheme.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>n. ChangeTheme.feature</DependentUpon>
-    </Compile>
     <Compile Include="BusinessLogic\B.Admin\_B.AdminStep.cs" />
-    <Compile Include="BusinessLogic\B.Admin\d.CloseAccount.feature.cs">
-      <DependentUpon>d.CloseAccount.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\e.DeleteAccount.feature.cs">
-      <DependentUpon>e.DeleteAccount.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\f.SaveCategory.feature.cs">
-      <DependentUpon>f.SaveCategory.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\i.DisableCategory.feature.cs">
-      <DependentUpon>i.DisableCategory.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\B.Admin\j.EnableCategory.feature.cs">
-      <DependentUpon>j.EnableCategory.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BusinessLogic\BaseStep.cs" />
-    <Compile Include="BusinessLogic\C.Money\a.SaveMove.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveMove.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\C.Money\b.UpdateMove.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>b.UpdateMove.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\C.Money\f.CheckMove.feature.cs">
-      <DependentUpon>f.CheckMove.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\C.Money\g.UncheckMove.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>g.UncheckMove.feature</DependentUpon>
-    </Compile>
     <Compile Include="BusinessLogic\C.Money\_C.MoneyStep.cs" />
-    <Compile Include="BusinessLogic\C.Money\c.SelectMoveById.feature.cs">
-      <DependentUpon>c.SelectMoveById.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\C.Money\d.SelectDetailById.feature.cs">
-      <DependentUpon>d.SelectDetailById.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\C.Money\e.DeleteMove.feature.cs">
-      <DependentUpon>e.DeleteMove.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BusinessLogic\CD.MoneyRobotStep.cs" />
-    <Compile Include="BusinessLogic\D.Robot\c.DisableSchedule.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>c.DisableSchedule.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\D.Robot\d.GetScheduleList.feature.cs">
-      <DependentUpon>d.GetScheduleList.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="BusinessLogic\D.Robot\_D.RobotStep.cs" />
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
     <Compile Include="BusinessLogic\Helpers\FakeHelper.cs" />
     <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
     <Compile Include="BusinessLogic\Helpers\DBHelper.cs" />
-    <Compile Include="BusinessLogic\D.Robot\b.RunSchedule.feature.cs">
-      <DependentUpon>b.RunSchedule.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\D.Robot\a.SaveSchedule.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>a.SaveSchedule.feature</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessLogic\E.Report\b.GetYearReport.feature.cs">
-      <DependentUpon>b.GetYearReport.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="BusinessLogic\E.Report\a.GetMonthReport.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>a.GetMonthReport.feature</DependentUpon>
-    </Compile>
     <Compile Include="BusinessLogic\Helpers\FakeRepos.cs" />
     <Compile Include="BusinessLogic\MainStep.cs" />
     <Compile Include="Helpers\ContextHelper.cs" />
-    <Compile Include="Email\EmailSend.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmailSend.feature</DependentUpon>
-    </Compile>
     <Compile Include="Email\EmailStep.cs" />
     <Compile Include="Helpers\PasswordForm.cs" />
-    <Compile Include="Multilanguage\Multilanguage.feature.cs">
-      <DependentUpon>Multilanguage.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Multilanguage\MultilanguageStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -319,210 +64,59 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="BusinessLogic\A.Safe\m.UpdateEmail.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>m.UpdateEmail.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\l.ChangePassword.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>l.ChangePassword.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>j.DisableTicket.feature.cs</LastGenOutput>
-    </None>
+    <None Include="BusinessLogic\A.Safe\m.UpdateEmail.feature" />
+    <None Include="BusinessLogic\A.Safe\l.ChangePassword.feature" />
+    <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature" />
     <None Include="BusinessLogic\A.Safe\k.ListLogins.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>k.ListLogins.feature.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="BusinessLogic\A.Safe\n.GetContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>n.GetContract.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\o.AcceptContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>o.AcceptContract.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>p.IsLastContractAccepted.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\s.RemoveTFA.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>s.RemoveTFA.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\r.UpdateTFA.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>r.UpdateTFA.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>q.OperationsWithNotSignedContract.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\t.ValidateTicketTFA.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>t.ValidateTicketTFA.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\v.VerifyTicketType.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>v.VerifyTicketType.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\u.VerifyTicketTFA.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>u.VerifyTicketTFA.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveAccount.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\m.GetCategoryList.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>m.GetCategoryList.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\l.GetAccountList.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>l.GetAccountList.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\c.UpdateAccount.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>c.UpdateAccount.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\b.SelectAccountByUrl.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>b.SelectAccountByUrl.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\h.UpdateCategory.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>h.UpdateCategory.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\g.SelectCategoryByName.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>g.SelectCategoryByName.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\d.CloseAccount.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>d.CloseAccount.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\e.DeleteAccount.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>e.DeleteAccount.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\f.SaveCategory.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>f.SaveCategory.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\i.DisableCategory.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>i.DisableCategory.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\j.EnableCategory.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>j.EnableCategory.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\k.UpdateConfig.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>k.UpdateConfig.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\B.Admin\n. ChangeTheme.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>n. ChangeTheme.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\a.SaveMove.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveMove.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\c.SelectMoveById.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>c.SelectMoveById.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\d.SelectDetailById.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>d.SelectDetailById.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\e.DeleteMove.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>e.DeleteMove.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\b.UpdateMove.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>b.UpdateMove.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\f.CheckMove.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>f.CheckMove.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\C.Money\g.UncheckMove.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>g.UncheckMove.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\D.Robot\b.RunSchedule.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>b.RunSchedule.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\D.Robot\c.DisableSchedule.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>c.DisableSchedule.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\D.Robot\d.GetScheduleList.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>d.GetScheduleList.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\E.Report\b.GetYearReport.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>b.GetYearReport.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\E.Report\a.GetMonthReport.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.GetMonthReport.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\D.Robot\a.SaveSchedule.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveSchedule.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\d.ActivateUser.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>d.ActivateUser.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\e.ValidateUserAndGetTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>e.ValidateUserAndGetTicket.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\f.SelectUserByTicket.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>f.SelectUserByTicket.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\b.SendUserVerify.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>b.SendUserVerify.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\c.SendPasswordReset.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>c.SendPasswordReset.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\g.PasswordReset.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>g.PasswordReset.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\h.TestSecurityToken.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>h.TestSecurityToken.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\i.DisableToken.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>i.DisableToken.feature.cs</LastGenOutput>
-    </None>
-    <None Include="BusinessLogic\A.Safe\a.SaveUserAndSendVerify.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>a.SaveUserAndSendVerify.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Email\EmailSend.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EmailSend.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Multilanguage\Multilanguage.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Multilanguage.feature.cs</LastGenOutput>
-    </None>
+    <None Include="BusinessLogic\A.Safe\n.GetContract.feature" />
+    <None Include="BusinessLogic\A.Safe\o.AcceptContract.feature" />
+    <None Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature" />
+    <None Include="BusinessLogic\A.Safe\s.RemoveTFA.feature" />
+    <None Include="BusinessLogic\A.Safe\r.UpdateTFA.feature" />
+    <None Include="BusinessLogic\A.Safe\q.OperationsWithNotSignedContract.feature" />
+    <None Include="BusinessLogic\A.Safe\t.ValidateTicketTFA.feature" />
+    <None Include="BusinessLogic\A.Safe\v.VerifyTicketType.feature" />
+    <None Include="BusinessLogic\A.Safe\u.VerifyTicketTFA.feature" />
+    <None Include="BusinessLogic\B.Admin\a.SaveAccount.feature" />
+    <None Include="BusinessLogic\B.Admin\m.GetCategoryList.feature" />
+    <None Include="BusinessLogic\B.Admin\l.GetAccountList.feature" />
+    <None Include="BusinessLogic\B.Admin\c.UpdateAccount.feature" />
+    <None Include="BusinessLogic\B.Admin\b.SelectAccountByUrl.feature" />
+    <None Include="BusinessLogic\B.Admin\h.UpdateCategory.feature" />
+    <None Include="BusinessLogic\B.Admin\g.SelectCategoryByName.feature" />
+    <None Include="BusinessLogic\B.Admin\d.CloseAccount.feature" />
+    <None Include="BusinessLogic\B.Admin\e.DeleteAccount.feature" />
+    <None Include="BusinessLogic\B.Admin\f.SaveCategory.feature" />
+    <None Include="BusinessLogic\B.Admin\i.DisableCategory.feature" />
+    <None Include="BusinessLogic\B.Admin\j.EnableCategory.feature" />
+    <None Include="BusinessLogic\B.Admin\k.UpdateConfig.feature" />
+    <None Include="BusinessLogic\B.Admin\n. ChangeTheme.feature" />
+    <None Include="BusinessLogic\C.Money\a.SaveMove.feature" />
+    <None Include="BusinessLogic\C.Money\c.SelectMoveById.feature" />
+    <None Include="BusinessLogic\C.Money\d.SelectDetailById.feature" />
+    <None Include="BusinessLogic\C.Money\e.DeleteMove.feature" />
+    <None Include="BusinessLogic\C.Money\b.UpdateMove.feature" />
+    <None Include="BusinessLogic\C.Money\f.CheckMove.feature" />
+    <None Include="BusinessLogic\C.Money\g.UncheckMove.feature" />
+    <None Include="BusinessLogic\D.Robot\b.RunSchedule.feature" />
+    <None Include="BusinessLogic\D.Robot\c.DisableSchedule.feature" />
+    <None Include="BusinessLogic\D.Robot\d.GetScheduleList.feature" />
+    <None Include="BusinessLogic\E.Report\b.GetYearReport.feature" />
+    <None Include="BusinessLogic\E.Report\a.GetMonthReport.feature" />
+    <None Include="BusinessLogic\D.Robot\a.SaveSchedule.feature" />
+    <None Include="BusinessLogic\A.Safe\d.ActivateUser.feature" />
+    <None Include="BusinessLogic\A.Safe\e.ValidateUserAndGetTicket.feature" />
+    <None Include="BusinessLogic\A.Safe\f.SelectUserByTicket.feature" />
+    <None Include="BusinessLogic\A.Safe\b.SendUserVerify.feature" />
+    <None Include="BusinessLogic\A.Safe\c.SendPasswordReset.feature" />
+    <None Include="BusinessLogic\A.Safe\g.PasswordReset.feature" />
+    <None Include="BusinessLogic\A.Safe\h.TestSecurityToken.feature" />
+    <None Include="BusinessLogic\A.Safe\i.DisableToken.feature" />
+    <None Include="BusinessLogic\A.Safe\a.SaveUserAndSendVerify.feature" />
+    <None Include="Email\EmailSend.feature" />
+    <None Include="Multilanguage\Multilanguage.feature" />
     <None Include="packages.config" />
     <None Include="smtp.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -598,8 +192,8 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
@@ -607,10 +201,10 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="TechTalk.SpecFlow, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.3.0.213\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.3.0.225\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
     <Reference Include="TechTalk.SpecFlow.NUnit.SpecFlowPlugin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.NUnit.3.0.213\lib\net45\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.NUnit.3.0.225\lib\net45\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
       <HintPath>..\packages\Utf8Json.1.3.7\lib\net47\Utf8Json.dll</HintPath>
@@ -655,13 +249,13 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.targets'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
   </Target>
-  <Import Project="..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.targets" Condition="Exists('..\packages\SpecFlow.NUnit.3.0.213\build\SpecFlow.NUnit.targets')" />
-  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.213\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
+  <Import Project="..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets" Condition="Exists('..\packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets')" />
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -669,4 +263,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterUpdateFeatureFilesInProject">
+    <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
+    <ItemGroup>
+      <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+    </ItemGroup>
+  </Target>
 </Project>
