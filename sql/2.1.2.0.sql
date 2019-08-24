@@ -1,5 +1,3 @@
-
-
 alter table move
 	modify nature smallint not null;
 
@@ -15,4 +13,3 @@ alter table summary
 
 alter table ticket
 	modify type smallint not null;
-

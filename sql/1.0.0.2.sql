@@ -1,2 +1,2 @@
-    alter table User
-		add column Creation datetime not null default'2011-09-21'
+alter table User
+	add column Creation datetime not null default '2011-09-21';
