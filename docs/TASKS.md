@@ -74,9 +74,8 @@ Legend:
 - [ ] Search by category
 - [ ] Search by move
 
-## 4.3.1.0 :sheep: <sup>`4`</sup>
+## 4.3.1.0 :sheep: <sup>`3`</sup>
 - [ ] If session drop, call history.go(-2) after re-login
-- [ ] Update SpecFlow version
 - [ ] Remove direct access of Month and Year to Summary (refactor Summary)
 - [ ] Remove GetOrCreate
 
@@ -113,11 +112,12 @@ Legend:
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## <a name="dev"></a>4.1.3.0 :sheep: <sup>`7`</sup>
+## <a name="dev"></a>4.1.3.0 :sheep: <sup>`8`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Fix transient detail insertion
+- [x] `190823>190825` Update SpecFlow version
 - [ ] `181213>til Cg` Tests for user permission
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User

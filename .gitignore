@@ -46,3 +46,5 @@ android/DFM/src/main/res/values/localaddress.xml
 android/DFM/release
 
 site/DFM.Tests/log
+
+*.feature.cs
