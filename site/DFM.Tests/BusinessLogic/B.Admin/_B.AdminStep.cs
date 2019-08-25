@@ -229,9 +229,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Move.DetailList.Add(newDetail);
 
-			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
-
-			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
+			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, null);
 
 			accountTotal = Account.Total();
 		}
@@ -1030,7 +1028,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Value = 10
 			};
 
-			Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+			Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category?.Name);
 
 			AccountUrl = Account.Url;
 		}
@@ -1064,7 +1062,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Schedule.DetailList.Add(detail);
 			}
 
-			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category?.Name);
 		}
 
 		[Given(@"the account has a disabled schedule( with details)?")]
@@ -1096,7 +1094,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Schedule.DetailList.Add(detail);
 			}
 
-			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category.Name);
+			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, null);
 
 			Service.Robot.DisableSchedule(Schedule.ID);
 		}

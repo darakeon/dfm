@@ -17,15 +17,14 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class MoveRepository : GenericMoveRepository<Move>
 	{
-		internal Move SaveOrUpdate(Move move)
+		internal Move SaveOrUpdate(Move move, DateTime now)
 		{
 			//Keep this order, weird errors happen if invert
-			return SaveOrUpdate(move, validate, Complete);
-		}
-
-		private static void validate(Move move)
-		{
-			Validate(move);
+			return SaveOrUpdate(
+				move,
+				(m) => Validate(m, now),
+				Complete
+			);
 		}
 
 		#region PlaceAccountsInMove
@@ -53,7 +52,7 @@ namespace DFM.BusinessLogic.Repositories
 		#region SendEmail
 		internal EmailStatus SendEmail(Move move, OperationType operationType)
 		{
-			var user = move.User;
+			var user = GetUser(move);
 			var config = user.Config;
 
 			if (!config.SendMoveEmail)
@@ -107,13 +106,13 @@ namespace DFM.BusinessLogic.Repositories
 			return base.GetNonCached(id);
 		}
 
-		private static String detailsHTML(Move move)
+		private String detailsHTML(Move move)
 		{
 			if (!move.DetailList.Any())
 				return null;
 
 			var details = new StringBuilder();
-			var config = move.User.Config;
+			var config = GetUser(move).Config;
 			var language = config.Language;
 
 			foreach (var detail in move.DetailList)
@@ -171,7 +170,13 @@ namespace DFM.BusinessLogic.Repositories
 			return query.Result.Sum(m => m.Total());
 		}
 
+		internal override User GetUser(Move move)
+		{
+			if (move.ID != 0)
+				move = Get(move.ID) ?? move;
 
-
+			var month = move.Out ?? move.In;
+			return month?.User();
+		}
 	}
 }

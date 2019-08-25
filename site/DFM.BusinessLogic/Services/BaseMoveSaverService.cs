@@ -46,15 +46,17 @@ namespace DFM.BusinessLogic.Services
 
 			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
 
+			var now = Parent.Current.User.Now();
+
 			if (move.ID == 0 || !move.IsDetailed())
 			{
-				move = moveRepository.SaveOrUpdate(move);
+				move = moveRepository.SaveOrUpdate(move, now);
 				detailRepository.SaveDetails(move, oldMove);
 			}
 			else
 			{
 				detailRepository.SaveDetails(move, oldMove);
-				move = moveRepository.SaveOrUpdate(move);
+				move = moveRepository.SaveOrUpdate(move, now);
 			}
 
 			if (oldMove != null)
@@ -187,7 +189,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyMove(Move move)
 		{
-			if (move == null || move.User.ID != Parent.Current.User.ID)
+			if (move == null || moveRepository.GetUser(move).ID != Parent.Current.User.ID)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
 		}
 	}

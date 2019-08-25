@@ -34,7 +34,7 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"the right user login again")]
 		public void GivenTheRightUserLoginAgain()
 		{
-			Current.Set(USER_EMAIL, UserPassword, false);
+			createLogoffLogin(USER_EMAIL, UserPassword);
 		}
 
 		[Given(@"the user have accepted the contract")]

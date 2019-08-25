@@ -10,14 +10,14 @@ using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Bases
 {
-	public class GenericMoveRepository<T> : BaseRepository<T>
+	public abstract class GenericMoveRepository<T> : BaseRepository<T>
 		where T : class, IEntity, IMove, new()
 	{
 		#region Validate
-		protected static void Validate(T move, Boolean validateParents = true)
+		protected void Validate(T move, DateTime now, Boolean validateParents = true)
 		{
 			testDescription(move);
-			testDate(move);
+			testDate(move, now);
 			testValue(move);
 			testNature(move);
 
@@ -35,14 +35,12 @@ namespace DFM.BusinessLogic.Bases
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
 		}
 
-		private static void testDate(T move)
+		private void testDate(T entity, DateTime now)
 		{
-			if (move.Date == DateTime.MinValue)
+			if (entity.Date == DateTime.MinValue)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateRequired);
 
-			var now = move.User?.Now() ?? DateTime.UtcNow;
-
-			if (typeof(T) != typeof(Schedule) && move.Date > now)
+			if (typeof(T) != typeof(Schedule) && entity.Date > now)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDateInvalid);
 		}
 
@@ -89,9 +87,9 @@ namespace DFM.BusinessLogic.Bases
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCircularTransfer);
 		}
 
-		private static void testCategory(T move)
+		private void testCategory(T move)
 		{
-			if (move.User.Config.UseCategories)
+			if (GetUser(move).Config.UseCategories)
 			{
 				if (move.Category == null)
 					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
@@ -105,6 +103,8 @@ namespace DFM.BusinessLogic.Bases
 					throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
 			}
 		}
+
+		internal abstract User GetUser(T entity);
 		#endregion
 
 		#region Complete

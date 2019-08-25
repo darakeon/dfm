@@ -46,18 +46,6 @@ namespace DFM.Entities
 			}
 		}
 
-
-
-		public virtual User User
-		{
-			get
-			{
-				var month = Out ?? In;
-
-				return month?.Year.Account.User;
-			}
-		}
-
 		public virtual Account AccOut()
 		{
 			return getAccount(Out);
@@ -87,17 +75,6 @@ namespace DFM.Entities
 		{
 			return Date.ToString("MMMM");
 		}
-
-
-
-
-		public virtual Boolean AuthorizeCRUD(User user)
-		{
-			return User == user;
-		}
-
-
-
 
 		public virtual String GetDescriptionDetailed()
 		{
