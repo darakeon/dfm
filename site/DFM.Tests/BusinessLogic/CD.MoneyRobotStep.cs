@@ -198,7 +198,7 @@ namespace DFM.Tests.BusinessLogic
 		[Then(@"the accountOut value will not change")]
 		public void ThenTheAccountOutValueWillNotChange()
 		{
-			AccountOut = GetOrCreateAccount(AccountOut.Name);
+			AccountOut = GetOrCreateAccount(AccountOut.Url);
 
 			Assert.AreEqual(AccountOutTotal, AccountOut.Total());
 		}

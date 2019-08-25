@@ -134,7 +134,6 @@ namespace DFM.BusinessLogic.Services
 
 				securityRepository.Disable(token);
 			});
-
 		}
 
 		public void PasswordReset(String token, IPasswordForm passwordForm)

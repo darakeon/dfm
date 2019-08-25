@@ -25,9 +25,10 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
-		private static void validate(Schedule schedule)
+		private void validate(Schedule schedule)
 		{
-			Validate(schedule, schedule.Active);
+			var now = schedule.User.Now();
+			Validate(schedule, now, schedule.Active);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);
@@ -110,6 +111,11 @@ namespace DFM.BusinessLogic.Repositories
 
 				Delete(schedule);
 			}
+		}
+
+		internal override User GetUser(Schedule entity)
+		{
+			return entity.User;
 		}
 	}
 }

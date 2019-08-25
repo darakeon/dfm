@@ -169,8 +169,11 @@ namespace DFM.BusinessLogic.Services
 			verifyMoveForCheck(move, check);
 
 			move.Checked = check;
+			var now = Parent.Current.User.Now();
 
-			InTransaction(() => moveRepository.SaveOrUpdate(move));
+			InTransaction(() => 
+				moveRepository.SaveOrUpdate(move, now)
+			);
 
 			return move;
 		}

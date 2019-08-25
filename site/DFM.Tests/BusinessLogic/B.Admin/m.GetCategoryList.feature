@@ -2,6 +2,7 @@
 
 Background:
 	Given I have a complete user logged in
+		And I enable Categories use
 
 Scenario: Bm01. Get all active categories
 	Given I have this category

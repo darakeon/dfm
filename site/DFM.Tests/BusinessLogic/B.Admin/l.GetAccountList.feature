@@ -2,6 +2,7 @@
 
 Background:
 	Given I have a complete user logged in
+		And I disable Categories use
 
 Scenario: Bl01. Get all active accounts
 	Given I have this account

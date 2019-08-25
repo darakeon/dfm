@@ -2,7 +2,7 @@
 
 Background:
 	Given I have a complete user logged in
-		And I enable Categories use
+		And I disable Categories use
 
 Scenario: Bc01. Change the name
 	Given I have this account
