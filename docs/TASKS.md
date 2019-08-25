@@ -118,7 +118,7 @@ Legend:
 - [ ] Tests category delete with children deleted
 - [ ] Fix transient detail insertion
 - [x] `190823>190825` Update SpecFlow version
-- [ ] `181213>til Cg` Tests for user permission
+- [x] `181213>190825` Tests for user permission
 - [x] `181210>181211` Add press-and-hold to logout and exit
 - [x] `181210>181210` Add IsAdm to User
 

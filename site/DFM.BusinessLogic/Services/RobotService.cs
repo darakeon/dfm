@@ -183,7 +183,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			Parent.Safe.VerifyUser();
 
-			InTransaction(() => scheduleRepository.Disable(id));
+			InTransaction(() => 
+				scheduleRepository.Disable(id, Parent.Current.User)
+			);
 		}
 
 

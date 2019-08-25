@@ -11,6 +11,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		public static TicketRepository Ticket = new TicketRepository();
 		public static ContractRepository Contract = new ContractRepository();
 		public static UserRepository User = new UserRepository();
+		public static ScheduleRepository Schedule = new ScheduleRepository();
 
 		public class SecurityRepository : BaseRepository<Security>
 		{
@@ -68,6 +69,16 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				return SingleOrDefault(
 					t => t.Email == email
 				).TFASecret;
+			}
+		}
+
+		public class ScheduleRepository : BaseRepository<Schedule>
+		{
+			public Boolean GetState(Int32 id)
+			{
+				return SingleOrDefault(
+					t => t.ID== id
+				).Active;
 			}
 		}
 	}

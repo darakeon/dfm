@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Repositories;
@@ -217,6 +220,46 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 
 			return ticket;
+		}
+
+		public static Boolean CheckScheduleState(Schedule schedule)
+		{
+			if (FakeHelper.IsFake)
+			{
+				return FakeRepos.Schedule.GetState(schedule.ID);
+			}
+
+			var state = false;
+
+			using (var conn = new MySqlConnection(connStr))
+			{
+				conn.Open();
+
+				var query = @"
+					Select Active
+						from Schedule
+						where ID = @id";
+
+				using (var cmd = new MySqlCommand(query, conn))
+				{
+					cmd.Parameters.AddWithValue("id", schedule.ID);
+
+					var result = cmd.ExecuteScalar();
+
+					if (result == null)
+					{
+						conn.Close();
+
+						throw new DFMRepositoryException("Bad, bad developer. No schedule for you.");
+					}
+
+					state = result.ToString() == "1";
+				}
+
+				conn.Close();
+			}
+
+			return state;
 		}
 	}
 }

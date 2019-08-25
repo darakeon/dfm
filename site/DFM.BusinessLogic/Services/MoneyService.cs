@@ -151,18 +151,18 @@ namespace DFM.BusinessLogic.Services
 
 		public Move CheckMove(Int32 moveId)
 		{
-			Parent.Safe.VerifyUser();
 			return toggleMoveCheck(moveId, true);
 		}
 
 		public Move UncheckMove(Int32 moveId)
 		{
-			Parent.Safe.VerifyUser();
 			return toggleMoveCheck(moveId, false);
 		}
 
 		private Move toggleMoveCheck(Int32 moveId, Boolean check)
 		{
+			Parent.Safe.VerifyUser();
+
 			var move = GetMoveByIdInternal(moveId);
 
 			Parent.BaseMove.VerifyMove(move);
