@@ -64,11 +64,11 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-		internal void Disable(Int32 id)
+		internal void Disable(Int32 id, User loggedInUser)
 		{
 			var schedule = Get(id);
 
-			if (schedule == null)
+			if (schedule == null || schedule.User.ID != loggedInUser.ID)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidSchedule);
 
 			if (!schedule.Active)

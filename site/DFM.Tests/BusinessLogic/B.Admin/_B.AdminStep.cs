@@ -6,6 +6,7 @@ using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Multilanguage;
+using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -1143,22 +1144,17 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
-			Error = null;
-
-			try
-			{
-				Service.Robot.DisableSchedule(Schedule.ID);
-			}
-			catch (DFMCoreException e)
-			{
-				Error = e;
-			}
-
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(Error.Type, ExceptionPossibilities.DisabledSchedule);
+			var enabled = DBHelper.CheckScheduleState(Schedule);
+			Assert.IsFalse(enabled);
 		}
 
 
+		[Then(@"the Schedule will be enabled")]
+		public void ThenTheScheduleWillBeEnabled()
+		{
+			var enabled = DBHelper.CheckScheduleState(Schedule);
+			Assert.IsTrue(enabled);
+		}
 		#endregion
 
 	}
