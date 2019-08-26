@@ -104,7 +104,7 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.2 :ant: <sup>`6`</sup>
+## 4.1.3.3 :ant: <sup>`6`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 - [ ] Transform service receiving / returns into DTO
@@ -112,11 +112,14 @@ Legend:
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## <a name="dev"></a>4.1.3.1 :ant: <sup>`4`</sup>
+## 4.1.3.2 :ant: <sup>`4`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Fix transient detail insertion
+
+## <a name="dev"></a>4.1.3.1 :ant: <sup>`1`</sup>
+- [ ] Create automatic version change
 
 ## <a name="prod"></a>4.1.3.0 :sheep: <sup>`4`</sup>
 - [x] `190823>190825` Update SpecFlow version
