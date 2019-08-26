@@ -7,6 +7,9 @@ use task_list::{task_list, update_task_list};
 mod android;
 use android::update_android;
 
+mod csharp;
+use csharp::update_csharp;
+
 fn main() {
 	let task_list = task_list();
 
@@ -16,4 +19,6 @@ fn main() {
 	update_task_list(&version);
 
 	update_android(&version);
+
+	update_csharp(&version);
 }
