@@ -4,6 +4,9 @@ use version::current_version;
 mod task_list;
 use task_list::{task_list, update_task_list};
 
+mod android;
+use android::update_android;
+
 fn main() {
 	let task_list = task_list();
 
@@ -11,4 +14,6 @@ fn main() {
 		current_version(task_list).expect("not version found");
 
 	update_task_list(&version);
+
+	update_android(&version);
 }
