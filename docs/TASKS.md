@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.1/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.2/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -112,16 +112,16 @@ Legend:
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## 4.1.3.2 :ant: <sup>`4`</sup>
+## <a name="dev"></a>4.1.3.2 :ant: <sup>`4`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
 - [ ] Fix transient detail insertion
 
-## <a name="dev"></a>4.1.3.1 :ant: <sup>`1`</sup>
+## <a name="prod"></a>4.1.3.1 :ant: <sup>`1`</sup>
 - [x] `190824>190826` Create automatic version change
 
-## <a name="prod"></a>4.1.3.0 :sheep: <sup>`4`</sup>
+## 4.1.3.0 :sheep: <sup>`4`</sup>
 - [x] `190823>190825` Update SpecFlow version
 - [x] `181213>190825` Tests for user permission
 - [x] `181210>181211` Add press-and-hold to logout and exit
