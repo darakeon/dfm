@@ -10,6 +10,9 @@ use android::update_android;
 mod csharp;
 use csharp::update_csharp;
 
+mod rust;
+use rust::update_rust;
+
 fn main() {
 	let task_list = task_list();
 
@@ -21,4 +24,6 @@ fn main() {
 	update_android(&version);
 
 	update_csharp(&version);
+
+	update_rust(&version);
 }
