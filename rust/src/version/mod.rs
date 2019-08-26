@@ -1,7 +1,7 @@
 use regex::Regex;
 
 mod version;
-use version::Version;
+pub use version::Version;
 
 pub fn current_version(task_list: Vec<String>) -> Option<Version> {
 	let version_pattern =
