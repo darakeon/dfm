@@ -119,7 +119,7 @@ Legend:
 - [ ] Fix transient detail insertion
 
 ## <a name="dev"></a>4.1.3.1 :ant: <sup>`1`</sup>
-- [ ] Create automatic version change
+- [ ] `190824>......` Create automatic version change
 
 ## <a name="prod"></a>4.1.3.0 :sheep: <sup>`4`</sup>
 - [x] `190823>190825` Update SpecFlow version
