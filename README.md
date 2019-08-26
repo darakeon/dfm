@@ -43,6 +43,7 @@ itself. Well, we are always our most demanding client.
 - [SpecFlow - BDD](http://specflow.org/)
 - [NHibernate - ORM](http://nhibernate.info/)
 - [DK](https://github.com/darakeon/dk-lib)
+- [Rust (with Cargo)](https://www.rust-lang.org/)
 
 ### Tools
 
