@@ -10,7 +10,7 @@ namespace DFM.BusinessLogic.Helpers
 			get
 			{
 				if (HttpContext.Current == null)
-					return "https://www.dontflymoney.com";
+					return "https://dontflymoney.com";
 
 				var url = HttpContext.Current.Request.Url;
 
