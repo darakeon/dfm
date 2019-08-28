@@ -35,7 +35,7 @@ Scenario: Ba04. Save Account with too big name
 			| Name                  | Url          | Yellow | Red |
 			| ABCDEFGHIJKLMNOPQRSTU | account_ba04 |        |     |
 	When I try to save the account
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeAccountName
 		And the account will not be saved
 
 Scenario: Ba05. Save Account without url
@@ -89,7 +89,7 @@ Scenario: Ba10. Save Account with too big name
 			| Name         | Url                   | Yellow | Red |
 			| Account Ba16 | ABCDEFGHIJKLMNOPQRSTU |        |     |
 	When I try to save the account
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeAccountUrl
 		And the account will not be saved
 
 Scenario: Ba11. Save Account with exactly length name

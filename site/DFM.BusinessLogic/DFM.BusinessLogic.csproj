@@ -80,7 +80,6 @@
     <Compile Include="InterfacesAndBases\ConfigOptions.cs" />
     <Compile Include="Repositories\AcceptanceRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ConfigRepository.cs" />
     <Compile Include="Repositories\ContractRepository.cs" />

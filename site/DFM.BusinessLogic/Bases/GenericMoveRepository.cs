@@ -2,11 +2,11 @@
 using System.Linq;
 using Keon.Util.DB;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Bases
 {
@@ -14,9 +14,15 @@ namespace DFM.BusinessLogic.Bases
 		where T : class, IEntity, IMove, new()
 	{
 		#region Validate
-		protected void Validate(T move, DateTime now, Boolean validateParents = true)
+		protected void Validate(
+			T move,
+			DateTime now,
+			Int32 descriptionMaxSize,
+			ExceptionPossibilities descriptionError,
+			Boolean validateParents = true
+		)
 		{
-			testDescription(move);
+			testDescription(move, descriptionMaxSize, descriptionError);
 			testDate(move, now);
 			testValue(move);
 			testNature(move);
@@ -29,10 +35,17 @@ namespace DFM.BusinessLogic.Bases
 		}
 
 		// ReSharper disable once UnusedParameter.Local
-		private static void testDescription(T move)
+		private static void testDescription(
+			T move,
+			Int32 descriptionMaxSize,
+			ExceptionPossibilities descriptionError
+		)
 		{
 			if (String.IsNullOrEmpty(move.Description))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDescriptionRequired);
+
+			if (move.Description.Length > descriptionMaxSize)
+				throw DFMCoreException.WithMessage(descriptionError);
 		}
 
 		private void testDate(T entity, DateTime now)

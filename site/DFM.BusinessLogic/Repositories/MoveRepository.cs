@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
@@ -22,7 +23,12 @@ namespace DFM.BusinessLogic.Repositories
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
-				(m) => Validate(m, now),
+				(m) => Validate(
+					m,
+					now,
+					MaximumLength.Move_Description,
+					ExceptionPossibilities.TooLargeMoveDescription
+				),
 				Complete
 			);
 		}
@@ -46,8 +52,6 @@ namespace DFM.BusinessLogic.Repositories
 		}
 
 		#endregion
-
-
 
 		#region SendEmail
 		internal EmailStatus SendEmail(Move move, OperationType operationType)
@@ -140,8 +144,6 @@ namespace DFM.BusinessLogic.Repositories
 			return account?.Name;
 		}
 		#endregion
-
-
 
 		internal Decimal GetIn(Month month, Category category)
 		{

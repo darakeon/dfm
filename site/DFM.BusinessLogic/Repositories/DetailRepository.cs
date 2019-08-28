@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -57,14 +59,14 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(detail.Description))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailDescriptionRequired);
 
+			if (detail.Description.Length > MaximumLength.Detail_Description)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeDetailDescription);
+
 			if (detail.Amount == 0)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailAmountRequired);
 
 			if (detail.ValueCents == 0)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailValueRequired);
 		}
-
-
-
 	}
 }

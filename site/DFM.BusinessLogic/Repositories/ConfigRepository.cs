@@ -1,4 +1,5 @@
 ﻿using DFM.Entities;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {

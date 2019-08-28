@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Extensions;
 
@@ -28,7 +29,13 @@ namespace DFM.BusinessLogic.Repositories
 		private void validate(Schedule schedule)
 		{
 			var now = schedule.User.Now();
-			Validate(schedule, now, schedule.Active);
+			Validate(
+				schedule,
+				now,
+				MaximumLength.Schedule_Description,
+				ExceptionPossibilities.TooLargeScheduleDescription,
+				schedule.Active
+			);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleTimesCantBeZero);

@@ -2,6 +2,7 @@
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Extensions;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {

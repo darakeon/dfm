@@ -75,7 +75,7 @@ Scenario: Da05. Save with Description too large
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the schedule
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeScheduleDescription
 		And the schedule will not be saved
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
@@ -380,7 +380,7 @@ Scenario: Da25. Save with Description too large in Detail
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the schedule
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeDetailDescription
 		And the schedule will not be saved
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
