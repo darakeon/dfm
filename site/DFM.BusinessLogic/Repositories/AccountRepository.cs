@@ -27,10 +27,10 @@ namespace DFM.BusinessLogic.Repositories
 		private void checkName(Account account)
 		{
 			if (String.IsNullOrEmpty(account.Name))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
+				throw DFMCoreException.WithMessage(DfMError.AccountNameRequired);
 
-			if (account.Name.Length > MaximumLength.Account_Name)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeAccountName);
+			if (account.Name.Length > MaxLen.Account_Name)
+				throw DFMCoreException.WithMessage(DfMError.TooLargeAccountName);
 
 			var otherAccount = getByName(account.Name, account.User);
 
@@ -39,21 +39,21 @@ namespace DFM.BusinessLogic.Repositories
 					&& otherAccount.ID != account.ID;
 
 			if (accountExistsForUser)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameAlreadyExists);
+				throw DFMCoreException.WithMessage(DfMError.AccountNameAlreadyExists);
 		}
 
 		private void checkUrl(Account account)
 		{
 			if (String.IsNullOrEmpty(account.Url))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlRequired);
+				throw DFMCoreException.WithMessage(DfMError.AccountUrlRequired);
 
-			if (account.Url.Length > MaximumLength.Account_Url)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeAccountUrl);
+			if (account.Url.Length > MaxLen.Account_Url)
+				throw DFMCoreException.WithMessage(DfMError.TooLargeAccountUrl);
 
 			var regex = new Regex(@"^[a-z0-9_]*$");
 
 			if (!regex.IsMatch(account.Url))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlInvalid);
+				throw DFMCoreException.WithMessage(DfMError.AccountUrlInvalid);
 
 
 			var otherAccount = GetByUrl(account.Url, account.User);
@@ -63,7 +63,7 @@ namespace DFM.BusinessLogic.Repositories
 					&& otherAccount.ID != account.ID;
 
 			if (accountUrlExistsForUser)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlAlreadyExists);
+				throw DFMCoreException.WithMessage(DfMError.AccountUrlAlreadyExists);
 		}
 
 		private static void checkLimits(Account account)
@@ -72,7 +72,7 @@ namespace DFM.BusinessLogic.Repositories
 				return;
 
 			if (account.RedLimit > account.YellowLimit)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.RedLimitAboveYellowLimit);
+				throw DFMCoreException.WithMessage(DfMError.RedLimitAboveYellowLimit);
 		}
 
 
@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (NonUniqueResultException)
 			{
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountName);
+				throw DFMCoreException.WithMessage(DfMError.DuplicatedAccountName);
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (NonUniqueResultException)
 			{
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DuplicatedAccountUrl);
+				throw DFMCoreException.WithMessage(DfMError.DuplicatedAccountUrl);
 			}
 		}
 
@@ -160,13 +160,13 @@ namespace DFM.BusinessLogic.Repositories
 		internal void Close(Account account)
 		{
 			if (account == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
 
 			if (!account.IsOpen())
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.ClosedAccount);
+				throw DFMCoreException.WithMessage(DfMError.ClosedAccount);
 
 			if (!account.HasMoves())
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.CantCloseEmptyAccount);
+				throw DFMCoreException.WithMessage(DfMError.CantCloseEmptyAccount);
 
 			account.EndDate = account.User.Now();
 
@@ -179,10 +179,10 @@ namespace DFM.BusinessLogic.Repositories
 			var account = GetByUrl(url, user);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
 
 			if (account.HasMoves())
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.CantDeleteAccountWithMoves);
+				throw DFMCoreException.WithMessage(DfMError.CantDeleteAccountWithMoves);
 
 			Delete(account);
 		}

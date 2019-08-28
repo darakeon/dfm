@@ -159,7 +159,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Assert.IsNull(Account);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.InvalidAccount, Error.Type);
+			Assert.AreEqual(DfMError.InvalidAccount, Error.Type);
 		}
 
 		[Then(@"the account will be saved")]
@@ -276,7 +276,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 				Assert.IsNull(account);
 				Assert.IsNotNull(Error);
-				Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidAccount);
+				Assert.AreEqual(Error.Type, DfMError.InvalidAccount);
 
 				Error = null;
 			}
@@ -406,7 +406,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Assert.IsNull(Account);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.InvalidAccount, Error.Type);
+			Assert.AreEqual(DfMError.InvalidAccount, Error.Type);
 		}
 		#endregion
 
@@ -621,7 +621,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Assert.IsNull(Category);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(Error.Type, ExceptionPossibilities.InvalidCategory);
+			Assert.AreEqual(Error.Type, DfMError.InvalidCategory);
 
 			Category = null;
 			Error = null;

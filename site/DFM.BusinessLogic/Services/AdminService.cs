@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Services
 			var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidAccount);
+				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
 
 			return account;
 		}
@@ -192,7 +192,7 @@ namespace DFM.BusinessLogic.Services
 			var category = categoryRepository.GetByName(name, Parent.Current.User);
 
 			if (category == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidCategory);
+				throw DFMCoreException.WithMessage(DfMError.InvalidCategory);
 
 			return category;
 		}
@@ -258,7 +258,7 @@ namespace DFM.BusinessLogic.Services
 		private void verifyCategoriesEnabled()
 		{
 			if (!Parent.Current.User.Config.UseCategories)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+				throw DFMCoreException.WithMessage(DfMError.CategoriesDisabled);
 		}
 		#endregion Category
 
@@ -281,10 +281,10 @@ namespace DFM.BusinessLogic.Services
 			var config = Parent.Current.User.Config;
 
 			if (!String.IsNullOrEmpty(configOptions.Language) && !PlainText.AcceptedLanguage().Contains(configOptions.Language.ToLower()))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.LanguageUnknown);
+				throw DFMCoreException.WithMessage(DfMError.LanguageUnknown);
 
 			if (!String.IsNullOrEmpty(configOptions.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(configOptions.TimeZone))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TimezoneUnknown);
+				throw DFMCoreException.WithMessage(DfMError.TimezoneUnknown);
 
 			if (!String.IsNullOrEmpty(configOptions.Language))
 				config.Language = configOptions.Language;
@@ -320,7 +320,7 @@ namespace DFM.BusinessLogic.Services
 		public void ChangeTheme(BootstrapTheme theme)
 		{
 			if (theme == BootstrapTheme.None)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidTheme);
+				throw DFMCoreException.WithMessage(DfMError.InvalidTheme);
 
 			var config = Parent.Current.User.Config;
 			config.Theme = theme;

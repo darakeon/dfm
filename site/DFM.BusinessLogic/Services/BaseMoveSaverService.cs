@@ -82,7 +82,7 @@ namespace DFM.BusinessLogic.Services
 				return Parent.Admin.GetCategoryByNameInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoriesDisabled);
+				throw DFMCoreException.WithMessage(DfMError.CategoriesDisabled);
 
 			return null;
 		}
@@ -190,7 +190,7 @@ namespace DFM.BusinessLogic.Services
 		internal void VerifyMove(Move move)
 		{
 			if (move == null || moveRepository.GetUser(move).ID != Parent.Current.User.ID)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidMove);
+				throw DFMCoreException.WithMessage(DfMError.InvalidMove);
 		}
 	}
 }

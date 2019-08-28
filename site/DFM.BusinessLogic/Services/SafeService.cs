@@ -48,7 +48,7 @@ namespace DFM.BusinessLogic.Services
 				var user = userRepository.GetByEmail(email);
 
 				if (user == null)
-					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+					throw DFMCoreException.WithMessage(DfMError.InvalidUser);
 
 				createAndSendToken(user, SecurityAction.PasswordReset, getPath(PathType.PasswordReset));
 			});
@@ -89,7 +89,7 @@ namespace DFM.BusinessLogic.Services
 				var user = userRepository.GetByEmail(email);
 
 				if (user == null)
-					throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+					throw DFMCoreException.WithMessage(DfMError.InvalidUser);
 
 				sendUserVerify(user);
 			});
@@ -169,10 +169,10 @@ namespace DFM.BusinessLogic.Services
 			var ticket = ticketRepository.GetByKey(ticketKey);
 
 			if (ticket == null || !ticket.Active)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				throw DFMCoreException.WithMessage(DfMError.Uninvited);
 
 			if (!ticket.User.Active)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+				throw DFMCoreException.WithMessage(DfMError.DisabledUser);
 
 			return ticket.User;
 		}
@@ -198,7 +198,7 @@ namespace DFM.BusinessLogic.Services
 			}
 			else if (ticket.User.Email != email)
 			{
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				throw DFMCoreException.WithMessage(DfMError.Uninvited);
 			}
 
 			return ticket.Key;
@@ -222,7 +222,7 @@ namespace DFM.BusinessLogic.Services
 			});
 
 			if (user.WrongPassExceeded())
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+				throw DFMCoreException.WithMessage(DfMError.DisabledUser);
 		}
 
 		public void DisableTicket(String ticketKey)
@@ -238,7 +238,7 @@ namespace DFM.BusinessLogic.Services
 				if (ticket == null) return;
 
 				if (ticket.User.ID != Parent.Current.User.ID)
-					DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+					DFMCoreException.WithMessage(DfMError.Uninvited);
 
 				if (ticket.Active)
 					ticketRepository.Disable(ticket);
@@ -248,13 +248,13 @@ namespace DFM.BusinessLogic.Services
 		internal void VerifyUser()
 		{
 			if (Parent.Current.User == null || !Parent.Current.User.Active)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				throw DFMCoreException.WithMessage(DfMError.Uninvited);
 
 			if (!Parent.Current.IsVerified)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TFANotVerified);
+				throw DFMCoreException.WithMessage(DfMError.TFANotVerified);
 
 			if (!IsLastContractAccepted())
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.NotSignedLastContract);
+				throw DFMCoreException.WithMessage(DfMError.NotSignedLastContract);
 		}
 
 
@@ -293,7 +293,7 @@ namespace DFM.BusinessLogic.Services
 			var user = Parent.Current.User;
 
 			if (!userRepository.VerifyPassword(user, currentPassword))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongPassword);
+				throw DFMCoreException.WithMessage(DfMError.WrongPassword);
 
 			InTransaction(() =>
 			{
@@ -318,7 +318,7 @@ namespace DFM.BusinessLogic.Services
 			var user = Parent.Current.User;
 
 			if (!userRepository.VerifyPassword(user, currentPassword))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.WrongPassword);
+				throw DFMCoreException.WithMessage(DfMError.WrongPassword);
 
 			InTransaction(() =>
 			{
@@ -371,17 +371,17 @@ namespace DFM.BusinessLogic.Services
 			InTransaction(() =>
 			{
 				if (String.IsNullOrEmpty(secret))
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFAEmptySecret);
+					DFMCoreException.WithMessage(DfMError.TFAEmptySecret);
 
 				var codes = CodeGenerator.Generate(secret, 2);
 
 				if (!codes.Contains(code))
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongCode);
+					DFMCoreException.WithMessage(DfMError.TFAWrongCode);
 
 				var user = Parent.Current.User;
 
 				if (!userRepository.VerifyPassword(user, currentPassword))
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongPassword);
+					DFMCoreException.WithMessage(DfMError.TFAWrongPassword);
 
 				userRepository.SaveTFA(user, secret);
 			});
@@ -394,7 +394,7 @@ namespace DFM.BusinessLogic.Services
 				var user = Parent.Current.User;
 
 				if (!userRepository.VerifyPassword(user, currentPassword))
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongPassword);
+					DFMCoreException.WithMessage(DfMError.TFAWrongPassword);
 
 				userRepository.SaveTFA(user, null);
 			});
@@ -407,12 +407,12 @@ namespace DFM.BusinessLogic.Services
 				var secret = Parent.Current.User.TFASecret;
 
 				if (secret == null)
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFANotConfigured);
+					DFMCoreException.WithMessage(DfMError.TFANotConfigured);
 
 				var codes = CodeGenerator.Generate(secret, 2);
 
 				if (!codes.Contains(code))
-					DFMCoreException.WithMessage(ExceptionPossibilities.TFAWrongCode);
+					DFMCoreException.WithMessage(DfMError.TFAWrongCode);
 
 				var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
 				ticket.ValidTFA = true;
@@ -426,7 +426,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (ticket == null)
 			{
-				DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				DFMCoreException.WithMessage(DfMError.Uninvited);
 				return false;
 			}
 
@@ -440,7 +440,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (ticket == null)
 			{
-				DFMCoreException.WithMessage(ExceptionPossibilities.Uninvited);
+				DFMCoreException.WithMessage(DfMError.Uninvited);
 				return false;
 			}
 

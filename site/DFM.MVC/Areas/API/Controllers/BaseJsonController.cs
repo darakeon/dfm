@@ -52,22 +52,22 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpGet]
 		public JsonResult Uninvited()
 		{
-			return error(ExceptionPossibilities.Uninvited);
+			return error(DfMError.Uninvited);
 		}
 
 		[HttpGet]
 		public JsonResult AcceptOnlineContract()
 		{
-			return error(ExceptionPossibilities.NotSignedLastContract);
+			return error(DfMError.NotSignedLastContract);
 		}
 
 		[HttpGet]
 		public JsonResult OpenTFA()
 		{
-			return error(ExceptionPossibilities.TFANotVerified);
+			return error(DfMError.TFANotVerified);
 		}
 
-		private JsonResult error(ExceptionPossibilities error)
+		private JsonResult error(DfMError error)
 		{
 			var result = new
 			{

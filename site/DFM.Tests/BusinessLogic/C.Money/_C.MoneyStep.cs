@@ -751,7 +751,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			if (deleted)
 			{
 				Assert.IsNotNull(Error);
-				Assert.AreEqual(ExceptionPossibilities.InvalidMove, Error.Type);
+				Assert.AreEqual(DfMError.InvalidMove, Error.Type);
 			}
 			else
 			{

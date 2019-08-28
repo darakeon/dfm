@@ -22,10 +22,10 @@ namespace DFM.BusinessLogic.Repositories
 			var user = GetByEmail(email);
 
 			if (user == null || !Crypt.Check(password, user.Password))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
 
 			if (!user.Active)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DisabledUser);
+				throw DFMCoreException.WithMessage(DfMError.DisabledUser);
 
 			return user;
 		}
@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal User Save(User user)
 		{
 			if (user.ID != 0)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
 
 			return saveOrUpdate(user);
 		}
@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 		private User update(User user)
 		{
 			if (user.ID == 0)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidUser);
+				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
 
 			return saveOrUpdate(user);
 		}
@@ -80,10 +80,10 @@ namespace DFM.BusinessLogic.Repositories
 		private void validate(User user)
 		{
 			if (String.IsNullOrEmpty(user.Password))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
+				throw DFMCoreException.WithMessage(DfMError.UserPasswordRequired);
 
-			if (user.Email.Length > MaximumLength.User_Email)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeUserEmail);
+			if (user.Email.Length > MaxLen.User_Email)
+				throw DFMCoreException.WithMessage(DfMError.TooLargeUserEmail);
 
 			validateEmail(user);
 		}
@@ -93,12 +93,12 @@ namespace DFM.BusinessLogic.Repositories
 			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserEmailInvalid);
+				throw DFMCoreException.WithMessage(DfMError.UserEmailInvalid);
 
 			var userByEmail = GetByEmail(user.Email);
 
 			if (userByEmail != null && userByEmail.ID != user.ID)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserAlreadyExists);
+				throw DFMCoreException.WithMessage(DfMError.UserAlreadyExists);
 		}
 
 		private void complete(User user)

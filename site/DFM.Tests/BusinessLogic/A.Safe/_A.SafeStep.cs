@@ -168,7 +168,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			Assert.IsNull(ticket);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.InvalidUser, Error.Type);
+			Assert.AreEqual(DfMError.InvalidUser, Error.Type);
 		}
 
 		[Then(@"the user will not be changed")]
@@ -250,7 +250,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.DisabledUser, Error.Type);
+			Assert.AreEqual(DfMError.DisabledUser, Error.Type);
 		}
 
 		[Then(@"the user will be activated")]
@@ -411,7 +411,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type != ExceptionPossibilities.DisabledUser)
+				if (e.Type != DfMError.DisabledUser)
 					Error = e;
 			}
 
@@ -484,7 +484,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.InvalidToken, Error.Type);
+			Assert.AreEqual(DfMError.InvalidToken, Error.Type);
 		}
 		#endregion
 
@@ -517,7 +517,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.Uninvited, Error.Type);
+			Assert.AreEqual(DfMError.Uninvited, Error.Type);
 		}
 
 		[Then(@"the ticket will still be valid")]

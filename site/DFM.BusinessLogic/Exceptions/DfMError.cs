@@ -1,6 +1,6 @@
 ﻿namespace DFM.BusinessLogic.Exceptions
 {
-	public enum ExceptionPossibilities
+	public enum DfMError
 	{
 		Uninvited = 207,
 		NotSignedLastContract = 42,

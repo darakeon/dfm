@@ -12,7 +12,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.IgnoreProperty(m => m.Value);
 
 			mapping.Map(m => m.Description)
-				.Length(MaximumLength.Schedule_Description);
+				.Length(MaxLen.Schedule_Description);
 
 			mapping.References(m => m.Category)
 				.Nullable();

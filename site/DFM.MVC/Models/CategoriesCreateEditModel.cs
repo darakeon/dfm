@@ -68,7 +68,7 @@ namespace DFM.MVC.Models
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type != ExceptionPossibilities.CategoryAlreadyExists)
+				if (e.Type != DfMError.CategoryAlreadyExists)
 					return e;
 			}
 

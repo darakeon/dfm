@@ -10,7 +10,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 		public void Override(AutoMapping<Category> mapping)
 		{
 			mapping.Map(c => c.Name)
-				.Length(MaximumLength.Category_Name);
+				.Length(MaxLen.Category_Name);
 
 			mapping.Map(c => c.Active)
 				.Default("1");

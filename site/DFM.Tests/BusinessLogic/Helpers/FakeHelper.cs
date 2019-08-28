@@ -21,7 +21,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		{
 			var sizes = new fieldSizes();
 
-			var lengths = typeof(MaximumLength).GetFields();
+			var lengths = typeof(MaxLen).GetFields();
 
 			foreach (var length in lengths)
 			{

@@ -2,7 +2,7 @@
 
 namespace DFM.BusinessLogic.Helpers
 {
-	public class MaximumLength
+	public class MaxLen
 	{
 		public const Int16 Account_Name = 20;
 		public const Int16 Account_Url = 20;
