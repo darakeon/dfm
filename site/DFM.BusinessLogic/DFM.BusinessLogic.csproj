@@ -109,9 +109,9 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\YearRepository.cs" />
     <Compile Include="Exceptions\DFMCoreException.cs" />
-    <Compile Include="Exceptions\ExceptionPossibilities.cs" />
+    <Compile Include="Exceptions\DfMError.cs" />
     <Compile Include="Helpers\Dfm.cs" />
-    <Compile Include="Helpers\MaximumLength.cs" />
+    <Compile Include="Helpers\MaxLen.cs" />
     <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />

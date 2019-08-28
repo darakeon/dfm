@@ -9,10 +9,10 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class ErrorAlert
 	{
-		private static readonly SessionList<ExceptionPossibilities> errors =
-			new SessionList<ExceptionPossibilities>("errors");
+		private static readonly SessionList<DfMError> errors =
+			new SessionList<DfMError>("errors");
 
-		public static void Add(ExceptionPossibilities error)
+		public static void Add(DfMError error)
 		{
 			errors.List.Add(error);
 		}

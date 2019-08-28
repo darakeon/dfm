@@ -54,19 +54,19 @@ namespace DFM.BusinessLogic.Repositories
 		private static void validate(Detail detail)
 		{
 			if (detail.Move == null && detail.Schedule == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.DetailWithoutParent);
+				throw DFMCoreException.WithMessage(DfMError.DetailWithoutParent);
 
 			if (String.IsNullOrEmpty(detail.Description))
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailDescriptionRequired);
+				throw DFMCoreException.WithMessage(DfMError.MoveDetailDescriptionRequired);
 
-			if (detail.Description.Length > MaximumLength.Detail_Description)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeDetailDescription);
+			if (detail.Description.Length > MaxLen.Detail_Description)
+				throw DFMCoreException.WithMessage(DfMError.TooLargeDetailDescription);
 
 			if (detail.Amount == 0)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailAmountRequired);
+				throw DFMCoreException.WithMessage(DfMError.MoveDetailAmountRequired);
 
 			if (detail.ValueCents == 0)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveDetailValueRequired);
+				throw DFMCoreException.WithMessage(DfMError.MoveDetailValueRequired);
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace DFM.MVC.Models
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type == ExceptionPossibilities.DisabledUser)
+				if (e.Type == DfMError.DisabledUser)
 				{
 					var verifyError = sendUserVerify();
 

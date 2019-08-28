@@ -63,7 +63,7 @@ namespace DFM.Tests.BusinessLogic
 
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
-		public void ThenIWillReceiveThisError(ExceptionPossibilities error)
+		public void ThenIWillReceiveThisError(DfMError error)
 		{
 			Assert.IsNotNull(Error);
 			Assert.AreEqual(error, Error.Type);
@@ -133,8 +133,8 @@ namespace DFM.Tests.BusinessLogic
 			catch (DFMCoreException e)
 			{
 				var ignored = new [] {
-					ExceptionPossibilities.NotSignedLastContract,
-					ExceptionPossibilities.TFANotVerified,
+					DfMError.NotSignedLastContract,
+					DfMError.TFANotVerified,
 				};
 
 				if (!ignored.Contains(e.Type))

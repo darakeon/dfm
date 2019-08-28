@@ -199,7 +199,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(ExceptionPossibilities.DisabledSchedule, Error.Type);
+			Assert.AreEqual(DfMError.DisabledSchedule, Error.Type);
 		}
 		#endregion
 

@@ -13,7 +13,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (
 				filterContext.Exception is DFMCoreException exception
 				&&
-				exception.Type == ExceptionPossibilities.InvalidAccount
+				exception.Type == DfMError.InvalidAccount
 			)
 			{
 				ErrorAlert.Add(exception.Type);

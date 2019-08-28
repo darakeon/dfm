@@ -26,8 +26,8 @@ namespace DFM.BusinessLogic.Repositories
 				(m) => Validate(
 					m,
 					now,
-					MaximumLength.Move_Description,
-					ExceptionPossibilities.TooLargeMoveDescription
+					MaxLen.Move_Description,
+					DfMError.TooLargeMoveDescription
 				),
 				Complete
 			);

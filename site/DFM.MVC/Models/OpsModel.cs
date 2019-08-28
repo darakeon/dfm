@@ -8,12 +8,12 @@ namespace DFM.MVC.Models
 		{
 		}
 
-		public OpsModel(ExceptionPossibilities error) : this()
+		public OpsModel(DfMError error) : this()
 		{
 			Error = error;
 		}
 
-		public ExceptionPossibilities Error { get; set; }
+		public DfMError Error { get; set; }
 
 
 	}

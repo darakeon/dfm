@@ -137,7 +137,7 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 
 			if (schedule == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.ScheduleRequired);
+				throw DFMCoreException.WithMessage(DfMError.ScheduleRequired);
 
 			var operationType =
 				schedule.ID == 0

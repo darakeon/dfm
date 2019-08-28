@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (DFMEmailException)
 			{
-				DFMCoreException.WithMessage(ExceptionPossibilities.FailOnEmailSend);
+				DFMCoreException.WithMessage(DfMError.FailOnEmailSend);
 			}
 
 			security.Sent = true;
@@ -89,7 +89,7 @@ namespace DFM.BusinessLogic.Repositories
 			var security = GetByToken(token);
 
 			if (security == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+				throw DFMCoreException.WithMessage(DfMError.InvalidToken);
 
 			security.Active = false;
 
@@ -104,7 +104,7 @@ namespace DFM.BusinessLogic.Repositories
 			var securityToken = GetByToken(token);
 
 			if (securityToken == null || securityToken.Action != securityAction)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidToken);
+				throw DFMCoreException.WithMessage(DfMError.InvalidToken);
 
 			return securityToken;
 		}

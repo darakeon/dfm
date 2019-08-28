@@ -79,7 +79,7 @@ namespace DFM.Tests.BusinessLogic
 
 			switch (userError.Type)
 			{
-				case ExceptionPossibilities.InvalidUser:
+				case DfMError.InvalidUser:
 
 					var passwordForm = new PasswordForm(userPassword, userPassword);
 					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
@@ -92,7 +92,7 @@ namespace DFM.Tests.BusinessLogic
 
 					return;
 
-				case ExceptionPossibilities.DisabledUser:
+				case DfMError.DisabledUser:
 					return;
 
 				default:
@@ -125,7 +125,7 @@ namespace DFM.Tests.BusinessLogic
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type != ExceptionPossibilities.InvalidAccount)
+				if (e.Type != DfMError.InvalidAccount)
 					throw;
 
 				Service.Admin.CreateAccount(
@@ -148,7 +148,7 @@ namespace DFM.Tests.BusinessLogic
 			}
 			catch (DFMCoreException e)
 			{
-				if (e.Type != ExceptionPossibilities.InvalidCategory)
+				if (e.Type != DfMError.InvalidCategory)
 					throw;
 
 				Service.Admin.CreateCategory(new Category { Name = categoryName, User = User });

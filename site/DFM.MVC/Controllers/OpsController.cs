@@ -33,7 +33,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Error(ExceptionPossibilities id)
+		public ActionResult Error(DfMError id)
 		{
 			var model = new OpsModel(id);
 

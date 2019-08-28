@@ -62,7 +62,7 @@ namespace DFM.Tests.Multilanguage
 		[Given(@"I have the error enum")]
 		public void GivenIHaveTheErrorEnum()
 		{
-			keys = Enum.GetNames(typeof(ExceptionPossibilities))
+			keys = Enum.GetNames(typeof(DfMError))
 				.Select(m => new Pair("Error", m))
 				.ToList();
 		}

@@ -7,14 +7,14 @@ namespace DFM.BusinessLogic.Exceptions
 	public class DFMCoreException : DFMException
 	{
 		public static Int32 ErrorCounter { get; private set; }
-		public ExceptionPossibilities Type { get; private set; }
+		public DfMError Type { get; private set; }
 
-		public static DFMCoreException WithMessage(ExceptionPossibilities type)
+		public static DFMCoreException WithMessage(DfMError type)
 		{
 			throw new DFMCoreException(type);
 		}
 
-		private DFMCoreException(ExceptionPossibilities type)
+		private DFMCoreException(DfMError type)
 			: base(type.ToString())
 		{
 			ErrorCounter++;

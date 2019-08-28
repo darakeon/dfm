@@ -141,7 +141,7 @@ namespace DFM.BusinessLogic.Services
 			var detail = detailRepository.Get(id);
 
 			if (detail == null)
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.InvalidDetail);
+				throw DFMCoreException.WithMessage(DfMError.InvalidDetail);
 
 			Parent.BaseMove.VerifyMove(detail.Move);
 
@@ -182,14 +182,14 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (!Parent.Current.User.Config.MoveCheck)
 			{
-				throw DFMCoreException.WithMessage(ExceptionPossibilities.MoveCheckDisabled);
+				throw DFMCoreException.WithMessage(DfMError.MoveCheckDisabled);
 			}
 
 			if (move.Checked == check)
 			{
 				var error = move.Checked
-					? ExceptionPossibilities.MoveAlreadyChecked
-					: ExceptionPossibilities.MoveAlreadyUnchecked;
+					? DfMError.MoveAlreadyChecked
+					: DfMError.MoveAlreadyUnchecked;
 
 				throw DFMCoreException.WithMessage(error);
 			}

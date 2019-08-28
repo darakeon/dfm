@@ -61,7 +61,7 @@ namespace DFM.MVC.Controllers
 					: Redirect(returnUrl);
 			}
 
-			if (logOnError.Type == ExceptionPossibilities.DisabledUser)
+			if (logOnError.Type == DfMError.DisabledUser)
 			{
 				return BaseModelView("SendVerification");
 			}

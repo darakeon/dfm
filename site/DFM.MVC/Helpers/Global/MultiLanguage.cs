@@ -32,7 +32,7 @@ namespace DFM.MVC.Helpers.Global
 
 		public String this[DFMCoreException exception] => this[exception.Type];
 
-		public String this[ExceptionPossibilities exception] => this["Error", exception.ToString()];
+		public String this[DfMError exception] => this["Error", exception.ToString()];
 
 		public String this[EmailStatus exception] => this["Email", exception.ToString()];
 
