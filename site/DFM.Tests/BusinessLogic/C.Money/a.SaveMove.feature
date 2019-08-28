@@ -90,7 +90,7 @@ Scenario: Ca06. Save with Description too large
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the move
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeMoveDescription
 		And the move will not be saved
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
@@ -395,7 +395,7 @@ Scenario: Ca26. Save with Description too large in Detail
 		And it has an Account Out
 		And it has no Account In
 	When I try to save the move
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeDetailDescription
 		And the move will not be saved
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change

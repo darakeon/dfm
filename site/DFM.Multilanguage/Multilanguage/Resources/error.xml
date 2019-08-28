@@ -39,7 +39,6 @@
 		<SummaryAmbiguousInMonth text="Error in monthly summary. Contact us." />
 		<SummaryAmbiguousInYear text="Error in yearly summary. Contact us." />
 		<SummaryNatureNotFound text="Summary Nature doesn't exist." />
-		<TooLargeData text="Field exceeded the characters limit." />
 		<TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
 		<UserAlreadyExists text="User already exists." />
 		<UserEmailInvalid text="User e-mail is invalid." />
@@ -83,6 +82,13 @@
 		<TFAEmptySecret	text="To enable two-factor a secret key is needed" />
 		<TFANotConfigured text="Two-factor not configured" />
 		<TFANotVerified text="It's necessary to verify your login with two-factor authentication" />
+		<TooLargeUserEmail text="User e-mail exceeded the characters limit." />
+		<TooLargeAccountName text="Account name exceeded the characters limit." />
+		<TooLargeAccountUrl text="Account url exceeded the characters limit." />
+		<TooLargeCategoryName text="Category name exceeded the characters limit." />
+		<TooLargeMoveDescription text="Move description exceeded the characters limit." />
+		<TooLargeDetailDescription text="Detail description exceeded the characters limit." />
+		<TooLargeScheduleDescription text="Schedule description exceeded the characters limit." />
 	</en-US>
 	<pt-BR>
 		<CheckErrors text="Verifique os erros e tente novamente."/>
@@ -123,7 +129,6 @@
 		<SummaryAmbiguousInMonth text="Erro no resumo mensal. Entre em contato com o suporte." />
 		<SummaryAmbiguousInYear text="Erro no resumo anual. Entre em contato com o suporte." />
 		<SummaryNatureNotFound text="Natureza de Resumo inexistente." />
-		<TooLargeData text="O campo excedeu o limite de caracteres." />
 		<TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
 		<UserAlreadyExists text="Usuário já existe." />
 		<UserEmailInvalid text="E-mail inválido." />
@@ -167,5 +172,12 @@
 		<TFAEmptySecret	text="Para habilitar a autenticação em duas etapas, é necessário uma chave" />
 		<TFANotConfigured text="Verificação em duas etapas não configurada" />
 		<TFANotVerified text="É necessário verificar o seu login com a verificação em duas etapas" />
+		<TooLargeUserEmail text="E-mail excedeu o limite de caracteres." />
+		<TooLargeAccountName text="Nome de conta excedeu o limite de caracteres." />
+		<TooLargeAccountUrl text="Url de conta excedeu o limite de caracteres." />
+		<TooLargeCategoryName text="Nome de categoria excedeu o limite de caracteres." />
+		<TooLargeMoveDescription text="Descrição de movimentação excedeu o limite de caracteres." />
+		<TooLargeDetailDescription text="Descrição de detalhe excedeu o limite de caracteres." />
+		<TooLargeScheduleDescription text="Descrição de agendamento excedeu o limite de caracteres." />
 	</pt-BR>
 </error>

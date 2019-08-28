@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
+using Keon.NHibernate.Base;
 using NHibernate;
 
 namespace DFM.BusinessLogic.Repositories
@@ -27,6 +29,9 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(account.Name))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountNameRequired);
 
+			if (account.Name.Length > MaximumLength.Account_Name)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeAccountName);
+
 			var otherAccount = getByName(account.Name, account.User);
 
 			var accountExistsForUser =
@@ -41,6 +46,9 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			if (String.IsNullOrEmpty(account.Url))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.AccountUrlRequired);
+
+			if (account.Url.Length > MaximumLength.Account_Url)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeAccountUrl);
 
 			var regex = new Regex(@"^[a-z0-9_]*$");
 

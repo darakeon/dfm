@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {

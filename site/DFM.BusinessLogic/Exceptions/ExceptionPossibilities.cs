@@ -6,7 +6,6 @@
 		NotSignedLastContract = 42,
 
 		FailOnEmailSend = 101,
-		TooLargeData = 102,
 
 		InvalidToken = 201,
 		InvalidUser = 202,
@@ -22,6 +21,7 @@
 		TFAWrongPassword = 213,
 		TFANotConfigured = 214,
 		TFANotVerified = 215,
+		TooLargeUserEmail = 216,
 
 		AccountNameRequired = 301,
 		AccountUrlRequired = 302,
@@ -36,6 +36,8 @@
 		RedLimitAboveYellowLimit = 311,
 		InvalidAccount = 312,
 		CantDeleteAccountWithSchedules = 313,
+		TooLargeAccountName = 314,
+		TooLargeAccountUrl = 315,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,
@@ -44,6 +46,7 @@
 		DuplicatedCategoryName = 405,
 		InvalidCategory = 406,
 		CategoriesDisabled = 407,
+		TooLargeCategoryName = 408,
 
 		InMoveWrong = 501,
 		OutMoveWrong = 502,
@@ -62,6 +65,8 @@
 		MoveAlreadyChecked = 515,
 		MoveAlreadyUnchecked = 516,
 		MoveCheckDisabled = 517,
+		TooLargeMoveDescription = 518,
+		TooLargeDetailDescription = 519,
 
 		ScheduleRequired = 601,
 		ScheduleFrequencyNotRecognized = 602,
@@ -69,6 +74,7 @@
 		ScheduleTimesCantBeZero = 604,
 		InvalidSchedule = 605,
 		DisabledSchedule = 606,
+		TooLargeScheduleDescription = 607,
 
 		SummaryNatureNotFound = 701,
 

@@ -38,7 +38,7 @@ Scenario: Aa05. Save user too large e-mail
 			| Email                                               | Password | Retype Password |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh@dontflymoney.com | password | password        |
 	When I try to save the user
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeUserEmail
 		And the user will not be saved
 
 Scenario: Aa06. Save user wrong retype

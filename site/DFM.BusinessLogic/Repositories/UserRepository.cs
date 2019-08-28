@@ -4,21 +4,18 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Generic;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class UserRepository : BaseRepository<User>
 	{
-		private const string email_pattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
-
-
+		private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 
 		internal User GetByEmail(String email)
 		{
 			return SingleOrDefault(u => u.Email == email);
 		}
-
-
 
 		internal User ValidateAndGet(String email, String password)
 		{
@@ -33,8 +30,6 @@ namespace DFM.BusinessLogic.Repositories
 			return user;
 		}
 
-
-
 		internal User Save(User user)
 		{
 			if (user.ID != 0)
@@ -42,8 +37,6 @@ namespace DFM.BusinessLogic.Repositories
 
 			return saveOrUpdate(user);
 		}
-
-
 
 		internal void Activate(User user)
 		{
@@ -53,14 +46,12 @@ namespace DFM.BusinessLogic.Repositories
 			update(user);
 		}
 
-
 		internal User ChangePassword(User user)
 		{
 			user.Password = Crypt.Do(user.Password);
 
 			return update(user);
 		}
-
 
 		internal User UpdateEmail(Int32 id, String email)
 		{
@@ -73,7 +64,6 @@ namespace DFM.BusinessLogic.Repositories
 			return update(user);
 		}
 
-
 		private User update(User user)
 		{
 			if (user.ID == 0)
@@ -81,9 +71,6 @@ namespace DFM.BusinessLogic.Repositories
 
 			return saveOrUpdate(user);
 		}
-
-
-
 
 		private User saveOrUpdate(User user)
 		{
@@ -95,12 +82,15 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(user.Password))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserPasswordRequired);
 
+			if (user.Email.Length > MaximumLength.User_Email)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeUserEmail);
+
 			validateEmail(user);
 		}
 
 		private void validateEmail(User user)
 		{
-			var regex = new Regex(email_pattern, RegexOptions.IgnoreCase);
+			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.UserEmailInvalid);

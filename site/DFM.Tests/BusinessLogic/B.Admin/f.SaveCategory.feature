@@ -28,7 +28,7 @@ Scenario: Bf03. Save Category with too big name
 			| Name                  |
 			| ABCDEFGHIJKLMNOPQRSTU |
 	When I try to save the category
-	Then I will receive this core error: TooLargeData
+	Then I will receive this core error: TooLargeCategoryName
 		And the category will not be saved
 
 Scenario: Bf04. Save Category with exactly length name

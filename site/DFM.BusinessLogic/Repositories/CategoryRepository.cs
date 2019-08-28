@@ -2,6 +2,8 @@
 using System.Linq;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -12,8 +14,6 @@ namespace DFM.BusinessLogic.Repositories
 			return SaveOrUpdate(category, complete, validate);
 		}
 
-
-
 		private void validate(Category category)
 		{
 			checkName(category);
@@ -23,6 +23,9 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			if (String.IsNullOrEmpty(category.Name))
 				throw DFMCoreException.WithMessage(ExceptionPossibilities.CategoryNameRequired);
+
+			if (category.Name.Length > MaximumLength.Category_Name)
+				throw DFMCoreException.WithMessage(ExceptionPossibilities.TooLargeCategoryName);
 
 			var otherCategory = GetByName(category.Name, category.User);
 

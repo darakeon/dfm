@@ -6,7 +6,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
-using ExceptionPossibilities = DFM.BusinessLogic.Exceptions.ExceptionPossibilities;
+using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {

@@ -20,13 +20,5 @@ namespace DFM.BusinessLogic.Exceptions
 			ErrorCounter++;
 			Type = type;
 		}
-
-		public static void TestOtherIfTooLarge(DKException e)
-		{
-			if (e.Message.StartsWith("TooLargeData"))
-				WithMessage(ExceptionPossibilities.TooLargeData);
-
-			throw e;
-		}
 	}
 }
