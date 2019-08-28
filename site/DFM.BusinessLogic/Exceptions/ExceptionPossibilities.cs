@@ -35,9 +35,7 @@
 		DuplicatedAccountUrl = 310,
 		RedLimitAboveYellowLimit = 311,
 		InvalidAccount = 312,
-		CategoriesDisabled = 313,
-		MoveCheckDisabled = 314,
-		CantDeleteAccountWithSchedules = 315,
+		CantDeleteAccountWithSchedules = 313,
 
 		CategoryNameRequired = 401,
 		CategoryAlreadyExists = 402,
@@ -45,6 +43,7 @@
 		EnabledCategory = 404,
 		DuplicatedCategoryName = 405,
 		InvalidCategory = 406,
+		CategoriesDisabled = 407,
 
 		InMoveWrong = 501,
 		OutMoveWrong = 502,
@@ -62,6 +61,7 @@
 		InvalidDetail = 514,
 		MoveAlreadyChecked = 515,
 		MoveAlreadyUnchecked = 516,
+		MoveCheckDisabled = 517,
 
 		ScheduleRequired = 601,
 		ScheduleFrequencyNotRecognized = 602,
