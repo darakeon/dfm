@@ -1,9 +1,9 @@
-﻿using DFM.Entities;
-using DFM.BusinessLogic.Helpers;
+﻿using DFM.BusinessLogic.Helpers;
+using DFM.Entities;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace DFM.Repositories.Mappings
+namespace DFM.BusinessLogic.Repositories.Mappings
 {
 	public class UserMap : IAutoMappingOverride<User>
 	{

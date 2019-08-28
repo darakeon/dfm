@@ -116,7 +116,7 @@ Legend:
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
 - [ ] Fix detailed sum cents at e-mail
 - [ ] Tests category delete with children deleted
-- [ ] Fix transient detail insertion
+- [ ] `190827>......` Fix transient detail insertion
 
 ## <a name="prod"></a>4.1.3.1 :ant: <sup>`1`</sup>
 - [x] `190824>190826` Create automatic version change

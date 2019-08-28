@@ -3,24 +3,22 @@ using DFM.Entities;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace DFM.Repositories.Mappings
+namespace DFM.BusinessLogic.Repositories.Mappings
 {
-	public class MoveMap : IAutoMappingOverride<Move>
+	public class ScheduleMap : IAutoMappingOverride<Schedule>
 	{
-		public void Override(AutoMapping<Move> mapping)
+		public void Override(AutoMapping<Schedule> mapping)
 		{
+			mapping.IgnoreProperty(m => m.Value);
+
 			mapping.Map(m => m.Description)
 				.Length(MaximumLength.Move_Description);
 
-			mapping.References(m => m.Schedule)
-				.Not.Update()
-				.Nullable();
-
-			mapping.IgnoreProperty(m => m.FakeID);
-			mapping.IgnoreProperty(m => m.Value);
-
 			mapping.References(m => m.Category)
 				.Nullable();
+
+			mapping.Map(s => s.Active)
+				.Default("1");
 
 			mapping.References(m => m.In)
 				.Nullable();

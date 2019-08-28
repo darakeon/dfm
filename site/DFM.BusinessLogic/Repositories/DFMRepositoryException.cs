@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Generic;
 
-namespace DFM.Repositories
+namespace DFM.BusinessLogic.Repositories
 {
 	public class DFMRepositoryException : DFMException
 	{

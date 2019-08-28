@@ -3,7 +3,7 @@ using DFM.Entities;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace DFM.Repositories.Mappings
+namespace DFM.BusinessLogic.Repositories.Mappings
 {
 	class ConfigMap : IAutoMappingOverride<Config>
 	{
