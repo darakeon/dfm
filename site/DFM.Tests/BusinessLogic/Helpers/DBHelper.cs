@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Repositories;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers

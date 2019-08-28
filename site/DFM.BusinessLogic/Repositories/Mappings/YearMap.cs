@@ -2,7 +2,7 @@
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace DFM.Repositories.Mappings
+namespace DFM.BusinessLogic.Repositories.Mappings
 {
 	public class YearMap : IAutoMappingOverride<Year>
 	{
