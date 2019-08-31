@@ -67,9 +67,7 @@
     <None Include="BusinessLogic\A.Safe\m.UpdateEmail.feature" />
     <None Include="BusinessLogic\A.Safe\l.ChangePassword.feature" />
     <None Include="BusinessLogic\A.Safe\j.DisableTicket.feature" />
-    <None Include="BusinessLogic\A.Safe\k.ListLogins.feature">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="BusinessLogic\A.Safe\k.ListLogins.feature" />
     <None Include="BusinessLogic\A.Safe\n.GetContract.feature" />
     <None Include="BusinessLogic\A.Safe\o.AcceptContract.feature" />
     <None Include="BusinessLogic\A.Safe\p.IsLastContractAccepted.feature" />
@@ -119,6 +117,9 @@
     <None Include="Multilanguage\Multilanguage.feature" />
     <None Include="packages.config" />
     <None Include="smtp.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NUnitMSBuildHelper.feature">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
