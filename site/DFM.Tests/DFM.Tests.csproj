@@ -93,7 +93,6 @@
     <None Include="BusinessLogic\B.Admin\n. ChangeTheme.feature" />
     <None Include="BusinessLogic\C.Money\a.SaveMove.feature" />
     <None Include="BusinessLogic\C.Money\c.SelectMoveById.feature" />
-    <None Include="BusinessLogic\C.Money\d.SelectDetailById.feature" />
     <None Include="BusinessLogic\C.Money\e.DeleteMove.feature" />
     <None Include="BusinessLogic\C.Money\b.UpdateMove.feature" />
     <None Include="BusinessLogic\C.Money\f.CheckMove.feature" />

@@ -133,22 +133,6 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-
-		public Detail GetDetailById(Int32 id)
-		{
-			Parent.Safe.VerifyUser();
-
-			var detail = detailRepository.Get(id);
-
-			if (detail == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidDetail);
-
-			Parent.BaseMove.VerifyMove(detail.Move);
-
-			return detail;
-		}
-
-
 		public Move CheckMove(Int32 moveId)
 		{
 			return toggleMoveCheck(moveId, true);
