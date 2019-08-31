@@ -61,28 +61,24 @@
 		MoveDetailDescriptionRequired = 511,
 		MoveDetailAmountRequired = 512,
 		MoveDetailValueRequired = 513,
-		InvalidDetail = 514,
-		MoveAlreadyChecked = 515,
-		MoveAlreadyUnchecked = 516,
-		MoveCheckDisabled = 517,
-		TooLargeMoveDescription = 518,
-		TooLargeDetailDescription = 519,
+		MoveAlreadyChecked = 514,
+		MoveAlreadyUnchecked = 515,
+		MoveCheckDisabled = 516,
+		TooLargeMoveDescription = 517,
+		TooLargeDetailDescription = 518,
 
 		ScheduleRequired = 601,
 		ScheduleFrequencyNotRecognized = 602,
-		//ScheduleWithNoMoves = 603,
 		ScheduleTimesCantBeZero = 604,
 		InvalidSchedule = 605,
 		DisabledSchedule = 606,
 		TooLargeScheduleDescription = 607,
 
-		SummaryNatureNotFound = 701,
+		InvalidYear = 701,
+		InvalidMonth = 702,
 
-		InvalidYear = 801,
-		InvalidMonth = 802,
-
-		LanguageUnknown = 901,
-		TimezoneUnknown = 902,
+		LanguageUnknown = 801,
+		TimezoneUnknown = 802,
 	}
 
 }
