@@ -184,16 +184,6 @@ Scenario: Aq25. Select Move
 	When I try to get the move
 	Then I will receive this core error: NotSignedLastContract
 
-Scenario: Aq26. Select Detail
-	Given I enable Categories use
-		And I have two accounts
-		And I have a category
-		And I have a move with details
-		And I pass valid Detail ID
-	But there is a new contract
-	When I try to get the detail
-	Then I will receive this core error: NotSignedLastContract
-
 Scenario: Aq27. Delete Move
 	Given I have a category
 		And I have two accounts

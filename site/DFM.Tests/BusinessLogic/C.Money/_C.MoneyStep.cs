@@ -29,12 +29,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			set { Set("IDs", value); }
 		}
 
-		private static Detail detail
-		{
-			get { return Get<Detail>("Detail"); }
-			set { Set("Detail", value); }
-		}
-
 		private static DateTime oldDate
 		{
 			get { return Get<DateTime>("OldDate"); }
@@ -572,81 +566,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenIWillReceiveTheMove()
 		{
 			Assert.IsNotNull(Move);
-		}
-		#endregion
-
-		#region GetDetailById
-		[Given(@"I have a move with details")]
-		public void GivenIHaveAMoveWithDetails()
-		{
-			Account = GetOrCreateAccount(MAIN_ACCOUNT_URL);
-
-			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
-
-			Move = new Move
-			{
-				Description = "Description",
-				Date = Current.User.Now(),
-				Nature = MoveNature.Out,
-			};
-
-			for (var d = 0; d < 3; d++)
-			{
-				var newDetail = new Detail
-				{
-					Description = "Detail " + d,
-					Amount = 1,
-					Value = 10,
-				};
-
-				Move.DetailList.Add(newDetail);
-			}
-
-			var result = Service.Money.SaveOrUpdateMove(Move, Account.Url, null, Category.Name);
-			Move = result.Success;
-
-			detail = Move.DetailList.First();
-		}
-
-
-		[Given(@"I pass an id of Detail that doesn't exist")]
-		public void GivenIPassAnIdOfDetailThatDoesnTExist()
-		{
-			id = 0;
-		}
-
-		[Given(@"I pass valid Detail ID")]
-		public void GivenIPassValidDetailID()
-		{
-			id = detail.ID;
-		}
-
-		[When(@"I try to get the detail")]
-		public void WhenITryToGetTheDetail()
-		{
-			detail = null;
-			Error = null;
-
-			try
-			{
-				detail = Service.Money.GetDetailById(id);
-			}
-			catch (DFMCoreException e)
-			{
-				Error = e;
-			}
-		}
-
-		[Then(@"I will receive no detail")]
-		public void ThenIWillReceiveNoDetail()
-		{
-			Assert.IsNull(detail);
-		}
-
-		[Then(@"I will receive the detail")]
-		public void ThenIWillReceiveTheDetail()
-		{
-			Assert.IsNotNull(detail);
 		}
 		#endregion
 
