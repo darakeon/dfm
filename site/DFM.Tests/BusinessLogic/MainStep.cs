@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Tests.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -75,11 +76,15 @@ namespace DFM.Tests.BusinessLogic
 			Assert.IsNull(Error);
 		}
 
-
-
 		private static String logFileName;
-		
+
 		[BeforeTestRun]
+		public static void PrepareRun()
+		{
+			DBHelper.Cleanup();
+			SetLogName();
+		}
+
 		public static void SetLogName()
 		{
 			var date = DateTime.Now.ToString("yyyyMMddHHmmssffff");
@@ -146,13 +151,11 @@ namespace DFM.Tests.BusinessLogic
 			Current.Clear();
 		}
 
-
 		[StepArgumentTransformation(@"( not)?")]
 		[StepArgumentTransformation(@"(not )?")]
 		public bool NotToBoolTransform(string not)
 		{
 			return not.Trim() != "not";
 		}
-
 	}
 }

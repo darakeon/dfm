@@ -36,15 +36,10 @@ namespace DFM.Tests.BusinessLogic
 			PlainText.Initialize(RunPath);
 		}
 
-
 		public void Dispose()
 		{
 			SessionFactoryManager.End();
 		}
-
-
-
-
 
 		protected Int32? GetInt(String str)
 		{
@@ -53,8 +48,6 @@ namespace DFM.Tests.BusinessLogic
 				: Int32.Parse(str);
 		}
 
-
-
 		protected static String MakeUrlFromName(String name)
 		{
 			var regex = new Regex("[^A-Za-z0-9_]");
@@ -62,8 +55,6 @@ namespace DFM.Tests.BusinessLogic
 
 			return url;
 		}
-
-
 
 		#region Get or Create
 		protected void CreateUserIfNotExists(
@@ -165,8 +156,6 @@ namespace DFM.Tests.BusinessLogic
 			return Service.Safe.GetUserByTicket(key);
 		}
 		#endregion
-
-
 
 		#region Context
 		private ClientTicket getTicket(Boolean? remember = null)
@@ -347,8 +336,6 @@ namespace DFM.Tests.BusinessLogic
 		}
 		#endregion
 
-
-
 		protected const String USER_EMAIL = "test@dontflymoney.com";
 		protected const String BAD_PERSON_USER = "badperson@dontflymoney.com";
 
@@ -360,10 +347,6 @@ namespace DFM.Tests.BusinessLogic
 		protected const String ACCOUNT_IN_NAME = "Account In";
 		protected static String AccountOutUrl = MakeUrlFromName(ACCOUNT_OUT_NAME);
 		protected static String AccountInUrl = MakeUrlFromName(ACCOUNT_IN_NAME);
-
-
-
-
 
 		#region Helpers
 		protected Detail GetDetailFromTable(TableRow detailData)
