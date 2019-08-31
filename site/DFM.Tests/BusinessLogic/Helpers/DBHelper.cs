@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -17,139 +15,91 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		internal static String GetLastTokenForUser(String email, SecurityAction action)
 		{
 			if (FakeHelper.IsFake)
-			{
 				return FakeRepos.Security.GetLastTokenForUser(email, action);
-			}
 
-			String token;
+			var query = @"
+				Select Token
+					from Security S
+						inner join User U
+							on S.User_ID = U.ID
+					where U.Email = @email
+						and S.Action = @action
+						and S.Expire >= @expire
+				order by S.ID desc, S.Expire desc
+					limit 1
+			";
 
-			using (var conn = new MySqlConnection(connStr))
+			return executeDB(query, cmd =>
 			{
-				conn.Open();
+				cmd.Parameters.AddWithValue("email", email);
+				cmd.Parameters.AddWithValue("action", (Int32) action);
+				cmd.Parameters.AddWithValue("expire", DateTime.Now);
 
-				var query = @"
-					Select Token
-						from Security S
-							inner join User U
-								on S.User_ID = U.ID
-						where U.Email = @email
-							and S.Action = @action
-							and S.Expire >= @expire
-					order by S.ID desc, S.Expire desc
-						limit 1";
+				var result = cmd.ExecuteScalar();
 
-				using (var cmd = new MySqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("email", email);
-					cmd.Parameters.AddWithValue("action", (Int32) action);
-					cmd.Parameters.AddWithValue("expire", DateTime.Now);
+				if (result == null)
+					throw new DFMRepositoryException("Bad, bad developer. No token for you.");
 
-					var result = cmd.ExecuteScalar();
-
-					if (result == null)
-					{
-						conn.Close();
-
-						throw new DFMRepositoryException("Bad, bad developer. No token for you.");
-					}
-
-					token = result.ToString();
-				}
-
-				conn.Close();
-			}
-
-			return token;
+				return result.ToString();
+			});
 		}
 
 		internal static String GetLastTicketForUser(String email)
 		{
 			if (FakeHelper.IsFake)
-			{
 				return FakeRepos.Ticket.GetLastTicketForUser(email);
-			}
 
-			String ticket;
+			var query = @"
+				Select Key_
+					from Ticket T
+						inner join User U
+							on T.User_ID = U.ID
+					where U.Email = @email
+						and T.Expiration is null
+				order by T.ID desc
+					limit 1
+			";
 
-			using (var conn = new MySqlConnection(connStr))
+			return executeDB(query, cmd =>
 			{
-				conn.Open();
+				cmd.Parameters.AddWithValue("email", email);
 
-				var query = @"
-					Select Key_
-						from Ticket T
-							inner join User U
-								on T.User_ID = U.ID
-						where U.Email = @email
-							and T.Expiration is null
-					order by T.ID desc
-						limit 1";
+				var result = cmd.ExecuteScalar();
 
-				using (var cmd = new MySqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("email", email);
+				if (result == null)
+					throw new DFMRepositoryException("Bad, bad developer. No ticket for you.");
 
-					var result = cmd.ExecuteScalar();
-
-					if (result == null)
-					{
-						conn.Close();
-
-						throw new DFMRepositoryException("Bad, bad developer. No ticket for you.");
-					}
-
-					ticket = result.ToString();
-				}
-
-				conn.Close();
-			}
-
-			return ticket;
+				return result.ToString();
+			});
 		}
 
 		internal static String GetUserEmailByTicket(String ticket)
 		{
 			if (FakeHelper.IsFake)
-			{
 				return FakeRepos.Ticket.GetUserEmailByTicket(ticket);
-			}
 
-			String token;
+			var query = @"
+				Select U.Email
+					from User U
+						inner join Ticket T
+							on U.ID = T.User_ID
+					where T.Key_ = @ticket
+						and T.Active = 1
+				order by T.ID desc
+					limit 1
+			";
 
-			using (var conn = new MySqlConnection(connStr))
+			return executeDB(query, cmd =>
 			{
-				conn.Open();
+				cmd.Parameters.AddWithValue("ticket", ticket);
 
-				var query = @"
-					Select U.Email
-						from User U
-							inner join Ticket T
-								on U.ID = T.User_ID
-						where T.Key_ = @ticket
-							and T.Active = 1
-					order by T.ID desc
-						limit 1";
+				var result = cmd.ExecuteScalar();
 
-				using (var cmd = new MySqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("ticket", ticket);
+				if (result == null)
+					throw new DFMRepositoryException("Bad, bad developer. No e-mail for you.");
 
-					var result = cmd.ExecuteScalar();
-
-					if (result == null)
-					{
-						conn.Close();
-
-						throw new DFMRepositoryException("Bad, bad developer. No e-mail for you.");
-					}
-
-					token = result.ToString();
-				}
-
-				conn.Close();
-			}
-
-			return token;
+				return result.ToString();
+			});
 		}
 
 		internal static void CreateContract(String contractVersion)
@@ -160,106 +110,98 @@ namespace DFM.Tests.BusinessLogic.Helpers
 				return;
 			}
 
-			using (var conn = new MySqlConnection(connStr))
+			var query = @"
+				INSERT INTO Contract
+					(BeginDate, Version)
+					VALUES
+					(now(), @contractVersion);
+			";
+
+			executeDB(query, cmd =>
 			{
-				conn.Open();
-
-				var query = @"
-					INSERT INTO Contract
-						(BeginDate, Version)
-						VALUES
-						(now(), @contractVersion);
-				";
-
-				using (var cmd = new MySqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("contractVersion", contractVersion);
-
-					cmd.ExecuteNonQuery();
-				}
-
-				conn.Close();
-			}
+				cmd.Parameters.AddWithValue("contractVersion", contractVersion);
+				cmd.ExecuteNonQuery();
+			});
 		}
 
 		internal static String GetTFAUser(String email)
 		{
 			if (FakeHelper.IsFake)
-			{
 				return FakeRepos.User.GetTFAUser(email);
-			}
 
-			String ticket;
+			var query = @"
+				Select TFASecret
+					from User
+					where Email = @email
+			";
 
-			using (var conn = new MySqlConnection(connStr))
+			return executeDB(query, cmd =>
 			{
-				conn.Open();
+				cmd.Parameters.AddWithValue("email", email);
 
-				var query = @"
-					Select TFASecret
-						from User
-						where Email = @email";
+				var result = cmd.ExecuteScalar();
 
-				using (var cmd = new MySqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("email", email);
+				if (result == null)
+					throw new DFMRepositoryException("Bad, bad developer. No two-factor for you.");
 
-					var result = cmd.ExecuteScalar();
-
-					if (result == null)
-					{
-						conn.Close();
-
-						throw new DFMRepositoryException("Bad, bad developer. No two-factor for you.");
-					}
-
-					ticket = result.ToString();
-				}
-
-				conn.Close();
-			}
-
-			return ticket;
+				return result.ToString();
+			});
 		}
 
 		public static Boolean CheckScheduleState(Schedule schedule)
 		{
 			if (FakeHelper.IsFake)
-			{
 				return FakeRepos.Schedule.GetState(schedule.ID);
-			}
 
-			var state = false;
+			var query = @"
+				Select Active
+					from Schedule
+					where ID = @id
+			";
 
+			return executeDB(query, cmd =>
+			{
+				cmd.Parameters.AddWithValue("id", schedule.ID);
+
+				var result = cmd.ExecuteScalar();
+
+				if (result == null)
+					throw new DFMRepositoryException("Bad, bad developer. No schedule for you.");
+
+				return result.ToString() == "1";
+			});
+		}
+
+		private static T executeDB<T>(String query, Func<MySqlCommand, T> action)
+		{
+			var result = default(T);
+
+			executeDB(
+				query,
+				cmd => { result = action(cmd); }
+			);
+
+			return result;
+		}
+
+		private static void executeDB(String query, Action<MySqlCommand> action)
+		{
 			using (var conn = new MySqlConnection(connStr))
 			{
 				conn.Open();
 
-				var query = @"
-					Select Active
-						from Schedule
-						where ID = @id";
-
-				using (var cmd = new MySqlCommand(query, conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("id", schedule.ID);
-
-					var result = cmd.ExecuteScalar();
-
-					if (result == null)
+					using (var cmd = new MySqlCommand(query, conn))
 					{
-						conn.Close();
-
-						throw new DFMRepositoryException("Bad, bad developer. No schedule for you.");
+						action(cmd);
 					}
-
-					state = result.ToString() == "1";
 				}
-
-				conn.Close();
+				finally
+				{
+					conn.Close();
+				}
 			}
-
-			return state;
 		}
 	}
 }
