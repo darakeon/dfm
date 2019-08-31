@@ -1,0 +1,60 @@
+alter table detail
+	add json json null;
+
+update detail
+	set json = concat(
+		'{ "id": ', id, ',',
+		' "description": "', description,'",',
+		' "amount": ', amount, ',',
+		' "value_cents": ', valueCents,
+	'}')
+    where id <> 0
+		and json is null;
+
+alter table move
+	add detailsJson json null;
+
+/* REPETIR */
+update move
+	inner join detail
+		on move_id = move.id
+	set details =
+		if (details is null
+			, concat('[', json, ']')
+			, concat(left(details, length(details) - 1), ',', json, ']')
+		)
+    where move.id <> 0
+		and (
+			details is null
+			or details not like concat('%', json, '%')
+		);
+
+update move
+	set details = regexp_replace(details, '"id": [0-9]+, ', '')
+	where id <> 0
+		and details like '%"id": %';
+
+alter table schedule
+	add detailsJson json null;
+
+/* REPETIR */
+update schedule
+	inner join detail
+		on schedule_id = schedule.id
+	set details =
+		if (details is null
+			, concat('[', json, ']')
+			, concat(left(details, length(details) - 1), ',', json, ']')
+		)
+    where schedule.id <> 0
+		and (
+			details is null
+			or details not like concat('%', json, '%')
+		);
+
+update schedule
+	set details = regexp_replace(details, '"id": [0-9]+, ', '')
+	where id <> 0
+		and details like '%"id": %';
+
+rename table detail to _detail;
