@@ -38,7 +38,6 @@
 		<ScheduleFrequencyNotRecognized text="Schedule frequency not recognized." />
 		<SummaryAmbiguousInMonth text="Error in monthly summary. Contact us." />
 		<SummaryAmbiguousInYear text="Error in yearly summary. Contact us." />
-		<SummaryNatureNotFound text="Summary Nature doesn't exist." />
 		<TransferMoveWrong text="A Transfer Move need to have In and Out Accounts." />
 		<UserAlreadyExists text="User already exists." />
 		<UserEmailInvalid text="User e-mail is invalid." />
@@ -63,7 +62,6 @@
 		<MoveAlreadyChecked text="Move already checked" />
 		<MoveAlreadyUnchecked text="Move already unchecked" />
 		<ScheduleRequired text="Schedule required to future moves." />
-		<ScheduleWithNoMoves text="The schedule has no moves." />
 		<ScheduleTimesCantBeZero text="To schedule something, schedule at least once" />
 		<InvalidYear text="Invalid year" />
 		<InvalidMonth text="Invalid month" />
@@ -128,7 +126,6 @@
 		<ScheduleFrequencyNotRecognized text="Frequência de agendador desconhecida." />
 		<SummaryAmbiguousInMonth text="Erro no resumo mensal. Entre em contato com o suporte." />
 		<SummaryAmbiguousInYear text="Erro no resumo anual. Entre em contato com o suporte." />
-		<SummaryNatureNotFound text="Natureza de Resumo inexistente." />
 		<TransferMoveWrong text="Uma Movimentação de Transferência precisa ter Contas de Entrada e Saída." />
 		<UserAlreadyExists text="Usuário já existe." />
 		<UserEmailInvalid text="E-mail inválido." />
@@ -153,7 +150,6 @@
 		<MoveAlreadyChecked text="Movimentação já verificada" />
 		<MoveAlreadyUnchecked text="Movimentação não está verificada" />
 		<ScheduleRequired text="Necessário agendamento para movimentações futuras." />
-		<ScheduleWithNoMoves text="O agendamento não possui movimentações." />
 		<ScheduleTimesCantBeZero text="Para agendar algo, agende para executar ao menos uma vez." />
 		<InvalidYear text="Ano inválido." />
 		<InvalidMonth text="Mês inválido." />
