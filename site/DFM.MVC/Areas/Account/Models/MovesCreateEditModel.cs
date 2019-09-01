@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -21,10 +22,21 @@ namespace DFM.MVC.Areas.Account.Models
 
 		internal override void SaveOrUpdate()
 		{
+			var value = Move.Value;
+			var details = Move.DetailList.ToList();
+
+			if (IsDetailed)
+				Move.Value = null;
+			else
+				Move.DetailList.Clear();
+
 			var result = money.SaveOrUpdateMove(Move, AccountOutUrl, AccountInUrl, CategoryName);
 
 			if (result.Error.IsWrong())
 			{
+				Move.Value = value;
+				Move.DetailList = details;
+
 				var message = MultiLanguage.Dictionary["MoveSave"];
 				var error = MultiLanguage.Dictionary[result.Error].ToLower();
 				var final = String.Format(message, error);

@@ -217,3 +217,15 @@ Scenario: Cb17. Update the move of another user
 	Then the accountOut value will not change
 		And the month-category-accountOut value will not change
 		And the year-category-accountOut value will not change
+
+Scenario: Cb18. Update the move adding details, but not removing value
+	Given I have a move with value 10 (Out)
+	When I add these details to the move
+			| Description | Amount | Value |
+			| Move Cb13b  | 1      | 20    |
+		And I update the move
+	Then I will receive this core error: MoveValueAndDetailNotAllowed
+		And the move total will be 10
+		And the accountOut value will not change
+		And the month-category-accountOut value will not change
+		And the year-category-accountOut value will not change

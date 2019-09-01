@@ -66,6 +66,7 @@
 		MoveCheckDisabled = 516,
 		TooLargeMoveDescription = 517,
 		TooLargeDetailDescription = 518,
+		MoveValueAndDetailNotAllowed = 519,
 
 		ScheduleRequired = 601,
 		ScheduleFrequencyNotRecognized = 602,
