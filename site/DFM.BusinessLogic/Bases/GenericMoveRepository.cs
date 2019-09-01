@@ -59,8 +59,17 @@ namespace DFM.BusinessLogic.Bases
 
 		private static void testValue(T move)
 		{
-			if (!move.HasValue())
-				throw DFMCoreException.WithMessage(DfMError.MoveValueOrDetailRequired);
+			switch (move.ValueType())
+			{
+				case MoveValueType.Empty:
+					throw DFMCoreException.WithMessage(
+						DfMError.MoveValueOrDetailRequired
+					);
+				case MoveValueType.Both:
+					throw DFMCoreException.WithMessage(
+						DfMError.MoveValueAndDetailNotAllowed
+					);
+			}
 		}
 
 		private static void testNature(T move)

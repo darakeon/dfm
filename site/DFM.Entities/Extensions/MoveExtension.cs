@@ -1,20 +1,31 @@
 ﻿using System;
 using System.Linq;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 
 namespace DFM.Entities.Extensions
 {
 	public static class MoveExtension
 	{
-		public static Boolean HasValue(this IMove move)
+		public static MoveValueType ValueType(this IMove move)
 		{
-			return (move.Value.HasValue && move.Value != 0) ||
-				move.DetailList.Any(d => d.Value != 0 && d.Amount != 0);
+			var type = MoveValueType.Empty;
+
+			if (move.Value.HasValue && move.Value != 0)
+				type += (Int32)MoveValueType.Unique;
+
+			var details = move.DetailList
+				.Sum(d => d.Amount * d.Value);
+
+			if (move.DetailList.Any() && details != 0)
+				type += (Int32)MoveValueType.Detailed;
+
+			return type;
 		}
 
 		public static Boolean IsDetailed(this IMove move)
 		{
-			return !move.Value.HasValue;
+			return move.ValueType() == MoveValueType.Detailed;
 		}
 
 		public static Boolean HasCategory(this IMove move)
