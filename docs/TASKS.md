@@ -114,7 +114,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.3.2 :ant: <sup>`3`</sup>
 - [ ] This site uses cookies to store your preferences for site-specific language and display options.
-- [ ] Fix detailed sum cents at e-mail
+- [x] `190901>190901` Fix detailed sum cents at e-mail
 - [x] `190827>190831` Fix transient detail insertion
 
 ## <a name="prod"></a>4.1.3.1 :ant: <sup>`1`</sup>

@@ -129,7 +129,7 @@ namespace DFM.BusinessLogic.Repositories
 						{ "Description", detail.Description },
 						{ "Amount", detail.Amount },
 						{ "Value", detail.Value.ToMoney(language) },
-						{ "Total", detail.GetTotal() }
+						{ "Total", detail.GetTotal().ToMoney(language) }
 					}
 				);
 
