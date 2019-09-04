@@ -58,7 +58,7 @@ namespace DFM.MVC.Helpers
 			}
 		}
 
-		private static ClientTicket getTicket(Boolean? remember = null)
+		private static ClientTicket getTicket(Boolean remember)
 		{
 			var type = request.Url.AbsolutePath
 					.ToLower().StartsWith("/api")
@@ -70,7 +70,7 @@ namespace DFM.MVC.Helpers
 			return new ClientTicket(key, type);
 		}
 
-		private static String getKey(TicketType type, Boolean? remember)
+		private static String getKey(TicketType type, Boolean remember)
 		{
 			switch (type)
 			{

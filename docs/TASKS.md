@@ -113,7 +113,7 @@ Legend:
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
 ## <a name="dev"></a>4.1.3.2 :ant: <sup>`3`</sup>
-- [ ] This site uses cookies to store your preferences for site-specific language and display options.
+- [x] `190903>190904` Cookies warning
 - [x] `190901>190901` Fix detailed sum cents at e-mail
 - [x] `190827>190831` Fix transient detail insertion
 

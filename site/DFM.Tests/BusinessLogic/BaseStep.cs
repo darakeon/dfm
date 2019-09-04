@@ -158,7 +158,7 @@ namespace DFM.Tests.BusinessLogic
 		#endregion
 
 		#region Context
-		private ClientTicket getTicket(Boolean? remember = null)
+		private ClientTicket getTicket(Boolean remember)
 		{
 			return new ClientTicket(TicketKey, TicketType.Local);
 		}

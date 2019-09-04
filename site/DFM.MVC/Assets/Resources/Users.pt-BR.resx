@@ -130,7 +130,7 @@
     <value>Termos de Uso</value>
   </data>
   <data name="CookiesWarning" xml:space="preserve">
-    <value>Cookies serão usados para manter a sessão na próxima vez que você acessar o sistema por este browser</value>
+    <value>Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste site</value>
   </data>
   <data name="EnableWizard" xml:space="preserve">
     <value>Habilitar Tutorial</value>
