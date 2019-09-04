@@ -12,16 +12,16 @@ namespace DFM.Authentication
 		public Current(ISafeService userService, GetTicket getTicket)
 		{
 			this.userService = userService;
-			clientGetTicket += getTicket;
+			clientGetTicket = getTicket;
 		}
 
-		private event GetTicket clientGetTicket;
-		public delegate ClientTicket GetTicket(Boolean? remember = null);
+		private readonly GetTicket clientGetTicket;
+		public delegate ClientTicket GetTicket(Boolean remember);
 
-		private ClientTicket ticket => getTicket();
+		private ClientTicket ticket => getTicket(false);
 		public String TicketKey => ticket?.Key;
 
-		private ClientTicket getTicket(Boolean? remember = null)
+		private ClientTicket getTicket(Boolean remember)
 		{
 			return clientGetTicket?.Invoke(remember);
 		}

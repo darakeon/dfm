@@ -130,7 +130,7 @@
     <value>Terms of Use</value>
   </data>
   <data name="CookiesWarning" xml:space="preserve">
-    <value>Cookies will be used to remember your session next time you access the system using this browser</value>
+    <value>Cookies are used to control logon and security of forms of this site</value>
   </data>
   <data name="EnableWizard" xml:space="preserve">
     <value>Enable Wizard</value>

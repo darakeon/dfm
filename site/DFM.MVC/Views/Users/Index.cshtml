@@ -34,15 +34,19 @@
 					@Html.Raw(String.Format(
 						MultiLanguage.Dictionary["Index_Explanation"],
 						"<a href='" + Url.Action("SignUp", "Users") + "' class='text-success'>", "</a>"
-					))
+						))
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
 						MultiLanguage.Dictionary["Index_Close"],
 						"dfm@dontflymoney.com"
-					))
+						))
 				</p>
+			</div>
+			
+			<div class="panel-footer text-right">
+				@Users.CookiesWarning
 			</div>
 		</div>
 
