@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.2/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.3/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -104,7 +104,7 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.3 :ant: <sup>`6`</sup>
+## <a name="dev"></a>4.1.3.3 :ant: <sup>`6`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 - [ ] Transform service receiving / returns into DTO
@@ -112,12 +112,12 @@ Legend:
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
 
-## <a name="dev"></a>4.1.3.2 :ant: <sup>`3`</sup>
+## <a name="prod"></a>4.1.3.2 :ant: <sup>`3`</sup>
 - [x] `190903>190904` Cookies warning
 - [x] `190901>190901` Fix detailed sum cents at e-mail
 - [x] `190827>190831` Fix transient detail insertion
 
-## <a name="prod"></a>4.1.3.1 :ant: <sup>`1`</sup>
+## 4.1.3.1 :ant: <sup>`1`</sup>
 - [x] `190824>190826` Create automatic version change
 
 ## 4.1.3.0 :sheep: <sup>`4`</sup>
