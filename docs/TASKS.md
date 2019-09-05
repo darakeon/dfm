@@ -26,12 +26,19 @@ Legend:
 ## 6.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] OCR to add values to system
 
+## 5.6.0.0 :whale: <sup>`1`</sup>
+- [ ] Add spendable value - how much one can spend by day [#28](https://github.com/darakeon/dfm/issues/28)
+
+## 5.5.1.0 :sheep: <sup>`2`</sup>
+- [ ] Add priority account (listed above others) [#50](https://github.com/darakeon/dfm/issues/50)
+- [ ] Add priority category (listed above others) [#50](https://github.com/darakeon/dfm/issues/50)
+
 ## 5.5.0.0 :whale: <sup>`5`</sup>
 - [ ] E-mail send mock
 - [ ] "Guess" the category
 - [ ] report with more than one account
-- [ ] year report by category [(idea)](http://www.chartjs.org/)
-- [ ] month report by category [(idea)](http://www.chartjs.org/)
+- [ ] year report by category [(chartjs)](http://www.chartjs.org/)
+- [ ] month report by category [(chartjs)](http://www.chartjs.org/)
 
 ## 5.4.1.0 :sheep: <sup>`3`</sup>
 - [ ] Fix error handling to have all at header
@@ -46,7 +53,7 @@ Legend:
 - [ ] Send e-mail if account is above yellow and red (add config to allow)
 
 ## 5.3.0.0 :whale: <sup>`4`</sup>
-- [ ] Delete not accessed accounts
+- [ ] Delete not accessed accounts [#49](https://github.com/darakeon/dfm/issues/49)
 - [ ] Last login date
 - [ ] Data export (csv, json)
 - [ ] Data import (csv, json)
@@ -54,13 +61,16 @@ Legend:
 ## 5.2.0.0 :whale: <sup>`4`</sup>
 - [ ] Enable reopen account
 - [ ] Config max request length
-- [ ] Show future moves and foreseen balance
+- [ ] Show future moves and foreseen balance [#21](https://github.com/darakeon/dfm/issues/21)
 - [ ] Add config for first day of account
 
 ## 5.1.0.0 :whale: <sup>`1`</sup>
 - [ ] Create Market - group of moves, each one of one category, to when you are shopping
 
-## 5.0.0.0 :dragon: <sup>`1`</sup>
+## 5.0.0.0 :dragon: <sup>`4`</sup>
+- [ ] Add contributing rules to repo [#44](https://github.com/darakeon/dfm/issues/44)
+- [ ] Add code of conduct to repo [#44](https://github.com/darakeon/dfm/issues/44)
+- [ ] Add issue template to repo [#43](https://github.com/darakeon/dfm/issues/43)
 - [ ] Store data locally, to use when there is no internet (Mobile)
 
 ## 4.5.0.0 :whale: <sup>`2`</sup>
@@ -90,11 +100,12 @@ Legend:
 - [ ] Add account creation (mobile)
 - [ ] Add category creation (mobile)
 
-## 4.2.0.0 :whale: <sup>`4`</sup>
+## 4.2.0.0 :whale: <sup>`5`</sup>
 - [ ] Allow to hide values at start screen (mobile)
 - [ ] Change date to field with datepicker button (mobile)
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
+- [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
 
 ## 4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
@@ -104,15 +115,30 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## <a name="dev"></a>4.1.3.3 :ant: <sup>`6`</sup>
+## 4.1.3.8 :ant: <sup>`1`</sup>
+- [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
+
+## 4.1.3.7 :ant: <sup>`1`</sup>
+- [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
+
+## 4.1.3.6 :ant: <sup>`1`</sup>
 - [ ] Make android automated tests
+
+## 4.1.3.5 :ant: <sup>`1`</sup>
 - [ ] Make selenium automated tests - web
+
+## 4.1.3.4 :ant: <sup>`1`</sup>
 - [ ] Transform service receiving / returns into DTO
+
+## <a name="dev"></a>4.1.3.3 :ant: <sup>`5`</sup>
 - [ ] IDs Int64
 - [ ] Put lock at NH get session
 - [ ] Fix transaction call to avoid code duplication (Action/Func<>)
+- [ ] Put warning of no content on year summary [#47](https://github.com/darakeon/dfm/issues/47)
+- [ ] Fix register language half pt, half en [#41](https://github.com/darakeon/dfm/issues/41)
 
-## <a name="prod"></a>4.1.3.2 :ant: <sup>`3`</sup>
+## <a name="prod"></a>4.1.3.2 :ant: <sup>`4`</sup>
+- [x] `190904>190905` Map repo issues to task list [#52](https://github.com/darakeon/dfm/issues/52)
 - [x] `190903>190904` Cookies warning
 - [x] `190901>190901` Fix detailed sum cents at e-mail
 - [x] `190827>190831` Fix transient detail insertion
