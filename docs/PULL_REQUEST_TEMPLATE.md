@@ -1,3 +1,7 @@
+## Task list
+
+<!-- [code](https://github.com/darakeon/dfm/blob/master/docs/TASKS.md#{code}-{type}-{issues}) -->
+
 ## Issues to close
 
 <!-- Put a list of issues that will be closed -->
