@@ -17,9 +17,9 @@
 - [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
 - [ ] Update links at task list
-- [ ] Upload video
-- [ ] Post Twitter
-- [ ] Post Facebook
 - [ ] Merge PR
 - [ ] Create branch of other version
 - [ ] Create tag on master
+- [ ] Upload video
+- [ ] Post Twitter
+- [ ] Post Facebook
