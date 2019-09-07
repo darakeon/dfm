@@ -9,7 +9,22 @@
 	ViewBag.WizardMessage = Translator.Dictionary["SummarizeMonths"];
 	Layout = "~/Views/Shared/_Table.cshtml";
 
-	ViewBag.HasContent = Model.Year.MonthList.Any();
+	var monthList = Model.Year.MonthList
+		.OrderBy(m => m.Time)
+		.Select(
+			m =>  new
+			{
+				m.Time,
+				Url = m.Url(),
+				In = m.In(),
+				Out = m.Out(),
+				Total = m.Total()
+			}
+		).Where(
+			m => m.In != 0 || m.Out != 0
+		).ToList();
+
+	ViewBag.HasContent = monthList.Any();
 	ViewBag.NoContentText = Translator.Dictionary["NoYearMoves"];
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
@@ -30,30 +45,22 @@
 	</tr>
 }
 
-@foreach (var month in Model.Year.MonthList.OrderBy(m => m.Time))
+@foreach (var month in monthList)
 {
-	var _in = month.In();
-	var _out = month.Out();
-
-	if (_in == 0 && _out == 0)
-	{
-		continue;
-	}
-
 	<tr class="row">
 		<td class="col-sm-3">
-			<a href="@Url.Action("ShowMoves", new {id = month.Url()})">
+			<a href="@Url.Action("ShowMoves", new {id = month.Url})">
 				@Translator.GetMonthName(month.Time)
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(_in, Model.Language, true))
+			@Html.Partial("ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(-_out, Model.Language, true))
+			@Html.Partial("ValueWithSign", new ValueWithSign(month.Out, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(month.Total(), Model.Language))
+			@Html.Partial("ValueWithSign", new ValueWithSign(month.Total, Model.Language))
 		</td>
 	</tr>
 
