@@ -1,0 +1,12 @@
+{
+	"en-US": {
+		"CategoryEnabled": "Category '{0}' enabled.",
+		"CategoryDisabled": "Category '{0}' disabled.",
+		"NoCategories": "There's no Categories yet.",
+	},
+	"pt-BR": {
+		"CategoryEnabled": "Categoria '{0}' ativada.",
+		"CategoryDisabled": "Categoria '{0}' desativada.",
+		"NoCategories": "Não há Categorias ainda.",
+	},
+}

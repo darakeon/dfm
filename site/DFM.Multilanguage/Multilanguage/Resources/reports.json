@@ -1,0 +1,18 @@
+{
+	"en-US": {
+		"NoMonthMoves": "There's no Moves for this Month.",
+		"NoYearMoves": "There's no Moves for this Year.",
+		"ConfirmDeleteMove": "Do you really want to DELETE Move '{0}'?",
+		"ShortDateFormat": "{1} {0}",
+		"Month": "Month",
+		"Summary": "Summary",
+	},
+	"pt-BR": {
+		"NoMonthMoves": "Não há Movimentações para este mês.",
+		"NoYearMoves": "Não há Movimentações para este ano.",
+		"ConfirmDeleteMove": "Realmente deseja APAGAR a Movimentação '{0}'?",
+		"ShortDateFormat": "{0} de {1}",
+		"Month": "Mês",
+		"Summary": "Resumo",
+	},
+}

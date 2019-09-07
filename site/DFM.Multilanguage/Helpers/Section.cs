@@ -1,5 +1,4 @@
 ﻿using System;
-using Keon.XML;
 
 namespace DFM.Multilanguage.Helpers
 {
@@ -8,25 +7,24 @@ namespace DFM.Multilanguage.Helpers
 		public String Name { get; set; }
 		public DicList<Language> LanguageList { get; set; }
 
-		public Section()
+		internal Section(String name, JsonDictionary translations)
 		{
 			LanguageList = new DicList<Language>();
-		}
 
-		public Section(Node nodeSection) : this()
-		{
-			Name = nodeSection.Name;
+			Name = name;
 
-			foreach (var nodeLanguage in nodeSection)
+			foreach (var language in translations)
 			{
-				var dicLanguage = new Language(nodeLanguage);
+				var dicLanguage = new Language(
+					language.Key,
+					language.Value
+				);
 
 				LanguageList.Add(dicLanguage);
 			}
 		}
 
 		public Language this[String language] => LanguageList[language];
-
 
 		public override String ToString()
 		{
