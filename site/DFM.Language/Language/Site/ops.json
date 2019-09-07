@@ -1,0 +1,36 @@
+{
+	"en-US": {
+		"Ops": "Ops!",
+
+		"Unknown": "Ops...",
+		"UnknownMessage": "Please, contact us.",
+
+		"NotFound": "Page not found",
+		"NotFoundMessage": "Sorry, page not found.",
+
+		"Internal": "Ops!",
+		"InternalMessageSent": "An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible.",
+		"InternalMessageNotSent": "An internal error ocurred. Please, contact us.",
+		"CommunicationError": "An internal error ocurred. Please, contact us.",
+
+		"DontHack": "Please, don't hack me!",
+		"Help": "Help me! =)",
+	},
+	"pt-BR": {
+		"Ops": "Ops!",
+
+		"Unknown": "Ops...",
+		"UnknownMessage": "Por favor, entre em contato conosco.",
+
+		"NotFound": "Não encontrada",
+		"NotFoundMessage": "Página não encontrada.",
+
+		"Internal": "Ops!",
+		"InternalMessageSent": "Ocorreu um erro interno. Um e-mail foi enviado, resolveremos assim que possível.",
+		"InternalMessageNotSent": "Ocorreu um erro interno. Por favor, entre em contato conosco.",
+		"CommunicationError": "Ocorreu um erro interno. Por favor, entre em contato conosco.",
+
+		"DontHack": "Please, don't hack me!",
+		"Help": "Help me! =)",
+	},
+}

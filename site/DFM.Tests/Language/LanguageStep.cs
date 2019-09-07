@@ -6,7 +6,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;
-using DFM.Language.Helpers;
+using DFM.Language.Extensions;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -92,8 +92,6 @@ namespace DFM.Tests.Language
 				.ToList();
 		}
 
-
-
 		[When(@"I try get the translate")]
 		public void WhenITryGetTheTranslate()
 		{
@@ -103,7 +101,7 @@ namespace DFM.Tests.Language
 				{
 					try
 					{
-						var translation = PlainText.Dictionary[key.Section, language, key.Phrase];
+						var translation = PlainText.Site[key.Section, language, key.Phrase];
 
 						if (String.IsNullOrEmpty(translation))
 							errors.AppendLine($"Null at S: {key.Section}, L: {language}, P:{key.Phrase}");
@@ -127,7 +125,7 @@ namespace DFM.Tests.Language
 				{
 					try
 					{
-						var layoutDark = PlainText.EmailLayout[theme, emailType];
+						var layoutDark = PlainText.Html[theme, emailType];
 
 						if (String.IsNullOrEmpty(layoutDark))
 							errors.AppendLine($"Null at {theme} {emailType}");
@@ -146,6 +144,74 @@ namespace DFM.Tests.Language
 		public void ThenIWillReceiveNoLanguageError()
 		{
 			Assert.IsEmpty(errors.ToString());
+		}
+
+
+		[Then(@"all keys should be available in all languages at (.+) dictionary")]
+		public void ThenAllKeysShouldBeAvailableInAllLanguages(String name)
+		{
+			var dic = getDic(name);
+
+			foreach (var section in dic.SectionList)
+			{
+				foreach (var langOrigin in section.LanguageList)
+				{
+					foreach (var phrase in langOrigin.PhraseList)
+					{
+						var langToTest = languages
+							.Where(l => l != langOrigin.Name);
+
+						foreach (var language in langToTest)
+						{
+							var text = dic[
+								section.Name,
+								language,
+								phrase.Name
+							];
+
+							Assert.IsNotNull(text);
+						}
+					}
+				}
+			}
+		}
+
+		[Then(@"no keys should be repeated at (.+) dictionary")]
+		public void ThenNoKeysShouldBeRepeated(String name)
+		{
+			var dic = getDic(name);
+
+			foreach (var section in dic.SectionList)
+			{
+				foreach (var language in section.LanguageList)
+				{
+					var allPhrases =
+						language.PhraseList.Count;
+
+					var distinctPhrases =
+						language.PhraseList
+							.Select(p => p.Name)
+							.Distinct()
+							.Count();
+
+					Assert.AreEqual(allPhrases, distinctPhrases);
+				}
+			}
+		}
+
+		private PlainText getDic(String name)
+		{
+			name = name.ToLower();
+
+			switch (name)
+			{
+				case "site":
+					return PlainText.Site;
+				case "e-mail":
+					return PlainText.Email;
+				default:
+					throw new NotImplementedException();
+			}
 		}
 
 

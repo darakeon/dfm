@@ -6,12 +6,12 @@
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Code, Users.Code)
+	@Html.LabelFor(m => m.Code, Translator.Dictionary["Code"])
 
 	<span class="glyphicon glyphicon-info-sign control-label"
 		  data-toggle="tooltip" data-placement="right"
-		  title="@Users.TFAVerification"
-		  data-original-title="@Users.TFAVerification">
+		  title="@Translator.Dictionary["TFAVerification"]"
+		  data-original-title="@Translator.Dictionary["TFAVerification"]">
 	</span>
 
 	@Html.TextBoxFor(m => m.Code, new { @class = "form-control" })

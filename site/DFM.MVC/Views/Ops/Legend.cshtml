@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = Legend.LegendTitle;
+	ViewBag.Title = Translator.Dictionary["LegendTitle"];
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = true;
@@ -8,8 +8,8 @@
 
 @section TableHeader {
 	<tr>
-		<th class="text-center">@Legend.Icon</th>
-		<th>@Legend.Meaning</th>
+		<th class="text-center">@Translator.Dictionary["Icon"]</th>
+		<th>@Translator.Dictionary["Meaning"]</th>
 	</tr>
 }
 
@@ -18,7 +18,7 @@
 		{ "plus", Translator.Dictionary["Create"] },
 		{ "edit", Translator.Dictionary["Edit"] },
 		{ "trash", Translator.Dictionary["Delete"] },
-		{ "calendar", Legend.OpenCalendar },
+		{ "calendar", Translator.Dictionary["OpenCalendar"] },
 		{ "ok", Translator.Dictionary["Move", "Check"] },
 		{ "remove", Translator.Dictionary["Move", "Uncheck"] },
 		{ "exclamation-sign", Translator.Dictionary["Move", "Checked"] },
@@ -29,14 +29,14 @@
 		{ "ban-circle", Translator.Dictionary["Account", "NoneLimit"] },
 		{ "eye-close", Translator.Dictionary["Disable"] },
 		{ "eye-open", Translator.Dictionary["Enable"] },
-		{ "fire", Legend.IssueTracker },
-		{ "home", Legend.Home },
+		{ "fire", Translator.Dictionary["IssueTracker"] },
+		{ "home", Translator.Dictionary["Home"] },
 		{ "cog", Translator.Dictionary["Settings"] },
 		{ "off", Translator.Dictionary["Logoff"] },
 		{ "transfer", Translator.Dictionary["Transfer"] },
 		{ "plus-sign", Translator.Dictionary["In"] },
 		{ "minus-sign", Translator.Dictionary["Out"] },
-		{ "info-sign", Legend.Info },
+		{ "info-sign", Translator.Dictionary["Info"] },
 	};
 }
 

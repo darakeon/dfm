@@ -2,7 +2,7 @@
 
 @{
 	ViewBag.Title = Translator.Dictionary["Logins"];
-	ViewBag.WizardMessage = Wizard.Logins;
+	ViewBag.WizardMessage = Translator.Dictionary["Logins"];
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.LoginsList.Any();

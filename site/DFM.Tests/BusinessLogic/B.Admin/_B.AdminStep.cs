@@ -903,7 +903,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			foreach (var tableRow in table.Rows)
 			{
-				var translated = PlainText.Dictionary["general", Service.Current.Language, tableRow["Key"]];
+				var translated = PlainText.Site["general", Service.Current.Language, tableRow["Key"]];
 				Assert.AreEqual(tableRow["Translated"], translated);
 			}
 		}

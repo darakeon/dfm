@@ -5,7 +5,7 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h3 class="panel-title">@Wizard.Title</h3>
+			<h3 class="panel-title">@Translator.Dictionary["Title"]</h3>
 		</div>
 
 		<div class="panel-body">
@@ -17,7 +17,7 @@
 			</div>
 			
 			@Html.Partial("MicroForm",
-				MicroForm.WithResource(Wizard.End, "btn btn-sm btn-default pull-right")
+				MicroForm.WithResource(Translator.Dictionary["End"], "btn btn-sm btn-default pull-right")
 					.AddRouteUrl(RouteNames.DEFAULT, "Users", "EndWizard")
 			)
 		</div>

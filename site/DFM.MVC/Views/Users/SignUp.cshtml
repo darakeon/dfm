@@ -29,8 +29,8 @@
 	@Html.CheckBoxFor(m => m.Accept)
 	<span class="control-label">
 		@Html.Raw(String.Format(
-			Users.ContractAccept,
-			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Users.ContractTitle}</a>"
+			Translator.Dictionary["ContractAccept"],
+			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Translator.Dictionary["ContractTitle"]}</a>"
 		))
 	</span>
 
@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-sm-8 form-group text-left">
 			@Html.CheckBoxFor(m => m.EnableWizard)
-			@Html.LabelFor(m => m.EnableWizard, Users.EnableWizard, new { @class = "control-label" })
+			@Html.LabelFor(m => m.EnableWizard, Translator.Dictionary["EnableWizard"], new { @class = "control-label" })
 		</div>
 		<div class="col-lg-4 col-sm-4">
 			<button type="submit" class="btn btn-success">

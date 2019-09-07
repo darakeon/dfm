@@ -1,7 +1,6 @@
 ﻿@model BaseMovesModel
 
 @using DFM.MVC.Helpers
-@using DFM.MVC.Assets.Resources
 
 @{
 	var useCategories = Service.Current.User.Config.UseCategories;
@@ -25,7 +24,7 @@
 		<div class="input-group date">
 			@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
 			<span class="input-group-addon">
-				<span class="glyphicon glyphicon-calendar" title="@Legend.OpenCalendar"></span>
+				<span class="glyphicon glyphicon-calendar" title="@Translator.Dictionary["OpenCalendar"]"></span>
 			</span>
 		</div>
 	</div>

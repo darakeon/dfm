@@ -11,7 +11,7 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;
-using DFM.Language.Helpers;
+using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories
@@ -62,13 +62,13 @@ namespace DFM.BusinessLogic.Repositories
 			if (!config.SendMoveEmail)
 				return EmailStatus.EmailDisabled;
 
-			var operation = PlainText.Dictionary["general", config.Language, operationType.ToString()];
+			var operation = PlainText.Site["general", config.Language, operationType.ToString()];
 
 			var accountInName = getAccountName(move.AccIn()) ?? "---";
 			var accountOutName = getAccountName(move.AccOut()) ?? "---";
 
 			var categoryName = move.Category?.Name ?? "---";
-			var nature = PlainText.Dictionary["general", config.Language, move.Nature.ToString()];
+			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
 
 			var format = Format.MoveNotification(config.Language, config.Theme.Simplify());
 

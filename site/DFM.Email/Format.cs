@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Resources;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Emails;
-using DFM.Language.Language.EmailLayouts;
 using Keon.Util.Extensions;
 
 namespace DFM.Email
@@ -31,32 +27,23 @@ namespace DFM.Email
 		{
 			var layoutName = layoutType.ToString();
 
-			var resourceManager = getResourceForLayout(layoutName);
-			var resourceSet = resourceManager.ToDictionary(new CultureInfo(language));
+			Subject = PlainText.Email[layoutName, language, "Subject"];
 
-			Subject = resourceSet["Subject"];
-			Layout = FormatEmail(theme, type, resourceSet);
+			var replaces = PlainText.Email[layoutName, language]
+				.ToDictionary(p => p.Name, p => p.Text);
+
+			Layout = FormatEmail(theme, type, replaces);
 		}
 
-		public static String FormatEmail<T>(SimpleTheme theme, EmailType type, IDictionary<String, T> dictionary)
+		public static String FormatEmail<T>(SimpleTheme theme, EmailType type, IDictionary<String, T> replaces)
 		{
-			var layout = PlainText.EmailLayout[theme, type];
-			var dictionaryString = dictionary.ToDictionary(i => i.Key, i => i.Value?.ToString());
-			return layout.Format(dictionaryString);
-		}
-
-		private static IEnumerable<ResourceManager> getResourceForLayout(String layoutName)
-		{
-			var mainType = typeof(General);
-			var assembly = mainType.Assembly;
-			var typeName = mainType.FullName.Replace(mainType.Name, layoutName);
-			var resourceType = assembly.GetType(typeName);
-			var property = resourceType.GetProperties().Single(p => p.PropertyType == typeof(ResourceManager));
-
-			return new[] {
-				(ResourceManager) property.GetValue(null),
-				 General.ResourceManager
-			};
+			return PlainText.Html[theme, type]
+				.Format(
+					replaces.ToDictionary(
+						p => p.Key,
+						p => p.Value?.ToString()
+					)
+				);
 		}
 	}
 }
