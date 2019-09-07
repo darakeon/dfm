@@ -130,9 +130,8 @@ Legend:
 ## 4.1.3.4 :ant: <sup>`1`</sup>
 - [ ] Transform service receiving / returns into DTO
 
-## <a name="dev"></a>4.1.3.3 :ant: <sup>`5`</sup>
+## <a name="dev"></a>4.1.3.3 :ant: <sup>`4`</sup>
 - [ ] IDs Int64
-- [ ] Put lock at NH get session
 - [x] `190807>190807` Fix transaction call to avoid code duplication (Action/Func<>)
 - [x] `190807>190807` Put warning of no content on year summary [#47](https://github.com/darakeon/dfm/issues/47)
 - [x] `190906>190907` Fix register language half pt, half en [#41](https://github.com/darakeon/dfm/issues/41)
