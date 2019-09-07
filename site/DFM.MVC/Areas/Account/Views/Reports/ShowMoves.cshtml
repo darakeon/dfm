@@ -1,5 +1,4 @@
 ﻿@using DFM.Generic.Pages
-@using DFM.MVC.Assets.Resources
 @using DFM.MVC.Helpers
 @using DFM.MVC.Models
 
@@ -10,8 +9,8 @@
 
 	ViewBag.WizardMessage =
 		Model.MoveList.Any()
-			? Wizard.ShowMovesFilled
-			: Wizard.ShowMovesEmpty;
+			? Translator.Dictionary["ShowMovesFilled"]
+			: Translator.Dictionary["ShowMovesEmpty"];
 
 	Layout = "~/Views/Shared/_Table.cshtml";
 

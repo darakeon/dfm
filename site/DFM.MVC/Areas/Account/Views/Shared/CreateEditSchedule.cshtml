@@ -1,5 +1,4 @@
 ﻿@using DFM.Generic
-@using DFM.MVC.Assets.Resources
 @model BaseMovesModel
 
 @{
@@ -9,8 +8,8 @@
 
 	ViewBag.WizardMessage =
 		scheduleModel == null
-			? Wizard.MovesCreate
-			: Wizard.SchedulesCreate;
+			? Translator.Dictionary["MovesCreate"]
+			: Translator.Dictionary["SchedulesCreate"];
 
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
@@ -22,14 +21,14 @@
 	if (Model.ShowNoAccounts)
 	{
 		<div class="alert alert-danger text-center">
-			@Html.Raw(Moves.NoAccountsMove.BreakLines())
+			@Html.Raw(Translator.Dictionary["NoAccountsMove"].BreakLines())
 		</div>
 	}
 
 	if (Model.ShowNoCategories)
 	{
 		<div class="alert alert-danger text-center">
-			@Html.Raw(Moves.NoCategoriesMove.BreakLines())
+			@Html.Raw(Translator.Dictionary["NoCategoriesMove"].BreakLines())
 		</div>
 	}
 
@@ -59,7 +58,7 @@ else
 	if (Model.ShowLosingCategory)
 	{
 		<div class="alert alert-info text-center">
-			@Html.Raw(Moves.MoveLosingCategory.BreakLines())
+			@Html.Raw(Translator.Dictionary["MoveLosingCategory"].BreakLines())
 		</div>
 	}
 

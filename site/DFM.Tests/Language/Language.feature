@@ -311,3 +311,15 @@ Scenario: L14. Get translations of E-mail Stati
 			| Email   | EmailNotSent   |
 	When I try get the translate
 	Then I will receive no language error
+
+Scenario: L15. Keys should be in all languages (site)
+	Then all keys should be available in all languages at site dictionary
+
+Scenario: L16. Keys should be in all languages (e-mail)
+	Then all keys should be available in all languages at e-mail dictionary
+
+Scenario: L17. Keys should not be repeated (site)
+	Then no keys should be repeated at site dictionary
+
+Scenario: L18. Keys should not be repeated (e-mail)
+	Then no keys should be repeated at e-mail dictionary

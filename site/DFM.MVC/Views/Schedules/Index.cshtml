@@ -6,8 +6,8 @@
 
 	ViewBag.WizardMessage =
 		Model.ScheduleList.Any()
-			? Wizard.SchedulesIndexFilled
-			: Wizard.SchedulesIndexEmpty;
+			? Translator.Dictionary["SchedulesIndexFilled"]
+			: Translator.Dictionary["SchedulesIndexEmpty"];
 
 	Layout = "~/Views/Shared/_Table.cshtml";
 

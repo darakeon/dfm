@@ -5,7 +5,7 @@
 
 @{
 	ViewBag.Title = Translator.Dictionary[Model.ActionName, "Account"];
-	ViewBag.WizardMessage = Wizard.AccountsCreate;
+	ViewBag.WizardMessage = Translator.Dictionary["AccountsCreate"];
 
 	if (Model.Type == OperationType.Edition)
 	{

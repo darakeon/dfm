@@ -4,7 +4,7 @@
 
 @{
 	ViewBag.Title = Translator.Dictionary["ClosedAccounts"];
-	ViewBag.WizardMessage = Wizard.AccountsClosed;
+	ViewBag.WizardMessage = Translator.Dictionary["AccountsClosed"];
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();

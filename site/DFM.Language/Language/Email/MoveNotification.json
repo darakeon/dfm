@@ -1,0 +1,18 @@
+{
+	"en-US": {
+		"AccountInLabel": "Acc. In",
+		"AccountOutLabel": "Acc. Out",
+		"CategoryLabel": "Category",
+		"JustDfM": "This move was done JUST IN DFM SYSTEM.",
+		"Subject": "Move Notification",
+		"Title": "Move",
+	},
+	"pt-BR": {
+		"AccountInLabel": "Cta. entrada",
+		"AccountOutLabel": "Cta. saída",
+		"CategoryLabel": "Categoria",
+		"JustDfM": "Esta movimentação foi feita APENAS NO SISTEMA DO DFM.",
+		"Subject": "Notificação de Movimentação",
+		"Title": "Movimentação",
+	},
+}

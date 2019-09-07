@@ -267,41 +267,6 @@
     <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\UserConfigModel.cs" />
     <Compile Include="Areas\API\Models\UsersLoginModel.cs" />
-    <Compile Include="Assets\Resources\ConfigThemes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigThemes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\Contracts\004000000000.Designer.cs">
-      <DependentUpon>004000000000.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Assets\Resources\Contracts\003000000000.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>003000000000.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\General.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>General.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\Legend.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Legend.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\Moves.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Moves.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Resources\Wizard.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Wizard.resx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
@@ -354,11 +319,6 @@
     <Compile Include="Models\UsersTFAModel.cs" />
     <Compile Include="Models\ValueWithSign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Assets\Resources\Users.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -368,24 +328,6 @@
     <Content Include="Areas\Account\Views\Reports\Total.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\ExclusiveFields.cshtml" />
     <Content Include="Areas\Account\Views\Shared\CreateEditSchedule.cshtml" />
-    <EmbeddedResource Include="Assets\Resources\ConfigThemes.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\ConfigThemes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConfigThemes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Contracts\004000000000.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>004000000000.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Contracts\004000000000.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\Contracts\003000000000.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>003000000000.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\General.pt-BR.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Content Include="Views\Accounts\CreateEdit.cshtml" />
     <Content Include="Views\Accounts\AccountSignIcon.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
@@ -433,11 +375,6 @@
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff2" />
-    <EmbeddedResource Include="Assets\Resources\Wizard.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\Wizard.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Wizard.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Properties\PublishProfiles\Amazon 2019.pubxml" />
     <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
@@ -496,30 +433,6 @@
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Language</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\Resources\General.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>General.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Legend.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\Legend.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Legend.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Moves.pt-BR.resx" />
-    <EmbeddedResource Include="Assets\Resources\Moves.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Moves.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Users.pt-BR.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Resources\Users.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Users.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\API\Views\Status\" />

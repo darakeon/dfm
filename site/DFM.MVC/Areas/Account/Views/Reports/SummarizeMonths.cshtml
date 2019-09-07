@@ -1,13 +1,12 @@
 ﻿@model ReportsSummarizeMonthsModel
 
 @using DFM.Generic.Pages
-@using DFM.MVC.Assets.Resources
 @using DFM.MVC.Helpers
 @using DFM.MVC.Models
 
 @{
 	ViewBag.Title = Model.Date;
-	ViewBag.WizardMessage = Wizard.SummarizeMonths;
+	ViewBag.WizardMessage = Translator.Dictionary["SummarizeMonths"];
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.Year.MonthList.Any();

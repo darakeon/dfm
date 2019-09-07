@@ -7,7 +7,7 @@
 		: "~/Views/Shared/_Form.cshtml";
 
 	ViewBag.Style = Model.HasError ? "danger" : "";
-	ViewBag.Title = Wizard.Title;
+	ViewBag.Title = Translator.Dictionary["Title"];
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;
 }
@@ -20,17 +20,17 @@ else
 {
 	var menus = new List<WizardMenu>
 	{
-		new WizardMenu(Wizard.EndTextMenuSettings, "MenuSettings"),
-		new WizardMenu(Wizard.EndTextMenuTasks, "MenuTasks"),
-		new WizardMenu(Wizard.EndTextMenuIssues, "MenuIssues"),
+		new WizardMenu(Translator.Dictionary["EndTextMenuSettings"], "MenuSettings"),
+		new WizardMenu(Translator.Dictionary["EndTextMenuTasks"], "MenuTasks"),
+		new WizardMenu(Translator.Dictionary["EndTextMenuIssues"], "MenuIssues"),
 	};
 
 	<p class="text-center">
-		@Html.Raw(Wizard.EndTextThanks.BreakLines())
+		@Html.Raw(Translator.Dictionary["EndTextThanks"].BreakLines())
 	</p>
 
 	<p class="text-center">
-		@Wizard.EndTextMenu
+		@Translator.Dictionary["EndTextMenu"]
 	</p>
 
 	<div class="well well-sm">
@@ -48,7 +48,7 @@ else
 	</div>
 
 	<p class="text-center">
-		@Wizard.EndTextAndroid
+		@Translator.Dictionary["EndTextAndroid"]
 	</p>
 
 	<p class="text-center">
@@ -59,7 +59,7 @@ else
 	@section Footer {
 		<p class="text-center">
 			@Html.Raw(String.Format(
-				Wizard.EndTextContact.BreakLines(),
+				Translator.Dictionary["EndTextContact"].BreakLines(),
 				"<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>"
 				))
 		</p>

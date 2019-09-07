@@ -4,7 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using DFM.Language.Emails;
-using DFM.Language.Helpers;
+using DFM.Language.Entities;
+using DFM.Language.Extensions;
 using Keon.Util.Extensions;
 using Newtonsoft.Json;
 
@@ -15,33 +16,36 @@ namespace DFM.Language
 		private static String currentPath;
 
 		internal static String MainPath => Path.Combine(currentPath, "Language");
-		private static String path => Path.Combine(MainPath, "Resources");
 
-		public static EmailLayout EmailLayout { get; private set; }
-		public static PlainText Dictionary { get; private set; }
+		private static String siteName = "Site";
+		private static String sitePath => Path.Combine(MainPath, siteName);
 
+		private static String emailName = "Email";
+		private static String emailPath => Path.Combine(MainPath, emailName);
+
+		public static Html Html { get; private set; }
+		public static PlainText Site { get; private set; }
+		public static PlainText Email { get; private set; }
+
+		private String name { get; }
 		public DicList<Section> SectionList { get; }
 
 		private static List<String> acceptedLanguages;
 
-
-
-
-
-		public PlainText()
+		internal PlainText(String name, String path)
 		{
+			this.name = name;
 			SectionList = new DicList<Section>();
 			acceptedLanguages = new List<String>();
+
+			Directory.GetFiles(path, "*.json")
+				.ToList()
+				.ForEach(addSection);
 		}
 
-		private PlainText(IList<String> jsonFiles) : this()
+		private void addSection(String fileName)
 		{
-			jsonFiles.ToList().ForEach(addSectionToDictionary);
-		}
-
-		private void addSectionToDictionary(String fileName)
-		{
-			var name = new FileInfo(fileName)
+			var sectionName = new FileInfo(fileName)
 				.Name.Replace(".json", "").ToLower();
 
 			var jsonText = File.ReadAllText(fileName);
@@ -49,35 +53,33 @@ namespace DFM.Language
 			var jsonObject = JsonConvert
 				.DeserializeObject<JsonDictionary>(jsonText);
 
-			var dicSection = new Section(name, jsonObject);
+			var section = new Section(sectionName, jsonObject);
 
-			SectionList.Add(dicSection);
+			SectionList.Add(section);
 		}
-
-
-
 
 		public static void Initialize(String currentXmlPath)
 		{
 			currentPath = currentXmlPath;
 
-			Dictionary = new PlainText(Directory.GetFiles(path, "*.json"));
-			EmailLayout = new EmailLayout();
+			Site = new PlainText(siteName, sitePath);
+			Email = new PlainText(emailName, emailPath);
 
-			setAcceptedLaguages();
+			Html = new Html();
+
+			setAcceptedLanguages();
 		}
 
-		private static void setAcceptedLaguages()
+		private static void setAcceptedLanguages()
 		{
-			var list = new List<String>();
+			var dictionaries = Site.SectionList
+				.Union(Email.SectionList);
 
-			Dictionary.SectionList.ForEach(
-				s => list.AddRange(
-						s.LanguageList.Select(l => l.Name.ToLower())
-					)
-				);
-
-			acceptedLanguages = list.Distinct().ToList();
+			acceptedLanguages = dictionaries
+				.SelectMany(s => s.LanguageList)
+				.Select(l => l.Name.ToLower())
+				.Distinct()
+				.ToList();
 		}
 
 		public static Boolean AcceptLanguage(String chosenLanguage)
@@ -90,7 +92,8 @@ namespace DFM.Language
 			return acceptedLanguages.ToList();
 		}
 
-
+		public DicList<Phrase> this[String section, String language]
+			=> SectionList[section][language].PhraseList;
 
 		public String this[String section, String language, params String[] phrase]
 		{
@@ -114,23 +117,31 @@ namespace DFM.Language
 			{
 				phrase = Phrase.RemoveWrongCharacters(phrase);
 
-				return tryGetText("general", language, phrase)
-					?? tryGetText(section, language, phrase)
-					?? tryGetText("error", language, phrase)
-					?? tryGetText("email", language, phrase)
-					?? notFound(section, language, phrase);
+				var result = tryGetText("general", language, phrase)
+					?? tryGetText(section, language, phrase);
+
+				if (result == null && name == siteName)
+				{
+					result = tryGetText("error", language, phrase)
+					    ?? tryGetText("wizard", language, phrase)
+					    ?? tryGetText("email", language, phrase);
+				}
+
+				return result ?? notFound(section, language, phrase);
 			}
 		}
 
-		private String tryGetText(String chosenSection, String language, String phrase)
+		private String tryGetText(String section, String language, String phrase)
 		{
-			try { return SectionList[chosenSection][language][phrase].Text; }
+			try { return SectionList[section][language][phrase].Text; }
 			catch (DicException) { return null; }
 		}
 
-		private static String notFound(String section, String language, String phrase)
+		private String notFound(String section, String language, String phrase)
 		{
-			throw new DicException($"S: {section} /// L: {language} /// P: {phrase}");
+			throw new DicException(
+				$"P: {name} /// S: {section} /// L: {language} /// P: {phrase}"
+			);
 		}
 
 

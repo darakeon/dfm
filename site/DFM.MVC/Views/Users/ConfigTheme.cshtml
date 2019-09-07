@@ -3,7 +3,7 @@
 @Html.HiddenFor(m => m.ThemeOpt.Theme, new { @class = "theme-changer-hidden" })
 
 <div class="well well-sm text-center">
-	@Users.ThemeInstruction
+	@Translator.Dictionary["ThemeInstruction"]
 </div>
 
 <div class="row">
@@ -24,41 +24,41 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="text-center">@ConfigThemes.Header</th>
-					<th class="text-center">@ConfigThemes.Header</th>
+					<th class="text-center">@Translator.Dictionary["Header"]</th>
+					<th class="text-center">@Translator.Dictionary["Header"]</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="text-center">@ConfigThemes.RowPositive</td>
+					<td class="text-center">@Translator.Dictionary["RowPositive"]</td>
 					<td class="text-center text-info">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 				<tr>
-					<td class="text-center">@ConfigThemes.RowTransfer</td>
+					<td class="text-center">@Translator.Dictionary["RowTransfer"]</td>
 					<td class="text-center text-success">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 				<tr>
-					<td class="text-center">@ConfigThemes.RowNegative</td>
+					<td class="text-center">@Translator.Dictionary["RowNegative"]</td>
 					<td class="text-center text-danger">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="form-group well">
-			<label class="control-label">@ConfigThemes.Label</label>
+			<label class="control-label">@Translator.Dictionary["Label"]</label>
 			<input class="form-control" />
 		</div>
 
 		<div class="form-group">
-			<button class="btn btn-success">@ConfigThemes.Button</button>
-			<button class="btn btn-warning">@ConfigThemes.Button</button>
-			<button class="btn btn-danger">@ConfigThemes.Button</button>
+			<button class="btn btn-success">@Translator.Dictionary["Button"]</button>
+			<button class="btn btn-warning">@Translator.Dictionary["Button"]</button>
+			<button class="btn btn-danger">@Translator.Dictionary["Button"]</button>
 		</div>
 
-		<div class="alert alert-info">@ConfigThemes.Alert</div>
-		<div class="alert alert-success">@ConfigThemes.Alert</div>
-		<div class="alert alert-warning">@ConfigThemes.Alert</div>
-		<div class="alert alert-danger">@ConfigThemes.Alert</div>
+		<div class="alert alert-info">@Translator.Dictionary["Alert"]</div>
+		<div class="alert alert-success">@Translator.Dictionary["Alert"]</div>
+		<div class="alert alert-warning">@Translator.Dictionary["Alert"]</div>
+		<div class="alert alert-danger">@Translator.Dictionary["Alert"]</div>
 
 	</div>
 

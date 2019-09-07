@@ -7,8 +7,8 @@ using Keon.MVC.Route;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Language;
-using DFM.Language.Helpers;
-using language = DFM.Language.Helpers.Language;
+using DFM.Language.Extensions;
+using language = DFM.Language.Entities.Language;
 
 namespace DFM.MVC.Helpers.Global
 {
@@ -29,7 +29,7 @@ namespace DFM.MVC.Helpers.Global
 			=> dictionary ?? (dictionary = new Translator());
 
 
-		public String this[params String[] phrase] => PlainText.Dictionary[section, Language, phrase];
+		public String this[params String[] phrase] => PlainText.Site[section, Language, phrase];
 
 		public String this[DFMCoreException exception] => this[exception.Type];
 
@@ -37,7 +37,7 @@ namespace DFM.MVC.Helpers.Global
 
 		public String this[EmailStatus exception] => this["Email", exception.ToString()];
 
-		private String this[String specificSection, params String[] phrase] => PlainText.Dictionary[specificSection, Language, phrase];
+		private String this[String specificSection, params String[] phrase] => PlainText.Site[specificSection, Language, phrase];
 
 
 		public static String GetMonthName(Int32 month)
