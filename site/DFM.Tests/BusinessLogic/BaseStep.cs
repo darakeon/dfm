@@ -28,7 +28,7 @@ namespace DFM.Tests.BusinessLogic
 			if (Service != null)
 				return;
 
-			SessionFactoryManager.Initialize<UserMap, User>(FakeHelper.FieldSizes);
+			SessionFactoryManager.Initialize<UserMap, User>();
 			SessionManager.Init(getTicketKey);
 
 			Service = new ServiceAccess(getTicket, getPath);
@@ -36,7 +36,7 @@ namespace DFM.Tests.BusinessLogic
 			PlainText.Initialize(RunPath);
 		}
 
-		public void Dispose()
+		~BaseStep()
 		{
 			SessionFactoryManager.End();
 		}
