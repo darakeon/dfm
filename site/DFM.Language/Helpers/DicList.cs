@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace DFM.Multilanguage.Helpers
+namespace DFM.Language.Helpers
 {
 	public class DicList<T> : List<T>
 		where T : class, INameable

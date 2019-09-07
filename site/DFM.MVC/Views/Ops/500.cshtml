@@ -2,7 +2,7 @@
 @using DFM.Email;
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Ops"];
+	ViewBag.Title = Translator.Dictionary["Ops"];
 	Layout = "~/Views/Shared/_result.cshtml";
 
 	var messageKey = Model.EmailSent == Error.Status.Sent
@@ -12,5 +12,5 @@
 	ViewBag.Style = "danger";
 }
 
-@(MultiLanguage.Dictionary[messageKey])
+@(Translator.Dictionary[messageKey])
 

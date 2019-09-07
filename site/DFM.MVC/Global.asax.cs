@@ -36,7 +36,7 @@ namespace DFM.MVC
 			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
 			SessionFactoryManager.Initialize<UserMap, User>();
-			MultiLanguage.Initialize();
+			Translator.Initialize();
 
 			XmlConfigurator.Configure();
 
@@ -53,7 +53,7 @@ namespace DFM.MVC
 			if (isAsset) return;
 
 			if (isLocal)
-				MultiLanguage.Initialize();
+				Translator.Initialize();
 
 			SessionManager.Init(BrowserId.Get);
 		}
@@ -94,8 +94,8 @@ namespace DFM.MVC
 
 		private static void setErrorMessage(EmailStatus emailsStatus)
 		{
-			var message = MultiLanguage.Dictionary["ScheduleRun"];
-			var error = MultiLanguage.Dictionary[emailsStatus].ToLower();
+			var message = Translator.Dictionary["ScheduleRun"];
+			var error = Translator.Dictionary[emailsStatus].ToLower();
 			var final = String.Format(message, error);
 
 			ErrorAlert.AddTranslated(final);

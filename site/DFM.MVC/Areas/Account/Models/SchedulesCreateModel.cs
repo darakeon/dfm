@@ -15,7 +15,7 @@ namespace DFM.MVC.Areas.Account.Models
 			: base(new Schedule(), OperationType.Scheduling)
 		{
 			FrequencySelectList =
-				SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<ScheduleFrequency>());
+				SelectListExtension.CreateSelect(Translator.GetEnumNames<ScheduleFrequency>());
 		}
 
 

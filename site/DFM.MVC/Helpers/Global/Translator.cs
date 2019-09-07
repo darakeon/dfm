@@ -6,12 +6,13 @@ using System.Web.Routing;
 using Keon.MVC.Route;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
-using DFM.Multilanguage;
-using DFM.Multilanguage.Helpers;
+using DFM.Language;
+using DFM.Language.Helpers;
+using language = DFM.Language.Helpers.Language;
 
 namespace DFM.MVC.Helpers.Global
 {
-	public class MultiLanguage
+	public class Translator
 	{
 		public static void Initialize()
 		{
@@ -22,10 +23,10 @@ namespace DFM.MVC.Helpers.Global
 		}
 
 
-		private static MultiLanguage dictionary;
+		private static Translator dictionary;
 
-		public static MultiLanguage Dictionary
-			=> dictionary ?? (dictionary = new MultiLanguage());
+		public static Translator Dictionary
+			=> dictionary ?? (dictionary = new Translator());
 
 
 		public String this[params String[] phrase] => PlainText.Dictionary[section, Language, phrase];

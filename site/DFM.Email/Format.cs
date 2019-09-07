@@ -5,9 +5,9 @@ using System.Linq;
 using System.Resources;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Multilanguage;
-using DFM.Multilanguage.Emails;
-using DFM.Multilanguage.MultiLanguage.EmailLayouts;
+using DFM.Language;
+using DFM.Language.Emails;
+using DFM.Language.Language.EmailLayouts;
 using Keon.Util.Extensions;
 
 namespace DFM.Email

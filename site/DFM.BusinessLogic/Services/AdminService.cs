@@ -6,7 +6,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Multilanguage;
+using DFM.Language;
 
 namespace DFM.BusinessLogic.Services
 {

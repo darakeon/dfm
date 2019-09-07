@@ -3,7 +3,7 @@
 @using DFM.Entities.Enums
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Category"];
+	ViewBag.Title = Translator.Dictionary[Model.ActionName, "Category"];
 
 	if (Model.Type == OperationType.Edition)
 	{
@@ -14,13 +14,13 @@
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Name, MultiLanguage.Dictionary["Category"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Name, Translator.Dictionary["Category"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Name, new { maxlength = MaxLen.Category_Name, @class = "form-control" })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaxLen.Category_Name)</small>
+	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Category_Name)</small>
 </div>
 
 @section Footer {
 	<button type="submit" class="btn btn-success">
-		@MultiLanguage.Dictionary[Model.ActionName]
+		@Translator.Dictionary[Model.ActionName]
 	</button>
 }

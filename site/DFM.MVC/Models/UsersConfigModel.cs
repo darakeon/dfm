@@ -10,7 +10,7 @@ using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Multilanguage;
+using DFM.Language;
 using DFM.MVC.Helpers.Global;
 using Keon.TwoFactorAuth;
 using secret = Keon.TwoFactorAuth.Secret;
@@ -52,7 +52,7 @@ namespace DFM.MVC.Models
 
 				var languageDictionary =
 					PlainText.AcceptedLanguage()
-						.ToDictionary(l => l, l => MultiLanguage.Dictionary["Language" + l]);
+						.ToDictionary(l => l, l => Translator.Dictionary["Language" + l]);
 
 				LanguageList = SelectListExtension.CreateSelect(languageDictionary);
 				TimeZoneList = SelectListExtension.CreateSelect(DateTimeGMT.TimeZoneList());
@@ -108,7 +108,7 @@ namespace DFM.MVC.Models
 				}
 				catch (DFMCoreException e)
 				{
-					errors.Add(MultiLanguage.Dictionary[e]);
+					errors.Add(Translator.Dictionary[e]);
 				}
 
 				return errors;
@@ -142,7 +142,7 @@ namespace DFM.MVC.Models
 				}
 				catch (DFMCoreException e)
 				{
-					errors.Add(MultiLanguage.Dictionary[e]);
+					errors.Add(Translator.Dictionary[e]);
 				}
 
 				return errors;
@@ -160,7 +160,7 @@ namespace DFM.MVC.Models
 				}
 				catch (DFMCoreException e)
 				{
-					errors.Add(MultiLanguage.Dictionary[e]);
+					errors.Add(Translator.Dictionary[e]);
 				}
 
 				return errors;
@@ -199,7 +199,7 @@ namespace DFM.MVC.Models
 				}
 				catch (DFMCoreException e)
 				{
-					errors.Add(MultiLanguage.Dictionary[e]);
+					errors.Add(Translator.Dictionary[e]);
 				}
 
 				return errors;
@@ -238,7 +238,7 @@ namespace DFM.MVC.Models
 				}
 				catch (DFMCoreException e)
 				{
-					errors.Add(MultiLanguage.Dictionary[e]);
+					errors.Add(Translator.Dictionary[e]);
 				}
 
 				return errors;

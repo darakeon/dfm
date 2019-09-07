@@ -1,4 +1,4 @@
-using DFM.Multilanguage;
+using DFM.Language;
 
 namespace DFM.MVC.Models
 {

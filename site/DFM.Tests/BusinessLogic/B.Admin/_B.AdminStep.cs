@@ -5,7 +5,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Multilanguage;
+using DFM.Language;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

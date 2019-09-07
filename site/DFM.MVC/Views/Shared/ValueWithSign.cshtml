@@ -9,7 +9,7 @@
 
 	var className = Model.Value < 0 ? "danger" : "info";
 
-	var title = MultiLanguage.Dictionary[
+	var title = Translator.Dictionary[
 		(Model.Value > 0 ? MoveNature.In : MoveNature.Out).ToString()
 	];
 }

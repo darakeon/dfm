@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DFM.Multilanguage.Helpers
+namespace DFM.Language.Helpers
 {
 	public class EnumHelper
 	{

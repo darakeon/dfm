@@ -1,5 +1,5 @@
 ﻿using DFM.Entities.Enums;
-using DFM.Multilanguage.Emails;
+using DFM.Language.Emails;
 
 namespace DFM.BusinessLogic.Helpers
 {

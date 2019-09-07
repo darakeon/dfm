@@ -9,9 +9,9 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Multilanguage;
-using DFM.Multilanguage.Emails;
-using DFM.Multilanguage.Helpers;
+using DFM.Language;
+using DFM.Language.Emails;
+using DFM.Language.Helpers;
 using Keon.NHibernate.Queries;
 
 namespace DFM.BusinessLogic.Repositories

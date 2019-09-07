@@ -26,8 +26,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Date =>
 			String.Format(
-				MultiLanguage.Dictionary["ShortDateFormat"],
-				MultiLanguage.GetMonthName(Month),
+				Translator.Dictionary["ShortDateFormat"],
+				Translator.GetMonthName(Month),
 				Year
 			);
 

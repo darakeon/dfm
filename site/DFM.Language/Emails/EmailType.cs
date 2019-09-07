@@ -1,4 +1,4 @@
-namespace DFM.Multilanguage.Emails
+namespace DFM.Language.Emails
 {
 	public enum EmailType
 	{

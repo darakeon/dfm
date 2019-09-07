@@ -14,7 +14,7 @@ namespace DFM.MVC.Models
 		public TokensIndexModel()
 		{
 			SecurityActionList = SelectListExtension.CreateSelect(
-									MultiLanguage.GetEnumNames<SecurityAction>());
+									Translator.GetEnumNames<SecurityAction>());
 		}
 
 
@@ -45,13 +45,13 @@ namespace DFM.MVC.Models
 			}
 			catch (DFMCoreException e)
 			{
-				errors.Add(MultiLanguage.Dictionary[e]);
+				errors.Add(Translator.Dictionary[e]);
 			}
 
 			if (SecurityAction != SecurityAction.PasswordReset
 				&& SecurityAction != SecurityAction.UserVerification)
 			{
-				errors.Add(MultiLanguage.Dictionary["NotRecognizedAction"]);
+				errors.Add(Translator.Dictionary["NotRecognizedAction"]);
 			}
 
 			return errors;

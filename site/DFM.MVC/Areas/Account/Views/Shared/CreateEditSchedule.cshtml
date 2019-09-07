@@ -5,7 +5,7 @@
 @{
 	var scheduleModel = Model as SchedulesCreateModel;
 
-	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, Model.ControllerName];
+	ViewBag.Title = Translator.Dictionary[Model.ActionName, Model.ControllerName];
 
 	ViewBag.WizardMessage =
 		scheduleModel == null
@@ -36,14 +36,14 @@
 	@section Footer {
 		@if (Model.ShowNoAccounts)
 		{
-			@Html.RouteLink(MultiLanguage.Dictionary["Accounts"],
+			@Html.RouteLink(Translator.Dictionary["Accounts"],
 				RouteNames.DEFAULT, new { controller = "Accounts" },
 				new { @class = "btn btn-success" })
 		}
 
 		@if (Model.ShowNoCategories)
 		{
-			@Html.RouteLink(MultiLanguage.Dictionary["Categories"],
+			@Html.RouteLink(Translator.Dictionary["Categories"],
 				RouteNames.DEFAULT, new { controller = "Categories" },
 				new { @class = "btn btn-success" })
 		}
@@ -81,7 +81,7 @@ else
 
 	@section Footer {
 		<button type="submit" class="btn btn-success">
-			@MultiLanguage.Dictionary[Model.ActionName]
+			@Translator.Dictionary[Model.ActionName]
 		</button>
 	}
 }

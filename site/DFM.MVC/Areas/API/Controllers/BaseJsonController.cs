@@ -71,7 +71,7 @@ namespace DFM.MVC.Areas.API.Controllers
 		{
 			var result = new
 			{
-				error = MultiLanguage.Dictionary[error],
+				error = Translator.Dictionary[error],
 				code = (Int32) error
 			};
 

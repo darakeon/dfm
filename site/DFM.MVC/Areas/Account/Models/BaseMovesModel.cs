@@ -86,8 +86,8 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			NatureSelectList =
 				transferIsPossible
-					? SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<MoveNature>())
-					: SelectListExtension.CreateSelect(MultiLanguage.GetEnumNames<PrimalMoveNature>());
+					? SelectListExtension.CreateSelect(Translator.GetEnumNames<MoveNature>())
+					: SelectListExtension.CreateSelect(Translator.GetEnumNames<PrimalMoveNature>());
 		}
 
 		private void makeCategoryList()
@@ -219,7 +219,7 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 			catch (DFMCoreException e)
 			{
-				errors.Add(MultiLanguage.Dictionary[e]);
+				errors.Add(Translator.Dictionary[e]);
 			}
 
 			return errors;

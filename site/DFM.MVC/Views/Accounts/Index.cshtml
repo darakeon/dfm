@@ -3,7 +3,7 @@
 @using DFM.MVC.Helpers
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Accounts"];
+	ViewBag.Title = Translator.Dictionary["Accounts"];
 
 	ViewBag.WizardMessage =
 		Model.AccountList.Any()
@@ -13,26 +13,26 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoAccounts"];
+	ViewBag.NoContentText = Translator.Dictionary["NoAccounts"];
 	ViewBag.Buttons = new List<Button>
 	{
-		new Button(MultiLanguage.Dictionary["ClosedAccounts"], "ListClosed", true),
-		new Button(MultiLanguage.Dictionary["Create", "Account"], "Create")
+		new Button(Translator.Dictionary["ClosedAccounts"], "ListClosed", true),
+		new Button(Translator.Dictionary["Create", "Account"], "Create")
 	};
 }
 
 @section TableHeader
 {
 	<tr class="row">
-		<th class="col-sm-6">@MultiLanguage.Dictionary["Name"]</th>
-		<th class="col-sm-4 text-center" colspan="3">@MultiLanguage.Dictionary["Total"]</th>
-		<th class="col-sm-2 text-center" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+		<th class="col-sm-6">@Translator.Dictionary["Name"]</th>
+		<th class="col-sm-4 text-center" colspan="3">@Translator.Dictionary["Total"]</th>
+		<th class="col-sm-2 text-center" colspan="2">@Translator.Dictionary["TODO"]</th>
 	</tr>
 }
 
 @foreach (var account in Model.AccountList)
 {
-	var sign = MultiLanguage.Dictionary[$"{account.Sign()}Limit"];
+	var sign = Translator.Dictionary[$"{account.Sign()}Limit"];
 
 	<tr class="row">
 		<td class="col-sm-6">
@@ -56,7 +56,7 @@
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@MultiLanguage.Dictionary["Edit"]"
+					title="@Translator.Dictionary["Edit"]"
 				></span>
 			</a>
 		</td>

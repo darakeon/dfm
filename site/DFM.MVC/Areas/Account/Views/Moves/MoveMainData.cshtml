@@ -10,17 +10,17 @@
 
 <div class="form-group">
 
-	@Html.LabelFor(m => m.Description, MultiLanguage.Dictionary["Description"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Description, Translator.Dictionary["Description"], new { @class = "control-label" })
 	@Html.ValidationMessageFor(m => m.Description)<br />
 	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.Move_Description, @class = "form-control" })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaxLen.Move_Description)</small>
+	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Move_Description)</small>
 
 </div>
 
 <div class="row">
 
 	<div class="col-sm-@(rowWidths) form-group">
-		@Html.LabelFor(m => m.Date, MultiLanguage.Dictionary["Date"], new {@class = "control-label"})
+		@Html.LabelFor(m => m.Date, Translator.Dictionary["Date"], new {@class = "control-label"})
 		@Html.ValidationMessageFor(m => m.Date)<br/>
 		<div class="input-group date">
 			@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
@@ -33,9 +33,9 @@
 	@if (useCategories)
 	{
 		<div class="col-sm-@(rowWidths) form-group">
-			@Html.LabelFor(m => m.CategoryName, MultiLanguage.Dictionary["Category"], new {@class = "control-label"})
+			@Html.LabelFor(m => m.CategoryName, Translator.Dictionary["Category"], new {@class = "control-label"})
 			@Html.ValidationMessageFor(m => m.CategoryName)<br/>
-			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + MultiLanguage.Dictionary["Select"] + " --", new {@class = "form-control"})
+			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + Translator.Dictionary["Select"] + " --", new {@class = "form-control"})
 		</div>
 	}
 

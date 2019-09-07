@@ -3,21 +3,21 @@
 @using DFM.Generic
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["ClosedAccounts"];
+	ViewBag.Title = Translator.Dictionary["ClosedAccounts"];
 	ViewBag.WizardMessage = Wizard.AccountsClosed;
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoClosedAccounts"];
+	ViewBag.NoContentText = Translator.Dictionary["NoClosedAccounts"];
 }
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-4">@MultiLanguage.Dictionary["Name"]</th>
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["BeginDate"]</th>
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["EndDate"]</th>
-		<th class="col-sm-4 text-center" colspan="4">@MultiLanguage.Dictionary["Total"]</th>
-		<!--th class="todo-column">@MultiLanguage.Dictionary["TODO"]</th-->
+		<th class="col-sm-4">@Translator.Dictionary["Name"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["BeginDate"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["EndDate"]</th>
+		<th class="col-sm-4 text-center" colspan="4">@Translator.Dictionary["Total"]</th>
+		<!--th class="todo-column">@Translator.Dictionary["TODO"]</th-->
 	</tr>
 }
 
@@ -28,9 +28,9 @@
 		var movesSum = account.Total();
 		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
 		var className = movesSum < 0 ? "danger" : "info";
-		var sign = MultiLanguage.Dictionary[$"{account.Sign()}Limit"];
+		var sign = Translator.Dictionary[$"{account.Sign()}Limit"];
 
-		//var reopenLabel = MultiLanguage.Dictionary["Reopen", "Account"];
+		//var reopenLabel = Translator.Dictionary["Reopen", "Account"];
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
 
 		<tr class="row">

@@ -1,9 +1,9 @@
 ﻿@model OpsCodeModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Ops"];
+	ViewBag.Title = Translator.Dictionary["Ops"];
 	Layout = "~/Views/Shared/_Result.cshtml";
 	ViewBag.Style = "warning";
 }
 
-@MultiLanguage.Dictionary["NotFoundMessage"]
+@Translator.Dictionary["NotFoundMessage"]

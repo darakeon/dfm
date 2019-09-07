@@ -17,7 +17,7 @@ namespace DFM.MVC.Models
 			catch (DFMCoreException exception)
 			{
 				addModelError("Code",
-					MultiLanguage.Dictionary[exception]
+					Translator.Dictionary[exception]
 				);
 			}
 		}

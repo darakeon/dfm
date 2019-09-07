@@ -24,14 +24,14 @@ namespace DFM.MVC.Areas.Account.Models
 
 			if (result.Error.IsWrong())
 			{
-				var deleted = MultiLanguage.Dictionary["MoveDeletedWithoutEmail"];
-				var error = MultiLanguage.Dictionary[result.Error];
+				var deleted = Translator.Dictionary["MoveDeletedWithoutEmail"];
+				var error = Translator.Dictionary[result.Error];
 				var message = String.Format(deleted, move.Description, error);
 				ErrorAlert.AddTranslated(message);
 			}
 			else
 			{
-				var deleted = MultiLanguage.Dictionary["MoveDeleted"];
+				var deleted = Translator.Dictionary["MoveDeleted"];
 				var message = String.Format(deleted, move.Description);
 				ErrorAlert.AddTranslated(message);
 			}

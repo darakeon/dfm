@@ -13,7 +13,7 @@ namespace DFM.MVC.Helpers.Views
 
 			Text = text == null
 				? resource
-				: MultiLanguage.Dictionary[text];
+				: Translator.Dictionary[text];
 
 			Class = @class;
 		}

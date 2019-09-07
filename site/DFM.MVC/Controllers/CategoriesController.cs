@@ -62,7 +62,7 @@ namespace DFM.MVC.Controllers
 				var error = model.CreateEdit();
 
 				if (error != null)
-					ModelState.AddModelError("Category.Name", MultiLanguage.Dictionary[error]);
+					ModelState.AddModelError("Category.Name", Translator.Dictionary[error]);
 			}
 
 			if (ModelState.IsValid)

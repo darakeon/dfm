@@ -20,8 +20,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Date =>
 			String.Format(
-				MultiLanguage.Dictionary["ShortDateFormat"],
-				MultiLanguage.Dictionary["Summary"],
+				Translator.Dictionary["ShortDateFormat"],
+				Translator.Dictionary["Summary"],
 				Year.Time
 			);
 	}

@@ -2,7 +2,7 @@
 using System.IO;
 using Keon.Util.Extensions;
 
-namespace DFM.Multilanguage.Emails
+namespace DFM.Language.Emails
 {
 	public class EmailLayout
 	{

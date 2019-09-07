@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace DFM.Multilanguage.Helpers
+namespace DFM.Language.Helpers
 {
 	public class Phrase : INameable
 	{
