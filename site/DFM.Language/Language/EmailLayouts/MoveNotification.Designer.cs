@@ -39,7 +39,7 @@ namespace DFM.Language.Language.EmailLayouts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Language.MultiLanguage.EmailLayouts.MoveNotification", typeof(MoveNotification).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Language.Language.EmailLayouts.MoveNotification", typeof(MoveNotification).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

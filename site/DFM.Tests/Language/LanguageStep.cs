@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.Multilanguage.Helpers;
+using DFM.Language;
+using DFM.Language.Emails;
+using DFM.Language.Helpers;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using DFM.Multilanguage;
-using DFM.Multilanguage.Emails;
 
-namespace DFM.Tests.Multilanguage
+namespace DFM.Tests.Language
 {
 	[Binding]
-	public class MultilanguageStep : ContextHelper
+	public class LanguageStep : ContextHelper
 	{
-		public MultilanguageStep()
+		public LanguageStep()
 		{
 			errors = new StringBuilder();
 		}
@@ -142,8 +142,8 @@ namespace DFM.Tests.Multilanguage
 
 
 
-		[Then(@"I will receive no multilanguage error")]
-		public void ThenIWillReceiveNoMultilanguageError()
+		[Then(@"I will receive no language error")]
+		public void ThenIWillReceiveNoLanguageError()
 		{
 			Assert.IsEmpty(errors.ToString());
 		}

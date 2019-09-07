@@ -41,11 +41,11 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, MultiLanguage.Language);
+				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, Translator.Language);
 			}
 			catch (DFMCoreException e)
 			{
-				errors.Add(MultiLanguage.Dictionary[e]);
+				errors.Add(Translator.Dictionary[e]);
 			}
 
 			return errors;

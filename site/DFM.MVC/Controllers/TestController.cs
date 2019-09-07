@@ -3,8 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using DFM.Email;
 using DFM.Entities.Enums;
-using DFM.Multilanguage;
-using DFM.Multilanguage.Emails;
+using DFM.Language;
+using DFM.Language.Emails;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Models;
 

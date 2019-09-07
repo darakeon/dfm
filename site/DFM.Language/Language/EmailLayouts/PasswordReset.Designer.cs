@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
+namespace DFM.Language.Language.EmailLayouts {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Multilanguage.MultiLanguage.EmailLayouts.PasswordReset", typeof(PasswordReset).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Language.Language.EmailLayouts.PasswordReset", typeof(PasswordReset).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

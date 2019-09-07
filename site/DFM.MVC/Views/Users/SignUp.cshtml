@@ -1,7 +1,7 @@
 ﻿@model UsersSignUpModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["SignUp"];
+	ViewBag.Title = Translator.Dictionary["SignUp"];
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -10,18 +10,18 @@
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Email, MultiLanguage.Dictionary["Email"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Email, Translator.Dictionary["Email"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = MaxLen.User_Email })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaxLen.User_Email)</small>
+	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.User_Email)</small>
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Password, MultiLanguage.Dictionary["Password"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Password, Translator.Dictionary["Password"], new { @class = "control-label" })
 	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.RetypePassword, MultiLanguage.Dictionary["RetypePassword"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.RetypePassword, Translator.Dictionary["RetypePassword"], new { @class = "control-label" })
 	@Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control" })
 </div>
 
@@ -49,7 +49,7 @@
 		</div>
 		<div class="col-lg-4 col-sm-4">
 			<button type="submit" class="btn btn-success">
-				@MultiLanguage.Dictionary["Create"]
+				@Translator.Dictionary["Create"]
 			</button>
 
 		</div>

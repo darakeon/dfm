@@ -4,7 +4,7 @@
 @model AccountsCreateEditModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary[Model.ActionName, "Account"];
+	ViewBag.Title = Translator.Dictionary[Model.ActionName, "Account"];
 	ViewBag.WizardMessage = Wizard.AccountsCreate;
 
 	if (Model.Type == OperationType.Edition)
@@ -21,67 +21,67 @@
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Account.Name, MultiLanguage.Dictionary["Name"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Account.Name, Translator.Dictionary["Name"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.Account_Name, @class = "form-control suggest-field", data_target = ".suggest-target" })
-	<small>@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaxLen.Account_Name)</small>
+	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Name)</small>
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Url, MultiLanguage.Dictionary["Url"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Url, Translator.Dictionary["Url"], new { @class = "control-label" })
 	<span class="glyphicon glyphicon-info-sign control-label"
 		  data-toggle="tooltip" data-placement="right"
-		  title="@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)"
-		  data-original-title="@String.Format(MultiLanguage.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)">
+		  title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)"
+		  data-original-title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)">
 	</span>
 
 	@Html.TextBoxFor(m => m.Url, new { maxlength = MaxLen.Account_Url, @class = "form-control suggest-target" })
-	<small class="control-label">@String.Format(MultiLanguage.Dictionary["CharactersMax"], MaxLen.Account_Url)</small>
+	<small class="control-label">@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Url)</small>
 </div>
 
 <div class="form-group text-center">
 	@Html.CheckBoxFor(m => m.HasLimit, new { @class = "check-toggle", data_to_enable = ".limit" })
-	@Html.LabelFor(m => m.HasLimit, MultiLanguage.Dictionary["AccountHasLimit"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.HasLimit, Translator.Dictionary["AccountHasLimit"], new { @class = "control-label" })
 	<span
 		class="glyphicon glyphicon-info-sign"
 		data-toggle="tooltip" data-placement="right"
-		data-original-title="@MultiLanguage.Dictionary["LimitExplanation"]"
+		data-original-title="@Translator.Dictionary["LimitExplanation"]"
 	></span>
 
     <br />
-    @MultiLanguage.Dictionary["GreenLimit"] =
+    @Translator.Dictionary["GreenLimit"] =
     (
         <span
 			class="@Html.Partial("AccountSign", AccountSign.Green)"
-			title="@MultiLanguage.Dictionary["GreenLimit"]"
+			title="@Translator.Dictionary["GreenLimit"]"
 		></span>
     )
     //
-    @MultiLanguage.Dictionary["NoneLimit"] =
+    @Translator.Dictionary["NoneLimit"] =
     (
         <span
 			class="@Html.Partial("AccountSign", AccountSign.None)"
-			title="@MultiLanguage.Dictionary["NoneLimit"]"
+			title="@Translator.Dictionary["NoneLimit"]"
 		></span>
     )
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Account.YellowLimit, MultiLanguage.Dictionary["YellowLimit"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Account.YellowLimit, Translator.Dictionary["YellowLimit"], new { @class = "control-label" })
     (
         <span
 			class="@Html.Partial("AccountSign", AccountSign.Yellow)"
-			title="@MultiLanguage.Dictionary["YellowLimit"]">
+			title="@Translator.Dictionary["YellowLimit"]">
 	    </span>
     )
 	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Account.RedLimit, MultiLanguage.Dictionary["RedLimit"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Account.RedLimit, Translator.Dictionary["RedLimit"], new { @class = "control-label" })
 	(
         <span
 			class="@Html.Partial("AccountSign", AccountSign.Red)"
-			title="@MultiLanguage.Dictionary["RedLimit"]">
+			title="@Translator.Dictionary["RedLimit"]">
 	    </span>
     )
 	@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
@@ -89,6 +89,6 @@
 
 @section Footer {
 	<button class="btn btn-success" type="submit">
-		@MultiLanguage.Dictionary[Model.ActionName]
+		@Translator.Dictionary[Model.ActionName]
 	</button>
 }

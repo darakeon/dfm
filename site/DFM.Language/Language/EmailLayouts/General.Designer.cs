@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
+namespace DFM.Language.Language.EmailLayouts {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UserVerification {
+    public class General {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UserVerification() {
+        internal General() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Multilanguage.MultiLanguage.EmailLayouts.UserVerification", typeof(UserVerification).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DFM.Language.Language.EmailLayouts.General", typeof(General).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,29 @@ namespace DFM.Multilanguage.MultiLanguage.EmailLayouts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If your user is already activated, please, disable the Token. Won&apos;t be necessary give any information..
+        ///   Looks up a localized string similar to Disable Token.
         /// </summary>
-        public static string DisableText {
+        public static string DisableToken {
             get {
-                return ResourceManager.GetString("DisableText", resourceCulture);
+                return ResourceManager.GetString("DisableToken", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Verification.
+        ///   Looks up a localized string similar to Token valid to.
         /// </summary>
-        public static string Subject {
+        public static string TokenValid {
             get {
-                return ResourceManager.GetString("Subject", resourceCulture);
+                return ResourceManager.GetString("TokenValid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verification.
+        ///   Looks up a localized string similar to We have NO link with financial institutions. Don&apos;t reply this e-mail. Our contact: dfm@dontflymoney.com.
         /// </summary>
-        public static string Title {
+        public static string Warning {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you prefer, go to the site, click in the link &apos;Token received by e-mail&apos; and type the token below..
-        /// </summary>
-        public static string TokenText {
-            get {
-                return ResourceManager.GetString("TokenText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your user in Don&apos;t fly Money is waiting for a confirm to be activated. To proceed, click the link below..
-        /// </summary>
-        public static string UrlText {
-            get {
-                return ResourceManager.GetString("UrlText", resourceCulture);
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }

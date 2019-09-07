@@ -31,38 +31,38 @@
 
 				@if (!Model.IsAuthenticated)
 				{
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["Login"], RouteNames.DEFAULT, new {action = "LogOn", controller = "Users"})</li>
-					<li>@Html.RouteLink(MultiLanguage.Dictionary["SignUp"], RouteNames.DEFAULT, new {action = "SignUp", controller = "Users"})</li>
-					<li>@Html.ActionLink(MultiLanguage.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
+					<li>@Html.RouteLink(Translator.Dictionary["Login"], RouteNames.DEFAULT, new {action = "LogOn", controller = "Users"})</li>
+					<li>@Html.RouteLink(Translator.Dictionary["SignUp"], RouteNames.DEFAULT, new {action = "SignUp", controller = "Users"})</li>
+					<li>@Html.ActionLink(Translator.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
 				}
 				else
 				{
 					if (Model.IsExternal)
 					{
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Enter"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Enter"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
 					}
 					else if (model == null)
 					{
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
 
 						if (Model.IsUsingCategories)
 						{
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
 						}
 
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
-						<li>@Html.RouteLink(MultiLanguage.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
 					}
 					else
 					{
 						if (model.Account.IsOpen())
 						{
-							<li>@Html.ActionLink(MultiLanguage.Dictionary["ToMove"], "Create", "Moves")</li>
-							<li>@Html.ActionLink(MultiLanguage.Dictionary["Schedule"], "Create", "Schedules")</li>
+							<li>@Html.ActionLink(Translator.Dictionary["ToMove"], "Create", "Moves")</li>
+							<li>@Html.ActionLink(Translator.Dictionary["Schedule"], "Create", "Schedules")</li>
 						}
 
-						<li>@Html.ActionLink(MultiLanguage.Dictionary["MonthMoves"], "ShowMoves", "Reports")</li>
-						<li>@Html.ActionLink(MultiLanguage.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
+						<li>@Html.ActionLink(Translator.Dictionary["MonthMoves"], "ShowMoves", "Reports")</li>
+						<li>@Html.ActionLink(Translator.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
 
 						<li>
 							<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})">

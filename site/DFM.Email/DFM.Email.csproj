@@ -53,9 +53,9 @@
       <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
       <Name>DFM.Generic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
+    <ProjectReference Include="..\DFM.Language\DFM.Language.csproj">
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
-      <Name>DFM.Multilanguage</Name>
+      <Name>DFM.Language</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

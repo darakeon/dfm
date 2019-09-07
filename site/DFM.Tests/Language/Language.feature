@@ -7,7 +7,7 @@ Background:
 			| en-US    |
 			| pt-BR    |
 
-Scenario: ML01. Get layouts of e-mails
+Scenario: L01. Get layouts of e-mails
 	Given I have these e-mail types
 			| Phrase           |
 			| MoveNotification |
@@ -17,9 +17,9 @@ Scenario: ML01. Get layouts of e-mails
 			| Dark   |
 			| Light  |
 	When I try get the layout
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML02. Get translations of Enums
+Scenario: L02. Get translations of Enums
 	Given I have these entity enums
 			| Section   | Enum              |
 			| Moves     | MoveNature        |
@@ -27,14 +27,14 @@ Scenario: ML02. Get translations of Enums
 			| Tokens    | SecurityAction    |
 			| General   | OperationType     |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML03. Get translations of Errors
+Scenario: L03. Get translations of Errors
 	Given I have the error enum
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML04. Get translate of Interface (moves)
+Scenario: L04. Get translate of Interface (moves)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Moves   | Create                  |
@@ -61,9 +61,9 @@ Scenario: ML04. Get translate of Interface (moves)
 			| Moves   | MoveDeleted             |
 			| Moves   | MoveDeletedWithoutEmail |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML05. Get translate of Interface (reports)
+Scenario: L05. Get translate of Interface (reports)
 	Given I have these keys
 			| Section | Phrase            |
 			| Reports | ShortDateFormat   |
@@ -89,9 +89,9 @@ Scenario: ML05. Get translate of Interface (reports)
 			| Reports | Checked           |
 			| Reports | Unchecked         |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML06. Get translate of Interface (accounts)
+Scenario: L06. Get translate of Interface (accounts)
 	Given I have these keys
 			| Section  | Phrase                |
 			| Accounts | Create                |
@@ -129,9 +129,9 @@ Scenario: ML06. Get translate of Interface (accounts)
 			| Accounts | Url                   |
 			| Accounts | AcceptedUrlCharacters |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML07. Get translate of Interface (categories)
+Scenario: L07. Get translate of Interface (categories)
 	Given I have these keys
 			| Section    | Phrase        |
 			| Categories | Create        |
@@ -146,9 +146,9 @@ Scenario: ML07. Get translate of Interface (categories)
 			| Categories | Disable       |
 			| Categories | Create        |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML08. Get translate of Interface (tokens)
+Scenario: L08. Get translate of Interface (tokens)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Tokens  | NotRecognizedAction     |
@@ -169,9 +169,9 @@ Scenario: ML08. Get translate of Interface (tokens)
 			| Tokens  | UserVerification        |
 			| Tokens  | UserVerificationSuccess |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML09. Get translate of Interface (users)
+Scenario: L09. Get translate of Interface (users)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Users   | ForgotPassword          |
@@ -218,9 +218,9 @@ Scenario: ML09. Get translate of Interface (users)
 			| Users   | PasswordSettings        |
 			| Users   | EmailSettings           |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML10. Get translate of Interface (ops)
+Scenario: L10. Get translate of Interface (ops)
 	Given I have these keys
 			| Section | Phrase                 |
 			| Ops     | NotFound               |
@@ -228,9 +228,9 @@ Scenario: ML10. Get translate of Interface (ops)
 			| Ops     | InternalMessageNotSent |
 			| Ops     | CommunicationError     |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML11. Get translate of Interface (general)
+Scenario: L11. Get translate of Interface (general)
 	Given I have these keys
 			| Section | Phrase                  |
 			| General | LogOff                  |
@@ -251,9 +251,9 @@ Scenario: ML11. Get translate of Interface (general)
 			| General | Available               |
 			| General | Invisible               |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML12. Get translate of Interface (schedules)
+Scenario: L12. Get translate of Interface (schedules)
 	Given I have these keys
 			| Section   | Phrase                |
 			| Schedules | Create                |
@@ -284,9 +284,9 @@ Scenario: ML12. Get translate of Interface (schedules)
 			| Schedules | NoSchedules           |
 			| Schedules | ConfirmDeleteSchedule |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML13. Get translate of Interface (logins)
+Scenario: L13. Get translate of Interface (logins)
 	Given I have these keys
 			| Section | Phrase             |
 			| Logins  | Creation           |
@@ -298,9 +298,9 @@ Scenario: ML13. Get translate of Interface (logins)
 			| Logins  | LoginRegister      |
 			| Logins  | NoLogins           |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error
 
-Scenario: ML14. Get translations of E-mail Stati
+Scenario: L14. Get translations of E-mail Stati
 	Given I have these keys
 			| Section | Phrase         |
 			| Email   | EmailDisabled  |
@@ -310,4 +310,4 @@ Scenario: ML14. Get translations of E-mail Stati
 			| Email   | InvalidAddress |
 			| Email   | EmailNotSent   |
 	When I try get the translate
-	Then I will receive no multilanguage error
+	Then I will receive no language error

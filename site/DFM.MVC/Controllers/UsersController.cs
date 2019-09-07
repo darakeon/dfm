@@ -66,7 +66,7 @@ namespace DFM.MVC.Controllers
 				return BaseModelView("SendVerification");
 			}
 
-			ModelState.AddModelError("", MultiLanguage.Dictionary[logOnError]);
+			ModelState.AddModelError("", Translator.Dictionary[logOnError]);
 
 			return View(model);
 		}

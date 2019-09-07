@@ -10,14 +10,14 @@ namespace DFM.MVC.Areas.API.Jsons
 		public SimpleMonthJson(Month month)
 		{
 			Number = month.Time;
-			Name = MultiLanguage.GetMonthName(month.Time);
+			Name = Translator.GetMonthName(month.Time);
 			Total = month.Total();
 		}
 
 		public SimpleMonthJson(Int16 month)
 		{
 			Number = month;
-			Name = MultiLanguage.GetMonthName(month);
+			Name = Translator.GetMonthName(month);
 			Total = 0;
 		}
 

@@ -8,8 +8,8 @@
     <ProjectGuid>{A747268B-CE55-4577-8D72-5405A2E5866C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFM.Multilanguage</RootNamespace>
-    <AssemblyName>DFM.Multilanguage</AssemblyName>
+    <RootNamespace>DFM.Language</RootNamespace>
+    <AssemblyName>DFM.Language</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -59,22 +59,22 @@
     <Compile Include="Helpers\Phrase.cs" />
     <Compile Include="Helpers\Section.cs" />
     <Compile Include="JsonDictionary.cs" />
-    <Compile Include="MultiLanguage\EmailLayouts\MoveNotification.Designer.cs">
+    <Compile Include="Language\EmailLayouts\MoveNotification.Designer.cs">
       <DependentUpon>MoveNotification.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="MultiLanguage\EmailLayouts\PasswordReset.Designer.cs">
+    <Compile Include="Language\EmailLayouts\PasswordReset.Designer.cs">
       <DependentUpon>PasswordReset.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="MultiLanguage\EmailLayouts\UserVerification.Designer.cs">
+    <Compile Include="Language\EmailLayouts\UserVerification.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserVerification.resx</DependentUpon>
     </Compile>
-    <Compile Include="MultiLanguage\EmailLayouts\General.Designer.cs">
+    <Compile Include="Language\EmailLayouts\General.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>General.resx</DependentUpon>
@@ -83,76 +83,76 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MultiLanguage\EmailLayouts\DarkMaster.htm">
+    <Content Include="Language\EmailLayouts\DarkMaster.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\EmailLayouts\Detail.htm">
+    <Content Include="Language\EmailLayouts\Detail.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\EmailLayouts\LightMaster.htm">
+    <Content Include="Language\EmailLayouts\LightMaster.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\EmailLayouts\SecurityAction.htm">
+    <Content Include="Language\EmailLayouts\SecurityAction.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\EmailLayouts\MoveNotification.htm">
+    <Content Include="Language\EmailLayouts\MoveNotification.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\accounts.json">
+    <Content Include="Language\Resources\accounts.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\categories.json">
+    <Content Include="Language\Resources\categories.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\logins.json">
+    <Content Include="Language\Resources\logins.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\schedules.json">
+    <Content Include="Language\Resources\schedules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\email.json">
+    <Content Include="Language\Resources\email.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\error.json">
+    <Content Include="Language\Resources\error.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\general.json">
+    <Content Include="Language\Resources\general.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\moves.json">
+    <Content Include="Language\Resources\moves.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\ops.json">
+    <Content Include="Language\Resources\ops.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\reports.json">
+    <Content Include="Language\Resources\reports.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\tokens.json">
+    <Content Include="Language\Resources\tokens.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MultiLanguage\Resources\users.json">
+    <Content Include="Language\Resources\users.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\General.pt-BR.resx" />
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\MoveNotification.pt-BR.resx" />
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\MoveNotification.resx">
+    <EmbeddedResource Include="Language\EmailLayouts\General.pt-BR.resx" />
+    <EmbeddedResource Include="Language\EmailLayouts\MoveNotification.pt-BR.resx" />
+    <EmbeddedResource Include="Language\EmailLayouts\MoveNotification.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MoveNotification.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\PasswordReset.pt-BR.resx" />
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\PasswordReset.resx">
+    <EmbeddedResource Include="Language\EmailLayouts\PasswordReset.pt-BR.resx" />
+    <EmbeddedResource Include="Language\EmailLayouts\PasswordReset.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PasswordReset.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\UserVerification.pt-BR.resx" />
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\UserVerification.resx">
+    <EmbeddedResource Include="Language\EmailLayouts\UserVerification.pt-BR.resx" />
+    <EmbeddedResource Include="Language\EmailLayouts\UserVerification.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserVerification.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiLanguage\EmailLayouts\General.resx">
+    <EmbeddedResource Include="Language\EmailLayouts\General.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>General.Designer.cs</LastGenOutput>
     </EmbeddedResource>

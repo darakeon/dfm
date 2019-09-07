@@ -41,7 +41,7 @@ namespace DFM.MVC.Models
 			}
 			catch (DFMCoreException e)
 			{
-				errors.Add(MultiLanguage.Dictionary[e]);
+				errors.Add(Translator.Dictionary[e]);
 			}
 
 			return errors;

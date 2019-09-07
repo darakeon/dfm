@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DFM.Multilanguage
+namespace DFM.Language
 {
 	class JsonDictionary : Dictionary<String, Dictionary<String, String>> { }
 }

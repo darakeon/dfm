@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.BusinessLogic", "DFM.Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Generic", "DFM.Generic\DFM.Generic.csproj", "{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Multilanguage", "DFM.Multilanguage\DFM.Multilanguage.csproj", "{A747268B-CE55-4577-8D72-5405A2E5866C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Language", "DFM.Language\DFM.Language.csproj", "{A747268B-CE55-4577-8D72-5405A2E5866C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Tests", "DFM.Tests\DFM.Tests.csproj", "{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}"
 EndProject

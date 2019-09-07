@@ -16,7 +16,7 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.MoveList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoMonthMoves"];
+	ViewBag.NoContentText = Translator.Dictionary["NoMonthMoves"];
 
 	var beginDate = new MonthYearUnit(Model.Account.BeginDate);
 	var endDate = new MonthYearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
@@ -34,24 +34,24 @@
 	}
 
 	<tr class="row">
-		<th class="col-sm-@descriptionSize">@MultiLanguage.Dictionary["Description"]</th>
+		<th class="col-sm-@descriptionSize">@Translator.Dictionary["Description"]</th>
 
 		@if (Model.IsUsingCategories)
 		{
-			<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Category"]</th>
+			<th class="col-sm-2 text-center">@Translator.Dictionary["Category"]</th>
 		}
 
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Date"]</th>
-		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["In"]</th>
-		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Out"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["Date"]</th>
+		<th class="col-sm-1 text-center">@Translator.Dictionary["In"]</th>
+		<th class="col-sm-1 text-center">@Translator.Dictionary["Out"]</th>
 
 		@if (Model.CanCheck)
 		{
-			<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Status"]</th>
+			<th class="col-sm-1 text-center">@Translator.Dictionary["Status"]</th>
 		}
 
 		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@(Model.CanCheck ? 3 : 2)">
-			@MultiLanguage.Dictionary["TODO"]
+			@Translator.Dictionary["TODO"]
 		</th>
 	</tr>
 }
@@ -95,7 +95,7 @@
 								: "question-sign text-danger"
 						)
 					"
-					title="@MultiLanguage.Dictionary[move.Checked ? "Checked" : "Unchecked"]"
+					title="@Translator.Dictionary[move.Checked ? "Checked" : "Unchecked"]"
 				></span>
 			</td>
 		}
@@ -104,7 +104,7 @@
 			<a href="@Url.Action("Edit", "Moves", new { id = move.ID })">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@MultiLanguage.Dictionary["Edit"]"
+					title="@Translator.Dictionary["Edit"]"
 				></span>
 			</a>
 		</td>

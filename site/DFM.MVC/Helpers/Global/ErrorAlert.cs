@@ -39,7 +39,7 @@ namespace DFM.MVC.Helpers.Global
 
 		public static void Add(String text)
 		{
-			texts.List.Add(MultiLanguage.Dictionary[text]);
+			texts.List.Add(Translator.Dictionary[text]);
 		}
 
 
@@ -48,10 +48,10 @@ namespace DFM.MVC.Helpers.Global
 		{
 			var list = new List<String>();
 
-			list.AddRange(errors.List.Select(e => MultiLanguage.Dictionary[e]));
+			list.AddRange(errors.List.Select(e => Translator.Dictionary[e]));
 			errors.List.Clear();
 
-			list.AddRange(emailsStati.List.Select(e => MultiLanguage.Dictionary[e]));
+			list.AddRange(emailsStati.List.Select(e => Translator.Dictionary[e]));
 			emailsStati.List.Clear();
 
 			list.AddRange(texts.List);

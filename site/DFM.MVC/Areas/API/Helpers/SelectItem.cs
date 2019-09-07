@@ -25,7 +25,7 @@ namespace DFM.MVC.Areas.API.Helpers
 			where TEnum : IConvertible
 		{
 			return new SelectItem<String, Int32>(
-				MultiLanguage.Dictionary[value.ToString(Service.Current.Culture)],
+				Translator.Dictionary[value.ToString(Service.Current.Culture)],
 				Convert.ToInt32(value)
 			);
 		}

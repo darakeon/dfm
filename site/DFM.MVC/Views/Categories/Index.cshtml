@@ -2,24 +2,24 @@
 @model CategoriesIndexModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Categories"];
+	ViewBag.Title = Translator.Dictionary["Categories"];
 	ViewBag.WizardMessage = Wizard.Categories;
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.CategoryList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoCategories"];
+	ViewBag.NoContentText = Translator.Dictionary["NoCategories"];
 
 	ViewBag.Buttons = new List<Button>
 	{
-		new Button(MultiLanguage.Dictionary["Create", "Category"], "Create")
+		new Button(Translator.Dictionary["Create", "Category"], "Create")
 	};
 }
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col-sm-6">@MultiLanguage.Dictionary["Name"]</th>
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Status"]</th>
-		<th class="col-sm-4 text-center" colspan="2">@MultiLanguage.Dictionary["TODO"]</th>
+		<th class="col-sm-6">@Translator.Dictionary["Name"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["Status"]</th>
+		<th class="col-sm-4 text-center" colspan="2">@Translator.Dictionary["TODO"]</th>
 	</tr>
 }
 
@@ -38,7 +38,7 @@
 			<a href="@Url.Action("Edit", "Categories", new { id = category.Name })">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@MultiLanguage.Dictionary["Edit"]"
+					title="@Translator.Dictionary["Edit"]"
 				></span>
 			</a>
 		</td>

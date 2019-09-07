@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using DFM.Multilanguage.Emails;
+using DFM.Language.Emails;
+using DFM.Language.Helpers;
 using Keon.Util.Extensions;
-using DFM.Multilanguage.Helpers;
 using Newtonsoft.Json;
 
-namespace DFM.Multilanguage
+namespace DFM.Language
 {
 	public class PlainText
 	{
 		private static String currentPath;
 
-		internal static String MainPath => Path.Combine(currentPath, "MultiLanguage");
+		internal static String MainPath => Path.Combine(currentPath, "Language");
 		private static String path => Path.Combine(MainPath, "Resources");
 
 		public static EmailLayout EmailLayout { get; private set; }

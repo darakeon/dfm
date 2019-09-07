@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Multilanguage.Helpers
+namespace DFM.Language.Helpers
 {
 	public class Section : INameable
 	{

@@ -1,20 +1,20 @@
 ﻿@model LoginsIndexModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Logins"];
+	ViewBag.Title = Translator.Dictionary["Logins"];
 	ViewBag.WizardMessage = Wizard.Logins;
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.LoginsList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoLogins"];
+	ViewBag.NoContentText = Translator.Dictionary["NoLogins"];
 	ViewBag.TableLgSize = 8;
 }
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-4">@MultiLanguage.Dictionary["Creation"]</th>
-		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["Type"]</th>
-		<th class="col-sm-4 text-center">@MultiLanguage.Dictionary["TODO"]</th>
+		<th class="col-sm-4">@Translator.Dictionary["Creation"]</th>
+		<th class="col-sm-4 text-center">@Translator.Dictionary["Type"]</th>
+		<th class="col-sm-4 text-center">@Translator.Dictionary["TODO"]</th>
 	</tr>
 }
 
@@ -26,16 +26,16 @@
 
 		<td class="col-sm-4 text-center">
 			<span class="label label-@Html.Partial("LoginType", login.Type)">
-				@MultiLanguage.Dictionary[login.Type.ToString()]
+				@Translator.Dictionary[login.Type.ToString()]
 			</span>
 		</td>
 
 		@{
 			var deleteConfirm =
 				String.Format(
-					MultiLanguage.Dictionary["ConfirmDeleteLogin"],
+					Translator.Dictionary["ConfirmDeleteLogin"],
 						login.Creation,
-						MultiLanguage.Dictionary[login.Type.ToString()]
+						Translator.Dictionary[login.Type.ToString()]
 				);
 		}
 

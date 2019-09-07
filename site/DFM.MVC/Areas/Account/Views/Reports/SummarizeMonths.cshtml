@@ -11,7 +11,7 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.Year.MonthList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoYearMoves"];
+	ViewBag.NoContentText = Translator.Dictionary["NoYearMoves"];
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
 
@@ -24,10 +24,10 @@
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Month"]</th>
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["In"]</th>
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Out"]</th>
-		<th class="col-sm-3 text-center">@MultiLanguage.Dictionary["Total"]</th>
+		<th class="col-sm-3 text-center">@Translator.Dictionary["Month"]</th>
+		<th class="col-sm-3 text-center">@Translator.Dictionary["In"]</th>
+		<th class="col-sm-3 text-center">@Translator.Dictionary["Out"]</th>
+		<th class="col-sm-3 text-center">@Translator.Dictionary["Total"]</th>
 	</tr>
 }
 
@@ -44,7 +44,7 @@
 	<tr class="row">
 		<td class="col-sm-3">
 			<a href="@Url.Action("ShowMoves", new {id = month.Url()})">
-				@MultiLanguage.GetMonthName(month.Time)
+				@Translator.GetMonthName(month.Time)
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">

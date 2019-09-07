@@ -57,7 +57,7 @@
     <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="Email\EmailStep.cs" />
     <Compile Include="Helpers\PasswordForm.cs" />
-    <Compile Include="Multilanguage\MultilanguageStep.cs" />
+    <Compile Include="Language\LanguageStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,7 +113,7 @@
     <None Include="BusinessLogic\A.Safe\i.DisableToken.feature" />
     <None Include="BusinessLogic\A.Safe\a.SaveUserAndSendVerify.feature" />
     <None Include="Email\EmailSend.feature" />
-    <None Include="Multilanguage\Multilanguage.feature" />
+    <None Include="Language\Language.feature" />
     <None Include="packages.config" />
     <None Include="smtp.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -231,9 +231,9 @@
       <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
       <Name>DFM.Generic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Multilanguage\DFM.Multilanguage.csproj">
+    <ProjectReference Include="..\DFM.Language\DFM.Language.csproj">
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
-      <Name>DFM.Multilanguage</Name>
+      <Name>DFM.Language</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

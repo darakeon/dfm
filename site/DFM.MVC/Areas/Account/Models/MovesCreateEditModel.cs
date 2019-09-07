@@ -37,8 +37,8 @@ namespace DFM.MVC.Areas.Account.Models
 				Move.Value = value;
 				Move.DetailList = details;
 
-				var message = MultiLanguage.Dictionary["MoveSave"];
-				var error = MultiLanguage.Dictionary[result.Error].ToLower();
+				var message = Translator.Dictionary["MoveSave"];
+				var error = Translator.Dictionary[result.Error].ToLower();
 				var final = String.Format(message, error);
 
 				ErrorAlert.AddTranslated(final);

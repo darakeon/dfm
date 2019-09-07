@@ -27,19 +27,19 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<p>
-					@MultiLanguage.Dictionary["Index_Introduction"]
+					@Translator.Dictionary["Index_Introduction"]
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
-						MultiLanguage.Dictionary["Index_Explanation"],
+						Translator.Dictionary["Index_Explanation"],
 						"<a href='" + Url.Action("SignUp", "Users") + "' class='text-success'>", "</a>"
 						))
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
-						MultiLanguage.Dictionary["Index_Close"],
+						Translator.Dictionary["Index_Close"],
 						"dfm@dontflymoney.com"
 						))
 				</p>
@@ -62,7 +62,7 @@
 		   data-theme="@twitterTheme"
 		   data-chrome="noheader noborders nofooter"
 		   data-tweet-limit="3"
-		   data-lang="@MultiLanguage.Language">
+		   data-lang="@Translator.Language">
 
 			Tweets by @("@dfm_grunt")
 		</a>

@@ -2,7 +2,7 @@
 @model SchedulesIndexModel
 
 @{
-	ViewBag.Title = MultiLanguage.Dictionary["Schedules"];
+	ViewBag.Title = Translator.Dictionary["Schedules"];
 
 	ViewBag.WizardMessage =
 		Model.ScheduleList.Any()
@@ -12,7 +12,7 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();
-	ViewBag.NoContentText = MultiLanguage.Dictionary["NoSchedules"];
+	ViewBag.NoContentText = Translator.Dictionary["NoSchedules"];
 
 	var useCategories = Service.Current.User.Config.UseCategories;
 	var descriptionSize = useCategories ? 2 : 4;
@@ -21,21 +21,21 @@
 @section TableHeader {
 	<tr class="row">
 		<th class="col-sm-@descriptionSize">
-			@MultiLanguage.Dictionary["Description"]
+			@Translator.Dictionary["Description"]
 		</th>
 
 		@if (useCategories)
 		{
 			<th class="col-sm-2 text-center">
-				@MultiLanguage.Dictionary["Category"]
+				@Translator.Dictionary["Category"]
 			</th>
 		}
 
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Date"]</th>
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Account", "In"]</th>
-		<th class="col-sm-2 text-center">@MultiLanguage.Dictionary["Account", "Out"]</th>
-		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["Value"]</th>
-		<th class="col-sm-1 text-center">@MultiLanguage.Dictionary["TODO"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["Date"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["Account", "In"]</th>
+		<th class="col-sm-2 text-center">@Translator.Dictionary["Account", "Out"]</th>
+		<th class="col-sm-1 text-center">@Translator.Dictionary["Value"]</th>
+		<th class="col-sm-1 text-center">@Translator.Dictionary["TODO"]</th>
 	</tr>
 }
 
@@ -56,7 +56,7 @@
 		<td  class="col-sm-1 text-@Html.Partial("NatureColor", schedule.Nature) text-right">
 			<span
 				class="@Html.Partial("NatureIcon", schedule.Nature)"
-				title="@MultiLanguage.Dictionary[schedule.Nature.ToString()]"
+				title="@Translator.Dictionary[schedule.Nature.ToString()]"
 			></span>
 			@schedule.Total().ToMoney(Model.Language)
 		</td>
