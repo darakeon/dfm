@@ -1,0 +1,26 @@
+{
+	"en-US": {
+		"Amount": "Amount",
+		"JustOneValue": "Just one value",
+		"Detailed": "Detailed",
+		"Frequency": "Frequency",
+		"Boundless": "Boundless",
+		"Times": "times",
+		"Repeat": "Repeat",
+		"ShowInstallment": "Show number of installment on Move description",
+		"NoSchedules": "There is no schedules",
+		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
+	},
+	"pt-BR": {
+		"Amount": "Qte",
+		"JustOneValue": "Valor único",
+		"Detailed": "Detalhado",
+		"Frequency": "Frequência",
+		"Boundless": "Ilimitado",
+		"Times": "vezes",
+		"Repeat": "Repetir",
+		"ShowInstallment": "Exibir número da parcela na descrição da Movimentação",
+		"NoSchedules": "Não há agendamentos",
+		"ConfirmDeleteSchedule": "Realmente deseja APAGAR o Agendamento '{0}'?",
+	},
+}

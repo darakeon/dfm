@@ -1,0 +1,18 @@
+{
+	"en-US": {
+		"EmailDisabled": "E-mail sender system disabled",
+		"EmailSent": "E-mail successfuly sent",
+		"InvalidSubject": "The subject is required",
+		"InvalidBody": "The e-mail body is required",
+		"InvalidAddress": "Invalid e-mail address",
+		"EmailNotSent": "There is a problem on e-mail sender system",
+	},
+	"pt-BR": {
+		"EmailDisabled": "Sistema de envio de e-mails desabilitado",
+		"EmailSent": "E-mail enviado com sucesso",
+		"InvalidSubject": "Assunto em branco",
+		"InvalidBody": "Corpo do e-mail em branco",
+		"InvalidAddress": "E-mail inválido",
+		"EmailNotSent": "Erro ao tentar enviar e-mail",
+	},
+}

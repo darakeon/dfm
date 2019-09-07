@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Keon.XML;
 
 namespace DFM.Multilanguage.Helpers
 {
@@ -9,23 +8,18 @@ namespace DFM.Multilanguage.Helpers
 		public String Name { get; set; }
 		public String Text { get; set; }
 
-		public Phrase() { }
-
-		public Phrase(Node nodePhrase) : this()
+		internal Phrase(String name, String text)
 		{
-			Name = nodePhrase.Name;
-			Text = nodePhrase["text"];
+			Name = name;
+			Text = text;
 		}
-
-
 
 		public override String ToString()
 		{
 			return Name;
 		}
 
-
-		public static String RemoveWrongCharacters(String phrase)
+		internal static String RemoveWrongCharacters(String phrase)
 		{
 			var regex = new Regex(@"[^a-zA-Z0-9_]*");
 

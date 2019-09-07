@@ -4,9 +4,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using DFM.Multilanguage.Emails;
-using Keon.XML;
 using Keon.Util.Extensions;
 using DFM.Multilanguage.Helpers;
+using Newtonsoft.Json;
 
 namespace DFM.Multilanguage
 {
@@ -34,30 +34,22 @@ namespace DFM.Multilanguage
 			acceptedLanguages = new List<String>();
 		}
 
-		private PlainText(IList<String> xmls) : this()
+		private PlainText(IList<String> jsonFiles) : this()
 		{
-			var nodes = xmls.Select(x => new Node(x)).ToList();
-
-			check(xmls, nodes);
-
-			nodes.ForEach(addSectionToDictionary);
+			jsonFiles.ToList().ForEach(addSectionToDictionary);
 		}
 
-		private static void check(IList<String> xmls, IList<Node> nodes)
+		private void addSectionToDictionary(String fileName)
 		{
-			for (var i = 0; i < xmls.Count; i++)
-			{
-				var fileName = new FileInfo(xmls[i])
-					.Name.Replace(".xml", "").ToLower();
+			var name = new FileInfo(fileName)
+				.Name.Replace(".json", "").ToLower();
 
-				if (fileName != nodes[i].Name)
-					throw new Exception($"File: {fileName}; Node: {nodes[i].Name}");
-			}
-		}
+			var jsonText = File.ReadAllText(fileName);
 
-		private void addSectionToDictionary(Node nodeSection)
-		{
-			var dicSection = new Section(nodeSection);
+			var jsonObject = JsonConvert
+				.DeserializeObject<JsonDictionary>(jsonText);
+
+			var dicSection = new Section(name, jsonObject);
 
 			SectionList.Add(dicSection);
 		}
@@ -69,7 +61,7 @@ namespace DFM.Multilanguage
 		{
 			currentPath = currentXmlPath;
 
-			Dictionary = new PlainText(Directory.GetFiles(path, "*.xml"));
+			Dictionary = new PlainText(Directory.GetFiles(path, "*.json"));
 			EmailLayout = new EmailLayout();
 
 			setAcceptedLaguages();
@@ -153,7 +145,5 @@ namespace DFM.Multilanguage
 		{
 			return CultureInfo.GetCultureInfo(language).NumberFormat;
 		}
-
-
 	}
 }
