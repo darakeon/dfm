@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
+using Keon.NHibernate.Fakes;
 using MySql.Data.MySqlClient;
 
 namespace DFM.Tests.BusinessLogic.Helpers
