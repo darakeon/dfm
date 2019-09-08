@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.3/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.4/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -127,16 +127,16 @@ Legend:
 ## 4.1.3.5 :ant: <sup>`1`</sup>
 - [ ] Make selenium automated tests - web
 
-## 4.1.3.4 :ant: <sup>`1`</sup>
+## <a name="dev"></a>4.1.3.4 :ant: <sup>`1`</sup>
 - [ ] Transform service receiving / returns into DTO
 
-## <a name="dev"></a>4.1.3.3 :ant: <sup>`4`</sup>
+## <a name="prod"></a>4.1.3.3 :ant: <sup>`4`</sup>
 - [x] `190807>190808` IDs Int64
 - [x] `190807>190807` Fix transaction call to avoid code duplication (Action/Func<>)
 - [x] `190807>190807` Put warning of no content on year summary [#47](https://github.com/darakeon/dfm/issues/47)
 - [x] `190906>190907` Fix register language half pt, half en [#41](https://github.com/darakeon/dfm/issues/41)
 
-## <a name="prod"></a>4.1.3.2 :ant: <sup>`4`</sup>
+## 4.1.3.2 :ant: <sup>`4`</sup>
 - [x] `190904>190905` Map repo issues to task list [#52](https://github.com/darakeon/dfm/issues/52)
 - [x] `190903>190904` Cookies warning
 - [x] `190901>190901` Fix detailed sum cents at e-mail
