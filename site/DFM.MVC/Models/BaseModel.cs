@@ -1,5 +1,6 @@
 ﻿using System;
 using DFM.Authentication;
+using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
@@ -29,7 +30,17 @@ namespace DFM.MVC.Models
 
 		protected String login(String email, String password, Boolean rememberMe)
 		{
-			return current.Set(email, password, rememberMe);
+			try
+			{
+				return current.Set(email, password, rememberMe);
+			}
+			catch (DFMCoreException e)
+			{
+				if (e.Type == DfMError.DisabledUser)
+					safe.SendUserVerify(email);
+
+				throw;
+			}
 		}
 
 		protected void logout()
