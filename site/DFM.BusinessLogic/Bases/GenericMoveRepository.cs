@@ -18,7 +18,7 @@ namespace DFM.BusinessLogic.Bases
 			T move,
 			DateTime now,
 			Int32 descriptionMaxSize,
-			DfMError descriptionError,
+			Error descriptionError,
 			Boolean validateParents = true
 		)
 		{
@@ -38,23 +38,23 @@ namespace DFM.BusinessLogic.Bases
 		private static void testDescription(
 			T move,
 			Int32 descriptionMaxSize,
-			DfMError descriptionError
+			Error descriptionError
 		)
 		{
 			if (String.IsNullOrEmpty(move.Description))
-				throw DFMCoreException.WithMessage(DfMError.MoveDescriptionRequired);
+				throw Error.MoveDescriptionRequired.Throw();
 
 			if (move.Description.Length > descriptionMaxSize)
-				throw DFMCoreException.WithMessage(descriptionError);
+				throw descriptionError.Throw();
 		}
 
 		private void testDate(T entity, DateTime now)
 		{
 			if (entity.Date == DateTime.MinValue)
-				throw DFMCoreException.WithMessage(DfMError.MoveDateRequired);
+				throw Error.MoveDateRequired.Throw();
 
 			if (typeof(T) != typeof(Schedule) && entity.Date > now)
-				throw DFMCoreException.WithMessage(DfMError.MoveDateInvalid);
+				throw Error.MoveDateInvalid.Throw();
 		}
 
 		private static void testValue(T move)
@@ -62,13 +62,9 @@ namespace DFM.BusinessLogic.Bases
 			switch (move.ValueType())
 			{
 				case MoveValueType.Empty:
-					throw DFMCoreException.WithMessage(
-						DfMError.MoveValueOrDetailRequired
-					);
+					throw Error.MoveValueOrDetailRequired.Throw();
 				case MoveValueType.Both:
-					throw DFMCoreException.WithMessage(
-						DfMError.MoveValueAndDetailNotAllowed
-					);
+					throw Error.MoveValueAndDetailNotAllowed.Throw();
 			}
 		}
 
@@ -81,17 +77,17 @@ namespace DFM.BusinessLogic.Bases
 			{
 				case MoveNature.In:
 					if (!hasIn || hasOut)
-						throw DFMCoreException.WithMessage(DfMError.InMoveWrong);
+						throw Error.InMoveWrong.Throw();
 					break;
 
 				case MoveNature.Out:
 					if (hasIn || !hasOut)
-						throw DFMCoreException.WithMessage(DfMError.OutMoveWrong);
+						throw Error.OutMoveWrong.Throw();
 					break;
 
 				case MoveNature.Transfer:
 					if (!hasIn || !hasOut)
-						throw DFMCoreException.WithMessage(DfMError.TransferMoveWrong);
+						throw Error.TransferMoveWrong.Throw();
 					break;
 
 			}
@@ -103,10 +99,10 @@ namespace DFM.BusinessLogic.Bases
 			var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
 
 			if (moveInClosed || moveOutClosed)
-				throw DFMCoreException.WithMessage(DfMError.ClosedAccount);
+				throw Error.ClosedAccount.Throw();
 
 			if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
-				throw DFMCoreException.WithMessage(DfMError.MoveCircularTransfer);
+				throw Error.MoveCircularTransfer.Throw();
 		}
 
 		private void testCategory(T move)
@@ -114,15 +110,15 @@ namespace DFM.BusinessLogic.Bases
 			if (GetUser(move).Config.UseCategories)
 			{
 				if (move.Category == null)
-					throw DFMCoreException.WithMessage(DfMError.InvalidCategory);
+					throw Error.InvalidCategory.Throw();
 
 				if (!move.Category.Active)
-					throw DFMCoreException.WithMessage(DfMError.DisabledCategory);
+					throw Error.DisabledCategory.Throw();
 			}
 			else
 			{
 				if (move.Category != null)
-					throw DFMCoreException.WithMessage(DfMError.CategoriesDisabled);
+					throw Error.CategoriesDisabled.Throw();
 			}
 		}
 

@@ -14,14 +14,14 @@ namespace DFM.MVC.Models
 
 		public Boolean RememberMe { get; set; }
 
-		internal DFMCoreException TryLogOn()
+		internal CoreError TryLogOn()
 		{
 			try
 			{
 				LogOn();
 				return null;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				return e;
 			}

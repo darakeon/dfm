@@ -34,9 +34,9 @@ namespace DFM.MVC.Models
 			{
 				return current.Set(email, password, rememberMe);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
-				if (e.Type == DfMError.DisabledUser)
+				if (e.Type == Error.DisabledUser)
 					safe.SendUserVerify(email);
 
 				throw;

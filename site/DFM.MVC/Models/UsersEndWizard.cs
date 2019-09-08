@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 			{
 				admin.EndWizard();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = Translator.Dictionary[e];
 			}

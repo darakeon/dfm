@@ -22,10 +22,10 @@ namespace DFM.BusinessLogic.Repositories
 			var user = GetByEmail(email);
 
 			if (user == null || !Crypt.Check(password, user.Password))
-				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
+				throw Error.InvalidUser.Throw();
 
 			if (!user.Active)
-				throw DFMCoreException.WithMessage(DfMError.DisabledUser);
+				throw Error.DisabledUser.Throw();
 
 			return user;
 		}
@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal User Save(User user)
 		{
 			if (user.ID != 0)
-				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
+				throw Error.InvalidUser.Throw();
 
 			return saveOrUpdate(user);
 		}
@@ -67,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 		private User update(User user)
 		{
 			if (user.ID == 0)
-				throw DFMCoreException.WithMessage(DfMError.InvalidUser);
+				throw Error.InvalidUser.Throw();
 
 			return saveOrUpdate(user);
 		}
@@ -80,10 +80,10 @@ namespace DFM.BusinessLogic.Repositories
 		private void validate(User user)
 		{
 			if (String.IsNullOrEmpty(user.Password))
-				throw DFMCoreException.WithMessage(DfMError.UserPasswordRequired);
+				throw Error.UserPasswordRequired.Throw();
 
 			if (user.Email.Length > MaxLen.User_Email)
-				throw DFMCoreException.WithMessage(DfMError.TooLargeUserEmail);
+				throw Error.TooLargeUserEmail.Throw();
 
 			validateEmail(user);
 		}
@@ -93,12 +93,12 @@ namespace DFM.BusinessLogic.Repositories
 			var regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
 			if (!regex.Match(user.Email).Success)
-				throw DFMCoreException.WithMessage(DfMError.UserEmailInvalid);
+				throw Error.UserEmailInvalid.Throw();
 
 			var userByEmail = GetByEmail(user.Email);
 
 			if (userByEmail != null && userByEmail.ID != user.ID)
-				throw DFMCoreException.WithMessage(DfMError.UserAlreadyExists);
+				throw Error.UserAlreadyExists.Throw();
 		}
 
 		private void complete(User user)

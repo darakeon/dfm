@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 			{
 				admin.CloseAccount(url);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}
@@ -26,7 +26,7 @@ namespace DFM.MVC.Models
 			{
 				admin.DeleteAccount(url);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}
@@ -39,7 +39,7 @@ namespace DFM.MVC.Models
 			{
 				admin.DisableCategory(name);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}
@@ -53,7 +53,7 @@ namespace DFM.MVC.Models
 			{
 				admin.EnableCategory(name);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}

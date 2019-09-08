@@ -28,15 +28,15 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 
 			if (dateYear <= 0)
-				throw DFMCoreException.WithMessage(DfMError.InvalidYear);
+				throw Error.InvalidYear.Throw();
 
 			if (dateMonth <= 0 || dateMonth >= 13)
-				throw DFMCoreException.WithMessage(DfMError.InvalidMonth);
+				throw Error.InvalidMonth.Throw();
 
 			var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
+				throw Error.InvalidAccount.Throw();
 
 			var year = yearRepository.GetOrCreateYear(dateYear, account);
 
@@ -61,12 +61,12 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 
 			if (dateYear <= 0)
-				throw DFMCoreException.WithMessage(DfMError.InvalidYear);
+				throw Error.InvalidYear.Throw();
 
 			var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
+				throw Error.InvalidAccount.Throw();
 
 			var year = yearRepository.GetOrCreateYear(dateYear, account);
 

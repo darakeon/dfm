@@ -14,10 +14,10 @@ namespace DFM.BusinessLogic.InterfacesAndBases
 		public static void Verify(this IPasswordForm passwordForm)
 		{
 			if (String.IsNullOrEmpty(passwordForm.Password))
-				throw DFMCoreException.WithMessage(DfMError.UserPasswordRequired);
+				throw Error.UserPasswordRequired.Throw();
 
 			if (passwordForm.Password != passwordForm.RetypePassword)
-				throw DFMCoreException.WithMessage(DfMError.RetypeWrong);
+				throw Error.RetypeWrong.Throw();
 		}
 	}
 

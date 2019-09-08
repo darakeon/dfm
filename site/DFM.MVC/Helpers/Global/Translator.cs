@@ -8,6 +8,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Language;
 using DFM.Language.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 using language = DFM.Language.Entities.Language;
 
 namespace DFM.MVC.Helpers.Global
@@ -31,9 +32,9 @@ namespace DFM.MVC.Helpers.Global
 
 		public String this[params String[] phrase] => PlainText.Site[section, Language, phrase];
 
-		public String this[DFMCoreException exception] => this[exception.Type];
+		public String this[CoreError error] => this[error.Type];
 
-		public String this[DfMError exception] => this["Error", exception.ToString()];
+		public String this[Error exception] => this["Error", exception.ToString()];
 
 		public String this[EmailStatus exception] => this["Email", exception.ToString()];
 

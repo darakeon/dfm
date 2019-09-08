@@ -6,6 +6,7 @@ using DFM.Tests.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -64,7 +65,7 @@ namespace DFM.Tests.BusinessLogic
 
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
-		public void ThenIWillReceiveThisError(DfMError error)
+		public void ThenIWillReceiveThisError(error error)
 		{
 			Assert.IsNotNull(Error);
 			Assert.AreEqual(error, Error.Type);
@@ -135,11 +136,11 @@ namespace DFM.Tests.BusinessLogic
 					Service.Robot.DisableSchedule(pendentSchedule.ID);
 				}
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				var ignored = new [] {
-					DfMError.NotSignedLastContract,
-					DfMError.TFANotVerified,
+					error.NotSignedLastContract,
+					error.TFANotVerified,
 				};
 
 				if (!ignored.Contains(e.Type))

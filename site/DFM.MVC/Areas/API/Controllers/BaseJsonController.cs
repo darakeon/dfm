@@ -29,7 +29,7 @@ namespace DFM.MVC.Areas.API.Controllers
 
 				return makeMvcActionResponse(result);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				return error(e.Type);
 			}
@@ -52,22 +52,22 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpGet]
 		public JsonResult Uninvited()
 		{
-			return error(DfMError.Uninvited);
+			return error(Error.Uninvited);
 		}
 
 		[HttpGet]
 		public JsonResult AcceptOnlineContract()
 		{
-			return error(DfMError.NotSignedLastContract);
+			return error(Error.NotSignedLastContract);
 		}
 
 		[HttpGet]
 		public JsonResult OpenTFA()
 		{
-			return error(DfMError.TFANotVerified);
+			return error(Error.TFANotVerified);
 		}
 
-		private JsonResult error(DfMError error)
+		private JsonResult error(Error error)
 		{
 			var result = new
 			{

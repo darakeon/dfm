@@ -108,7 +108,7 @@ namespace DFM.MVC.Models
 				else
 					admin.UpdateAccount(Account, Url);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				errors.Add(Translator.Dictionary[e]);
 			}

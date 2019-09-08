@@ -8,6 +8,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -82,7 +83,7 @@ namespace DFM.BusinessLogic.Services
 				return Parent.Admin.GetCategoryByNameInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
-				throw DFMCoreException.WithMessage(DfMError.CategoriesDisabled);
+				throw Error.CategoriesDisabled.Throw();
 
 			return null;
 		}
@@ -190,7 +191,7 @@ namespace DFM.BusinessLogic.Services
 		internal void VerifyMove(Move move)
 		{
 			if (move == null || moveRepository.GetUser(move).ID != Parent.Current.User.ID)
-				throw DFMCoreException.WithMessage(DfMError.InvalidMove);
+				throw Error.InvalidMove.Throw();
 		}
 	}
 }

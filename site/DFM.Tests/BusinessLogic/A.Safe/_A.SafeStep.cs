@@ -13,6 +13,7 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using TK = Keon.Util.Extensions.Token;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.A.Safe
 {
@@ -143,7 +144,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				var passwordForm = new PasswordForm(password, retypePassword);
 				Service.Safe.SaveUserAndSendVerify(email, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -161,14 +162,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					email, password, TicketKey, TicketType.Local
 				);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNull(ticket);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.InvalidUser, Error.Type);
+			Assert.AreEqual(error.InvalidUser, Error.Type);
 		}
 
 		[Then(@"the user will not be changed")]
@@ -204,7 +205,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.SendPasswordReset(email);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -227,7 +228,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.ActivateUser(token);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -244,13 +245,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					email, password, TicketKey, TicketType.Local
 				);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.DisabledUser, Error.Type);
+			Assert.AreEqual(error.DisabledUser, Error.Type);
 		}
 
 		[Then(@"the user will be activated")]
@@ -289,7 +290,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					email, password, TicketKey, TicketType.Local
 				);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -309,7 +310,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 						email, password, TicketKey, TicketType.Local
 					);
 				}
-				catch (DFMCoreException) { }
+				catch (CoreError) { }
 			}
 
 			try
@@ -318,7 +319,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					email, password, TicketKey, TicketType.Local
 				);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -351,7 +352,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				User = Service.Safe.GetUserByTicket(ticket);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -390,7 +391,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				var passwordForm = new PasswordForm(newPassword, retypePassword);
 				Service.Safe.PasswordReset(token, passwordForm);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -409,9 +410,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					email, password, testLocalTicket, TicketType.Local
 				);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
-				if (e.Type != DfMError.DisabledUser)
+				if (e.Type != error.DisabledUser)
 					Error = e;
 			}
 
@@ -450,7 +451,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.TestSecurityToken(token, action);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -465,7 +466,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.DisableToken(token);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -478,13 +479,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.TestSecurityToken(token, action);
 			}
-			catch(DFMCoreException e)
+			catch(CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.InvalidToken, Error.Type);
+			Assert.AreEqual(error.InvalidToken, Error.Type);
 		}
 		#endregion
 
@@ -496,7 +497,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.DisableTicket(ticket);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -511,13 +512,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.GetUserByTicket(ticket);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.Uninvited, Error.Type);
+			Assert.AreEqual(error.Uninvited, Error.Type);
 		}
 
 		[Then(@"the ticket will still be valid")]
@@ -529,7 +530,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.GetUserByTicket(ticket);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -558,7 +559,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				logins = Service.Safe.ListLogins();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -594,7 +595,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				var passwordForm = new PasswordForm(newPassword, retypePassword);
 				Service.Safe.ChangePassword(currentPassword, passwordForm);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -628,7 +629,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.UpdateEmail(currentPassword, newEmail);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -755,7 +756,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.SendUserVerify(email);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -809,7 +810,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.GetContract();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -822,7 +823,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.AcceptContract();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -835,7 +836,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				accepted = Service.Safe.IsLastContractAccepted();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -899,7 +900,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.UpdateTFA(tfa.Secret, tfa.Code, tfa.Password);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				if (IsCurrent(ScenarioBlock.When))
 					Error = e;
@@ -916,7 +917,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.RemoveTFA(tfa.Password);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				if (IsCurrent(ScenarioBlock.When))
 					Error = e;
@@ -961,7 +962,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Service.Safe.ValidateTicketTFA(tfa.Code);
 			}
-			catch (DFMCoreException exception)
+			catch (CoreError exception)
 			{
 				if (IsCurrent(ScenarioBlock.When))
 					Error = exception;
@@ -977,7 +978,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				ticketVerified = Service.Safe.VerifyTicket();
 			}
-			catch (DFMCoreException exception)
+			catch (CoreError exception)
 			{
 				Error = exception;
 			}
@@ -990,7 +991,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				ticketVerified = Service.Safe.VerifyTicket(type);
 			}
-			catch (DFMCoreException exception)
+			catch (CoreError exception)
 			{
 				Error = exception;
 			}

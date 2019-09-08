@@ -14,7 +14,7 @@ namespace DFM.MVC.Models
 			{
 				safe.ValidateTicketTFA(Code);
 			}
-			catch (DFMCoreException exception)
+			catch (CoreError exception)
 			{
 				addModelError("Code",
 					Translator.Dictionary[exception]

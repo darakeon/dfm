@@ -14,7 +14,7 @@ namespace DFM.MVC.Models
 			{
 				safe.RemoveTFA(Password);
 			}
-			catch (DFMCoreException exception)
+			catch (CoreError exception)
 			{
 				addModelError("Password",
 					Translator.Dictionary[exception]

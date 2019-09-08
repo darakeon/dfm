@@ -27,10 +27,10 @@ namespace DFM.BusinessLogic.Repositories
 		private void checkName(Account account)
 		{
 			if (String.IsNullOrEmpty(account.Name))
-				throw DFMCoreException.WithMessage(DfMError.AccountNameRequired);
+				throw Error.AccountNameRequired.Throw();
 
 			if (account.Name.Length > MaxLen.Account_Name)
-				throw DFMCoreException.WithMessage(DfMError.TooLargeAccountName);
+				throw Error.TooLargeAccountName.Throw();
 
 			var otherAccount = getByName(account.Name, account.User);
 
@@ -39,21 +39,21 @@ namespace DFM.BusinessLogic.Repositories
 					&& otherAccount.ID != account.ID;
 
 			if (accountExistsForUser)
-				throw DFMCoreException.WithMessage(DfMError.AccountNameAlreadyExists);
+				throw Error.AccountNameAlreadyExists.Throw();
 		}
 
 		private void checkUrl(Account account)
 		{
 			if (String.IsNullOrEmpty(account.Url))
-				throw DFMCoreException.WithMessage(DfMError.AccountUrlRequired);
+				throw Error.AccountUrlRequired.Throw();
 
 			if (account.Url.Length > MaxLen.Account_Url)
-				throw DFMCoreException.WithMessage(DfMError.TooLargeAccountUrl);
+				throw Error.TooLargeAccountUrl.Throw();
 
 			var regex = new Regex(@"^[a-z0-9_]*$");
 
 			if (!regex.IsMatch(account.Url))
-				throw DFMCoreException.WithMessage(DfMError.AccountUrlInvalid);
+				throw Error.AccountUrlInvalid.Throw();
 
 
 			var otherAccount = GetByUrl(account.Url, account.User);
@@ -63,7 +63,7 @@ namespace DFM.BusinessLogic.Repositories
 					&& otherAccount.ID != account.ID;
 
 			if (accountUrlExistsForUser)
-				throw DFMCoreException.WithMessage(DfMError.AccountUrlAlreadyExists);
+				throw Error.AccountUrlAlreadyExists.Throw();
 		}
 
 		private static void checkLimits(Account account)
@@ -72,7 +72,7 @@ namespace DFM.BusinessLogic.Repositories
 				return;
 
 			if (account.RedLimit > account.YellowLimit)
-				throw DFMCoreException.WithMessage(DfMError.RedLimitAboveYellowLimit);
+				throw Error.RedLimitAboveYellowLimit.Throw();
 		}
 
 
@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (NonUniqueResultException)
 			{
-				throw DFMCoreException.WithMessage(DfMError.DuplicatedAccountName);
+				throw Error.DuplicatedAccountName.Throw();
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (NonUniqueResultException)
 			{
-				throw DFMCoreException.WithMessage(DfMError.DuplicatedAccountUrl);
+				throw Error.DuplicatedAccountUrl.Throw();
 			}
 		}
 
@@ -160,13 +160,13 @@ namespace DFM.BusinessLogic.Repositories
 		internal void Close(Account account)
 		{
 			if (account == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
+				throw Error.InvalidAccount.Throw();
 
 			if (!account.IsOpen())
-				throw DFMCoreException.WithMessage(DfMError.ClosedAccount);
+				throw Error.ClosedAccount.Throw();
 
 			if (!account.HasMoves())
-				throw DFMCoreException.WithMessage(DfMError.CantCloseEmptyAccount);
+				throw Error.CantCloseEmptyAccount.Throw();
 
 			account.EndDate = account.User.Now();
 
@@ -179,10 +179,10 @@ namespace DFM.BusinessLogic.Repositories
 			var account = GetByUrl(url, user);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
+				throw Error.InvalidAccount.Throw();
 
 			if (account.HasMoves())
-				throw DFMCoreException.WithMessage(DfMError.CantDeleteAccountWithMoves);
+				throw Error.CantDeleteAccountWithMoves.Throw();
 
 			Delete(account);
 		}

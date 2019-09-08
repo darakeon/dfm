@@ -106,7 +106,7 @@ namespace DFM.MVC.Models
 					admin.UpdateConfig(this);
 					ErrorAlert.Add("ConfigChanged");
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					errors.Add(Translator.Dictionary[e]);
 				}
@@ -140,7 +140,7 @@ namespace DFM.MVC.Models
 					safe.ChangePassword(CurrentPassword, this);
 					ErrorAlert.Add("PasswordChanged");
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					errors.Add(Translator.Dictionary[e]);
 				}
@@ -158,7 +158,7 @@ namespace DFM.MVC.Models
 
 					ErrorAlert.Add("EmailUpdated");
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					errors.Add(Translator.Dictionary[e]);
 				}
@@ -197,7 +197,7 @@ namespace DFM.MVC.Models
 					safe.UpdateTFA(Secret, Code, CurrentPassword);
 					ErrorAlert.Add("TFAAuthenticated");
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					errors.Add(Translator.Dictionary[e]);
 				}
@@ -236,7 +236,7 @@ namespace DFM.MVC.Models
 					admin.ChangeTheme(Theme);
 					ErrorAlert.Add("ConfigChanged");
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					errors.Add(Translator.Dictionary[e]);
 				}
