@@ -4,9 +4,9 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class Config : IEntity
+	public partial class Config : IEntityLong
 	{
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Language { get; set; }
 		public virtual String TimeZone { get; set; }

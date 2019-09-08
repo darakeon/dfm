@@ -5,7 +5,7 @@ using DFM.Generic;
 
 namespace DFM.Entities
 {
-	public partial class Account : IEntity
+	public partial class Account : IEntityLong
 	{
 		public Account()
 		{
@@ -14,7 +14,7 @@ namespace DFM.Entities
 
 
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Name { get; set; }
 		public virtual String Url { get; set; }

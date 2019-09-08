@@ -6,7 +6,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class YearRepository : BaseRepository<Year>
+	internal class YearRepository : BaseRepositoryLong<Year>
 	{
 		internal Year GetOrCreateYearWithSummary(Int16 dateYear, Account account, Category category)
 		{

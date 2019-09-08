@@ -8,7 +8,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class DetailRepository : BaseRepository<Detail>
+	internal class DetailRepository : BaseRepositoryLong<Detail>
 	{
 		internal void SaveDetails(Move move, Move oldMove)
 		{

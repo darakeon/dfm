@@ -1,6 +1,8 @@
-﻿namespace DFM.BusinessLogic.Services
+﻿using Keon.NHibernate.Base;
+
+namespace DFM.BusinessLogic.Services
 {
-	public class BaseService : Keon.NHibernate.Base.BaseService
+	public class BaseService : BaseServiceLong
 	{
 		protected BaseService(ServiceAccess serviceAccess)
 		{
@@ -8,10 +10,5 @@
 		}
 
 		protected ServiceAccess Parent { get; private set; }
-
-
-
-
-
 	}
 }

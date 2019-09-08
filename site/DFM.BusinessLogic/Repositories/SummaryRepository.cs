@@ -6,7 +6,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SummaryRepository : BaseRepository<Summary>
+	internal class SummaryRepository : BaseRepositoryLong<Summary>
 	{
 		internal void Break(Year year, Category category)
 		{

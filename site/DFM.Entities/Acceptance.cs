@@ -3,9 +3,9 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public class Acceptance : IEntity
+	public class Acceptance : IEntityLong
 	{
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual DateTime CreateDate { get; set; }
 

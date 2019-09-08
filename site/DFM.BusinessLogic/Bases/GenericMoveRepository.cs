@@ -10,8 +10,8 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Bases
 {
-	public abstract class GenericMoveRepository<T> : BaseRepository<T>
-		where T : class, IEntity, IMove, new()
+	public abstract class GenericMoveRepository<T> : BaseRepositoryLong<T>
+		where T : class, IEntityLong, IMove, new()
 	{
 		#region Validate
 		protected void Validate(

@@ -5,7 +5,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities.Bases
 {
-	public interface IMove : IEntity
+	public interface IMove : IEntityLong
 	{
 		String Description { get; set; }
 		DateTime Date { get; set; }

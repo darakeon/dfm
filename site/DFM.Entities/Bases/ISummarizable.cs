@@ -4,7 +4,7 @@ using Keon.Util.DB;
 
 namespace DFM.Entities.Bases
 {
-	public interface ISummarizable : IEntity
+	public interface ISummarizable : IEntityLong
 	{
 		IList<Summary> SummaryList { get; set; }
 		Int16 Time { get; set; }

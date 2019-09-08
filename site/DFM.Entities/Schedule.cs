@@ -13,7 +13,7 @@ namespace DFM.Entities
 		}
 
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Description { get; set; }
 		public virtual DateTime Date { get; set; }

@@ -4,9 +4,9 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-	public partial class Security : IEntity
+	public partial class Security : IEntityLong
 	{
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Token { get; set; }
 		public virtual Boolean Active { get; set; }

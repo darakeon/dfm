@@ -71,7 +71,7 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-		internal void Disable(Int32 id, User loggedInUser)
+		internal void Disable(Int64 id, User loggedInUser)
 		{
 			var schedule = Get(id);
 

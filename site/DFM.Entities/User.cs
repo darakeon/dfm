@@ -3,14 +3,14 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class User : IEntity
+	public partial class User : IEntityLong
 	{
 		public User()
 		{
 			init();
 		}
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Password { get; set; }
 		public virtual String Email { get; set; }

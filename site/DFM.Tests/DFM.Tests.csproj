@@ -143,14 +143,14 @@
     <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Keon.NHibernate, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Keon.NHibernate.1.0.2\lib\net48\Keon.NHibernate.dll</HintPath>
+    <Reference Include="Keon.NHibernate, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.NHibernate.1.1.0\lib\net48\Keon.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Keon.TwoFactorAuth, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Keon.TwoFactorAuth.1.0.1\lib\netstandard2.0\Keon.TwoFactorAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Keon.Util, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Keon.Util.1.0.1\lib\net48\Keon.Util.dll</HintPath>
+    <Reference Include="Keon.Util, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Keon.Util.1.1.0\lib\net48\Keon.Util.dll</HintPath>
     </Reference>
     <Reference Include="Keon.XML, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Keon.XML.1.0.1\lib\net48\Keon.XML.dll</HintPath>

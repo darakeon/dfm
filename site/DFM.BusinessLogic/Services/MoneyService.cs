@@ -24,13 +24,13 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public Move GetMoveById(Int32 id)
+		public Move GetMoveById(Int64 id)
 		{
 			Parent.Safe.VerifyUser();
 			return GetMoveByIdInternal(id);
 		}
 
-		internal Move GetMoveByIdInternal(Int32 id)
+		internal Move GetMoveByIdInternal(Int64 id)
 		{
 			var move = moveRepository.Get(id);
 
@@ -75,7 +75,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int32 id)
+		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int64 id)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -86,7 +86,7 @@ namespace DFM.BusinessLogic.Services
 			return result;
 		}
 
-		private ComposedResult<Boolean, EmailStatus> deleteMove(Int32 id)
+		private ComposedResult<Boolean, EmailStatus> deleteMove(Int64 id)
 		{
 			var move = GetMoveByIdInternal(id);
 
@@ -133,17 +133,17 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public Move CheckMove(Int32 moveId)
+		public Move CheckMove(Int64 moveId)
 		{
 			return toggleMoveCheck(moveId, true);
 		}
 
-		public Move UncheckMove(Int32 moveId)
+		public Move UncheckMove(Int64 moveId)
 		{
 			return toggleMoveCheck(moveId, false);
 		}
 
-		private Move toggleMoveCheck(Int32 moveId, Boolean check)
+		private Move toggleMoveCheck(Int64 moveId, Boolean check)
 		{
 			Parent.Safe.VerifyUser();
 

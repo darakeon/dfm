@@ -9,7 +9,7 @@ using NHibernate;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class AccountRepository : BaseRepository<Account>
+	internal class AccountRepository : BaseRepositoryLong<Account>
 	{
 		internal Account SaveOrUpdate(Account account)
 		{

@@ -10,7 +10,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class SecurityRepository : BaseRepository<Security>
+	internal class SecurityRepository : BaseRepositoryLong<Security>
 	{
 		internal Security SaveOrUpdate(Security security)
 		{

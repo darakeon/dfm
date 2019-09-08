@@ -8,7 +8,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class UserRepository : BaseRepository<User>
+	internal class UserRepository : BaseRepositoryLong<User>
 	{
 		private const string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
 
@@ -53,7 +53,7 @@ namespace DFM.BusinessLogic.Repositories
 			return update(user);
 		}
 
-		internal User UpdateEmail(Int32 id, String email)
+		internal User UpdateEmail(Int64 id, String email)
 		{
 			var user = Get(id);
 			user.Email = email;

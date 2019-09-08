@@ -4,7 +4,7 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities
 {
-	public partial class Summary : IEntity
+	public partial class Summary : IEntityLong
 	{
 		public Summary()
 		{
@@ -23,7 +23,7 @@ namespace DFM.Entities
 
 
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual Int32 InCents { get; set; }
 		public virtual Int32 OutCents { get; set; }

@@ -13,7 +13,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 		public static UserRepository User = new UserRepository();
 		public static ScheduleRepository Schedule = new ScheduleRepository();
 
-		public class SecurityRepository : BaseRepository<Security>
+		public class SecurityRepository : BaseRepositoryLong<Security>
 		{
 			public String GetLastTokenForUser(String email, SecurityAction action)
 			{
@@ -29,7 +29,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
-		public class TicketRepository : BaseRepository<Ticket>
+		public class TicketRepository : BaseRepositoryLong<Ticket>
 		{
 			public String GetLastTicketForUser(String email)
 			{
@@ -48,7 +48,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
-		public class ContractRepository : BaseRepository<Contract>
+		public class ContractRepository : BaseRepositoryLong<Contract>
 		{
 			public void Create(String contractVersion)
 			{
@@ -62,7 +62,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
-		public class UserRepository : BaseRepository<User>
+		public class UserRepository : BaseRepositoryLong<User>
 		{
 			public String GetTFAUser(String email)
 			{
@@ -72,9 +72,9 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			}
 		}
 
-		public class ScheduleRepository : BaseRepository<Schedule>
+		public class ScheduleRepository : BaseRepositoryLong<Schedule>
 		{
-			public Boolean GetState(Int32 id)
+			public Boolean GetState(Int64 id)
 			{
 				return SingleOrDefault(
 					t => t.ID== id

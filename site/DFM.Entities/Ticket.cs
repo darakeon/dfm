@@ -4,7 +4,7 @@ using Keon.Util.DB;
 
 namespace DFM.Entities
 {
-	public partial class Ticket : IEntity
+	public partial class Ticket : IEntityLong
 	{
 		public Ticket()
 		{
@@ -12,7 +12,7 @@ namespace DFM.Entities
 		}
 
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual String Key { get; set; }
 		public virtual TicketType Type { get; set; }
