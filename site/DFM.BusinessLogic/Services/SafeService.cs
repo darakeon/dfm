@@ -48,7 +48,7 @@ namespace DFM.BusinessLogic.Services
 				var user = userRepository.GetByEmail(email);
 
 				if (user == null)
-					throw DFMCoreException.WithMessage(DfMError.InvalidUser);
+					return;
 
 				createAndSendToken(user, SecurityAction.PasswordReset, getPath(PathType.PasswordReset));
 			});
@@ -311,13 +311,13 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public void UpdateEmail(String currentPassword, String email)
+		public void UpdateEmail(String password, String email)
 		{
 			VerifyUser();
 
 			var user = Parent.Current.User;
 
-			if (!userRepository.VerifyPassword(user, currentPassword))
+			if (!userRepository.VerifyPassword(user, password))
 				throw DFMCoreException.WithMessage(DfMError.WrongPassword);
 
 			InTransaction(() =>
