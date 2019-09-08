@@ -7,7 +7,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class MonthRepository : BaseRepository<Month>
+	internal class MonthRepository : BaseRepositoryLong<Month>
 	{
 		internal Month GetOrCreateMonthWithSummary(Int16 dateMonth, Year year, Category category)
 		{

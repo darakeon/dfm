@@ -15,9 +15,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 	public class RobotStep : BaseStep
 	{
 		#region Variables
-		private static Int32 id
+		private static Int64 id
 		{
-			get { return Get<Int32>("ID"); }
+			get { return Get<Int64>("ID"); }
 			set { Set("ID", value); }
 		}
 

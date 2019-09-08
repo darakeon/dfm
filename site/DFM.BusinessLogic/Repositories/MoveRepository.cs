@@ -105,7 +105,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 		}
 
-		internal new Move GetNonCached(int id)
+		internal new Move GetNonCached(Int64 id)
 		{
 			return base.GetNonCached(id);
 		}
@@ -163,7 +163,7 @@ namespace DFM.BusinessLogic.Repositories
 			return get(query, category);
 		}
 
-		private Decimal get(IQuery<Move> query, Category category)
+		private Decimal get(IQuery<Move, Int64> query, Category category)
 		{
 			query = category == null
 				? query.SimpleFilter(m => m.Category == null)

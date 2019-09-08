@@ -7,7 +7,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class CategoryRepository : BaseRepository<Category>
+	internal class CategoryRepository : BaseRepositoryLong<Category>
 	{
 		internal Category SaveOrUpdate(Category category)
 		{

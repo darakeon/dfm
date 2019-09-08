@@ -4,7 +4,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class AcceptanceRepository : BaseRepository<Acceptance>
+	internal class AcceptanceRepository : BaseRepositoryLong<Acceptance>
 	{
 		internal void Accept(User user, Contract contract)
 		{

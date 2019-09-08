@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
@@ -177,9 +178,7 @@ namespace DFM.BusinessLogic.Services
 				schedule.ID = 0;
 		}
 
-
-
-		public void DisableSchedule(Int32 id)
+		public void DisableSchedule(Int64 id)
 		{
 			Parent.Safe.VerifyUser();
 

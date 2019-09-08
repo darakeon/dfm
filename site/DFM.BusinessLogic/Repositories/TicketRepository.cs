@@ -7,7 +7,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class TicketRepository : BaseRepository<Ticket>
+	internal class TicketRepository : BaseRepositoryLong<Ticket>
 	{
 		internal Ticket Create(User user, String key, TicketType type)
 		{

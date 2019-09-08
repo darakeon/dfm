@@ -28,7 +28,7 @@ namespace DFM.MVC.Areas.API.Models
 			DetailList = move.DetailList.Select(d => new DetailJson(d)).ToList();
 		}
 
-		public Int32 ID { get; set; }
+		public Int64 ID { get; set; }
 		public String Description { get; set; }
 		public DateJson Date { get; set; }
 		public String Category { get; set; }

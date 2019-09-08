@@ -17,15 +17,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 	public class MoneyStep : BaseStep
 	{
 		#region Variables
-		private static Int32 id
+		private static Int64 id
 		{
-			get { return Get<Int32>("ID"); }
+			get { return Get<Int64>("ID"); }
 			set { Set("ID", value); }
 		}
 
-		private static List<Int32> ids
+		private static List<Int64> ids
 		{
-			get { return Get<List<Int32>>("IDs"); }
+			get { return Get<List<Int64>>("IDs"); }
 			set { Set("IDs", value); }
 		}
 

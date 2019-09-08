@@ -3,7 +3,7 @@ using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	internal class ConfigRepository : BaseRepository<Config>
+	internal class ConfigRepository : BaseRepositoryLong<Config>
 	{
 		internal void Update(Config config)
 		{

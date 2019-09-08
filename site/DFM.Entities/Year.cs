@@ -12,7 +12,7 @@ namespace DFM.Entities
 		}
 
 
-		public virtual Int32 ID { get; set; }
+		public virtual Int64 ID { get; set; }
 
 		public virtual Int16 Time { get; set; }
 
