@@ -6,6 +6,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -166,16 +167,16 @@ namespace DFM.BusinessLogic.Services
 		{
 			if (!Parent.Current.User.Config.MoveCheck)
 			{
-				throw DFMCoreException.WithMessage(DfMError.MoveCheckDisabled);
+				throw Error.MoveCheckDisabled.Throw();
 			}
 
 			if (move.Checked == check)
 			{
 				var error = move.Checked
-					? DfMError.MoveAlreadyChecked
-					: DfMError.MoveAlreadyUnchecked;
+					? Error.MoveAlreadyChecked
+					: Error.MoveAlreadyUnchecked;
 
-				throw DFMCoreException.WithMessage(error);
+				throw error.Throw();
 			}
 		}
 	}

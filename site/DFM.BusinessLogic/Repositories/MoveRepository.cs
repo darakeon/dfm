@@ -13,6 +13,7 @@ using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
 using Keon.NHibernate.Queries;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -27,7 +28,7 @@ namespace DFM.BusinessLogic.Repositories
 					m,
 					now,
 					MaxLen.Move_Description,
-					DfMError.TooLargeMoveDescription
+					Error.TooLargeMoveDescription
 				),
 				Complete
 			);

@@ -47,7 +47,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			{
 				monthReport = Service.Report.GetMonthReport(AccountUrl, month, year);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -96,7 +96,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			{
 				yearReport = Service.Report.GetYearReport(AccountUrl, year);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}

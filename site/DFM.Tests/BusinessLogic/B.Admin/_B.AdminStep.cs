@@ -9,6 +9,7 @@ using DFM.Language;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.B.Admin
 {
@@ -124,7 +125,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.CreateAccount(Account);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -152,14 +153,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.GetAccountByUrl(accountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNull(Account);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.InvalidAccount, Error.Type);
+			Assert.AreEqual(error.InvalidAccount, Error.Type);
 		}
 
 		[Then(@"the account will be saved")]
@@ -187,7 +188,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Account = Service.Admin.GetAccountByUrl(AccountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -251,7 +252,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.UpdateAccount(Account, newAccountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -269,14 +270,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				{
 					account = Service.Admin.GetAccountByUrl(oldAccountUrl);
 				}
-				catch (DFMCoreException e)
+				catch (CoreError e)
 				{
 					Error = e;
 				}
 
 				Assert.IsNull(account);
 				Assert.IsNotNull(Error);
-				Assert.AreEqual(Error.Type, DfMError.InvalidAccount);
+				Assert.AreEqual(Error.Type, error.InvalidAccount);
 
 				Error = null;
 			}
@@ -285,7 +286,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				account = Service.Admin.GetAccountByUrl(newAccountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -317,7 +318,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.CloseAccount(AccountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -374,7 +375,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.DeleteAccount(AccountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -399,14 +400,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Account = Service.Admin.GetAccountByUrl(accountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNull(Account);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.InvalidAccount, Error.Type);
+			Assert.AreEqual(error.InvalidAccount, Error.Type);
 		}
 		#endregion
 
@@ -424,7 +425,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				accountList = Service.Admin.GetAccountList(active);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -501,7 +502,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.CreateCategory(Category);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -518,7 +519,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Category = Service.Admin.GetCategoryByName(categoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -552,7 +553,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Category = Service.Admin.GetCategoryByName(CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -591,7 +592,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.UpdateCategory(Category, newCategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -607,7 +608,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Category = Service.Admin.GetCategoryByName(oldCategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -621,7 +622,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Assert.IsNull(Category);
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(Error.Type, DfMError.InvalidCategory);
+			Assert.AreEqual(Error.Type, error.InvalidCategory);
 
 			Category = null;
 			Error = null;
@@ -630,7 +631,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Category = Service.Admin.GetCategoryByName(newCategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -665,7 +666,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.DisableCategory(CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -707,7 +708,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.EnableCategory(CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -736,7 +737,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				categoryList = Service.Admin.GetCategoryList();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -749,7 +750,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				categoryList = Service.Admin.GetCategoryList(active);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -803,7 +804,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { UseCategories = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -818,7 +819,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { UseCategories = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -833,7 +834,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { MoveCheck = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -848,7 +849,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { MoveCheck = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -863,7 +864,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { Wizard = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -878,7 +879,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { Wizard = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -892,7 +893,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { Language = language };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -916,7 +917,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { TimeZone = timezone };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -931,7 +932,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { SendMoveEmail = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -946,7 +947,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				var mainConfig = new ConfigOptions { SendMoveEmail = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -968,7 +969,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				Service.Admin.ChangeTheme(theme);
             }
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}

@@ -19,7 +19,7 @@ namespace DFM.MVC.Models
 			{
 				safe.SendPasswordReset(Email);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				errors.Add(Translator.Dictionary[e]);
 			}

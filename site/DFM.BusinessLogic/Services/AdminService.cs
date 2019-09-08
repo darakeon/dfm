@@ -64,7 +64,7 @@ namespace DFM.BusinessLogic.Services
 			var account = accountRepository.GetByUrl(url, Parent.Current.User);
 
 			if (account == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidAccount);
+				throw Error.InvalidAccount.Throw();
 
 			return account;
 		}
@@ -192,7 +192,7 @@ namespace DFM.BusinessLogic.Services
 			var category = categoryRepository.GetByName(name, Parent.Current.User);
 
 			if (category == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidCategory);
+				throw Error.InvalidCategory.Throw();
 
 			return category;
 		}
@@ -258,7 +258,7 @@ namespace DFM.BusinessLogic.Services
 		private void verifyCategoriesEnabled()
 		{
 			if (!Parent.Current.User.Config.UseCategories)
-				throw DFMCoreException.WithMessage(DfMError.CategoriesDisabled);
+				throw Error.CategoriesDisabled.Throw();
 		}
 		#endregion Category
 
@@ -281,10 +281,10 @@ namespace DFM.BusinessLogic.Services
 			var config = Parent.Current.User.Config;
 
 			if (!String.IsNullOrEmpty(configOptions.Language) && !PlainText.AcceptedLanguage().Contains(configOptions.Language.ToLower()))
-				throw DFMCoreException.WithMessage(DfMError.LanguageUnknown);
+				throw Error.LanguageUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(configOptions.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(configOptions.TimeZone))
-				throw DFMCoreException.WithMessage(DfMError.TimezoneUnknown);
+				throw Error.TimezoneUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(configOptions.Language))
 				config.Language = configOptions.Language;
@@ -320,7 +320,7 @@ namespace DFM.BusinessLogic.Services
 		public void ChangeTheme(BootstrapTheme theme)
 		{
 			if (theme == BootstrapTheme.None)
-				throw DFMCoreException.WithMessage(DfMError.InvalidTheme);
+				throw Error.InvalidTheme.Throw();
 
 			var config = Parent.Current.User.Config;
 			config.Theme = theme;

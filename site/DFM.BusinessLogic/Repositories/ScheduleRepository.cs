@@ -33,12 +33,12 @@ namespace DFM.BusinessLogic.Repositories
 				schedule,
 				now,
 				MaxLen.Schedule_Description,
-				DfMError.TooLargeScheduleDescription,
+				Error.TooLargeScheduleDescription,
 				schedule.Active
 			);
 
 			if (!schedule.Boundless && schedule.Times <= 0)
-				throw DFMCoreException.WithMessage(DfMError.ScheduleTimesCantBeZero);
+				throw Error.ScheduleTimesCantBeZero.Throw();
 		}
 
 
@@ -76,10 +76,10 @@ namespace DFM.BusinessLogic.Repositories
 			var schedule = Get(id);
 
 			if (schedule == null || schedule.User.ID != loggedInUser.ID)
-				throw DFMCoreException.WithMessage(DfMError.InvalidSchedule);
+				throw Error.InvalidSchedule.Throw();
 
 			if (!schedule.Active)
-				throw DFMCoreException.WithMessage(DfMError.DisabledSchedule);
+				throw Error.DisabledSchedule.Throw();
 
 			schedule.Active = false;
 			SaveOrUpdate(schedule);
@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				if (schedule.Active)
 				{
-					throw DFMCoreException.WithMessage(DfMError.CantDeleteAccountWithSchedules);
+					throw Error.CantDeleteAccountWithSchedules.Throw();
 				}
 
 				Delete(schedule);

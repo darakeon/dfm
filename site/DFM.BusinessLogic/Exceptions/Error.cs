@@ -1,6 +1,6 @@
 ﻿namespace DFM.BusinessLogic.Exceptions
 {
-	public enum DfMError
+	public enum Error
 	{
 		Uninvited = 207,
 		NotSignedLastContract = 42,
@@ -82,4 +82,11 @@
 		TimezoneUnknown = 802,
 	}
 
+	public static class ErrorX
+	{
+		public static CoreError Throw(this Error error)
+		{
+			return new CoreError(error);
+		}
+	}
 }

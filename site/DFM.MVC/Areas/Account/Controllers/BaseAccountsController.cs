@@ -11,9 +11,9 @@ namespace DFM.MVC.Areas.Account.Controllers
 		protected override void OnException(ExceptionContext filterContext)
 		{
 			if (
-				filterContext.Exception is DFMCoreException exception
+				filterContext.Exception is CoreError exception
 				&&
-				exception.Type == DfMError.InvalidAccount
+				exception.Type == Error.InvalidAccount
 			)
 			{
 				ErrorAlert.Add(exception.Type);

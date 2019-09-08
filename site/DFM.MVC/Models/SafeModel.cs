@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 			{
 				safe.DisableToken(token);
 			}
-			catch (DFMCoreException)
+			catch (CoreError)
 			{
 				return false;
 			}
@@ -26,7 +26,7 @@ namespace DFM.MVC.Models
 			{
 				safe.TestSecurityToken(token, SecurityAction.UserVerification);
 			}
-			catch (DFMCoreException)
+			catch (CoreError)
 			{
 				return false;
 			}

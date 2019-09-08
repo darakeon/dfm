@@ -12,7 +12,7 @@ namespace DFM.MVC.Models
 			{
 				robot.DisableSchedule(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}

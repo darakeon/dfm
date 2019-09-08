@@ -47,7 +47,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 				ReportUrl = (move.Out ?? move.In).Url();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}
@@ -61,7 +61,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 				ReportUrl = (move.Out ?? move.In).Url();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				ErrorAlert.Add(e.Type);
 			}
@@ -74,7 +74,7 @@ namespace DFM.MVC.Areas.Account.Models
 			{
 				return money.GetMoveById(id);
 			}
-			catch (DFMCoreException)
+			catch (CoreError)
 			{
 				return null;
 			}

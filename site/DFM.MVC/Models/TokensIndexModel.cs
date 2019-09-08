@@ -43,7 +43,7 @@ namespace DFM.MVC.Models
 			{
 				safe.TestSecurityToken(Token, SecurityAction);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				errors.Add(Translator.Dictionary[e]);
 			}

@@ -8,6 +8,7 @@ using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.D.Robot
 {
@@ -58,7 +59,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 
 				Service.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -110,7 +111,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				Service.Robot.RunSchedule();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				if (IsCurrent(ScenarioBlock.When))
 					Error = e;
@@ -129,7 +130,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				CurrentEmailStatus = Service.Robot.RunSchedule();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -148,7 +149,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				CurrentEmailStatus = Service.Robot.RunSchedule();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -178,7 +179,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				Service.Robot.DisableSchedule(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -193,13 +194,13 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				Service.Robot.DisableSchedule(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
 
 			Assert.IsNotNull(Error);
-			Assert.AreEqual(DfMError.DisabledSchedule, Error.Type);
+			Assert.AreEqual(error.DisabledSchedule, Error.Type);
 		}
 		#endregion
 
@@ -217,7 +218,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				scheduleList = Service.Robot.GetScheduleList();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}

@@ -19,7 +19,7 @@ namespace DFM.BusinessLogic.Helpers
 				case ScheduleFrequency.Yearly:
 					return date.AddYears(1);
 				default:
-					throw DFMCoreException.WithMessage(DfMError.ScheduleFrequencyNotRecognized);
+					throw Error.ScheduleFrequencyNotRecognized.Throw();
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace DFM.BusinessLogic.Helpers
 				case ScheduleFrequency.Yearly:
 					return years;
 				default:
-					throw DFMCoreException.WithMessage(DfMError.ScheduleFrequencyNotRecognized);
+					throw Error.ScheduleFrequencyNotRecognized.Throw();
 			}
 		}
 

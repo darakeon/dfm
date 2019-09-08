@@ -7,6 +7,7 @@ using DFM.Entities.Enums;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Repositories
 {
@@ -55,7 +56,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 			catch (DFMEmailException)
 			{
-				DFMCoreException.WithMessage(DfMError.FailOnEmailSend);
+				throw Error.FailOnEmailSend.Throw();
 			}
 
 			security.Sent = true;
@@ -89,7 +90,7 @@ namespace DFM.BusinessLogic.Repositories
 			var security = GetByToken(token);
 
 			if (security == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidToken);
+				throw Error.InvalidToken.Throw();
 
 			security.Active = false;
 
@@ -104,7 +105,7 @@ namespace DFM.BusinessLogic.Repositories
 			var securityToken = GetByToken(token);
 
 			if (securityToken == null || securityToken.Action != securityAction)
-				throw DFMCoreException.WithMessage(DfMError.InvalidToken);
+				throw Error.InvalidToken.Throw();
 
 			return securityToken;
 		}

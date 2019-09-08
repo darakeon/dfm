@@ -15,6 +15,7 @@ using DFM.Language;
 using Keon.Util.Extensions;
 using Keon.NHibernate.Base;
 using TechTalk.SpecFlow;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -70,7 +71,7 @@ namespace DFM.Tests.BusinessLogic
 
 			switch (userError.Type)
 			{
-				case DfMError.InvalidUser:
+				case error.InvalidUser:
 
 					var passwordForm = new PasswordForm(userPassword, userPassword);
 					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
@@ -83,7 +84,7 @@ namespace DFM.Tests.BusinessLogic
 
 					return;
 
-				case DfMError.DisabledUser:
+				case error.DisabledUser:
 					return;
 
 				default:
@@ -91,7 +92,7 @@ namespace DFM.Tests.BusinessLogic
 			}
 		}
 
-		private DFMCoreException verifyUser(String userEmail, String userPassword)
+		private CoreError verifyUser(String userEmail, String userPassword)
 		{
 			try
 			{
@@ -101,7 +102,7 @@ namespace DFM.Tests.BusinessLogic
 
 				return null;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				return e;
 			}
@@ -114,9 +115,9 @@ namespace DFM.Tests.BusinessLogic
 			{
 				return Service.Admin.GetAccountByUrl(accountUrl);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
-				if (e.Type != DfMError.InvalidAccount)
+				if (e.Type != error.InvalidAccount)
 					throw;
 
 				Service.Admin.CreateAccount(
@@ -137,9 +138,9 @@ namespace DFM.Tests.BusinessLogic
 			{
 				return Service.Admin.GetCategoryByName(categoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
-				if (e.Type != DfMError.InvalidCategory)
+				if (e.Type != error.InvalidCategory)
 					throw;
 
 				Service.Admin.CreateCategory(new Category { Name = categoryName, User = User });
@@ -186,9 +187,9 @@ namespace DFM.Tests.BusinessLogic
 			set => Set("mainTicket", value);
 		}
 
-		protected static DFMCoreException Error
+		protected static CoreError Error
 		{
-			get => Get<DFMCoreException>("error");
+			get => Get<CoreError>("error");
 			set => Set("error", value);
 		}
 

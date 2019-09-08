@@ -10,6 +10,7 @@ using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -138,7 +139,7 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 
 			if (schedule == null)
-				throw DFMCoreException.WithMessage(DfMError.ScheduleRequired);
+				throw Error.ScheduleRequired.Throw();
 
 			var operationType =
 				schedule.ID == 0

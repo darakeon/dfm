@@ -22,10 +22,10 @@ namespace DFM.BusinessLogic.Repositories
 		private void checkName(Category category)
 		{
 			if (String.IsNullOrEmpty(category.Name))
-				throw DFMCoreException.WithMessage(DfMError.CategoryNameRequired);
+				throw Error.CategoryNameRequired.Throw();
 
 			if (category.Name.Length > MaxLen.Category_Name)
-				throw DFMCoreException.WithMessage(DfMError.TooLargeCategoryName);
+				throw Error.TooLargeCategoryName.Throw();
 
 			var otherCategory = GetByName(category.Name, category.User);
 
@@ -34,7 +34,7 @@ namespace DFM.BusinessLogic.Repositories
 					&& otherCategory.ID != category.ID;
 
 			if (categoryExistsForUser)
-				throw DFMCoreException.WithMessage(DfMError.CategoryAlreadyExists);
+				throw Error.CategoryAlreadyExists.Throw();
 		}
 
 
@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Repositories
 				);
 
 			if (categoryList.Count > 1)
-				throw DFMCoreException.WithMessage(DfMError.DuplicatedCategoryName);
+				throw Error.DuplicatedCategoryName.Throw();
 
 			return categoryList.SingleOrDefault();
 		}
@@ -77,12 +77,16 @@ namespace DFM.BusinessLogic.Repositories
 			var category = GetByName(name, user);
 
 			if (category == null)
-				throw DFMCoreException.WithMessage(DfMError.InvalidCategory);
+				throw Error.InvalidCategory.Throw();
 
 			if (category.Active == enable)
-				throw DFMCoreException.WithMessage(
-					category.Active ? DfMError.EnabledCategory : DfMError.DisabledCategory);
+			{
+				var error = category.Active
+					? Error.EnabledCategory
+					: Error.DisabledCategory;
 
+				throw error.Throw();
+			}
 
 			category.Active = enable;
 			SaveOrUpdate(category);

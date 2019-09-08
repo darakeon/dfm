@@ -57,7 +57,7 @@ namespace DFM.MVC.Models
 
 
 
-		internal DFMCoreException CreateEdit()
+		internal CoreError CreateEdit()
 		{
 			try
 			{
@@ -66,9 +66,9 @@ namespace DFM.MVC.Models
 				else
 					admin.UpdateCategory(Category, Name);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
-				if (e.Type != DfMError.CategoryAlreadyExists)
+				if (e.Type != Error.CategoryAlreadyExists)
 					return e;
 			}
 

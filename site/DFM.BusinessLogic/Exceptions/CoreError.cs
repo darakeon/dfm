@@ -1,0 +1,18 @@
+﻿using System;
+using DFM.Generic;
+
+namespace DFM.BusinessLogic.Exceptions
+{
+	public class CoreError : DFMException
+	{
+		public static Int32 ErrorCounter { get; private set; }
+		public Error Type { get; private set; }
+
+		internal CoreError(Error type)
+			: base(type.ToString())
+		{
+			ErrorCounter++;
+			Type = type;
+		}
+	}
+}

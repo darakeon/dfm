@@ -10,6 +10,7 @@ using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.C.Money
 {
@@ -108,7 +109,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 				Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -128,7 +129,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var result = Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 				CurrentEmailStatus = result.Error;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -151,7 +152,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var result = Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 				CurrentEmailStatus = result.Error;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -345,7 +346,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 				Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, CategoryName);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -550,7 +551,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				Move = Service.Money.GetMoveById(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -591,7 +592,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				Service.Money.DeleteMove(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -607,7 +608,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 					Service.Money.DeleteMove(moveId);
 				}
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -624,7 +625,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var result = Service.Money.DeleteMove(id);
 				CurrentEmailStatus = result.Error;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -644,7 +645,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				var result = Service.Money.DeleteMove(id);
 				CurrentEmailStatus = result.Error;
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -662,7 +663,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				Service.Money.GetMoveById(id);
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}
@@ -670,7 +671,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			if (deleted)
 			{
 				Assert.IsNotNull(Error);
-				Assert.AreEqual(DfMError.InvalidMove, Error.Type);
+				Assert.AreEqual(error.InvalidMove, Error.Type);
 			}
 			else
 			{
@@ -707,7 +708,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 					Service.Money.UncheckMove(Move.ID);
 				}
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				Error = e;
 			}

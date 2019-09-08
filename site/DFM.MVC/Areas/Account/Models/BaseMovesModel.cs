@@ -217,7 +217,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 				SaveOrUpdate();
 			}
-			catch (DFMCoreException e)
+			catch (CoreError e)
 			{
 				errors.Add(Translator.Dictionary[e]);
 			}

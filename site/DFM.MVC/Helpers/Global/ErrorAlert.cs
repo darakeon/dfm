@@ -4,15 +4,16 @@ using System.Linq;
 using System.Web;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.MVC.Helpers.Global
 {
 	public class ErrorAlert
 	{
-		private static readonly SessionList<DfMError> errors =
-			new SessionList<DfMError>("errors");
+		private static readonly SessionList<Error> errors =
+			new SessionList<Error>("errors");
 
-		public static void Add(DfMError error)
+		public static void Add(Error error)
 		{
 			errors.List.Add(error);
 		}
