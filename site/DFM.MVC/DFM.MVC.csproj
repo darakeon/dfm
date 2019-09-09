@@ -255,7 +255,6 @@
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\Jsons\DateJson.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
-    <Compile Include="Areas\API\Jsons\AccountJson.cs" />
     <Compile Include="Areas\API\Jsons\DetailJson.cs" />
     <Compile Include="Areas\API\Jsons\SimpleMonthJson.cs" />
     <Compile Include="Areas\API\Jsons\SimpleMoveJson.cs" />

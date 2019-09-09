@@ -1,5 +1,4 @@
-﻿@using DFM.Generic
-@using DFM.Entities.Enums
+﻿@using DFM.Entities.Enums
 
 @model AccountsCreateEditModel
 
@@ -9,7 +8,7 @@
 
 	if (Model.Type == OperationType.Edition)
 	{
-		ViewBag.Title += " [" + Model.Account.Name + "]";
+		ViewBag.Title += $" [{Model.Account.Name}]";
 	}
 
 	Layout = "~/Views/Shared/_Form.cshtml";
@@ -26,15 +25,18 @@
 	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Name)</small>
 </div>
 
+@Html.HiddenFor(m => m.Type)
+@Html.HiddenFor(m => m.Account.OriginalUrl)
+
 <div class="form-group">
-	@Html.LabelFor(m => m.Url, Translator.Dictionary["Url"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Account.Url, Translator.Dictionary["Url"], new { @class = "control-label" })
 	<span class="glyphicon glyphicon-info-sign control-label"
 		  data-toggle="tooltip" data-placement="right"
 		  title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)"
 		  data-original-title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)">
 	</span>
 
-	@Html.TextBoxFor(m => m.Url, new { maxlength = MaxLen.Account_Url, @class = "form-control suggest-target" })
+	@Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaxLen.Account_Url, @class = "form-control suggest-target" })
 	<small class="control-label">@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Url)</small>
 </div>
 
@@ -47,43 +49,43 @@
 		data-original-title="@Translator.Dictionary["LimitExplanation"]"
 	></span>
 
-    <br />
-    @Translator.Dictionary["GreenLimit"] =
-    (
-        <span
+	<br />
+	@Translator.Dictionary["GreenLimit"] =
+	(
+		<span
 			class="@Html.Partial("AccountSign", AccountSign.Green)"
 			title="@Translator.Dictionary["GreenLimit"]"
 		></span>
-    )
-    //
-    @Translator.Dictionary["NoneLimit"] =
-    (
-        <span
+	)
+	//
+	@Translator.Dictionary["NoneLimit"] =
+	(
+		<span
 			class="@Html.Partial("AccountSign", AccountSign.None)"
 			title="@Translator.Dictionary["NoneLimit"]"
 		></span>
-    )
+	)
 </div>
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.YellowLimit, Translator.Dictionary["YellowLimit"], new { @class = "control-label" })
-    (
-        <span
+	(
+		<span
 			class="@Html.Partial("AccountSign", AccountSign.Yellow)"
 			title="@Translator.Dictionary["YellowLimit"]">
-	    </span>
-    )
+		</span>
+	)
 	@Html.TextBoxFor(m => m.Account.YellowLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.RedLimit, Translator.Dictionary["RedLimit"], new { @class = "control-label" })
 	(
-        <span
+		<span
 			class="@Html.Partial("AccountSign", AccountSign.Red)"
 			title="@Translator.Dictionary["RedLimit"]">
-	    </span>
-    )
+		</span>
+	)
 	@Html.TextBoxFor(m => m.Account.RedLimit, new { @class = "form-control limit number", data_allow_negative = 1, data_allow_zero = 1 })
 </div>
 

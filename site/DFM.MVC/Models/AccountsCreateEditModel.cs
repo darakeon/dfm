@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 
@@ -12,7 +11,7 @@ namespace DFM.MVC.Models
 	{
 		public AccountsCreateEditModel()
 		{
-			Account = new Account();
+			Account = new AccountInfo();
 		}
 
 		public AccountsCreateEditModel(OperationType type) : this()
@@ -25,48 +24,15 @@ namespace DFM.MVC.Models
 			Account = admin.GetAccountByUrl(id);
 		}
 
-
-
 		public OperationType Type { get; set; }
 
-		public Account Account { get; set; }
-
-
-		private String url;
-
-		[Required(ErrorMessage = "*")]
-		public new String Url
-		{
-			get
-			{
-				switch (Type)
-				{
-					case OperationType.Creation:
-						return Account.Name;
-					case OperationType.Edition:
-						return url ?? Account.Url;
-					default:
-						throw new NotImplementedException();
-				}
-			}
-			set
-			{
-				url = value;
-
-				if (Type == OperationType.Creation)
-					Account.Url = value;
-			}
-		}
-
-
+		public AccountInfo Account { get; set; }
 
 		public Boolean HasLimit
 		{
-			get { return Account.RedLimit != null || Account.YellowLimit != null; }
-			set { setLimit(value); }
+			get => Account.RedLimit != null || Account.YellowLimit != null;
+			set => setLimit(value);
 		}
-
-
 
 		private void setLimit(Boolean hasLimit)
 		{
@@ -85,18 +51,6 @@ namespace DFM.MVC.Models
 			}
 		}
 
-
-
-		internal void ResetAccountUrl(OperationType type, string id)
-		{
-			var oldAccount = admin.GetAccountByUrl(id);
-
-			Type = type;
-			Account.Url = oldAccount.Url;
-		}
-
-
-
 		internal IList<String> CreateOrUpdate()
 		{
 			var errors = new List<String>();
@@ -106,7 +60,7 @@ namespace DFM.MVC.Models
 				if (Type == OperationType.Creation)
 					admin.CreateAccount(Account);
 				else
-					admin.UpdateAccount(Account, Url);
+					admin.UpdateAccount(Account);
 			}
 			catch (CoreError e)
 			{
@@ -115,8 +69,5 @@ namespace DFM.MVC.Models
 
 			return errors;
 		}
-
-
-
 	}
 }

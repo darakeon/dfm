@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 
 namespace DFM.MVC.Models
@@ -10,7 +10,7 @@ namespace DFM.MVC.Models
 	{
 		public CategoriesCreateEditModel()
 		{
-			Category = new Category();
+			Category = new CategoryInfo();
 		}
 
 		public CategoriesCreateEditModel(OperationType type) : this()
@@ -23,39 +23,9 @@ namespace DFM.MVC.Models
 			Category = admin.GetCategoryByName(categoryName);
 		}
 
-
-
 		public OperationType Type { get; set; }
 
-		public Category Category { get; set; }
-
-		private String name;
-
-		[Required(ErrorMessage = "*")]
-		public String Name
-		{
-			get
-			{
-				switch (Type)
-				{
-					case OperationType.Creation:
-						return Category.Name;
-					case OperationType.Edition:
-						return name ?? Category.Name;
-					default:
-						throw new NotImplementedException();
-				}
-			}
-			set
-			{
-				name = value;
-
-				if (Type == OperationType.Creation)
-					Category.Name = value;
-			}
-		}
-
-
+		public CategoryInfo Category { get; set; }
 
 		internal CoreError CreateEdit()
 		{
@@ -64,7 +34,7 @@ namespace DFM.MVC.Models
 				if (Type == OperationType.Creation)
 					admin.CreateCategory(Category);
 				else
-					admin.UpdateCategory(Category, Name);
+					admin.UpdateCategory(Category);
 			}
 			catch (CoreError e)
 			{

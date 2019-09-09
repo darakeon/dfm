@@ -3,6 +3,7 @@ using System.Linq;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Language;
 using DFM.Tests.BusinessLogic.Helpers;
@@ -51,13 +52,17 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"I have an account")]
 		public void GivenIHaveAnAccount()
 		{
-			Account = GetOrCreateAccount(MAIN_ACCOUNT_URL);
+			Account = AccountInfo.Convert(
+				GetOrCreateAccount(MAIN_ACCOUNT_URL)
+			);
 		}
 
 		[Given(@"I have a category")]
 		public void GivenIHaveACategory()
 		{
-			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
+			Category = CategoryInfo.Convert(
+				GetOrCreateCategory(MAIN_CATEGORY_NAME)
+			);
 		}
 
 		[Given(@"I pass a valid account url")]

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DFM.BusinessLogic.InterfacesAndBases
+namespace DFM.BusinessLogic.Response
 {
-	public class ConfigOptions
+	public class ConfigInfo
 	{
 		public Boolean? UseCategories { get; set; }
 		public Boolean? SendMoveEmail { get; set; }

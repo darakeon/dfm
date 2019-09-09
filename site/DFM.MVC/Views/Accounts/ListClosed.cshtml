@@ -23,12 +23,12 @@
 
 @foreach (var account in Model.AccountList)
 {
-	if (account.EndDate != null)
+	if (account.End != null)
 	{
-		var movesSum = account.Total();
+		var movesSum = account.Total;
 		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
 		var className = movesSum < 0 ? "danger" : "info";
-		var sign = Translator.Dictionary[$"{account.Sign()}Limit"];
+		var sign = Translator.Dictionary[$"{account.Sign}Limit"];
 
 		//var reopenLabel = Translator.Dictionary["Reopen", "Account"];
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
@@ -42,25 +42,25 @@
 						accountUrl = account.Url,
 						controller = "Reports",
 						action = "ShowMoves",
-						id = account.EndDate.ToMonthYear()
+						id = account.End.ToMonthYear()
 					})
 			</td>
 
 			<td class="col-sm-2 text-center">
-				@account.BeginDate.ToShortDateString()
+				@account.Start.ToShortDateString()
 			</td>
 			<td class="col-sm-2 text-center">
-				@account.EndDate.ToShortDateString()
+				@account.End.ToShortDateString()
 			</td>
 
 			<td class="col-sm-1"></td>
 			<td class="col-sm-2 text-right">
-				<span class="@Html.Partial("AccountSign", account.Sign()) pull-left"
+				<span class="@Html.Partial("AccountSign", account.Sign) pull-left"
 					  data-toggle="tooltip" data-placement="bottom" title="@sign"
 					  data-original-title="@sign"></span>
 
 				@Html.Partial("ValueWithSign",
-					new ValueWithSign(account.Total(), Model.Language))
+					new ValueWithSign(account.Total, Model.Language))
 			<td class="col-sm-1"></td>
 
 			@*

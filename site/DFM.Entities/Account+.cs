@@ -50,11 +50,6 @@ namespace DFM.Entities
 				);
 		}
 
-		public virtual Boolean AuthorizeCRUD(User user)
-		{
-			return User == user;
-		}
-
 		public virtual AccountSign Sign()
 		{
 			var hasRed = RedLimit != null;

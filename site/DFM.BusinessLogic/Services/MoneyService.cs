@@ -1,8 +1,8 @@
 ﻿using System;
 using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
+using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -115,13 +115,13 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.Category == null && useCategories)
 			{
-				var mainConfig = new ConfigOptions { UseCategories = false };
+				var mainConfig = new ConfigInfo { UseCategories = false };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
 			if (schedule.Category != null && !useCategories)
 			{
-				var mainConfig = new ConfigOptions { UseCategories = true };
+				var mainConfig = new ConfigInfo { UseCategories = true };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
@@ -129,7 +129,7 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.User.Config.UseCategories != useCategories)
 			{
-				var mainConfig = new ConfigOptions { UseCategories = useCategories };
+				var mainConfig = new ConfigInfo { UseCategories = useCategories };
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 		}

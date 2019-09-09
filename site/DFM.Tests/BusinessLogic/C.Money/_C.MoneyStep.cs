@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -236,7 +237,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[When(@"I change the category of the move")]
 		public void GivenIChangeTheCategoryOfTheMove()
 		{
-			Category = GetOrCreateCategory(newCategoryName);
+			Category = CategoryInfo.Convert(
+				GetOrCreateCategory(newCategoryName)
+			);
 			CategoryName = newCategoryName;
 		}
 
@@ -463,7 +466,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
-
 			var account = GetOrCreateAccount(AccountIn.Name);
 
 			var summary = account
@@ -796,7 +798,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			if (accountOutUrl != null)
 			{
-				AccountOut = Service.Admin.GetAccountByUrl(accountOutUrl);
+				AccountOut = accountRepository.GetByUrl(accountOutUrl, Current.User);
 
 				var year = AccountOut[Move.Date.Year, true];
 				var month = year[Move.Date.Month, true];
@@ -810,7 +812,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			if (accountInUrl != null)
 			{
-				AccountIn = Service.Admin.GetAccountByUrl(accountInUrl);
+				AccountIn = accountRepository.GetByUrl(accountInUrl, Current.User);
 
 				var year = AccountIn[Move.Date.Year, true];
 				var month = year[Move.Date.Month, true];
@@ -826,7 +828,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 
 		[Given(@"I pass an id of Move that doesn't exist")]
-		public void GivenIPassAnIdOfMoveThatDoesnTExist()
+		public void GivenIPassAnIdOfMoveThatDoesNotExist()
 		{
 			id = 0;
 		}
@@ -837,12 +839,5 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			id = Move.ID;
 		}
 		#endregion
-
-
-
-
-
-
-
 	}
 }

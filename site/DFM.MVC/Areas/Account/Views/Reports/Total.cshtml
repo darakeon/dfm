@@ -5,6 +5,6 @@
 <div class="well well-sm text-center">
 	<h6>@Translator.Dictionary["Total"]</h6>
 	@Html.Partial("ValueWithSign",
-		new ValueWithSign(Model.Account.Total(), Model.Language)
+		new ValueWithSign(Model.Total, Model.Language)
 	)
 </div>

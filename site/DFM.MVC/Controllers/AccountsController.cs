@@ -59,8 +59,6 @@ namespace DFM.MVC.Controllers
 		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Edit(String id, AccountsCreateEditModel model)
 		{
-			model.ResetAccountUrl(OperationType.Edition, id);
-
 			return createEdit(model);
 		}
 

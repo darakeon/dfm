@@ -7,15 +7,17 @@
 
 	if (Model.Type == OperationType.Edition)
 	{
-		ViewBag.Title += " [" + Model.Name + "]";
+		ViewBag.Title += $" [{Model.Category.OriginalName}]";
 	}
 
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
+@Html.HiddenFor(m => m.Category.OriginalName)
+
 <div class="form-group">
-	@Html.LabelFor(m => m.Name, Translator.Dictionary["Category"], new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Name, new { maxlength = MaxLen.Category_Name, @class = "form-control" })
+	@Html.LabelFor(m => m.Category.Name, Translator.Dictionary["Category"], new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaxLen.Category_Name, @class = "form-control" })
 	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Category_Name)</small>
 </div>
 

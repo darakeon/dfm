@@ -84,7 +84,7 @@ namespace DFM.Language
 
 		public static Boolean AcceptLanguage(String chosenLanguage)
 		{
-			return acceptedLanguages.Contains(chosenLanguage.ToLower());
+			return acceptedLanguages.Contains(chosenLanguage?.ToLower());
 		}
 
 		public static IList<String> AcceptedLanguage()

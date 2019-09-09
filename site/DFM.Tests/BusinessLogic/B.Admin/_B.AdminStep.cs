@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Language;
@@ -17,68 +17,43 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 	public class AdminStep : BaseStep
 	{
 		#region Variables
-		private static Account oldAccount
+		private static AccountInfo oldAccount
 		{
-			get { return Get<Account>("oldAccount"); }
-			set { Set("oldAccount", value); }
-		}
-
-		private static String oldAccountUrl
-		{
-			get { return Get<String>("oldAccountUrl"); }
-			set { Set("oldAccountUrl", value); }
-		}
-
-		private static String newAccountUrl
-		{
-			get { return Get<String>("newAccountUrl"); }
-			set { Set("newAccountUrl", value); }
+			get => Get<AccountInfo>("oldAccount");
+			set => Set("oldAccount", value);
 		}
 
 		private static Decimal accountTotal
 		{
-			get { return Get<Decimal>("accountTotal"); }
-			set { Set("accountTotal", value); }
+			get => Get<Decimal>("accountTotal");
+			set => Set("accountTotal", value);
 		}
 
-		private static IList<Account> accountList
+		private static IList<AccountListItem> accountList
 		{
-			get { return Get<IList<Account>>("accountList"); }
-			set { Set("accountList", value); }
+			get => Get<IList<AccountListItem>>("accountList");
+			set => Set("accountList", value);
 		}
 
-		private static IList<Category> categoryList
+		private static IList<CategoryListItem> categoryList
 		{
-			get { return Get<IList<Category>>("categoryList"); }
-			set { Set("categoryList", value); }
+			get => Get<IList<CategoryListItem>>("categoryList");
+			set => Set("categoryList", value);
 		}
 
 
 
-		private static Category oldCategory
+		private static CategoryInfo oldCategory
 		{
-			get { return Get<Category>("oldCategory"); }
-			set { Set("oldCategory", value); }
+			get => Get<CategoryInfo>("oldCategory");
+			set => Set("oldCategory", value);
 		}
-
-		private static String oldCategoryName
-		{
-			get { return Get<String>("oldCategoryName"); }
-			set { Set("oldCategoryName", value); }
-		}
-
-		private static String newCategoryName
-		{
-			get { return Get<String>("newCategoryName"); }
-			set { Set("newCategoryName", value); }
-		}
-
 
 
 		private static BootstrapTheme theme
 		{
-			get { return Get<BootstrapTheme>("theme"); }
-			set { Set("theme", value); }
+			get => Get<BootstrapTheme>("theme");
+			set => Set("theme", value);
 		}
 
 		#endregion
@@ -91,13 +66,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var accountData = table.Rows[0];
 
-			Account = new Account
+			Account = new AccountInfo
 			{
 				Name = accountData["Name"],
 				Url = accountData["Url"],
 				RedLimit = GetInt(accountData["Red"]),
 				YellowLimit = GetInt(accountData["Yellow"]),
-				User = User
 			};
 		}
 
@@ -106,14 +80,17 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var accountData = table.Rows[0];
 
-			oldAccount = new Account
+			oldAccount = new AccountInfo
 			{
 				Name = accountData["Name"],
 				Url = accountData["Url"],
-				RedLimit = GetInt(accountData["Red"]),
-				YellowLimit = GetInt(accountData["Yellow"]),
-				User = User
 			};
+
+			if (accountData.ContainsKey("Red"))
+				oldAccount.RedLimit = GetInt(accountData["Red"]);
+
+			if (accountData.ContainsKey("Yellow"))
+				oldAccount.YellowLimit = GetInt(accountData["Yellow"]);
 
 			Service.Admin.CreateAccount(oldAccount);
 		}
@@ -137,7 +114,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			var account = Service.Admin.GetAccountByUrl(oldAccount.Url);
 
 			Assert.AreEqual(oldAccount.Name, account.Name);
-			Assert.AreEqual(oldAccount.Url, account.Url);
+			Assert.AreEqual(oldAccount.Url.ToLower(), account.Url);
 			Assert.AreEqual(oldAccount.RedLimit, account.RedLimit);
 			Assert.AreEqual(oldAccount.YellowLimit, account.YellowLimit);
 		}
@@ -174,7 +151,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		#region GetAccountByUrl
 		[Given(@"I pass an url of account that doesn't exist")]
-		public void GivenIPassAUrlOfAccountThatDoesnTExist()
+		public void GivenIPassAUrlOfAccountThatDoesNotExist()
 		{
 			AccountUrl = "Invalid_account_url";
 		}
@@ -201,12 +178,10 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var accountData = table.Rows[0];
 
-			oldAccountUrl = accountData["Url"];
-
-			Account = new Account
+			Account = new AccountInfo
 			{
 				Name = accountData["Name"],
-				Url = oldAccountUrl,
+				Url = accountData["Url"],
 			};
 
 			Service.Admin.CreateAccount(Account);
@@ -233,7 +208,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, null);
 
-			accountTotal = Account.Total();
+			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			accountTotal = account.Total();
 		}
 
 		[When(@"I make this changes to the account")]
@@ -241,8 +217,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var accountData = table.Rows[0];
 
-			newAccountUrl = accountData["Url"];
-			Account.Name = accountData["Name"];
+			Account = new AccountInfo
+			{
+				OriginalUrl = (Account ?? oldAccount).Url,
+				Url = accountData["Url"],
+				Name = accountData["Name"],
+			};
 		}
 
 		[When(@"I try to update the account")]
@@ -250,7 +230,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				Service.Admin.UpdateAccount(Account, newAccountUrl);
+				Service.Admin.UpdateAccount(Account);
 			}
 			catch (CoreError e)
 			{
@@ -261,14 +241,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will be changed")]
 		public void ThenTheAccountWillBeChanged()
 		{
-			Account account = null;
+			AccountInfo account = null;
 			Error = null;
 
-			if (Account.Url != oldAccountUrl)
+			if (Account.Url != Account.OriginalUrl)
 			{
 				try
 				{
-					account = Service.Admin.GetAccountByUrl(oldAccountUrl);
+					account = Service.Admin.GetAccountByUrl(Account.OriginalUrl);
 				}
 				catch (CoreError e)
 				{
@@ -284,7 +264,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				account = Service.Admin.GetAccountByUrl(newAccountUrl);
+				account = Service.Admin.GetAccountByUrl(Account.Url);
 			}
 			catch (CoreError e)
 			{
@@ -300,7 +280,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account value will not change")]
 		public void TheAccountValueWillNotChange()
 		{
-			Assert.AreEqual(accountTotal, Account.Total());
+			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			Assert.AreEqual(accountTotal, account.Total());
 		}
 		#endregion
 
@@ -327,14 +308,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be closed")]
 		public void ThenTheAccountWillNotBeClosed()
 		{
-			var account = Service.Admin.GetAccountByUrl(AccountUrl);
+			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
 			Assert.IsTrue(account.IsOpen());
 		}
 
 		[Then(@"the account will be closed")]
 		public void ThenTheAccountWillBeClosed()
 		{
-			var account = Service.Admin.GetAccountByUrl(AccountUrl);
+			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
 			Assert.IsFalse(account.IsOpen());
 		}
 		#endregion
@@ -349,7 +330,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I delete the moves of ([\w ]+)")]
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
-			var account = Service.Admin.GetAccountByUrl(givenAccountUrl);
+			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
 
 			foreach (var year in account.YearList)
 			{
@@ -474,10 +455,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var categoryData = table.Rows[0];
 
-			Category = new Category
+			Category = new CategoryInfo
 			{
 				Name = categoryData["Name"],
-				User = User
 			};
 		}
 
@@ -486,10 +466,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var categoryData = table.Rows[0];
 
-			oldCategory = new Category
+			oldCategory = new CategoryInfo
 			{
 				Name = categoryData["Name"],
-				User = User
 			};
 
 			Service.Admin.CreateCategory(oldCategory);
@@ -566,12 +545,9 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var categoryData = table.Rows[0];
 
-			oldCategoryName = categoryData["Name"];
-
-			Category = new Category
+			Category = new CategoryInfo
 			{
-				Name = oldCategoryName,
-				User = User
+				Name = categoryData["Name"],
 			};
 
 			Service.Admin.CreateCategory(Category);
@@ -582,7 +558,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			var categoryData = table.Rows[0];
 
-			newCategoryName = categoryData["Name"];
+			Category.OriginalName = Category.Name;
+			Category.Name = categoryData["Name"];
 		}
 
 		[When(@"I try to update the category")]
@@ -590,7 +567,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				Service.Admin.UpdateCategory(Category, newCategoryName);
+				Service.Admin.UpdateCategory(Category);
 			}
 			catch (CoreError e)
 			{
@@ -601,12 +578,12 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will (not )?be changed")]
 		public void ThenTheCategoryWillBeChanged(Boolean changed)
 		{
-			Category = null;
+			CategoryInfo category = null;
 			Error = null;
 
 			try
 			{
-				Category = Service.Admin.GetCategoryByName(oldCategoryName);
+				category = Service.Admin.GetCategoryByName(Category.OriginalName);
 			}
 			catch (CoreError e)
 			{
@@ -615,28 +592,27 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			if (!changed)
 			{
-				Assert.IsNotNull(Category);
+				Assert.IsNotNull(category);
 				Assert.IsNull(Error);
 				return;
 			}
 
-			Assert.IsNull(Category);
+			Assert.IsNull(category);
 			Assert.IsNotNull(Error);
 			Assert.AreEqual(Error.Type, error.InvalidCategory);
 
-			Category = null;
 			Error = null;
 
 			try
 			{
-				Category = Service.Admin.GetCategoryByName(newCategoryName);
+				category = Service.Admin.GetCategoryByName(Category.Name);
 			}
 			catch (CoreError e)
 			{
 				Error = e;
 			}
 
-			Assert.IsNotNull(Category);
+			Assert.IsNotNull(category);
 			Assert.IsNull(Error);
 		}
 		#endregion
@@ -646,7 +622,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		public void GivenIGiveAnEnabledCategory(String givenCategoryName)
 		{
 			Service.Admin.CreateCategory(
-				new Category { Name = givenCategoryName, User = User });
+				new CategoryInfo
+				{
+					Name = givenCategoryName
+				}
+			);
 
 			Category = Service.Admin.GetCategoryByName(givenCategoryName);
 
@@ -675,9 +655,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be disabled")]
 		public void ThenTheCategoryWillBeDisabled()
 		{
-			Category = Service.Admin.GetCategoryByName(CategoryName);
-
-			Assert.IsFalse(Category.Active);
+			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			Assert.IsFalse(category.Active);
 		}
 		#endregion
 
@@ -686,7 +665,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		public void GivenIGiveADisabledCategory(String givenCategoryName)
 		{
 			Service.Admin.CreateCategory(
-				new Category { Name = givenCategoryName, User = User });
+				new CategoryInfo
+				{
+					Name = givenCategoryName
+				}
+			);
 
 			Category = Service.Admin.GetCategoryByName(givenCategoryName);
 
@@ -717,9 +700,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be enabled")]
 		public void ThenTheCategoryWillBeEnabled()
 		{
-			Category = Service.Admin.GetCategoryByName(CategoryName);
-
-			Assert.IsTrue(Category.Active);
+			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			Assert.IsTrue(category.Active);
 		}
 		#endregion
 
@@ -801,7 +783,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { UseCategories = false };
+				var mainConfig = new ConfigInfo { UseCategories = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -816,7 +798,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { UseCategories = true };
+				var mainConfig = new ConfigInfo { UseCategories = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -831,7 +813,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { MoveCheck = false };
+				var mainConfig = new ConfigInfo { MoveCheck = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -846,7 +828,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { MoveCheck = true };
+				var mainConfig = new ConfigInfo { MoveCheck = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -861,7 +843,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { Wizard = false };
+				var mainConfig = new ConfigInfo { Wizard = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -876,7 +858,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { Wizard = true };
+				var mainConfig = new ConfigInfo { Wizard = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -890,7 +872,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { Language = language };
+				var mainConfig = new ConfigInfo { Language = language };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -914,7 +896,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { TimeZone = timezone };
+				var mainConfig = new ConfigInfo { TimeZone = timezone };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -929,7 +911,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { SendMoveEmail = false };
+				var mainConfig = new ConfigInfo { SendMoveEmail = false };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -944,7 +926,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			try
 			{
-				var mainConfig = new ConfigOptions { SendMoveEmail = true };
+				var mainConfig = new ConfigInfo { SendMoveEmail = true };
 				Service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
@@ -986,13 +968,13 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 		#region MoreThanOne
 		[Given(@"I pass a url of account that doesn't exist")]
-		public void GivenIPassAnNameOfAccountThatDoesnTExist()
+		public void GivenIPassAnNameOfAccountThatDoesNotExist()
 		{
-			AccountUrl = "account_that_doesnt_exist";
+			AccountUrl = "account_that_does_not_exist";
 		}
 
 		[Given(@"I pass a name of category that doesn't exist")]
-		public void GivenIPassAnNameOfCategoryThatDoesnTExist()
+		public void GivenIPassAnNameOfCategoryThatDoesNotExist()
 		{
 			CategoryName = "Invalid category";
 		}
@@ -1000,7 +982,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I give a url of the account ([\w ]+) without moves")]
 		public void GivenIGiveAnNameOfAnAccountWithoutMoves(String givenAccountUrl)
 		{
-			Account = new Account
+			Account = new AccountInfo
 			{
 				Name = givenAccountUrl,
 				Url = givenAccountUrl,
@@ -1014,7 +996,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I give a url of the account ([\w ]+) with moves")]
 		public void GivenIGiveAnIdOfAnAccountWithMoves(String givenAccountUrl)
 		{
-			Account = new Account
+			Account = new AccountInfo
 			{
 				Name = givenAccountUrl,
 				Url = givenAccountUrl,

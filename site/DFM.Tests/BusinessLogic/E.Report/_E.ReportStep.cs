@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using NUnit.Framework;
@@ -68,12 +69,14 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its moves sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
 		{
-			var expected = Account[year][month]
+			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+
+			var expected = account[year][month]
 				.SummaryList.Sum(s => s.Value());
 
 			var actual = monthReport.Sum(m =>
 					m.AccOut() != null
-							&& m.AccOut().ID == Account.ID
+							&& m.AccOut().ID == account.ID
 						? - m.Total()
 						: m.Total()
 				);
@@ -117,7 +120,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its months sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
-			var expected = Account[year].SummaryList.Sum(s => s.Value());
+			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			var expected = account[year].SummaryList.Sum(s => s.Value());
 
 			//TODO: Temporary code - the access to move will be refactored
 			yearReport = Service.Report.GetYearReport(AccountUrl, year);
@@ -136,7 +140,9 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
 		{
-			Category = GetOrCreateCategory(MAIN_CATEGORY_NAME);
+			Category = CategoryInfo.Convert(
+				GetOrCreateCategory(MAIN_CATEGORY_NAME)
+			);
 
 			foreach (var row in table.Rows)
 			{

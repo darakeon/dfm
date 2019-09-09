@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Areas.API.Jsons;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Areas.API.Models
 {
@@ -11,11 +11,9 @@ namespace DFM.MVC.Areas.API.Models
 			AccountList =
 				admin.GetAccountList(true)
 					.OrderBy(a => a.Name)
-					.Select(a => new AccountJson(a))
 					.ToList();
 		}
 
-		public IList<AccountJson> AccountList { get; private set; }
-
+		public IList<AccountListItem> AccountList { get; private set; }
 	}
 }

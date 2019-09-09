@@ -9,7 +9,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class CategoryRepository : BaseRepositoryLong<Category>
 	{
-		internal Category SaveOrUpdate(Category category)
+		internal Category Save(Category category)
 		{
 			return SaveOrUpdate(category, complete, validate);
 		}
@@ -62,23 +62,18 @@ namespace DFM.BusinessLogic.Repositories
 
 
 
-		internal void Disable(String name, User user)
+		internal void Disable(Category category)
 		{
-			alterActive(name, user, false);
+			alterActive(category, false);
 		}
 
-		internal void Enable(String name, User user)
+		internal void Enable(Category category)
 		{
-			alterActive(name, user, true);
+			alterActive(category, true);
 		}
 
-		private void alterActive(String name, User user, Boolean enable)
+		private void alterActive(Category category, Boolean enable)
 		{
-			var category = GetByName(name, user);
-
-			if (category == null)
-				throw Error.InvalidCategory.Throw();
-
 			if (category.Active == enable)
 			{
 				var error = category.Active
@@ -89,10 +84,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			category.Active = enable;
-			SaveOrUpdate(category);
+			Save(category);
 		}
-
-
-
 	}
 }

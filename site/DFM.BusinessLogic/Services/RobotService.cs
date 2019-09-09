@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
+using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -58,13 +57,13 @@ namespace DFM.BusinessLogic.Services
 
 			try
 			{
-				var mainConfig = new ConfigOptions { UseCategories = !useCategories };
+				var mainConfig = new ConfigInfo { UseCategories = !useCategories };
 				Parent.Admin.UpdateConfig(mainConfig);
 				emailsSent = runSchedule(diffConfigList);
 			}
 			finally
 			{
-				var mainConfig = new ConfigOptions { UseCategories = useCategories };
+				var mainConfig = new ConfigInfo { UseCategories = useCategories };
 				Parent.Admin.UpdateConfig(mainConfig);
 			}
 

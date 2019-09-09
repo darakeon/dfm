@@ -36,16 +36,14 @@ namespace DFM.BusinessLogic
 			Current = new Current(Safe, getTicket);
 		}
 
+		internal BaseMoveSaverService BaseMove { get; }
 
-		internal BaseMoveSaverService BaseMove { get; private set; }
-
-		public MoneyService Money { get; private set; }
-		public ReportService Report { get; private set; }
+		public MoneyService Money { get; }
+		public ReportService Report { get; }
 		public SafeService Safe { get; }
-		public AdminService Admin { get; private set; }
-		public RobotService Robot { get; private set; }
+		public AdminService Admin { get; }
+		public RobotService Robot { get; }
 
-		public Current Current { get; private set; }
-
+		public Current Current { get; }
 	}
 }

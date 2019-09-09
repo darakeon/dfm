@@ -30,10 +30,14 @@ namespace DFM.MVC.Areas.API.Models
 				.OrderByDescending(m => m.Number)
 				.ToList();
 
-			var account = admin.GetAccountByUrl(accountUrl);
+			var account =
+				admin.GetAccountList(true)
+					.SingleOrDefault(a => a.Url == accountUrl)
+				?? admin.GetAccountList(false)
+					.Single(a => a.Url == accountUrl);
 
 			Name = account.Name;
-			Total = account.Total();
+			Total = account.Total;
 		}
 
 		public IList<SimpleMonthJson> MonthList { get; }

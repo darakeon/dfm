@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 
 namespace DFM.MVC.Models
@@ -10,6 +11,6 @@ namespace DFM.MVC.Models
 			CategoryList = admin.GetCategoryList();
 		}
 
-		public IList<Category> CategoryList;
+		public IList<CategoryListItem> CategoryList;
 	}
 }

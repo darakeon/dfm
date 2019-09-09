@@ -77,7 +77,7 @@
     <Compile Include="Helpers\ThemeExtension.cs" />
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="InterfacesAndBases\IPasswordForm.cs" />
-    <Compile Include="InterfacesAndBases\ConfigOptions.cs" />
+    <Compile Include="Response\ConfigInfo.cs" />
     <Compile Include="Repositories\AcceptanceRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -98,6 +98,10 @@
     <Compile Include="Repositories\Mappings\TicketMap.cs" />
     <Compile Include="Repositories\Mappings\UserMap.cs" />
     <Compile Include="Repositories\Mappings\YearMap.cs" />
+    <Compile Include="Response\CategoryInfo.cs" />
+    <Compile Include="Response\AccountInfo.cs" />
+    <Compile Include="Response\CategoryListItem.cs" />
+    <Compile Include="Response\AccountListItem.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />
     <Compile Include="Repositories\MonthRepository.cs" />

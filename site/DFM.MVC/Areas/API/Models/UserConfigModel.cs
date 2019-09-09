@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.BusinessLogic.InterfacesAndBases;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Areas.API.Models
 {
@@ -16,7 +16,7 @@ namespace DFM.MVC.Areas.API.Models
 
 		internal void Save()
 		{
-			var mainConfig = new ConfigOptions
+			var mainConfig = new ConfigInfo
 			{
 				UseCategories = UseCategories,
 				MoveCheck = MoveCheck

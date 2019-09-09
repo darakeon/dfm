@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 
 namespace DFM.MVC.Models
@@ -11,6 +12,6 @@ namespace DFM.MVC.Models
 			AccountList = admin.GetAccountList(open);
 		}
 
-		public IList<Account> AccountList { get; set; }
+		public IList<AccountListItem> AccountList { get; set; }
 	}
 }
