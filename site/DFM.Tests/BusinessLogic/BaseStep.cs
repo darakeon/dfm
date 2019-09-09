@@ -11,6 +11,8 @@ using DFM.Entities.Enums;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
+using DFM.BusinessLogic.Repositories;
+using DFM.BusinessLogic.Response;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
 using error = DFM.BusinessLogic.Exceptions.Error;
@@ -21,6 +23,9 @@ namespace DFM.Tests.BusinessLogic
 	{
 		protected static ServiceAccess Service;
 		protected static Current Current => Service.Current;
+
+		private protected static AccountRepository accountRepository;
+		private protected static CategoryRepository categoryRepository;
 
 		private static String logFileName;
 
@@ -39,6 +44,9 @@ namespace DFM.Tests.BusinessLogic
 				Directory.CreateDirectory(path);
 
 			logFileName = Path.Combine(path, $"tests_{date}.log");
+			accountRepository = new AccountRepository();
+			categoryRepository = new CategoryRepository();
+
 		}
 
 		protected static void log(String text)
@@ -117,41 +125,33 @@ namespace DFM.Tests.BusinessLogic
 
 		protected Account GetOrCreateAccount(String accountUrl)
 		{
-			try
-			{
-				return Service.Admin.GetAccountByUrl(accountUrl);
-			}
-			catch (CoreError e)
-			{
-				if (e.Type != error.InvalidAccount)
-					throw;
+			var account = accountRepository.GetByUrl(accountUrl, Current.User);
+			if (account != null) return account;
 
-				Service.Admin.CreateAccount(
-					new Account
-						{
-							Name = accountUrl,
-							Url = accountUrl,
-							User = User
-						});
+			Service.Admin.CreateAccount(
+				new AccountInfo
+				{
+					Name = accountUrl,
+					Url = accountUrl,
+				}
+			);
 
-				return Service.Admin.GetAccountByUrl(accountUrl);
-			}
+			return accountRepository.GetByUrl(accountUrl, Current.User);
 		}
 
 		protected Category GetOrCreateCategory(String categoryName)
 		{
-			try
-			{
-				return Service.Admin.GetCategoryByName(categoryName);
-			}
-			catch (CoreError e)
-			{
-				if (e.Type != error.InvalidCategory)
-					throw;
+			var category = categoryRepository.GetByName(categoryName, Current.User);
+			if (category != null) return category;
 
-				Service.Admin.CreateCategory(new Category { Name = categoryName, User = User });
-				return Service.Admin.GetCategoryByName(categoryName);
-			}
+			Service.Admin.CreateCategory(
+				new CategoryInfo
+				{
+					Name = categoryName
+				}
+			);
+
+			return categoryRepository.GetByName(categoryName, Current.User);
 		}
 
 		protected User GetSavedUser(String email, String password)
@@ -205,15 +205,15 @@ namespace DFM.Tests.BusinessLogic
 			set => Set("user", value);
 		}
 
-		protected static Account Account
+		protected static AccountInfo Account
 		{
-			get => Get<Account>("Account");
+			get => Get<AccountInfo>("Account");
 			set => Set("Account", value);
 		}
 
-		protected static Category Category
+		protected static CategoryInfo Category
 		{
-			get => Get<Category>("Category");
+			get => Get<CategoryInfo>("Category");
 			set => Set("Category", value);
 		}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using NUnit.Framework;
@@ -62,7 +63,10 @@ namespace DFM.Tests.BusinessLogic
 		{
 			CategoryName = "disabled";
 
-			var moveCategory = new Category { Name = "disabled", User = User };
+			var moveCategory = new CategoryInfo
+			{
+				Name = "disabled"
+			};
 
 			Service.Admin.CreateCategory(moveCategory);
 			Service.Admin.DisableCategory(moveCategory.Name);
@@ -102,13 +106,16 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"it has a closed Account Out")]
 		public void GivenItHasAClosedAccountOut()
 		{
-			AccountOut = new Account
+			var url = MakeUrlFromName("closed out");
+
+			var account = new AccountInfo
 			{
 				Name = "closed out",
-				Url = MakeUrlFromName("closed out"),
+				Url = url,
 			};
 
-			Service.Admin.CreateAccount(AccountOut);
+			Service.Admin.CreateAccount(account);
+			AccountOut = accountRepository.GetByUrl(url, Current.User);
 
 			var move = new Move
 			{
@@ -157,13 +164,17 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"it has a closed Account In")]
 		public void GivenItHasAClosedAccountIn()
 		{
-			AccountIn = new Account
+			var url = MakeUrlFromName("closed in");
+
+			var account = new AccountInfo
 			{
 				Name = "closed in",
-				Url = MakeUrlFromName("closed in"),
+				Url = url,
 			};
+			 
+			Service.Admin.CreateAccount(account);
 
-			Service.Admin.CreateAccount(AccountIn);
+			AccountIn = accountRepository.GetByUrl(url, Current.User);
 
 			var move = new Move
 			{

@@ -32,6 +32,10 @@ namespace DFM.Generic
 				.ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
 		}
 
-
+		public static Boolean IsValid(String timezone)
+		{
+			return timezone == null
+			    || TimeZoneList().ContainsKey(timezone);
+		}
 	}
 }

@@ -5,19 +5,18 @@ using System.Linq;
 using System.Web.Mvc;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 using DFM.MVC.Helpers.Global;
-using account = DFM.Entities.Account;
 
 namespace DFM.MVC.Areas.Account.Models
 {
 	public abstract class BaseMovesModel : BaseAccountModel
 	{
-		private readonly IList<account> accountList;
+		private readonly IList<AccountListItem> accountList;
 
 
 		private BaseMovesModel()
@@ -115,7 +114,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 		protected internal IMove GenericMove { get; set; }
 
-		public const Int32 DETAIL_COUNT = 100;
+		public const Int32 DetailCount = 100;
 
 		private IList<DetailUI> detailList;
 
@@ -135,7 +134,7 @@ namespace DFM.MVC.Areas.Account.Models
 						detailList.Add(new DetailUI(new Detail()));
 					}
 
-					for (var d = detailList.Count; d < DETAIL_COUNT; d++)
+					for (var d = detailList.Count; d < DetailCount; d++)
 					{
 						detailList.Add(new DetailUI());
 					}

@@ -29,8 +29,8 @@
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
 
-	var beginDate = new YearUnit(Model.Account.BeginDate);
-	var endDate = new YearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
+	var beginDate = new YearUnit(Model.Account.Start);
+	var endDate = new YearUnit(Model.Account.End ?? Service.Current.User.Now());
 	var current = new YearUnit(Model.Year.Time);
 
 	var pages = new Pages<YearUnit>(beginDate, endDate, current, 5);

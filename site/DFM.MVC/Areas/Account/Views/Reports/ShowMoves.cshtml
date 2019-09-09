@@ -17,8 +17,8 @@
 	ViewBag.HasContent = Model.MoveList.Any();
 	ViewBag.NoContentText = Translator.Dictionary["NoMonthMoves"];
 
-	var beginDate = new MonthYearUnit(Model.Account.BeginDate);
-	var endDate = new MonthYearUnit(Model.Account.EndDate ?? Service.Current.User.Now());
+	var beginDate = new MonthYearUnit(Model.Account.Start);
+	var endDate = new MonthYearUnit(Model.Account.End ?? Service.Current.User.Now());
 	var current = new MonthYearUnit(Model.Year, Model.Month);
 
 	var pages = new Pages<MonthYearUnit>(beginDate, endDate, current, 5);

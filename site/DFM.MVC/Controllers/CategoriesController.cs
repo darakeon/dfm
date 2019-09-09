@@ -50,8 +50,6 @@ namespace DFM.MVC.Controllers
 		public ActionResult Edit(String id, CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Edition;
-			model.Category.Name = id;
-
 			return createEditForHtmlForm(model);
 		}
 

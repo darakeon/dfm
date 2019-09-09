@@ -15,7 +15,7 @@ Scenario: Bc01. Change the name
 	Then I will receive no core error
 		And the account will be changed
 
-Scenario: Bc02. Change the name when there is moves
+Scenario: Bc02. Change the name when there are moves
 	Given I have this account
 			| Name         | Url          | Yellow | Red |
 			| Account Bc02 | account_bc02 |        |     |
@@ -60,3 +60,31 @@ Scenario: Bc05. Change the url of another user account
 			| Account Bc05 | account_bc05_url |        |     |
 		And I try to update the account
 	Then I will receive this core error: InvalidAccount
+
+Scenario: Bc06. Change the name to repeated
+	Given I already have this account
+			| Name           | Url            |
+			| Account Bc06.1 | account_bc06_1 |
+		And I already have this account
+			| Name           | Url            |
+			| Account Bc06.2 | account_bc06_2 |
+	When I make this changes to the account
+			| Name           | Url            |
+			| Account Bc06.1 | account_bc06_2 |
+		And I try to update the account
+	Then I will receive this core error: AccountNameAlreadyExists
+		And the account will not be changed
+
+Scenario: Bc07. Change the url to repeated
+	Given I already have this account
+			| Name           | Url            |
+			| Account Bc07.1 | account_bc07_1 |
+		And I already have this account
+			| Name           | Url            |
+			| Account Bc07.2 | account_bc07_2 |
+	When I make this changes to the account
+			| Name           | Url            |
+			| Account Bc07.2 | account_bc07_1 |
+		And I try to update the account
+	Then I will receive this core error: AccountUrlAlreadyExists
+		And the account will not be changed

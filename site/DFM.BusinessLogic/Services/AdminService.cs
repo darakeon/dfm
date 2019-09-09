@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Repositories;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -37,7 +38,7 @@ namespace DFM.BusinessLogic.Services
 
 
 		#region Account
-		public IList<Account> GetAccountList(Boolean open)
+		public IList<AccountListItem> GetAccountList(Boolean open)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -50,18 +51,20 @@ namespace DFM.BusinessLogic.Services
 			else
 				query.SimpleFilter(a => a.EndDate != null);
 
-			return query.OrderBy(a => a.Name).Result;
+			return query.OrderBy(a => a.Name).Result
+				.Select(AccountListItem.Convert).ToList();
 		}
 
-		public Account GetAccountByUrl(String url)
+		public AccountInfo GetAccountByUrl(String url)
 		{
 			Parent.Safe.VerifyUser();
-			return GetAccountByUrlInternal(url);
+			var account = GetAccountByUrlInternal(url);
+			return AccountInfo.Convert(account);
 		}
 
 		internal Account GetAccountByUrlInternal(String url)
 		{
-			var account = accountRepository.GetByUrl(url, Parent.Current.User);
+			var account = getAccountByUrl(url);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
@@ -69,39 +72,35 @@ namespace DFM.BusinessLogic.Services
 			return account;
 		}
 
-		public void CreateAccount(Account account)
+		private Account getAccountByUrl(String url)
 		{
-			saveOrUpdateAccount(account, OperationType.Creation);
+			return accountRepository.GetByUrl(url, Parent.Current.User);
 		}
 
-		public void UpdateAccount(Account account, String newUrl)
+		public void CreateAccount(AccountInfo info)
 		{
-			saveOrUpdateAccount(account, OperationType.Edition, newUrl);
+			var account = new Account
+			{
+				User = Parent.Current.User
+			};
+
+			saveAccount(info, account);
 		}
 
-		private void saveOrUpdateAccount(Account account, OperationType opType, String newUrl = null)
+		public void UpdateAccount(AccountInfo info)
+		{
+			var account = GetAccountByUrlInternal(info.OriginalUrl);
+			saveAccount(info, account);
+		}
+
+		private void saveAccount(AccountInfo info, Account account)
 		{
 			Parent.Safe.VerifyUser();
 
-			account.User = Parent.Current.User;
-
 			InTransaction(() =>
 			{
-				if (opType == OperationType.Edition)
-				{
-					var oldAccount = GetAccountByUrlInternal(account.Url);
-
-					account.ID = oldAccount.ID;
-
-					if (!String.IsNullOrEmpty(newUrl))
-						account.Url = newUrl;
-				}
-				else
-				{
-					account.ID = 0;
-				}
-
-				accountRepository.SaveOrUpdate(account);
+				info.Update(account);
+				accountRepository.Save(account);
 			});
 		}
 
@@ -111,7 +110,7 @@ namespace DFM.BusinessLogic.Services
 
 			InTransaction(() =>
 			{
-				var account = accountRepository.GetByUrl(url, Parent.Current.User);
+				var account = getAccountByUrl(url);
 
 				if (account != null)
 				{
@@ -160,7 +159,7 @@ namespace DFM.BusinessLogic.Services
 
 
 		#region Category
-		public IList<Category> GetCategoryList(Boolean? active = null)
+		public IList<CategoryListItem> GetCategoryList(Boolean? active = null)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -176,20 +175,21 @@ namespace DFM.BusinessLogic.Services
 				query.OrderBy(c => c.Active, false);
 			}
 
-			return query.OrderBy(a => a.Name).Result;
+			return query.OrderBy(a => a.Name).Result
+				.Select(CategoryListItem.Convert).ToList();
 		}
 
-		public Category GetCategoryByName(String name)
+		public CategoryInfo GetCategoryByName(String name)
 		{
 			Parent.Safe.VerifyUser();
-			return GetCategoryByNameInternal(name);
+			return CategoryInfo.Convert(
+				GetCategoryByNameInternal(name)
+			);
 		}
 
 		internal Category GetCategoryByNameInternal(String name)
 		{
-			verifyCategoriesEnabled();
-
-			var category = categoryRepository.GetByName(name, Parent.Current.User);
+			var category = getCategoryByName(name);
 
 			if (category == null)
 				throw Error.InvalidCategory.Throw();
@@ -197,39 +197,39 @@ namespace DFM.BusinessLogic.Services
 			return category;
 		}
 
-		public void CreateCategory(Category category)
+		private Category getCategoryByName(String name)
 		{
-			saveOrUpdateCategory(category, OperationType.Creation, category.Name);
+			verifyCategoriesEnabled();
+
+			return categoryRepository.GetByName(name, Parent.Current.User);
 		}
 
-		public void UpdateCategory(Category category, String newName)
+		public void CreateCategory(CategoryInfo info)
 		{
-			saveOrUpdateCategory(category, OperationType.Edition, newName);
+			var category = new Category
+			{
+				User = Parent.Current.User
+			};
+
+			saveCategory(info, category);
 		}
 
-		private void saveOrUpdateCategory(Category category, OperationType opType, String newName)
+		public void UpdateCategory(CategoryInfo info)
+		{
+			var category = GetCategoryByNameInternal(info.OriginalName);
+
+			saveCategory(info, category);
+		}
+
+		private void saveCategory(CategoryInfo info, Category category)
 		{
 			Parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			category.User = Parent.Current.User;
-
 			InTransaction(() =>
 			{
-				if (opType == OperationType.Edition)
-				{
-					var oldCategory = GetCategoryByNameInternal(category.Name);
-
-					category.ID = oldCategory.ID;
-					category.Active = oldCategory.Active;
-					category.Name = newName;
-				}
-				else
-				{
-					category.ID = 0;
-				}
-
-				categoryRepository.SaveOrUpdate(category);
+				info.Update(category);
+				categoryRepository.Save(category);
 			});
 		}
 
@@ -238,9 +238,11 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
+			var category = GetCategoryByNameInternal(name);
+
 			InTransaction(() =>
 			{
-				categoryRepository.Disable(name, Parent.Current.User);
+				categoryRepository.Disable(category);
 			});
 		}
 
@@ -249,9 +251,11 @@ namespace DFM.BusinessLogic.Services
 			Parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
+			var category = GetCategoryByNameInternal(name);
+
 			InTransaction(() =>
 			{
-				categoryRepository.Enable(name, Parent.Current.User);
+				categoryRepository.Enable(category);
 			});
 		}
 
@@ -266,57 +270,56 @@ namespace DFM.BusinessLogic.Services
 
 		#region Config
 
-		public void UpdateConfig(ConfigOptions configOptions)
+		public void UpdateConfig(ConfigInfo configInfo)
 		{
 			Parent.Safe.VerifyUser();
 
 			InTransaction(() =>
 			{
-				UpdateConfigWithinTransaction(configOptions);
+				UpdateConfigWithinTransaction(configInfo);
 			});
 		}
 
-		internal void UpdateConfigWithinTransaction(ConfigOptions configOptions)
+		internal void UpdateConfigWithinTransaction(ConfigInfo info)
 		{
 			var config = Parent.Current.User.Config;
 
-			if (!String.IsNullOrEmpty(configOptions.Language) && !PlainText.AcceptedLanguage().Contains(configOptions.Language.ToLower()))
+			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
 
-			if (!String.IsNullOrEmpty(configOptions.TimeZone) && !DateTimeGMT.TimeZoneList().ContainsKey(configOptions.TimeZone))
+			if (info.TimeZone != null && !DateTimeGMT.IsValid(info.TimeZone))
 				throw Error.TimezoneUnknown.Throw();
 
-			if (!String.IsNullOrEmpty(configOptions.Language))
-				config.Language = configOptions.Language;
+			if (!String.IsNullOrEmpty(info.Language))
+				config.Language = info.Language;
 
-			if (!String.IsNullOrEmpty(configOptions.TimeZone))
-				config.TimeZone = configOptions.TimeZone;
+			if (!String.IsNullOrEmpty(info.TimeZone))
+				config.TimeZone = info.TimeZone;
 
-			if (configOptions.SendMoveEmail.HasValue)
-				config.SendMoveEmail = configOptions.SendMoveEmail.Value;
+			if (info.SendMoveEmail.HasValue)
+				config.SendMoveEmail = info.SendMoveEmail.Value;
 
-			if (configOptions.UseCategories.HasValue)
-				config.UseCategories = configOptions.UseCategories.Value;
+			if (info.UseCategories.HasValue)
+				config.UseCategories = info.UseCategories.Value;
 
-			if (configOptions.MoveCheck.HasValue)
-				config.MoveCheck = configOptions.MoveCheck.Value;
+			if (info.MoveCheck.HasValue)
+				config.MoveCheck = info.MoveCheck.Value;
 
-			if (configOptions.Wizard.HasValue)
-				config.Wizard = configOptions.Wizard.Value;
+			if (info.Wizard.HasValue)
+				config.Wizard = info.Wizard.Value;
 
 			configRepository.Update(config);
 		}
 
 		public void EndWizard()
 		{
-			UpdateConfig(new ConfigOptions { Wizard = false });
+			UpdateConfig(new ConfigInfo { Wizard = false });
 		}
 		#endregion Config
 
 
 
 		#region Theme
-
 		public void ChangeTheme(BootstrapTheme theme)
 		{
 			if (theme == BootstrapTheme.None)
@@ -330,10 +333,6 @@ namespace DFM.BusinessLogic.Services
 				configRepository.Update(config);
 			});
 		}
-
 		#endregion Theme
-
-
-
 	}
 }

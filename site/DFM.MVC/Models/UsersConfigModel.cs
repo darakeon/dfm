@@ -6,6 +6,7 @@ using DFM.Authentication;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.InterfacesAndBases;
+using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
@@ -44,7 +45,7 @@ namespace DFM.MVC.Models
 		}
 
 
-		public class MainConfig : ConfigOptions
+		public class MainConfig : ConfigInfo
 		{
 			public MainConfig(AdminService admin, Config config)
 			{

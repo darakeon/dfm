@@ -5,13 +5,12 @@ using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
-using NHibernate;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class AccountRepository : BaseRepositoryLong<Account>
 	{
-		internal Account SaveOrUpdate(Account account)
+		internal Account Save(Account account)
 		{
 			return SaveOrUpdate(account, complete, validate);
 		}
@@ -55,7 +54,6 @@ namespace DFM.BusinessLogic.Repositories
 			if (!regex.IsMatch(account.Url))
 				throw Error.AccountUrlInvalid.Throw();
 
-
 			var otherAccount = GetByUrl(account.Url, account.User);
 
 			var accountUrlExistsForUser =
@@ -82,54 +80,34 @@ namespace DFM.BusinessLogic.Repositories
 			if (!String.IsNullOrEmpty(account.Url))
 				account.Url = account.Url.ToLower();
 
-			var oldAccount = Get(account.ID);
-
-			if (oldAccount == null)
-			{
+			if (account.ID == 0)
 				account.BeginDate = account.User.Now();
-				return;
-			}
-
-			if (!account.YearList.Any())
-				account.YearList = oldAccount.YearList;
-
-			if (account.BeginDate == DateTime.MinValue)
-				account.BeginDate = oldAccount.BeginDate;
-
-			if (account.IsOpen())
-				account.EndDate = oldAccount.EndDate;
-
 		}
-
 
 		private Account getByName(String name, User user)
 		{
-			try
-			{
-				return SingleOrDefault(
-						a => a.Name == name
-							&& a.User.ID == user.ID
-					);
-			}
-			catch (NonUniqueResultException)
-			{
+			var accountList = SimpleFilter(
+					a => a.Name == name
+						&& a.User.ID == user.ID
+				);
+
+			if (accountList.Count > 1)
 				throw Error.DuplicatedAccountName.Throw();
-			}
+
+			return accountList.SingleOrDefault();
 		}
 
 		internal Account GetByUrl(String url, User user)
 		{
-			try
-			{
-				return SingleOrDefault(
-						a => a.Url == url.ToLower()
-							&& a.User.ID == user.ID
-					);
-			}
-			catch (NonUniqueResultException)
-			{
+			var accountList = SimpleFilter(
+				a => a.Url == url.ToLower()
+				     && a.User.ID == user.ID
+			);
+
+			if (accountList.Count > 1)
 				throw Error.DuplicatedAccountUrl.Throw();
-			}
+
+			return accountList.SingleOrDefault();
 		}
 
 
@@ -170,7 +148,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			account.EndDate = account.User.Now();
 
-			SaveOrUpdate(account);
+			Save(account);
 		}
 
 
