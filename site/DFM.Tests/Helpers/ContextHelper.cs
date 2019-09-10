@@ -18,11 +18,11 @@ namespace DFM.Tests.Helpers
 			ScenarioContext.Current[key] = value;
 		}
 
-		protected String RunPath
+		protected static String RunPath
 		{
 			get
 			{
-				var assembly = GetType().Assembly;
+				var assembly = typeof(ContextHelper).Assembly;
 
 				var uri = new UriBuilder(assembly.CodeBase);
 				var path = Uri.UnescapeDataString(uri.Path);
@@ -30,8 +30,5 @@ namespace DFM.Tests.Helpers
 				return Path.GetDirectoryName(path);
 			}
 		}
-
 	}
-
-
 }

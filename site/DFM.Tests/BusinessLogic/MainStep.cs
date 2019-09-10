@@ -1,7 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
+using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Repositories.Mappings;
+using DFM.Entities;
+using DFM.Language;
 using DFM.Tests.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
@@ -77,53 +80,46 @@ namespace DFM.Tests.BusinessLogic
 			Assert.IsNull(Error);
 		}
 
-		private static String logFileName;
-
 		[BeforeTestRun]
-		public static void PrepareRun()
+		public static void Start()
 		{
+			setLogName();
+			log("BeforeTestRun");
+
 			DBHelper.Cleanup();
-			SetLogName();
+
+			SessionFactoryManager.Initialize<UserMap, User>();
+			SessionManager.Init(getTicketKey);
+
+			Service = new ServiceAccess(getTicket, getPath);
+
+			PlainText.Initialize(RunPath);
 		}
 
-		public static void SetLogName()
+		[AfterTestRun]
+		public static void End()
 		{
-			var date = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-
-			var path = 
-				Path.Combine(
-					AppDomain.CurrentDomain.BaseDirectory,
-					@"..\..\",
-					"log"
-				);
-
-			if (!Directory.Exists(path))
-				Directory.CreateDirectory(path);
-
-			logFileName = Path.Combine(path, $"tests_{date}.log");
+			log("End");
+			SessionFactoryManager.End();
 		}
 
 		[BeforeScenario]
 		public static void RegisterRun()
 		{
-			var title = ScenarioContext.Current
-				.ScenarioInfo.Title;
-
-			File.AppendAllLines(
-				logFileName,
-				new[] { title }
-			);
+			log("Before scenario");
 		}
 
 		[AfterScenarioBlock]
 		public static void CloseSession()
 		{
+			log("After scenario block");
 			SessionManager.Close();
 		}
 
 		[AfterScenario]
 		public void CleanSchedulesAndLogoff()
 		{
+			log("After scenario");
 			if (!Current.IsAuthenticated)
 				return;
 

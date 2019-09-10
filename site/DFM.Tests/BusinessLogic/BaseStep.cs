@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
@@ -10,10 +11,7 @@ using DFM.Entities.Enums;
 using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
-using DFM.BusinessLogic.Repositories.Mappings;
-using DFM.Language;
 using Keon.Util.Extensions;
-using Keon.NHibernate.Base;
 using TechTalk.SpecFlow;
 using error = DFM.BusinessLogic.Exceptions.Error;
 
@@ -24,22 +22,30 @@ namespace DFM.Tests.BusinessLogic
 		protected static ServiceAccess Service;
 		protected static Current Current => Service.Current;
 
-		protected BaseStep()
+		private static String logFileName;
+
+		protected static void setLogName()
 		{
-			if (Service != null)
-				return;
+			var date = $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
 
-			SessionFactoryManager.Initialize<UserMap, User>();
-			SessionManager.Init(getTicketKey);
+			var path =
+				Path.Combine(
+					AppDomain.CurrentDomain.BaseDirectory,
+					@"..\..\",
+					"log"
+				);
 
-			Service = new ServiceAccess(getTicket, getPath);
+			if (!Directory.Exists(path))
+				Directory.CreateDirectory(path);
 
-			PlainText.Initialize(RunPath);
+			logFileName = Path.Combine(path, $"tests_{date}.log");
 		}
 
-		~BaseStep()
+		protected static void log(String text)
 		{
-			SessionFactoryManager.End();
+			var title = ScenarioContext.Current?.ScenarioInfo?.Title;
+			var log = $"{DateTime.Now:HH:mm:ss-fff}\t{title}\t{text}\n";
+			File.AppendAllText(logFileName, log);
 		}
 
 		protected Int32? GetInt(String str)
@@ -159,17 +165,17 @@ namespace DFM.Tests.BusinessLogic
 		#endregion
 
 		#region Context
-		private ClientTicket getTicket(Boolean remember)
+		protected static ClientTicket getTicket(Boolean remember)
 		{
 			return new ClientTicket(TicketKey, TicketType.Local);
 		}
 
-		private String getPath(PathType pathType)
+		protected static String getPath(PathType pathType)
 		{
 			return null;
 		}
 
-		private String getTicketKey()
+		protected static String getTicketKey()
 		{
 			return mainTicket ?? (mainTicket = Token.New());
 		}
@@ -179,7 +185,7 @@ namespace DFM.Tests.BusinessLogic
 			mainTicket = null;
 		}
 
-		protected String TicketKey => getTicketKey();
+		protected static String TicketKey => getTicketKey();
 
 		private static String mainTicket
 		{
