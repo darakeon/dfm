@@ -41,12 +41,14 @@
     <Compile Include="Account.cs" />
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
+    <Compile Include="Clause.cs" />
     <Compile Include="Config+.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Enums\BootstrapTheme.cs" />
     <Compile Include="Enums\MoveValueType.cs" />
     <Compile Include="Enums\OperationType.cs" />
     <Compile Include="Enums\TicketType.cs" />
+    <Compile Include="Terms.cs" />
     <Compile Include="Ticket+.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Bases\IMove.cs" />
@@ -83,6 +85,9 @@
   <ItemGroup>
     <Reference Include="Keon.Util, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Keon.Util.1.1.0\lib\net48\Keon.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

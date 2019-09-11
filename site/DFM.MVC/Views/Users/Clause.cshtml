@@ -1,0 +1,25 @@
+@using Keon.Util.Extensions
+@model DFM.Entities.Clause
+
+@{
+	var replaces = new Dictionary<String, String>
+	{
+		{ "noreply_address", "no-reply@dontflymoney.com" },
+		{ "support_address", "<a class='text-info' target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>" },
+		{ "site_address", "<a class='text-info' href='https://dontflymoney.com'>dontflymoney.com</a>" },
+		{ "android_address", "<a class='text-info' target='_blank' href='https://play.google.com/store/apps/details?id=com.dontflymoney.view'>Don't fly Money</a>" },
+		{ "github_address", "<a class='text-info' target='_blank' href='https://github.com/darakeon/dfm'>GitHub</a>" },
+	};
+}
+
+@Html.Raw(Model.Text.Format(replaces))
+
+@if (Model.Items.Any())
+{
+	<ol>
+		@foreach (var clause in Model.Items)
+		{
+			<li>@Html.Partial("Clause", clause)</li>
+		}
+	</ol>
+}

@@ -16,7 +16,7 @@
 <div class="">
 
 	<div class="contract">
-		@Html.Partial($"../Contracts/{Model.Contract.Version}")
+		@Html.Partial("Clause", Model.Contract[Model.Language].GetClause())
 	</div>
 
 	@if (canSign)
