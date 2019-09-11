@@ -54,6 +54,7 @@ internal class ResponseHandler<T>(
 			getUrl(call),
 			throwable ?: Exception("Null error")
 		)
+		uiHandler.endUIWait()
 	}
 
 	private fun getUrl(call: Call<Body<T>>?): String {
