@@ -20,7 +20,6 @@ internal class ResponseHandler<T>(
 	private val uiHandler: UIHandler,
 	private val onSuccess: (T) -> Unit
 )  : Callback<Body<T>> {
-
 	override fun onResponse(call: Call<Body<T>>?, response: Response<Body<T>>?) {
 		val url = getUrl(call)
 
@@ -67,7 +66,7 @@ internal class ResponseHandler<T>(
 			activity.composeErrorEmail(url ?: "", error)
 		})
 
-		activity.alertError(activity.getString(R.string.error_contact_url), sendReport)
+		activity.alertError(R.string.error_contact_url, sendReport)
 	}
 
 	private fun assemblyResponse(

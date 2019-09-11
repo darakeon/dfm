@@ -17,7 +17,8 @@ class Api(activity: BaseActivity) {
 	private val service = requestHandler.service
 
 	private fun Call<Body<Any>>.call(onSuccess: () -> Unit) {
-		requestHandler.call(this, onSuccess)
+		val onSuccessAny: (Any) -> Unit = { onSuccess() }
+		requestHandler.call(this, onSuccessAny)
 	}
 
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {

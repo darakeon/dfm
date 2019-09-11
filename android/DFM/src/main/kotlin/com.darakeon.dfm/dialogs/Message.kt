@@ -24,11 +24,15 @@ fun Activity.alertYesNo(message: String, answer: IYesNoDialogAnswer) {
 	alertError(message, R.string.ok_button, listener, true)
 }
 
-fun Activity.alertError(resMessage: Int) {
-	alertError(getString(resMessage))
+fun Activity.alertError(message: String) {
+	alertError(message, null)
 }
 
-fun Activity.alertError(message: String, sendEmailReport: OnClickListener? = null) {
+fun Activity.alertError(resMessage: Int, sendEmailReport: OnClickListener? = null) {
+	alertError(getString(resMessage), sendEmailReport)
+}
+
+private fun Activity.alertError(message: String, sendEmailReport: OnClickListener?) {
 	val clickOk = sendEmailReport ?: cancelClickListener
 	val cancelButton = sendEmailReport != null
 	val text = if (cancelButton) R.string.send_report_button else R.string.ok_button
