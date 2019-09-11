@@ -6,9 +6,8 @@ import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import okhttp3.Dispatcher
-import okhttp3.Interceptor
+import okhttp3.Interceptor.Chain
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,29 +20,38 @@ internal open class RequestHandler(
 
 	init {
 		val retrofit = getConfig()
-		service = retrofit.create(RequestService::class.java)
+		service = retrofit.create(
+			RequestService::class.java
+		)
 	}
 
 	private fun getConfig(): Retrofit {
-		val clientBuilder = OkHttpClient.Builder()
-		clientBuilder.dispatcher(dispatcher)
-		clientBuilder.addInterceptor(this::addAuthTicket)
+		val client =
+			OkHttpClient.Builder()
+				.dispatcher(dispatcher)
+				.addInterceptor(this::intercept)
+				.build()
+
+		val jsonConverter =
+			GsonConverterFactory.create()
 
 		return Retrofit.Builder()
 			.baseUrl(getSite())
-			.client(clientBuilder.build())
-			.addConverterFactory(GsonConverterFactory.create())
+			.client(client)
+			.addConverterFactory(jsonConverter)
 			.build()
 	}
 
-	private fun addAuthTicket(chain: Interceptor.Chain): Response {
-		val request = chain.request()
+	private fun intercept(chain: Chain) =
+		chain.proceed(
+			addAuthTicket(chain)
+		)
+
+	private fun addAuthTicket(chain: Chain) =
+		chain.request()
 			.newBuilder()
 			.addHeader("ticket", activity.ticket)
 			.build()
-
-		return chain.proceed(request)
-	}
 
 	private fun getSite() : String {
 		if (!BuildConfig.DEBUG)
@@ -53,11 +61,6 @@ internal open class RequestHandler(
 			activity.getString(R.string.local_address)
 
 		return "http://$localAddress/"
-	}
-
-	internal fun call(response: Call<Body<Any>>, onSuccess: () -> Unit) {
-		val onSuccessAny: (Any) -> Unit = { onSuccess() }
-		call(response, onSuccessAny)
 	}
 
 	internal fun <T> call(response: Call<Body<T>>, onSuccess: (T) -> Unit) {
