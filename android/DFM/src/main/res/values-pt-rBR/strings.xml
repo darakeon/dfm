@@ -26,6 +26,7 @@
 	<!-- Errors -->
 	<string name="u_r_offline">Sem conexão com a internet</string>
 	<string name="error_set_parameters">Error ao setar parâmetros</string>
+	<string name="internet_too_slow">Problema com a conexão com o site, verifique seu sinal de internet</string>
 	<string name="error_contact_url">
 		Erro ao chamar o Porquinho. Pode ser um problema de internet ou do sistema.
 		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.

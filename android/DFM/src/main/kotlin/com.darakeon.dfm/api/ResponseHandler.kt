@@ -14,6 +14,8 @@ import com.darakeon.dfm.tfa.TFAActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 internal class ResponseHandler<T>(
 	private val activity: BaseActivity,
@@ -59,6 +61,12 @@ internal class ResponseHandler<T>(
 	}
 
 	private fun onError(url: String?, error: Throwable) {
+		if (error is SocketTimeoutException
+				|| error is ConnectException) {
+			activity.alertError(R.string.internet_too_slow)
+			return
+		}
+
 		if (BuildConfig.DEBUG) throw error
 
 		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
