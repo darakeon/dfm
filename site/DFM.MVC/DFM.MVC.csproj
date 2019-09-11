@@ -334,7 +334,6 @@
     <Content Include="Views\Accounts\ListClosed.cshtml" />
     <Content Include="Views\Categories\CreateEdit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Contracts\003000000000.cshtml" />
     <Content Include="Views\Logins\Index.cshtml" />
     <Content Include="Views\Ops\404.cshtml" />
     <Content Include="Views\Ops\500.cshtml" />
@@ -386,7 +385,6 @@
     <Content Include="Views\Users\SignUp.cshtml" />
     <Content Include="Views\Users\LogOn.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Contracts\004000000000.cshtml" />
     <Content Include="Views\Ops\Help.cshtml" />
     <None Include="smtp.config" />
     <Content Include="Views\Accounts\AccountSignColor.cshtml" />
@@ -404,6 +402,7 @@
     <Content Include="Views\Shared\MenuTasks.cshtml" />
     <Content Include="Views\Shared\MenuSettings.cshtml" />
     <Content Include="Views\Shared\MicroForm.cshtml" />
+    <Content Include="Views\Users\Clause.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
