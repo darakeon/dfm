@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -7,7 +8,11 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class IP
 	{
-		private const string relativePath = @"..\..\android\DFM\src\main\res\values\localaddress.xml";
+		private const string relativePath =
+			@"..\..\android\DFM\src\main\res\values\localaddress.xml";
+
+		private static readonly Regex ip =
+			new Regex(@"\d+\.\d+\.\d+\.\d+");
 
 		internal static void SaveCurrent()
 		{
@@ -20,19 +25,9 @@ namespace DFM.MVC.Helpers.Global
 			if (!info.Exists)
 				return;
 
-			var lines = File.ReadAllLines(path);
-
-			for (var l = 0; l < lines.Length; l++)
-			{
-				var regex = new Regex(@"\d+\.\d+\.\d+\.\d+");
-				if (regex.IsMatch(lines[l]))
-				{
-					lines[l] = regex.Replace(lines[l], currentIP);
-					break;
-				}
-			}
-
-			File.WriteAllLines(path, lines);
+			var content = File.ReadAllText(path);
+			content = ip.Replace(content, currentIP);
+			File.WriteAllText(path, content);
 		}
 
 		private static String currentIP
@@ -42,12 +37,9 @@ namespace DFM.MVC.Helpers.Global
 				var name = Dns.GetHostName();
 				var ipInfo = Dns.GetHostAddresses(name);
 
-				var ip = ipInfo[1].ToString();
-
-				if (ip.Length > 15)
-					ip = ipInfo[2].ToString();
-
-				return ip;
+				return ipInfo
+					.Select(i => i.ToString())
+					.LastOrDefault(ip.IsMatch);
 			}
 		}
 	}
