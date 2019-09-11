@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.4/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.5/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -123,15 +123,15 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 
-## 4.1.3.5 :ant: <sup>`1`</sup>
+## <a name="dev"></a>4.1.3.5 :ant: <sup>`1`</sup>
 - [ ] Transform service receiving / returns into DTO
 
-## <a name="dev"></a>4.1.3.4 :ant: <sup>`3`</sup>
+## <a name="prod"></a>4.1.3.4 :ant: <sup>`3`</sup>
 - [x] `190911>190911` Add contract text to DB
 - [x] `190911>190911` Fix login problem on android
 - [x] `190911>190911` Fix logins page bug
 
-## <a name="prod"></a>4.1.3.3 :ant: <sup>`4`</sup>
+## 4.1.3.3 :ant: <sup>`4`</sup>
 - [x] `190807>190808` IDs Int64
 - [x] `190807>190807` Fix transaction call to avoid code duplication (Action/Func<>)
 - [x] `190807>190807` Put warning of no content on year summary [#47](https://github.com/darakeon/dfm/issues/47)
