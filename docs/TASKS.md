@@ -115,20 +115,21 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.8 :ant: <sup>`1`</sup>
+## 4.1.3.7 :ant: <sup>`2`</sup>
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
-
-## 4.1.3.7 :ant: <sup>`1`</sup>
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 
-## 4.1.3.6 :ant: <sup>`1`</sup>
+## 4.1.3.6 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
-
-## 4.1.3.5 :ant: <sup>`1`</sup>
 - [ ] Make selenium automated tests - web
 
-## <a name="dev"></a>4.1.3.4 :ant: <sup>`1`</sup>
+## 4.1.3.5 :ant: <sup>`1`</sup>
 - [ ] Transform service receiving / returns into DTO
+
+## <a name="dev"></a>4.1.3.4 :ant: <sup>`3`</sup>
+- [ ] Add contract text to DB
+- [ ] Fix login problem on android
+- [ ] Fix logins page bug
 
 ## <a name="prod"></a>4.1.3.3 :ant: <sup>`4`</sup>
 - [x] `190807>190808` IDs Int64
