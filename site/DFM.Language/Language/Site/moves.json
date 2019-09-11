@@ -6,8 +6,8 @@
 		"MoveNotFound": "Move not found",
 		"MoveDeleted": "Move '{0}' deleted",
 		"ScheduleRequired": "Schedule not found",
-		"MoveSave": "Move: {0}, but the data was saved successfuly",
-		"MoveDeletedWithoutEmail": "{1}, but move '{0}' deleted successfuly",
+		"MoveSave": "Move: {0}, but the data was saved successfully",
+		"MoveDeletedWithoutEmail": "{1}, but move '{0}' deleted successfully",
 
 		"MoveLosingCategory": "This move has a Category, but Categories use is DISABLED.\nWhen you save this move, the Category will be lost.",
 		"NoAccountsMove": "There are no accounts.\nWithout accounts, you cannot create Moves.",

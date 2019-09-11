@@ -9,9 +9,9 @@
 		"NotFoundMessage": "Sorry, page not found.",
 
 		"Internal": "Ops!",
-		"InternalMessageSent": "An internal error ocurred. An e-mail has sent, and we will solve it as soon as possible.",
-		"InternalMessageNotSent": "An internal error ocurred. Please, contact us.",
-		"CommunicationError": "An internal error ocurred. Please, contact us.",
+		"InternalMessageSent": "An internal error occurred. An e-mail has sent, and we will solve it as soon as possible.",
+		"InternalMessageNotSent": "An internal error occurred. Please, contact us.",
+		"CommunicationError": "An internal error occurred. Please, contact us.",
 
 		"DontHack": "Please, don't hack me!",
 		"Help": "Help me! =)",
