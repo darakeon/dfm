@@ -267,7 +267,10 @@ namespace DFM.BusinessLogic.Services
 
 			var tickets = ticketRepository.List(user);
 
-			return tickets.Select(getLogin).ToList();
+			return tickets
+				.Where(t => !String.IsNullOrEmpty(t.Key))
+				.Select(getLogin)
+				.ToList();
 		}
 
 		private static Ticket getLogin(Ticket ticket)
