@@ -189,7 +189,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			var user = userRepository.ValidateAndGet(email, password);
 
-			ticketKey = ticketKey ?? Token.New();
+			if (String.IsNullOrEmpty(ticketKey))
+				ticketKey = Token.New();
+
 			var ticket = ticketRepository.GetByKey(ticketKey);
 
 			if (ticket == null)
