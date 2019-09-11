@@ -129,7 +129,7 @@ Legend:
 ## <a name="dev"></a>4.1.3.4 :ant: <sup>`3`</sup>
 - [ ] Add contract text to DB
 - [ ] Fix login problem on android
-- [ ] Fix logins page bug
+- [x] `190911>190911` Fix logins page bug
 
 ## <a name="prod"></a>4.1.3.3 :ant: <sup>`4`</sup>
 - [x] `190807>190808` IDs Int64
