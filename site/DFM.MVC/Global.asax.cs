@@ -30,18 +30,18 @@ namespace DFM.MVC
 
 		protected void Application_Start()
 		{
+			Directory.SetCurrentDirectory(Server.MapPath("~"));
+
+			if (isLocal)
+				IP.SaveCurrent();
+
 			AreaRegistration.RegisterAllAreas();
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
 			SessionFactoryManager.Initialize<UserMap, User>();
 			Translator.Initialize();
 
 			XmlConfigurator.Configure();
-
-			if (isLocal)
-				IP.SaveCurrent();
 		}
 
 
