@@ -130,7 +130,7 @@ Legend:
 - [ ] Transform service receiving / returns into DTO
 
 ## <a name="dev"></a>4.1.3.5 :ant: <sup>`4`</sup>
-- [ ] Fix bug on signup page
+- [x] `190912>190912` Fix bug on signup page
 
 ## <a name="prod"></a>4.1.3.4 :ant: <sup>`3`</sup>
 - [x] `190911>190911` Add contract text to DB
