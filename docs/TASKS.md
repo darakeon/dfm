@@ -123,7 +123,8 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web
 
-## <a name="dev"></a>4.1.3.5 :ant: <sup>`1`</sup>
+## <a name="dev"></a>4.1.3.5 :ant: <sup>`2`</sup>
+- [ ] Add test for empty ticket
 - [ ] Transform service receiving / returns into DTO
 
 ## <a name="prod"></a>4.1.3.4 :ant: <sup>`3`</sup>
