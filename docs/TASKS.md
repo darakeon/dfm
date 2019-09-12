@@ -123,7 +123,9 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## <a name="dev"></a>4.1.3.5 :ant: <sup>`2`</sup>
+## <a name="dev"></a>4.1.3.5 :ant: <sup>`4`</sup>
+- [ ] Fix account name repetition on area title
+- [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
 - [ ] Transform service receiving / returns into DTO
 
