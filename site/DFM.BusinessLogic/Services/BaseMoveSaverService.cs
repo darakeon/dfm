@@ -61,9 +61,7 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			if (oldMove != null)
-				breakSummaries(oldMove);
-
-			breakSummaries(move);
+				BreakSummaries(oldMove);
 
 			var emailStatus = moveRepository.SendEmail(move, operationType);
 
@@ -94,13 +92,41 @@ namespace DFM.BusinessLogic.Services
 		{
 			move.Category = GetCategoryByName(categoryName);
 
-			var accountOut = GetAccountByUrl(accountOutUrl);
-			var monthOut = accountOut == null ? null : getMonth(move, accountOut);
+			Month monthOut = null;
+			if (accountOutUrl != null)
+			{
+				var accountOut = GetAccountByUrl(accountOutUrl);
+				monthOut = getMonth(move, accountOut);
 
-			var accountIn = GetAccountByUrl(accountInUrl);
-			var monthIn = accountIn == null ? null : getMonth(move, accountIn);
+				if (monthOut != null)
+				{
+					breakAndSave(monthOut[categoryName]);
+					breakAndSave(monthOut.Year[categoryName]);
+				}
+			}
+
+			Month monthIn = null;
+			if (accountInUrl != null)
+			{
+				var accountIn = GetAccountByUrl(accountInUrl);
+				monthIn = getMonth(move, accountIn);
+
+				if (monthIn != null)
+				{
+					breakAndSave(monthIn[categoryName]);
+					breakAndSave(monthIn.Year[categoryName]);
+				}
+			}
 
 			moveRepository.PlaceMonthsInMove(move, monthOut, monthIn);
+		}
+
+		private void breakAndSave(Summary summary)
+		{
+			summary.Broken = true;
+
+			if (summary.ID != 0)
+				summaryRepository.SaveOrUpdate(summary);
 		}
 
 		private Month getMonth(Move move, Account account)
@@ -108,22 +134,19 @@ namespace DFM.BusinessLogic.Services
 			if (move.Date == DateTime.MinValue)
 				return null;
 
-			var year = yearRepository.GetOrCreateYearWithSummary((Int16)move.Date.Year, account, move.Category);
+			var year = yearRepository.GetOrCreateYearWithSummary(
+				(Int16)move.Date.Year, account, move.Category
+			);
 
-			return monthRepository.GetOrCreateMonthWithSummary((Int16)move.Date.Month, year, move.Category);
+			return monthRepository.GetOrCreateMonthWithSummary(
+				(Int16)move.Date.Month, year, move.Category
+			);
 		}
-
-
 
 		internal void BreakSummaries(Move move)
 		{
-			var oldMove = moveRepository.GetNonCached(move.ID);
+			move = moveRepository.GetNonCached(move.ID);
 
-			breakSummaries(oldMove);
-		}
-
-		private void breakSummaries(Move move)
-		{
 			if (move.Nature != MoveNature.Out)
 			{
 				var monthIn = monthRepository.Get(move.In.ID);

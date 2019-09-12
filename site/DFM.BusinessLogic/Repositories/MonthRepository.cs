@@ -20,6 +20,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Month GetOrCreateMonth(Int16 dateMonth, Year year)
 		{
+			if (year == null)
+				return null;
+
 			var month = year.MonthList
 				.SingleOrDefault(m => m.Time == dateMonth);
 
