@@ -115,19 +115,22 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.7 :ant: <sup>`2`</sup>
+## 4.1.3.8 :ant: <sup>`2`</sup>
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 
-## 4.1.3.6 :ant: <sup>`2`</sup>
+## 4.1.3.7 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## <a name="dev"></a>4.1.3.5 :ant: <sup>`4`</sup>
+## 4.1.3.6 :ant: <sup>`4`</sup>
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
 - [ ] Transform service receiving / returns into DTO
+
+## <a name="dev"></a>4.1.3.5 :ant: <sup>`4`</sup>
+- [ ] Fix bug on signup page
 
 ## <a name="prod"></a>4.1.3.4 :ant: <sup>`3`</sup>
 - [x] `190911>190911` Add contract text to DB
