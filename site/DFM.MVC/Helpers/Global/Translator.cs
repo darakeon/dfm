@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Routing;
 using Keon.MVC.Route;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Language;
 using DFM.Language.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
-using language = DFM.Language.Entities.Language;
 
 namespace DFM.MVC.Helpers.Global
 {
@@ -82,7 +82,7 @@ namespace DFM.MVC.Helpers.Global
 				var userLanguage = Service.Current.Language ?? browserLanguage;
 
 				if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
-					userLanguage = "en-US";
+					userLanguage = Defaults.CONFIG_LANGUAGE;
 
 				return userLanguage;
 			}
