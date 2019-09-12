@@ -6,6 +6,7 @@ using DFM.BusinessLogic.Services;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -21,7 +22,7 @@ namespace DFM.MVC.Models
 		protected Config config => current.User?.Config;
 
 		protected BootstrapTheme theme => config?.Theme ?? Defaults.DEFAULT_THEME;
-		protected String language => current.Language ?? Defaults.CONFIG_LANGUAGE;
+		protected String language => Translator.Language;
 
 		protected Boolean isUsingCategories => config?.UseCategories ?? Defaults.CONFIG_USE_CATEGORIES;
 		protected Boolean moveCheckingEnabled => config?.MoveCheck ?? Defaults.CONFIG_MOVE_CHECK;
