@@ -19,6 +19,9 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal Year GetOrCreateYear(Int16 dateYear, Account account)
 		{
+			if (account == null)
+				return null;
+
 			var year = account.YearList
 				.SingleOrDefault(m => m.Time == dateYear);
 

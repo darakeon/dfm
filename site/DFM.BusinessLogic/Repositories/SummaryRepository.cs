@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			summary.Broken = true;
 
-			if (summary.ID != 0 )
+			if (summary.ID != 0)
 				SaveOrUpdate(summary);
 		}
 

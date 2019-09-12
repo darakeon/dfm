@@ -103,11 +103,7 @@ namespace DFM.BusinessLogic.Repositories
 
 		private void complete(User user)
 		{
-			var oldUser = GetByEmail(user.Email);
-
-			var userIsNew = oldUser == null;
-
-			if (!userIsNew) return;
+			if (user.ID != 0) return;
 
 			user.Active = false;
 
