@@ -121,7 +121,7 @@ Legend:
 
 ## 4.1.3.6 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
-- [ ] Make selenium automated tests - web
+- [ ] Make selenium automated tests - web (maybe puppeteer)
 
 ## <a name="dev"></a>4.1.3.5 :ant: <sup>`2`</sup>
 - [ ] Add test for empty ticket
