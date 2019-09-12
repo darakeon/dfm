@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.5/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.6/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -123,16 +123,16 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## 4.1.3.6 :ant: <sup>`4`</sup>
+## <a name="dev"></a>4.1.3.6 :ant: <sup>`4`</sup>
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
 - [ ] Transform service receiving / returns into DTO
 
-## <a name="dev"></a>4.1.3.5 :ant: <sup>`4`</sup>
+## <a name="prod"></a>4.1.3.5 :ant: <sup>`4`</sup>
 - [x] `190912>190912` Fix bug on signup page
 
-## <a name="prod"></a>4.1.3.4 :ant: <sup>`3`</sup>
+## 4.1.3.4 :ant: <sup>`3`</sup>
 - [x] `190911>190911` Add contract text to DB
 - [x] `190911>190911` Fix login problem on android
 - [x] `190911>190911` Fix logins page bug
