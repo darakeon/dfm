@@ -42,7 +42,7 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, Translator.Language);
+				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, Language);
 			}
 			catch (CoreError e)
 			{
