@@ -123,11 +123,15 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## <a name="dev"></a>4.1.3.6 :ant: <sup>`4`</sup>
+## <a name="dev"></a>4.1.3.6 :ant: <sup>`8`</sup>
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
-- [ ] `190908>......` Transform service receiving / returns into DTO - check android
+- [ ] Transform SAFE service receiving / returns into DTO - check android
+- [ ] Transform ROBOT service receiving / returns into DTO - check android
+- [ ] Transform REPORT service receiving / returns into DTO - check android
+- [ ] Transform MONEY service receiving / returns into DTO - check android
+- [x] `190908>190912` Transform ADMIN service receiving / returns into DTO - check android
 
 ## <a name="prod"></a>4.1.3.5 :ant: <sup>`4`</sup>
 - [x] `190912>190912` Fix bug on signup page
