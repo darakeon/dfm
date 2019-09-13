@@ -10,7 +10,7 @@ namespace DFM.Entities
 		public virtual String Language { get; set; }
 		public virtual String Json { get; set; }
 
-		public virtual Clause GetClause()
+		public virtual Clause GetClauses()
 		{
 			return JsonConvert
 				.DeserializeObject<Clause>(Json);

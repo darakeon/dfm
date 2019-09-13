@@ -10,9 +10,10 @@ namespace DFM.MVC.Models
 			Contract = safe.GetContract();
 		}
 
-		public Contract Contract { get; private set; }
+		public Contract Contract { get; }
 		public Boolean Accept { get; set; }
 
+		public Clause Clauses => Contract[Language].GetClauses();
 
 		public void AcceptContract(Action<String, String> addModelError)
 		{
