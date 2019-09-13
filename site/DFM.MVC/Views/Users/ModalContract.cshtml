@@ -17,10 +17,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="contract">
-					@Html.Partial(
-						"Clause",
-						Model.Contract[Model.Language].GetClause()
-					)
+					@Html.Partial("Clause", Model.Clauses)
 				</div>
 			</div>
 		</div>

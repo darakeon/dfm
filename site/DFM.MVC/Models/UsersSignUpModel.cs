@@ -32,6 +32,7 @@ namespace DFM.MVC.Models
 		public Boolean EnableWizard { get; set; }
 
 		public Contract Contract { get; }
+		public Clause Clauses => Contract[Language].GetClauses();
 
 
 
