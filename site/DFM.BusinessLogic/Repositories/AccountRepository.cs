@@ -110,60 +110,14 @@ namespace DFM.BusinessLogic.Repositories
 			return accountList.SingleOrDefault();
 		}
 
-
-
-
-
-		internal Year NonFuture(Year year)
-		{
-			var now = year.User().Now();
-
-			if (year.Time >= now.Year)
-			{
-				//prevent from saving and destroying the original element
-				var currentYear = year.Clone();
-
-				currentYear.MonthList =
-					currentYear.MonthList
-						.Where(m => m.Time <= now.Month)
-						.ToList();
-
-				return currentYear;
-			}
-
-			return year;
-		}
-
-
 		internal void Close(Account account)
 		{
-			if (account == null)
-				throw Error.InvalidAccount.Throw();
-
 			if (!account.IsOpen())
 				throw Error.ClosedAccount.Throw();
-
-			if (!account.HasMoves())
-				throw Error.CantCloseEmptyAccount.Throw();
 
 			account.EndDate = account.User.Now();
 
 			Save(account);
 		}
-
-
-		internal void Delete(String url, User user)
-		{
-			var account = GetByUrl(url, user);
-
-			if (account == null)
-				throw Error.InvalidAccount.Throw();
-
-			if (account.HasMoves())
-				throw Error.CantDeleteAccountWithMoves.Throw();
-
-			Delete(account);
-		}
-
 	}
 }

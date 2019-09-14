@@ -23,7 +23,7 @@ namespace DFM.MVC.Areas.API.Jsons
 			Description = move.GetDescriptionDetailed();
 			Date = new DateJson(move.Date);
 
-			var accountOut = move.Nature != MoveNature.In ? move.AccOut().Url : null;
+			var accountOut = move.Nature != MoveNature.In ? move.Out.Url : null;
 
 			Total = move.Total() * (accountUrl == accountOut ? -1 : 1);
 

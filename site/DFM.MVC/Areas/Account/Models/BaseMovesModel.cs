@@ -36,8 +36,8 @@ namespace DFM.MVC.Areas.Account.Models
 			if (Date == DateTime.MinValue)
 				Date = today;
 
-			AccountOutUrl = iMove.AccOut()?.Url;
-			AccountInUrl = iMove.AccIn()?.Url;
+			AccountOutUrl = iMove.Out?.Url;
+			AccountInUrl = iMove.In?.Url;
 
 			if (iMove.Category != null)
 				CategoryName = iMove.Category.Name;

@@ -26,26 +26,14 @@ namespace DFM.Entities
 
 		public virtual Decimal? Value
 		{
-			get { return ValueCents.ToVisual(); }
-			set { ValueCents = value.ToCents(); }
+			get => ValueCents.ToVisual();
+			set => ValueCents = value.ToCents();
 		}
 
 		public virtual Decimal Total()
 		{
 			return Value ??
 				DetailList.Sum(d => d.Value * d.Amount);
-		}
-
-
-
-		public virtual Account AccOut()
-		{
-			return Out;
-		}
-
-		public virtual Account AccIn()
-		{
-			return In;
 		}
 
 		public virtual void AddDetail(Detail detail)
@@ -61,13 +49,15 @@ namespace DFM.Entities
 
 			var move =
 				new Move
-					{
-						Date = dateTime,
-						Description = Description,
-						Nature = Nature,
-						Schedule = this,
-						Value = Value,
-					};
+				{
+					Date = dateTime,
+					Description = Description,
+					Nature = Nature,
+					Schedule = this,
+					Value = Value,
+					In = In,
+					Out = Out,
+				};
 
 			foreach (var detail in DetailList)
 			{
@@ -92,8 +82,6 @@ namespace DFM.Entities
 					throw new ArgumentException("schedule");
 			}
 		}
-
-
 
 		public virtual Boolean CanRun()
 		{
@@ -120,7 +108,5 @@ namespace DFM.Entities
 
 			return LastRun < Times;
 		}
-
-
 	}
 }

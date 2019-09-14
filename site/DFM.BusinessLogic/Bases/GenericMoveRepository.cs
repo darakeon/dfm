@@ -70,8 +70,8 @@ namespace DFM.BusinessLogic.Bases
 
 		private static void testNature(T move)
 		{
-			var hasIn = move.AccIn() != null;
-			var hasOut = move.AccOut() != null;
+			var hasIn = move.In != null;
+			var hasOut = move.Out != null;
 
 			switch (move.Nature)
 			{
@@ -95,13 +95,13 @@ namespace DFM.BusinessLogic.Bases
 
 		private static void testAccounts(T move)
 		{
-			var moveInClosed = move.AccIn() != null && !move.AccIn().IsOpen();
-			var moveOutClosed = move.AccOut() != null && !move.AccOut().IsOpen();
+			var moveInClosed = move.In != null && !move.In.IsOpen();
+			var moveOutClosed = move.Out != null && !move.Out.IsOpen();
 
 			if (moveInClosed || moveOutClosed)
 				throw Error.ClosedAccount.Throw();
 
-			if (move.AccIn() != null && move.AccOut() != null && move.AccIn().ID == move.AccOut().ID)
+			if (move.In != null && move.Out != null && move.In.ID == move.Out.ID)
 				throw Error.MoveCircularTransfer.Throw();
 		}
 

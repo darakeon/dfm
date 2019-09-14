@@ -12,8 +12,6 @@ namespace DFM.Entities
 			init();
 		}
 
-
-
 		public virtual Int64 ID { get; set; }
 
 		public virtual String Name { get; set; }
@@ -24,27 +22,21 @@ namespace DFM.Entities
 
 		public virtual Decimal? RedLimit
 		{
-			get { return RedLimitCents.ToVisual(); }
-			set { RedLimitCents = value.ToCents(); }
+			get => RedLimitCents.ToVisual();
+			set => RedLimitCents = value.ToCents();
 		}
 
 		public virtual Decimal? YellowLimit
 		{
-			get { return YellowLimitCents.ToVisual(); }
-			set { YellowLimitCents = value.ToCents(); }
+			get => YellowLimitCents.ToVisual();
+			set => YellowLimitCents = value.ToCents();
 		}
-
 
 		public virtual DateTime BeginDate { get; set; }
 		public virtual DateTime? EndDate { get; set; }
 
 		public virtual User User { get; set; }
 
-		public virtual IList<Year> YearList { get; set; }
-
-
-
-
-
+		public virtual IList<Summary> SummaryList { get; set; }
 	}
 }

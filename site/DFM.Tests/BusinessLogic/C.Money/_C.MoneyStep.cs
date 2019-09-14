@@ -6,7 +6,6 @@ using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Entities.Extensions;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
@@ -21,20 +20,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		#region Variables
 		private static Int64 id
 		{
-			get { return Get<Int64>("ID"); }
-			set { Set("ID", value); }
+			get => Get<Int64>("ID");
+			set => Set("ID", value);
 		}
 
 		private static List<Int64> ids
 		{
-			get { return Get<List<Int64>>("IDs"); }
-			set { Set("IDs", value); }
+			get => Get<List<Int64>>("IDs");
+			set => Set("IDs", value);
 		}
 
 		private static DateTime oldDate
 		{
-			get { return Get<DateTime>("OldDate"); }
-			set { Set("OldDate", value); }
+			get => Get<DateTime>("OldDate");
+			set => Set("OldDate", value);
 		}
 
 		private static String newAccountOutUrl => "new_" + AccountOutUrl;
@@ -45,38 +44,38 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 		private static Decimal newAccountOutTotal
 		{
-			get { return Get<Decimal>("NewAccountOutTotal"); }
-			set { Set("NewAccountOutTotal", value); }
+			get => Get<Decimal>("NewAccountOutTotal");
+			set => Set("NewAccountOutTotal", value);
 		}
 
 		private static Decimal newYearCategoryAccountOutTotal
 		{
-			get { return Get<Decimal>("NewYearCategoryAccountOutTotal"); }
-			set { Set("NewYearCategoryAccountOutTotal", value); }
+			get => Get<Decimal>("NewYearCategoryAccountOutTotal");
+			set => Set("NewYearCategoryAccountOutTotal", value);
 		}
 
 		private static Decimal newMonthCategoryAccountOutTotal
 		{
-			get { return Get<Decimal>("NewMonthCategoryAccountOutTotal"); }
-			set { Set("NewMonthCategoryAccountOutTotal", value); }
+			get => Get<Decimal>("NewMonthCategoryAccountOutTotal");
+			set => Set("NewMonthCategoryAccountOutTotal", value);
 		}
 
 		private static Decimal newAccountInTotal
 		{
-			get { return Get<Decimal>("NewAccountInTotal"); }
-			set { Set("NewAccountInTotal", value); }
+			get => Get<Decimal>("NewAccountInTotal");
+			set => Set("NewAccountInTotal", value);
 		}
 
 		private static Decimal newYearCategoryAccountInTotal
 		{
-			get { return Get<Decimal>("NewYearCategoryAccountInTotal"); }
-			set { Set("NewYearCategoryAccountInTotal", value); }
+			get => Get<Decimal>("NewYearCategoryAccountInTotal");
+			set => Set("NewYearCategoryAccountInTotal", value);
 		}
 
 		private static Decimal newMonthCategoryAccountInTotal
 		{
-			get { return Get<Decimal>("NewMonthCategoryAccountInTotal"); }
-			set { Set("NewMonthCategoryAccountInTotal", value); }
+			get => Get<Decimal>("NewMonthCategoryAccountInTotal");
+			set => Set("NewMonthCategoryAccountInTotal", value);
 		}
 		#endregion
 
@@ -206,25 +205,47 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				case "year": Move.Date = Move.Date.AddYears(count); break;
 			}
 
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+
 			if (AccountOut != null)
 			{
-				var year = AccountOut[Move.Date.Year, true];
-				var month = year[Move.Date.Month, true];
-
-				newAccountOutTotal = AccountOut.Total();
-				newYearCategoryAccountOutTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
-				newMonthCategoryAccountOutTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
+				setAccountOutNewTotals(AccountOut, category, Move);
 			}
 
 			if (AccountIn != null)
 			{
-				var year = AccountIn[Move.Date.Year, true];
-				var month = year[Move.Date.Month, true];
-
-				newAccountInTotal = AccountIn.Total();
-				newYearCategoryAccountInTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).In;
-				newMonthCategoryAccountInTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).In;
+				setAccountInNewTotals(AccountIn, category, Move);
 			}
+		}
+
+		private static void setAccountOutNewTotals(Account account, Category category, Move move)
+		{
+			newAccountOutTotal = summaryRepository.GetTotal(account);
+
+			newYearCategoryAccountOutTotal =
+				summaryRepository.Get(
+					account, category, move.Year
+				)?.Out ?? 0;
+
+			newMonthCategoryAccountOutTotal =
+				summaryRepository.Get(
+					account, category, move.Year * 100 + move.Month
+				)?.Out ?? 0;
+		}
+
+		private static void setAccountInNewTotals(Account account, Category category, Move move)
+		{
+			newAccountInTotal = summaryRepository.GetTotal(account);
+
+			newYearCategoryAccountInTotal =
+				summaryRepository.Get(
+					account, category, move.Year
+				)?.In ?? 0;
+
+			newMonthCategoryAccountInTotal =
+				summaryRepository.Get(
+					account, category, move.Year * 100 + move.Month
+				)?.In ?? 0;
 		}
 
 		[Given(@"I get the Move at position (\d+) of the Schedule")]
@@ -249,12 +270,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
-			var year = AccountOut[Move.Date.Year, true];
-			var month = year[Move.Date.Month, true];
-
-			newAccountOutTotal = AccountOut.Total();
-			newYearCategoryAccountOutTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
-			newMonthCategoryAccountOutTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			setAccountOutNewTotals(AccountOut, category, Move);
 		}
 
 
@@ -263,12 +280,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			AccountIn = GetOrCreateAccount(newAccountInUrl);
 
-			var year = AccountIn[Move.Date.Year, true];
-			var month = year[Move.Date.Month, true];
-
-			newAccountInTotal = AccountIn.Total();
-			newYearCategoryAccountInTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).In;
-			newMonthCategoryAccountInTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).In;
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			setAccountInNewTotals(AccountIn, category, Move);
 		}
 
 
@@ -281,12 +294,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			AccountIn = GetOrCreateAccount(newAccountInUrl);
 
-			var year = AccountIn[Move.Date.Year, true];
-			var month = year[Move.Date.Month, true];
-
-			newAccountInTotal = AccountIn.Total();
-			newYearCategoryAccountInTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).In;
-			newMonthCategoryAccountInTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).In;
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			setAccountInNewTotals(AccountIn, category, Move);
 		}
 
 
@@ -299,12 +308,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
-			var year = AccountOut[Move.Date.Year, true];
-			var month = year[Move.Date.Month, true];
-
-			newAccountOutTotal = AccountOut.Total();
-			newYearCategoryAccountOutTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
-			newMonthCategoryAccountOutTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			setAccountOutNewTotals(AccountOut, category, Move);
 		}
 
 		[When(@"I change the move value to (\d+)")]
@@ -361,7 +366,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
 
-			var currentTotal = account.Total();
+			var currentTotal = summaryRepository.GetTotal(account);
 
 			Assert.AreEqual(AccountOutTotal + value, currentTotal);
 		}
@@ -371,7 +376,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var account = GetOrCreateAccount(AccountOut.Name);
 
-			var currentTotal = account.Total();
+			var currentTotal = summaryRepository.GetTotal(account);
 
 			Assert.AreEqual(newAccountOutTotal + value, currentTotal);
 		}
@@ -381,10 +386,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
-
-			var summary = account
-				[(Int16)oldDate.Year]
-				[MAIN_CATEGORY_NAME];
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
 			Assert.AreEqual(YearCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -392,12 +395,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
-
 			var account = GetOrCreateAccount(AccountOut.Name);
-
-			var summary = account
-				[(Int16)Move.Date.Year]
-				[Category.Name];
+			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var summary = summaryRepository.Get(account, category, Move.Year);
 
 			Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -407,11 +407,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
-
-			var summary = account
-				[(Int16)oldDate.Year]
-				[(Int16)oldDate.Month]
-				[MAIN_CATEGORY_NAME];
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var summary = summaryRepository.Get(account, category, oldDate.Year * 100 + oldDate.Month);
 
 			Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -420,11 +417,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOut.Name);
-
-			var summary = account
-				[(Int16)Move.Date.Year]
-				[(Int16)Move.Date.Month]
-				[Category.Name];
+			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var summary = summaryRepository.Get(account, category, Move.Year * 100 + Move.Month);
 
 			Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -435,7 +429,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var account = GetOrCreateAccount(AccountInUrl);
 
-			var currentTotal = account.Total();
+			var currentTotal = summaryRepository.GetTotal(account);
 
 			Assert.AreEqual(AccountInTotal + value, currentTotal);
 		}
@@ -445,7 +439,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var account = GetOrCreateAccount(AccountIn.Name);
 
-			var currentTotal = account.Total();
+			var currentTotal = summaryRepository.GetTotal(account);
 
 			Assert.AreEqual(newAccountInTotal + value, currentTotal);
 		}
@@ -455,10 +449,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountInUrl);
-
-			var summary = account
-				[(Int16)oldDate.Year]
-				[MAIN_CATEGORY_NAME];
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
 			Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
 		}
@@ -467,10 +459,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountIn.Name);
-
-			var summary = account
-				[(Int16)Move.Date.Year]
-				[Category.Name];
+			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var summary = summaryRepository.Get(account, category, Move.Year);
 
 			Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
 		}
@@ -480,11 +470,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountInUrl);
-
-			var summary = account
-				[(Int16)oldDate.Year]
-				[(Int16)oldDate.Month]
-				[MAIN_CATEGORY_NAME];
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var summary = summaryRepository.Get(account, category, oldDate.Year * 100 + oldDate.Month);
 
 			Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
 		}
@@ -493,11 +480,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountIn.Name);
-
-			var summary = account
-				[(Int16)Move.Date.Year]
-				[(Int16)Move.Date.Month]
-				[Category.Name];
+			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var summary = summaryRepository.Get(account, category, Move.Year * 100 + Move.Month);
 
 			Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
 		}
@@ -507,23 +491,18 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheMonthAccountOutValueWillNotChange()
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
+			var summary = summaryRepository.Get(account, oldDate.Year * 100 + oldDate.Month);
 
-			var month = account
-				[(Int16)oldDate.Year]
-				[(Int16)oldDate.Month];
-
-			Assert.AreEqual(MonthAccountOutTotal, month.Total());
+			Assert.AreEqual(MonthAccountOutTotal, summary.Sum(s => s.Out));
 		}
 
 		[Then(@"the year-accountOut value will not change")]
 		public void ThenTheYearAccountOutValueWillNotChange()
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
+			var summary = summaryRepository.Get(account, oldDate.Year);
 
-			var year = account
-				[(Int16)oldDate.Year];
-
-			Assert.AreEqual(YearAccountOutTotal, year.Total());
+			Assert.AreEqual(YearAccountOutTotal, summary.Sum(s => s.Out));
 		}
 
 		[Then(@"the move total will be (\-?\d+\.?\d*)")]
@@ -796,32 +775,52 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			Service.Money.SaveOrUpdateMove(Move, accountOutUrl, accountInUrl, MAIN_CATEGORY_NAME);
 
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+
 			if (accountOutUrl != null)
 			{
 				AccountOut = accountRepository.GetByUrl(accountOutUrl, Current.User);
 
-				var year = AccountOut[Move.Date.Year, true];
-				var month = year[Move.Date.Month, true];
-
-				AccountOutTotal = AccountOut.Total();
-				YearAccountOutTotal = year.Total();
-				MonthAccountOutTotal = month.Total();
-				YearCategoryAccountOutTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
-				MonthCategoryAccountOutTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).Out;
+				AccountOutTotal = summaryRepository.GetTotal(AccountOut);
+				YearAccountOutTotal =
+					summaryRepository.Get(
+						AccountOut, Move.Year
+					).Sum(s => s.Out);
+				MonthAccountOutTotal =
+					summaryRepository.Get(
+						AccountOut, Move.Year * 100 + Move.Month
+					).Sum(s => s.Out);
+				YearCategoryAccountOutTotal =
+					summaryRepository.Get(
+						AccountOut, category, Move.Year
+					).Out;
+				MonthCategoryAccountOutTotal =
+					summaryRepository.Get(
+						AccountOut, category, Move.Year * 100 + Move.Month
+					).Out;
 			}
 
 			if (accountInUrl != null)
 			{
 				AccountIn = accountRepository.GetByUrl(accountInUrl, Current.User);
 
-				var year = AccountIn[Move.Date.Year, true];
-				var month = year[Move.Date.Month, true];
-
-				AccountInTotal = AccountIn.Total();
-				YearAccountInTotal = year.Total();
-				MonthAccountInTotal = month.Total();
-				YearCategoryAccountInTotal = (year[MAIN_CATEGORY_NAME] ?? new Summary()).In;
-				MonthCategoryAccountInTotal = (month[MAIN_CATEGORY_NAME] ?? new Summary()).In;
+				AccountInTotal = summaryRepository.GetTotal(AccountIn);
+				YearAccountInTotal =
+					summaryRepository.Get(
+						AccountIn, Move.Year
+					).Sum(s => s.In);
+				MonthAccountInTotal =
+					summaryRepository.Get(
+						AccountIn, Move.Year * 100 + Move.Month
+					).Sum(s => s.In);
+				YearCategoryAccountInTotal =
+					summaryRepository.Get(
+						AccountIn, category, Move.Year
+					).In;
+				MonthCategoryAccountInTotal =
+					summaryRepository.Get(
+						AccountIn, category, Move.Year * 100 + Move.Month
+					).In;
 			}
 		}
 

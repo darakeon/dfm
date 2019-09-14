@@ -25,10 +25,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.IgnoreProperty(a => a.RedLimit);
 			mapping.IgnoreProperty(a => a.YellowLimit);
 
-			mapping.HasMany(a => a.YearList)
-				.Cascade.Delete()
-				.Inverse();
-
 			mapping.References(a => a.User)
 				.UniqueKey("Account_NameUser")
 				.UniqueKey("Account_UrlUser");

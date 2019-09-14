@@ -6,19 +6,28 @@ namespace DFM.BusinessLogic.Response
 {
 	public class AccountListItem
 	{
-		private AccountListItem(Account account)
+		private AccountListItem(
+			Account account,
+			Decimal total,
+			AccountSign sign,
+			Boolean hasMoves
+		)
 		{
 			Name = account.Name;
 			Url = account.Url;
-			Total = account.Total();
+			Total = total;
 			Start = account.BeginDate;
 			End = account.EndDate;
-			Sign = account.Sign();
-			HasMoves = account.HasMoves();
+			Sign = sign;
+			HasMoves = hasMoves;
 		}
 
-		internal static AccountListItem Convert(Account account)
-			=> new AccountListItem(account);
+		internal static AccountListItem Convert(
+			Account account,
+			Decimal total,
+			AccountSign sign,
+			Boolean hasMoves
+		) => new AccountListItem(account, total, sign, hasMoves);
 
 		public String Name { get; }
 		public String Url { get; }

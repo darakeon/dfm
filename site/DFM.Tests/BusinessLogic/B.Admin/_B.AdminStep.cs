@@ -209,7 +209,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, null);
 
 			var account = accountRepository.GetByUrl(Account.Url, Current.User);
-			accountTotal = account.Total();
+			accountTotal = summaryRepository.GetTotal(account);
 		}
 
 		[When(@"I make this changes to the account")]
@@ -281,7 +281,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		public void TheAccountValueWillNotChange()
 		{
 			var account = accountRepository.GetByUrl(Account.Url, Current.User);
-			Assert.AreEqual(accountTotal, account.Total());
+			var total = summaryRepository.GetTotal(account);
+			Assert.AreEqual(accountTotal, total);
 		}
 		#endregion
 
@@ -331,21 +332,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
 			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
+			var moveList = moveRepository.ByAccount(account);
 
-			foreach (var year in account.YearList)
+			foreach (var move in moveList)
 			{
-				foreach (var month in year.MonthList)
-				{
-					foreach (var move in month.InList)
-					{
-						Service.Money.DeleteMove(move.ID);
-					}
-
-					foreach (var move in month.OutList)
-					{
-						Service.Money.DeleteMove(move.ID);
-					}
-				}
+				Service.Money.DeleteMove(move.ID);
 			}
 		}
 

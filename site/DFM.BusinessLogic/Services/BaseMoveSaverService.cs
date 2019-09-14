@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
@@ -17,17 +16,13 @@ namespace DFM.BusinessLogic.Services
 		private readonly MoveRepository moveRepository;
 		private readonly DetailRepository detailRepository;
 		private readonly SummaryRepository summaryRepository;
-		private readonly MonthRepository monthRepository;
-		private readonly YearRepository yearRepository;
 
-		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, MonthRepository monthRepository, YearRepository yearRepository)
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository)
 			: base(serviceAccess)
 		{
 			this.moveRepository = moveRepository;
 			this.detailRepository = detailRepository;
 			this.summaryRepository = summaryRepository;
-			this.monthRepository = monthRepository;
-			this.yearRepository = yearRepository;
 		}
 
 
@@ -91,124 +86,49 @@ namespace DFM.BusinessLogic.Services
 		private void linkEntities(Move move, String accountOutUrl, String accountInUrl, String categoryName)
 		{
 			move.Category = GetCategoryByName(categoryName);
+			move.Out = GetAccountByUrl(accountOutUrl);
+			move.In = GetAccountByUrl(accountInUrl);
 
-			Month monthOut = null;
-			if (accountOutUrl != null)
-			{
-				var accountOut = GetAccountByUrl(accountOutUrl);
-				monthOut = getMonth(move, accountOut);
-
-				if (monthOut != null)
-				{
-					breakAndSave(monthOut[categoryName]);
-					breakAndSave(monthOut.Year[categoryName]);
-				}
-			}
-
-			Month monthIn = null;
-			if (accountInUrl != null)
-			{
-				var accountIn = GetAccountByUrl(accountInUrl);
-				monthIn = getMonth(move, accountIn);
-
-				if (monthIn != null)
-				{
-					breakAndSave(monthIn[categoryName]);
-					breakAndSave(monthIn.Year[categoryName]);
-				}
-			}
-
-			moveRepository.PlaceMonthsInMove(move, monthOut, monthIn);
-		}
-
-		private void breakAndSave(Summary summary)
-		{
-			summary.Broken = true;
-
-			if (summary.ID != 0)
-				summaryRepository.SaveOrUpdate(summary);
-		}
-
-		private Month getMonth(Move move, Account account)
-		{
-			if (move.Date == DateTime.MinValue)
-				return null;
-
-			var year = yearRepository.GetOrCreateYearWithSummary(
-				(Int16)move.Date.Year, account, move.Category
-			);
-
-			return monthRepository.GetOrCreateMonthWithSummary(
-				(Int16)move.Date.Month, year, move.Category
-			);
+			breakSummaries(move);
 		}
 
 		internal void BreakSummaries(Move move)
 		{
 			move = moveRepository.GetNonCached(move.ID);
-
-			if (move.Nature != MoveNature.Out)
-			{
-				var monthIn = monthRepository.Get(move.In.ID);
-
-				summaryRepository.CreateIfNotExists(monthIn, move.Category);
-
-				summaryRepository.Break(monthIn, move.Category);
-				summaryRepository.Break(monthIn.Year, move.Category);
-			}
-
-			if (move.Nature != MoveNature.In)
-			{
-				var monthOut = monthRepository.Get(move.Out.ID);
-
-				summaryRepository.CreateIfNotExists(monthOut, move.Category);
-
-				summaryRepository.Break(monthOut, move.Category);
-				summaryRepository.Break(monthOut.Year, move.Category);
-			}
-
+			breakSummaries(move);
 		}
 
+		private void breakSummaries(Move move)
+		{
+			if (move.Out != null)
+			{
+				summaryRepository.Break(move.Out, move.Category, move.Date);
+			}
 
+			if (move.In != null)
+			{
+				summaryRepository.Break(move.In, move.Category, move.Date);
+			}
+		}
 
 		internal void FixSummaries()
 		{
 			InTransaction(() =>
 			{
-				var summaryList =
-					summaryRepository
-						.SimpleFilter(s => s.Broken)
-						.Where(s => s.User() == Parent.Current.User)
-						.ToList();
-
-				var monthSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Month);
-				fixMonthSummaries(monthSummaryList);
-
-				var yearSummaryList = summaryList.Where(s => s.Nature == SummaryNature.Year);
-				fixYearSummaries(yearSummaryList);
+				summaryRepository
+					.SimpleFilter(s => s.Broken)
+					.Where(s => s.User() == Parent.Current.User)
+					.ToList()
+					.ForEach(fixSummaries);
 			});
 		}
 
-		private void fixMonthSummaries(IEnumerable<Summary> summaryList)
+		private void fixSummaries(Summary summary)
 		{
-			foreach (var summary in summaryList)
-			{
-				var @in = moveRepository.GetIn(summary.Month, summary.Category);
-				var @out = moveRepository.GetOut(summary.Month, summary.Category);
+			var @in = moveRepository.GetIn(summary);
+			var @out = moveRepository.GetOut(summary);
 
-				summaryRepository.Fix(summary, @in, @out);
-			}
-		}
-
-		private void fixYearSummaries(IEnumerable<Summary> summaryList)
-		{
-			foreach (var summary in summaryList)
-			{
-				var @in = monthRepository.GetIn(summary.Year, summary.Category);
-				var @out = monthRepository.GetOut(summary.Year, summary.Category);
-
-				summaryRepository.Fix(summary, @in, @out);
-			}
+			summaryRepository.Fix(summary, @in, @out);
 		}
 
 		internal void VerifyMove(Move move)

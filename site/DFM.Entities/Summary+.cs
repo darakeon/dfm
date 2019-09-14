@@ -1,42 +1,20 @@
 ﻿using System;
-using DFM.Entities.Bases;
-using DFM.Entities.Enums;
 using DFM.Generic;
 
 namespace DFM.Entities
 {
 	public partial class Summary
 	{
-		private void init()
-		{
-			Broken = true;
-		}
-
-		private void init(Month month, Category category)
-		{
-			Month = month;
-			Category = category;
-			Nature = SummaryNature.Month;
-		}
-
-		private void init(Year year, Category category)
-		{
-			Year = year;
-			Category = category;
-			Nature = SummaryNature.Year;
-		}
-
-
 		public virtual Decimal In
 		{
-			get { return InCents.ToVisual(); }
-			set { InCents = value.ToCents(); }
+			get => InCents.ToVisual();
+			set => InCents = value.ToCents();
 		}
 
 		public virtual Decimal Out
 		{
-			get { return OutCents.ToVisual(); }
-			set { OutCents = value.ToCents(); }
+			get => OutCents.ToVisual();
+			set => OutCents = value.ToCents();
 		}
 
 
@@ -45,61 +23,24 @@ namespace DFM.Entities
 			return $"[{ID}] {In - Out}";
 		}
 
-
 		public virtual Decimal Value()
 		{
 			return Math.Round(In - Out, 2);
 		}
 
-
-
 		public virtual String UniqueID()
 		{
-			var yearID =
-				Nature == SummaryNature.Year
-					? Year.ID : 0;
-
-			var monthID =
-				Nature == SummaryNature.Month
-					? Month.ID : 0;
+			var accountID = Account.ID;
 
 			var category = Category;
 			var categoryID = category?.ID ?? 0;
 
-			return $"{yearID}_{monthID}_{categoryID}";
+			return $"{accountID}_{categoryID}";
 		}
-
-
-
-		public virtual ISummarizable Parent()
-		{
-			switch (Nature)
-			{
-				case SummaryNature.Year:
-					return Year;
-				case SummaryNature.Month:
-					return Month;
-				default:
-					throw new NotImplementedException();
-			}
-		}
-
-
 
 		public virtual User User()
 		{
-			switch (Nature)
-			{
-				case SummaryNature.Year:
-					return Year.User();
-				case SummaryNature.Month:
-					return Month.User();
-				default:
-					throw new NotImplementedException();
-			}
+			return Account.User;
 		}
-
-
-
 	}
 }

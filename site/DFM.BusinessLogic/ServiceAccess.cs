@@ -16,22 +16,20 @@ namespace DFM.BusinessLogic
 			var config = new ConfigRepository();
 			var contract = new ContractRepository();
 			var detail = new DetailRepository();
-			var month = new MonthRepository();
 			var move = new MoveRepository();
 			var schedule = new ScheduleRepository();
 			var security = new SecurityRepository();
 			var summary = new SummaryRepository();
 			var ticket = new TicketRepository();
 			var user = new UserRepository();
-			var year = new YearRepository();
 
-			BaseMove = new BaseMoveSaverService(this, move, detail, summary, month, year);
+			BaseMove = new BaseMoveSaverService(this, move, detail, summary);
 
 			Safe = new SafeService(this, user, security, ticket, contract, acceptance, getPath);
-			Admin = new AdminService(this, account, category, year, month, summary, config, schedule);
+			Admin = new AdminService(this, account, category, summary, config, schedule, move);
 			Money = new MoneyService(this, move, detail, schedule);
 			Robot = new RobotService(this, schedule, detail);
-			Report = new ReportService(this, account, year, month);
+			Report = new ReportService(this, account, move, summary);
 
 			Current = new Current(Safe, getTicket);
 		}

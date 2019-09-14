@@ -21,8 +21,8 @@ namespace DFM.MVC.Areas.API.Models
 			Date = new DateJson(move.Date);
 			Category = move.Category?.Name;
 			Nature = move.Nature;
-			AccountOutUrl = move.AccOut()?.Url;
-			AccountInUrl = move.AccIn()?.Url;
+			AccountOutUrl = move.Out?.Url;
+			AccountInUrl = move.In?.Url;
 			Value = move.Value;
 
 			DetailList = move.DetailList.Select(d => new DetailJson(d)).ToList();

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Keon.Util.Extensions;
 using DFM.BusinessLogic.Bases;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
@@ -34,26 +33,6 @@ namespace DFM.BusinessLogic.Repositories
 			);
 		}
 
-		#region PlaceAccountsInMove
-		internal void PlaceMonthsInMove(Move move, Month monthOut, Month monthIn)
-		{
-			if (monthOut == null)
-				move.Out = null;
-			else if (!monthOut.OutContains(move))
-				monthOut.AddOut(move);
-			else
-				monthOut.UpdateOut(move);
-
-			if (monthIn == null)
-				move.In = null;
-			else if (!monthIn.InContains(move))
-				monthIn.AddIn(move);
-			else
-				monthIn.UpdateIn(move);
-		}
-
-		#endregion
-
 		#region SendEmail
 		internal EmailStatus SendEmail(Move move, OperationType operationType)
 		{
@@ -65,10 +44,10 @@ namespace DFM.BusinessLogic.Repositories
 
 			var operation = PlainText.Site["general", config.Language, operationType.ToString()];
 
-			var accountInName = getAccountName(move.AccIn()) ?? "---";
-			var accountOutName = getAccountName(move.AccOut()) ?? "---";
-
+			var accountInName = move.In?.Name ?? "---";
+			var accountOutName = move.Out?.Name ?? "---";
 			var categoryName = move.Category?.Name ?? "---";
+
 			var nature = PlainText.Site["general", config.Language, move.Nature.ToString()];
 
 			var format = Format.MoveNotification(config.Language, config.Theme.Simplify());
@@ -139,38 +118,58 @@ namespace DFM.BusinessLogic.Repositories
 
 			return details.ToString();
 		}
-
-		private static String getAccountName(Account account)
-		{
-			return account?.Name;
-		}
 		#endregion
 
-		internal Decimal GetIn(Month month, Category category)
+		internal Decimal GetIn(Summary summary)
 		{
 			var query = NewQuery().SimpleFilter(
-				m => m.In != null && m.In.ID == month.ID
+				m => m.In != null && m.In.ID == summary.Account.ID
 			);
 
-			return get(query, category);
+			return get(query, summary);
 		}
 
-		internal Decimal GetOut(Month month, Category category)
+		internal Decimal GetOut(Summary summary)
 		{
 			var query = NewQuery().SimpleFilter(
-				m => m.Out != null && m.Out.ID == month.ID
+				m => m.Out != null && m.Out.ID == summary.Account.ID
 			);
 
-			return get(query, category);
+			return get(query, summary);
 		}
 
-		private Decimal get(IQuery<Move, Int64> query, Category category)
+		private Decimal get(IQuery<Move, Int64> query, Summary summary)
 		{
-			query = category == null
+			query = summary.Category == null
 				? query.SimpleFilter(m => m.Category == null)
-				: query.SimpleFilter(m => m.Category != null && m.Category.ID == category.ID);
+				: query.SimpleFilter(m => m.Category != null && m.Category.ID == summary.Category.ID);
 
-			return query.Result.Sum(m => m.Total());
+			switch (summary.Nature)
+			{
+				case SummaryNature.Month:
+					var year = summary.Time / 100;
+					var month = summary.Time % 100;
+
+					query = query.SimpleFilter(m =>
+						m.Month == month
+						&& m.Year == year
+					);
+
+					break;
+				case SummaryNature.Year:
+					query = query.SimpleFilter(m =>
+						m.Year == summary.Time
+					);
+
+					break;
+				default:
+					throw new NotImplementedException();
+			}
+
+			// TODO: use summarize from query
+			return query
+				.Result
+				.Sum(m => m.Total());
 		}
 
 		internal override User GetUser(Move move)
@@ -178,8 +177,36 @@ namespace DFM.BusinessLogic.Repositories
 			if (move.ID != 0)
 				move = Get(move.ID) ?? move;
 
-			var month = move.Out ?? move.In;
-			return month?.User();
+			var account = move.Out ?? move.In;
+			return account?.User;
+		}
+
+		public IList<Move> ByAccount(Account account)
+		{
+			return byAccount(account).Result;
+		}
+
+		public Boolean AccountHasMoves(Account account)
+		{
+			return byAccount(account).Any();
+		}
+
+		public IList<Move> ByAccountAndTime(Account account, Int16 dateYear, Int16 dateMonth)
+		{
+			return byAccount(account)
+				.SimpleFilter(
+					m => m.Year == dateYear
+					     && m.Month == dateMonth
+				).Result;
+		}
+
+		private IQuery<Move, Int64> byAccount(Account account)
+		{
+			return NewQuery()
+				.SimpleFilter(
+					m => (m.In != null && m.In.ID == account.ID)
+					     || (m.Out != null && m.Out.ID == account.ID)
+				);
 		}
 	}
 }
