@@ -36,7 +36,7 @@ namespace DFM.MVC.Areas.Account.Models
 				ErrorAlert.AddTranslated(message);
 			}
 
-			ReportUrl = (move.Out ?? move.In).Url();
+			ReportUrl = move.ReportUrl();
 		}
 
 		public void CheckMove(int id)
@@ -45,7 +45,7 @@ namespace DFM.MVC.Areas.Account.Models
 			{
 				var move = money.CheckMove(id);
 
-				ReportUrl = (move.Out ?? move.In).Url();
+				ReportUrl = move.ReportUrl();
 			}
 			catch (CoreError e)
 			{
@@ -59,7 +59,7 @@ namespace DFM.MVC.Areas.Account.Models
 			{
 				var move = money.UncheckMove(id);
 
-				ReportUrl = (move.Out ?? move.In).Url();
+				ReportUrl = move.ReportUrl();
 			}
 			catch (CoreError e)
 			{

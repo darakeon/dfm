@@ -10,30 +10,20 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	var monthList = Model.Year.MonthList
-		.OrderBy(m => m.Time)
-		.Select(
-			m =>  new
-			{
-				m.Time,
-				Url = m.Url(),
-				In = m.In(),
-				Out = m.Out(),
-				Total = m.Total()
-			}
-		).Where(
-			m => m.In != 0 || m.Out != 0
-		).ToList();
+		.OrderBy(m => m.Number)
+		.Where(m => m.In != 0 || m.Out != 0)
+		.ToList();
 
 	ViewBag.HasContent = monthList.Any();
 	ViewBag.NoContentText = Translator.Dictionary["NoYearMoves"];
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
 
-	var beginDate = new YearUnit(Model.Account.Start);
-	var endDate = new YearUnit(Model.Account.End ?? Service.Current.User.Now());
+	var start = new YearUnit(Model.Account.Start);
+	var end = new YearUnit(Model.Account.End ?? Service.Current.User.Now());
 	var current = new YearUnit(Model.Year.Time);
 
-	var pages = new Pages<YearUnit>(beginDate, endDate, current, 5);
+	var pages = new Pages<YearUnit>(start, end, current, 5);
 }
 
 @section TableHeader{
@@ -49,8 +39,8 @@
 {
 	<tr class="row">
 		<td class="col-sm-3">
-			<a href="@Url.Action("ShowMoves", new {id = month.Url})">
-				@Translator.GetMonthName(month.Time)
+			<a href="@Url.Action("ShowMoves", new {id = month.Number})">
+				@Translator.GetMonthName(month.Number % 100)
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">

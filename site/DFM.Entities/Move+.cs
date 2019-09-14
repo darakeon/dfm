@@ -21,8 +21,8 @@ namespace DFM.Entities
 
 		public virtual Decimal? Value
 		{
-			get { return ValueCents.ToVisual(); }
-			set { ValueCents = value.ToCents(); }
+			get => ValueCents.ToVisual();
+			set => ValueCents = value.ToCents();
 		}
 
 		public virtual Decimal Total()
@@ -30,13 +30,9 @@ namespace DFM.Entities
 			return Value ?? DetailList.Sum(d => d.GetTotal());
 		}
 
-
 		public virtual Int64 FakeID
 		{
-			get
-			{
-				return ID * Constants.FAKE_ID;
-			}
+			get => ID * Constants.FAKE_ID;
 			set
 			{
 				if (value % Constants.FAKE_ID != 0)
@@ -46,34 +42,11 @@ namespace DFM.Entities
 			}
 		}
 
-		public virtual Account AccOut()
-		{
-			return getAccount(Out);
-		}
-
-		public virtual Account AccIn()
-		{
-			return getAccount(In);
-		}
-
 		public virtual void AddDetail(Detail detail)
 		{
 			DetailList.Add(detail);
 
 			detail.Move = this;
-		}
-
-		private static Account getAccount(Month month)
-		{
-			return month?.Year.Account;
-		}
-
-
-
-
-		public virtual String Month()
-		{
-			return Date.ToString("MMMM");
 		}
 
 		public virtual String GetDescriptionDetailed()
@@ -85,7 +58,6 @@ namespace DFM.Entities
 			if (schedule == null || !schedule.ShowInstallment)
 				return Description;
 
-
 			var total = schedule.Times;
 			var executed = positionInSchedule();
 
@@ -93,7 +65,6 @@ namespace DFM.Entities
 
 			return String.Format(format, Description, executed, total);
 		}
-
 
 		private Int32 positionInSchedule()
 		{
@@ -128,7 +99,5 @@ namespace DFM.Entities
 
 			return diff + 1;
 		}
-
-
 	}
 }

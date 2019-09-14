@@ -15,27 +15,24 @@ namespace DFM.BusinessLogic.Services
 	{
 		private readonly AccountRepository accountRepository;
 		private readonly CategoryRepository categoryRepository;
-		private readonly YearRepository yearRepository;
-		private readonly MonthRepository monthRepository;
 		private readonly SummaryRepository summaryRepository;
 		private readonly ConfigRepository configRepository;
 		private readonly ScheduleRepository scheduleRepository;
+		private readonly MoveRepository moveRepository;
 
-		internal AdminService(ServiceAccess serviceAccess, AccountRepository accountRepository,
-			CategoryRepository categoryRepository, YearRepository yearRepository, MonthRepository monthRepository,
-			SummaryRepository summaryRepository, ConfigRepository configRepository, ScheduleRepository scheduleRepository)
+		internal AdminService(
+			ServiceAccess serviceAccess, AccountRepository accountRepository,
+			CategoryRepository categoryRepository, SummaryRepository summaryRepository,
+			ConfigRepository configRepository, ScheduleRepository scheduleRepository, MoveRepository moveRepository)
 			: base(serviceAccess)
 		{
 			this.accountRepository = accountRepository;
 			this.categoryRepository = categoryRepository;
-			this.yearRepository = yearRepository;
-			this.monthRepository = monthRepository;
 			this.summaryRepository = summaryRepository;
 			this.configRepository = configRepository;
 			this.scheduleRepository = scheduleRepository;
+			this.moveRepository = moveRepository;
 		}
-
-
 
 		#region Account
 		public IList<AccountListItem> GetAccountList(Boolean open)
@@ -51,8 +48,39 @@ namespace DFM.BusinessLogic.Services
 			else
 				query.SimpleFilter(a => a.EndDate != null);
 
-			return query.OrderBy(a => a.Name).Result
-				.Select(AccountListItem.Convert).ToList();
+			var accountList = query.OrderBy(a => a.Name).Result;
+
+			var resultList = new List<AccountListItem>();
+
+			foreach (var account in accountList)
+			{
+				var hasMoves = moveRepository.AccountHasMoves(account);
+				var total = summaryRepository.GetTotal(account);
+				var sign = getSign(account, total);
+
+				var item = AccountListItem.Convert(account, total, sign, hasMoves);
+
+				resultList.Add(item);
+			}
+
+			return resultList;
+		}
+
+		private AccountSign getSign(Account account, Decimal total)
+		{
+			var hasRed = account.RedLimit != null;
+			var hasYellow = account.YellowLimit != null;
+
+			if (hasRed && total < account.RedLimit)
+				return AccountSign.Red;
+
+			if (hasYellow && total < account.YellowLimit)
+				return AccountSign.Yellow;
+
+			if (hasRed || hasYellow)
+				return AccountSign.Green;
+
+			return AccountSign.None;
 		}
 
 		public AccountInfo GetAccountByUrl(String url)
@@ -112,10 +140,15 @@ namespace DFM.BusinessLogic.Services
 			{
 				var account = getAccountByUrl(url);
 
-				if (account != null)
-				{
-					scheduleRepository.DisableAll(account);
-				}
+				if (account == null)
+					throw Error.InvalidAccount.Throw();
+
+				var hasMoves = moveRepository.AccountHasMoves(account);
+
+				if (!hasMoves)
+					throw Error.CantCloseEmptyAccount.Throw();
+
+				scheduleRepository.DisableAll(account);
 
 				accountRepository.Close(account);
 			});
@@ -129,29 +162,19 @@ namespace DFM.BusinessLogic.Services
 			{
 				var account = GetAccountByUrlInternal(url);
 
-				foreach (var year in account.YearList)
-				{
-					foreach (var month in year.MonthList)
-					{
-						foreach (var summary in month.SummaryList)
-						{
-							summaryRepository.Delete(summary);
-						}
+				if (account == null)
+					throw Error.InvalidAccount.Throw();
 
-						monthRepository.Delete(month);
-					}
+				var hasMoves = moveRepository.AccountHasMoves(account);
 
-					foreach (var summary in year.SummaryList)
-					{
-						summaryRepository.Delete(summary);
-					}
+				if (hasMoves)
+					throw Error.CantDeleteAccountWithMoves.Throw();
 
-					yearRepository.Delete(year);
-				}
+				summaryRepository.DeleteAll(account);
 
 				scheduleRepository.DeleteAll(account);
 
-				accountRepository.Delete(url, Parent.Current.User);
+				accountRepository.Delete(account);
 			});
 		}
 		#endregion Account

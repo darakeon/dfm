@@ -11,19 +11,20 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 			mapping.IgnoreProperty(s => s.In);
 			mapping.IgnoreProperty(s => s.Out);
 
-			mapping.References(s => s.Month)
-				.UniqueKey("Summary_CategoryTime")
-				.Not.Update()
-				.Nullable();
-
-			mapping.References(s => s.Year)
-				.UniqueKey("Summary_CategoryTime")
-				.Not.Update()
-				.Nullable();
+			mapping.References(s => s.Account)
+				.UniqueKey("UK_Summary")
+				.Not.Update();
 
 			mapping.References(s => s.Category)
-				.UniqueKey("Summary_CategoryTime")
+				.UniqueKey("UK_Summary")
+				.Not.Update()
 				.Nullable();
+
+			mapping.Map(s => s.Time)
+				.UniqueKey("UK_Summary");
+
+			mapping.Map(s => s.Nature)
+				.UniqueKey("UK_Summary");
 		}
 
 	}

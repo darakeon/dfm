@@ -1,17 +1,16 @@
 ﻿using System;
-using DFM.Entities;
-using DFM.Entities.Extensions;
+using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API.Jsons
 {
 	public class SimpleMonthJson
 	{
-		public SimpleMonthJson(Month month)
+		public SimpleMonthJson(YearReport.MonthItem month)
 		{
-			Number = month.Time;
-			Name = Translator.GetMonthName(month.Time);
-			Total = month.Total();
+			Number = month.Number;
+			Name = Translator.GetMonthName(month.Number);
+			Total = month.Total;
 		}
 
 		public SimpleMonthJson(Int16 month)
@@ -21,9 +20,8 @@ namespace DFM.MVC.Areas.API.Jsons
 			Total = 0;
 		}
 
-		public Int16 Number { get; set; }
+		public Int32 Number { get; set; }
 		public String Name { get; set; }
 		public Decimal Total { get; set; }
-
 	}
 }

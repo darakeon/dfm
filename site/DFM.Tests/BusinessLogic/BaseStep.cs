@@ -26,6 +26,8 @@ namespace DFM.Tests.BusinessLogic
 
 		private protected static AccountRepository accountRepository;
 		private protected static CategoryRepository categoryRepository;
+		private protected static SummaryRepository summaryRepository;
+		private protected static MoveRepository moveRepository;
 
 		private static String logFileName;
 
@@ -46,7 +48,8 @@ namespace DFM.Tests.BusinessLogic
 			logFileName = Path.Combine(path, $"tests_{date}.log");
 			accountRepository = new AccountRepository();
 			categoryRepository = new CategoryRepository();
-
+			summaryRepository = new SummaryRepository();
+			moveRepository = new MoveRepository();
 		}
 
 		protected static void log(String text)

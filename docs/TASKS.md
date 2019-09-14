@@ -84,9 +84,8 @@ Legend:
 - [ ] Search by category
 - [ ] Search by move
 
-## 4.3.1.0 :sheep: <sup>`3`</sup>
+## 4.3.1.0 :sheep: <sup>`2`</sup>
 - [ ] If session drop, call history.go(-2) after re-login
-- [ ] Remove direct access of Month and Year to Summary (refactor Summary)
 - [ ] Remove GetOrCreate
 
 ## 4.3.0.1 :ant: <sup>`3`</sup>
@@ -123,7 +122,7 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## <a name="dev"></a>4.1.3.6 :ant: <sup>`8`</sup>
+## <a name="dev"></a>4.1.3.6 :ant: <sup>`9`</sup>
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
@@ -131,6 +130,7 @@ Legend:
 - [ ] Transform ROBOT service receiving / returns into DTO - check android
 - [ ] Transform REPORT service receiving / returns into DTO - check android
 - [ ] Transform MONEY service receiving / returns into DTO - check android
+- [x] `190913>190918` Remove Month and Year (summaries goes to account)
 - [x] `190908>190912` Transform ADMIN service receiving / returns into DTO - check android
 
 ## <a name="prod"></a>4.1.3.5 :ant: <sup>`4`</sup>

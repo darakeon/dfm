@@ -16,7 +16,7 @@ namespace DFM.Entities.Bases
 
 		void AddDetail(Detail detail);
 		Decimal Total();
-		Account AccIn();
-		Account AccOut();
+		Account In { get; }
+		Account Out { get; }
 	}
 }

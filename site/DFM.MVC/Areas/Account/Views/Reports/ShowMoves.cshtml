@@ -68,7 +68,7 @@
 		<td class="text-center">@move.Date.ToShortDateString() </td>
 
 		<td class="text-right">
-			@if (move.In != null && move.In.Year.Account.Url == Model.CurrentAccountUrl)
+			@if (move.In != null && move.In.Url == Model.CurrentAccountUrl)
 			{
 				@Html.Partial("ValueWithSign",
 					new ValueWithSign(move.Total(), Model.Language))
@@ -76,7 +76,7 @@
 		</td>
 
 		<td class="text-right">
-			@if (move.Out != null && move.Out.Year.Account.Url == Model.CurrentAccountUrl)
+			@if (move.Out != null && move.Out.Url == Model.CurrentAccountUrl)
 			{
 				@Html.Partial("ValueWithSign",
 					new ValueWithSign(-move.Total(), Model.Language))

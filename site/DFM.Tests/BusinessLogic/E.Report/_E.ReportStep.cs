@@ -33,9 +33,9 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			set { Set("MonthReport", value); }
 		}
 
-		private static Year yearReport
+		private static YearReport yearReport
 		{
-			get { return Get<Year>("YearReport"); }
+			get { return Get<YearReport>("YearReport"); }
 			set { Set("YearReport", value); }
 		}
 		#endregion
@@ -71,12 +71,14 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			var account = accountRepository.GetByUrl(Account.Url, Current.User);
 
-			var expected = account[year][month]
-				.SummaryList.Sum(s => s.Value());
+			var time = year * 100 + month;
+			var expected = summaryRepository
+				.Get(account, time)
+				.Sum(s => s.Value());
 
 			var actual = monthReport.Sum(m =>
-					m.AccOut() != null
-							&& m.AccOut().ID == account.ID
+					m.Out != null
+							&& m.Out.ID == account.ID
 						? - m.Total()
 						: m.Total()
 				);
@@ -121,13 +123,15 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
 			var account = accountRepository.GetByUrl(Account.Url, Current.User);
-			var expected = account[year].SummaryList.Sum(s => s.Value());
 
-			//TODO: Temporary code - the access to move will be refactored
-			yearReport = Service.Report.GetYearReport(AccountUrl, year);
+			var expected = summaryRepository.GetTotal(account);
 
-			var actual = yearReport.MonthList.Sum(m =>
-					m.SummaryList.Sum(s => s.Value())
+			var actual = moveRepository
+				.ByAccount(account)
+				.Sum(
+					m => m.ID == account.ID
+						? m.Total()
+						: -m.Total()
 				);
 
 			Assert.AreEqual(expected, actual);

@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Services
 {
 	public class ReportService : BaseService
 	{
 		private readonly AccountRepository accountRepository;
-		private readonly YearRepository yearRepository;
-		private readonly MonthRepository monthRepository;
+		private readonly MoveRepository moveRepository;
+		private readonly SummaryRepository summaryRepository;
 
-		internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, YearRepository yearRepository, MonthRepository monthRepository)
+		internal ReportService(ServiceAccess serviceAccess, AccountRepository accountRepository, MoveRepository moveRepository, SummaryRepository summaryRepository)
 			: base(serviceAccess)
 		{
 			this.accountRepository = accountRepository;
-			this.monthRepository = monthRepository;
-			this.yearRepository = yearRepository;
+			this.moveRepository = moveRepository;
+			this.summaryRepository = summaryRepository;
 		}
 
 
@@ -38,25 +39,13 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			var year = yearRepository.GetOrCreateYear(dateYear, account);
-
-			if (year == null)
-				return new List<Move>();
-
-
-			var month = monthRepository.GetOrCreateMonth(dateMonth, year);
-
-			if (month == null)
-				return new List<Move>();
-
-			return month.MoveList()
-				.OrderBy(m => m.Date)
-				.ToList();
+			return moveRepository
+				.ByAccountAndTime(account, dateYear, dateMonth);
 		}
 
 
 
-		public Year GetYearReport(String accountUrl, Int16 dateYear)
+		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -68,13 +57,16 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			var year = yearRepository.GetOrCreateYear(dateYear, account);
+			// TODO: use summarize
+			var summaries = summaryRepository
+				.SimpleFilter(
+					s => s.Account.ID == account.ID
+						&& s.Nature == SummaryNature.Month
+						&& s.Time > dateYear * 100
+						&& s.Time < (dateYear + 1) * 100
+				);
 
-			return accountRepository.NonFuture(year);
+			return new YearReport(dateYear, summaries);
 		}
-
-
-
-
 	}
 }

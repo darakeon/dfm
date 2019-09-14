@@ -32,7 +32,5 @@ namespace DFM.Entities.Extensions
 		{
 			return move.Category != null;
 		}
-
-
 	}
 }

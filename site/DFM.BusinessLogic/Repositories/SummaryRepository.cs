@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using Keon.NHibernate.Base;
 
@@ -8,45 +10,44 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class SummaryRepository : BaseRepositoryLong<Summary>
 	{
-		internal void Break(Year year, Category category)
+		internal void Break(Account account, Category category, DateTime date)
 		{
-			var summary = getByYearAndCategory(year, category);
+			var year = date.Year;
+			var month = year * 100 + date.Month;
 
-			@break(summary);
+			@break(account, category, year, SummaryNature.Year);
+			@break(account, category, month, SummaryNature.Month);
 		}
 
-		private Summary getByYearAndCategory(Year year, Category category)
+		private void @break(Account account, Category category, Int32 time, SummaryNature nature)
 		{
-			return SimpleFilter(
-				s => s.Year != null
-				&& s.Year.ID == year.ID
-			).SingleOrDefault(s => s.Category.Is(category));
+			var summary = Get(account, category, time);
+
+			if (summary == null)
+				create(account, category, time, nature);
+			else
+				@break(summary);
 		}
 
-		internal void Break(Month month, Category category)
+		private void create(Account account, Category category, Int32 time, SummaryNature nature)
 		{
-			var summary = getByMonthAndCategory(month, category);
+			var summary = new Summary
+			{
+				Account = account,
+				Category = category,
+				Time = time,
+				Nature = nature,
+				Broken = true,
+			};
 
-			@break(summary);
-		}
-
-		private Summary getByMonthAndCategory(Month month, Category category)
-		{
-			return SimpleFilter(
-				s => s.Month != null 
-				&& s.Month.ID == month.ID
-			).SingleOrDefault(s => s.Category.Is(category));
+			SaveOrUpdate(summary);
 		}
 
 		private void @break(Summary summary)
 		{
 			summary.Broken = true;
-
-			if (summary.ID != 0)
-				SaveOrUpdate(summary);
+			SaveOrUpdate(summary);
 		}
-
-
 
 		public void Fix(Summary summary, Decimal @in, Decimal @out)
 		{
@@ -57,42 +58,33 @@ namespace DFM.BusinessLogic.Repositories
 			SaveOrUpdate(summary);
 		}
 
-
-
-		internal void CreateIfNotExists(Month month, Category category)
+		internal Summary Get(Account account, Category category, Int32 time)
 		{
-			if (month == null)
-				return;
-
-			createForMonthIfNotExists(month, category);
-			createForYearIfNotExists(month.Year, category);
+			return Get(account, time)
+				.SingleOrDefault(s => s.Category.Is(category));
 		}
 
-		private void createForMonthIfNotExists(Month month, Category category)
+		internal IList<Summary> Get(Account account, Int32 time)
 		{
-			var summaryMonth = getByMonthAndCategory(month, category);
-
-			if (summaryMonth == null)
-			{
-				summaryMonth = new Summary(month, category);
-
-				SaveOrUpdate(summaryMonth);
-			}
+			return SimpleFilter(
+				s => s.Account.ID == account.ID
+				     && s.Time == time
+			);
 		}
 
-		private void createForYearIfNotExists(Year year, Category category)
+		internal Decimal GetTotal(Account account)
 		{
-			var summaryYear = getByYearAndCategory(year, category);
-
-			if (summaryYear == null)
-			{
-				summaryYear = new Summary(year, category);
-
-				SaveOrUpdate(summaryYear);
-			}
+			// TODO: refactor to use summarize
+			return SimpleFilter(s => s.Account.ID == account.ID)
+				.Where(s => s.Nature == SummaryNature.Year)
+				.Sum(s => s.Value());
 		}
 
-
-
+		public void DeleteAll(Account account)
+		{
+			SimpleFilter(s => s.Account.ID == account.ID)
+				.ToList()
+				.ForEach(Delete);
+		}
 	}
 }
