@@ -190,23 +190,24 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"this account has moves")]
 		public void ThisAccountHasMoves()
 		{
-			Move = new Move
+			moveInfo = new MoveInfo
 			{
 				Description = "Description",
 				Date = Current.User.Now(),
 				Nature = MoveNature.Out,
+				OutUrl = Account.Url,
 			};
 
-			var newDetail = new Detail
+			var newDetail = new DetailInfo
 			{
-				Description = Move.Description,
+				Description = moveInfo.Description,
 				Amount = 1,
 				Value = 10,
 			};
 
-			Move.DetailList.Add(newDetail);
+			moveInfo.DetailList.Add(newDetail);
 
-			Service.Money.SaveOrUpdateMove(Move, Account.Url, null, null);
+			Service.Money.SaveMove(moveInfo);
 
 			var account = accountRepository.GetByUrl(Account.Url, Current.User);
 			accountTotal = summaryRepository.GetTotal(account);
@@ -995,15 +996,17 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Service.Admin.CreateAccount(Account);
 
-			var move = new Move
+			var move = new MoveInfo
 			{
 				Date = Current.User.Now(),
 				Description = "Move for account test",
 				Nature = MoveNature.Out,
-				Value = 10
+				Value = 10,
+				OutUrl = Account.Url,
+				CategoryName = Category?.Name,
 			};
 
-			Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category?.Name);
+			Service.Money.SaveMove(move);
 
 			AccountUrl = Account.Url;
 		}
@@ -1011,7 +1014,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"the account has a schedule( with details)?")]
 		public void GivenTheAccountHasSchedules(String withDetails)
 		{
-			Schedule = new Schedule
+			scheduleInfo = new ScheduleInfo
 			{
 				Date = Current.User.Now().AddDays(1),
 				Description = "Schedule for account test",
@@ -1019,31 +1022,34 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
+				OutUrl = Account.Url,
+				CategoryName = Category?.Name,
 			};
 
 			if (String.IsNullOrEmpty(withDetails))
 			{
-				Schedule.Value = 10;
+				scheduleInfo.Value = 10;
 			}
 			else
 			{
-				var detail = new Detail
+				var detail = new DetailInfo
 				{
 					Description = "Detail",
 					Amount = 42,
 					Value = 27
 				};
 
-				Schedule.DetailList.Add(detail);
+				scheduleInfo.DetailList.Add(detail);
 			}
 
-			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, Category?.Name);
+			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+			scheduleInfo.ID = schedule.ID;
 		}
 
 		[Given(@"the account has a disabled schedule( with details)?")]
 		public void GivenTheAccountHasADisabledSchedule(String withDetails)
 		{
-			Schedule = new Schedule
+			scheduleInfo = new ScheduleInfo
 			{
 				Date = Current.User.Now().AddDays(1),
 				Description = "Schedule for account test",
@@ -1051,27 +1057,29 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Frequency = ScheduleFrequency.Daily,
 				Boundless = false,
 				Times = 1,
+				OutUrl = Account.Url,
 			};
 
 			if (String.IsNullOrEmpty(withDetails))
 			{
-				Schedule.Value = 10;
+				scheduleInfo.Value = 10;
 			}
 			else
 			{
-				var detail = new Detail
+				var detail = new DetailInfo
 				{
 					Description = "Detail",
 					Amount = 42,
 					Value = 27
 				};
 
-				Schedule.DetailList.Add(detail);
+				scheduleInfo.DetailList.Add(detail);
 			}
 
-			Service.Robot.SaveOrUpdateSchedule(Schedule, Account.Url, null, null);
+			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+			scheduleInfo.ID = schedule.ID;
 
-			Service.Robot.DisableSchedule(Schedule.ID);
+			Service.Robot.DisableSchedule(scheduleInfo.ID);
 		}
 
 
@@ -1118,7 +1126,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the schedule will be disabled")]
 		public void ThenTheScheduleWillBeDisabled()
 		{
-			var enabled = DBHelper.CheckScheduleState(Schedule);
+			var enabled = DBHelper.CheckScheduleState(scheduleInfo);
 			Assert.IsFalse(enabled);
 		}
 
@@ -1126,7 +1134,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the Schedule will be enabled")]
 		public void ThenTheScheduleWillBeEnabled()
 		{
-			var enabled = DBHelper.CheckScheduleState(Schedule);
+			var enabled = DBHelper.CheckScheduleState(scheduleInfo);
 			Assert.IsTrue(enabled);
 		}
 		#endregion

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -21,22 +22,11 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"it has no Details")]
 		public void GivenItHasNoDetails()
 		{
-			if (Move != null)
-				Move.DetailList = new List<Detail>();
+			if (moveInfo != null)
+				moveInfo.DetailList = new List<DetailInfo>();
 
-			if (Schedule != null)
-				Schedule.DetailList = new List<Detail>();
-		}
-
-		[Given(@"the move has this details")]
-		public void GivenTheMoveHasThisDetails(Table table)
-		{
-			foreach (var detailData in table.Rows)
-			{
-				var detail = GetDetailFromTable(detailData);
-
-				DetailList.Add(detail);
-			}
+			if (scheduleInfo != null)
+				scheduleInfo.DetailList = new List<DetailInfo>();
 		}
 
 		[Given(@"it has a Category")]
@@ -88,7 +78,7 @@ namespace DFM.Tests.BusinessLogic
 				)?.Out ?? 0;
 			MonthCategoryAccountOutTotal =
 				summaryRepository.Get(
-					AccountOut, category, Date.Year * 100 + Date.Month
+					AccountOut, category, Date.ToMonthYear()
 				)?.Out ?? 0;
 		}
 
@@ -123,15 +113,17 @@ namespace DFM.Tests.BusinessLogic
 			Service.Admin.CreateAccount(account);
 			AccountOut = accountRepository.GetByUrl(url, Current.User);
 
-			var move = new Move
+			var move = new MoveInfo
 			{
 				Date = Current.User.Now(),
 				Description = "Description",
 				Nature = MoveNature.Out,
-				Value = 10
+				Value = 10,
+				OutUrl = AccountOut.Url,
+				CategoryName = Category.Name,
 			};
 
-			Service.Money.SaveOrUpdateMove(move, AccountOut.Url, null, Category.Name);
+			Service.Money.SaveMove(move);
 
 			Service.Admin.CloseAccount(AccountOut.Url);
 		}
@@ -152,7 +144,7 @@ namespace DFM.Tests.BusinessLogic
 				)?.In ?? 0;
 			MonthCategoryAccountInTotal =
 				summaryRepository.Get(
-					AccountIn, category, Date.Year * 100 + Date.Month
+					AccountIn, category, Date.ToMonthYear()
 				)?.In ?? 0;
 		}
 
@@ -188,15 +180,17 @@ namespace DFM.Tests.BusinessLogic
 
 			AccountIn = accountRepository.GetByUrl(url, Current.User);
 
-			var move = new Move
+			var move = new MoveInfo
 			{
 				Date = Current.User.Now(),
 				Description = "Description",
 				Nature = MoveNature.In,
-				Value = 10
+				Value = 10,
+				InUrl = AccountIn.Url,
+				CategoryName = Category.Name,
 			};
 
-			Service.Money.SaveOrUpdateMove(move, null, AccountIn.Url, Category.Name);
+			Service.Money.SaveMove(move);
 
 			Service.Admin.CloseAccount(AccountIn.Url);
 		}
@@ -218,7 +212,7 @@ namespace DFM.Tests.BusinessLogic
 				)?.In ?? 0;
 			MonthCategoryAccountInTotal =
 				summaryRepository.Get(
-					AccountIn, category, Date.Year * 100 + Date.Month
+					AccountIn, category, Date.ToMonthYear()
 				)?.In ?? 0;
 
 			YearCategoryAccountOutTotal =
@@ -227,7 +221,7 @@ namespace DFM.Tests.BusinessLogic
 				)?.Out ?? 0;
 			MonthCategoryAccountOutTotal =
 				summaryRepository.Get(
-					AccountOut, category, Date.Year * 100 + Date.Month
+					AccountOut, category, Date.ToMonthYear()
 				)?.Out ?? 0;
 		}
 
@@ -249,7 +243,7 @@ namespace DFM.Tests.BusinessLogic
 			var category = categoryRepository.GetByName(CategoryName, Current.User);
 
 			var currentTotal = summaryRepository.Get(
-				AccountOut, category, Date.Year * 100 + Date.Month
+				AccountOut, category, Date.ToMonthYear()
 			)?.Out ?? 0;
 
 			Assert.AreEqual(MonthCategoryAccountOutTotal, currentTotal);
@@ -285,7 +279,7 @@ namespace DFM.Tests.BusinessLogic
 			var category = categoryRepository.GetByName(CategoryName, Current.User);
 
 			var currentTotal = summaryRepository.Get(
-				AccountIn, category, Date.Year * 100 + Date.Month
+				AccountIn, category, Date.ToMonthYear()
 			)?.In ?? 0;
 
 			Assert.AreEqual(MonthCategoryAccountInTotal, currentTotal);
@@ -324,7 +318,7 @@ namespace DFM.Tests.BusinessLogic
 			var category = categoryRepository.GetByName(CategoryName, Current.User);
 
 			var currentTotal = summaryRepository.Get(
-				AccountOut, category, Date.Year * 100 + Date.Month
+				AccountOut, category, Date.ToMonthYear()
 			)?.Out ?? 0;
 
 			Assert.AreEqual(MonthCategoryAccountOutTotal + change, currentTotal);
@@ -363,7 +357,7 @@ namespace DFM.Tests.BusinessLogic
 			var category = categoryRepository.GetByName(CategoryName, Current.User);
 
 			var currentTotal = summaryRepository.Get(
-				AccountIn, category, Date.Year * 100 + Date.Month
+				AccountIn, category, Date.ToMonthYear()
 			)?.In ?? 0;
 
 			Assert.AreEqual(MonthCategoryAccountInTotal + change, currentTotal);

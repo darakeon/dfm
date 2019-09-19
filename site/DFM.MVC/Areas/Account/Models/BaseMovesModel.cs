@@ -5,11 +5,9 @@ using System.Linq;
 using System.Web.Mvc;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Entities;
-using DFM.Entities.Extensions;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -28,24 +26,18 @@ namespace DFM.MVC.Areas.Account.Models
 			populateDropDowns(transferIsPossible);
 		}
 
-		protected BaseMovesModel(IMove iMove)
+		protected BaseMovesModel(IMoveInfo move)
 			: this()
 		{
-			GenericMove = iMove;
+			GenericMove = move;
 
 			if (Date == DateTime.MinValue)
 				Date = today;
 
-			AccountOutUrl = iMove.Out?.Url;
-			AccountInUrl = iMove.In?.Url;
-
-			if (iMove.Category != null)
-				CategoryName = iMove.Category.Name;
-
 			arrangeDetails();
 		}
 
-		protected BaseMovesModel(IMove iMove, OperationType type)
+		protected BaseMovesModel(IMoveInfo iMove, OperationType type)
 			: this(iMove)
 		{
 			Type = type;
@@ -73,12 +65,12 @@ namespace DFM.MVC.Areas.Account.Models
 			arrangeDetails();
 		}
 
-		private IMove initIMove()
+		private IMoveInfo initIMove()
 		{
 			if (GetType() == typeof(SchedulesCreateModel))
-				return new Schedule();
+				return new ScheduleInfo();
 
-			return new Move();
+			return new MoveInfo();
 		}
 
 		private void makeNatureList(bool transferIsPossible)
@@ -112,7 +104,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public OperationType Type { get; set; }
 
 
-		protected internal IMove GenericMove { get; set; }
+		protected internal IMoveInfo GenericMove { get; set; }
 
 		public const Int32 DetailCount = 100;
 
@@ -131,7 +123,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 					if (!detailList.Any())
 					{
-						detailList.Add(new DetailUI(new Detail()));
+						detailList.Add(new DetailUI(new DetailInfo()));
 					}
 
 					for (var d = detailList.Count; d < DetailCount; d++)
@@ -144,7 +136,10 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 			set
 			{
-				GenericMove.DetailList = value.Where(d => d.Send).Select(d => d.Detail).ToList();
+				GenericMove.DetailList = value
+					.Where(d => d.Send)
+					.Select(d => d.Detail)
+					.ToList();
 			}
 		}
 
@@ -152,24 +147,24 @@ namespace DFM.MVC.Areas.Account.Models
 		[Required(ErrorMessage = "*")]
 		public String Description
 		{
-			get { return GenericMove.Description; }
-			set { GenericMove.Description = value; }
+			get => GenericMove.Description;
+			set => GenericMove.Description = value;
 		}
 
 
 		[Required(ErrorMessage = "*")]
 		public DateTime Date
 		{
-			get { return GenericMove.Date; }
-			set { GenericMove.Date = value; }
+			get => GenericMove.Date;
+			set => GenericMove.Date = value;
 		}
 
 
 		[Required(ErrorMessage = "*")]
 		public MoveNature Nature
 		{
-			get { return GenericMove.Nature; }
-			set { GenericMove.Nature = value; }
+			get => GenericMove.Nature;
+			set => GenericMove.Nature = value;
 		}
 
 		public SelectList NatureSelectList { get; set; }
@@ -178,13 +173,25 @@ namespace DFM.MVC.Areas.Account.Models
 
 		[Required(ErrorMessage = "*")]
 		public SelectList CategorySelectList { get; set; }
-		public String CategoryName { get; set; }
+		public String CategoryName
+		{
+			get => GenericMove.CategoryName;
+			set => GenericMove.CategoryName = value;
+		}
 
 		public SelectList AccountOutSelectList { get; set; }
-		public String AccountOutUrl { get; set; }
+		public String AccountOutUrl
+		{
+			get => GenericMove.OutUrl;
+			set => GenericMove.OutUrl = value;
+		}
 
 		public SelectList AccountInSelectList { get; set; }
-		public String AccountInUrl { get; set; }
+		public String AccountInUrl
+		{
+			get => GenericMove.InUrl;
+			set => GenericMove.InUrl = value;
+		}
 
 
 		public Boolean IsDetailed { get; set; }
@@ -192,8 +199,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public Decimal? Value
 		{
-			get { return GenericMove.Value; }
-			set { GenericMove.Value = value; }
+			get => GenericMove.Value;
+			set => GenericMove.Value = value;
 		}
 
 		public Boolean ShowNoCategories => IsUsingCategories && !CategorySelectList.Any();
@@ -202,7 +209,7 @@ namespace DFM.MVC.Areas.Account.Models
 		public Boolean ShowLosingCategory => !IsUsingCategories && !String.IsNullOrEmpty(CategoryName);
 
 
-		internal abstract void SaveOrUpdate();
+		internal abstract void Save();
 
 
 		public IList<String> CreateEditSchedule()
@@ -214,7 +221,7 @@ namespace DFM.MVC.Areas.Account.Models
 				if (!IsDetailed)
 					GenericMove.DetailList.Clear();
 
-				SaveOrUpdate();
+				Save();
 			}
 			catch (CoreError e)
 			{
@@ -235,9 +242,9 @@ namespace DFM.MVC.Areas.Account.Models
 				Disable = disable;
 			}
 
-			public MoveNature Nature { get; private set; }
-			public String Enable { get; private set; }
-			public String Disable { get; private set; }
+			public MoveNature Nature { get; }
+			public String Enable { get; }
+			public String Disable { get; }
 		}
 
 
@@ -251,26 +258,26 @@ namespace DFM.MVC.Areas.Account.Models
 				IsDetailed = isDetailed;
 			}
 
-			public String ResourceKey { get; private set; }
-			public String TargetId { get; private set; }
-			public Boolean IsDetailed { get; private set; }
+			public String ResourceKey { get; }
+			public String TargetId { get; }
+			public Boolean IsDetailed { get; }
 		}
 
 		public class DetailUI
 		{
 			public DetailUI()
 			{
-				Detail = new Detail();
+				Detail = new DetailInfo();
 				Send = false;
 			}
 
-			public DetailUI(Detail detail)
+			public DetailUI(DetailInfo detail)
 			{
 				Detail = detail;
 				Send = true;
 			}
 
-			public Detail Detail { get; set; }
+			public DetailInfo Detail { get; set; }
 			public Boolean Send { get; set; }
 		}
 

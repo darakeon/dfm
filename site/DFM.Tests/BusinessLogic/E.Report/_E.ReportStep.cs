@@ -155,15 +155,17 @@ namespace DFM.Tests.BusinessLogic.E.Report
 					? DateTime.Today.AddDays(Int32.Parse(dateString))
 					: DateTime.Parse(dateString);
 
-				var move = new Move
+				var move = new MoveInfo
 				{
 					Description = "Description",
 					Date = date,
 					Nature = MoveNature.Out,
 					Value = 10,
+					OutUrl = Account.Url,
+					CategoryName = Category.Name,
 				};
 
-				Service.Money.SaveOrUpdateMove(move, Account.Url, null, Category.Name);
+				Service.Money.SaveMove(move);
 			}
 		}
 

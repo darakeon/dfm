@@ -1,8 +1,8 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Email;
-using DFM.Entities;
-using DFM.MVC.Helpers.Extensions;
+using DFM.Generic;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 
@@ -22,10 +22,10 @@ namespace DFM.MVC.Areas.Account.Models
 
 			var result = money.DeleteMove(id);
 
-			if (result.Error.IsWrong())
+			if (result.Email.IsWrong())
 			{
 				var deleted = Translator.Dictionary["MoveDeletedWithoutEmail"];
-				var error = Translator.Dictionary[result.Error];
+				var error = Translator.Dictionary[result.Email];
 				var message = String.Format(deleted, move.Description, error);
 				ErrorAlert.AddTranslated(message);
 			}
@@ -36,7 +36,7 @@ namespace DFM.MVC.Areas.Account.Models
 				ErrorAlert.AddTranslated(message);
 			}
 
-			ReportUrl = move.ReportUrl();
+			ReportUrl = move.Date.ToMonthYear();
 		}
 
 		public void CheckMove(int id)
@@ -44,8 +44,7 @@ namespace DFM.MVC.Areas.Account.Models
 			try
 			{
 				var move = money.CheckMove(id);
-
-				ReportUrl = move.ReportUrl();
+				ReportUrl = move.Date.ToMonthYear();
 			}
 			catch (CoreError e)
 			{
@@ -58,8 +57,7 @@ namespace DFM.MVC.Areas.Account.Models
 			try
 			{
 				var move = money.UncheckMove(id);
-
-				ReportUrl = move.ReportUrl();
+				ReportUrl = move.Date.ToMonthYear();
 			}
 			catch (CoreError e)
 			{
@@ -67,12 +65,11 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 		}
 
-
-		private Move getMove(int id)
+		private MoveInfo getMove(int id)
 		{
 			try
 			{
-				return money.GetMoveById(id);
+				return money.GetMove(id);
 			}
 			catch (CoreError)
 			{
@@ -82,5 +79,4 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public Int32? ReportUrl;
 	}
-
 }

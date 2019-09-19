@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
@@ -16,14 +15,20 @@ namespace DFM.BusinessLogic.Services
 	public class RobotService : BaseService
 	{
 		private readonly ScheduleRepository scheduleRepository;
+		private readonly MoveRepository moveRepository;
 		private readonly DetailRepository detailRepository;
 
-		internal RobotService(ServiceAccess serviceAccess, ScheduleRepository scheduleRepository,
-			DetailRepository detailRepository)
+		internal RobotService(
+			ServiceAccess serviceAccess,
+			ScheduleRepository scheduleRepository,
+			MoveRepository moveRepository,
+			DetailRepository detailRepository
+		)
 			: base(serviceAccess)
 		{
 			this.scheduleRepository = scheduleRepository;
 			this.detailRepository = detailRepository;
+			this.moveRepository = moveRepository;
 		}
 
 
@@ -76,14 +81,7 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var schedule in scheduleList)
 			{
-				var accountOutUrl = schedule.Out?.Url;
-				var accountInUrl = schedule.In?.Url;
-
-				var category = schedule.Category;
-				var categoryName = category == null ? null : schedule.Category.Name;
-
-				var result = addNewMoves(schedule, accountOutUrl, accountInUrl, categoryName);
-
+				var result = addNewMoves(schedule);
 				emailsStati.AddRange(result);
 			}
 
@@ -93,8 +91,7 @@ namespace DFM.BusinessLogic.Services
 			return emailsStati.Max();
 		}
 
-		private IEnumerable<EmailStatus> addNewMoves(Schedule schedule, String accountOutUrl, String accountInUrl,
-			String categoryName)
+		private IEnumerable<EmailStatus> addNewMoves(Schedule schedule)
 		{
 			var emailsStati = new List<EmailStatus>();
 
@@ -104,21 +101,23 @@ namespace DFM.BusinessLogic.Services
 
 				schedule.LastRun++;
 
-				var result = saveOrUpdateMove(newMove, accountOutUrl, accountInUrl, categoryName);
+				var result = saveOrUpdateMove(newMove);
 
-				schedule.MoveList.Add(result.Success);
-				emailsStati.Add(result.Error);
+				var move = moveRepository.Get(result.ID);
+
+				schedule.MoveList.Add(move);
+				emailsStati.Add(result.Email);
 			}
 
 			return emailsStati;
 		}
 
-		private ComposedResult<Move, EmailStatus> saveOrUpdateMove(
-			Move move, String accountOutUrl, String accountInUrl, String categoryName
+		private MoveResult saveOrUpdateMove(
+			Move move
 		) {
 			return InTransaction(() => 
-				Parent.BaseMove.SaveOrUpdateMove(
-					move, accountOutUrl, accountInUrl, categoryName, OperationType.Scheduling
+				Parent.BaseMove.SaveMove(
+					move, OperationType.Scheduling
 				)
 			);
 		}
@@ -132,31 +131,29 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public Schedule SaveOrUpdateSchedule(Schedule schedule, String accountOutUrl, String accountInUrl,
-			String categoryName)
+		public Schedule SaveOrUpdateSchedule(ScheduleInfo info)
 		{
 			Parent.Safe.VerifyUser();
 
-			if (schedule == null)
+			if (info == null)
 				throw Error.ScheduleRequired.Throw();
 
-			var operationType =
-				schedule.ID == 0
-					? OperationType.Creation
-					: OperationType.Edition;
-
 			return InTransaction(
-				() => saveOrUpdate(schedule, accountOutUrl, accountInUrl, categoryName),
-				() => resetSchedule(schedule, operationType)
+				() => saveOrUpdate(info)
 			);
 		}
 
-		private Schedule saveOrUpdate(Schedule schedule, String accountOutUrl, String accountInUrl, String categoryName)
+		private Schedule saveOrUpdate(ScheduleInfo info)
 		{
-			schedule.Out = Parent.BaseMove.GetAccountByUrl(accountOutUrl);
-			schedule.In = Parent.BaseMove.GetAccountByUrl(accountInUrl);
-			schedule.Category = Parent.BaseMove.GetCategoryByName(categoryName);
-			schedule.User = Parent.Current.User;
+			var schedule = new Schedule
+			{
+				Out = Parent.BaseMove.GetAccountByUrl(info.OutUrl),
+				In = Parent.BaseMove.GetAccountByUrl(info.InUrl),
+				Category = Parent.BaseMove.GetCategoryByName(info.CategoryName),
+				User = Parent.Current.User
+			};
+
+			info.Update(schedule);
 
 			if (schedule.ID == 0 || !schedule.IsDetailed())
 			{
@@ -170,12 +167,6 @@ namespace DFM.BusinessLogic.Services
 			}
 
 			return schedule;
-		}
-
-		private static void resetSchedule(Schedule schedule, OperationType operationType)
-		{
-			if (operationType == OperationType.Creation)
-				schedule.ID = 0;
 		}
 
 		public void DisableSchedule(Int64 id)

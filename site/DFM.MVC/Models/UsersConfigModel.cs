@@ -56,7 +56,7 @@ namespace DFM.MVC.Models
 						.ToDictionary(l => l, l => Translator.Dictionary["Language" + l]);
 
 				LanguageList = SelectListExtension.CreateSelect(languageDictionary);
-				TimeZoneList = SelectListExtension.CreateSelect(DateTimeGMT.TimeZoneList());
+				TimeZoneList = SelectListExtension.CreateSelect(DateExtension.TimeZoneList);
 
 				UseCategories = config.UseCategories;
 				SendMoveEmail = config.SendMoveEmail;

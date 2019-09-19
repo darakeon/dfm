@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
@@ -18,14 +19,14 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		#region Variables
 		private static Int64 id
 		{
-			get { return Get<Int64>("ID"); }
-			set { Set("ID", value); }
+			get => Get<Int64>("ID");
+			set => Set("ID", value);
 		}
 
 		private static IList<Schedule> scheduleList
 		{
-			get { return Get<IList<Schedule>>("scheduleList"); }
-			set { Set("scheduleList", value); }
+			get => Get<IList<Schedule>>("scheduleList");
+			set => Set("scheduleList", value);
 		}
 		#endregion
 
@@ -38,15 +39,14 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			foreach (var detailData in table.Rows)
 			{
 				var detail = GetDetailFromTable(detailData);
-
-				Schedule.DetailList.Add(detail);
+				scheduleInfo.DetailList.Add(detail);
 			}
 		}
 
 		[Given(@"I have no schedule")]
 		public void GivenIHaveNoSchedule()
 		{
-			Schedule = null;
+			scheduleInfo = null;
 		}
 
 		[When(@"I try to save the schedule")]
@@ -54,10 +54,15 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				var accountOutUrl = AccountOut?.Url;
-				var accountInUrl = AccountIn?.Url;
+				if (scheduleInfo != null)
+				{
+					scheduleInfo.OutUrl = AccountOut?.Url;
+					scheduleInfo.InUrl = AccountIn?.Url;
+					scheduleInfo.CategoryName = CategoryName;
+				}
 
-				Service.Robot.SaveOrUpdateSchedule(Schedule, accountOutUrl, accountInUrl, CategoryName);
+				var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+				scheduleInfo.ID = schedule.ID;
 			}
 			catch (CoreError e)
 			{
@@ -68,14 +73,14 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Then(@"the schedule will not be saved")]
 		public void ThenTheScheduleWillNotBeSaved()
 		{
-			if (Schedule != null)
-				Assert.AreEqual(0, Schedule.ID);
+			if (scheduleInfo != null)
+				Assert.AreEqual(0, scheduleInfo.ID);
 		}
 
 		[Then(@"the schedule will be saved")]
 		public void ThenTheScheduleWillBeSaved()
 		{
-			Assert.AreNotEqual(0, Schedule.ID);
+			Assert.AreNotEqual(0, scheduleInfo.ID);
 		}
 		#endregion
 
@@ -97,9 +102,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			switch (frequency)
 			{
-				case "day": Schedule.Date = Current.User.Now().AddDays(-count); break;
-				case "month": Schedule.Date = Current.User.Now().AddMonths(-count); break;
-				case "year": Schedule.Date = Current.User.Now().AddYears(-count); break;
+				case "day": scheduleInfo.Date = Current.User.Now().AddDays(-count); break;
+				case "month": scheduleInfo.Date = Current.User.Now().AddMonths(-count); break;
+				case "year": scheduleInfo.Date = Current.User.Now().AddYears(-count); break;
 			}
 		}
 
@@ -263,39 +268,44 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			var scheduleData = table.Rows[0];
 
-			Schedule = new Schedule { Description = scheduleData["Description"] };
+			scheduleInfo = new ScheduleInfo
+			{
+				Description = scheduleData["Description"]
+			};
 
 			if (!String.IsNullOrEmpty(scheduleData["Nature"]))
-				Schedule.Nature = EnumX.Parse<MoveNature>(scheduleData["Nature"]);
+				scheduleInfo.Nature = EnumX.Parse<MoveNature>(scheduleData["Nature"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Date"]))
-				Schedule.Date = DateTime.Parse(scheduleData["Date"]);
+				scheduleInfo.Date = DateTime.Parse(scheduleData["Date"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Value"]))
-				Schedule.Value = Int32.Parse(scheduleData["Value"]);
+				scheduleInfo.Value = Int32.Parse(scheduleData["Value"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Times"]))
-				Schedule.Times = Int16.Parse(scheduleData["Times"]);
+				scheduleInfo.Times = Int16.Parse(scheduleData["Times"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Boundless"]))
-				Schedule.Boundless = Boolean.Parse(scheduleData["Boundless"]);
+				scheduleInfo.Boundless = Boolean.Parse(scheduleData["Boundless"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Frequency"]))
-				Schedule.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
+				scheduleInfo.Frequency = EnumX.Parse<ScheduleFrequency>(scheduleData["Frequency"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["ShowInstallment"]))
-				Schedule.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
+				scheduleInfo.ShowInstallment = Boolean.Parse(scheduleData["ShowInstallment"]);
 		}
 
 		[Given(@"I save the schedule")]
 		public void GivenISaveTheSchedule()
 		{
-			var accountOutName = AccountOut?.Name;
-			var accountInName = AccountIn?.Name;
+			scheduleInfo.OutUrl = AccountOut?.Name;
+			scheduleInfo.InUrl = AccountIn?.Name;
+			scheduleInfo.CategoryName = CategoryName;
 
-			var schedule = Service.Robot.SaveOrUpdateSchedule(Schedule, accountOutName, accountInName, CategoryName);
+			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
 
 			id = schedule.ID;
+			scheduleInfo.ID = schedule.ID;
 		}
 		#endregion
 

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
-using DFM.Email;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
@@ -16,51 +15,68 @@ namespace DFM.BusinessLogic.Services
 		private readonly MoveRepository moveRepository;
 		private readonly DetailRepository detailRepository;
 		private readonly SummaryRepository summaryRepository;
+		private readonly CategoryRepository categoryRepository;
+		private readonly AccountRepository accountRepository;
 
-		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository)
+		internal BaseMoveSaverService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, SummaryRepository summaryRepository, CategoryRepository categoryRepository, AccountRepository accountRepository)
 			: base(serviceAccess)
 		{
 			this.moveRepository = moveRepository;
 			this.detailRepository = detailRepository;
 			this.summaryRepository = summaryRepository;
+			this.categoryRepository = categoryRepository;
+			this.accountRepository = accountRepository;
 		}
 
+		internal MoveResult SaveMove(MoveInfo info, OperationType operationType)
+		{
+			var move = moveRepository.GetNonCached(info.ID);
 
-
-		internal ComposedResult<Move, EmailStatus> SaveOrUpdateMove(
-			Move move,
-			string accountOutUrl, string accountInUrl, string categoryName,
-			OperationType operationType
-		) {
-			var oldMove = moveRepository.GetNonCached(move.ID);
-
-			if (oldMove != null)
+			if (move == null)
 			{
-				VerifyMove(oldMove);
-				move.Checked = oldMove.Checked;
-			}
-
-			linkEntities(move, accountOutUrl, accountInUrl, categoryName);
-
-			var now = Parent.Current.User.Now();
-
-			if (move.ID == 0 || !move.IsDetailed())
-			{
-				move = moveRepository.SaveOrUpdate(move, now);
-				detailRepository.SaveDetails(move, oldMove);
+				move = new Move();
 			}
 			else
 			{
-				detailRepository.SaveDetails(move, oldMove);
-				move = moveRepository.SaveOrUpdate(move, now);
+				move.DetailList
+					.Select(d => d.ID)
+					.ToList()
+					.ForEach(detailRepository.Delete);
+
+				VerifyMove(move);
 			}
 
-			if (oldMove != null)
-				BreakSummaries(oldMove);
+			info.Update(move);
+
+			linkEntities(move, info);
+
+			return SaveMove(move, operationType);
+		}
+
+		internal MoveResult SaveMove(Move move, OperationType operationType)
+		{
+			breakSummaries(move);
+
+			var now = Parent.Current.User.Now();
+			var moveIsNew = operationType != OperationType.Edition;
+
+			if (moveIsNew || !move.IsDetailed())
+			{
+				move = moveRepository.Save(move, now);
+				detailRepository.SaveDetails(move);
+			}
+			else
+			{
+				detailRepository.SaveDetails(move);
+				move = moveRepository.Save(move, now);
+			}
+
+			if (!moveIsNew)
+				BreakSummaries(move);
 
 			var emailStatus = moveRepository.SendEmail(move, operationType);
 
-			return new ComposedResult<Move, EmailStatus>(move, emailStatus);
+			return new MoveResult(move, emailStatus);
 		}
 
 		internal Account GetAccountByUrl(String accountUrl)
@@ -83,13 +99,11 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		private void linkEntities(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		private void linkEntities(Move move, MoveInfo info)
 		{
-			move.Category = GetCategoryByName(categoryName);
-			move.Out = GetAccountByUrl(accountOutUrl);
-			move.In = GetAccountByUrl(accountInUrl);
-
-			breakSummaries(move);
+			move.Category = GetCategoryByName(info.CategoryName);
+			move.Out = GetAccountByUrl(info.OutUrl);
+			move.In = GetAccountByUrl(info.InUrl);
 		}
 
 		internal void BreakSummaries(Move move)
@@ -100,14 +114,20 @@ namespace DFM.BusinessLogic.Services
 
 		private void breakSummaries(Move move)
 		{
+			var category = move.Category != null
+				? categoryRepository.Get(move.Category.ID)
+				: null;
+
 			if (move.Out != null)
 			{
-				summaryRepository.Break(move.Out, move.Category, move.Date);
+				var accountOut = accountRepository.Get(move.Out.ID);
+				summaryRepository.Break(accountOut, category, move.Date);
 			}
 
 			if (move.In != null)
 			{
-				summaryRepository.Break(move.In, move.Category, move.Date);
+				var accountIn = accountRepository.Get(move.In.ID);
+				summaryRepository.Break(accountIn, category, move.Date);
 			}
 		}
 

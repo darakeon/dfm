@@ -310,7 +310,7 @@ namespace DFM.BusinessLogic.Services
 			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
 
-			if (info.TimeZone != null && !DateTimeGMT.IsValid(info.TimeZone))
+			if (info.TimeZone != null && !info.TimeZone.IsTimezone())
 				throw Error.TimezoneUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(info.Language))

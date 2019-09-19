@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using DFM.BusinessLogic.Response;
 using DFM.Email;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
@@ -11,16 +11,16 @@ namespace DFM.MVC.Areas.Account.Models
 	public class MovesCreateEditModel : BaseMovesModel
 	{
 		public MovesCreateEditModel()
-			: base(new Move())  { }
+			: base(new MoveInfo())  { }
 
 		public MovesCreateEditModel(OperationType type)
-			: base(new Move(), type) { }
+			: base(new MoveInfo(), type) { }
 
 		public MovesCreateEditModel(Int32 id, OperationType type)
-			: base(Service.Access.Money.GetMoveById(id), type) { }
+			: base(Service.Access.Money.GetMove(id), type) { }
 
 
-		internal override void SaveOrUpdate()
+		internal override void Save()
 		{
 			var value = Move.Value;
 			var details = Move.DetailList.ToList();
@@ -30,15 +30,15 @@ namespace DFM.MVC.Areas.Account.Models
 			else
 				Move.DetailList.Clear();
 
-			var result = money.SaveOrUpdateMove(Move, AccountOutUrl, AccountInUrl, CategoryName);
+			var result = money.SaveMove(Move);
 
-			if (result.Error.IsWrong())
+			if (result.Email.IsWrong())
 			{
 				Move.Value = value;
 				Move.DetailList = details;
 
 				var message = Translator.Dictionary["MoveSave"];
-				var error = Translator.Dictionary[result.Error].ToLower();
+				var error = Translator.Dictionary[result.Email].ToLower();
 				var final = String.Format(message, error);
 
 				ErrorAlert.AddTranslated(final);
@@ -46,10 +46,10 @@ namespace DFM.MVC.Areas.Account.Models
 		}
 
 
-		public Move Move
+		public MoveInfo Move
 		{
-			get { return (Move) GenericMove; }
-			set { GenericMove = value; }
+			get => (MoveInfo) GenericMove;
+			set => GenericMove = value;
 		}
 
 

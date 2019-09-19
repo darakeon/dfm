@@ -18,7 +18,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class MoveRepository : GenericMoveRepository<Move>
 	{
-		internal Move SaveOrUpdate(Move move, DateTime now)
+		internal Move Save(Move move, DateTime now)
 		{
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(

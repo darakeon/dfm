@@ -287,7 +287,6 @@
     <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
-    <Compile Include="Helpers\Extensions\MoveExtension.cs" />
     <Compile Include="Helpers\Global\ErrorAlert.cs" />
     <Compile Include="Helpers\Global\ErrorManager.cs" />
     <Compile Include="Helpers\Global\IP.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
+using DFM.Generic;
 using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
@@ -13,7 +14,7 @@ namespace DFM.BusinessLogic.Repositories
 		internal void Break(Account account, Category category, DateTime date)
 		{
 			var year = date.Year;
-			var month = year * 100 + date.Month;
+			var month = date.ToMonthYear();
 
 			@break(account, category, year, SummaryNature.Year);
 			@break(account, category, month, SummaryNature.Month);

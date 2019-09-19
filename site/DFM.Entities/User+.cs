@@ -17,15 +17,12 @@ namespace DFM.Entities
 
 		public virtual DateTime Now()
 		{
-			return DateTimeGMT.Now(Config.TimeZone);
+			return Config.TimeZone.Now();
 		}
 
 		public virtual Boolean WrongPassExceeded()
 		{
 			return WrongLogin >= Cfg.PasswordErrorLimit;
 		}
-
-
-
 	}
 }

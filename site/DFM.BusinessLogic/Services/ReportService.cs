@@ -5,6 +5,7 @@ using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Enums;
+using DFM.Generic;
 
 namespace DFM.BusinessLogic.Services
 {
@@ -57,13 +58,16 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
+			var yearBegin = new DateTime(dateYear, 1, 1);
+			var yearEnd = new DateTime(dateYear, 12, 31);
+
 			// TODO: use summarize
 			var summaries = summaryRepository
 				.SimpleFilter(
 					s => s.Account.ID == account.ID
 						&& s.Nature == SummaryNature.Month
-						&& s.Time > dateYear * 100
-						&& s.Time < (dateYear + 1) * 100
+						&& s.Time >= yearBegin.ToMonthYear()
+						&& s.Time <= yearEnd.ToMonthYear()
 				);
 
 			return new YearReport(dateYear, summaries);
