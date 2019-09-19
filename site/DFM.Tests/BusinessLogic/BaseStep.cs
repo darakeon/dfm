@@ -28,6 +28,7 @@ namespace DFM.Tests.BusinessLogic
 		private protected static CategoryRepository categoryRepository;
 		private protected static SummaryRepository summaryRepository;
 		private protected static MoveRepository moveRepository;
+		private protected static ScheduleRepository scheduleRepository;
 
 		private static String logFileName;
 
@@ -50,6 +51,7 @@ namespace DFM.Tests.BusinessLogic
 			categoryRepository = new CategoryRepository();
 			summaryRepository = new SummaryRepository();
 			moveRepository = new MoveRepository();
+			scheduleRepository = new ScheduleRepository();
 		}
 
 		protected static void log(String text)
@@ -315,35 +317,28 @@ namespace DFM.Tests.BusinessLogic
 			set => Set("CurrentEmailStatus", value);
 		}
 
-		protected static Move Move
+		protected static MoveInfo moveInfo
 		{
-			get => Get<Move>("Move");
-			set => Set("Move", value);
+			get => Get<MoveInfo>("MoveInfo");
+			set => Set("MoveInfo", value);
 		}
 
-		protected static Schedule Schedule
+		protected static MoveResult moveResult
 		{
-			get => Get<Schedule>("Schedule");
-			set => Set("Schedule", value);
+			get => Get<MoveResult>("MoveResult");
+			set => Set("MoveResult", value);
 		}
 
-		protected static DateTime Date
+		protected static ScheduleInfo scheduleInfo
 		{
-			get => Move?.Date ??
-			       Schedule?.Date ??
-			       DateTime.MinValue;
-			set => Set("Date", value);
+			get => Get<ScheduleInfo>("ScheduleInfo");
+			set => Set("ScheduleInfo", value);
 		}
 
-		protected static IList<Detail> DetailList
-		{
-			get => Move == null
-				? Schedule == null
-					? new List<Detail>()
-					: Schedule.DetailList
-				: Move.DetailList;
-			set => Set("DetailList", value);
-		}
+		protected static DateTime Date =>
+			moveInfo?.Date ??
+			scheduleInfo?.Date ??
+			DateTime.MinValue;
 		#endregion
 
 		protected const String USER_EMAIL = "test@dontflymoney.com";
@@ -359,9 +354,9 @@ namespace DFM.Tests.BusinessLogic
 		protected static String AccountInUrl = MakeUrlFromName(ACCOUNT_IN_NAME);
 
 		#region Helpers
-		protected Detail GetDetailFromTable(TableRow detailData)
+		protected DetailInfo GetDetailFromTable(TableRow detailData)
 		{
-			var newDetail = new Detail { Description = detailData["Description"] };
+			var newDetail = new DetailInfo { Description = detailData["Description"] };
 
 			if (!String.IsNullOrEmpty(detailData["Value"]))
 				newDetail.Value = Decimal.Parse(detailData["Value"]);

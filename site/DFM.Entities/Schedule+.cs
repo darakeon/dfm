@@ -57,11 +57,14 @@ namespace DFM.Entities
 					Value = Value,
 					In = In,
 					Out = Out,
+					Category = Category,
 				};
 
 			foreach (var detail in DetailList)
 			{
-				move.AddDetail(detail.Clone());
+				var newDetail = detail.Clone();
+				newDetail.Move = move;
+				move.DetailList.Add(newDetail);
 			}
 
 			return move;

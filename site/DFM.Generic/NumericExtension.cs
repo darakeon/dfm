@@ -23,6 +23,5 @@ namespace DFM.Generic
 		{
 			return value?.ToVisual();
 		}
-
 	}
 }

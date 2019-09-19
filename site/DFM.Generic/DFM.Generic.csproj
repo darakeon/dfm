@@ -37,8 +37,7 @@
     <Compile Include="Cfg.cs" />
     <Compile Include="ConvertToOtherChild.cs" />
     <Compile Include="Crypt.cs" />
-    <Compile Include="DateTimeExtension.cs" />
-    <Compile Include="DateTimeGMT.cs" />
+    <Compile Include="DateExtension.cs" />
     <Compile Include="ApiDebug.cs" />
     <Compile Include="DFMException.cs" />
     <Compile Include="Elmah.cs" />

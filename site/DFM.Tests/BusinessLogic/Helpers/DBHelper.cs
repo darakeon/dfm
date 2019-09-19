@@ -1,6 +1,6 @@
 ﻿using System;
 using DFM.BusinessLogic.Repositories;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using Keon.NHibernate.Fakes;
@@ -179,7 +179,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			});
 		}
 
-		public static Boolean CheckScheduleState(Schedule schedule)
+		public static Boolean CheckScheduleState(ScheduleInfo schedule)
 		{
 			if (FakeHelper.IsFake)
 				return FakeRepos.Schedule.GetState(schedule.ID);

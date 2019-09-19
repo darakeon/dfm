@@ -74,6 +74,7 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Bases\GenericMoveRepository.cs" />
+    <Compile Include="Helpers\MoveExtension.cs" />
     <Compile Include="Helpers\ThemeExtension.cs" />
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="InterfacesAndBases\IPasswordForm.cs" />
@@ -100,6 +101,11 @@
     <Compile Include="Response\AccountInfo.cs" />
     <Compile Include="Response\CategoryListItem.cs" />
     <Compile Include="Response\AccountListItem.cs" />
+    <Compile Include="Response\DetailInfo.cs" />
+    <Compile Include="Response\IMoveInfo.cs" />
+    <Compile Include="Response\MoveResult.cs" />
+    <Compile Include="Response\MoveInfo.cs" />
+    <Compile Include="Response\ScheduleInfo.cs" />
     <Compile Include="Response\YearReport.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />

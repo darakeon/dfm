@@ -114,7 +114,7 @@ Scenario: Db09. Run with details in schedule
 			| Description | Date | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Db98   |      | Out    |       | 5     | False     | Daily     | False           |
 		And its Date is 10 days ago
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 10    |
 			| Detail 2    | 1      | 10    |

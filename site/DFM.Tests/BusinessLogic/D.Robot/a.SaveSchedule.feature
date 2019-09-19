@@ -1,4 +1,4 @@
-﻿Feature: Da. Creation of schedules
+﻿Feature: Da. Save Schedule
 
 Background:
 	Given I have a complete user logged in
@@ -319,7 +319,7 @@ Scenario: Da22. Save without value and without Description in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da43   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			|             | 1      | 10    |
 			| Detail 2    | 1      | 10    |
@@ -337,7 +337,7 @@ Scenario: Da23. Save without value and with Amount zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da44   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 0      | 10    |
 			| Detail 2    | 1      | 10    |
@@ -355,7 +355,7 @@ Scenario: Da24. Save without value and with Value zero in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da45   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 0     |
 			| Detail 2    | 1      | 10    |
@@ -373,7 +373,7 @@ Scenario: Da25. Save with Description too large in Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da46   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description                                         | Amount | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy | 1      | 10    |
 		And it has a Category
@@ -480,7 +480,7 @@ Scenario: Da32. Save with info all right (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da95   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | 10    |
 			| Detail 2    | 1      | 10    |
@@ -513,7 +513,7 @@ Scenario: Da34. Save negative (details)
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da97   | 2012-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description | Amount | Value |
 			| Detail 1    | 1      | -10   |
 			| Detail 2    | 1      | 10    |
@@ -546,7 +546,7 @@ Scenario: Da36. Save with exactly length in Description of Detail
 	Given I have this schedule to create
 			| Description | Date       | Nature | Value | Times | Boundless | Frequency | ShowInstallment |
 			| Move Da99   | 2010-03-31 | Out    |       | 10    | False     | Monthly   | False           |
-		And the move has this details
+		And the schedule has this details
 			| Description                                        | Amount | Value |
 			| ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx | 1      | 10    |
 		And it has a Category

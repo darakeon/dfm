@@ -10,12 +10,11 @@ namespace DFM.Entities.Bases
 		String Description { get; set; }
 		DateTime Date { get; set; }
 		MoveNature Nature { get; set; }
+
 		Decimal? Value { get; set; }
-		Category Category { get; set; }
 		IList<Detail> DetailList { get; set; }
 
-		void AddDetail(Detail detail);
-		Decimal Total();
+		Category Category { get; set; }
 		Account In { get; }
 		Account Out { get; }
 	}

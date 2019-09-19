@@ -5,12 +5,13 @@ namespace DFM.Email
 	[Flags]
 	public enum EmailStatus
 	{
-		EmailDisabled = 0,
-		EmailSent = 1,
-		InvalidSubject = 2,
-		InvalidBody = 4,
-		InvalidAddress = 8,
-		EmailNotSent = 16,
+		None = 0,
+		EmailDisabled = 1,
+		EmailSent = 2,
+		InvalidSubject = 4,
+		InvalidBody = 8,
+		InvalidAddress = 16,
+		EmailNotSent = 32,
 	}
 
 	public static class EmailStatusExtension

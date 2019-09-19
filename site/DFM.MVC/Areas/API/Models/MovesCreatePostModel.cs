@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.API.Jsons;
 
@@ -14,17 +14,19 @@ namespace DFM.MVC.Areas.API.Models
 			DetailList = new List<DetailJson>();
 		}
 
-		public MovesCreatePostModel(Move move) : this()
+		public MovesCreatePostModel(MoveInfo move) : this()
 		{
 			ID = move.ID;
 			Description = move.Description;
 			Date = new DateJson(move.Date);
-			Category = move.Category?.Name;
-			Nature = move.Nature;
-			AccountOutUrl = move.Out?.Url;
-			AccountInUrl = move.In?.Url;
-			Value = move.Value;
 
+			Category = move.CategoryName;
+
+			Nature = move.Nature;
+			AccountOutUrl = move.OutUrl;
+			AccountInUrl = move.InUrl;
+
+			Value = move.Value;
 			DetailList = move.DetailList.Select(d => new DetailJson(d)).ToList();
 		}
 
@@ -43,17 +45,23 @@ namespace DFM.MVC.Areas.API.Models
 		{
 			var move = convertToEntity();
 
-			money.SaveOrUpdateMove(move, AccountOutUrl, AccountInUrl, Category);
+			money.SaveMove(move);
 		}
 
-		private Move convertToEntity()
+		private MoveInfo convertToEntity()
 		{
-			return new Move
+			return new MoveInfo
 			{
 				ID = ID,
 				Description = Description,
 				Date = Date.ToSystemDate(),
+
+				CategoryName = Category,
+
 				Nature = Nature,
+				InUrl = AccountInUrl,
+				OutUrl = AccountOutUrl,
+
 				Value = Value,
 				DetailList = DetailList.Select(d => d.ConvertToEntity()).ToList(),
 			};

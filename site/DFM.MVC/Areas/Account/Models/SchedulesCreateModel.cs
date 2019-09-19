@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using DFM.BusinessLogic.Response;
 using Keon.MVC.Forms;
-using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -12,52 +11,50 @@ namespace DFM.MVC.Areas.Account.Models
 	public class SchedulesCreateModel : BaseMovesModel
 	{
 		public SchedulesCreateModel()
-			: base(new Schedule(), OperationType.Scheduling)
+			: base(new ScheduleInfo(), OperationType.Scheduling)
 		{
 			FrequencySelectList =
 				SelectListExtension.CreateSelect(Translator.GetEnumNames<ScheduleFrequency>());
 		}
 
-
-
-		internal override void SaveOrUpdate()
+		internal override void Save()
 		{
-			robot.SaveOrUpdateSchedule(Schedule, AccountOutUrl, AccountInUrl, CategoryName);
+			robot.SaveOrUpdateSchedule(Schedule);
 		}
 
 
 
-		public Schedule Schedule
+		public ScheduleInfo Schedule
 		{
-			get { return (Schedule)GenericMove; }
-			set { GenericMove = value; }
+			get => (ScheduleInfo)GenericMove;
+			set => GenericMove = value;
 		}
 
 		[Required]
 		public ScheduleFrequency Frequency
 		{
-			get { return Schedule.Frequency; }
-			set { Schedule.Frequency = value; }
+			get => Schedule.Frequency;
+			set => Schedule.Frequency = value;
 		}
 
 		[Required]
 		public Boolean Boundless
 		{
-			get { return Schedule.Boundless; }
-			set { Schedule.Boundless = value; }
+			get => Schedule.Boundless;
+			set => Schedule.Boundless = value;
 		}
 
 		[Required]
 		public Int16 Times
 		{
-			get { return Schedule.Times; }
-			set { Schedule.Times = value; }
+			get => Schedule.Times;
+			set => Schedule.Times = value;
 		}
 
 		public Boolean ShowInstallment
 		{
-			get { return Schedule.ShowInstallment; }
-			set { Schedule.ShowInstallment = value; }
+			get => Schedule.ShowInstallment;
+			set => Schedule.ShowInstallment = value;
 		}
 
 		public SelectList FrequencySelectList { get; set; }

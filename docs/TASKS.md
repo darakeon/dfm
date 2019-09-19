@@ -129,7 +129,7 @@ Legend:
 - [ ] Transform SAFE service receiving / returns into DTO - check android
 - [ ] Transform ROBOT service receiving / returns into DTO - check android
 - [ ] Transform REPORT service receiving / returns into DTO - check android
-- [ ] Transform MONEY service receiving / returns into DTO - check android
+- [x] `190918>190919` Transform MONEY service receiving / returns into DTO - check android
 - [x] `190913>190918` Remove Month and Year (summaries goes to account)
 - [x] `190908>190912` Transform ADMIN service receiving / returns into DTO - check android
 

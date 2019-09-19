@@ -14,7 +14,7 @@ namespace DFM.MVC.Areas.API.Models
 
 			if (id.HasValue && id != 0)
 			{
-				var move = money.GetMoveById(id.Value);
+				var move = money.GetMove(id.Value);
 
 				Move = new MovesCreatePostModel(move);
 			}

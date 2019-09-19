@@ -1,9 +1,7 @@
 ﻿using System;
-using Keon.Util.Exceptions;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -13,25 +11,25 @@ namespace DFM.BusinessLogic.Services
 	public class MoneyService : BaseService
 	{
 		private readonly MoveRepository moveRepository;
-		private readonly DetailRepository detailRepository;
 		private readonly ScheduleRepository scheduleRepository;
 
-		internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, DetailRepository detailRepository, ScheduleRepository scheduleRepository)
+		internal MoneyService(ServiceAccess serviceAccess, MoveRepository moveRepository, ScheduleRepository scheduleRepository)
 			: base(serviceAccess)
 		{
 			this.moveRepository = moveRepository;
-			this.detailRepository = detailRepository;
 			this.scheduleRepository = scheduleRepository;
 		}
 
 
-		public Move GetMoveById(Int64 id)
+		public MoveInfo GetMove(Int64 id)
 		{
 			Parent.Safe.VerifyUser();
-			return GetMoveByIdInternal(id);
+			return MoveInfo.Convert(
+				GetMoveEntity(id)
+			);
 		}
 
-		internal Move GetMoveByIdInternal(Int64 id)
+		internal Move GetMoveEntity(Int64 id)
 		{
 			var move = moveRepository.Get(id);
 
@@ -40,19 +38,18 @@ namespace DFM.BusinessLogic.Services
 			return move;
 		}
 
-
-		public ComposedResult<Move, EmailStatus> SaveOrUpdateMove(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		public MoveResult SaveMove(MoveInfo move)
 		{
 			Parent.Safe.VerifyUser();
 
-			var result = saveOrUpdate(move, accountOutUrl, accountInUrl, categoryName);
+			var result = save(move);
 
 			Parent.BaseMove.FixSummaries();
 
 			return result;
 		}
 
-		private ComposedResult<Move, EmailStatus> saveOrUpdate(Move move, String accountOutUrl, String accountInUrl, String categoryName)
+		private MoveResult save(MoveInfo move)
 		{
 			var operationType =
 				move.ID == 0
@@ -60,23 +57,14 @@ namespace DFM.BusinessLogic.Services
 					: OperationType.Edition;
 
 			return InTransaction(
-				() => Parent.BaseMove.SaveOrUpdateMove(
-					move, accountOutUrl, accountInUrl, categoryName, operationType
-				),
-				() => resetMove(move, operationType)
+				() => Parent.BaseMove.SaveMove(
+					move, operationType
+				)
 			);
 		}
 
-		private static void resetMove(Move move, OperationType operationType)
-		{
-			if (operationType == OperationType.Creation)
-			{
-				move.ID = 0;
-			}
-		}
 
-
-		public ComposedResult<Boolean, EmailStatus> DeleteMove(Int64 id)
+		public MoveResult DeleteMove(Int64 id)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -87,9 +75,9 @@ namespace DFM.BusinessLogic.Services
 			return result;
 		}
 
-		private ComposedResult<Boolean, EmailStatus> deleteMove(Int64 id)
+		private MoveResult deleteMove(Int64 id)
 		{
-			var move = GetMoveByIdInternal(id);
+			var move = GetMoveEntity(id);
 
 			Parent.BaseMove.VerifyMove(move);
 
@@ -104,7 +92,7 @@ namespace DFM.BusinessLogic.Services
 
 			var emailStatus = moveRepository.SendEmail(move, OperationType.Deletion);
 
-			return new ComposedResult<Boolean, EmailStatus>(true, emailStatus);
+			return new MoveResult(move, emailStatus);
 		}
 
 		private void updateScheduleDeleted(Schedule schedule)
@@ -134,21 +122,21 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public Move CheckMove(Int64 moveId)
+		public MoveResult CheckMove(Int64 moveId)
 		{
 			return toggleMoveCheck(moveId, true);
 		}
 
-		public Move UncheckMove(Int64 moveId)
+		public MoveResult UncheckMove(Int64 moveId)
 		{
 			return toggleMoveCheck(moveId, false);
 		}
 
-		private Move toggleMoveCheck(Int64 moveId, Boolean check)
+		private MoveResult toggleMoveCheck(Int64 moveId, Boolean check)
 		{
 			Parent.Safe.VerifyUser();
 
-			var move = GetMoveByIdInternal(moveId);
+			var move = GetMoveEntity(moveId);
 
 			Parent.BaseMove.VerifyMove(move);
 			verifyMoveForCheck(move, check);
@@ -157,27 +145,25 @@ namespace DFM.BusinessLogic.Services
 			var now = Parent.Current.User.Now();
 
 			InTransaction(() => 
-				moveRepository.SaveOrUpdate(move, now)
+				moveRepository.Save(move, now)
 			);
 
-			return move;
+			return new MoveResult(move);
 		}
 
 		private void verifyMoveForCheck(Move move, Boolean check)
 		{
 			if (!Parent.Current.User.Config.MoveCheck)
-			{
 				throw Error.MoveCheckDisabled.Throw();
-			}
 
-			if (move.Checked == check)
-			{
-				var error = move.Checked
-					? Error.MoveAlreadyChecked
-					: Error.MoveAlreadyUnchecked;
+			if (move.Checked != check)
+				return;
 
-				throw error.Throw();
-			}
+			var error = move.Checked
+				? Error.MoveAlreadyChecked
+				: Error.MoveAlreadyUnchecked;
+
+			throw error.Throw();
 		}
 	}
 }

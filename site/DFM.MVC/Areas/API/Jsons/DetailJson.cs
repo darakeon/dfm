@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Areas.API.Jsons
 {
@@ -7,7 +7,7 @@ namespace DFM.MVC.Areas.API.Jsons
 	{
 		public DetailJson() { }
 
-		public DetailJson(Detail detail) : this()
+		public DetailJson(DetailInfo detail) : this()
 		{
 			Description = detail.Description;
 			Amount = detail.Amount;
@@ -18,9 +18,9 @@ namespace DFM.MVC.Areas.API.Jsons
 		public Int16 Amount { get; set; }
 		public Decimal Value { get; set; }
 
-		public Detail ConvertToEntity()
+		public DetailInfo ConvertToEntity()
 		{
-			return new Detail
+			return new DetailInfo
 			{
 				Amount = Amount,
 				Value = Value,

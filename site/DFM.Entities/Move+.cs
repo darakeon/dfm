@@ -42,13 +42,6 @@ namespace DFM.Entities
 			}
 		}
 
-		public virtual void AddDetail(Detail detail)
-		{
-			DetailList.Add(detail);
-
-			detail.Move = this;
-		}
-
 		public virtual String GetDescriptionDetailed()
 		{
 			const string boundlessFormat = "{0} [{1}]";

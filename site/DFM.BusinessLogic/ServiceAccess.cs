@@ -23,12 +23,12 @@ namespace DFM.BusinessLogic
 			var ticket = new TicketRepository();
 			var user = new UserRepository();
 
-			BaseMove = new BaseMoveSaverService(this, move, detail, summary);
+			BaseMove = new BaseMoveSaverService(this, move, detail, summary, category, account);
 
 			Safe = new SafeService(this, user, security, ticket, contract, acceptance, getPath);
 			Admin = new AdminService(this, account, category, summary, config, schedule, move);
-			Money = new MoneyService(this, move, detail, schedule);
-			Robot = new RobotService(this, schedule, detail);
+			Money = new MoneyService(this, move, schedule);
+			Robot = new RobotService(this, schedule, move, detail);
 			Report = new ReportService(this, account, move, summary);
 
 			Current = new Current(Safe, getTicket);
