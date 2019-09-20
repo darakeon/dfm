@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 
 namespace DFM.MVC.Areas.API.Jsons
@@ -16,19 +16,18 @@ namespace DFM.MVC.Areas.API.Jsons
 
 		public Decimal Total { get; set; }
 
-		public SimpleMoveJson(Move move, String accountUrl)
+		public SimpleMoveJson(MoveInfo move, String accountUrl)
 		{
 			ID = move.ID;
 
-			Description = move.GetDescriptionDetailed();
+			Description = move.Description;
 			Date = new DateJson(move.Date);
 
-			var accountOut = move.Nature != MoveNature.In ? move.Out.Url : null;
+			var accountOut = move.Nature != MoveNature.In ? move.OutUrl : null;
 
-			Total = move.Total() * (accountUrl == accountOut ? -1 : 1);
+			Total = move.Total * (accountUrl == accountOut ? -1 : 1);
 
 			Checked = move.Checked;
 		}
-
 	}
 }

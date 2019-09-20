@@ -44,10 +44,22 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert(Move move)
 		{
+			return convert(move, false);
+		}
+
+		internal static MoveInfo Convert4Report(Move move)
+		{
+			return convert(move, true);
+		}
+
+		private static MoveInfo convert(Move move, Boolean isReport)
+		{
 			return new MoveInfo
 			{
 				ID = move.ID,
-				Description = move.Description,
+				Description = isReport
+					? move.GetDescriptionWithSchedulePosition()
+					: move.Description,
 				Date = move.Date,
 				Nature = move.Nature,
 				Total = move.Total(),

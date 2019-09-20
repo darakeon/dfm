@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 
@@ -23,9 +21,7 @@ namespace DFM.BusinessLogic.Services
 			this.summaryRepository = summaryRepository;
 		}
 
-
-
-		public IList<Move> GetMonthReport(String accountUrl, Int16 dateMonth, Int16 dateYear)
+		public MonthReport GetMonthReport(String accountUrl, Int16 dateMonth, Int16 dateYear)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -40,11 +36,13 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
-			return moveRepository
+			var total = summaryRepository.GetTotal(account);
+
+			var moveList = moveRepository
 				.ByAccountAndTime(account, dateYear, dateMonth);
+
+			return new MonthReport(total, moveList);
 		}
-
-
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
 		{
@@ -58,6 +56,8 @@ namespace DFM.BusinessLogic.Services
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
 
+			var total = summaryRepository.GetTotal(account);
+
 			var yearBegin = new DateTime(dateYear, 1, 1);
 			var yearEnd = new DateTime(dateYear, 12, 31);
 
@@ -70,7 +70,7 @@ namespace DFM.BusinessLogic.Services
 						&& s.Time <= yearEnd.ToMonthYear()
 				);
 
-			return new YearReport(dateYear, summaries);
+			return new YearReport(total, dateYear, summaries);
 		}
 	}
 }

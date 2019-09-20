@@ -17,26 +17,26 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 		private static Int16 month
 		{
-			get { return Get<Int16>("Month"); }
-			set { Set("Month", value); }
+			get => Get<Int16>("Month");
+			set => Set("Month", value);
 		}
 
 		private static Int16 year
 		{
-			get { return Get<Int16>("Year"); }
-			set { Set("Year", value); }
+			get => Get<Int16>("Year");
+			set => Set("Year", value);
 		}
 
-		private static IList<Move> monthReport
+		private static MonthReport monthReport
 		{
-			get { return Get<IList<Move>>("MonthReport"); }
-			set { Set("MonthReport", value); }
+			get => Get<MonthReport>("MonthReport");
+			set => Set("MonthReport", value);
 		}
 
 		private static YearReport yearReport
 		{
-			get { return Get<YearReport>("YearReport"); }
-			set { Set("YearReport", value); }
+			get => Get<YearReport>("YearReport");
+			set => Set("YearReport", value);
 		}
 		#endregion
 
@@ -76,11 +76,10 @@ namespace DFM.Tests.BusinessLogic.E.Report
 				.Get(account, time)
 				.Sum(s => s.Value());
 
-			var actual = monthReport.Sum(m =>
-					m.Out != null
-							&& m.Out.ID == account.ID
-						? - m.Total()
-						: m.Total()
+			var actual = monthReport.MoveList.Sum(m =>
+					m.OutUrl == account.Url
+						? - m.Total
+						: m.Total
 				);
 
 			Assert.AreEqual(expected, actual);
@@ -89,7 +88,7 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"there will be no moves")]
 		public void ThenThereWillBeNoMoves()
 		{
-			Assert.IsEmpty(monthReport);
+			Assert.IsEmpty(monthReport.MoveList);
 		}
 		#endregion
 

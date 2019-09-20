@@ -1,21 +1,19 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-	public class ReportsSummarizeMonthsModel : BaseAccountModel
+	public class ReportsSummarizeMonthsModel : BaseAccountModel, ITotal
 	{
 		public ReportsSummarizeMonthsModel(Int16? id)
 		{
-			var year = DateFromInt.GetDateYear(id, today);
-
-			Year = report.GetYearReport(CurrentAccountUrl, year);
+			var yearDate = DateFromInt.GetDateYear(id, today);
+			Year = report.GetYearReport(CurrentAccountUrl, yearDate);
 		}
 
-
+		public Decimal Total => Year.AccountTotal;
 
 		public YearReport Year { get; set; }
 
