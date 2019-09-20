@@ -1042,7 +1042,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				scheduleInfo.DetailList.Add(detail);
 			}
 
-			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+			var schedule = Service.Robot.SaveSchedule(scheduleInfo);
 			scheduleInfo.ID = schedule.ID;
 		}
 
@@ -1076,7 +1076,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				scheduleInfo.DetailList.Add(detail);
 			}
 
-			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+			var schedule = Service.Robot.SaveSchedule(scheduleInfo);
 			scheduleInfo.ID = schedule.ID;
 
 			Service.Robot.DisableSchedule(scheduleInfo.ID);
@@ -1121,21 +1121,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			if (CategoryName != null)
 				Assert.AreEqual(CategoryName, Category.Name);
-		}
-
-		[Then(@"the schedule will be disabled")]
-		public void ThenTheScheduleWillBeDisabled()
-		{
-			var enabled = DBHelper.CheckScheduleState(scheduleInfo);
-			Assert.IsFalse(enabled);
-		}
-
-
-		[Then(@"the Schedule will be enabled")]
-		public void ThenTheScheduleWillBeEnabled()
-		{
-			var enabled = DBHelper.CheckScheduleState(scheduleInfo);
-			Assert.IsTrue(enabled);
 		}
 		#endregion
 

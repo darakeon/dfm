@@ -61,7 +61,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 					scheduleInfo.CategoryName = CategoryName;
 				}
 
-				var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+				var schedule = Service.Robot.SaveSchedule(scheduleInfo);
 				scheduleInfo.ID = schedule.ID;
 			}
 			catch (CoreError e)
@@ -166,7 +166,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 
 		#region DisableSchedule
 		[Given(@"I pass an id of Schedule that doesn't exist")]
-		public void GivenIPassAnIdOfScheduleThatDoesnTExist()
+		public void GivenIPassAnIdOfScheduleThatDoesNotExist()
 		{
 			id = 0;
 		}
@@ -188,24 +188,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				Error = e;
 			}
-		}
-
-		[Then(@"the Schedule will be disabled")]
-		public void ThenTheScheduleWillBeDisabled()
-		{
-			Error = null;
-
-			try
-			{
-				Service.Robot.DisableSchedule(id);
-			}
-			catch (CoreError e)
-			{
-				Error = e;
-			}
-
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(error.DisabledSchedule, Error.Type);
 		}
 		#endregion
 
@@ -302,10 +284,31 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			scheduleInfo.InUrl = AccountIn?.Name;
 			scheduleInfo.CategoryName = CategoryName;
 
-			var schedule = Service.Robot.SaveOrUpdateSchedule(scheduleInfo);
+			var schedule = Service.Robot.SaveSchedule(scheduleInfo);
 
 			id = schedule.ID;
 			scheduleInfo.ID = schedule.ID;
+		}
+
+		[Then(@"the schedule will be disabled")]
+		public void ThenTheScheduleWillBeDisabled()
+		{
+			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			Assert.IsFalse(schedule.Active);
+		}
+
+		[Then(@"the schedule will be enabled")]
+		public void ThenTheScheduleWillBeEnabled()
+		{
+			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			Assert.IsTrue(schedule.Active);
+		}
+
+		[Then(@"the schedule last run will be (\d+)")]
+		public void ThenTheScheduleLastRunWillBe(Int32 lastRun)
+		{
+			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			Assert.AreEqual(lastRun, schedule.LastRun);
 		}
 		#endregion
 

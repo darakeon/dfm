@@ -81,7 +81,10 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var schedule in scheduleList)
 			{
-				var result = addNewMoves(schedule);
+				var result = InTransaction(() =>
+					addNewMoves(schedule)
+				);
+
 				emailsStati.AddRange(result);
 			}
 
@@ -101,7 +104,9 @@ namespace DFM.BusinessLogic.Services
 
 				schedule.LastRun++;
 
-				var result = saveOrUpdateMove(newMove);
+				var result = Parent.BaseMove.SaveMove(
+					newMove, OperationType.Scheduling
+				);
 
 				var move = moveRepository.Get(result.ID);
 
@@ -109,17 +114,12 @@ namespace DFM.BusinessLogic.Services
 				emailsStati.Add(result.Email);
 			}
 
-			return emailsStati;
-		}
+			if (!schedule.CanRun())
+				schedule.Active = false;
 
-		private MoveResult saveOrUpdateMove(
-			Move move
-		) {
-			return InTransaction(() => 
-				Parent.BaseMove.SaveMove(
-					move, OperationType.Scheduling
-				)
-			);
+			scheduleRepository.Save(schedule);
+
+			return emailsStati;
 		}
 
 		private static EmailStatus max(EmailStatus equalResult, EmailStatus diffResult)
@@ -131,7 +131,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public Schedule SaveOrUpdateSchedule(ScheduleInfo info)
+		public Schedule SaveSchedule(ScheduleInfo info)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -139,11 +139,11 @@ namespace DFM.BusinessLogic.Services
 				throw Error.ScheduleRequired.Throw();
 
 			return InTransaction(
-				() => saveOrUpdate(info)
+				() => save(info)
 			);
 		}
 
-		private Schedule saveOrUpdate(ScheduleInfo info)
+		private Schedule save(ScheduleInfo info)
 		{
 			var schedule = new Schedule
 			{
@@ -157,13 +157,13 @@ namespace DFM.BusinessLogic.Services
 
 			if (schedule.ID == 0 || !schedule.IsDetailed())
 			{
-				scheduleRepository.SaveOrUpdate(schedule);
+				scheduleRepository.Save(schedule);
 				detailRepository.SaveDetails(schedule);
 			}
 			else
 			{
 				detailRepository.SaveDetails(schedule);
-				scheduleRepository.SaveOrUpdate(schedule);
+				scheduleRepository.Save(schedule);
 			}
 
 			return schedule;
