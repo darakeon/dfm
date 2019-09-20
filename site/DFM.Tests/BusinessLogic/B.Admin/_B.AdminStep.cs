@@ -193,7 +193,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			moveInfo = new MoveInfo
 			{
 				Description = "Description",
-				Date = Current.User.Now(),
+				Date = Current.Now,
 				Nature = MoveNature.Out,
 				OutUrl = Account.Url,
 			};
@@ -209,7 +209,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			Service.Money.SaveMove(moveInfo);
 
-			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(Account.Url, user);
 			accountTotal = summaryRepository.GetTotal(account);
 		}
 
@@ -281,7 +282,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account value will not change")]
 		public void TheAccountValueWillNotChange()
 		{
-			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(Account.Url, user);
 			var total = summaryRepository.GetTotal(account);
 			Assert.AreEqual(accountTotal, total);
 		}
@@ -310,14 +312,16 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be closed")]
 		public void ThenTheAccountWillNotBeClosed()
 		{
-			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(AccountUrl, user);
 			Assert.IsTrue(account.IsOpen());
 		}
 
 		[Then(@"the account will be closed")]
 		public void ThenTheAccountWillBeClosed()
 		{
-			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(AccountUrl, user);
 			Assert.IsFalse(account.IsOpen());
 		}
 		#endregion
@@ -332,7 +336,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Given(@"I delete the moves of ([\w ]+)")]
 		public void GivenIDeleteTheMovesOf(String givenAccountUrl)
 		{
-			var account = accountRepository.GetByUrl(AccountUrl, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(AccountUrl, user);
 			var moveList = moveRepository.ByAccount(account);
 
 			foreach (var move in moveList)
@@ -647,7 +652,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be disabled")]
 		public void ThenTheCategoryWillBeDisabled()
 		{
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 			Assert.IsFalse(category.Active);
 		}
 		#endregion
@@ -692,7 +698,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be enabled")]
 		public void ThenTheCategoryWillBeEnabled()
 		{
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 			Assert.IsTrue(category.Active);
 		}
 		#endregion
@@ -952,7 +959,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the Theme will be (\w+)")]
 		public void ThenTheThemeWillBeSlate(BootstrapTheme chosenTheme)
 		{
-			Assert.AreEqual(chosenTheme, Current.User.Config.Theme);
+			Assert.AreEqual(chosenTheme, Current.Theme);
 		}
 		#endregion ChangeTheme
 
@@ -998,7 +1005,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			var move = new MoveInfo
 			{
-				Date = Current.User.Now(),
+				Date = Current.Now,
 				Description = "Move for account test",
 				Nature = MoveNature.Out,
 				Value = 10,
@@ -1016,7 +1023,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			scheduleInfo = new ScheduleInfo
 			{
-				Date = Current.User.Now().AddDays(1),
+				Date = Current.Now.AddDays(1),
 				Description = "Schedule for account test",
 				Nature = MoveNature.Out,
 				Frequency = ScheduleFrequency.Daily,
@@ -1051,7 +1058,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			scheduleInfo = new ScheduleInfo
 			{
-				Date = Current.User.Now().AddDays(1),
+				Date = Current.Now.AddDays(1),
 				Description = "Schedule for account test",
 				Nature = MoveNature.Out,
 				Frequency = ScheduleFrequency.Daily,

@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DFM.Authentication;
+using DFM.BusinessLogic;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
 using DFM.BusinessLogic.Response;
 using DFM.BusinessLogic.Services;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Language;
@@ -22,10 +20,10 @@ namespace DFM.MVC.Models
 	{
 		public UsersConfigModel()
 		{
-			Main = new MainConfig(admin, config);
+			Main = new MainConfig(admin, current);
 			Info = new UserInfo(safe);
 			TFA = new TFAForm(safe, current);
-			ThemeOpt = new ThemeOptions(admin, config);
+			ThemeOpt = new ThemeOptions(admin, Theme);
 		}
 
 		public MainConfig Main { get; set; }
@@ -47,7 +45,7 @@ namespace DFM.MVC.Models
 
 		public class MainConfig : ConfigInfo
 		{
-			public MainConfig(AdminService admin, Config config)
+			public MainConfig(AdminService admin, Current current)
 			{
 				this.admin = admin;
 
@@ -58,13 +56,13 @@ namespace DFM.MVC.Models
 				LanguageList = SelectListExtension.CreateSelect(languageDictionary);
 				TimeZoneList = SelectListExtension.CreateSelect(DateExtension.TimeZoneList);
 
-				UseCategories = config.UseCategories;
-				SendMoveEmail = config.SendMoveEmail;
-				MoveCheck = config.MoveCheck;
-				Wizard = config.Wizard;
+				UseCategories = current.UseCategories;
+				SendMoveEmail = current.SendMoveEmail;
+				MoveCheck = current.MoveCheck;
+				Wizard = current.Wizard;
 
-				Language = config.Language;
-				TimeZone = config.TimeZone;
+				Language = current.Language;
+				TimeZone = current.TimeZone;
 			}
 
 
@@ -116,7 +114,7 @@ namespace DFM.MVC.Models
 			}
 		}
 
-		public class UserInfo : IPasswordForm
+		public class UserInfo
 		{
 			public UserInfo(SafeService safe)
 			{
@@ -126,11 +124,9 @@ namespace DFM.MVC.Models
 			private readonly SafeService safe;
 
 			public String Email { get; set; }
-
 			public String CurrentPassword { get; set; }
 
-			public String Password { get; set; }
-			public String RetypePassword { get; set; }
+			public ChangePasswordInfo Password { get; set; }
 
 			public IList<String> ChangePassword()
 			{
@@ -138,7 +134,7 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					safe.ChangePassword(CurrentPassword, this);
+					safe.ChangePassword(Password);
 					ErrorAlert.Add("PasswordChanged");
 				}
 				catch (CoreError e)
@@ -174,19 +170,20 @@ namespace DFM.MVC.Models
 			{
 				this.safe = safe;
 				this.current = current;
-				Secret = secret.Generate();
+
+				TFA = new TFAInfo
+				{
+					Secret = secret.Generate()
+				};
 			}
 
 			private readonly SafeService safe;
 			private readonly Current current;
 
-			public String CurrentPassword { get; set; }
+			public TFAInfo TFA { get; set; }
 
-			public String Secret { get; set; }
-			public String Code { get; set; }
-
-			private String identifier => current.User.Email;
-			private String key => Base32.Convert(Secret);
+			private String identifier => current.Email;
+			private String key => Base32.Convert(TFA.Secret);
 			public String UrlPath => $"otpauth://totp/DfM:{identifier}?secret={key}";
 
 			public IList<String> Activate()
@@ -195,7 +192,7 @@ namespace DFM.MVC.Models
 
 				try
 				{
-					safe.UpdateTFA(Secret, Code, CurrentPassword);
+					safe.UpdateTFA(TFA);
 					ErrorAlert.Add("TFAAuthenticated");
 				}
 				catch (CoreError e)
@@ -209,10 +206,10 @@ namespace DFM.MVC.Models
 
 		public class ThemeOptions
 		{
-			public ThemeOptions(AdminService admin, Config config)
+			public ThemeOptions(AdminService admin, BootstrapTheme theme)
 			{
 				this.admin = admin;
-				Theme = config.Theme;
+				Theme = theme;
 
 				ThemeList =
 					Enum.GetValues(typeof (BootstrapTheme))
@@ -226,7 +223,7 @@ namespace DFM.MVC.Models
 
 			public BootstrapTheme Theme { get; set; }
 
-			public IList<BootstrapTheme> ThemeList { get; private set; }
+			public IList<BootstrapTheme> ThemeList { get; }
 
 			public IList<String> Change()
 			{

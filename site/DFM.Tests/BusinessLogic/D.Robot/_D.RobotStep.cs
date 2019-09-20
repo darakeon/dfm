@@ -102,9 +102,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			switch (frequency)
 			{
-				case "day": scheduleInfo.Date = Current.User.Now().AddDays(-count); break;
-				case "month": scheduleInfo.Date = Current.User.Now().AddMonths(-count); break;
-				case "year": scheduleInfo.Date = Current.User.Now().AddYears(-count); break;
+				case "day": scheduleInfo.Date = Current.Now.AddDays(-count); break;
+				case "month": scheduleInfo.Date = Current.Now.AddMonths(-count); break;
+				case "year": scheduleInfo.Date = Current.Now.AddYears(-count); break;
 			}
 		}
 

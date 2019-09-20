@@ -1,5 +1,5 @@
-﻿using DFM.BusinessLogic.Helpers;
-using DFM.Entities;
+﻿using DFM.Entities;
+using DFM.Entities.Bases;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 

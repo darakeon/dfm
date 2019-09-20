@@ -14,7 +14,7 @@
 	ViewBag.HasContent = Model.ScheduleList.Any();
 	ViewBag.NoContentText = Translator.Dictionary["NoSchedules"];
 
-	var useCategories = Service.Current.User.Config.UseCategories;
+	var useCategories = Service.Current.UseCategories;
 	var descriptionSize = useCategories ? 2 : 4;
 }
 

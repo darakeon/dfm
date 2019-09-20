@@ -1,14 +1,14 @@
 ﻿using System;
-using DFM.Entities;
-using DFM.Entities.Enums;
 
 namespace DFM.Authentication
 {
-	public interface ISafeService
+	public interface ISafeService<in SignInInfo, out SessionInfo>
+		where SignInInfo: ISignInInfo
+		where SessionInfo: ISessionInfo
 	{
-		User GetUserByTicket(String ticket);
+		SessionInfo GetSessionByTicket(String ticket);
 
-		String ValidateUserAndCreateTicket(String username, String password, String ticket, TicketType ticketType);
+		String ValidateUserAndCreateTicket(SignInInfo info);
 
 		void DisableTicket(String ticket);
 

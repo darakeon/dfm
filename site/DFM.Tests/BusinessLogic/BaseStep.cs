@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
@@ -13,6 +13,7 @@ using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Bases;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
 using error = DFM.BusinessLogic.Exceptions.Error;
@@ -29,6 +30,10 @@ namespace DFM.Tests.BusinessLogic
 		private protected static SummaryRepository summaryRepository;
 		private protected static MoveRepository moveRepository;
 		private protected static ScheduleRepository scheduleRepository;
+		private protected static UserRepository userRepository;
+		private protected static TicketRepository ticketRepository;
+		private protected static SecurityRepository securityRepository;
+		private protected static ContractRepository contractRepository;
 
 		private static String logFileName;
 
@@ -52,6 +57,10 @@ namespace DFM.Tests.BusinessLogic
 			summaryRepository = new SummaryRepository();
 			moveRepository = new MoveRepository();
 			scheduleRepository = new ScheduleRepository();
+			userRepository = new UserRepository();
+			ticketRepository = new TicketRepository();
+			securityRepository = new SecurityRepository();
+			contractRepository = new ContractRepository();
 		}
 
 		protected static void log(String text)
@@ -76,6 +85,18 @@ namespace DFM.Tests.BusinessLogic
 			return url;
 		}
 
+		protected String getLastTokenForUser(String email, SecurityAction action)
+		{
+			var user = userRepository.GetByEmail(email);
+
+			return securityRepository.SimpleFilter(
+				s => s.User.ID == user.ID
+				     && s.Action == action
+				     && s.Active
+				     && s.Expire >= Current.Now
+			).FirstOrDefault()?.Token;
+		}
+
 		#region Get or Create
 		protected void CreateUserIfNotExists(
 			String userEmail,
@@ -91,13 +112,22 @@ namespace DFM.Tests.BusinessLogic
 			switch (userError.Type)
 			{
 				case error.InvalidUser:
+					var info = new SignUpInfo
+					{
+						Email = userEmail,
+						Password = userPassword,
+						RetypePassword = userPassword,
+						Language = Defaults.CONFIG_LANGUAGE,
+					};
 
-					var passwordForm = new PasswordForm(userPassword, userPassword);
-					Service.Safe.SaveUserAndSendVerify(userEmail, passwordForm, false, false, Defaults.CONFIG_LANGUAGE);
+					Service.Safe.SaveUserAndSendVerify(info);
 
 					if (shouldActivateUser)
 					{
-						var token = DBHelper.GetLastTokenForUser(userEmail, SecurityAction.UserVerification);
+						var token = getLastTokenForUser(
+							userEmail,
+							SecurityAction.UserVerification
+						);
 						Service.Safe.ActivateUser(token);
 					}
 
@@ -115,9 +145,15 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				Service.Safe.ValidateUserAndCreateTicket(
-					userEmail, userPassword, TicketKey, TicketType.Local
-				);
+				var info = new SignInInfo
+				{
+					Email = userEmail,
+					Password = userPassword,
+					TicketKey = TicketKey,
+					TicketType = TicketType.Local,
+				};
+
+				Service.Safe.ValidateUserAndCreateTicket(info);
 
 				return null;
 			}
@@ -130,7 +166,8 @@ namespace DFM.Tests.BusinessLogic
 
 		protected Account GetOrCreateAccount(String accountUrl)
 		{
-			var account = accountRepository.GetByUrl(accountUrl, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(accountUrl, user);
 			if (account != null) return account;
 
 			Service.Admin.CreateAccount(
@@ -141,12 +178,13 @@ namespace DFM.Tests.BusinessLogic
 				}
 			);
 
-			return accountRepository.GetByUrl(accountUrl, Current.User);
+			return accountRepository.GetByUrl(accountUrl, user);
 		}
 
 		protected Category GetOrCreateCategory(String categoryName)
 		{
-			var category = categoryRepository.GetByName(categoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(categoryName, user);
 			if (category != null) return category;
 
 			Service.Admin.CreateCategory(
@@ -156,16 +194,22 @@ namespace DFM.Tests.BusinessLogic
 				}
 			);
 
-			return categoryRepository.GetByName(categoryName, Current.User);
+			return categoryRepository.GetByName(categoryName, user);
 		}
 
-		protected User GetSavedUser(String email, String password)
+		protected SessionInfo GetSavedUser(String email, String password)
 		{
-			var key = Service.Safe.ValidateUserAndCreateTicket(
-				email, password, TicketKey, TicketType.Local
-			);
+			var info = new SignInInfo
+			{
+				Email = email,
+				Password = password,
+				TicketKey = TicketKey,
+				TicketType = TicketType.Local,
+			};
 
-			return Service.Safe.GetUserByTicket(key);
+			var key = Service.Safe.ValidateUserAndCreateTicket(info);
+
+			return Service.Safe.GetSessionByTicket(key);
 		}
 		#endregion
 
@@ -204,10 +248,10 @@ namespace DFM.Tests.BusinessLogic
 			set => Set("error", value);
 		}
 
-		protected static User User
+		protected static SessionInfo Session
 		{
-			get => Get<User>("user");
-			set => Set("user", value);
+			get => Get<SessionInfo>("Session");
+			set => Set("Session", value);
 		}
 
 		protected static AccountInfo Account

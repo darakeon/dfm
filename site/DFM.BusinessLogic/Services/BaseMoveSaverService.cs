@@ -57,18 +57,18 @@ namespace DFM.BusinessLogic.Services
 		{
 			breakSummaries(move);
 
-			var now = Parent.Current.User.Now();
+			var today = Parent.Current.Now;
 			var moveIsNew = operationType != OperationType.Edition;
 
 			if (moveIsNew || !move.IsDetailed())
 			{
-				move = moveRepository.Save(move, now);
+				move = moveRepository.Save(move, today);
 				detailRepository.SaveDetails(move);
 			}
 			else
 			{
 				detailRepository.SaveDetails(move);
-				move = moveRepository.Save(move, now);
+				move = moveRepository.Save(move, today);
 			}
 
 			if (!moveIsNew)
@@ -88,7 +88,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal Category GetCategoryByName(String categoryName)
 		{
-			if (Parent.Current.User.Config.UseCategories)
+			if (Parent.Current.UseCategories)
 				return Parent.Admin.GetCategoryByNameInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
@@ -135,9 +135,10 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
+				var user = Parent.Safe.GetCurrent();
 				summaryRepository
 					.SimpleFilter(s => s.Broken)
-					.Where(s => s.User() == Parent.Current.User)
+					.Where(s => s.User() == user)
 					.ToList()
 					.ForEach(fixSummaries);
 			});
@@ -153,7 +154,8 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyMove(Move move)
 		{
-			if (move == null || moveRepository.GetUser(move).ID != Parent.Current.User.ID)
+			var user = Parent.Safe.GetCurrent();
+			if (move == null || moveRepository.GetUser(move).ID != user.ID)
 				throw Error.InvalidMove.Throw();
 		}
 	}

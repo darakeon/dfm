@@ -69,7 +69,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its moves sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
 		{
-			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(Account.Url, user);
 
 			var time = year * 100 + month;
 			var expected = summaryRepository
@@ -121,7 +122,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its months sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
-			var account = accountRepository.GetByUrl(Account.Url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var account = accountRepository.GetByUrl(Account.Url, user);
 
 			var expected = summaryRepository.GetTotal(account);
 

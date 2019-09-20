@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DFM.Authentication;
+using DFM.BusinessLogic;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 using JetBrains.Annotations;

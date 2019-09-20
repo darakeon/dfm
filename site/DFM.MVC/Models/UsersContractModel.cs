@@ -1,5 +1,5 @@
 ﻿using System;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Models
 {
@@ -10,10 +10,8 @@ namespace DFM.MVC.Models
 			Contract = safe.GetContract();
 		}
 
-		public Contract Contract { get; }
+		public ContractInfo Contract { get; }
 		public Boolean Accept { get; set; }
-
-		public Clause Clauses => Contract[Language].GetClauses();
 
 		public void AcceptContract(Action<String, String> addModelError)
 		{
@@ -22,7 +20,5 @@ namespace DFM.MVC.Models
 			else
 				safe.AcceptContract();
 		}
-
-
 	}
 }

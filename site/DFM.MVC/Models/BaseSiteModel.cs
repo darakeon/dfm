@@ -18,7 +18,7 @@ namespace DFM.MVC.Models
 		public BootstrapTheme Theme => theme;
 		public String Language => language;
 
-		public Boolean ShowWizard => config?.Wizard ?? false;
+		public Boolean ShowWizard => wizard;
 
 		public static UrlHelper Url => new UrlHelper(
 				HttpContext.Current.Request.RequestContext

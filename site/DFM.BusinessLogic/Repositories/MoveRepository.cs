@@ -7,6 +7,7 @@ using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;

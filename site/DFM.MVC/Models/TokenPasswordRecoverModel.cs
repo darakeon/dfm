@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class TokensPasswordResetModel : BaseSiteModel, IPasswordForm
+	public class TokensPasswordResetModel : BaseSiteModel
 	{
 		[Required(ErrorMessage = "*")]
-		public String Password { get; set; }
+		public String Password
+		{
+			get => info.Password;
+			set => info.Password = value;
+		}
 
 		[Required(ErrorMessage = "*")]
-		public String RetypePassword { get; set; }
+		public String RetypePassword
+		{
+			get => info.RetypePassword;
+			set => info.RetypePassword = value;
+		}
 
+		private readonly PasswordResetInfo info =
+			new PasswordResetInfo();
 
 		internal Boolean TestToken(String token)
 		{
@@ -37,7 +47,9 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.PasswordReset(token, this);
+				info.Token = token;
+
+				safe.PasswordReset(info);
 			}
 			catch (CoreError e)
 			{

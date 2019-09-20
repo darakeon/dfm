@@ -8,13 +8,14 @@ using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.Authentication;
 using DFM.BusinessLogic.InterfacesAndBases;
+using DFM.BusinessLogic.Response;
+using DFM.Entities.Bases;
 using Keon.Util.Extensions;
 using Keon.TwoFactorAuth;
-using Ticket = DFM.Entities.Ticket;
 
 namespace DFM.BusinessLogic.Services
 {
-	public class SafeService : BaseService, ISafeService
+	public class SafeService : BaseService, ISafeService<SignInInfo, SessionInfo>
 	{
 		private readonly UserRepository userRepository;
 		private readonly SecurityRepository securityRepository;
@@ -53,27 +54,18 @@ namespace DFM.BusinessLogic.Services
 				createAndSendToken(user, SecurityAction.PasswordReset, getPath(PathType.PasswordReset));
 			});
 		}
-
-		public void SaveUserAndSendVerify(String email, IPasswordForm passwordForm, Boolean acceptedContract, Boolean enableWizard, String language)
+		
+		public void SaveUserAndSendVerify(SignUpInfo info)
 		{
 			InTransaction(() =>
 			{
-				passwordForm.Verify();
+				info.VerifyPassword();
 
-				var user = new User
-				{
-					Email = email,
-					Password = passwordForm.Password,
-					Config = new Config
-					{
-						Language = language,
-						Wizard = enableWizard,
-					}
-				};
+				var user = info.GetEntity();
 
 				user = userRepository.Save(user);
 
-				if (acceptedContract)
+				if (info.AcceptedContract)
 				{
 					acceptContract(user);
 				}
@@ -104,7 +96,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			var security = new Security { Action = action, User = user };
 
-			security = securityRepository.SaveOrUpdate(security);
+			security = securityRepository.Save(security);
 
 			securityRepository.SendEmail(security, pathAction, getPath(PathType.DisableToken));
 
@@ -118,7 +110,7 @@ namespace DFM.BusinessLogic.Services
 			foreach (var other in others)
 			{
 				other.Active = false;
-				securityRepository.SaveOrUpdate(other);
+				securityRepository.Save(other);
 			}
 		}
 
@@ -136,19 +128,22 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public void PasswordReset(String token, IPasswordForm passwordForm)
+		public void PasswordReset(PasswordResetInfo reset)
 		{
-			passwordForm.Verify();
+			reset.VerifyPassword();
 
 			InTransaction(() =>
 			{
-				var security = securityRepository.ValidateAndGet(token, SecurityAction.PasswordReset);
+				var security = securityRepository.ValidateAndGet(
+					reset.Token,
+					SecurityAction.PasswordReset
+				);
 
-				security.User.Password = passwordForm.Password;
+				security.User.Password = reset.Password;
 
 				userRepository.ChangePassword(security.User);
 
-				securityRepository.Disable(token);
+				securityRepository.Disable(reset.Token);
 			});
 		}
 
@@ -164,7 +159,14 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public User GetUserByTicket(String ticketKey)
+		public SessionInfo GetSessionByTicket(String ticketKey)
+		{
+			return new SessionInfo(
+				getUserByTicket(ticketKey)
+			);
+		}
+
+		private User getUserByTicket(String ticketKey)
 		{
 			var ticket = ticketRepository.GetByKey(ticketKey);
 
@@ -177,28 +179,28 @@ namespace DFM.BusinessLogic.Services
 			return ticket.User;
 		}
 
-		public String ValidateUserAndCreateTicket(String email, String password, String ticketKey, TicketType ticketType)
+		public String ValidateUserAndCreateTicket(SignInInfo info)
 		{
 			return InTransaction(
-				() => validateUserAndCreateTicket(email, password, ticketKey, ticketType),
-				() => addPasswordError(email)
+				() => validateUserAndCreateTicket(info),
+				() => addPasswordError(info.Email)
 			);
 		}
 
-		private String validateUserAndCreateTicket(String email, String password, String ticketKey, TicketType ticketType)
+		private String validateUserAndCreateTicket(SignInInfo info)
 		{
-			var user = userRepository.ValidateAndGet(email, password);
+			var user = userRepository.ValidateAndGet(info.Email, info.Password);
 
-			if (String.IsNullOrEmpty(ticketKey))
-				ticketKey = Token.New();
+			if (String.IsNullOrEmpty(info.TicketKey))
+				info.TicketKey = Token.New();
 
-			var ticket = ticketRepository.GetByKey(ticketKey);
+			var ticket = ticketRepository.GetByKey(info.TicketKey);
 
 			if (ticket == null)
 			{
-				ticket = ticketRepository.Create(user, ticketKey, ticketType);
+				ticket = ticketRepository.Create(user, info.TicketKey, info.TicketType);
 			}
-			else if (ticket.User.Email != email)
+			else if (ticket.User.Email != info.Email)
 			{
 				throw Error.Uninvited.Throw();
 			}
@@ -233,13 +235,15 @@ namespace DFM.BusinessLogic.Services
 			{
 				if (ticketKey == null) return;
 
+				var user = GetCurrent();
+
 				var ticket = ticketKey.Length == Defaults.TICKET_SHOWED_PART
-					? ticketRepository.GetByPartOfKey(Parent.Current.User, ticketKey)
+					? ticketRepository.GetByPartOfKey(user, ticketKey)
 					: ticketRepository.GetByKey(ticketKey);
 
 				if (ticket == null) return;
 
-				if (ticket.User.ID != Parent.Current.User.ID)
+				if (ticket.User.ID != user.ID)
 					throw Error.Uninvited.Throw();
 
 				if (ticket.Active)
@@ -249,7 +253,9 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyUser()
 		{
-			if (Parent.Current.User == null || !Parent.Current.User.Active)
+			var user = GetCurrent();
+
+			if (user == null || !user.Active)
 				throw Error.Uninvited.Throw();
 
 			if (!Parent.Current.IsVerified)
@@ -261,48 +267,32 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public IList<Ticket> ListLogins()
+		public IList<TicketInfo> ListLogins()
 		{
 			VerifyUser();
 
-			var user = Parent.Current.User;
-
+			var user = GetCurrent();
 			var tickets = ticketRepository.List(user);
 
 			return tickets
-				.Where(t => !String.IsNullOrEmpty(t.Key))
-				.Select(getLogin)
+				.Select(TicketInfo.Convert)
 				.ToList();
 		}
 
-		private static Ticket getLogin(Ticket ticket)
-		{
-			return new Ticket
-			{
-				Active = ticket.Active,
-				Creation = ticket.Creation,
-				Expiration = ticket.Expiration,
-				Key = ticket.Key.Substring(0, Defaults.TICKET_SHOWED_PART),
-				Type = ticket.Type,
-			};
-		}
-
-
-
-		public void ChangePassword(String currentPassword, IPasswordForm passwordForm)
+		public void ChangePassword(ChangePasswordInfo info)
 		{
 			VerifyUser();
 
-			passwordForm.Verify();
+			info.VerifyPassword();
 
-			var user = Parent.Current.User;
+			var user = GetCurrent();
 
-			if (!userRepository.VerifyPassword(user, currentPassword))
+			if (!userRepository.VerifyPassword(user, info.CurrentPassword))
 				throw Error.WrongPassword.Throw();
 
 			InTransaction(() =>
 			{
-				user.Password = passwordForm.Password;
+				user.Password = info.Password;
 				userRepository.ChangePassword(user);
 
 				var ticketList = ticketRepository.List(user);
@@ -320,7 +310,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			VerifyUser();
 
-			var user = Parent.Current.User;
+			var user = GetCurrent();
 
 			if (!userRepository.VerifyPassword(user, password))
 				throw Error.WrongPassword.Throw();
@@ -334,7 +324,17 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public Contract GetContract()
+		public ContractInfo GetContract()
+		{
+			var contract = getContract();
+
+			if (contract == null)
+				return null;
+
+			return new ContractInfo(contract);
+		}
+
+		private Contract getContract()
 		{
 			return contractRepository.GetContract();
 		}
@@ -342,12 +342,12 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean IsLastContractAccepted()
 		{
-			var contract = GetContract();
+			var contract = getContract();
 
 			if (contract == null)
 				return true;
 
-			var user = Parent.Current.User;
+			var user = GetCurrent();
 
 			var acceptance = InTransaction(() =>
 				acceptanceRepository.GetOrCreate(user, contract)
@@ -360,35 +360,35 @@ namespace DFM.BusinessLogic.Services
 		public void AcceptContract()
 		{
 			InTransaction(() =>
-				acceptContract(Parent.Current.User)
+				acceptContract(GetCurrent())
 			);
 		}
 
 		private void acceptContract(User user)
 		{
-			var contract = GetContract();
+			var contract = getContract();
 			acceptanceRepository.Accept(user, contract);
 		}
 
 
-		public void UpdateTFA(String secret, String code, String currentPassword)
+		public void UpdateTFA(TFAInfo info)
 		{
 			InTransaction(() =>
 			{
-				if (String.IsNullOrEmpty(secret))
+				if (String.IsNullOrEmpty(info.Secret))
 					throw Error.TFAEmptySecret.Throw();
 
-				var codes = CodeGenerator.Generate(secret, 2);
+				var codes = CodeGenerator.Generate(info.Secret, 2);
 
-				if (!codes.Contains(code))
+				if (!codes.Contains(info.Code))
 					throw Error.TFAWrongCode.Throw();
 
-				var user = Parent.Current.User;
+				var user = GetCurrent();
 
-				if (!userRepository.VerifyPassword(user, currentPassword))
+				if (!userRepository.VerifyPassword(user, info.Password))
 					throw Error.TFAWrongPassword.Throw();
 
-				userRepository.SaveTFA(user, secret);
+				userRepository.SaveTFA(user, info.Secret);
 			});
 		}
 
@@ -396,7 +396,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
-				var user = Parent.Current.User;
+				var user = GetCurrent();
 
 				if (!userRepository.VerifyPassword(user, currentPassword))
 					throw Error.TFAWrongPassword.Throw();
@@ -409,7 +409,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
-				var secret = Parent.Current.User.TFASecret;
+				var secret = GetCurrent().TFASecret;
 
 				if (secret == null)
 					throw Error.TFANotConfigured.Throw();
@@ -430,10 +430,7 @@ namespace DFM.BusinessLogic.Services
 			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
 
 			if (ticket == null)
-			{
 				throw Error.Uninvited.Throw();
-				return false;
-			}
 
 			return String.IsNullOrEmpty(ticket.User.TFASecret)
 				|| ticket.ValidTFA;
@@ -444,12 +441,17 @@ namespace DFM.BusinessLogic.Services
 			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
 
 			if (ticket == null)
-			{
 				throw Error.Uninvited.Throw();
-				return false;
-			}
 
 			return ticket.Type == type;
+		}
+
+		internal User GetCurrent()
+		{
+			if (!Parent.Current.IsAuthenticated)
+				return null;
+
+			return getUserByTicket(Parent.Current.TicketKey);
 		}
 	}
 }

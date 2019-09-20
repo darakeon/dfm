@@ -3,38 +3,53 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.InterfacesAndBases;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
-	public class UsersSignUpModel : BaseSiteModel, IPasswordForm
+	public class UsersSignUpModel : BaseSiteModel
 	{
 		public UsersSignUpModel()
 		{
 			Contract = safe.GetContract();
-			EnableWizard = true;
+			Info = new SignUpInfo
+			{
+				EnableWizard = true
+			};
 		}
 
 		[Required(ErrorMessage = "*")]
-		public String Email { get; set; }
+		public String Email
+		{
+			get => Info.Email;
+			set => Info.Email = value;
+		}
 
 		[Required(ErrorMessage = "*")]
-		public String Password { get; set; }
+		public String Password
+		{
+			get => Info.Password;
+			set => Info.Password = value;
+		}
 
 		[Required(ErrorMessage = "*")]
-		public String RetypePassword { get; set; }
+		public String RetypePassword
+		{
+			get => Info.RetypePassword;
+			set => Info.RetypePassword = value;
+		}
 
 		[RegularExpression("True", ErrorMessage = "*")]
-		public Boolean Accept { get; set; }
+		public Boolean Accept
+		{
+			get => Info.AcceptedContract;
+			set => Info.AcceptedContract = value;
+		}
 
-		public Boolean EnableWizard { get; set; }
+		public ContractInfo Contract { get; }
 
-		public Contract Contract { get; }
-		public Clause Clauses => Contract[Language].GetClauses();
-
-
+		public SignUpInfo Info { get; set; }
 
 		internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
 		{
@@ -42,7 +57,8 @@ namespace DFM.MVC.Models
 
 			try
 			{
-				safe.SaveUserAndSendVerify(Email, this, Accept, EnableWizard, Language);
+				Info.Language = Language;
+				safe.SaveUserAndSendVerify(Info);
 			}
 			catch (CoreError e)
 			{

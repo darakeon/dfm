@@ -126,7 +126,7 @@ Legend:
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
-- [ ] Transform SAFE service receiving / returns into DTO - check android
+- [x] `190920>190922` Transform SAFE service receiving / returns into DTO - check android
 - [x] `190920>190920` Transform ROBOT service receiving / returns into DTO - check android
 - [x] `190920>190920` Transform REPORT service receiving / returns into DTO - check android
 - [x] `190918>190919` Transform MONEY service receiving / returns into DTO - check android

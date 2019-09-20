@@ -20,7 +20,7 @@
 	ViewBag.TableSmSize = 8;
 
 	var start = new YearUnit(Model.Account.Start);
-	var end = new YearUnit(Model.Account.End ?? Service.Current.User.Now());
+	var end = new YearUnit(Model.Account.End ?? Service.Current.Now);
 	var current = new YearUnit(Model.Year.Time);
 
 	var pages = new Pages<YearUnit>(start, end, current, 5);

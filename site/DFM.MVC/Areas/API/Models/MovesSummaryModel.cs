@@ -10,7 +10,7 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public MovesSummaryModel(String accountUrl, Int16 id)
 		{
-			var yearDate = DateFromInt.GetDateYear(id, today);
+			var yearDate = DateFromInt.GetDateYear(id, now);
 
 			MonthList =
 				report.GetYearReport(accountUrl, yearDate)

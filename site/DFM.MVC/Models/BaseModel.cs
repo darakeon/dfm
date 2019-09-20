@@ -1,9 +1,7 @@
 ﻿using System;
-using DFM.Authentication;
+using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Services;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers;
 using DFM.MVC.Helpers.Global;
@@ -19,15 +17,15 @@ namespace DFM.MVC.Models
 		protected SafeService safe => Service.Access.Safe;
 
 		protected Current current => Service.Access.Current;
-		protected Config config => current.User?.Config;
 
-		protected BootstrapTheme theme => config?.Theme ?? Defaults.DEFAULT_THEME;
+		protected DateTime now => current.Now;
+		protected BootstrapTheme theme => current.Theme;
 		protected String language => Translator.Language;
+		protected Boolean wizard => current.Wizard;
 
-		protected Boolean isUsingCategories => config?.UseCategories ?? Defaults.CONFIG_USE_CATEGORIES;
-		protected Boolean moveCheckingEnabled => config?.MoveCheck ?? Defaults.CONFIG_MOVE_CHECK;
+		protected Boolean isUsingCategories => current.UseCategories ;
+		protected Boolean moveCheckingEnabled => current.MoveCheck ;
 
-		protected DateTime today => current.User?.Now().Date ?? DateTime.UtcNow;
 
 		protected String login(String email, String password, Boolean rememberMe)
 		{
