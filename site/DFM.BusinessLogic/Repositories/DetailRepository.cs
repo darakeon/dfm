@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using Keon.NHibernate.Base;

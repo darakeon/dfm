@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Globalization;
-using DFM.Entities;
+using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using DFM.Generic;
 
 namespace DFM.Authentication
 {
-	public class Current
+	public class Current<SignInInfo, SessionInfo>
+		where SignInInfo : ISignInInfo, new()
+		where SessionInfo : class, ISessionInfo, new()
 	{
-		private ISafeService userService { get; }
+		private ISafeService<SignInInfo, SessionInfo> userService { get; }
 
-		public Current(ISafeService userService, GetTicket getTicket)
+		protected Current(ISafeService<SignInInfo, SessionInfo> userService, GetTicket getTicket)
 		{
 			this.userService = userService;
 			clientGetTicket = getTicket;
@@ -28,7 +31,7 @@ namespace DFM.Authentication
 
 		public Boolean IsVerified => userService.VerifyTicket();
 
-		public User User
+		private SessionInfo session
 		{
 			get
 			{
@@ -36,9 +39,10 @@ namespace DFM.Authentication
 				{
 					var key = ticket?.Key;
 
-					return key == null
-						? null
-						: userService.GetUserByTicket(key);
+					if (key == null)
+						return null;
+
+					return userService.GetSessionByTicket(key);
 				}
 				catch (DFMException)
 				{
@@ -47,11 +51,23 @@ namespace DFM.Authentication
 			}
 		}
 
-		public Boolean IsAuthenticated => User != null;
+		public Boolean IsAuthenticated => session != null;
 
-		public String Language => User?.Config?.Language;
+		public Boolean IsAdm => IsAuthenticated && session.IsAdm;
 
-		public Boolean IsAdm => IsAuthenticated && User.IsAdm;
+		public String Email => session?.Email;
+
+		public DateTime Now => session?.Now ?? DateTime.UtcNow;
+		public String TimeZone => session?.TimeZone;
+		public String Language => session?.Language;
+		public BootstrapTheme Theme => session?.Theme ?? Defaults.DEFAULT_THEME;
+
+		public Boolean UseCategories => session?.UseCategories ?? Defaults.CONFIG_USE_CATEGORIES;
+		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.CONFIG_MOVE_CHECK;
+		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.CONFIG_SEND_MOVE_EMAIL;
+
+		public Boolean Wizard => session?.Wizard ?? false;
+
 		public CultureInfo Culture => new CultureInfo(Language);
 
 		public String Set(String username, String password, Boolean remember)
@@ -61,12 +77,15 @@ namespace DFM.Authentication
 			if (newTicket == null)
 				return null;
 
-			return userService.ValidateUserAndCreateTicket(
-				username,
-				password,
-				newTicket.Key,
-				newTicket.Type
-			);
+			var info = new SignInInfo
+			{
+				Email = username,
+				Password = password,
+				TicketKey = newTicket.Key,
+				TicketType = newTicket.Type,
+			};
+
+			return userService.ValidateUserAndCreateTicket(info);
 		}
 
 		public void Clear()
@@ -76,8 +95,5 @@ namespace DFM.Authentication
 
 			userService.DisableTicket(ticket.Key);
 		}
-
-
-
 	}
 }

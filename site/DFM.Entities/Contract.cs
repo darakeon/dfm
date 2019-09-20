@@ -13,18 +13,5 @@ namespace DFM.Entities
 		public virtual String Version { get; set; }
 
 		public virtual IList<Terms> TermsList { get; set; }
-
-		public virtual Terms this[String language]
-		{
-			get
-			{
-				var ignoreCase = StringComparison.InvariantCultureIgnoreCase;
-
-				return TermsList
-					.SingleOrDefault(
-						t => t.Language.Equals(language, ignoreCase)
-					);
-			}
-		}
 	}
 }

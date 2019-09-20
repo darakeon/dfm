@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.BusinessLogic.Helpers
+namespace DFM.Entities.Bases
 {
 	public class MaxLen
 	{

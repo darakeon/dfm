@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Bases;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Extensions;
 
 namespace DFM.BusinessLogic.Repositories

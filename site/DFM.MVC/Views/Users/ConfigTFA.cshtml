@@ -15,17 +15,17 @@
 <div class="text-center">
 	<span id="qrcode" data-url="@Model.TFA.UrlPath">
 	</span>
-	@Html.HiddenFor(m => m.TFA.Secret)
+	@Html.HiddenFor(m => m.TFA.TFA.Secret)
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.TFA.Code, Translator.Dictionary["Code"], new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.TFA.Code, new { @class = "form-control" })
+	@Html.LabelFor(m => m.TFA.TFA.Code, Translator.Dictionary["Code"], new { @class = "control-label" })
+	@Html.TextBoxFor(m => m.TFA.TFA.Code, new { @class = "form-control" })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.TFA.CurrentPassword, Translator.Dictionary["CurrentPassword"], new { @class = "control-label" })
-	@Html.PasswordFor(m => m.TFA.CurrentPassword, new { @class = "form-control" })
+	@Html.LabelFor(m => m.TFA.TFA.Password, Translator.Dictionary["CurrentPassword"], new { @class = "control-label" })
+	@Html.PasswordFor(m => m.TFA.TFA.Password, new { @class = "form-control" })
 </div>
 
 <small>

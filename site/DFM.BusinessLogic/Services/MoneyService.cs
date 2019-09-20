@@ -142,10 +142,10 @@ namespace DFM.BusinessLogic.Services
 			verifyMoveForCheck(move, check);
 
 			move.Checked = check;
-			var now = Parent.Current.User.Now();
+			var today = Parent.Current.Now;
 
 			InTransaction(() => 
-				moveRepository.Save(move, now)
+				moveRepository.Save(move, today)
 			);
 
 			return new MoveResult(move);
@@ -153,7 +153,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void verifyMoveForCheck(Move move, Boolean check)
 		{
-			if (!Parent.Current.User.Config.MoveCheck)
+			if (!Parent.Current.MoveCheck)
 				throw Error.MoveCheckDisabled.Throw();
 
 			if (move.Checked != check)

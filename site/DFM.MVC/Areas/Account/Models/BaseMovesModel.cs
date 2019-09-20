@@ -32,7 +32,7 @@ namespace DFM.MVC.Areas.Account.Models
 			GenericMove = move;
 
 			if (Date == DateTime.MinValue)
-				Date = today;
+				Date = now;
 
 			arrangeDetails();
 		}

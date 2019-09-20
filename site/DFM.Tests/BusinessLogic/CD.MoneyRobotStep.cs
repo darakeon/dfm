@@ -70,7 +70,8 @@ namespace DFM.Tests.BusinessLogic
 
 			AccountOutTotal = summaryRepository.GetTotal(AccountOut);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			YearCategoryAccountOutTotal =
 				summaryRepository.Get(
@@ -91,11 +92,13 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"it has an unknown Account Out")]
 		public void GivenItHasAnUnknownAccountOut()
 		{
+			var user = userRepository.GetByEmail(Current.Email);
+
 			AccountOut = new Account
 			{
 				Name = "unknown",
 				Url = "unknown",
-				User = User
+				User = user
 			};
 		}
 
@@ -111,11 +114,12 @@ namespace DFM.Tests.BusinessLogic
 			};
 
 			Service.Admin.CreateAccount(account);
-			AccountOut = accountRepository.GetByUrl(url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			AccountOut = accountRepository.GetByUrl(url, user);
 
 			var move = new MoveInfo
 			{
-				Date = Current.User.Now(),
+				Date = Current.Now,
 				Description = "Description",
 				Nature = MoveNature.Out,
 				Value = 10,
@@ -136,7 +140,8 @@ namespace DFM.Tests.BusinessLogic
 
 			AccountInTotal = summaryRepository.GetTotal(AccountIn);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			YearCategoryAccountInTotal =
 				summaryRepository.Get(
@@ -157,11 +162,13 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"it has an unknown Account In")]
 		public void GivenItHasAnUnknownAccountIn()
 		{
+			var user = userRepository.GetByEmail(Current.Email);
+
 			AccountIn = new Account
 			{
 				Name = "unknown",
 				Url = "unknown",
-				User = User
+				User = user
 			};
 		}
 
@@ -178,11 +185,12 @@ namespace DFM.Tests.BusinessLogic
 			 
 			Service.Admin.CreateAccount(account);
 
-			AccountIn = accountRepository.GetByUrl(url, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			AccountIn = accountRepository.GetByUrl(url, user);
 
 			var move = new MoveInfo
 			{
-				Date = Current.User.Now(),
+				Date = Current.Now,
 				Description = "Description",
 				Nature = MoveNature.In,
 				Value = 10,
@@ -204,7 +212,8 @@ namespace DFM.Tests.BusinessLogic
 
 			AccountInTotal = summaryRepository.GetTotal(AccountIn);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			YearCategoryAccountInTotal =
 				summaryRepository.Get(
@@ -240,7 +249,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountOut, category, Date.ToMonthYear()
@@ -254,7 +264,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountOut, category, Date.Year
@@ -276,7 +287,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountIn, category, Date.ToMonthYear()
@@ -290,7 +302,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountIn, category, Date.Year
@@ -315,7 +328,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountOut, category, Date.ToMonthYear()
@@ -329,7 +343,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountOut = GetOrCreateAccount(AccountOut.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountOut, category, Date.Year
@@ -354,7 +369,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountIn, category, Date.ToMonthYear()
@@ -368,7 +384,8 @@ namespace DFM.Tests.BusinessLogic
 		{
 			AccountIn = GetOrCreateAccount(AccountIn.Name);
 
-			var category = categoryRepository.GetByName(CategoryName, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(CategoryName, user);
 
 			var currentTotal = summaryRepository.Get(
 				AccountIn, category, Date.Year

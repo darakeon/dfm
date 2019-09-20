@@ -54,6 +54,9 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=5.2.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.5.2.6\lib\net461\NHibernate.dll</HintPath>
     </Reference>
@@ -74,10 +77,11 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Bases\GenericMoveRepository.cs" />
+    <Compile Include="Current.cs" />
     <Compile Include="Helpers\MoveExtension.cs" />
     <Compile Include="Helpers\ThemeExtension.cs" />
-    <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="InterfacesAndBases\IPasswordForm.cs" />
+    <Compile Include="Response\ChangePasswordInfo.cs" />
     <Compile Include="Response\ConfigInfo.cs" />
     <Compile Include="Repositories\AcceptanceRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -101,13 +105,18 @@
     <Compile Include="Response\AccountInfo.cs" />
     <Compile Include="Response\CategoryListItem.cs" />
     <Compile Include="Response\AccountListItem.cs" />
+    <Compile Include="Response\ContractInfo.cs" />
     <Compile Include="Response\DetailInfo.cs" />
     <Compile Include="Response\IMoveInfo.cs" />
     <Compile Include="Response\MonthReport.cs" />
     <Compile Include="Response\MoveResult.cs" />
     <Compile Include="Response\MoveInfo.cs" />
+    <Compile Include="Response\PasswordResetInfo.cs" />
     <Compile Include="Response\ScheduleInfo.cs" />
     <Compile Include="Response\ScheduleResult.cs" />
+    <Compile Include="Response\SessionInfo.cs" />
+    <Compile Include="Response\TFAInfo.cs" />
+    <Compile Include="Response\TicketInfo.cs" />
     <Compile Include="Response\YearReport.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />
@@ -120,7 +129,6 @@
     <Compile Include="Exceptions\CoreError.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Helpers\Dfm.cs" />
-    <Compile Include="Helpers\MaxLen.cs" />
     <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
@@ -128,9 +136,11 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\MoneyService.cs" />
     <Compile Include="Helpers\PathType.cs" />
+    <Compile Include="Response\SignUpInfo.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\RobotService.cs" />
     <Compile Include="Services\SafeService.cs" />
+    <Compile Include="Response\SignInInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DFM.Authentication\DFM.Authentication.csproj">

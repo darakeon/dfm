@@ -31,7 +31,8 @@ namespace DFM.BusinessLogic.Services
 			if (dateMonth <= 0 || dateMonth >= 13)
 				throw Error.InvalidMonth.Throw();
 
-			var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
+			var user = Parent.Safe.GetCurrent();
+			var account = accountRepository.GetByUrl(accountUrl, user);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();
@@ -51,7 +52,8 @@ namespace DFM.BusinessLogic.Services
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
 
-			var account = accountRepository.GetByUrl(accountUrl, Parent.Current.User);
+			var user = Parent.Safe.GetCurrent();
+			var account = accountRepository.GetByUrl(accountUrl, user);
 
 			if (account == null)
 				throw Error.InvalidAccount.Throw();

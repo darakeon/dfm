@@ -41,7 +41,8 @@ namespace DFM.BusinessLogic.Services
 
 			var query = accountRepository.NewQuery();
 
-			query.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
+			var user = Parent.Safe.GetCurrent();
+			query.SimpleFilter(a => a.User.ID == user.ID);
 
 			if (open)
 				query.SimpleFilter(a => a.EndDate == null);
@@ -102,14 +103,15 @@ namespace DFM.BusinessLogic.Services
 
 		private Account getAccountByUrl(String url)
 		{
-			return accountRepository.GetByUrl(url, Parent.Current.User);
+			var user = Parent.Safe.GetCurrent();
+			return accountRepository.GetByUrl(url, user);
 		}
 
 		public void CreateAccount(AccountInfo info)
 		{
 			var account = new Account
 			{
-				User = Parent.Current.User
+				User = Parent.Safe.GetCurrent()
 			};
 
 			saveAccount(info, account);
@@ -186,8 +188,9 @@ namespace DFM.BusinessLogic.Services
 		{
 			Parent.Safe.VerifyUser();
 
+			var user = Parent.Safe.GetCurrent();
 			var query = categoryRepository.NewQuery()
-				.SimpleFilter(a => a.User.ID == Parent.Current.User.ID);
+				.SimpleFilter(a => a.User.ID == user.ID);
 
 			if (active.HasValue)
 			{
@@ -224,14 +227,15 @@ namespace DFM.BusinessLogic.Services
 		{
 			verifyCategoriesEnabled();
 
-			return categoryRepository.GetByName(name, Parent.Current.User);
+			var user = Parent.Safe.GetCurrent();
+			return categoryRepository.GetByName(name, user);
 		}
 
 		public void CreateCategory(CategoryInfo info)
 		{
 			var category = new Category
 			{
-				User = Parent.Current.User
+				User = Parent.Safe.GetCurrent()
 			};
 
 			saveCategory(info, category);
@@ -284,7 +288,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void verifyCategoriesEnabled()
 		{
-			if (!Parent.Current.User.Config.UseCategories)
+			if (!Parent.Current.UseCategories)
 				throw Error.CategoriesDisabled.Throw();
 		}
 		#endregion Category
@@ -305,7 +309,8 @@ namespace DFM.BusinessLogic.Services
 
 		internal void UpdateConfigWithinTransaction(ConfigInfo info)
 		{
-			var config = Parent.Current.User.Config;
+			var user = Parent.Safe.GetCurrent();
+			var config = user.Config;
 
 			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
@@ -348,7 +353,8 @@ namespace DFM.BusinessLogic.Services
 			if (theme == BootstrapTheme.None)
 				throw Error.InvalidTheme.Throw();
 
-			var config = Parent.Current.User.Config;
+			var user = Parent.Safe.GetCurrent();
+			var config = user.Config;
 			config.Theme = theme;
 
 			InTransaction(() =>

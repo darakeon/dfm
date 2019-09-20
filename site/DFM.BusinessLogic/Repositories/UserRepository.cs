@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using DFM.BusinessLogic.Helpers;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
+using DFM.Entities.Bases;
 using DFM.Generic;
 using Keon.NHibernate.Base;
 
@@ -35,7 +35,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (user.ID != 0)
 				throw Error.InvalidUser.Throw();
 
-			return saveOrUpdate(user);
+			return save(user);
 		}
 
 		internal void Activate(User user)
@@ -69,10 +69,10 @@ namespace DFM.BusinessLogic.Repositories
 			if (user.ID == 0)
 				throw Error.InvalidUser.Throw();
 
-			return saveOrUpdate(user);
+			return save(user);
 		}
 
-		private User saveOrUpdate(User user)
+		private User save(User user)
 		{
 			return SaveOrUpdate(user, complete, validate);
 		}

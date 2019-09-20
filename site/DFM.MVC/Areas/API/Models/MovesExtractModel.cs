@@ -10,8 +10,8 @@ namespace DFM.MVC.Areas.API.Models
 	{
 		public MovesExtractModel(String accountUrl, Int32 id)
 		{
-			var monthDate = DateFromInt.GetDateMonth(id, today);
-			var yearDate = DateFromInt.GetDateYear(id, today);
+			var monthDate = DateFromInt.GetDateMonth(id, now);
+			var yearDate = DateFromInt.GetDateYear(id, now);
 
 			var month = report.GetMonthReport(accountUrl, monthDate, yearDate);
 

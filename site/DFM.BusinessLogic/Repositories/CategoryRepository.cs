@@ -2,7 +2,7 @@
 using System.Linq;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
-using DFM.BusinessLogic.Helpers;
+using DFM.Entities.Bases;
 using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories

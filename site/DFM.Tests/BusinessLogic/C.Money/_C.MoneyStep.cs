@@ -217,7 +217,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				case "year": moveInfo.Date = moveInfo.Date.AddYears(count); break;
 			}
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 
 			if (AccountOut != null)
 			{
@@ -282,7 +283,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			setAccountOutNewTotals(AccountOut, category, moveInfo);
 		}
 
@@ -291,7 +293,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			AccountIn = GetOrCreateAccount(newAccountInUrl);
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			setAccountInNewTotals(AccountIn, category, moveInfo);
 		}
 
@@ -304,7 +307,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			AccountIn = GetOrCreateAccount(newAccountInUrl);
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			setAccountInNewTotals(AccountIn, category, moveInfo);
 		}
 
@@ -317,7 +321,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			AccountOut = GetOrCreateAccount(newAccountOutUrl);
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			setAccountOutNewTotals(AccountOut, category, moveInfo);
 		}
 
@@ -392,7 +397,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
 			Assert.AreEqual(YearCategoryAccountOutTotal + value, summary.Out);
@@ -402,7 +408,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOut.Name);
-			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(Category?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
 
 			Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
@@ -412,7 +419,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOutUrl);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			var summary = summaryRepository.Get(account, category, oldDate.ToMonthYear());
 
 			Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
@@ -422,7 +430,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountOut.Name);
-			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(Category?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
@@ -452,7 +461,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountInUrl);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
 			Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
@@ -462,7 +472,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountIn.Name);
-			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(Category?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
 
 			Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
@@ -472,7 +483,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountInUrl);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 			var summary = summaryRepository.Get(account, category, oldDate.ToMonthYear());
 
 			Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
@@ -482,7 +494,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
 			var account = GetOrCreateAccount(AccountIn.Name);
-			var category = categoryRepository.GetByName(Category?.Name, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(Category?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
@@ -783,11 +796,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			moveInfo.ID = result.ID;
 
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, Current.User);
+			var user = userRepository.GetByEmail(Current.Email);
+			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
 
 			if (accountOutUrl != null)
 			{
-				AccountOut = accountRepository.GetByUrl(accountOutUrl, Current.User);
+				AccountOut = accountRepository.GetByUrl(accountOutUrl, user);
 
 				AccountOutTotal = summaryRepository.GetTotal(AccountOut);
 				YearAccountOutTotal =
@@ -810,7 +824,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			if (accountInUrl != null)
 			{
-				AccountIn = accountRepository.GetByUrl(accountInUrl, Current.User);
+				AccountIn = accountRepository.GetByUrl(accountInUrl, user);
 
 				AccountInTotal = summaryRepository.GetTotal(AccountIn);
 				YearAccountInTotal =

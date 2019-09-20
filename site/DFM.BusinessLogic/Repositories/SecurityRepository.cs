@@ -13,7 +13,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class SecurityRepository : BaseRepositoryLong<Security>
 	{
-		internal Security SaveOrUpdate(Security security)
+		internal Security Save(Security security)
 		{
 			return SaveOrUpdate(security, complete);
 		}
@@ -60,7 +60,7 @@ namespace DFM.BusinessLogic.Repositories
 			}
 
 			security.Sent = true;
-			SaveOrUpdate(security);
+			Save(security);
 		}
 
 
@@ -94,7 +94,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			security.Active = false;
 
-			SaveOrUpdate(security);
+			Save(security);
 		}
 
 

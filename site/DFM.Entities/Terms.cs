@@ -9,11 +9,5 @@ namespace DFM.Entities
 		public virtual Int64 ID { get; set; }
 		public virtual String Language { get; set; }
 		public virtual String Json { get; set; }
-
-		public virtual Clause GetClauses()
-		{
-			return JsonConvert
-				.DeserializeObject<Clause>(Json);
-		}
 	}
 }

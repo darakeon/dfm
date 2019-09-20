@@ -53,6 +53,8 @@
     </Compile>
     <Compile Include="Current.cs" />
     <Compile Include="DFMAuthException.cs" />
+    <Compile Include="ISessionInfo.cs" />
+    <Compile Include="ISignInInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISafeService.cs" />
     <Compile Include="ClientTicket.cs" />

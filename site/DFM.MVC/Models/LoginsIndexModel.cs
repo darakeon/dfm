@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DFM.BusinessLogic.Response;
 using DFM.Entities;
 
 namespace DFM.MVC.Models
@@ -10,6 +11,6 @@ namespace DFM.MVC.Models
 			LoginsList = safe.ListLogins();
 		}
 
-		public IList<Ticket> LoginsList { get; set; }
+		public IList<TicketInfo> LoginsList { get; set; }
 	}
 }

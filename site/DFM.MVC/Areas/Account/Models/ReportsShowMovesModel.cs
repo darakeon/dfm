@@ -10,8 +10,8 @@ namespace DFM.MVC.Areas.Account.Models
 	{
 		public ReportsShowMovesModel(Int32? id)
 		{
-			var dateMonth = DateFromInt.GetDateMonth(id, today);
-			var dateYear = DateFromInt.GetDateYear(id, today);
+			var dateMonth = DateFromInt.GetDateMonth(id, now);
+			var dateYear = DateFromInt.GetDateYear(id, now);
 
 			var month = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
 

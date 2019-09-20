@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.Entities.Enums;
 
-namespace DFM.BusinessLogic.Helpers
+namespace DFM.Entities.Bases
 {
 	public static class Defaults
 	{
