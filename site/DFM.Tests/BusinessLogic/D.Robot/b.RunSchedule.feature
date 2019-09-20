@@ -24,6 +24,8 @@ Scenario: Db02. Run with bounded schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -10
+		And the schedule last run will be 1
+		And the schedule will be disabled
 
 Scenario: Db03. Run with boundless schedule
 	Given I have this schedule to create
@@ -38,6 +40,8 @@ Scenario: Db03. Run with boundless schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -40
+		And the schedule last run will be 4
+		And the schedule will be enabled
 
 Scenario: Db04. Run schedule that will finish
 	Given I have this schedule to create
@@ -52,6 +56,8 @@ Scenario: Db04. Run schedule that will finish
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -30
+		And the schedule last run will be 3
+		And the schedule will be disabled
 
 Scenario: Db05. Run schedule that wont finish
 	Given I have this schedule to create
@@ -66,6 +72,8 @@ Scenario: Db05. Run schedule that wont finish
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -60
+		And the schedule last run will be 6
+		And the schedule will be enabled
 
 Scenario: Db06. Run with daily schedule
 	Given I have this schedule to create
@@ -80,6 +88,8 @@ Scenario: Db06. Run with daily schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -100
+		And the schedule last run will be 10
+		And the schedule will be disabled
 
 Scenario: Db07. Run with monthly schedule
 	Given I have this schedule to create
@@ -94,6 +104,8 @@ Scenario: Db07. Run with monthly schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -60
+		And the schedule last run will be 6
+		And the schedule will be disabled
 
 Scenario: Db08. Run with yearly schedule
 	Given I have this schedule to create
@@ -108,6 +120,8 @@ Scenario: Db08. Run with yearly schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -20
+		And the schedule last run will be 2
+		And the schedule will be disabled
 
 Scenario: Db09. Run with details in schedule
 	Given I have this schedule to create
@@ -125,6 +139,8 @@ Scenario: Db09. Run with details in schedule
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -100
+		And the schedule last run will be 5
+		And the schedule will be disabled
 
 Scenario: Db10. Run with e-mail system out
 	Given I have this schedule to create
@@ -138,6 +154,8 @@ Scenario: Db10. Run with e-mail system out
 	When I try to run the scheduler with e-mail system out
 	Then I will receive no core error
 		And the accountOut value will change in -10
+		And the schedule last run will be 1
+		And the schedule will be disabled
 
 Scenario: Db11. Run with e-mail system ok
 	Given I have this schedule to create
@@ -151,6 +169,8 @@ Scenario: Db11. Run with e-mail system ok
 	When I try to run the scheduler with e-mail system ok
 	Then I will receive no core error
 		And the accountOut value will change in -10
+		And the schedule last run will be 1
+		And the schedule will be disabled
 
 Scenario: Db12. Run with schedule start in past and end in future
 	Given I have this schedule to create
@@ -165,3 +185,5 @@ Scenario: Db12. Run with schedule start in past and end in future
 	When I try to run the scheduler
 	Then I will receive no core error
 		And the accountOut value will change in -30
+		And the schedule last run will be 3
+		And the schedule will be enabled

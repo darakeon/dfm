@@ -35,7 +35,7 @@ Scenario: Dc03. Disable a Schedule with info all right
 		And I save the schedule
 	When I try to disable the Schedule
 	Then I will receive no core error
-		And the Schedule will be disabled
+		And the schedule will be disabled
 
 Scenario: Dc04. Disable another user's Schedule
 	Given I have this schedule to create
@@ -50,4 +50,4 @@ Scenario: Dc04. Disable another user's Schedule
 	When I try to disable the Schedule
 	Then I will receive this core error: InvalidSchedule
 	Given the right user login again
-	Then the Schedule will be enabled
+	Then the schedule will be enabled

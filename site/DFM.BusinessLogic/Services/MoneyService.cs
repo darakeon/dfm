@@ -113,7 +113,7 @@ namespace DFM.BusinessLogic.Services
 				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
-			scheduleRepository.SaveOrUpdate(schedule);
+			scheduleRepository.Save(schedule);
 
 			if (schedule.User.Config.UseCategories != useCategories)
 			{

@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Repositories;
-using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using Keon.NHibernate.Fakes;
@@ -176,30 +175,6 @@ namespace DFM.Tests.BusinessLogic.Helpers
 					throw new DFMRepositoryException("Bad, bad developer. No two-factor for you.");
 
 				return result.ToString();
-			});
-		}
-
-		public static Boolean CheckScheduleState(ScheduleInfo schedule)
-		{
-			if (FakeHelper.IsFake)
-				return FakeRepos.Schedule.GetState(schedule.ID);
-
-			var query = @"
-				Select Active
-					from Schedule
-					where ID = @id
-			";
-
-			return executeDB(query, cmd =>
-			{
-				cmd.Parameters.AddWithValue("id", schedule.ID);
-
-				var result = cmd.ExecuteScalar();
-
-				if (result == null)
-					throw new DFMRepositoryException("Bad, bad developer. No schedule for you.");
-
-				return result.ToString() == "1";
 			});
 		}
 

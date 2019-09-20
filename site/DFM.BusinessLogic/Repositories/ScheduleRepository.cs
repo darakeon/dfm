@@ -11,7 +11,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class ScheduleRepository : GenericMoveRepository<Schedule>
 	{
-		internal Schedule SaveOrUpdate(Schedule schedule)
+		internal Schedule Save(Schedule schedule)
 		{
 			return SaveOrUpdate(schedule, complete, validate);
 		}
@@ -45,28 +45,12 @@ namespace DFM.BusinessLogic.Repositories
 
 		internal IList<Schedule> GetRunnable(User user, Boolean hasCategory)
 		{
-			return getRunnableAndDisableOthers(user, hasCategory).ToList();
-		}
-
-		private IEnumerable<Schedule> getRunnableAndDisableOthers(User user, Boolean hasCategory)
-		{
-			var scheduleList =
-				SimpleFilter(s => s.User == user && s.Active)
-					.Where(s => s.HasCategory() == hasCategory);
-
-			foreach (var schedule in scheduleList)
-			{
-				if (!schedule.CanRun())
-					disable(schedule);
-				else if (schedule.CanRunNow())
-					yield return schedule;
-			}
-		}
-
-		private void disable(Schedule schedule)
-		{
-			schedule.Active = false;
-			SaveOrUpdate(schedule);
+			return SimpleFilter(s => s.User == user && s.Active)
+				.Where(
+					s => s.HasCategory() == hasCategory
+						&& s.CanRunNow()
+				)
+				.ToList();
 		}
 
 
@@ -82,7 +66,7 @@ namespace DFM.BusinessLogic.Repositories
 				throw Error.DisabledSchedule.Throw();
 
 			schedule.Active = false;
-			SaveOrUpdate(schedule);
+			Save(schedule);
 		}
 
 
@@ -97,7 +81,7 @@ namespace DFM.BusinessLogic.Repositories
 			foreach (var schedule in scheduleList)
 			{
 				schedule.Active = false;
-				SaveOrUpdate(schedule);
+				Save(schedule);
 			}
 		}
 
