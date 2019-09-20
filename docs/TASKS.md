@@ -89,7 +89,7 @@ Legend:
 - [ ] Remove GetOrCreate
 
 ## 4.3.0.1 :ant: <sup>`3`</sup>
-- [ ] Make web use fakeId, not id
+- [ ] Make DTO use guid, not db id
 - [ ] Handle DFMCoreException at Robot
 - [ ] Change fields to use the ones firefox and chrome customize
 
