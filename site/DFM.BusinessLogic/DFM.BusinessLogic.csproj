@@ -107,6 +107,7 @@
     <Compile Include="Response\MoveResult.cs" />
     <Compile Include="Response\MoveInfo.cs" />
     <Compile Include="Response\ScheduleInfo.cs" />
+    <Compile Include="Response\ScheduleResult.cs" />
     <Compile Include="Response\YearReport.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Repositories\DetailRepository.cs" />

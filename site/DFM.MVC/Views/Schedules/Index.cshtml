@@ -46,19 +46,19 @@
 
 		@if (useCategories)
 		{
-			<td class="col-sm-2 text-center">@(schedule.Category?.Name ?? "---")</td>
+			<td class="col-sm-2 text-center">@(schedule.CategoryName ?? "---")</td>
 		}
 
 		<td class="col-sm-2 text-center">@schedule.Date.ToShortDateString()</td>
-		<td class="col-sm-2 text-center">@(schedule.In?.Name ?? " ")</td>
-		<td class="col-sm-2 text-center">@(schedule.Out?.Name ?? " ")</td>
+		<td class="col-sm-2 text-center">@(schedule.InName ?? " ")</td>
+		<td class="col-sm-2 text-center">@(schedule.OutName ?? " ")</td>
 
 		<td  class="col-sm-1 text-@Html.Partial("NatureColor", schedule.Nature) text-right">
 			<span
 				class="@Html.Partial("NatureIcon", schedule.Nature)"
 				title="@Translator.Dictionary[schedule.Nature.ToString()]"
 			></span>
-			@schedule.Total().ToMoney(Model.Language)
+			@schedule.Total.ToMoney(Model.Language)
 		</td>
 
 		<td class="col-sm-1 text-center">
