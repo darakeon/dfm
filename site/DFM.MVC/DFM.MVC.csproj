@@ -236,6 +236,7 @@
     <Compile Include="Areas\Account\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Account\Models\BaseAccountModel.cs" />
     <Compile Include="Areas\Account\Models\BaseMovesModel.cs" />
+    <Compile Include="Areas\Account\Models\ITotal.cs" />
     <Compile Include="Areas\Account\Models\MoneyModel.cs" />
     <Compile Include="Areas\Account\Models\MovesCreateEditModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsShowMovesModel.cs" />
@@ -467,6 +468,6 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-	<AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
   </Target>
 </Project>

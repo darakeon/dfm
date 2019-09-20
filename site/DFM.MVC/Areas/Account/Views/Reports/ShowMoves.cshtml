@@ -58,28 +58,28 @@
 @foreach (var move in Model.MoveList)
 {
 	<tr class="row">
-		<td>@move.GetDescriptionDetailed()</td>
+		<td>@move.Description</td>
 
 		@if (Model.IsUsingCategories)
 		{
-			<td class="text-center">@(move.Category?.Name ?? "---")</td>
+			<td class="text-center">@(move.CategoryName ?? "---")</td>
 		}
 
 		<td class="text-center">@move.Date.ToShortDateString() </td>
 
 		<td class="text-right">
-			@if (move.In != null && move.In.Url == Model.CurrentAccountUrl)
+			@if (move.InUrl == Model.CurrentAccountUrl)
 			{
 				@Html.Partial("ValueWithSign",
-					new ValueWithSign(move.Total(), Model.Language))
+					new ValueWithSign(move.Total, Model.Language))
 			}
 		</td>
 
 		<td class="text-right">
-			@if (move.Out != null && move.Out.Url == Model.CurrentAccountUrl)
+			@if (move.OutUrl == Model.CurrentAccountUrl)
 			{
 				@Html.Partial("ValueWithSign",
-					new ValueWithSign(-move.Total(), Model.Language))
+					new ValueWithSign(-move.Total, Model.Language))
 			}
 		</td>
 

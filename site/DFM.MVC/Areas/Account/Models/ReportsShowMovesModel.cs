@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-	public class ReportsShowMovesModel : BaseAccountModel
+	public class ReportsShowMovesModel : BaseAccountModel, ITotal
 	{
 		public ReportsShowMovesModel(Int32? id)
 		{
 			var dateMonth = DateFromInt.GetDateMonth(id, today);
 			var dateYear = DateFromInt.GetDateYear(id, today);
 
-			MoveList = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
+			var month = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
+
+			MoveList = month.MoveList;
+			Total = month.AccountTotal;
 			
 			Month = dateMonth;
 			Year = dateYear;
 		}
 
-		public IList<Move> MoveList { get; set; }
+		public Decimal Total { get; }
+
+		public IList<MoveInfo> MoveList { get; set; }
 
 		public Int32 Month { get; set; }
 		public Int32 Year { get; set; }

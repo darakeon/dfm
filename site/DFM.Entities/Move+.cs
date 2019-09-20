@@ -42,19 +42,18 @@ namespace DFM.Entities
 			}
 		}
 
-		public virtual String GetDescriptionDetailed()
+		public virtual String GetDescriptionWithSchedulePosition()
 		{
-			const string boundlessFormat = "{0} [{1}]";
-			const string boundedFormat = "{0} [{1}/{2}]";
-			var schedule = Schedule;
-
-			if (schedule == null || !schedule.ShowInstallment)
+			if (Schedule == null || !Schedule.ShowInstallment)
 				return Description;
 
-			var total = schedule.Times;
+			const string boundlessFormat = "{0} [{1}]";
+			const string boundedFormat = "{0} [{1}/{2}]";
+
+			var total = Schedule.Times;
 			var executed = positionInSchedule();
 
-			var format = schedule.Boundless ? boundlessFormat : boundedFormat;
+			var format = Schedule.Boundless ? boundlessFormat : boundedFormat;
 
 			return String.Format(format, Description, executed, total);
 		}

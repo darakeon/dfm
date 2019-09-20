@@ -7,8 +7,13 @@ namespace DFM.BusinessLogic.Response
 {
 	public class YearReport
 	{
-		public YearReport(Int32 time, IList<Summary> summaryList)
+		public YearReport(Decimal total, Int32 time, IList<Summary> summaryList)
 		{
+			AccountTotal = total;
+
+			Time = time;
+
+			// TODO: use summarize
 			MonthList = summaryList
 				.GroupBy(s => s.Time)
 				.Select(g =>
@@ -19,10 +24,9 @@ namespace DFM.BusinessLogic.Response
 					)
 				)
 				.ToList();
-
-			Time = time;
 		}
 
+		public Decimal AccountTotal { get; set; }
 		public Int32 Time { get; set; }
 		public IList<MonthItem> MonthList { get; set; }
 

@@ -103,6 +103,7 @@
     <Compile Include="Response\AccountListItem.cs" />
     <Compile Include="Response\DetailInfo.cs" />
     <Compile Include="Response\IMoveInfo.cs" />
+    <Compile Include="Response\MonthReport.cs" />
     <Compile Include="Response\MoveResult.cs" />
     <Compile Include="Response\MoveInfo.cs" />
     <Compile Include="Response\ScheduleInfo.cs" />
