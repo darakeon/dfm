@@ -23,9 +23,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			set => Set("ID", value);
 		}
 
-		private static IList<Schedule> scheduleList
+		private static IList<ScheduleInfo> scheduleList
 		{
-			get => Get<IList<Schedule>>("scheduleList");
+			get => Get<IList<ScheduleInfo>>("scheduleList");
 			set => Set("scheduleList", value);
 		}
 		#endregion

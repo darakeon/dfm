@@ -127,7 +127,7 @@ Legend:
 - [ ] Review contract, about account deletion and cookies
 - [ ] Add test for empty ticket
 - [ ] Transform SAFE service receiving / returns into DTO - check android
-- [ ] `190920>......` Transform ROBOT service receiving / returns into DTO - check android
+- [x] `190920>190920` Transform ROBOT service receiving / returns into DTO - check android
 - [x] `190920>190920` Transform REPORT service receiving / returns into DTO - check android
 - [x] `190918>190919` Transform MONEY service receiving / returns into DTO - check android
 - [x] `190913>190918` Remove Month and Year (summaries goes to account)

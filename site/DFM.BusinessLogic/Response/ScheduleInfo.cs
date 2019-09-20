@@ -19,12 +19,15 @@ namespace DFM.BusinessLogic.Response
 		public String OutUrl { get; set; }
 		public String InUrl { get; set; }
 		public String CategoryName { get; set; }
+		public String OutName { get; private set; }
+		public String InName { get; private set; }
 
 		public String Description { get; set; }
 		public DateTime Date { get; set; }
 
 		public MoveNature Nature { get; set; }
 
+		public Decimal Total { get; private set; }
 		public Decimal? Value { get; set; }
 		public IList<DetailInfo> DetailList { get; set; }
 
@@ -49,6 +52,35 @@ namespace DFM.BusinessLogic.Response
 			schedule.Boundless = Boundless;
 			schedule.Times = Times;
 			schedule.ShowInstallment = ShowInstallment;
+		}
+
+		internal static ScheduleInfo Convert(Schedule schedule)
+		{
+			return new ScheduleInfo
+			{
+				ID = schedule.ID,
+				OutUrl = schedule.Out?.Url,
+				InUrl = schedule.In?.Url,
+				CategoryName = schedule.Category?.Name,
+				OutName = schedule.Out?.Name,
+				InName = schedule.In?.Name,
+
+				Description = schedule.Description,
+				Date = schedule.Date,
+
+				Nature = schedule.Nature,
+
+				Total = schedule.Total(),
+				Value = schedule.Value,
+				DetailList = schedule.DetailList
+					.Select(DetailInfo.Convert)
+					.ToList(),
+
+				Frequency = schedule.Frequency,
+				Boundless = schedule.Boundless,
+				Times = schedule.Times,
+				ShowInstallment = schedule.ShowInstallment,
+			};
 		}
 	}
 }

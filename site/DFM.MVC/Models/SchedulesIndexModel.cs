@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities;
+using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Models
 {
@@ -14,6 +14,6 @@ namespace DFM.MVC.Models
 					.ToList();
 		}
 
-		public IList<Schedule> ScheduleList { get; set; }
+		public IList<ScheduleInfo> ScheduleList { get; set; }
 	}
 }

@@ -131,7 +131,7 @@ namespace DFM.BusinessLogic.Services
 
 
 
-		public Schedule SaveSchedule(ScheduleInfo info)
+		public ScheduleResult SaveSchedule(ScheduleInfo info)
 		{
 			Parent.Safe.VerifyUser();
 
@@ -143,7 +143,7 @@ namespace DFM.BusinessLogic.Services
 			);
 		}
 
-		private Schedule save(ScheduleInfo info)
+		private ScheduleResult save(ScheduleInfo info)
 		{
 			var schedule = new Schedule
 			{
@@ -166,7 +166,7 @@ namespace DFM.BusinessLogic.Services
 				scheduleRepository.Save(schedule);
 			}
 
-			return schedule;
+			return new ScheduleResult(schedule.ID);
 		}
 
 		public void DisableSchedule(Int64 id)
@@ -178,17 +178,17 @@ namespace DFM.BusinessLogic.Services
 			);
 		}
 
-
-
-		public IList<Schedule> GetScheduleList()
+		public IList<ScheduleInfo> GetScheduleList()
 		{
 			Parent.Safe.VerifyUser();
 
-			return scheduleRepository.SimpleFilter(
-				s => s.Active && s.User.ID == Parent.Current.User.ID
-			);
+			return scheduleRepository
+				.SimpleFilter(
+					s => s.Active && s.User.ID == Parent.Current.User.ID
+				)
+				.Select(ScheduleInfo.Convert)
+				.ToList();
 		}
-
 	}
 
 
