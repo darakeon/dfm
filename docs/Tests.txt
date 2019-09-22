@@ -7,6 +7,7 @@ Token > PasswordReset
 Token > Disable
 User > LogOn (verified)
 User > LogOff
+User > EndWizard
 
 Account > Index
 Account > Create
@@ -27,7 +28,6 @@ Move > Index
 Schedule > Index
 Move > Create
 Detail > Add
-Category > CreateAjax
 Move > Edit
 Schedule > Create
 BaseMove > ShowAccountList
