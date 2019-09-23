@@ -23,3 +23,15 @@ Scenario: Af03. Select with info all right
 	When I try to get the session
 	Then I will receive no core error
 		And I will receive the session
+
+Scenario: Af04. Select with empty ticket
+	Given I pass an empty ticket
+	When I try to get the session
+	Then I will receive this core error: Uninvited
+		And I will receive no session
+
+Scenario: Af05. Select with null ticket
+	Given I pass a null ticket
+	When I try to get the session
+	Then I will receive this core error: Uninvited
+		And I will receive no session
