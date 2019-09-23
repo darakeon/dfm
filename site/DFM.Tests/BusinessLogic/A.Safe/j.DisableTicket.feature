@@ -27,3 +27,8 @@ Scenario: Aj04. Disable with wrong user
 		But there is a bad person logged in
 	When I try to disable the ticket
 	Then I will receive this core error: Uninvited
+
+Scenario: Aj05. Disable with empty ticket
+	Given I pass an empty ticket
+	When I try to disable the ticket
+	Then I will receive no core error

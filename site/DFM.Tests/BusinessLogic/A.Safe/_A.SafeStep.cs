@@ -773,6 +773,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			ticket = null;
 		}
 
+		[Given(@"I pass an empty ticket")]
+		public void GivenIPassAnEmptyTicket()
+		{
+			ticket = "";
+		}
+
 		[Given(@"I pass a ticket that is already disabled")]
 		public void GivenIPassATicketThatIsAlreadyInvalid()
 		{

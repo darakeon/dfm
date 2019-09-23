@@ -125,7 +125,7 @@ Legend:
 ## <a name="dev"></a>4.1.3.6 :ant: <sup>`9`</sup>
 - [ ] Fix account name repetition on area title
 - [ ] Review contract, about account deletion and cookies
-- [ ] Add test for empty ticket
+- [x] `190922>190922` Add test for empty ticket
 - [x] `190920>190922` Transform SAFE service receiving / returns into DTO - check android
 - [x] `190920>190920` Transform ROBOT service receiving / returns into DTO - check android
 - [x] `190920>190920` Transform REPORT service receiving / returns into DTO - check android
