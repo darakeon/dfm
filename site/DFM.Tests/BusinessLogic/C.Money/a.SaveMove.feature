@@ -428,7 +428,7 @@ Scenario: Ca28. Save with closed AccountOut
 	Then I will receive this core error: ClosedAccount
 		And the move will not be saved
 
-Scenario: Ca29. Save with closed AccountOut
+Scenario: Ca29. Save with closed AccountIn
 	Given I have this move to create
 			| Description | Date       | Nature | Value |
 			| Move Ca29   | 2012-03-31 | In     | 10    |
