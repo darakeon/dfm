@@ -65,7 +65,7 @@ namespace DFM.Tests.BusinessLogic
 
 		protected static void log(String text)
 		{
-			var title = ScenarioContext.Current?.ScenarioInfo?.Title;
+			var title = context?.ScenarioInfo?.Title;
 			var log = $"{DateTime.Now:HH:mm:ss-fff}\t{title}\t{text}\n";
 			File.AppendAllText(logFileName, log);
 		}
@@ -412,9 +412,8 @@ namespace DFM.Tests.BusinessLogic
 
 		protected Boolean isCurrent(ScenarioBlock block)
 		{
-			return ScenarioContext.Current.CurrentScenarioBlock == block;
+			return context.CurrentScenarioBlock == block;
 		}
-
 		#endregion
 	}
 }
