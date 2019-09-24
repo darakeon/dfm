@@ -5,6 +5,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account
 {
+	// ReSharper disable once UnusedMember.Global
 	public class AccountAreaRegistration : AreaRegistration
 	{
 		public override String AreaName => RouteNames.Account;

@@ -5,6 +5,7 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.BusinessLogic.Repositories.Mappings
 {
+	// ReSharper disable once UnusedMember.Global
 	public class AccountMap : IAutoMappingOverride<Account>
 	{
 		public void Override(AutoMapping<Account> mapping)

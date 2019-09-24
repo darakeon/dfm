@@ -1,4 +1,5 @@
-﻿namespace DFM.Entities.Enums
+﻿// ReSharper disable UnusedMember.Global
+namespace DFM.Entities.Enums
 {
 	public enum BootstrapTheme
 	{

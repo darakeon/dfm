@@ -7,6 +7,7 @@ namespace DFM.BusinessLogic.Response
 {
 	public class SessionInfo : ISessionInfo
 	{
+		// ReSharper disable once UnusedMember.Global
 		public SessionInfo() { }
 
 		public SessionInfo(User user)

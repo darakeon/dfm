@@ -10,6 +10,7 @@ namespace DFM.MVC.Areas.Account.Models
 {
 	public class MovesCreateEditModel : BaseMovesModel
 	{
+		// ReSharper disable once UnusedMember.Global
 		public MovesCreateEditModel()
 			: base(new MoveInfo())  { }
 

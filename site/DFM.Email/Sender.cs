@@ -55,12 +55,12 @@ namespace DFM.Email
 			return this;
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		public Sender Attach(String fileFullName)
 		{
 			files.Add(fileFullName);
 			return this;
 		}
-
 
 		public void Send()
 		{

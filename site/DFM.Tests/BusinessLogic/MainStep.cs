@@ -108,12 +108,14 @@ namespace DFM.Tests.BusinessLogic
 			SessionFactoryManager.End();
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		[BeforeScenario]
 		public static void RegisterRun()
 		{
 			log("Before scenario");
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		[AfterScenarioBlock]
 		public static void CloseSession()
 		{
@@ -121,6 +123,7 @@ namespace DFM.Tests.BusinessLogic
 			SessionManager.Close();
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		[AfterScenario]
 		public void CleanSchedulesAndLogoff()
 		{
@@ -153,6 +156,7 @@ namespace DFM.Tests.BusinessLogic
 			current.Clear();
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		[StepArgumentTransformation(@"( not)?")]
 		[StepArgumentTransformation(@"(not )?")]
 		public bool NotToBoolTransform(string not)
