@@ -54,15 +54,19 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				if (scheduleInfo != null)
+				if (scheduleInfo == null)
+				{
+					service.Robot.SaveSchedule(null);
+				}
+				else
 				{
 					scheduleInfo.OutUrl = accountOut?.Url;
 					scheduleInfo.InUrl = accountIn?.Url;
 					scheduleInfo.CategoryName = categoryName;
-				}
 
-				var schedule = service.Robot.SaveSchedule(scheduleInfo);
-				scheduleInfo.ID = schedule.ID;
+					var schedule = service.Robot.SaveSchedule(scheduleInfo);
+					scheduleInfo.ID = schedule.ID;
+				}
 			}
 			catch (CoreError e)
 			{
