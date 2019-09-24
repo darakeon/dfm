@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model DFM.Generic.Pages.Pages
 
 <ul class="pagination">
 
@@ -10,7 +10,7 @@
 	{
 		String label = page.Label;
 
-		<li class="@(page == Model.Current ? "active" : "")">
+		<li class="@(page.Same(Model.Current) ? "active" : "")">
 			@Html.ActionLink(label, null, new { id = page.Url })
 		</li>
 	}

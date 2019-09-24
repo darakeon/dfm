@@ -21,7 +21,7 @@
 	var endDate = new MonthYearUnit(Model.Account.End ?? Service.Current.Now);
 	var current = new MonthYearUnit(Model.Year, Model.Month);
 
-	var pages = new Pages<MonthYearUnit>(beginDate, endDate, current, 5);
+	var pages = new Pages(beginDate, endDate, current, 5);
 }
 
 @section TableHeader {

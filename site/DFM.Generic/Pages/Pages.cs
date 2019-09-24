@@ -4,31 +4,28 @@ using System.Linq;
 
 namespace DFM.Generic.Pages
 {
-	public class Pages<T>
+	public class Pages
 	{
+		public IList<IPage> List { get; }
+
+		public IPage Current { get; }
+
 		public Boolean HasMoreBack { get; }
-		private OperatorBox<T> operatorMoreBack { get; }
-		public T MoreBack => operatorMoreBack.Item;
+		public IPage MoreBack { get; }
 
 		public Boolean HasMoreForward { get; }
-		private OperatorBox<T> operatorMoreForward { get; }
-		public T MoreForward => operatorMoreForward.Item;
+		public IPage MoreForward { get; }
 
-		private IList<OperatorBox<T>> operatorList { get; }
-		public IList<T> List => operatorList.Select(p => p.Item).ToList();
-
-		public T Current { get; }
-
-		public Pages(T minimum, T maximum, T current, Int32 rangeSize)
+		public Pages(IPage minimum, IPage maximum, IPage current, Int32 rangeSize)
 		{
 			Current = current;
 
-			var operatorMinimum = new OperatorBox<T>(minimum);
-			var operatorMaximum = new OperatorBox<T>(maximum);
-			var operatorCurrent = new OperatorBox<T>(current);
+			var operatorMinimum = new OperatorBox(minimum);
+			var operatorMaximum = new OperatorBox(maximum);
+			var operatorCurrent = new OperatorBox(current);
 
-			var first = operatorCurrent - (rangeSize/2);
-			var last = operatorCurrent + (rangeSize/2);
+			var first = operatorCurrent - rangeSize/2;
+			var last = operatorCurrent + rangeSize/2;
 
 			while (first < operatorMinimum)
 			{
@@ -46,19 +43,22 @@ namespace DFM.Generic.Pages
 				last--;
 			}
 
-			operatorList = new List<OperatorBox<T>>();
+			var operatorList = new List<OperatorBox>();
 
 			for (var page = first; page <= last; page++)
 			{
 				operatorList.Add(page);
 			}
 
-			operatorMoreBack = operatorList.First() - 1;
+			List = operatorList.Select(p => p.Item).ToList();
+
+			var operatorMoreBack = operatorList.First() - 1;
 			HasMoreBack = operatorMoreBack >= operatorMinimum;
+			MoreBack = operatorMoreBack.Item;			
 
-			operatorMoreForward = operatorList.Last() + 1;
+			var operatorMoreForward = operatorList.Last() + 1;
 			HasMoreForward = operatorMoreForward <= operatorMaximum;
+			MoreForward = operatorMoreForward.Item;
 		}
-
 	}
 }
