@@ -1,96 +1,72 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace DFM.Generic.Pages
 {
-	public class OperatorBox<T>
+	public class OperatorBox
 	{
-		public OperatorBox(T item)
+		public OperatorBox(IPage item)
 		{
 			Item = item;
 		}
 
-		public T Item { get; }
+		public IPage Item { get; }
 
-		public static OperatorBox<T> operator +(OperatorBox<T> @this, Int32 other)
+		public static OperatorBox operator +(OperatorBox @this, Int32 other)
 		{
-			var result = invokeOperator<T>("+", @this.Item, other);
-			return new OperatorBox<T>(result);
+			return new OperatorBox(@this.Item.Add(other));
 		}
 
-		public static OperatorBox<T> operator ++(OperatorBox<T> @this)
+		public static OperatorBox operator ++(OperatorBox @this)
 		{
 			return @this + 1;
 		}
 
-		public static OperatorBox<T> operator -(OperatorBox<T> @this, Int32 other)
+		public static OperatorBox operator -(OperatorBox @this, Int32 other)
 		{
 			return @this + (-other);
 		}
 
-		public static OperatorBox<T> operator --(OperatorBox<T> @this)
+		public static OperatorBox operator --(OperatorBox @this)
 		{
 			return @this - 1;
 		}
 
-		public static Boolean operator <(OperatorBox<T> @this, OperatorBox<T> other)
+		public static Boolean operator <(OperatorBox @this, OperatorBox other)
 		{
-			return invokeOperator<Boolean>("<", @this.Item, other.Item);
+			return @this.Item.LessThan(other.Item);
 		}
 
-		public static Boolean operator >(OperatorBox<T> @this, OperatorBox<T> other)
+		public static Boolean operator >(OperatorBox @this, OperatorBox other)
 		{
-			return invokeOperator<Boolean>(">", @this.Item, other.Item);
+			return @this.Item.GreaterThan(other.Item);
 		}
 
-		public static Boolean operator <=(OperatorBox<T> @this, OperatorBox<T> other)
+		public static Boolean operator <=(OperatorBox @this, OperatorBox other)
 		{
 			return !(@this > other);
 		}
 
-		public static Boolean operator >=(OperatorBox<T> @this, OperatorBox<T> other)
+		public static Boolean operator >=(OperatorBox @this, OperatorBox other)
 		{
 			return !(@this < other);
 		}
 
-		private static R invokeOperator<R>(String method, params object[] @params)
-		{
-			var reflectionMethod = reflectionMethods[method];
-			return (R)typeof(T).InvokeMember(reflectionMethod, BindingFlags.InvokeMethod, null, null, @params);
-		}
-
-		// ReSharper disable once StaticMemberInGenericType
-		private static readonly IDictionary<String, String> reflectionMethods =
-			new Dictionary<String, String>
-			{
-				{"+", "op_Addition"},
-				{"++", "op_Increment"},
-				{"-", "op_Subtraction"},
-				{"--", "op_Decrement"},
-				{"<", "op_LessThan"},
-				{">", "op_GreaterThan"},
-				{"<=", "op_LessThanOrEqual"},
-				{">=", "op_GreaterThanOrEqual"},
-			};
-
-
 		#region Equality Members
-		protected bool equals(OperatorBox<T> other)
+		protected bool equals(OperatorBox other)
 		{
-			return EqualityComparer<T>.Default.Equals(Item, other.Item);
+			return Item.Equals(other.Item);
 		}
 
-		public override bool Equals(object obj)
+		public override Boolean Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			return obj.GetType() == GetType() && equals((OperatorBox<T>)obj);
+			return obj.GetType() == GetType() && equals((OperatorBox)obj);
 		}
 
 		public override int GetHashCode()
 		{
-			return EqualityComparer<T>.Default.GetHashCode(Item);
+			return Item.GetHashCode();
 		}
 		#endregion Equality Members
 	}

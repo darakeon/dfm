@@ -23,7 +23,7 @@
 	var end = new YearUnit(Model.Account.End ?? Service.Current.Now);
 	var current = new YearUnit(Model.Year.Time);
 
-	var pages = new Pages<YearUnit>(start, end, current, 5);
+	var pages = new Pages(start, end, current, 5);
 }
 
 @section TableHeader{

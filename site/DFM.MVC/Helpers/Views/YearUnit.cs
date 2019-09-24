@@ -1,23 +1,10 @@
 using System;
+using DFM.Generic.Pages;
 
 namespace DFM.MVC.Helpers.Views
 {
-	public class YearUnit
+	public class YearUnit : IPage
 	{
-		public override bool Equals(object other)
-		{
-			if (ReferenceEquals(null, other)) return false;
-			if (ReferenceEquals(this, other)) return true;
-			if (other.GetType() != GetType()) return false;
-			var converted = (YearUnit) other;
-			return Year == converted.Year;
-		}
-
-		public override int GetHashCode()
-		{
-			return Year;
-		}
-
 		public YearUnit(Int32 year)
 		{
 			Year = year;
@@ -28,43 +15,41 @@ namespace DFM.MVC.Helpers.Views
 
 		public Int32 Year { get; }
 
-		public static YearUnit operator +(YearUnit unit, Int32 years)
+		public String Label => Year.ToString();
+		public String Url => Year.ToString();
+
+		public IPage Add(Int32 qty)
 		{
-			var date = unit.ToDate().AddYears(years);
+			var date = ToDate().AddYears(qty);
 			return new YearUnit(date);
 		}
 
-		public static Boolean operator <(YearUnit unit, YearUnit other)
+		public Boolean LessThan(IPage other)
 		{
-			return unit.ToDate() < other.ToDate();
+			return other is YearUnit converted
+			       && ToDate() < converted.ToDate();
 		}
 
-		public static Boolean operator >(YearUnit unit, YearUnit other)
+		public Boolean GreaterThan(IPage other)
 		{
-			return unit.ToDate() > other.ToDate();
+			return other is YearUnit converted
+			       && ToDate() > converted.ToDate();
 		}
 
-		public static Boolean operator !=(YearUnit @this, YearUnit other)
+		public Boolean Same(IPage other)
 		{
-			return @this > other || @this < other;
-		}
-
-		public static Boolean operator ==(YearUnit @this, YearUnit other)
-		{
-			return !(@this != other);
-		}
-
-		public String Label => $"{Year}";
-		public String Url => $"{Year}";
-
-		public override string ToString()
-		{
-			return Label;
+			return other is YearUnit converted
+			       && ToDate() == converted.ToDate();
 		}
 
 		public DateTime ToDate()
 		{
 			return new DateTime(Year, 1, 1);
+		}
+
+		public override string ToString()
+		{
+			return Label;
 		}
 	}
 }

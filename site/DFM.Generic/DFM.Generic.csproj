@@ -37,6 +37,7 @@
     <Compile Include="Cfg.cs" />
     <Compile Include="Crypt.cs" />
     <Compile Include="DateExtension.cs" />
+    <Compile Include="Pages\IPage.cs" />
     <Compile Include="SystemError.cs" />
     <Compile Include="Elmah.cs" />
     <Compile Include="EnumExtension.cs" />
