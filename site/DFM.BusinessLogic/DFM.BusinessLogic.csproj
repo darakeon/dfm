@@ -81,6 +81,7 @@
     <Compile Include="Helpers\MoveExtension.cs" />
     <Compile Include="Helpers\ThemeExtension.cs" />
     <Compile Include="InterfacesAndBases\IPasswordForm.cs" />
+    <Compile Include="Repositories\Mappings\TermsMap.cs" />
     <Compile Include="Response\ChangePasswordInfo.cs" />
     <Compile Include="Response\ConfigInfo.cs" />
     <Compile Include="Repositories\AcceptanceRepository.cs" />
