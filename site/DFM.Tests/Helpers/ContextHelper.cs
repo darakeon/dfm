@@ -8,14 +8,14 @@ namespace DFM.Tests.Helpers
 	{
 		protected static T get<T>(String key)
 		{
-			return ScenarioContext.Current.ContainsKey(key)
-				? (T)ScenarioContext.Current[key]
+			return context.ContainsKey(key)
+				? (T)context[key]
 				: default(T);
 		}
 
 		protected static void set(String key, object value)
 		{
-			ScenarioContext.Current[key] = value;
+			context[key] = value;
 		}
 
 		protected static String runPath
@@ -30,5 +30,9 @@ namespace DFM.Tests.Helpers
 				return Path.GetDirectoryName(path);
 			}
 		}
+
+		#pragma warning disable 618
+		protected static ScenarioContext context => ScenarioContext.Current;
+		#pragma warning restore 618
 	}
 }
