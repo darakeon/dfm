@@ -4,6 +4,20 @@ namespace DFM.MVC.Helpers.Views
 {
 	public class YearUnit
 	{
+		public override bool Equals(object other)
+		{
+			if (ReferenceEquals(null, other)) return false;
+			if (ReferenceEquals(this, other)) return true;
+			if (other.GetType() != GetType()) return false;
+			var converted = (YearUnit) other;
+			return Year == converted.Year;
+		}
+
+		public override int GetHashCode()
+		{
+			return Year;
+		}
+
 		public YearUnit(Int32 year)
 		{
 			Year = year;
