@@ -57,8 +57,8 @@ namespace DFM.MVC.Helpers.Views
 			return !(@this != other);
 		}
 
-		public String Label => $"{Year}-{Month.ToString("00")}";
-		public String Url => $"{Year}{Month.ToString("00")}";
+		public String Label => $"{Year}-{Month:00}";
+		public String Url => $"{Year}{Month:00}";
 
 		public override string ToString()
 		{
