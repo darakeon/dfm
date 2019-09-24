@@ -21,7 +21,7 @@ namespace DFM.MVC.Areas.Account.Models
 			String.Format(
 				Translator.Dictionary["ShortDateFormat"],
 				Translator.Dictionary["Summary"],
-				Year
+				Year.Time
 			);
 	}
 }
