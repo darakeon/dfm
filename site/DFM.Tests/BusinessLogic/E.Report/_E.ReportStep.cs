@@ -15,26 +15,26 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 		private static Int16 month
 		{
-			get => Get<Int16>("Month");
-			set => Set("Month", value);
+			get => get<Int16>("Month");
+			set => set("Month", value);
 		}
 
 		private static Int16 year
 		{
-			get => Get<Int16>("Year");
-			set => Set("Year", value);
+			get => get<Int16>("Year");
+			set => set("Year", value);
 		}
 
 		private static MonthReport monthReport
 		{
-			get => Get<MonthReport>("MonthReport");
-			set => Set("MonthReport", value);
+			get => get<MonthReport>("MonthReport");
+			set => set("MonthReport", value);
 		}
 
 		private static YearReport yearReport
 		{
-			get => Get<YearReport>("YearReport");
-			set => Set("YearReport", value);
+			get => get<YearReport>("YearReport");
+			set => set("YearReport", value);
 		}
 		#endregion
 
@@ -44,11 +44,11 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			try
 			{
-				monthReport = Service.Report.GetMonthReport(AccountUrl, month, year);
+				monthReport = service.Report.GetMonthReport(accountUrl, month, year);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -67,8 +67,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its moves sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMovesSumValue()
 		{
-			var user = userRepository.GetByEmail(Current.Email);
-			var account = accountRepository.GetByUrl(Account.Url, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var account = accountRepository.GetByUrl(accountInfo.Url, user);
 
 			var time = year * 100 + month;
 			var expected = summaryRepository
@@ -97,11 +97,11 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			try
 			{
-				yearReport = Service.Report.GetYearReport(AccountUrl, year);
+				yearReport = service.Report.GetYearReport(accountUrl, year);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -120,8 +120,8 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Then(@"its sum value will be equal to its months sum value")]
 		public void ThenItsSumValueWillBeEqualToItsMonthsSumValue()
 		{
-			var user = userRepository.GetByEmail(Current.Email);
-			var account = accountRepository.GetByUrl(Account.Url, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var account = accountRepository.GetByUrl(accountInfo.Url, user);
 
 			var expected = summaryRepository.GetTotal(account);
 
@@ -143,35 +143,35 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
 		{
-			Category = CategoryInfo.Convert(
-				GetOrCreateCategory(MAIN_CATEGORY_NAME)
+			categoryInfo = CategoryInfo.Convert(
+				getOrCreateCategory(mainCategoryName)
 			);
 
 			foreach (var row in table.Rows)
 			{
 				var dateString = row["Date"];
-				var date = isRelative(dateString)
+				var moveDate = isRelative(dateString)
 					? DateTime.Today.AddDays(Int32.Parse(dateString))
 					: DateTime.Parse(dateString);
 
 				var move = new MoveInfo
 				{
 					Description = "Description",
-					Date = date,
+					Date = moveDate,
 					Nature = MoveNature.Out,
 					Value = 10,
-					OutUrl = Account.Url,
-					CategoryName = Category.Name,
+					OutUrl = accountInfo.Url,
+					CategoryName = categoryInfo.Name,
 				};
 
-				Service.Money.SaveMove(move);
+				service.Money.SaveMove(move);
 			}
 		}
 
 		[Given(@"I pass an invalid account url")]
 		public void GivenIPassAnInvalidAccountName()
 		{
-			AccountUrl = "invalid";
+			accountUrl = "invalid";
 		}
 
 		[Given(@"I pass this date")]
@@ -201,9 +201,9 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 		#endregion
 
-		private Boolean isRelative(String date)
+		private Boolean isRelative(String dateText)
 		{
-			return date.StartsWith("+") || date.StartsWith("-");
+			return dateText.StartsWith("+") || dateText.StartsWith("-");
 		}
 
 	}

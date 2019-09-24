@@ -28,7 +28,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(account.Name))
 				throw Error.AccountNameRequired.Throw();
 
-			if (account.Name.Length > MaxLen.Account_Name)
+			if (account.Name.Length > MaxLen.AccountName)
 				throw Error.TooLargeAccountName.Throw();
 
 			var otherAccount = getByName(account.Name, account.User);
@@ -46,7 +46,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(account.Url))
 				throw Error.AccountUrlRequired.Throw();
 
-			if (account.Url.Length > MaxLen.Account_Url)
+			if (account.Url.Length > MaxLen.AccountUrl)
 				throw Error.TooLargeAccountUrl.Throw();
 
 			var regex = new Regex(@"^[a-z0-9_]*$");

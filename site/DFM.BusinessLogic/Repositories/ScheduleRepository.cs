@@ -13,26 +13,19 @@ namespace DFM.BusinessLogic.Repositories
 	{
 		internal Schedule Save(Schedule schedule)
 		{
-			return SaveOrUpdate(schedule, complete, validate);
-		}
-
-		private static void complete(Schedule schedule)
-		{
-			Complete(schedule);
-
 			if (schedule.ID == 0)
-			{
 				schedule.Active = true;
-			}
+
+			return SaveOrUpdate(schedule, validate);
 		}
 
 		private void validate(Schedule schedule)
 		{
 			var now = schedule.User.Now();
-			Validate(
+			validate(
 				schedule,
 				now,
-				MaxLen.Schedule_Description,
+				MaxLen.ScheduleDescription,
 				Error.TooLargeScheduleDescription,
 				schedule.Active
 			);

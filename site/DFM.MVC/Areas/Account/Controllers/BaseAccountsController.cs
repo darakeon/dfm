@@ -20,7 +20,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 				filterContext.Result = 
 					RedirectToRoute(
-						RouteNames.DEFAULT, 
+						RouteNames.Default, 
 						new { controller = "Accounts" }
 					);
 
@@ -37,7 +37,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (ModelState.IsValid)
 			{
 				var errors = model.CreateEditSchedule();
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			if (ModelState.IsValid)

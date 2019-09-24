@@ -10,7 +10,7 @@ using DFM.Tests.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using error = DFM.BusinessLogic.Exceptions.Error;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -20,69 +20,69 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"I have a complete user logged in")]
 		public void GivenIHaveAnActiveUser()
 		{
-			createLogoffLogin(USER_EMAIL, UserPassword);
+			createLogoffLogin(userEmail, userPassword);
 		}
 
 		[Given(@"there is a bad person logged in")]
 		public void GivenIHaveABadPersonLoggedIn()
 		{
-			createLogoffLogin(BAD_PERSON_USER, UserPassword);
+			createLogoffLogin(badPersonUser, userPassword);
 		}
 
 		private void createLogoffLogin(String email, String password)
 		{
 			resetTicket();
-			CreateUserIfNotExists(email, password, true);
-			Current.Set(email, password, false);
-			Service.Safe.AcceptContract();
+			createUserIfNotExists(email, password, true);
+			current.Set(email, password, false);
+			service.Safe.AcceptContract();
 		}
 
 		[Given(@"the right user login again")]
 		public void GivenTheRightUserLoginAgain()
 		{
-			createLogoffLogin(USER_EMAIL, UserPassword);
+			createLogoffLogin(userEmail, userPassword);
 		}
 
 		[Given(@"the user have accepted the contract")]
 		public void GivenTheUserHaveAcceptedTheContract()
 		{
-			Service.Safe.AcceptContract();
+			service.Safe.AcceptContract();
 		}
 
 		[Given(@"I have an account")]
 		public void GivenIHaveAnAccount()
 		{
-			Account = AccountInfo.Convert(
-				GetOrCreateAccount(MAIN_ACCOUNT_URL)
+			accountInfo = AccountInfo.Convert(
+				getOrCreateAccount(mainAccountUrl)
 			);
 		}
 
 		[Given(@"I have a category")]
 		public void GivenIHaveACategory()
 		{
-			Category = CategoryInfo.Convert(
-				GetOrCreateCategory(MAIN_CATEGORY_NAME)
+			categoryInfo = CategoryInfo.Convert(
+				getOrCreateCategory(mainCategoryName)
 			);
 		}
 
 		[Given(@"I pass a valid account url")]
 		public void GivenIPassValidAccountName()
 		{
-			AccountUrl = Account.Url;
+			accountUrl = accountInfo.Url;
 		}
 
 
 		[Then(@"I will receive this core error: ([A-Za-z]+)")]
-		public void ThenIWillReceiveThisError(error error)
+		public void ThenIWillReceiveThisError(Error expectedError)
 		{
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(error, Error.Type);
+			Assert.IsNotNull(expectedError);
+			Assert.AreEqual(expectedError, error.Type);
 		}
 
 		[Then(@"I will receive no core error")]
 		public void ThenIWillReceiveNoCoreError()
 		{
-			Assert.IsNull(Error);
+			Assert.IsNull(error);
 		}
 
 		[BeforeTestRun]
@@ -96,9 +96,9 @@ namespace DFM.Tests.BusinessLogic
 			SessionFactoryManager.Initialize<UserMap, User>();
 			SessionManager.Init(getTicketKey);
 
-			Service = new ServiceAccess(getTicket, getPath);
+			service = new ServiceAccess(getTicket, getPath);
 
-			PlainText.Initialize(RunPath);
+			PlainText.Initialize(runPath);
 		}
 
 		[AfterTestRun]
@@ -125,23 +125,23 @@ namespace DFM.Tests.BusinessLogic
 		public void CleanSchedulesAndLogoff()
 		{
 			log("After scenario");
-			if (!Current.IsAuthenticated)
+			if (!current.IsAuthenticated)
 				return;
 
 			try
 			{
-				var pendentSchedules = Service.Robot.GetScheduleList();
+				var pendentSchedules = service.Robot.GetScheduleList();
 
 				foreach (var pendentSchedule in pendentSchedules)
 				{
-					Service.Robot.DisableSchedule(pendentSchedule.ID);
+					service.Robot.DisableSchedule(pendentSchedule.ID);
 				}
 			}
 			catch (CoreError e)
 			{
 				var ignored = new [] {
-					error.NotSignedLastContract,
-					error.TFANotVerified,
+					Error.NotSignedLastContract,
+					Error.TFANotVerified,
 				};
 
 				if (!ignored.Contains(e.Type))
@@ -150,7 +150,7 @@ namespace DFM.Tests.BusinessLogic
 				}
 			}
 
-			Current.Clear();
+			current.Clear();
 		}
 
 		[StepArgumentTransformation(@"( not)?")]

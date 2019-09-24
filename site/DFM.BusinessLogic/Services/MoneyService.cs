@@ -23,7 +23,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MoveInfo GetMove(Int64 id)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 			return MoveInfo.Convert(
 				GetMoveEntity(id)
 			);
@@ -33,18 +33,18 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = moveRepository.Get(id);
 
-			Parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyMove(move);
 
 			return move;
 		}
 
 		public MoveResult SaveMove(MoveInfo move)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			var result = save(move);
 
-			Parent.BaseMove.FixSummaries();
+			parent.BaseMove.FixSummaries();
 
 			return result;
 		}
@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.Services
 					: OperationType.Edition;
 
 			return InTransaction(
-				() => Parent.BaseMove.SaveMove(
+				() => parent.BaseMove.SaveMove(
 					move, operationType
 				)
 			);
@@ -66,11 +66,11 @@ namespace DFM.BusinessLogic.Services
 
 		public MoveResult DeleteMove(Int64 id)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			var result = InTransaction(() => deleteMove(id));
 
-			Parent.BaseMove.FixSummaries();
+			parent.BaseMove.FixSummaries();
 
 			return result;
 		}
@@ -79,11 +79,11 @@ namespace DFM.BusinessLogic.Services
 		{
 			var move = GetMoveEntity(id);
 
-			Parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyMove(move);
 
 			moveRepository.Delete(id);
 
-			Parent.BaseMove.BreakSummaries(move);
+			parent.BaseMove.BreakSummaries(move);
 
 			if (move.Schedule != null)
 			{
@@ -104,13 +104,13 @@ namespace DFM.BusinessLogic.Services
 			if (schedule.Category == null && useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = false };
-				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
 			if (schedule.Category != null && !useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = true };
-				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 
 			scheduleRepository.Save(schedule);
@@ -118,7 +118,7 @@ namespace DFM.BusinessLogic.Services
 			if (schedule.User.Config.UseCategories != useCategories)
 			{
 				var mainConfig = new ConfigInfo { UseCategories = useCategories };
-				Parent.Admin.UpdateConfigWithinTransaction(mainConfig);
+				parent.Admin.UpdateConfigWithinTransaction(mainConfig);
 			}
 		}
 
@@ -134,15 +134,15 @@ namespace DFM.BusinessLogic.Services
 
 		private MoveResult toggleMoveCheck(Int64 moveId, Boolean check)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			var move = GetMoveEntity(moveId);
 
-			Parent.BaseMove.VerifyMove(move);
+			parent.BaseMove.VerifyMove(move);
 			verifyMoveForCheck(move, check);
 
 			move.Checked = check;
-			var today = Parent.Current.Now;
+			var today = parent.Current.Now;
 
 			InTransaction(() => 
 				moveRepository.Save(move, today)
@@ -153,7 +153,7 @@ namespace DFM.BusinessLogic.Services
 
 		private void verifyMoveForCheck(Move move, Boolean check)
 		{
-			if (!Parent.Current.MoveCheck)
+			if (!parent.Current.MoveCheck)
 				throw Error.MoveCheckDisabled.Throw();
 
 			if (move.Checked != check)

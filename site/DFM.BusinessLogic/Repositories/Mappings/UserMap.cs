@@ -10,10 +10,10 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 		public void Override(AutoMapping<User> mapping)
 		{
 			mapping.Map(u => u.Password)
-				.Length(MaxLen.User_Password);
+				.Length(MaxLen.UserPassword);
 
 			mapping.Map(u => u.Email)
-				.Length(MaxLen.User_Email)
+				.Length(MaxLen.UserEmail)
 				.Unique();
 
 			mapping.Map(u => u.TFASecret)

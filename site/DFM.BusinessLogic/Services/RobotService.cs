@@ -35,21 +35,21 @@ namespace DFM.BusinessLogic.Services
 
 		public EmailStatus RunSchedule()
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
-			var useCategories = Parent.Current.UseCategories;
+			var useCategories = parent.Current.UseCategories;
 
 			var equalResult = runScheduleEqualConfig(useCategories);
 			var diffResult = runScheduleDiffConfig(useCategories);
 
-			Parent.BaseMove.FixSummaries();
+			parent.BaseMove.FixSummaries();
 
 			return max(equalResult, diffResult);
 		}
 
 		private EmailStatus runScheduleEqualConfig(Boolean useCategories)
 		{
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 			var sameConfigList = scheduleRepository.GetRunnable(user, useCategories);
 
 			return runSchedule(sameConfigList);
@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.Services
 
 		private EmailStatus runScheduleDiffConfig(Boolean useCategories)
 		{
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 			var diffConfigList = scheduleRepository.GetRunnable(user, !useCategories);
 
 			EmailStatus emailsSent;
@@ -65,13 +65,13 @@ namespace DFM.BusinessLogic.Services
 			try
 			{
 				var mainConfig = new ConfigInfo { UseCategories = !useCategories };
-				Parent.Admin.UpdateConfig(mainConfig);
+				parent.Admin.UpdateConfig(mainConfig);
 				emailsSent = runSchedule(diffConfigList);
 			}
 			finally
 			{
 				var mainConfig = new ConfigInfo { UseCategories = useCategories };
-				Parent.Admin.UpdateConfig(mainConfig);
+				parent.Admin.UpdateConfig(mainConfig);
 			}
 
 			return emailsSent;
@@ -106,7 +106,7 @@ namespace DFM.BusinessLogic.Services
 
 				schedule.LastRun++;
 
-				var result = Parent.BaseMove.SaveMove(
+				var result = parent.BaseMove.SaveMove(
 					newMove, OperationType.Scheduling
 				);
 
@@ -135,7 +135,7 @@ namespace DFM.BusinessLogic.Services
 
 		public ScheduleResult SaveSchedule(ScheduleInfo info)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			if (info == null)
 				throw Error.ScheduleRequired.Throw();
@@ -149,10 +149,10 @@ namespace DFM.BusinessLogic.Services
 		{
 			var schedule = new Schedule
 			{
-				Out = Parent.BaseMove.GetAccountByUrl(info.OutUrl),
-				In = Parent.BaseMove.GetAccountByUrl(info.InUrl),
-				Category = Parent.BaseMove.GetCategoryByName(info.CategoryName),
-				User = Parent.Safe.GetCurrent()
+				Out = parent.BaseMove.GetAccountByUrl(info.OutUrl),
+				In = parent.BaseMove.GetAccountByUrl(info.InUrl),
+				Category = parent.BaseMove.GetCategoryByName(info.CategoryName),
+				User = parent.Safe.GetCurrent()
 			};
 
 			info.Update(schedule);
@@ -173,9 +173,9 @@ namespace DFM.BusinessLogic.Services
 
 		public void DisableSchedule(Int64 id)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 
 			InTransaction(() => 
 				scheduleRepository.Disable(id, user)
@@ -184,9 +184,9 @@ namespace DFM.BusinessLogic.Services
 
 		public IList<ScheduleInfo> GetScheduleList()
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 
 			return scheduleRepository
 				.SimpleFilter(

@@ -68,7 +68,7 @@ namespace DFM.MVC.Controllers
 			{
 				var errors = model.CreateOrUpdate();
 
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			if (ModelState.IsValid)

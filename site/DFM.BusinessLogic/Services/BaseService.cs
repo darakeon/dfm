@@ -6,9 +6,9 @@ namespace DFM.BusinessLogic.Services
 	{
 		protected BaseService(ServiceAccess serviceAccess)
 		{
-			Parent = serviceAccess;
+			parent = serviceAccess;
 		}
 
-		protected ServiceAccess Parent { get; private set; }
+		protected ServiceAccess parent { get; private set; }
 	}
 }

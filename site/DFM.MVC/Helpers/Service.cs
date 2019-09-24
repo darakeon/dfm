@@ -25,7 +25,7 @@ namespace DFM.MVC.Helpers
 			{
 				case PathType.PasswordReset:
 					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.DEFAULT,
+						RouteNames.Default,
 						new
 						{
 							action = "PasswordReset",
@@ -35,7 +35,7 @@ namespace DFM.MVC.Helpers
 
 				case PathType.UserVerification:
 					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.DEFAULT,
+						RouteNames.Default,
 						new
 						{
 							action = "UserVerification",
@@ -45,7 +45,7 @@ namespace DFM.MVC.Helpers
 
 				case PathType.DisableToken:
 					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.DEFAULT,
+						RouteNames.Default,
 						new
 						{
 							action = "Disable",

@@ -11,17 +11,17 @@ namespace DFM.MVC.Helpers.Authorize
 
 		protected override void goToContractPage(AuthorizationContext filterContext)
 		{
-			goTo(filterContext, RouteNames.API, "Users", "AcceptOnlineContract");
+			goTo(filterContext, RouteNames.Api, "Users", "AcceptOnlineContract");
 		}
 
 		protected override void goToUninvited(AuthorizationContext filterContext)
 		{
-			goTo(filterContext, RouteNames.API, "Users", "Uninvited");
+			goTo(filterContext, RouteNames.Api, "Users", "Uninvited");
 		}
 
 		protected override void goToTFA(AuthorizationContext filterContext)
 		{
-			goTo(filterContext, RouteNames.API, "Users", "OpenTFA");
+			goTo(filterContext, RouteNames.Api, "Users", "OpenTFA");
 		}
 	}
 }

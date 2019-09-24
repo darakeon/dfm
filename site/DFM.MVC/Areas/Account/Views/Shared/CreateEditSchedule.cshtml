@@ -36,14 +36,14 @@
 		@if (Model.ShowNoAccounts)
 		{
 			@Html.RouteLink(Translator.Dictionary["Accounts"],
-				RouteNames.DEFAULT, new { controller = "Accounts" },
+				RouteNames.Default, new { controller = "Accounts" },
 				new { @class = "btn btn-success" })
 		}
 
 		@if (Model.ShowNoCategories)
 		{
 			@Html.RouteLink(Translator.Dictionary["Categories"],
-				RouteNames.DEFAULT, new { controller = "Categories" },
+				RouteNames.Default, new { controller = "Categories" },
 				new { @class = "btn btn-success" })
 		}
 	}

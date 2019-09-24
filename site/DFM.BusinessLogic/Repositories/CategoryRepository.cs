@@ -24,7 +24,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(category.Name))
 				throw Error.CategoryNameRequired.Throw();
 
-			if (category.Name.Length > MaxLen.Category_Name)
+			if (category.Name.Length > MaxLen.CategoryName)
 				throw Error.TooLargeCategoryName.Throw();
 
 			var otherCategory = GetByName(category.Name, category.User);
