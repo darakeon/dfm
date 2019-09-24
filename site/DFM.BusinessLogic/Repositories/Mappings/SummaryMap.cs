@@ -4,6 +4,7 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.BusinessLogic.Repositories.Mappings
 {
+	// ReSharper disable once UnusedMember.Global
 	public class SummaryMap : IAutoMappingOverride<Summary>
 	{
 		public void Override(AutoMapping<Summary> mapping)

@@ -5,6 +5,7 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.BusinessLogic.Repositories.Mappings
 {
+	// ReSharper disable once UnusedMember.Global
 	public class ScheduleMap : IAutoMappingOverride<Schedule>
 	{
 		public void Override(AutoMapping<Schedule> mapping)

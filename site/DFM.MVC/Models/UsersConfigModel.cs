@@ -33,6 +33,7 @@ namespace DFM.MVC.Models
 
 		public Form ActiveForm { get; set; }
 
+		// ReSharper disable once UnusedMember.Global
 		public enum Form
 		{
 			Options,

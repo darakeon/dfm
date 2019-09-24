@@ -5,6 +5,7 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace DFM.BusinessLogic.Repositories.Mappings
 {
+	// ReSharper disable once UnusedMember.Global
 	public class MoveMap : IAutoMappingOverride<Move>
 	{
 		public void Override(AutoMapping<Move> mapping)

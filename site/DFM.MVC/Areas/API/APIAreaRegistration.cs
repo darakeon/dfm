@@ -4,6 +4,7 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.API
 {
+	// ReSharper disable once UnusedMember.Global
 	public class ApiAreaRegistration : AreaRegistration
 	{
 		public override string AreaName => RouteNames.Api;
