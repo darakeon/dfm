@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Areas.API.Jsons;
+using DFM.MVC.Areas.API.Json;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.API.Models

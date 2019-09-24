@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 
-namespace DFM.MVC.Areas.API.Jsons
+namespace DFM.MVC.Areas.API.Json
 {
 	public class SimpleMonthJson
 	{
