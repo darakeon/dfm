@@ -104,37 +104,37 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-		[HttpGet, DFMAuthorize]
+		[HttpGet, Auth]
 		public ActionResult Config()
 		{
 			return View(new UsersConfigModel());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult ConfigOptions(UsersConfigModel model)
 		{
 			return config(model, () => model.Main.Save());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult ConfigPassword(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.ChangePassword());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult ConfigEmail(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.UpdateEmail());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult ConfigTheme(UsersConfigModel model)
 		{
 			return config(model, () => model.ThemeOpt.Change());
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult ConfigTFA(UsersConfigModel model)
 		{
 			return config(model, () => model.TFA.Activate());
@@ -158,7 +158,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize(needContract: false)]
+		[HttpPost, ValidateAntiForgeryToken, Auth(needContract: false)]
 		public ActionResult Contract(UsersContractModel model)
 		{
 			model.AcceptContract(ModelState.AddModelError);
@@ -177,21 +177,21 @@ namespace DFM.MVC.Controllers
 			return Redirect(Cfg.GooglePlay);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult EndWizard()
 		{
 			var model = new UsersEndWizard();
 			return View(model);
 		}
 
-		[HttpGet, DFMAuthorize(needContract: false, needTFA: false)]
+		[HttpGet, Auth(needContract: false, needTFA: false)]
 		public ActionResult TFA()
 		{
 			var model = new UsersTFAModel();
 			return View(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize(needContract: false, needTFA: false)]
+		[HttpPost, ValidateAntiForgeryToken, Auth(needContract: false, needTFA: false)]
 		public ActionResult TFA(UsersTFAModel model)
 		{
 			model.Validate(ModelState.AddModelError);
@@ -204,14 +204,14 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet, DFMAuthorize]
+		[HttpGet, Auth]
 		public ActionResult RemoveTFA()
 		{
 			var model = new UsersRemoveTFAModel();
 			return View(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken, DFMAuthorize]
+		[HttpPost, ValidateAntiForgeryToken, Auth]
 		public ActionResult RemoveTFA(UsersRemoveTFAModel model)
 		{
 			model.Remove(ModelState.AddModelError);

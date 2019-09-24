@@ -1,10 +1,8 @@
-﻿using System.Web.Mvc.Ajax;
-
-namespace DFM.MVC.Helpers.Views
+﻿namespace DFM.MVC.Helpers.Views
 {
-	public class AjaxOptionsDFM : AjaxOptions
+	public class AjaxOptions : System.Web.Mvc.Ajax.AjaxOptions
 	{
-		public AjaxOptionsDFM()
+		public AjaxOptions()
 		{
 			OnBegin = "BeginAjaxPost";
 			OnComplete = "EndAjaxPost";

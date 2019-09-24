@@ -36,7 +36,7 @@ namespace DFM.Entities
 			set
 			{
 				if (value % Constants.FAKE_ID != 0)
-					throw new DFMException("Get back!");
+					throw new SystemError("Get back!");
 
 				ID = (Int32)(value / Constants.FAKE_ID);
 			}

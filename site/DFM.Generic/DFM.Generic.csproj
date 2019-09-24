@@ -39,7 +39,7 @@
     <Compile Include="Crypt.cs" />
     <Compile Include="DateExtension.cs" />
     <Compile Include="ApiDebug.cs" />
-    <Compile Include="DFMException.cs" />
+    <Compile Include="SystemError.cs" />
     <Compile Include="Elmah.cs" />
     <Compile Include="EnumExtension.cs" />
     <Compile Include="NumericExtension.cs" />

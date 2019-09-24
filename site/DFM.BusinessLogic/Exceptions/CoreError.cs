@@ -3,7 +3,7 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.Exceptions
 {
-	public class CoreError : DFMException
+	public class CoreError : SystemError
 	{
 		public static Int32 ErrorCounter { get; private set; }
 		public Error Type { get; private set; }

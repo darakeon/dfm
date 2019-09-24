@@ -33,7 +33,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var dic = new Dictionary<String, String>
 			{
-				{ "Url", Dfm.Url },
+				{ "Url", Site.Url },
 				{ "Token", security.Token },
 				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
 				{ "PathAction", pathAction },
@@ -54,7 +54,7 @@ namespace DFM.BusinessLogic.Repositories
 			{
 				sender.Send();
 			}
-			catch (DFMEmailException)
+			catch (MailError)
 			{
 				throw Error.FailOnEmailSend.Throw();
 			}

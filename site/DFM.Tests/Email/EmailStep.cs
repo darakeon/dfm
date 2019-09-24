@@ -42,7 +42,7 @@ namespace DFM.Tests.Email
 			{
 				sender.Send();
 			}
-			catch (DFMEmailException e)
+			catch (MailError e)
 			{
 				error = e;
 			}
@@ -66,9 +66,9 @@ namespace DFM.Tests.Email
 		}
 
 
-		private static DFMEmailException error
+		private static MailError error
 		{
-			get { return Get<DFMEmailException>("error"); }
+			get { return Get<MailError>("error"); }
 			set { Set("error", value); }
 		}
 

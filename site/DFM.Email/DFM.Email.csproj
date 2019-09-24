@@ -38,7 +38,7 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Error.cs" />
-    <Compile Include="DFMEmailException.cs" />
+    <Compile Include="MailError.cs" />
     <Compile Include="EmailStatus.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

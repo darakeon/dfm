@@ -44,7 +44,7 @@ namespace DFM.Authentication
 
 					return userService.GetSessionByTicket(key);
 				}
-				catch (DFMException)
+				catch (SystemError)
 				{
 					return null;
 				}

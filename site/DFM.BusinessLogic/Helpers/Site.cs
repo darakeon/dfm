@@ -3,7 +3,7 @@ using System.Web;
 
 namespace DFM.BusinessLogic.Helpers
 {
-	public class Dfm
+	public class Site
 	{
 		public static String Url
 		{
@@ -17,6 +17,5 @@ namespace DFM.BusinessLogic.Helpers
 				return url.Scheme + "://" + url.Authority;
 			}
 		}
-
 	}
 }

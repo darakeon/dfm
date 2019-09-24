@@ -285,8 +285,8 @@
     </Compile>
     <Compile Include="Helpers\Button.cs" />
     <Compile Include="Helpers\Service.cs" />
-    <Compile Include="Helpers\Authorize\DFMApiAuthorizeAttribute.cs" />
-    <Compile Include="Helpers\Authorize\DFMAuthorizeAttribute.cs" />
+    <Compile Include="Helpers\Authorize\ApiAuthAttribute.cs" />
+    <Compile Include="Helpers\Authorize\AuthAttribute.cs" />
     <Compile Include="Helpers\Controllers\BaseController.cs" />
     <Compile Include="Helpers\Extensions\Int32Extension.cs" />
     <Compile Include="Helpers\Global\ErrorAlert.cs" />
@@ -295,7 +295,7 @@
     <Compile Include="Helpers\Global\Translator.cs" />
     <Compile Include="Helpers\Global\RouteNames.cs" />
     <Compile Include="Helpers\Models\DateFromInt.cs" />
-    <Compile Include="Helpers\Views\AjaxOptionsDFM.cs" />
+    <Compile Include="Helpers\Views\AjaxOptions.cs" />
     <Compile Include="Models\AccountsCreateEditModel.cs" />
     <Compile Include="Models\AccountsIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />

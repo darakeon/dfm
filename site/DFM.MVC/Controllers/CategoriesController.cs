@@ -8,7 +8,7 @@ using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
 {
-	[DFMAuthorize]
+	[Auth]
 	public class CategoriesController : BaseController
 	{
 		[HttpGet]

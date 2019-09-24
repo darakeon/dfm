@@ -70,16 +70,16 @@ namespace DFM.Email
 				return;
 
 			if (emailSender == "MakeError")
-				DFMEmailException.WithMessage(EmailStatus.EmailNotSent);
+				MailError.WithMessage(EmailStatus.EmailNotSent);
 
 			if (String.IsNullOrEmpty(subject))
-				DFMEmailException.WithMessage(EmailStatus.InvalidSubject);
+				MailError.WithMessage(EmailStatus.InvalidSubject);
 
 			if (String.IsNullOrEmpty(body))
-				DFMEmailException.WithMessage(EmailStatus.InvalidBody);
+				MailError.WithMessage(EmailStatus.InvalidBody);
 
 			if (String.IsNullOrEmpty(to))
-				DFMEmailException.WithMessage(EmailStatus.InvalidAddress);
+				MailError.WithMessage(EmailStatus.InvalidAddress);
 
 			using (var smtp = new SmtpClient {Timeout = 60000})
 			{
@@ -102,7 +102,7 @@ namespace DFM.Email
 				catch (Exception exception)
 				{
 					exception.TryLog();
-					DFMEmailException.WithMessage(exception);
+					MailError.WithMessage(exception);
 				}
 			}
 
