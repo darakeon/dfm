@@ -255,11 +255,11 @@
     <Compile Include="Areas\API\Helpers\MobileUrls.cs" />
     <Compile Include="Areas\API\Models\MovesModel.cs" />
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
-    <Compile Include="Areas\API\Jsons\DateJson.cs" />
+    <Compile Include="Areas\API\Json\DateJson.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
-    <Compile Include="Areas\API\Jsons\DetailJson.cs" />
-    <Compile Include="Areas\API\Jsons\SimpleMonthJson.cs" />
-    <Compile Include="Areas\API\Jsons\SimpleMoveJson.cs" />
+    <Compile Include="Areas\API\Json\DetailJson.cs" />
+    <Compile Include="Areas\API\Json\SimpleMonthJson.cs" />
+    <Compile Include="Areas\API\Json\SimpleMoveJson.cs" />
     <Compile Include="Areas\API\Models\AccountsListModel.cs" />
     <Compile Include="Areas\API\Models\BaseApiModel.cs" />
     <Compile Include="Areas\API\Models\MovesCreateGetModel.cs" />

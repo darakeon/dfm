@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.Areas.API.Jsons
+namespace DFM.MVC.Areas.API.Json
 {
 	internal class SimpleMoveJson
 	{

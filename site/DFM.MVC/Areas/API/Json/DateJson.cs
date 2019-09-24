@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.MVC.Areas.API.Jsons
+namespace DFM.MVC.Areas.API.Json
 {
 	public class DateJson : IComparable<DateJson>
 	{

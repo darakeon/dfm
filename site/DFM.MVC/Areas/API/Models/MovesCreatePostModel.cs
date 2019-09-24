@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Areas.API.Jsons;
+using DFM.MVC.Areas.API.Json;
 
 namespace DFM.MVC.Areas.API.Models
 {

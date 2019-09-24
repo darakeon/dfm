@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
 
-namespace DFM.MVC.Areas.API.Jsons
+namespace DFM.MVC.Areas.API.Json
 {
 	public class DetailJson
 	{
