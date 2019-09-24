@@ -123,7 +123,7 @@ Legend:
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
 ## <a name="dev"></a>4.1.3.6 :ant: <sup>`9`</sup>
-- [ ] Fix account name repetition on area title
+- [x] `190924>190924` Fix account name repetition on area title
 - [x] `190924>190924` Review contract, about account deletion and cookies
 - [x] `190922>190922` Add test for empty ticket
 - [x] `190920>190922` Transform SAFE service receiving / returns into DTO - check android

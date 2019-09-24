@@ -5,7 +5,7 @@
 @model ReportsShowMovesModel
 
 @{
-	ViewBag.Title = $"{Model.Account.Name.ToUpper()} - {Model.Date}";
+	ViewBag.Title = Model.Date;
 
 	ViewBag.WizardMessage =
 		Model.MoveList.Any()
