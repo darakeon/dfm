@@ -17,10 +17,10 @@ namespace DFM.Language
 
 		internal static String MainPath => Path.Combine(currentPath, "Language");
 
-		private static String siteName = "Site";
+		private static readonly String siteName = "Site";
 		private static String sitePath => Path.Combine(MainPath, siteName);
 
-		private static String emailName = "Email";
+		private static readonly String emailName = "Email";
 		private static String emailPath => Path.Combine(MainPath, emailName);
 
 		public static Html Html { get; private set; }
