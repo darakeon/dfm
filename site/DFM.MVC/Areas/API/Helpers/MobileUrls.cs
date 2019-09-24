@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.API.Helpers
 
 		private const String @default = "Welcome";
 
-		private IDictionary<String, IDictionary<String, String>> urls =
+		private readonly IDictionary<String, IDictionary<String, String>> urls =
 			new Dictionary<String, IDictionary<String, String>>();
 
 		private void add([AspMvcController] String controller, [AspMvcAction] String action, String mobile)
