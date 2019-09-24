@@ -1,7 +1,5 @@
 ﻿using DFM.Authentication;
-using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 
 namespace DFM.BusinessLogic
 {

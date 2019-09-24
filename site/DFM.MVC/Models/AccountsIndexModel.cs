@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 
 namespace DFM.MVC.Models
 {

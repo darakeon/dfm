@@ -1,6 +1,5 @@
 ﻿using System;
 using Keon.Util.DB;
-using Newtonsoft.Json;
 
 namespace DFM.Entities
 {

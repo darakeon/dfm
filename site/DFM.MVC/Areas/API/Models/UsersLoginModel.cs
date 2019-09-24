@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using DFM.BusinessLogic.Exceptions;
 
 namespace DFM.MVC.Areas.API.Models
 {
