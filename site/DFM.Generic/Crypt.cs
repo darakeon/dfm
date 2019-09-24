@@ -1,6 +1,6 @@
 ﻿using System;
 using BCrypt.Net;
-using bcrypt = BCrypt.Net.BCrypt;
+using crypt = BCrypt.Net.BCrypt;
 
 namespace DFM.Generic
 {
@@ -8,14 +8,14 @@ namespace DFM.Generic
 	{
 		public static String Do(String text)
 		{
-			return bcrypt.HashPassword(text);
+			return crypt.HashPassword(text);
 		}
 
 		public static Boolean Check(String text, String hash)
 		{
 			try
 			{
-				return bcrypt.Verify(text, hash);
+				return crypt.Verify(text, hash);
 			}
 			catch (SaltParseException)
 			{

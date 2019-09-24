@@ -10,9 +10,9 @@ namespace DFM.Generic.Pages
 		private OperatorBox<T> operatorMoreBack { get; }
 		public T MoreBack => operatorMoreBack.Item;
 
-		public Boolean HasMoreFoward { get; }
-		private OperatorBox<T> operatorMoreFoward { get; }
-		public T MoreFoward => operatorMoreFoward.Item;
+		public Boolean HasMoreForward { get; }
+		private OperatorBox<T> operatorMoreForward { get; }
+		public T MoreForward => operatorMoreForward.Item;
 
 		private IList<OperatorBox<T>> operatorList { get; }
 		public IList<T> List => operatorList.Select(p => p.Item).ToList();
@@ -56,8 +56,8 @@ namespace DFM.Generic.Pages
 			operatorMoreBack = operatorList.First() - 1;
 			HasMoreBack = operatorMoreBack >= operatorMinimum;
 
-			operatorMoreFoward = operatorList.Last() + 1;
-			HasMoreFoward = operatorMoreFoward <= operatorMaximum;
+			operatorMoreForward = operatorList.Last() + 1;
+			HasMoreForward = operatorMoreForward <= operatorMaximum;
 		}
 
 	}
