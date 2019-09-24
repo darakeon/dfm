@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var dic = new Dictionary<String, String>
 			{
-				{ "Url", Dfm.Url },
+				{ "Url", Site.Url },
 				{ "Operation", operation },
 				{ "AccountIn", accountInName },
 				{ "AccountOut", accountOutName },
@@ -80,7 +80,7 @@ namespace DFM.BusinessLogic.Repositories
 
 				return EmailStatus.EmailSent;
 			}
-			catch (DFMEmailException e)
+			catch (MailError e)
 			{
 				return e.Type;
 			}

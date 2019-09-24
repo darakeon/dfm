@@ -6,7 +6,7 @@ using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[DFMAuthorize]
+	[Auth]
 	public class MovesController : BaseAccountsController
 	{
 		[HttpGet]

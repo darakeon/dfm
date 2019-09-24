@@ -3,9 +3,9 @@ using DFM.Generic;
 
 namespace DFM.BusinessLogic.Repositories
 {
-	public class DFMRepositoryException : DFMException
+	public class RepoError : SystemError
 	{
-		public DFMRepositoryException(String message)
+		public RepoError(String message)
 			: base(message) { }
 	}
 }

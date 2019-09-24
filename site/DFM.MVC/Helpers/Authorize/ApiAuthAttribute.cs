@@ -4,9 +4,9 @@ using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Helpers.Authorize
 {
-	public class DFMApiAuthorizeAttribute : DFMAuthorizeAttribute
+	public class ApiAuthAttribute : AuthAttribute
 	{
-		public DFMApiAuthorizeAttribute(Boolean needTFA = true)
+		public ApiAuthAttribute(Boolean needTFA = true)
 			: base(needTFA: needTFA, isMobile: true) { }
 
 		protected override void goToContractPage(AuthorizationContext filterContext)

@@ -4,7 +4,7 @@ using DFM.MVC.Helpers.Authorize;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
-	[DFMApiAuthorize]
+	[ApiAuth]
 	public class AccountsController : BaseJsonController
 	{
 		[HttpGet]

@@ -2,30 +2,30 @@
 
 namespace DFM.Email
 {
-	public class DFMEmailException : Exception
+	public class MailError : Exception
 	{
 		public static Int32 ErrorCounter { get; private set; }
 		public EmailStatus Type { get; private set; }
 
-		public static DFMEmailException WithMessage(EmailStatus type)
+		public static MailError WithMessage(EmailStatus type)
 		{
-			throw new DFMEmailException(type);
+			throw new MailError(type);
 		}
 
-		public static DFMEmailException WithMessage(Exception exception)
+		public static MailError WithMessage(Exception exception)
 		{
-			throw new DFMEmailException(exception);
+			throw new MailError(exception);
 		}
 
 
-		private DFMEmailException(EmailStatus type)
+		private MailError(EmailStatus type)
 			: base(type.ToString())
 		{
 			ErrorCounter++;
 			Type = type;
 		}
 
-		public DFMEmailException(Exception e)
+		public MailError(Exception e)
 			: base("Exception on sending e-mail", e)
 		{
 			ErrorCounter++;

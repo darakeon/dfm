@@ -8,14 +8,14 @@ using JetBrains.Annotations;
 
 namespace DFM.MVC.Helpers.Authorize
 {
-	public class DFMAuthorizeAttribute : AuthorizeAttribute
+	public class AuthAttribute : AuthorizeAttribute
 	{
 		private readonly Boolean needAdmin;
 		private readonly Boolean needContract;
 		private readonly Boolean needTFA;
 		private readonly Boolean isMobile;
 
-		public DFMAuthorizeAttribute(
+		public AuthAttribute(
 			Boolean needAdmin = false,
 			Boolean needContract = true,
 			Boolean needTFA = true,

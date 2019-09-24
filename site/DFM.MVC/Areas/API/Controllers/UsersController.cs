@@ -35,19 +35,19 @@ namespace DFM.MVC.Areas.API.Controllers
 			});
 		}
 
-		[HttpGet, DFMApiAuthorize]
+		[HttpGet, ApiAuth]
 		public ActionResult Config()
 		{
 			return json(() => new UserConfigModel());
 		}
 
-		[HttpPost, DFMApiAuthorize]
+		[HttpPost, ApiAuth]
 		public ActionResult Config(UserConfigModel model)
 		{
 			return json(model.Save);
 		}
 
-		[HttpPost, DFMApiAuthorize(false)]
+		[HttpPost, ApiAuth(false)]
 		public ActionResult TFA(UserTFAModel model)
 		{
 			return json(model.Validate);
