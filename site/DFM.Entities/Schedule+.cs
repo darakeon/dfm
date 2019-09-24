@@ -36,13 +36,6 @@ namespace DFM.Entities
 				DetailList.Sum(d => d.Value * d.Amount);
 		}
 
-		public virtual void AddDetail(Detail detail)
-		{
-			DetailList.Add(detail);
-
-			detail.Schedule = this;
-		}
-
 		public virtual Move GetNewMove()
 		{
 			var dateTime = LastDateRun();

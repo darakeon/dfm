@@ -94,7 +94,6 @@
     <Compile Include="Repositories\Mappings\ConfigMap.cs" />
     <Compile Include="Repositories\Mappings\ContractMap.cs" />
     <Compile Include="Repositories\Mappings\DetailMap.cs" />
-    <Compile Include="Repositories\RepoError.cs" />
     <Compile Include="Repositories\Mappings\MoveMap.cs" />
     <Compile Include="Repositories\Mappings\ScheduleMap.cs" />
     <Compile Include="Repositories\Mappings\SecurityMap.cs" />
@@ -129,7 +128,6 @@
     <Compile Include="Exceptions\CoreError.cs" />
     <Compile Include="Exceptions\Error.cs" />
     <Compile Include="Helpers\Site.cs" />
-    <Compile Include="Helpers\ScheduleFrequencyExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\BaseMoveSaverService.cs" />

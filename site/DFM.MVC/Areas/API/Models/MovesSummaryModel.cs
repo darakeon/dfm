@@ -41,8 +41,8 @@ namespace DFM.MVC.Areas.API.Models
 		}
 
 		public IList<SimpleMonthJson> MonthList { get; }
-		public String Name { get; private set; }
-		public Decimal Total { get; private set; }
+		public String Name { get; }
+		public Decimal Total { get; }
 
 	}
 }

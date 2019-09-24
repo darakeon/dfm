@@ -37,7 +37,6 @@
     <Compile Include="Cfg.cs" />
     <Compile Include="Crypt.cs" />
     <Compile Include="DateExtension.cs" />
-    <Compile Include="ApiDebug.cs" />
     <Compile Include="SystemError.cs" />
     <Compile Include="Elmah.cs" />
     <Compile Include="EnumExtension.cs" />
@@ -46,7 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\GeneralAssemblyInfo.cs" />
     <Compile Include="Pages\Pages.cs" />
-    <Compile Include="ResourceManagerExtension.cs" />
     <Compile Include="StringExtension.cs" />
   </ItemGroup>
   <ItemGroup>

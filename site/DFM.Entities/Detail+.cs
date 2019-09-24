@@ -1,5 +1,4 @@
 ﻿using System;
-using DFM.Entities.Bases;
 using DFM.Generic;
 
 namespace DFM.Entities
@@ -13,8 +12,8 @@ namespace DFM.Entities
 
 		public virtual Decimal Value
 		{
-			get { return ValueCents.ToVisual(); }
-			set { ValueCents = value.ToCents(); }
+			get => ValueCents.ToVisual();
+			set => ValueCents = value.ToCents();
 		}
 
 		public virtual Decimal GetTotal()
@@ -38,27 +37,5 @@ namespace DFM.Entities
 				Move = Move,
 			};
 		}
-
-		public virtual void SetMove(Move baseMove)
-		{
-			Move = baseMove;
-		}
-
-		public virtual Int64 FakeID
-		{
-			get
-			{
-				return ID * Constants.FakeID;
-			}
-			set
-			{
-				if (value % Constants.FakeID != 0)
-					throw new SystemError("Get back!");
-
-				ID = (Int32)(value / Constants.FakeID);
-			}
-		}
-
-
 	}
 }

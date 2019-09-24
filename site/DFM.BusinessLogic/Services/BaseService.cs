@@ -9,6 +9,6 @@ namespace DFM.BusinessLogic.Services
 			parent = serviceAccess;
 		}
 
-		protected ServiceAccess parent { get; private set; }
+		protected ServiceAccess parent { get; }
 	}
 }

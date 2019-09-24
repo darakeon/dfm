@@ -68,14 +68,14 @@ namespace DFM.Tests.Email
 
 		private static MailError error
 		{
-			get { return get<MailError>("error"); }
-			set { set("error", value); }
+			get => get<MailError>("error");
+			set => set("error", value);
 		}
 
 		private static Sender sender
 		{
-			get { return get<Sender>("sender"); }
-			set { set("sender", value); }
+			get => get<Sender>("sender");
+			set => set("sender", value);
 		}
 
 

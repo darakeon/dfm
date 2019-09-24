@@ -92,8 +92,8 @@ namespace DFM.MVC.Helpers.Global
 
 		private object session
 		{
-			get { return HttpContext.Current.Session[name]; }
-			set { HttpContext.Current.Session[name] = value; }
+			get => HttpContext.Current.Session[name];
+			set => HttpContext.Current.Session[name] = value;
 		}
 
 	}

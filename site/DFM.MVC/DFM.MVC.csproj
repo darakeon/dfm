@@ -295,7 +295,6 @@
     <Compile Include="Helpers\Global\Translator.cs" />
     <Compile Include="Helpers\Global\RouteNames.cs" />
     <Compile Include="Helpers\Models\DateFromInt.cs" />
-    <Compile Include="Helpers\Views\AjaxOptions.cs" />
     <Compile Include="Models\AccountsCreateEditModel.cs" />
     <Compile Include="Models\AccountsIndexModel.cs" />
     <Compile Include="Models\AdminModel.cs" />

@@ -217,32 +217,32 @@ namespace DFM.Tests.Language
 
 		private static StringBuilder errors
 		{
-			get { return get<StringBuilder>("errors"); }
-			set { set("errors", value); }
+			get => get<StringBuilder>("errors");
+			set => set("errors", value);
 		}
 
 		private static IList<String> languages
 		{
-			get { return get<IList<String>>("languages"); }
-			set { set("languages", value); }
+			get => get<IList<String>>("languages");
+			set => set("languages", value);
 		}
 
 		private static IList<Pair> keys
 		{
-			get { return get<IList<Pair>>("keys"); }
-			set { set("keys", value); }
+			get => get<IList<Pair>>("keys");
+			set => set("keys", value);
 		}
 
 		private static IList<EmailType> emailTypes
 		{
-			get { return get<IList<EmailType>>("emailTypes"); }
-			set { set("emailTypes", value); }
+			get => get<IList<EmailType>>("emailTypes");
+			set => set("emailTypes", value);
 		}
 
 		private static IList<SimpleTheme> themes
 		{
-			get { return get<IList<SimpleTheme>>("themes"); }
-			set { set("themes", value); }
+			get => get<IList<SimpleTheme>>("themes");
+			set => set("themes", value);
 		}
 
 

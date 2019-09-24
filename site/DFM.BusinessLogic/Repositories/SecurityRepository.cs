@@ -76,15 +76,6 @@ namespace DFM.BusinessLogic.Repositories
 				: null;
 		}
 
-
-
-		internal Boolean TokenExist(String token)
-		{
-			return GetByToken(token) != null;
-		}
-
-
-
 		internal void Disable(String token)
 		{
 			var security = GetByToken(token);

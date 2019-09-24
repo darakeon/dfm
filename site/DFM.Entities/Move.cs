@@ -23,7 +23,7 @@ namespace DFM.Entities
 			get
 			{
 				if (Day == 0)
-					return default(DateTime);
+					return default;
 
 				return new DateTime(Year, Month, Day);
 			}

@@ -15,8 +15,8 @@ namespace DFM.Generic
 
 		public static String EmailSender
 		{
-			get { return appSettings["EmailSender"]; }
-			set { appSettings["EmailSender"] = value; }
+			get => appSettings["EmailSender"];
+			set => appSettings["EmailSender"] = value;
 		}
 
 		public static String Email => appSettings["Email"];
