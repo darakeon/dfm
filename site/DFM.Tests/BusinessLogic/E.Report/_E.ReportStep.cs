@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
-using DFM.Entities;
 using DFM.Entities.Enums;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

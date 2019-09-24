@@ -8,7 +8,6 @@ using DFM.BusinessLogic.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Enums;
-using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Repositories;
