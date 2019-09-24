@@ -65,12 +65,12 @@ namespace DFM.MVC.Helpers.Authorize
 
 		protected virtual void goToContractPage(AuthorizationContext filterContext)
 		{
-			goTo(filterContext, RouteNames.DEFAULT, "Users", "Contract");
+			goTo(filterContext, RouteNames.Default, "Users", "Contract");
 		}
 
 		protected virtual void goToTFA(AuthorizationContext filterContext)
 		{
-			goTo(filterContext, RouteNames.DEFAULT, "Users", "TFA");
+			goTo(filterContext, RouteNames.Default, "Users", "TFA");
 		}
 
 		protected void goTo(

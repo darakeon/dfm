@@ -237,7 +237,7 @@ namespace DFM.BusinessLogic.Services
 
 				var user = GetCurrent();
 
-				var ticket = ticketKey.Length == Defaults.TICKET_SHOWED_PART
+				var ticket = ticketKey.Length == Defaults.TicketShowedPart
 					? ticketRepository.GetByPartOfKey(user, ticketKey)
 					: ticketRepository.GetByKey(ticketKey);
 
@@ -258,7 +258,7 @@ namespace DFM.BusinessLogic.Services
 			if (user == null || !user.Active)
 				throw Error.Uninvited.Throw();
 
-			if (!Parent.Current.IsVerified)
+			if (!parent.Current.IsVerified)
 				throw Error.TFANotVerified.Throw();
 
 			if (!IsLastContractAccepted())
@@ -419,7 +419,7 @@ namespace DFM.BusinessLogic.Services
 				if (!codes.Contains(code))
 					throw Error.TFAWrongCode.Throw();
 
-				var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+				var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
 				ticket.ValidTFA = true;
 				ticketRepository.SaveOrUpdate(ticket);
 			});
@@ -427,7 +427,7 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean VerifyTicket()
 		{
-			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
 
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
@@ -438,7 +438,7 @@ namespace DFM.BusinessLogic.Services
 
 		public Boolean VerifyTicket(TicketType type)
 		{
-			var ticket = ticketRepository.GetByKey(Parent.Current.TicketKey);
+			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
 
 			if (ticket == null)
 				throw Error.Uninvited.Throw();
@@ -448,10 +448,10 @@ namespace DFM.BusinessLogic.Services
 
 		internal User GetCurrent()
 		{
-			if (!Parent.Current.IsAuthenticated)
+			if (!parent.Current.IsAuthenticated)
 				return null;
 
-			return getUserByTicket(Parent.Current.TicketKey);
+			return getUserByTicket(parent.Current.TicketKey);
 		}
 	}
 }

@@ -32,13 +32,13 @@ namespace DFM.Entities
 
 		public virtual Int64 FakeID
 		{
-			get => ID * Constants.FAKE_ID;
+			get => ID * Constants.FakeID;
 			set
 			{
-				if (value % Constants.FAKE_ID != 0)
+				if (value % Constants.FakeID != 0)
 					throw new SystemError("Get back!");
 
-				ID = (Int32)(value / Constants.FAKE_ID);
+				ID = (Int32)(value / Constants.FakeID);
 			}
 		}
 

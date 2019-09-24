@@ -21,8 +21,8 @@
 
 <div class="form-group">
 	@Html.LabelFor(m => m.Account.Name, Translator.Dictionary["Name"], new { @class = "control-label" })
-	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.Account_Name, @class = "form-control suggest-field", data_target = ".suggest-target" })
-	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Name)</small>
+	@Html.TextBoxFor(m => m.Account.Name, new { maxlength = MaxLen.AccountName, @class = "form-control suggest-field", data_target = ".suggest-target" })
+	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.AccountName)</small>
 </div>
 
 @Html.HiddenFor(m => m.Type)
@@ -32,12 +32,12 @@
 	@Html.LabelFor(m => m.Account.Url, Translator.Dictionary["Url"], new { @class = "control-label" })
 	<span class="glyphicon glyphicon-info-sign control-label"
 		  data-toggle="tooltip" data-placement="right"
-		  title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)"
-		  data-original-title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.Account_Url)">
+		  title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.AccountUrl)"
+		  data-original-title="@String.Format(Translator.Dictionary["AcceptedUrlCharacters"], MaxLen.AccountUrl)">
 	</span>
 
-	@Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaxLen.Account_Url, @class = "form-control suggest-target" })
-	<small class="control-label">@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.Account_Url)</small>
+	@Html.TextBoxFor(m => m.Account.Url, new { maxlength = MaxLen.AccountUrl, @class = "form-control suggest-target" })
+	<small class="control-label">@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.AccountUrl)</small>
 </div>
 
 <div class="form-group text-center">

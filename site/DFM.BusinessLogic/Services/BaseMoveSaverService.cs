@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			breakSummaries(move);
 
-			var today = Parent.Current.Now;
+			var today = parent.Current.Now;
 			var moveIsNew = operationType != OperationType.Edition;
 
 			if (moveIsNew || !move.IsDetailed())
@@ -83,13 +83,13 @@ namespace DFM.BusinessLogic.Services
 		{
 			return accountUrl == null
 				? null
-				: Parent.Admin.GetAccountByUrlInternal(accountUrl);
+				: parent.Admin.GetAccountByUrlInternal(accountUrl);
 		}
 
 		internal Category GetCategoryByName(String categoryName)
 		{
-			if (Parent.Current.UseCategories)
-				return Parent.Admin.GetCategoryByNameInternal(categoryName);
+			if (parent.Current.UseCategories)
+				return parent.Admin.GetCategoryByNameInternal(categoryName);
 
 			if (!String.IsNullOrEmpty(categoryName))
 				throw Error.CategoriesDisabled.Throw();
@@ -135,7 +135,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			InTransaction(() =>
 			{
-				var user = Parent.Safe.GetCurrent();
+				var user = parent.Safe.GetCurrent();
 				summaryRepository
 					.SimpleFilter(s => s.Broken)
 					.Where(s => s.User() == user)
@@ -154,7 +154,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void VerifyMove(Move move)
 		{
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 			if (move == null || moveRepository.GetUser(move).ID != user.ID)
 				throw Error.InvalidMove.Throw();
 		}

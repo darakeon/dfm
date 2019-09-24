@@ -23,7 +23,7 @@ namespace DFM.BusinessLogic.Services
 
 		public MonthReport GetMonthReport(String accountUrl, Int16 dateMonth, Int16 dateYear)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
@@ -31,7 +31,7 @@ namespace DFM.BusinessLogic.Services
 			if (dateMonth <= 0 || dateMonth >= 13)
 				throw Error.InvalidMonth.Throw();
 
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 			var account = accountRepository.GetByUrl(accountUrl, user);
 
 			if (account == null)
@@ -47,12 +47,12 @@ namespace DFM.BusinessLogic.Services
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)
 		{
-			Parent.Safe.VerifyUser();
+			parent.Safe.VerifyUser();
 
 			if (dateYear <= 0)
 				throw Error.InvalidYear.Throw();
 
-			var user = Parent.Safe.GetCurrent();
+			var user = parent.Safe.GetCurrent();
 			var account = accountRepository.GetByUrl(accountUrl, user);
 
 			if (account == null)

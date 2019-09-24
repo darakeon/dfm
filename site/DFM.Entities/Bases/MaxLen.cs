@@ -4,17 +4,17 @@ namespace DFM.Entities.Bases
 {
 	public class MaxLen
 	{
-		public const Int16 Account_Name = 20;
-		public const Int16 Account_Url = 20;
-		public const Int16 Category_Name = 20;
-		public const Int16 Detail_Description = 50;
-		public const Int16 Move_Description = Detail_Description;
-		public const Int16 Schedule_Description = Detail_Description;
-		public const Int16 Security_Token = 50;
-		public const Int16 Ticket_Key = 52;
-		public const Int16 User_Password = 60;
-		public const Int16 User_Email = 50;
-		public const Int16 Config_Language = 5;
+		public const Int16 AccountName = 20;
+		public const Int16 AccountUrl = 20;
+		public const Int16 CategoryName = 20;
+		public const Int16 DetailDescription = 50;
+		public const Int16 MoveDescription = DetailDescription;
+		public const Int16 ScheduleDescription = DetailDescription;
+		public const Int16 SecurityToken = 50;
+		public const Int16 TicketKey = 52;
+		public const Int16 UserPassword = 60;
+		public const Int16 UserEmail = 50;
+		public const Int16 ConfigLanguage = 5;
 
 	}
 }

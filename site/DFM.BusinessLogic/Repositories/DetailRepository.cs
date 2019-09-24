@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(detail.Description))
 				throw Error.MoveDetailDescriptionRequired.Throw();
 
-			if (detail.Description.Length > MaxLen.Detail_Description)
+			if (detail.Description.Length > MaxLen.DetailDescription)
 				throw Error.TooLargeDetailDescription.Throw();
 
 			if (detail.Amount == 0)

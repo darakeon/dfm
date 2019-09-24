@@ -21,7 +21,7 @@ namespace DFM.MVC.Controllers
 			if (ModelState.IsValid)
 			{
 				var errors = model.Test();
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			if (!ModelState.IsValid)
@@ -45,7 +45,7 @@ namespace DFM.MVC.Controllers
 
 			return isValid
 				? View(model)
-				: BaseModelView("Invalid");
+				: baseModelView("Invalid");
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -54,17 +54,17 @@ namespace DFM.MVC.Controllers
 			var isValid = model.TestToken(id);
 
 			if (!isValid)
-				return BaseModelView("Invalid");
+				return baseModelView("Invalid");
 
 			if (ModelState.IsValid)
 			{
 				var errors = model.PasswordReset(id);
 
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			return ModelState.IsValid
-				? BaseModelView("PasswordResetSuccess")
+				? baseModelView("PasswordResetSuccess")
 				: View(model);
 		}
 
@@ -76,8 +76,8 @@ namespace DFM.MVC.Controllers
 			var isValid = model.TestAndActivate(id);
 
 			return isValid
-				? BaseModelView("UserVerificationSuccess")
-				: BaseModelView("Invalid");
+				? baseModelView("UserVerificationSuccess")
+				: baseModelView("Invalid");
 		}
 
 		[HttpGet]
@@ -88,8 +88,8 @@ namespace DFM.MVC.Controllers
 			var isValid = model.Disable(id);
 
 			return isValid
-				? BaseModelView()
-				: BaseModelView("Invalid");
+				? baseModelView()
+				: baseModelView("Invalid");
 		}
 	}
 }

@@ -54,10 +54,10 @@ namespace DFM.Generic.Pages
 			return !(@this < other);
 		}
 
-		private static TR invokeOperator<TR>(String method, params object[] @params)
+		private static R invokeOperator<R>(String method, params object[] @params)
 		{
 			var reflectionMethod = reflectionMethods[method];
-			return (TR)typeof(T).InvokeMember(reflectionMethod, BindingFlags.InvokeMethod, null, null, @params);
+			return (R)typeof(T).InvokeMember(reflectionMethod, BindingFlags.InvokeMethod, null, null, @params);
 		}
 
 		// ReSharper disable once StaticMemberInGenericType
@@ -76,7 +76,7 @@ namespace DFM.Generic.Pages
 
 
 		#region Equality Members
-		protected bool Equals(OperatorBox<T> other)
+		protected bool equals(OperatorBox<T> other)
 		{
 			return EqualityComparer<T>.Default.Equals(Item, other.Item);
 		}
@@ -85,7 +85,7 @@ namespace DFM.Generic.Pages
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			return obj.GetType() == GetType() && Equals((OperatorBox<T>)obj);
+			return obj.GetType() == GetType() && equals((OperatorBox<T>)obj);
 		}
 
 		public override int GetHashCode()

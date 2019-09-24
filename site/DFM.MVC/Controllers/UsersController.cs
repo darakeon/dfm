@@ -15,7 +15,7 @@ namespace DFM.MVC.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return BaseModelView();
+			return baseModelView();
 		}
 
 		[HttpGet]
@@ -33,11 +33,11 @@ namespace DFM.MVC.Controllers
 			{
 				var errors = model.ValidateAndSendVerify(ModelState);
 
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			return ModelState.IsValid
-				? BaseModelView("SignUpSuccess")
+				? baseModelView("SignUpSuccess")
 				: View(model);
 		}
 
@@ -63,7 +63,7 @@ namespace DFM.MVC.Controllers
 
 			if (logOnError.Type == Error.DisabledUser)
 			{
-				return BaseModelView("SendVerification");
+				return baseModelView("SendVerification");
 			}
 
 			ModelState.AddModelError("", Translator.Dictionary[logOnError]);
@@ -96,11 +96,11 @@ namespace DFM.MVC.Controllers
 			{
 				var errors = model.SendPasswordReset();
 
-				AddErrors(errors);
+				addErrors(errors);
 			}
 
 			return ModelState.IsValid
-				? BaseModelView("ForgotPasswordSuccess")
+				? baseModelView("ForgotPasswordSuccess")
 				: View(model);
 		}
 
@@ -143,7 +143,7 @@ namespace DFM.MVC.Controllers
 		private ActionResult config(UsersConfigModel model, Func<IList<String>> save)
 		{
 			if (ModelState.IsValid)
-				AddErrors(save());
+				addErrors(save());
 
 			if (ModelState.IsValid)
 				return RedirectToAction("Index", "Accounts");

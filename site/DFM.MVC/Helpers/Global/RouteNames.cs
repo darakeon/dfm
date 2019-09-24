@@ -4,10 +4,10 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class RouteNames
 	{
-		public const String DEFAULT = "Default";
-		public const String MOBILE = "Mobile";
-		public const String ACCOUNT = "Account";
-		public const String API = "Android";
-		public const String API_ACCOUNT = "AndroidAccount";
+		public const String Default = "Default";
+		public const String Mobile = "Mobile";
+		public const String Account = "Account";
+		public const String Api = "Android";
+		public const String ApiAccount = "AndroidAccount";
 	}
 }

@@ -82,7 +82,7 @@ namespace DFM.BusinessLogic.Repositories
 			if (String.IsNullOrEmpty(user.Password))
 				throw Error.UserPasswordRequired.Throw();
 
-			if (user.Email.Length > MaxLen.User_Email)
+			if (user.Email.Length > MaxLen.UserEmail)
 				throw Error.TooLargeUserEmail.Throw();
 
 			validateEmail(user);
@@ -107,13 +107,13 @@ namespace DFM.BusinessLogic.Repositories
 
 			user.Active = false;
 
-			user.Config.TimeZone = Defaults.CONFIG_TIMEZONE;
+			user.Config.TimeZone = Defaults.ConfigTimezone;
 
-			user.Config.SendMoveEmail = Defaults.CONFIG_SEND_MOVE_EMAIL;
-			user.Config.UseCategories = Defaults.CONFIG_USE_CATEGORIES;
-			user.Config.MoveCheck = Defaults.CONFIG_MOVE_CHECK;
+			user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
+			user.Config.UseCategories = Defaults.ConfigUseCategories;
+			user.Config.MoveCheck = Defaults.ConfigMoveCheck;
 
-			user.Config.Theme = Defaults.DEFAULT_THEME;
+			user.Config.Theme = Defaults.DefaultTheme;
 
 			user.Creation = DateTime.UtcNow;
 			user.Password = Crypt.Do(user.Password);

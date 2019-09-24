@@ -10,20 +10,20 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 		public void Override(AutoMapping<Config> mapping)
 		{
 			mapping.Map(c => c.Language)
-				.Length(MaxLen.Config_Language)
-				.Default("'" + Defaults.CONFIG_LANGUAGE + "'");
+				.Length(MaxLen.ConfigLanguage)
+				.Default("'" + Defaults.ConfigLanguage + "'");
 
 			mapping.Map(c => c.TimeZone)
-				.Default("'" + Defaults.CONFIG_TIMEZONE + "'");
+				.Default("'" + Defaults.ConfigTimezone + "'");
 
 			mapping.Map(c => c.SendMoveEmail)
-				.Default("'" + Defaults.CONFIG_SEND_MOVE_EMAIL + "'");
+				.Default("'" + Defaults.ConfigSendMoveEmail + "'");
 
 			mapping.Map(c => c.UseCategories)
-				.Default("'" + Defaults.CONFIG_USE_CATEGORIES + "'");
+				.Default("'" + Defaults.ConfigUseCategories + "'");
 
 			mapping.Map(c => c.Theme)
-				.Default("'" + (int) Defaults.DEFAULT_THEME + "'");
+				.Default("'" + (int) Defaults.DefaultTheme + "'");
 		}
 	}
 }

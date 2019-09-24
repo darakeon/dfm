@@ -5,7 +5,7 @@
 	{
 		<tr class="row @(Model.DetailList[d].Send ? "" : "hidden")">
 			<td class="col-sm-6 form-group">
-				@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new { @class = "form-control detail-description", maxlength = MaxLen.Detail_Description })
+				@Html.TextBoxFor(m => m.DetailList[d].Detail.Description, new { @class = "form-control detail-description", maxlength = MaxLen.DetailDescription })
 			</td>
 
 			<td class="col-sm-2 form-group">

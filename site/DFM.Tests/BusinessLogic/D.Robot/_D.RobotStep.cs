@@ -19,14 +19,14 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		#region Variables
 		private static Int64 id
 		{
-			get => Get<Int64>("ID");
-			set => Set("ID", value);
+			get => get<Int64>("ID");
+			set => set("ID", value);
 		}
 
 		private static IList<ScheduleInfo> scheduleList
 		{
-			get => Get<IList<ScheduleInfo>>("scheduleList");
-			set => Set("scheduleList", value);
+			get => get<IList<ScheduleInfo>>("scheduleList");
+			set => set("scheduleList", value);
 		}
 		#endregion
 
@@ -38,7 +38,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			foreach (var detailData in table.Rows)
 			{
-				var detail = GetDetailFromTable(detailData);
+				var detail = getDetailFromTable(detailData);
 				scheduleInfo.DetailList.Add(detail);
 			}
 		}
@@ -56,17 +56,17 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			{
 				if (scheduleInfo != null)
 				{
-					scheduleInfo.OutUrl = AccountOut?.Url;
-					scheduleInfo.InUrl = AccountIn?.Url;
-					scheduleInfo.CategoryName = CategoryName;
+					scheduleInfo.OutUrl = accountOut?.Url;
+					scheduleInfo.InUrl = accountIn?.Url;
+					scheduleInfo.CategoryName = categoryName;
 				}
 
-				var schedule = Service.Robot.SaveSchedule(scheduleInfo);
+				var schedule = service.Robot.SaveSchedule(scheduleInfo);
 				scheduleInfo.ID = schedule.ID;
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -88,13 +88,13 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I run the scheduler to cleanup older tests")]
 		public void GivenIRunTheSchedulerToCleanupOlderTests()
 		{
-			Service.Robot.RunSchedule();
+			service.Robot.RunSchedule();
 		}
 
 		[Given(@"I have no logged user \(logoff\)")]
 		public void GivenIHaveNoLoggedUserLogoff()
 		{
-			Current.Clear();
+			current.Clear();
 		}
 
 		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
@@ -102,9 +102,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			switch (frequency)
 			{
-				case "day": scheduleInfo.Date = Current.Now.AddDays(-count); break;
-				case "month": scheduleInfo.Date = Current.Now.AddMonths(-count); break;
-				case "year": scheduleInfo.Date = Current.Now.AddYears(-count); break;
+				case "day": scheduleInfo.Date = current.Now.AddDays(-count); break;
+				case "month": scheduleInfo.Date = current.Now.AddMonths(-count); break;
+				case "year": scheduleInfo.Date = current.Now.AddYears(-count); break;
 			}
 		}
 
@@ -114,12 +114,12 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				Service.Robot.RunSchedule();
+				service.Robot.RunSchedule();
 			}
 			catch (CoreError e)
 			{
-				if (IsCurrent(ScenarioBlock.When))
-					Error = e;
+				if (isCurrent(ScenarioBlock.When))
+					error = e;
 				else
 					throw;
 			}
@@ -128,38 +128,38 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[When(@"I try to run the scheduler with e-mail system out")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
 			{
-				CurrentEmailStatus = Service.Robot.RunSchedule();
+				currentEmailStatus = service.Robot.RunSchedule();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"I try to run the scheduler with e-mail system ok")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 
 			try
 			{
-				CurrentEmailStatus = Service.Robot.RunSchedule();
+				currentEmailStatus = service.Robot.RunSchedule();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 		#endregion
@@ -174,7 +174,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I already have disabled the Schedule")]
 		public void GivenIAlreadyHaveDisabledTheSchedule()
 		{
-			Service.Robot.DisableSchedule(id);
+			service.Robot.DisableSchedule(id);
 		}
 
 		[When(@"I try to disable the Schedule")]
@@ -182,11 +182,11 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				Service.Robot.DisableSchedule(id);
+				service.Robot.DisableSchedule(id);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 		#endregion
@@ -195,7 +195,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I disable the schedule")]
 		public void GivenICloseTheSchedule()
 		{
-			Service.Robot.DisableSchedule(id);
+			service.Robot.DisableSchedule(id);
 		}
 
 		[When(@"ask for the schedule list")]
@@ -203,11 +203,11 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		{
 			try
 			{
-				scheduleList = Service.Robot.GetScheduleList();
+				scheduleList = service.Robot.GetScheduleList();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -280,11 +280,11 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"I save the schedule")]
 		public void GivenISaveTheSchedule()
 		{
-			scheduleInfo.OutUrl = AccountOut?.Name;
-			scheduleInfo.InUrl = AccountIn?.Name;
-			scheduleInfo.CategoryName = CategoryName;
+			scheduleInfo.OutUrl = accountOut?.Name;
+			scheduleInfo.InUrl = accountIn?.Name;
+			scheduleInfo.CategoryName = categoryName;
 
-			var schedule = Service.Robot.SaveSchedule(scheduleInfo);
+			var schedule = service.Robot.SaveSchedule(scheduleInfo);
 
 			id = schedule.ID;
 			scheduleInfo.ID = schedule.ID;

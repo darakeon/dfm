@@ -6,19 +6,19 @@ namespace DFM.Tests.Helpers
 {
 	public class ContextHelper
 	{
-		protected static T Get<T>(String key)
+		protected static T get<T>(String key)
 		{
 			return ScenarioContext.Current.ContainsKey(key)
 				? (T)ScenarioContext.Current[key]
 				: default(T);
 		}
 
-		protected static void Set(String key, object value)
+		protected static void set(String key, object value)
 		{
 			ScenarioContext.Current[key] = value;
 		}
 
-		protected static String RunPath
+		protected static String runPath
 		{
 			get
 			{

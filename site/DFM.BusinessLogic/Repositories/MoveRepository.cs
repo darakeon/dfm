@@ -24,13 +24,13 @@ namespace DFM.BusinessLogic.Repositories
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
 				move,
-				(m) => Validate(
+				(m) => validate(
 					m,
 					now,
-					MaxLen.Move_Description,
+					MaxLen.MoveDescription,
 					Error.TooLargeMoveDescription
 				),
-				Complete
+				complete
 			);
 		}
 

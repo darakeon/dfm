@@ -5,16 +5,16 @@ namespace DFM.Entities.Bases
 {
 	public static class Defaults
 	{
-		public const String CONFIG_LANGUAGE = "pt-BR";
-		public const String CONFIG_TIMEZONE = "E. South America Standard Time";
+		public const String ConfigLanguage = "pt-BR";
+		public const String ConfigTimezone = "E. South America Standard Time";
 
-		public const Boolean CONFIG_SEND_MOVE_EMAIL = false;
-		public const Boolean CONFIG_USE_CATEGORIES = false;
-		public const Boolean CONFIG_MOVE_CHECK = false;
+		public const Boolean ConfigSendMoveEmail = false;
+		public const Boolean ConfigUseCategories = false;
+		public const Boolean ConfigMoveCheck = false;
 
-		public const BootstrapTheme DEFAULT_THEME = BootstrapTheme.Slate;
+		public const BootstrapTheme DefaultTheme = BootstrapTheme.Slate;
 
-		public const Int32 TICKET_SHOWED_PART = 5;
+		public const Int32 TicketShowedPart = 5;
 
 	}
 }

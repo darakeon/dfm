@@ -11,10 +11,10 @@ namespace DFM.MVC.Helpers.Controllers
 {
 	public class BaseController : Controller
 	{
-		protected readonly Current Current = Service.Current;
+		protected readonly Current current = Service.Current;
 
 
-		protected void AddErrors(IList<String> errors)
+		protected void addErrors(IList<String> errors)
 		{
 			if (errors == null)
 				return;
@@ -27,12 +27,12 @@ namespace DFM.MVC.Helpers.Controllers
 
 
 		[AspMvcView]
-		protected ActionResult BaseModelView()
+		protected ActionResult baseModelView()
 		{
 			return View(new BaseSiteModel());
 		}
 
-		protected ActionResult BaseModelView([AspMvcView] String view)
+		protected ActionResult baseModelView([AspMvcView] String view)
 		{
 			return View(view, new BaseSiteModel());
 		}
@@ -49,7 +49,7 @@ namespace DFM.MVC.Helpers.Controllers
 			if (wrongHttpMethod)
 			{
 				RedirectToRoute(
-					RouteNames.DEFAULT,
+					RouteNames.Default,
 					new
 					{
 						controller = "Ops",

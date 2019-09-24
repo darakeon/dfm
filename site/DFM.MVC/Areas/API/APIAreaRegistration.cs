@@ -6,19 +6,19 @@ namespace DFM.MVC.Areas.API
 {
 	public class ApiAreaRegistration : AreaRegistration
 	{
-		public override string AreaName => RouteNames.API;
+		public override string AreaName => RouteNames.Api;
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
 			context.MapRoute(
-				RouteNames.API_ACCOUNT,
+				RouteNames.ApiAccount,
 				"api/account-{accountUrl}/{controller}/{action}/{id}",
 				new { controller = "Moves", action = "List", id = UrlParameter.Optional },
 				new[] { typeof(UsersController).Namespace }
 			);
 
 			context.MapRoute(
-				RouteNames.API,
+				RouteNames.Api,
 				"api/{controller}/{action}/{id}",
 				new { controller = "Status", action = "Index", id = UrlParameter.Optional },
 				new[] { typeof(StatusController).Namespace }

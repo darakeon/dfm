@@ -10,7 +10,7 @@ using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using error = DFM.BusinessLogic.Exceptions.Error;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.C.Money
 {
@@ -20,62 +20,62 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		#region Variables
 		private static Int64 id
 		{
-			get => Get<Int64>("ID");
-			set => Set("ID", value);
+			get => get<Int64>("ID");
+			set => set("ID", value);
 		}
 
 		private static List<Int64> ids
 		{
-			get => Get<List<Int64>>("IDs");
-			set => Set("IDs", value);
+			get => get<List<Int64>>("IDs");
+			set => set("IDs", value);
 		}
 
 		private static DateTime oldDate
 		{
-			get => Get<DateTime>("OldDate");
-			set => Set("OldDate", value);
+			get => get<DateTime>("OldDate");
+			set => set("OldDate", value);
 		}
 
-		private static String newAccountOutUrl => "new_" + AccountOutUrl;
+		private static String newAccountOutUrl => "new_" + accountOutUrl;
 
-		private static String newAccountInUrl => "new_" + AccountInUrl;
+		private static String newAccountInUrl => "new_" + accountInUrl;
 
-		private static String newCategoryName => "new " + MAIN_CATEGORY_NAME;
+		private static String newCategoryName => "new " + mainCategoryName;
 
 		private static Decimal newAccountOutTotal
 		{
-			get => Get<Decimal>("NewAccountOutTotal");
-			set => Set("NewAccountOutTotal", value);
+			get => get<Decimal>("NewAccountOutTotal");
+			set => set("NewAccountOutTotal", value);
 		}
 
 		private static Decimal newYearCategoryAccountOutTotal
 		{
-			get => Get<Decimal>("NewYearCategoryAccountOutTotal");
-			set => Set("NewYearCategoryAccountOutTotal", value);
+			get => get<Decimal>("NewYearCategoryAccountOutTotal");
+			set => set("NewYearCategoryAccountOutTotal", value);
 		}
 
 		private static Decimal newMonthCategoryAccountOutTotal
 		{
-			get => Get<Decimal>("NewMonthCategoryAccountOutTotal");
-			set => Set("NewMonthCategoryAccountOutTotal", value);
+			get => get<Decimal>("NewMonthCategoryAccountOutTotal");
+			set => set("NewMonthCategoryAccountOutTotal", value);
 		}
 
 		private static Decimal newAccountInTotal
 		{
-			get => Get<Decimal>("NewAccountInTotal");
-			set => Set("NewAccountInTotal", value);
+			get => get<Decimal>("NewAccountInTotal");
+			set => set("NewAccountInTotal", value);
 		}
 
 		private static Decimal newYearCategoryAccountInTotal
 		{
-			get => Get<Decimal>("NewYearCategoryAccountInTotal");
-			set => Set("NewYearCategoryAccountInTotal", value);
+			get => get<Decimal>("NewYearCategoryAccountInTotal");
+			set => set("NewYearCategoryAccountInTotal", value);
 		}
 
 		private static Decimal newMonthCategoryAccountInTotal
 		{
-			get => Get<Decimal>("NewMonthCategoryAccountInTotal");
-			set => Set("NewMonthCategoryAccountInTotal", value);
+			get => get<Decimal>("NewMonthCategoryAccountInTotal");
+			set => set("NewMonthCategoryAccountInTotal", value);
 		}
 		#endregion
 
@@ -103,7 +103,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			foreach (var detailData in table.Rows)
 			{
-				var detail = GetDetailFromTable(detailData);
+				var detail = getDetailFromTable(detailData);
 				moveInfo.DetailList.Add(detail);
 			}
 		}
@@ -113,63 +113,63 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				moveInfo.OutUrl = AccountOut?.Url;
-				moveInfo.InUrl = AccountIn?.Url;
-				moveInfo.CategoryName = CategoryName;
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
 
-				moveResult = Service.Money.SaveMove(moveInfo);
+				moveResult = service.Money.SaveMove(moveInfo);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[When(@"I try to save the move with e-mail system out")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
 			{
-				moveInfo.OutUrl = AccountOut?.Url;
-				moveInfo.InUrl = AccountIn?.Url;
-				moveInfo.CategoryName = CategoryName;
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
 
-				moveResult = Service.Money.SaveMove(moveInfo);
-				CurrentEmailStatus = moveResult.Email;
+				moveResult = service.Money.SaveMove(moveInfo);
+				currentEmailStatus = moveResult.Email;
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
 		[When(@"I try to save the move with e-mail system ok")]
 		public void WhenITryToSaveTheMoveWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 
 			try
 			{
-				moveInfo.OutUrl = AccountOut?.Url;
-				moveInfo.InUrl = AccountIn?.Url;
-				moveInfo.CategoryName = CategoryName;
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
 
-				moveResult = Service.Money.SaveMove(moveInfo);
-				CurrentEmailStatus = moveResult.Email;
+				moveResult = service.Money.SaveMove(moveInfo);
+				currentEmailStatus = moveResult.Email;
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 
@@ -186,7 +186,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			Assert.AreNotEqual(0, moveResult?.ID ?? 0);
 
-			var newMove = Service.Money.GetMove(moveResult?.ID ?? 0);
+			var newMove = service.Money.GetMove(moveResult?.ID ?? 0);
 
 			Assert.IsNotNull(newMove);
 		}
@@ -194,15 +194,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"I will receive the notification")]
 		public void ThenIWillReceiveTheNotification()
 		{
-			Assert.IsTrue(CurrentEmailStatus.HasValue);
-			Assert.AreEqual(EmailStatus.EmailNotSent, CurrentEmailStatus.Value);
+			Assert.IsTrue(currentEmailStatus.HasValue);
+			Assert.AreEqual(EmailStatus.EmailNotSent, currentEmailStatus.Value);
 		}
 
 		[Then(@"I will receive no notification")]
 		public void ThenIWillReceiveNoNotification()
 		{
-			Assert.IsTrue(CurrentEmailStatus.HasValue);
-			Assert.AreEqual(EmailStatus.EmailSent, CurrentEmailStatus.Value);
+			Assert.IsTrue(currentEmailStatus.HasValue);
+			Assert.AreEqual(EmailStatus.EmailSent, currentEmailStatus.Value);
 		}
 		#endregion
 
@@ -217,17 +217,17 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				case "year": moveInfo.Date = moveInfo.Date.AddYears(count); break;
 			}
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 
-			if (AccountOut != null)
+			if (accountOut != null)
 			{
-				setAccountOutNewTotals(AccountOut, category, moveInfo);
+				setAccountOutNewTotals(accountOut, category, moveInfo);
 			}
 
-			if (AccountIn != null)
+			if (accountIn != null)
 			{
-				setAccountInNewTotals(AccountIn, category, moveInfo);
+				setAccountInNewTotals(accountIn, category, moveInfo);
 			}
 		}
 
@@ -266,36 +266,36 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			var schedule = scheduleRepository.Get(scheduleInfo.ID);
 			var move = schedule.MoveList[--position];
-			moveInfo = Service.Money.GetMove(move.ID);
+			moveInfo = service.Money.GetMove(move.ID);
 		}
 
 		[When(@"I change the category of the move")]
 		public void GivenIChangeTheCategoryOfTheMove()
 		{
-			Category = CategoryInfo.Convert(
-				GetOrCreateCategory(newCategoryName)
+			categoryInfo = CategoryInfo.Convert(
+				getOrCreateCategory(newCategoryName)
 			);
-			CategoryName = newCategoryName;
+			categoryName = newCategoryName;
 		}
 
 		[When(@"I change the account out of the move")]
 		public void GivenIChangeTheAccountOutOfTheMove()
 		{
-			AccountOut = GetOrCreateAccount(newAccountOutUrl);
+			accountOut = getOrCreateAccount(newAccountOutUrl);
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
-			setAccountOutNewTotals(AccountOut, category, moveInfo);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
+			setAccountOutNewTotals(accountOut, category, moveInfo);
 		}
 
 		[When(@"I change the account in of the move")]
 		public void GivenIChangeTheAccountInOfTheMove()
 		{
-			AccountIn = GetOrCreateAccount(newAccountInUrl);
+			accountIn = getOrCreateAccount(newAccountInUrl);
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
-			setAccountInNewTotals(AccountIn, category, moveInfo);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
+			setAccountInNewTotals(accountIn, category, moveInfo);
 		}
 
 		[When(@"I change the move out to in")]
@@ -303,13 +303,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			moveInfo.Nature = MoveNature.In;
 
-			AccountOut = null;
+			accountOut = null;
 
-			AccountIn = GetOrCreateAccount(newAccountInUrl);
+			accountIn = getOrCreateAccount(newAccountInUrl);
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
-			setAccountInNewTotals(AccountIn, category, moveInfo);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
+			setAccountInNewTotals(accountIn, category, moveInfo);
 		}
 
 		[When(@"I change the move in to out")]
@@ -317,13 +317,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			moveInfo.Nature = MoveNature.Out;
 
-			AccountIn = null;
+			accountIn = null;
 
-			AccountOut = GetOrCreateAccount(newAccountOutUrl);
+			accountOut = getOrCreateAccount(newAccountOutUrl);
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
-			setAccountOutNewTotals(AccountOut, category, moveInfo);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
+			setAccountOutNewTotals(accountOut, category, moveInfo);
 		}
 
 		[When(@"I change the move value to (\d+)")]
@@ -337,7 +337,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			foreach (var detailData in details.Rows)
 			{
-				var newDetail = GetDetailFromTable(detailData);
+				var newDetail = getDetailFromTable(detailData);
 
 				moveInfo.DetailList.Add(newDetail);
 			}
@@ -350,7 +350,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			foreach (var detailData in details.Rows)
 			{
-				var newDetail = GetDetailFromTable(detailData);
+				var newDetail = getDetailFromTable(detailData);
 
 				moveInfo.DetailList.Add(newDetail);
 			}
@@ -361,32 +361,32 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				moveInfo.OutUrl = AccountOut?.Url;
-				moveInfo.InUrl = AccountIn?.Url;
-				moveInfo.CategoryName = CategoryName;
+				moveInfo.OutUrl = accountOut?.Url;
+				moveInfo.InUrl = accountIn?.Url;
+				moveInfo.CategoryName = categoryName;
 
-				Service.Money.SaveMove(moveInfo);
+				service.Money.SaveMove(moveInfo);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[Then(@"the old-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOutUrl);
+			var account = getOrCreateAccount(accountOutUrl);
 
 			var currentTotal = summaryRepository.GetTotal(account);
 
-			Assert.AreEqual(AccountOutTotal + value, currentTotal);
+			Assert.AreEqual(accountOutTotal + value, currentTotal);
 		}
 
 		[Then(@"the new-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOut.Name);
+			var account = getOrCreateAccount(accountOut.Name);
 
 			var currentTotal = summaryRepository.GetTotal(account);
 
@@ -396,20 +396,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the old-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOutUrl);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var account = getOrCreateAccount(accountOutUrl);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
-			Assert.AreEqual(YearCategoryAccountOutTotal + value, summary.Out);
+			Assert.AreEqual(yearCategoryAccountOutTotal + value, summary.Out);
 		}
 
 		[Then(@"the new-year-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewYearCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOut.Name);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(Category?.Name, user);
+			var account = getOrCreateAccount(accountOut.Name);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
 
 			Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
@@ -418,20 +418,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the old-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOutUrl);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var account = getOrCreateAccount(accountOutUrl);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 			var summary = summaryRepository.Get(account, category, oldDate.ToMonthYear());
 
-			Assert.AreEqual(MonthCategoryAccountOutTotal + value, summary.Out);
+			Assert.AreEqual(monthCategoryAccountOutTotal + value, summary.Out);
 		}
 
 		[Then(@"the new-month-category-accountOut value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewMonthCategoryAccountOutValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountOut.Name);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(Category?.Name, user);
+			var account = getOrCreateAccount(accountOut.Name);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
@@ -440,17 +440,17 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the old-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountInUrl);
+			var account = getOrCreateAccount(accountInUrl);
 
 			var currentTotal = summaryRepository.GetTotal(account);
 
-			Assert.AreEqual(AccountInTotal + value, currentTotal);
+			Assert.AreEqual(accountInTotal + value, currentTotal);
 		}
 
 		[Then(@"the new-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountIn.Name);
+			var account = getOrCreateAccount(accountIn.Name);
 
 			var currentTotal = summaryRepository.GetTotal(account);
 
@@ -460,20 +460,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the old-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountInUrl);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var account = getOrCreateAccount(accountInUrl);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 			var summary = summaryRepository.Get(account, category, oldDate.Year);
 
-			Assert.AreEqual(YearCategoryAccountInTotal + value, summary.In);
+			Assert.AreEqual(yearCategoryAccountInTotal + value, summary.In);
 		}
 
 		[Then(@"the new-year-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewYearCategoryAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountIn.Name);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(Category?.Name, user);
+			var account = getOrCreateAccount(accountIn.Name);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
 
 			Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
@@ -482,20 +482,20 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the old-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheOldMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountInUrl);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var account = getOrCreateAccount(accountInUrl);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 			var summary = summaryRepository.Get(account, category, oldDate.ToMonthYear());
 
-			Assert.AreEqual(MonthCategoryAccountInTotal + value, summary.In);
+			Assert.AreEqual(monthCategoryAccountInTotal + value, summary.In);
 		}
 
 		[Then(@"the new-month-category-accountIn value will change in (\-?\d+\.?\d*)")]
 		public void ThenTheNewMonthCategoryAccountInValueWillChangeIn(Decimal value)
 		{
-			var account = GetOrCreateAccount(AccountIn.Name);
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(Category?.Name, user);
+			var account = getOrCreateAccount(accountIn.Name);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
 			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
@@ -504,25 +504,25 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the month-accountOut value will not change")]
 		public void ThenTheMonthAccountOutValueWillNotChange()
 		{
-			var account = GetOrCreateAccount(AccountOutUrl);
+			var account = getOrCreateAccount(accountOutUrl);
 			var summary = summaryRepository.Get(account, oldDate.ToMonthYear());
 
-			Assert.AreEqual(MonthAccountOutTotal, summary.Sum(s => s.Out));
+			Assert.AreEqual(monthAccountOutTotal, summary.Sum(s => s.Out));
 		}
 
 		[Then(@"the year-accountOut value will not change")]
 		public void ThenTheYearAccountOutValueWillNotChange()
 		{
-			var account = GetOrCreateAccount(AccountOutUrl);
+			var account = getOrCreateAccount(accountOutUrl);
 			var summary = summaryRepository.Get(account, oldDate.Year);
 
-			Assert.AreEqual(YearAccountOutTotal, summary.Sum(s => s.Out));
+			Assert.AreEqual(yearAccountOutTotal, summary.Sum(s => s.Out));
 		}
 
 		[Then(@"the move total will be (\-?\d+\.?\d*)")]
 		public void ThenTheMoveTotalWillBe(Decimal value)
 		{
-			var move = Service.Money.GetMove(moveInfo.ID);
+			var move = service.Money.GetMove(moveInfo.ID);
 			Assert.AreEqual(value, move.Total);
 		}
 
@@ -540,15 +540,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void WhenITryToGetTheMove()
 		{
 			moveInfo = null;
-			Error = null;
+			error = null;
 
 			try
 			{
-				moveInfo = Service.Money.GetMove(id);
+				moveInfo = service.Money.GetMove(id);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -569,7 +569,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Given(@"I run the scheduler and get the move")]
 		public void GivenIRunTheSchedulerAndGetTheMove()
 		{
-			Service.Robot.RunSchedule();
+			service.Robot.RunSchedule();
 
 			var schedule = scheduleRepository.Get(scheduleInfo.ID);
 			id = schedule.MoveList.Last().ID;
@@ -578,7 +578,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Given(@"I run the scheduler and get all the moves")]
 		public void GivenIRunTheSchedulerAndGetAllTheMoves()
 		{
-			Service.Robot.RunSchedule();
+			service.Robot.RunSchedule();
 
 			var schedule = scheduleRepository.Get(scheduleInfo.ID);
 			ids = schedule.MoveList.Select(m => m.ID).ToList();
@@ -589,11 +589,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			try
 			{
-				Service.Money.DeleteMove(id);
+				service.Money.DeleteMove(id);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -604,12 +604,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				foreach (var moveId in ids)
 				{
-					Service.Money.DeleteMove(moveId);
+					service.Money.DeleteMove(moveId);
 				}
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -617,64 +617,64 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void WhenITryToDeleteTheMoveWithEMailSystemOk()
 		{
 			ConfigHelper.ActivateEmailSystem();
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 
 			try
 			{
-				var result = Service.Money.DeleteMove(id);
-				CurrentEmailStatus = result.Email;
+				var result = service.Money.DeleteMove(id);
+				currentEmailStatus = result.Email;
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 			ConfigHelper.DeactivateEmailSystem();
 		}
 
 		[When(@"I try to delete the move with e-mail system out")]
 		public void WhenITryToDeleteTheMoveWithEMailSystemOut()
 		{
-			ConfigHelper.ActivateMoveEmailForUser(Service);
+			ConfigHelper.ActivateMoveEmailForUser(service);
 			ConfigHelper.BreakTheEmailSystem();
 
 			try
 			{
-				var result = Service.Money.DeleteMove(id);
-				CurrentEmailStatus = result.Email;
+				var result = service.Money.DeleteMove(id);
+				currentEmailStatus = result.Email;
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
 			ConfigHelper.FixTheEmailSystem();
-			ConfigHelper.DeactivateMoveEmailForUser(Service);
+			ConfigHelper.DeactivateMoveEmailForUser(service);
 		}
 
 		[Then(@"the move will (not )?be deleted")]
 		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
-			Error = null;
+			error = null;
 
 			try
 			{
-				Service.Money.GetMove(id);
+				service.Money.GetMove(id);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
 			if (deleted)
 			{
-				Assert.IsNotNull(Error);
-				Assert.AreEqual(error.InvalidMove, Error.Type);
+				Assert.IsNotNull(error);
+				Assert.AreEqual(Error.InvalidMove, error.Type);
 			}
 			else
 			{
-				Assert.IsNull(Error);
+				Assert.IsNull(error);
 			}
 		}
 		#endregion
@@ -687,9 +687,9 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				return;
 
 			if (@checked)
-				Service.Money.CheckMove(moveInfo.ID);
+				service.Money.CheckMove(moveInfo.ID);
 			else
-				Service.Money.UncheckMove(moveInfo.ID);
+				service.Money.UncheckMove(moveInfo.ID);
 		}
 
 		[When(@"I try to mark it as (not )?checked")]
@@ -699,16 +699,16 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			{
 				if (@checked)
 				{
-					Service.Money.CheckMove(moveInfo.ID);
+					service.Money.CheckMove(moveInfo.ID);
 				}
 				else
 				{
-					Service.Money.UncheckMove(moveInfo.ID);
+					service.Money.UncheckMove(moveInfo.ID);
 				}
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -748,7 +748,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			foreach (var detailData in details.Rows)
 			{
-				var newDetail = GetDetailFromTable(detailData);
+				var newDetail = getDetailFromTable(detailData);
 
 				moveInfo.DetailList.Add(newDetail);
 			}
@@ -779,69 +779,67 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 		private void setMoveExternals(MoveNature nature)
 		{
-			var accountOutUrl =
-				moveInfo.OutUrl =
+			moveInfo.OutUrl =
 				nature == MoveNature.In
-					? null : AccountOutUrl;
+					? null : accountOutUrl;
 
-			var accountInUrl =
-				moveInfo.InUrl =
+			moveInfo.InUrl =
 				nature == MoveNature.Out
-					? null : AccountInUrl;
+					? null : accountInUrl;
 
 			moveInfo.CategoryName =
-				CategoryName = MAIN_CATEGORY_NAME;
+				categoryName = mainCategoryName;
 
-			var result = Service.Money.SaveMove(moveInfo);
+			var result = service.Money.SaveMove(moveInfo);
 
 			moveInfo.ID = result.ID;
 
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(MAIN_CATEGORY_NAME, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(mainCategoryName, user);
 
-			if (accountOutUrl != null)
+			if (moveInfo.OutUrl != null)
 			{
-				AccountOut = accountRepository.GetByUrl(accountOutUrl, user);
+				accountOut = accountRepository.GetByUrl(moveInfo.OutUrl, user);
 
-				AccountOutTotal = summaryRepository.GetTotal(AccountOut);
-				YearAccountOutTotal =
+				accountOutTotal = summaryRepository.GetTotal(accountOut);
+				yearAccountOutTotal =
 					summaryRepository.Get(
-						AccountOut, moveInfo.Date.Year
+						accountOut, moveInfo.Date.Year
 					).Sum(s => s.Out);
-				MonthAccountOutTotal =
+				monthAccountOutTotal =
 					summaryRepository.Get(
-						AccountOut, moveInfo.Date.ToMonthYear()
+						accountOut, moveInfo.Date.ToMonthYear()
 					).Sum(s => s.Out);
-				YearCategoryAccountOutTotal =
+				yearCategoryAccountOutTotal =
 					summaryRepository.Get(
-						AccountOut, category, moveInfo.Date.Year
+						accountOut, category, moveInfo.Date.Year
 					).Out;
-				MonthCategoryAccountOutTotal =
+				monthCategoryAccountOutTotal =
 					summaryRepository.Get(
-						AccountOut, category, moveInfo.Date.ToMonthYear()
+						accountOut, category, moveInfo.Date.ToMonthYear()
 					).Out;
 			}
 
-			if (accountInUrl != null)
+			if (moveInfo.InUrl != null)
 			{
-				AccountIn = accountRepository.GetByUrl(accountInUrl, user);
+				accountIn = accountRepository.GetByUrl(moveInfo.InUrl, user);
 
-				AccountInTotal = summaryRepository.GetTotal(AccountIn);
-				YearAccountInTotal =
+				accountInTotal = summaryRepository.GetTotal(accountIn);
+				yearAccountInTotal =
 					summaryRepository.Get(
-						AccountIn, moveInfo.Date.Year
+						accountIn, moveInfo.Date.Year
 					).Sum(s => s.In);
-				MonthAccountInTotal =
+				monthAccountInTotal =
 					summaryRepository.Get(
-						AccountIn, moveInfo.Date.ToMonthYear()
+						accountIn, moveInfo.Date.ToMonthYear()
 					).Sum(s => s.In);
-				YearCategoryAccountInTotal =
+				yearCategoryAccountInTotal =
 					summaryRepository.Get(
-						AccountIn, category, moveInfo.Date.Year
+						accountIn, category, moveInfo.Date.Year
 					).In;
-				MonthCategoryAccountInTotal =
+				monthCategoryAccountInTotal =
 					summaryRepository.Get(
-						AccountIn, category, moveInfo.Date.ToMonthYear()
+						accountIn, category, moveInfo.Date.ToMonthYear()
 					).In;
 			}
 		}

@@ -14,7 +14,7 @@ namespace DFM.BusinessLogic.Bases
 		where T : class, IEntityLong, IMove, new()
 	{
 		#region Validate
-		protected void Validate(
+		protected void validate(
 			T move,
 			DateTime now,
 			Int32 descriptionMaxSize,
@@ -126,7 +126,7 @@ namespace DFM.BusinessLogic.Bases
 		#endregion
 
 		#region Complete
-		protected static void Complete(T move)
+		protected static void complete(T move)
 		{
 			adjustValue(move);
 			adjustDetailList(move);

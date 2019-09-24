@@ -25,7 +25,7 @@ namespace DFM.Tests.Language
 		[Given(@"the dictionary is initialized")]
 		public void TheDictionaryIsInitialized()
 		{
-			PlainText.Initialize(RunPath);
+			PlainText.Initialize(runPath);
 		}
 
 
@@ -217,32 +217,32 @@ namespace DFM.Tests.Language
 
 		private static StringBuilder errors
 		{
-			get { return Get<StringBuilder>("errors"); }
-			set { Set("errors", value); }
+			get { return get<StringBuilder>("errors"); }
+			set { set("errors", value); }
 		}
 
 		private static IList<String> languages
 		{
-			get { return Get<IList<String>>("languages"); }
-			set { Set("languages", value); }
+			get { return get<IList<String>>("languages"); }
+			set { set("languages", value); }
 		}
 
 		private static IList<Pair> keys
 		{
-			get { return Get<IList<Pair>>("keys"); }
-			set { Set("keys", value); }
+			get { return get<IList<Pair>>("keys"); }
+			set { set("keys", value); }
 		}
 
 		private static IList<EmailType> emailTypes
 		{
-			get { return Get<IList<EmailType>>("emailTypes"); }
-			set { Set("emailTypes", value); }
+			get { return get<IList<EmailType>>("emailTypes"); }
+			set { set("emailTypes", value); }
 		}
 
 		private static IList<SimpleTheme> themes
 		{
-			get { return Get<IList<SimpleTheme>>("themes"); }
-			set { Set("themes", value); }
+			get { return get<IList<SimpleTheme>>("themes"); }
+			set { set("themes", value); }
 		}
 
 

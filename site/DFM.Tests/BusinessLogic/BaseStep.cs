@@ -16,13 +16,14 @@ using DFM.Entities.Bases;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
 using error = DFM.BusinessLogic.Exceptions.Error;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic
 {
 	public abstract class BaseStep : ContextHelper
 	{
-		protected static ServiceAccess Service;
-		protected static Current Current => Service.Current;
+		protected static ServiceAccess service;
+		protected static Current current => service.Current;
 
 		private protected static AccountRepository accountRepository;
 		private protected static CategoryRepository categoryRepository;
@@ -38,7 +39,7 @@ namespace DFM.Tests.BusinessLogic
 
 		protected static void setLogName()
 		{
-			var date = $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+			var logDate = $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
 
 			var path =
 				Path.Combine(
@@ -50,7 +51,7 @@ namespace DFM.Tests.BusinessLogic
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
 
-			logFileName = Path.Combine(path, $"tests_{date}.log");
+			logFileName = Path.Combine(path, $"tests_{logDate}.log");
 			accountRepository = new AccountRepository();
 			categoryRepository = new CategoryRepository();
 			summaryRepository = new SummaryRepository();
@@ -69,14 +70,14 @@ namespace DFM.Tests.BusinessLogic
 			File.AppendAllText(logFileName, log);
 		}
 
-		protected Int32? GetInt(String str)
+		protected Int32? getInt(String str)
 		{
 			return String.IsNullOrEmpty(str)
 				? (Int32?) null
 				: Int32.Parse(str);
 		}
 
-		protected static String MakeUrlFromName(String name)
+		protected static String makeUrlFromName(String name)
 		{
 			var regex = new Regex("[^A-Za-z0-9_]");
 			var url = regex.Replace(name, "");
@@ -92,47 +93,47 @@ namespace DFM.Tests.BusinessLogic
 				s => s.User.ID == user.ID
 				     && s.Action == action
 				     && s.Active
-				     && s.Expire >= Current.Now
+				     && s.Expire >= current.Now
 			).FirstOrDefault()?.Token;
 		}
 
 		#region Get or Create
-		protected void CreateUserIfNotExists(
-			String userEmail,
-			String userPassword,
+		protected void createUserIfNotExists(
+			String email,
+			String password,
 			Boolean shouldActivateUser = false
 		)
 		{
-			var userError = verifyUser(userEmail, userPassword);
+			var userError = verifyUser(email, password);
 
 			if (userError == null)
 				return;
 
 			switch (userError.Type)
 			{
-				case error.InvalidUser:
+				case Error.InvalidUser:
 					var info = new SignUpInfo
 					{
-						Email = userEmail,
-						Password = userPassword,
-						RetypePassword = userPassword,
-						Language = Defaults.CONFIG_LANGUAGE,
+						Email = email,
+						Password = password,
+						RetypePassword = password,
+						Language = Defaults.ConfigLanguage,
 					};
 
-					Service.Safe.SaveUserAndSendVerify(info);
+					service.Safe.SaveUserAndSendVerify(info);
 
 					if (shouldActivateUser)
 					{
 						var token = getLastTokenForUser(
-							userEmail,
+							email,
 							SecurityAction.UserVerification
 						);
-						Service.Safe.ActivateUser(token);
+						service.Safe.ActivateUser(token);
 					}
 
 					return;
 
-				case error.DisabledUser:
+				case Error.DisabledUser:
 					return;
 
 				default:
@@ -140,19 +141,19 @@ namespace DFM.Tests.BusinessLogic
 			}
 		}
 
-		private CoreError verifyUser(String userEmail, String userPassword)
+		private CoreError verifyUser(String email, String password)
 		{
 			try
 			{
 				var info = new SignInInfo
 				{
-					Email = userEmail,
-					Password = userPassword,
-					TicketKey = TicketKey,
+					Email = email,
+					Password = password,
+					TicketKey = ticketKey,
 					TicketType = TicketType.Local,
 				};
 
-				Service.Safe.ValidateUserAndCreateTicket(info);
+				service.Safe.ValidateUserAndCreateTicket(info);
 
 				return null;
 			}
@@ -163,59 +164,59 @@ namespace DFM.Tests.BusinessLogic
 		}
 
 
-		protected Account GetOrCreateAccount(String accountUrl)
+		protected Account getOrCreateAccount(String url)
 		{
-			var user = userRepository.GetByEmail(Current.Email);
-			var account = accountRepository.GetByUrl(accountUrl, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var account = accountRepository.GetByUrl(url, user);
 			if (account != null) return account;
 
-			Service.Admin.CreateAccount(
+			service.Admin.CreateAccount(
 				new AccountInfo
 				{
-					Name = accountUrl,
-					Url = accountUrl,
+					Name = url,
+					Url = url,
 				}
 			);
 
-			return accountRepository.GetByUrl(accountUrl, user);
+			return accountRepository.GetByUrl(url, user);
 		}
 
-		protected Category GetOrCreateCategory(String categoryName)
+		protected Category getOrCreateCategory(String name)
 		{
-			var user = userRepository.GetByEmail(Current.Email);
-			var category = categoryRepository.GetByName(categoryName, user);
+			var user = userRepository.GetByEmail(current.Email);
+			var category = categoryRepository.GetByName(name, user);
 			if (category != null) return category;
 
-			Service.Admin.CreateCategory(
+			service.Admin.CreateCategory(
 				new CategoryInfo
 				{
-					Name = categoryName
+					Name = name
 				}
 			);
 
-			return categoryRepository.GetByName(categoryName, user);
+			return categoryRepository.GetByName(name, user);
 		}
 
-		protected SessionInfo GetSavedUser(String email, String password)
+		protected SessionInfo getSavedUser(String email, String password)
 		{
 			var info = new SignInInfo
 			{
 				Email = email,
 				Password = password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			var key = Service.Safe.ValidateUserAndCreateTicket(info);
+			var key = service.Safe.ValidateUserAndCreateTicket(info);
 
-			return Service.Safe.GetSessionByTicket(key);
+			return service.Safe.GetSessionByTicket(key);
 		}
 		#endregion
 
 		#region Context
 		protected static ClientTicket getTicket(Boolean remember)
 		{
-			return new ClientTicket(TicketKey, TicketType.Local);
+			return new ClientTicket(ticketKey, TicketType.Local);
 		}
 
 		protected static String getPath(PathType pathType)
@@ -233,171 +234,171 @@ namespace DFM.Tests.BusinessLogic
 			mainTicket = null;
 		}
 
-		protected static String TicketKey => getTicketKey();
+		protected static String ticketKey => getTicketKey();
 
 		private static String mainTicket
 		{
-			get => Get<String>("mainTicket");
-			set => Set("mainTicket", value);
+			get => get<String>("mainTicket");
+			set => set("mainTicket", value);
 		}
 
-		protected static CoreError Error
+		protected static CoreError error
 		{
-			get => Get<CoreError>("error");
-			set => Set("error", value);
+			get => get<CoreError>("error");
+			set => set("error", value);
 		}
 
-		protected static SessionInfo Session
+		protected static SessionInfo session
 		{
-			get => Get<SessionInfo>("Session");
-			set => Set("Session", value);
+			get => get<SessionInfo>("Session");
+			set => set("Session", value);
 		}
 
-		protected static AccountInfo Account
+		protected static AccountInfo accountInfo
 		{
-			get => Get<AccountInfo>("Account");
-			set => Set("Account", value);
+			get => get<AccountInfo>("AccountInfo");
+			set => set("AccountInfo", value);
 		}
 
-		protected static CategoryInfo Category
+		protected static CategoryInfo categoryInfo
 		{
-			get => Get<CategoryInfo>("Category");
-			set => Set("Category", value);
-		}
-
-
-		protected static Account AccountOut
-		{
-			get => Get<Account>("AccountOut");
-			set => Set("AccountOut", value);
-		}
-
-		protected static Decimal AccountOutTotal
-		{
-			get => Get<Decimal>("AccountOutTotal");
-			set => Set("AccountOutTotal", value);
-		}
-
-		protected static Decimal YearAccountOutTotal
-		{
-			get => Get<Decimal>("YearAccountOutTotal");
-			set => Set("YearAccountOutTotal", value);
-		}
-
-		protected static Decimal MonthAccountOutTotal
-		{
-			get => Get<Decimal>("MonthAccountOutTotal");
-			set => Set("MonthAccountOutTotal", value);
-		}
-
-		protected static Decimal YearCategoryAccountOutTotal
-		{
-			get => Get<Decimal>("YearCategoryAccountOutTotal");
-			set => Set("YearCategoryAccountOutTotal", value);
-		}
-
-		protected static Decimal MonthCategoryAccountOutTotal
-		{
-			get => Get<Decimal>("MonthCategoryAccountOutTotal");
-			set => Set("MonthCategoryAccountOutTotal", value);
+			get => get<CategoryInfo>("CategoryInfo");
+			set => set("CategoryInfo", value);
 		}
 
 
-		protected static Account AccountIn
+		protected static Account accountOut
 		{
-			get => Get<Account>("AccountIn");
-			set => Set("AccountIn", value);
+			get => get<Account>("AccountOut");
+			set => set("AccountOut", value);
 		}
 
-		protected static Decimal AccountInTotal
+		protected static Decimal accountOutTotal
 		{
-			get => Get<Decimal>("AccountInTotal");
-			set => Set("AccountInTotal", value);
+			get => get<Decimal>("AccountOutTotal");
+			set => set("AccountOutTotal", value);
 		}
 
-		protected static Decimal YearAccountInTotal
+		protected static Decimal yearAccountOutTotal
 		{
-			get => Get<Decimal>("YearAccountInTotal");
-			set => Set("YearAccountInTotal", value);
+			get => get<Decimal>("YearAccountOutTotal");
+			set => set("YearAccountOutTotal", value);
 		}
 
-		protected static Decimal MonthAccountInTotal
+		protected static Decimal monthAccountOutTotal
 		{
-			get => Get<Decimal>("MonthAccountInTotal");
-			set => Set("MonthAccountInTotal", value);
+			get => get<Decimal>("MonthAccountOutTotal");
+			set => set("MonthAccountOutTotal", value);
 		}
 
-		protected static Decimal YearCategoryAccountInTotal
+		protected static Decimal yearCategoryAccountOutTotal
 		{
-			get => Get<Decimal>("YearCategoryAccountInTotal");
-			set => Set("YearCategoryAccountInTotal", value);
+			get => get<Decimal>("YearCategoryAccountOutTotal");
+			set => set("YearCategoryAccountOutTotal", value);
 		}
 
-		protected static Decimal MonthCategoryAccountInTotal
+		protected static Decimal monthCategoryAccountOutTotal
 		{
-			get => Get<Decimal>("MonthCategoryAccountInTotal");
-			set => Set("MonthCategoryAccountInTotal", value);
-		}
-
-
-		protected static String AccountUrl
-		{
-			get => Get<String>("AccountUrl");
-			set => Set("AccountUrl", value);
-		}
-
-		protected static String CategoryName
-		{
-			get => Get<String>("CategoryName");
-			set => Set("CategoryName", value);
+			get => get<Decimal>("MonthCategoryAccountOutTotal");
+			set => set("MonthCategoryAccountOutTotal", value);
 		}
 
 
-
-		protected static EmailStatus? CurrentEmailStatus
+		protected static Account accountIn
 		{
-			get => Get<EmailStatus?>("CurrentEmailStatus");
-			set => Set("CurrentEmailStatus", value);
+			get => get<Account>("AccountIn");
+			set => set("AccountIn", value);
+		}
+
+		protected static Decimal accountInTotal
+		{
+			get => get<Decimal>("AccountInTotal");
+			set => set("AccountInTotal", value);
+		}
+
+		protected static Decimal yearAccountInTotal
+		{
+			get => get<Decimal>("YearAccountInTotal");
+			set => set("YearAccountInTotal", value);
+		}
+
+		protected static Decimal monthAccountInTotal
+		{
+			get => get<Decimal>("MonthAccountInTotal");
+			set => set("MonthAccountInTotal", value);
+		}
+
+		protected static Decimal yearCategoryAccountInTotal
+		{
+			get => get<Decimal>("YearCategoryAccountInTotal");
+			set => set("YearCategoryAccountInTotal", value);
+		}
+
+		protected static Decimal monthCategoryAccountInTotal
+		{
+			get => get<Decimal>("MonthCategoryAccountInTotal");
+			set => set("MonthCategoryAccountInTotal", value);
+		}
+
+
+		protected static String accountUrl
+		{
+			get => get<String>("AccountUrl");
+			set => set("AccountUrl", value);
+		}
+
+		protected static String categoryName
+		{
+			get => get<String>("CategoryName");
+			set => set("CategoryName", value);
+		}
+
+
+
+		protected static EmailStatus? currentEmailStatus
+		{
+			get => get<EmailStatus?>("CurrentEmailStatus");
+			set => set("CurrentEmailStatus", value);
 		}
 
 		protected static MoveInfo moveInfo
 		{
-			get => Get<MoveInfo>("MoveInfo");
-			set => Set("MoveInfo", value);
+			get => get<MoveInfo>("MoveInfo");
+			set => set("MoveInfo", value);
 		}
 
 		protected static MoveResult moveResult
 		{
-			get => Get<MoveResult>("MoveResult");
-			set => Set("MoveResult", value);
+			get => get<MoveResult>("MoveResult");
+			set => set("MoveResult", value);
 		}
 
 		protected static ScheduleInfo scheduleInfo
 		{
-			get => Get<ScheduleInfo>("ScheduleInfo");
-			set => Set("ScheduleInfo", value);
+			get => get<ScheduleInfo>("ScheduleInfo");
+			set => set("ScheduleInfo", value);
 		}
 
-		protected static DateTime Date =>
+		protected static DateTime date =>
 			moveInfo?.Date ??
 			scheduleInfo?.Date ??
 			DateTime.MinValue;
 		#endregion
 
-		protected const String USER_EMAIL = "test@dontflymoney.com";
-		protected const String BAD_PERSON_USER = "badperson@dontflymoney.com";
+		protected const String userEmail = "test@dontflymoney.com";
+		protected const String badPersonUser = "badperson@dontflymoney.com";
 
-		protected static String UserPassword = "password";
-		protected const String MAIN_ACCOUNT_URL = "first_account";
-		protected const String MAIN_CATEGORY_NAME = "first category";
+		protected static String userPassword = "password";
+		protected const String mainAccountUrl = "first_account";
+		protected const String mainCategoryName = "first category";
 
-		protected const String ACCOUNT_OUT_NAME = "Account Out";
-		protected const String ACCOUNT_IN_NAME = "Account In";
-		protected static String AccountOutUrl = MakeUrlFromName(ACCOUNT_OUT_NAME);
-		protected static String AccountInUrl = MakeUrlFromName(ACCOUNT_IN_NAME);
+		protected const String accountOutName = "Account Out";
+		protected const String accountInName = "Account In";
+		protected static String accountOutUrl = makeUrlFromName(accountOutName);
+		protected static String accountInUrl = makeUrlFromName(accountInName);
 
 		#region Helpers
-		protected DetailInfo GetDetailFromTable(TableRow detailData)
+		protected DetailInfo getDetailFromTable(TableRow detailData)
 		{
 			var newDetail = new DetailInfo { Description = detailData["Description"] };
 
@@ -409,7 +410,7 @@ namespace DFM.Tests.BusinessLogic
 			return newDetail;
 		}
 
-		protected Boolean IsCurrent(ScenarioBlock block)
+		protected Boolean isCurrent(ScenarioBlock block)
 		{
 			return ScenarioContext.Current.CurrentScenarioBlock == block;
 		}

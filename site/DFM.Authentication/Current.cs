@@ -60,11 +60,11 @@ namespace DFM.Authentication
 		public DateTime Now => session?.Now ?? DateTime.UtcNow;
 		public String TimeZone => session?.TimeZone;
 		public String Language => session?.Language;
-		public BootstrapTheme Theme => session?.Theme ?? Defaults.DEFAULT_THEME;
+		public BootstrapTheme Theme => session?.Theme ?? Defaults.DefaultTheme;
 
-		public Boolean UseCategories => session?.UseCategories ?? Defaults.CONFIG_USE_CATEGORIES;
-		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.CONFIG_MOVE_CHECK;
-		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.CONFIG_SEND_MOVE_EMAIL;
+		public Boolean UseCategories => session?.UseCategories ?? Defaults.ConfigUseCategories;
+		public Boolean MoveCheck => session?.MoveCheck ?? Defaults.ConfigMoveCheck;
+		public Boolean SendMoveEmail => session?.SendMoveEmail ?? Defaults.ConfigSendMoveEmail;
 
 		public Boolean Wizard => session?.Wizard ?? false;
 

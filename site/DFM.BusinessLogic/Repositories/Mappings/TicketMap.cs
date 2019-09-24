@@ -10,7 +10,7 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 		public void Override(AutoMapping<Ticket> mapping)
 		{
 			mapping.Map(t => t.Key, "Key_")
-				.Length(MaxLen.Ticket_Key)
+				.Length(MaxLen.TicketKey)
 				.Unique();
 
 			mapping.Map(t => t.Active)

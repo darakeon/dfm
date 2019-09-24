@@ -31,27 +31,27 @@
 
 				@if (!Model.IsAuthenticated)
 				{
-					<li>@Html.RouteLink(Translator.Dictionary["Login"], RouteNames.DEFAULT, new {action = "LogOn", controller = "Users"})</li>
-					<li>@Html.RouteLink(Translator.Dictionary["SignUp"], RouteNames.DEFAULT, new {action = "SignUp", controller = "Users"})</li>
+					<li>@Html.RouteLink(Translator.Dictionary["Login"], RouteNames.Default, new {action = "LogOn", controller = "Users"})</li>
+					<li>@Html.RouteLink(Translator.Dictionary["SignUp"], RouteNames.Default, new {action = "SignUp", controller = "Users"})</li>
 					<li>@Html.ActionLink(Translator.Dictionary["TokenReceivedByEmail"], "Index", "Tokens")</li>
 				}
 				else
 				{
 					if (Model.IsExternal)
 					{
-						<li>@Html.RouteLink(Translator.Dictionary["Enter"], RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Enter"], RouteNames.Default, new {action = "Index", controller = "Accounts"})</li>
 					}
 					else if (model == null)
 					{
-						<li>@Html.RouteLink(Translator.Dictionary["Accounts"], RouteNames.DEFAULT, new { action = "Index", controller = "Accounts" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Accounts"], RouteNames.Default, new { action = "Index", controller = "Accounts" })</li>
 
 						if (Model.IsUsingCategories)
 						{
-						<li>@Html.RouteLink(Translator.Dictionary["Categories"], RouteNames.DEFAULT, new { action = "Index", controller = "Categories" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Categories"], RouteNames.Default, new { action = "Index", controller = "Categories" })</li>
 						}
 
-						<li>@Html.RouteLink(Translator.Dictionary["Schedules"], RouteNames.DEFAULT, new { action = "Index", controller = "Schedules" })</li>
-						<li>@Html.RouteLink(Translator.Dictionary["Logins"], RouteNames.DEFAULT, new { action = "Index", controller = "Logins" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Schedules"], RouteNames.Default, new { action = "Index", controller = "Schedules" })</li>
+						<li>@Html.RouteLink(Translator.Dictionary["Logins"], RouteNames.Default, new { action = "Index", controller = "Logins" })</li>
 					}
 					else
 					{
@@ -65,7 +65,7 @@
 						<li>@Html.ActionLink(Translator.Dictionary["YearMoves"], "SummarizeMonths", "Reports")</li>
 
 						<li>
-							<a href="@Url.RouteUrl(RouteNames.DEFAULT, new {action = "Index", controller = "Accounts"})">
+							<a href="@Url.RouteUrl(RouteNames.Default, new {action = "Index", controller = "Accounts"})">
 								<span class="glyphicon glyphicon-home" title="@Translator.Dictionary["Home"]"></span>
 							</a>
 						</li>
@@ -79,7 +79,7 @@
 						<a>
 							@Html.Partial("MicroForm",
 								MicroForm.WithGlyph("off", "Logoff")
-									.AddRouteUrl(RouteNames.DEFAULT, "Users", "LogOff")
+									.AddRouteUrl(RouteNames.Default, "Users", "LogOff")
 							)
 						</a>
 					</li>

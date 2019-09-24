@@ -82,7 +82,7 @@ namespace DFM.MVC.Helpers.Global
 				var userLanguage = Service.Current.Language ?? browserLanguage;
 
 				if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
-					userLanguage = Defaults.CONFIG_LANGUAGE;
+					userLanguage = Defaults.ConfigLanguage;
 
 				return userLanguage;
 			}

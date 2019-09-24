@@ -21,86 +21,86 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		#region Variables
 		private static User otherUser
 		{
-			get => Get<User>("OtherUser");
-			set => Set("OtherUser", value);
+			get => get<User>("OtherUser");
+			set => set("OtherUser", value);
 		}
 
 		private static String email
 		{
-			get => Get<String>("Email");
-			set => Set("Email", value);
+			get => get<String>("Email");
+			set => set("Email", value);
 		}
 
 		private static String newEmail
 		{
-			get => Get<String>("NewEmail");
-			set => Set("NewEmail", value);
+			get => get<String>("NewEmail");
+			set => set("NewEmail", value);
 		}
 
 		private static String ticket
 		{
-			get => Get<String>("ticket");
-			set => Set("ticket", value);
+			get => get<String>("ticket");
+			set => set("ticket", value);
 		}
 
 		private static String password
 		{
-			get => Get<String>("Password");
-			set => Set("Password", value);
+			get => get<String>("Password");
+			set => set("Password", value);
 		}
 
 		private static String retypePassword
 		{
-			get => Get<String>("RetypePassword");
-			set => Set("RetypePassword", value);
+			get => get<String>("RetypePassword");
+			set => set("RetypePassword", value);
 		}
 
 		private static String newPassword
 		{
-			get => Get<String>("NewPassword");
-			set => Set("NewPassword", value);
+			get => get<String>("NewPassword");
+			set => set("NewPassword", value);
 		}
 
 		private static String currentPassword
 		{
-			get => Get<String>("CurrentPassword");
-			set => Set("CurrentPassword", value);
+			get => get<String>("CurrentPassword");
+			set => set("CurrentPassword", value);
 		}
 
 		private static String token
 		{
-			get => Get<String>("Token");
-			set => Set("Token", value);
+			get => get<String>("Token");
+			set => set("Token", value);
 		}
 
 		private static SecurityAction action
 		{
-			get => Get<SecurityAction>("Action");
-			set => Set("Action", value);
+			get => get<SecurityAction>("Action");
+			set => set("Action", value);
 		}
 
 		private static IList<TicketInfo> logins
 		{
-			get => Get<IList<TicketInfo>>("logins");
-			set => Set("logins", value);
+			get => get<IList<TicketInfo>>("logins");
+			set => set("logins", value);
 		}
 
 		private static Boolean? accepted
 		{
-			get => Get<Boolean?>("accepted");
-			set => Set("accepted", value);
+			get => get<Boolean?>("accepted");
+			set => set("accepted", value);
 		}
 
 		private static TFAInfo tfa
 		{
-			get => Get<TFAInfo>("tfa");
-			set => Set("tfa", value);
+			get => get<TFAInfo>("tfa");
+			set => set("tfa", value);
 		}
 
 		private static Boolean? ticketVerified
 		{
-			get => Get<Boolean?>("ticketVerified");
-			set => Set("ticketVerified", value);
+			get => get<Boolean?>("ticketVerified");
+			set => set("ticketVerified", value);
 		}
 		#endregion
 
@@ -130,16 +130,16 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Email = otherUser.Email,
 				Password = otherUser.Password,
 				RetypePassword = otherUser.Password,
-				Language = Defaults.CONFIG_LANGUAGE,
+				Language = Defaults.ConfigLanguage,
 			};
 
-			Service.Safe.SaveUserAndSendVerify(info);
+			service.Safe.SaveUserAndSendVerify(info);
 
 			var tokenActivate = getLastTokenForUser(
 				otherUser.Email,
 				SecurityAction.UserVerification
 			);
-			Service.Safe.ActivateUser(tokenActivate);
+			service.Safe.ActivateUser(tokenActivate);
 		}
 
 
@@ -154,14 +154,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					Email = email,
 					Password = password,
 					RetypePassword = retypePassword,
-					Language = Defaults.CONFIG_LANGUAGE,
+					Language = Defaults.ConfigLanguage,
 				};
 
-				Service.Safe.SaveUserAndSendVerify(info);
+				service.Safe.SaveUserAndSendVerify(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -169,7 +169,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheUserWillNotBeSaved()
 		{
 			ticket = null;
-			Error = null;
+			error = null;
 
 			try
 			{
@@ -177,27 +177,27 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				{
 					Email = email,
 					Password = password,
-					TicketKey = TicketKey,
+					TicketKey = ticketKey,
 					TicketType = TicketType.Local,
 				};
 
-				ticket = Service.Safe
+				ticket = service.Safe
 					.ValidateUserAndCreateTicket(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
 			Assert.IsNull(ticket);
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(error.InvalidUser, Error.Type);
+			Assert.IsNotNull(error);
+			Assert.AreEqual(Error.InvalidUser, error.Type);
 		}
 
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
-			var savedUser = GetSavedUser(otherUser.Email, otherUser.Password);
+			var savedUser = getSavedUser(otherUser.Email, otherUser.Password);
 
 			Assert.IsNotNull(savedUser);
 		}
@@ -210,9 +210,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				SecurityAction.UserVerification
 			);
 
-			Service.Safe.ActivateUser(tokenActivate);
+			service.Safe.ActivateUser(tokenActivate);
 
-			var savedUser = GetSavedUser(email, password);
+			var savedUser = getSavedUser(email, password);
 
 			Assert.IsNotNull(savedUser);
 		}
@@ -228,11 +228,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.SendPasswordReset(email);
+				service.Safe.SendPasswordReset(email);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 		#endregion
@@ -241,10 +241,10 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a token of password reset")]
 		public void GivenIPassATokenOfPasswordReset()
 		{
-			Service.Safe.SendPasswordReset(Current.Email);
+			service.Safe.SendPasswordReset(current.Email);
 
 			token = getLastTokenForUser(
-				Current.Email,
+				current.Email,
 				SecurityAction.PasswordReset
 			);
 		}
@@ -254,11 +254,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.ActivateUser(token);
+				service.Safe.ActivateUser(token);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -281,21 +281,21 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I activate the user")]
 		public void GivenIActivateTheUser()
 		{
-			Service.Safe.SendUserVerify(email);
+			service.Safe.SendUserVerify(email);
 
 			var tokenToActivate = getLastTokenForUser(
 				email,
 				SecurityAction.UserVerification
 			);
 
-			Service.Safe.ActivateUser(tokenToActivate);
+			service.Safe.ActivateUser(tokenToActivate);
 		}
 
 		[When(@"I try to get the ticket")]
 		public void WhenITryToGetTheTicket()
 		{
 			ticket = null;
-			Error = null;
+			error = null;
 
 			try
 			{
@@ -303,15 +303,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				{
 					Email = email,
 					Password = password,
-					TicketKey = TicketKey,
+					TicketKey = ticketKey,
 					TicketType = TicketType.Local,
 				};
 
-				ticket = Service.Safe.ValidateUserAndCreateTicket(info);
+				ticket = service.Safe.ValidateUserAndCreateTicket(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -325,7 +325,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Email = email,
 				Password = password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local
 			};
 
@@ -333,18 +333,18 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				try
 				{
-					Service.Safe.ValidateUserAndCreateTicket(info);
+					service.Safe.ValidateUserAndCreateTicket(info);
 				}
 				catch (CoreError) { }
 			}
 
 			try
 			{
-				Service.Safe.ValidateUserAndCreateTicket(info);
+				service.Safe.ValidateUserAndCreateTicket(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -359,9 +359,9 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			Assert.IsNotNull(ticket);
 
-			var session = Service.Safe.GetSessionByTicket(ticket);
+			var expectedSession = service.Safe.GetSessionByTicket(ticket);
 
-			Assert.IsNotNull(session);
+			Assert.IsNotNull(expectedSession);
 		}
 		#endregion
 
@@ -369,15 +369,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[When(@"I try to get the session")]
 		public void WhenITryToGetTheUser()
 		{
-			Session = null;
+			session = null;
 
 			try
 			{
-				Session = Service.Safe.GetSessionByTicket(ticket);
+				session = service.Safe.GetSessionByTicket(ticket);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 		#endregion
@@ -387,7 +387,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void GivenIPassATokenOfUserVerification()
 		{
 			token = getLastTokenForUser(
-				Current.Email,
+				current.Email,
 				SecurityAction.UserVerification
 			);
 		}
@@ -421,18 +421,18 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					Token = token
 				};
 
-				Service.Safe.PasswordReset(info);
+				service.Safe.PasswordReset(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[Then(@"the password will not be changed")]
 		public void ThenThePasswordWillNotBeChanged()
 		{
-			Error = null;
+			error = null;
 
 			try
 			{
@@ -446,36 +446,36 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					TicketType = TicketType.Local,
 				};
 
-				Service.Safe.ValidateUserAndCreateTicket(info);
+				service.Safe.ValidateUserAndCreateTicket(info);
 			}
 			catch (CoreError e)
 			{
-				if (e.Type != error.DisabledUser)
-					Error = e;
+				if (e.Type != Error.DisabledUser)
+					error = e;
 			}
 
-			Assert.IsNull(Error);
+			Assert.IsNull(error);
 		}
 
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
-			Service.Safe.SendUserVerify(email);
+			service.Safe.SendUserVerify(email);
 			token = getLastTokenForUser(
 				email,
 				SecurityAction.UserVerification
 			);
-			Service.Safe.ActivateUser(token);
+			service.Safe.ActivateUser(token);
 
 			var info = new SignInInfo
 			{
 				Email = email,
 				Password = newPassword,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			var newTicket = Service.Safe.ValidateUserAndCreateTicket(info);
+			var newTicket = service.Safe.ValidateUserAndCreateTicket(info);
 
 			Assert.IsNotNull(newTicket);
 		}
@@ -494,11 +494,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.TestSecurityToken(token, action);
+				service.Safe.TestSecurityToken(token, action);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 		#endregion
@@ -509,11 +509,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.DisableToken(token);
+				service.Safe.DisableToken(token);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -522,15 +522,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.TestSecurityToken(token, action);
+				service.Safe.TestSecurityToken(token, action);
 			}
 			catch(CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(error.InvalidToken, Error.Type);
+			Assert.IsNotNull(error);
+			Assert.AreEqual(Error.InvalidToken, error.Type);
 		}
 		#endregion
 
@@ -540,47 +540,47 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.DisableTicket(ticket);
+				service.Safe.DisableTicket(ticket);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[Then(@"the ticket will not be valid anymore")]
 		public void ThenTheTicketWillNotBeValidAnymore()
 		{
-			Error = null;
+			error = null;
 
 			try
 			{
-				Service.Safe.GetSessionByTicket(ticket);
+				service.Safe.GetSessionByTicket(ticket);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			Assert.IsNotNull(Error);
-			Assert.AreEqual(error.Uninvited, Error.Type);
+			Assert.IsNotNull(error);
+			Assert.AreEqual(Error.Uninvited, error.Type);
 		}
 
 		[Then(@"the ticket will still be valid")]
 		public void ThenTheTicketWillStillBeValid()
 		{
-			Error = null;
+			error = null;
 
 			try
 			{
-				Service.Safe.GetSessionByTicket(ticket);
+				service.Safe.GetSessionByTicket(ticket);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 
-			Assert.IsNull(Error);
+			Assert.IsNull(error);
 		}
 		#endregion
 
@@ -588,13 +588,13 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I login the user")]
 		public void GivenILoginTheUser()
 		{
-			Current.Set(USER_EMAIL, UserPassword, false);
+			current.Set(userEmail, userPassword, false);
 		}
 
 		[Given(@"I logoff the user")]
 		public void GivenILogoffTheUser()
 		{
-			Current.Clear();
+			current.Clear();
 		}
 
 		[When(@"I ask for current active logins")]
@@ -602,11 +602,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				logins = Service.Safe.ListLogins();
+				logins = service.Safe.ListLogins();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -614,7 +614,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheyWillBeActive()
 		{
 			var currentTicket = ticketRepository.GetByKey(
-				Service.Current.TicketKey
+				service.Current.TicketKey
 			);
 			var user = currentTicket.User;
 
@@ -633,7 +633,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			foreach (var login in logins)
 			{
-				Assert.AreEqual(Defaults.TICKET_SHOWED_PART, login.Key.Length);
+				Assert.AreEqual(Defaults.TicketShowedPart, login.Key.Length);
 			}
 		}
 		#endregion
@@ -651,23 +651,23 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					RetypePassword = retypePassword
 				};
 
-				Service.Safe.ChangePassword(info);
+				service.Safe.ChangePassword(info);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[Then(@"only the last ticket will be active")]
 		public void ThenThereWillBeNoActiveLogins()
 		{
-			logins = Service.Safe.ListLogins();
+			logins = service.Safe.ListLogins();
 			Assert.IsNotNull(logins);
 			Assert.AreEqual(1, logins.Count);
 
 			var safeTicketPart =
-				TicketKey.Substring(0, Defaults.TICKET_SHOWED_PART);
+				ticketKey.Substring(0, Defaults.TicketShowedPart);
             Assert.AreEqual(safeTicketPart, logins.First().Key);
 		}
 		#endregion ChangePassword
@@ -685,30 +685,30 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.UpdateEmail(currentPassword, newEmail);
+				service.Safe.UpdateEmail(currentPassword, newEmail);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
 		[Then(@"the e-mail will not be changed")]
 		public void ThenTheEmailWillNotBeChanged()
 		{
-			Error = null;
-			var user = Service.Safe.GetSessionByTicket(TicketKey);
+			error = null;
+			var user = service.Safe.GetSessionByTicket(ticketKey);
 			Assert.AreEqual(email, user.Email);
 		}
 
 		[Then(@"the e-mail will be changed")]
 		public void ThenTheEmailWillBeChanged()
 		{
-			Error = null;
+			error = null;
 
-			var ticket = ticketRepository.GetByKey(TicketKey);
-			var userEmail = ticket?.User?.Email;
-			Assert.AreEqual(newEmail, userEmail);
+			var actualTicket = ticketRepository.GetByKey(ticketKey);
+			var actualEmail = actualTicket?.User?.Email;
+			Assert.AreEqual(newEmail, actualEmail);
 
 			//To next verification
 			email = newEmail;
@@ -725,7 +725,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			password = table.Rows[0]["Password"];
 			retypePassword = table.Rows[0]["Retype Password"];
 
-			CreateUserIfNotExists(email, password);
+			createUserIfNotExists(email, password);
 		}
 
 		[Given(@"I have this user created and activated")]
@@ -734,19 +734,19 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			email = table.Rows[0]["Email"];
 			password = table.Rows[0]["Password"];
 
-			CreateUserIfNotExists(email, password, true);
+			createUserIfNotExists(email, password, true);
 		}
 
 		[Given(@"I have a token for its activation")]
 		public void GivenIHaveATokenForItsActivation()
 		{
-			Service.Safe.SendUserVerify(email);
+			service.Safe.SendUserVerify(email);
 		}
 
 		[Given(@"I have a token for its password reset")]
 		public void GivenIHaveATokenForItsPasswordReset()
 		{
-			Service.Safe.SendPasswordReset(email);
+			service.Safe.SendPasswordReset(email);
 		}
 
 		[Given(@"I pass an invalid token")]
@@ -782,7 +782,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I pass a ticket that is already disabled")]
 		public void GivenIPassATicketThatIsAlreadyInvalid()
 		{
-			Service.Safe.DisableTicket(ticket);
+			service.Safe.DisableTicket(ticket);
 		}
 
 		[Given(@"I pass a ticket that is of this disabled user")]
@@ -792,11 +792,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Email = email,
 				Password = password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			ticket = Service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.ValidateUserAndCreateTicket(info);
 		}
 
 		[Given(@"I pass a ticket that exist")]
@@ -824,11 +824,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Email = email,
 				Password = password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			ticket = Service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.ValidateUserAndCreateTicket(info);
 		}
 
 
@@ -837,11 +837,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.SendUserVerify(email);
+				service.Safe.SendUserVerify(email);
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -849,14 +849,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"I will receive no session")]
 		public void ThenIWillReceiveNoSession()
 		{
-			Assert.IsNull(Session);
+			Assert.IsNull(session);
 		}
 
 		[Then(@"I will receive the session")]
 		public void ThenIWillReceiveTheSession()
 		{
-			Assert.IsNotNull(Session);
-			Assert.AreEqual(email, Session.Email);
+			Assert.IsNotNull(session);
+			Assert.AreEqual(email, session.Email);
 		}
 		#endregion
 
@@ -866,11 +866,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I have a contract")]
 		public void GivenIHaveAContract()
 		{
-			if (Service.Safe.GetContract() == null)
+			if (service.Safe.GetContract() == null)
 			{
 				var contract = new Contract
 				{
-					BeginDate = Current.Now,
+					BeginDate = current.Now,
 					Version = "TestContract",
 				};
 
@@ -881,7 +881,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I have accepted the contract")]
 		public void GivenIHaveAcceptedTheContract()
 		{
-			Service.Safe.AcceptContract();
+			service.Safe.AcceptContract();
 		}
 
 		[Given(@"there is a new contract")]
@@ -892,7 +892,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
             var contract = new Contract
             {
-	            BeginDate = Current.Now,
+	            BeginDate = current.Now,
 	            Version = contractVersion,
             };
 
@@ -904,11 +904,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.GetContract();
+				service.Safe.GetContract();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -917,11 +917,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.AcceptContract();
+				service.Safe.AcceptContract();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -930,11 +930,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				accepted = Service.Safe.IsLastContractAccepted();
+				accepted = service.Safe.IsLastContractAccepted();
 			}
 			catch (CoreError e)
 			{
-				Error = e;
+				error = e;
 			}
 		}
 
@@ -943,7 +943,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			if (!accepted.HasValue)
 			{
-				accepted = Service.Safe.IsLastContractAccepted();
+				accepted = service.Safe.IsLastContractAccepted();
             }
 
 			Assert.AreEqual(expectAccepted, accepted);
@@ -968,11 +968,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Email = user.Email,
 				Password = user.Password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			ticket = Service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.ValidateUserAndCreateTicket(info);
 		}
 
 		[Given(@"I have this two-factor data")]
@@ -992,12 +992,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.UpdateTFA(tfa);
+				service.Safe.UpdateTFA(tfa);
 			}
 			catch (CoreError e)
 			{
-				if (IsCurrent(ScenarioBlock.When))
-					Error = e;
+				if (isCurrent(ScenarioBlock.When))
+					error = e;
 				else
 					throw;
 			}
@@ -1009,12 +1009,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.RemoveTFA(tfa.Password);
+				service.Safe.RemoveTFA(tfa.Password);
 			}
 			catch (CoreError e)
 			{
-				if (IsCurrent(ScenarioBlock.When))
-					Error = e;
+				if (isCurrent(ScenarioBlock.When))
+					error = e;
 				else
 					throw;
 			}
@@ -1023,14 +1023,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the two-factor will be empty")]
 		public void ThenTheTwoFactorWillStillBeEmpty()
 		{
-			var user = userRepository.GetByEmail(Current.Email);
+			var user = userRepository.GetByEmail(current.Email);
 			Assert.IsNull(user?.TFASecret);
 		}
 
 		[Then(@"the two-factor will be \[(.*)\]")]
 		public void ThenTheTwoFactorWillStillBe(String secret)
 		{
-			var user = userRepository.GetByEmail(Current.Email);
+			var user = userRepository.GetByEmail(current.Email);
 			Assert.AreEqual(secret, user.TFASecret);
 		}
 
@@ -1047,11 +1047,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				Email = email,
 				Password = password,
-				TicketKey = TicketKey,
+				TicketKey = ticketKey,
 				TicketType = TicketType.Local,
 			};
 
-			ticket = Service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.ValidateUserAndCreateTicket(info);
 		}
 
 		[Given(@"I validate the ticket two factor")]
@@ -1060,12 +1060,12 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				Service.Safe.ValidateTicketTFA(tfa.Code);
+				service.Safe.ValidateTicketTFA(tfa.Code);
 			}
 			catch (CoreError exception)
 			{
-				if (IsCurrent(ScenarioBlock.When))
-					Error = exception;
+				if (isCurrent(ScenarioBlock.When))
+					error = exception;
 				else
 					throw;
 			}
@@ -1076,11 +1076,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				ticketVerified = Service.Safe.VerifyTicket();
+				ticketVerified = service.Safe.VerifyTicket();
 			}
 			catch (CoreError exception)
 			{
-				Error = exception;
+				error = exception;
 			}
 		}
 
@@ -1089,11 +1089,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				ticketVerified = Service.Safe.VerifyTicket(type);
+				ticketVerified = service.Safe.VerifyTicket(type);
 			}
 			catch (CoreError exception)
 			{
-				Error = exception;
+				error = exception;
 			}
 		}
 
@@ -1107,7 +1107,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the ticket will (not )?be valid")]
 		public void ThenTheTicketWillBeValidated(Boolean valid)
 		{
-			var recordedValidated = Service.Safe.VerifyTicket();
+			var recordedValidated = service.Safe.VerifyTicket();
 			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA
