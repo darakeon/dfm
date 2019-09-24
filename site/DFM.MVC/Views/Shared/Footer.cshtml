@@ -8,11 +8,7 @@
 	var accountUrl = ViewContext.RouteData.Values["AccountUrl"];
 	var currentUrl = MobileUrls.Get[controller, action];
 
-	var route = new {
-		activity = currentUrl,
-		id = id,
-		accountUrl = accountUrl,
-	};
+	var route = new { activity = currentUrl, id, accountUrl };
 }
 
 <footer class="container">

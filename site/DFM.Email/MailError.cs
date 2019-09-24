@@ -5,7 +5,7 @@ namespace DFM.Email
 	public class MailError : Exception
 	{
 		public static Int32 ErrorCounter { get; private set; }
-		public EmailStatus Type { get; private set; }
+		public EmailStatus Type { get; }
 
 		public static MailError WithMessage(EmailStatus type)
 		{

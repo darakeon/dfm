@@ -10,7 +10,7 @@ namespace DFM.Tests.Helpers
 		{
 			return context.ContainsKey(key)
 				? (T)context[key]
-				: default(T);
+				: default;
 		}
 
 		protected static void set(String key, object value)

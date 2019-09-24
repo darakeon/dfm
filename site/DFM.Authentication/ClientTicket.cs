@@ -11,7 +11,7 @@ namespace DFM.Authentication
 			Type = type;
 		}
 
-		public String Key { get; private set; }
-		public TicketType Type { get; private set; }
+		public String Key { get; }
+		public TicketType Type { get; }
 	}
 }

@@ -80,29 +80,12 @@ namespace DFM.MVC.Helpers.Views
 			return this;
 		}
 
-		public MicroForm AddUrl(
-			[AspMvcController] String controller,
-			[AspMvcAction] String action
-		)
-		{
-			AddRouteIdUrl(null, controller, action, null);
-			return this;
-		}
-
 		public MicroForm AddIdUrl(
 			[AspMvcAction] String action,
 			object id
 		)
 		{
 			AddRouteIdUrl(null, null, action, id);
-			return this;
-		}
-
-		public MicroForm AddUrl(
-			[AspMvcAction] String action
-		)
-		{
-			AddRouteIdUrl(null, null, action, null);
 			return this;
 		}
 	}

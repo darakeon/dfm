@@ -30,14 +30,14 @@
 			</span>
 		</td>
 
-		@{
+		@*{
 			var deleteConfirm =
 				String.Format(
 					Translator.Dictionary["ConfirmDeleteLogin"],
 						login.Creation,
 						Translator.Dictionary[login.Type.ToString()]
 				);
-		}
+		}*@
 
 		<td class="col-sm-4 text-center">
 			@Html.Partial("MicroForm", 

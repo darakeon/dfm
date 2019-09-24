@@ -69,11 +69,10 @@
 		MoveValueAndDetailNotAllowed = 519,
 
 		ScheduleRequired = 601,
-		ScheduleFrequencyNotRecognized = 602,
-		ScheduleTimesCantBeZero = 604,
-		InvalidSchedule = 605,
-		DisabledSchedule = 606,
-		TooLargeScheduleDescription = 607,
+		ScheduleTimesCantBeZero = 602,
+		InvalidSchedule = 603,
+		DisabledSchedule = 604,
+		TooLargeScheduleDescription = 605,
 
 		InvalidYear = 701,
 		InvalidMonth = 702,

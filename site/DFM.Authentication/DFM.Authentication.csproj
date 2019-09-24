@@ -52,7 +52,6 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Current.cs" />
-    <Compile Include="AuthError.cs" />
     <Compile Include="ISessionInfo.cs" />
     <Compile Include="ISignInInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

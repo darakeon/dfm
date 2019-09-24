@@ -46,20 +46,5 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			var mainConfig = new ConfigInfo { SendMoveEmail = false };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
-
-		internal static void ActivateCategoriesUseForUser(ServiceAccess sa)
-		{
-			var mainConfig = new ConfigInfo { UseCategories = true };
-			sa.Admin.UpdateConfig(mainConfig);
-		}
-
-		internal static void DeactivateCategoriesUseForUser(ServiceAccess sa)
-		{
-			var mainConfig = new ConfigInfo { UseCategories = false };
-			sa.Admin.UpdateConfig(mainConfig);
-		}
-
-
-
 	}
 }

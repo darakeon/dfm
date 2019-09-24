@@ -14,6 +14,6 @@ namespace DFM.MVC.Areas.API.Models
 					.ToList();
 		}
 
-		public IList<AccountListItem> AccountList { get; private set; }
+		public IList<AccountListItem> AccountList { get; }
 	}
 }

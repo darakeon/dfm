@@ -24,8 +24,8 @@ namespace DFM.MVC.Models
 		[Required(ErrorMessage = "*")]
 		public String Token
 		{
-			get { return token; }
-			set { token = (value ?? "").Trim(); }
+			get => token;
+			set => token = (value ?? "").Trim();
 		}
 
 

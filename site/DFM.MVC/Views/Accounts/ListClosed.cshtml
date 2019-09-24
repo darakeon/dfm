@@ -25,11 +25,7 @@
 {
 	if (account.End != null)
 	{
-		var movesSum = account.Total;
-		var value = (movesSum < 0 ? -movesSum : movesSum).ToMoney(Model.Language);
-		var className = movesSum < 0 ? "danger" : "info";
 		var sign = Translator.Dictionary[$"{account.Sign}Limit"];
-
 		//var reopenLabel = Translator.Dictionary["Reopen", "Account"];
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
 

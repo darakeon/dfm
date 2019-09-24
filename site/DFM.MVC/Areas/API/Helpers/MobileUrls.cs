@@ -38,20 +38,13 @@ namespace DFM.MVC.Areas.API.Helpers
 
 		public static MobileUrls Get = new MobileUrls();
 
-		public String this[[AspMvcController] object controller, [AspMvcAction] object action]
-		{
-			get { return this[controller.ToString(), action.ToString()]; }
-		}
+		public String this[[AspMvcController] object controller, [AspMvcAction] object action] =>
+			this[controller.ToString(), action.ToString()];
 
-		public String this[[AspMvcController] String controller, [AspMvcAction] String action]
-		{
-			get
-			{
-				return !urls.ContainsKey(controller)
-						|| !urls[controller].ContainsKey(action)
-					? @default
-					: urls[controller][action];
-			}
-		}
+		public String this[[AspMvcController] String controller, [AspMvcAction] String action] =>
+			!urls.ContainsKey(controller)
+			|| !urls[controller].ContainsKey(action)
+				? @default
+				: urls[controller][action];
 	}
 }
