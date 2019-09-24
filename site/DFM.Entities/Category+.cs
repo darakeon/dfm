@@ -13,10 +13,5 @@ namespace DFM.Entities
 		{
 			return $"[{ID}] {Name}";
 		}
-
-		public virtual Boolean AuthorizeCRUD(User user)
-		{
-			return User == user;
-		}
 	}
 }

@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Cfg.cs" />
-    <Compile Include="ConvertToOtherChild.cs" />
     <Compile Include="Crypt.cs" />
     <Compile Include="DateExtension.cs" />
     <Compile Include="ApiDebug.cs" />
