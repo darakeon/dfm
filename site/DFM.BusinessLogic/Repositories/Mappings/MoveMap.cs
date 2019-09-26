@@ -19,7 +19,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 
 			mapping.IgnoreProperty(m => m.FakeID);
 			mapping.IgnoreProperty(m => m.Value);
-			mapping.IgnoreProperty(m => m.Date);
 
 			mapping.References(m => m.Category)
 				.Nullable();

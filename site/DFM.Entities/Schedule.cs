@@ -16,13 +16,14 @@ namespace DFM.Entities
 		public virtual Int64 ID { get; set; }
 
 		public virtual String Description { get; set; }
-		public virtual DateTime Date { get; set; }
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32? ValueCents { get; set; }
 
 		public virtual Boolean ShowInstallment { get; set; }
 
-
+		public virtual Int16 Year { get; set; }
+		public virtual Int16 Month { get; set; }
+		public virtual Int16 Day { get; set; }
 
 		public virtual Int16 LastRun { get; set; }
 		public virtual Int16 Deleted { get; set; }

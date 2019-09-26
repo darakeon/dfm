@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
-using DFM.Generic;
 using Keon.NHibernate.Base;
 
 namespace DFM.BusinessLogic.Repositories
 {
 	internal class SummaryRepository : BaseRepositoryLong<Summary>
 	{
-		internal void Break(Account account, Category category, DateTime date)
+		internal void Break(Account account, Category category, IDate date)
 		{
 			var year = date.Year;
 			var month = date.ToMonthYear();

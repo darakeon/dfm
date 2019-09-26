@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using DFM.BusinessLogic.Response;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
 
@@ -23,13 +24,14 @@ namespace DFM.MVC.Areas.API.Controllers
 		[HttpGet]
 		public ActionResult Create(Int32? id)
 		{
-			return json(() => new MovesCreateGetModel(id));
+			return json(() => new MovesCreateModel(id));
 		}
 
 		[HttpPost]
-		public ActionResult Create(MovesCreatePostModel move)
+		public ActionResult Create(MoveInfo move)
 		{
-			return json(move.Save);
+			var model = new MovesCreateModel();
+			return json(() => model.Save(move));
 		}
 
 		[HttpPost]

@@ -59,7 +59,9 @@ class MovesCreateActivity : BaseActivity() {
 	private val moveCreationKey = "moveCreation"
 
 	private fun updateFromDateCombo(year: Int, month: Int, day: Int) {
-		move.date = Date(year, month, day)
+		move.year = year
+		move.month = month
+		move.day = day
 		date.text = move.date.format()
 	}
 
@@ -346,4 +348,3 @@ class MovesCreateActivity : BaseActivity() {
 		form.postDelayed({ form.fullScroll(ScrollView.FOCUS_DOWN) }, 100)
 	}
 }
-

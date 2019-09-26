@@ -49,7 +49,7 @@
 			<td class="col-sm-2 text-center">@(schedule.CategoryName ?? "---")</td>
 		}
 
-		<td class="col-sm-2 text-center">@schedule.Date.ToShortDateString()</td>
+		<td class="col-sm-2 text-center">@schedule.GetDate().ToShortDateString()</td>
 		<td class="col-sm-2 text-center">@(schedule.InName ?? " ")</td>
 		<td class="col-sm-2 text-center">@(schedule.OutName ?? " ")</td>
 

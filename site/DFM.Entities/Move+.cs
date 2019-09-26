@@ -67,9 +67,9 @@ namespace DFM.Entities
 			if (schedule == null)
 				return diff;
 
-			var days = Date - schedule.Date;
-			var month = Date.Month - schedule.Date.Month;
-			var year = Date.Year - schedule.Date.Year;
+			var days = this.GetDate() - schedule.GetDate();
+			var month = Month - schedule.Month;
+			var year = Year - schedule.Year;
 
 			switch (schedule.Frequency)
 			{

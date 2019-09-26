@@ -98,3 +98,15 @@ insert into terms
 	select 'pt-BR', id, '{"Text": "O sistema Don''t fly Money, abaixo constando como Sistema, e a pessoa que registrou-se no sistema, abaixo constando como Usufrente, concordam com os termos descritos.","Items": [{"Text": "O Sistema não possui quaisquer vínculos com instituições financeiras.","Items": [{ "Text": "Dados apresentados no Sistema são inseridos apenas por Usufrente;" },{ "Text": "Movimentações feitas em Sistema não alteram dados em contas bancárias ou quaisquer outros meios externos;" },{ "Text": "Movimentações em meios externos não afetam os dados de Sistema, sendo estes apenas alteráveis por Usufrente via Sistema;" }]},{ "Text": "Dados apresentados em Sistema e decisões tomadas com base nestes dados são de total responsabilidade de Usufrente." },{"Text": "Os meios de comunicação de Sistema com Usufrente são:","Items": [{ "Text": "E-mail cadastrado por Usufrente ao se registrar em Sistema, cujo contato é feito somente pelos endereços {{noreply_address}} - apenas para alertas automatizados - e {{support_address}} - para suporte;" },{ "Text": "Sistema web, registrado no domínio {{site_address}};" },{ "Text": "Aplicativo para dispositivos android {{android_address}}, instalação via Play Store." }]},{"Text": "O código fonte de Sistema - instruções para computador que regem o funcionamento de Sistema - está em um endereço web.","Items": [{ "Text": "O endereço é público: {{github_address}}" },{ "Text": "O código fonte é ABERTO, podendo QUALQUER pessoa com acesso não-censurado a internet visualizá-lo e sugerir edições, usando uma conta do github." }]},{ "Text": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste site" },{ "Text": "Usufruente se compromete a manter o e-mail cadastrado atualizado." },{ "Text": "Quaisquer atos que violem leis feitos por intermédio de Sistema são responsabilidade de Usufrente." },{"Text": "Estes termos podem ser alterados a qualquer momento.","Items": [{ "Text": "Em caso de alteração, Usufrente precisa aceitar os novos termos para continuar usando o sistema;" },{ "Text": "Passados 90 dias, caso não aceite os novos termos, dados de Usufrente podem ser removidos permanentemente de Sistema." }]}]}'
 		from contract
 		where version = '4.1.3.6';
+
+alter table schedule
+	add column Day smallint not null,
+	add column Month smallint not null,
+	add column Year smallint not null,
+	modify column Date datetime null;
+
+update schedule
+	set Day = day(Date),
+		Month = month(Date),
+		Year = year(Date)
+	where id <> 0;

@@ -7,6 +7,7 @@ using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 
@@ -155,8 +156,8 @@ namespace DFM.MVC.Areas.Account.Models
 		[Required(ErrorMessage = "*")]
 		public DateTime Date
 		{
-			get => GenericMove.Date;
-			set => GenericMove.Date = value;
+			get => GenericMove.GetDate();
+			set => GenericMove.SetDate(value);
 		}
 
 

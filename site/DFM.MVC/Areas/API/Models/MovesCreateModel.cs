@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.API.Helpers;
 
 namespace DFM.MVC.Areas.API.Models
 {
-	internal class MovesCreateGetModel : BaseApiModel
+	internal class MovesCreateModel : BaseApiModel
 	{
-		public MovesCreateGetModel(Int32? id)
+		public MovesCreateModel(Int32? id = null)
 		{
 			IsUsingCategories = isUsingCategories;
 
 			if (id.HasValue && id != 0)
 			{
-				var move = money.GetMove(id.Value);
-
-				Move = new MovesCreatePostModel(move);
+				Move = money.GetMove(id.Value);
 			}
 
 			AccountList = admin.GetAccountList(true)
@@ -37,11 +36,15 @@ namespace DFM.MVC.Areas.API.Models
 
 		public Boolean IsUsingCategories { get; }
 
-		public MovesCreatePostModel Move { get; set; }
+		public MoveInfo Move { get; set; }
 
 		public IList<SelectItem<String, String>> AccountList { get; set; }
 		public IList<SelectItem<String, String>> CategoryList { get; set; }
 		public IList<SelectItem<String, Int32>> NatureList { get; set; }
 
+		public void Save(MoveInfo info)
+		{
+			money.SaveMove(info);
+		}
 	}
 }

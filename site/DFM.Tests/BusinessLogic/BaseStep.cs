@@ -380,8 +380,8 @@ namespace DFM.Tests.BusinessLogic
 		}
 
 		protected static DateTime date =>
-			moveInfo?.Date ??
-			scheduleInfo?.Date ??
+			moveInfo?.GetDate() ??
+			scheduleInfo?.GetDate() ??
 			DateTime.MinValue;
 		#endregion
 

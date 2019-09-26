@@ -14,10 +14,7 @@ namespace DFM.Entities.Extensions
 			if (move.Value.HasValue && move.Value != 0)
 				type += (Int32)MoveValueType.Unique;
 
-			var details = move.DetailList
-				.Sum(d => d.Amount * d.Value);
-
-			if (move.DetailList.Any() && details != 0)
+			if (move.DetailList.Any())
 				type += (Int32)MoveValueType.Detailed;
 
 			return type;

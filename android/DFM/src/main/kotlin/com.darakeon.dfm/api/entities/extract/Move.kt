@@ -7,8 +7,14 @@ data class Move(
 	@SerializedName("Description")
 	val description: String,
 
-	@SerializedName("Date")
-	val date: Date,
+	@SerializedName("Year")
+	val year: Int,
+
+	@SerializedName("Month")
+	val month: Int,
+
+	@SerializedName("Day")
+	val day: Int,
 
 	@SerializedName("Total")
 	val total: Double,
@@ -18,4 +24,7 @@ data class Move(
 
 	@SerializedName("ID")
 	val id: Int
-)
+) {
+	val date: Date
+		get() = Date(year, month, day)
+}

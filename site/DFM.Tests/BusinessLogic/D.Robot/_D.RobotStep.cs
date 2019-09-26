@@ -4,9 +4,11 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
+using DFM.Tests.Helpers;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using error = DFM.BusinessLogic.Exceptions.Error;
@@ -104,12 +106,9 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
 		public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
 		{
-			switch (frequency)
-			{
-				case "day": scheduleInfo.Date = current.Now.AddDays(-count); break;
-				case "month": scheduleInfo.Date = current.Now.AddMonths(-count); break;
-				case "year": scheduleInfo.Date = current.Now.AddYears(-count); break;
-			}
+			scheduleInfo.SetDate(
+				current.Now.AddByFrequency(frequency, -count)
+			);
 		}
 
 		[Given(@"I run the scheduler")]
@@ -263,7 +262,7 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 				scheduleInfo.Nature = EnumX.Parse<MoveNature>(scheduleData["Nature"]);
 
 			if (!String.IsNullOrEmpty(scheduleData["Date"]))
-				scheduleInfo.Date = DateTime.Parse(scheduleData["Date"]);
+				scheduleInfo.SetDate(DateTime.Parse(scheduleData["Date"]));
 
 			if (!String.IsNullOrEmpty(scheduleData["Value"]))
 				scheduleInfo.Value = Int32.Parse(scheduleData["Value"]);

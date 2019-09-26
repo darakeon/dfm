@@ -2,6 +2,7 @@
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -149,20 +150,21 @@ namespace DFM.Tests.BusinessLogic.E.Report
 
 			foreach (var row in table.Rows)
 			{
-				var dateString = row["Date"];
-				var moveDate = isRelative(dateString)
-					? DateTime.Today.AddDays(Int32.Parse(dateString))
-					: DateTime.Parse(dateString);
-
 				var move = new MoveInfo
 				{
 					Description = "Description",
-					Date = moveDate,
 					Nature = MoveNature.Out,
 					Value = 10,
 					OutUrl = accountInfo.Url,
 					CategoryName = categoryInfo.Name,
 				};
+
+				var dateString = row["Date"];
+				var moveDate = isRelative(dateString)
+					? DateTime.Today.AddDays(Int32.Parse(dateString))
+					: DateTime.Parse(dateString);
+
+				move.SetDate(moveDate);
 
 				service.Money.SaveMove(move);
 			}

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Bases;
 
 namespace DFM.MVC.Models
 {
@@ -10,7 +11,7 @@ namespace DFM.MVC.Models
 		{
 			ScheduleList =
 				robot.GetScheduleList()
-					.OrderByDescending(a => a.Date)
+					.OrderByDescending(a => a.GetDate())
 					.ToList();
 		}
 

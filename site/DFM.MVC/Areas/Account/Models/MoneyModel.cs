@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Email;
-using DFM.Generic;
+using DFM.Entities.Bases;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 
@@ -36,7 +36,7 @@ namespace DFM.MVC.Areas.Account.Models
 				ErrorAlert.AddTranslated(message);
 			}
 
-			ReportUrl = move.Date.ToMonthYear();
+			ReportUrl = move.ToMonthYear();
 		}
 
 		public void CheckMove(int id)
@@ -44,7 +44,7 @@ namespace DFM.MVC.Areas.Account.Models
 			try
 			{
 				var move = money.CheckMove(id);
-				ReportUrl = move.Date.ToMonthYear();
+				ReportUrl = move.MonthYear;
 			}
 			catch (CoreError e)
 			{
@@ -57,7 +57,7 @@ namespace DFM.MVC.Areas.Account.Models
 			try
 			{
 				var move = money.UncheckMove(id);
-				ReportUrl = move.Date.ToMonthYear();
+				ReportUrl = move.MonthYear;
 			}
 			catch (CoreError e)
 			{

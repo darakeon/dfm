@@ -42,6 +42,7 @@
     <Compile Include="Account+.cs" />
     <Compile Include="Bases\Constants.cs" />
     <Compile Include="Bases\Defaults.cs" />
+    <Compile Include="Bases\IDate.cs" />
     <Compile Include="Bases\MaxLen.cs" />
     <Compile Include="Config+.cs" />
     <Compile Include="Contract.cs" />

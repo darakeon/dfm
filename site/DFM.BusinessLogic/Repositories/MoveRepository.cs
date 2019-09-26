@@ -59,7 +59,7 @@ namespace DFM.BusinessLogic.Repositories
 				{ "Operation", operation },
 				{ "AccountIn", accountInName },
 				{ "AccountOut", accountOutName },
-				{ "Date", move.Date.ToShortDateString() },
+				{ "Date", move.GetDate().ToShortDateString() },
 				{ "Nature", nature },
 				{ "Category", categoryName },
 				{ "Description", move.Description },

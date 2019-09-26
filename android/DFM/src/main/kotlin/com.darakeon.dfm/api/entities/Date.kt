@@ -5,13 +5,8 @@ import com.google.gson.annotations.SerializedName
 import java.util.Calendar
 
 data class Date(
-	@SerializedName("Year")
 	val year: Int,
-
-	@SerializedName("Month")
 	val month: Int,
-
-	@SerializedName("Day")
 	val day: Int
 ) {
 	constructor() : this(Calendar.getInstance())
