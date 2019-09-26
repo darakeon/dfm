@@ -6,7 +6,7 @@ This is the task list for the project. Done, Doing, To-do, all here, all planned
 
 - [go to published version](#prod)
 - [go to version in development](#dev)
-- [dev version state](../../4.1.3.6/docs/TASKS.md#dev)
+- [dev version state](../../4.1.3.7/docs/TASKS.md#dev)
 
 Legend:
 - :dragon:: a huge change in system
@@ -118,11 +118,11 @@ Legend:
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 
-## 4.1.3.7 :ant: <sup>`2`</sup>
+## <a name="dev"></a>4.1.3.7 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
 - [ ] Make selenium automated tests - web (maybe puppeteer)
 
-## <a name="dev"></a>4.1.3.6 :ant: <sup>`9`</sup>
+## <a name="prod"></a>4.1.3.6 :ant: <sup>`9`</sup>
 - [x] `190924>190924` Fix account name repetition on area title
 - [x] `190924>190924` Review contract, about account deletion and cookies
 - [x] `190922>190922` Add test for empty ticket
@@ -133,7 +133,7 @@ Legend:
 - [x] `190913>190918` Remove Month and Year (summaries goes to account)
 - [x] `190908>190912` Transform ADMIN service receiving / returns into DTO - check android
 
-## <a name="prod"></a>4.1.3.5 :ant: <sup>`4`</sup>
+## 4.1.3.5 :ant: <sup>`4`</sup>
 - [x] `190912>190912` Fix bug on signup page
 
 ## 4.1.3.4 :ant: <sup>`3`</sup>
