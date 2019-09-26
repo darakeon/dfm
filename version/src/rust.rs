@@ -3,7 +3,7 @@ use std::fs;
 
 use crate::version::Version;
 
-static PATH: &str = r"..\rust\Cargo.toml";
+static PATH: &str = r"..\version\Cargo.toml";
 
 pub fn update_rust(version: &Version) {
 	let old_version = config_version(&version.prev);
