@@ -3,7 +3,7 @@ use std::fs;
 use crate::version::Version;
 
 static PATH: &str =
-	r"..\site\DFM.Generic\Properties\GeneralAssemblyInfo.cs";
+	r"..\site\Generic\Properties\GeneralAssemblyInfo.cs";
 
 pub fn update_csharp(version: &Version) {
 	let old_assembly = assembly_version(&version.prev);

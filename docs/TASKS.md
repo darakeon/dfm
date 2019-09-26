@@ -1,4 +1,4 @@
-<img src="../site/DFM.MVC/Assets/Images/pig.svg" width="85" align="left"/>
+<img src="../site/MVC/Assets/Images/pig.svg" width="85" align="left"/>
 
 # Task list
 

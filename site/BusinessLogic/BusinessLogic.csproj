@@ -73,7 +73,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DFM.Generic\Properties\GeneralAssemblyInfo.cs">
+    <Compile Include="..\Generic\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Bases\GenericMoveRepository.cs" />
@@ -142,23 +142,23 @@
     <Compile Include="Response\SignInInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DFM.Authentication\DFM.Authentication.csproj">
+    <ProjectReference Include="..\Authentication\Authentication.csproj">
       <Project>{84AD52CD-61AA-4F63-B26F-92392493E4DC}</Project>
       <Name>DFM.Authentication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Email\DFM.Email.csproj">
+    <ProjectReference Include="..\Email\Email.csproj">
       <Project>{B586AB4F-74BD-4E49-B584-57F624522C45}</Project>
       <Name>DFM.Email</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Entities\DFM.Entities.csproj">
+    <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{288b6282-630a-4d92-bf07-717774bfb2bd}</Project>
       <Name>DFM.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Generic\DFM.Generic.csproj">
+    <ProjectReference Include="..\Generic\Generic.csproj">
       <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
       <Name>DFM.Generic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFM.Language\DFM.Language.csproj">
+    <ProjectReference Include="..\Language\Language.csproj">
       <Project>{A747268B-CE55-4577-8D72-5405A2E5866C}</Project>
       <Name>DFM.Language</Name>
     </ProjectReference>

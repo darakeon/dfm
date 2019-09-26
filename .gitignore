@@ -10,22 +10,23 @@ site/*/obj
 site/*.suo
 site/**.user
 site/*dotCover
-site/DFM.MVC/data/log_files
-site/DFM.MVC/Web.Release.config
+site/MVC/data/log_files
+site/MVC/Web.Release.config
 site/packages/*
 site/Library/DK/*.pdb
-site/DFM.MVC/DFM.MVC.Publish.xml
-site/DFM.MVC/Properties/PublishProfiles
-site/DFM.AssetPackages/*
-!site/DFM.AssetPackages/DFM.AssetPackages.csproj
-!site/DFM.AssetPackages/packages.config
+site/MVC/MVC.Publish.xml
+site/MVC/Properties/PublishProfiles
+site/AssetPackages/*
+!site/AssetPackages/AssetPackages.csproj
+!site/AssetPackages/packages.config
+!site/AssetPackages/copy-to-mvc.bat
 site/TestResults/*
 */.vs/*
 *.user
 smtp.config
-site/DFM.MVC/Assets/Libs/*/*.js
-site/DFM.MVC/Assets/Libs/Fonts/*
-site/DFM.Tests/log
+site/MVC/Assets/Libs/*/*.js
+site/MVC/Assets/Libs/Fonts/*
+site/Tests/log
 
 # Android (Kotlin)
 android/*/*.apk
@@ -45,6 +46,6 @@ android/gradlew.bat
 android/DFM/src/main/res/values/localaddress.xml
 android/DFM/release
 
-site/DFM.Tests/log
+site/Tests/log
 
 *.feature.cs
