@@ -14,7 +14,7 @@ AssetPackages/*
 !AssetPackages/copy-to-mvc.bat
 
 TestResults/*
-Tests/log
+Tests/Core/log
 *.feature.cs
 
 smtp.config
