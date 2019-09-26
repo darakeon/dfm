@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Entities", "DFM.Entities\DFM.Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{288B6282-630A-4D92-BF07-717774BFB2BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Email", "DFM.Email\DFM.Email.csproj", "{B586AB4F-74BD-4E49-B584-57F624522C45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{B586AB4F-74BD-4E49-B584-57F624522C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.BusinessLogic", "DFM.BusinessLogic\DFM.BusinessLogic.csproj", "{E749C813-2963-49E6-9D0A-7E6F165EF929}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{E749C813-2963-49E6-9D0A-7E6F165EF929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Generic", "DFM.Generic\DFM.Generic.csproj", "{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generic", "Generic\Generic.csproj", "{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Language", "DFM.Language\DFM.Language.csproj", "{A747268B-CE55-4577-8D72-5405A2E5866C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Language", "Language\Language.csproj", "{A747268B-CE55-4577-8D72-5405A2E5866C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Tests", "DFM.Tests\DFM.Tests.csproj", "{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0958B228-EDB7-4CDF-A916-CE9D778A9CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.Authentication", "DFM.Authentication\DFM.Authentication.csproj", "{84AD52CD-61AA-4F63-B26F-92392493E4DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{84AD52CD-61AA-4F63-B26F-92392493E4DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.MVC", "DFM.MVC\DFM.MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{B1126209-7F7A-49A3-8DA3-AFFAD4F522D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFM.AssetPackages", "DFM.AssetPackages\DFM.AssetPackages.csproj", "{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetPackages", "AssetPackages\AssetPackages.csproj", "{FFC5BB5A-5A6E-46AB-8D57-F3AD482DDAC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EB84316-3CE2-4426-AA5E-7234811CA5BB}"
 	ProjectSection(SolutionItems) = preProject
