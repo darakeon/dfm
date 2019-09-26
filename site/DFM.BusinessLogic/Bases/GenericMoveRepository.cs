@@ -65,6 +65,11 @@ namespace DFM.BusinessLogic.Bases
 					throw Error.MoveValueOrDetailRequired.Throw();
 				case MoveValueType.Both:
 					throw Error.MoveValueAndDetailNotAllowed.Throw();
+				case MoveValueType.Unique:
+				case MoveValueType.Detailed:
+					break;
+				default:
+					throw new NotImplementedException();
 			}
 		}
 
@@ -90,6 +95,8 @@ namespace DFM.BusinessLogic.Bases
 						throw Error.TransferMoveWrong.Throw();
 					break;
 
+				default:
+					throw new NotImplementedException();
 			}
 		}
 
