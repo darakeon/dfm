@@ -121,13 +121,13 @@ namespace DFM.BusinessLogic.Services
 			if (move.Out != null)
 			{
 				var accountOut = accountRepository.Get(move.Out.ID);
-				summaryRepository.Break(accountOut, category, move.Date);
+				summaryRepository.Break(accountOut, category, move);
 			}
 
 			if (move.In != null)
 			{
 				var accountIn = accountRepository.Get(move.In.ID);
-				summaryRepository.Break(accountIn, category, move.Date);
+				summaryRepository.Break(accountIn, category, move);
 			}
 		}
 

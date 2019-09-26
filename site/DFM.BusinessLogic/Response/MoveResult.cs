@@ -1,6 +1,7 @@
 ﻿using System;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Response
 {
@@ -16,12 +17,12 @@ namespace DFM.BusinessLogic.Response
 		{
 			ID = move.ID;
 			Check = move.Checked;
-			Date = move.Date;
+			MonthYear = move.ToMonthYear();
 		}
 
 		public Int64 ID { get; }
 		public EmailStatus Email { get; }
 		public Boolean Check { get; }
-		public DateTime Date { get; set; }
+		public Int32 MonthYear { get; set; }
 	}
 }

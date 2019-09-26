@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using NUnit.Framework;
@@ -119,13 +120,14 @@ namespace DFM.Tests.BusinessLogic
 
 			var move = new MoveInfo
 			{
-				Date = current.Now,
 				Description = "Description",
 				Nature = MoveNature.Out,
 				Value = 10,
 				OutUrl = accountOut.Url,
 				CategoryName = categoryInfo.Name,
 			};
+
+			move.SetDate(current.Now);
 
 			service.Money.SaveMove(move);
 
@@ -190,13 +192,14 @@ namespace DFM.Tests.BusinessLogic
 
 			var move = new MoveInfo
 			{
-				Date = current.Now,
 				Description = "Description",
 				Nature = MoveNature.In,
 				Value = 10,
 				InUrl = accountIn.Url,
 				CategoryName = categoryInfo.Name,
 			};
+
+			move.SetDate(current.Now);
 
 			service.Money.SaveMove(move);
 

@@ -14,12 +14,12 @@ namespace DFM.BusinessLogic.Response
 		}
 
 		public Int64 ID { get; set; }
-		public String OutUrl { get; set; }
-		public String InUrl { get; set; }
-		public String CategoryName { get; set; }
 
 		public String Description { get; set; }
-		public DateTime Date { get; set; }
+
+		public Int16 Year { get; set; }
+		public Int16 Month { get; set; }
+		public Int16 Day { get; set; }
 
 		public MoveNature Nature { get; set; }
 
@@ -30,10 +30,18 @@ namespace DFM.BusinessLogic.Response
 
 		public Boolean Checked { get; private set; }
 
+		public String OutUrl { get; set; }
+		public String InUrl { get; set; }
+		public String CategoryName { get; set; }
+
 		internal void Update(Move move)
 		{
 			move.Description = Description;
-			move.Date = Date;
+
+			move.Year = Year;
+			move.Month = Month;
+			move.Day = Day;
+
 			move.Nature = Nature;
 			move.Value = Value;
 
@@ -60,14 +68,22 @@ namespace DFM.BusinessLogic.Response
 				Description = isReport
 					? move.GetDescriptionWithSchedulePosition()
 					: move.Description,
-				Date = move.Date,
+
+				Year = move.Year,
+				Month = move.Month,
+				Day = move.Day,
+
 				Nature = move.Nature,
+
 				Total = move.Total(),
+
 				Value = move.Value,
 				DetailList = move.DetailList
 					.Select(DetailInfo.Convert)
 					.ToList(),
+
 				Checked = move.Checked,
+
 				OutUrl = move.Out?.Url,
 				InUrl = move.In?.Url,
 				CategoryName = move.Category?.Name,

@@ -5,10 +5,9 @@ using DFM.Entities.Enums;
 
 namespace DFM.Entities.Bases
 {
-	public interface IMove : IEntityLong
+	public interface IMove : IEntityLong, IDate
 	{
 		String Description { get; set; }
-		DateTime Date { get; set; }
 		MoveNature Nature { get; set; }
 
 		Decimal? Value { get; set; }

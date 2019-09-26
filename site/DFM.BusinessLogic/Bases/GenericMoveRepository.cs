@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Keon.Util.DB;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities;
 using DFM.Entities.Bases;
@@ -50,10 +49,10 @@ namespace DFM.BusinessLogic.Bases
 
 		private void testDate(T entity, DateTime now)
 		{
-			if (entity.Date == DateTime.MinValue)
+			if (entity.GetDate() == DateTime.MinValue)
 				throw Error.MoveDateRequired.Throw();
 
-			if (typeof(T) != typeof(Schedule) && entity.Date > now)
+			if (typeof(T) != typeof(Schedule) && entity.GetDate() > now)
 				throw Error.MoveDateInvalid.Throw();
 		}
 

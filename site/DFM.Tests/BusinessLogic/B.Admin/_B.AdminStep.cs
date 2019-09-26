@@ -4,6 +4,7 @@ using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Language;
 using NUnit.Framework;
@@ -192,10 +193,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			moveInfo = new MoveInfo
 			{
 				Description = "Description",
-				Date = current.Now,
 				Nature = MoveNature.Out,
 				OutUrl = accountInfo.Url,
 			};
+
+			moveInfo.SetDate(current.Now);
 
 			var newDetail = new DetailInfo
 			{
@@ -1004,13 +1006,14 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			var move = new MoveInfo
 			{
-				Date = current.Now,
 				Description = "Move for account test",
 				Nature = MoveNature.Out,
 				Value = 10,
 				OutUrl = accountInfo.Url,
 				CategoryName = categoryInfo?.Name,
 			};
+
+			move.SetDate(current.Now);
 
 			service.Money.SaveMove(move);
 
@@ -1022,7 +1025,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			scheduleInfo = new ScheduleInfo
 			{
-				Date = current.Now.AddDays(1),
 				Description = "Schedule for account test",
 				Nature = MoveNature.Out,
 				Frequency = ScheduleFrequency.Daily,
@@ -1031,6 +1033,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				OutUrl = accountInfo.Url,
 				CategoryName = categoryInfo?.Name,
 			};
+
+			scheduleInfo.SetDate(current.Now.AddDays(1));
 
 			if (String.IsNullOrEmpty(withDetails))
 			{
@@ -1057,7 +1061,6 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		{
 			scheduleInfo = new ScheduleInfo
 			{
-				Date = current.Now.AddDays(1),
 				Description = "Schedule for account test",
 				Nature = MoveNature.Out,
 				Frequency = ScheduleFrequency.Daily,
@@ -1065,6 +1068,8 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				Times = 1,
 				OutUrl = accountInfo.Url,
 			};
+
+			scheduleInfo.SetDate(current.Now.AddDays(1));
 
 			if (String.IsNullOrEmpty(withDetails))
 			{

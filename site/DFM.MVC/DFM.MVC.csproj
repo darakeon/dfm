@@ -257,13 +257,11 @@
     <Compile Include="Areas\API\Controllers\UsersController.cs" />
     <Compile Include="Areas\API\Json\DateJson.cs" />
     <Compile Include="Areas\API\Helpers\SelectItem.cs" />
-    <Compile Include="Areas\API\Json\DetailJson.cs" />
     <Compile Include="Areas\API\Json\SimpleMonthJson.cs" />
     <Compile Include="Areas\API\Json\SimpleMoveJson.cs" />
     <Compile Include="Areas\API\Models\AccountsListModel.cs" />
     <Compile Include="Areas\API\Models\BaseApiModel.cs" />
-    <Compile Include="Areas\API\Models\MovesCreateGetModel.cs" />
-    <Compile Include="Areas\API\Models\MovesCreatePostModel.cs" />
+    <Compile Include="Areas\API\Models\MovesCreateModel.cs" />
     <Compile Include="Areas\API\Models\MovesExtractModel.cs" />
     <Compile Include="Areas\API\Models\MovesSummaryModel.cs" />
     <Compile Include="Areas\API\Models\UserConfigModel.cs" />

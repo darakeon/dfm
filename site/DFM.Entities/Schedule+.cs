@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 
@@ -38,12 +39,9 @@ namespace DFM.Entities
 
 		public virtual Move GetNewMove()
 		{
-			var dateTime = LastDateRun();
-
 			var move =
 				new Move
 				{
-					Date = dateTime,
 					Description = Description,
 					Nature = Nature,
 					Schedule = this,
@@ -52,6 +50,9 @@ namespace DFM.Entities
 					Out = Out,
 					Category = Category,
 				};
+
+			var dateTime = LastDateRun();
+			move.SetDate(dateTime);
 
 			foreach (var detail in DetailList)
 			{
@@ -63,17 +64,18 @@ namespace DFM.Entities
 			return move;
 		}
 
-
 		public virtual DateTime LastDateRun()
 		{
+			var date = this.GetDate();
+
 			switch (Frequency)
 			{
-				case ScheduleFrequency.Monthly:
-					return Date.AddMonths(LastRun);
-				case ScheduleFrequency.Yearly:
-					return Date.AddYears(LastRun);
 				case ScheduleFrequency.Daily:
-					return Date.AddDays(LastRun);
+					return date.AddDays(LastRun);
+				case ScheduleFrequency.Monthly:
+					return date.AddMonths(LastRun);
+				case ScheduleFrequency.Yearly:
+					return date.AddYears(LastRun);
 				default:
 					throw new ArgumentException("schedule");
 			}

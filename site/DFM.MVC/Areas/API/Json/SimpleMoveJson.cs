@@ -9,7 +9,11 @@ namespace DFM.MVC.Areas.API.Json
 		public Int64 ID { get; set; }
 
 		public String Description { get; set; }
-		public DateJson Date { get; set; }
+
+		public Int16 Year { get; set; }
+		public Int16 Month { get; set; }
+		public Int16 Day { get; set; }
+
 		public MoveNature Nature { get; set; }
 
 		public Boolean Checked { get; set; }
@@ -21,7 +25,10 @@ namespace DFM.MVC.Areas.API.Json
 			ID = move.ID;
 
 			Description = move.Description;
-			Date = new DateJson(move.Date);
+
+			Year = move.Year;
+			Month = move.Month;
+			Day = move.Day;
 
 			var accountOut = move.Nature != MoveNature.In ? move.OutUrl : null;
 

@@ -12,8 +12,14 @@ class Move {
 	@SerializedName("Description")
 	var description: String? = null
 
-	@SerializedName("Date")
-	var date: Date = Date()
+	@SerializedName("Year")
+	var year: Int = 0
+
+	@SerializedName("Month")
+	var month: Int = 0
+
+	@SerializedName("Day")
+	var day: Int = 0
 
 	@SerializedName("Nature")
 	var natureValue: Int? = null
@@ -24,13 +30,13 @@ class Move {
 	@SerializedName("WarnCategory")
 	var warnCategory: Boolean = false
 
-	@SerializedName("Category")
+	@SerializedName("CategoryName")
 	var category: String? = null
 
-	@SerializedName("AccountOutUrl")
+	@SerializedName("OutUrl")
 	var accountOut: String? = null
 
-	@SerializedName("AccountInUrl")
+	@SerializedName("InUrl")
 	var accountIn: String? = null
 
 	@SerializedName("Value")
@@ -40,6 +46,14 @@ class Move {
 	var details: MutableList<Detail> = ArrayList()
 
 	var isDetailed: Boolean = false
+
+	var date: Date
+		get() = Date(year, month, day)
+		set(value) {
+			year = value.year
+			month = value.month
+			day = value.day
+		}
 
 	fun add(description: String, amount: Int, value: Double) {
 		val detail = Detail()

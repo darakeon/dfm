@@ -18,23 +18,6 @@ namespace DFM.Entities
 		public virtual MoveNature Nature { get; set; }
 		public virtual Int32? ValueCents { get; set; }
 
-		public virtual DateTime Date
-		{
-			get
-			{
-				if (Day == 0)
-					return default;
-
-				return new DateTime(Year, Month, Day);
-			}
-			set
-			{
-				Day = (Int16)value.Day;
-				Month = (Int16)value.Month;
-				Year = (Int16)value.Year;
-			}
-		}
-
 		public virtual Int16 Day { get; set; }
 		public virtual Int16 Month { get; set; }
 		public virtual Int16 Year { get; set; }

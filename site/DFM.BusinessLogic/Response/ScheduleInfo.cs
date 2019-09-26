@@ -23,7 +23,10 @@ namespace DFM.BusinessLogic.Response
 		public String InName { get; private set; }
 
 		public String Description { get; set; }
-		public DateTime Date { get; set; }
+
+		public Int16 Year { get; set; }
+		public Int16 Month { get; set; }
+		public Int16 Day { get; set; }
 
 		public MoveNature Nature { get; set; }
 
@@ -39,7 +42,9 @@ namespace DFM.BusinessLogic.Response
 		internal void Update(Schedule schedule)
 		{
 			schedule.Description = Description;
-			schedule.Date = Date;
+			schedule.Year = Year;
+			schedule.Month = Month;
+			schedule.Day = Day;
 
 			schedule.Nature = Nature;
 
@@ -66,7 +71,9 @@ namespace DFM.BusinessLogic.Response
 				InName = schedule.In?.Name,
 
 				Description = schedule.Description,
-				Date = schedule.Date,
+				Year = schedule.Year,
+				Month = schedule.Month,
+				Day = schedule.Day,
 
 				Nature = schedule.Nature,
 

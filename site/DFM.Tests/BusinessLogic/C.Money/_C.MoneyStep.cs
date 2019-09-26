@@ -5,9 +5,11 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
 using DFM.Tests.BusinessLogic.Helpers;
+using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -89,7 +91,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			moveInfo = new MoveInfo { Description = moveData["Description"] };
 
 			if (!String.IsNullOrEmpty(moveData["Date"]))
-				moveInfo.Date = DateTime.Parse(moveData["Date"]);
+				moveInfo.SetDate(DateTime.Parse(moveData["Date"]));
 
 			if (!String.IsNullOrEmpty(moveData["Nature"]))
 				moveInfo.Nature = EnumX.Parse<MoveNature>(moveData["Nature"]);
@@ -208,14 +210,11 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 		#region UpdateMove
 		[Given(@"I change the move date in (\-?\d+\.?\d*) (day|month|year)s?")]
-		public void GivenIChangeTheMoveDateIn1Day(Int32 count, String frequency)
+		public void GivenIChangeTheMoveDateIn(Int32 count, String frequency)
 		{
-			switch (frequency)
-			{
-				case "day": moveInfo.Date = moveInfo.Date.AddDays(count); break;
-				case "month": moveInfo.Date = moveInfo.Date.AddMonths(count); break;
-				case "year": moveInfo.Date = moveInfo.Date.AddYears(count); break;
-			}
+			moveInfo.SetDate(
+				moveInfo.GetDate().AddByFrequency(frequency, count)
+			);
 
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(mainCategoryName, user);
@@ -237,12 +236,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			newYearCategoryAccountOutTotal =
 				summaryRepository.Get(
-					account, category, move.Date.Year
+					account, category, move.Year
 				)?.Out ?? 0;
 
 			newMonthCategoryAccountOutTotal =
 				summaryRepository.Get(
-					account, category, move.Date.ToMonthYear()
+					account, category, move.ToMonthYear()
 				)?.Out ?? 0;
 		}
 
@@ -252,12 +251,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 
 			newYearCategoryAccountInTotal =
 				summaryRepository.Get(
-					account, category, move.Date.Year
+					account, category, move.Year
 				)?.In ?? 0;
 
 			newMonthCategoryAccountInTotal =
 				summaryRepository.Get(
-					account, category, move.Date.ToMonthYear()
+					account, category, move.ToMonthYear()
 				)?.In ?? 0;
 		}
 
@@ -410,7 +409,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			var account = getOrCreateAccount(accountOut.Name);
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
-			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
+			var summary = summaryRepository.Get(account, category, moveInfo.Year);
 
 			Assert.AreEqual(newYearCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -432,7 +431,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			var account = getOrCreateAccount(accountOut.Name);
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
-			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
+			var summary = summaryRepository.Get(account, category, moveInfo.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountOutTotal + value, summary.Out);
 		}
@@ -474,7 +473,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			var account = getOrCreateAccount(accountIn.Name);
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
-			var summary = summaryRepository.Get(account, category, moveInfo.Date.Year);
+			var summary = summaryRepository.Get(account, category, moveInfo.Year);
 
 			Assert.AreEqual(newYearCategoryAccountInTotal + value, summary.In);
 		}
@@ -496,7 +495,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			var account = getOrCreateAccount(accountIn.Name);
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(categoryInfo?.Name, user);
-			var summary = summaryRepository.Get(account, category, moveInfo.Date.ToMonthYear());
+			var summary = summaryRepository.Get(account, category, moveInfo.ToMonthYear());
 
 			Assert.AreEqual(newMonthCategoryAccountInTotal + value, summary.In);
 		}
@@ -772,9 +771,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			moveInfo = new MoveInfo
 			{
 				Description = "Description",
-				Date = oldDate,
 				Nature = nature,
 			};
+
+			moveInfo.SetDate(oldDate);
 		}
 
 		private void setMoveExternals(MoveNature nature)
@@ -804,19 +804,19 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				accountOutTotal = summaryRepository.GetTotal(accountOut);
 				yearAccountOutTotal =
 					summaryRepository.Get(
-						accountOut, moveInfo.Date.Year
+						accountOut, moveInfo.Year
 					).Sum(s => s.Out);
 				monthAccountOutTotal =
 					summaryRepository.Get(
-						accountOut, moveInfo.Date.ToMonthYear()
+						accountOut, moveInfo.ToMonthYear()
 					).Sum(s => s.Out);
 				yearCategoryAccountOutTotal =
 					summaryRepository.Get(
-						accountOut, category, moveInfo.Date.Year
+						accountOut, category, moveInfo.Year
 					).Out;
 				monthCategoryAccountOutTotal =
 					summaryRepository.Get(
-						accountOut, category, moveInfo.Date.ToMonthYear()
+						accountOut, category, moveInfo.ToMonthYear()
 					).Out;
 			}
 
@@ -827,19 +827,19 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				accountInTotal = summaryRepository.GetTotal(accountIn);
 				yearAccountInTotal =
 					summaryRepository.Get(
-						accountIn, moveInfo.Date.Year
+						accountIn, moveInfo.Year
 					).Sum(s => s.In);
 				monthAccountInTotal =
 					summaryRepository.Get(
-						accountIn, moveInfo.Date.ToMonthYear()
+						accountIn, moveInfo.ToMonthYear()
 					).Sum(s => s.In);
 				yearCategoryAccountInTotal =
 					summaryRepository.Get(
-						accountIn, category, moveInfo.Date.Year
+						accountIn, category, moveInfo.Year
 					).In;
 				monthCategoryAccountInTotal =
 					summaryRepository.Get(
-						accountIn, category, moveInfo.Date.ToMonthYear()
+						accountIn, category, moveInfo.ToMonthYear()
 					).In;
 			}
 		}
