@@ -198,7 +198,9 @@ namespace DFM.BusinessLogic.Repositories
 				.SimpleFilter(
 					m => m.Year == dateYear
 					     && m.Month == dateMonth
-				).Result;
+				)
+				.OrderBy(m => m.Day)
+				.Result;
 		}
 
 		private IQuery<Move, Int64> byAccount(Account account)
