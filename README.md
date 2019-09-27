@@ -39,11 +39,15 @@ itself. Well, we are always our most demanding client.
 
 ### Technologies
 
-- [Kotlin - Android](https://kotlinlang.org/)
-- [SpecFlow - BDD](http://specflow.org/)
-- [NHibernate - ORM](http://nhibernate.info/)
+- [C# .NET](https://docs.microsoft.com/en-us/dotnet/csharp)
+- [SpecFlow - BDD](http://specflow.org)
+- [NHibernate - ORM](http://nhibernate.info)
 - [DK](https://github.com/darakeon/dk-lib)
-- [Rust (with Cargo)](https://www.rust-lang.org/)
+- [Kotlin - Android](https://kotlinlang.org)
+- [jQUery](https://jquery.com)
+- [Bootstrap](https://getbootstrap.com)
+- [Bootstrap Themes](http://bootswatch.com)
+- [Rust (with Cargo)](https://www.rust-lang.org)
 
 ### Tools
 
