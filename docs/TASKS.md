@@ -121,7 +121,7 @@ Legend:
 
 ## <a name="dev"></a>4.1.3.7 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
-- [ ] Make selenium automated tests - web (maybe puppeteer)
+- [ ] `190926>......` Make puppeteer (browser) automated tests
 
 ## <a name="prod"></a>4.1.3.6 :ant: <sup>`9`</sup>
 - [x] `190924>190924` Fix account name repetition on area title
