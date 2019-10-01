@@ -1,4 +1,3 @@
-User > SignUp
 User > LogOn (not verified)
 Token > UserVerification
 User > ForgotPassword
