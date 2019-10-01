@@ -31,7 +31,7 @@ namespace DFM.MVC
 		{
 			Directory.SetCurrentDirectory(Server.MapPath("~"));
 
-			if (isLocal)
+			if (Cfg.IsLocal)
 				IP.SaveCurrent();
 
 			AreaRegistration.RegisterAllAreas();
@@ -51,7 +51,7 @@ namespace DFM.MVC
 		{
 			if (isAsset) return;
 
-			if (isLocal)
+			if (Cfg.IsLocal)
 				Translator.Initialize();
 
 			SessionManager.Init(BrowserId.Get);
@@ -106,7 +106,7 @@ namespace DFM.MVC
 		protected void Application_Error()
 		// ReSharper restore InconsistentNaming
 		{
-			if (!isLocal)
+			if (!Cfg.IsLocal)
 				ErrorManager.SendEmail();
 
 			closeSession();
@@ -158,8 +158,6 @@ namespace DFM.MVC
 			|| path.StartsWith("/favicon.ico")
 			|| path.StartsWith("/robots.txt")
 			|| path.StartsWith("/.well-known/acme-challenge");
-
-		private static Boolean isLocal => Cfg.IsLocal;
 
 		private static readonly String elmahTestAction = getName(oc => oc.TestElmahLog);
 		private static Boolean isElmah => path.Contains("elmah.axd")

@@ -24,6 +24,7 @@ namespace DFM.Generic
 		public static String Version => typeof(Cfg).Assembly.GetName().Version.ToString();
 
 		public static Boolean IsLocal => appSettings["IsLocal"] == "1";
+		public static Boolean IsLocalTest => appSettings["IsLocalTest"] == "1";
 
 		public static Int32 PasswordErrorLimit => Int32.Parse(appSettings["PasswordErrorLimit"]);
 
