@@ -4,9 +4,9 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Truncate;
 using DFM.Entities;
 using DFM.Language;
-using DFM.Tests.BusinessLogic.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -91,7 +91,7 @@ namespace DFM.Tests.BusinessLogic
 			setLogName();
 			log("BeforeTestRun");
 
-			DBHelper.Cleanup();
+			Cleaner.Cleanup();
 
 			SessionFactoryManager.Initialize<UserMap, User>();
 			SessionManager.Init(getTicketKey);
