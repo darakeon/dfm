@@ -372,7 +372,6 @@
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\Amazon 2019.pubxml" />
-    <None Include="Properties\PublishProfiles\Amazon.pubxml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
