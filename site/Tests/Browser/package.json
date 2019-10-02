@@ -3,7 +3,9 @@
 	"version": "401.3.6",
 	"description": "DfM Site Tests",
 	"main": "index.js",
-	"dependencies": {},
+	"dependencies": {
+		"mysql": "^2.17.1"
+	},
 	"devDependencies": {
 		"jest": "^24.9.0",
 		"jest-puppeteer": "^4.3.0",
