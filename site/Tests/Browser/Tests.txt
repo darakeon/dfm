@@ -1,10 +1,8 @@
-User > LogOn (not verified)
 Token > UserVerification
 User > ForgotPassword
 Token > Index
 Token > PasswordReset
 Token > Disable
-User > LogOn (verified)
 User > LogOff
 User > EndWizard
 
