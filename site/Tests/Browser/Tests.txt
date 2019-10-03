@@ -1,4 +1,3 @@
-Token > PasswordReset
 Token > Disable
 User > LogOff
 User > EndWizard

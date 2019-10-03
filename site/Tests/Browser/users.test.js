@@ -122,4 +122,45 @@ describe('Users', () => {
 		const message = await page.$eval(alertBox, n => n.innerHTML)
 		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
 	})
+
+	test('Token Password Reset - by url', async () => {
+		const email = 'token_reset_password@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1)
+		const token = await db.createToken(email, 1)
+
+		await page.goto(`http://localhost:2709/Tokens/PasswordReset/${token}`)
+		await page.waitForSelector('#body form')
+
+		await page.type('#Password', db.password.plain)
+		await page.type('#RetypePassword', db.password.plain)
+		await page.click('#body form button[type="submit"]')
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Senha redefinida com sucesso.')
+	})
+
+	test('Token Password Reset - by form', async () => {
+		const email = 'token_reset_password@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1)
+		const token = await db.createToken(email, 1)
+
+		await page.goto('http://localhost:2709/Tokens')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Token', token)
+		await page.select('#SecurityAction', "PasswordReset")
+		await page.click('#body form button[type="submit"]')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Password', db.password.plain)
+		await page.type('#RetypePassword', db.password.plain)
+		await page.click('#body form button[type="submit"]')
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Senha redefinida com sucesso.')
+	})
 })
