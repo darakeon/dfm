@@ -1,6 +1,4 @@
-Token > UserVerification
 User > ForgotPassword
-Token > Index
 Token > PasswordReset
 Token > Disable
 User > LogOff
