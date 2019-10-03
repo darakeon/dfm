@@ -1,4 +1,3 @@
-User > ForgotPassword
 Token > PasswordReset
 Token > Disable
 User > LogOff
