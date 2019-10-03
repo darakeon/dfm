@@ -91,4 +91,35 @@ describe('Users', () => {
 		const message = await page.$eval(alertBox, n => n.innerHTML)
 		await expect(message).toContain('Usuário verificado com sucesso.')
 	})
+
+	test('Forgot Password', async () => {
+		const email = 'forgot_password@dontflymoney.com'
+		await db.createUserIfNotExists(email)
+
+		await page.goto('http://localhost:2709/Users/ForgotPassword')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Email', email)
+		await page.click('#body form button[type="submit"]')
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
+	})
+
+	test('Forgot Password - not existente', async () => {
+		const email = 'not_existente@dontflymoney.com'
+
+		await page.goto('http://localhost:2709/Users/ForgotPassword')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Email', email)
+		await page.click('#body form button[type="submit"]')
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
+	})
 })
