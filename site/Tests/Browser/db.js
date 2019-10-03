@@ -1,5 +1,6 @@
 const mysql = require('mysql')
 const util = require('util')
+const uuid = require('uuid/v4')
 
 const password = {
 	plain: 'password',
@@ -27,7 +28,7 @@ async function createUserIfNotExists(email, active) {
 
 async function getUser(email) {
 	return execute(
-		`select * from user where email='${email}'`
+		`select id from user where email='${email}'`
 	)
 }
 
@@ -94,6 +95,21 @@ async function cleanupTickets() {
 	)
 }
 
+async function createToken(email, action) {
+	const users = await getUser(email)
+
+	const guid = uuid().replace(/\-/g, '').toUpperCase()
+
+	await execute(
+		`insert into security`
+			+ ` (token, active, expire, action, sent, user_id)`
+		+ ` values`
+			+ ` ('${guid}', 1, date_add(now(), interval 1 hour), ${action}, 0, ${users[0].id})`
+	)
+
+	return guid
+}
+
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
@@ -140,4 +156,5 @@ module.exports = {
 	cleanup,
 	createUserIfNotExists,
 	cleanupTickets,
+	createToken,
 }

@@ -61,4 +61,34 @@ describe('Users', () => {
 		const message = await page.$eval(alertBox, n => n.innerHTML)
 		await expect(message).toContain('Seu usuário não foi ativado.')
 	})
+
+	test('Token User Activate - by url', async () => {
+		const email = 'token_activate_user@dontflymoney.com'
+		await db.createUserIfNotExists(email)
+		const token = await db.createToken(email, 0)
+
+		await page.goto(`http://localhost:2709/Tokens/UserVerification/${token}`)
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Usuário verificado com sucesso.')
+	})
+
+	test('Token User Activate - by form', async () => {
+		const email = 'token_activate_user@dontflymoney.com'
+		await db.createUserIfNotExists(email)
+		const token = await db.createToken(email, 0)
+
+		await page.goto('http://localhost:2709/Tokens')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Token', token)
+		await page.click('#body form button[type="submit"]')
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Usuário verificado com sucesso.')
+	})
 })
