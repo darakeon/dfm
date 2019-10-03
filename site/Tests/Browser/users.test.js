@@ -163,4 +163,17 @@ describe('Users', () => {
 		const message = await page.$eval(alertBox, n => n.innerHTML)
 		await expect(message).toContain('Senha redefinida com sucesso.')
 	})
+
+	test('Token Disable', async () => {
+		const email = 'token_disable@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1)
+		const token = await db.createToken(email, 1)
+
+		await page.goto(`http://localhost:2709/Tokens/Disable/${token}`)
+
+		const alertBox = '.alert'
+		await page.waitForSelector(alertBox)
+		const message = await page.$eval(alertBox, n => n.innerHTML)
+		await expect(message).toContain('Token desativado com sucesso.')
+	})
 })
