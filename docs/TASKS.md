@@ -114,9 +114,10 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.8 :ant: <sup>`2`</sup>
+## 4.1.3.8 :ant: <sup>`3`</sup>
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
+- [ ] Fix gender on system resources
 
 ## <a name="dev"></a>4.1.3.7 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
