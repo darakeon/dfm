@@ -11,16 +11,17 @@ async function cleanup() {
 	await execute('call cleanup')
 }
 
-async function createUserIfNotExists(email, active) {
+async function createUserIfNotExists(email, active, wizard) {
 	const users = await getUser(email)
 	active = !!active
+	wizard = !!wizard
 
 	const exist = users.length > 0
 
 	if (exist) {
-		await changeUserState(email, active)
+		await changeUserState(email, active, wizard)
 	} else {
-		await createUser(email, active)
+		await createUser(email, active, wizard)
 	}
 
 	await acceptLastContract(email)
@@ -32,18 +33,23 @@ async function getUser(email) {
 	)
 }
 
-async function changeUserState(email, active) {
+async function changeUserState(email, active, wizard) {
 	await execute(
-		`update user set active=${active} where email='${email}'`
+		`update user u` +
+			` inner join config c` +
+				` on u.config_id = c.id` +
+			` set u.active=${active},` +
+				` c.wizard=${wizard}` +
+		` where u.email='${email}'`
 	)
 }
 
-async function createUser(email, active) {
+async function createUser(email, active, wizard) {
 	await execute(
 		`insert into config`
 			+ ` (language, timezone, sendMoveEmail, useCategories, moveCheck, theme, wizard)`
 		+ ` values`
-			+ ` ('pt-BR', 'E. South America Standard Time', 0, 0, 0, 1, 0)`
+			+ ` ('pt-BR', 'E. South America Standard Time', 0, 0, 0, 1, ${wizard})`
 	)
 
 	const config = await execute(

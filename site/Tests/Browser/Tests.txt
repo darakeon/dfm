@@ -1,5 +1,3 @@
-User > EndWizard
-
 Account > Index
 Account > Create
 Account > Edit
