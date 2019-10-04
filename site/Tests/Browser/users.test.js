@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 const fs = require('fs')
 const db = require('./db')
+const puppy = require('./puppy')
 
 describe('Users', () => {
 	beforeAll(async () => {
@@ -12,7 +13,7 @@ describe('Users', () => {
 	})
 
 	test('SignUp', async () => {
-		await page.goto('http://localhost:2709/Users/SignUp')
+		await puppy.call('Users/SignUp')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', 'signup@dontflymoney.com')
@@ -21,10 +22,7 @@ describe('Users', () => {
 		await page.click('#Accept')
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Cadastro efetuado com sucesso.')
 	})
 
@@ -32,7 +30,7 @@ describe('Users', () => {
 		const email = 'logon_success@dontflymoney.com'
 		await db.createUserIfNotExists(email, 1)
 
-		await page.goto('http://localhost:2709/Users/Logon')
+		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
@@ -47,7 +45,7 @@ describe('Users', () => {
 		const email = 'logon_not_active@dontflymoney.com'
 		await db.createUserIfNotExists(email)
 
-		await page.goto('http://localhost:2709/Users/Logon')
+		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
@@ -55,10 +53,7 @@ describe('Users', () => {
 		await page.click('#RememberMe')
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Seu usuário não foi ativado.')
 	})
 
@@ -67,11 +62,9 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email)
 		const token = await db.createToken(email, 0)
 
-		await page.goto(`http://localhost:2709/Tokens/UserVerification/${token}`)
+		await puppy.call(`Tokens/UserVerification/${token}`)
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Usuário verificado com sucesso.')
 	})
 
@@ -80,15 +73,13 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email)
 		const token = await db.createToken(email, 0)
 
-		await page.goto('http://localhost:2709/Tokens')
+		await puppy.call('Tokens')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Token', token)
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Usuário verificado com sucesso.')
 	})
 
@@ -96,30 +87,26 @@ describe('Users', () => {
 		const email = 'forgot_password@dontflymoney.com'
 		await db.createUserIfNotExists(email)
 
-		await page.goto('http://localhost:2709/Users/ForgotPassword')
+		await puppy.call('Users/ForgotPassword')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
 	})
 
 	test('Forgot Password - not existente', async () => {
 		const email = 'not_existente@dontflymoney.com'
 
-		await page.goto('http://localhost:2709/Users/ForgotPassword')
+		await puppy.call('Users/ForgotPassword')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
 	})
 
@@ -128,16 +115,14 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, 1)
 		const token = await db.createToken(email, 1)
 
-		await page.goto(`http://localhost:2709/Tokens/PasswordReset/${token}`)
+		await puppy.call(`Tokens/PasswordReset/${token}`)
 		await page.waitForSelector('#body form')
 
 		await page.type('#Password', db.password.plain)
 		await page.type('#RetypePassword', db.password.plain)
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Senha redefinida com sucesso.')
 	})
 
@@ -146,7 +131,7 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, 1)
 		const token = await db.createToken(email, 1)
 
-		await page.goto('http://localhost:2709/Tokens')
+		await puppy.call('Tokens')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Token', token)
@@ -158,9 +143,7 @@ describe('Users', () => {
 		await page.type('#RetypePassword', db.password.plain)
 		await page.click('#body form button[type="submit"]')
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Senha redefinida com sucesso.')
 	})
 
@@ -169,11 +152,9 @@ describe('Users', () => {
 		await db.createUserIfNotExists(email, 1)
 		const token = await db.createToken(email, 1)
 
-		await page.goto(`http://localhost:2709/Tokens/Disable/${token}`)
+		await puppy.call(`Tokens/Disable/${token}`)
 
-		const alertBox = '.alert'
-		await page.waitForSelector(alertBox)
-		const message = await page.$eval(alertBox, n => n.innerHTML)
+		const message = await puppy.content('.alert')
 		await expect(message).toContain('Token desativado com sucesso.')
 	})
 
@@ -181,7 +162,7 @@ describe('Users', () => {
 		const email = 'logoff@dontflymoney.com'
 		await db.createUserIfNotExists(email, 1)
 
-		await page.goto('http://localhost:2709/Users/Logon')
+		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
@@ -192,8 +173,7 @@ describe('Users', () => {
 		await page.waitForSelector('.nav')
 		await page.click('.nav form button[type="submit"]')
 
-		await page.waitForSelector('.nav')
-		const nav = await page.$eval('.nav', n => n.innerHTML)
+		const nav = await puppy.content('.nav')
 		await expect(nav).not.toContain('form')
 		await expect(nav).toContain('Cadastrar-se')
 	})
@@ -202,7 +182,7 @@ describe('Users', () => {
 		const email = 'end_wizard@dontflymoney.com'
 		await db.createUserIfNotExists(email, 1, 1)
 
-		await page.goto('http://localhost:2709/Users/Logon')
+		await puppy.call('Users/Logon')
 		await page.waitForSelector('#body form')
 
 		await page.type('#Email', email)
@@ -213,8 +193,7 @@ describe('Users', () => {
 		await page.waitForSelector('.panel')
 		await page.click('.panel form button[type="submit"]')
 
-		await page.waitForSelector('.panel-body')
-		const panelBody = await page.$eval('.panel-body', n => n.innerHTML)
+		const panelBody = await puppy.content('.panel-body')
 		await expect(panelBody).toContain('Agradecemos por ler as mensagens do Tutorial.')
 	})
 })
