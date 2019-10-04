@@ -197,4 +197,24 @@ describe('Users', () => {
 		await expect(nav).not.toContain('form')
 		await expect(nav).toContain('Cadastrar-se')
 	})
+
+	test('End Wizard', async () => {
+		const email = 'end_wizard@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1, 1)
+
+		await page.goto('http://localhost:2709/Users/Logon')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Email', email)
+		await page.type('#Password', db.password.plain)
+		await page.click('#RememberMe')
+		await page.click('#body form button[type="submit"]')
+
+		await page.waitForSelector('.panel')
+		await page.click('.panel form button[type="submit"]')
+
+		await page.waitForSelector('.panel-body')
+		const panelBody = await page.$eval('.panel-body', n => n.innerHTML)
+		await expect(panelBody).toContain('Agradecemos por ler as mensagens do Tutorial.')
+	})
 })
