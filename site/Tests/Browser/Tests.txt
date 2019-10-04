@@ -1,4 +1,3 @@
-User > LogOff
 User > EndWizard
 
 Account > Index

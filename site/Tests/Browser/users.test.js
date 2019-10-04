@@ -176,4 +176,25 @@ describe('Users', () => {
 		const message = await page.$eval(alertBox, n => n.innerHTML)
 		await expect(message).toContain('Token desativado com sucesso.')
 	})
+
+	test('LogOff', async () => {
+		const email = 'logoff@dontflymoney.com'
+		await db.createUserIfNotExists(email, 1)
+
+		await page.goto('http://localhost:2709/Users/Logon')
+		await page.waitForSelector('#body form')
+
+		await page.type('#Email', email)
+		await page.type('#Password', db.password.plain)
+		await page.click('#RememberMe')
+		await page.click('#body form button[type="submit"]')
+
+		await page.waitForSelector('.nav')
+		await page.click('.nav form button[type="submit"]')
+
+		await page.waitForSelector('.nav')
+		const nav = await page.$eval('.nav', n => n.innerHTML)
+		await expect(nav).not.toContain('form')
+		await expect(nav).toContain('Cadastrar-se')
+	})
 })
