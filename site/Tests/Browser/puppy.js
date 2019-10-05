@@ -1,3 +1,7 @@
+const { setDefaultOptions } = require('expect-puppeteer')
+
+setDefaultOptions({ timeout: 10000 })
+
 async function call(path) {
 	const result = await page.goto(url(path))
 	
@@ -19,7 +23,14 @@ async function content(selector) {
 	return await page.$eval(selector, n => n.innerHTML)
 }
 
+async function clear(selector) {
+	await page.evaluate(selector => {
+		document.querySelector(selector).value = "";
+	}, selector);
+}
+
 module.exports = {
 	call,
 	content,
+	clear,
 }

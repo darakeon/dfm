@@ -17,14 +17,18 @@ async function createUserIfNotExists(email, active, wizard) {
 	wizard = !!wizard
 
 	const exist = users.length > 0
+	let user = {}
 
 	if (exist) {
 		await changeUserState(email, active, wizard)
+		user = { id: users[0].id }
 	} else {
-		await createUser(email, active, wizard)
+		user = await createUser(email, active, wizard)
 	}
 
 	await acceptLastContract(email)
+	
+	return user
 }
 
 async function getUser(email) {
@@ -56,12 +60,14 @@ async function createUser(email, active, wizard) {
 		`select id from config order by id desc limit 1`
 	)
 
-	await execute(
+	const result = await execute(
 		`insert into user`
 			+ ` (password, email, active, wrongLogin, config_id)`
 		+ ` values`
 			+ `('${password.encrypted}', '${email}', ${active}, 0, ${config[0].id})`
 	)
+
+	return { id: result.insertId }
 }
 
 async function acceptLastContract(email) {
@@ -116,6 +122,35 @@ async function createToken(email, action) {
 	return guid
 }
 
+async function createAccountIfNotExists(name, user) {
+	const url = name.toLowerCase().replace(' ', '_')
+	
+	const accounts = await getAccount(url)
+
+	const exist = accounts.length > 0
+
+	if (!exist) {
+		await createAccount(name, url, user)
+	}
+	
+	return url
+}
+
+async function getAccount(url) {
+	return execute(
+		`select id from account where url='${url}'`
+	)
+}
+
+async function createAccount(name, url, user) {
+	return execute(
+		`insert into account `
+			+ `(name, url, beginDate, user_id)`
+		+ ` values`
+			+ ` ('${name}', '${url}', now(), ${user.id})`
+	)
+}
+
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
@@ -163,4 +198,5 @@ module.exports = {
 	createUserIfNotExists,
 	cleanupTickets,
 	createToken,
+	createAccountIfNotExists,
 }
