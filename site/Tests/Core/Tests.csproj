@@ -51,6 +51,7 @@
     <Compile Include="BusinessLogic\E.Report\_E.ReportStep.cs" />
     <Compile Include="BusinessLogic\Helpers\ConfigHelper.cs" />
     <Compile Include="BusinessLogic\MainStep.cs" />
+    <Compile Include="Helpers\Cleaner.cs" />
     <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="Email\EmailStep.cs" />
     <Compile Include="Helpers\DateExtension.cs" />
