@@ -9,29 +9,8 @@ describe('Accounts', () => {
 
 	beforeAll(async () => {
 		await db.cleanup()
-
-		const email = 'accounts@dontflymoney.com'
-		user = await db.createUserIfNotExists(email, 1)
-
-		const cookies = await page.cookies()
-		
-		if (cookies.length == 0) await logon(email)
-			
-		const dfmCookie = cookies
-			.filter(c => c.name == 'DFM')[0]
-
-		if (!dfmCookie || !dfmCookie.value) await logon(email)
+		user = await puppy.logon('accounts@dontflymoney.com')
 	}, 30000)
-	
-	async function logon(email) {
-		await puppy.call('Users/Logon')
-		await page.waitForSelector('#body form')
-
-		await page.type('#Email', email)
-		await page.type('#Password', db.password.plain)
-		await page.click('#RememberMe')
-		await page.click('#body form button[type="submit"]')
-	}
 
 	test('Empty List', async () => {
 		await puppy.call('Accounts')
