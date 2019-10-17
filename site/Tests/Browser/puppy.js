@@ -1,3 +1,5 @@
+const db = require('./db')
+
 const { setDefaultOptions } = require('expect-puppeteer')
 
 setDefaultOptions({ timeout: 10000 })
@@ -29,8 +31,34 @@ async function clear(selector) {
 	}, selector);
 }
 
+async function logon(email) {
+	user = await db.createUserIfNotExists(email, 1)
+
+	const cookies = await page.cookies()
+
+	if (cookies.length == 0) await callLogonPage(email)
+
+	const dfmCookie = cookies
+		.filter(c => c.name == 'DFM')[0]
+
+	if (!dfmCookie || !dfmCookie.value) await callLogonPage(email)
+
+	return user
+}
+
+async function callLogonPage(email) {
+	await call('Users/Logon')
+	await page.waitForSelector('#body form')
+
+	await page.type('#Email', email)
+	await page.type('#Password', db.password.plain)
+	await page.click('#RememberMe')
+	await page.click('#body form button[type="submit"]')
+}
+
 module.exports = {
 	call,
 	content,
 	clear,
+	logon,
 }
