@@ -40,9 +40,8 @@ Legend:
 - [ ] year report by category [(chartjs)](http://www.chartjs.org/)
 - [ ] month report by category [(chartjs)](http://www.chartjs.org/)
 
-## 5.4.1.0 :sheep: <sup>`3`</sup>
+## 5.4.1.0 :sheep: <sup>`2`</sup>
 - [ ] Fix error handling to have all at header
-- [ ] Put name (nickname?) on sign up
 - [ ] Remove account name oneness (keep for Url)
 
 ## 5.4.0.0 :whale: <sup>`5`</sup>
@@ -73,38 +72,43 @@ Legend:
 - [ ] Add issue template to repo [#43](https://github.com/darakeon/dfm/issues/43)
 - [ ] Store data locally, to use when there is no internet (Mobile)
 
-## 4.5.0.0 :whale: <sup>`2`</sup>
+## 4.6.0.0 :whale: <sup>`2`</sup>
 - [ ] Add Negative / Positive / Sum to Year summary
 - [ ] Add Balance Negative / Positive / Sum to Year summary
 
-## 4.4.0.0 :whale: <sup>`5`</sup>
+## 4.5.0.0 :whale: <sup>`5`</sup>
 - [ ] Add Template to Mobile
 - [ ] Create Template (Move)
 - [ ] Enable Copy Move (web+mobile)
 - [ ] Search by category
 - [ ] Search by move
 
-## 4.3.1.0 :sheep: <sup>`2`</sup>
+## 4.4.1.0 :sheep: <sup>`2`</sup>
 - [ ] If session drop, call history.go(-2) after re-login
 - [ ] Remove GetOrCreate
 
-## 4.3.0.1 :ant: <sup>`3`</sup>
+## 4.4.0.1 :ant: <sup>`3`</sup>
 - [ ] Make DTO use guid, not db id (delete fakeid)
 - [ ] Handle DFMCoreException at Robot
 - [ ] Change fields to use the ones firefox and chrome customize
 
-## 4.3.0.0 :whale: <sup>`4`</sup>
+## 4.4.0.0 :whale: <sup>`4`</sup>
 - [ ] Put info that you can disabled mobile login if your cellphone is stolen
 - [ ] Adjust tab order at move screen (mobile)
 - [ ] Add account creation (mobile)
 - [ ] Add category creation (mobile)
 
-## 4.2.0.0 :whale: <sup>`5`</sup>
+## 4.3.0.0 :whale: <sup>`5`</sup>
 - [ ] Allow to hide values at start screen (mobile)
 - [ ] Change date to field with datepicker button (mobile)
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
+
+## 4.2.0.0 :ant: <sup>`3`</sup>
+- [ ] Reset Misc on password change
+- [ ] Add Misc reset manually
+- [ ] Add misc to accounts
 
 ## 4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
