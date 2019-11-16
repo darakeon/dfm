@@ -14,6 +14,7 @@
 	@foreach (var detailedTabUi in detailedTabUiList)
 	{
 		<li class="@(Model.IsDetailed == detailedTabUi.IsDetailed ? "active" : "") value-setter"
+			id="Detailed_@detailedTabUi.IsDetailed.ToString()"
 			data-target-id="@Html.IdFor(m => m.IsDetailed)" data-target-value="@detailedTabUi.IsDetailed">
 			<a href="#@detailedTabUi.TargetId" data-toggle="tab">
 				@Translator.Dictionary[detailedTabUi.ResourceKey]

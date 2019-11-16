@@ -125,7 +125,7 @@ async function createToken(email, action) {
 async function createAccountIfNotExists(name, user) {
 	const url = name.toLowerCase().replace(' ', '_')
 	
-	const accounts = await getAccount(url)
+	const accounts = await getAccount(url, user)
 
 	const exist = accounts.length > 0
 
@@ -136,9 +136,9 @@ async function createAccountIfNotExists(name, user) {
 	return url
 }
 
-async function getAccount(url) {
+async function getAccount(url, user) {
 	return execute(
-		`select id from account where url='${url}'`
+		`select id from account where url='${url}' and user_id=${user.id}`
 	)
 }
 
@@ -154,7 +154,7 @@ async function createAccount(name, url, user) {
 async function createCategoryIfNotExists(name, user, disabled) {
 	active = disabled?0:1
 	
-	const categories = await getCategory(name)
+	const categories = await getCategory(name, user)
 
 	const exist = categories.length > 0
 
@@ -163,11 +163,13 @@ async function createCategoryIfNotExists(name, user, disabled) {
 	} else {
 		await updateCategory(name, user, active)
 	}
+	
+	return name
 }
 
-async function getCategory(name) {
+async function getCategory(name, user) {
 	return execute(
-		`select id from category where name='${name}'`
+		`select id from category where name='${name}' and user_id=${user.id}`
 	)
 }
 
@@ -185,6 +187,34 @@ async function updateCategory(name, user, active) {
 		`update category set`
 			+ ` active=${active}`
 		+ ` where name='${name}' and user_id=${user.id}`
+	)
+}
+
+async function createMove(
+	description, date, nature, value,
+	categoryName, accountOutUrl, accountInUrl,
+	user
+) {
+	const category = await getCategory(categoryName, user)
+	const accountOut = await getAccount(accountOutUrl, user)
+	const accountIn = await getAccount(accountInUrl, user)
+	
+	const categoryId = category.length == 0 ? 'null' : category[0].id
+	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].id
+	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].id
+	
+	const dateParts = date.split('/')
+	const year = dateParts[2]
+	const month = dateParts[1]
+	const day = dateParts[0]
+	
+	return execute(
+		`insert into move `
+			+ `(description, year, month, day, nature, valueCents,`
+			+ `category_id, out_id, in_id, checked)`
+		+ ` values`
+			+ ` ('${description}', ${year}, ${month}, ${day}, '${nature}', ${value},`
+			+ ` ${categoryId}, ${accountOutId}, ${accountInId}, 0);`
 	)
 }
 
@@ -237,4 +267,5 @@ module.exports = {
 	createToken,
 	createAccountIfNotExists,
 	createCategoryIfNotExists,
+	createMove,
 }
