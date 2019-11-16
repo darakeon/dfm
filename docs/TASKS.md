@@ -128,17 +128,19 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## 4.1.3.8 :ant: <sup>`3`</sup>
+## 4.1.3.9 :ant: <sup>`3`</sup>
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [ ] Fix gender on system resources
 
-## <a name="dev"></a>4.1.3.7 :ant: <sup>`8`</sup>
+## 4.1.3.8 :ant: <sup>`8`</sup>
 - [ ] Add reference of where themes came from (docs / site settings)
 - [ ] Original bootstrap on NONE theme
 - [ ] Add PRIVACY to contract
 - [ ] Get user timezone from browser
 - [ ] Remove twitter timeline - use API (user data security)
+
+## <a name="dev"></a>4.1.3.7 :ant: <sup>`3`</sup>
 - [x] `191115>191115` Fix MVC considering querystring as controller name on Language
 - [x] `191115>191115` Handle Http HEAD method (return clean)
 - [x] `190926>191116` Make puppeteer (browser) automated tests
