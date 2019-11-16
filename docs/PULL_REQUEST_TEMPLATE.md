@@ -1,6 +1,6 @@
 ## Task list
 
-<!-- [code](https://github.com/darakeon/dfm/blob/master/docs/TASKS.md#{code}-{type}-{issues}) -->
+<!-- [{code}](https://github.com/darakeon/dfm/blob/master/docs/TASKS.md#{code}) -->
 
 ## Issues to close
 
