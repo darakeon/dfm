@@ -38,7 +38,8 @@ namespace DFM.MVC.Helpers.Global
 
 		public String this[EmailStatus exception] => this["Email", exception.ToString()];
 
-		private String this[String specificSection, params String[] phrase] => PlainText.Site[specificSection, Language, phrase];
+		private String this[String specificSection, params String[] phrase] =>
+			PlainText.Site[specificSection, Language, phrase];
 
 
 		public static String GetMonthName(Int32 month)
@@ -57,7 +58,9 @@ namespace DFM.MVC.Helpers.Global
 				if (current?.RouteData == null)
 					return "Ops";
 
-				var controller = current["controller"].ToLower();
+				var controller = HttpUtility.UrlDecode(
+					current["controller"].ToLower()
+				);
 
 				if (controller.StartsWith("?"))
 				{

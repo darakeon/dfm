@@ -139,7 +139,7 @@ Legend:
 - [ ] Add PRIVACY to contract
 - [ ] Get user timezone from browser
 - [ ] Remove twitter timeline - use API (user data security)
-- [ ] Fix MVC considering querystring as controller name on Language
+- [x] `191115>191115` Fix MVC considering querystring as controller name on Language
 - [x] `191115>191115` Handle Http HEAD method (return clean)
 - [ ] `190926>......` Make puppeteer (browser) automated tests
 
