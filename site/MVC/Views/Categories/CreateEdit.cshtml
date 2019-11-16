@@ -18,6 +18,7 @@
 <div class="form-group">
 	@Html.LabelFor(m => m.Category.Name, Translator.Dictionary["Category"], new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaxLen.CategoryName, @class = "form-control" })
+	@Html.ValidationMessageFor(m => m.Category.Name, null, new { @class = "text-danger" })
 	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.CategoryName)</small>
 </div>
 
