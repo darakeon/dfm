@@ -140,7 +140,7 @@ Legend:
 - [ ] Get user timezone from browser
 - [ ] Remove twitter timeline - use API (user data security)
 - [ ] Fix MVC considering querystring as controller name on Language
-- [ ] Handle Http HEAD method (return clean)
+- [x] `191115>191115` Handle Http HEAD method (return clean)
 - [ ] `190926>......` Make puppeteer (browser) automated tests
 
 ## <a name="prod"></a>4.1.3.6 :ant: <sup>`9`</sup>

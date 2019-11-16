@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Keon.Util.Collection;
 using DFM.BusinessLogic.Exceptions;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 using elmah = DFM.Generic.Elmah;
@@ -10,7 +11,7 @@ namespace DFM.MVC.Controllers
 {
 	public class OpsController : Controller
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			var model = new OpsModel();
@@ -18,7 +19,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Code(Int32 id)
 		{
 			if (!id.IsIn(404, 500))
@@ -32,7 +33,7 @@ namespace DFM.MVC.Controllers
 			return View(id.ToString(), model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Error(Error id)
 		{
 			var model = new OpsModel(id);
@@ -40,7 +41,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Help()
 		{
 			var model = new BaseSiteModel();
@@ -48,14 +49,14 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult TestElmahLog()
 		{
 			var errorOnLog = elmah.TryLog(new Exception("Logging right!"));
 			return Content(errorOnLog?.ToString());
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Legend()
 		{
 			var model = new BaseSiteModel();

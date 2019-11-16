@@ -2,19 +2,20 @@
 using System.Web.Mvc;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
 	[Auth]
 	public class ReportsController : BaseAccountsController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return RedirectToAction("ShowMoves");
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult ShowMoves(Int32? id)
 		{
 			var model = new ReportsShowMovesModel(id);
@@ -22,7 +23,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult SummarizeMonths(Int16? id)
 		{
 			var model = new ReportsSummarizeMonthsModel(id);

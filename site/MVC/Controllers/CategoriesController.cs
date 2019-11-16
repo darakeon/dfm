@@ -11,7 +11,7 @@ namespace DFM.MVC.Controllers
 	[Auth]
 	public class CategoriesController : BaseController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			var model = new CategoriesIndexModel();
@@ -19,7 +19,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Create()
 		{
 			var model = new CategoriesCreateEditModel(OperationType.Creation);
@@ -35,7 +35,7 @@ namespace DFM.MVC.Controllers
 			return createEditForHtmlForm(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Edit(String id)
 		{
 			if (String.IsNullOrEmpty(id))

@@ -9,7 +9,7 @@ namespace DFM.MVC.Controllers
 	[Auth]
 	public class LoginsController : BaseController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return View(new LoginsIndexModel());

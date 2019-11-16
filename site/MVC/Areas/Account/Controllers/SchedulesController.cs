@@ -2,19 +2,20 @@
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
 	[Auth]
 	public class SchedulesController : BaseAccountsController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Create()
 		{
 			var model = new SchedulesCreateModel();

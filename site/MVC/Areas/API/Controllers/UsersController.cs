@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Areas.API.Controllers
@@ -35,7 +36,7 @@ namespace DFM.MVC.Areas.API.Controllers
 			});
 		}
 
-		[HttpGet, ApiAuth]
+		[HttpGetAndHead, ApiAuth]
 		public ActionResult Config()
 		{
 			return json(() => new UserConfigModel());

@@ -7,7 +7,7 @@ namespace DFM.MVC.Controllers
 {
 	public class TokensController : BaseController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			var model = new TokensIndexModel();
@@ -36,7 +36,7 @@ namespace DFM.MVC.Controllers
 
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult PasswordReset(String id)
 		{
 			var model = new TokensPasswordResetModel();
@@ -68,7 +68,7 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult UserVerification(String id)
 		{
 			var model = new SafeModel();
@@ -80,7 +80,7 @@ namespace DFM.MVC.Controllers
 				: baseModelView("Invalid");
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Disable(String id)
 		{
 			var model = new SafeModel();
