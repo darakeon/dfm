@@ -18,6 +18,7 @@
 		@foreach (var natureUI in natureUiList)
 		{
 			<button type="button"
+				id="Nature_@natureUI.Nature"
 			    class="btn btn-sm btn-@Html.Partial("NatureColor", natureUI.Nature)
 					col-sm-4 button-toggle value-setter
 					@(Model.Nature == natureUI.Nature ? "active" : "")"

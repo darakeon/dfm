@@ -1,11 +1,5 @@
-Move > Index
 Schedule > Index
-Move > Create
-Detail > Add
-Move > Edit
 Schedule > Create
-BaseMove > ShowAccountList
-Move > Delete
 
 Report > Index
 Report > ShowMoves

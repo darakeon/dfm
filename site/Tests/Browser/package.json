@@ -26,6 +26,7 @@
 	},
 	"homepage": "https://github.com/darakeon/dfm#readme",
 	"jest": {
-		"preset": "jest-puppeteer"
+		"preset": "jest-puppeteer",
+		"setupFilesAfterEnv": ["./jest.setup.js"]
 	}
 }
