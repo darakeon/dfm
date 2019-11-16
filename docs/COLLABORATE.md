@@ -29,6 +29,7 @@ The allowed verbs:
 - move
 - update
 - fix
+- replace
 
 The body of the message is the part where the details go, if they are
 necessary. To make readability easier, it must have no more than 72
