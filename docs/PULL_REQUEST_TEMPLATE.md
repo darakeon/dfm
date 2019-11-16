@@ -9,14 +9,13 @@
 ## Tasks to publish
 
 - [ ] RUN TESTS (.NET AND ANDROID)
-- [ ] Change android/site version number
+- [ ] Change version numbers
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
 - [ ] Upload APK
 - [ ] Execute destructive Sql
 - [ ] Upload new mobile prints
-- [ ] Update links at task list
 - [ ] Merge PR
 - [ ] Create branch of other version
 - [ ] Create tag on master
