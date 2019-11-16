@@ -51,7 +51,7 @@ Legend:
 - [ ] Show account state on account area
 
 ## 5.3.0.0 :whale: <sup>`4`</sup>
-- [ ] Delete not accessed accounts [#49](https://github.com/darakeon/dfm/issues/49)
+- [ ] Delete not accessed users [#49](https://github.com/darakeon/dfm/issues/49)
 - [ ] Last login date
 - [ ] Data export (csv, json)
 - [ ] Data import (csv, json)
