@@ -48,7 +48,7 @@ Legend:
 - [ ] Link account and category (combo)
 - [ ] Report with date filters
 - [ ] Report with values: select to see sum
-- [ ] Send e-mail if account is above yellow and red (add config to allow)
+- [ ] Show account state on account area
 
 ## 5.3.0.0 :whale: <sup>`4`</sup>
 - [ ] Delete not accessed accounts [#49](https://github.com/darakeon/dfm/issues/49)
