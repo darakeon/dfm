@@ -1,9 +1,9 @@
 ﻿Feature: Af. Get a session by its ticket
 
 Background:
-	Given I have this user created and activated
-			| Email                               | Password | Retype Password |
-			| selectuserbyticket@dontflymoney.com | password | password        |
+	Given I have this user created
+			| Email                               | Password | Retype Password | Active |
+			| selectuserbyticket@dontflymoney.com | password | password        | true   |
 		And I have a ticket of this user
 
 Scenario: Af01. Select with ticket that doesn't exist

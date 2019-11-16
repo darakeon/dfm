@@ -1,9 +1,9 @@
 ﻿Feature: Av. Verify Ticket Type
 
 Background:
-	Given I have this user created and activated
-			| Email               | Password |
-			| Av@dontflymoney.com | password |
+	Given I have this user created
+			| Email               | Password | Active |
+			| Av@dontflymoney.com | password | true   |
 		And I login this user
 			| Email               | Password |
 			| Av@dontflymoney.com | password |

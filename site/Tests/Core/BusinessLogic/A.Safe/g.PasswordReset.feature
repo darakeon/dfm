@@ -2,8 +2,8 @@
 
 Background:
 	Given I have this user created
-			| Email                          | Password | Retype Password |
-			| passwordreset@dontflymoney.com | password | password        |
+			| Email                          | Password | Retype Password | Signed |
+			| passwordreset@dontflymoney.com | password | password        | true   |
 		And I have a token for its password reset
 
 Scenario: Ag01. Password reset with invalid token

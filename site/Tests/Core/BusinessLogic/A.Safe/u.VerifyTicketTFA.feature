@@ -1,9 +1,9 @@
 ﻿Feature: Au. Verify Ticket TFA
 
 Background:
-	Given I have this user created and activated
-			| Email               | Password |
-			| Au@dontflymoney.com | password |
+	Given I have this user created
+			| Email               | Password | Active |
+			| Au@dontflymoney.com | password | true   |
 		And I login this user
 			| Email               | Password |
 			| Au@dontflymoney.com | password |

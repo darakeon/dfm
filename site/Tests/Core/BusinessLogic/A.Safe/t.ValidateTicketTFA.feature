@@ -1,9 +1,9 @@
 ﻿Feature: At. Validate Ticket Two factor Authentication
 
 Background:
-	Given I have this user created and activated
-			| Email               | Password |
-			| At@dontflymoney.com | password |
+	Given I have this user created
+			| Email               | Password | Active |
+			| At@dontflymoney.com | password | true   |
 		And I login this user
 			| Email               | Password |
 			| At@dontflymoney.com | password |

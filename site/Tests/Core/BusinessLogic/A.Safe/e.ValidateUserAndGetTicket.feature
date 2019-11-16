@@ -55,9 +55,9 @@ Scenario: Ae05. Validate user disabled
 		And I will receive no ticket
 
 Scenario: Ae06. Disable user by excessive trying
-	Given I have this user created and activated
-			| Email                 | Password | Retype Password |
-			| Ae06@dontflymoney.com | password | password        |
+	Given I have this user created
+			| Email                 | Password | Retype Password | Active |
+			| Ae06@dontflymoney.com | password | password        | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae06@dontflymoney.com | password_wrong |
@@ -89,9 +89,9 @@ Scenario: Ae08. Validate with info all right
 		And I will receive the ticket
 
 Scenario: Ae09. Enable user let login again
-	Given I have this user created and activated
-			| Email                 | Password | Retype Password |
-			| Ae91@dontflymoney.com | password | password        |
+	Given I have this user created
+			| Email                 | Password | Retype Password | Active |
+			| Ae91@dontflymoney.com | password | password        | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae91@dontflymoney.com | password_wrong |
@@ -105,9 +105,9 @@ Scenario: Ae09. Enable user let login again
 		And I will receive the ticket
 
 Scenario: Ae10. Enable user resets the password trial times
-	Given I have this user created and activated
-			| Email                 | Password | Retype Password |
-			| Ae92@dontflymoney.com | password | password        |
+	Given I have this user created
+			| Email                 | Password | Retype Password | Active |
+			| Ae92@dontflymoney.com | password | password        | true   |
 		And I have this user data
 			| Email                 | Password       |
 			| Ae92@dontflymoney.com | password_wrong |

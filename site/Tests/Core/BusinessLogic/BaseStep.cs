@@ -34,6 +34,7 @@ namespace DFM.Tests.BusinessLogic
 		private protected static TicketRepository ticketRepository;
 		private protected static SecurityRepository securityRepository;
 		private protected static ContractRepository contractRepository;
+		private protected static AcceptanceRepository acceptanceRepository;
 
 		private static String logFileName;
 
@@ -61,6 +62,7 @@ namespace DFM.Tests.BusinessLogic
 			ticketRepository = new TicketRepository();
 			securityRepository = new SecurityRepository();
 			contractRepository = new ContractRepository();
+			acceptanceRepository = new AcceptanceRepository();
 		}
 
 		protected static void log(String text)
@@ -101,7 +103,8 @@ namespace DFM.Tests.BusinessLogic
 		protected void createUserIfNotExists(
 			String email,
 			String password,
-			Boolean shouldActivateUser = false
+			Boolean shouldActivateUser = false,
+			Boolean shouldSignContract = false
 		)
 		{
 			var userError = verifyUser(email, password);
@@ -129,6 +132,13 @@ namespace DFM.Tests.BusinessLogic
 							SecurityAction.UserVerification
 						);
 						service.Safe.ActivateUser(token);
+					}
+
+					if (shouldSignContract)
+					{
+						var user = userRepository.GetByEmail(email);
+						var contract = contractRepository.GetContract();
+						acceptanceRepository.Accept(user, contract);
 					}
 
 					return;

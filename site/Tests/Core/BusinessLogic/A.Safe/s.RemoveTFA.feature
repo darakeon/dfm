@@ -1,9 +1,9 @@
 ﻿Feature: As. Remove Two factor Authentication
 
 Scenario: As01. With wrong password
-	Given I have this user created and activated
-			| Email                  | Password |
-			| As001@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| As001@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| As001@dontflymoney.com | password |
@@ -19,9 +19,9 @@ Scenario: As01. With wrong password
 		And the two-factor will be [123]
 
 Scenario: As02. With all info right
-	Given I have this user created and activated
-			| Email                  | Password |
-			| As002@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| As002@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| As002@dontflymoney.com | password |
