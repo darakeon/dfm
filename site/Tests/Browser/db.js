@@ -53,7 +53,7 @@ async function createUser(email, active, wizard) {
 		`insert into config`
 			+ ` (language, timezone, sendMoveEmail, useCategories, moveCheck, theme, wizard)`
 		+ ` values`
-			+ ` ('pt-BR', 'E. South America Standard Time', 0, 0, 0, 1, ${wizard})`
+			+ ` ('pt-BR', 'E. South America Standard Time', 0, 1, 1, 1, ${wizard})`
 	)
 
 	const config = await execute(
@@ -151,6 +151,43 @@ async function createAccount(name, url, user) {
 	)
 }
 
+async function createCategoryIfNotExists(name, user, disabled) {
+	active = disabled?0:1
+	
+	const categories = await getCategory(name)
+
+	const exist = categories.length > 0
+
+	if (!exist) {
+		await createCategory(name, user, active)
+	} else {
+		await updateCategory(name, user, active)
+	}
+}
+
+async function getCategory(name) {
+	return execute(
+		`select id from category where name='${name}'`
+	)
+}
+
+async function createCategory(name, user, active) {
+	return execute(
+		`insert into category `
+			+ `(name, user_id, active)`
+		+ ` values`
+			+ ` ('${name}', ${user.id}, ${active})`
+	)
+}
+
+async function updateCategory(name, user, active) {
+	return execute(
+		`update category set`
+			+ ` active=${active}`
+		+ ` where name='${name}' and user_id=${user.id}`
+	)
+}
+
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
@@ -199,4 +236,5 @@ module.exports = {
 	cleanupTickets,
 	createToken,
 	createAccountIfNotExists,
+	createCategoryIfNotExists,
 }

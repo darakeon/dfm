@@ -29,6 +29,10 @@ footer {
 		list-style: none;
 	}
 
+.field-validation-error {
+	display: block;
+}
+
 .glyphicon-plus {
 	margin-left: 1px;
 	margin-right: -1px;
