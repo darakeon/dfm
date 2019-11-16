@@ -65,10 +65,11 @@ Legend:
 ## 5.1.0.0 :whale: <sup>`1`</sup>
 - [ ] Create Market - group of moves, each one of one category, to when you are shopping
 
-## 5.0.0.0 :dragon: <sup>`4`</sup>
+## 5.0.0.0 :dragon: <sup>`5`</sup>
 - [ ] Add contributing rules to repo [#44](https://github.com/darakeon/dfm/issues/44)
 - [ ] Add code of conduct to repo [#44](https://github.com/darakeon/dfm/issues/44)
 - [ ] Add issue template to repo [#43](https://github.com/darakeon/dfm/issues/43)
+- [ ] Add auth by cellphone
 - [ ] Store data locally, to use when there is no internet (Mobile)
 
 ## 4.6.0.0 :whale: <sup>`2`</sup>
@@ -82,14 +83,18 @@ Legend:
 - [ ] Search by category
 - [ ] Search by move
 
-## 4.4.1.0 :sheep: <sup>`2`</sup>
+## 4.4.1.0 :sheep: <sup>`5`</sup>
 - [ ] If session drop, call history.go(-2) after re-login
 - [ ] Remove GetOrCreate
+- [ ] Add system tips (based on user "age")
+- [ ] If lost authy, send e-mail do remove authy
+- [ ] Use Authy as password
 
-## 4.4.0.1 :ant: <sup>`3`</sup>
+## 4.4.0.1 :ant: <sup>`4`</sup>
 - [ ] Make DTO use guid, not db id (delete fakeid)
 - [ ] Handle DFMCoreException at Robot
-- [ ] Change fields to use the ones firefox and chrome customize
+- [ ] Separate validators from service/repository
+- [ ] Implement entities limits (acc opened, cat enabled, moves/month, active sched)
 
 ## 4.4.0.0 :whale: <sup>`4`</sup>
 - [ ] Put info that you can disabled mobile login if your cellphone is stolen
@@ -97,17 +102,23 @@ Legend:
 - [ ] Add account creation (mobile)
 - [ ] Add category creation (mobile)
 
-## 4.3.0.0 :whale: <sup>`5`</sup>
+## 4.3.0.0 :whale: <sup>`8`</sup>
 - [ ] Allow to hide values at start screen (mobile)
 - [ ] Change date to field with datepicker button (mobile)
 - [ ] Change category to autocomplete (mobile)
 - [ ] Move datetime spinner to the side of the button (remove modal)
 - [ ] Make it clear that clicking on account, you go to account area [#42](https://github.com/darakeon/dfm/issues/42)
+- [ ] Add update gesture to all screens
+- [ ] Add moves gestures (left delete, right check, hold edit)
+- [ ] Deny double use of authy code
 
 ## 4.2.0.0 :ant: <sup>`3`</sup>
 - [ ] Reset Misc on password change
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
+
+## 4.1.4.1 :ant: <sup>`1`</sup>
+- [ ] Make android automated tests
 
 ## 4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
@@ -122,8 +133,14 @@ Legend:
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [ ] Fix gender on system resources
 
-## <a name="dev"></a>4.1.3.7 :ant: <sup>`2`</sup>
-- [ ] Make android automated tests
+## <a name="dev"></a>4.1.3.7 :ant: <sup>`8`</sup>
+- [ ] Add reference of where themes came from (docs / site settings)
+- [ ] Original bootstrap on NONE theme
+- [ ] Add PRIVACY to contract
+- [ ] Get user timezone from browser
+- [ ] Remove twitter timeline - use API (user data security)
+- [ ] Fix MVC considering querystring as controller name on Language
+- [ ] Handle Http HEAD method (return clean)
 - [ ] `190926>......` Make puppeteer (browser) automated tests
 
 ## <a name="prod"></a>4.1.3.6 :ant: <sup>`9`</sup>
