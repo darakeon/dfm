@@ -107,12 +107,11 @@ describe('Moves', () => {
 	})
 
 	test('Edit', async () => {
-		const result = await db.createMove(
-			'Move Edit', '16/11/2019', 0, 1,
-			category, accountOut, null,
-			user
+		const id = await puppy.createMove(
+			db,
+			'Move Edit', '16/11/2019', '1,00',
+			category, accountOut, null
 		)
-		const id = result.insertId
 
 		await puppy.call(`Account/${accountOut}/Moves/Edit/${id}`)
 		await page.waitForSelector('#body form')
@@ -129,12 +128,11 @@ describe('Moves', () => {
 	})
 
 	test('Delete', async () => {
-		const result = await db.createMove(
-			'Move Delete', '16/11/2019', 0, 1,
-			category, accountOut, null,
-			user
+		const id = await puppy.createMove(
+			db,
+			'Move Delete', '16/11/2019', '1,00',
+			category, accountOut, null
 		)
-		const id = result.insertId
 
 		await puppy.call(`Account/${accountOut}`)
 		await page.waitForSelector('#body .table')
@@ -149,12 +147,11 @@ describe('Moves', () => {
 	})
 
 	test('Check', async () => {
-		const result = await db.createMove(
-			'Move Check', '16/11/2019', 0, 1,
-			category, accountOut, null,
-			user
+		const id = await puppy.createMove(
+			db,
+			'Move Check', '16/11/2019', '1,00',
+			category, accountOut, null
 		)
-		const id = result.insertId
 
 		await puppy.call(`Account/${accountOut}`)
 		await page.waitForSelector('#body .table')
@@ -168,12 +165,11 @@ describe('Moves', () => {
 	})
 
 	test('Uncheck', async () => {
-		const result = await db.createMove(
-			'Move Uncheck', '16/11/2019', 0, 1,
-			category, accountOut, null,
-			user
+		const id = await puppy.createMove(
+			db,
+			'Move Uncheck', '16/11/2019', '1,00',
+			category, accountOut, null
 		)
-		const id = result.insertId
 
 		await puppy.call(`Account/${accountOut}`)
 		await page.waitForSelector('#body .table')

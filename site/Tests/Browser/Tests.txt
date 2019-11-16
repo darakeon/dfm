@@ -1,7 +1,3 @@
-Report > Index
-Report > ShowMoves
-Report > SummarizeMonths
-
 Account > Close
 Account > ListClosed
 

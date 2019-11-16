@@ -60,10 +60,55 @@ async function submit(action) {
 	await page.click(`form[action="${action}"] button[type="submit"]`)
 }
 
+async function createMove(
+	db, description, date, value,
+	categoryName, accountOutUrl, accountInUrl
+) {
+	const accountUrl = accountOutUrl || accountInUrl
+
+	await call(`Account/${accountUrl}/Moves/Create`)
+	await page.waitForSelector('#body form')
+
+	await page.screenshot({path:'log/desc.png'})
+	await page.type('#Description', description)
+
+	await clear('#Date')
+	await page.type('#Date', date)
+
+	await page.select('#CategoryName', categoryName)
+
+	await page.click('#Nature_Transfer')
+
+	if (accountOutUrl) {
+		await page.select('#AccountOutUrl', accountOutUrl)
+	} else {
+		await page.click('#Nature_In')
+	}
+
+	if (accountInUrl) {
+		await page.select('#AccountInUrl', accountInUrl)
+	} else {
+		await page.click('#Nature_Out')
+	}
+
+	await page.type('#Value', value)
+	
+	await page.click('#body form button[type="submit"]')
+	await page.waitForSelector('#body')
+
+	const dateParts = date.split('/')
+	const year = dateParts[2]
+	const month = dateParts[1]
+	const day = dateParts[0]
+
+	return db.getMoveId(description, year, month, day)
+}
+
 module.exports = {
 	call,
 	content,
 	clear,
 	logon,
 	submit,
+	createMove,
 }
