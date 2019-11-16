@@ -1,9 +1,9 @@
 ﻿Feature: Ar. Update Two factor Authentication
 
 Scenario: Ar01. With empty secret key
-	Given I have this user created and activated
-			| Email                  | Password |
-			| Ar001@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar001@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| Ar001@dontflymoney.com | password |
@@ -15,9 +15,9 @@ Scenario: Ar01. With empty secret key
 		And the two-factor will be empty
 
 Scenario: Ar02. With wrong code
-	Given I have this user created and activated
-			| Email                  | Password |
-			| Ar002@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar002@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| Ar002@dontflymoney.com | password |
@@ -29,9 +29,9 @@ Scenario: Ar02. With wrong code
 		And the two-factor will be empty
 
 Scenario: Ar03. With wrong password
-	Given I have this user created and activated
-			| Email                  | Password |
-			| Ar003@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar003@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| Ar003@dontflymoney.com | password |
@@ -43,9 +43,9 @@ Scenario: Ar03. With wrong password
 		And the two-factor will be empty
 
 Scenario: Ar04. With all info right
-	Given I have this user created and activated
-			| Email                  | Password |
-			| Ar004@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar004@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| Ar004@dontflymoney.com | password |
@@ -57,9 +57,9 @@ Scenario: Ar04. With all info right
 		And the two-factor will be [123]
 
 Scenario: Ar05. Update two-factor
-	Given I have this user created and activated
-			| Email                  | Password |
-			| Ar005@dontflymoney.com | password |
+	Given I have this user created
+			| Email                  | Password | Active |
+			| Ar005@dontflymoney.com | password | true   |
 		And I login this user
 			| Email                  | Password |
 			| Ar005@dontflymoney.com | password |

@@ -721,20 +721,21 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Given(@"I have this user created")]
 		public void GivenIHaveThisUserToCreate(Table table)
 		{
-			email = table.Rows[0]["Email"];
-			password = table.Rows[0]["Password"];
-			retypePassword = table.Rows[0]["Retype Password"];
+			var userData = table.Rows[0];
 
-			createUserIfNotExists(email, password);
-		}
+			email = userData["Email"];
+			password = userData["Password"];
 
-		[Given(@"I have this user created and activated")]
-		public void GivenIHaveThisUserToCreateAndActivate(Table table)
-		{
-			email = table.Rows[0]["Email"];
-			password = table.Rows[0]["Password"];
+			if (userData.ContainsKey("Retype Password"))
+				retypePassword = userData["Retype Password"];
 
-			createUserIfNotExists(email, password, true);
+			var active = userData.ContainsKey("Active")
+				&& userData["Active"] == "true";
+
+			var signed = userData.ContainsKey("Signed")
+				&& userData["Signed"] == "true";
+
+			createUserIfNotExists(email, password, active, signed);
 		}
 
 		[Given(@"I have a token for its activation")]
