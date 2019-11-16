@@ -5,7 +5,7 @@ pub use version::Version;
 
 pub fn current_version(task_list: Vec<String>) -> Option<Version> {
 	let version_pattern =
-		r#"^\#\# (?:<a name="[a-z]+"></a>)?(\d+\.\d+\.\d+\.\d+)"#;
+		r#"^\#\# (?:<a name="\d+\.\d+\.\d+\.\d+"></a>)?(\d+\.\d+\.\d+\.\d+)"#;
 	let task_pattern = r"^\- \[([ x])\] ";
 
 	let mut current_version: Version = Version::empty();
