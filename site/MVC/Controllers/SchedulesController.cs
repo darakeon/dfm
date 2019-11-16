@@ -9,7 +9,7 @@ namespace DFM.MVC.Controllers
 	[Auth]
 	public class SchedulesController : BaseController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return View(new SchedulesIndexModel());

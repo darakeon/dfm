@@ -3,25 +3,26 @@ using System.Web.Mvc;
 using DFM.BusinessLogic.Response;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.API.Controllers
 {
 	[ApiAuth]
 	public class MovesController : BaseJsonController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Extract(String accountUrl, Int32 id)
 		{
 			return json(() => new MovesExtractModel(accountUrl, id));
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Summary(String accountUrl, Int16 id)
 		{
 			return json(() => new MovesSummaryModel(accountUrl, id));
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Create(Int32? id)
 		{
 			return json(() => new MovesCreateModel(id));

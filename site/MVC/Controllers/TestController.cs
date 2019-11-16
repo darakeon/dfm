@@ -6,6 +6,7 @@ using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
 
 namespace DFM.MVC.Controllers
@@ -13,13 +14,13 @@ namespace DFM.MVC.Controllers
 	[Auth(true)]
 	public class TestController : Controller
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return View("AnalyzeDictionary", new TestAnalyzeDictionary());
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Email()
 		{
 			var themes = new[] {SimpleTheme.Dark, SimpleTheme.Light};

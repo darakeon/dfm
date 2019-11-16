@@ -49,19 +49,19 @@ namespace DFM.MVC.Areas.API.Controllers
 			return new { data = model };
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public JsonResult Uninvited()
 		{
 			return error(Error.Uninvited);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public JsonResult AcceptOnlineContract()
 		{
 			return error(Error.NotSignedLastContract);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public JsonResult OpenTFA()
 		{
 			return error(Error.TFANotVerified);

@@ -3,19 +3,20 @@ using System.Web.Mvc;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
+using DFM.MVC.Helpers.Controllers;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
 	[Auth]
 	public class MovesController : BaseAccountsController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Create()
 		{
 			var model = new MovesCreateEditModel(OperationType.Creation);
@@ -32,7 +33,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return createEditSchedule(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Edit(Int32? id)
 		{
 			if (!id.HasValue)

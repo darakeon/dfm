@@ -249,6 +249,7 @@
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
     <Compile Include="Areas\API\Models\Environment.cs" />
     <Compile Include="Areas\API\Models\UserTFAModel.cs" />
+    <Compile Include="Helpers\Controllers\HttpGetAndHeadAttribute.cs" />
     <Compile Include="Helpers\Views\MicroForm.cs" />
     <Compile Include="Helpers\Views\WizardMenu.cs" />
     <Compile Include="Models\UsersEndWizard.cs" />

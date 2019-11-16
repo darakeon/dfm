@@ -12,13 +12,13 @@ namespace DFM.MVC.Controllers
 {
 	public class UsersController : BaseController
 	{
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Index()
 		{
 			return baseModelView();
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult SignUp()
 		{
 			var model = new UsersSignUpModel();
@@ -41,7 +41,7 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult LogOn(String returnUrl)
 		{
 			var model = new UsersLogOnModel();
@@ -81,7 +81,7 @@ namespace DFM.MVC.Controllers
 			return RedirectToAction("Index", "Users");
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult ForgotPassword()
 		{
 			var model = new UsersForgotPasswordModel();
@@ -104,7 +104,7 @@ namespace DFM.MVC.Controllers
 				: View(model);
 		}
 
-		[HttpGet, Auth]
+		[HttpGetAndHead, Auth]
 		public ActionResult Config()
 		{
 			return View(new UsersConfigModel());
@@ -151,7 +151,7 @@ namespace DFM.MVC.Controllers
 			return View("Config", model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Contract()
 		{
 			var model = new UsersContractModel();
@@ -171,7 +171,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet]
+		[HttpGetAndHead]
 		public ActionResult Mobile()
 		{
 			return Redirect(Cfg.GooglePlay);
@@ -184,7 +184,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet, Auth(needContract: false, needTFA: false)]
+		[HttpGetAndHead, Auth(needContract: false, needTFA: false)]
 		public ActionResult TFA()
 		{
 			var model = new UsersTFAModel();
@@ -204,7 +204,7 @@ namespace DFM.MVC.Controllers
 			return View(model);
 		}
 
-		[HttpGet, Auth]
+		[HttpGetAndHead, Auth]
 		public ActionResult RemoveTFA()
 		{
 			var model = new UsersRemoveTFAModel();
