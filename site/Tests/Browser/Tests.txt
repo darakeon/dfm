@@ -1,5 +1,2 @@
-Account > Close
-Account > ListClosed
-
 Logins > Index
 Logins > Delete

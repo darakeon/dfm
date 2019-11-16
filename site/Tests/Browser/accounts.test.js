@@ -63,4 +63,36 @@ describe('Accounts', () => {
 			'<a href="/Account/account_delete">Account Delete</a>'
 		)
 	})
+
+	test('Close', async () => {
+		const name = 'Account Close'
+		const url = await db.createAccountIfNotExists(name, user)
+
+		const category = await db.createCategoryIfNotExists(
+			'Cat Acc Close', user
+		)
+
+		await puppy.createMove(
+			db,
+			'Move to close Account', '16/11/2019', '1,00',
+			category, url, null,
+			user
+		)
+
+		await puppy.call('Accounts')
+
+		await puppy.submit(`/Accounts/Close/${url}`)
+
+		let body = await puppy.content('#body')
+		expect(body).not.toContain(
+			'<a href="/Account/account_close">Account Close</a>'
+		)
+
+		await puppy.call('/Accounts/ListClosed')
+
+		body = await puppy.content('#body')
+		expect(body).toContain(
+			'<a href="/Account/account_close/Reports/ShowMoves/201911">Account Close</a>'
+		)
+	})
 })
