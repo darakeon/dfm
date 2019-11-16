@@ -62,7 +62,7 @@ describe('Categories', () => {
 		
 		const url = name.replace(' ', '%20')
 
-		await page.click(`#body form[action="/Categories/Disable/${url}"] button[type="submit"]`)
+		await puppy.submit(`/Categories/Disable/${url}`)
 
 		const body = await puppy.content('#body')
 		expect(body).toContain(
@@ -78,7 +78,7 @@ describe('Categories', () => {
 		
 		const url = name.replace(' ', '%20')
 
-		await page.click(`#body form[action="/Categories/Enable/${url}"] button[type="submit"]`)
+		await puppy.submit(`/Categories/Enable/${url}`)
 
 		const body = await puppy.content('#body')
 		expect(body).toContain(

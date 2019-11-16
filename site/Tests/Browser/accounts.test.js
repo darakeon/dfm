@@ -56,7 +56,7 @@ describe('Accounts', () => {
 
 		await puppy.call('Accounts')
 		
-		await page.click(`#body form[action="/Accounts/Delete/${url}"] button[type="submit"]`)
+		await puppy.submit(`/Accounts/Delete/${url}`)
 
 		const body = await puppy.content('#body')
 		expect(body).not.toContain(

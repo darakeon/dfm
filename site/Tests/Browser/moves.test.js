@@ -140,7 +140,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body .table')
 
 		const deleteUrl = `/Account/${accountOut}/Moves/Delete/${id}`
-		await page.click(`#body form[action="${deleteUrl}"] button[type="submit"]`)
+		await puppy.submit(deleteUrl)
 
 		const table = await puppy.content('#body .table')
 		expect(table).not.toContain(
@@ -160,7 +160,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body .table')
 
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
-		await page.click(`#body form[action="${checkUrl}"] button[type="submit"]`)
+		await puppy.submit(checkUrl)
 
 		const table = await puppy.content('#body .table')
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
@@ -179,10 +179,10 @@ describe('Moves', () => {
 		await page.waitForSelector('#body .table')
 
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
-		await page.click(`#body form[action="${checkUrl}"] button[type="submit"]`)
+		await puppy.submit(checkUrl)
 
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
-		await page.click(`#body form[action="${uncheckUrl}"] button[type="submit"]`)
+		await puppy.submit(uncheckUrl)
 
 		const table = await puppy.content('#body .table')
 		expect(table).toContain(checkUrl)

@@ -56,9 +56,14 @@ async function callLogonPage(email) {
 	await page.click('#body form button[type="submit"]')
 }
 
+async function submit(action) {
+	await page.click(`form[action="${action}"] button[type="submit"]`)
+}
+
 module.exports = {
 	call,
 	content,
 	clear,
 	logon,
+	submit,
 }
