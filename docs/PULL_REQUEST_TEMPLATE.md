@@ -8,7 +8,7 @@
 
 ## Tasks to publish
 
-- [ ] RUN TESTS (.NET AND ANDROID)
+- [ ] RUN TESTS (.NET, PUPPETEER & ANDROID)
 - [ ] Change version numbers
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
