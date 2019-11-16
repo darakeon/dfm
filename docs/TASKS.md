@@ -141,7 +141,7 @@ Legend:
 - [ ] Remove twitter timeline - use API (user data security)
 - [x] `191115>191115` Fix MVC considering querystring as controller name on Language
 - [x] `191115>191115` Handle Http HEAD method (return clean)
-- [ ] `190926>......` Make puppeteer (browser) automated tests
+- [x] `190926>191116` Make puppeteer (browser) automated tests
 
 ## <a name="prod"></a>4.1.3.6 :ant: <sup>`9`</sup>
 - [x] `190924>190924` Fix account name repetition on area title
