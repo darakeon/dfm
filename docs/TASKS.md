@@ -40,9 +40,8 @@ Legend:
 - [ ] year report by category [(chartjs)](http://www.chartjs.org/)
 - [ ] month report by category [(chartjs)](http://www.chartjs.org/)
 
-## 5.4.1.0 :sheep: <sup>`2`</sup>
+## 5.4.1.0 :sheep: <sup>`1`</sup>
 - [ ] Fix error handling to have all at header
-- [ ] Remove account name oneness (keep for Url)
 
 ## 5.4.0.0 :whale: <sup>`5`</sup>
 - [ ] Feature to join Categories
