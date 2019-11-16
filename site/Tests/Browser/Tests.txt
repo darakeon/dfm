@@ -1,7 +1,3 @@
-Ops > Index
-Ops > Code
-Ops > Error
-
 Move > Index
 Schedule > Index
 Move > Create
