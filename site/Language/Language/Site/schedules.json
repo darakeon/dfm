@@ -8,7 +8,7 @@
 		"Times": "times",
 		"Repeat": "Repeat",
 		"ShowInstallment": "Show number of installment on Move description",
-		"NoSchedules": "There is no schedules",
+		"NoSchedules": "There's no Schedules yet.",
 		"ConfirmDeleteSchedule": "Do you really want to DELETE Schedule '{0}'?",
 	},
 	"pt-BR": {
@@ -20,7 +20,7 @@
 		"Times": "vezes",
 		"Repeat": "Repetir",
 		"ShowInstallment": "Exibir número da parcela na descrição da Movimentação",
-		"NoSchedules": "Não há agendamentos",
+		"NoSchedules": "Não há Agendamentos ainda.",
 		"ConfirmDeleteSchedule": "Realmente deseja APAGAR o Agendamento '{0}'?",
 	},
 }

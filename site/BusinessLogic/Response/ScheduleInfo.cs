@@ -10,6 +10,7 @@ namespace DFM.BusinessLogic.Response
 	{
 		public ScheduleInfo()
 		{
+			Times = 1;
 			Frequency = ScheduleFrequency.Monthly;
 			DetailList = new List<DetailInfo>();
 		}

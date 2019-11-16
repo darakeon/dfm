@@ -218,6 +218,37 @@ async function createMove(
 	)
 }
 
+async function createSchedule(
+	times, boundless, showInstallment, frequency,
+	description, date, nature, value,
+	categoryName, accountOutUrl, accountInUrl,
+	user
+) {
+	const category = await getCategory(categoryName, user)
+	const accountOut = await getAccount(accountOutUrl, user)
+	const accountIn = await getAccount(accountInUrl, user)
+	
+	const categoryId = category.length == 0 ? 'null' : category[0].id
+	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].id
+	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].id
+	
+	const dateParts = date.split('/')
+	const year = dateParts[2]
+	const month = dateParts[1]
+	const day = dateParts[0]
+	
+	return execute(
+		`insert into schedule `
+			+ `(times, boundless, showInstallment, frequency, `
+			+ `description, year, month, day, nature, valueCents, `
+			+ `category_id, out_id, in_id, user_id, lastRun, deleted) `
+		+ `values `
+			+ `(${times}, ${boundless}, ${showInstallment}, ${frequency}, `
+			+ `'${description}', ${year}, ${month}, ${day}, '${nature}', ${value}, `
+			+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.id}, 1, 0);`
+	)
+}
+
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
@@ -268,4 +299,5 @@ module.exports = {
 	createAccountIfNotExists,
 	createCategoryIfNotExists,
 	createMove,
+	createSchedule,
 }
