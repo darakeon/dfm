@@ -6,7 +6,7 @@ This is a project that was been build in private Hg repository on
 bitbucket since 2010. Inspired by just wonderful people, in the middle
 of 2017 I decided to change this situation.
 
-On September 5th, 2017, 2:07am, it became OPEN SOURCE.
+On September 5th, 2017, 2:07am (UTC-03:00), it became OPEN SOURCE.
 
 It's not just one more project. It's **one more** project. Even the
 tallest wall is made brick by brick.
