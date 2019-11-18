@@ -39,15 +39,34 @@ itself. Well, we are always our most demanding client.
 
 ### Technologies
 
+#### Core
+
 - [C# .NET](https://docs.microsoft.com/en-us/dotnet/csharp)
-- [SpecFlow - BDD](http://specflow.org)
 - [NHibernate - ORM](http://nhibernate.info)
 - [DK](https://github.com/darakeon/dk-lib)
-- [Kotlin - Android](https://kotlinlang.org)
-- [jQUery](https://jquery.com)
+
+#### Site
+
+- [MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
+- [jQuery](https://jquery.com)
 - [Bootstrap](https://getbootstrap.com)
 - [Bootstrap Themes](http://bootswatch.com)
+
+#### Android App
+
+- [Kotlin](https://kotlinlang.org)
+- [Retrofit](https://square.github.io/retrofit/)
+
+#### Version changer
+
 - [Rust (with Cargo)](https://www.rust-lang.org)
+
+#### Automated tests
+
+- [SpecFlow - BDD](http://specflow.org)
+- [Node](https://nodejs.org/en/)
+- [Jest](https://jestjs.io/)
+- [Puppeteer](https://developers.google.com/web/tools/puppeteer)
 
 ### Tools
 
