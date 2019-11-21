@@ -57,6 +57,7 @@ async function callLogonPage(email) {
 }
 
 async function submit(action) {
+	await page.waitForSelector('form')
 	await page.click(`form[action="${action}"] button[type="submit"]`)
 }
 
