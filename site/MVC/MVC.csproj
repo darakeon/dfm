@@ -162,6 +162,7 @@
     <Content Include="Assets\Libs\Themes\bootstrap-flatly.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-journal.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-lumen.min.css" />
+    <Content Include="Assets\Libs\Themes\bootstrap-none.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-paper.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-readable.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-simplex.min.css" />
