@@ -235,6 +235,10 @@ async function getMoveId(description, year, month, day) {
 	return result[0].id
 }
 
+async function checkMove(id) {
+	await execute(`update move set checked=1 where id=${id}`)
+}
+
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
@@ -286,4 +290,5 @@ module.exports = {
 	createCategoryIfNotExists,
 	createSchedule,
 	getMoveId,
+	checkMove,
 }
