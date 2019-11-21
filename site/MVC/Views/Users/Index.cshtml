@@ -1,18 +1,11 @@
-﻿@using DFM.BusinessLogic.Helpers
-@model BaseSiteModel
+﻿@model UsersIndexModel
 
 @{
 	ViewBag.HideTopLogo = true;
-
-	var twitterTheme = Model.Theme.Simplify().ToString().ToLower();
-}
-
-@section Scripts {
-	<script src="/Assets/Scripts/twitter.js" type="text/javascript"></script>
 }
 
 @section Styles {
-	<link href="~/Assets/Styles/twitter.css" rel="stylesheet" type="text/css" />
+	<link href="~/Assets/Styles/updates.css" rel="stylesheet" type="text/css" />
 }
 
 <div class="logo">
@@ -35,14 +28,14 @@
 					@Html.Raw(String.Format(
 						Translator.Dictionary["Index_Explanation"],
 						"<a href='" + Url.Action("SignUp", "Users") + "' class='text-success'>", "</a>"
-						))
+					))
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
 						Translator.Dictionary["Index_Close"],
 						"dfm@dontflymoney.com"
-						))
+					))
 				</p>
 			</div>
 			
@@ -53,22 +46,22 @@
 
 	</div>
 
-	<div class="col-sm-4 text-right twitter">
-		<a class="twitter-timeline"
-		   href="https://twitter.com/dfm_grunt"
-		   width="300px" height="400px" target="_blank"
-
-		   data-widget-id="386678992192806915"
-
-		   data-theme="@twitterTheme"
-		   data-chrome="noheader noborders nofooter"
-		   data-tweet-limit="3"
-		   data-lang="@Model.Language">
-
-			Tweets by @("@dfm_grunt")
-		</a>
+	<div class="col-sm-4 updates">
+		@foreach (var version in Model.Versions)
+		{
+			<div class="panel panel-default text-right">
+				<div class="panel-heading">
+					@version.Name
+				</div>
+				<ul class="list-group small">
+					@foreach (var update in version.Updates)
+					{
+						<li class="list-group-item">
+							@update
+						</li>
+					}
+				</ul>
+			</div>
+		}
 	</div>
-
 </div>
-
-

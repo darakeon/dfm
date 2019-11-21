@@ -15,7 +15,9 @@ namespace DFM.MVC.Controllers
 		[HttpGetAndHead]
 		public ActionResult Index()
 		{
-			return baseModelView();
+			var model = new UsersIndexModel();
+
+			return View(model);
 		}
 
 		[HttpGetAndHead]

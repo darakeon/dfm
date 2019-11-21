@@ -23,6 +23,9 @@ namespace DFM.Language
 		private static readonly String emailName = "Email";
 		private static String emailPath => Path.Combine(MainPath, emailName);
 
+		private static readonly String versionName = "Version";
+		internal static String VersionPath => Path.Combine(MainPath, versionName);
+
 		public static Html Html { get; private set; }
 		public static PlainText Site { get; private set; }
 		public static PlainText Email { get; private set; }
