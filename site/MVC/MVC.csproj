@@ -186,6 +186,7 @@
     <Content Include="Assets\Libs\Scripts\qrcode.min.js" />
     <Content Include="Assets\Styles\contract.css" />
     <Content Include="Assets\Styles\qrcode.css" />
+    <Content Include="Assets\Styles\updates.css" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Account\Views\Moves\NatureAndAccount.cshtml" />
@@ -214,8 +215,6 @@
     <Content Include="Assets\Scripts\suggest.js" />
     <Content Include="Assets\Scripts\tab-forms.js" />
     <Content Include="Assets\Styles\default.css" />
-    <Content Include="Assets\Styles\twitter.css" />
-    <Content Include="Assets\Scripts\twitter.js" />
     <Content Include="Assets\Styles\android.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -311,6 +310,7 @@
     <Compile Include="Models\TokenPasswordRecoverModel.cs" />
     <Compile Include="Models\UsersConfigModel.cs" />
     <Compile Include="Models\UsersForgotPasswordModel.cs" />
+    <Compile Include="Models\UsersIndexModel.cs" />
     <Compile Include="Models\UsersLogOnModel.cs" />
     <Compile Include="Models\UsersSignUpModel.cs" />
     <Compile Include="Models\UsersRemoveTFAModel.cs" />

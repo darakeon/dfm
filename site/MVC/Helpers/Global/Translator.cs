@@ -10,6 +10,7 @@ using DFM.Entities.Bases;
 using DFM.Language;
 using DFM.Language.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
+using Version = DFM.Language.Version;
 
 namespace DFM.MVC.Helpers.Global
 {
@@ -23,12 +24,10 @@ namespace DFM.MVC.Helpers.Global
 			PlainText.Initialize(path);
 		}
 
-
 		private static Translator dictionary;
 
 		public static Translator Dictionary
 			=> dictionary ?? (dictionary = new Translator());
-
 
 		public String this[params String[] phrase] => PlainText.Site[section, Language, phrase];
 
@@ -41,13 +40,10 @@ namespace DFM.MVC.Helpers.Global
 		private String this[String specificSection, params String[] phrase] =>
 			PlainText.Site[specificSection, Language, phrase];
 
-
 		public static String GetMonthName(Int32 month)
 		{
 			return PlainText.GetMonthName(month, Language);
 		}
-
-
 
 		private static String section
 		{
@@ -91,16 +87,16 @@ namespace DFM.MVC.Helpers.Global
 			}
 		}
 
-
-
 		private static HttpRequest request => HttpContext.Current.Request;
-
 
 		public static IDictionary<T, String> GetEnumNames<T>()
 		{
 			return EnumHelper.GetEnumNames<T>(section, Language);
 		}
 
-
+		public static IList<Version> Versions()
+		{
+			return Version.Get(Language);
+		}
 	}
 }

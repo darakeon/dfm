@@ -1,0 +1,263 @@
+{
+	"4.1.3.7": [
+		"Ajustes em documentação de código",
+		"Adicionados testes automatizados para garantir funcionamento do site",
+		"Ajuste em erros de requisição na home"
+	],
+	"4.1.3.6": [
+		"Ajuste no título do relatório de meses",
+		"Termos novos, citando deleção de pessoa do sistema e cookies",
+		"Ajustes para melhorar manutenção do sistema"
+	],
+	"4.1.3.5": [
+		"Ajuste em bug ao tentar se cadastrar e na língua em que são exibidos os termos de uso do site",
+		"Ajuste de autenticação no site",
+		"Ícone de deslogar conta na lista de logins alterado para o ícone padrão de deslogar"
+	],
+	"4.1.3.4": [
+		"Ajustes nas chamadas do site",
+		"Aviso de conexão com problemas ou falta de conexão",
+		"Removido aviso de estar chamando o site quando recebe um erro",
+		"Arrumado possível problema de login",
+		"Ajustes de erros ortográficos no site em inglês",
+		"Melhorias no código"
+	],
+	"4.1.3.3": [
+		"Arrumado problema com relatório anual que viesse sem dados",
+		"Ajustada linguagem nas traduções de algumas telas",
+		"Mudanças de estrutura interna"
+	],
+	"4.1.3.2": [
+		"Adicionado aviso de cookies na home",
+		"Arrumado problema com mudança de movimentação de não detalhada para detalhada",
+		"Ajuste também no e-mail enviado de movimentações detalhadas"
+	],
+	"4.1.3.0": [
+		"Para sair ou deslogar do aplicativo, agora é necessário apertar e segurar o botão. Assim evitamos cliques acidentais! (quem nunca?)",
+		"Ajustes de segurança, de texto, atualização de ferramentas de desenvolvimento e no layout da tela de movimentações (site)"
+	],
+	"4.1.2.9": [
+		"Atualização de servidor"
+	],
+	"4.1.2.8": [
+		"Correções em relatórios para datas fora do padrão e contas inexistentes"
+	],
+	"4.1.2.7": [
+		"Apenas atualização de ferramentas usadas no site"
+	],
+	"4.1.2.6": [
+		"Ajusta itens de segurança no site, redirecionando possíveis tentativas ataques a endereços não existentes no site"
+	],
+	"4.1.2.5": [
+		"Adicionada a e-mail de movimentação tipo de ação",
+		"Proteção contra alterações vindas de outros sites via browser",
+		"Ajuste na troca de tema",
+		"Ajuste de erro ao abrir o aplicativo em celulares mais antigos"
+	],
+	"4.1.2.4": [
+		"Arrumado login do aplicativo"
+	],
+	"4.1.2.3": [
+		"Ajuste de número máximo de versão do android"
+	],
+	"4.1.2.2": [
+		"Mudanças de segurança no login mobile e comunicação com o site. Melhorias de código do aplicativo"
+	],
+	"4.1.2.1": [
+		"Arrumado problema ao tentar criar movimentações sem alterar a natureza dela",
+		"Corrigido erro ao tentar criar movimentações com detalhes",
+		"Tirado botão de categorias duplicado antes de terminar o carregamento da tela"
+	],
+	"4.1.2.0": [
+		"Tutorial do site para iniciantes (pode ser ativado em Configurações)",
+		"Autenticação em 2 passos, para aumentar a segurança",
+		"Corrigido problema com remoção de categorias + edição de movimentações antigas",
+		"Atualização de ferramentas"
+	],
+	"4.1.1.3": [
+		"Corrigido texto de botão de mensagem de erro padrão",
+		"Corrigida no mobile edição de movimentação categorizada quando desabilita categorias",
+		"Link para lista de tarefas passadas / futuras (em inglês)"
+	],
+	"4.1.1.2": [
+		"Ajustes na lista de tarefas para atualização de ferramentas",
+		"Correções em editar transferência, relatórios futuros, registro no site, redirecionamento do aplicativo, adição de movimentação (home mobile), seleção de datas no mobile",
+		"Adicionada opção de envio de erros no mobile"
+	],
+	"4.1.1.1": [
+		"Corrigido redirecionamento para quem não tem o app instalado"
+	],
+	"4.1.1.0": [
+		"Diversas arrumações no código",
+		"Robozinho do rodapé agora vai para o aplicativo, não mais para a play store, se o app já está instalado"
+	],
+	"4.1.0.1": [
+		"Corrigido problema com valores decimais para criar ou editar movimentações no mobile"
+	],
+	"4.1.0.0": [
+		"Corrigidos problemas de acessibilidade"
+	],
+	"4.0.2.0": [
+		"Link para pedidos ou problemas (no menu do topo)",
+		"Atualização de libs usadas no github",
+		"Atualização de ferramentas em uso"
+	],
+	"4.0.1.3": [
+		"Corrigido protocolo de comunicação chamado no mobile"
+	],
+	"4.0.1.2": [
+		"Corrigido erro de endereço do sistema chamado no mobile"
+	],
+	"4.0.1.1": [
+		"Mais testes automatizados",
+		"Aviso mobile sobre novo contrato e criação de categorias quando não há",
+		"Removida verificação de licença"
+	],
+	"4.0.1.0": [
+		"Just adjusts on repository - its part of the system now, so deserves release names"
+	],
+	"4.0.0.0": [
+		"Código do sistema aberto:",
+		"Https://github.com/darakeon/dfm",
+		"Reforço em como a senha é gravada"
+	],
+	"3.0.0.7": [
+		"Correção em verificação de segurança do browser"
+	],
+	"3.0.0.6": [
+		"Correção na tela de agendamentos, para movimentações saída/entrada"
+	],
+	"3.0.0.5": [
+		"Ajuste ao editar movimentação e comunicação no mobile",
+		"Alterado layout no browser mobile",
+		"Arrumada url em e-mail",
+		"Consertada verificação de movimentação",
+		"Consertada criação de agendamento"
+	],
+	"3.0.0.4": [
+		"Correção de listagem de agendamentos"
+	],
+	"3.0.0.3": [
+		"Resolvido problema com app na listagem android"
+	],
+	"3.0.0.2": [
+		"Ajustes em layout de movimentação e extrato",
+		"Resolvido bug ao entrar a 2ª vez em movimentação",
+		"Resolvido bug de páginas de erro"
+	],
+	"3.0.0.1": [
+		"[Web] Ajuste da home no browser do celular e nos layouts de e-mail",
+		"[Mobile] Mudada tela de movimentações, correção em extrato"
+	],
+	"3.0.0.0": [
+		"Layout novo site e app mobile, configuráveis. Correção de cache, edição de movimentação e 'lembrar-me' (login). Termos de Uso"
+	],
+	"2.1.4.4": [
+		"Correção de atraso ao exibir contas e categorias novas, assim que eram criadas"
+	],
+	"2.1.4.3": [
+		"Correção para usuário novo"
+	],
+	"2.1.4.2": [
+		"Correção de ícone do site"
+	],
+	"2.1.4.1": [
+		"Corrigido bug no app mobile ao tentar entrar",
+		"Corrigido bug no site para usuário novo"
+	],
+	"2.1.4.0": [
+		"Atualização da API do android e mudanças estruturais"
+	],
+	"2.1.3.4": [
+		"Ajuste de problema ao editar movimentação com detalhes (duplicação)"
+	],
+	"2.1.3.3": [
+		"Mudanças estruturais no app mobile"
+	],
+	"2.1.3.2": [
+		"Arrumado valor em criação de movimentação e problema na tela de logins"
+	],
+	"2.1.3.1": [
+		"Arrumado endereço do site no app mobile"
+	],
+	"2.1.3.0": [
+		"Ocultada coluna de verificação de movimentação quando a configuração disto está desabilitada (web/mobile)"
+	],
+	"2.1.2.0": [
+		"Arrumado problema com movimentação apenas entrada/saída"
+	],
+	"2.1.1.0": [
+		"Troca de e-mail e senha nas configurações web",
+		"Corrigido problema de validação de data no firefox"
+	],
+	"2.1.0.0": [
+		"Troca de conta de uma movimentação. Nova funcionalidade:",
+		"Colocar movimentação como verificada. Vá em configurações e habilite!"
+	],
+	"2.0.3.1": [
+		"Correção de bugs de duplicação na tela de extrato, nº de parcela de movimentação, envio de e-mails"
+	],
+	"2.0.3.0": [
+		"Apenas alterações mobile. Habilitado mover para SD Card e editar movimentação. Tirado sleep e rotação na chamada do site",
+		"Mudança nos menus, para facilitar acesso a ações principais"
+	],
+	"2.0.2.0": [
+		"Correção de bug no clique do logo, botão direito dos menus e urls de e-mail. Também uma correção de funcionamento do tablet",
+		"No relatório anual, colunas com valores de entradas e saídas",
+		"No aplicativo, um botão de cancelar nas telas mover e configurações"
+	],
+	"2.0.1.2": [
+		"Correção da página de contas fechadas e da tela de criação de movimentação (detalhamento)"
+	],
+	"2.0.1.1": [
+		"Correção na inserção de movimentação detalhada no celular"
+	],
+	"2.0.1.0": [
+		"Correção na ui de extrato mensal no site e deleção de movimentação agora via celular! Feliz Natal!"
+	],
+	"2.0.0.3": [
+		"Versão antecipada para correção de erro no android novo",
+		"Travado o agendamento da conta",
+		"Trava se errar senha mais de cinco vezes"
+	],
+	"2.0.0.2": [
+		"Tratado erro quando site demora",
+		"Corrigido problema quando vira o celular e está falando com o site",
+		"Atualizações de tecnologia"
+	],
+	"2.0.0.1": [
+		"Ajustado problema ao virar celular na tela de movimentação (pedia dados digitados)"
+	],
+	"2.0.0.0": [
+		"Layout mais bonito, novas funcionalidades e, agora, com aplicativo para android! (necessário ter login no site)"
+	],
+	"1.0.3.1": [
+		"Revisado todo o sistema, corrigidos erros de redirecionamento"
+	],
+	"1.0.3.0": [
+		"Refactors pelo sistema, consertados erros na criação de movimentação"
+	],
+	"1.0.2.3": [
+		"A alteração visível dessa versão é a possibilidade de escolher a url da conta. Mas um grande passo será dado na próxima versão!"
+	],
+	"1.0.2.2": [
+		"Continuo mexendo no projeto, mas ainda mais na parte estrutural. Sem novidades visíveis desta vez. =("
+	],
+	"1.0.2.0": [
+		"De novo, uma versão mais de mexer nas engrenagens do que na cara do site, mas ela mudou um pouco!",
+		"Agora, no menu, a conta que está sendo vista fica destacada e as movimentações agendadas podem levar o número da parcela"
+	],
+	"1.0.1.0": [
+		"No more yellow screen, guys! Também consertei para ser possível colocar zero como valor nos sinais vermelho e amarelo da conta"
+	],
+	"1.0.0.3": [
+		"News! Links da lista de contas trocados, confirmação de usuário via e-mail, e agora dá para recuperar a senha (foi mal o atraso nessa)"
+	],
+	"1.0.0.2": [
+		"Também foi implementada a confirmação de senha na criação de usuário, para evitar o risco de erros de digitação impedirem o acesso posterior",
+		"Problema da data resolvido. Foi mal a demora, a semana foi cheia. Implementado um datepicker"
+	],
+	"1.0.0.1": [
+		"Corrigido, pessoal! Sem security exception no porquinho!"
+	]
+}

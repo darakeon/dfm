@@ -1,0 +1,263 @@
+{
+	"4.1.3.7": [
+		"Adjustments in code documentation",
+		"Added automated testing to ensure site functionality",
+		"Adjustment for home request errors"
+	],
+	"4.1.3.6": [
+		"Adjustment in month report title",
+		"New terms, citing system person deletion and cookies",
+		"Adjustments to improve system maintenance"
+	],
+	"4.1.3.5": [
+		"Bug fixes when trying to register and in the language in which the site's terms of use are displayed",
+		"Site Authentication Adjustment",
+		"Account logout icon in login list changed to default logout icon"
+	],
+	"4.1.3.4": [
+		"Site call adjustments",
+		"Warning of failed or missing connection",
+		"Removed notice of calling the site when it receives an error",
+		"Fixed possible login issue",
+		"English site misspellings",
+		"Code improvements"
+	],
+	"4.1.3.3": [
+		"Fixed issue with annual report that came out of data",
+		"Adjusted language in some screen translations",
+		"Changes in internal structure"
+	],
+	"4.1.3.2": [
+		"Added cookie warning on home",
+		"Fixed issue with moving from non-verbose to verbose",
+		"Also adjust on email sent from detailed moves"
+	],
+	"4.1.3.0": [
+		"To exit or log out of the app, now you have to press and hold the button. So we avoid accidental clicks! (Who ever?)",
+		"Security, text, development tool updates and layout changes on site (site)"
+	],
+	"4.1.2.9": [
+		"Server update"
+	],
+	"4.1.2.8": [
+		"Report corrections for non-standard dates and non-existent accounts"
+	],
+	"4.1.2.7": [
+		"Only site tools update"
+	],
+	"4.1.2.6": [
+		"Adjusts security items on the site by redirecting possible attempts to attack non-site addresses"
+	],
+	"4.1.2.5": [
+		"Added action type move email",
+		"Protection against changes from other websites via browser",
+		"Adjust theme change",
+		"Error setting when opening app on older phones"
+	],
+	"4.1.2.4": [
+		"Tidy app login"
+	],
+	"4.1.2.3": [
+		"Android max version number setting"
+	],
+	"4.1.2.2": [
+		"Mobile login security changes and communication with the site. App code improvements"
+	],
+	"4.1.2.1": [
+		"Neat problem trying to create moves without changing their nature",
+		"Fixed bug trying to create detailed moves",
+		"Taken duplicate category button before finishing loading screen"
+	],
+	"4.1.2.0": [
+		"Starter Site Tutorial (can be enabled in Settings)",
+		"2-Step Authentication for Enhanced Security",
+		"Fixed issue with category removal + editing old moves",
+		"Tool Update"
+	],
+	"4.1.1.3": [
+		"Fixed standard error message button text",
+		"Fixed mobile categorized move editing when disabling categories",
+		"Link to Past / Future Tasks List"
+	],
+	"4.1.1.2": [
+		"Adjustments in the Tool Update Task List",
+		"Fixes in edit transfer, future reports, site registration, app redirection, home mobile addition, mobile date selection",
+		"Added mobile bug submission option"
+	],
+	"4.1.1.1": [
+		"Fixed redirect for those who don't have the app installed"
+	],
+	"4.1.1.0": [
+		"Multiple code fixes",
+		"Little footer robot now goes to the app, no longer to the play store if the app is already installed,"
+	],
+	"4.1.0.1": [
+		"Fixed issue with decimal values ​​for creating or editing mobile moves"
+	],
+	"4.1.0.0": [
+		"Fixed accessibility issues"
+	],
+	"4.0.2.0": [
+		"Link to requests or problems (top menu)",
+		"Updating libs used on github",
+		"Update tools in use"
+	],
+	"4.0.1.3": [
+		"Fixed communication protocol called on mobile"
+	],
+	"4.0.1.2": [
+		"Fixed system address error called on mobile"
+	],
+	"4.0.1.1": [
+		"More automated tests",
+		"Mobile notice about new contract and category creation when none exist",
+		"Removed license check"
+	],
+	"4.0.1.0": [
+		"Just adjusts on repository - its part of the system now, so it deserves release names"
+	],
+	"4.0.0.0": [
+		"Open system code:",
+		"Http://github.com/darakeon/dfm",
+		"Reinforce how the password is recorded"
+	],
+	"3.0.0.7": [
+		"Browser security patch"
+	],
+	"3.0.0.6": [
+		"Correction on schedules screen for outgoing / incoming moves"
+	],
+	"3.0.0.5": [
+		"Adjust when editing mobile motion and communication",
+		"Changed layout in mobile browser",
+		"Fixed url in email",
+		"Fixed movement check",
+		"Fixed schedule creation"
+	],
+	"3.0.0.4": [
+		"Calendar listing fix"
+	],
+	"3.0.0.3": [
+		"Fixed issue with app in android listing"
+	],
+	"3.0.0.2": [
+		"Adjustments in movement and extract layout",
+		"Bug fixed when entering 2nd move",
+		"Bug fixes error pages"
+	],
+	"3.0.0.1": [
+		"[Web] Home Adjustment in Mobile Browser and Email Layouts",
+		"[Mobile] Changed move screen, extract correction"
+	],
+	"3.0.0.0": [
+		"New website layout and mobile app, configurable. Cache correction, move editing and 'remember me' (login). Terms of Use"
+	],
+	"2.1.4.4": [
+		"Delay correction when displaying new accounts and categories as they were created"
+	],
+	"2.1.4.3": [
+		"New user fix"
+	],
+	"2.1.4.2": [
+		"Site icon fix"
+	],
+	"2.1.4.1": [
+		"Fixed bug in mobile app trying to sign in",
+		"Fixed bug for new user site"
+	],
+	"2.1.4.0": [
+		"Android API update and structural changes"
+	],
+	"2.1.3.4": [
+		"Problem setting when editing move with details (duplication)"
+	],
+	"2.1.3.3": [
+		"Structural changes in the mobile app"
+	],
+	"2.1.3.2": [
+		"Neat value in motion creation and login screen issue"
+	],
+	"2.1.3.1": [
+		"Tidy mobile web site address"
+	],
+	"2.1.3.0": [
+		"Hidden move check column when this setting is disabled (web / mobile)"
+	],
+	"2.1.2.0": [
+		"Fixed issue with moving in / out only"
+	],
+	"2.1.1.0": [
+		"Email and password exchange in web settings",
+		"Fixed date validation issue in firefox"
+	],
+	"2.1.0.0": [
+		"Change account for a move. New feature:",
+		"Put move as checked. Go to settings and enable!"
+	],
+	"2.0.3.1": [
+		"Duplicate screen duplicate bug fix, move parcel #, send emails"
+	],
+	"2.0.3.0": [
+		"Mobile changes only. Enabled move to SD Card and edit move. Taken sleep and rotation on site call",
+		"Change menus to make it easy to access key actions"
+	],
+	"2.0.2.0": [
+		"Bug fix on logo click, right-click menus and email urls. Also a tablet health fix",
+		"In the annual report, columns with input and output values",
+		"In the app, a cancel button on the move and settings screens"
+	],
+	"2.0.1.2": [
+		"Correction of closed accounts page and movement creation screen (breakdown)"
+	],
+	"2.0.1.1": [
+		"Correction for detailed move insertion on mobile"
+	],
+	"2.0.1.0": [
+		"Fix monthly site ui extract and move deletion now via mobile phone! Merry Christmas!"
+	],
+	"2.0.0.3": [
+		"Early version for bug fix on new android",
+		"Locked account scheduling",
+		"Crash if password more than five times"
+	],
+	"2.0.0.2": [
+		"Treated error when site takes",
+		"Fixed issue when turning the phone on and talking to the site",
+		"Technology updates"
+	],
+	"2.0.0.1": [
+		"Fixed issue with turning phone on scroll screen (requested typed data)"
+	],
+	"2.0.0.0": [
+		"Most beautiful layout, new features and now with android app! (Site login required)"
+	],
+	"1.0.3.1": [
+		"Revised whole system, fixed redirect errors"
+	],
+	"1.0.3.0": [
+		"System refactors, Fixed Move Creation Errors"
+	],
+	"1.0.2.3": [
+		"The visible change to this version is the ability to choose the account url. But a big step will be taken in the next version!"
+	],
+	"1.0.2.2": [
+		"I'm still working on the project, but even more on the structural part. No visible news this time. = ("
+	],
+	"1.0.2.0": [
+		"Again, a more gear-shifting version than a face-to-face version of the site, but it's changed a bit!",
+		"Now, on the menu, the account being viewed is highlighted and scheduled moves can take the parcel number,"
+	],
+	"1.0.1.0": [
+		"No more yellow screen, guys! I also fixed it so I could put zero as a value on the red and yellow signs on the account,"
+	],
+	"1.0.0.3": [
+		"News! Links from the list of accounts exchanged, user confirmation via email, and now you can recover the password (it was badly late)"
+	],
+	"1.0.0.2": [
+		"Password verification has also been implemented in user creation to avoid the risk of typos preventing further access",
+		"Date issue resolved. Delay was bad, week was full. Implemented datepicker"
+	],
+	"1.0.0.1": [
+		"Fixed guys! No security exception in the piggy!"
+	]
+}

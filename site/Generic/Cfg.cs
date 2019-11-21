@@ -29,5 +29,7 @@ namespace DFM.Generic
 		public static Int32 PasswordErrorLimit => Int32.Parse(appSettings["PasswordErrorLimit"]);
 
 		public static String GooglePlay => appSettings["GooglePlay"];
+
+		public static Int32 VersionCount => Int32.Parse(appSettings["VersionCount"]);
 	}
 }
