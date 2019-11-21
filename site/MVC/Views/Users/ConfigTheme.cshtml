@@ -3,7 +3,14 @@
 @Html.HiddenFor(m => m.ThemeOpt.Theme, new { @class = "theme-changer-hidden" })
 
 <div class="well well-sm text-center">
-	@Translator.Dictionary["ThemeInstruction"]
+	@Translator.Dictionary["ThemeInstruction"]<br /><br />
+	@Html.Raw(
+		Translator.Dictionary["ThemeLink"]
+			.Replace(
+				"{{link}}",
+				"<a href='https://bootswatch.com' target='_blank'>Bootswatch</a>"
+			)
+	)
 </div>
 
 <div class="row">
