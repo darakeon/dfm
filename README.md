@@ -23,7 +23,7 @@ itself. Well, we are always our most demanding client.
 ### Running project
 
 - [Website](https://dontflymoney.com/)
-- [Android App](http://play.google.com/store/apps/details?id=com.dontflymoney.view)
+- [Android App](https://play.google.com/store/apps/details?id=com.dontflymoney.view)
 
 ### Social (portuguese)
 
@@ -42,7 +42,7 @@ itself. Well, we are always our most demanding client.
 #### Core
 
 - [C# .NET](https://docs.microsoft.com/en-us/dotnet/csharp)
-- [NHibernate - ORM](http://nhibernate.info)
+- [NHibernate - ORM](https://nhibernate.info)
 - [DK](https://github.com/darakeon/dk-lib)
 
 #### Site
@@ -50,7 +50,7 @@ itself. Well, we are always our most demanding client.
 - [MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
 - [jQuery](https://jquery.com)
 - [Bootstrap](https://getbootstrap.com)
-- [Bootstrap Themes](http://bootswatch.com)
+- [Bootstrap Themes](https://bootswatch.com)
 
 #### Android App
 
@@ -63,7 +63,7 @@ itself. Well, we are always our most demanding client.
 
 #### Automated tests
 
-- [SpecFlow - BDD](http://specflow.org)
+- [SpecFlow - BDD](https://specflow.org)
 - [Node](https://nodejs.org/en/)
 - [Jest](https://jestjs.io/)
 - [Puppeteer](https://developers.google.com/web/tools/puppeteer)
