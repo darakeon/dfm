@@ -135,7 +135,7 @@ Legend:
 
 ## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`8`</sup>
 - [ ] Add reference of where themes came from (docs / site settings)
-- [ ] Original bootstrap on NONE theme
+- [x] `191121>191121` Original bootstrap on NONE theme
 - [x] `191121>191121` Add PRIVACY to contract
 - [x] `191120>191121` Get user timezone from browser
 - [x] `191120>191120` Remove twitter timeline - use API (user data security)
