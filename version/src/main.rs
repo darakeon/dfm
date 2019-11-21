@@ -13,6 +13,9 @@ use csharp::update_csharp;
 mod rust;
 use rust::update_rust;
 
+mod browser_tests;
+use browser_tests::update_node;
+
 fn main() {
 	let task_list = task_list();
 
@@ -26,4 +29,6 @@ fn main() {
 	update_csharp(&version);
 
 	update_rust(&version);
+
+	update_node(&version);
 }
