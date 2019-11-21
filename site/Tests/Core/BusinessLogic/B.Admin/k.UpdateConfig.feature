@@ -65,7 +65,7 @@ Scenario: Bk07. Change language to en-US
 
 Scenario: Bk08. Change timezone to en-US
 	When I try to change the timezone to Someplace
-	Then I will receive this core error: TimezoneUnknown
+	Then I will receive this core error: TimeZoneUnknown
 
 Scenario: Bk09. Disable categories use
 	Given I enable Categories use

@@ -14,9 +14,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 				.Length(MaxLen.ConfigLanguage)
 				.Default("'" + Defaults.ConfigLanguage + "'");
 
-			mapping.Map(c => c.TimeZone)
-				.Default("'" + Defaults.ConfigTimezone + "'");
-
 			mapping.Map(c => c.SendMoveEmail)
 				.Default("'" + Defaults.ConfigSendMoveEmail + "'");
 

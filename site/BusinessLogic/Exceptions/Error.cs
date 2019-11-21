@@ -78,7 +78,7 @@
 		InvalidMonth = 702,
 
 		LanguageUnknown = 801,
-		TimezoneUnknown = 802,
+		TimeZoneUnknown = 802,
 	}
 
 	public static class ErrorX

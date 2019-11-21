@@ -72,7 +72,7 @@
 		"CantDeleteAccountWithSchedules": "Can't delete Account with Schedules. The Account can be closed or the Schedules can be deleted, so the Account can be deleted.",
 		"WrongPassword": "Wrong password for current user",
 		"LanguageUnknown": "Unknown language",
-		"TimezoneUnknown": "Unknown timezone",
+		"TimeZoneUnknown": "Unknown timezone",
 		"InvalidTheme": "Invalid Theme",
 		"NotSignedLastContract": "Need to sign last system contract version! See at the site",
 		"TFAWrongCode": "Invalid Code",

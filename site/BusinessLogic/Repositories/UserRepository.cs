@@ -107,7 +107,11 @@ namespace DFM.BusinessLogic.Repositories
 
 			user.Active = false;
 
-			user.Config.TimeZone = Defaults.ConfigTimezone;
+			if (user.Config.Language == null)
+				user.Config.Language = Defaults.ConfigLanguage;
+
+			if (user.Config.TimeZone == null)
+				user.Config.TimeZone = Defaults.ConfigTimeZone;
 
 			user.Config.SendMoveEmail = Defaults.ConfigSendMoveEmail;
 			user.Config.UseCategories = Defaults.ConfigUseCategories;

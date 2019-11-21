@@ -315,8 +315,8 @@ namespace DFM.BusinessLogic.Services
 			if (info.Language != null && !PlainText.AcceptLanguage(info.Language))
 				throw Error.LanguageUnknown.Throw();
 
-			if (info.TimeZone != null && !info.TimeZone.IsTimezone())
-				throw Error.TimezoneUnknown.Throw();
+			if (info.TimeZone != null && !info.TimeZone.IsTimeZone())
+				throw Error.TimeZoneUnknown.Throw();
 
 			if (!String.IsNullOrEmpty(info.Language))
 				config.Language = info.Language;

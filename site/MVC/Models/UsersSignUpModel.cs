@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.Generic;
 using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
@@ -51,6 +52,8 @@ namespace DFM.MVC.Models
 
 		public SignUpInfo Info { get; set; }
 
+		public Int32 TimeZoneOffset { get; set; }
+
 		internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
 		{
 			var errors = new List<String>();
@@ -58,6 +61,7 @@ namespace DFM.MVC.Models
 			try
 			{
 				Info.Language = Language;
+				Info.TimeZone = TimeZoneOffset.GetTimeZone();
 				safe.SaveUserAndSendVerify(Info);
 			}
 			catch (CoreError e)

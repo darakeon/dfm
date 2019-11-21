@@ -184,6 +184,7 @@
     <Content Include="Assets\Libs\Datepicker\moment.js" />
     <Content Include="Assets\Libs\Datepicker\moment.min.js" />
     <Content Include="Assets\Libs\Scripts\qrcode.min.js" />
+    <Content Include="Assets\Scripts\sign-up.js" />
     <Content Include="Assets\Styles\contract.css" />
     <Content Include="Assets\Styles\qrcode.css" />
     <Content Include="Assets\Styles\updates.css" />

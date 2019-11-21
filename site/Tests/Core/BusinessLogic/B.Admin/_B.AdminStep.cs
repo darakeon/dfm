@@ -892,11 +892,11 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		}
 
 		[When(@"I try to change the timezone to ([\w\s\.]+)")]
-		public void WhenITryToChangeTheTimezoneTo(String timezone)
+		public void WhenITryToChangeTheTimeZoneTo(String timeZone)
 		{
 			try
 			{
-				var mainConfig = new ConfigInfo { TimeZone = timezone };
+				var mainConfig = new ConfigInfo { TimeZone = timeZone };
 				service.Admin.UpdateConfig(mainConfig);
 			}
 			catch (CoreError e)
