@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace DFM.Generic
@@ -35,14 +36,27 @@ namespace DFM.Generic
 			);
 		}
 
-		public static IDictionary<String, String> TimeZoneList =
-			TimeZoneInfo.GetSystemTimeZones()
-				.ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
+		private static readonly ReadOnlyCollection<TimeZoneInfo> timeZones =
+			TimeZoneInfo.GetSystemTimeZones();
 
-		public static Boolean IsTimezone(this String timezone)
+		public static String GetTimeZone(this Int32 offset) =>
+			timeZones.First(
+				tz => equal(tz.BaseUtcOffset, offset)
+			).StandardName;
+
+		private static Boolean equal(TimeSpan timeSpan, Int32 offset)
 		{
-			return timezone == null
-			       || TimeZoneList.ContainsKey(timezone);
+			var timeSpanOffset = timeSpan.Hours * 60 + timeSpan.Minutes;
+			return timeSpanOffset == offset;
+		}
+
+		public static IDictionary<String, String> TimeZoneList =
+			timeZones.ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
+
+		public static Boolean IsTimeZone(this String timeZone)
+		{
+			return timeZone == null
+			       || TimeZoneList.ContainsKey(timeZone);
 		}
 	}
 }

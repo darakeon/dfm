@@ -137,7 +137,7 @@ Legend:
 - [ ] Add reference of where themes came from (docs / site settings)
 - [ ] Original bootstrap on NONE theme
 - [ ] Add PRIVACY to contract
-- [ ] Get user timezone from browser
+- [x] `191120>191121` Get user timezone from browser
 - [x] `191120>191120` Remove twitter timeline - use API (user data security)
 
 ## <a name="4.1.3.7"></a>4.1.3.7 :ant: <sup>`3`</sup>

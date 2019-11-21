@@ -6,7 +6,7 @@ namespace DFM.Entities.Bases
 	public static class Defaults
 	{
 		public const String ConfigLanguage = "pt-BR";
-		public const String ConfigTimezone = "E. South America Standard Time";
+		public const String ConfigTimeZone = "E. South America Standard Time";
 
 		public const Boolean ConfigSendMoveEmail = false;
 		public const Boolean ConfigUseCategories = false;
