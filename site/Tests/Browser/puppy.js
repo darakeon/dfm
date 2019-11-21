@@ -69,7 +69,6 @@ async function createMove(
 	await call(`Account/${accountUrl}/Moves/Create`)
 	await page.waitForSelector('#body form')
 
-	await page.screenshot({path:'log/desc.png'})
 	await page.type('#Description', description)
 
 	await clear('#Date')
