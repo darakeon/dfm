@@ -171,16 +171,16 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
+		await db.checkMove(id)
+
 		await puppy.call(`Account/${accountOut}`)
 		await page.waitForSelector('#body .table')
-
-		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
-		await puppy.submit(checkUrl)
 
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
 
 		const table = await puppy.content('#body .table')
+		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
 		expect(table).toContain(checkUrl)
 	})
 })
