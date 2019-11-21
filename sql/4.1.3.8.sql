@@ -3,6 +3,10 @@ insert into contract
     values
     (now(), '4.1.3.8');
 
+alter table terms
+	modify column Json varchar(5000) not null,
+	modify column Language varchar(5) not null;
+
 insert into terms
 	(Language, Contract_ID, Json)
 	select 'en-US', id, '
