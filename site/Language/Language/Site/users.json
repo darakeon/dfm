@@ -50,6 +50,7 @@
 		"EnableWizard": "Enable Wizard",
 		"TFAVerification": "Use the two factor verification code of the app used when the two factor was enabled",
 		"ThemeInstruction": "Chose a theme at the menu on the left and verify the examples at right. Save to use the chosen theme at the site for now on.",
+		"ThemeLink": "These themes came from {{link}}."
 	},
 	"pt-BR": {
 		"Email": "E-mail",
@@ -101,6 +102,7 @@
 		"CookiesWarning": "Cookies são usados para controlar seu acesso a informações e a segurança dos formulários deste site",
 		"EnableWizard": "Habilitar Tutorial",
 		"TFAVerification": "Use o código de verificação em duas etapas gerado pelo aplicativo cadastrado anteriormente",
-		"ThemeInstruction": "Escolha um layout no menu a esquerda e verifique os exemplos a direita. Salve para usar no site  de agora em diante o layout que escolher.",
+		"ThemeInstruction": "Escolha um layout no menu a esquerda e verifique os exemplos a direita. Salve para usar no site de agora em diante o layout que escolher.",
+		"ThemeLink": "Esses temas vieram de {{link}}."
 	}
 }
