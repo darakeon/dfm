@@ -16,6 +16,9 @@ use rust::update_rust;
 mod browser_tests;
 use browser_tests::update_node;
 
+mod release_notes;
+use release_notes::update_notes;
+
 fn main() {
 	let task_list = task_list();
 
@@ -31,4 +34,6 @@ fn main() {
 	update_rust(&version);
 
 	update_node(&version);
+
+	update_notes(&version);
 }
