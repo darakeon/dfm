@@ -128,11 +128,12 @@ Legend:
 - [ ] Edit must uncheck move (warn before and after edit)
 - [ ] Split move check to account in / out
 
-## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`4`</sup>
+## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`5`</sup>
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [ ] Fix gender on system resources
 - [ ] Fix show terms to accept without TFA
+- [ ] Review Wizard messages
 
 ## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`8`</sup>
 - [x] `191121>191121` Add reference of where themes came from (docs / site settings)
