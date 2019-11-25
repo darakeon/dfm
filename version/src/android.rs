@@ -7,12 +7,16 @@ use crate::version::Version;
 static PATH: &str = r"..\android\DFM\build.gradle";
 
 pub fn update_android(version: &Version) {
+	let mut content = fs::read_to_string(PATH).unwrap();
+
+	if !content.contains(&version.prev) {
+		return;
+	}
+
 	let old_name = version_name(&version.prev);
 	let new_name = version_name(&version.code);
 
-	let mut content = fs::read_to_string(PATH)
-		.unwrap()
-		.replace(&old_name, &new_name);
+	content = content.replace(&old_name, &new_name);
 
 	content = change_code(content);
 
