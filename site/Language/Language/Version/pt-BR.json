@@ -1,4 +1,12 @@
 {
+	"4.1.3.8": [
+		"Ajustes da documentação do sistema no github",
+		"Lista de atualizações incorporada ao sistema (evitar rastreamento de twitter)",
+		"Usado hora do browser para pegar configuração de hora ao criar usuário",
+		"Adicionadas especificações de privacidade no contrato",
+		"Arrumada troca de versão do sistema",
+		"Ajustes no teste automatizado do site"
+	],
 	"4.1.3.7": [
 		"Ajustes em documentação de código",
 		"Adicionados testes automatizados para garantir funcionamento do site",

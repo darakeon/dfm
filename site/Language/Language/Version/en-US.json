@@ -1,4 +1,12 @@
 {
+	"4.1.3.8": [
+		"System docs adjustments on github",
+		"Move updates at home to system (avoid twitter tracking)",
+		"Used browser time to configure first user time",
+		"Added privacy specs to terms",
+		"Fix version change on system",
+		"Adjusts on browser automated tests"
+	],
 	"4.1.3.7": [
 		"Adjustments in code documentation",
 		"Added automated testing to ensure site functionality",
