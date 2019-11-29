@@ -8,8 +8,10 @@ namespace DFM.MVC.Areas.API.Json
 	{
 		public SimpleMonthJson(YearReport.MonthItem month)
 		{
-			Number = month.Number;
-			Name = Translator.GetMonthName(month.Number);
+			var monthNumber = month.Number % 100;
+
+			Number = monthNumber;
+			Name = Translator.GetMonthName(monthNumber);
 			Total = month.Total;
 		}
 
