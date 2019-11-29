@@ -132,7 +132,7 @@ Legend:
 - [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [ ] Fix gender on system resources
-- [ ] Fix show terms to accept without TFA
+- [x] `191129>191129` Fix show terms to accept without TFA
 - [x] `191129>191129` Fix android summary bug
 - [x] `191128>191129` Review Wizard messages
 

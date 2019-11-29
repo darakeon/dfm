@@ -47,15 +47,15 @@ namespace DFM.MVC.Helpers.Authorize
 		{
 			if (isAuthenticated)
 			{
-				if (denyByContract)
-				{
-					goToContractPage(filterContext);
-					return;
-				}
-
 				if (denyByTFA)
 				{
 					goToTFA(filterContext);
+					return;
+				}
+
+				if (denyByContract)
+				{
+					goToContractPage(filterContext);
 					return;
 				}
 			}
