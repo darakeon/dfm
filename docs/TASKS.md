@@ -133,7 +133,7 @@ Legend:
 - [ ] Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [ ] Fix gender on system resources
 - [ ] Fix show terms to accept without TFA
-- [ ] Fix android summary bug
+- [x] `191129>191129` Fix android summary bug
 - [x] `191128>191129` Review Wizard messages
 
 ## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`8`</sup>
