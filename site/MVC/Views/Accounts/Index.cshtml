@@ -7,8 +7,8 @@
 
 	ViewBag.WizardMessage =
 		Model.AccountList.Any()
-			? Translator.Dictionary["AccountsIndexFilled"]
-			: Translator.Dictionary["AccountsIndexEmpty"];
+			? "AccountsIndexFilled"
+			: "AccountsIndexEmpty";
 
 	Layout = "~/Views/Shared/_Table.cshtml";
 

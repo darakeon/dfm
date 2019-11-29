@@ -2,7 +2,7 @@
 @model UsersConfigModel
 @{
 	ViewBag.Title = Translator.Dictionary["Settings"];
-	ViewBag.WizardMessage = Translator.Dictionary["Settings"];
+	ViewBag.WizardMessage = "Settings";
 	Layout = "~/Views/Shared/_Form.cshtml";
 
 	var tabs = Enum.GetValues(typeof (UsersConfigModel.Form));
