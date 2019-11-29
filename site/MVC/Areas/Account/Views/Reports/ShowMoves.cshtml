@@ -9,8 +9,8 @@
 
 	ViewBag.WizardMessage =
 		Model.MoveList.Any()
-			? Translator.Dictionary["ShowMovesFilled"]
-			: Translator.Dictionary["ShowMovesEmpty"];
+			? "ShowMovesFilled"
+			: "ShowMovesEmpty";
 
 	Layout = "~/Views/Shared/_Table.cshtml";
 

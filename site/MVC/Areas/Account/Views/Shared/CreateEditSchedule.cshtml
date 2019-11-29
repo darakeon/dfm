@@ -8,8 +8,8 @@
 
 	ViewBag.WizardMessage =
 		scheduleModel == null
-			? Translator.Dictionary["MovesCreate"]
-			: Translator.Dictionary["SchedulesCreate"];
+			? "MovesCreate"
+			: "SchedulesCreate";
 
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;

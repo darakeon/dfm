@@ -134,7 +134,7 @@ Legend:
 - [ ] Fix gender on system resources
 - [ ] Fix show terms to accept without TFA
 - [ ] Fix android summary bug
-- [ ] Review Wizard messages
+- [x] `191128>191129` Review Wizard messages
 
 ## <a name="4.1.3.8"></a>4.1.3.8 :ant: <sup>`8`</sup>
 - [x] `191121>191121` Add reference of where themes came from (docs / site settings)
