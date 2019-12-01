@@ -206,6 +206,26 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			Assert.IsTrue(currentEmailStatus.HasValue);
 			Assert.AreEqual(EmailStatus.EmailSent, currentEmailStatus.Value);
 		}
+
+		[Then(@"the accountIn begin date will be (\d{4}\-\d{2}\-\d{2})")]
+		public void ThenTheAccountInBeginDateWillBe(DateTime beginDate)
+		{
+			thenTheAccountBeginDateWillBe(accountInUrl, beginDate);
+		}
+
+		[Then(@"the accountOut begin date will be (\d{4}\-\d{2}\-\d{2})")]
+		public void ThenTheAccountOutBeginDateWillBe(DateTime beginDate)
+		{
+			thenTheAccountBeginDateWillBe(accountOutUrl, beginDate);
+		}
+
+		private void thenTheAccountBeginDateWillBe(String url, DateTime beginDate)
+		{
+			var user = userRepository.GetByEmail(current.Email);
+			var account = accountRepository.GetByUrl(url, user);
+
+			Assert.AreEqual(beginDate, account.BeginDate);
+		}
 		#endregion
 
 		#region UpdateMove

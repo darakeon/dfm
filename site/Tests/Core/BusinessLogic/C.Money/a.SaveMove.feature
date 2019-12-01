@@ -683,3 +683,28 @@ Scenario: Ca44. Save with decimals in details
 		And the accountOut value will change in -9.45
 		And the month-category-accountOut value will change in 9.45
 		And the year-category-accountOut value will change in 9.45
+
+# because begin date is used to get the date of the start of reports
+Scenario: Ca45. Save move fix account begin date
+	Given I have this move to create
+			| Description   | Date       | Nature   | Value |
+			| Move Ca45 Old | 1986-05-04 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the accountOut begin date will be 1986-05-04
+		And the accountIn begin date will be 1986-05-04
+	Given I have this move to create
+			| Description   | Date       | Nature   | Value |
+			| Move Ca45 New | 1986-12-01 | Transfer | 10    |
+		And it has no Details
+		And it has a Category
+		And it has an Account Out
+		And it has an Account In
+	When I try to save the move
+	Then I will receive no core error
+		And the accountOut begin date will be 1986-05-04
+		And the accountIn begin date will be 1986-05-04
