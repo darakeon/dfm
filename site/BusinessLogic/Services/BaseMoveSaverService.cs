@@ -4,6 +4,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Entities.Extensions;
 using Error = DFM.BusinessLogic.Exceptions.Error;
@@ -75,6 +76,18 @@ namespace DFM.BusinessLogic.Services
 				BreakSummaries(move);
 
 			var emailStatus = moveRepository.SendEmail(move, operationType);
+
+			if (move.In != null && move.In.BeginDate > move.GetDate())
+			{
+				move.In.BeginDate = move.GetDate();
+				accountRepository.Save(move.In);
+			}
+
+			if (move.Out != null && move.Out.BeginDate > move.GetDate())
+			{
+				move.Out.BeginDate = move.GetDate();
+				accountRepository.Save(move.Out);
+			}
 
 			return new MoveResult(move, emailStatus);
 		}
