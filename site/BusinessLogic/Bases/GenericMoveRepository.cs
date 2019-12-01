@@ -108,7 +108,7 @@ namespace DFM.BusinessLogic.Bases
 				throw Error.ClosedAccount.Throw();
 
 			if (move.In != null && move.Out != null && move.In.ID == move.Out.ID)
-				throw Error.MoveCircularTransfer.Throw();
+				throw Error.CircularTransfer.Throw();
 		}
 
 		private void testCategory(T move)
