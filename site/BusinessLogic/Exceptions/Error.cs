@@ -51,7 +51,7 @@
 		InMoveWrong = 501,
 		OutMoveWrong = 502,
 		TransferMoveWrong = 503,
-		MoveCircularTransfer = 504,
+		CircularTransfer = 504,
 		MoveDescriptionRequired = 505,
 		MoveDateRequired = 506,
 		MoveDateInvalid = 507,

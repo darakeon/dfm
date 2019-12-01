@@ -276,7 +276,7 @@ Scenario: Da19. Save with (Nature: Transfer) (AccountOut:Yes) (AccountIn:Equal t
 		And it has an Account Out
 		And it has an Account In equal to Out
 	When I try to save the schedule
-	Then I will receive this core error: MoveCircularTransfer
+	Then I will receive this core error: CircularTransfer
 		And the schedule will not be saved
 		And the accountOut value will not change
 		And the month-category-accountOut value will not change
