@@ -54,7 +54,7 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Seu usuário não foi ativado.')
+		await expect(message).toContain('Seu acesso ao sistema não foi ativado ainda.')
 	})
 
 	test('Token User Activate - by url', async () => {
@@ -65,7 +65,7 @@ describe('Users', () => {
 		await puppy.call(`Tokens/UserVerification/${token}`)
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Usuário verificado com sucesso.')
+		await expect(message).toContain('Verifição feita com sucesso.')
 	})
 
 	test('Token User Activate - by form', async () => {
@@ -80,7 +80,7 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Usuário verificado com sucesso.')
+		await expect(message).toContain('Verifição feita com sucesso.')
 	})
 
 	test('Forgot Password', async () => {
@@ -92,9 +92,8 @@ describe('Users', () => {
 
 		await page.type('#Email', email)
 		await page.click('#body form button[type="submit"]')
-
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá as instruções para prosseguir.')
 	})
 
 	test('Forgot Password - not existente', async () => {
@@ -107,7 +106,7 @@ describe('Users', () => {
 		await page.click('#body form button[type="submit"]')
 
 		const message = await puppy.content('.alert')
-		await expect(message).toContain('Se existir este e-mail no sistema, você receberá um e-mail.')
+		await expect(message).toContain('Se existir este e-mail no sistema, você receberá as instruções para prosseguir.')
 	})
 
 	test('Token Password Reset - by url', async () => {
