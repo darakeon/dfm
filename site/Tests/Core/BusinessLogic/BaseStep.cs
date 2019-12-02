@@ -155,15 +155,7 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				var info = new SignInInfo
-				{
-					Email = email,
-					Password = password,
-					TicketKey = ticketKey,
-					TicketType = TicketType.Local,
-				};
-
-				service.Safe.ValidateUserAndCreateTicket(info);
+				validateUserAndCreateTicket(email, password);
 
 				return null;
 			}
@@ -173,6 +165,18 @@ namespace DFM.Tests.BusinessLogic
 			}
 		}
 
+		protected String validateUserAndCreateTicket(String email, String password)
+		{
+			var info = new SignInInfo
+			{
+				Email = email,
+				Password = password,
+				TicketKey = ticketKey,
+				TicketType = TicketType.Local,
+			};
+
+			return service.Safe.ValidateUserAndCreateTicket(info);
+		}
 
 		protected Account getOrCreateAccount(String url)
 		{
@@ -205,21 +209,6 @@ namespace DFM.Tests.BusinessLogic
 			);
 
 			return categoryRepository.GetByName(name, user);
-		}
-
-		protected SessionInfo getSavedUser(String email, String password)
-		{
-			var info = new SignInInfo
-			{
-				Email = email,
-				Password = password,
-				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
-			};
-
-			var key = service.Safe.ValidateUserAndCreateTicket(info);
-
-			return service.Safe.GetSessionByTicket(key);
 		}
 		#endregion
 

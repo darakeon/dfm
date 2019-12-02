@@ -6,6 +6,7 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
+using DFM.Generic;
 using Keon.TwoFactorAuth;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -168,38 +169,18 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the user will not be saved")]
 		public void ThenTheUserWillNotBeSaved()
 		{
-			ticket = null;
-			error = null;
-
-			try
-			{
-				var info = new SignInInfo
-				{
-					Email = email,
-					Password = password,
-					TicketKey = ticketKey,
-					TicketType = TicketType.Local,
-				};
-
-				ticket = service.Safe
-					.ValidateUserAndCreateTicket(info);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			Assert.IsNull(ticket);
-			Assert.IsNotNull(error);
-			Assert.AreEqual(Error.InvalidUser, error.Type);
+			var user = userRepository.GetByEmail(email);
+			Assert.IsNull(user);
 		}
 
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
-			var savedUser = getSavedUser(otherUser.Email, otherUser.Password);
+			var encryptedPassword = Crypt.Do(otherUser.Password);
+			var savedUser = userRepository.GetByEmail(otherUser.Email);
 
 			Assert.IsNotNull(savedUser);
+			Assert.AreEqual(savedUser.Password, encryptedPassword);
 		}
 
 		[Then(@"the user will be saved")]
@@ -212,9 +193,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			service.Safe.ActivateUser(tokenActivate);
 
-			var savedUser = getSavedUser(email, password);
+			var encryptedPassword = Crypt.Do(password);
+			var savedUser = userRepository.GetByEmail(email);
 
 			Assert.IsNotNull(savedUser);
+			Assert.AreEqual(savedUser.Password, encryptedPassword);
 		}
 		#endregion
 
@@ -432,52 +415,21 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the password will not be changed")]
 		public void ThenThePasswordWillNotBeChanged()
 		{
-			error = null;
+			var encryptedPassword = Crypt.Do(password);
+			var savedUser = userRepository.GetByEmail(email);
 
-			try
-			{
-				var testLocalTicket = TK.New();
-
-				var info = new SignInInfo
-				{
-					Email = email,
-					Password = password,
-					TicketKey = testLocalTicket,
-					TicketType = TicketType.Local,
-				};
-
-				service.Safe.ValidateUserAndCreateTicket(info);
-			}
-			catch (CoreError e)
-			{
-				if (e.Type != Error.DisabledUser)
-					error = e;
-			}
-
-			Assert.IsNull(error);
+			Assert.IsNotNull(savedUser);
+			Assert.AreEqual(savedUser.Password, encryptedPassword);
 		}
 
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
-			service.Safe.SendUserVerify(email);
-			token = getLastTokenForUser(
-				email,
-				SecurityAction.UserVerification
-			);
-			service.Safe.ActivateUser(token);
+			var encryptedPassword = Crypt.Do(newPassword);
+			var savedUser = userRepository.GetByEmail(email);
 
-			var info = new SignInInfo
-			{
-				Email = email,
-				Password = newPassword,
-				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
-			};
-
-			var newTicket = service.Safe.ValidateUserAndCreateTicket(info);
-
-			Assert.IsNotNull(newTicket);
+			Assert.IsNotNull(savedUser);
+			Assert.AreEqual(savedUser.Password, encryptedPassword);
 		}
 		#endregion
 
