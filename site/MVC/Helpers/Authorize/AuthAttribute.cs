@@ -40,8 +40,8 @@ namespace DFM.MVC.Helpers.Authorize
 		private Boolean isAuthenticated => Service.Current.IsAuthenticated;
 		private Boolean denyByAdmin => needAdmin && !Service.Current.IsAdm;
 		private Boolean denyByContract => needContract && !Service.Access.Safe.IsLastContractAccepted();
-		private Boolean denyByTFA => needTFA && !Service.Access.Safe.VerifyTicket();
-		private Boolean denyByMobile => isMobile && !Service.Access.Safe.VerifyTicket(TicketType.Mobile);
+		private Boolean denyByTFA => needTFA && !Service.Access.Safe.VerifyTicketTFA();
+		private Boolean denyByMobile => isMobile && !Service.Access.Safe.VerifyTicketType(TicketType.Mobile);
 
 		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
 		{

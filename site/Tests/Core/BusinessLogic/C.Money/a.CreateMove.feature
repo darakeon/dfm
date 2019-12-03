@@ -1,4 +1,4 @@
-﻿Feature: Ca. Creation of Move
+﻿Feature: Ca. Create move
 
 Background:
 	Given I have a complete user logged in

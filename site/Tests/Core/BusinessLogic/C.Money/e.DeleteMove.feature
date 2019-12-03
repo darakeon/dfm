@@ -1,4 +1,4 @@
-﻿Feature: Ce. Delete of Moves
+﻿Feature: Ce. Delete move
 
 Background:
 	Given I have a complete user logged in

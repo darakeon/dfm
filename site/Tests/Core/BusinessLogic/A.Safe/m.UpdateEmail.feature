@@ -1,4 +1,4 @@
-﻿Feature: Am. Update E-mail
+﻿Feature: Am. Update e-mail
 
 Scenario: Am01. E-mail change with wrong current password
 	Given I have this user created

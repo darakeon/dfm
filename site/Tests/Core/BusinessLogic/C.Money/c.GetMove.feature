@@ -1,4 +1,4 @@
-﻿Feature: Cc. Get Move
+﻿Feature: Cc. Get move
 
 Background:
 	Given I have a complete user logged in

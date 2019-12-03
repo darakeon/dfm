@@ -123,7 +123,7 @@ namespace DFM.Tests.BusinessLogic
 						Language = Defaults.ConfigLanguage,
 					};
 
-					service.Safe.SaveUserAndSendVerify(info);
+					service.Safe.SaveUser(info);
 
 					if (shouldActivateUser)
 					{
@@ -155,7 +155,7 @@ namespace DFM.Tests.BusinessLogic
 		{
 			try
 			{
-				validateUserAndCreateTicket(email, password);
+				createTicket(email, password);
 
 				return null;
 			}
@@ -165,7 +165,7 @@ namespace DFM.Tests.BusinessLogic
 			}
 		}
 
-		protected String validateUserAndCreateTicket(String email, String password)
+		protected String createTicket(String email, String password)
 		{
 			var info = new SignInInfo
 			{
@@ -175,7 +175,7 @@ namespace DFM.Tests.BusinessLogic
 				TicketType = TicketType.Local,
 			};
 
-			return service.Safe.ValidateUserAndCreateTicket(info);
+			return service.Safe.CreateTicket(info);
 		}
 
 		protected Account getOrCreateAccount(String url)

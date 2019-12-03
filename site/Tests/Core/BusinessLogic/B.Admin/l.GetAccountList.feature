@@ -1,4 +1,4 @@
-﻿Feature: Bl. Get Account List
+﻿Feature: Bl. Get account list
 
 Background:
 	Given I have a complete user logged in

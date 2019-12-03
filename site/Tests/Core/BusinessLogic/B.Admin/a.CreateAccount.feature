@@ -1,4 +1,4 @@
-﻿Feature: Ba. Creation of Account
+﻿Feature: Ba. Create account
 
 Background:
 	Given I have a complete user logged in

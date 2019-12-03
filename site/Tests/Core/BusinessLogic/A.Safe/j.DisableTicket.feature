@@ -1,4 +1,4 @@
-﻿Feature: Aj. Disable Ticket
+﻿Feature: Aj. Disable ticket
 
 Background:
 	Given I have this user created

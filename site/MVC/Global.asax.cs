@@ -75,7 +75,7 @@ namespace DFM.MVC
 
 			var canRunSchedule =
 				access.Safe.IsLastContractAccepted()
-				&& access.Safe.VerifyTicket();
+				&& access.Safe.VerifyTicketTFA();
 
 			if (canRunSchedule)
 			{

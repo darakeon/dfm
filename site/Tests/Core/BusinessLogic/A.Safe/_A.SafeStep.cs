@@ -134,7 +134,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				Language = Defaults.ConfigLanguage,
 			};
 
-			service.Safe.SaveUserAndSendVerify(info);
+			service.Safe.SaveUser(info);
 
 			var tokenActivate = getLastTokenForUser(
 				otherUser.Email,
@@ -158,7 +158,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					Language = Defaults.ConfigLanguage,
 				};
 
-				service.Safe.SaveUserAndSendVerify(info);
+				service.Safe.SaveUser(info);
 			}
 			catch (CoreError e)
 			{
@@ -176,11 +176,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
-			var encryptedPassword = Crypt.Do(otherUser.Password);
 			var savedUser = userRepository.GetByEmail(otherUser.Email);
-
 			Assert.IsNotNull(savedUser);
-			Assert.AreEqual(savedUser.Password, encryptedPassword);
+
+			var rightPassword = Crypt.Check(otherUser.Password, savedUser.Password);
+			Assert.IsTrue(rightPassword);
 		}
 
 		[Then(@"the user will be saved")]
@@ -193,11 +193,11 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			service.Safe.ActivateUser(tokenActivate);
 
-			var encryptedPassword = Crypt.Do(password);
 			var savedUser = userRepository.GetByEmail(email);
-
 			Assert.IsNotNull(savedUser);
-			Assert.AreEqual(savedUser.Password, encryptedPassword);
+
+			var rightPassword = Crypt.Check(password, savedUser.Password);
+			Assert.IsTrue(rightPassword);
 		}
 		#endregion
 
@@ -290,7 +290,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 					TicketType = TicketType.Local,
 				};
 
-				ticket = service.Safe.ValidateUserAndCreateTicket(info);
+				ticket = service.Safe.CreateTicket(info);
 			}
 			catch (CoreError e)
 			{
@@ -316,14 +316,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			{
 				try
 				{
-					service.Safe.ValidateUserAndCreateTicket(info);
+					service.Safe.CreateTicket(info);
 				}
 				catch (CoreError) { }
 			}
 
 			try
 			{
-				service.Safe.ValidateUserAndCreateTicket(info);
+				service.Safe.CreateTicket(info);
 			}
 			catch (CoreError e)
 			{
@@ -342,7 +342,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			Assert.IsNotNull(ticket);
 
-			var expectedSession = service.Safe.GetSessionByTicket(ticket);
+			var expectedSession = service.Safe.GetSession(ticket);
 
 			Assert.IsNotNull(expectedSession);
 		}
@@ -356,7 +356,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				session = service.Safe.GetSessionByTicket(ticket);
+				session = service.Safe.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -415,21 +415,21 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the password will not be changed")]
 		public void ThenThePasswordWillNotBeChanged()
 		{
-			var encryptedPassword = Crypt.Do(password);
 			var savedUser = userRepository.GetByEmail(email);
-
 			Assert.IsNotNull(savedUser);
-			Assert.AreEqual(savedUser.Password, encryptedPassword);
+
+			var rightPassword = Crypt.Check(password, savedUser.Password);
+			Assert.IsTrue(rightPassword);
 		}
 
 		[Then(@"the password will be changed")]
 		public void ThenThePasswordWillBeChanged()
 		{
-			var encryptedPassword = Crypt.Do(newPassword);
 			var savedUser = userRepository.GetByEmail(email);
-
 			Assert.IsNotNull(savedUser);
-			Assert.AreEqual(savedUser.Password, encryptedPassword);
+
+			var rightPassword = Crypt.Check(newPassword, savedUser.Password);
+			Assert.IsTrue(rightPassword);
 		}
 		#endregion
 
@@ -507,7 +507,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				service.Safe.GetSessionByTicket(ticket);
+				service.Safe.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -525,7 +525,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 
 			try
 			{
-				service.Safe.GetSessionByTicket(ticket);
+				service.Safe.GetSession(ticket);
 			}
 			catch (CoreError e)
 			{
@@ -649,7 +649,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		public void ThenTheEmailWillNotBeChanged()
 		{
 			error = null;
-			var user = service.Safe.GetSessionByTicket(ticketKey);
+			var user = service.Safe.GetSession(ticketKey);
 			Assert.AreEqual(email, user.Email);
 		}
 
@@ -749,7 +749,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				TicketType = TicketType.Local,
 			};
 
-			ticket = service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.CreateTicket(info);
 		}
 
 		[Given(@"I pass a ticket that exist")]
@@ -781,7 +781,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				TicketType = TicketType.Local,
 			};
 
-			ticket = service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.CreateTicket(info);
 		}
 
 
@@ -925,7 +925,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				TicketType = TicketType.Local,
 			};
 
-			ticket = service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.CreateTicket(info);
 		}
 
 		[Given(@"I have this two-factor data")]
@@ -1004,7 +1004,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				TicketType = TicketType.Local,
 			};
 
-			ticket = service.Safe.ValidateUserAndCreateTicket(info);
+			ticket = service.Safe.CreateTicket(info);
 		}
 
 		[Given(@"I validate the ticket two factor")]
@@ -1029,7 +1029,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				ticketVerified = service.Safe.VerifyTicket();
+				ticketVerified = service.Safe.VerifyTicketTFA();
 			}
 			catch (CoreError exception)
 			{
@@ -1042,7 +1042,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		{
 			try
 			{
-				ticketVerified = service.Safe.VerifyTicket(type);
+				ticketVerified = service.Safe.VerifyTicketType(type);
 			}
 			catch (CoreError exception)
 			{
@@ -1060,7 +1060,7 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the ticket will (not )?be valid")]
 		public void ThenTheTicketWillBeValidated(Boolean valid)
 		{
-			var recordedValidated = service.Safe.VerifyTicket();
+			var recordedValidated = service.Safe.VerifyTicketTFA();
 			Assert.AreEqual(valid, recordedValidated);
 		}
 		#endregion TFA

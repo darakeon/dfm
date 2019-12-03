@@ -1,4 +1,4 @@
-﻿Feature: Aq. Operations with not signed Contract
+﻿Feature: Aq. Operations with not signed contract
 
 Background:
 	Given I have a complete user logged in
@@ -9,7 +9,7 @@ Scenario: Aq01. List Logins
 		And I login the user
 		And I logoff the user
 		And I login the user
-	But there is a new contract
+		But there is a new contract
 	When I ask for current active logins
 	Then I will receive this core error: NotSignedLastContract
 

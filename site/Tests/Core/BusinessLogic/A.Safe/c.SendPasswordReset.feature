@@ -1,4 +1,4 @@
-﻿Feature: Ac. Send a password reset token to user
+﻿Feature: Ac. Send password reset
 
 Background:
 	Given I have this user created

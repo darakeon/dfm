@@ -1,4 +1,4 @@
-﻿Feature: Ab. Send user verify token to user
+﻿Feature: Ab. Send user verify
 
 Background:
 	Given I have this user created

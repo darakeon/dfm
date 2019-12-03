@@ -1,4 +1,4 @@
-﻿Feature: Bc. Update of Account
+﻿Feature: Bc. Update account
 
 Background:
 	Given I have a complete user logged in

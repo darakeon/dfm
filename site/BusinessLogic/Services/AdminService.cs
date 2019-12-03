@@ -84,7 +84,7 @@ namespace DFM.BusinessLogic.Services
 			return AccountSign.None;
 		}
 
-		public AccountInfo GetAccountByUrl(String url)
+		public AccountInfo GetAccount(String url)
 		{
 			parent.Safe.VerifyUser();
 			var account = GetAccountByUrlInternal(url);
@@ -205,7 +205,7 @@ namespace DFM.BusinessLogic.Services
 				.Select(CategoryListItem.Convert).ToList();
 		}
 
-		public CategoryInfo GetCategoryByName(String name)
+		public CategoryInfo GetCategory(String name)
 		{
 			parent.Safe.VerifyUser();
 			return CategoryInfo.Convert(

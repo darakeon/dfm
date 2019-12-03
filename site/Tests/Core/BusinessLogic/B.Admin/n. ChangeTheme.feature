@@ -1,4 +1,4 @@
-﻿Feature: Bn. Change Theme
+﻿Feature: Bn. Change theme
 
 Background:
 	Given I have a complete user logged in

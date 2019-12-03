@@ -1,4 +1,4 @@
-﻿Feature: E-mail sending
+﻿Feature: E-mail send
 
 Scenario: MS01. Send an e-mail without subject
 	Given I have this e-mail to send

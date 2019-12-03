@@ -1,4 +1,4 @@
-﻿Feature: Bg. Get Category by Name
+﻿Feature: Bg. Get category
 
 Background:
 	Given I have a complete user logged in

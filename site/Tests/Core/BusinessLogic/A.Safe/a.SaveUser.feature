@@ -1,4 +1,4 @@
-﻿Feature: Aa. Creation of User
+﻿Feature: Aa. Save user
 
 Scenario: Aa01. Save user without e-mail
 	Given I have this user data

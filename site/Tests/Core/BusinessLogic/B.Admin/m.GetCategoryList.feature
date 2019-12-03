@@ -1,4 +1,4 @@
-﻿Feature: Bm. Get Category List
+﻿Feature: Bm. Get category list
 
 Background:
 	Given I have a complete user logged in

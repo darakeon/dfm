@@ -1,4 +1,4 @@
-﻿Feature: Da. Save Schedule
+﻿Feature: Da. Save schedule
 
 Background:
 	Given I have a complete user logged in

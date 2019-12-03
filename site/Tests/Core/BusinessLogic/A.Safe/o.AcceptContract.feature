@@ -1,4 +1,4 @@
-﻿Feature: Ao. Accept Contract
+﻿Feature: Ao. Accept contract
 
 Background:
 	Given I have a contract

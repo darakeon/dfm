@@ -1,4 +1,4 @@
-﻿Feature: Ag. Reset password of user
+﻿Feature: Ag. Password reset
 
 Background:
 	Given I have this user created

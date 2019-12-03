@@ -1,4 +1,4 @@
-﻿Feature: Au. Verify Ticket TFA
+﻿Feature: Au. Verify Ticket Two factor Authentication
 
 Background:
 	Given I have this user created

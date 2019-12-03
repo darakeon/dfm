@@ -1,4 +1,4 @@
-﻿Feature: Eb. Year report
+﻿Feature: Eb. Get year report
 
 Background:
 	Given I have a complete user logged in

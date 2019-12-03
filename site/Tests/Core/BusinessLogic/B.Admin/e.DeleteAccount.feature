@@ -1,4 +1,4 @@
-﻿Feature: Be. Delete Account
+﻿Feature: Be. Delete account
 
 Background:
 	Given I have a complete user logged in

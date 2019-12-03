@@ -111,7 +111,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be changed")]
 		public void ThenTheAccountWillNotBeChanged()
 		{
-			var account = service.Admin.GetAccountByUrl(oldAccount.Url);
+			var account = service.Admin.GetAccount(oldAccount.Url);
 
 			Assert.AreEqual(oldAccount.Name, account.Name);
 			Assert.AreEqual(oldAccount.Url.ToLower(), account.Url);
@@ -128,7 +128,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				service.Admin.GetAccountByUrl(url);
+				service.Admin.GetAccount(url);
 			}
 			catch (CoreError e)
 			{
@@ -143,7 +143,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will be saved")]
 		public void ThenTheAccountWillBeSaved()
 		{
-			accountInfo = service.Admin.GetAccountByUrl(accountInfo.Url);
+			accountInfo = service.Admin.GetAccount(accountInfo.Url);
 
 			Assert.IsNotNull(accountInfo);
 		}
@@ -163,7 +163,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				accountInfo = service.Admin.GetAccountByUrl(accountUrl);
+				accountInfo = service.Admin.GetAccount(accountUrl);
 			}
 			catch (CoreError e)
 			{
@@ -251,7 +251,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 			{
 				try
 				{
-					account = service.Admin.GetAccountByUrl(accountInfo.OriginalUrl);
+					account = service.Admin.GetAccount(accountInfo.OriginalUrl);
 				}
 				catch (CoreError e)
 				{
@@ -267,7 +267,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				account = service.Admin.GetAccountByUrl(accountInfo.Url);
+				account = service.Admin.GetAccount(accountInfo.Url);
 			}
 			catch (CoreError e)
 			{
@@ -363,7 +363,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the account will not be deleted")]
 		public void ThenTheAccountWillNotBeDeleted()
 		{
-			accountInfo = service.Admin.GetAccountByUrl(accountUrl);
+			accountInfo = service.Admin.GetAccount(accountUrl);
 
 			Assert.IsNotNull(accountInfo);
 		}
@@ -377,7 +377,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				accountInfo = service.Admin.GetAccountByUrl(url);
+				accountInfo = service.Admin.GetAccount(url);
 			}
 			catch (CoreError e)
 			{
@@ -494,7 +494,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				categoryInfo = service.Admin.GetCategoryByName(name);
+				categoryInfo = service.Admin.GetCategory(name);
 			}
 			catch (CoreError e)
 			{
@@ -508,7 +508,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 		[Then(@"the category will be saved")]
 		public void ThenTheCategoryWillBeSaved()
 		{
-			categoryInfo = service.Admin.GetCategoryByName(categoryInfo.Name);
+			categoryInfo = service.Admin.GetCategory(categoryInfo.Name);
 
 			Assert.IsNotNull(categoryInfo);
 		}
@@ -528,7 +528,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				categoryInfo = service.Admin.GetCategoryByName(categoryName);
+				categoryInfo = service.Admin.GetCategory(categoryName);
 			}
 			catch (CoreError e)
 			{
@@ -581,7 +581,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				category = service.Admin.GetCategoryByName(categoryInfo.OriginalName);
+				category = service.Admin.GetCategory(categoryInfo.OriginalName);
 			}
 			catch (CoreError e)
 			{
@@ -603,7 +603,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 
 			try
 			{
-				category = service.Admin.GetCategoryByName(categoryInfo.Name);
+				category = service.Admin.GetCategory(categoryInfo.Name);
 			}
 			catch (CoreError e)
 			{
@@ -626,7 +626,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				}
 			);
 
-			categoryInfo = service.Admin.GetCategoryByName(givenCategoryName);
+			categoryInfo = service.Admin.GetCategory(givenCategoryName);
 
 			categoryName = categoryInfo.Name;
 		}
@@ -670,7 +670,7 @@ namespace DFM.Tests.BusinessLogic.B.Admin
 				}
 			);
 
-			categoryInfo = service.Admin.GetCategoryByName(givenCategoryName);
+			categoryInfo = service.Admin.GetCategory(givenCategoryName);
 
 			categoryName = categoryInfo.Name;
 

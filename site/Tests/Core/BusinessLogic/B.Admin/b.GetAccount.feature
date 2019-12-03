@@ -1,4 +1,4 @@
-﻿Feature: Bb. Get Account by Url
+﻿Feature: Bb. Get account
 
 Background:
 	Given I have a complete user logged in
