@@ -1,4 +1,4 @@
-﻿Feature: Translation
+﻿Feature: Language
 
 Background:
 	Given the dictionary is initialized

@@ -6,12 +6,12 @@ namespace DFM.Authentication
 		where SignInInfo: ISignInInfo
 		where SessionInfo: ISessionInfo
 	{
-		SessionInfo GetSessionByTicket(String ticket);
+		SessionInfo GetSession(String ticket);
 
-		String ValidateUserAndCreateTicket(SignInInfo info);
+		String CreateTicket(SignInInfo info);
 
 		void DisableTicket(String ticket);
 
-		Boolean VerifyTicket();
+		Boolean VerifyTicketTFA();
 	}
 }

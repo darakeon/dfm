@@ -62,7 +62,7 @@ namespace DFM.MVC.Models
 			{
 				Info.Language = Language;
 				Info.TimeZone = TimeZoneOffset.GetTimeZone();
-				safe.SaveUserAndSendVerify(Info);
+				safe.SaveUser(Info);
 			}
 			catch (CoreError e)
 			{

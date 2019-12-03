@@ -1,4 +1,4 @@
-﻿Feature: Ae. Validate User and get Ticket
+﻿Feature: Ae. Create Ticket
 
 Background:
 

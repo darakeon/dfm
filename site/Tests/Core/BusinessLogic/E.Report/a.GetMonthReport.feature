@@ -1,4 +1,4 @@
-﻿Feature: Ea. Month report
+﻿Feature: Ea. Get month report
 
 Background:
 	Given I have a complete user logged in

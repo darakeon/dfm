@@ -1,4 +1,4 @@
-﻿Feature: Cg. Uncheck Move
+﻿Feature: Cg. Uncheck move
 
 Background:
 	Given I have a complete user logged in

@@ -1,4 +1,4 @@
-﻿Feature: Ap. Is last Contract accepted
+﻿Feature: Ap. Is last contract accepted
 
 Background:
 	Given I have a contract

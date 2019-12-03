@@ -29,7 +29,7 @@ namespace DFM.Authentication
 			return clientGetTicket?.Invoke(remember);
 		}
 
-		public Boolean IsVerified => userService.VerifyTicket();
+		public Boolean IsVerified => userService.VerifyTicketTFA();
 
 		private SessionInfo session
 		{
@@ -42,7 +42,7 @@ namespace DFM.Authentication
 					if (key == null)
 						return null;
 
-					return userService.GetSessionByTicket(key);
+					return userService.GetSession(key);
 				}
 				catch (SystemError)
 				{
@@ -85,7 +85,7 @@ namespace DFM.Authentication
 				TicketType = newTicket.Type,
 			};
 
-			return userService.ValidateUserAndCreateTicket(info);
+			return userService.CreateTicket(info);
 		}
 
 		public void Clear()

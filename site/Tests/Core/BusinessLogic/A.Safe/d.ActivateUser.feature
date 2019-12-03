@@ -1,4 +1,4 @@
-﻿Feature: Ad. Activate the user
+﻿Feature: Ad. Activate user
 
 Background:
 	Given I have this user created

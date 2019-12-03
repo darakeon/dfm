@@ -1,4 +1,4 @@
-﻿Feature: An. Get Contract
+﻿Feature: An. Get contract
 	Background:
 		Given I have a contract
 

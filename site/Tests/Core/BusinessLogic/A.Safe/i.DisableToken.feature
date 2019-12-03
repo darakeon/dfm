@@ -1,4 +1,4 @@
-﻿Feature: Ai. Disable the token
+﻿Feature: Ai. Disable token
 
 Background:
 	Given I have this user created

@@ -21,7 +21,7 @@ namespace DFM.MVC.Models
 
 		public AccountsCreateEditModel(OperationType type, String id) : this(type)
 		{
-			Account = admin.GetAccountByUrl(id);
+			Account = admin.GetAccount(id);
 		}
 
 		public OperationType Type { get; set; }

@@ -1,4 +1,4 @@
-﻿Feature: Cf. Check Move
+﻿Feature: Cf. Check move
 
 Background:
 	Given I have a complete user logged in

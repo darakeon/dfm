@@ -1,4 +1,4 @@
-﻿Feature: Db. Run the schedules for an user
+﻿Feature: Db. Run schedule
 
 Background:
 	Given I have a complete user logged in

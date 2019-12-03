@@ -1,4 +1,4 @@
-﻿Feature: Af. Get a session by its ticket
+﻿Feature: Af. Get session
 
 Background:
 	Given I have this user created

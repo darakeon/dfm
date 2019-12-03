@@ -55,7 +55,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 		
-		public void SaveUserAndSendVerify(SignUpInfo info)
+		public void SaveUser(SignUpInfo info)
 		{
 			InTransaction(() =>
 			{
@@ -159,7 +159,7 @@ namespace DFM.BusinessLogic.Services
 		}
 
 
-		public SessionInfo GetSessionByTicket(String ticketKey)
+		public SessionInfo GetSession(String ticketKey)
 		{
 			return new SessionInfo(
 				getUserByTicket(ticketKey)
@@ -179,15 +179,15 @@ namespace DFM.BusinessLogic.Services
 			return ticket.User;
 		}
 
-		public String ValidateUserAndCreateTicket(SignInInfo info)
+		public String CreateTicket(SignInInfo info)
 		{
 			return InTransaction(
-				() => validateUserAndCreateTicket(info),
+				() => createTicket(info),
 				() => addPasswordError(info.Email)
 			);
 		}
 
-		private String validateUserAndCreateTicket(SignInInfo info)
+		private String createTicket(SignInInfo info)
 		{
 			var user = userRepository.ValidateAndGet(info.Email, info.Password);
 
@@ -425,7 +425,7 @@ namespace DFM.BusinessLogic.Services
 			});
 		}
 
-		public Boolean VerifyTicket()
+		public Boolean VerifyTicketTFA()
 		{
 			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
 
@@ -436,7 +436,7 @@ namespace DFM.BusinessLogic.Services
 				|| ticket.ValidTFA;
 		}
 
-		public Boolean VerifyTicket(TicketType type)
+		public Boolean VerifyTicketType(TicketType type)
 		{
 			var ticket = ticketRepository.GetByKey(parent.Current.TicketKey);
 

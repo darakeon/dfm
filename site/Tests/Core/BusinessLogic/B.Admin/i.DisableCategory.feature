@@ -1,4 +1,4 @@
-﻿Feature: Bi. Disable of Category
+﻿Feature: Bi. Disable category
 
 Background:
 	Given I have a complete user logged in

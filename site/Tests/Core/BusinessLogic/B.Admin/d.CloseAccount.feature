@@ -1,4 +1,4 @@
-﻿Feature: Bd. Close Account
+﻿Feature: Bd. Close account
 
 Background:
 	Given I have a complete user logged in

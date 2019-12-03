@@ -1,4 +1,4 @@
-﻿Feature: Dd. Get Schedule List
+﻿Feature: Dd. Get schedule list
 
 Background:
 	Given I have a complete user logged in

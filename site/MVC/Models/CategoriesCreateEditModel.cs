@@ -19,7 +19,7 @@ namespace DFM.MVC.Models
 
 		public CategoriesCreateEditModel(OperationType type, String categoryName) : this(type)
 		{
-			Category = admin.GetCategoryByName(categoryName);
+			Category = admin.GetCategory(categoryName);
 		}
 
 		public OperationType Type { get; set; }

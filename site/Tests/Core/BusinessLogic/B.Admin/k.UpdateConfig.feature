@@ -1,4 +1,4 @@
-﻿Feature: Bk. Update Config
+﻿Feature: Bk. Update config
 
 Background:
 	Given I have a complete user logged in

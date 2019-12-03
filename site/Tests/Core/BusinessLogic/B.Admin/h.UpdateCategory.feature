@@ -1,4 +1,4 @@
-﻿Feature: Bh. Update of Category
+﻿Feature: Bh. Update category
 
 Background:
 	Given I have a complete user logged in

@@ -1,4 +1,4 @@
-﻿Feature: Bj. Enable Category
+﻿Feature: Bj. Enable category
 
 Background:
 	Given I have a complete user logged in

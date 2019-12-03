@@ -1,4 +1,4 @@
-﻿Feature: Ah. Test security token received by e-mail
+﻿Feature: Ah. Test security token
 
 Background:
 	Given I have this user created

@@ -1,4 +1,4 @@
-﻿Feature: Bf. Creation of Category
+﻿Feature: Bf. Create category
 
 Background:
 	Given I have a complete user logged in
@@ -42,7 +42,7 @@ Scenario: Bf04. Save Category with exactly length name
 Scenario: Bf05. Save Category with info all right
 	Given I have this category to create
 			| Name          |
-			| Category Bf99 |
+			| Category Bf05 |
 	When I try to save the category
 	Then I will receive no core error
 		And the category will be saved
