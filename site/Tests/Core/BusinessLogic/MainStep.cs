@@ -26,7 +26,13 @@ namespace DFM.Tests.BusinessLogic
 		[Given(@"there is a bad person logged in")]
 		public void GivenIHaveABadPersonLoggedIn()
 		{
-			createLogoffLogin(badPersonUser, userPassword);
+			createLogoffLogin(badPersonEmail, userPassword);
+		}
+
+		[Given(@"there is another person logged in")]
+		public void GivenIHaveAnotherPersonLoggedIn()
+		{
+			createLogoffLogin(anotherPersonEmail, userPassword);
 		}
 
 		private void createLogoffLogin(String email, String password)

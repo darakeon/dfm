@@ -46,3 +46,19 @@ Scenario: Bf05. Save Category with info all right
 	When I try to save the category
 	Then I will receive no core error
 		And the category will be saved
+
+Scenario: Bf06. Save Category with same name in another user
+	Given I have this category to create
+			| Name          |
+			| Category Bf06 |
+	When I try to save the category
+	Then I will receive no core error
+		And the category will be saved
+	Given there is another person logged in
+		And I enable Categories use
+		And I have this category to create
+			| Name          |
+			| Category Bf06 |
+	When I try to save the category
+	Then I will receive no core error
+		And the category will be saved

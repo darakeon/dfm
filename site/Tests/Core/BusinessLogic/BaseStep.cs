@@ -341,7 +341,8 @@ namespace DFM.Tests.BusinessLogic
 		#endregion
 
 		protected const String userEmail = "test@dontflymoney.com";
-		protected const String badPersonUser = "badperson@dontflymoney.com";
+		protected const String badPersonEmail = "badperson@dontflymoney.com";
+		protected const String anotherPersonEmail = "person@dontflymoney.com";
 
 		protected static String userPassword = "password";
 		protected const String mainAccountUrl = "first_account";
