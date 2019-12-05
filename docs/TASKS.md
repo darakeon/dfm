@@ -129,7 +129,7 @@ Legend:
 - [ ] Split move check to account in / out
 
 ## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`6`</sup>
-- [ ] Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
+- [x] `191203>191204` Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)
 - [x] `191201>191201` Change account begin date when add a older move [#46](https://github.com/darakeon/dfm/issues/46)
 - [x] `191130>191201` Fix gender on system resources
 - [x] `191129>191129` Fix show terms to accept without TFA

@@ -27,3 +27,13 @@ set sql_safe_updates = 1;
 
 drop temporary table accounts_to_fix;
 drop temporary table initial_moves;
+
+alter table account
+	add constraint name_user
+		unique key (Name, User_ID),
+	add constraint url_user
+		unique key (Url, User_ID);
+
+alter table category
+	add constraint name_user
+		unique key (Name, User_ID);

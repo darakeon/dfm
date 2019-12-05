@@ -139,3 +139,18 @@ Scenario: Ba16. Save Account with exactly length url
 	When I try to save the account
 	Then I will receive no core error
 		And the account will be saved
+
+Scenario: Ba17. Save Account with same name and url in another user
+	Given I have this account to create
+			| Name         | Url  | Yellow | Red |
+			| Account Ba17 | ba17 |        |     |
+	When I try to save the account
+	Then I will receive no core error
+		And the account will be saved
+	Given there is another person logged in
+		And I have this account to create
+			| Name         | Url  | Yellow | Red |
+			| Account Ba17 | ba17 |        |     |
+	When I try to save the account
+	Then I will receive no core error
+		And the account will be saved
