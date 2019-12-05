@@ -15,8 +15,6 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
-using error = DFM.BusinessLogic.Exceptions.Error;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic
 {
@@ -107,75 +105,33 @@ namespace DFM.Tests.BusinessLogic
 			Boolean shouldSignContract = false
 		)
 		{
-			var userError = verifyUser(email, password);
+			var user = userRepository.GetByEmail(email);
 
-			if (userError == null)
-				return;
-
-			switch (userError.Type)
+			if (user == null)
 			{
-				case Error.InvalidUser:
-					var info = new SignUpInfo
-					{
-						Email = email,
-						Password = password,
-						RetypePassword = password,
-						Language = Defaults.ConfigLanguage,
-					};
+				var info = new SignUpInfo
+				{
+					Email = email,
+					Password = password,
+					RetypePassword = password,
+					Language = Defaults.ConfigLanguage,
+				};
 
-					service.Safe.SaveUser(info);
+				service.Safe.SaveUser(info);
 
-					if (shouldActivateUser)
-					{
-						var token = getLastTokenForUser(
-							email,
-							SecurityAction.UserVerification
-						);
-						service.Safe.ActivateUser(token);
-					}
+				user = userRepository.GetByEmail(email);
 
-					if (shouldSignContract)
-					{
-						var user = userRepository.GetByEmail(email);
-						var contract = contractRepository.GetContract();
-						acceptanceRepository.Accept(user, contract);
-					}
+				if (shouldActivateUser)
+				{
+					userRepository.Activate(user);
+				}
 
-					return;
-
-				case Error.DisabledUser:
-					return;
-
-				default:
-					throw userError;
+				if (shouldSignContract)
+				{
+					var contract = contractRepository.GetContract();
+					acceptanceRepository.Accept(user, contract);
+				}
 			}
-		}
-
-		private CoreError verifyUser(String email, String password)
-		{
-			try
-			{
-				createTicket(email, password);
-
-				return null;
-			}
-			catch (CoreError e)
-			{
-				return e;
-			}
-		}
-
-		protected String createTicket(String email, String password)
-		{
-			var info = new SignInInfo
-			{
-				Email = email,
-				Password = password,
-				TicketKey = ticketKey,
-				TicketType = TicketType.Local,
-			};
-
-			return service.Safe.CreateTicket(info);
 		}
 
 		protected Account getOrCreateAccount(String url)

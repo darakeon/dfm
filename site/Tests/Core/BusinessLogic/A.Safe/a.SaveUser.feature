@@ -25,10 +25,9 @@ Scenario: Aa03. Save user with invalid e-mail
 		And the user will not be saved
 
 Scenario: Aa04. Save user with repeated e-mail
-	Given I have this user data
+	Given I have this user created
 			| Email                     | Password | Retype Password |
 			| repeated@dontflymoney.com | password | password        |
-		And I already have created this user
 	When I try to save the user
 	Then I will receive this core error: UserAlreadyExists
 		And the user will not be changed
