@@ -20,12 +20,6 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 	public class SafeStep : BaseStep
 	{
 		#region Variables
-		private static User otherUser
-		{
-			get => get<User>("OtherUser");
-			set => set("OtherUser", value);
-		}
-
 		private static String email
 		{
 			get => get<String>("Email");
@@ -117,34 +111,6 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				retypePassword = table.Rows[0]["Retype Password"];
 		}
 
-		[Given(@"I already have created this user")]
-		public void GivenIAlreadyHaveCreatedThisUser()
-		{
-			otherUser = new User
-			{
-				Email = email,
-				Password = password + "_diff",
-			};
-
-			var info = new SignUpInfo
-			{
-				Email = otherUser.Email,
-				Password = otherUser.Password,
-				RetypePassword = otherUser.Password,
-				Language = Defaults.ConfigLanguage,
-			};
-
-			service.Safe.SaveUser(info);
-
-			var tokenActivate = getLastTokenForUser(
-				otherUser.Email,
-				SecurityAction.UserVerification
-			);
-			service.Safe.ActivateUser(tokenActivate);
-		}
-
-
-
 		[When(@"I try to save the user")]
 		public void WhenITryToSaveTheUser()
 		{
@@ -176,10 +142,10 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 		[Then(@"the user will not be changed")]
 		public void ThenTheUserWillNotBeChanged()
 		{
-			var savedUser = userRepository.GetByEmail(otherUser.Email);
+			var savedUser = userRepository.GetByEmail(email);
 			Assert.IsNotNull(savedUser);
 
-			var rightPassword = Crypt.Check(otherUser.Password, savedUser.Password);
+			var rightPassword = Crypt.Check(password, savedUser.Password);
 			Assert.IsTrue(rightPassword);
 		}
 
