@@ -50,4 +50,4 @@ Scenario: Al04. Password change with info all right
 	When I try to change the password
 	Then I will receive no core error
 		And the password will be changed
-		And only the last ticket will be active
+		And only the last login will be active
