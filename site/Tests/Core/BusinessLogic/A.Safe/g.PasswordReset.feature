@@ -2,8 +2,9 @@
 
 Background:
 	Given I have this user created
-			| Email                          | Password | Retype Password | Signed |
-			| passwordreset@dontflymoney.com | password | password        | true   |
+			| Email                          | Password | Retype Password | Signed | Active |
+			| passwordreset@dontflymoney.com | password | password        | true   | true   |
+		And I have a ticket of this user
 		And I have a token for its password reset
 
 Scenario: Ag01. Password reset with invalid token
@@ -41,4 +42,4 @@ Scenario: Ag04. Password reset with info all right
 	Then I will receive no core error
 		And the password will be changed
 		And the token will not be valid anymore
-		And only the last ticket will be active
+		And there will be no active logins

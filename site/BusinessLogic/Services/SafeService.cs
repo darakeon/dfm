@@ -299,7 +299,10 @@ namespace DFM.BusinessLogic.Services
 
 				foreach (var ticket in ticketList)
 				{
-					ticketRepository.Disable(ticket);
+					if (ticket.Key != parent.Current.TicketKey)
+					{
+						ticketRepository.Disable(ticket);
+					}
 				}
 			});
 		}

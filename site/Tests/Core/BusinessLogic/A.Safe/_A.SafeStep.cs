@@ -184,6 +184,15 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 				error = e;
 			}
 		}
+
+		[Then(@"there will be no active logins")]
+		public void ThenThereWillBeNoActiveLogins()
+		{
+			var user = userRepository.GetByEmail(email);
+			var loginForUser = ticketRepository.List(user).ToList();
+
+			Assert.LessOrEqual(0, loginForUser.Count);
+		}
 		#endregion
 
 		#region ActivateUser
@@ -577,16 +586,14 @@ namespace DFM.Tests.BusinessLogic.A.Safe
 			}
 		}
 
-		[Then(@"only the last ticket will be active")]
-		public void ThenThereWillBeNoActiveLogins()
+		[Then(@"only the last login will be active")]
+		public void ThenOnlyTheLastLoginWillBeActive()
 		{
-			logins = service.Safe.ListLogins();
-			Assert.IsNotNull(logins);
-			Assert.AreEqual(1, logins.Count);
+			var user = userRepository.GetByEmail(email);
+			var loginForUser = ticketRepository.List(user).ToList();
 
-			var safeTicketPart =
-				ticketKey.Substring(0, Defaults.TicketShowedPart);
-            Assert.AreEqual(safeTicketPart, logins.First().Key);
+			Assert.AreEqual(1, loginForUser.Count);
+			Assert.AreEqual(ticketKey, loginForUser[0].Key);
 		}
 		#endregion ChangePassword
 
