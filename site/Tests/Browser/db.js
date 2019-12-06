@@ -76,8 +76,7 @@ async function acceptLastContract(email) {
 		+ ' from acceptance a'
 			+ ' inner join user u'
 				+ ' on a.user_id = u.id'
-		+ ' where a.acceptDate = 1'
-			+ ` and u.email = '${email}'`;
+		+ ` where u.email = '${email}'`;
 
 	const queryContracts =
 		'select id from contract'
