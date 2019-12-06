@@ -91,8 +91,14 @@ describe('Accounts', () => {
 		await puppy.call('/Accounts/ListClosed')
 
 		body = await puppy.content('#body')
+
+		const date = new Date()
+		const month = date.getMonth() + 1
+		const year = date.getYear() + 1900
+		const report = year * 100 + month
+
 		expect(body).toContain(
-			'<a href="/Account/account_close/Reports/ShowMoves/201911">Account Close</a>'
+			`<a href="/Account/account_close/Reports/ShowMoves/${report}">Account Close</a>`
 		)
 	})
 })
