@@ -9,8 +9,7 @@
 ## Tasks to publish
 
 - [ ] RUN TESTS (.NET, PUPPETEER & ANDROID)
-- [ ] Change version numbers
-- [ ] Add version to jsons
+- [ ] Change version numbers and add to jsons
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
