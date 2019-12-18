@@ -117,8 +117,9 @@ Legend:
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
 
-## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`1`</sup>
+## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
 - [ ] Make android automated tests
+- [ ] Transform project into .NET Core
 
 ## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`6`</sup>
 - [ ] Allow check all the moves before a date
