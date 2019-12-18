@@ -42,7 +42,7 @@ namespace DFM.BusinessLogic.Services
 			var moveList = moveRepository
 				.ByAccountAndTime(account, dateYear, dateMonth);
 
-			return new MonthReport(total, moveList);
+			return new MonthReport(moveList, accountUrl, total);
 		}
 
 		public YearReport GetYearReport(String accountUrl, Int16 dateYear)

@@ -63,21 +63,21 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Check(Int32 id)
+		public ActionResult Check(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			model.CheckMove(id);
+			model.CheckMove(id, nature);
 
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Uncheck(Int32 id)
+		public ActionResult Uncheck(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			model.UncheckMove(id);
+			model.UncheckMove(id, nature);
 
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}

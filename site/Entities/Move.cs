@@ -22,7 +22,8 @@ namespace DFM.Entities
 		public virtual Int16 Month { get; set; }
 		public virtual Int16 Year { get; set; }
 
-		public virtual Boolean Checked { get; set; }
+		public virtual Boolean CheckedIn { get; set; }
+		public virtual Boolean CheckedOut { get; set; }
 
 		public virtual Category Category { get; set; }
 		public virtual Schedule Schedule { get; set; }

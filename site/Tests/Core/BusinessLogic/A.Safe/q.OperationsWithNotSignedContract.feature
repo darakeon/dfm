@@ -198,9 +198,9 @@ Scenario: Aq28. Check Move
 		And I have two accounts
 		And I enable move check
 		And I have a move with value 10 (Out)
-		And the move is not checked
+		And the move is checked for account Out
 		But there is a new contract
-	When I try to mark it as checked
+	When I try to mark it as checked for account Out
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq29. Uncheck Move
@@ -208,9 +208,9 @@ Scenario: Aq29. Uncheck Move
 		And I have two accounts
 		And I enable move check
 		And I have a move with value 10 (Out)
-		And the move is checked
+		And the move is checked for account Out
 		But there is a new contract
-	When I try to mark it as not checked
+	When I try to mark it as not checked for account Out
 	Then I will receive this core error: NotSignedLastContract
 
 Scenario: Aq30. Save Schedule

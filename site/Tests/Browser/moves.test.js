@@ -171,7 +171,7 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
-		await db.checkMove(id)
+		await db.checkMove(id, 'Out')
 
 		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
 		await page.waitForSelector('#body .table')

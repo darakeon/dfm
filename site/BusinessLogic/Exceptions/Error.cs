@@ -67,6 +67,7 @@
 		TooLargeMoveDescription = 517,
 		TooLargeDetailDescription = 518,
 		MoveValueAndDetailNotAllowed = 519,
+		MoveCheckWrongNature = 520,
 
 		ScheduleRequired = 601,
 		ScheduleTimesCantBeZero = 602,

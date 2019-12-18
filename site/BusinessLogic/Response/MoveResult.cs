@@ -16,13 +16,15 @@ namespace DFM.BusinessLogic.Response
 		internal MoveResult(Move move)
 		{
 			ID = move.ID;
-			Check = move.Checked;
+			CheckIn = move.CheckedIn;
+			CheckOut = move.CheckedOut;
 			MonthYear = move.ToMonthYear();
 		}
 
 		public Int64 ID { get; }
 		public EmailStatus Email { get; }
-		public Boolean Check { get; }
+		public Boolean CheckIn { get; }
+		public Boolean CheckOut { get; }
 		public Int32 MonthYear { get; set; }
 	}
 }

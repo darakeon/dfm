@@ -699,31 +699,30 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		#endregion
 
 		#region ToggleMoveChecked
-		[Given(@"the move is (not )?checked")]
-		public void GivenTheMoveIsChecked(Boolean @checked)
+		[Given(@"the move is (not )?checked for account (In|Out)")]
+		public void GivenTheMoveIsChecked(Boolean @checked, PrimalMoveNature nature)
 		{
-			if (moveInfo.Checked == @checked)
+			var move = moveRepository.Get(moveInfo.ID);
+			var moveChecked = move.IsChecked(nature);
+
+			if (moveChecked == @checked)
 				return;
 
 			if (@checked)
-				service.Money.CheckMove(moveInfo.ID);
+				service.Money.CheckMove(moveInfo.ID, nature);
 			else
-				service.Money.UncheckMove(moveInfo.ID);
+				service.Money.UncheckMove(moveInfo.ID, nature);
 		}
 
-		[When(@"I try to mark it as (not )?checked")]
-		public void WhenIMarkItAsChecked(Boolean @checked)
+		[When(@"I try to mark it as (not )?checked for account (In|Out)")]
+		public void WhenIMarkItAsChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			try
 			{
 				if (@checked)
-				{
-					service.Money.CheckMove(moveInfo.ID);
-				}
+					service.Money.CheckMove(moveInfo.ID, nature);
 				else
-				{
-					service.Money.UncheckMove(moveInfo.ID);
-				}
+					service.Money.UncheckMove(moveInfo.ID, nature);
 			}
 			catch (CoreError e)
 			{
@@ -731,13 +730,26 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			}
 		}
 
-		[Then(@"the move will (not )?be checked")]
-		public void ThenTheMoveWillBeChecked(Boolean @checked)
+		[Then(@"the move will (not )?be checked for account (In|Out)")]
+		public void ThenTheMoveWillBeChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = moveRepository.Get(moveInfo.ID);
 
 			Assert.IsNotNull(move);
-			Assert.AreEqual(@checked, move.Checked);
+
+			var moveChecked = move.IsChecked(nature);
+
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					Assert.AreEqual(@checked, move.CheckedIn);
+					break;
+				case PrimalMoveNature.Out:
+					Assert.AreEqual(@checked, move.CheckedOut);
+					break;
+				default:
+					throw new NotImplementedException();
+			}
 		}
 
 		#endregion

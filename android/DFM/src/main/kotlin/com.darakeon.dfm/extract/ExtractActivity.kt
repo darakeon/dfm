@@ -173,11 +173,11 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 				return true
 			}
 			R.id.check_move -> {
-				api.check(clickedMove.id, this::refresh)
+				api.check(clickedMove.id, clickedMove.nature, this::refresh)
 				return true
 			}
 			R.id.uncheck_move -> {
-				api.uncheck(clickedMove.id, this::refresh)
+				api.uncheck(clickedMove.id, clickedMove.nature, this::refresh)
 				return true
 			}
 			else -> return super.onContextItemSelected(item)

@@ -7,33 +7,78 @@ Background:
 		And I have a category
 		And I enable move check
 
-Scenario: Cg01. Mark a checked move as not checked
+Scenario: Cg01. Mark a checked move Out as not checked Out
 	Given I have a move with value 10 (Out)
-		And the move is checked
-	When I try to mark it as not checked
+		And the move is checked for account Out
+	When I try to mark it as not checked for account Out
 	Then I will receive no core error
-		And the move will not be checked
+		And the move will not be checked for account Out
 
-Scenario: Cg02. Remark a not checked move as not checked
+Scenario: Cg02. Mark a checked move Out as not checked In
 	Given I have a move with value 10 (Out)
-		And the move is not checked
-	When I try to mark it as not checked
+	When I try to mark it as not checked for account In
+	Then I will receive this core error: MoveCheckWrongNature
+
+Scenario: Cg03. Mark a checked move In as not checked In
+	Given I have a move with value 10 (In)
+		And the move is checked for account In
+	When I try to mark it as not checked for account In
+	Then I will receive no core error
+		And the move will not be checked for account In
+
+Scenario: Cg04. Mark a checked move In as not checked Out
+	Given I have a move with value 10 (In)
+	When I try to mark it as not checked for account Out
+	Then I will receive this core error: MoveCheckWrongNature
+
+Scenario: Cg05. Mark a checked move Transfer as not checked In and Out
+	Given I have a move with value 10 (Transfer)
+		And the move is checked for account Out
+		And the move is checked for account In
+	When I try to mark it as not checked for account Out
+		And I try to mark it as not checked for account In
+	Then I will receive no core error
+		And the move will not be checked for account Out
+		And the move will not be checked for account In
+
+Scenario: Cg06. Mark a checked move Transfer as not checked Out
+	Given I have a move with value 10 (Transfer)
+		And the move is checked for account Out
+		And the move is checked for account In
+	When I try to mark it as not checked for account Out
+	Then I will receive no core error
+		And the move will not be checked for account Out
+		And the move will be checked for account In
+
+Scenario: Cg07. Mark a checked move Transfer as not checked In
+	Given I have a move with value 10 (Transfer)
+		And the move is checked for account Out
+		And the move is checked for account In
+	When I try to mark it as not checked for account In
+	Then I will receive no core error
+		And the move will be checked for account Out
+		And the move will not be checked for account In
+
+Scenario: Cg08. Remark a not checked move as not checked
+	Given I have a move with value 10 (Out)
+		And the move is not checked for account Out
+	When I try to mark it as not checked for account Out
 	Then I will receive this core error: MoveAlreadyUnchecked
-		And the move will not be checked
+		And the move will not be checked for account Out
 
-Scenario: Cg03. Mark a move as not checked with disabled config
+Scenario: Cg09. Mark a move as not checked with disabled config
 	Given I have a move with value 10 (Out)
-		And the move is checked
+		And the move is checked for account Out
 		And I disable move check
-	When I try to mark it as not checked
+	When I try to mark it as not checked for account Out
 	Then I will receive this core error: MoveCheckDisabled
-		And the move will be checked
+		And the move will be checked for account Out
 
-Scenario: Cg04. Mark another user's move as not checked
+Scenario: Cg10. Mark another user's move as not checked
 	Given I have a move with value 10 (Out)
-		And the move is checked
+		And the move is checked for account Out
 		But there is a bad person logged in
-	When I try to mark it as not checked
+	When I try to mark it as not checked for account Out
 	Then I will receive this core error: InvalidMove
 	Given the right user login again
-	Then the move will be checked
+	Then the move will be checked for account Out

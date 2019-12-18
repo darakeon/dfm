@@ -234,8 +234,8 @@ async function getMoveId(description, year, month, day) {
 	return result[0].id
 }
 
-async function checkMove(id) {
-	await execute(`update move set checked=1 where id=${id}`)
+async function checkMove(id, nature) {
+	await execute(`update move set checked${nature}=1 where id=${id}`)
 }
 
 async function execute(query) {

@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
@@ -24,7 +25,7 @@ namespace DFM.BusinessLogic.Services
 		public MoveInfo GetMove(Int64 id)
 		{
 			parent.Safe.VerifyUser();
-			return MoveInfo.Convert(
+			return MoveInfo.Convert4Edit(
 				GetMoveEntity(id)
 			);
 		}
@@ -122,26 +123,26 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public MoveResult CheckMove(Int64 moveId)
+		public MoveResult CheckMove(Int64 moveId, PrimalMoveNature nature)
 		{
-			return toggleMoveCheck(moveId, true);
+			return toggleMoveCheck(moveId, nature, true);
 		}
 
-		public MoveResult UncheckMove(Int64 moveId)
+		public MoveResult UncheckMove(Int64 moveId, PrimalMoveNature nature)
 		{
-			return toggleMoveCheck(moveId, false);
+			return toggleMoveCheck(moveId, nature, false);
 		}
 
-		private MoveResult toggleMoveCheck(Int64 moveId, Boolean check)
+		private MoveResult toggleMoveCheck(Int64 moveId, PrimalMoveNature nature, Boolean check)
 		{
 			parent.Safe.VerifyUser();
 
 			var move = GetMoveEntity(moveId);
 
 			parent.BaseMove.VerifyMove(move);
-			verifyMoveForCheck(move, check);
+			verifyMoveForCheck(move, nature, check);
 
-			move.Checked = check;
+			move.Check(nature, check);
 			var today = parent.Current.Now;
 
 			InTransaction(() => 
@@ -151,19 +152,30 @@ namespace DFM.BusinessLogic.Services
 			return new MoveResult(move);
 		}
 
-		private void verifyMoveForCheck(Move move, Boolean check)
+		private void verifyMoveForCheck(Move move, PrimalMoveNature nature, Boolean check)
 		{
 			if (!parent.Current.MoveCheck)
 				throw Error.MoveCheckDisabled.Throw();
 
-			if (move.Checked != check)
-				return;
+			var moveChecked = move.IsChecked(nature);
 
-			var error = move.Checked
-				? Error.MoveAlreadyChecked
-				: Error.MoveAlreadyUnchecked;
+			if (move.Nature != MoveNature.Transfer)
+			{
+				var natureToCheck = (Int32)nature;
+				var natureOfMove = (Int32)move.Nature;
 
-			throw error.Throw();
+				if (natureToCheck != natureOfMove)
+					throw Error.MoveCheckWrongNature.Throw();
+			}
+
+			if (moveChecked == check)
+			{
+				var error = moveChecked
+					? Error.MoveAlreadyChecked
+					: Error.MoveAlreadyUnchecked;
+
+				throw error.Throw();
+			}
 		}
 	}
 }

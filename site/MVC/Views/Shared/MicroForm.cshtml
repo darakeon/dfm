@@ -11,6 +11,11 @@
 ) {
 	@Html.AntiForgeryToken()
 
+	foreach (var hidden in Model.Hiddens)
+	{
+		<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
+	}
+
 	<button type="submit" class="@(@class)" title="@Model.Text"
 	        data-toggle="tooltip" data-placement="right"
 	        data-original-title="@Model.Text">

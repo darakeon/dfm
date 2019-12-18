@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using DFM.BusinessLogic.Response;
+using DFM.Entities.Enums;
 using DFM.MVC.Areas.API.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
@@ -42,15 +43,15 @@ namespace DFM.MVC.Areas.API.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Check(Int32 id)
+		public ActionResult Check(Int32 id, PrimalMoveNature nature)
 		{
-			return json(() => MovesModel.Check(id));
+			return json(() => MovesModel.Check(id, nature));
 		}
 
 		[HttpPost]
-		public ActionResult Uncheck(Int32 id)
+		public ActionResult Uncheck(Int32 id, PrimalMoveNature nature)
 		{
-			return json(() => MovesModel.Uncheck(id));
+			return json(() => MovesModel.Uncheck(id, nature));
 		}
 	}
 }

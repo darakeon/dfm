@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Entities.Enums;
 
 namespace DFM.MVC.Areas.API.Models
 {
@@ -17,14 +18,14 @@ namespace DFM.MVC.Areas.API.Models
 			model.money.DeleteMove(id);
 		}
 
-		public static void Check(Int32 id)
+		public static void Check(Int32 id, PrimalMoveNature nature)
 		{
-			model.money.CheckMove(id);
+			model.money.CheckMove(id, nature);
 		}
 
-		public static void Uncheck(Int32 id)
+		public static void Uncheck(Int32 id, PrimalMoveNature nature)
 		{
-			model.money.UncheckMove(id);
+			model.money.UncheckMove(id, nature);
 		}
 	}
 }
