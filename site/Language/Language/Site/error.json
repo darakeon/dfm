@@ -85,6 +85,7 @@
 		"TooLargeMoveDescription": "Move description exceeded the characters limit.",
 		"TooLargeDetailDescription": "Detail description exceeded the characters limit.",
 		"TooLargeScheduleDescription": "Schedule description exceeded the characters limit.",
+		"MoveCheckWrongNature": "A move In cannot be checked as Out, neither a move Out can be checked as In", 
 	},
 	"pt-BR": {
 		"CheckErrors": "Verifique os erros e tente novamente.",
@@ -172,5 +173,6 @@
 		"TooLargeMoveDescription": "Descrição de movimentação excedeu o limite de caracteres.",
 		"TooLargeDetailDescription": "Descrição de detalhe excedeu o limite de caracteres.",
 		"TooLargeScheduleDescription": "Descrição de agendamento excedeu o limite de caracteres.",
+		"MoveCheckWrongNature": "Uma Movimentação de Entrada nao pode ser verificada como Saída, nem uma de Saída pode ser verificada como Entrada",
 	},
 }

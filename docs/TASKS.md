@@ -127,7 +127,7 @@ Legend:
 - [ ] Check move without reload screen - web
 - [ ] Check move without reload screen - mobile
 - [ ] Edit must uncheck move (warn before and after edit)
-- [ ] Split move check to account in / out
+- [x] `191218>191218` Split move check to account in / out
 
 ## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`6`</sup>
 - [x] `191203>191204` Fix logic of repeated account name (sql) [#32](https://github.com/darakeon/dfm/issues/32)

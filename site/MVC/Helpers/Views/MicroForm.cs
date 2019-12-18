@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.MVC.Helpers.Global;
 using Keon.MVC.Route;
 using JetBrains.Annotations;
@@ -16,6 +17,8 @@ namespace DFM.MVC.Helpers.Views
 				: Translator.Dictionary[text];
 
 			Class = @class;
+
+			Hiddens = new Dictionary<String, object>();
 		}
 
 		public static MicroForm WithGlyph(String glyphicon, String text)
@@ -39,6 +42,8 @@ namespace DFM.MVC.Helpers.Views
 
 		public String RouteName { get; private set; }
 		public object RouteValues { get; private set; }
+
+		public IDictionary<String, object> Hiddens { get; set; }
 
 		public MicroForm AddRouteIdUrl(
 			String route,
@@ -86,6 +91,12 @@ namespace DFM.MVC.Helpers.Views
 		)
 		{
 			AddRouteIdUrl(null, null, action, id);
+			return this;
+		}
+
+		public MicroForm AddHidden(String name, object value)
+		{
+			Hiddens.Add(name, value);
 			return this;
 		}
 	}

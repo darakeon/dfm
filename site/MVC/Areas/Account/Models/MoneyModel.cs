@@ -3,6 +3,7 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 
@@ -39,11 +40,11 @@ namespace DFM.MVC.Areas.Account.Models
 			ReportUrl = move.ToMonthYear();
 		}
 
-		public void CheckMove(int id)
+		public void CheckMove(Int32 id, PrimalMoveNature nature)
 		{
 			try
 			{
-				var move = money.CheckMove(id);
+				var move = money.CheckMove(id, nature);
 				ReportUrl = move.MonthYear;
 			}
 			catch (CoreError e)
@@ -52,11 +53,11 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 		}
 
-		public void UncheckMove(int id)
+		public void UncheckMove(Int32 id, PrimalMoveNature nature)
 		{
 			try
 			{
-				var move = money.UncheckMove(id);
+				var move = money.UncheckMove(id, nature);
 				ReportUrl = move.MonthYear;
 			}
 			catch (CoreError e)

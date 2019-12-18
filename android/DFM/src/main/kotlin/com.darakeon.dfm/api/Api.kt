@@ -6,6 +6,7 @@ import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.api.entities.tfa.TFA
@@ -47,16 +48,18 @@ class Api(activity: BaseActivity) {
 
 	fun check(
 		id: Int,
+		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.check(id).call(onSuccess)
+		service.check(id, nature).call(onSuccess)
 	}
 
 	fun uncheck(
 		id: Int,
+		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.uncheck(id).call(onSuccess)
+		service.uncheck(id, nature).call(onSuccess)
 	}
 
 	fun delete(

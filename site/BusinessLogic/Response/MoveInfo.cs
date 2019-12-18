@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.Entities;
+using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 
 namespace DFM.BusinessLogic.Response
@@ -50,14 +51,26 @@ namespace DFM.BusinessLogic.Response
 				.ToList();
 		}
 
-		internal static MoveInfo Convert(Move move)
+		internal static MoveInfo Convert4Edit(Move move)
 		{
+			var info = convert(move, true);
+
+			info.Checked = move.CheckedIn || move.CheckedOut;
+
 			return convert(move, false);
 		}
 
-		internal static MoveInfo Convert4Report(Move move)
+		internal static MoveInfo Convert4Report(Move move, String accountUrl)
 		{
-			return convert(move, true);
+			var info = convert(move, true);
+
+			var isOut = info.OutUrl == accountUrl;
+			var nature = isOut
+				? PrimalMoveNature.Out
+				: PrimalMoveNature.In;
+			info.Checked = move.IsChecked(nature);
+
+			return info;
 		}
 
 		private static MoveInfo convert(Move move, Boolean isReport)
@@ -81,8 +94,6 @@ namespace DFM.BusinessLogic.Response
 				DetailList = move.DetailList
 					.Select(DetailInfo.Convert)
 					.ToList(),
-
-				Checked = move.Checked,
 
 				OutUrl = move.Out?.Url,
 				InUrl = move.In?.Url,

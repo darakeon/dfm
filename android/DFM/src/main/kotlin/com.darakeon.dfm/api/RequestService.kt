@@ -6,10 +6,13 @@ import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.api.entities.login.Login
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.api.entities.tfa.TFA
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -25,14 +28,18 @@ internal interface RequestService {
 		@Path("time") time: Int
 	): Call<Body<Extract>>
 
+	@FormUrlEncoded
 	@POST("api/moves/check/{id}")
 	fun check(
-		@Path("id") id: Int
+		@Path("id") id: Int,
+		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
+	@FormUrlEncoded
 	@POST("api/moves/uncheck/{id}")
 	fun uncheck(
-		@Path("id") id: Int
+		@Path("id") id: Int,
+		@Field("nature") nature: Nature
 	): Call<Body<Any>>
 
 	@POST("api/moves/delete/{id}")

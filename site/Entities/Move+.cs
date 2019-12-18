@@ -91,5 +91,33 @@ namespace DFM.Entities
 
 			return diff + 1;
 		}
+
+		public virtual void Check(PrimalMoveNature nature, Boolean check)
+		{
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					CheckedIn = check;
+					break;
+				case PrimalMoveNature.Out:
+					CheckedOut = check;
+					break;
+				default:
+					throw new NotImplementedException();
+			}
+		}
+
+		public virtual Boolean IsChecked(PrimalMoveNature nature)
+		{
+			switch (nature)
+			{
+				case PrimalMoveNature.In:
+					return CheckedIn;
+				case PrimalMoveNature.Out:
+					return CheckedOut;
+				default:
+					throw new NotImplementedException();
+			}
+		}
 	}
 }

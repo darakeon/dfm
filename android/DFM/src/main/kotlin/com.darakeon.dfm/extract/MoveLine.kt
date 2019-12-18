@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
+import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
 import kotlinx.android.synthetic.main.extract_line.view.check_move
@@ -17,6 +18,7 @@ import java.text.DecimalFormat
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
 	private var move: Move? = null
+	private var checkNature: Nature = Nature.Out
 
 	fun setMove(activity: ExtractActivity, move: Move, color: Int, canCheck: Boolean) {
 		setBackgroundColor(color)
@@ -27,6 +29,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		setTotalField(move)
 		setCheckField(move, canCheck)
 		setDateField(move)
+		setCheckNature(move)
 
 		setOnClickListener { v ->
 			activity.clickedView = v
@@ -65,6 +68,13 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		}
 	}
 
+	private fun setCheckNature(move: Move) {
+		checkNature =
+			if (move.total < 0)
+				Nature.Out
+			else
+				Nature.In
+	}
 
 	override fun getId(): Int = move?.id ?: 0
 
@@ -74,5 +84,6 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	val isChecked: Boolean
 		get() = move?.checked ?: false
 
-
+	val nature: Nature
+		get() = checkNature
 }

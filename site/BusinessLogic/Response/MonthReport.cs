@@ -7,11 +7,11 @@ namespace DFM.BusinessLogic.Response
 {
 	public class MonthReport
 	{
-		public MonthReport(Decimal accountTotal, IList<Move> moveList)
+		public MonthReport(IList<Move> moveList, String accountUrl, Decimal accountTotal)
 		{
 			AccountTotal = accountTotal;
 			MoveList = moveList
-				.Select(MoveInfo.Convert4Report)
+				.Select(m => MoveInfo.Convert4Report(m, accountUrl))
 				.ToList();
 		}
 

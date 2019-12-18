@@ -1,4 +1,5 @@
-﻿@using DFM.Generic.Pages
+﻿@using DFM.Entities.Enums
+@using DFM.Generic.Pages
 @using DFM.MVC.Helpers
 @using DFM.MVC.Models
 
@@ -119,11 +120,15 @@
 		{
 			var action = move.Checked ? "Uncheck" : "Check";
 			var glyph = move.Checked ? "remove" : "ok";
+			var nature = move.OutUrl == Model.CurrentAccountUrl
+				? PrimalMoveNature.Out
+				: PrimalMoveNature.In;
 
 			<td class="col-sm-1 text-center">
 				@Html.Partial("MicroForm",
 					MicroForm.WithGlyph(glyph, action)
 						.AddIdUrl("Moves", action, move.ID)
+						.AddHidden("nature", nature)
 				)
 			</td>
 		}
