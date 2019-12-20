@@ -241,7 +241,7 @@ async function checkMove(id) {
 async function execute(query) {
 	const connection = mysql.createConnection({
 		host     : 'localhost',
-		database : 'dfm_test',
+		database : 'dfm_browser_test',
 		user     : 'dfm_user',
 	})
 
