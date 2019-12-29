@@ -45,6 +45,9 @@ namespace DFM.BusinessLogic.Services
 					.ForEach(detailRepository.Delete);
 
 				VerifyMove(move);
+
+				move.CheckedIn = false;
+				move.CheckedOut = false;
 			}
 
 			info.Update(move);
