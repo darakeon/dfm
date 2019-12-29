@@ -552,6 +552,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			Assert.IsNotNull(move.Schedule);
 			Assert.AreEqual(scheduleInfo.ID, move.Schedule.ID);
 		}
+
+		[Then(@"the move is (not )?checked for account (Out|In)")]
+		public void ThenTheMoveIsNotCheckedForAccountOutAnymore(Boolean @checked, PrimalMoveNature nature)
+		{
+			var move = moveRepository.Get(moveInfo.ID);
+			Assert.AreEqual(@checked, move.IsChecked(nature));
+		}
 		#endregion
 
 		#region GetMoveById
