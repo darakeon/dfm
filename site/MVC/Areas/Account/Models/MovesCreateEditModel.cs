@@ -10,16 +10,11 @@ namespace DFM.MVC.Areas.Account.Models
 {
 	public class MovesCreateEditModel : BaseMovesModel
 	{
-		// ReSharper disable once UnusedMember.Global
 		public MovesCreateEditModel()
-			: base(new MoveInfo())  { }
+			: base(new MoveInfo(), OperationType.Creation)  { }
 
-		public MovesCreateEditModel(OperationType type)
-			: base(new MoveInfo(), type) { }
-
-		public MovesCreateEditModel(Int32 id, OperationType type)
-			: base(Service.Access.Money.GetMove(id), type) { }
-
+		public MovesCreateEditModel(Int32 id)
+			: base(Service.Access.Money.GetMove(id), OperationType.Edition) { }
 
 		internal override void Save()
 		{
