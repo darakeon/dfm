@@ -240,7 +240,8 @@ Scenario: Cb16. Change move with schedule
 		And it has no Account In
 		And I save the schedule
 		And I run the scheduler
-		And I get the Move at position 1 of the Schedule
+		And I pass the first schedule move ID
+		And I get the move
 	When I update the move
 	Then I will receive no core error
 		And the Move will still be at the Schedule

@@ -80,7 +80,6 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		}
 		#endregion
 
-
 		#region SaveMove
 		[Given(@"I have this move to create")]
 		public void GivenIHaveThisMoveToCreate(Table table)
@@ -279,12 +278,10 @@ namespace DFM.Tests.BusinessLogic.C.Money
 				)?.In ?? 0;
 		}
 
-		[Given(@"I get the Move at position (\d+) of the Schedule")]
-		public void GivenIGetTheMoveOfTheSchedule(Int32 position)
+		[Given("I get the move")]
+		public void GivenIGetTheMove()
 		{
-			var schedule = scheduleRepository.Get(scheduleInfo.ID);
-			var move = schedule.MoveList[--position];
-			moveInfo = service.Money.GetMove(move.ID);
+			moveInfo = service.Money.GetMove(id);
 		}
 
 		[When(@"I change the category of the move")]
@@ -588,6 +585,12 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		{
 			Assert.IsNotNull(moveInfo);
 		}
+
+		[Then(@"the Move description will be (.+)")]
+		public void ThenTheMoveDescriptionWillBe(String description)
+		{
+			Assert.AreEqual(description, moveInfo.Description);
+		}
 		#endregion
 
 		#region DeleteMove
@@ -874,6 +877,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void GivenIPassValidMoveID()
 		{
 			id = moveInfo.ID;
+		}
+
+		[Given(@"I pass the first schedule move ID")]
+		public void GivenIPassTheFirstScheduleMoveID()
+		{
+			var schedule = scheduleRepository.Get(scheduleInfo.ID);
+			var move = schedule.MoveList.First();
+
+			id = move.ID;
 		}
 		#endregion
 	}
