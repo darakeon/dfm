@@ -1,6 +1,6 @@
 ﻿@model BaseMovesModel
 
-@Html.Partial("../Moves/DetailTabs")
+@Html.Partial("DetailTabs")
 
 <div class="tab-content">
 
@@ -10,9 +10,9 @@
 
 	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
 		<table class="table table-condensed">
-			@Html.Partial("../Moves/DetailHeader")
-			@Html.Partial("../Moves/DetailBody")
-			@Html.Partial("../Moves/DetailFooter")
+			@Html.Partial("DetailHeader")
+			@Html.Partial("DetailBody")
+			@Html.Partial("DetailFooter")
 		</table>
 	</div>
 
