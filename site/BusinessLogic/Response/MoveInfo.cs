@@ -52,16 +52,20 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert4Edit(Move move)
 		{
-			var info = convert(move, true);
+			var info = convert(move);
+
+			info.Description = move.Description;
 
 			info.Checked = move.CheckedIn || move.CheckedOut;
 
-			return convert(move, false);
+			return info;
 		}
 
 		internal static MoveInfo Convert4Report(Move move, String accountUrl)
 		{
-			var info = convert(move, true);
+			var info = convert(move);
+
+			info.Description = move.GetDescriptionWithSchedulePosition();
 
 			var isOut = info.OutUrl == accountUrl;
 			var nature = isOut
@@ -72,14 +76,11 @@ namespace DFM.BusinessLogic.Response
 			return info;
 		}
 
-		private static MoveInfo convert(Move move, Boolean isReport)
+		private static MoveInfo convert(Move move)
 		{
 			return new MoveInfo
 			{
 				ID = move.ID,
-				Description = isReport
-					? move.GetDescriptionWithSchedulePosition()
-					: move.Description,
 
 				Year = move.Year,
 				Month = move.Month,
