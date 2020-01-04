@@ -45,6 +45,6 @@ namespace DFM.MVC.Areas.Account.Models
 
 		private MoveInfo move => (MoveInfo) GenericMove;
 
+		public override Boolean ShowRemoveCheck => move.Checked;
 	}
-
 }

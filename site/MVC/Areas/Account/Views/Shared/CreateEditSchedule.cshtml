@@ -34,15 +34,22 @@ else
 		</div>
 	}
 
+	if (Model.ShowRemoveCheck)
+	{
+		<div class="alert alert-info text-center">
+			@Html.Raw(Translator.Dictionary["MoveRemoveCheck"].BreakLines())
+		</div>
+	}
+
 	@Html.Partial("ScheduleFields")
 
 	@Html.Partial("MoveMainData")
 
-	<hr/>
+	<hr />
 
 	@Html.Partial("NatureAndAccount")
 
-	<hr/>
+	<hr />
 
 	@Html.Partial("ValueAndDetail")
 

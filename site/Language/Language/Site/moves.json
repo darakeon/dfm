@@ -12,6 +12,7 @@
 		"MoveLosingCategory": "This move has a Category, but Categories use is DISABLED.\nWhen you save this move, the Category will be lost.",
 		"NoAccountsMove": "There are no accounts.\nWithout accounts, you cannot create Moves.",
 		"NoCategoriesMove": "There is no categories.\nYou can create a Move without Category, but you need to go to Settings and disable categories use.",
+		"MoveRemoveCheck": "This move is marked as checked.\nWhen you save this move, the check will be removed.",
 	},
 	"pt-BR": {
 		"Amount": "Qte",
@@ -26,5 +27,6 @@
 		"MoveLosingCategory": "Esta Movimentação tem uma categoria, mas o uso de Categorias está DESABILITADO.\nA Categoria registrada antes será perdida se a Movimentação for editada.",
 		"NoAccountsMove": "Não há contas.\nSem contas, não é possível criar Movimentações.",
 		"NoCategoriesMove": "Não há categorias.\nVocê pode criar Movimentações sem Categorias, mas precisa desabilitar o uso de Categorias nas Configurações.",
+		"MoveRemoveCheck": "Esta Movimentação está marcada como verificada.\nA marcação será removida quando salvar o formulário."
 	},
 }
