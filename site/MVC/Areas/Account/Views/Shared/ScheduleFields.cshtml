@@ -1,0 +1,11 @@
+﻿@model BaseMovesModel
+
+@{
+	var scheduleModel = Model as SchedulesCreateModel;
+}
+
+@if (scheduleModel != null)
+{
+	@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
+	<hr/>
+}

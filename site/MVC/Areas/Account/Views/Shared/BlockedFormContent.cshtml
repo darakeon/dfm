@@ -1,0 +1,17 @@
+﻿@using DFM.Generic
+@model BaseMovesModel
+
+@if (Model.ShowNoAccounts)
+{
+	<div class="alert alert-danger text-center">
+		@Html.Raw(Translator.Dictionary["NoAccountsMove"].BreakLines())
+	</div>
+}
+
+@if (Model.ShowNoCategories)
+{
+	<div class="alert alert-danger text-center">
+		@Html.Raw(Translator.Dictionary["NoCategoriesMove"].BreakLines())
+	</div>
+}
+

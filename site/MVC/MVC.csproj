@@ -202,6 +202,9 @@
     <Content Include="Areas\Account\Views\Schedules\Repeating.cshtml" />
     <Content Include="Areas\Account\Views\Schedules\Installment.cshtml" />
     <Content Include=".well-known\assetlinks.json" />
+    <Content Include="Areas\Account\Views\Shared\BlockedFormContent.cshtml" />
+    <Content Include="Areas\Account\Views\Shared\BlockedFormFooter.cshtml" />
+    <Content Include="Areas\Account\Views\Shared\ScheduleFields.cshtml" />
     <None Include="Assets\Libs\Scripts\jquery.intellisense.js" />
     <Content Include="Assets\Libs\Scripts\jquery.js" />
     <Content Include="Assets\Libs\Scripts\jquery.min.js" />

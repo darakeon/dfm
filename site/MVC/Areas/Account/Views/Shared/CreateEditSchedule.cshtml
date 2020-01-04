@@ -1,15 +1,14 @@
-﻿@using DFM.Generic
+﻿@using DFM.Entities.Enums
+@using DFM.Generic
 @model BaseMovesModel
 
 @{
-	var scheduleModel = Model as SchedulesCreateModel;
-
 	ViewBag.Title = Translator.Dictionary[Model.ActionName, Model.ControllerName];
 
 	ViewBag.WizardMessage =
-		scheduleModel == null
-			? "MovesCreate"
-			: "SchedulesCreate";
+		Model.Type == OperationType.Scheduling
+			? "SchedulesCreate"
+			: "MovesCreate";
 
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSizeSm = 10;
@@ -18,35 +17,8 @@
 
 @if (Model.BlockScreen)
 {
-	if (Model.ShowNoAccounts)
-	{
-		<div class="alert alert-danger text-center">
-			@Html.Raw(Translator.Dictionary["NoAccountsMove"].BreakLines())
-		</div>
-	}
-
-	if (Model.ShowNoCategories)
-	{
-		<div class="alert alert-danger text-center">
-			@Html.Raw(Translator.Dictionary["NoCategoriesMove"].BreakLines())
-		</div>
-	}
-
-	@section Footer {
-		@if (Model.ShowNoAccounts)
-		{
-			@Html.RouteLink(Translator.Dictionary["Accounts"],
-				RouteNames.Default, new { controller = "Accounts" },
-				new { @class = "btn btn-success" })
-		}
-
-		@if (Model.ShowNoCategories)
-		{
-			@Html.RouteLink(Translator.Dictionary["Categories"],
-				RouteNames.Default, new { controller = "Categories" },
-				new { @class = "btn btn-success" })
-		}
-	}
+	@Html.Partial("BlockedFormContent")
+	@section Footer { @Html.Partial("BlockedFormFooter") }
 }
 else
 {
@@ -62,11 +34,7 @@ else
 		</div>
 	}
 
-	if (scheduleModel != null)
-	{
-		@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
-		<hr/>
-	}
+	@Html.Partial("ScheduleFields")
 
 	@Html.Partial("MoveMainData")
 
