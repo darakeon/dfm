@@ -90,6 +90,14 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			Assert.IsEmpty(monthReport.MoveList);
 		}
+
+		[Then(@"there will have a move with description (.*)")]
+		public void ThenThereWillHaveAMoveWithDescriptionScheduleEa(String description)
+		{
+			Assert.IsTrue(
+				monthReport.MoveList.Any(m => m.Description == description)
+			);
+		}
 		#endregion
 
 		#region GetYearReport
@@ -138,8 +146,6 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		}
 		#endregion
 
-
-
 		#region MoreThanOne
 		[Given(@"I have moves of")]
 		public void GivenIHaveMovesOf(Table table)
@@ -176,6 +182,12 @@ namespace DFM.Tests.BusinessLogic.E.Report
 			accountUrl = "invalid";
 		}
 
+		[Given(@"I pass Account Out url")]
+		public void GivenIPassAccountOutUrl()
+		{
+			accountUrl = accountOutUrl;
+		}
+
 		[Given(@"I pass this date")]
 		public void GivenIPassThisDate(Table table)
 		{
@@ -207,6 +219,5 @@ namespace DFM.Tests.BusinessLogic.E.Report
 		{
 			return dateText.StartsWith("+") || dateText.StartsWith("-");
 		}
-
 	}
 }
