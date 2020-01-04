@@ -19,7 +19,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		[HttpGetAndHead]
 		public ActionResult Create()
 		{
-			var model = new MovesCreateEditModel(OperationType.Creation);
+			var model = new MovesCreateEditModel();
 			model.SetDefaultAccount();
 
 			return View("CreateEditSchedule", model);
@@ -39,7 +39,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 			if (!id.HasValue)
 				return RedirectToAction("Create");
 
-			var model = new MovesCreateEditModel(id.Value, OperationType.Edition);
+			var model = new MovesCreateEditModel(id.Value);
 
 			return View("CreateEditSchedule", model);
 		}
