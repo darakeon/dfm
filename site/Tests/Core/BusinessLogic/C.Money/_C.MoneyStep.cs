@@ -12,7 +12,6 @@ using DFM.Tests.BusinessLogic.Helpers;
 using DFM.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.Tests.BusinessLogic.C.Money
 {
@@ -682,26 +681,8 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		[Then(@"the move will (not )?be deleted")]
 		public void ThenTheMoveWillOrNotBeDeleted(Boolean deleted)
 		{
-			error = null;
-
-			try
-			{
-				service.Money.GetMove(id);
-			}
-			catch (CoreError e)
-			{
-				error = e;
-			}
-
-			if (deleted)
-			{
-				Assert.IsNotNull(error);
-				Assert.AreEqual(Error.InvalidMove, error.Type);
-			}
-			else
-			{
-				Assert.IsNull(error);
-			}
+			var move = moveRepository.Get(id);
+			Assert.AreEqual(deleted, move == null);
 		}
 		#endregion
 
