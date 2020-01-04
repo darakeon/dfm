@@ -18,20 +18,20 @@ namespace DFM.MVC.Areas.Account.Models
 
 		internal override void Save()
 		{
-			var value = Move.Value;
-			var details = Move.DetailList.ToList();
+			var value = move.Value;
+			var details = move.DetailList.ToList();
 
 			if (IsDetailed)
-				Move.Value = null;
+				move.Value = null;
 			else
-				Move.DetailList.Clear();
+				move.DetailList.Clear();
 
-			var result = money.SaveMove(Move);
+			var result = money.SaveMove(move);
 
 			if (result.Email.IsWrong())
 			{
-				Move.Value = value;
-				Move.DetailList = details;
+				move.Value = value;
+				move.DetailList = details;
 
 				var message = Translator.Dictionary["MoveSave"];
 				var error = Translator.Dictionary[result.Email].ToLower();
@@ -41,13 +41,9 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 		}
 
+		public Int32 ID { set => GenericMove.ID = value; }
 
-		public MoveInfo Move
-		{
-			get => (MoveInfo) GenericMove;
-			set => GenericMove = value;
-		}
-
+		private MoveInfo move => (MoveInfo) GenericMove;
 
 	}
 

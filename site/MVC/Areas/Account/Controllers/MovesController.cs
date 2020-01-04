@@ -47,7 +47,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Edit(Int32 id, MovesCreateEditModel model)
 		{
-			model.Move.ID = id;
+			model.ID = id;
 
 			return createEditSchedule(model);
 		}
