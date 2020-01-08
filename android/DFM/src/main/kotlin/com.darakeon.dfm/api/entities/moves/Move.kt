@@ -45,6 +45,9 @@ class Move {
 	@SerializedName("DetailList")
 	var details: MutableList<Detail> = ArrayList()
 
+	@SerializedName("Checked")
+	var checked: Boolean = false
+
 	var isDetailed: Boolean = false
 
 	var date: Date

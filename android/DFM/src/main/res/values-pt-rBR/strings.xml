@@ -83,6 +83,10 @@
 		Esta Movimentação tem uma categoria, mas o uso de Categorias está desabilitado.
 		A Categoria registrada antes será perdida se a Movimentação for editada.
 	</string>
+	<string name="removingCheck">
+		Esta Movimentação está marcada como verificada.\n
+		A marcação será removida quando salvar o formulário.
+	</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Configurações</string>
