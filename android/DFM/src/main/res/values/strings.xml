@@ -84,6 +84,10 @@
 		This move has a category originally, but the Categories use are disabled.\n
 		The category will be lost if you edit this move.
 	</string>
+	<string name="removingCheck">
+		This move is marked as checked.\n
+		When you save this move, the check will be removed.
+	</string>
 
 	<!-- Settings -->
 	<string name="title_activity_settings">Settings</string>

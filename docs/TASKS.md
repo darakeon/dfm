@@ -126,7 +126,7 @@ Legend:
 - [ ] Enable to check moves on closed accounts
 - [ ] Check move without reload screen - web
 - [ ] Check move without reload screen - mobile
-- [ ] `191229>......` Edit must uncheck move (warn before and after edit)
+- [x] `191229>200108` Edit must uncheck move (warn before and after edit)
 - [x] `191218>191218` Split move check to account in / out
 
 ## <a name="4.1.3.9"></a>4.1.3.9 :ant: <sup>`6`</sup>

@@ -37,6 +37,7 @@ import kotlinx.android.synthetic.main.moves_create.lose_category
 import kotlinx.android.synthetic.main.moves_create.nature
 import kotlinx.android.synthetic.main.moves_create.no_accounts
 import kotlinx.android.synthetic.main.moves_create.no_categories
+import kotlinx.android.synthetic.main.moves_create.remove_check
 import kotlinx.android.synthetic.main.moves_create.simple_value
 import kotlinx.android.synthetic.main.moves_create.value
 import kotlinx.android.synthetic.main.moves_create.warnings
@@ -134,6 +135,10 @@ class MovesCreateActivity : BaseActivity() {
 			form.visibility = View.GONE
 			warnings.visibility = View.VISIBLE
 			return
+		}
+
+		if (move.checked) {
+			remove_check.visibility = View.VISIBLE;
 		}
 
 		date.text = move.date.format()

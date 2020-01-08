@@ -51,6 +51,14 @@
 			android:orientation="vertical">
 
 			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/remove_check"
+				android:text="@string/removingCheck"
+				android:visibility="gone"
+				android:gravity="top|center" />
+
+			<TextView
 				android:id="@+id/description_label"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
