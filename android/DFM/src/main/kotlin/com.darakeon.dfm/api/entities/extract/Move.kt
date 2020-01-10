@@ -20,7 +20,7 @@ data class Move(
 	val total: Double,
 
 	@SerializedName("Checked")
-	val checked: Boolean,
+	var checked: Boolean,
 
 	@SerializedName("ID")
 	val id: Int
