@@ -121,8 +121,7 @@ Legend:
 - [ ] Make android automated tests
 - [ ] Transform project into .NET Core
 
-## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`6`</sup>
-- [ ] Allow check all the moves before a date
+## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`5`</sup>
 - [ ] Enable to check moves on closed accounts
 - [ ] Check move without reload screen - web
 - [x] `200109>200110` Check move without reload screen - mobile
