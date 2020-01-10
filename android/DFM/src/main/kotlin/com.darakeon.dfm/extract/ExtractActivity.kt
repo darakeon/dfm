@@ -173,11 +173,11 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 				return true
 			}
 			R.id.check_move -> {
-				api.check(clickedMove.id, clickedMove.nature, this::refresh)
+				api.check(clickedMove.id, clickedMove.nature, this::reverseCheck)
 				return true
 			}
 			R.id.uncheck_move -> {
-				api.uncheck(clickedMove.id, clickedMove.nature, this::refresh)
+				api.uncheck(clickedMove.id, clickedMove.nature, this::reverseCheck)
 				return true
 			}
 			else -> return super.onContextItemSelected(item)
@@ -187,7 +187,6 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	private fun edit() {
 		goToMove(clickedMove.id)
 	}
-
 
 	private fun askDelete(): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
@@ -205,11 +204,16 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 
 	override fun noAction() {}
 
+	private fun reverseCheck() {
+		clickedMove.reverseCheck()
+		showCheckOrUncheck()
+	}
+
 	public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
 		try {
 			if (extract.canCheck) {
-				hideMenuItem(menuInfo, if (clickedMove.isChecked) R.id.check_move else R.id.uncheck_move)
-				showMenuItem(menuInfo, if (clickedMove.isChecked) R.id.uncheck_move else R.id.check_move)
+				clickedMove.menu = menuInfo
+				showCheckOrUncheck()
 			} else {
 				hideMenuItem(menuInfo, R.id.check_move)
 				hideMenuItem(menuInfo, R.id.uncheck_move)
@@ -217,7 +221,22 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 		} catch (e: Exception) {
 			e.printStackTrace()
 		}
+	}
 
+	private fun showCheckOrUncheck() {
+		val menu = clickedMove.menu ?: return
+
+		val toHide = if (clickedMove.isChecked)
+			R.id.check_move
+		else
+			R.id.uncheck_move
+		hideMenuItem(menu, toHide)
+
+		val toShow = if (clickedMove.isChecked)
+			R.id.uncheck_move
+		else
+			R.id.check_move
+		showMenuItem(menu, toShow)
 	}
 
 	private fun hideMenuItem(menu: ContextMenu, id: Int) {
@@ -229,7 +248,6 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	private fun toggleMenuItem(menu: ContextMenu, id: Int, show: Boolean) {
-		val buttonToHide = menu.findItem(id)
-		buttonToHide.isVisible = show
+		menu.findItem(id).isVisible = show
 	}
 }

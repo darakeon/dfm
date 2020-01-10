@@ -2,6 +2,7 @@ package com.darakeon.dfm.extract
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ContextMenu
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
@@ -17,6 +18,8 @@ import java.text.DecimalFormat
 
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
+	var menu: ContextMenu? = null
+
 	private var move: Move? = null
 	private var checkNature: Nature = Nature.Out
 
@@ -27,7 +30,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 		name.text = move.description
 		setTotalField(move)
-		setCheckField(move, canCheck)
+		setCheckField(canCheck)
 		setDateField(move)
 		setCheckNature(move)
 
@@ -46,20 +49,23 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		value.text = totalStr
 	}
 
-	private fun setCheckField(move: Move, canCheck: Boolean) {
+	private fun setCheckField(canCheck: Boolean) {
 		if (canCheck) {
-			val textRes = if (move.checked) R.string.checked else R.string.unchecked
-			check_move.text = context.getString(textRes)
-
-			val activity = context as ExtractActivity
-			check_move.applyGlyphicon(activity)
-
-			val color = if (move.checked) R.attr.checked else R.attr.unchecked
-			check_move.setColorByAttr(color)
-
+			setCheckField()
 		} else {
 			check_move.visibility = View.GONE
 		}
+	}
+
+	private fun setCheckField() {
+		val textRes = if (isChecked) R.string.checked else R.string.unchecked
+		check_move.text = context.getString(textRes)
+
+		val activity = context as ExtractActivity
+		check_move.applyGlyphicon(activity)
+
+		val color = if (isChecked) R.attr.checked else R.attr.unchecked
+		check_move.setColorByAttr(color)
 	}
 
 	private fun setDateField(move: Move) {
@@ -78,11 +84,19 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 	override fun getId(): Int = move?.id ?: 0
 
+	fun reverseCheck() {
+		isChecked = !isChecked
+		setCheckField()
+	}
+
 	val description: String
 		get() = move?.description ?: ""
 
-	val isChecked: Boolean
+	var isChecked: Boolean
 		get() = move?.checked ?: false
+		private set(value) {
+			move?.checked = value
+		}
 
 	val nature: Nature
 		get() = checkNature
