@@ -63,14 +63,26 @@ namespace DFM.BusinessLogic.Response
 
 		internal static MoveInfo Convert4Report(Move move, String accountUrl)
 		{
+			return convert4Report(
+				move,
+				info => info.OutUrl == accountUrl
+					? PrimalMoveNature.Out
+					: PrimalMoveNature.In
+			);
+		}
+
+		internal static MoveInfo Convert4Report(Move move, PrimalMoveNature nature)
+		{
+			return convert4Report(move, info => nature);
+		}
+
+		private static MoveInfo convert4Report(Move move, Func<MoveInfo, PrimalMoveNature> getNature)
+		{
 			var info = convert(move);
 
 			info.Description = move.GetDescriptionWithSchedulePosition();
 
-			var isOut = info.OutUrl == accountUrl;
-			var nature = isOut
-				? PrimalMoveNature.Out
-				: PrimalMoveNature.In;
+			var nature = getNature(info);
 			info.Checked = move.IsChecked(nature);
 
 			return info;

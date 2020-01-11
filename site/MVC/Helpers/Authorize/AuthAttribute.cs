@@ -19,9 +19,11 @@ namespace DFM.MVC.Helpers.Authorize
 			Boolean needAdmin = false,
 			Boolean needContract = true,
 			Boolean needTFA = true,
-			Boolean isMobile = false
+			Boolean isMobile = false,
+			Int32 order = 2
 		)
 		{
+			Order = order;
 			this.needContract = needContract;
 			this.needAdmin = needAdmin;
 			this.needTFA = needTFA;

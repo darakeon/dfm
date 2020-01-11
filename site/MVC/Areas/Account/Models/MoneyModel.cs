@@ -5,11 +5,11 @@ using DFM.Email;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Global;
-using DFM.MVC.Models;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.MVC.Areas.Account.Models
 {
-	public class MoneyModel : BaseSiteModel
+	public class MoneyModel : BaseAccountModel
 	{
 		public void DeleteMove(Int32 id)
 		{
@@ -40,33 +40,43 @@ namespace DFM.MVC.Areas.Account.Models
 			ReportUrl = move.ToMonthYear();
 		}
 
-		public void CheckMove(Int32 id, PrimalMoveNature nature)
+		public MoveLineModel CheckMove(Int32 id, PrimalMoveNature nature)
+		{
+			return toggleCheck(id, nature, money.CheckMove);
+		}
+
+		public MoveLineModel UncheckMove(Int32 id, PrimalMoveNature nature)
+		{
+			return toggleCheck(id, nature, money.UncheckMove);
+		}
+
+		private MoveLineModel toggleCheck(Int64 id, PrimalMoveNature nature, Func<Int64, PrimalMoveNature, MoveInfo> toggleCheck)
+		{
+			return new MoveLineModel(
+				tryToggleCheck(id, nature, toggleCheck),
+				isUsingCategories,
+				CurrentAccountUrl,
+				language,
+				moveCheckingEnabled
+			);
+		}
+
+		private MoveInfo tryToggleCheck(Int64 id, PrimalMoveNature nature, Func<Int64, PrimalMoveNature, MoveInfo> toggleCheck)
 		{
 			try
 			{
-				var move = money.CheckMove(id, nature);
-				ReportUrl = move.MonthYear;
+				return toggleCheck(id, nature);
 			}
 			catch (CoreError e)
 			{
-				ErrorAlert.Add(e.Type);
+				if (e.Type == Error.MoveAlreadyChecked || e.Type == Error.MoveAlreadyUnchecked)
+					return getMove(id);
+
+				throw;
 			}
 		}
 
-		public void UncheckMove(Int32 id, PrimalMoveNature nature)
-		{
-			try
-			{
-				var move = money.UncheckMove(id, nature);
-				ReportUrl = move.MonthYear;
-			}
-			catch (CoreError e)
-			{
-				ErrorAlert.Add(e.Type);
-			}
-		}
-
-		private MoveInfo getMove(int id)
+		private MoveInfo getMove(Int64 id)
 		{
 			try
 			{

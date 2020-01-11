@@ -154,8 +154,8 @@
     <Content Include="Assets\Libs\Datepicker\moment-pt-br.js" />
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\Libs\MaskedMoney\jquery.maskMoney.js" />
-    <Content Include="Assets\Libs\Scripts\bootstrap.js" />
     <Content Include="Assets\Libs\Scripts\bootstrap.min.js" />
+    <Content Include="Assets\Libs\Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\Libs\Themes\bootstrap-cerulean.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-cosmo.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-darkly.min.css" />
@@ -205,8 +205,8 @@
     <Content Include="Areas\Account\Views\Shared\BlockedFormContent.cshtml" />
     <Content Include="Areas\Account\Views\Shared\BlockedFormFooter.cshtml" />
     <Content Include="Areas\Account\Views\Shared\ScheduleFields.cshtml" />
+    <Content Include="Areas\Account\Views\Reports\MoveLine.cshtml" />
     <None Include="Assets\Libs\Scripts\jquery.intellisense.js" />
-    <Content Include="Assets\Libs\Scripts\jquery.js" />
     <Content Include="Assets\Libs\Scripts\jquery.min.js" />
     <Content Include="Assets\Libs\Themes\bootstrap-cyborg.min.css" />
     <Content Include="Assets\Libs\Themes\bootstrap-sandstone.min.css" />
@@ -242,6 +242,7 @@
     <Compile Include="Areas\Account\Models\BaseMovesModel.cs" />
     <Compile Include="Areas\Account\Models\ITotal.cs" />
     <Compile Include="Areas\Account\Models\MoneyModel.cs" />
+    <Compile Include="Areas\Account\Models\MoveLineModel.cs" />
     <Compile Include="Areas\Account\Models\MovesCreateEditModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsShowMovesModel.cs" />
     <Compile Include="Areas\Account\Models\ReportsSummarizeMonthsModel.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Areas\API\Controllers\StatusController.cs" />
     <Compile Include="Areas\API\Models\Environment.cs" />
     <Compile Include="Areas\API\Models\UserTFAModel.cs" />
+    <Compile Include="Helpers\Authorize\JsonAuthAttribute.cs" />
     <Compile Include="Helpers\Controllers\HttpGetAndHeadAttribute.cs" />
     <Compile Include="Helpers\Views\MicroForm.cs" />
     <Compile Include="Helpers\Views\WizardMenu.cs" />

@@ -225,5 +225,10 @@ namespace DFM.MVC.Controllers
 
 			return View(model);
 		}
+
+		public ActionResult Reload()
+		{
+			return Content(" ");
+		}
 	}
 }

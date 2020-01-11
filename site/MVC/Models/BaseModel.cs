@@ -23,9 +23,8 @@ namespace DFM.MVC.Models
 		protected String language => Translator.Language;
 		protected Boolean wizard => current.Wizard;
 
-		protected Boolean isUsingCategories => current.UseCategories ;
-		protected Boolean moveCheckingEnabled => current.MoveCheck ;
-
+		protected Boolean isUsingCategories => current.UseCategories;
+		protected Boolean moveCheckingEnabled => current.MoveCheck;
 
 		protected String login(String email, String password, Boolean rememberMe)
 		{

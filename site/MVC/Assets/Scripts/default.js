@@ -28,3 +28,7 @@
 		});
 	});
 });
+
+function checkIfReload(response) {
+	if (response === " ") history.go(0);
+}

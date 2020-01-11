@@ -159,6 +159,10 @@ describe('Moves', () => {
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
 		await puppy.submit(checkUrl)
 
+		// the form is ajax, the screen do not reload entirelly, so
+		// puppeteer gets the line before ajax finishes without this
+		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+
 		const table = await puppy.content('#body .table')
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		expect(table).toContain(uncheckUrl)
@@ -178,6 +182,10 @@ describe('Moves', () => {
 
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
+
+		// the form is ajax, the screen do not reload entirelly, so
+		// puppeteer gets the line before ajax finishes without this
+		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
 
 		const table = await puppy.content('#body .table')
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`

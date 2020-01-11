@@ -1,25 +1,40 @@
 ﻿@model MicroForm
 
 @{
+	// it confuses closing brackets if it goes together the other statements
 	var @class = Model.Class ?? "btn-clear";
 }
 
-@using (
-	Model.RouteName == null
-		? Html.BeginForm(Model.RouteValues)
-		: Html.BeginRouteForm(Model.RouteName, Model.RouteValues)
-) {
+@{
+	var ajaxOptions = new AjaxOptions
+	{
+		UpdateTargetId = Model.UpdateTargetId,
+		InsertionMode = InsertionMode.ReplaceWith,
+		OnSuccess = "checkIfReload"
+	};
+
+	IDisposable form =
+		Model.RouteName == null
+			? Model.Ajax
+				? Ajax.BeginForm(Model.Action, Model.Controller, Model.RouteValues, ajaxOptions)
+				: Html.BeginForm(Model.Action, Model.Controller, Model.RouteValues)
+			: Model.Ajax
+				? Ajax.BeginRouteForm(Model.RouteName, Model.RouteValues, ajaxOptions)
+				: Html.BeginRouteForm(Model.RouteName, Model.RouteValues);
+}
+
+@using (form)
+{
 	@Html.AntiForgeryToken()
 
-	foreach (var hidden in Model.Hiddens)
+	foreach (var hidden in Model.HiddenList)
 	{
 		<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
 	}
 
 	<button type="submit" class="@(@class)" title="@Model.Text"
-	        data-toggle="tooltip" data-placement="right"
-	        data-original-title="@Model.Text">
-
+			data-toggle="tooltip" data-placement="right"
+			data-original-title="@Model.Text">
 		@if (Model.Glyphicon == null)
 		{
 			@Model.Text
@@ -28,6 +43,5 @@
 		{
 			<span class="glyphicon glyphicon-@Model.Glyphicon"></span>
 		}
-
 	</button>
 }
