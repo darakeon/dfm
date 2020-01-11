@@ -18,7 +18,7 @@ namespace DFM.MVC.Helpers.Views
 
 			Class = @class;
 
-			Hiddens = new Dictionary<String, object>();
+			HiddenList = new Dictionary<String, object>();
 		}
 
 		public static MicroForm WithGlyph(String glyphicon, String text)
@@ -40,10 +40,16 @@ namespace DFM.MVC.Helpers.Views
 		public String Text { get; }
 		public String Class { get; }
 
+		public String Action { get; private set; }
+		public String Controller { get; private set; }
+
 		public String RouteName { get; private set; }
 		public object RouteValues { get; private set; }
 
-		public IDictionary<String, object> Hiddens { get; set; }
+		public Boolean Ajax { get; private set; }
+		public String UpdateTargetId { get; private set; }
+
+		public IDictionary<String, object> HiddenList { get; }
 
 		public MicroForm AddRouteIdUrl(
 			String route,
@@ -56,12 +62,11 @@ namespace DFM.MVC.Helpers.Views
 
 			var current = RouteInfo.Current.RouteData.Values;
 
-			RouteValues = new
-			{
-				controller = controller ?? current["controller"],
-				action = action ?? current["action"],
-				id
-			};
+			Controller = controller ?? current["controller"].ToString();
+			Action = action ?? current["action"].ToString();
+
+			RouteValues = new { Controller, Action, id };
+
 			return this;
 		}
 
@@ -96,7 +101,14 @@ namespace DFM.MVC.Helpers.Views
 
 		public MicroForm AddHidden(String name, object value)
 		{
-			Hiddens.Add(name, value);
+			HiddenList.Add(name, value);
+			return this;
+		}
+
+		public MicroForm AsAjax(String updateTargetId)
+		{
+			Ajax = true;
+			UpdateTargetId = updateTargetId;
 			return this;
 		}
 	}

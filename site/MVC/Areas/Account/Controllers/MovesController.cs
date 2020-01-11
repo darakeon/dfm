@@ -4,6 +4,7 @@ using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
+using Keon.MVC.Authentication;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
@@ -62,24 +63,24 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
+		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Check(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			model.CheckMove(id, nature);
+			var line = model.CheckMove(id, nature);
 
-			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
+			return PartialView("../Reports/MoveLine", line);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
+		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
 		public ActionResult Uncheck(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
-			model.UncheckMove(id, nature);
+			var line = model.UncheckMove(id, nature);
 
-			return RedirectToAction("ShowMoves", "Reports", new { id = model.ReportUrl });
+			return PartialView("../Reports/MoveLine", line);
 		}
 	}
 }

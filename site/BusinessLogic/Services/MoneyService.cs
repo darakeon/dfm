@@ -3,7 +3,6 @@ using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
 using DFM.Entities;
-using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
@@ -123,17 +122,17 @@ namespace DFM.BusinessLogic.Services
 			}
 		}
 
-		public MoveResult CheckMove(Int64 moveId, PrimalMoveNature nature)
+		public MoveInfo CheckMove(Int64 moveId, PrimalMoveNature nature)
 		{
 			return toggleMoveCheck(moveId, nature, true);
 		}
 
-		public MoveResult UncheckMove(Int64 moveId, PrimalMoveNature nature)
+		public MoveInfo UncheckMove(Int64 moveId, PrimalMoveNature nature)
 		{
 			return toggleMoveCheck(moveId, nature, false);
 		}
 
-		private MoveResult toggleMoveCheck(Int64 moveId, PrimalMoveNature nature, Boolean check)
+		private MoveInfo toggleMoveCheck(Int64 moveId, PrimalMoveNature nature, Boolean check)
 		{
 			parent.Safe.VerifyUser();
 
@@ -149,7 +148,7 @@ namespace DFM.BusinessLogic.Services
 				moveRepository.Save(move, today)
 			);
 
-			return new MoveResult(move);
+			return MoveInfo.Convert4Report(move, nature);
 		}
 
 		private void verifyMoveForCheck(Move move, PrimalMoveNature nature, Boolean check)

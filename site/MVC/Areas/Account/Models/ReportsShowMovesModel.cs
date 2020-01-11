@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Helpers.Models;
@@ -15,16 +16,30 @@ namespace DFM.MVC.Areas.Account.Models
 
 			var month = report.GetMonthReport(CurrentAccountUrl, dateMonth, dateYear);
 
-			MoveList = month.MoveList;
+			MoveList = month.MoveList
+				.Select(getSubModel)
+				.ToList();
+
 			Total = month.AccountTotal;
 			
 			Month = dateMonth;
 			Year = dateYear;
 		}
 
+		private MoveLineModel getSubModel(MoveInfo move)
+		{
+			return new MoveLineModel(
+				move,
+				isUsingCategories,
+				CurrentAccountUrl,
+				language,
+				CanCheck
+			);
+		}
+
 		public Decimal Total { get; }
 
-		public IList<MoveInfo> MoveList { get; set; }
+		public IList<MoveLineModel> MoveList { get; set; }
 
 		public Int32 Month { get; set; }
 		public Int32 Year { get; set; }
