@@ -758,10 +758,16 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			makeMove(details, nature);
 		}
 
-		[Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)")]
-		public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature)
+		[Given(@"I have a move with value (\-?\d+\.?\d*) \((\w+)\)(?: at account (\w+))?")]
+		public void GivenIHaveAMoveWithValue(Decimal value, MoveNature nature, String moveAccountUrl)
 		{
-			makeMove(value, nature);
+			if (moveAccountUrl == "")
+				moveAccountUrl = null;
+
+			if (moveAccountUrl != null)
+				getOrCreateAccount(moveAccountUrl);
+
+			makeMove(value, nature, moveAccountUrl);
 		}
 
 		private void makeMove(Table details, MoveNature nature)
@@ -778,13 +784,13 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			setMoveExternals(nature);
 		}
 
-		private void makeMove(Decimal value, MoveNature nature = MoveNature.Out)
+		private void makeMove(Decimal value, MoveNature nature = MoveNature.Out, String moveAccountUrl = null)
 		{
 			makeJustMove(nature);
 
 			moveInfo.Value = value;
 
-			setMoveExternals(nature);
+			setMoveExternals(nature, moveAccountUrl);
 		}
 
 		private void makeJustMove(MoveNature nature)
@@ -800,15 +806,15 @@ namespace DFM.Tests.BusinessLogic.C.Money
 			moveInfo.SetDate(oldDate);
 		}
 
-		private void setMoveExternals(MoveNature nature)
+		private void setMoveExternals(MoveNature nature, String moveAccountUrl = null)
 		{
 			moveInfo.OutUrl =
 				nature == MoveNature.In
-					? null : accountOutUrl;
+					? null : moveAccountUrl ?? accountOutUrl;
 
 			moveInfo.InUrl =
 				nature == MoveNature.Out
-					? null : accountInUrl;
+					? null : moveAccountUrl ?? accountInUrl;
 
 			moveInfo.CategoryName =
 				categoryName = mainCategoryName;

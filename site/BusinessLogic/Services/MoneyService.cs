@@ -142,10 +142,9 @@ namespace DFM.BusinessLogic.Services
 			verifyMoveForCheck(move, nature, check);
 
 			move.Check(nature, check);
-			var today = parent.Current.Now;
 
 			InTransaction(() => 
-				moveRepository.Save(move, today)
+				moveRepository.SaveCheck(move)
 			);
 
 			return MoveInfo.Convert4Report(move, nature);

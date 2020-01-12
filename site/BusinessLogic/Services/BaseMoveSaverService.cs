@@ -66,13 +66,13 @@ namespace DFM.BusinessLogic.Services
 
 			if (moveIsNew || !move.IsDetailed())
 			{
-				move = moveRepository.Save(move, today);
+				move = moveRepository.SaveMainInfo(move, today);
 				detailRepository.SaveDetails(move);
 			}
 			else
 			{
 				detailRepository.SaveDetails(move);
-				move = moveRepository.Save(move, today);
+				move = moveRepository.SaveMainInfo(move, today);
 			}
 
 			if (!moveIsNew)

@@ -122,7 +122,7 @@ Legend:
 - [ ] Transform project into .NET Core
 
 ## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`5`</sup>
-- [ ] Enable to check moves on closed accounts
+- [x] `200112>200112` Enable to check moves on closed accounts
 - [x] `200111>200112` Check move without reload screen - web
 - [x] `200109>200110` Check move without reload screen - mobile
 - [x] `191229>200108` Edit must uncheck move (warn before and after edit)
