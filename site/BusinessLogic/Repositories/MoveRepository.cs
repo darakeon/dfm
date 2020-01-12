@@ -19,7 +19,7 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class MoveRepository : GenericMoveRepository<Move>
 	{
-		internal Move Save(Move move, DateTime now)
+		internal Move SaveMainInfo(Move move, DateTime now)
 		{
 			//Keep this order, weird errors happen if invert
 			return SaveOrUpdate(
@@ -32,6 +32,11 @@ namespace DFM.BusinessLogic.Repositories
 				),
 				complete
 			);
+		}
+
+		internal Move SaveCheck(Move move)
+		{
+			return SaveOrUpdate(move);
 		}
 
 		#region SendEmail
