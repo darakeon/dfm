@@ -1,4 +1,10 @@
 {
+	"4.1.4.0": [
+		"Movimentação pode ser verificada diferente em duas contas diferentes"
+		"Editar uma movimentação retira a marcação de verificada",
+		"Verificação de movimentação não recarrega mais a tela toda - site e aplicativo",
+		"Movimentações em contas fechadas podem ser marcadas como verificadas",
+	],
 	"4.1.3.9": [
 		"Arrumada lógica de nome de conta repetido",
 		"Início da conta alterado quando uma movimentação mais antiga é adicionada",
