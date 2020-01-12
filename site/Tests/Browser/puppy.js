@@ -57,8 +57,9 @@ async function callLogonPage(email) {
 }
 
 async function submit(action) {
-	await page.waitForSelector('form')
-	await page.click(`form[action="${action}"] button[type="submit"]`)
+	const selector = `form[action="${action}"] button[type="submit"]`
+	await page.waitForSelector(selector)
+	await page.click(selector)
 }
 
 async function createMove(
