@@ -725,10 +725,7 @@ namespace DFM.Tests.BusinessLogic.C.Money
 		public void ThenTheMoveWillBeChecked(Boolean @checked, PrimalMoveNature nature)
 		{
 			var move = moveRepository.Get(moveInfo.ID);
-
 			Assert.IsNotNull(move);
-
-			var moveChecked = move.IsChecked(nature);
 
 			switch (nature)
 			{
