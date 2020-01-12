@@ -1,4 +1,10 @@
 {
+	"4.1.4.0": [
+		"Move check to account in / out separated"
+		"Edit uncheck moves, warning about it",
+		"Check move without reload screen site and mobile",
+		"Enable to check moves on closed accounts",
+	],
 	"4.1.3.9": [
 		"Fix logic of repeated account name",
 		"Change account begin date when add an older move",

@@ -9,5 +9,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("4.1.3.9")]
-[assembly: AssemblyFileVersion("4.1.3.9")]
+[assembly: AssemblyVersion("4.1.4.0")]
+[assembly: AssemblyFileVersion("4.1.4.0")]
