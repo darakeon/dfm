@@ -117,8 +117,9 @@ Legend:
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
 
-## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
+## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`3`</sup>
 - [ ] Make android automated tests
+- [ ] Replace XML at UI android by compose jetpack
 - [ ] Transform project into .NET Core
 
 ## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`5`</sup>
