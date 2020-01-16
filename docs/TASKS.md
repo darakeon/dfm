@@ -117,6 +117,10 @@ Legend:
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
 
+## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`2`</sup>
+- [ ] Add change language icon to site
+- [ ] Make default language EN if browser is not PT, ES, IT or FR
+
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`3`</sup>
 - [ ] Make android automated tests
 - [ ] Replace XML at UI android by compose jetpack
