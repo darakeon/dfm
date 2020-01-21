@@ -17,11 +17,3 @@ TestResults/*
 Tests/Core/log
 *.feature.cs
 
-smtp.config
-MVC/MVC.Publish.xml
-MVC/Properties/PublishProfiles
-MVC/Web.Release.config
-MVC/data/log_files
-
-MVC/Assets/Libs/*/*.js
-MVC/Assets/Libs/Fonts/*
