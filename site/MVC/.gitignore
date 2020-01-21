@@ -1,0 +1,8 @@
+smtp.config
+MVC.Publish.xml
+Properties/PublishProfiles
+Web.Release.config
+data/log_files
+
+Assets/Libs/*/*.js
+Assets/Libs/Fonts/*
