@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <AssemblyName>DFM.Language.Tests</AssemblyName>
+
+    <RootNamespace>DFM.Language.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SpecFlow" Version="3.1.78" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.1.78" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.78" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\..\Language\Language.csproj" />
+    <ProjectReference Include="..\Util\Tests.Util.csproj" />
+  </ItemGroup>
+
+</Project>

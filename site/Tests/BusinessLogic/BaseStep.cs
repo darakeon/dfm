@@ -1,22 +1,21 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DFM.Authentication;
-using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
-using DFM.Email;
-using DFM.Entities;
-using DFM.Entities.Enums;
-using DFM.Tests.Helpers;
-using System.Text.RegularExpressions;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Response;
+using DFM.Email;
+using DFM.Entities;
 using DFM.Entities.Bases;
+using DFM.Entities.Enums;
+using DFM.Tests.Util;
 using Keon.Util.Extensions;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.BusinessLogic
+namespace DFM.BusinessLogic.Tests
 {
 	public abstract class BaseStep : ContextHelper
 	{
@@ -51,16 +50,25 @@ namespace DFM.Tests.BusinessLogic
 				Directory.CreateDirectory(path);
 
 			logFileName = Path.Combine(path, $"tests_{logDate}.log");
+		}
+
+		protected static void setRepositories()
+		{
 			accountRepository = new AccountRepository();
 			categoryRepository = new CategoryRepository();
 			summaryRepository = new SummaryRepository();
-			moveRepository = new MoveRepository();
+			moveRepository = new MoveRepository(getSite);
 			scheduleRepository = new ScheduleRepository();
 			userRepository = new UserRepository();
 			ticketRepository = new TicketRepository();
-			securityRepository = new SecurityRepository();
+			securityRepository = new SecurityRepository(getSite);
 			contractRepository = new ContractRepository();
 			acceptanceRepository = new AcceptanceRepository();
+		}
+
+		protected static String getSite()
+		{
+			return "https://dontflymoney.com";
 		}
 
 		protected static void log(String text)
@@ -181,7 +189,7 @@ namespace DFM.Tests.BusinessLogic
 
 		protected static String getTicketKey()
 		{
-			return mainTicket ?? (mainTicket = Token.New());
+			return mainTicket ??= Token.New();
 		}
 
 		protected void resetTicket()

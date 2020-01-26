@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Tests.BusinessLogic.Helpers;
-using DFM.Tests.Helpers;
-using TechTalk.SpecFlow;
+using DFM.Tests.Util;
 using NUnit.Framework;
-using error = DFM.BusinessLogic.Exceptions.Error;
+using TechTalk.SpecFlow;
 
-namespace DFM.Tests.BusinessLogic.D.Robot
+namespace DFM.BusinessLogic.Tests.D.Robot
 {
 	[Binding]
 	public class RobotStep : BaseStep
@@ -31,8 +30,6 @@ namespace DFM.Tests.BusinessLogic.D.Robot
 			set => set("scheduleList", value);
 		}
 		#endregion
-
-
 
 		#region SaveSchedule
 		[Given(@"the schedule has this details")]

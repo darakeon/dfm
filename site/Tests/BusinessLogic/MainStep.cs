@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Linq;
-using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Repositories.Mappings;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Entities;
+using DFM.Generic;
 using DFM.Language;
-using DFM.Tests.Helpers;
 using Keon.NHibernate.Base;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.Tests.BusinessLogic
+namespace DFM.BusinessLogic.Tests
 {
 	[Binding]
 	public class MainStep : BaseStep
@@ -95,14 +95,17 @@ namespace DFM.Tests.BusinessLogic
 		public static void Start()
 		{
 			setLogName();
+
+			setRepositories();
+
 			log("BeforeTestRun");
 
 			Cleaner.Cleanup();
 
-			SessionFactoryManager.Initialize<UserMap, User>();
+			SessionFactoryManager.Initialize<UserMap, User>(Cfg.Dic);
 			SessionManager.Init(getTicketKey);
 
-			service = new ServiceAccess(getTicket, getPath);
+			service = new ServiceAccess(getTicket, getPath, getSite);
 
 			PlainText.Initialize(runPath);
 		}
