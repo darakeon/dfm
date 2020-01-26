@@ -3,8 +3,8 @@ using System.Text.RegularExpressions;
 using DFM.Entities;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Bases;
-using DFM.Generic;
 using Keon.NHibernate.Base;
+using Keon.Util.Crypto;
 
 namespace DFM.BusinessLogic.Repositories
 {

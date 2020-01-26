@@ -34,9 +34,5 @@ namespace DFM.Language.Emails
 
 			return File.ReadAllText(filePath);
 		}
-
-
-
-
 	}
 }

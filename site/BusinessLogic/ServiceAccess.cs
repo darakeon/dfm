@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Repositories;
 using DFM.BusinessLogic.Services;
 
+[assembly: InternalsVisibleTo("DFM.BusinessLogic.Tests")]
 namespace DFM.BusinessLogic
 {
 	public class ServiceAccess
 	{
-		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath)
+		public ServiceAccess(Current.GetTicket getTicket, Func<PathType, String> getPath, Current.GetUrl getUrl)
 		{
 			var acceptance = new AcceptanceRepository();
 			var account = new AccountRepository();
@@ -15,9 +17,9 @@ namespace DFM.BusinessLogic
 			var config = new ConfigRepository();
 			var contract = new ContractRepository();
 			var detail = new DetailRepository();
-			var move = new MoveRepository();
+			var move = new MoveRepository(getUrl);
 			var schedule = new ScheduleRepository();
-			var security = new SecurityRepository();
+			var security = new SecurityRepository(getUrl);
 			var summary = new SummaryRepository();
 			var ticket = new TicketRepository();
 			var user = new UserRepository();

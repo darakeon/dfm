@@ -1,117 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{288B6282-630A-4D92-BF07-717774BFB2BD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFM.Entities</RootNamespace>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>DFM.Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <RootNamespace>DFM.Entities</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BrowserTests|AnyCPU'">
-    <OutputPath>bin\BrowserTests\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\Generic\Properties\GeneralAssemblyInfo.cs">
-      <Link>Properties\GeneralAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Acceptance.cs" />
-    <Compile Include="Account.cs" />
-    <Compile Include="Account+.cs" />
-    <Compile Include="Bases\Constants.cs" />
-    <Compile Include="Bases\Defaults.cs" />
-    <Compile Include="Bases\IDate.cs" />
-    <Compile Include="Bases\MaxLen.cs" />
-    <Compile Include="Config+.cs" />
-    <Compile Include="Contract.cs" />
-    <Compile Include="Enums\BootstrapTheme.cs" />
-    <Compile Include="Enums\MoveValueType.cs" />
-    <Compile Include="Enums\OperationType.cs" />
-    <Compile Include="Enums\TicketType.cs" />
-    <Compile Include="Terms.cs" />
-    <Compile Include="Ticket+.cs" />
-    <Compile Include="Extensions\EntityExtension.cs" />
-    <Compile Include="Bases\IMove.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Category+.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Detail.cs" />
-    <Compile Include="Detail+.cs" />
-    <Compile Include="Enums\AccountSign.cs" />
-    <Compile Include="Enums\MoveNature.cs" />
-    <Compile Include="Enums\ScheduleFrequency.cs" />
-    <Compile Include="Enums\SecurityAction.cs" />
-    <Compile Include="Enums\SummaryNature.cs" />
-    <Compile Include="Extensions\MoveExtension.cs" />
-    <Compile Include="Move.cs" />
-    <Compile Include="Move+.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="Schedule+.cs" />
-    <Compile Include="Security.cs" />
-    <Compile Include="Security+.cs" />
-    <Compile Include="Summary.cs" />
-    <Compile Include="Summary+.cs" />
-    <Compile Include="Ticket.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="User+.cs" />
+    <PackageReference Include="Keon.Util" Version="2.0.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="Keon.Util, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Keon.Util.1.1.0\lib\net48\Keon.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
+    <ProjectReference Include="..\Generic\Generic.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Generic\Generic.csproj">
-      <Project>{FD6843E9-6DC1-464A-A6D6-74AE215BD16D}</Project>
-      <Name>DFM.Generic</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

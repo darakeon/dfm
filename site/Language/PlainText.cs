@@ -61,9 +61,9 @@ namespace DFM.Language
 			SectionList.Add(section);
 		}
 
-		public static void Initialize(String currentXmlPath)
+		public static void Initialize(String path)
 		{
-			currentPath = currentXmlPath;
+			currentPath = path;
 
 			Site = new PlainText(siteName, sitePath);
 			Email = new PlainText(emailName, emailPath);

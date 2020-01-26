@@ -11,20 +11,20 @@ namespace DFM.Email
 		/// <summary>
 		/// Send a report e-mail with errors occured
 		/// </summary>
-		/// <param name="exceptions">Errors occured</param>
+		/// <param name="exception">Errors occured</param>
 		/// <param name="url">Current url</param>
-		/// <param name="urlReferrer">Previous url</param>
+		/// <param name="origin">Previous url</param>
 		/// <param name="httpMethod">Get, Post, Delete, etc</param>
 		/// <param name="parameters">Parameters of url (post / get)</param>
 		/// <param name="user">Name of current user logged</param>
 		/// <returns>Status of e-mail</returns>
 		public static Status SendReport(
-			Exception[] exceptions,
-			String url, String urlReferrer, String httpMethod,
+			Exception exception,
+			String url, String origin, String httpMethod,
 			IDictionary<String, String> parameters,
 			String user)
 		{
-			if (exceptions == null || !exceptions.Any())
+			if (exception == null)
 				return Status.Empty;
 
 			try
@@ -34,20 +34,16 @@ namespace DFM.Email
 					parameters.Select(format)
 				);
 
-				var exceptionsFormatted = String.Join(
-					"<br /><br />",
-					exceptions.Select(format)
-				);
+				var exceptionsFormatted = format(exception);
 
-				urlReferrer = $"origin: {urlReferrer ?? "typed"}";
-
-				httpMethod = $"http method: {httpMethod}";
+				if (String.IsNullOrEmpty(origin))
+					origin = "typed";
 
 				var body = $@"
 					<h4>{user} at {url}</h4>
 					<h5>{parametersFormatted}</h5>
-					<h6>{urlReferrer}</h6>
-					<h6>{httpMethod}</h6>
+					<h6>origin: {origin}</h6>
+					<h6>http method: {httpMethod}</h6>
 					{exceptionsFormatted}";
 
 				new Sender()
@@ -58,9 +54,9 @@ namespace DFM.Email
 
 				return Status.Sent;
 			}
-			catch (Exception exception)
+			catch (Exception e)
 			{
-				exception.TryLog();
+				e.TryLog();
 				return Status.Error;
 			}
 		}
