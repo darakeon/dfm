@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
+using DFM.BusinessLogic.Tests.Helpers;
 using DFM.Email;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
 using DFM.Generic;
-using DFM.Tests.BusinessLogic.Helpers;
-using DFM.Tests.Helpers;
+using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.BusinessLogic.C.Money
+namespace DFM.BusinessLogic.Tests.C.Money
 {
 	[Binding]
 	public class MoneyStep : BaseStep

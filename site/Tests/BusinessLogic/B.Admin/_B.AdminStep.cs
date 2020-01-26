@@ -9,9 +9,8 @@ using DFM.Entities.Enums;
 using DFM.Language;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.Tests.BusinessLogic.B.Admin
+namespace DFM.BusinessLogic.Tests.B.Admin
 {
 	[Binding]
 	public class AdminStep : BaseStep

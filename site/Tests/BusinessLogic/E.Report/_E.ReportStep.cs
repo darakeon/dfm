@@ -7,7 +7,7 @@ using DFM.Entities.Enums;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.BusinessLogic.E.Report
+namespace DFM.BusinessLogic.Tests.E.Report
 {
 	[Binding]
 	public class ReportStep : BaseStep

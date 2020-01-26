@@ -7,7 +7,7 @@ Background:
 			| en-US    |
 			| pt-BR    |
 
-Scenario: L01. Get layouts of e-mails
+Scenario: 01. Get layouts of e-mails
 	Given I have these e-mail types
 			| Phrase           |
 			| MoveNotification |
@@ -19,7 +19,7 @@ Scenario: L01. Get layouts of e-mails
 	When I try get the layout
 	Then I will receive no language error
 
-Scenario: L02. Get translations of Enums
+Scenario: 02. Get translations of Enums
 	Given I have these entity enums
 			| Section   | Enum              |
 			| Moves     | MoveNature        |
@@ -29,12 +29,12 @@ Scenario: L02. Get translations of Enums
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L03. Get translations of Errors
+Scenario: 03. Get translations of Errors
 	Given I have the error enum
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L04. Get translate of Interface (moves)
+Scenario: 04. Get translate of Interface (moves)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Moves   | Create                  |
@@ -63,7 +63,7 @@ Scenario: L04. Get translate of Interface (moves)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L05. Get translate of Interface (reports)
+Scenario: 05. Get translate of Interface (reports)
 	Given I have these keys
 			| Section | Phrase            |
 			| Reports | ShortDateFormat   |
@@ -91,7 +91,7 @@ Scenario: L05. Get translate of Interface (reports)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L06. Get translate of Interface (accounts)
+Scenario: 06. Get translate of Interface (accounts)
 	Given I have these keys
 			| Section  | Phrase                |
 			| Accounts | Create                |
@@ -131,7 +131,7 @@ Scenario: L06. Get translate of Interface (accounts)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L07. Get translate of Interface (categories)
+Scenario: 07. Get translate of Interface (categories)
 	Given I have these keys
 			| Section    | Phrase        |
 			| Categories | Create        |
@@ -148,7 +148,7 @@ Scenario: L07. Get translate of Interface (categories)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L08. Get translate of Interface (tokens)
+Scenario: 08. Get translate of Interface (tokens)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Tokens  | NotRecognizedAction     |
@@ -171,7 +171,7 @@ Scenario: L08. Get translate of Interface (tokens)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L09. Get translate of Interface (users)
+Scenario: 09. Get translate of Interface (users)
 	Given I have these keys
 			| Section | Phrase                  |
 			| Users   | ForgotPassword          |
@@ -220,7 +220,7 @@ Scenario: L09. Get translate of Interface (users)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L10. Get translate of Interface (ops)
+Scenario: 10. Get translate of Interface (ops)
 	Given I have these keys
 			| Section | Phrase                 |
 			| Ops     | NotFound               |
@@ -230,7 +230,7 @@ Scenario: L10. Get translate of Interface (ops)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L11. Get translate of Interface (general)
+Scenario: 11. Get translate of Interface (general)
 	Given I have these keys
 			| Section | Phrase                  |
 			| General | LogOff                  |
@@ -253,7 +253,7 @@ Scenario: L11. Get translate of Interface (general)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L12. Get translate of Interface (schedules)
+Scenario: 12. Get translate of Interface (schedules)
 	Given I have these keys
 			| Section   | Phrase                |
 			| Schedules | Create                |
@@ -286,7 +286,7 @@ Scenario: L12. Get translate of Interface (schedules)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L13. Get translate of Interface (logins)
+Scenario: 13. Get translate of Interface (logins)
 	Given I have these keys
 			| Section | Phrase             |
 			| Logins  | Creation           |
@@ -300,7 +300,7 @@ Scenario: L13. Get translate of Interface (logins)
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L14. Get translations of E-mail Stati
+Scenario: 14. Get translations of E-mail Stati
 	Given I have these keys
 			| Section | Phrase         |
 			| Email   | EmailDisabled  |
@@ -312,14 +312,14 @@ Scenario: L14. Get translations of E-mail Stati
 	When I try get the translate
 	Then I will receive no language error
 
-Scenario: L15. Keys should be in all languages (site)
+Scenario: 15. Keys should be in all languages (site)
 	Then all keys should be available in all languages at site dictionary
 
-Scenario: L16. Keys should be in all languages (e-mail)
+Scenario: 16. Keys should be in all languages (e-mail)
 	Then all keys should be available in all languages at e-mail dictionary
 
-Scenario: L17. Keys should not be repeated (site)
+Scenario: 17. Keys should not be repeated (site)
 	Then no keys should be repeated at site dictionary
 
-Scenario: L18. Keys should not be repeated (e-mail)
+Scenario: 18. Keys should not be repeated (e-mail)
 	Then no keys should be repeated at e-mail dictionary

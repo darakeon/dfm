@@ -2,7 +2,7 @@
 using System.IO;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Helpers
+namespace DFM.Tests.Util
 {
 	public class ContextHelper
 	{

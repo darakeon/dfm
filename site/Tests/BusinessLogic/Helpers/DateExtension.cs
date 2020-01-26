@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DFM.Tests.Helpers
+namespace DFM.BusinessLogic.Tests.Helpers
 {
 	internal static class DateExtension
 	{

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.Language;
 using DFM.Language.Emails;
 using DFM.Language.Extensions;
-using DFM.Tests.Helpers;
+using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Language
+namespace DFM.Language.Tests
 {
 	[Binding]
 	public class LanguageStep : ContextHelper

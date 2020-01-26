@@ -1,11 +1,9 @@
 ﻿using System;
-using DFM.Email;
-using DFM.Tests.BusinessLogic.Helpers;
-using DFM.Tests.Helpers;
+using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace DFM.Tests.Email
+namespace DFM.Email.Tests
 {
 	[Binding]
 	public class EmailStep : ContextHelper

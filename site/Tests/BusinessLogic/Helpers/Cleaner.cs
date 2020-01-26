@@ -3,7 +3,7 @@ using DFM.Generic;
 using Keon.NHibernate.Fakes;
 using MySql.Data.MySqlClient;
 
-namespace DFM.Tests.Helpers
+namespace DFM.BusinessLogic.Tests.Helpers
 {
 	public class Cleaner
 	{
@@ -24,22 +24,18 @@ namespace DFM.Tests.Helpers
 
 		private static void execute(String query)
 		{
-			using (var conn = new MySqlConnection(connStr))
-			{
-				conn.Open();
+			using var conn = new MySqlConnection(connStr);
+			conn.Open();
 
-				try
-				{
-					using (var cmd = new MySqlCommand(query, conn))
-					{
-						cmd.ExecuteNonQuery();
-					}
-				}
-				finally
-				{
-					conn.Close();
-					conn.Dispose();
-				}
+			try
+			{
+				using var cmd = new MySqlCommand(query, conn);
+				cmd.ExecuteNonQuery();
+			}
+			finally
+			{
+				conn.Close();
+				conn.Dispose();
 			}
 		}
 	}

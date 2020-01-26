@@ -3,9 +3,9 @@ using DFM.BusinessLogic;
 using DFM.BusinessLogic.Response;
 using DFM.Generic;
 
-namespace DFM.Tests.BusinessLogic.Helpers
+namespace DFM.Tests.Util
 {
-	class ConfigHelper
+	public class ConfigHelper
 	{
 		private static String oldEmailConfig;
 
@@ -15,7 +15,7 @@ namespace DFM.Tests.BusinessLogic.Helpers
 			Cfg.EmailSender = "MakeError";
 		}
 
-		internal static void FixTheEmailSystem()
+		public static void FixTheEmailSystem()
 		{
 			Cfg.EmailSender = oldEmailConfig;
 			oldEmailConfig = "";
@@ -23,25 +23,25 @@ namespace DFM.Tests.BusinessLogic.Helpers
 
 
 
-		internal static void ActivateEmailSystem()
+		public static void ActivateEmailSystem()
 		{
 			Cfg.EmailSender = "";
 		}
 
-		internal static void DeactivateEmailSystem()
+		public static void DeactivateEmailSystem()
 		{
 			Cfg.EmailSender = "DontSend";
 		}
 
 
 
-		internal static void ActivateMoveEmailForUser(ServiceAccess sa)
+		public static void ActivateMoveEmailForUser(ServiceAccess sa)
 		{
 			var mainConfig = new ConfigInfo { SendMoveEmail = true };
 			sa.Admin.UpdateConfig(mainConfig);
 		}
 
-		internal static void DeactivateMoveEmailForUser(ServiceAccess sa)
+		public static void DeactivateMoveEmailForUser(ServiceAccess sa)
 		{
 			var mainConfig = new ConfigInfo { SendMoveEmail = false };
 			sa.Admin.UpdateConfig(mainConfig);

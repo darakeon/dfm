@@ -6,15 +6,14 @@ using DFM.BusinessLogic.Response;
 using DFM.Entities;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.Generic;
 using Keon.TwoFactorAuth;
+using Keon.Util.Crypto;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using TK = Keon.Util.Extensions.Token;
-using error = DFM.BusinessLogic.Exceptions.Error;
 
-namespace DFM.Tests.BusinessLogic.A.Safe
+namespace DFM.BusinessLogic.Tests.A.Safe
 {
 	[Binding]
 	public class SafeStep : BaseStep
