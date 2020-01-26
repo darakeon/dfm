@@ -19,6 +19,13 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class MoveRepository : GenericMoveRepository<Move>
 	{
+		private readonly Current.GetUrl getUrl;
+
+		public MoveRepository(Current.GetUrl getUrl)
+		{
+			this.getUrl = getUrl;
+		}
+
 		internal Move SaveMainInfo(Move move, DateTime now)
 		{
 			//Keep this order, weird errors happen if invert
@@ -60,7 +67,7 @@ namespace DFM.BusinessLogic.Repositories
 
 			var dic = new Dictionary<String, String>
 			{
-				{ "Url", Site.Url },
+				{ "Url", getUrl() },
 				{ "Operation", operation },
 				{ "AccountIn", accountInName },
 				{ "AccountOut", accountOutName },

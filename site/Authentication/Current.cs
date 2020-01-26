@@ -21,6 +21,8 @@ namespace DFM.Authentication
 		private readonly GetTicket clientGetTicket;
 		public delegate ClientTicket GetTicket(Boolean remember);
 
+		public delegate String GetUrl();
+
 		private ClientTicket ticket => getTicket(false);
 		public String TicketKey => ticket?.Key;
 

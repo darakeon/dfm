@@ -1,35 +1,47 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Configuration;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic
 {
 	public class Cfg
 	{
-		private static NameValueCollection appSettings => ConfigurationManager.AppSettings;
+		static Cfg()
+		{
+			Dic = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appSettings.json")
+				.AddJsonFile("smtp.json")
+				.Build();
+		}
 
-		public static String Server = appSettings["Server"];
-		public static String DataBase = appSettings["DataBase"];
-		public static String Login = appSettings["Login"];
-		public static String Password = appSettings["Password"];
+		public static readonly IConfiguration Dic;
+
+		public static String Server => Dic["Server"];
+		public static String DataBase => Dic["DataBase"];
+		public static String Login => Dic["Login"];
+		public static String Password => Dic["Password"];
 
 		public static String EmailSender
 		{
-			get => appSettings["EmailSender"];
-			set => appSettings["EmailSender"] = value;
+			get => Dic["EmailSender"];
+			set => Dic["EmailSender"] = value;
 		}
 
-		public static String Email => appSettings["Email"];
+		public static String Email => Dic["Email"];
 
 		public static String Version => typeof(Cfg).Assembly.GetName().Version.ToString();
 
-		public static Boolean IsLocal => appSettings["IsLocal"] == "1";
-		public static Boolean IsLocalTest => appSettings["IsLocalTest"] == "1";
+		public static Int32 PasswordErrorLimit => Int32.Parse(Dic["PasswordErrorLimit"]);
 
-		public static Int32 PasswordErrorLimit => Int32.Parse(appSettings["PasswordErrorLimit"]);
+		public static String GooglePlay => Dic["GooglePlay"];
 
-		public static String GooglePlay => appSettings["GooglePlay"];
+		public static Int32 VersionCount => Int32.Parse(Dic["VersionCount"]);
 
-		public static Int32 VersionCount => Int32.Parse(appSettings["VersionCount"]);
+		public static Smtp Smtp => new Smtp(Dic.GetSection("Smtp"));
+
+		public static String LanguagePath { get; set; }
+
+		public static String LogPathErrors => Dic["LogPathErrors"];
 	}
 }

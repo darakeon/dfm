@@ -13,6 +13,13 @@ namespace DFM.BusinessLogic.Repositories
 {
 	internal class SecurityRepository : BaseRepositoryLong<Security>
 	{
+		private readonly Current.GetUrl getUrl;
+
+		public SecurityRepository(Current.GetUrl getUrl)
+		{
+			this.getUrl = getUrl;
+		}
+
 		internal Security Save(Security security)
 		{
 			return SaveOrUpdate(security, complete);
@@ -33,7 +40,7 @@ namespace DFM.BusinessLogic.Repositories
 		{
 			var dic = new Dictionary<String, String>
 			{
-				{ "Url", Site.Url },
+				{ "Url", getUrl() },
 				{ "Token", security.Token },
 				{ "Date", security.Expire.AddDays(-1).ToShortDateString() },
 				{ "PathAction", pathAction },

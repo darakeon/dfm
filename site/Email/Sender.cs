@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using DFM.Generic;
-using CM = System.Configuration.ConfigurationManager;
-using Smtp = System.Net.Configuration.SmtpSection;
 
 namespace DFM.Email
 {
@@ -15,21 +14,15 @@ namespace DFM.Email
 		private readonly IList<String> files;
 		private readonly String @default;
 
-		public static String SenderAddress => new Sender().from;
-
-
 		public Sender()
 		{
 			files = new List<String>();
 
-			var mailSettings = (Smtp)CM.GetSection("system.net/mailSettings/smtp");
-
-			if (mailSettings != null)
-				from = mailSettings.From;
+			if (Cfg.Smtp.From != null)
+				from = Cfg.Smtp.From;
 
 			@default = Cfg.Email;
 		}
-
 
 		public Sender To(String email)
 		{
@@ -81,33 +74,49 @@ namespace DFM.Email
 			if (String.IsNullOrEmpty(to))
 				MailError.WithMessage(EmailStatus.InvalidAddress);
 
-			using (var smtp = new SmtpClient {Timeout = 60000})
+			var config = Cfg.Smtp;
+
+			Enum.TryParse(
+				config.DeliveryMethod,
+				true,
+				out SmtpDeliveryMethod method
+			);
+
+			var credentials = new NetworkCredential(
+				config.UserName,
+				config.Password
+			);
+
+			using var smtp = new SmtpClient(config.Host, config.Port)
 			{
-				try
-				{
-					var message =
-						new MailMessage(from, to, subject, body)
+				Timeout = 60000,
+				DeliveryMethod = method,
+				EnableSsl = config.EnableSsl,
+				UseDefaultCredentials = config.DefaultCredentials,
+				Credentials = credentials,
+			};
+
+			try
+			{
+				var message =
+					new MailMessage(from, to, subject, body)
 						{IsBodyHtml = true};
 
-					var attachments = files.Select(
-						fileFullName => new Attachment(fileFullName));
+				var attachments = files.Select(
+					fileFullName => new Attachment(fileFullName));
 
-					foreach (var attachment in attachments)
-					{
-						message.Attachments.Add(attachment);
-					}
-
-					smtp.Send(message);
-				}
-				catch (Exception exception)
+				foreach (var attachment in attachments)
 				{
-					exception.TryLog();
-					MailError.WithMessage(exception);
+					message.Attachments.Add(attachment);
 				}
+
+				smtp.Send(message);
 			}
-
+			catch (Exception exception)
+			{
+				exception.TryLog();
+				MailError.WithMessage(exception);
+			}
 		}
-
-
 	}
 }

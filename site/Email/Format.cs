@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.Entities.Enums;
 using DFM.Language;
 using DFM.Language.Emails;
+using DFM.Entities.Enums;
 using Keon.Util.Extensions;
 
 namespace DFM.Email
