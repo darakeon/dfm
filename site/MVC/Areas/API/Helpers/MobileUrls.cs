@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
-namespace DFM.MVC.Areas.API.Helpers
+namespace DFM.MVC.Areas.Api.Helpers
 {
 	public class MobileUrls
 	{

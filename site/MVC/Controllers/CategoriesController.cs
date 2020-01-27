@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Helpers.Global;
+using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
@@ -12,7 +12,7 @@ namespace DFM.MVC.Controllers
 	public class CategoriesController : BaseController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new CategoriesIndexModel();
 
@@ -20,15 +20,15 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Create()
+		public IActionResult Create()
 		{
-			var model = new CategoriesCreateEditModel(OperationType.Creation);
+			var model = new CategoriesCreateEditModel();
 
 			return View("CreateEdit", model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Create(CategoriesCreateEditModel model)
+		public IActionResult Create(CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
 
@@ -36,31 +36,31 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Edit(String id)
+		public IActionResult Edit(String id)
 		{
 			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
-			var model = new CategoriesCreateEditModel(OperationType.Edition, id);
+			var model = new CategoriesCreateEditModel(id);
 
 			return View("CreateEdit", model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Edit(String id, CategoriesCreateEditModel model)
+		public IActionResult Edit(String id, CategoriesCreateEditModel model)
 		{
 			model.Type = OperationType.Edition;
 			return createEditForHtmlForm(model);
 		}
 
-		private ActionResult createEditForHtmlForm(CategoriesCreateEditModel model)
+		private IActionResult createEditForHtmlForm(CategoriesCreateEditModel model)
 		{
 			if (ModelState.IsValid)
 			{
 				var error = model.CreateEdit();
 
 				if (error != null)
-					ModelState.AddModelError("Category.Name", Translator.Dictionary[error]);
+					ModelState.AddModelError("Category.Name", HttpContext.Translate(error));
 			}
 
 			if (ModelState.IsValid)
@@ -72,7 +72,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Disable(String id)
+		public IActionResult Disable(String id)
 		{
 			var model = new AdminModel();
 
@@ -82,7 +82,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Enable(String id)
+		public IActionResult Enable(String id)
 		{
 			var model = new AdminModel();
 

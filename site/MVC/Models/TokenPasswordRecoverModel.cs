@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -53,7 +52,7 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				errors.Add(Translator.Dictionary[e]);
+				errors.Add(translator[e]);
 			}
 
 			return errors;

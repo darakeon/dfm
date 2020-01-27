@@ -1,7 +1,4 @@
-﻿@using DFM.Generic.Pages
-@using DFM.MVC.Helpers
-
-@model ReportsShowMovesModel
+﻿@model ReportsShowMovesModel
 
 @{
 	ViewBag.Title = Model.Date;
@@ -14,10 +11,10 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.MoveList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoMonthMoves"];
+	ViewBag.NoContentText = Context.Translate("NoMonthMoves");
 
 	var beginDate = new MonthYearUnit(Model.Account.Start);
-	var endDate = new MonthYearUnit(Model.Account.End ?? Service.Current.Now);
+	var endDate = new MonthYearUnit(Model.Account.End ?? Context.GetService().Current.Now);
 	var current = new MonthYearUnit(Model.Year, Model.Month);
 
 	var pages = new Pages(beginDate, endDate, current, 5);
@@ -32,24 +29,24 @@
 	}
 
 	<tr class="row">
-		<th class="col-sm-@descriptionSize">@Translator.Dictionary["Description"]</th>
+		<th class="col-sm-@descriptionSize">@Context.Translate("Description")</th>
 
 		@if (Model.IsUsingCategories)
 		{
-			<th class="col-sm-2 text-center">@Translator.Dictionary["Category"]</th>
+			<th class="col-sm-2 text-center">@Context.Translate("Category")</th>
 		}
 
-		<th class="col-sm-2 text-center">@Translator.Dictionary["Date"]</th>
-		<th class="col-sm-1 text-center">@Translator.Dictionary["In"]</th>
-		<th class="col-sm-1 text-center">@Translator.Dictionary["Out"]</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Date")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("In")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Out")</th>
 
 		@if (Model.CanCheck)
 		{
-			<th class="col-sm-1 text-center">@Translator.Dictionary["Status"]</th>
+			<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
 		}
 
 		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@(Model.CanCheck ? 3 : 2)">
-			@Translator.Dictionary["TODO"]
+			@Context.Translate("TODO")
 		</th>
 	</tr>
 }

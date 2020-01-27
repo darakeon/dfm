@@ -21,26 +21,26 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<p>
-					@Translator.Dictionary["Index_Introduction"]
+					@Context.Translate("Index_Introduction")
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
-						Translator.Dictionary["Index_Explanation"],
+						Context.Translate("Index_Explanation"),
 						"<a href='" + Url.Action("SignUp", "Users") + "' class='text-success'>", "</a>"
 					))
 				</p>
 
 				<p>
 					@Html.Raw(String.Format(
-						Translator.Dictionary["Index_Close"],
+						Context.Translate("Index_Close"),
 						"dfm@dontflymoney.com"
 					))
 				</p>
 			</div>
 			
 			<div class="panel-footer text-right">
-				@Translator.Dictionary["CookiesWarning"]
+				@Context.Translate("CookiesWarning")
 			</div>
 		</div>
 

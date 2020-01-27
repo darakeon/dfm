@@ -1,16 +1,20 @@
 ﻿@model BaseMovesModel
 
+@{
+	var route = new RouteDefault();
+}
+
 @if (Model.ShowNoAccounts)
 {
-	@Html.RouteLink(Translator.Dictionary["Accounts"],
-		RouteNames.Default, new { controller = "Accounts" },
+	@Html.RouteLink(Context.Translate("Accounts"),
+		route.Name, new { controller = "Accounts" },
 		new { @class = "btn btn-success" })
 }
 
 @if (Model.ShowNoCategories)
 {
-	@Html.RouteLink(Translator.Dictionary["Categories"],
-		RouteNames.Default, new { controller = "Categories" },
+	@Html.RouteLink(Context.Translate("Categories"),
+		route.Name, new { controller = "Categories" },
 		new { @class = "btn btn-success" })
 }
 

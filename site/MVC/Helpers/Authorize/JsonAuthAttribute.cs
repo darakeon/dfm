@@ -1,25 +1,22 @@
-﻿using System.Web.Mvc;
-using DFM.MVC.Helpers.Global;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
 	public class JsonAuthAttribute : AuthAttribute
 	{
-		public JsonAuthAttribute() : base(order: 1) { }
-
-		protected override void goToContractPage(AuthorizationContext filterContext)
+		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Default, "Users", "Reload");
+			goTo(filterContext, "Users", "Reload");
 		}
 
-		protected override void goToUninvited(AuthorizationContext filterContext)
+		protected override void goToUninvited(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Default, "Users", "Reload");
+			goTo(filterContext, "Users", "Reload");
 		}
 
-		protected override void goToTFA(AuthorizationContext filterContext)
+		protected override void goToTFA(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Default, "Users", "Reload");
+			goTo(filterContext, "Users", "Reload");
 		}
 	}
 }

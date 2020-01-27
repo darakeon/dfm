@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Areas.API.Json;
+using DFM.MVC.Areas.Api.Json;
 using DFM.MVC.Helpers.Models;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	internal class MovesExtractModel : BaseApiModel
 	{

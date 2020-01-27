@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -14,11 +13,9 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				ErrorAlert.Add(e.Type);
+				errorAlert.Add(e.Type);
 			}
 		}
-
-
 
 		internal void Delete(String url)
 		{
@@ -28,10 +25,9 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				ErrorAlert.Add(e.Type);
+				errorAlert.Add(e.Type);
 			}
 		}
-
 
 		internal void Disable(String name)
 		{
@@ -41,11 +37,9 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				ErrorAlert.Add(e.Type);
+				errorAlert.Add(e.Type);
 			}
 		}
-
-
 
 		internal void Enable(String name)
 		{
@@ -55,12 +49,8 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				ErrorAlert.Add(e.Type);
+				errorAlert.Add(e.Type);
 			}
 		}
-
-
-
-
 	}
 }

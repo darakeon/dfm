@@ -1,9 +1,9 @@
 ﻿@model OpsModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Ops"];
+	ViewBag.Title = Context.Translate("Ops");
 	Layout = "~/Views/Shared/_Result.cshtml";
 	ViewBag.Style = "danger";
 }
 
-@Translator.Dictionary["CommunicationError"]
+@Context.Translate("CommunicationError")

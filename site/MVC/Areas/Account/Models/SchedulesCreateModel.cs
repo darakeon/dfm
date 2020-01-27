@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using DFM.BusinessLogic.Response;
 using Keon.MVC.Forms;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Areas.Account.Models
 {
@@ -14,7 +13,7 @@ namespace DFM.MVC.Areas.Account.Models
 			: base(new ScheduleInfo(), OperationType.Scheduling)
 		{
 			FrequencySelectList =
-				SelectListExtension.CreateSelect(Translator.GetEnumNames<ScheduleFrequency>());
+				SelectListExtension.CreateSelect(translator.GetEnumNames<ScheduleFrequency>());
 		}
 
 		internal override void Save()

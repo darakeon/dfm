@@ -1,12 +1,14 @@
-﻿using System.Web.Mvc;
-using DFM.MVC.Helpers.Controllers;
+﻿using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DFM.MVC.Areas.API.Controllers
+namespace DFM.MVC.Areas.Api.Controllers
 {
+	[Area(Route.ApiArea)]
 	public class StatusController : BaseJsonController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return json(() => new { status = "online" });
 		}

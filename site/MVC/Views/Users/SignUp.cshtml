@@ -1,7 +1,7 @@
 ﻿@model UsersSignUpModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["SignUp"];
+	ViewBag.Title = Context.Translate("SignUp");
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -16,18 +16,18 @@
 @Html.HiddenFor(m => m.TimeZoneOffset)
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Email, Translator.Dictionary["Email"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Email, Context.Translate("Email"), new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = MaxLen.UserEmail })
-	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.UserEmail)</small>
+	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.UserEmail)</small>
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Password, Translator.Dictionary["Password"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Password, Context.Translate("Password"), new { @class = "control-label" })
 	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.RetypePassword, Translator.Dictionary["RetypePassword"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.RetypePassword, Context.Translate("RetypePassword"), new { @class = "control-label" })
 	@Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control" })
 </div>
 
@@ -35,8 +35,8 @@
 	@Html.CheckBoxFor(m => m.Accept)
 	<span class="control-label">
 		@Html.Raw(String.Format(
-			Translator.Dictionary["ContractAccept"],
-			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Translator.Dictionary["ContractTitle"]}</a>"
+			Context.Translate("ContractAccept"),
+			$"<a role='button' data-toggle='modal' data-target='#contract-modal'>{Context.Translate("ContractTitle")}</a>"
 		))
 	</span>
 </div>
@@ -48,11 +48,11 @@
 	<div class="row">
 		<div class="col-lg-8 col-sm-8 form-group text-left">
 			@Html.CheckBoxFor(m => m.Info.EnableWizard)
-			@Html.LabelFor(m => m.Info.EnableWizard, Translator.Dictionary["EnableWizard"], new { @class = "control-label" })
+			@Html.LabelFor(m => m.Info.EnableWizard, Context.Translate("EnableWizard"), new { @class = "control-label" })
 		</div>
 		<div class="col-lg-4 col-sm-4">
 			<button type="submit" class="btn btn-success">
-				@Translator.Dictionary["Create"]
+				@Context.Translate("Create")
 			</button>
 
 		</div>

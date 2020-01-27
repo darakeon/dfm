@@ -1,5 +1,4 @@
-﻿@using DFM.Entities.Enums
-@model BaseMovesModel
+﻿@model BaseMovesModel
 
 @{
 	var natureUiList = new List<BaseMovesModel.NatureUI>
@@ -26,11 +25,11 @@
 			    data-to-disable="@natureUI.Disable"
 			    data-target-id="@Html.IdFor(m => m.Nature)"
 			    data-target-value="@natureUI.Nature"
-				title="@Translator.Dictionary[natureUI.Nature.ToString()]"
+				title="@Context.Translate(natureUI.Nature.ToString())"
 			>
 
 				<span class="pull-left">
-					@Translator.Dictionary[natureUI.Nature.ToString()]
+					@Context.Translate(natureUI.Nature.ToString())
 				</span>
 
 				<span class="pull-right">
@@ -44,16 +43,16 @@
 	</div>
 
 	<div class="col-sm-4 form-group side-vertical-button">
-		@Html.LabelFor(m => m.AccountInUrl, Translator.Dictionary["Account", "In"], new { @class = "control-label" })
+		@Html.LabelFor(m => m.AccountInUrl, Context.Translate("Account", "In"), new { @class = "control-label" })
 		<span
 			class="@Html.Partial("NatureIcon", MoveNature.In)"
-			title="@Translator.Dictionary[MoveNature.In.ToString()]"
+			title="@Context.Translate(MoveNature.In.ToString())"
 		></span>
 
 		@Html.DropDownListFor(
 			m => m.AccountInUrl,
 			Model.AccountInSelectList,
-			"-- " + Translator.Dictionary["Select"] + " --",
+			"-- " + Context.Translate("Select") + " --",
 			new { @class = "form-control combo-account-in alert-info" }
 		)
 
@@ -61,16 +60,16 @@
 	</div>
 
 	<div class="col-sm-4 form-group side-vertical-button">
-		@Html.LabelFor(m => m.AccountOutUrl, Translator.Dictionary["Account", "Out"], new { @class = "control-label" })
+		@Html.LabelFor(m => m.AccountOutUrl, Context.Translate("Account", "Out"), new { @class = "control-label" })
 		<span
 			class="@Html.Partial("NatureIcon", MoveNature.Out)"
-			title="@Translator.Dictionary[MoveNature.Out.ToString()]"
+			title="@Context.Translate(MoveNature.Out.ToString())"
 		></span>
 
 		@Html.DropDownListFor(
 			m => m.AccountOutUrl,
 			Model.AccountOutSelectList,
-			"-- " + Translator.Dictionary["Select"] + " --",
+			"-- " + Context.Translate("Select") + " --",
 			new { @class = "form-control combo-account-out alert-danger" }
 		)
 

@@ -1,31 +1,23 @@
 ﻿using System;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	public class MovesModel : BaseApiModel
 	{
-		static MovesModel()
+		public void Delete(Int32 id)
 		{
-			model = new MovesModel();
+			money.DeleteMove(id);
 		}
 
-		private static readonly MovesModel model;
-
-
-		public static void Delete(Int32 id)
+		public void Check(Int32 id, PrimalMoveNature nature)
 		{
-			model.money.DeleteMove(id);
+			money.CheckMove(id, nature);
 		}
 
-		public static void Check(Int32 id, PrimalMoveNature nature)
+		public void Uncheck(Int32 id, PrimalMoveNature nature)
 		{
-			model.money.CheckMove(id, nature);
-		}
-
-		public static void Uncheck(Int32 id, PrimalMoveNature nature)
-		{
-			model.money.UncheckMove(id, nature);
+			money.UncheckMove(id, nature);
 		}
 	}
 }

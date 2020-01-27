@@ -1,9 +1,7 @@
 ﻿@model CategoriesCreateEditModel
 
-@using DFM.Entities.Enums
-
 @{
-	ViewBag.Title = Translator.Dictionary[Model.ActionName, "Category"];
+	ViewBag.Title = Context.Translate(Model.ActionName, "Category");
 
 	if (Model.Type == OperationType.Edition)
 	{
@@ -16,14 +14,14 @@
 @Html.HiddenFor(m => m.Category.OriginalName)
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Category.Name, Translator.Dictionary["Category"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Category.Name, Context.Translate("Category"), new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Category.Name, new { maxlength = MaxLen.CategoryName, @class = "form-control" })
 	@Html.ValidationMessageFor(m => m.Category.Name, null, new { @class = "text-danger" })
-	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.CategoryName)</small>
+	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.CategoryName)</small>
 </div>
 
 @section Footer {
 	<button type="submit" class="btn btn-success">
-		@Translator.Dictionary[Model.ActionName]
+		@Context.Translate(Model.ActionName)
 	</button>
 }

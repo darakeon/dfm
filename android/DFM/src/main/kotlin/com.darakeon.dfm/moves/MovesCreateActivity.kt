@@ -107,7 +107,7 @@ class MovesCreateActivity : BaseActivity() {
 		if (data.move != null)
 			move = data.move
 
-		move.setDefaultData(accountUrl, data.useCategories)
+		move.setDefaultData(accountUrl, data.isUsingCategories)
 		populateOldData()
 		populateCategoryAndNature()
 	}
@@ -120,14 +120,14 @@ class MovesCreateActivity : BaseActivity() {
 			no_accounts.visibility = View.VISIBLE
 		}
 
-		if (moveCreation.useCategories) {
+		if (moveCreation.isUsingCategories) {
 			val categoryList = moveCreation.categoryList
 
 			if (categoryList.isNullOrEmpty()) {
 				canMove = false
 				no_categories.visibility = View.VISIBLE
 			} else {
-				setDataFromList(categoryList, move.category, category)
+				setDataFromList(categoryList, move.categoryName, category)
 			}
 		}
 
@@ -144,20 +144,20 @@ class MovesCreateActivity : BaseActivity() {
 		date.text = move.date.format()
 
 		moveCreation.natureList.firstOrNull {
-			it.value.toInt() == move.nature?.value
+			it.value.toInt() == move.natureEnum?.value
 		}?.let {
 			setNature(it.text, it.value.toInt())
 		}
 
-		setDataFromList(moveCreation.accountList, move.accountOut, account_out)
-		setDataFromList(moveCreation.accountList, move.accountIn, account_in)
+		setDataFromList(moveCreation.accountList, move.outUrl, account_out)
+		setDataFromList(moveCreation.accountList, move.inUrl, account_in)
 
 		description.setText(move.description)
 
-		if (move.details.isNotEmpty()) {
+		if (move.detailList.isNotEmpty()) {
 			useDetailed()
 
-			move.details.forEach {
+			move.detailList.forEach {
 				addViewDetail(move, it.description, it.amount, it.value)
 			}
 		} else if (move.value != null) {
@@ -177,7 +177,7 @@ class MovesCreateActivity : BaseActivity() {
 
 	private fun populateCategoryAndNature() {
 		category.visibility =
-			if (moveCreation.useCategories)
+			if (moveCreation.isUsingCategories)
 				View.VISIBLE
 			else
 				View.GONE
@@ -195,7 +195,7 @@ class MovesCreateActivity : BaseActivity() {
 					Paint.STRIKE_THRU_TEXT_FLAG
 		}
 
-		if (move.nature == null)
+		if (move.natureEnum == null)
 		{
 			moveCreation.natureList
 				.firstOrNull()?.let {
@@ -228,7 +228,7 @@ class MovesCreateActivity : BaseActivity() {
 		val categoryList = moveCreation.categoryList ?: return
 		showChangeList(categoryList, R.string.category) { text, value ->
 			category.text = text
-			move.category = value
+			move.categoryName = value
 		}
 	}
 
@@ -244,21 +244,21 @@ class MovesCreateActivity : BaseActivity() {
 
 	private fun setNature(text: String, value: Int) {
 		nature.text = text
-		move.nature = Nature.get(value)
+		move.natureEnum = Nature.get(value)
 
-		val accountOutVisibility = if (move.nature != Nature.In) View.VISIBLE else View.GONE
+		val accountOutVisibility = if (move.natureEnum != Nature.In) View.VISIBLE else View.GONE
 		account_out.visibility = accountOutVisibility
 
-		val accountInVisibility = if (move.nature != Nature.Out) View.VISIBLE else View.GONE
+		val accountInVisibility = if (move.natureEnum != Nature.Out) View.VISIBLE else View.GONE
 		account_in.visibility = accountInVisibility
 
-		if (move.nature == Nature.Out) {
-			move.accountIn = null
+		if (move.natureEnum == Nature.Out) {
+			move.inUrl = null
 			account_in.text = getString(R.string.account_in)
 		}
 
-		if (move.nature == Nature.In) {
-			move.accountOut = null
+		if (move.natureEnum == Nature.In) {
+			move.outUrl = null
 			account_out.text = getString(R.string.account_out)
 		}
 	}
@@ -266,14 +266,14 @@ class MovesCreateActivity : BaseActivity() {
 	fun changeAccountOut(@Suppress(ON_CLICK) view: View) {
 		showChangeList(moveCreation.accountList, R.string.account) { text, value ->
 			account_out.text = text
-			move.accountOut = value
+			move.outUrl = value
 		}
 	}
 
 	fun changeAccountIn(@Suppress(ON_CLICK) view: View) {
 		showChangeList(moveCreation.accountList, R.string.account) { text, value ->
 			account_in.text = text
-			move.accountIn = value
+			move.inUrl = value
 		}
 	}
 

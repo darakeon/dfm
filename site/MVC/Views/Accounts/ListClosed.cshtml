@@ -1,23 +1,23 @@
 ﻿@model AccountsIndexModel
 
-@using DFM.Generic
-
 @{
-	ViewBag.Title = Translator.Dictionary["ClosedAccounts"];
+	ViewBag.Title = Context.Translate("ClosedAccounts");
 	ViewBag.WizardMessage = "AccountsClosed";
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoClosedAccounts"];
+	ViewBag.NoContentText = Context.Translate("NoClosedAccounts");
+
+	var route = new RouteAccount();
 }
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-4">@Translator.Dictionary["Name"]</th>
-		<th class="col-sm-2 text-center">@Translator.Dictionary["BeginDate"]</th>
-		<th class="col-sm-2 text-center">@Translator.Dictionary["EndDate"]</th>
-		<th class="col-sm-4 text-center" colspan="4">@Translator.Dictionary["Total"]</th>
-		<!--th class="todo-column">@Translator.Dictionary["TODO"]</th-->
+		<th class="col-sm-4">@Context.Translate("Name")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("BeginDate")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("EndDate")</th>
+		<th class="col-sm-4 text-center" colspan="4">@Context.Translate("Total")</th>
+		<!--th class="todo-column">@Context.Translate("TODO")</th-->
 	</tr>
 }
 
@@ -25,16 +25,17 @@
 {
 	if (account.End != null)
 	{
-		var sign = Translator.Dictionary[$"{account.Sign}Limit"];
-		//var reopenLabel = Translator.Dictionary["Reopen", "Account"];
+		var sign = Context.Translate($"{account.Sign}Limit");
+		//var reopenLabel = Context.Translate("Reopen", "Account");
 		//var reopenUrl = Url.Action("Reopen", new { id = account.Name });
 
 		<tr class="row">
 
 			<td class="col-sm-4">
-				@Html.RouteLink(account.Name, RouteNames.Account,
+				@Html.RouteLink(account.Name, route.Name,
 					new
 					{
+						area = route.Area,
 						accountUrl = account.Url,
 						controller = "Reports",
 						action = "ShowMoves",

@@ -1,23 +1,17 @@
-﻿using System.Reflection;
-using System.Web.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace DFM.MVC.Helpers.Controllers
 {
-	public class HttpGetAndHeadAttribute : ActionMethodSelectorAttribute
+	public class HttpGetAndHeadAttribute : HttpMethodAttribute
 	{
 		public HttpGetAndHeadAttribute()
-		{
-			get = new HttpGetAttribute();
-			head = new HttpHeadAttribute();
-		}
-
-		private readonly HttpGetAttribute get;
-		private readonly HttpHeadAttribute head;
-
-		public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
-		{
-			return get.IsValidForRequest(controllerContext, methodInfo)
-			       || head.IsValidForRequest(controllerContext, methodInfo);
-		}
+			: base(
+				new[]
+				{
+					WebRequestMethods.Http.Get,
+					WebRequestMethods.Http.Head
+				}
+			) { }
 	}
 }

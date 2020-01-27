@@ -1,5 +1,4 @@
-﻿@using DFM.Entities.Enums
-@model AccountSign
+﻿@model AccountSign
 
 @switch (Model)
 {
@@ -12,7 +11,9 @@
 	case AccountSign.Red:
 		@("thumbs-down")
 		break;
-	default:
+	case AccountSign.None:
 		@("ban-circle")
 		break;
+	default:
+		throw new NotImplementedException();
 }

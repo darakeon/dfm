@@ -6,28 +6,21 @@
 }
 
 @{
-	var ajaxOptions = new AjaxOptions
-	{
-		UpdateTargetId = Model.UpdateTargetId,
-		InsertionMode = InsertionMode.ReplaceWith,
-		OnSuccess = "checkIfReload"
-	};
-
-	IDisposable form =
-		Model.RouteName == null
-			? Model.Ajax
-				? Ajax.BeginForm(Model.Action, Model.Controller, Model.RouteValues, ajaxOptions)
-				: Html.BeginForm(Model.Action, Model.Controller, Model.RouteValues)
-			: Model.Ajax
-				? Ajax.BeginRouteForm(Model.RouteName, Model.RouteValues, ajaxOptions)
-				: Html.BeginRouteForm(Model.RouteName, Model.RouteValues);
+	String action = Url.RouteUrl(Model.RouteName, Model.RouteValues);
 }
 
-@using (form)
-{
+<form action="@action"
+	method="post"
+	data-ajax="@Model.Ajax.ToString().ToLower()"
+	data-ajax-method="post"
+	data-ajax-url="@action"
+	data-ajax-update="#@Model.UpdateTargetId"
+	data-ajax-mode="replace-with"
+	data-ajax-success="checkIfReload">
+
 	@Html.AntiForgeryToken()
 
-	foreach (var hidden in Model.HiddenList)
+	@foreach (var hidden in Model.HiddenList)
 	{
 		<input type="hidden" name="@hidden.Key" value="@hidden.Value" />
 	}
@@ -44,4 +37,4 @@
 			<span class="glyphicon glyphicon-@Model.Glyphicon"></span>
 		}
 	</button>
-}
+</form>

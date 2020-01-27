@@ -88,7 +88,7 @@ describe('Accounts', () => {
 			'<a href="/Account/account_close">Account Close</a>'
 		)
 
-		await puppy.call('/Accounts/ListClosed')
+		await puppy.call('Accounts/ListClosed')
 
 		body = await puppy.content('#body')
 

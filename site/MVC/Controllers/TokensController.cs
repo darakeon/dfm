@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
 	public class TokensController : BaseController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new TokensIndexModel();
 
@@ -16,7 +16,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Index(TokensIndexModel model)
+		public IActionResult Index(TokensIndexModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -37,7 +37,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult PasswordReset(String id)
+		public IActionResult PasswordReset(String id)
 		{
 			var model = new TokensPasswordResetModel();
 
@@ -49,7 +49,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult PasswordReset(String id, TokensPasswordResetModel model)
+		public IActionResult PasswordReset(String id, TokensPasswordResetModel model)
 		{
 			var isValid = model.TestToken(id);
 
@@ -69,7 +69,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult UserVerification(String id)
+		public IActionResult UserVerification(String id)
 		{
 			var model = new SafeModel();
 
@@ -81,7 +81,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Disable(String id)
+		public IActionResult Disable(String id)
 		{
 			var model = new SafeModel();
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
 using DFM.Email;
 using DFM.Entities.Enums;
 using DFM.Language;
@@ -8,6 +7,7 @@ using DFM.Language.Emails;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
@@ -15,13 +15,16 @@ namespace DFM.MVC.Controllers
 	public class TestController : Controller
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
-			return View("AnalyzeDictionary", new TestAnalyzeDictionary());
+			return View(
+				"AnalyzeDictionary",
+				new TestAnalyzeDictionaryModel()
+			);
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Email()
+		public IActionResult Email()
 		{
 			var themes = new[] {SimpleTheme.Dark, SimpleTheme.Light};
 			var languages = PlainText.AcceptedLanguage();
@@ -40,10 +43,14 @@ namespace DFM.MVC.Controllers
 		{
 			return format.Layout.Replace(
 				"{{Url}}",
-				Request.Url?.GetComponents(
-					UriComponents.Scheme | UriComponents.HostAndPort, UriFormat.UriEscaped
-				)
+				Request.Scheme + "://" + Request.Host
 			);
+		}
+
+		[HttpGetAndHead]
+		public IActionResult Error()
+		{
+			throw new Exception("Logging right!");
 		}
 	}
 }

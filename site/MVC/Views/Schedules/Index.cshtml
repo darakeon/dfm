@@ -1,8 +1,8 @@
-﻿@using DFM.MVC.Helpers
+﻿@using DFM.Language.Extensions
 @model SchedulesIndexModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Schedules"];
+	ViewBag.Title = Context.Translate("Schedules");
 
 	ViewBag.WizardMessage =
 		Model.ScheduleList.Any()
@@ -12,30 +12,30 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.ScheduleList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoSchedules"];
+	ViewBag.NoContentText = Context.Translate("NoSchedules");
 
-	var useCategories = Service.Current.UseCategories;
+	var useCategories = Context.GetService().Current.UseCategories;
 	var descriptionSize = useCategories ? 2 : 4;
 }
 
 @section TableHeader {
 	<tr class="row">
 		<th class="col-sm-@descriptionSize">
-			@Translator.Dictionary["Description"]
+			@Context.Translate("Description")
 		</th>
 
 		@if (useCategories)
 		{
 			<th class="col-sm-2 text-center">
-				@Translator.Dictionary["Category"]
+				@Context.Translate("Category")
 			</th>
 		}
 
-		<th class="col-sm-2 text-center">@Translator.Dictionary["Date"]</th>
-		<th class="col-sm-2 text-center">@Translator.Dictionary["Account", "In"]</th>
-		<th class="col-sm-2 text-center">@Translator.Dictionary["Account", "Out"]</th>
-		<th class="col-sm-1 text-center">@Translator.Dictionary["Value"]</th>
-		<th class="col-sm-1 text-center">@Translator.Dictionary["TODO"]</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Date")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Account", "In")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Account", "Out")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("Value")</th>
+		<th class="col-sm-1 text-center">@Context.Translate("TODO")</th>
 	</tr>
 }
 
@@ -56,14 +56,14 @@
 		<td  class="col-sm-1 text-@Html.Partial("NatureColor", schedule.Nature) text-right">
 			<span
 				class="@Html.Partial("NatureIcon", schedule.Nature)"
-				title="@Translator.Dictionary[schedule.Nature.ToString()]"
+				title="@Context.Translate(schedule.Nature.ToString())"
 			></span>
 			@schedule.Total.ToMoney(Model.Language)
 		</td>
 
 		<td class="col-sm-1 text-center">
 			@Html.Partial("MicroForm",
-				MicroForm.WithGlyph("trash", "Delete")
+				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.ID)
 			)
 		</td>

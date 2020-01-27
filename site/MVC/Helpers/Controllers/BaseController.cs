@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 using DFM.BusinessLogic;
-using DFM.MVC.Helpers.Global;
+using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Models;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Helpers.Controllers
 {
 	public class BaseController : Controller
 	{
-		protected readonly Current current = Service.Current;
-
+		protected Current current => HttpContext.GetService().Current;
 
 		protected void addErrors(IList<String> errors)
 		{
@@ -25,43 +23,15 @@ namespace DFM.MVC.Helpers.Controllers
 			}
 		}
 
-
 		[AspMvcView]
-		protected ActionResult baseModelView()
+		protected IActionResult baseModelView()
 		{
 			return View(new BaseSiteModel());
 		}
 
-		protected ActionResult baseModelView([AspMvcView] String view)
+		protected IActionResult baseModelView([AspMvcView] String view)
 		{
 			return View(view, new BaseSiteModel());
-		}
-
-		protected override void HandleUnknownAction(String actionName)
-		{
-			var ignoreCase = StringComparison.CurrentCultureIgnoreCase;
-
-			var wrongHttpMethod = 
-				GetType().GetMethods().Any(
-					m => m.IsPublic && m.Name.Equals(actionName, ignoreCase)
-				);
-
-			if (wrongHttpMethod)
-			{
-				RedirectToRoute(
-					RouteNames.Default,
-					new
-					{
-						controller = "Ops",
-						action = "Code",
-						id = "404"
-					}
-				).ExecuteResult(ControllerContext);
-			}
-			else
-			{
-				base.HandleUnknownAction(actionName);
-			}
 		}
 	}
 }

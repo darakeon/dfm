@@ -1,8 +1,8 @@
-﻿@model OpsCodeModel
-@using DFM.Email;
+﻿@using DFM.Email
+@model OpsCodeModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Ops"];
+	ViewBag.Title = Context.Translate("Ops");
 	Layout = "~/Views/Shared/_result.cshtml";
 
 	var messageKey = Model.EmailSent == Error.Status.Sent
@@ -12,5 +12,5 @@
 	ViewBag.Style = "danger";
 }
 
-@(Translator.Dictionary[messageKey])
+@(Context.Translate(messageKey))
 

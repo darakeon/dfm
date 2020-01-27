@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Web.Mvc;
 using Keon.Util.Collection;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
-using elmah = DFM.Generic.Elmah;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
 	public class OpsController : Controller
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new OpsModel();
 
@@ -20,21 +19,23 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Code(Int32 id)
+		public IActionResult Code(Int32 id)
 		{
 			if (!id.IsIn(404, 500))
 				return RedirectToAction("Index");
 
-			var model = new OpsCodeModel
+			var errorManager = new ErrorManager(HttpContext);
+
+			var model = new OpsCodeModel()
 			{
-				EmailSent = ErrorManager.EmailSent
+				EmailSent = errorManager.EmailSent
 			};
 
 			return View(id.ToString(), model);
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Error(Error id)
+		public IActionResult Error(Error id)
 		{
 			var model = new OpsModel(id);
 
@@ -42,7 +43,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Help()
+		public IActionResult Help()
 		{
 			var model = new BaseSiteModel();
 
@@ -50,14 +51,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult TestElmahLog()
-		{
-			var errorOnLog = elmah.TryLog(new Exception("Logging right!"));
-			return Content(errorOnLog?.ToString());
-		}
-
-		[HttpGetAndHead]
-		public ActionResult Legend()
+		public IActionResult Legend()
 		{
 			var model = new BaseSiteModel();
 

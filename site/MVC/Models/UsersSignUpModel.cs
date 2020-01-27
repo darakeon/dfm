@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Generic;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -54,7 +52,7 @@ namespace DFM.MVC.Models
 
 		public Int32 TimeZoneOffset { get; set; }
 
-		internal IList<String> ValidateAndSendVerify(ModelStateDictionary modelState)
+		internal IList<String> ValidateAndSendVerify()
 		{
 			var errors = new List<String>();
 
@@ -66,7 +64,7 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				errors.Add(Translator.Dictionary[e]);
+				errors.Add(translator[e]);
 			}
 
 			return errors;

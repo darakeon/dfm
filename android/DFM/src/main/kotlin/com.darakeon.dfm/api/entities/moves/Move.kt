@@ -2,52 +2,31 @@ package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.extensions.toDoubleByCulture
-import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
 class Move {
-	@SerializedName("ID")
 	var id: Int = 0
-
-	@SerializedName("Description")
 	var description: String? = null
-
-	@SerializedName("Year")
 	var year: Int = 0
-
-	@SerializedName("Month")
 	var month: Int = 0
-
-	@SerializedName("Day")
 	var day: Int = 0
 
-	@SerializedName("Nature")
-	var natureValue: Int? = null
-	var nature
-		get() = Nature.get(natureValue)
-		set(value) { natureValue = value?.value }
+	var nature: Int? = null
+	var natureEnum
+		get() = Nature.get(nature)
+		set(value) { nature = value?.value }
 
-	@SerializedName("WarnCategory")
 	var warnCategory: Boolean = false
 
-	@SerializedName("CategoryName")
-	var category: String? = null
+	var categoryName: String? = null
 
-	@SerializedName("OutUrl")
-	var accountOut: String? = null
+	var outUrl: String? = null
+	var inUrl: String? = null
 
-	@SerializedName("InUrl")
-	var accountIn: String? = null
-
-	@SerializedName("Value")
 	var value: Double? = null
+	var detailList: MutableList<Detail> = ArrayList()
 
-	@SerializedName("DetailList")
-	var details: MutableList<Detail> = ArrayList()
-
-	@SerializedName("Checked")
 	var checked: Boolean = false
-
 	var isDetailed: Boolean = false
 
 	var date: Date
@@ -65,13 +44,13 @@ class Move {
 		detail.amount = amount
 		detail.value = value
 
-		details.add(detail)
+		detailList.add(detail)
 	}
 
 	fun remove(description: String?, amount: Int, value: Double) {
-		for (detail in details) {
+		for (detail in detailList) {
 			if (detail.equals(description, amount, value)) {
-				details.remove(detail)
+				detailList.remove(detail)
 				return
 			}
 		}
@@ -83,10 +62,10 @@ class Move {
 
 	fun setDefaultData(activityAccountUrl: String?, useCategories: Boolean) {
 		if (id == 0) {
-			accountOut = activityAccountUrl
-			accountIn = activityAccountUrl
+			outUrl = activityAccountUrl
+			inUrl = activityAccountUrl
 		} else {
-			warnCategory = !useCategories && category != null
+			warnCategory = !useCategories && categoryName != null
 		}
 	}
 
@@ -94,7 +73,7 @@ class Move {
 		if (isDetailed) {
 			value = null
 		} else {
-			details = ArrayList()
+			detailList = ArrayList()
 		}
 	}
 }

@@ -1,18 +1,9 @@
 package com.darakeon.dfm.api.entities.extract
 
-import com.google.gson.annotations.SerializedName
-
 data class Extract(
-	@SerializedName("MoveList")
 	val moveList: Array<Move> = emptyArray(),
-
-	@SerializedName("Name")
 	var name: String = "",
-
-	@SerializedName("Total")
 	var total: Double = 0.0,
-
-	@SerializedName("CanCheck")
 	var canCheck: Boolean = false
 ) {
 	override fun equals(other: Any?): Boolean {

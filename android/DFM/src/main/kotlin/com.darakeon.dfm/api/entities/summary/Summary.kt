@@ -1,15 +1,8 @@
 package com.darakeon.dfm.api.entities.summary
 
-import com.google.gson.annotations.SerializedName
-
 data class Summary(
-	@SerializedName("Name")
 	val name: String = "",
-
-	@SerializedName("Total")
 	val total: Double = 0.0,
-
-	@SerializedName("MonthList")
 	val monthList: Array<Month> = emptyArray()
 ) {
 	override fun equals(other: Any?): Boolean {

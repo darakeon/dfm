@@ -3,7 +3,9 @@
 		!Html.ViewData.ModelState.IsValid
 		&& Html.ViewData.ModelState.ContainsKey("");
 
-	var hasSomethingToShow = hasSummaryToShow || ErrorAlert.Any();
+	var errorAlert = Context.GetErrorAlert();
+
+	var hasSomethingToShow = hasSummaryToShow || errorAlert.Any();
 }
 
 @if (hasSomethingToShow)
@@ -15,7 +17,7 @@
 		</div>
 	}
 
-	foreach (var error in ErrorAlert.GetAndClean())
+	foreach (var error in errorAlert.GetAndClean())
 	{
 		<div class="alert alert-info text-center">
 			@error

@@ -1,7 +1,6 @@
 package com.darakeon.dfm.api.entities
 
 import com.darakeon.dfm.extensions.format
-import com.google.gson.annotations.SerializedName
 import java.util.Calendar
 
 data class Date(

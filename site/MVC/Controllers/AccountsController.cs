@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.Entities.Enums;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
@@ -11,7 +11,7 @@ namespace DFM.MVC.Controllers
 	public class AccountsController : BaseController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new AccountsIndexModel();
 
@@ -19,7 +19,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult ListClosed()
+		public IActionResult ListClosed()
 		{
 			var model = new AccountsIndexModel(false);
 
@@ -27,15 +27,15 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Create()
+		public IActionResult Create()
 		{
-			var model = new AccountsCreateEditModel(OperationType.Creation);
+			var model = new AccountsCreateEditModel();
 
 			return View("CreateEdit", model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Create(AccountsCreateEditModel model)
+		public IActionResult Create(AccountsCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
 
@@ -43,12 +43,12 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Edit(String id)
+		public IActionResult Edit(String id)
 		{
 			if (String.IsNullOrEmpty(id))
 				return RedirectToAction("Create");
 
-			var model = new AccountsCreateEditModel(OperationType.Edition, id);
+			var model = new AccountsCreateEditModel(id);
 
 			if (model.Account == null)
 				return RedirectToAction("Create");
@@ -57,12 +57,12 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Edit(String id, AccountsCreateEditModel model)
+		public IActionResult Edit(String id, AccountsCreateEditModel model)
 		{
 			return createEdit(model);
 		}
 
-		private ActionResult createEdit(AccountsCreateEditModel model)
+		private IActionResult createEdit(AccountsCreateEditModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -78,7 +78,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Close(String id)
+		public IActionResult Close(String id)
 		{
 			var model = new AdminModel();
 
@@ -88,7 +88,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Delete(String id)
+		public IActionResult Delete(String id)
 		{
 			var model = new AdminModel();
 

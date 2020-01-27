@@ -1,57 +1,59 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Areas.API.Models;
+using DFM.MVC.Areas.Api.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DFM.MVC.Areas.API.Controllers
+namespace DFM.MVC.Areas.Api.Controllers
 {
-	[ApiAuth]
+	[Area(Route.ApiArea), ApiAuth]
 	public class MovesController : BaseJsonController
 	{
 		[HttpGetAndHead]
-		public ActionResult Extract(String accountUrl, Int32 id)
+		public IActionResult Extract(String accountUrl, Int32 id)
 		{
 			return json(() => new MovesExtractModel(accountUrl, id));
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Summary(String accountUrl, Int16 id)
+		public IActionResult Summary(String accountUrl, Int16 id)
 		{
 			return json(() => new MovesSummaryModel(accountUrl, id));
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Create(Int32? id)
+		public IActionResult Create(Int32? id)
 		{
 			return json(() => new MovesCreateModel(id));
 		}
 
 		[HttpPost]
-		public ActionResult Create(MoveInfo move)
+		public IActionResult Create()
 		{
+			var move = getFromBody<MoveInfo>();
 			var model = new MovesCreateModel();
 			return json(() => model.Save(move));
 		}
 
 		[HttpPost]
-		public ActionResult Delete(Int32 id)
+		public IActionResult Delete(Int32 id)
 		{
-			return json(() => MovesModel.Delete(id));
+			return json(() => new MovesModel().Delete(id));
 		}
 
 		[HttpPost]
-		public ActionResult Check(Int32 id, PrimalMoveNature nature)
+		public IActionResult Check(Int32 id, PrimalMoveNature nature)
 		{
-			return json(() => MovesModel.Check(id, nature));
+			return json(() => new MovesModel().Check(id, nature));
 		}
 
 		[HttpPost]
-		public ActionResult Uncheck(Int32 id, PrimalMoveNature nature)
+		public IActionResult Uncheck(Int32 id, PrimalMoveNature nature)
 		{
-			return json(() => MovesModel.Uncheck(id, nature));
+			return json(() => new MovesModel().Uncheck(id, nature));
 		}
 	}
 }

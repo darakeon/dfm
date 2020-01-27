@@ -3,6 +3,6 @@
 <div class="form-group checkbox">
 	<label for="@Html.IdFor(m => m.ShowInstallment)">
 		@Html.CheckBoxFor(m => m.ShowInstallment)
-		@Translator.Dictionary["ShowInstallment"]
+		@Context.Translate("ShowInstallment")
 	</label>
 </div>

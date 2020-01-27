@@ -1,5 +1,3 @@
-﻿@using DFM.Email
-
-@Translator.Dictionary["FollowEmailInstructions"]<br />
-@Translator.Dictionary["PayAttentionSender"]<br />
-<span class="label label-default">@Sender.SenderAddress</span>
+﻿@Context.Translate("FollowEmailInstructions")<br />
+@Context.Translate("PayAttentionSender")<br />
+<span class="label label-default">@Cfg.Smtp.From</span>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
-using DFM.MVC.Helpers.Global;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -46,8 +45,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Date =>
 			String.Format(
-				Translator.Dictionary["ShortDateFormat"],
-				Translator.GetMonthName(Month),
+				translator["ShortDateFormat"],
+				translator.GetMonthName(Month),
 				Year
 			);
 

@@ -1,9 +1,7 @@
-﻿@using DFM.Entities.Enums
-@using DFM.Generic
-@model BaseMovesModel
+﻿@model BaseMovesModel
 
 @{
-	ViewBag.Title = Translator.Dictionary[Model.ActionName, Model.ControllerName];
+	ViewBag.Title = Context.Translate(Model.ActionName, Model.ControllerName);
 
 	ViewBag.WizardMessage =
 		Model.Type == OperationType.Scheduling
@@ -30,14 +28,14 @@ else
 	if (Model.ShowLosingCategory)
 	{
 		<div class="alert alert-info text-center">
-			@Html.Raw(Translator.Dictionary["MoveLosingCategory"].BreakLines())
+			@Html.Raw(Context.Translate("MoveLosingCategory").BreakLines())
 		</div>
 	}
 
 	if (Model.ShowRemoveCheck)
 	{
 		<div class="alert alert-info text-center">
-			@Html.Raw(Translator.Dictionary["MoveRemoveCheck"].BreakLines())
+			@Html.Raw(Context.Translate("MoveRemoveCheck").BreakLines())
 		</div>
 	}
 
@@ -55,7 +53,7 @@ else
 
 	@section Footer {
 		<button type="submit" class="btn btn-success">
-			@Translator.Dictionary[Model.ActionName]
+			@Context.Translate(Model.ActionName)
 		</button>
 	}
 }

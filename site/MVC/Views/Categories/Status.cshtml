@@ -2,9 +2,9 @@
 
 @if (Model)
 {
-	<span class="label label-success">@Translator.Dictionary["Available"]</span>
+	<span class="label label-success">@Context.Translate("Available")</span>
 }
 else
 {
-	<span class="label label-danger">@Translator.Dictionary["Invisible"]</span>
+	<span class="label label-danger">@Context.Translate("Invisible")</span>
 }

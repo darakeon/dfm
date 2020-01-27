@@ -1,22 +1,14 @@
 package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.ComboItem
-import com.google.gson.annotations.SerializedName
 
 data class MoveCreation(
-	@SerializedName("Move")
 	val move: Move? = Move(),
 
-	@SerializedName("IsUsingCategories")
-	val useCategories: Boolean = false,
+	val isUsingCategories: Boolean = false,
 
-	@SerializedName("CategoryList")
 	val categoryList: Array<ComboItem>? = emptyArray(),
-
-	@SerializedName("NatureList")
 	val natureList: Array<ComboItem> = emptyArray(),
-
-	@SerializedName("AccountList")
 	val accountList: Array<ComboItem> = emptyArray()
 ) {
 	override fun equals(other: Any?): Boolean {
@@ -26,7 +18,7 @@ data class MoveCreation(
 		other as MoveCreation
 
 		if (move != other.move) return false
-		if (useCategories != other.useCategories) return false
+		if (isUsingCategories != other.isUsingCategories) return false
 
 		val catList = categoryList
 		val otherCatList = other.categoryList
@@ -43,7 +35,7 @@ data class MoveCreation(
 
 	override fun hashCode(): Int {
 		var result = move.hashCode()
-		result = 31 * result + useCategories.hashCode()
+		result = 31 * result + isUsingCategories.hashCode()
 		result = 31 * result + (categoryList?.contentHashCode() ?: 0)
 		result = 31 * result + natureList.contentHashCode()
 		result = 31 * result + accountList.contentHashCode()

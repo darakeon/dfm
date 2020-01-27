@@ -1,7 +1,7 @@
 ﻿@{
-	ViewBag.Title = Translator.Dictionary["TokenDisable"];
+	ViewBag.Title = Context.Translate("TokenDisable");
 	Layout = "~/Views/Shared/_Result.cshtml";
 	ViewBag.Style = "success";
 }
 
-@Translator.Dictionary["TokenDisableSuccess"]
+@Context.Translate("TokenDisableSuccess")

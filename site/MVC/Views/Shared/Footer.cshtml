@@ -1,14 +1,18 @@
-﻿@using DFM.Generic
-@using DFM.MVC.Areas.API.Helpers;
-
+﻿@using DFM.MVC.Areas.Api.Helpers
 @{
-	var controller = ViewContext.RouteData.Values["Controller"];
-	var action = ViewContext.RouteData.Values["Action"];
-	var id = ViewContext.RouteData.Values["id"];
-	var accountUrl = ViewContext.RouteData.Values["AccountUrl"];
-	var currentUrl = MobileUrls.Get[controller, action];
+	var newRoute = new RouteMobile();
 
-	var route = new { activity = currentUrl, id, accountUrl };
+	var currentRouteValues = ViewContext.RouteData.Values;
+
+	var controller = currentRouteValues["Controller"];
+	var action = currentRouteValues["Action"];
+	var activity = MobileUrls.Get[controller, action];
+
+	var area = newRoute.Area;
+	var accountUrl = currentRouteValues["AccountUrl"];
+	var id = currentRouteValues["id"];
+
+	var newRouteValues = new {activity, area, accountUrl, id};
 }
 
 <footer class="container">
@@ -17,12 +21,12 @@
 	<div class="row">
 
 		<div class="col-lg-1 col-sm-2">
-			<a href="@Url.RouteUrl(RouteNames.Mobile, route)"
+			<a href="@Url.RouteUrl(newRoute.Name, newRouteValues)"
 			   target="_blank" class="android-link"></a>
 		</div>
 
 		<div class="col-lg-4 col-sm-6">
-			<small>@Translator.Dictionary["AndroidRobotLicenseText"]</small>
+			<small>@Context.Translate("AndroidRobotLicenseText")</small>
 		</div>
 
 		<div class="col-lg-7 col-sm-4 text-right">

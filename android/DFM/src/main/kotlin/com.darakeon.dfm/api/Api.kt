@@ -9,7 +9,6 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.api.entities.tfa.TFA
 import com.darakeon.dfm.base.BaseActivity
 import retrofit2.Call
 
@@ -72,13 +71,9 @@ class Api(activity: BaseActivity) {
 	fun login(
 		email: String,
 		password: String,
-		onSuccess: (String) -> Unit
+		onSuccess: (Login) -> Unit
 	) {
-		service.login(
-			Login.Request(email, password)
-		).call {
-			onSuccess(it.ticket)
-		}
+		service.login(email, password).call(onSuccess)
 	}
 
 	fun logout(
@@ -126,7 +121,7 @@ class Api(activity: BaseActivity) {
 		text: String,
 		onSuccess: () -> Unit
 	) {
-		service.validateTFA(TFA(text)).call(onSuccess)
+		service.validateTFA(text).call(onSuccess)
 	}
 
 	fun wakeUpSite(onSuccess: () -> Unit) {

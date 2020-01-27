@@ -1,7 +1,6 @@
-﻿@using DFM.Generic
-@model UsersConfigModel
+﻿@model UsersConfigModel
 @{
-	ViewBag.Title = Translator.Dictionary["Settings"];
+	ViewBag.Title = Context.Translate("Settings");
 	ViewBag.WizardMessage = "Settings";
 	Layout = "~/Views/Shared/_Form.cshtml";
 
@@ -43,7 +42,7 @@
 		<li class="@lower-caller">
 			<a href="#@lower" data-toggle="tab">
 				<small class="tab-text">
-					@Translator.Dictionary[$"{name}Settings"]
+					@Context.Translate($"{name}Settings")
 				</small>
 			</a>
 		</li>
@@ -67,6 +66,6 @@
 @section Footer {
 	<button type="submit"
 	        class="btn btn-success tab-submit"
-	        data-text="@Translator.Dictionary["Save"]">
+	        data-text="@Context.Translate("Save")">
 	</button>
 }

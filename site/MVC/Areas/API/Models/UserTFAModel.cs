@@ -1,10 +1,15 @@
 ﻿using System;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	public class UserTFAModel : BaseApiModel
 	{
-		public String Code { get; set; }
+		public UserTFAModel(String code)
+		{
+			Code = code;
+		}
+
+		public String Code { get; }
 
 		internal void Validate()
 		{

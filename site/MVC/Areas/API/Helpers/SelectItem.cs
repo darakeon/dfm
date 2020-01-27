@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Helpers;
+using DFM.BusinessLogic;
 using DFM.MVC.Helpers.Global;
 
-namespace DFM.MVC.Areas.API.Helpers
+namespace DFM.MVC.Areas.Api.Helpers
 {
 	public class SelectItem<TText, TValue>
 	{
@@ -21,21 +21,23 @@ namespace DFM.MVC.Areas.API.Helpers
 
 	public static class SelectItemEnum
 	{
-		public static SelectItem<String, Int32> SelectItem<TEnum>(this TEnum value)
-			where TEnum : IConvertible
+		public static SelectItem<String, Int32> SelectItem<TEnum>(
+			this TEnum value, Translator translator, ServiceAccess service
+		) where TEnum : IConvertible
 		{
 			return new SelectItem<String, Int32>(
-				Translator.Dictionary[value.ToString(Service.Current.Culture)],
+				translator[value.ToString(service.Current.Culture)],
 				Convert.ToInt32(value)
 			);
 		}
 
-		public static IList<SelectItem<String, Int32>> SelectItem<TEnum>()
-			where TEnum : IConvertible
+		public static IList<SelectItem<string, int>> SelectItem<TEnum>(
+			Translator translator, ServiceAccess service
+		) where TEnum : IConvertible
 		{
 			return Enum.GetValues(typeof(TEnum))
 					.Cast<TEnum>()
-					.Select(n => n.SelectItem())
+					.Select(n => n.SelectItem(translator, service))
 					.ToList();
 		}
 

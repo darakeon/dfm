@@ -1,34 +1,33 @@
 ﻿using System;
-using System.Web.Mvc;
-using DFM.MVC.Areas.API.Models;
+using DFM.MVC.Areas.Api.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DFM.MVC.Areas.API.Controllers
+namespace DFM.MVC.Areas.Api.Controllers
 {
+	[Area(Route.ApiArea)]
 	public class UsersController : BaseJsonController
 	{
 		[HttpPost]
-		public ActionResult Login(String email, String password)
+		public IActionResult Login(String email, String password)
 		{
-			return json(() =>
-			{
-				var model =
-					new UsersLoginModel
-					{
-						Email = email,
-						Password = password,
-					};
+			var model =
+				new UsersLoginModel
+				{
+					Email = email,
+					Password = password,
+				};
 
-				var ticket = model.LogOn();
+			var ticket = model.LogOn();
 
-				return new { ticket };
-			});
+			return json(() => new { ticket });
 		}
 
 		[HttpPost]
-		public ActionResult Logout()
+		public IActionResult Logout()
 		{
 			return json(() =>
 			{
@@ -37,20 +36,22 @@ namespace DFM.MVC.Areas.API.Controllers
 		}
 
 		[HttpGetAndHead, ApiAuth]
-		public ActionResult Config()
+		public IActionResult GetConfig()
 		{
 			return json(() => new UserConfigModel());
 		}
 
 		[HttpPost, ApiAuth]
-		public ActionResult Config(UserConfigModel model)
+		public IActionResult SaveConfig()
 		{
+			var model = getFromBody<UserConfigModel>();
 			return json(model.Save);
 		}
 
 		[HttpPost, ApiAuth(false)]
-		public ActionResult TFA(UserTFAModel model)
+		public IActionResult TFA(String code)
 		{
+			var model = new UserTFAModel(code);
 			return json(model.Validate);
 		}
 	}

@@ -1,5 +1,4 @@
-﻿@using DFM.Generic
-@model UsersEndWizard
+﻿@model UsersEndWizardModel
 
 @{
 	Layout = Model.HasError
@@ -7,9 +6,11 @@
 		: "~/Views/Shared/_Form.cshtml";
 
 	ViewBag.Style = Model.HasError ? "danger" : "";
-	ViewBag.Title = Translator.Dictionary["Wizard_Title"];
+	ViewBag.Title = Context.Translate("Wizard_Title");
 	ViewBag.FormSizeSm = 10;
 	ViewBag.FormSizeLg = 6;
+
+	var mobileRoute = new RouteMobile();
 }
 
 @if (Model.HasError)
@@ -20,17 +21,17 @@ else
 {
 	var menus = new List<WizardMenu>
 	{
-		new WizardMenu(Translator.Dictionary["Wizard_EndTextMenuSettings"], "MenuSettings"),
-		new WizardMenu(Translator.Dictionary["Wizard_EndTextMenuTasks"], "MenuTasks"),
-		new WizardMenu(Translator.Dictionary["Wizard_EndTextMenuIssues"], "MenuIssues"),
+		new WizardMenu(Context.Translate("Wizard_EndTextMenuSettings"), "MenuSettings"),
+		new WizardMenu(Context.Translate("Wizard_EndTextMenuTasks"), "MenuTasks"),
+		new WizardMenu(Context.Translate("Wizard_EndTextMenuIssues"), "MenuIssues"),
 	};
 
 	<p class="text-center">
-		@Html.Raw(Translator.Dictionary["Wizard_EndTextThanks"].BreakLines())
+		@Html.Raw(Context.Translate("Wizard_EndTextThanks").BreakLines())
 	</p>
 
 	<p class="text-center">
-		@Translator.Dictionary["Wizard_EndTextMenu"]
+		@Context.Translate("Wizard_EndTextMenu")
 	</p>
 
 	<div class="well well-sm">
@@ -48,18 +49,18 @@ else
 	</div>
 
 	<p class="text-center">
-		@Translator.Dictionary["Wizard_EndTextAndroid"]
+		@Context.Translate("Wizard_EndTextAndroid")
 	</p>
 
 	<p class="text-center">
-		<a href="@Url.RouteUrl(RouteNames.Mobile)"
+		<a href="@Url.RouteUrl(mobileRoute.Name)"
 			target="_blank" class="android-link"></a>
 	</p>
 
 	@section Footer {
 		<p class="text-center">
 			@Html.Raw(String.Format(
-				Translator.Dictionary["Wizard_EndTextContact"].BreakLines(),
+				Context.Translate("Wizard_EndTextContact").BreakLines(),
 				"<a target='_blank' href='mailto:dfm@dontflymoney.com'>dfm@dontflymoney.com</a>"
 				))
 		</p>

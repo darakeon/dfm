@@ -159,13 +159,13 @@ describe('Moves', () => {
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
 		await puppy.submit(checkUrl)
 
-		// the form is ajax, the screen do not reload entirelly, so
-		// puppeteer gets the line before ajax finishes without this
-		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+		await page.waitForFunction(
+			`document.getElementById("m${id}").innerHTML.indexOf("Moves/Check") == -1`
+		)
 
-		const table = await puppy.content('#body .table')
+		const tr = await puppy.content(`#m${id}`)
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
-		expect(table).toContain(uncheckUrl)
+		expect(tr).toContain(uncheckUrl)
 	})
 
 	test('Uncheck', async () => {
@@ -183,12 +183,12 @@ describe('Moves', () => {
 		const uncheckUrl = `/Account/${accountOut}/Moves/Uncheck/${id}`
 		await puppy.submit(uncheckUrl)
 
-		// the form is ajax, the screen do not reload entirelly, so
-		// puppeteer gets the line before ajax finishes without this
-		await puppy.call(`Account/${accountOut}/Reports/ShowMoves/201911`)
+		await page.waitForFunction(
+			`document.getElementById("m${id}").innerHTML.indexOf("Moves/Uncheck") == -1`
+		)
 
-		const table = await puppy.content('#body .table')
+		const tr = await puppy.content(`#m${id}`)
 		const checkUrl = `/Account/${accountOut}/Moves/Check/${id}`
-		expect(table).toContain(checkUrl)
+		expect(tr).toContain(checkUrl)
 	})
 })

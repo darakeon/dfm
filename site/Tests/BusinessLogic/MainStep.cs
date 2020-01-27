@@ -102,7 +102,7 @@ namespace DFM.BusinessLogic.Tests
 
 			Cleaner.Cleanup();
 
-			SessionFactoryManager.Initialize<UserMap, User>(Cfg.Dic);
+			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
 
 			service = new ServiceAccess(getTicket, getPath, getSite);

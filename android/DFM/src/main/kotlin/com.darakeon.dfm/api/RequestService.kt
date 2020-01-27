@@ -9,7 +9,6 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.api.entities.tfa.TFA
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -47,10 +46,12 @@ internal interface RequestService {
 		@Path("id") id: Int
 	): Call<Body<Any>>
 
+	@FormUrlEncoded
 	@POST("api/users/login")
 	fun login(
-		@RetrofitBody login: Login.Request
-	): Call<Body<Login.Response>>
+		@Field("email") email: String,
+		@Field("password") password: String
+	): Call<Body<Login>>
 
 	@POST("api/users/logout")
 	fun logout(): Call<Body<Any>>
@@ -66,10 +67,10 @@ internal interface RequestService {
 		@RetrofitBody move: Move
 	): Call<Body<Any>>
 
-	@GET("api/users/config")
+	@GET("api/users/getConfig")
 	fun getConfig(): Call<Body<Settings>>
 
-	@POST("api/users/config")
+	@POST("api/users/saveConfig")
 	fun saveConfig(
 		@RetrofitBody settings: Settings
 	): Call<Body<Any>>
@@ -80,9 +81,10 @@ internal interface RequestService {
 		@Path("time") time: Int
 	): Call<Body<Summary>>
 
+	@FormUrlEncoded
 	@POST("api/account-{accountUrl}/users/tfa")
 	fun validateTFA(
-		@RetrofitBody tfa: TFA
+		@Field("code") code: String
 	): Call<Body<Any>>
 
 	@GET("api")

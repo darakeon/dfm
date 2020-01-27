@@ -1,7 +1,7 @@
 ﻿@model UsersContractModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["ContractTitle"];
+	ViewBag.Title = Context.Translate("ContractTitle");
 	Layout = "~/Views/Shared/_Form.cshtml";
 	ViewBag.FormSizeSm = 12;
 	ViewBag.FormSizeLg = 8;
@@ -24,7 +24,7 @@
 		<div class="checkbox text-center form-group">
 			<label for="@Html.IdFor(m => m.Accept)">
 				@Html.CheckBoxFor(m => m.Accept)
-				@String.Format(Translator.Dictionary["ContractAccept"], Translator.Dictionary["ContractTitle"])
+				@String.Format(Context.Translate("ContractAccept", "ContractTitle"))
 			</label>
 		</div>
 	}
@@ -33,12 +33,12 @@
 
 @section Footer {
 	<span class="@(canSign ? "pull-left text-left" : "")">
-		@Translator.Dictionary["ContractBeginDate"]<br />
+		@Context.Translate("ContractBeginDate")<br />
 		@Model.Contract.BeginDate.ToShortDateString()
 	</span>
 
 	@if (canSign)
 	{
-		<button class="btn btn-success">@Translator.Dictionary["Accept"]</button>
+		<button class="btn btn-success">@Context.Translate("Accept")</button>
 	}
 }

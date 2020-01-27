@@ -1,7 +1,7 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	public class UserConfigModel : BaseApiModel
 	{
