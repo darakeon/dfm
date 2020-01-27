@@ -1,3 +1,7 @@
-﻿<a href="@Url.RouteUrl(RouteNames.Default, new {action = "Config", controller = "Users"})">
-	<span class="glyphicon glyphicon-cog" title="@Translator.Dictionary["Settings"]"></span>
+﻿@{
+	var route = new RouteDefault();
+}
+
+<a href="@Url.RouteUrl(route.Name, new {action = "Config", controller = "Users", area = route.Area})">
+	<span class="glyphicon glyphicon-cog" title="@Context.Translate("Settings")"></span>
 </a>

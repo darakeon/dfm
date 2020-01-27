@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	internal class UsersLoginModel : BaseApiModel
 	{

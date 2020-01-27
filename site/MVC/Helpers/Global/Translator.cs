@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
-using System.Web.Routing;
-using Keon.MVC.Route;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Email;
 using DFM.Entities.Bases;
+using DFM.Generic;
 using DFM.Language;
 using DFM.Language.Extensions;
+using DFM.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 using Version = DFM.Language.Version;
 
@@ -16,18 +19,25 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class Translator
 	{
-		public static void Initialize()
+		public Translator(HttpContext context)
 		{
-			var path = Path.Combine(
-				Directory.GetCurrentDirectory(), "bin");
-
-			PlainText.Initialize(path);
+			this.context = context;
+			PlainText.Initialize(getPath());
 		}
 
-		private static Translator dictionary;
+		private static string getPath()
+		{
+			var path = Directory.GetCurrentDirectory();
 
-		public static Translator Dictionary
-			=> dictionary ?? (dictionary = new Translator());
+			if (Cfg.LanguagePath != null)
+			{
+				path = Path.Combine(path, Cfg.LanguagePath);
+			}
+
+			return path;
+		}
+
+		private readonly HttpContext context;
 
 		public String this[params String[] phrase] => PlainText.Site[section, Language, phrase];
 
@@ -40,45 +50,42 @@ namespace DFM.MVC.Helpers.Global
 		private String this[String specificSection, params String[] phrase] =>
 			PlainText.Site[specificSection, Language, phrase];
 
-		public static String GetMonthName(Int32 month)
+		public String GetMonthName(Int32 month)
 		{
 			return PlainText.GetMonthName(month, Language);
 		}
 
-		private static String section
+		private String section
 		{
 			get
 			{
-				var current = RouteInfo.Current;
+				var current = context.GetRoute();
 
-				if (current?.RouteData == null)
+				if (current == null)
 					return "Ops";
 
 				var controller = HttpUtility.UrlDecode(
-					current["controller"].ToLower()
+					current["controller"].ToString().ToLower()
 				);
 
-				if (controller.StartsWith("?"))
-				{
-					var defaults = ((Route) current.RouteData.Route).Defaults;
+				if (!controller.StartsWith("?")) return controller;
 
-					controller = defaults["controller"].ToString().ToLower();
-				}
-
-				return controller;
+				var route = (Route) current["route"];
+				return route.Defaults["controller"].ToString().ToLower();
 			}
 		}
 
-		public static String Language
+		public String Language
 		{
 			get
 			{
-				var browserLanguage =
-					request.UserLanguages != null && request.UserLanguages.Length > 0
-						? request.UserLanguages[0]
-						: null;
+				var browserLanguage = context.Request
+					.Headers["Accept-Language"].ToString()
+					.Split(",").Where(PlainText.AcceptLanguage)
+					.FirstOrDefault();
 
-				var userLanguage = Service.Current.Language ?? browserLanguage;
+				var service = context.GetService();
+				var userLanguage = service.Current.Language ?? browserLanguage;
 
 				if (userLanguage == null || !PlainText.AcceptLanguage(userLanguage))
 					userLanguage = Defaults.ConfigLanguage;
@@ -87,14 +94,12 @@ namespace DFM.MVC.Helpers.Global
 			}
 		}
 
-		private static HttpRequest request => HttpContext.Current.Request;
-
-		public static IDictionary<T, String> GetEnumNames<T>()
+		public IDictionary<T, String> GetEnumNames<T>()
 		{
 			return EnumHelper.GetEnumNames<T>(section, Language);
 		}
 
-		public static IList<Version> Versions()
+		public IList<Version> Versions()
 		{
 			return Version.Get(Language);
 		}

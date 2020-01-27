@@ -4,9 +4,7 @@ namespace DFM.MVC.Models
 {
 	public class OpsModel : BaseSiteModel
 	{
-		public OpsModel()
-		{
-		}
+		public OpsModel() { }
 
 		public OpsModel(Error error) : this()
 		{
@@ -14,7 +12,5 @@ namespace DFM.MVC.Models
 		}
 
 		public Error Error { get; set; }
-
-
 	}
 }

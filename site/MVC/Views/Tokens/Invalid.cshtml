@@ -1,7 +1,7 @@
 ﻿@{
-	ViewBag.Title = Translator.Dictionary["TokenInvalid"];
+	ViewBag.Title = Context.Translate("TokenInvalid");
 	Layout = "~/Views/Shared/_Result.cshtml";
 	ViewBag.Style = "warning";
 }
 
-@Translator.Dictionary["TokenInvalidMessage"]
+@Context.Translate("TokenInvalidMessage")

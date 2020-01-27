@@ -22,7 +22,7 @@ describe('Logins', () => {
 		await puppy.submit(`/Logins/Delete/${id}`)
 
 		expect(page.url()).toEqual(
-			'http://localhost:2709/Users/LogOn?ReturnUrl=%2fLogins'
+			'http://localhost:2709/Users/LogOn'
 		)
 	})
 })

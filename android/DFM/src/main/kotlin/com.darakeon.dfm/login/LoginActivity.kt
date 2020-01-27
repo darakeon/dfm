@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity() {
 			email.text.toString(),
 			password.text.toString()
 		) {
-			ticket = it
+			ticket = it.ticket
 			redirect<WelcomeActivity>()
 		}
 	}

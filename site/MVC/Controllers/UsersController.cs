@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using DFM.BusinessLogic.Exceptions;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Helpers.Global;
 using DFM.MVC.Models;
 using DFM.Generic;
+using DFM.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
 	public class UsersController : BaseController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new UsersIndexModel();
 
@@ -21,7 +21,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult SignUp()
+		public IActionResult SignUp()
 		{
 			var model = new UsersSignUpModel();
 
@@ -29,11 +29,11 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult SignUp(UsersSignUpModel model)
+		public IActionResult SignUp(UsersSignUpModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var errors = model.ValidateAndSendVerify(ModelState);
+				var errors = model.ValidateAndSendVerify();
 
 				addErrors(errors);
 			}
@@ -44,7 +44,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult LogOn(String returnUrl)
+		public IActionResult LogOn()
 		{
 			var model = new UsersLogOnModel();
 
@@ -52,14 +52,14 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult LogOn(UsersLogOnModel model, String returnUrl)
+		public IActionResult LogOn(UsersLogOnModel model, String returnUrl)
 		{
 			var logOnError = model.TryLogOn();
 
 			if (logOnError == null)
 			{
 				return String.IsNullOrEmpty(returnUrl)
-					? (ActionResult) RedirectToAction("Index", "Accounts")
+					? (IActionResult) RedirectToAction("Index", "Accounts")
 					: Redirect(returnUrl);
 			}
 
@@ -68,13 +68,13 @@ namespace DFM.MVC.Controllers
 				return baseModelView("SendVerification");
 			}
 
-			ModelState.AddModelError("", Translator.Dictionary[logOnError]);
+			ModelState.AddModelError("", HttpContext.Translate(logOnError));
 
 			return View(model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult LogOff()
+		public IActionResult LogOff()
 		{
 			var model = new SafeModel();
 
@@ -84,7 +84,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult ForgotPassword()
+		public IActionResult ForgotPassword()
 		{
 			var model = new UsersForgotPasswordModel();
 
@@ -92,7 +92,7 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult ForgotPassword(UsersForgotPasswordModel model)
+		public IActionResult ForgotPassword(UsersForgotPasswordModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -107,42 +107,42 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead, Auth]
-		public ActionResult Config()
+		public IActionResult Config()
 		{
 			return View(new UsersConfigModel());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult ConfigOptions(UsersConfigModel model)
+		public IActionResult ConfigOptions(UsersConfigModel model)
 		{
 			return config(model, () => model.Main.Save());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult ConfigPassword(UsersConfigModel model)
+		public IActionResult ConfigPassword(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.ChangePassword());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult ConfigEmail(UsersConfigModel model)
+		public IActionResult ConfigEmail(UsersConfigModel model)
 		{
 			return config(model, () => model.Info.UpdateEmail());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult ConfigTheme(UsersConfigModel model)
+		public IActionResult ConfigTheme(UsersConfigModel model)
 		{
 			return config(model, () => model.ThemeOpt.Change());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult ConfigTFA(UsersConfigModel model)
+		public IActionResult ConfigTFA(UsersConfigModel model)
 		{
 			return config(model, () => model.TFA.Activate());
 		}
 
-		private ActionResult config(UsersConfigModel model, Func<IList<String>> save)
+		private IActionResult config(UsersConfigModel model, Func<IList<String>> save)
 		{
 			if (ModelState.IsValid)
 				addErrors(save());
@@ -154,14 +154,14 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Contract()
+		public IActionResult Contract()
 		{
 			var model = new UsersContractModel();
 			return View(model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth(needContract: false)]
-		public ActionResult Contract(UsersContractModel model)
+		public IActionResult Contract(UsersContractModel model)
 		{
 			model.AcceptContract(ModelState.AddModelError);
 
@@ -174,27 +174,27 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Mobile()
+		public IActionResult Mobile()
 		{
 			return Redirect(Cfg.GooglePlay);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult EndWizard()
+		public IActionResult EndWizard()
 		{
-			var model = new UsersEndWizard();
+			var model = new UsersEndWizardModel();
 			return View(model);
 		}
 
 		[HttpGetAndHead, Auth(needContract: false, needTFA: false)]
-		public ActionResult TFA()
+		public IActionResult TFA()
 		{
 			var model = new UsersTFAModel();
 			return View(model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth(needContract: false, needTFA: false)]
-		public ActionResult TFA(UsersTFAModel model)
+		public IActionResult TFA(UsersTFAModel model)
 		{
 			model.Validate(ModelState.AddModelError);
 
@@ -207,26 +207,24 @@ namespace DFM.MVC.Controllers
 		}
 
 		[HttpGetAndHead, Auth]
-		public ActionResult RemoveTFA()
+		public IActionResult RemoveTFA()
 		{
 			var model = new UsersRemoveTFAModel();
 			return View(model);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Auth]
-		public ActionResult RemoveTFA(UsersRemoveTFAModel model)
+		public IActionResult RemoveTFA(UsersRemoveTFAModel model)
 		{
 			model.Remove(ModelState.AddModelError);
 
 			if (ModelState.IsValid)
-			{
 				return RedirectToAction("Index", "Accounts");
-			}
 
 			return View(model);
 		}
 
-		public ActionResult Reload()
+		public IActionResult Reload()
 		{
 			return Content(" ");
 		}

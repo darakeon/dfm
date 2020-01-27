@@ -1,0 +1,16 @@
+{
+	"DB": {
+		"DBMS": "MySQL",
+
+		"Server": "localhost",
+		"DataBase": "dfm_test",
+		"Login": "dfm_user",
+		"ShowSQL": "false",
+		"DBAction": "Validate",
+		"ScriptFileFullName": "NH_DB.txt",
+
+		"FakeDB": "false"
+	},
+
+	"PasswordErrorLimit": "5"
+}

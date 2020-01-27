@@ -1,10 +1,17 @@
 @echo off
 
+cd %windir%\system32\inetsrv\
+
+appcmd stop apppool "DfM Test"
+appcmd stop sites "DfM Test"
+appcmd start apppool "DfM Test"
+appcmd start sites "DfM Test"
+
 cd %~dp0
 
 cd ..\..\MVC
 
-msbuild MVC.csproj /p:DeployOnBuild=True /p:PublishProfile="Browser Tests" /p:Configuration=BrowserTests -verbosity:quiet
+msbuild MVC.csproj /p:DeployOnBuild=True /p:PublishProfile=browser /p:Configuration=BrowserTests -verbosity:quiet
 
 cd ..\Tests\Browser
 

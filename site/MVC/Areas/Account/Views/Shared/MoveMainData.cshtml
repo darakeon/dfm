@@ -1,30 +1,28 @@
 ﻿@model BaseMovesModel
 
-@using DFM.MVC.Helpers
-
 @{
-	var useCategories = Service.Current.UseCategories;
+	var useCategories = Context.GetService().Current.UseCategories;
 	var rowWidths = useCategories ? 6 : 12;
 }
 
 <div class="form-group">
 
-	@Html.LabelFor(m => m.Description, Translator.Dictionary["Description"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Description, Context.Translate("Description"), new { @class = "control-label" })
 	@Html.ValidationMessageFor(m => m.Description)<br />
 	@Html.TextBoxFor(m => m.Description, new { maxlength = MaxLen.MoveDescription, @class = "form-control" })
-	<small>@String.Format(Translator.Dictionary["CharactersMax"], MaxLen.MoveDescription)</small>
+	<small>@String.Format(Context.Translate("CharactersMax"), MaxLen.MoveDescription)</small>
 
 </div>
 
 <div class="row">
 
 	<div class="col-sm-@(rowWidths) form-group">
-		@Html.LabelFor(m => m.Date, Translator.Dictionary["Date"], new {@class = "control-label"})
+		@Html.LabelFor(m => m.Date, Context.Translate("Date"), new {@class = "control-label"})
 		@Html.ValidationMessageFor(m => m.Date)<br/>
 		<div class="input-group date">
 			@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
 			<span class="input-group-addon">
-				<span class="glyphicon glyphicon-calendar" title="@Translator.Dictionary["OpenCalendar"]"></span>
+				<span class="glyphicon glyphicon-calendar" title="@Context.Translate("OpenCalendar")"></span>
 			</span>
 		</div>
 	</div>
@@ -32,9 +30,9 @@
 	@if (useCategories)
 	{
 		<div class="col-sm-@(rowWidths) form-group">
-			@Html.LabelFor(m => m.CategoryName, Translator.Dictionary["Category"], new {@class = "control-label"})
+			@Html.LabelFor(m => m.CategoryName, Context.Translate("Category"), new {@class = "control-label"})
 			@Html.ValidationMessageFor(m => m.CategoryName)<br/>
-			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + Translator.Dictionary["Select"] + " --", new {@class = "form-control"})
+			@Html.DropDownListFor(m => m.CategoryName, Model.CategorySelectList, "-- " + Context.Translate("Select") + " --", new {@class = "form-control"})
 		</div>
 	}
 

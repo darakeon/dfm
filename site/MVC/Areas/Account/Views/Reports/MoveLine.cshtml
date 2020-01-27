@@ -1,6 +1,4 @@
-﻿@using DFM.Entities.Enums
-@using DFM.MVC.Models
-@model MoveLineModel
+﻿@model MoveLineModel
 
 @{ var move = Model.Move; }
 
@@ -34,7 +32,7 @@
 	{
 		<td class="text-center">
 			<span class="glyphicon glyphicon-@(move.Checked ? "exclamation-sign text-success" : "question-sign text-danger")"
-				  title="@Translator.Dictionary[move.Checked ? "Checked" : "Unchecked"]">
+				  title="@Context.Translate(move.Checked ? "Checked" : "Unchecked")">
 			</span>
 		</td>
 	}
@@ -42,14 +40,14 @@
 	<td class="col-sm-1 text-center">
 		<a href="@Url.Action("Edit", "Moves", new {id = move.ID})">
 			<span class="glyphicon glyphicon-edit"
-				  title="@Translator.Dictionary["Edit"]">
+				  title="@Context.Translate("Edit")">
 			</span>
 		</a>
 	</td>
 
 	<td class="col-sm-1 text-center">
 		@Html.Partial("MicroForm",
-			MicroForm.WithGlyph("trash", "Delete")
+			MicroForm.WithGlyph(Context, "trash", "Delete")
 				.AddIdUrl("Moves", "Delete", move.ID)
 			)
 	</td>
@@ -64,7 +62,7 @@
 
 		<td class="col-sm-1 text-center">
 			@Html.Partial("MicroForm",
-				MicroForm.WithGlyph(glyph, action)
+				MicroForm.WithGlyph(Context, glyph, action)
 					.AddIdUrl("Moves", action, move.ID)
 					.AddHidden("nature", nature)
 					.AsAjax($"m{move.ID}")

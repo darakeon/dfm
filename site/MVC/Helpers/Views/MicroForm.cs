@@ -1,47 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using DFM.MVC.Helpers.Global;
-using Keon.MVC.Route;
+using DFM.MVC.Helpers.Extensions;
+using DFM.MVC.Starters.Routes;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Http;
 
 namespace DFM.MVC.Helpers.Views
 {
 	public class MicroForm
 	{
-		private MicroForm(String glyphicon, String text, String resource, String @class)
+		private MicroForm(HttpContext context, String glyphicon, String text, String resource, String @class)
 		{
+			route = context.GetRouteText();
+
 			Glyphicon = glyphicon;
 
 			Text = text == null
 				? resource
-				: Translator.Dictionary[text];
+				: context.Translate(text);
 
 			Class = @class;
 
 			HiddenList = new Dictionary<String, object>();
 		}
 
-		public static MicroForm WithGlyph(String glyphicon, String text)
+		public static MicroForm WithGlyph(HttpContext context, String glyphicon, String text)
 		{
-			return new MicroForm(glyphicon, text, null, null);
+			return new MicroForm(context, glyphicon, text, null, null);
 		}
 
-		public static MicroForm WithText(String text, String @class = null)
+		public static MicroForm WithText(HttpContext context, String text, String @class = null)
 		{
-			return new MicroForm(null, text, null, @class);
+			return new MicroForm(context, null, text, null, @class);
 		}
 
-		public static MicroForm WithResource(String resource, String @class = null)
+		public static MicroForm WithResource(HttpContext context, String resource, String @class = null)
 		{
-			return new MicroForm(null, null, resource, @class);
+			return new MicroForm(context, null, null, resource, @class);
 		}
+
+		private readonly Dictionary<String, String> route;
 
 		public String Glyphicon { get; }
 		public String Text { get; }
 		public String Class { get; }
-
-		public String Action { get; private set; }
-		public String Controller { get; private set; }
 
 		public String RouteName { get; private set; }
 		public object RouteValues { get; private set; }
@@ -52,31 +54,45 @@ namespace DFM.MVC.Helpers.Views
 		public IDictionary<String, object> HiddenList { get; }
 
 		public MicroForm AddRouteIdUrl(
-			String route,
+			String routeName,
+			[AspMvcArea] String area,
 			[AspMvcController] String controller,
 			[AspMvcAction] String action,
 			object id
 		)
 		{
-			RouteName = route;
+			RouteName = routeName;
 
-			var current = RouteInfo.Current.RouteData.Values;
+			area ??= route["area"];
+			controller ??= route["controller"];
+			action ??= route["action"];
 
-			Controller = controller ?? current["controller"].ToString();
-			Action = action ?? current["action"].ToString();
-
-			RouteValues = new { Controller, Action, id };
+			RouteValues = new { area, controller, action, id };
 
 			return this;
 		}
 
-		public MicroForm AddRouteUrl(
-			String route,
+		public MicroForm AddRouteIdUrl<T>(
+			[AspMvcController] String controller,
+			[AspMvcAction] String action,
+			object id
+		) where T : BaseRoute, new()
+		{
+			return AddRouteIdUrl(
+				new T().Name,
+				new T().Area,
+				controller,
+				action,
+				id
+			);
+		}
+
+		public MicroForm AddRouteUrl<T>(
 			[AspMvcController] String controller,
 			[AspMvcAction] String action
-		)
+		) where T : BaseRoute, new()
 		{
-			AddRouteIdUrl(route, controller, action, null);
+			AddRouteIdUrl<T>(controller, action, null);
 			return this;
 		}
 
@@ -86,7 +102,7 @@ namespace DFM.MVC.Helpers.Views
 			object id
 		)
 		{
-			AddRouteIdUrl(null, controller, action, id);
+			AddRouteIdUrl(null, null, controller, action, id);
 			return this;
 		}
 
@@ -95,7 +111,7 @@ namespace DFM.MVC.Helpers.Views
 			object id
 		)
 		{
-			AddRouteIdUrl(null, null, action, id);
+			AddIdUrl(null, action, id);
 			return this;
 		}
 

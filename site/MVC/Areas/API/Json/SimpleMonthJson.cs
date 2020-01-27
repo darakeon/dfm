@@ -2,23 +2,23 @@
 using DFM.BusinessLogic.Response;
 using DFM.MVC.Helpers.Global;
 
-namespace DFM.MVC.Areas.API.Json
+namespace DFM.MVC.Areas.Api.Json
 {
 	public class SimpleMonthJson
 	{
-		public SimpleMonthJson(YearReport.MonthItem month)
+		public SimpleMonthJson(YearReport.MonthItem month, Translator translator)
 		{
 			var monthNumber = month.Number % 100;
 
 			Number = monthNumber;
-			Name = Translator.GetMonthName(monthNumber);
+			Name = translator.GetMonthName(monthNumber);
 			Total = month.Total;
 		}
 
-		public SimpleMonthJson(Int16 month)
+		public SimpleMonthJson(Int16 month, Translator translator)
 		{
 			Number = month;
-			Name = Translator.GetMonthName(month);
+			Name = translator.GetMonthName(month);
 			Total = 0;
 		}
 

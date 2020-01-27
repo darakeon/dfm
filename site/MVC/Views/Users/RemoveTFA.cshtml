@@ -2,11 +2,11 @@
 
 @{
 	Layout = "~/Views/Shared/_Form.cshtml";
-	ViewBag.Title = Translator.Dictionary["TFARemove"];
+	ViewBag.Title = Context.Translate("TFARemove");
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Password, Translator.Dictionary["Password"])
+	@Html.LabelFor(m => m.Password, Context.Translate("Password"))
 
 	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 	@Html.ValidationMessageFor(m => m.Password)
@@ -14,6 +14,6 @@
 
 @section Footer {
 	<button type="submit" class="btn btn-danger">
-		@Translator.Dictionary["Delete"]
+		@Context.Translate("Delete")
 	</button>
 }

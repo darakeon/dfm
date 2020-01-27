@@ -1,11 +1,12 @@
-﻿@using DFM.Entities.Enums
-@model MoveNature
+﻿@model MoveNature
 
 @switch (Model)
 {
 	case MoveNature.Transfer:
 		@("glyphicon glyphicon-transfer")
 		break;
+	case MoveNature.In:
+	case MoveNature.Out:
 	default:
 		@Html.Partial("Sign", Model == MoveNature.In)
 		break;

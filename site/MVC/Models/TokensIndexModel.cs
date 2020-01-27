@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Models
 {
@@ -13,11 +12,11 @@ namespace DFM.MVC.Models
 	{
 		public TokensIndexModel()
 		{
-			SecurityActionList = SelectListExtension.CreateSelect(
-									Translator.GetEnumNames<SecurityAction>());
+			SecurityActionList =
+				SelectListExtension.CreateSelect(
+					translator.GetEnumNames<SecurityAction>()
+				);
 		}
-
-
 
 		private String token;
 
@@ -45,13 +44,13 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				errors.Add(Translator.Dictionary[e]);
+				errors.Add(translator[e]);
 			}
 
 			if (SecurityAction != SecurityAction.PasswordReset
 				&& SecurityAction != SecurityAction.UserVerification)
 			{
-				errors.Add(Translator.Dictionary["NotRecognizedAction"]);
+				errors.Add(translator["NotRecognizedAction"]);
 			}
 
 			return errors;

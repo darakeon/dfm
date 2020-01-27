@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Web;
-using System.Web.Mvc;
 using DFM.Entities.Enums;
 using DFM.MVC.Controllers;
 using Keon.Util.Collection;
-using Keon.MVC.Route;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace DFM.MVC.Models
 {
+	[ValidateNever]
 	public class BaseSiteModel : BaseModel
 	{
 		public Boolean IsAuthenticated => current.IsAuthenticated;
@@ -20,15 +20,8 @@ namespace DFM.MVC.Models
 
 		public Boolean ShowWizard => wizard;
 
-		public static UrlHelper Url => new UrlHelper(
-				HttpContext.Current.Request.RequestContext
-			);
-
-		public String ActionName => 
-			RouteInfo.Current["action"] ?? String.Empty;
-
-		public String ControllerName => 
-			RouteInfo.Current["controller"] ?? String.Empty;
+		public String ActionName => route?["action"];
+		public String ControllerName => route?["controller"];
 
 		public Boolean IsExternal
 		{
@@ -38,9 +31,7 @@ namespace DFM.MVC.Models
 				var tokensControllerUrl = getControllerUrl<TokensController>();
 				var opsControllerUrl = getControllerUrl<OpsController>();
 
-				var controller = RouteInfo.Current["controller"];
-
-				return controller.IsIn(usersControllerUrl, tokensControllerUrl, opsControllerUrl);
+				return ControllerName.IsIn(usersControllerUrl, tokensControllerUrl, opsControllerUrl);
 			}
 		}
 
@@ -48,7 +39,7 @@ namespace DFM.MVC.Models
 			where T : Controller
 		{
 			var name = typeof(T).Name;
-			return name.Substring(0, name.Length - 10);
+			return name[0..^10];
 		}
 	}
 }

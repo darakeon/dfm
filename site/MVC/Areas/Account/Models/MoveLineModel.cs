@@ -1,5 +1,4 @@
 ﻿using System;
-using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 
 namespace DFM.MVC.Areas.Account.Models

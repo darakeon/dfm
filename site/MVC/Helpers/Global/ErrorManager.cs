@@ -1,54 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using Keon.MVC.Cookies;
 using DFM.Email;
+using DFM.Generic;
+using DFM.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using DFM.MVC.Starters.Routes;
 
 namespace DFM.MVC.Helpers.Global
 {
 	public class ErrorManager
 	{
-		public static void SendEmail()
+		public static Task Process(HttpContext context)
 		{
-			var current = HttpContext.Current;
-			var user = current.User.Identity;
+			var manager = new ErrorManager(context);
 
-			var get = current.Request.QueryString;
-			var post = current.Request.Form;
+			return Task.Run(() => manager.process());
+		}
 
-			var getDictionary = get.AllKeys.ToDictionary(k => k, k => get[k]);
-			var postDictionary = post.AllKeys.ToDictionary(k => k, k => post[k]);
+		private readonly HttpContext context;
+		private Exception exception { get; set; }
+		private String key => BrowserId.Get(() => context);
 
-			var parameters = getDictionary.Union(postDictionary)
-				.Where(
-					p => !p.Key.Contains("Password")
-						&& !Decimal.TryParse(p.Value, out _)
-				)
-				.ToDictionary(p => p.Key, p => p.Value);
+		private static readonly
+			IDictionary<String, Error.Status> errors
+				= new Dictionary<String, Error.Status>();
 
-			var urlReferrer = current.Request.UrlReferrer;
+		public ErrorManager(HttpContext context)
+		{
+			this.context = context;
+		}
+
+		private void process()
+		{
+			try
+			{
+				sendEmail();
+			}
+			catch (Exception e)
+			{
+				exception?.TryLog();
+				e.TryLog();
+			}
+
+			redirect();
+		}
+
+		private void sendEmail()
+		{
+			exception = context.Features
+				.Get<IExceptionHandlerFeature>()
+				.Error;
+
+			var user = context.User.Identity;
+			var request = context.Request;
+
+			var parameters = request.GetSafeFields();
+
+			var urlReferrer = request.Headers["Referer"].ToString();
 
 			EmailSent = Error.SendReport(
-				current.AllErrors,
-				current.Request.Url.ToString(),
-				urlReferrer?.ToString(),
-				current.Request.HttpMethod,
+				exception,
+				request.Host.ToString(),
+				urlReferrer,
+				request.Method,
 				parameters,
 				user.IsAuthenticated ? user.Name : "Off"
+			);
+		}
+
+		private void redirect()
+		{
+			context.Response.Redirect(
+				Route.GetUrl<RouteDefault>
+					("Ops", "Code", 500)
 			);
 		}
 
 		/// <summary>
 		/// When its value is gotten, its emptied
 		/// </summary>
-		public static Error.Status EmailSent
+		public Error.Status EmailSent
 		{
 			get
 			{
-				var key = BrowserId.Get();
-
-                if (!errors.ContainsKey(key))
+				if (!errors.ContainsKey(key))
 					return Error.Status.Empty;
 
 				var result = errors[key];
@@ -59,20 +97,11 @@ namespace DFM.MVC.Helpers.Global
 			}
 			private set
 			{
-				var key = BrowserId.Get();
-
 				if (!errors.ContainsKey(key))
 					errors.Add(key, value);
 				else
 					errors[key] = value;
 			}
 		}
-
-
-
-		private static readonly
-			IDictionary<String, Error.Status> errors
-				= new Dictionary<String, Error.Status>();
-
 	}
 }

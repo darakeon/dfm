@@ -1,20 +1,20 @@
 ﻿@model LoginsIndexModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Logins"];
+	ViewBag.Title = Context.Translate("Logins");
 	ViewBag.WizardMessage = "Logins";
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.LoginsList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoLogins"];
+	ViewBag.NoContentText = Context.Translate("NoLogins");
 	ViewBag.TableLgSize = 8;
 }
 
 @section TableHeader {
 	<tr class="row">
-		<th class="col-sm-4">@Translator.Dictionary["Creation"]</th>
-		<th class="col-sm-4 text-center">@Translator.Dictionary["Type"]</th>
-		<th class="col-sm-4 text-center">@Translator.Dictionary["TODO"]</th>
+		<th class="col-sm-4">@Context.Translate("Creation")</th>
+		<th class="col-sm-4 text-center">@Context.Translate("Type")</th>
+		<th class="col-sm-4 text-center">@Context.Translate("TODO")</th>
 	</tr>
 }
 
@@ -26,22 +26,22 @@
 
 		<td class="col-sm-4 text-center">
 			<span class="label label-@Html.Partial("LoginType", login.Type)">
-				@Translator.Dictionary[login.Type.ToString()]
+				@Context.Translate(login.Type.ToString())
 			</span>
 		</td>
 
 		@*{
 			var deleteConfirm =
 				String.Format(
-					Translator.Dictionary["ConfirmDeleteLogin"],
+					Context.Translate("ConfirmDeleteLogin"),
 						login.Creation,
-						Translator.Dictionary[login.Type.ToString()]
+						Context.Translate(login.Type.ToString())
 				);
 		}*@
 
 		<td class="col-sm-4 text-center">
 			@Html.Partial("MicroForm", 
-				MicroForm.WithGlyph("off", "LogOff")
+				MicroForm.WithGlyph(Context, "off", "LogOff")
 					.AddIdUrl("Delete", login.Key)
 			)
 		</td>

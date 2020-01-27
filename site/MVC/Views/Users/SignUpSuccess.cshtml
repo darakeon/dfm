@@ -1,9 +1,9 @@
 ﻿@{
-	ViewBag.Title = Translator.Dictionary["SignUp"];
+	ViewBag.Title = Context.Translate("SignUp");
 	ViewBag.Style = "success";
 	Layout = "~/Views/Shared/_Result.cshtml";
 }
 
-@Translator.Dictionary["SignUpSuccess"]<br/>
+@Context.Translate("SignUpSuccess")<br/>
 
 @Html.Partial("EmailSent")

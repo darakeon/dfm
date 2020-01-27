@@ -1,9 +1,7 @@
 ﻿@model ITotal
 
-@using DFM.MVC.Models
-
 <div class="well well-sm text-center">
-	<h6>@Translator.Dictionary["Total"]</h6>
+	<h6>@Context.Translate("Total")</h6>
 	@Html.Partial("ValueWithSign",
 		new ValueWithSign(Model.Total, Model.Language)
 	)

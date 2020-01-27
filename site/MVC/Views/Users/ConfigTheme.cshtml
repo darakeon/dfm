@@ -1,11 +1,12 @@
-﻿@model UsersConfigModel
+﻿@using DFM.Language.Extensions
+@model UsersConfigModel
 
 @Html.HiddenFor(m => m.ThemeOpt.Theme, new { @class = "theme-changer-hidden" })
 
 <div class="well well-sm text-center">
-	@Translator.Dictionary["ThemeInstruction"]<br /><br />
+	@Context.Translate("ThemeInstruction")<br /><br />
 	@Html.Raw(
-		Translator.Dictionary["ThemeLink"]
+		Context.Translate("ThemeLink")
 			.Replace(
 				"{{link}}",
 				"<a href='https://bootswatch.com' target='_blank'>Bootswatch</a>"
@@ -31,41 +32,41 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="text-center">@Translator.Dictionary["Header"]</th>
-					<th class="text-center">@Translator.Dictionary["Header"]</th>
+					<th class="text-center">@Context.Translate("Header")</th>
+					<th class="text-center">@Context.Translate("Header")</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="text-center">@Translator.Dictionary["RowPositive"]</td>
+					<td class="text-center">@Context.Translate("RowPositive")</td>
 					<td class="text-center text-info">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 				<tr>
-					<td class="text-center">@Translator.Dictionary["RowTransfer"]</td>
+					<td class="text-center">@Context.Translate("RowTransfer")</td>
 					<td class="text-center text-success">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 				<tr>
-					<td class="text-center">@Translator.Dictionary["RowNegative"]</td>
+					<td class="text-center">@Context.Translate("RowNegative")</td>
 					<td class="text-center text-danger">@(1m.ToMoney(Model.Language))</td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="form-group well">
-			<label class="control-label">@Translator.Dictionary["Label"]</label>
+			<label class="control-label">@Context.Translate("Label")</label>
 			<input class="form-control" />
 		</div>
 
 		<div class="form-group">
-			<button class="btn btn-success">@Translator.Dictionary["Button"]</button>
-			<button class="btn btn-warning">@Translator.Dictionary["Button"]</button>
-			<button class="btn btn-danger">@Translator.Dictionary["Button"]</button>
+			<button class="btn btn-success">@Context.Translate("Button")</button>
+			<button class="btn btn-warning">@Context.Translate("Button")</button>
+			<button class="btn btn-danger">@Context.Translate("Button")</button>
 		</div>
 
-		<div class="alert alert-info">@Translator.Dictionary["Alert"]</div>
-		<div class="alert alert-success">@Translator.Dictionary["Alert"]</div>
-		<div class="alert alert-warning">@Translator.Dictionary["Alert"]</div>
-		<div class="alert alert-danger">@Translator.Dictionary["Alert"]</div>
+		<div class="alert alert-info">@Context.Translate("Alert")</div>
+		<div class="alert alert-success">@Context.Translate("Alert")</div>
+		<div class="alert alert-warning">@Context.Translate("Alert")</div>
+		<div class="alert alert-danger">@Context.Translate("Alert")</div>
 
 	</div>
 

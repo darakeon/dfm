@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
 using DFM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Controllers
 {
@@ -10,13 +10,13 @@ namespace DFM.MVC.Controllers
 	public class LoginsController : BaseController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return View(new LoginsIndexModel());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Delete(String id)
+		public IActionResult Delete(String id)
 		{
 			var model = new SafeModel();
 

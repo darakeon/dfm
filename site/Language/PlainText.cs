@@ -63,6 +63,9 @@ namespace DFM.Language
 
 		public static void Initialize(String path)
 		{
+			if (currentPath != null)
+				return;
+
 			currentPath = path;
 
 			Site = new PlainText(siteName, sitePath);

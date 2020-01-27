@@ -53,7 +53,7 @@ describe('Schedules', () => {
 		)
 		const id = result.insertId
 
-		await puppy.call('/Schedules')
+		await puppy.call('Schedules')
 
 		await puppy.content('#body .table')
 		await puppy.submit(`/Schedules/Delete/${id}`)

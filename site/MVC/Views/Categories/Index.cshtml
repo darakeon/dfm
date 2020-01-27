@@ -1,25 +1,24 @@
-﻿@using DFM.MVC.Helpers
-@model CategoriesIndexModel
+﻿@model CategoriesIndexModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Categories"];
+	ViewBag.Title = Context.Translate("Categories");
 	ViewBag.WizardMessage = "Categories";
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.CategoryList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoCategories"];
+	ViewBag.NoContentText = Context.Translate("NoCategories");
 
 	ViewBag.Buttons = new List<Button>
 	{
-		new Button(Translator.Dictionary["Create", "Category"], "Create")
+		new Button(Context.Translate("Create", "Category"), "Create")
 	};
 }
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col-sm-6">@Translator.Dictionary["Name"]</th>
-		<th class="col-sm-2 text-center">@Translator.Dictionary["Status"]</th>
-		<th class="col-sm-4 text-center" colspan="2">@Translator.Dictionary["TODO"]</th>
+		<th class="col-sm-6">@Context.Translate("Name")</th>
+		<th class="col-sm-2 text-center">@Context.Translate("Status")</th>
+		<th class="col-sm-4 text-center" colspan="2">@Context.Translate("TODO")</th>
 	</tr>
 }
 
@@ -38,7 +37,7 @@
 			<a href="@Url.Action("Edit", "Categories", new { id = category.Name })">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@Translator.Dictionary["Edit"]"
+					title="@Context.Translate("Edit")"
 				></span>
 			</a>
 		</td>
@@ -47,14 +46,14 @@
 			@if (category.Active)
 			{
 				@Html.Partial("MicroForm",
-					MicroForm.WithGlyph("eye-close", "Disable")
+					MicroForm.WithGlyph(Context, "eye-close", "Disable")
 						.AddIdUrl("Disable", category.Name)
 				)
 			}
 			else
 			{
 				@Html.Partial("MicroForm",
-					MicroForm.WithGlyph("eye-open", "Enable")
+					MicroForm.WithGlyph(Context, "eye-open", "Enable")
 						.AddIdUrl("Enable", category.Name)
 				)
 			}

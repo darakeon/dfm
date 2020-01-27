@@ -1,47 +1,60 @@
 ﻿using System;
 using System.IO;
+using DFM.Generic.Configs;
 using Microsoft.Extensions.Configuration;
 
 namespace DFM.Generic
 {
 	public class Cfg
 	{
-		static Cfg()
+		public static void Init(String environment)
 		{
-			Dic = new ConfigurationBuilder()
+			var builder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appSettings.json")
-				.AddJsonFile("smtp.json")
-				.Build();
+				.AddJsonFile("appSettings.json", true)
+				.AddJsonFile("db.json", true)
+				.AddJsonFile("smtp.json", true);
+
+			if (environment != null)
+			{
+				builder
+					.AddJsonFile($"db.{environment}.json", true)
+					.AddJsonFile($"smtp.{environment}.json", true);
+			}
+
+			dic = builder.Build();
 		}
 
-		public static readonly IConfiguration Dic;
+		private static IConfiguration dic;
 
-		public static String Server => Dic["Server"];
-		public static String DataBase => Dic["DataBase"];
-		public static String Login => Dic["Login"];
-		public static String Password => Dic["Password"];
+		public static IConfiguration DB => dic.GetSection("DB");
+
+		public static String Server => DB["Server"];
+		public static String DataBase => DB["DataBase"];
+		public static String Login => DB["Login"];
+		public static String Password => DB["Password"];
 
 		public static String EmailSender
 		{
-			get => Dic["EmailSender"];
-			set => Dic["EmailSender"] = value;
+			get => dic["EmailSender"];
+			set => dic["EmailSender"] = value;
 		}
 
-		public static String Email => Dic["Email"];
+		public static String Email => dic["Email"];
 
 		public static String Version => typeof(Cfg).Assembly.GetName().Version.ToString();
 
-		public static Int32 PasswordErrorLimit => Int32.Parse(Dic["PasswordErrorLimit"]);
+		public static Int32 PasswordErrorLimit => Int32.Parse(dic["PasswordErrorLimit"]);
 
-		public static String GooglePlay => Dic["GooglePlay"];
+		public static String GooglePlay => dic["GooglePlay"];
 
-		public static Int32 VersionCount => Int32.Parse(Dic["VersionCount"]);
+		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"]);
 
-		public static Smtp Smtp => new Smtp(Dic.GetSection("Smtp"));
+		public static Smtp Smtp => new Smtp(dic.GetSection("Smtp"));
+		public static Rewrite Rewrites => new Rewrite("rewrites.json");
 
 		public static String LanguagePath { get; set; }
 
-		public static String LogPathErrors => Dic["LogPathErrors"];
+		public static String LogPathErrors => dic["LogPathErrors"];
 	}
 }

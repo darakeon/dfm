@@ -4,7 +4,6 @@ using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
 using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -17,7 +16,7 @@ namespace DFM.MVC.Areas.Account.Models
 
 			if (move == null)
 			{
-				ErrorAlert.Add("MoveNotFound");
+				errorAlert.Add("MoveNotFound");
 				return;
 			}
 
@@ -25,16 +24,16 @@ namespace DFM.MVC.Areas.Account.Models
 
 			if (result.Email.IsWrong())
 			{
-				var deleted = Translator.Dictionary["MoveDeletedWithoutEmail"];
-				var error = Translator.Dictionary[result.Email];
+				var deleted = translator["MoveDeletedWithoutEmail"];
+				var error = translator[result.Email];
 				var message = String.Format(deleted, move.Description, error);
-				ErrorAlert.AddTranslated(message);
+				errorAlert.AddTranslated(message);
 			}
 			else
 			{
-				var deleted = Translator.Dictionary["MoveDeleted"];
+				var deleted = translator["MoveDeleted"];
 				var message = String.Format(deleted, move.Description);
-				ErrorAlert.AddTranslated(message);
+				errorAlert.AddTranslated(message);
 			}
 
 			ReportUrl = move.ToMonthYear();

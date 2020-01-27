@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DFM.MVC.Areas.API.Json;
+using DFM.MVC.Areas.Api.Json;
 using DFM.MVC.Helpers.Models;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	internal class MovesSummaryModel : BaseApiModel
 	{
@@ -15,14 +15,14 @@ namespace DFM.MVC.Areas.API.Models
 			MonthList =
 				report.GetYearReport(accountUrl, yearDate)
 					.MonthList
-					.Select(m => new SimpleMonthJson(m))
+					.Select(m => new SimpleMonthJson(m, translator))
 					.ToList();
 
 			for (Int16 ym = 1; ym < 13; ym++)
 			{
 				if (MonthList.All(m => m.Number != ym))
 				{
-					MonthList.Add(new SimpleMonthJson(ym));
+					MonthList.Add(new SimpleMonthJson(ym, translator));
 				}
 			}
 

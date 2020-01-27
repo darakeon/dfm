@@ -8,11 +8,10 @@ namespace DFM.MVC.Helpers.Global
 {
 	public class IP
 	{
-		private const string relativePath =
+		private static readonly string relativePath =
 			@"..\..\android\DFM\src\main\res\values\localaddress.xml";
 
-		private static readonly Regex ip =
-			new Regex(@"\d+\.\d+\.\d+\.\d+");
+		private static readonly Regex ipRegex = new Regex(@"\d+\.\d+\.\d+\.\d+");
 
 		internal static void SaveCurrent()
 		{
@@ -26,7 +25,7 @@ namespace DFM.MVC.Helpers.Global
 				return;
 
 			var content = File.ReadAllText(path);
-			content = ip.Replace(content, currentIP);
+			content = ipRegex.Replace(content, currentIP);
 			File.WriteAllText(path, content);
 		}
 
@@ -39,7 +38,7 @@ namespace DFM.MVC.Helpers.Global
 
 				return ipInfo
 					.Select(i => i.ToString())
-					.LastOrDefault(ip.IsMatch);
+					.LastOrDefault(ipRegex.IsMatch);
 			}
 		}
 	}

@@ -1,5 +1,4 @@
-﻿@using DFM.MVC.Helpers
-@model BaseSiteModel
+﻿@model BaseSiteModel
 
 @{
 	Layout = "_Master.cshtml";
@@ -21,7 +20,13 @@
 		<div class="text-center">
 			@foreach (var button in buttonList.OrderByDescending(b => b.PullLeft))
 			{
-				@Html.ActionLink(button.Text, button.Action, null, new {@class = "btn btn-default"})
+				@Html.ActionLink(
+					button.Text,
+					button.Action,
+					null,
+					null,
+					new {@class = "btn btn-default"}
+				)
 			}
 		</div>
 	}
@@ -65,11 +70,13 @@ else
 		<div class="text-right">
 			@foreach (var button in buttonList)
 			{
-				var @class = "btn btn-default" + (button.PullLeft ? " pull-left" : "");
-
-				<text>
-					@Html.ActionLink(button.Text, button.Action, null, new {@class})
-				</text>
+				@Html.ActionLink(
+					button.Text,
+					button.Action,
+					null,
+					null,
+					new {@class = "btn btn-default" + (button.PullLeft ? " pull-left" : "")}
+				)
 			}
 		</div>
 	}

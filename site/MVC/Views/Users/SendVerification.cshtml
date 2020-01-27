@@ -1,9 +1,9 @@
 ﻿@{
-	ViewBag.Title = Translator.Dictionary["Logon"];
+	ViewBag.Title = Context.Translate("Logon");
 	ViewBag.Style = "warning";
 	Layout = "~/Views/Shared/_Result.cshtml";
 }
 
-@Translator.Dictionary["LogonDisabled"]<br/>
+@Context.Translate("LogonDisabled")<br/>
 
 @Html.Partial("EmailSent")

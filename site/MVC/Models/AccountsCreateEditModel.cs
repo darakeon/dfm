@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -11,16 +10,13 @@ namespace DFM.MVC.Models
 	{
 		public AccountsCreateEditModel()
 		{
+			Type = OperationType.Creation;
 			Account = new AccountInfo();
 		}
 
-		public AccountsCreateEditModel(OperationType type) : this()
+		public AccountsCreateEditModel(String id) : this()
 		{
-			Type = type;
-		}
-
-		public AccountsCreateEditModel(OperationType type, String id) : this(type)
-		{
+			Type = OperationType.Edition;
 			Account = admin.GetAccount(id);
 		}
 
@@ -64,7 +60,7 @@ namespace DFM.MVC.Models
 			}
 			catch (CoreError e)
 			{
-				errors.Add(Translator.Dictionary[e]);
+				errors.Add(translator[e]);
 			}
 
 			return errors;

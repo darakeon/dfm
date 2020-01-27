@@ -2,7 +2,7 @@
 using System.Linq;
 using DFM.BusinessLogic.Response;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	internal class AccountsListModel : BaseApiModel
 	{

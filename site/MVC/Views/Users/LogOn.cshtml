@@ -1,35 +1,36 @@
 ﻿@model UsersLogOnModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["Logon"];
+	ViewBag.Title = Context.Translate("Logon");
 	Layout = "~/Views/Shared/_Form.cshtml";
 
-	ViewBag.RouteValues = new {returnUrl = Request.QueryString["returnUrl"]};
+	ViewBag.RouteValues = new {returnUrl = Context.Request.Query["returnUrl"]};
 }
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Email, Translator.Dictionary["Email"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Email, Context.Translate("Email"), new { @class = "control-label" })
 	@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 </div>
 
 <div class="form-group">
-	@Html.LabelFor(m => m.Password, Translator.Dictionary["Password"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.Password, Context.Translate("Password"), new { @class = "control-label" })
 	@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 </div>
 
 <div id="Remember" class="form-group text-center">
 	@Html.CheckBoxFor(m => m.RememberMe)
-	@Html.LabelFor(m => m.RememberMe, Translator.Dictionary["RememberMe"], new { @class = "control-label" })
+	@Html.LabelFor(m => m.RememberMe, Context.Translate("RememberMe"), new { @class = "control-label" })
 </div>
 
 @section Footer
 {
 	@Html.ActionLink(
-		Translator.Dictionary["ForgotPassword"],
-		"ForgotPassword", null, new { @class = "btn btn-default pull-left" }
+		Context.Translate("ForgotPassword"),
+		"ForgotPassword", null, null,
+		new { @class = "btn btn-default pull-left" }
 	)
 
 	<button type="submit" class="btn btn-success">
-		@Translator.Dictionary["Login"]
+		@Context.Translate("Login")
 	</button>
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Enums;
-using DFM.MVC.Areas.API.Helpers;
+using DFM.MVC.Areas.Api.Helpers;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	internal class MovesCreateModel : BaseApiModel
 	{
@@ -30,8 +30,8 @@ namespace DFM.MVC.Areas.API.Models
 			}
 
 			NatureList = AccountList.Count > 1
-				? SelectItemEnum.SelectItem<MoveNature>()
-				: SelectItemEnum.SelectItem<PrimalMoveNature>();
+				? SelectItemEnum.SelectItem<MoveNature>(translator, service)
+				: SelectItemEnum.SelectItem<PrimalMoveNature>(translator, service);
 		}
 
 		public Boolean IsUsingCategories { get; }

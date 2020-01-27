@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Web.Mvc;
+using System.Buffers;
+using System.Text;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Areas.API.Models;
+using DFM.MVC.Areas.Api.Models;
 using DFM.MVC.Helpers.Controllers;
-using DFM.MVC.Helpers.Global;
+using DFM.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
-namespace DFM.MVC.Areas.API.Controllers
+namespace DFM.MVC.Areas.Api.Controllers
 {
 	public class BaseJsonController : BaseController
 	{
@@ -71,7 +74,7 @@ namespace DFM.MVC.Areas.API.Controllers
 		{
 			var result = new
 			{
-				error = Translator.Dictionary[error],
+				error = HttpContext.Translate(error),
 				code = (Int32) error
 			};
 
@@ -80,7 +83,15 @@ namespace DFM.MVC.Areas.API.Controllers
 
 		private JsonResult makeMvcActionResponse(object result)
 		{
-			return Json(result, JsonRequestBehavior.AllowGet);
+			return Json(result);
+		}
+
+		protected T getFromBody<T>()
+		{
+			var body = Request.BodyReader.ReadAsync();
+			var json = Encoding.UTF8.GetString(body.Result.Buffer.ToArray());
+
+			return JsonConvert.DeserializeObject<T>(json);
 		}
 	}
 }

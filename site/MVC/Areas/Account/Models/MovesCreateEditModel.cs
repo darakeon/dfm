@@ -3,8 +3,6 @@ using System.Linq;
 using DFM.BusinessLogic.Response;
 using DFM.Email;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Areas.Account.Models
 {
@@ -14,7 +12,7 @@ namespace DFM.MVC.Areas.Account.Models
 			: base(new MoveInfo(), OperationType.Creation)  { }
 
 		public MovesCreateEditModel(Int32 id)
-			: base(Service.Access.Money.GetMove(id), OperationType.Edition) { }
+			: base(service.Money.GetMove(id), OperationType.Edition) { }
 
 		internal override void Save()
 		{
@@ -28,17 +26,16 @@ namespace DFM.MVC.Areas.Account.Models
 
 			var result = money.SaveMove(move);
 
-			if (result.Email.IsWrong())
-			{
-				move.Value = value;
-				move.DetailList = details;
+			if (!result.Email.IsWrong()) return;
 
-				var message = Translator.Dictionary["MoveSave"];
-				var error = Translator.Dictionary[result.Email].ToLower();
-				var final = String.Format(message, error);
+			move.Value = value;
+			move.DetailList = details;
 
-				ErrorAlert.AddTranslated(final);
-			}
+			var message = translator["MoveSave"];
+			var error = translator[result.Email].ToLower();
+			var final = String.Format(message, error);
+
+			errorAlert.AddTranslated(final);
 		}
 
 		public Int32 ID { set => GenericMove.ID = value; }

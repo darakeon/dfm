@@ -1,26 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Services;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers;
+using DFM.MVC.Helpers.Extensions;
 using DFM.MVC.Helpers.Global;
+using DFM.MVC.Starters;
+using Microsoft.AspNetCore.Http;
+using Error = DFM.BusinessLogic.Exceptions.Error;
 
 namespace DFM.MVC.Models
 {
 	public abstract class BaseModel
 	{
-		protected AdminService admin => Service.Access.Admin;
-		protected MoneyService money => Service.Access.Money;
-		protected ReportService report => Service.Access.Report;
-		protected RobotService robot => Service.Access.Robot;
-		protected SafeService safe => Service.Access.Safe;
+		private static HttpContext context => Context.Accessor.HttpContext;
 
-		protected Current current => Service.Access.Current;
+		protected Translator translator => context.GetTranslator();
+		protected ErrorAlert errorAlert => context.GetErrorAlert();
+		protected Dictionary<String, String> route => context.GetRouteText();
+
+		protected static ServiceAccess service => context.GetService().Access;
+
+		protected AdminService admin => service.Admin;
+		protected MoneyService money => service.Money;
+		protected ReportService report => service.Report;
+		protected RobotService robot => service.Robot;
+		protected SafeService safe => service.Safe;
+
+		protected Current current => service.Current;
 
 		protected DateTime now => current.Now;
 		protected BootstrapTheme theme => current.Theme;
-		protected String language => Translator.Language;
+		protected String language => translator.Language;
 		protected Boolean wizard => current.Wizard;
 
 		protected Boolean isUsingCategories => current.UseCategories;

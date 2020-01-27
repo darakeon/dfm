@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Web;
-using System.Web.Mvc;
+using DFM.BusinessLogic;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
-using DFM.MVC.Models;
+using DFM.MVC.Helpers.Extensions;
+using DFM.MVC.Starters.Routes;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
-	public class AuthAttribute : AuthorizeAttribute
+	public class AuthAttribute : Attribute, IAuthorizationFilter
 	{
 		private readonly Boolean needAdmin;
 		private readonly Boolean needContract;
@@ -19,79 +20,85 @@ namespace DFM.MVC.Helpers.Authorize
 			Boolean needAdmin = false,
 			Boolean needContract = true,
 			Boolean needTFA = true,
-			Boolean isMobile = false,
-			Int32 order = 2
+			Boolean isMobile = false
 		)
 		{
-			Order = order;
 			this.needContract = needContract;
 			this.needAdmin = needAdmin;
 			this.needTFA = needTFA;
 			this.isMobile = isMobile;
 		}
 
-		protected override bool AuthorizeCore(HttpContextBase httpContext)
+		private Service service;
+		private Current current => service.Current;
+		private ServiceAccess access => service.Access;
+		private Boolean isAuthenticated => current.IsAuthenticated;
+		private Boolean denyByAdmin => needAdmin && !current.IsAdm;
+		private Boolean denyByContract => needContract && !access.Safe.IsLastContractAccepted();
+		private Boolean denyByTFA => needTFA && !access.Safe.VerifyTicketTFA();
+		private Boolean denyByMobile => isMobile && !access.Safe.VerifyTicketType(TicketType.Mobile);
+
+		public void OnAuthorization(AuthorizationFilterContext context)
 		{
-			return isAuthenticated 
-			       && !denyByAdmin 
-			       && !denyByContract 
-			       && !denyByTFA
-			       && !denyByMobile;
+			service = context.HttpContext.GetService();
+
+			var goAhead = isAuthenticated
+			              && !denyByAdmin
+			              && !denyByContract
+			              && !denyByTFA
+			              && !denyByMobile;
+
+			if (goAhead) return;
+
+			if (!isAuthenticated)
+				goToUninvited(context);
+
+			else if (denyByTFA)
+				goToTFA(context);
+
+			else if (denyByContract)
+				goToContractPage(context);
+
+			else
+				goToUninvited(context);
 		}
 
-		private Boolean isAuthenticated => Service.Current.IsAuthenticated;
-		private Boolean denyByAdmin => needAdmin && !Service.Current.IsAdm;
-		private Boolean denyByContract => needContract && !Service.Access.Safe.IsLastContractAccepted();
-		private Boolean denyByTFA => needTFA && !Service.Access.Safe.VerifyTicketTFA();
-		private Boolean denyByMobile => isMobile && !Service.Access.Safe.VerifyTicketType(TicketType.Mobile);
-
-		protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+		protected virtual void goToContractPage(AuthorizationFilterContext filterContext)
 		{
-			if (isAuthenticated)
-			{
-				if (denyByTFA)
-				{
-					goToTFA(filterContext);
-					return;
-				}
-
-				if (denyByContract)
-				{
-					goToContractPage(filterContext);
-					return;
-				}
-			}
-
-			goToUninvited(filterContext);
+			goTo(filterContext, "Users", "Contract");
 		}
 
-		protected virtual void goToContractPage(AuthorizationContext filterContext)
+		protected virtual void goToTFA(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Default, "Users", "Contract");
+			goTo(filterContext, "Users", "TFA");
 		}
 
-		protected virtual void goToTFA(AuthorizationContext filterContext)
+		protected virtual void goToUninvited(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Default, "Users", "TFA");
+			goTo(filterContext, "Users", "LogOn");
 		}
 
 		protected void goTo(
-			AuthorizationContext filterContext,
-			String routeName,
+			AuthorizationFilterContext filterContext,
 			[AspMvcController] String controller,
 			[AspMvcAction] String action)
 		{
-			var url = BaseSiteModel.Url.RouteUrl(
-				routeName,
-				new { action, controller }
-			);
-
-			filterContext.Result = new RedirectResult(url);
+			goTo<RouteDefault>(filterContext, controller, action);
 		}
 
-		protected virtual void goToUninvited(AuthorizationContext filterContext)
+		protected void goTo<T>(
+			AuthorizationFilterContext filterContext,
+			[AspMvcController] String controller,
+			[AspMvcAction] String action)
+			where T : BaseRoute, new()
 		{
-			base.HandleUnauthorizedRequest(filterContext);
+			var route = new T();
+			var area = route.Area;
+
+			filterContext.Result = new RedirectToRouteResult(
+				route.Name,
+				new { action, controller, area }
+			);
 		}
 	}
 }

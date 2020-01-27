@@ -38,7 +38,7 @@ class AccountsActivity : BaseActivity() {
 	}
 
 	private fun handleAccounts(accountList: AccountList) {
-		this.accountList = accountList.list
+		this.accountList = accountList.accountList
 		fillAccounts()
 	}
 

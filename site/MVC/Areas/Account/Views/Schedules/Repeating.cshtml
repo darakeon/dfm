@@ -3,7 +3,7 @@
 <div class="form-group checkbox">
 	<label for="@Html.IdFor(m => m.Boundless)">
 		@Html.CheckBoxFor(m => m.Boundless, new { @class = "check-toggle", data_to_disable = ".boundless-disable" })
-		@Translator.Dictionary["Boundless"]
+		@Context.Translate("Boundless")
 	</label>
 </div>
 
@@ -11,7 +11,7 @@
 	<div class="input-group input-group-sm">
 		@Html.TextBoxFor(m => m.Times, new { @class = "form-control boundless-disable" })
 		<span class="input-group-addon">
-			@Translator.Dictionary["Times"]
+			@Context.Translate("Times")
 		</span>
 	</div>
 </div>

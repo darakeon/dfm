@@ -1,7 +1,7 @@
 ﻿@model BaseSiteModel
 
 @{
-	ViewBag.Title = Translator.Dictionary["DontHack"];
+	ViewBag.Title = Context.Translate("DontHack");
 	Layout = "~/Views/Shared/_form.cshtml";
 
 	ViewBag.Style = "info";
@@ -15,5 +15,5 @@
 
 @section Footer
 {
-	@Translator.Dictionary["Help"]
+	@Context.Translate("Help")
 }

@@ -5,20 +5,20 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			<h3 class="panel-title">@Translator.Dictionary["Wizard_Title"]</h3>
+			<h3 class="panel-title">@Context.Translate("Wizard_Title")</h3>
 		</div>
 
 		<div class="panel-body">
 
 			<div class="row">
 				<div class="col-lg-8 col-sm-12 col-lg-push-2 text-center">
-					@Translator.Dictionary[$"Wizard_{ViewBag.WizardMessage}"]
+					@Context.Translate($"Wizard_{ViewBag.WizardMessage}")
 				</div>
 			</div>
 			
 			@Html.Partial("MicroForm",
-				MicroForm.WithResource(Translator.Dictionary["Wizard_End"], "btn btn-sm btn-default pull-right")
-					.AddRouteUrl(RouteNames.Default, "Users", "EndWizard")
+				MicroForm.WithResource(Context, Context.Translate("Wizard_End"), "btn btn-sm btn-default pull-right")
+					.AddRouteUrl<RouteDefault>("Users", "EndWizard")
 			)
 		</div>
 

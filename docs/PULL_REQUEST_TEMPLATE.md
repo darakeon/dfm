@@ -13,6 +13,7 @@
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
 - [ ] Test Site
+- [ ] Test error handler
 - [ ] Upload APK
 - [ ] Execute destructive Sql
 - [ ] Upload new mobile prints

@@ -1,11 +1,11 @@
 ﻿@{
-	ViewBag.Title = Translator.Dictionary["UserVerification"];
+	ViewBag.Title = Context.Translate("UserVerification");
 	Layout = "~/Views/Shared/_Result.cshtml";
 	ViewBag.Style = "success";
 }
 
 <div class="well-sm">
-	@Translator.Dictionary["UserVerificationSuccess"]
+	@Context.Translate("UserVerificationSuccess")
 </div>
 
-@Html.ActionLink(Translator.Dictionary["Logon"], "LogOn", "Users", null, new { @class = "btn btn-sm btn-link" })
+@Html.ActionLink(Context.Translate("Logon"), "LogOn", "Users", null, new { @class = "btn btn-sm btn-link" })

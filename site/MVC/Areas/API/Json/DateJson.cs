@@ -1,22 +1,12 @@
 ﻿using System;
 
-namespace DFM.MVC.Areas.API.Json
+namespace DFM.MVC.Areas.Api.Json
 {
 	public class DateJson : IComparable<DateJson>
 	{
-		public DateJson() { }
-
-		public DateJson(DateTime dateTime) : this()
-		{
-			Year = (Int16)dateTime.Year;
-			Month = (Int16)dateTime.Month;
-			Day = (Int16) dateTime.Day;
-		}
-
 		public Int16 Year { get; set; }
 		public Int16 Month { get; set; }
 		public Int16 Day { get; set; }
-
 
 		public int CompareTo(DateJson obj)
 		{
@@ -31,11 +21,6 @@ namespace DFM.MVC.Areas.API.Json
 				return month;
 
 			return Day.CompareTo(obj.Day);
-		}
-
-		public DateTime ToSystemDate()
-		{
-			return new DateTime(Year, Month, Day);
 		}
 
 		public override string ToString()

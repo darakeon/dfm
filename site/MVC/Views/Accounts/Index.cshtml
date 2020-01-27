@@ -1,9 +1,7 @@
 ﻿@model AccountsIndexModel
 
-@using DFM.MVC.Helpers
-
 @{
-	ViewBag.Title = Translator.Dictionary["Accounts"];
+	ViewBag.Title = Context.Translate("Accounts");
 
 	ViewBag.WizardMessage =
 		Model.AccountList.Any()
@@ -13,30 +11,41 @@
 	Layout = "~/Views/Shared/_Table.cshtml";
 
 	ViewBag.HasContent = Model.AccountList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoAccounts"];
+	ViewBag.NoContentText = Context.Translate("NoAccounts");
 	ViewBag.Buttons = new List<Button>
 	{
-		new Button(Translator.Dictionary["ClosedAccounts"], "ListClosed", true),
-		new Button(Translator.Dictionary["Create", "Account"], "Create")
+		new Button(Context.Translate("ClosedAccounts"), "ListClosed", true),
+		new Button(Context.Translate("Create", "Account"), "Create")
 	};
+
+	var route = new RouteAccount();
 }
 
 @section TableHeader
 {
 	<tr class="row">
-		<th class="col-sm-6">@Translator.Dictionary["Name"]</th>
-		<th class="col-sm-4 text-center" colspan="3">@Translator.Dictionary["Total"]</th>
-		<th class="col-sm-2 text-center" colspan="2">@Translator.Dictionary["TODO"]</th>
+		<th class="col-sm-6">@Context.Translate("Name")</th>
+		<th class="col-sm-4 text-center" colspan="3">@Context.Translate("Total")</th>
+		<th class="col-sm-2 text-center" colspan="2">@Context.Translate("TODO")</th>
 	</tr>
 }
 
 @foreach (var account in Model.AccountList)
 {
-	var sign = Translator.Dictionary[$"{account.Sign}Limit"];
+	var sign = Context.Translate($"{account.Sign}Limit");
 
 	<tr class="row">
 		<td class="col-sm-6">
-			@Html.RouteLink(account.Name, RouteNames.Account, new { accountUrl = account.Url, controller = String.Empty })
+			@Html.RouteLink(
+				account.Name,
+				route.Name,
+				new
+				{
+					accountUrl = account.Url,
+					controller = String.Empty,
+					area = route.Area,
+				}
+			)
 		</td>
 
 		<td class="col-sm-1"></td>
@@ -56,7 +65,7 @@
 			<a href="@Url.Action("Edit", "Accounts", new {id = account.Url})">
 				<span
 					class="glyphicon glyphicon-edit"
-					title="@Translator.Dictionary["Edit"]"
+					title="@Context.Translate("Edit")"
 				></span>
 			</a>
 		</td>
@@ -65,14 +74,14 @@
 			@if (account.HasMoves)
 			{
 				@Html.Partial("MicroForm",
-					MicroForm.WithGlyph("eye-close", "Close")
+					MicroForm.WithGlyph(Context, "eye-close", "Close")
 						.AddIdUrl("Close", account.Url)
 				)
 			}
 			else
 			{
 				@Html.Partial("MicroForm",
-					MicroForm.WithGlyph("trash", "Delete")
+					MicroForm.WithGlyph(Context, "trash", "Delete")
 						.AddIdUrl("Delete", account.Url)
 				)
 			}

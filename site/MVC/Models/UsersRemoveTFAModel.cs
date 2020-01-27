@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Exceptions;
-using DFM.MVC.Helpers.Global;
 
 namespace DFM.MVC.Models
 {
@@ -17,7 +16,7 @@ namespace DFM.MVC.Models
 			catch (CoreError exception)
 			{
 				addModelError("Password",
-					Translator.Dictionary[exception]
+					translator[exception]
 				);
 			}
 		}

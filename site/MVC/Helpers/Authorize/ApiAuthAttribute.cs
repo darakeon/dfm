@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Web.Mvc;
-using DFM.MVC.Helpers.Global;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DFM.MVC.Helpers.Authorize
 {
@@ -9,19 +9,19 @@ namespace DFM.MVC.Helpers.Authorize
 		public ApiAuthAttribute(Boolean needTFA = true)
 			: base(needTFA: needTFA, isMobile: true) { }
 
-		protected override void goToContractPage(AuthorizationContext filterContext)
+		protected override void goToContractPage(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Api, "Users", "AcceptOnlineContract");
+			goTo<RouteApi>(filterContext, "Users", "AcceptOnlineContract");
 		}
 
-		protected override void goToUninvited(AuthorizationContext filterContext)
+		protected override void goToUninvited(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Api, "Users", "Uninvited");
+			goTo<RouteApi>(filterContext, "Users", "Uninvited");
 		}
 
-		protected override void goToTFA(AuthorizationContext filterContext)
+		protected override void goToTFA(AuthorizationFilterContext filterContext)
 		{
-			goTo(filterContext, RouteNames.Api, "Users", "OpenTFA");
+			goTo<RouteApi>(filterContext, "Users", "OpenTFA");
 		}
 	}
 }

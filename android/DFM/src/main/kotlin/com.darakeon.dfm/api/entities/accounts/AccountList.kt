@@ -1,10 +1,7 @@
 package com.darakeon.dfm.api.entities.accounts
 
-import com.google.gson.annotations.SerializedName
-
 data class AccountList(
-	@SerializedName("AccountList")
-	val list: Array<Account>
+	val accountList: Array<Account>
 ) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
@@ -12,12 +9,12 @@ data class AccountList(
 
 		other as AccountList
 
-		if (!list.contentEquals(other.list)) return false
+		if (!accountList.contentEquals(other.accountList)) return false
 
 		return true
 	}
 
 	override fun hashCode(): Int {
-		return list.contentHashCode()
+		return accountList.contentHashCode()
 	}
 }

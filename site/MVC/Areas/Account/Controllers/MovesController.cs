@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Web.Mvc;
 using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
-using Keon.MVC.Authentication;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[Auth]
+	[Area(Route.AccountArea)]
 	public class MovesController : BaseAccountsController
 	{
-		[HttpGetAndHead]
-		public ActionResult Index()
+		[Auth, HttpGetAndHead]
+		public IActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
-		[HttpGetAndHead]
-		public ActionResult Create()
+		[Auth, HttpGetAndHead]
+		public IActionResult Create()
 		{
 			var model = new MovesCreateEditModel();
 			model.SetDefaultAccount();
@@ -26,16 +26,16 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View("CreateEditSchedule", model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Create(MovesCreateEditModel model)
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Create(MovesCreateEditModel model)
 		{
 			model.Type = OperationType.Creation;
 
 			return createEditSchedule(model);
 		}
 
-		[HttpGetAndHead]
-		public ActionResult Edit(Int32? id)
+		[Auth, HttpGetAndHead]
+		public IActionResult Edit(Int32? id)
 		{
 			if (!id.HasValue)
 				return RedirectToAction("Create");
@@ -45,16 +45,16 @@ namespace DFM.MVC.Areas.Account.Controllers
 			return View("CreateEditSchedule", model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Edit(Int32 id, MovesCreateEditModel model)
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Edit(Int32 id, MovesCreateEditModel model)
 		{
 			model.ID = id;
 
 			return createEditSchedule(model);
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Delete(Int32 id)
+		[Auth, HttpPost, ValidateAntiForgeryToken]
+		public IActionResult Delete(Int32 id)
 		{
 			var model = new MoneyModel();
 
@@ -64,7 +64,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Check(Int32 id, PrimalMoveNature nature)
+		public IActionResult Check(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 
@@ -74,7 +74,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[JsonAuth, HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Uncheck(Int32 id, PrimalMoveNature nature)
+		public IActionResult Uncheck(Int32 id, PrimalMoveNature nature)
 		{
 			var model = new MoneyModel();
 

@@ -2,7 +2,7 @@
 using DFM.BusinessLogic.Helpers;
 using DFM.Entities.Enums;
 
-namespace DFM.MVC.Areas.API.Models
+namespace DFM.MVC.Areas.Api.Models
 {
 	public class Environment
 	{

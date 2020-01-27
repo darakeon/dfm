@@ -1,5 +1,4 @@
-﻿@using DFM.Entities.Enums
-@model SchedulesCreateModel
+﻿@model SchedulesCreateModel
 
 @Html.HiddenFor(m => m.Frequency)
 
@@ -13,7 +12,7 @@
 					data-target-id="@Html.IdFor(m => m.Frequency)"
 					data-target-value="@frequency">
 
-				@Translator.Dictionary[frequency.ToString()]
+				@Context.Translate(frequency.ToString())
 			</button>
 		}
 	</div>

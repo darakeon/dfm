@@ -1,22 +1,23 @@
-﻿using System.Web.Mvc;
-using DFM.Entities.Enums;
+﻿using DFM.Entities.Enums;
 using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Authorize;
 using DFM.MVC.Helpers.Controllers;
+using DFM.MVC.Starters.Routes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DFM.MVC.Areas.Account.Controllers
 {
-	[Auth]
+	[Area(Route.AccountArea), Auth]
 	public class SchedulesController : BaseAccountsController
 	{
 		[HttpGetAndHead]
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return RedirectToAction("Create");
 		}
 
 		[HttpGetAndHead]
-		public ActionResult Create()
+		public IActionResult Create()
 		{
 			var model = new SchedulesCreateModel();
 			model.SetDefaultAccount();
@@ -25,7 +26,7 @@ namespace DFM.MVC.Areas.Account.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult Create(SchedulesCreateModel model)
+		public IActionResult Create(SchedulesCreateModel model)
 		{
 			model.Type = OperationType.Scheduling;
 

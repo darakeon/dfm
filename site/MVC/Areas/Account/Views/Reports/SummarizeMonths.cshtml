@@ -1,9 +1,5 @@
 ﻿@model ReportsSummarizeMonthsModel
 
-@using DFM.Generic.Pages
-@using DFM.MVC.Helpers
-@using DFM.MVC.Models
-
 @{
 	ViewBag.Title = Model.Date;
 	ViewBag.WizardMessage = "SummarizeMonths";
@@ -15,12 +11,12 @@
 		.ToList();
 
 	ViewBag.HasContent = monthList.Any();
-	ViewBag.NoContentText = Translator.Dictionary["NoYearMoves"];
+	ViewBag.NoContentText = Context.Translate("NoYearMoves");
 	ViewBag.TableLgSize = 6;
 	ViewBag.TableSmSize = 8;
 
 	var start = new YearUnit(Model.Account.Start);
-	var end = new YearUnit(Model.Account.End ?? Service.Current.Now);
+	var end = new YearUnit(Model.Account.End ?? Context.GetService().Current.Now);
 	var current = new YearUnit(Model.Year.Time);
 
 	var pages = new Pages(start, end, current, 5);
@@ -28,10 +24,10 @@
 
 @section TableHeader{
 	<tr class="row">
-		<th class="col-sm-3 text-center">@Translator.Dictionary["Month"]</th>
-		<th class="col-sm-3 text-center">@Translator.Dictionary["In"]</th>
-		<th class="col-sm-3 text-center">@Translator.Dictionary["Out"]</th>
-		<th class="col-sm-3 text-center">@Translator.Dictionary["Total"]</th>
+		<th class="col-sm-3 text-center">@Context.Translate("Month")</th>
+		<th class="col-sm-3 text-center">@Context.Translate("In")</th>
+		<th class="col-sm-3 text-center">@Context.Translate("Out")</th>
+		<th class="col-sm-3 text-center">@Context.Translate("Total")</th>
 	</tr>
 }
 
@@ -40,7 +36,7 @@
 	<tr class="row">
 		<td class="col-sm-3">
 			<a href="@Url.Action("ShowMoves", new {id = month.Number})">
-				@Translator.GetMonthName(month.Number % 100)
+				@Context.GetMonthName(month.Number % 100)
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">

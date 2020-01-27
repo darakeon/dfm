@@ -1,67 +1,33 @@
 ﻿using System;
-using System.Web;
 using DFM.Authentication;
 using DFM.BusinessLogic;
 using DFM.BusinessLogic.Helpers;
-using DFM.MVC.Helpers.Global;
-using DFM.MVC.Models;
+using DFM.MVC.Starters.Routes;
 using Keon.MVC.Cookies;
+using Microsoft.AspNetCore.Http;
 using TicketType = DFM.Entities.Enums.TicketType;
 
 namespace DFM.MVC.Helpers
 {
 	public class Service
 	{
-		public static ServiceAccess Access =
-			new ServiceAccess(getTicket, getPath);
-
-		public static Current Current => Access?.Current;
-
-		private static HttpRequest request => HttpContext.Current.Request;
-
-		private static String getPath(PathType pathType)
+		public Service(GetContext getContext)
 		{
-			switch (pathType)
-			{
-				case PathType.PasswordReset:
-					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.Default,
-						new
-						{
-							action = "PasswordReset",
-							controller = "Tokens"
-						}
-					);
-
-				case PathType.UserVerification:
-					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.Default,
-						new
-						{
-							action = "UserVerification",
-							controller = "Tokens"
-						}
-					);
-
-				case PathType.DisableToken:
-					return BaseSiteModel.Url.RouteUrl(
-						RouteNames.Default,
-						new
-						{
-							action = "Disable",
-							controller = "Tokens"
-						}
-					);
-
-				default:
-					throw new NotImplementedException();
-			}
+			this.getContext = getContext;
+			Access = new ServiceAccess(getTicket, getPath, getUrl);
 		}
 
-		private static ClientTicket getTicket(Boolean remember)
+		private readonly GetContext getContext;
+		private HttpContext context => getContext();
+		private HttpRequest request => context.Request;
+
+		public ServiceAccess Access;
+		public Current Current => Access?.Current;
+
+		private ClientTicket getTicket(Boolean remember)
 		{
-			var type = request.Url.AbsolutePath
-					.ToLower().StartsWith("/api")
+			var type = request.Path.Value
+				.ToLower().StartsWith("/api")
 				? TicketType.Mobile
 				: TicketType.Browser;
 
@@ -70,19 +36,37 @@ namespace DFM.MVC.Helpers
 			return new ClientTicket(key, type);
 		}
 
-		private static String getKey(TicketType type, Boolean remember)
+		private String getKey(TicketType type, Boolean remember)
 		{
-			switch (type)
+			return type switch
 			{
-				case TicketType.Browser:
-					return BrowserId.Get(remember);
+				TicketType.Browser => BrowserId.Get(() => context, remember),
+				TicketType.Mobile => request.Headers["ticket"],
+				TicketType.Local => throw new NotImplementedException(),
+				_ => throw new NotImplementedException()
+			};
+		}
 
-				case TicketType.Mobile:
-					return request.Headers["ticket"];
+		private String getPath(PathType pathType)
+		{
+			return Route.GetUrl<RouteDefault>
+				("Tokens", getAction(pathType));
+		}
 
-				default:
-					throw new NotImplementedException();
-			}
+		private String getAction(PathType pathType)
+		{
+			return pathType switch
+			{
+				PathType.PasswordReset => "PasswordReset",
+				PathType.UserVerification => "UserVerification",
+				PathType.DisableToken => "Disable",
+				_ => throw new NotImplementedException()
+			};
+		}
+
+		private String getUrl()
+		{
+			return $"{request.Scheme}://{request.Host}";
 		}
 	}
 }

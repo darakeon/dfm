@@ -1,6 +1,5 @@
 ﻿using System;
 using DFM.BusinessLogic.Response;
-using DFM.MVC.Helpers.Global;
 using DFM.MVC.Helpers.Models;
 
 namespace DFM.MVC.Areas.Account.Models
@@ -19,8 +18,8 @@ namespace DFM.MVC.Areas.Account.Models
 
 		public String Date =>
 			String.Format(
-				Translator.Dictionary["ShortDateFormat"],
-				Translator.Dictionary["Summary"],
+				translator["ShortDateFormat"],
+				translator["Summary"],
 				Year.Time
 			);
 	}

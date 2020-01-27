@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web.Mvc;
 using Keon.MVC.Forms;
 using DFM.BusinessLogic.Exceptions;
 using DFM.BusinessLogic.Helpers;
 using DFM.BusinessLogic.Response;
 using DFM.Entities.Bases;
 using DFM.Entities.Enums;
-using DFM.MVC.Helpers.Global;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DFM.MVC.Areas.Account.Models
 {
 	public abstract class BaseMovesModel : BaseAccountModel
 	{
 		private readonly IList<AccountListItem> accountList;
-
 
 		private BaseMovesModel()
 		{
@@ -78,8 +76,8 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			NatureSelectList =
 				transferIsPossible
-					? SelectListExtension.CreateSelect(Translator.GetEnumNames<MoveNature>())
-					: SelectListExtension.CreateSelect(Translator.GetEnumNames<PrimalMoveNature>());
+					? SelectListExtension.CreateSelect(translator.GetEnumNames<MoveNature>())
+					: SelectListExtension.CreateSelect(translator.GetEnumNames<PrimalMoveNature>());
 		}
 
 		private void makeCategoryList()
@@ -226,7 +224,7 @@ namespace DFM.MVC.Areas.Account.Models
 			}
 			catch (CoreError e)
 			{
-				errors.Add(Translator.Dictionary[e]);
+				errors.Add(translator[e]);
 			}
 
 			return errors;
