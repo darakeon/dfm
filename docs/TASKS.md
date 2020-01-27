@@ -121,9 +121,13 @@ Legend:
 - [ ] Add change language icon to site
 - [ ] Make default language EN if browser is not PT, ES, IT or FR
 
-## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`3`</sup>
+## <a name="4.1.4.3"></a>4.1.4.3 :ant: <sup>`1`</sup>
 - [ ] Make android automated tests
+
+## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`1`</sup>
 - [ ] Replace XML at UI android by compose jetpack
+
+## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`1`</sup>
 - [ ] Transform project into .NET Core
 
 ## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`5`</sup>
