@@ -13,12 +13,12 @@ pub fn task_list() -> Vec<String> {
 }
 
 pub fn update_task_list(version: &Version) {
-	let old_published = anchor(&version.prev);
-	let old_development = anchor(&version.code);
+	let old_published = published(&version.prev);
+	let old_development = development(&version.code);
 	let old_state = state(&version.code);
 
-	let new_published = anchor(&version.code);
-	let new_development = anchor(&version.next);
+	let new_published = published(&version.code);
+	let new_development = development(&version.next);
 	let new_state = state(&version.next);
 
 	let content = fs::read_to_string(PATH)
@@ -30,8 +30,12 @@ pub fn update_task_list(version: &Version) {
 	fs::write(PATH, content).expect("error on tasks recording");
 }
 
-fn anchor(version: &str) -> String {
-	format!("(#{})", version)
+fn published(version: &str) -> String {
+	format!("[go to published version](#{})", version)
+}
+
+fn development(version: &str) -> String {
+	format!("[go to version in development](#{})", version)
 }
 
 fn state(version: &str) -> String {
