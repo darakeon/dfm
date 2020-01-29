@@ -90,11 +90,12 @@ Legend:
 - [ ] If lost authy, send e-mail do remove authy
 - [ ] Use Authy as password
 
-## <a name="4.4.0.1"></a>4.4.0.1 :ant: <sup>`4`</sup>
+## <a name="4.4.0.1"></a>4.4.0.1 :ant: <sup>`5`</sup>
 - [ ] Make DTO use guid, not db id (delete fakeid)
 - [ ] Handle DFMCoreException at Robot
 - [ ] Separate validators from service/repository
 - [ ] Implement entities limits (acc opened, cat enabled, moves/month, active sched)
+- [ ] Separate MVC projects: site and api
 
 ## <a name="4.4.0.0"></a>4.4.0.0 :whale: <sup>`4`</sup>
 - [ ] Put info that you can disabled mobile login if your cellphone is stolen
