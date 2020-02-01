@@ -32,6 +32,9 @@
 		Error on contacting the Pig. It\'s either a internet problem or a system issue.
 		If it\'s the second option, the error is recorded and we will solve it as soon as possible.
 	</string>
+	<string name="body_null">
+		Error on contacting the Pig. The error is recorded and we will solve it as soon as possible.
+	</string>
 	<string name="uninvited">You are uninvited!</string>
 
 	<!-- Login -->

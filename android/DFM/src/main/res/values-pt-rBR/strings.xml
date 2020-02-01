@@ -31,6 +31,9 @@
 		Erro ao chamar o Porquinho. Pode ser um problema de internet ou do sistema.
 		Caso seja o segundo, o erro foi registrado e será resolvido o mais breve possível.
 	</string>
+	<string name="body_null">
+		Erro ao chamar o Porquinho. O erro foi registrado e será resolvido o mais breve possível.
+	</string>
 	<string name="uninvited">Tchau!</string>
 
 	<!-- Login -->

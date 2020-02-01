@@ -38,7 +38,7 @@ internal class ResponseHandler<T>(
 
 		when {
 			body == null ->
-				onError(url, Exception("Null body"))
+				activity.alertError(R.string.body_null)
 
 			body.data == null ->
 				assemblyResponse(body.code, body.error)
