@@ -203,10 +203,10 @@ async function createSchedule(
 	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].id
 	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].id
 	
-	const dateParts = date.split('/')
-	const year = dateParts[2]
+	const dateParts = date.split('-')
+	const year = dateParts[0]
 	const month = dateParts[1]
-	const day = dateParts[0]
+	const day = dateParts[2]
 	
 	return execute(
 		`insert into schedule `

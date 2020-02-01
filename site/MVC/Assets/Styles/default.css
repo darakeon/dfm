@@ -57,3 +57,7 @@ footer {
 	margin: 0;
 	border: none;
 }
+
+input[type="date"] {
+	line-height: 1.25 !important;
+}

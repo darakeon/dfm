@@ -12,29 +12,12 @@
 	<link href="~/Assets/Libs/Themes/bootstrap-@(Model.Theme).min.css?v=@Cfg.Version" rel="stylesheet" type="text/css" id="bootstrap-theme" />
 	<link href="~/Assets/Styles/android.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 	<link href="~/Assets/Styles/default.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
-	<link href="~/Assets/Libs/Datepicker/bootstrap-datetimepicker.css?v=@Cfg.Version" rel="stylesheet" type="text/css" />
 
 	@RenderSection("Styles", false)
 
 	<script src="~/Assets/Libs/Scripts/jquery.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Datepicker/moment.min.js?v=@Cfg.Version" type="text/javascript"></script>
-
 	<script src="~/Assets/Libs/Scripts/bootstrap.min.js?v=@Cfg.Version" type="text/javascript"></script>
-	<script src="~/Assets/Libs/Datepicker/bootstrap-datetimepicker.min.js?v=@Cfg.Version" type="text/javascript"></script>
-
 	<script src="~/Assets/Libs/MaskedMoney/jquery.maskMoney.js?v=@Cfg.Version" type="text/javascript"></script>
-
-	@{
-		var language = Model.Language.ToLower();
-
-		if (language != "en-us")
-		{
-			<script src="~/Assets/Libs/Datepicker/moment-@(language).js?v=@Cfg.Version"></script>
-			<script type="text/javascript">
-				window.language = "@language";
-			</script>
-		}
-	}
 
 	<script src="~/Assets/Scripts/default.js?v=@Cfg.Version" type="text/javascript"></script>
 

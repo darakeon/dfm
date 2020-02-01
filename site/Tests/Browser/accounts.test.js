@@ -74,7 +74,7 @@ describe('Accounts', () => {
 
 		await puppy.createMove(
 			db,
-			'Move to close Account', '16/11/2019', '1,00',
+			'Move to close Account', '2019-11-16', '1,00',
 			category, url, null,
 			user
 		)

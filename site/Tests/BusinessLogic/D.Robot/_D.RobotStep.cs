@@ -103,9 +103,8 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[Given(@"its Date is (\-?\d+\.?\d*) (day|month|year)s? ago")]
 		public void GivenItsDateIsDaysAgo(Int32 count, String frequency)
 		{
-			scheduleInfo.SetDate(
-				current.Now.AddByFrequency(frequency, -count)
-			);
+			scheduleInfo.SetDate(current.Now);
+			scheduleInfo.AddByFrequency(frequency, -count);
 		}
 
 		[Given(@"I run the scheduler")]

@@ -230,9 +230,7 @@ namespace DFM.BusinessLogic.Tests.C.Money
 		[Given(@"I change the move date in (\-?\d+\.?\d*) (day|month|year)s?")]
 		public void GivenIChangeTheMoveDateIn(Int32 count, String frequency)
 		{
-			moveInfo.SetDate(
-				moveInfo.GetDate().AddByFrequency(frequency, count)
-			);
+			moveInfo.AddByFrequency(frequency, count);
 
 			var user = userRepository.GetByEmail(current.Email);
 			var category = categoryRepository.GetByName(mainCategoryName, user);

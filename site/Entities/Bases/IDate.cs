@@ -26,6 +26,11 @@ namespace DFM.Entities.Bases
 			date.Year = (Int16)value.Year;
 		}
 
+		public static void SetDate(this IDate date, String value)
+		{
+			date.SetDate(DateTime.Parse(value));
+		}
+
 		public static Int32 ToMonthYear(this IDate date)
 		{
 			return date.Year * 100 + date.Month;
