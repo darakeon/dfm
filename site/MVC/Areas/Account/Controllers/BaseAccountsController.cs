@@ -1,4 +1,5 @@
-﻿using DFM.MVC.Areas.Account.Models;
+﻿using DFM.Entities.Bases;
+using DFM.MVC.Areas.Account.Models;
 using DFM.MVC.Helpers.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,12 @@ namespace DFM.MVC.Areas.Account.Controllers
 
 			if (ModelState.IsValid)
 			{
+				var yearMonth = model.GenericMove
+					.GetDate().ToString("yyyyMM");
+
 				return RedirectToAction(
 					"ShowMoves", "Reports",
-					new { id = model.Date.ToString("yyyyMM") }
+					new { id = yearMonth }
 				);
 			}
 

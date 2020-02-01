@@ -1,10 +1,19 @@
 ﻿using System;
+using DFM.Entities.Bases;
 
 namespace DFM.BusinessLogic.Tests.Helpers
 {
 	internal static class DateExtension
 	{
-		internal static DateTime AddByFrequency(this DateTime start, String frequency, Int32 qty)
+		internal static void AddByFrequency(this IDate entity, String frequency, Int32 qty)
+		{
+			entity.SetDate(
+				entity.GetDate()
+					.addByFrequency(frequency, qty)
+			);
+		}
+
+		private static DateTime addByFrequency(this DateTime start, String frequency, Int32 qty)
 		{
 			switch (frequency)
 			{

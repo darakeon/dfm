@@ -30,7 +30,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body form')
 
 		await page.type('#Description', 'Move Create Out')
-		await page.type('#Date', '16/11/2019')
+		await puppy.setValue('#Date', '2019-11-16')
 		await page.select('#CategoryName', category)
 		await page.select('#AccountOutUrl', accountOut)
 		await page.type('#Value', '1,00')
@@ -48,7 +48,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body form')
 
 		await page.type('#Description', 'Move Create In')
-		await page.type('#Date', '16/11/2019')
+		await puppy.setValue('#Date', '2019-11-16')
 		await page.select('#CategoryName', category)
 		await page.click('#Nature_In')
 		await page.select('#AccountInUrl', accountIn)
@@ -67,7 +67,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body form')
 
 		await page.type('#Description', 'Move Create Transfer')
-		await page.type('#Date', '16/11/2019')
+		await puppy.setValue('#Date', '2019-11-16')
 		await page.select('#CategoryName', category)
 		await page.click('#Nature_Transfer')
 		await page.select('#AccountOutUrl', accountOut)
@@ -87,7 +87,7 @@ describe('Moves', () => {
 		await page.waitForSelector('#body form')
 
 		await page.type('#Description', 'Move Create Detailed')
-		await page.type('#Date', '16/11/2019')
+		await puppy.setValue('#Date', '2019-11-16')
 		await page.select('#CategoryName', category)
 		await page.select('#AccountOutUrl', accountOut)
 
@@ -109,7 +109,7 @@ describe('Moves', () => {
 	test('Edit', async () => {
 		const id = await puppy.createMove(
 			db,
-			'Move Edit', '16/11/2019', '1,00',
+			'Move Edit', '2019-11-16', '1,00',
 			category, accountOut, null
 		)
 
@@ -130,7 +130,7 @@ describe('Moves', () => {
 	test('Delete', async () => {
 		const id = await puppy.createMove(
 			db,
-			'Move Delete', '16/11/2019', '1,00',
+			'Move Delete', '2019-11-16', '1,00',
 			category, accountOut, null
 		)
 
@@ -149,7 +149,7 @@ describe('Moves', () => {
 	test('Check', async () => {
 		const id = await puppy.createMove(
 			db,
-			'Move Check', '16/11/2019', '1,00',
+			'Move Check', '2019-11-16', '1,00',
 			category, accountOut, null
 		)
 
@@ -171,7 +171,7 @@ describe('Moves', () => {
 	test('Uncheck', async () => {
 		const id = await puppy.createMove(
 			db,
-			'Move Uncheck', '16/11/2019', '1,00',
+			'Move Uncheck', '2019-11-16', '1,00',
 			category, accountOut, null
 		)
 

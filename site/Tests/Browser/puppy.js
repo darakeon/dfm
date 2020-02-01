@@ -26,9 +26,11 @@ async function content(selector) {
 }
 
 async function clear(selector) {
-	await page.evaluate(selector => {
-		document.querySelector(selector).value = "";
-	}, selector);
+	await setValue(selector, "")
+}
+
+async function setValue(selector, value) {
+	await page.$eval(selector, (e, v) => e.value = v, value)
 }
 
 async function logon(email) {
@@ -73,8 +75,7 @@ async function createMove(
 
 	await page.type('#Description', description)
 
-	await clear('#Date')
-	await page.type('#Date', date)
+	await setValue('#Date', date)
 
 	await page.select('#CategoryName', categoryName)
 
@@ -97,10 +98,10 @@ async function createMove(
 	await page.click('#body form button[type="submit"]')
 	await page.waitForSelector('#body')
 
-	const dateParts = date.split('/')
-	const year = dateParts[2]
+	const dateParts = date.split('-')
+	const year = dateParts[0]
 	const month = dateParts[1]
-	const day = dateParts[0]
+	const day = dateParts[2]
 
 	return db.getMoveId(description, year, month, day)
 }
@@ -119,6 +120,7 @@ module.exports = {
 	call,
 	content,
 	clear,
+	setValue,
 	logon,
 	submit,
 	createMove,

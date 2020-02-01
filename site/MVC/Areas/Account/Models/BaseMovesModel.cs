@@ -30,8 +30,8 @@ namespace DFM.MVC.Areas.Account.Models
 		{
 			GenericMove = move;
 
-			if (Date == DateTime.MinValue)
-				Date = now;
+			if (GenericMove.GetDate() == DateTime.MinValue)
+				Date = now.ToShortDateString();
 
 			arrangeDetails();
 		}
@@ -152,9 +152,9 @@ namespace DFM.MVC.Areas.Account.Models
 
 
 		[Required(ErrorMessage = "*")]
-		public DateTime Date
+		public String Date
 		{
-			get => GenericMove.GetDate();
+			get => GenericMove.GetDate().ToString("yyyy-MM-dd");
 			set => GenericMove.SetDate(value);
 		}
 

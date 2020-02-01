@@ -17,14 +17,9 @@
 <div class="row">
 
 	<div class="col-sm-@(rowWidths) form-group">
-		@Html.LabelFor(m => m.Date, Context.Translate("Date"), new {@class = "control-label"})
-		@Html.ValidationMessageFor(m => m.Date)<br/>
-		<div class="input-group date">
-			@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
-			<span class="input-group-addon">
-				<span class="glyphicon glyphicon-calendar" title="@Context.Translate("OpenCalendar")"></span>
-			</span>
-		</div>
+		@Html.LabelFor(m => m.Date, Context.Translate("Date"), new { @class = "control-label" })
+		@Html.ValidationMessageFor(m => m.Date)<br />
+		@Html.TextBoxFor(m => m.Date, new { type = "date", @class = "form-control" })
 	</div>
 
 	@if (useCategories)

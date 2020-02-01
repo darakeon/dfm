@@ -39,7 +39,7 @@ describe('Reports', () => {
 
 		await puppy.createMove(
 			db,
-			'Move for Month', '16/11/2019', '1,00',
+			'Move for Month', '2019-11-16', '1,00',
 			category, accountOut, null,
 			user
 		)
@@ -62,7 +62,7 @@ describe('Reports', () => {
 
 		await puppy.createMove(
 			db,
-			'Move for Year', '16/11/2018', '1,00',
+			'Move for Year', '2018-11-16', '1,00',
 			category, accountOut, null
 		)
 

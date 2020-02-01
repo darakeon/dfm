@@ -31,7 +31,7 @@ describe('Schedules', () => {
 
 		await page.click('#ShowInstallment', category)
 		await page.type('#Description', 'Schedule Create')
-		await page.type('#Date', '16/11/2019')
+		await puppy.setValue('#Date', '2019-11-16')
 		await page.select('#CategoryName', category)
 		await page.select('#AccountOutUrl', accountOut)
 		await page.type('#Value', '1,00')
@@ -47,7 +47,7 @@ describe('Schedules', () => {
 	test('Delete', async () => {
 		const result = await db.createSchedule(
 			1, 0, 0, 1,
-			'Schedule Delete', '16/11/2019', 0, 1,
+			'Schedule Delete', '2019-11-16', 0, 1,
 			category, accountOut, null,
 			user
 		)
