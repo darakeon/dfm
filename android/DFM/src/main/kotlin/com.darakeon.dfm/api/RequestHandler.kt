@@ -1,6 +1,5 @@
 package com.darakeon.dfm.api
 
-import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
 import com.darakeon.dfm.base.BaseActivity
@@ -36,7 +35,7 @@ internal open class RequestHandler(
 			GsonConverterFactory.create()
 
 		return Retrofit.Builder()
-			.baseUrl(getSite())
+			.baseUrl(MainInfo.getSiteUrl(activity))
 			.client(client)
 			.addConverterFactory(jsonConverter)
 			.build()
@@ -52,16 +51,6 @@ internal open class RequestHandler(
 			.newBuilder()
 			.addHeader("ticket", activity.ticket)
 			.build()
-
-	private fun getSite() : String {
-		if (!BuildConfig.DEBUG)
-			return "https://dontflymoney.com/"
-
-		val localAddress =
-			activity.getString(R.string.local_address)
-
-		return "http://$localAddress/"
-	}
 
 	internal fun <T> call(response: Call<Body<T>>, onSuccess: (T) -> Unit) {
 		if (Internet.isOffline(activity)) {

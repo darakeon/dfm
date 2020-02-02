@@ -70,6 +70,42 @@
 			android:layout_height="wrap_content"
 			android:onClick="saveSettings" />
 	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="bottom">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/site_label"
+			android:text="@string/site" />
+
+		<TextView
+			android:id="@+id/site_value"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="end" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="bottom">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/version_label"
+			android:text="@string/version" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="end"
+			android:id="@+id/version_value" />
+	</LinearLayout>
 
 	<include layout="@layout/bottom_menu" />
 
