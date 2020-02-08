@@ -5,7 +5,7 @@
 	var buttonList = (List<Button>)ViewBag.Buttons;
 }
 
-@Html.Partial("ValidationSummary")
+@await Html.PartialAsync("ValidationSummary")
 
 <h1>@ViewBag.Title</h1><hr />
 

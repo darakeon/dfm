@@ -4,7 +4,7 @@
 
 <html>
 <head>
-	<title>@Html.Partial("Title")</title>
+	<title>@await Html.PartialAsync("Title")</title>
 
 	<link rel="shortcut icon" type="image/ico" href="~/Assets/Images/pig.ico" />
 	<meta property="og:image" content="https://dontflymoney.com/Assets/Images/face-pig.png" />
@@ -27,14 +27,14 @@
 </head>
 <body>
 
-	@Html.Partial("Header")
+	@await Html.PartialAsync("Header")
 
 	<div id="body" class="container">
-		@Html.Partial("Wizard")
+		@await Html.PartialAsync("Wizard")
 		@RenderBody()
 	</div>
 
-	@Html.Partial("Footer")
+	@await Html.PartialAsync("Footer")
 
 </body>
 </html>

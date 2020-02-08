@@ -12,11 +12,6 @@
 		$("#" + fieldId).val(fieldValue);
 	});
 
-	$(".input-group.date").datetimepicker({
-		format: 'DD/MM/YYYY',
-		locale: window.language
-	});
-
 	$("input.number").each(function() {
 		$(this).maskMoney({
 			symbol: "",

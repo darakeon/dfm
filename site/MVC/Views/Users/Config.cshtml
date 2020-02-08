@@ -58,7 +58,7 @@
 		var lower = name.ToLower();
 
 		<div class="tab-pane" id="@lower" data-form="@Url.Action($"Config{name}")">
-			@Html.Partial($"Config{name}")
+			@await Html.PartialAsync($"Config{name}")
 		</div>
 	}
 </div>

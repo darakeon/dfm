@@ -1,6 +1,6 @@
 ﻿@model BaseMovesModel
 
-@Html.Partial("DetailTabs")
+@await Html.PartialAsync("DetailTabs")
 
 <div class="tab-content">
 
@@ -10,9 +10,9 @@
 
 	<div class="tab-pane @(Model.IsDetailed ? "active" : "") form-group form-group-sm" id="detailed">
 		<table class="table table-condensed">
-			@Html.Partial("DetailHeader")
-			@Html.Partial("DetailBody")
-			@Html.Partial("DetailFooter")
+			@await Html.PartialAsync("DetailHeader")
+			@await Html.PartialAsync("DetailBody")
+			@await Html.PartialAsync("DetailFooter")
 		</table>
 	</div>
 

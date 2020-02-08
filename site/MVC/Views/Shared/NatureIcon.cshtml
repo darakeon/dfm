@@ -8,6 +8,6 @@
 	case MoveNature.In:
 	case MoveNature.Out:
 	default:
-		@Html.Partial("Sign", Model == MoveNature.In)
+		@await Html.PartialAsync("Sign", Model == MoveNature.In)
 		break;
 }

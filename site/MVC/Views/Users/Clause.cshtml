@@ -19,7 +19,7 @@
 	<ol>
 		@foreach (var clause in Model.Items)
 		{
-			<li>@Html.Partial("Clause", clause)</li>
+			<li>@await Html.PartialAsync("Clause", clause)</li>
 		}
 	</ol>
 }

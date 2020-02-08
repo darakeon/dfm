@@ -40,13 +40,13 @@
 			</a>
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
+			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(month.In, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(-month.Out, Model.Language, true))
+			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(-month.Out, Model.Language, true))
 		</td>
 		<td class="col-sm-3 text-right">
-			@Html.Partial("ValueWithSign", new ValueWithSign(month.Total, Model.Language))
+			@await Html.PartialAsync("ValueWithSign", new ValueWithSign(month.Total, Model.Language))
 		</td>
 	</tr>
 
@@ -57,11 +57,11 @@
 		<div class="col-lg-2 col-sm-2"></div>
 
 		<div class="col-lg-8 col-sm-8 text-center">
-			@Html.Partial("Pagination", pages)
+			@await Html.PartialAsync("Pagination", pages)
 		</div>
 
 		<div class="col-lg-2 col-sm-2">
-			@Html.Partial("Total")
+			@await Html.PartialAsync("Total")
 		</div>
 	</div>
 }

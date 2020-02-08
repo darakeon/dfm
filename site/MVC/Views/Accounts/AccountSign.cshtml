@@ -1,5 +1,5 @@
 ﻿@model AccountSign
 
 glyphicon
-glyphicon-@Html.Partial("AccountSignIcon", Model)
-text-@Html.Partial("AccountSignColor", Model)
+glyphicon-@await Html.PartialAsync("AccountSignIcon", Model)
+text-@await Html.PartialAsync("AccountSignColor", Model)

@@ -52,11 +52,11 @@
 
 			<td class="col-sm-1"></td>
 			<td class="col-sm-2 text-right">
-				<span class="@Html.Partial("AccountSign", account.Sign) pull-left"
+				<span class="@await Html.PartialAsync("AccountSign", account.Sign) pull-left"
 					  data-toggle="tooltip" data-placement="bottom" title="@sign"
 					  data-original-title="@sign"></span>
 
-				@Html.Partial("ValueWithSign",
+				@await Html.PartialAsync("ValueWithSign",
 					new ValueWithSign(account.Total, Model.Language))
 			<td class="col-sm-1"></td>
 

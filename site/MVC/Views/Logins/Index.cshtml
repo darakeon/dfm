@@ -25,7 +25,7 @@
 		<td class="col-sm-4">@login.Creation</td>
 
 		<td class="col-sm-4 text-center">
-			<span class="label label-@Html.Partial("LoginType", login.Type)">
+			<span class="label label-@await Html.PartialAsync("LoginType", login.Type)">
 				@Context.Translate(login.Type.ToString())
 			</span>
 		</td>
@@ -40,7 +40,7 @@
 		}*@
 
 		<td class="col-sm-4 text-center">
-			@Html.Partial("MicroForm", 
+			@await Html.PartialAsync("MicroForm", 
 				MicroForm.WithGlyph(Context, "off", "LogOff")
 					.AddIdUrl("Delete", login.Key)
 			)

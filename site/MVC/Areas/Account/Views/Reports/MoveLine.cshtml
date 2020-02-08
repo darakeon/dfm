@@ -17,7 +17,7 @@
 	<td class="text-right">
 		@if (move.InUrl == Model.CurrentAccountUrl)
 		{
-			@Html.Partial("ValueWithSign",
+			@await Html.PartialAsync("ValueWithSign",
 				new ValueWithSign(move.Total, Model.Language))
 		}
 	</td>
@@ -25,7 +25,7 @@
 	<td class="text-right">
 		@if (move.OutUrl == Model.CurrentAccountUrl)
 		{
-			@Html.Partial("ValueWithSign",
+			@await Html.PartialAsync("ValueWithSign",
 				new ValueWithSign(-move.Total, Model.Language))
 		}
 	</td>
@@ -48,7 +48,7 @@
 	</td>
 
 	<td class="col-sm-1 text-center">
-		@Html.Partial("MicroForm",
+		@await Html.PartialAsync("MicroForm",
 			MicroForm.WithGlyph(Context, "trash", "Delete")
 				.AddIdUrl("Moves", "Delete", move.ID)
 			)
@@ -63,7 +63,7 @@
 			: PrimalMoveNature.In;
 
 		<td class="col-sm-1 text-center">
-			@Html.Partial("MicroForm",
+			@await Html.PartialAsync("MicroForm",
 				MicroForm.WithGlyph(Context, glyph, action)
 					.AddIdUrl("Moves", action, move.ID)
 					.AddHidden("nature", nature)

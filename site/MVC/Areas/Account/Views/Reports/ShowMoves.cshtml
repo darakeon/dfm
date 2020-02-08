@@ -26,6 +26,8 @@
 		var descriptionSize = 2
 			+ (Model.CanCheck ? 0 : 2)
 			+ (Model.IsUsingCategories ? 0 : 2);
+
+		var colspan = Model.CanCheck ? 3 : 2;
 	}
 
 	<tr class="row">
@@ -45,7 +47,7 @@
 			<th class="col-sm-1 text-center">@Context.Translate("Status")</th>
 		}
 
-		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@(Model.CanCheck ? 3 : 2)">
+		<th class="col-sm-@(Model.CanCheck ? 3 : 2) text-center" colspan="@colspan">
 			@Context.Translate("TODO")
 		</th>
 	</tr>
@@ -53,7 +55,7 @@
 
 @foreach (var subModel in Model.MoveList)
 {
-	@Html.Partial("MoveLine", subModel)
+	@await Html.PartialAsync("MoveLine", subModel)
 }
 
 @section Footer {
@@ -61,11 +63,11 @@
 		<div class="col-lg-2 col-sm-2"></div>
 
 		<div class="col-lg-8 col-sm-8 text-center">
-			@Html.Partial("Pagination", pages)
+			@await Html.PartialAsync("Pagination", pages)
 		</div>
 
 		<div class="col-lg-2 col-sm-2">
-			@Html.Partial("Total")
+			@await Html.PartialAsync("Total")
 		</div>
 	</div>
 }

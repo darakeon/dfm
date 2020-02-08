@@ -16,7 +16,7 @@
 <div class="">
 
 	<div class="contract">
-		@Html.Partial("Clause", Model.Contract[Model.Language])
+		@await Html.PartialAsync("Clause", Model.Contract[Model.Language])
 	</div>
 
 	@if (canSign)

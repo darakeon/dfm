@@ -24,11 +24,11 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					@Html.Partial("MenuIssues")
+					@await Html.PartialAsync("MenuIssues")
 				</li>
 
 				<li>
-					@Html.Partial("MenuTasks")
+					@await Html.PartialAsync("MenuTasks")
 				</li>
 
 				@if (!Model.IsAuthenticated)
@@ -74,12 +74,12 @@
 					}
 
 					<li>
-						@Html.Partial("MenuSettings")
+						@await Html.PartialAsync("MenuSettings")
 					</li>
 
 					<li>
 						<a>
-							@Html.Partial("MicroForm",
+							@await Html.PartialAsync("MicroForm",
 								MicroForm.WithGlyph(Context, "off", "Logoff")
 									.AddRouteUrl<RouteDefault>("Users", "LogOff")
 							)

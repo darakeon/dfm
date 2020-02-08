@@ -42,7 +42,7 @@ else
 					@menu.Resource
 				</div>
 				<div class="col-md-2 text-right">
-					@Html.Partial(menu.Partial)
+					@await Html.PartialAsync(menu.Partial)
 				</div>
 			</div>
 		}

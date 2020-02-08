@@ -30,7 +30,7 @@
 		</td>
 
 		<td class="col-sm-2 text-center">
-			@Html.Partial("Status", category.Active)
+			@await Html.PartialAsync("Status", category.Active)
 		</td>
 
 		<td class="col-sm-2 text-center">
@@ -45,14 +45,14 @@
 		<td class="col-sm-2 text-center">
 			@if (category.Active)
 			{
-				@Html.Partial("MicroForm",
+				@await Html.PartialAsync("MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Disable")
 						.AddIdUrl("Disable", category.Name)
 				)
 			}
 			else
 			{
-				@Html.Partial("MicroForm",
+				@await Html.PartialAsync("MicroForm",
 					MicroForm.WithGlyph(Context, "eye-open", "Enable")
 						.AddIdUrl("Enable", category.Name)
 				)

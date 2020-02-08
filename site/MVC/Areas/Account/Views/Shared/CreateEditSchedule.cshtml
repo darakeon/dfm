@@ -15,8 +15,8 @@
 
 @if (Model.BlockScreen)
 {
-	@Html.Partial("BlockedFormContent")
-	@section Footer { @Html.Partial("BlockedFormFooter") }
+	@await Html.PartialAsync("BlockedFormContent")
+	@section Footer { @await Html.PartialAsync("BlockedFormFooter") }
 }
 else
 {
@@ -39,17 +39,17 @@ else
 		</div>
 	}
 
-	@Html.Partial("ScheduleFields")
+	@await Html.PartialAsync("ScheduleFields")
 
-	@Html.Partial("MoveMainData")
-
-	<hr />
-
-	@Html.Partial("NatureAndAccount")
+	@await Html.PartialAsync("MoveMainData")
 
 	<hr />
 
-	@Html.Partial("ValueAndDetail")
+	@await Html.PartialAsync("NatureAndAccount")
+
+	<hr />
+
+	@await Html.PartialAsync("ValueAndDetail")
 
 	@section Footer {
 		<button type="submit" class="btn btn-success">
