@@ -53,16 +53,16 @@
 		<td class="col-sm-2 text-center">@(schedule.InName ?? " ")</td>
 		<td class="col-sm-2 text-center">@(schedule.OutName ?? " ")</td>
 
-		<td  class="col-sm-1 text-@Html.Partial("NatureColor", schedule.Nature) text-right">
+		<td  class="col-sm-1 text-@await Html.PartialAsync("NatureColor", schedule.Nature) text-right">
 			<span
-				class="@Html.Partial("NatureIcon", schedule.Nature)"
+				class="@await Html.PartialAsync("NatureIcon", schedule.Nature)"
 				title="@Context.Translate(schedule.Nature.ToString())"
 			></span>
 			@schedule.Total.ToMoney(Model.Language)
 		</td>
 
 		<td class="col-sm-1 text-center">
-			@Html.Partial("MicroForm",
+			@await Html.PartialAsync("MicroForm",
 				MicroForm.WithGlyph(Context, "trash", "Delete")
 					.AddIdUrl("Delete", schedule.ID)
 			)

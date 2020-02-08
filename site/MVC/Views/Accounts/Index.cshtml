@@ -51,12 +51,12 @@
 		<td class="col-sm-1"></td>
 		<td class="col-sm-2 text-right">
 			<span
-				class="@Html.Partial("AccountSign", account.Sign) pull-left"
+				class="@await Html.PartialAsync("AccountSign", account.Sign) pull-left"
 				data-toggle="tooltip" data-placement="bottom" title="@sign"
 				data-original-title="@sign"
 			></span>
 
-			@Html.Partial("ValueWithSign",
+			@await Html.PartialAsync("ValueWithSign",
 				new ValueWithSign(account.Total, Model.Language))
 		</td>
 		<td class="col-sm-1"></td>
@@ -73,14 +73,14 @@
 		<td class="col-sm-1 text-center">
 			@if (account.HasMoves)
 			{
-				@Html.Partial("MicroForm",
+				@await Html.PartialAsync("MicroForm",
 					MicroForm.WithGlyph(Context, "eye-close", "Close")
 						.AddIdUrl("Close", account.Url)
 				)
 			}
 			else
 			{
-				@Html.Partial("MicroForm",
+				@await Html.PartialAsync("MicroForm",
 					MicroForm.WithGlyph(Context, "trash", "Delete")
 						.AddIdUrl("Delete", account.Url)
 				)

@@ -6,6 +6,6 @@
 
 @if (scheduleModel != null)
 {
-	@Html.Partial("../Schedules/ExclusiveFields", scheduleModel)
+	@await Html.PartialAsync("../Schedules/ExclusiveFields", scheduleModel)
 	<hr/>
 }

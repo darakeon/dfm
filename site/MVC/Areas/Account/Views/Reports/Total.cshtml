@@ -2,7 +2,7 @@
 
 <div class="well well-sm text-center">
 	<h6>@Context.Translate("Total")</h6>
-	@Html.Partial("ValueWithSign",
+	@await Html.PartialAsync("ValueWithSign",
 		new ValueWithSign(Model.Total, Model.Language)
 	)
 </div>

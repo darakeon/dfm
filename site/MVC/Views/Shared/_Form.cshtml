@@ -26,7 +26,7 @@
 				@Html.AntiForgeryToken()
 
 				<div class="panel-body">
-					@Html.Partial("ValidationSummary")
+					@await Html.PartialAsync("ValidationSummary")
 
 					@RenderBody()
 				</div>

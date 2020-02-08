@@ -129,7 +129,7 @@ Legend:
 - [ ] Replace XML at UI android by compose jetpack
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`1`</sup>
-- [ ] `200112>......` Transform project into .NET Core
+- [x] `200112>200208` Transform project into .NET Core
 
 ## <a name="4.1.4.0"></a>4.1.4.0 :sheep: <sup>`5`</sup>
 - [x] `200112>200112` Enable to check moves on closed accounts
