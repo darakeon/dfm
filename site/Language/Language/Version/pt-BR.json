@@ -1,4 +1,7 @@
 {
+	"4.1.4.1": [
+		"Mudada ferramenta principal usada no sistema para facilitar teste, trazendo menos chances de erros"
+	],
 	"4.1.4.0": [
 		"Movimentação pode ser verificada diferente em duas contas diferentes",
 		"Editar uma movimentação retira a marcação de verificada",

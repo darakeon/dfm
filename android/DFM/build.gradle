@@ -11,8 +11,8 @@ android {
 		// read the explanation
 		// at the end of the file
 		//noinspection HighAppVersionCode
-		versionCode 2011000039
-		versionName "4.1.4.0"
+		versionCode 2011000040
+		versionName "4.1.4.1"
 
 		minSdkVersion 18
 		targetSdkVersion 28
