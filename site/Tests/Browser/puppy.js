@@ -11,7 +11,7 @@ async function call(path) {
 	if (status == 200)
 		return result
 
-	await page.screenshot({ path:'log/error.png' })
+	await imageLog('error')
 	throw status
 }
 
@@ -105,6 +105,16 @@ async function createMove(
 	return db.getMoveId(description, year, month, day)
 }
 
+async function imageLog(name) {
+	await page.setViewport({
+		width: 1024,
+		height: 768,
+		deviceScaleFactor: 1,
+	})
+	
+	await page.screenshot({path: 'log/' + name + '.png'})
+}
+
 module.exports = {
 	call,
 	content,
@@ -112,4 +122,5 @@ module.exports = {
 	logon,
 	submit,
 	createMove,
+	imageLog,
 }
