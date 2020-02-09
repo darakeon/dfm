@@ -30,6 +30,24 @@ namespace DFM.MVC.Models
 			set => setLimit(value);
 		}
 
+		public String YellowLimit
+		{
+			get => Account.YellowLimit?.ToString("0.00");
+			set =>
+				Account.YellowLimit = value == null
+					? default(Decimal?)
+					: Decimal.Parse(value);
+		}
+
+		public String RedLimit
+		{
+			get => Account.RedLimit?.ToString("0.00");
+			set =>
+				Account.RedLimit = value == null
+					? default(Decimal?)
+					: Decimal.Parse(value);
+		}
+
 		private void setLimit(Boolean hasLimit)
 		{
 			if (hasLimit)

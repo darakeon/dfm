@@ -196,10 +196,13 @@ namespace DFM.MVC.Areas.Account.Models
 		public Boolean IsDetailed { get; set; }
 
 
-		public Decimal? Value
+		public String Value
 		{
-			get => GenericMove.Value;
-			set => GenericMove.Value = value;
+			get => GenericMove.Value?.ToString("0.00");
+			set =>
+				GenericMove.Value = value == null
+					? default(Decimal?)
+					: Decimal.Parse(value);
 		}
 
 		public Boolean ShowNoCategories => IsUsingCategories && !CategorySelectList.Any();
@@ -278,8 +281,15 @@ namespace DFM.MVC.Areas.Account.Models
 
 			public DetailInfo Detail { get; set; }
 			public Boolean Send { get; set; }
+
+			public String Value
+			{
+				get => Detail.Value.ToString("0.00");
+				set =>
+					Detail.Value = value == null
+						? 0
+						: Decimal.Parse(value);
+			}
 		}
-
-
 	}
 }
