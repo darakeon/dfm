@@ -35,7 +35,7 @@
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.ttf" />
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff" />
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff2" />
-    <None Remove="Assets\Libs\MaskedMoney\jquery.maskMoney.js" />
+    <None Remove="Assets\Libs\MaskedMoney\jquery.moneyMask.js" />
     <None Remove="Assets\Libs\Scripts\bootstrap.js" />
     <None Remove="Assets\Libs\Scripts\bootstrap.min.js" />
     <None Remove="Assets\Libs\Scripts\jquery.intellisense.js" />
@@ -115,7 +115,7 @@
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\MaskedMoney\jquery.maskMoney.js">
+    <Content Include="Assets\Libs\MaskedMoney\jquery.moneyMask.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Libs\Scripts\bootstrap.js">
