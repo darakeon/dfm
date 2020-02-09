@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -7,7 +8,12 @@ namespace DFM.MVC
 	{
 		public static void Main(string[] args)
 		{
-			CreateHostBuilder(args).Build().Run();
+			var host = CreateHostBuilder(args).Build();
+
+			if (args.Contains("--start-and-end"))
+				Startup.StopHostAfterConfig(host);
+
+			host.Run();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

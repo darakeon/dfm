@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.4.1" />
     <PackageReference Include="bootstrap.less" Version="3.4.1" />
     <PackageReference Include="jQuery" Version="3.4.1" />
     <PackageReference Include="jquery-qrcode" Version="1.0.0" />
@@ -14,9 +15,5 @@
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Moment.js" Version="2.24.0" />
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="$(ProjectDir)/copy-to-mvc.bat" />
-  </Target>
 
 </Project>

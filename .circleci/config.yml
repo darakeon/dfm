@@ -1,0 +1,48 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build:
+    executor:
+      name: win/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
+          requires:
+            - checkout
+      - run:
+          name: dependencies
+          command: dotnet.exe restore site\DFM.sln
+          requires:
+            - restore_cache
+      - run:
+          name: copy_assets
+          command: sh .circleci/copy_assets.sh
+          requires:
+            - dependencies
+      - save_cache:
+          paths:
+            - C:\Users\circleci\.nuget\packages
+          key: dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
+          requires:
+            - dependencies
+      - run:
+          name: build
+          command: dotnet.exe publish -c Release -r win10-x64 site\DFM.sln
+          requires:
+            - copy_assets
+      - run:
+          name: rearrange
+          command: sh .circleci/bring_site_to_root.sh
+          requires:
+            - build
+      - run:
+          name: execute-mvc
+          command: .\DFM.MVC.exe --start-and-end
+          requires:
+            - rearrange
