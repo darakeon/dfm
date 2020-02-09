@@ -1,6 +1,8 @@
-<img src="site/MVC/Assets/Images/pig.svg" width="85" align="left"/>
+<img src="site/MVC/Assets/Images/pig.svg" width="85" align="right"/>
 
 # Don't fly Money
+
+![darakeon](https://circleci.com/gh/darakeon/dfm.svg?style=svg)
 
 This is a project that was been build in private Hg repository on
 bitbucket since 2010. Inspired by just wonderful people, in the middle
@@ -74,6 +76,7 @@ itself. Well, we are always our most demanding client.
 - [Visual Studio Community](https://www.visualstudio.com/vs/)
 - [Resharper](https://www.jetbrains.com/resharper/)
 - [Git](https://git-scm.com/)
+- [CircleCI](https://circleci.com/)
 - [GitExtensions](https://github.com/gitextensions/gitextensions)
 - [KDiff3](https://www.kde.org/applications/development/kdiff3/)
 - [Notepad++](https://notepad-plus-plus.org/)

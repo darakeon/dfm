@@ -35,7 +35,6 @@
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.ttf" />
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff" />
     <None Remove="Assets\Libs\fonts\glyphicons-halflings-regular.woff2" />
-    <None Remove="Assets\Libs\MaskedMoney\jquery.moneyMask.js" />
     <None Remove="Assets\Libs\Scripts\bootstrap.js" />
     <None Remove="Assets\Libs\Scripts\bootstrap.min.js" />
     <None Remove="Assets\Libs\Scripts\jquery.intellisense.js" />
@@ -115,10 +114,7 @@
     <Content Include="Assets\Libs\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\MaskedMoney\jquery.moneyMask.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\bootstrap.js">
+    <Content Include="Assets\Libs\Scripts\jquery.moneyMask.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Libs\Scripts\bootstrap.min.js">
@@ -127,16 +123,10 @@
     <Content Include="Assets\Libs\Scripts\jquery.intellisense.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Libs\Scripts\jquery.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Libs\Scripts\jquery.qrcode.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Libs\Scripts\jquery.unobtrusive-ajax.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Libs\Scripts\jquery.unobtrusive-ajax.min.js">

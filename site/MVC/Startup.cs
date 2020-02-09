@@ -60,6 +60,15 @@ namespace DFM.MVC
 			Route.Execute(app);
 
 			Mobile.ConfigureIP(env);
+
+			hostToEnd?.StopAsync();
+		}
+
+		private static IHost hostToEnd;
+
+		public static void StopHostAfterConfig(IHost host)
+		{
+			hostToEnd = host;
 		}
 	}
 }
