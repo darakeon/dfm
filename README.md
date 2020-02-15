@@ -2,7 +2,7 @@
 
 # Don't fly Money
 
-![darakeon](https://circleci.com/gh/darakeon/dfm.svg?style=svg)
+[![darakeon](https://circleci.com/gh/darakeon/dfm.svg?style=svg)](.circleci/config.yml)
 
 This is a project that was been build in private Hg repository on
 bitbucket since 2010. Inspired by just wonderful people, in the middle
