@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdkVersion 28
+	compileSdkVersion 29
 	buildToolsVersion '28.0.3'
 
 	defaultConfig {
@@ -15,7 +15,7 @@ android {
 		versionName "4.1.4.1"
 
 		minSdkVersion 18
-		targetSdkVersion 28
+		targetSdkVersion 29
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
@@ -46,8 +46,6 @@ android {
 }
 
 dependencies {
-	implementation "com.android.support:support-v4:$support_version"
-	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.google.android.gms:play-services-iid:$play_version"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
