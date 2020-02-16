@@ -18,6 +18,11 @@ android {
 		targetSdkVersion 30
 	}
 
+	buildFeatures {
+		// Enables Jetpack Compose for this module
+		compose true
+	}
+
 	signingConfigs {
 		release {
 			storeFile file("../../.circleci/android/ci.keystore")
@@ -58,6 +63,15 @@ android {
 
 	kotlinOptions {
 		jvmTarget = "$java_version"
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	kotlinOptions {
+		jvmTarget = "1.8"
 	}
 }
 

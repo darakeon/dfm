@@ -62,7 +62,7 @@ abstract class BaseActivity: Activity(), ApiCaller {
 
 	open fun clearAuth() = auth?.clear()
 
-	protected abstract val contentView: Int
+	protected open val contentView: Int
 	protected open val title: Int = 0
 
 	protected open val refresh: SwipeRefreshLayout? = null
@@ -84,7 +84,7 @@ abstract class BaseActivity: Activity(), ApiCaller {
 		auth = Authentication(this)
 		ui = UIHandler(this)
 
-		handleScreen()
+		//handleScreen()
 		setMenuLongClicks()
 		processQuery()
 		customizeBottomMenu()
@@ -104,11 +104,11 @@ abstract class BaseActivity: Activity(), ApiCaller {
 	}
 
 	private fun setMenuLongClicks() {
-		val logout = action_logout ?: welcome_logout
+		/*val logout = action_logout ?: welcome_logout
 		logout?.setOnLongClickListener {
 			logout(api)
 			true
-		}
+		}*/
 	}
 
 	private fun processQuery() {

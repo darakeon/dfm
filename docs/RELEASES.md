@@ -14,6 +14,8 @@ Legend:
 - :sheep:: at least one little change, as a change at an existing feature (increases third number)
 - :ant:: the developer is improving stuff or fixing some sh\*t it did (increases last number)
 
+- [ ] `200215>......` Replace XML at UI android by compose jetpack
+
 ## <a name="5.0.0.0"></a>5.0.0.0 :dragon: <sup>`1`</sup>
 - [ ] Adjust [accessibilitity]
 
