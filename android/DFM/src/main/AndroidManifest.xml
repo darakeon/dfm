@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.darakeon.dfm"
-		  xmlns:android="http://schemas.android.com/apk/res/android"
-		  xmlns:tools="http://schemas.android.com/tools"
-		  android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.darakeon.dfm"
+	android:installLocation="auto">
+
 	<uses-permission
 		android:name="android.permission.INTERNET"
-		android:protectionLevel="signature"/>
+		android:protectionLevel="signature" />
+
 	<uses-permission
 		android:name="android.permission.ACCESS_NETWORK_STATE"
-		android:protectionLevel="signature"/>
+		android:protectionLevel="signature" />
 
 	<uses-feature
 		android:name="android.hardware.faketouch"
-		android:required="true"/>
+		android:required="true" />
 
 	<application
 		android:allowBackup="false"
@@ -20,128 +22,130 @@
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
 
-		<meta-data
-			android:name="asset_statements"
-			android:resource="@string/asset_statements"/>
-
 		<activity
 			android:name=".welcome.WelcomeActivity"
 			android:label="@string/app_short_name">
-			<tools:validation testUrl="https://dontflymoney.com/@Welcome"/>
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
-			</intent-filter>
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.MAIN" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Welcome"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+			<tools:validation testUrl="https://dontflymoney.com/@Welcome" />
 		</activity>
 
-		<activity
-			android:name=".login.LoginActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@Login"/>
+		<activity android:name=".login.LoginActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Login"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@Login" />
 		</activity>
 
-		<activity
-			android:name=".accounts.AccountsActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@Accounts"/>
+		<activity android:name=".accounts.AccountsActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Accounts"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@Accounts" />
 		</activity>
 
-		<activity
-			android:name=".extract.ExtractActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@Extract"/>
+		<activity android:name=".extract.ExtractActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Extract"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@Extract" />
 		</activity>
 
-		<activity
-			android:name=".summary.SummaryActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@Summary"/>
+		<activity android:name=".summary.SummaryActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Summary"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@Summary" />
 		</activity>
 
-		<activity
-			android:name=".moves.MovesCreateActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate"/>
+		<activity android:name=".moves.MovesCreateActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@MovesCreate"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@MovesCreate" />
 		</activity>
 
-		<activity
-			android:name=".settings.SettingsActivity">
-			<tools:validation testUrl="https://dontflymoney.com/@Settings"/>
+		<activity android:name=".settings.SettingsActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
+				<action android:name="android.intent.action.VIEW" />
 
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
 
 				<data
 					android:host="dontflymoney.com"
 					android:pathPrefix="/@Settings"
-					android:scheme="https"/>
+					android:scheme="https" />
 			</intent-filter>
+
+			<tools:validation testUrl="https://dontflymoney.com/@Settings" />
 		</activity>
 
 		<activity android:name=".tfa.TFAActivity" />
+
+		<meta-data
+			android:name="asset_statements"
+			android:resource="@string/asset_statements" />
 	</application>
 
 </manifest>
