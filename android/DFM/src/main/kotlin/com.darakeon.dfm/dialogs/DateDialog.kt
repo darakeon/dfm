@@ -28,15 +28,15 @@ fun Activity.getDateDialog(
 	)
 
 	val picker = dialog.getChildOrMe("mDatePicker")
-	val delegate = picker.getChildOrMe("mDelegate")
+	val delegate = picker?.getChildOrMe("mDelegate")
 
 	if (day == null) {
-		val dayView = delegate.getChildOrMe("mDaySpinner") as View
+		val dayView = delegate?.getChildOrMe("mDaySpinner") as View
 		dayView.visibility = View.GONE
 	}
 
 	if (month == null) {
-		val monthView = delegate.getChildOrMe("mMonthSpinner") as View
+		val monthView = delegate?.getChildOrMe("mMonthSpinner") as View
 		monthView.visibility = View.GONE
 	}
 

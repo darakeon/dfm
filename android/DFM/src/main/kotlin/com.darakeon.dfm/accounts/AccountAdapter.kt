@@ -21,7 +21,7 @@ class AccountAdapter(
 	override fun getItemId(position: Int): Long = position.toLong()
 
 	override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
-		val line = createOrGet(view, viewGroup) as AccountLine
+		val line = createOrGet(view) as AccountLine
 
 		val color = getThemeLineColor(position)
 		line.setAccount(accountList[position], color)
@@ -29,6 +29,6 @@ class AccountAdapter(
 		return line
 	}
 
-	private fun createOrGet(view: View?, viewGroup: ViewGroup) =
+	private fun createOrGet(view: View?) =
 		(view ?: inflater.inflate(R.layout.accounts_line, null))
 }
