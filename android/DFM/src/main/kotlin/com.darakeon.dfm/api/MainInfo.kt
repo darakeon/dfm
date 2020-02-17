@@ -2,16 +2,28 @@ package com.darakeon.dfm.api
 
 import android.content.Context
 import com.darakeon.dfm.BuildConfig
-import com.darakeon.dfm.R
 
 object MainInfo
 {
+	private const val main_address =
+		"https://dontflymoney.com/"
+
 	fun getSiteUrl(context: Context) : String {
 		if (!BuildConfig.DEBUG)
-			return "https://dontflymoney.com/"
+			return main_address
+
+		val addressResId = context.resources
+			.getIdentifier(
+				"local_address",
+				"string",
+				context.packageName
+			)
+
+		if (addressResId == 0)
+			return main_address
 
 		val localAddress =
-			context.getString(R.string.local_address)
+			context.getString(addressResId)
 
 		return "http://$localAddress/"
 	}
