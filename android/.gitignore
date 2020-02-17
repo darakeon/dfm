@@ -13,9 +13,6 @@ local.properties
 */build
 build
 
-gradlew
-gradlew.bat
-
 res/values/license.xml
 DFM/src/main/res/values/localaddress.xml
 DFM/release

@@ -22,8 +22,10 @@ android {
 
 	signingConfigs {
 		release {
-			storeFile file("C:\\Lucas\\Keon\\access\\keon.keystore")
+			storeFile file("../../.circleci/android/ci.keystore")
+			storePassword System.getenv("STORE_PASSWORD")
 			keyAlias "DFM"
+			keyPassword System.getenv("KEY_PASSWORD")
 		}
 	}
 
@@ -57,6 +59,10 @@ dependencies {
 }
 
 apply plugin: 'kotlin-android-extensions'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '6.2'
+}
 
 /*
 I did not understood the meaning of this number until it was too late.
