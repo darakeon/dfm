@@ -126,11 +126,12 @@ Legend:
 - [ ] Make default language EN if browser is not PT, ES, IT or FR
 - [ ] Fix accessibility of blue and red values at mobile
 
-## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`4`</sup>
-- [ ] Run app tests at CI
+## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`5`</sup>
+- [ ] `200217>......` Run app tests at CI
 - [ ] Run browser tests at CI
 - [ ] Run core tests at CI
 - [ ] Make android automated tests
+- [x] `200217>200221` Add android build to CI
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
 - [x] `200208>200213` Build with circle CI
