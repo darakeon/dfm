@@ -22,7 +22,7 @@ jobs:
             - restore_cache
       - run:
           name: copy_assets
-          command: sh .circleci/copy_assets.sh
+          command: sh .circleci/site/copy_assets.sh
           requires:
             - dependencies
       - save_cache:
@@ -38,7 +38,7 @@ jobs:
             - copy_assets
       - run:
           name: rearrange
-          command: sh .circleci/bring_site_to_root.sh
+          command: sh .circleci/site/bring_to_root.sh
           requires:
             - build
       - run:
