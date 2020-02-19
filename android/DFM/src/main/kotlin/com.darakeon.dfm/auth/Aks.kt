@@ -17,13 +17,11 @@ import javax.crypto.Cipher
 import javax.crypto.IllegalBlockSizeException
 import javax.security.auth.x500.X500Principal
 
-class Aks(private val context: Context) {
+abstract class BaseAks {
 	private val keyStoreType = "AndroidKeyStore"
-	private val keyStoreAlias = "MASTER_KEY"
+	protected val keyStoreAlias = "MASTER_KEY"
 	private val algorithm = "RSA"
 	private val transformationAsymmetric = "RSA/ECB/PKCS1Padding"
-
-	private val hasMarshmallow = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
 	private val keyStore: KeyStore
 	private val cipher: Cipher
@@ -54,47 +52,17 @@ class Aks(private val context: Context) {
 	private fun createKeyPair(): KeyPair {
 		val generator = createGenerator()
 
-		if (hasMarshmallow) {
-			initGenerator(generator)
-		} else {
-			initOldGenerator(generator)
-		}
+		initGenerator(generator)
 
 		return generator.generateKeyPair()
 	}
 
+	protected abstract fun initGenerator(
+		generator: KeyPairGenerator
+	)
+
 	private fun createGenerator() =
 		KeyPairGenerator.getInstance(algorithm, keyStoreType)
-
-	@TargetApi(Build.VERSION_CODES.M)
-	private fun initGenerator(generator: KeyPairGenerator) {
-		val purpose =
-			KeyProperties.PURPOSE_ENCRYPT or
-			KeyProperties.PURPOSE_DECRYPT
-
-		val builder = KeyGenParameterSpec.Builder(keyStoreAlias, purpose)
-			.setBlockModes(KeyProperties.BLOCK_MODE_ECB)
-			.setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
-
-		generator.initialize(builder.build())
-	}
-
-	@Suppress("DEPRECATION")
-	private fun initOldGenerator(generator: KeyPairGenerator) {
-		val startDate = Calendar.getInstance()
-		val endDate = Calendar.getInstance()
-		endDate.add(Calendar.YEAR, 20)
-
-		val builder = android.security.KeyPairGeneratorSpec
-			.Builder(context)
-			.setAlias(keyStoreAlias)
-			.setSerialNumber(BigInteger.ONE)
-			.setSubject(X500Principal("CN=$keyStoreAlias CA Certificate"))
-			.setStartDate(startDate.time)
-			.setEndDate(endDate.time)
-
-		generator.initialize(builder.build())
-	}
 
 	fun encrypt(data: String): String {
 		if (data == "") return ""
@@ -118,5 +86,39 @@ class Aks(private val context: Context) {
 		}
 		catch (e: IllegalBlockSizeException) { "" }
 		catch (e: BadPaddingException) { "" }
+	}
+}
+
+class OldAks(val context: Context) : BaseAks() {
+	@Suppress("DEPRECATION")
+	override fun initGenerator(generator: KeyPairGenerator) {
+		val startDate = Calendar.getInstance()
+		val endDate = Calendar.getInstance()
+		endDate.add(Calendar.YEAR, 20)
+
+		val builder = android.security.KeyPairGeneratorSpec
+			.Builder(context)
+			.setAlias(keyStoreAlias)
+			.setSerialNumber(BigInteger.ONE)
+			.setSubject(X500Principal("CN=$keyStoreAlias CA Certificate"))
+			.setStartDate(startDate.time)
+			.setEndDate(endDate.time)
+
+		generator.initialize(builder.build())
+	}
+}
+
+@TargetApi(Build.VERSION_CODES.M)
+class Aks : BaseAks() {
+	override fun initGenerator(generator: KeyPairGenerator) {
+		val purpose =
+			KeyProperties.PURPOSE_ENCRYPT or
+				KeyProperties.PURPOSE_DECRYPT
+
+		val builder = KeyGenParameterSpec.Builder(keyStoreAlias, purpose)
+			.setBlockModes(KeyProperties.BLOCK_MODE_ECB)
+			.setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
+
+		generator.initialize(builder.build())
 	}
 }

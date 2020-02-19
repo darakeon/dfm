@@ -130,7 +130,7 @@ Legend:
 - [x] `200217>200220` Run app tests at CI
 - [ ] Run browser tests at CI
 - [ ] Run core tests at CI
-- [ ] Make android automated tests
+- [ ] `200218>......` Make android automated tests
 - [x] `200217>200221` Add android build to CI
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
