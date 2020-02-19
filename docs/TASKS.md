@@ -127,7 +127,7 @@ Legend:
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`2`</sup>
 - [ ] Run core, app and browser tests at CI
-- [ ] Make android automated tests
+- [ ] `200218>......` Make android automated tests
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
 - [x] `200208>200213` Build with circle CI
