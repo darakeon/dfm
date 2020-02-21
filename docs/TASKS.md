@@ -125,8 +125,10 @@ Legend:
 - [ ] Add change language icon to site
 - [ ] Make default language EN if browser is not PT, ES, IT or FR
 
-## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`2`</sup>
-- [ ] Run core, app and browser tests at CI
+## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`4`</sup>
+- [ ] Run app tests at CI
+- [ ] Run browser tests at CI
+- [ ] Run core tests at CI
 - [ ] Make android automated tests
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
