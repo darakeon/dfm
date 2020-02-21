@@ -15,9 +15,7 @@ import java.text.DecimalFormat
 
 class AccountLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	fun setAccount(account: Account, color: Int) {
-		setBackgroundColor(color)
-
+	fun setAccount(account: Account) {
 		name.text = account.name
 
 		val totalColor = if (account.total < 0) R.attr.negative else R.attr.positive

@@ -23,9 +23,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	private var move: Move? = null
 	private var checkNature: Nature = Nature.Out
 
-	fun setMove(activity: ExtractActivity, move: Move, color: Int, canCheck: Boolean) {
-		setBackgroundColor(color)
-
+	fun setMove(activity: ExtractActivity, move: Move, canCheck: Boolean) {
 		this.move = move
 
 		name.text = move.description
