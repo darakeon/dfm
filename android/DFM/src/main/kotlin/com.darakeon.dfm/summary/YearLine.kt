@@ -14,9 +14,7 @@ import java.text.DecimalFormat
 
 class YearLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	fun setYear(year: YearAdapter.CompleteMonth, color: Int) {
-		setBackgroundColor(color)
-
+	fun setYear(year: YearAdapter.CompleteMonth) {
 		month.text = year.monthName
 
 		val totalColor = if (year.total < 0) R.attr.negative else R.attr.positive
