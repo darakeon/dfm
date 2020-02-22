@@ -38,18 +38,13 @@ class Move {
 		}
 
 	fun add(description: String, amount: Int, value: Double) {
-		val detail = Detail()
-
-		detail.description = description
-		detail.amount = amount
-		detail.value = value
-
+		val detail = Detail(description, amount, value)
 		detailList.add(detail)
 	}
 
 	fun remove(description: String?, amount: Int, value: Double) {
 		for (detail in detailList) {
-			if (detail.equals(description, amount, value)) {
+			if (detail == Detail(description, amount, value)) {
 				detailList.remove(detail)
 				return
 			}
