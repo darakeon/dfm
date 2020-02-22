@@ -25,13 +25,13 @@ namespace DFM.MVC.Areas.Api.Models
 				?? admin.GetAccountList(false)
 					.Single(a => a.Url == accountUrl);
 
-			Name = account.Name;
+			Title = account.Name;
 			Total = account.Total;
 			CanCheck = moveCheckingEnabled;
 		}
 
 		public IList<SimpleMoveJson> MoveList { get; }
-		public String Name { get; }
+		public String Title { get; }
 		public Decimal Total { get; }
 		public Boolean CanCheck { get; }
 
