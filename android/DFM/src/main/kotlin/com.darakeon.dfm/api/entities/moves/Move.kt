@@ -17,6 +17,7 @@ class Move {
 		set(value) { nature = value?.value }
 
 	var warnCategory: Boolean = false
+		private set
 
 	var categoryName: String? = null
 
@@ -27,6 +28,7 @@ class Move {
 	var detailList: MutableList<Detail> = ArrayList()
 
 	var checked: Boolean = false
+
 	var isDetailed: Boolean = false
 
 	var date: Date
@@ -55,10 +57,10 @@ class Move {
 		this.value = value.toDoubleByCulture() ?: 0.0
 	}
 
-	fun setDefaultData(activityAccountUrl: String?, useCategories: Boolean) {
+	fun setDefaultData(accountUrl: String, useCategories: Boolean) {
 		if (id == 0) {
-			outUrl = activityAccountUrl
-			inUrl = activityAccountUrl
+			outUrl = accountUrl
+			inUrl = accountUrl
 		} else {
 			warnCategory = !useCategories && categoryName != null
 		}
