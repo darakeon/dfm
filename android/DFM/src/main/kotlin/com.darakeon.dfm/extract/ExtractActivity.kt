@@ -127,7 +127,7 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	private fun fillMoves() {
-		total_title.text = extract.name
+		total_title.text = extract.title
 		setValueColored(total_value, extract.total)
 
 		if (extract.moveList.isEmpty()) {

@@ -83,7 +83,7 @@ class SummaryActivity : BaseActivity() {
 	}
 
 	private fun fillSummary() {
-		total_title.text = summary.name
+		total_title.text = summary.title
 		setValueColored(total_value, summary.total)
 
 		if (summary.monthList.isEmpty()) {

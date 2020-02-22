@@ -2,7 +2,7 @@ package com.darakeon.dfm.api.entities.extract
 
 data class Extract(
 	val moveList: Array<Move> = emptyArray(),
-	var name: String = "",
+	var title: String = "",
 	var total: Double = 0.0,
 	var canCheck: Boolean = false
 ) {
@@ -13,7 +13,7 @@ data class Extract(
 		other as Extract
 
 		if (!moveList.contentEquals(other.moveList)) return false
-		if (name != other.name) return false
+		if (title != other.title) return false
 		if (total != other.total) return false
 		if (canCheck != other.canCheck) return false
 
@@ -22,7 +22,7 @@ data class Extract(
 
 	override fun hashCode(): Int {
 		var result = moveList.contentHashCode()
-		result = 31 * result + name.hashCode()
+		result = 31 * result + title.hashCode()
 		result = 31 * result + total.hashCode()
 		result = 31 * result + canCheck.hashCode()
 		return result

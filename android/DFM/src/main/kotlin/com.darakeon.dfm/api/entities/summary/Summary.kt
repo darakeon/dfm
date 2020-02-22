@@ -1,7 +1,7 @@
 package com.darakeon.dfm.api.entities.summary
 
 data class Summary(
-	val name: String = "",
+	val title: String = "",
 	val total: Double = 0.0,
 	val monthList: Array<Month> = emptyArray()
 ) {
@@ -11,7 +11,7 @@ data class Summary(
 
 		other as Summary
 
-		if (name != other.name) return false
+		if (title != other.title) return false
 		if (total != other.total) return false
 		if (!monthList.contentEquals(other.monthList)) return false
 
@@ -19,7 +19,7 @@ data class Summary(
 	}
 
 	override fun hashCode(): Int {
-		var result = name.hashCode()
+		var result = title.hashCode()
 		result = 31 * result + total.hashCode()
 		result = 31 * result + monthList.contentHashCode()
 		return result
