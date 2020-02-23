@@ -1,14 +1,17 @@
-package com.darakeon.dfm
+package com.darakeon.dfm.utils
 
 import android.content.Context
 import android.content.res.Configuration
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.darakeon.dfm.base.BaseActivity
+import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
@@ -106,6 +109,36 @@ class MockContext {
 
 		`when`(activity.getString(resourceCount))
 			.thenReturn(value)
+
+		return this
+	}
+
+	fun mockSharedPreferences(): MockContext {
+		val prefs = mock(SharedPreferences::class.java)
+		`when`(activity.getSharedPreferences("DfM", Context.MODE_PRIVATE))
+			.thenReturn(prefs)
+
+		val editor = mock(SharedPreferences.Editor::class.java)
+		`when`(prefs.edit()).thenReturn(editor)
+
+		val dic = HashMap<String, String>()
+		`when`(editor.putString(anyString(), anyString()))
+			.then {
+				val key = it.arguments[0].toString()
+				val value = it.arguments[1].toString()
+				dic[key] = value
+				null
+			}
+		`when`(prefs.getString(anyString(), anyString()))
+			.then {
+				val key = it.arguments[0].toString()
+				val defaultValue = it.arguments[1].toString()
+
+				if (dic.containsKey(key))
+					dic[key]
+				else
+					defaultValue
+			}
 
 		return this
 	}

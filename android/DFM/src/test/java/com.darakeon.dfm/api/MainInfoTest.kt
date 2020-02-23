@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.darakeon.dfm.BuildConfig
-import com.darakeon.dfm.MockContext
+import com.darakeon.dfm.utils.MockContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
