@@ -1,6 +1,7 @@
 package com.darakeon.dfm.auth
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Environment
@@ -9,7 +10,14 @@ import java.util.Locale
 
 private const val themeKey = "Theme"
 private const val languageKey = "Language"
-private var currentTheme = R.style.AppTheme
+
+const val light = R.style.Light
+const val dark = R.style.Dark
+
+const val lighter1 = 0x11FFFFFF
+const val lighter2 = 0x22FFFFFF
+const val darker1 = 0x11000000
+const val darker2 = 0x22000000
 
 fun Activity.setEnvironment(env: Environment) {
 	val changedTheme = themeChangeAndSave(env.mobileTheme)
@@ -19,30 +27,26 @@ fun Activity.setEnvironment(env: Environment) {
 		refresh()
 }
 
-private fun Activity.themeChangeAndSave(systemTheme: String): Boolean {
-	val theme = getRes(systemTheme)
+private fun Activity.themeChangeAndSave(theme: String): Boolean {
+	val themeId = getThemeId(theme)
+	val spTheme = themeId.toString()
 
-	if (theme == currentTheme)
+	if (getValue(themeKey) == spTheme)
 		return false
 
-	changeTheme(theme)
+	setTheme(themeId)
 
-	setValue(themeKey, theme.toString())
+	setValue(themeKey, spTheme)
 
 	return true
 }
 
-private fun getRes(theme: String): Int =
+private fun getThemeId(theme: String): Int =
 	when (theme) {
-		"Light" -> R.style.Light
-		"Dark" -> R.style.Dark
+		"Light" -> light
+		"Dark" -> dark
 		else -> R.style.AppTheme
 	}
-
-private fun Activity.changeTheme(theme: Int) {
-	setTheme(theme)
-	currentTheme = theme
-}
 
 private fun Activity.languageChangeAndSave(systemLanguage: String): Boolean {
 	var language = systemLanguage
@@ -87,10 +91,10 @@ fun Activity.recoverEnvironment() {
 }
 
 private fun Activity.themeChangeFromSaved() {
-	val theme = getValue(themeKey)
+	val themeId = getValue(themeKey)
 
-	if (theme != "")
-		changeTheme(theme.toInt())
+	if (themeId != "")
+		setTheme(themeId.toInt())
 }
 
 private fun Activity.languageChangeFromSaved() {
@@ -100,20 +104,20 @@ private fun Activity.languageChangeFromSaved() {
 		change(language)
 }
 
-fun getThemeLineColor(position: Int): Int =
-	if (position % 2 == 0) {
-		Color.TRANSPARENT
-	} else {
-		when (currentTheme) {
-			R.style.Light -> Color.argb(0x11, 0x00, 0x00, 0x00)
-			R.style.Dark -> Color.argb(0x11, 0xFF, 0xFF, 0xFF)
-			else -> 0
-		}
-	}
+private val colors = mapOf(
+	Pair(light, arrayOf(Color.TRANSPARENT, darker1, darker2)),
+	Pair(dark, arrayOf(Color.TRANSPARENT, lighter1, lighter2))
+)
 
-val highLightColor =
-	when (currentTheme) {
-		R.style.Light -> Color.argb(0x22, 0x00, 0x00, 0x00)
-		R.style.Dark -> Color.argb(0x22, 0xFF, 0xFF, 0xFF)
-		else -> 0
-	}
+private fun Context.getColors(): Array<Int> {
+	val themeId = getValue(themeKey).toIntOrNull()
+
+	return colors[themeId] ?:
+		throw NotImplementedError()
+}
+
+fun Context.getThemeLineColor(position: Int) =
+	getColors()[position % 2]
+
+val Context.highLightColor
+	get() = getColors()[2]
