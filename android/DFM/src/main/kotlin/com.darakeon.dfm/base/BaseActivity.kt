@@ -14,8 +14,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.Authentication
-import com.darakeon.dfm.auth.languageChangeFromSaved
-import com.darakeon.dfm.auth.themeChangeFromSaved
+import com.darakeon.dfm.auth.recoverEnvironment
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.applyGlyphicon
@@ -76,8 +75,7 @@ abstract class BaseActivity : Activity() {
 	val query = HashMap<String, String>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		languageChangeFromSaved()
-		themeChangeFromSaved()
+		recoverEnvironment()
 
 		super.onCreate(savedInstanceState)
 
