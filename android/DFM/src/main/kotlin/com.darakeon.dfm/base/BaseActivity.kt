@@ -181,6 +181,7 @@ abstract class BaseActivity : Activity() {
 		createMove()
 	}
 
+	@Suppress("SameParameterValue")
 	protected fun getExtraOrUrl(key: String, default: Int?) : String =
 			getExtraOrUrl(key, default.toString())
 
