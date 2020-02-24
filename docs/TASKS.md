@@ -127,7 +127,7 @@ Legend:
 - [ ] Fix accessibility of blue and red values at mobile
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`5`</sup>
-- [ ] `200217>......` Run app tests at CI
+- [x] `200217>200220` Run app tests at CI
 - [ ] Run browser tests at CI
 - [ ] Run core tests at CI
 - [ ] Make android automated tests
