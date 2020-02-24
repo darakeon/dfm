@@ -55,7 +55,11 @@ jobs:
       - run:
           name: build
           path: android
-          command: ./gradlew build
+          command: ./gradlew build -x test
+      - run:
+          name: test
+          path: android
+          command: ./gradlew test
       - store_artifacts:
           path: android/DFM/build/reports
           destination: reports
