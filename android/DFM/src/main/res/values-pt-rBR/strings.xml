@@ -105,5 +105,6 @@
 	<string name="long_click_warning">segure por um tempo para executar a ação</string>
 	<string name="site">Site</string>
 	<string name="version">Versão do aplicativo</string>
+	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
 
 </resources>

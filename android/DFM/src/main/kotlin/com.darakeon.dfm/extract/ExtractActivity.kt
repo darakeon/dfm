@@ -118,7 +118,9 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	private fun getExtract() {
-		api.getExtract(accountUrl, year, month, this::handleMoves)
+		callApi {
+			it.getExtract(accountUrl, year, month, this::handleMoves)
+		}
 	}
 
 	private fun handleMoves(data: Extract) {
@@ -173,11 +175,15 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 				return true
 			}
 			R.id.check_move -> {
-				api.check(clickedMove.id, clickedMove.nature, this::reverseCheck)
+				callApi {
+					it.check(clickedMove.id, clickedMove.nature, this::reverseCheck)
+				}
 				return true
 			}
 			R.id.uncheck_move -> {
-				api.uncheck(clickedMove.id, clickedMove.nature, this::reverseCheck)
+				callApi {
+					it.uncheck(clickedMove.id, clickedMove.nature, this::reverseCheck)
+				}
 				return true
 			}
 			else -> return super.onContextItemSelected(item)
@@ -199,7 +205,9 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 	}
 
 	override fun yesAction() {
-		api.delete(clickedMove.id, this::refresh)
+		callApi {
+			it.delete(clickedMove.id, this::refresh)
+		}
 	}
 
 	override fun noAction() {}

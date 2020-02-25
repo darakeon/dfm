@@ -70,12 +70,10 @@ internal class ResponseHandler<T>(
 
 		if (BuildConfig.DEBUG) throw error
 
-		val sendReport = DialogInterface.OnClickListener(function = { dialog, _ ->
-			dialog.dismiss()
+		activity.alertError(R.string.error_contact_url) {
+			it.dismiss()
 			activity.composeErrorEmail(url ?: "", error)
-		})
-
-		activity.alertError(R.string.error_contact_url, sendReport)
+		}
 	}
 
 	private fun assemblyResponse(

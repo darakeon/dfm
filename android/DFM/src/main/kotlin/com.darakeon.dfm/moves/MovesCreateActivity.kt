@@ -86,7 +86,9 @@ class MovesCreateActivity : BaseActivity() {
 	}
 
 	private fun initScreen() {
-		api.getMove(id, this::populateScreen)
+		callApi {
+			it.getMove(id, this::populateScreen)
+		}
 
 		setCurrentDate()
 		setControls()
@@ -138,7 +140,7 @@ class MovesCreateActivity : BaseActivity() {
 		}
 
 		if (move.checked) {
-			remove_check.visibility = View.VISIBLE;
+			remove_check.visibility = View.VISIBLE
 		}
 
 		date.text = move.date.format()
@@ -337,7 +339,9 @@ class MovesCreateActivity : BaseActivity() {
 
 	fun save(@Suppress(ON_CLICK) view: View) {
 		move.clearNotUsedValues()
-		api.saveMove(move, this::cleanAndBack)
+		callApi {
+			it.saveMove(move, this::cleanAndBack)
+		}
 	}
 
 	private fun cleanAndBack() {

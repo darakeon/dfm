@@ -16,10 +16,12 @@ import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.languageChangeFromSaved
 import com.darakeon.dfm.auth.themeChangeFromSaved
+import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.back
 import com.darakeon.dfm.extensions.close
+import com.darakeon.dfm.extensions.composeErrorApi
 import com.darakeon.dfm.extensions.createMove
 import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
@@ -38,16 +40,27 @@ import java.util.HashMap
 abstract class BaseActivity : Activity() {
 
 	var clickedView: View? = null
-	private lateinit var inflater: LayoutInflater
+	private var inflater: LayoutInflater? = null
 
-	protected lateinit var api: Api
-	private lateinit var auth: Authentication
+	private var api: Api? = null
+	protected fun callApi(call: (Api) -> Unit) {
+		if (api == null) {
+			alertError(R.string.error_call_api) {
+				it.dismiss()
+				composeErrorApi(this)
+			}
+		} else {
+			call(api!!)
+		}
+	}
 
-	var ticket
-		get() = auth.ticket
-		set(value) { auth.ticket = value }
+	private var auth: Authentication? = null
 
-	fun clearAuth() = auth.clear()
+	var ticket: String
+		get() = auth?.ticket ?: ""
+		set(value) { auth?.ticket = value }
+
+	fun clearAuth() = auth?.clear()
 
 	protected abstract val contentView: Int
 	protected open val title: Int = 0
@@ -150,7 +163,7 @@ abstract class BaseActivity : Activity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		api.cancel()
+		api?.cancel()
 	}
 
 	fun back(@Suppress(ON_CLICK) view: View) {

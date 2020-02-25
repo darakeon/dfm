@@ -76,9 +76,11 @@ class SummaryActivity : BaseActivity() {
 	}
 
 	private fun getSummary() {
-		api.getSummary(accountUrl, year) {
-			summary = it
-			fillSummary()
+		callApi { api ->
+			api.getSummary(accountUrl, year) {
+				summary = it
+				fillSummary()
+			}
 		}
 	}
 

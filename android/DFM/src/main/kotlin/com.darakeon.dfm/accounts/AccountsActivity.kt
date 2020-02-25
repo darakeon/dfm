@@ -21,14 +21,15 @@ class AccountsActivity : BaseActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		if (savedInstanceState != null)
-		{
+		if (savedInstanceState != null) {
 			accountList = savedInstanceState
 				.getFromJson(accountListKey, emptyArray())
 
 			fillAccounts()
 		} else {
-			api.listAccounts(this::handleAccounts)
+			callApi {
+				it.listAccounts(this::handleAccounts)
+			}
 		}
 	}
 
