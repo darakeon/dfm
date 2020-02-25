@@ -49,10 +49,8 @@ private fun getThemeId(theme: String): Int =
 	}
 
 private fun Activity.languageChangeAndSave(systemLanguage: String): Boolean {
-	var language = systemLanguage
+	val language = systemLanguage.replace("-", "_")
 	val current = Locale.getDefault().toString()
-
-	language = language.replace("-", "_")
 
 	if (language.equals(current, ignoreCase = true))
 		return false
