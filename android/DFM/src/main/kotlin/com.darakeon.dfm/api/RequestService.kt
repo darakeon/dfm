@@ -88,5 +88,5 @@ internal interface RequestService {
 	): Call<Body<Any>>
 
 	@GET("api")
-	fun wakeupSite(): Call<Body<Any>>
+	fun wakeUpSite(): Call<Body<Any>>
 }

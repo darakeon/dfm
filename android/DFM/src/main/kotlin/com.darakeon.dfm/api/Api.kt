@@ -125,6 +125,6 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun wakeUpSite(onSuccess: () -> Unit) {
-		service.wakeupSite().call(onSuccess)
+		service.wakeUpSite().call(onSuccess)
 	}
 }
