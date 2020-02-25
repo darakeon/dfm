@@ -44,8 +44,11 @@ fun Activity.refresh() {
 	startActivity(intent)
 }
 
-internal fun BaseActivity.logout(api: Api) {
-	api.logout(this::logoutLocal)
+internal fun BaseActivity.logout(api: Api?) {
+	if (api == null)
+		logoutLocal()
+	else
+		api.logout(this::logoutLocal)
 }
 
 internal fun BaseActivity.logoutLocal() {
@@ -106,6 +109,16 @@ fun Activity.composeErrorEmail(url: String, error: Throwable) {
 	val body = url + "\n\n" +
 		error.message + "\n\n" +
 		error.stackTraceText
+
+	val emails = getString(R.string.error_mail_address)
+
+	composeEmail(subject, body, emails)
+}
+
+fun Activity.composeErrorApi(activity: BaseActivity) {
+	val subject = activity.javaClass.name
+
+	val body = getString(R.string.error_call_api)
 
 	val emails = getString(R.string.error_mail_address)
 

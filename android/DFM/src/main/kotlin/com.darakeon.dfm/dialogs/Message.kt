@@ -28,14 +28,20 @@ fun Activity.alertError(message: String) {
 	alertError(message, null)
 }
 
-fun Activity.alertError(resMessage: Int, sendEmailReport: OnClickListener? = null) {
-	alertError(getString(resMessage), sendEmailReport)
-}
+fun Activity.alertError(resMessage: Int, sendEmailReport: ((DialogInterface) -> Unit)? = null) =
+	alertError(
+		getString(resMessage),
+		listener(sendEmailReport)
+	)
+
+private fun listener(execute: ((DialogInterface) -> Unit)?) =
+	if (execute == null) null
+	else OnClickListener { dialog, _ -> execute(dialog) }
 
 private fun Activity.alertError(message: String, sendEmailReport: OnClickListener?) {
 	val clickOk = sendEmailReport ?: cancelClickListener
 	val cancelButton = sendEmailReport != null
-	val text = if (cancelButton) R.string.send_report_button else R.string.ok_button
+	val text = if (sendEmailReport != null) R.string.send_report_button else R.string.ok_button
 	alertError(message, text, clickOk, cancelButton)
 }
 

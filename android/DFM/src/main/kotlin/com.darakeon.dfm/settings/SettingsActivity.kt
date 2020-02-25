@@ -27,8 +27,10 @@ class SettingsActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 
 		if (savedInstanceState == null) {
-			api.getConfig {
-				this.populateScreen(it)
+			callApi { api ->
+				api.getConfig {
+					this.populateScreen(it)
+				}
 			}
 		} else {
 			this.populateScreen(
@@ -65,7 +67,9 @@ class SettingsActivity : BaseActivity() {
 	}
 
 	fun saveSettings(@Suppress(ON_CLICK) view: View) {
-		api.saveConfig(settings, this::back)
+		callApi {
+			it.saveConfig(settings, this::back)
+		}
 	}
 
 	private fun back() {

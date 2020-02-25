@@ -105,5 +105,7 @@
 	<string name="long_click_warning">hold for a while to execute the action</string>
 	<string name="site">Site</string>
 	<string name="version">App Version</string>
+	<string name="error_call_api">Error on calling the site, contact us</string>
+	<string name="error_call_api_email" translatable="false">Error on calling api, object null</string>
 
 </resources>

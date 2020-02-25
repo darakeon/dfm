@@ -20,12 +20,14 @@ class LoginActivity : BaseActivity() {
 		get() = false
 
 	fun login(@Suppress(ON_CLICK) view: View) {
-		api.login(
-			email.text.toString(),
-			password.text.toString()
-		) {
-			ticket = it.ticket
-			redirect<WelcomeActivity>()
+		callApi { api ->
+			api.login(
+				email.text.toString(),
+				password.text.toString()
+			) {
+				ticket = it.ticket
+				redirect<WelcomeActivity>()
+			}
 		}
 	}
 }
