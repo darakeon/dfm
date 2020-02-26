@@ -46,7 +46,7 @@ abstract class BaseActivity : Activity() {
 		if (api == null) {
 			alertError(R.string.error_call_api) {
 				it.dismiss()
-				composeErrorApi(this)
+				composeErrorApi()
 			}
 		} else {
 			call(api!!)
@@ -59,7 +59,7 @@ abstract class BaseActivity : Activity() {
 		get() = auth?.ticket ?: ""
 		set(value) { auth?.ticket = value }
 
-	fun clearAuth() = auth?.clear()
+	open fun clearAuth() = auth?.clear()
 
 	protected abstract val contentView: Int
 	protected open val title: Int = 0

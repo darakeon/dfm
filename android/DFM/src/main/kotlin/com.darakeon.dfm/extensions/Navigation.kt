@@ -28,7 +28,8 @@ inline fun <reified T : Activity> Context.redirect() {
 }
 
 fun Activity.backWithExtras() {
-	val extras = intent.extras ?: throw Exception("no extras")
+	val extras = intent.extras ?:
+		throw NavException("no extras")
 
 	val parent = extras.get("__parent") as Class<*>
 	extras.remove("__parent")
@@ -88,21 +89,6 @@ private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle?
 	startActivity(intent)
 }
 
-fun Activity.composeEmail(subject: String, body: String, vararg addresses: String) {
-	val intent = Intent(Intent.ACTION_SENDTO)
-
-	// only email apps should handle this
-	intent.data = Uri.parse("mailto:")
-
-	intent.putExtra(Intent.EXTRA_EMAIL, addresses)
-	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-	intent.putExtra(Intent.EXTRA_TEXT, body)
-
-	if (intent.resolveActivity(packageManager) != null) {
-		startActivity(intent)
-	}
-}
-
 fun Activity.composeErrorEmail(url: String, error: Throwable) {
 	val subject = getString(R.string.error_mail_title)
 
@@ -115,12 +101,24 @@ fun Activity.composeErrorEmail(url: String, error: Throwable) {
 	composeEmail(subject, body, emails)
 }
 
-fun Activity.composeErrorApi(activity: BaseActivity) {
-	val subject = activity.javaClass.name
-
-	val body = getString(R.string.error_call_api)
-
+fun Activity.composeErrorApi() {
+	val subject = getString(R.string.error_call_api_email)
+	val body = javaClass.name
 	val emails = getString(R.string.error_mail_address)
-
 	composeEmail(subject, body, emails)
+}
+
+private fun Activity.composeEmail(subject: String, body: String, vararg addresses: String) {
+	val intent = Intent(Intent.ACTION_SENDTO)
+
+	// only email apps should handle this
+	intent.data = Uri.parse("mailto:")
+
+	intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+	intent.putExtra(Intent.EXTRA_TEXT, body)
+
+	if (intent.resolveActivity(packageManager) != null) {
+		startActivity(intent)
+	}
 }

@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.SharedPreferences
 import android.content.res.Resources
+import android.content.pm.ActivityInfo
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -139,6 +143,21 @@ class MockContext {
 				else
 					defaultValue
 			}
+
+		return this
+	}
+
+	fun mockExternalCall(): MockContext {
+		val packManager = mock(PackageManager::class.java)
+		`when`(activity.packageManager).thenReturn(packManager)
+
+		val info = ResolveInfo()
+		info.activityInfo = ActivityInfo()
+		info.activityInfo.name = ""
+		info.activityInfo.applicationInfo = ApplicationInfo()
+		info.activityInfo.applicationInfo.packageName = ""
+		`when`(packManager.resolveActivity(any(), anyInt()))
+			.thenReturn(info)
 
 		return this
 	}

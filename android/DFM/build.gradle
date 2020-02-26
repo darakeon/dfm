@@ -44,6 +44,12 @@ android {
 	sourceSets {
 		main.java.srcDirs += 'src/main/kotlin'
 	}
+
+	testOptions {
+		unitTests {
+			includeAndroidResources = true
+		}
+	}
 }
 
 dependencies {
@@ -51,9 +57,11 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation "org.mockito:mockito-core:$mockito_version"
+	testImplementation 'org.robolectric:robolectric:4.3'
 	androidTestImplementation 'com.android.support.test:runner:1.0.2'
 	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
