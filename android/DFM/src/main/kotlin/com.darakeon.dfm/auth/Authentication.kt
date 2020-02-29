@@ -1,15 +1,9 @@
 package com.darakeon.dfm.auth
 
 import android.content.Context
-import android.os.Build
 
 class Authentication(private val context: Context) {
-	private val aks =
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-			Aks()
-		else
-			OldAks(context)
-
+	private val aks = Aks(context)
 	private val spKey = "Ticket"
 
 	var ticket: String
