@@ -13,7 +13,7 @@ android {
 		versionCode 2011000040
 		versionName "4.1.4.1"
 
-		minSdkVersion 18
+		minSdkVersion 21
 		targetSdkVersion 29
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
