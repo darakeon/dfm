@@ -1,8 +1,8 @@
 package com.darakeon.dfm.api
 
 import android.os.Build
-import com.darakeon.dfm.utils.ConfigChanger.setAndroidVersion
 import com.darakeon.dfm.utils.MockContext
+import com.darakeon.dfm.tests.setAndroidVersion
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

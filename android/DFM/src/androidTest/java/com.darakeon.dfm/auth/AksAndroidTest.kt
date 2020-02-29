@@ -1,6 +1,8 @@
 package com.darakeon.dfm.auth
 
+import android.os.Build
 import android.support.test.InstrumentationRegistry
+import com.darakeon.dfm.tests.setAndroidVersion
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.hamcrest.MatcherAssert.assertThat
@@ -9,7 +11,10 @@ import org.junit.Test
 class AksAndroidTest {
 	@Test
 	fun encryptionAndDecryption_23AndSoOn() {
-		val aks = Aks()
+		setAndroidVersion(Build.VERSION_CODES.M)
+
+		val context = InstrumentationRegistry.getTargetContext()
+		val aks = Aks(context)
 
 		val message = "Hey, listen!"
 
@@ -22,8 +27,10 @@ class AksAndroidTest {
 
 	@Test
 	fun encryptionAndDecryption_below23() {
+		setAndroidVersion(Build.VERSION_CODES.LOLLIPOP)
+
 		val context = InstrumentationRegistry.getTargetContext()
-		val aks = OldAks(context)
+		val aks = Aks(context)
 
 		val message = "Hey, listen!"
 
