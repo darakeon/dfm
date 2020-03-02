@@ -1,4 +1,5 @@
 ﻿using System;
+using DFM.Generic;
 using DFM.Tests.Util;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -8,6 +9,10 @@ namespace DFM.Email.Tests
 	[Binding]
 	public class EmailStep : ContextHelper
 	{
+		public EmailStep()
+		{
+			Cfg.Init();
+		}
 
 		[Given(@"I have this e-mail to send")]
 		public void GivenIHaveThisEMailToSend(Table table)

@@ -7,7 +7,7 @@ namespace DFM.Generic
 {
 	public class Cfg
 	{
-		public static void Init(String environment)
+		public static void Init(String environment = null)
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
