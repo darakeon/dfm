@@ -100,6 +100,8 @@ namespace DFM.BusinessLogic.Tests
 
 			log("BeforeTestRun");
 
+			Cfg.Init();
+
 			Cleaner.Cleanup();
 
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
