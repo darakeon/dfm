@@ -127,7 +127,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			InTransaction(() =>
+			inTransaction("SaveAccount", () =>
 			{
 				info.Update(account);
 				accountRepository.Save(account);
@@ -138,7 +138,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			InTransaction(() =>
+			inTransaction("CloseAccount", () =>
 			{
 				var account = getAccountByUrl(url);
 
@@ -160,7 +160,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			InTransaction(() =>
+			inTransaction("DeleteAccount", () =>
 			{
 				var account = GetAccountByUrlInternal(url);
 
@@ -253,7 +253,7 @@ namespace DFM.BusinessLogic.Services
 			parent.Safe.VerifyUser();
 			verifyCategoriesEnabled();
 
-			InTransaction(() =>
+			inTransaction("SaveCategory", () =>
 			{
 				info.Update(category);
 				categoryRepository.Save(category);
@@ -267,7 +267,7 @@ namespace DFM.BusinessLogic.Services
 
 			var category = GetCategoryByNameInternal(name);
 
-			InTransaction(() =>
+			inTransaction("DisableCategory", () =>
 			{
 				categoryRepository.Disable(category);
 			});
@@ -280,7 +280,7 @@ namespace DFM.BusinessLogic.Services
 
 			var category = GetCategoryByNameInternal(name);
 
-			InTransaction(() =>
+			inTransaction("EnableCategory", () =>
 			{
 				categoryRepository.Enable(category);
 			});
@@ -301,7 +301,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			InTransaction(() =>
+			inTransaction("UpdateConfig", () =>
 			{
 				UpdateConfigWithinTransaction(configInfo);
 			});
@@ -357,7 +357,7 @@ namespace DFM.BusinessLogic.Services
 			var config = user.Config;
 			config.Theme = theme;
 
-			InTransaction(() =>
+			inTransaction("ChangeTheme", () =>
 			{
 				configRepository.Update(config);
 			});

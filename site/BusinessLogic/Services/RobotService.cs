@@ -83,7 +83,7 @@ namespace DFM.BusinessLogic.Services
 
 			foreach (var schedule in scheduleList)
 			{
-				var result = InTransaction(() =>
+				var result = inTransaction("RunSchedule", () =>
 					addNewMoves(schedule)
 				);
 
@@ -140,7 +140,7 @@ namespace DFM.BusinessLogic.Services
 			if (info == null)
 				throw Error.ScheduleRequired.Throw();
 
-			return InTransaction(
+			return inTransaction("SaveSchedule",
 				() => save(info)
 			);
 		}
@@ -177,7 +177,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = parent.Safe.GetCurrent();
 
-			InTransaction(() => 
+			inTransaction("DisableSchedule", () => 
 				scheduleRepository.Disable(id, user)
 			);
 		}
