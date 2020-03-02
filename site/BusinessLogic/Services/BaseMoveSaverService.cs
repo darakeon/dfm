@@ -149,7 +149,7 @@ namespace DFM.BusinessLogic.Services
 
 		internal void FixSummaries()
 		{
-			InTransaction(() =>
+			inTransaction("FixSummaries", () =>
 			{
 				var user = parent.Safe.GetCurrent();
 				summaryRepository

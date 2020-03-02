@@ -44,7 +44,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void SendPasswordReset(String email)
 		{
-			InTransaction(() =>
+			inTransaction("SendPasswordReset", () =>
 			{
 				var user = userRepository.GetByEmail(email);
 
@@ -57,7 +57,7 @@ namespace DFM.BusinessLogic.Services
 		
 		public void SaveUser(SignUpInfo info)
 		{
-			InTransaction(() =>
+			inTransaction("SaveUser", () =>
 			{
 				info.VerifyPassword();
 
@@ -76,7 +76,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void SendUserVerify(String email)
 		{
-			InTransaction(() =>
+			inTransaction("SendUserVerify", () =>
 			{
 				var user = userRepository.GetByEmail(email);
 
@@ -118,7 +118,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void ActivateUser(String token)
 		{
-			InTransaction(() =>
+			inTransaction("ActivateUser", () =>
 			{
 				var security = securityRepository.ValidateAndGet(token, SecurityAction.UserVerification);
 
@@ -132,7 +132,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			reset.VerifyPassword();
 
-			InTransaction(() =>
+			inTransaction("PasswordReset", () =>
 			{
 				var security = securityRepository.ValidateAndGet(
 					reset.Token,
@@ -155,7 +155,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void DisableToken(String token)
 		{
-			InTransaction(() => securityRepository.Disable(token));
+			inTransaction("DisableToken", () => securityRepository.Disable(token));
 		}
 
 
@@ -181,7 +181,7 @@ namespace DFM.BusinessLogic.Services
 
 		public String CreateTicket(SignInInfo info)
 		{
-			return InTransaction(
+			return inTransaction("CreateTicket",
 				() => createTicket(info),
 				() => addPasswordError(info.Email)
 			);
@@ -215,7 +215,7 @@ namespace DFM.BusinessLogic.Services
 			if (user == null)
 				return;
 
-			InTransaction(() =>
+			inTransaction("AddPasswordError", () =>
 			{
 				user.WrongLogin++;
 
@@ -231,7 +231,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void DisableTicket(String ticketKey)
 		{
-			InTransaction(() =>
+			inTransaction("DisableTicket", () =>
 			{
 				if (ticketKey == null) return;
 
@@ -290,7 +290,7 @@ namespace DFM.BusinessLogic.Services
 			if (!userRepository.VerifyPassword(user, info.CurrentPassword))
 				throw Error.WrongPassword.Throw();
 
-			InTransaction(() =>
+			inTransaction("ChangePassword", () =>
 			{
 				user.Password = info.Password;
 				userRepository.ChangePassword(user);
@@ -318,7 +318,7 @@ namespace DFM.BusinessLogic.Services
 			if (!userRepository.VerifyPassword(user, password))
 				throw Error.WrongPassword.Throw();
 
-			InTransaction(() =>
+			inTransaction("UpdateEmail", () =>
 			{
 				user = userRepository.UpdateEmail(user.ID, email);
 				sendUserVerify(user);
@@ -352,7 +352,7 @@ namespace DFM.BusinessLogic.Services
 
 			var user = GetCurrent();
 
-			var acceptance = InTransaction(() =>
+			var acceptance = inTransaction("CreateAcceptance", () =>
 				acceptanceRepository.GetOrCreate(user, contract)
 			);
 
@@ -362,7 +362,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void AcceptContract()
 		{
-			InTransaction(() =>
+			inTransaction("AcceptContract", () =>
 				acceptContract(GetCurrent())
 			);
 		}
@@ -376,7 +376,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void UpdateTFA(TFAInfo info)
 		{
-			InTransaction(() =>
+			inTransaction("UpdateTFA", () =>
 			{
 				if (String.IsNullOrEmpty(info.Secret))
 					throw Error.TFAEmptySecret.Throw();
@@ -397,7 +397,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void RemoveTFA(String currentPassword)
 		{
-			InTransaction(() =>
+			inTransaction("RemoveTFA", () =>
 			{
 				var user = GetCurrent();
 
@@ -410,7 +410,7 @@ namespace DFM.BusinessLogic.Services
 
 		public void ValidateTicketTFA(String code)
 		{
-			InTransaction(() =>
+			inTransaction("ValidateTicketTFA", () =>
 			{
 				var secret = GetCurrent().TFASecret;
 

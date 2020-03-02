@@ -56,7 +56,7 @@ namespace DFM.BusinessLogic.Services
 					? OperationType.Creation
 					: OperationType.Edition;
 
-			return InTransaction(
+			return inTransaction("SaveMove",
 				() => parent.BaseMove.SaveMove(
 					move, operationType
 				)
@@ -68,7 +68,7 @@ namespace DFM.BusinessLogic.Services
 		{
 			parent.Safe.VerifyUser();
 
-			var result = InTransaction(() => deleteMove(id));
+			var result = inTransaction("DeleteMove", () => deleteMove(id));
 
 			parent.BaseMove.FixSummaries();
 
@@ -143,7 +143,7 @@ namespace DFM.BusinessLogic.Services
 
 			move.Check(nature, check);
 
-			InTransaction(() => 
+			inTransaction("ToggleMoveCheck", () => 
 				moveRepository.SaveCheck(move)
 			);
 
