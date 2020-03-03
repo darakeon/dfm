@@ -21,11 +21,11 @@ fun TextView.applyGlyphicon() {
 	typeface = Typeface.createFromAsset(context.assets, "fonts/glyphicons-halflings-regular.ttf")
 }
 
-fun setValueColored(field: TextView, value: Double) {
-	field.text = String.format("%1$,.2f", value)
+fun TextView.setValueColored(value: Double) {
+	text = String.format("%1$,.2f", value)
 
 	val color = if (value < 0) R.attr.negative else R.attr.positive
-	field.setColorByAttr(color)
+	setColorByAttr(color)
 }
 
 fun Activity.showChangeList(list: Array<ComboItem>, titleId: Int, setResult: (String, String) -> Unit) {

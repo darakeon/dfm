@@ -130,7 +130,7 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 
 	private fun fillMoves() {
 		total_title.text = extract.title
-		setValueColored(total_value, extract.total)
+		total_value.setValueColored(extract.total)
 
 		if (extract.moveList.isEmpty()) {
 			main_table.visibility = View.GONE
