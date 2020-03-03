@@ -1,20 +1,19 @@
 package com.darakeon.dfm.extensions
 
 import android.widget.EditText
-import com.darakeon.dfm.welcome.WelcomeActivity
+import com.darakeon.dfm.utils.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.Robolectric.buildActivity
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class EditTextTest {
 	@Test
 	fun onChange() {
-		val act = buildActivity(WelcomeActivity::class.java)
-		val editText = EditText(act.create().get())
+		val activity = ActivityMock.create()
+		val editText = EditText(activity)
 
 		var text = "x"
 		editText.onChange { text = it }
