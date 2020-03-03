@@ -28,7 +28,11 @@ fun TextView.setValueColored(value: Double) {
 	setColorByAttr(color)
 }
 
-fun Activity.showChangeList(list: Array<ComboItem>, titleId: Int, setResult: (String, String) -> Unit) {
+fun Activity.showChangeList(
+	list: Array<ComboItem>,
+	titleId: Int,
+	setResult: (String, String) -> Unit
+) {
 	val adapter = list.map { it.text as CharSequence }.toTypedArray()
 
 	val title = getString(titleId)
