@@ -86,7 +86,7 @@ class SummaryActivity : BaseActivity() {
 
 	private fun fillSummary() {
 		total_title.text = summary.title
-		setValueColored(total_value, summary.total)
+		total_value.setValueColored(summary.total)
 
 		if (summary.monthList.isEmpty()) {
 			main_table.visibility = View.GONE
