@@ -136,7 +136,7 @@ abstract class BaseActivity : Activity() {
 		{
 			(0 until bottom_menu.childCount).forEach {
 				val button = bottom_menu.getChildAt(it) as Button
-				button.applyGlyphicon(this)
+				button.applyGlyphicon()
 
 				if (this is AccountsActivity)
 					action_home.isEnabled = false

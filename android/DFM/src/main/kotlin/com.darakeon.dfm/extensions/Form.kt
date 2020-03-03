@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
-import com.darakeon.dfm.base.BaseActivity
 
 fun TextView.setColorByAttr(attr : Int){
 	val typedValue = TypedValue()
@@ -15,11 +14,11 @@ fun TextView.setColorByAttr(attr : Int){
 	setTextColor(typedValue.data)
 }
 
-fun TextView.applyGlyphicon(ac: BaseActivity) {
+fun TextView.applyGlyphicon() {
 	if (text.length != 1)
 		return
 
-	typeface = Typeface.createFromAsset(ac.assets, "fonts/glyphicons-halflings-regular.ttf")
+	typeface = Typeface.createFromAsset(context.assets, "fonts/glyphicons-halflings-regular.ttf")
 }
 
 fun Any.getChildOrMe(fieldName: String): Any? {
