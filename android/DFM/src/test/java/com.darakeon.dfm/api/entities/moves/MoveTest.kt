@@ -1,6 +1,7 @@
 package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.Date
+import com.darakeon.dfm.utils.getDecimal
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.hasItem
 import org.hamcrest.CoreMatchers.not
@@ -10,8 +11,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import java.text.DecimalFormat
-import java.util.Locale
 
 class MoveTest {
 	@Test
@@ -81,10 +80,8 @@ class MoveTest {
 	fun setValue() {
 		val move = Move()
 
-		val separator = Locale.getDefault()
-		val formatter = DecimalFormat.getInstance(separator) as DecimalFormat
-		val decimal = formatter.decimalFormatSymbols.decimalSeparator.toString()
-		move.setValue("3.27".replace(".", decimal))
+		val value = "3.27".getDecimal()
+		move.setValue(value)
 
 		assertThat(move.value, `is`(3.27))
 	}
