@@ -96,11 +96,11 @@ abstract class BaseActivity : Activity() {
 		if (hasTitle)
 			setTitle(title)
 
-		setContentView(contentView)
+		if (contentView != 0)
+			setContentView(contentView)
 
-		if (viewWithContext != null) {
+		if (viewWithContext != null)
 			registerForContextMenu(viewWithContext)
-		}
 	}
 
 	private fun setMenuLongClicks() {
