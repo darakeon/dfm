@@ -59,8 +59,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		val textRes = if (isChecked) R.string.checked else R.string.unchecked
 		check_move.text = context.getString(textRes)
 
-		val activity = context as ExtractActivity
-		check_move.applyGlyphicon(activity)
+		check_move.applyGlyphicon()
 
 		val color = if (isChecked) R.attr.checked else R.attr.unchecked
 		check_move.setColorByAttr(color)
