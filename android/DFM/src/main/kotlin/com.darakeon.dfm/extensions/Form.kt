@@ -21,18 +21,6 @@ fun TextView.applyGlyphicon() {
 	typeface = Typeface.createFromAsset(context.assets, "fonts/glyphicons-halflings-regular.ttf")
 }
 
-fun Any.getChildOrMe(fieldName: String): Any? {
-	for (field in javaClass.declaredFields) {
-		if (field.name == fieldName)
-		{
-			field.isAccessible = true
-			return field.get(this)
-		}
-	}
-
-	return this
-}
-
 fun setValueColored(field: TextView, value: Double) {
 	field.text = String.format("%1$,.2f", value)
 
