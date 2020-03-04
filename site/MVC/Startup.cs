@@ -59,7 +59,7 @@ namespace DFM.MVC
 
 			Route.Execute(app);
 
-			Mobile.ConfigureIP(env);
+			Mobile.ConfigureIP();
 
 			hostToEnd?.StopAsync();
 		}
