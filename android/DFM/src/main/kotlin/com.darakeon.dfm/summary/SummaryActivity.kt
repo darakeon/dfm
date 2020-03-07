@@ -29,10 +29,9 @@ class SummaryActivity : BaseActivity() {
 	private val summaryKey = "summaryKey"
 
 	private val dialog: DatePickerDialog
-		get() = getDateDialog(
-			{ y, _, _ -> updateScreen(y) },
-			year
-		)
+		get() = getDateDialog(year) {
+			y -> updateScreen(y)
+		}
 
 	override val contentView = R.layout.summary
 	override val title = R.string.title_activity_summary

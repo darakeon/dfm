@@ -45,10 +45,9 @@ import kotlinx.android.synthetic.main.moves_create.warnings
 class MovesCreateActivity : BaseActivity() {
 	private val dialog: DatePickerDialog
 		get() = with(move.date) {
-			return getDateDialog(
-				{ y, m, d -> updateFromDateCombo(y, m+1, d) },
-				year, javaMonth, day
-			)
+			return getDateDialog(year, javaMonth, day) {
+				y, m, d -> updateFromDateCombo(y, m+1, d)
+			}
 		}
 
 	override val contentView = R.layout.moves_create
