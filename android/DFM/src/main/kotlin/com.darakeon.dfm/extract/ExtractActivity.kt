@@ -10,8 +10,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Extract
 import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.dialogs.IYesNoDialogAnswer
-import com.darakeon.dfm.dialogs.alertYesNo
+import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
 import com.darakeon.dfm.extensions.createMove
@@ -29,7 +28,7 @@ import kotlinx.android.synthetic.main.extract.total_title
 import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
 
-class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
+class ExtractActivity : BaseActivity() {
 	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
 
 	override val contentView = R.layout.extract
@@ -199,18 +198,12 @@ class ExtractActivity : BaseActivity(), IYesNoDialogAnswer {
 
 		messageText = String.format(messageText, clickedMove.description)
 
-		alertYesNo(messageText, this)
+		confirm(messageText) {
+			callApi { it.delete(clickedMove.id, this::refresh) }
+		}
 
 		return false
 	}
-
-	override fun yesAction() {
-		callApi {
-			it.delete(clickedMove.id, this::refresh)
-		}
-	}
-
-	override fun noAction() {}
 
 	private fun reverseCheck() {
 		clickedMove.reverseCheck()

@@ -43,13 +43,13 @@ abstract class BaseActivity : Activity() {
 
 	private var api: Api? = null
 	protected fun callApi(call: (Api) -> Unit) {
-		if (api == null) {
+		val thisApi = api
+		if (thisApi == null) {
 			alertError(R.string.error_call_api) {
-				it.dismiss()
 				composeErrorApi()
 			}
 		} else {
-			call(api!!)
+			call(thisApi)
 		}
 	}
 

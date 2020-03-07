@@ -16,7 +16,6 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
-
 @RunWith(RobolectricTestRunner::class)
 class FormTest {
 	lateinit var activity: BaseActivity
