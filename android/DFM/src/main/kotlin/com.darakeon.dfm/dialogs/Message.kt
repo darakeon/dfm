@@ -2,63 +2,54 @@ package com.darakeon.dfm.dialogs
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.DialogInterface.OnClickListener
 import com.darakeon.dfm.R
 
-val cancelClickListener: OnClickListener = OnClickListener {
-	dialog, _ -> dialog.cancel()
+fun Activity.confirm(message: String, okClick: () -> Unit) {
+	alert(message, R.string.ok_button, true) { okClick() }
 }
 
-fun Activity.alertYesNo(message: String, answer: IYesNoDialogAnswer) {
-
-	val listener = OnClickListener { dialog, which ->
-		when (which) {
-			DialogInterface.BUTTON_POSITIVE -> answer.yesAction()
-			DialogInterface.BUTTON_NEGATIVE -> answer.noAction()
-		}
-
-		dialog.cancel()
-	}
-
-	alertError(message, R.string.ok_button, listener, true)
+fun Activity.alertError(resMessage: Int) {
+	alertError(getString(resMessage))
 }
 
 fun Activity.alertError(message: String) {
-	alertError(message, null)
+	alert(message, R.string.ok_button, false) { }
 }
 
-fun Activity.alertError(resMessage: Int, sendEmailReport: ((DialogInterface) -> Unit)? = null) =
-	alertError(
+fun Activity.alertError(resMessage: Int, sendEmailReport: () -> Unit) {
+	alert(
 		getString(resMessage),
-		listener(sendEmailReport)
-	)
-
-private fun listener(execute: ((DialogInterface) -> Unit)?) =
-	if (execute == null) null
-	else OnClickListener { dialog, _ -> execute(dialog) }
-
-private fun Activity.alertError(message: String, sendEmailReport: OnClickListener?) {
-	val clickOk = sendEmailReport ?: cancelClickListener
-	val cancelButton = sendEmailReport != null
-	val text = if (sendEmailReport != null) R.string.send_report_button else R.string.ok_button
-	alertError(message, text, clickOk, cancelButton)
+		R.string.send_report_button,
+		true
+	) {
+		sendEmailReport()
+	}
 }
 
-private fun Activity.alertError(message: String, resOkButton: Int, okClickListener: OnClickListener, hasCancelButton: Boolean) {
+private fun Activity.alert(
+	message: String,
+	okRes: Int,
+	hasCancel: Boolean,
+	okClick: () -> Unit
+) {
 	val builder = AlertDialog.Builder(this)
 			.setTitle(R.string.error_title)
 			.setMessage(message)
 
-	if (resOkButton != 0)
-		builder.setPositiveButton(resOkButton, okClickListener)
+	builder.setPositiveButton(okRes) {
+		dialog, _ ->
+			dialog.dismiss()
+			okClick()
+	}
 
-	if (hasCancelButton)
-		builder.setNegativeButton(R.string.cancel_button, cancelClickListener)
+	if (hasCancel) {
+		builder.setNegativeButton(R.string.cancel_button) {
+			dialog, _ -> dialog.cancel()
+		}
+	}
 
 	builder.show()
 }
-
 
 fun Activity.createWaitDialog(): AlertDialog? {
 	return AlertDialog.Builder(this)
