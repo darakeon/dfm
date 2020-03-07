@@ -3,42 +3,57 @@ package com.darakeon.dfm.dialogs
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.view.View
+import android.widget.DatePicker
 import com.darakeon.dfm.extensions.getChildOrMe
 
+fun Activity.getDateDialog(year: Int, getAnswer: (Int) -> Unit) =
+	getDateDialog(year, null) {
+		y, _ -> getAnswer(y)
+	}.hide("Month")
+
+fun Activity.getDateDialog(year: Int, month: Int?, getAnswer: (Int, Int) -> Unit) =
+	getDateDialog(year, month, null) {
+		y, m, _ -> getAnswer(y, m)
+	}.hide("Day")
+
 fun Activity.getDateDialog(
-	getAnswer: (Int, Int, Int) -> Unit,
-	year: Int, month: Int? = null, day: Int? = null
+	year: Int, month: Int?, day: Int?,
+	getAnswer: (Int, Int, Int) -> Unit
 ) : DatePickerDialog {
-
-	var dialog: DatePickerDialog? = null;
-
+	var dialog: DatePickerDialog
 	dialog = DatePickerDialog(
 		this,
-		{ v, y, m, d ->
-			run {
-				if (v.isShown) {
-					getAnswer(y, m, d)
-					dialog?.dismiss()
-				}
-			}
+		{
+			picker, newYear, newMonth, newDay ->
+				onSet(picker, newYear, newMonth, newDay, getAnswer)
 		},
 		year,
 		month ?: 1,
 		day ?: 1
 	)
 
-	val picker = dialog.getChildOrMe("mDatePicker")
-	val delegate = picker?.getChildOrMe("mDelegate")
 
-	if (day == null) {
-		val dayView = delegate?.getChildOrMe("mDaySpinner") as View
-		dayView.visibility = View.GONE
-	}
-
-	if (month == null) {
-		val monthView = delegate?.getChildOrMe("mMonthSpinner") as View
-		monthView.visibility = View.GONE
-	}
 
 	return dialog
+}
+
+private fun onSet(
+	picker: DatePicker,
+	year: Int,
+	month: Int,
+	day: Int,
+	getAnswer: (Int, Int, Int) -> Unit
+) {
+	if (picker.isShown) {
+		getAnswer(year, month, day)
+	}
+}
+
+private fun DatePickerDialog.hide(fieldName: String): DatePickerDialog {
+	val picker = getChildOrMe("mDatePicker")
+	val delegate = picker?.getChildOrMe("mDelegate")
+	val spinnerName = "m" + fieldName + "Spinner"
+	val monthView = delegate?.getChildOrMe(spinnerName) as View
+	monthView.visibility = View.GONE
+	return this
 }

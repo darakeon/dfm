@@ -48,10 +48,9 @@ class ExtractActivity : BaseActivity() {
 	private val monthKey = "month"
 
 	private val dialog: DatePickerDialog
-		get() = getDateDialog(
-			{ y, m, _ -> updateScreen(y, m) },
-			year, month
-		)
+		get() = getDateDialog(year, month) {
+			y, m -> updateScreen(y, m)
+		}
 
 	private fun updateScreen(year: Int, month: Int) {
 		setDate(month, year)
