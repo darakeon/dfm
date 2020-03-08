@@ -44,7 +44,7 @@ class Move {
 		detailList.add(detail)
 	}
 
-	fun remove(description: String?, amount: Int, value: Double) {
+	fun remove(description: String, amount: Int, value: Double) {
 		for (detail in detailList) {
 			if (detail == Detail(description, amount, value)) {
 				detailList.remove(detail)
