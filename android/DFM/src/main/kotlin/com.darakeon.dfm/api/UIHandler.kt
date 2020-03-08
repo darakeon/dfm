@@ -3,7 +3,7 @@ package com.darakeon.dfm.api
 import android.app.Activity
 import android.app.Dialog
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
+import android.util.Log
 import android.view.Surface
 import android.view.WindowManager
 import com.darakeon.dfm.dialogs.createWaitDialog
@@ -28,31 +28,16 @@ class UIHandler(
 	}
 
 	private fun disableRotation() {
-		val rotation = activity.windowManager.defaultDisplay.rotation
-		val orientation = activity.resources.configuration.orientation
+		val currentRotation = activity.windowManager.defaultDisplay.rotation
 
-		activity.requestedOrientation = when (orientation) {
-			Configuration.ORIENTATION_PORTRAIT -> handlePortrait(rotation)
-			Configuration.ORIENTATION_LANDSCAPE -> handleLandscape(rotation)
-			else -> 0
+		activity.requestedOrientation = when (currentRotation) {
+			Surface.ROTATION_0 -> ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+			Surface.ROTATION_90 -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+			Surface.ROTATION_180 -> ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
+			Surface.ROTATION_270 -> ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+			else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 		}
 	}
-
-	private fun handlePortrait(rotation: Int): Int =
-		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_270 ->
-				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-			else ->
-				ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-		}
-
-	private fun handleLandscape(rotation: Int): Int =
-		when (rotation) {
-			Surface.ROTATION_0, Surface.ROTATION_90 ->
-				ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-			else ->
-				ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-		}
 
 	fun endUIWait() {
 		closeDialog()
@@ -73,6 +58,6 @@ class UIHandler(
 
 	private fun enableRotation() {
 		activity.requestedOrientation =
-			ActivityInfo.SCREEN_ORIENTATION_SENSOR
+			ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 	}
 }
