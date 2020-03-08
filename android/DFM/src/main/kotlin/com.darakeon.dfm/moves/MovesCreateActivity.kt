@@ -331,7 +331,7 @@ class MovesCreateActivity : BaseActivity() {
 		scrollToTheEnd()
 	}
 
-	private fun addViewDetail(move: Move?, description: String?, amount: Int, value: Double) {
+	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
 		val row = DetailBox(this, move, description, amount, value)
 		details.addView(row)
 	}

@@ -1,7 +1,7 @@
 package com.darakeon.dfm.api.entities.moves
 
 class Detail(
-	val description: String? = null,
+	val description: String = "",
 	val amount: Int = 0,
 	val value: Double = 0.0
 ) {
@@ -13,7 +13,7 @@ class Detail(
 	}
 
 	override fun hashCode(): Int {
-		var result = description?.hashCode() ?: 0
+		var result = description.hashCode()
 		result = 31 * result + amount
 		result = 31 * result + value.hashCode()
 		return result
