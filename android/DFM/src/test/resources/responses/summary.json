@@ -1,0 +1,23 @@
+{
+	"data": {
+		"title": "account",
+		"total": 1,
+		"monthList": [
+			{
+				"name": "March",
+				"number": 3,
+				"total": 1
+			},
+			{
+				"name": "December",
+				"number": 12,
+				"total": 1
+			}
+		]
+	},
+	"environment": {
+		"mobileTheme": "Dark",
+		"language": "pt-BR"
+	}
+}
+

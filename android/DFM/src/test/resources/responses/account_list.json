@@ -1,0 +1,20 @@
+{
+	"data": {
+		"accountList": [
+			{
+				"name": "Account 1",
+				"url": "account_1",
+				"total": 1
+			},
+			{
+				"name": "Account 2",
+				"url": "account_2",
+				"total": 2
+			}
+		]
+	},
+	"environment": {
+		"mobileTheme": "Dark",
+		"language": "pt-BR"
+	}
+}
