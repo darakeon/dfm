@@ -1,0 +1,60 @@
+{
+	"data": {
+		"move": {
+			"id": 1,
+			"description": "move",
+			"year": 2020,
+			"month": 3,
+			"day": 8,
+
+			"nature": 2,
+			"warnCategory": true,
+			"categoryName": "category",
+			"outUrl": "out",
+			"inUrl": "in",
+			"value": 1,
+			"detailList": [
+				{
+					"description": "detail",
+					"amount": 1,
+					"value": 27
+				}
+			],
+			"checked": true,
+			"isDetailed": true
+		},
+		"isUsingCategories": true,
+
+		"categoryList": [
+			{
+				"text": "Category",
+				"value": "category"
+			}
+		],
+		"natureList": [
+			{
+				"text": "In",
+				"value": "in"
+			},
+			{
+				"text": "Out",
+				"value": "out"
+			},
+			{
+				"text": "Transfer",
+				"value": "transfer"
+			}
+		],
+		"accountList": [
+			{
+				"text": "Account",
+				"value": "account"
+			}
+		]
+	},
+	"environment": {
+		"mobileTheme": "Dark",
+		"language": "pt-BR"
+	}
+}
+

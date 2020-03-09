@@ -1,0 +1,11 @@
+{
+	"data": {
+		"useCategories": true,
+		"moveCheck": true
+	},
+	"environment": {
+		"mobileTheme": "Dark",
+		"language": "pt-BR"
+	}
+}
+
