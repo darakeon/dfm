@@ -11,20 +11,20 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-internal open class RequestHandler(
+internal class RequestHandler(
 	private val activity: BaseActivity
 ) {
 	internal val service: RequestService
 	private val dispatcher = Dispatcher()
+	private val uiHandler = UIHandler(activity)
 
 	init {
-		val retrofit = getConfig()
-		service = retrofit.create(
+		service = getRetrofit().create(
 			RequestService::class.java
 		)
 	}
 
-	private fun getConfig(): Retrofit {
+	private fun getRetrofit(): Retrofit {
 		val client =
 			OkHttpClient.Builder()
 				.dispatcher(dispatcher)
@@ -42,9 +42,7 @@ internal open class RequestHandler(
 	}
 
 	private fun intercept(chain: Chain) =
-		chain.proceed(
-			addAuthTicket(chain)
-		)
+		chain.proceed(addAuthTicket(chain))
 
 	private fun addAuthTicket(chain: Chain) =
 		chain.request()
@@ -59,8 +57,6 @@ internal open class RequestHandler(
 			return
 		}
 
-		val uiHandler = UIHandler(activity)
-
 		val responseHandler = ResponseHandler(
 			activity,
 			uiHandler,
@@ -72,7 +68,9 @@ internal open class RequestHandler(
 		uiHandler.startUIWait()
 	}
 
-	fun cancel() {
+	fun <T> cancel(call: Call<T>?) {
+		call?.cancel()
 		dispatcher.cancelAll()
+		uiHandler.endUIWait()
 	}
 }
