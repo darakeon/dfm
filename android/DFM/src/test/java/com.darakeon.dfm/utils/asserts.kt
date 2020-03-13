@@ -11,6 +11,10 @@ fun assertAlertWait(alert: AlertDialog?) {
 	assertAlert(alert, "Wait!", "Calling the Pig…")
 }
 
+fun assertAlertError(alert: AlertDialog?, message: String) {
+	assertAlert(alert, "Ops!", message)
+}
+
 private fun assertAlert(alert: AlertDialog?, title: String, message: String) {
 	assertNotNull(alert)
 	if (alert == null) return

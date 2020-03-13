@@ -15,6 +15,7 @@ import retrofit2.Call
 class Api(activity: BaseActivity) {
 	private val requestHandler = RequestHandler(activity)
 	private val service = requestHandler.service
+	private var currentCall: Call<Any>? = null
 
 	private fun Call<Body<Any>>.call(onSuccess: () -> Unit) {
 		val onSuccessAny: (Any) -> Unit = { onSuccess() }
@@ -26,7 +27,7 @@ class Api(activity: BaseActivity) {
 	}
 
 	fun cancel() {
-		requestHandler.cancel()
+		requestHandler.cancel(currentCall)
 	}
 
 	fun listAccounts(
