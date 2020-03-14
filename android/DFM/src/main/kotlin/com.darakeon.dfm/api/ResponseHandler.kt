@@ -1,6 +1,5 @@
 package com.darakeon.dfm.api
 
-import android.content.DialogInterface
 import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Body
@@ -22,11 +21,11 @@ internal class ResponseHandler<T>(
 	private val uiHandler: UIHandler,
 	private val onSuccess: (T) -> Unit
 )  : Callback<Body<T>> {
-	override fun onResponse(call: Call<Body<T>>?, response: Response<Body<T>>?) {
-		val url = getUrl(call)
+	override fun onResponse(call: Call<Body<T>>, response: Response<Body<T>>?) {
+		uiHandler.endUIWait()
 
 		if (response == null) {
-			onError(url, Exception("Null response"))
+			onError(call, ApiException("Null response"))
 			return
 		}
 
@@ -40,38 +39,32 @@ internal class ResponseHandler<T>(
 			body == null ->
 				activity.alertError(R.string.body_null)
 
-			body.data == null ->
+			body.data == null || body.code != null ->
 				assemblyResponse(body.code, body.error)
 
 			else -> onSuccess(body.data)
 		}
+	}
 
+	override fun onFailure(call: Call<Body<T>>, throwable: Throwable) {
 		uiHandler.endUIWait()
-	}
 
-	override fun onFailure(call: Call<Body<T>>?, throwable: Throwable?) {
-		onError(
-			getUrl(call),
-			throwable ?: Exception("Null error")
-		)
-		uiHandler.endUIWait()
-	}
-
-	private fun getUrl(call: Call<Body<T>>?): String {
-		return call?.request()?.url()?.encodedPath() ?: "No url info"
-	}
-
-	private fun onError(url: String?, error: Throwable) {
-		if (error is SocketTimeoutException
-				|| error is ConnectException) {
-			activity.alertError(R.string.internet_too_slow)
-			return
+		when (throwable) {
+			is SocketTimeoutException, is ConnectException ->
+				activity.alertError(R.string.internet_too_slow)
+			else -> {
+				onError(call, throwable)
+			}
 		}
+	}
 
+	private fun onError(call: Call<Body<T>>, error: Throwable) {
 		if (BuildConfig.DEBUG) throw error
 
+		val url = call.request().url().encodedPath()
+
 		activity.alertError(R.string.error_contact_url) {
-			activity.composeErrorEmail(url ?: "", error)
+			activity.composeErrorEmail(url, error)
 		}
 	}
 
@@ -84,12 +77,13 @@ internal class ResponseHandler<T>(
 
 		if (code == tfa) {
 			activity.redirect<TFAActivity>()
+		} else if (code == uninvited) {
+			activity.logoutLocal()
 		} else {
-			activity.alertError(error ?: "")
+			val message = error ?:
+				activity.getString(R.string.error_not_identified)
 
-			if (code == uninvited) {
-				activity.logoutLocal()
-			}
+			activity.alertError(message)
 		}
 	}
 }
