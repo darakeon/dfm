@@ -6,6 +6,7 @@ import com.darakeon.dfm.utils.ActivityMock
 import com.darakeon.dfm.utils.CallMock
 import com.darakeon.dfm.utils.TestException
 import com.darakeon.dfm.utils.assertAlertError
+import com.darakeon.dfm.utils.internetError
 import com.darakeon.dfm.utils.simulateNetwork
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
@@ -90,9 +91,7 @@ class RequestHandlerTest {
 		assertThat(result, `is`(""))
 
 		val alert = getLatestAlertDialog()
-		val message = "Error on contacting the Pig. It's either a internet problem or a system issue. " +
-			"If it's the second option, the error is recorded and we will solve it as soon as possible."
-		assertAlertError(alert, message)
+		assertAlertError(alert, internetError)
 
 		assertTrue(call.isExecuted)
 	}

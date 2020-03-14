@@ -106,5 +106,6 @@
 	<string name="site">Site</string>
 	<string name="version">Versão do aplicativo</string>
 	<string name="error_call_api">Erro ao chamar site, entre em contato conosco</string>
+	<string name="error_not_identified">Erro não identificado no site, entre em contato conosco</string>
 
 </resources>

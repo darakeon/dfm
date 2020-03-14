@@ -3,12 +3,11 @@ package com.darakeon.dfm.api
 import android.app.Activity
 import android.app.Dialog
 import android.content.pm.ActivityInfo
-import android.util.Log
 import android.view.Surface
 import android.view.WindowManager
 import com.darakeon.dfm.dialogs.createWaitDialog
 
-class UIHandler(
+open class UIHandler(
 	private val activity: Activity
 ) {
 	private var dialog: Dialog? = null
@@ -39,7 +38,7 @@ class UIHandler(
 		}
 	}
 
-	fun endUIWait() {
+	open fun endUIWait() {
 		closeDialog()
 		enableSleep()
 		enableRotation()

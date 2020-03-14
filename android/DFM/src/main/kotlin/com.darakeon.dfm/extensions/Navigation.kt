@@ -118,7 +118,5 @@ private fun Activity.composeEmail(subject: String, body: String, vararg addresse
 	intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 	intent.putExtra(Intent.EXTRA_TEXT, body)
 
-	if (intent.resolveActivity(packageManager) != null) {
-		startActivity(intent)
-	}
+	startActivity(intent)
 }

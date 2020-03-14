@@ -14,6 +14,11 @@ class CallMock : Call<Body<String>> {
 	private val result: String?
 	private val error: Exception?
 
+	constructor() {
+		this.result = ""
+		this.error = null
+	}
+
 	constructor(result: String) {
 		this.result = result
 		this.error = null
@@ -62,7 +67,7 @@ class CallMock : Call<Body<String>> {
 
 	override fun request(): Request {
 		return Request.Builder()
-			.url("http://dontflymoney.com")
+			.url("http://dontflymoney.com/tests")
 			.build()
 	}
 }

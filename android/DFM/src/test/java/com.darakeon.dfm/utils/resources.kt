@@ -11,3 +11,14 @@ fun readFromFile(filename: String): String {
 	val charset = Charset.forName("UTF-8")
 	return String(bytes, charset)
 }
+
+const val internetError = "Error on contacting the Pig. " +
+	"It's either a internet problem or a system issue. " +
+	"If it's the second option, " +
+	"the error is recorded and we will solve it as soon as possible."
+
+const val noBody = "Error on contacting the Pig. " +
+	"The error is recorded and we will solve it as soon as possible."
+
+const val internetSlow = "Problems while connecting to website, " +
+	"please check your internet connection"
