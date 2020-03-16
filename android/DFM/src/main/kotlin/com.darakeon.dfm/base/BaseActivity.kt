@@ -36,20 +36,24 @@ import kotlinx.android.synthetic.main.bottom_menu.action_settings
 import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
-abstract class BaseActivity : Activity() {
-
+abstract class BaseActivity: Activity() {
 	var clickedView: View? = null
 	private var inflater: LayoutInflater? = null
 
 	private var api: Api? = null
+
+	var serverUrl: String? = null
+		protected set
+
 	protected fun callApi(call: (Api) -> Unit) {
-		val thisApi = api
-		if (thisApi == null) {
+		val api = api
+
+		if (api == null) {
 			alertError(R.string.error_call_api) {
 				composeErrorApi()
 			}
 		} else {
-			call(thisApi)
+			call(api)
 		}
 	}
 
