@@ -6,10 +6,7 @@ import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import okhttp3.Dispatcher
 import okhttp3.Interceptor.Chain
-import okhttp3.OkHttpClient
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 internal class RequestHandler(
 	private val activity: BaseActivity
@@ -19,26 +16,15 @@ internal class RequestHandler(
 	private val uiHandler = UIHandler(activity)
 
 	init {
-		service = getRetrofit().create(
-			RequestService::class.java
-		)
-	}
+		val url = activity.serverUrl
 
-	private fun getRetrofit(): Retrofit {
-		val client =
-			OkHttpClient.Builder()
-				.dispatcher(dispatcher)
-				.addInterceptor(this::intercept)
-				.build()
+		val retrofit =
+			if (url == null)
+				Retrofit.build(activity, dispatcher, this::intercept)
+			else
+				Retrofit.build(url)
 
-		val jsonConverter =
-			GsonConverterFactory.create()
-
-		return Retrofit.Builder()
-			.baseUrl(MainInfo.getSiteUrl(activity))
-			.client(client)
-			.addConverterFactory(jsonConverter)
-			.build()
+		service = retrofit.create(RequestService::class.java)
 	}
 
 	private fun intercept(chain: Chain) =
@@ -57,18 +43,16 @@ internal class RequestHandler(
 			return
 		}
 
-		val responseHandler = ResponseHandler(
+		response.enqueue(ResponseHandler(
 			activity,
 			uiHandler,
 			onSuccess
-		)
-
-		response.enqueue(responseHandler)
+		))
 
 		uiHandler.startUIWait()
 	}
 
-	fun <T> cancel(call: Call<T>?) {
+	fun cancel(call: Call<*>?) {
 		call?.cancel()
 		dispatcher.cancelAll()
 		uiHandler.endUIWait()

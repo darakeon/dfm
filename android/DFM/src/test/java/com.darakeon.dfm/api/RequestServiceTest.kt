@@ -4,35 +4,26 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
-import com.darakeon.dfm.utils.readFromFile
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
+import com.darakeon.dfm.utils.Server
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert.assertNotNull
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(RobolectricTestRunner::class)
 class RequestServiceTest {
-	private lateinit var server: MockWebServer
-	private lateinit var service: RequestService
+	private lateinit var server: Server
+
+	private val service
+		get() = server.service
 
 	@Before
 	fun setup() {
-		server = MockWebServer()
-
-		val retrofit: Retrofit = Retrofit.Builder()
-			.baseUrl(server.url("").toString())
-			.addConverterFactory(GsonConverterFactory.create())
-			.build()
-
-		service = retrofit.create(RequestService::class.java)
+		server = Server()
 	}
 
 	@After
@@ -42,8 +33,7 @@ class RequestServiceTest {
 
 	@Test
 	fun listAccounts() {
-		val jsonBody = readFromFile("responses/account_list.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("account_list")
 
 		val response = service.listAccounts().execute()
 		assertNotNull(response)
@@ -68,8 +58,7 @@ class RequestServiceTest {
 
 	@Test
 	fun getExtract() {
-		val jsonBody = readFromFile("responses/extract.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("extract")
 
 		val response = service.getExtract("account", 202003).execute()
 		assertNotNull(response)
@@ -96,8 +85,7 @@ class RequestServiceTest {
 
 	@Test
 	fun check() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.check(1, Nature.Out).execute()
 		assertNotNull(response)
@@ -112,8 +100,7 @@ class RequestServiceTest {
 
 	@Test
 	fun uncheck() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.uncheck(1, Nature.Out).execute()
 		assertNotNull(response)
@@ -128,8 +115,7 @@ class RequestServiceTest {
 
 	@Test
 	fun delete() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.delete(1).execute()
 		assertNotNull(response)
@@ -144,8 +130,7 @@ class RequestServiceTest {
 
 	@Test
 	fun login() {
-		val jsonBody = readFromFile("responses/login.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("login")
 
 		val response = service.login("dfm@dontflymoney.com", "password").execute()
 		assertNotNull(response)
@@ -161,8 +146,7 @@ class RequestServiceTest {
 
 	@Test
 	fun logout() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.logout().execute()
 		assertNotNull(response)
@@ -177,8 +161,7 @@ class RequestServiceTest {
 
 	@Test
 	fun getMove() {
-		val jsonBody = readFromFile("responses/move_get.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("move_get")
 
 		val response = service.getMove(1).execute()
 		assertNotNull(response)
@@ -193,12 +176,12 @@ class RequestServiceTest {
 
 		val natureList = data.natureList
 		assertThat(natureList.size, `is`(3))
-		assertThat(natureList[0].text, `is`("In"))
-		assertThat(natureList[0].value, `is`("in"))
-		assertThat(natureList[1].text, `is`("Out"))
-		assertThat(natureList[1].value, `is`("out"))
+		assertThat(natureList[0].text, `is`("Out"))
+		assertThat(natureList[0].value, `is`("0"))
+		assertThat(natureList[1].text, `is`("In"))
+		assertThat(natureList[1].value, `is`("1"))
 		assertThat(natureList[2].text, `is`("Transfer"))
-		assertThat(natureList[2].value, `is`("transfer"))
+		assertThat(natureList[2].value, `is`("2"))
 
 		val accountList = data.accountList
 		assertThat(accountList.size, `is`(1))
@@ -214,14 +197,11 @@ class RequestServiceTest {
 		assertThat(move.id, `is`(1))
 		assertThat(move.description, `is`("move"))
 		assertThat(move.date, `is`(Date(2020, 3, 8)))
-		assertThat(move.natureEnum, `is`(Nature.Transfer))
-		assertThat(move.warnCategory, `is`(true))
 		assertThat(move.categoryName, `is`("category"))
 		assertThat(move.outUrl, `is`("out"))
 		assertThat(move.inUrl, `is`("in"))
 		assertThat(move.value, `is`(1.0))
 		assertThat(move.checked, `is`(true))
-		assertThat(move.isDetailed, `is`(true))
 
 		val detailList = move.detailList
 		assertThat(detailList.size, `is`(1))
@@ -232,8 +212,7 @@ class RequestServiceTest {
 
 	@Test
 	fun saveMove() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.saveMove(1, Move()).execute()
 		assertNotNull(response)
@@ -248,8 +227,7 @@ class RequestServiceTest {
 
 	@Test
 	fun getConfig() {
-		val jsonBody = readFromFile("responses/config_get.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("config_get")
 
 		val response = service.getConfig().execute()
 		assertNotNull(response)
@@ -266,8 +244,7 @@ class RequestServiceTest {
 
 	@Test
 	fun saveConfig() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.saveConfig(Settings()).execute()
 		assertNotNull(response)
@@ -282,8 +259,7 @@ class RequestServiceTest {
 
 	@Test
 	fun getSummary() {
-		val jsonBody = readFromFile("responses/summary.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("summary")
 
 		val response = service.getSummary("account", 2020).execute()
 		assertNotNull(response)
@@ -309,8 +285,7 @@ class RequestServiceTest {
 
 	@Test
 	fun validateTFA() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.validateTFA("123456").execute()
 		assertNotNull(response)
@@ -325,8 +300,7 @@ class RequestServiceTest {
 
 	@Test
 	fun wakeUpSite() {
-		val jsonBody = readFromFile("responses/empty.json")
-		server.enqueue(MockResponse().setBody(jsonBody))
+		server.enqueue("empty")
 
 		val response = service.wakeUpSite().execute()
 		assertNotNull(response)

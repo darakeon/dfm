@@ -8,7 +8,6 @@
 			"day": 8,
 
 			"nature": 2,
-			"warnCategory": true,
 			"categoryName": "category",
 			"outUrl": "out",
 			"inUrl": "in",
@@ -20,8 +19,7 @@
 					"value": 27
 				}
 			],
-			"checked": true,
-			"isDetailed": true
+			"checked": true
 		},
 		"isUsingCategories": true,
 
@@ -33,16 +31,16 @@
 		],
 		"natureList": [
 			{
-				"text": "In",
-				"value": "in"
+				"text": "Out",
+				"value": 0
 			},
 			{
-				"text": "Out",
-				"value": "out"
+				"text": "In",
+				"value": 1
 			},
 			{
 				"text": "Transfer",
-				"value": "transfer"
+				"value": 2
 			}
 		],
 		"accountList": [

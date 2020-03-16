@@ -15,14 +15,10 @@ import retrofit2.Call
 class Api(activity: BaseActivity) {
 	private val requestHandler = RequestHandler(activity)
 	private val service = requestHandler.service
-	private var currentCall: Call<Any>? = null
-
-	private fun Call<Body<Any>>.call(onSuccess: () -> Unit) {
-		val onSuccessAny: (Any) -> Unit = { onSuccess() }
-		requestHandler.call(this, onSuccessAny)
-	}
+	private var currentCall: Call<*>? = null
 
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
+		currentCall = this
 		requestHandler.call(this, onSuccess)
 	}
 
@@ -33,7 +29,7 @@ class Api(activity: BaseActivity) {
 	fun listAccounts(
 		onSuccess: (AccountList) -> Unit
 	) {
-		service.listAccounts().call(onSuccess)
+		service.listAccounts().call { onSuccess(it) }
 	}
 
 	fun getExtract(
@@ -43,7 +39,7 @@ class Api(activity: BaseActivity) {
 		onSuccess: (Extract) -> Unit
 	) {
 		val time = year * 100 + month + 1
-		service.getExtract(accountUrl, time).call(onSuccess)
+		service.getExtract(accountUrl, time).call { onSuccess(it) }
 	}
 
 	fun check(
@@ -51,7 +47,7 @@ class Api(activity: BaseActivity) {
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.check(id, nature).call(onSuccess)
+		service.check(id, nature).call { onSuccess() }
 	}
 
 	fun uncheck(
@@ -59,14 +55,14 @@ class Api(activity: BaseActivity) {
 		nature: Nature,
 		onSuccess: () -> Unit
 	) {
-		service.uncheck(id, nature).call(onSuccess)
+		service.uncheck(id, nature).call { onSuccess() }
 	}
 
 	fun delete(
 		id: Int,
 		onSuccess: () -> Unit
 	) {
-		service.delete(id).call(onSuccess)
+		service.delete(id).call { onSuccess() }
 	}
 
 	fun login(
@@ -74,40 +70,40 @@ class Api(activity: BaseActivity) {
 		password: String,
 		onSuccess: (Login) -> Unit
 	) {
-		service.login(email, password).call(onSuccess)
+		service.login(email, password).call { onSuccess(it) }
 	}
 
 	fun logout(
 		onSuccess: () -> Unit
 	) {
-		service.logout().call(onSuccess)
+		service.logout().call { onSuccess() }
 	}
 
 	fun getMove(
 		id: Int,
 		onSuccess: (MoveCreation) -> Unit
 	) {
-		service.getMove(id).call(onSuccess)
+		service.getMove(id).call { onSuccess(it) }
 	}
 
 	fun saveMove(
 		move: Move,
 		onSuccess: () -> Unit
 	) {
-		service.saveMove(move.id, move).call(onSuccess)
+		service.saveMove(move.id, move).call { onSuccess() }
 	}
 
 	fun getConfig(
 		onSuccess: (Settings) -> Unit
 	) {
-		service.getConfig().call(onSuccess)
+		service.getConfig().call { onSuccess(it) }
 	}
 
 	fun saveConfig(
 		settings: Settings,
 		onSuccess: () -> Unit
 	) {
-		service.saveConfig(settings).call(onSuccess)
+		service.saveConfig(settings).call { onSuccess() }
 	}
 
 	fun getSummary(
@@ -115,17 +111,17 @@ class Api(activity: BaseActivity) {
 		year: Int,
 		onSuccess: (Summary) -> Unit
 	) {
-		service.getSummary(accountUrl, year).call(onSuccess)
+		service.getSummary(accountUrl, year).call { onSuccess(it) }
 	}
 
 	fun validateTFA(
 		text: String,
 		onSuccess: () -> Unit
 	) {
-		service.validateTFA(text).call(onSuccess)
+		service.validateTFA(text).call { onSuccess() }
 	}
 
 	fun wakeUpSite(onSuccess: () -> Unit) {
-		service.wakeUpSite().call(onSuccess)
+		service.wakeUpSite().call { onSuccess() }
 	}
 }

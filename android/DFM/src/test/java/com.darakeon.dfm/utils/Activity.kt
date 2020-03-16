@@ -8,12 +8,16 @@ object ActivityMock {
 	inline fun <reified T : Activity?> create(): T =
 		buildActivity(T::class.java).create().get()
 
-	fun create(): BaseActivity = create<TestActivity>()
+	fun create(): TestActivity = create<TestActivity>()
 }
 
-class TestActivity : BaseActivity(
+class TestActivity : BaseActivity() {
+	val server = Server()
 
-) {
+	init {
+		serverUrl = server.url
+	}
+
 	override val contentView: Int = 0
 	override val hasTitle: Boolean
 		get() = false
