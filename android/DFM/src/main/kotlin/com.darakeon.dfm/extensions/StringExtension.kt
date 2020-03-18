@@ -7,7 +7,7 @@ fun String.toDoubleByCulture() : Double?
 {
 	return try {
 		val format = NumberFormat.getInstance(Locale.getDefault())
-		format.parse(this).toDouble()
+		format.parse(this)?.toDouble()
 	} catch (e: Exception) {
 		tryGetByDefault()
 	}
