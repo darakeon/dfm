@@ -41,6 +41,7 @@ android {
 			resValue 'string', 'app_short_name', 'DfM Test'
 		}
 	}
+
 	sourceSets {
 		main.java.srcDirs += 'src/main/kotlin'
 	}
@@ -49,6 +50,15 @@ android {
 		unitTests {
 			includeAndroidResources = true
 		}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	kotlinOptions {
+		jvmTarget = JavaVersion.VERSION_1_8.toString()
 	}
 }
 
