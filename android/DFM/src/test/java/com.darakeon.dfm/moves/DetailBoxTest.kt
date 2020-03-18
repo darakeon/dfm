@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.moves.Detail
 import com.darakeon.dfm.api.entities.moves.Move
-import com.darakeon.dfm.utils.ActivityMock
+import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.getDecimal
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertNotNull

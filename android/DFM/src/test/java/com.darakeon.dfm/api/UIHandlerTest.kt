@@ -3,8 +3,8 @@ package com.darakeon.dfm.api
 import android.content.pm.ActivityInfo
 import android.view.WindowManager
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.ActivityMock
-import com.darakeon.dfm.utils.assertAlertWait
+import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.robolectric.assertAlertWait
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.junit.Assert.assertFalse

@@ -1,4 +1,4 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.robolectric
 
 import android.app.Activity
 import android.content.Context

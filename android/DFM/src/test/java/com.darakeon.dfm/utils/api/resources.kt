@@ -1,4 +1,4 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.api
 
 import java.nio.charset.Charset
 import java.nio.file.Files

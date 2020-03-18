@@ -1,7 +1,7 @@
 package com.darakeon.dfm.extensions
 
 import android.widget.EditText
-import com.darakeon.dfm.utils.ActivityMock
+import com.darakeon.dfm.utils.activity.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test

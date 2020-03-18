@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.res.Resources
 import android.view.View
-import com.darakeon.dfm.utils.ActivityMock
+import com.darakeon.dfm.utils.activity.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat

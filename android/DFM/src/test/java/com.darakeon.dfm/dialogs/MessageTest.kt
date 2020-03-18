@@ -3,8 +3,8 @@ package com.darakeon.dfm.dialogs
 import android.app.Dialog
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.ActivityMock
-import com.darakeon.dfm.utils.assertAlertWait
+import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.robolectric.assertAlertWait
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat

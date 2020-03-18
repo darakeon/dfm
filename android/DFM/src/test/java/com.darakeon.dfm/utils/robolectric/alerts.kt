@@ -1,4 +1,4 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.robolectric
 
 import android.app.AlertDialog
 import org.hamcrest.CoreMatchers.`is`

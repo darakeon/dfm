@@ -1,4 +1,4 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.api
 
 import com.darakeon.dfm.api.RequestService
 import com.darakeon.dfm.api.Retrofit

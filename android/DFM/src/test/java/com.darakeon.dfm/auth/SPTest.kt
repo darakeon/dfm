@@ -1,6 +1,6 @@
 package com.darakeon.dfm.auth
 
-import com.darakeon.dfm.utils.MockContext
+import com.darakeon.dfm.utils.activity.MockContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
