@@ -4,7 +4,7 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
-import com.darakeon.dfm.utils.Server
+import com.darakeon.dfm.utils.api.Server
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After

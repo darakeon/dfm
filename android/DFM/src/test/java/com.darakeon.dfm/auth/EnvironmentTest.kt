@@ -5,7 +5,7 @@ import android.graphics.Color
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.Environment
 import com.darakeon.dfm.extensions.refresh
-import com.darakeon.dfm.utils.MockContext
+import com.darakeon.dfm.utils.activity.MockContext
 import com.darakeon.dfm.utils.execute
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat

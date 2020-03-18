@@ -4,7 +4,7 @@ import android.widget.TextView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.ComboItem
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.ActivityMock
+import com.darakeon.dfm.utils.activity.ActivityMock
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull

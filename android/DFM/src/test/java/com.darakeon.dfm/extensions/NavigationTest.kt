@@ -5,10 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.MockContext
+import com.darakeon.dfm.utils.activity.MockContext
 import com.darakeon.dfm.utils.TestException
 import com.darakeon.dfm.utils.execute
-import com.darakeon.dfm.utils.getActivityName
+import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.welcome.WelcomeActivity
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.containsString

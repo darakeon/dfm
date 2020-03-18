@@ -2,12 +2,12 @@ package com.darakeon.dfm.api
 
 import com.darakeon.dfm.BuildConfig
 import com.darakeon.dfm.base.BaseActivity
-import com.darakeon.dfm.utils.ActivityMock
-import com.darakeon.dfm.utils.CallMock
+import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.api.CallMock
 import com.darakeon.dfm.utils.TestException
-import com.darakeon.dfm.utils.assertAlertError
-import com.darakeon.dfm.utils.internetError
-import com.darakeon.dfm.utils.simulateNetwork
+import com.darakeon.dfm.utils.robolectric.assertAlertError
+import com.darakeon.dfm.utils.api.internetError
+import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull

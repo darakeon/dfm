@@ -9,9 +9,9 @@ import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
 import com.darakeon.dfm.extensions.getChildOrMe
-import com.darakeon.dfm.utils.ActivityMock
-import com.darakeon.dfm.utils.TestActivity
-import com.darakeon.dfm.utils.simulateNetwork
+import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
+import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull

@@ -1,7 +1,8 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.activity
 
 import android.app.Activity
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.utils.api.Server
 import org.robolectric.Robolectric.buildActivity
 
 object ActivityMock {

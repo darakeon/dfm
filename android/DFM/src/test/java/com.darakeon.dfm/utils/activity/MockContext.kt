@@ -1,4 +1,4 @@
-package com.darakeon.dfm.utils
+package com.darakeon.dfm.utils.activity
 
 import android.content.Context
 import android.content.res.Configuration
