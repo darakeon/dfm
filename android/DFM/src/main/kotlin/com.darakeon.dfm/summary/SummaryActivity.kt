@@ -94,8 +94,12 @@ class SummaryActivity : BaseActivity() {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			val yearAdapter = YearAdapter(this, summary.monthList, accountUrl, year)
-			main_table.adapter = yearAdapter
+			main_table.adapter = YearAdapter(
+				this,
+				summary.monthList,
+				accountUrl,
+				year
+			)
 		}
 	}
 

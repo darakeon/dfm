@@ -3,6 +3,7 @@ package com.darakeon.dfm.extract
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
@@ -137,8 +138,11 @@ class ExtractActivity : BaseActivity() {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			val accountAdapter = MoveAdapter(this, extract.moveList, extract.canCheck)
-			main_table.adapter = accountAdapter
+			main_table.adapter = MoveAdapter(
+				this,
+				extract.moveList,
+				extract.canCheck
+			)
 		}
 	}
 
@@ -210,16 +214,12 @@ class ExtractActivity : BaseActivity() {
 	}
 
 	public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
-		try {
-			if (extract.canCheck) {
-				clickedMove.menu = menuInfo
-				showCheckOrUncheck()
-			} else {
-				hideMenuItem(menuInfo, R.id.check_move)
-				hideMenuItem(menuInfo, R.id.uncheck_move)
-			}
-		} catch (e: Exception) {
-			e.printStackTrace()
+		if (extract.canCheck) {
+			clickedMove.menu = menuInfo
+			showCheckOrUncheck()
+		} else {
+			hideMenuItem(menuInfo, R.id.check_move)
+			hideMenuItem(menuInfo, R.id.uncheck_move)
 		}
 	}
 
@@ -239,15 +239,15 @@ class ExtractActivity : BaseActivity() {
 		showMenuItem(menu, toShow)
 	}
 
-	private fun hideMenuItem(menu: ContextMenu, id: Int) {
+	private fun hideMenuItem(menu: Menu, id: Int) {
 		toggleMenuItem(menu, id, false)
 	}
 
-	private fun showMenuItem(menu: ContextMenu, id: Int) {
+	private fun showMenuItem(menu: Menu, id: Int) {
 		toggleMenuItem(menu, id, true)
 	}
 
-	private fun toggleMenuItem(menu: ContextMenu, id: Int, show: Boolean) {
+	private fun toggleMenuItem(menu: Menu, id: Int, show: Boolean) {
 		menu.findItem(id).isVisible = show
 	}
 }

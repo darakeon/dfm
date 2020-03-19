@@ -13,7 +13,7 @@ class MoveAdapter(
 		moveJsonList.toMutableList()
 
 	override val id: Int
-		get() = R.layout.extract_line
+		get() = R.layout.move_line
 
 	override fun populateView(view: MoveLine, position: Int) =
 		view.setMove(activity, moveList[position], canCheck)
