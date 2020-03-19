@@ -2,39 +2,40 @@ package com.darakeon.dfm.extract
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.ContextMenu
+import android.view.Menu
 import android.view.View
 import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.api.entities.moves.Nature
+import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
-import kotlinx.android.synthetic.main.extract_line.view.check_move
-import kotlinx.android.synthetic.main.extract_line.view.date
-import kotlinx.android.synthetic.main.extract_line.view.name
-import kotlinx.android.synthetic.main.extract_line.view.value
+import kotlinx.android.synthetic.main.move_line.view.check_move
+import kotlinx.android.synthetic.main.move_line.view.date
+import kotlinx.android.synthetic.main.move_line.view.name
+import kotlinx.android.synthetic.main.move_line.view.value
 import java.text.DecimalFormat
 
 class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
-	var menu: ContextMenu? = null
+	var menu: Menu? = null
 
 	private var move: Move? = null
 	private var checkNature: Nature = Nature.Out
 
-	fun setMove(activity: ExtractActivity, move: Move, canCheck: Boolean) {
+	fun setMove(activity: BaseActivity, move: Move, canCheck: Boolean) {
 		this.move = move
 
 		name.text = move.description
 		setTotalField(move)
 		setCheckField(canCheck)
-		setDateField(move)
 		setCheckNature(move)
+		setDateField(move)
 
-		setOnClickListener { v ->
-			activity.clickedView = v
-			v.showContextMenu()
+		setOnClickListener {
+			activity.clickedView = it
+			it.showContextMenu()
 		}
 	}
 

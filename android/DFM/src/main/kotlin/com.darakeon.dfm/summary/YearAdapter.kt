@@ -9,21 +9,27 @@ class YearAdapter(
 	monthList: Array<Month>,
 	accountUrl: String,
 	yearNumber: Int
-) : Adapter<SummaryActivity, Month, YearLine>(activity, monthList) {
+) : Adapter<SummaryActivity, Month, MonthLine>(activity, monthList) {
 	private val monthList: MutableList<CompleteMonth> =
 		monthList.map {
 			CompleteMonth(it, accountUrl, yearNumber)
 		}.toMutableList()
 
 	override val id: Int
-		get() = R.layout.summary_line
+		get() = R.layout.month_line
 
-	override fun populateView(view: YearLine, position: Int) =
-		view.setYear(monthList[position])
+	override fun populateView(view: MonthLine, position: Int) =
+		monthList[position].populate(view)
 
 	inner class CompleteMonth(month: Month, var accountUrl: String, var yearNumber: Int) {
-		var monthName: String = month.name
-		var monthNumber: Int = month.number
-		var total: Double = month.total
+		fun populate(view: MonthLine) {
+			view.setMonth(
+				name, total, accountUrl, yearNumber, monthNumber
+			)
+		}
+
+		var name = month.name
+		var total = month.total
+		var monthNumber = month.number
 	}
 }
