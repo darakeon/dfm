@@ -121,9 +121,10 @@ Legend:
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
 
-## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`2`</sup>
+## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`3`</sup>
 - [ ] Add change language icon to site
 - [ ] Make default language EN if browser is not PT, ES, IT or FR
+- [ ] Fix accessibility of blue and red values at mobile
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`4`</sup>
 - [ ] Run app tests at CI
