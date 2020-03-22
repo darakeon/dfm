@@ -1,6 +1,8 @@
 package com.darakeon.dfm
 
 import android.content.Context
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -13,6 +15,7 @@ import org.mockito.Mockito.mock
 class MockContext {
 	val activity: BaseActivity = mock(BaseActivity::class.java)
 	private val manager = mock(ConnectivityManager::class.java)
+	private var resourceCount = 0
 
 	fun mockInternet(): MockContext {
 		`when`(
@@ -76,5 +79,34 @@ class MockContext {
 	@Suppress("DEPRECATION")
 	private fun mockEmptyConnectionOld() {
 		`when`(manager.activeNetworkInfo).thenReturn(null)
+	}
+
+	fun mockResources(): MockContext {
+		val resources = mock(Resources::class.java)
+		`when`(activity.resources).thenReturn(resources)
+
+		val configuration = mock(Configuration::class.java)
+		`when`(resources.configuration)
+			.thenReturn(configuration)
+
+		return this
+	}
+
+	fun addStringResource(key: String, value: String): MockContext {
+		resourceCount++
+
+		`when`(
+			activity.resources
+				.getIdentifier(
+					key,
+					"string",
+					activity.packageName
+				)
+		).thenReturn(resourceCount)
+
+		`when`(activity.getString(resourceCount))
+			.thenReturn(value)
+
+		return this
 	}
 }
