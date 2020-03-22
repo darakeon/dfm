@@ -9,23 +9,22 @@ import com.darakeon.dfm.auth.getThemeLineColor
 
 abstract class Adapter<Act, Ent, Lin>(
 	private val activity: Act,
-	private val initList: Array<Ent>
+	protected val list: Array<Ent>
 ) : BaseAdapter()
 	where Ent : Any, Act : Context, Lin: View
 {
 	private var inflater: LayoutInflater =
 		activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-	override fun getCount(): Int = initList.size
-	override fun getItem(position: Int): Any = initList[position]
+	override fun getCount(): Int = list.size
+	override fun getItem(position: Int): Any = list[position]
 	override fun getItemId(position: Int): Long = position.toLong()
 
 	abstract val id: Int
 	abstract fun populateView(view: Lin, position: Int)
 
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-		val view = convertView ?:
-		inflater.inflate(id, parent, false)
+		val view = convertView ?: inflater.inflate(id, parent, false)
 
 		val color = activity.getThemeLineColor(position)
 		view.setBackgroundColor(color)

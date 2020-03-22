@@ -12,6 +12,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.LayoutInflater
 import com.darakeon.dfm.base.BaseActivity
 import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyInt
@@ -160,5 +161,15 @@ class MockContext {
 			.thenReturn(info)
 
 		return this
+	}
+
+	fun mockInflater(): LayoutInflater {
+		val inflater = mock(LayoutInflater::class.java)
+
+		`when`(activity.getSystemService(
+			Context.LAYOUT_INFLATER_SERVICE
+		)).thenReturn(inflater)
+
+		return inflater
 	}
 }
