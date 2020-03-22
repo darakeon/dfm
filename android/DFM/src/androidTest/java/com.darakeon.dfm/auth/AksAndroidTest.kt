@@ -1,7 +1,9 @@
 package com.darakeon.dfm.auth
 
 import android.support.test.InstrumentationRegistry
-import org.junit.Assert
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.not
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class AksAndroidTest {
@@ -14,8 +16,8 @@ class AksAndroidTest {
 		val cipher = aks.encrypt(message)
 		val result = aks.decrypt(cipher)
 
-		Assert.assertNotEquals(message, cipher)
-		Assert.assertEquals(message, result)
+		assertThat(cipher, not(`is`(message)))
+		assertThat(result, `is`(message))
 	}
 
 	@Test
@@ -28,7 +30,7 @@ class AksAndroidTest {
 		val cipher = aks.encrypt(message)
 		val result = aks.decrypt(cipher)
 
-		Assert.assertNotEquals(message, cipher)
-		Assert.assertEquals(message, result)
+		assertThat(cipher, not(`is`(message)))
+		assertThat(result, `is`(message))
 	}
 }
