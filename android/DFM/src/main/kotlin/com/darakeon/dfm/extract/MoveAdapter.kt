@@ -6,15 +6,12 @@ import com.darakeon.dfm.base.Adapter
 
 class MoveAdapter(
 	private val activity: ExtractActivity,
-	moveJsonList: Array<Move>,
+	list: Array<Move>,
 	private val canCheck: Boolean
-) : Adapter<ExtractActivity, Move, MoveLine>(activity, moveJsonList) {
-	private val moveList: MutableList<Move> =
-		moveJsonList.toMutableList()
-
+) : Adapter<ExtractActivity, Move, MoveLine>(activity, list) {
 	override val id: Int
 		get() = R.layout.move_line
 
 	override fun populateView(view: MoveLine, position: Int) =
-		view.setMove(activity, moveList[position], canCheck)
+		view.setMove(activity, list[position], canCheck)
 }
