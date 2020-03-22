@@ -69,12 +69,12 @@ dependencies {
 	implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-	testImplementation 'junit:junit:4.13'
+	testImplementation "junit:junit:$junit_version"
 	testImplementation "org.mockito:mockito-core:$mockito_version"
-	testImplementation 'org.robolectric:robolectric:4.3'
-	testImplementation 'com.squareup.okhttp3:mockwebserver:4.4.0'
-	androidTestImplementation 'com.android.support.test:runner:1.0.2'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	testImplementation "org.robolectric:robolectric:$robolectric_version"
+	testImplementation "com.squareup.okhttp3:mockwebserver:$mockserver_version"
+	androidTestImplementation "com.android.support.test:runner:$testrunner_version"
+	androidTestImplementation "com.android.support.test.espresso:espresso-core:$expresso_version"
 }
 
 apply plugin: 'kotlin-android-extensions'
