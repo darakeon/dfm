@@ -65,8 +65,8 @@ class MovesCreateActivity : BaseActivity() {
 		date.text = move.date.format()
 	}
 
-	private val accountUrl get() = getExtraOrUrl("accountUrl", null)
-	private val id get() = getExtraOrUrl("id", "0").toInt()
+	private val accountUrl get() = getExtraOrUrl("accountUrl") ?: ""
+	private val id get() = getExtraOrUrl("id")?.toInt() ?: 0
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

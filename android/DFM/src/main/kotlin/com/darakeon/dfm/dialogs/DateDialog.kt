@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.view.View
 import android.widget.DatePicker
-import com.darakeon.dfm.extensions.getChildOrMe
+import com.darakeon.dfm.extensions.getChild
 
 fun Activity.getDateDialog(year: Int, getAnswer: (Int) -> Unit) =
 	getDateDialog(year, null) {
@@ -20,7 +20,8 @@ fun Activity.getDateDialog(
 	year: Int, month: Int?, day: Int?,
 	getAnswer: (Int, Int, Int) -> Unit
 ) : DatePickerDialog {
-	var dialog: DatePickerDialog
+	val dialog: DatePickerDialog
+
 	dialog = DatePickerDialog(
 		this,
 		{
@@ -31,8 +32,6 @@ fun Activity.getDateDialog(
 		month ?: 1,
 		day ?: 1
 	)
-
-
 
 	return dialog
 }
@@ -50,10 +49,12 @@ private fun onSet(
 }
 
 private fun DatePickerDialog.hide(fieldName: String): DatePickerDialog {
-	val picker = getChildOrMe("mDatePicker")
-	val delegate = picker?.getChildOrMe("mDelegate")
-	val spinnerName = "m" + fieldName + "Spinner"
-	val monthView = delegate?.getChildOrMe(spinnerName) as View
-	monthView.visibility = View.GONE
+	val child = getChild(
+		"mDatePicker",
+		"mDelegate",
+		"m${fieldName}Spinner"
+	) as View
+
+	child.visibility = View.GONE
 	return this
 }

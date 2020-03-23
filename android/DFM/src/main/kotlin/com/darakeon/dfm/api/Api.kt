@@ -17,12 +17,16 @@ class Api(activity: BaseActivity) {
 	private val service = requestHandler.service
 	private var currentCall: Call<*>? = null
 
+	var cancelled = false
+		private set
+
 	private fun <T> Call<Body<T>>.call(onSuccess: (T) -> Unit) {
 		currentCall = this
 		requestHandler.call(this, onSuccess)
 	}
 
 	fun cancel() {
+		cancelled = true
 		requestHandler.cancel(currentCall)
 	}
 

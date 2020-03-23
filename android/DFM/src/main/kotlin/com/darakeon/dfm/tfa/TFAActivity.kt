@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.tfa.code
 
 class TFAActivity : BaseActivity() {
 	override val contentView = R.layout.tfa
-	override val hasTitle: Boolean get() = false
 
 	fun verify(@Suppress("UNUSED_PARAMETER") view: View) {
 		callApi {

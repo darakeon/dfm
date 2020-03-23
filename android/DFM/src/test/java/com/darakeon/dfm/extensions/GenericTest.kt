@@ -2,26 +2,46 @@ package com.darakeon.dfm.extensions
 
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 class GenericTest {
 	@Test
-	fun getChildOrMe() {
-		val test = TestClass("value")
-		val value = test.getChildOrMe("field").toString()
-		assertThat(value, `is`("value"))
+	fun getChild() {
+		val test = TestParentClass("value")
+		val value = test.getChild("parent")
+		assertThat(value.toString(), `is`("value"))
 	}
 
 	@Test
-	fun getChildOrMeWithoutProperty() {
-		val test = TestClass("value")
-		val value = test.getChildOrMe("not_existent").toString()
-		assertThat(value, `is`("no_field"))
+	fun getChildWithoutProperty() {
+		val test = TestParentClass("value")
+		val value = test.getChild("not_existent")
+		assertNull(value)
 	}
 
-	class TestClass(private val field: String) {
-		override fun toString(): String {
-			return "no_field"
-		}
+	@Test
+	fun getGrandChild() {
+		val test = TestParentClass("parent", TestChildClass("kid"))
+		val value = test.getChild("child", "kid")
+		assertThat(value.toString(), `is`("kid"))
 	}
+
+	@Test
+	fun getGrandChildWithoutProperty() {
+		val test = TestParentClass("parent", TestChildClass("kid"))
+		val value = test.getChild("not_existent", "not_existent")
+		assertNull(value)
+	}
+
+	@Suppress("unused")
+	class TestParentClass(
+		private val parent: String,
+		private val child: TestChildClass? = null
+	)
+
+	@Suppress("unused")
+	class TestChildClass(
+		private val kid: String
+	)
 }
