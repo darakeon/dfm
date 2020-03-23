@@ -30,7 +30,8 @@ import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
 
 class ExtractActivity : BaseActivity() {
-	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
+	private val accountUrl: String get() =
+		getExtraOrUrl("accountUrl") ?: ""
 
 	override val contentView = R.layout.extract
 	override val title = R.string.title_activity_extract

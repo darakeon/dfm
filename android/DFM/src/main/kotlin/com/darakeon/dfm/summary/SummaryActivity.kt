@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.summary.total_value
 import java.util.Calendar
 
 class SummaryActivity : BaseActivity() {
-	private val accountUrl: String get() = getExtraOrUrl("accountUrl")
+	private val accountUrl: String get() =
+		getExtraOrUrl("accountUrl") ?: ""
 
 	private var year: Int = 0
 	private val yearKey = "yearKey"

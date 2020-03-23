@@ -8,7 +8,7 @@ import com.darakeon.dfm.api.entities.moves.MoveCreation
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.extensions.getChildOrMe
+import com.darakeon.dfm.extensions.getChild
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
@@ -199,8 +199,11 @@ class ApiTest {
 
 	@Test
 	fun cancel() {
-		val ui = api.getChildOrMe("requestHandler")
-			?.getChildOrMe("uiHandler") as UIHandler
+		val ui = api.getChild(
+			"requestHandler",
+			"uiHandler"
+		) as UIHandler
+
 		ui.startUIWait()
 
 		activity.server

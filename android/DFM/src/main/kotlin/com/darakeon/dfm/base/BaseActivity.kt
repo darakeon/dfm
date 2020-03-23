@@ -1,11 +1,8 @@
 package com.darakeon.dfm.base
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.ContextMenu
-import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -38,7 +35,6 @@ import java.util.HashMap
 
 abstract class BaseActivity: Activity() {
 	var clickedView: View? = null
-	private var inflater: LayoutInflater? = null
 
 	private var api: Api? = null
 
@@ -67,12 +63,13 @@ abstract class BaseActivity: Activity() {
 
 	protected abstract val contentView: Int
 	protected open val title: Int = 0
-	protected open val optionsMenuResource = 0
 	protected open val contextMenuResource = 0
 	protected open val viewWithContext: View? = null
 	protected open val highlight: View? = null
 	protected open val isLoggedIn = true
-	protected open val hasTitle = true
+
+	private val hasTitle
+		get() = title != 0
 
 	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
 
@@ -89,16 +86,14 @@ abstract class BaseActivity: Activity() {
 		handleScreen()
 		setMenuLongClicks()
 		processQuery()
+		customizeBottomMenu()
 	}
 
 	private fun handleScreen() {
-		if (!hasTitle)
-			requestWindowFeature(Window.FEATURE_NO_TITLE)
-
-		inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
 		if (hasTitle)
 			setTitle(title)
+		else
+			requestWindowFeature(Window.FEATURE_NO_TITLE)
 
 		if (contentView != 0)
 			setContentView(contentView)
@@ -128,30 +123,22 @@ abstract class BaseActivity: Activity() {
 		}
 	}
 
-	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		super.onCreateOptionsMenu(menu)
+	private fun customizeBottomMenu() {
+		if (bottom_menu == null) return
 
-		if (optionsMenuResource != 0)
-			menuInflater.inflate(optionsMenuResource, menu)
+		(0 until bottom_menu.childCount).forEach {
+			val button = bottom_menu.getChildAt(it) as Button
+			button.applyGlyphicon()
 
-		if (bottom_menu != null)
-		{
-			(0 until bottom_menu.childCount).forEach {
-				val button = bottom_menu.getChildAt(it) as Button
-				button.applyGlyphicon()
+			if (this is AccountsActivity)
+				action_home.isEnabled = false
 
-				if (this is AccountsActivity)
-					action_home.isEnabled = false
+			if (this is SettingsActivity)
+				action_settings.isEnabled = false
 
-				if (this is SettingsActivity)
-					action_settings.isEnabled = false
-
-				if (this is MovesCreateActivity)
-					action_move.isEnabled = false
-			}
+			if (this is MovesCreateActivity)
+				action_move.isEnabled = false
 		}
-
-		return true
 	}
 
 	override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
@@ -196,21 +183,17 @@ abstract class BaseActivity: Activity() {
 		createMove()
 	}
 
-	@Suppress("SameParameterValue")
-	protected fun getExtraOrUrl(key: String, default: Int?) : String =
-			getExtraOrUrl(key, default.toString())
-
-	protected fun getExtraOrUrl(key: String, default: String = "") : String {
+	protected fun getExtraOrUrl(key: String) : String? {
 		val extras = intent?.extras
 
 		if (extras?.containsKey(key) == true) {
-			return extras[key]?.toString() ?: ""
+			return extras[key]?.toString()
 		}
 
 		if (query.containsKey(key)) {
-			return query[key] ?: default
+			return query[key]
 		}
 
-		return default
+		return null
 	}
 }

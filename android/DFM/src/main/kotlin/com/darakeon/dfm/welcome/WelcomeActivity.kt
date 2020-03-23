@@ -10,7 +10,6 @@ import com.darakeon.dfm.login.LoginActivity
 
 class WelcomeActivity : BaseActivity() {
 	override val contentView = R.layout.welcome
-	override val hasTitle = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE)
