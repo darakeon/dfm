@@ -30,6 +30,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
@@ -40,10 +41,16 @@ import org.robolectric.shadows.ShadowToast.getTextOfLatestToast
 
 @RunWith(RobolectricTestRunner::class)
 class BaseActivityTest {
+	private lateinit var mocker: ActivityMock
+
+	@Before
+	fun setup() {
+		mocker = ActivityMock()
+	}
 
 	@Test
 	fun callApi() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		var called = false
 		activity.testCallApi {
@@ -54,7 +61,7 @@ class BaseActivityTest {
 
 	@Test
 	fun callApiNull() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 
 		var called = false
 		activity.testCallApi { called = true }
@@ -79,7 +86,7 @@ class BaseActivityTest {
 
 	@Test
 	fun ticket() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		assertThat(activity.ticket, `is`(""))
 
@@ -90,7 +97,7 @@ class BaseActivityTest {
 
 	@Test
 	fun clearAuth() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		activity.ticket = "Hey, listen!"
 
@@ -101,7 +108,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateRecoverEnvironment() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.setValue("Theme", R.style.Light.toString())
 
 		val originalTheme = activity.theme
@@ -117,7 +124,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateAddApiAndAuth() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 
 		var api = activity.getPrivate("api")
 		var auth = activity.getPrivate("auth")
@@ -136,7 +143,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateHandleScreenWithTitle() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testTitle = R.string.app_name
 
 		activity.onCreate(null, null)
@@ -146,7 +153,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateHandleScreenWithoutTitle() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testTitle = 0
 
 		activity.onCreate(null, null)
@@ -157,7 +164,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateHandleScreenWithContent() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testContentView = R.layout.welcome
 
 		activity.onCreate(null, null)
@@ -168,7 +175,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateHandleScreenWithContextMenu() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		val view = View(activity)
 		activity.testViewWithContext = view
 
@@ -182,14 +189,14 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateSetMenuLongClicksLogout() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testContentView = R.layout.bottom_menu
 
 		activity.onCreate(null, null)
 
 		activity.ticket = "logged in"
 		activity.simulateNetwork()
-		activity.server.enqueue("empty")
+		mocker.server.enqueue("empty")
 
 		val logout = shadowOf(activity.action_logout)
 		assertNotNull(logout.onLongClickListener)
@@ -201,7 +208,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateSetMenuLongClicksClose() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testContentView = R.layout.bottom_menu
 
 		activity.onCreate(null, null)
@@ -218,7 +225,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateProcessQuery() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.intent.data = Uri.parse("?X=Z")
 
 		activity.onCreate(null, null)
@@ -230,7 +237,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuGenericActivity() {
-		val activity = ActivityMock.get()
+		val activity = mocker.get()
 		activity.testContentView = R.layout.bottom_menu
 
 		activity.onCreate(null, null)
@@ -248,7 +255,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuAccountsActivity() {
-		val activity = ActivityMock.create<AccountsActivity>()
+		val activity = mocker.create<AccountsActivity>()
 
 		val menu = activity.bottom_menu
 		assertFalse(menu.action_home.isEnabled)
@@ -258,7 +265,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuSettingsActivity() {
-		val activity = ActivityMock.create<SettingsActivity>()
+		val activity = mocker.create<SettingsActivity>()
 
 		val menu = activity.bottom_menu
 		assertTrue(menu.action_home.isEnabled)
@@ -268,7 +275,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateCustomizeBottomMenuMovesCreateActivity() {
-		val activity = ActivityMock.create<MovesCreateActivity>()
+		val activity = mocker.create<MovesCreateActivity>()
 
 		val menu = activity.bottom_menu
 		assertTrue(menu.action_home.isEnabled)
@@ -278,7 +285,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateContextMenu() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.hasContextMenu = true
 
 		val menu = RoboContextMenu()
@@ -293,7 +300,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onCreateContextMenuZero() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val menu = RoboContextMenu()
 		val view = mock(View::class.java)
@@ -307,7 +314,7 @@ class BaseActivityTest {
 
 	@Test
 	fun onDestroy() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val api = activity.getPrivate("api") as Api
 
@@ -318,7 +325,7 @@ class BaseActivityTest {
 
 	@Test
 	fun back() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val shadow = shadowOf(activity)
 		shadow.clearNextStartedActivities()
@@ -333,7 +340,7 @@ class BaseActivityTest {
 
 	@Test
 	fun refresh() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val shadow = shadowOf(activity)
 		shadow.clearNextStartedActivities()
@@ -350,7 +357,7 @@ class BaseActivityTest {
 
 	@Test
 	fun showLongClickWarning() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val view = View(activity)
 
@@ -362,7 +369,7 @@ class BaseActivityTest {
 
 	@Test
 	fun goToAccounts() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val view = View(activity)
 		activity.goToAccounts(view)
@@ -376,7 +383,7 @@ class BaseActivityTest {
 
 	@Test
 	fun goToSettings() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val view = View(activity)
 		activity.goToSettings(view)
@@ -390,7 +397,7 @@ class BaseActivityTest {
 
 	@Test
 	fun createMove() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val view = View(activity)
 		activity.createMove(view)
@@ -404,7 +411,7 @@ class BaseActivityTest {
 
 	@Test
 	fun getExtraOrUrlWithAtExtra() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.intent.putExtra("link", "zelda")
 
 		val value = activity.testGetExtraOrUrl("link")
@@ -414,7 +421,7 @@ class BaseActivityTest {
 
 	@Test
 	fun getExtraOrUrlWithAtUrl() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.query["link"] = "zelda"
 
 		val value = activity.testGetExtraOrUrl("link")
@@ -424,7 +431,7 @@ class BaseActivityTest {
 
 	@Test
 	fun getExtraOrUrlWithAtExtraAndUrl() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.intent.putExtra("link", "zelda")
 		activity.query["link"] = "wrong"
 
@@ -435,7 +442,7 @@ class BaseActivityTest {
 
 	@Test
 	fun getExtraOrUrlNull() {
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 
 		val value = activity.testGetExtraOrUrl("link")
 

@@ -9,6 +9,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -21,6 +22,12 @@ class DateDialogTest {
 	private val yearId = getResId("year")
 	private val monthId = getResId("month")
 	private val dayId = getResId("day")
+	private lateinit var mocker: ActivityMock
+
+	@Before
+	fun setup() {
+		mocker = ActivityMock()
+	}
 
 	@Test
 	fun getDateDialogWithDayMonthYear() {
@@ -28,7 +35,7 @@ class DateDialogTest {
 		var month = MARCH
 		var day = 27
 
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.getDateDialog(2013, DECEMBER, 23) {
 			y, m, d ->
 			year = y
@@ -54,7 +61,7 @@ class DateDialogTest {
 		var year = 1986
 		var month = MARCH
 
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.getDateDialog(2013, DECEMBER) {
 			y, m ->
 			year = y
@@ -77,7 +84,7 @@ class DateDialogTest {
 	fun getDateDialogWithYear() {
 		var year = 1986
 
-		val activity = ActivityMock.create()
+		val activity = mocker.create()
 		activity.getDateDialog(2013) {
 			y -> year = y
 		}.show()

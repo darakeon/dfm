@@ -24,7 +24,7 @@ class AccountLineTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		activity = ActivityMock().create()
 		accountLine = activity.layoutInflater
 			.inflate(R.layout.accounts_line, null)
 			as AccountLine

@@ -26,7 +26,7 @@ class DetailBoxTest {
 
 	@Before
 	fun setup() {
-		context = ActivityMock.create()
+		context = ActivityMock().create()
 
 		val detail = Detail("desc", 3, 2.7)
 		move.detailList.add(detail)

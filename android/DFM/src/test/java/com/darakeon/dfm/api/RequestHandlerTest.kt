@@ -26,7 +26,7 @@ class RequestHandlerTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		activity = ActivityMock().create()
 		handler = RequestHandler(activity)
 	}
 

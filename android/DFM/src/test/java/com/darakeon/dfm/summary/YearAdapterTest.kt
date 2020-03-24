@@ -15,7 +15,7 @@ class YearAdapterTest {
 	@Test
 	fun populateView() {
 		val list = arrayOf(Month("september", 9, 0.0))
-		val activity = ActivityMock.create<SummaryActivity>()
+		val activity = ActivityMock().create<SummaryActivity>()
 		val adapter = YearAdapter(activity, list, "url", 1989)
 		val line = activity.layoutInflater
 			.inflate(R.layout.month_line, null)

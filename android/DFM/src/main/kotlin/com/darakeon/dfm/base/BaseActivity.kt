@@ -39,7 +39,7 @@ abstract class BaseActivity: Activity() {
 	private var api: Api? = null
 
 	var serverUrl: String? = null
-		protected set
+		private set
 
 	protected fun callApi(call: (Api) -> Unit) {
 		val api = api
