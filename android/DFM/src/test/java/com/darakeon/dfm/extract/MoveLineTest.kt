@@ -5,7 +5,7 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.extensions.getChild
+import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
@@ -70,7 +70,7 @@ class MoveLineTest {
 
 		assertThat(moveLine.nature, `is`(Nature.In))
 		assertThat(
-			moveLine.getChild("checkNature") as Nature,
+			moveLine.getPrivate("checkNature") as Nature,
 			`is`(Nature.In)
 		)
 	}
@@ -91,7 +91,7 @@ class MoveLineTest {
 
 		assertThat(moveLine.nature, `is`(Nature.Out))
 		assertThat(
-			moveLine.getChild("checkNature") as Nature,
+			moveLine.getPrivate("checkNature") as Nature,
 			`is`(Nature.Out)
 		)
 	}

@@ -10,7 +10,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.setValue
-import com.darakeon.dfm.extensions.getChild
+import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.moves.MovesCreateActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.utils.activity.ActivityMock
@@ -105,12 +105,12 @@ class BaseActivityTest {
 		activity.setValue("Theme", R.style.Light.toString())
 
 		val originalTheme = activity.theme
-			.getChild("mThemeImpl", "mThemeResId") as Int
+			.getPrivate("mThemeImpl", "mThemeResId") as Int
 
 		activity.onCreate(null, null)
 
 		val newTheme = activity.theme
-			.getChild("mThemeImpl", "mThemeResId") as Int
+			.getPrivate("mThemeImpl", "mThemeResId") as Int
 
 		assertThat(newTheme, not(`is`(originalTheme)))
 	}
@@ -119,16 +119,16 @@ class BaseActivityTest {
 	fun onCreateAddApiAndAuth() {
 		val activity = ActivityMock.get()
 
-		var api = activity.getChild("api")
-		var auth = activity.getChild("auth")
+		var api = activity.getPrivate("api")
+		var auth = activity.getPrivate("auth")
 
 		assertNull(api)
 		assertNull(auth)
 
 		activity.onCreate(null, null)
 
-		api = activity.getChild("api")
-		auth = activity.getChild("auth")
+		api = activity.getPrivate("api")
+		auth = activity.getPrivate("auth")
 
 		assertNotNull(api)
 		assertNotNull(auth)
@@ -309,7 +309,7 @@ class BaseActivityTest {
 	fun onDestroy() {
 		val activity = ActivityMock.create()
 
-		val api = activity.getChild("api") as Api
+		val api = activity.getPrivate("api") as Api
 
 		activity.testDestroy()
 
