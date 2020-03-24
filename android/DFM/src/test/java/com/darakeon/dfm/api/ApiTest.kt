@@ -24,18 +24,20 @@ import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 class ApiTest {
+	private lateinit var mocker: ActivityMock
 	private lateinit var activity: TestActivity
 	private lateinit var api: Api
 
 	private val server
-		get() = activity.server
+		get() = mocker.server
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		mocker = ActivityMock()
+		activity = mocker.create()
 		activity.simulateNetwork()
 
-		api = Api(activity)
+		api = activity.getPrivate("api") as Api
 	}
 
 	@After
@@ -205,8 +207,6 @@ class ApiTest {
 		) as UIHandler
 
 		ui.startUIWait()
-
-		activity.server
 
 		val alert = getLatestAlertDialog()
 		assertTrue(alert.isShowing)

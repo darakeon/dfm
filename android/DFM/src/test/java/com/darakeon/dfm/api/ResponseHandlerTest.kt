@@ -46,7 +46,7 @@ internal class ResponseHandlerTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		activity = ActivityMock().create()
 
 		ui = mock(UIHandler::class.java)
 		`when`(ui.endUIWait())

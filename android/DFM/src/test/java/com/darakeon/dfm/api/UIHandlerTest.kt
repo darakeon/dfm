@@ -22,7 +22,7 @@ class UIHandlerTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		activity = ActivityMock().create()
 		handler = UIHandler(activity)
 	}
 

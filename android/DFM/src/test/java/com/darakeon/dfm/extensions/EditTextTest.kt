@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner
 class EditTextTest {
 	@Test
 	fun onChange() {
-		val activity = ActivityMock.create()
+		val activity = ActivityMock().create()
 		val editText = EditText(activity)
 
 		var text = "x"

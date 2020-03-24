@@ -1,33 +1,41 @@
 package com.darakeon.dfm.utils.activity
 
-import android.app.Activity
 import android.view.ContextMenu
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.base.BaseActivity
+import com.darakeon.dfm.extensions.setPrivate
 import com.darakeon.dfm.utils.api.Server
 import org.robolectric.Robolectric.buildActivity
 
-object ActivityMock {
-	inline fun <reified T : Activity?> create(): T =
-		buildActivity(T::class.java).create().get()
+class ActivityMock {
+	val server = Server()
 
+	internal inline fun <reified T : BaseActivity> create(): T = build(true)
 	fun create() = create<TestActivity>()
 
-	inline fun <reified T : Activity?> get(): T =
-		buildActivity(T::class.java).get()
-
+	internal inline fun <reified T : BaseActivity> get(): T = build(false)
 	fun get() = get<TestActivity>()
+
+	private inline fun <reified T : BaseActivity> build(create: Boolean): T {
+		val builder = buildActivity(T::class.java)
+
+		if (create)
+			builder.create()
+
+		val activity = builder.get()
+
+		activity.setPrivate("serverUrl") {server.url}
+
+		if (create)
+			activity.setPrivate("api") { Api(activity) }
+
+		return activity
+	}
 }
 
 class TestActivity : BaseActivity() {
-	val server = Server()
-
-	init {
-		serverUrl = server.url
-	}
-
 	var testTitle = 0
 	override val title: Int
 		get() = testTitle

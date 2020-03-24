@@ -34,7 +34,7 @@ class MoveLineTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create<ExtractActivity>()
+		activity = ActivityMock().create<ExtractActivity>()
 		moveLine = activity.layoutInflater
 			.inflate(R.layout.move_line, activity.main_table, false)
 			as MoveLine

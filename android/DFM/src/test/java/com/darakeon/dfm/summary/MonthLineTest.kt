@@ -23,7 +23,7 @@ class MonthLineTest {
 
 	@Before
 	fun setup() {
-		activity = ActivityMock.create()
+		activity = ActivityMock().create()
 		monthLine = activity.layoutInflater
 			.inflate(R.layout.month_line, null)
 			as MonthLine
