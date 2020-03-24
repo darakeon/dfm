@@ -1,23 +1,47 @@
 package com.darakeon.dfm.extensions
 
-fun Any.getChild(vararg fieldNames: String): Any? {
-	var result: Any? = this
-	for (fieldName in fieldNames) {
-		result = result?.getChild(result.javaClass, fieldName)
-	}
-	return result
+import java.lang.reflect.Field
+
+fun Any.getPrivate(vararg fieldNames: String): Any? {
+	return getField(fieldNames.asList()) { _, _ -> }
 }
 
-private fun Any.getChild(`class`: Class<*>, fieldName: String): Any? {
+fun Any.setPrivate(vararg fieldNames: String, value: () -> Any) {
+	getField(fieldNames.asList()) {
+		field, parent -> field?.set(parent, value())
+	}
+}
+
+private fun Any.getField(fieldNames: List<String>, set: (Field?, Any?) -> Unit): Any? {
+	var field: Field? = null
+	var element: Any? = this
+	var parent: Any? = null
+
+	for (fieldName in fieldNames) {
+		field = element?.getField(fieldName)
+		parent = element
+		element = field?.get(element)
+	}
+
+	set(field, parent)
+
+	return element
+}
+
+private fun Any.getField(fieldName: String): Field? {
+	return getField(javaClass, fieldName)
+}
+
+private fun Any.getField(`class`: Class<*>, fieldName: String): Field? {
 	for (field in `class`.declaredFields) {
 		if (field.name != fieldName)
 			continue
 
 		field.isAccessible = true
-		return field.get(this)
+		return field
 	}
 
 	val `super` = `class`.superclass ?: return null
 
-	return getChild(`super`, fieldName)
+	return getField(`super`, fieldName)
 }

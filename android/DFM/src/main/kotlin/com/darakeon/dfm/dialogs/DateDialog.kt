@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.view.View
 import android.widget.DatePicker
-import com.darakeon.dfm.extensions.getChild
+import com.darakeon.dfm.extensions.getPrivate
 
 fun Activity.getDateDialog(year: Int, getAnswer: (Int) -> Unit) =
 	getDateDialog(year, null) {
@@ -49,7 +49,7 @@ private fun onSet(
 }
 
 private fun DatePickerDialog.hide(fieldName: String): DatePickerDialog {
-	val child = getChild(
+	val child = getPrivate(
 		"mDatePicker",
 		"mDelegate",
 		"m${fieldName}Spinner"
