@@ -231,7 +231,28 @@ class MoveLineTest {
 	}
 
 	@Test
-	fun reverseCheck() {
+	fun check() {
+		val move = Move(
+			"zelda",
+			1986, 2, 21,
+			34.0, false, 1
+		)
+
+		moveLine.setMove(activity, move, true)
+
+		assertFalse(moveLine.isChecked)
+
+		moveLine.check()
+
+		assertTrue(moveLine.isChecked)
+		assertThat(moveLine.check_move.text.toString(), `is`("\uE101"))
+
+		val color = activity.getColor(R.color.checked_dark)
+		assertThat(moveLine.check_move.currentTextColor, `is`(color))
+	}
+
+	@Test
+	fun uncheck() {
 		val move = Move(
 			"zelda",
 			1986, 2, 21,
@@ -242,7 +263,7 @@ class MoveLineTest {
 
 		assertTrue(moveLine.isChecked)
 
-		moveLine.reverseCheck()
+		moveLine.uncheck()
 
 		assertFalse(moveLine.isChecked)
 		assertThat(moveLine.check_move.text.toString(), `is`("\uE085"))

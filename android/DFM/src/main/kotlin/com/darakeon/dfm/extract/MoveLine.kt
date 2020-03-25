@@ -82,8 +82,13 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 
 	override fun getId(): Int = move?.id ?: 0
 
-	fun reverseCheck() {
-		isChecked = !isChecked
+	fun check() {
+		isChecked = true
+		setCheckField()
+	}
+
+	fun uncheck() {
+		isChecked = false
 		setCheckField()
 	}
 

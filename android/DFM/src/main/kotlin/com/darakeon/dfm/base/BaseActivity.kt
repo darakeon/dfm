@@ -72,7 +72,7 @@ abstract class BaseActivity: Activity() {
 	private val hasTitle
 		get() = title != 0
 
-	protected open fun changeContextMenu(view: View, menuInfo: ContextMenu) {}
+	protected open fun changeContextMenu(view: View, menu: ContextMenu) {}
 
 	val query = HashMap<String, String>()
 
