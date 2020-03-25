@@ -1,0 +1,784 @@
+package com.darakeon.dfm.moves
+
+import android.app.DatePickerDialog
+import android.app.Dialog
+import android.graphics.Paint
+import android.net.Uri
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.View
+import android.widget.TextView
+import com.darakeon.dfm.R
+import com.darakeon.dfm.api.entities.ComboItem
+import com.darakeon.dfm.api.entities.Date
+import com.darakeon.dfm.api.entities.moves.Move
+import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.moves.MoveForm
+import com.darakeon.dfm.api.entities.moves.Nature
+import com.darakeon.dfm.extensions.getFromJson
+import com.darakeon.dfm.extensions.getPrivate
+import com.darakeon.dfm.extensions.putJson
+import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.utils.api.readBundle
+import com.darakeon.dfm.utils.getDecimal
+import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import com.darakeon.dfm.welcome.WelcomeActivity
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.moves.account_in
+import kotlinx.android.synthetic.main.moves.account_out
+import kotlinx.android.synthetic.main.moves.category
+import kotlinx.android.synthetic.main.moves.date
+import kotlinx.android.synthetic.main.moves.description
+import kotlinx.android.synthetic.main.moves.detail_amount
+import kotlinx.android.synthetic.main.moves.detail_description
+import kotlinx.android.synthetic.main.moves.detail_value
+import kotlinx.android.synthetic.main.moves.detailed_value
+import kotlinx.android.synthetic.main.moves.details
+import kotlinx.android.synthetic.main.moves.form
+import kotlinx.android.synthetic.main.moves.lose_category
+import kotlinx.android.synthetic.main.moves.nature
+import kotlinx.android.synthetic.main.moves.no_accounts
+import kotlinx.android.synthetic.main.moves.no_categories
+import kotlinx.android.synthetic.main.moves.remove_check
+import kotlinx.android.synthetic.main.moves.simple_value
+import kotlinx.android.synthetic.main.moves.value
+import kotlinx.android.synthetic.main.moves.warnings
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.isEmptyString
+import org.hamcrest.Matchers.not
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
+import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
+import org.robolectric.shadows.ShadowDialog.getLatestDialog
+import java.util.Calendar
+
+@RunWith(RobolectricTestRunner::class)
+class MovesActivityTest {
+	private lateinit var mocker: ActivityMock
+	private lateinit var activity: MovesActivity
+
+	@Before
+	fun setup() {
+		mocker = ActivityMock()
+		activity = mocker.get<MovesActivity>()
+	}
+
+	@Test
+	fun structure() {
+		activity.onCreate(null, null)
+		assertNotNull(activity.findViewById(R.id.warnings))
+		assertNotNull(activity.findViewById(R.id.no_accounts))
+		assertNotNull(activity.findViewById(R.id.no_categories))
+		assertNotNull(activity.findViewById(R.id.remove_check))
+		assertNotNull(activity.findViewById(R.id.lose_category))
+		assertNotNull(activity.findViewById(R.id.form))
+		assertNotNull(activity.findViewById(R.id.description))
+		assertNotNull(activity.findViewById(R.id.date))
+		assertNotNull(activity.findViewById(R.id.category))
+		assertNotNull(activity.findViewById(R.id.nature))
+		assertNotNull(activity.findViewById(R.id.account_out))
+		assertNotNull(activity.findViewById(R.id.account_in))
+		assertNotNull(activity.findViewById(R.id.simple_value))
+		assertNotNull(activity.findViewById(R.id.value))
+		assertNotNull(activity.findViewById(R.id.detailed_value))
+		assertNotNull(activity.findViewById(R.id.detail_description))
+		assertNotNull(activity.findViewById(R.id.detail_amount))
+		assertNotNull(activity.findViewById(R.id.detail_value))
+		assertNotNull(activity.findViewById(R.id.details))
+	}
+
+	@Test
+	fun onCreateAccountAndIdByIntent() {
+		activity.intent.putExtra("accountUrl", "url")
+		activity.intent.putExtra("id", 27)
+
+		activity.onCreate(Bundle(), null)
+
+		val accountUrl = activity.getPrivate<String>("accountUrl")
+		assertThat(accountUrl, `is`("url"))
+
+		val id = activity.getPrivate<Int>("id")
+		assertThat(id, `is`(27))
+	}
+
+	@Test
+	fun onCreateAccountAndIdByQuery() {
+		activity.intent.data = Uri.parse("?accountUrl=url&id=27")
+
+		activity.onCreate(Bundle(), null)
+
+		val accountUrl = activity.getPrivate<String>("accountUrl")
+		assertThat(accountUrl, `is`("url"))
+
+		val id = activity.getPrivate<Int>("id")
+		assertThat(id, `is`(27))
+	}
+
+	@Test
+	fun onCreateAccountAndIdByQueryInvalidId() {
+		activity.intent.data = Uri.parse("?accountUrl=url&id=X")
+
+		activity.onCreate(Bundle(), null)
+
+		val accountUrl = activity.getPrivate<String>("accountUrl")
+		assertThat(accountUrl, `is`("url"))
+
+		val id = activity.getPrivate<Int>("id")
+		assertThat(id, `is`(0))
+	}
+
+	@Test
+	fun onCreateFromApiForm() {
+		activity.intent.putExtra("accountUrl", "url")
+		activity.simulateNetwork()
+		mocker.server.enqueue("move_get")
+
+		activity.onCreate(null, null)
+
+		val form = activity
+			.getPrivate<MoveForm>("moveForm")
+
+		assertTrue(form.isUsingCategories)
+
+		assertThat(form.categoryList.size, `is`(1))
+		assertThat(form.categoryList[0], `is`(ComboItem("Category", "category")))
+
+		assertThat(form.natureList.size, `is`(3))
+		assertThat(form.natureList[0], `is`(ComboItem("Out", "0")))
+		assertThat(form.natureList[1], `is`(ComboItem("In", "1")))
+		assertThat(form.natureList[2], `is`(ComboItem("Transfer", "2")))
+
+		assertThat(form.accountList.size, `is`(1))
+		assertThat(form.accountList[0], `is`(ComboItem("Account", "account")))
+	}
+
+	@Test
+	fun onCreateFromApiMoveNew() {
+		activity.intent.putExtra("accountUrl", "url")
+		activity.simulateNetwork()
+		mocker.server.enqueue("move_get_new")
+
+		activity.onCreate(null, null)
+
+		val move = activity.getPrivate<Move>("move")
+		assertThat(move.date, `is`(Date()))
+		assertNull(move.inUrl)
+		assertThat(move.outUrl, `is`("url"))
+	}
+
+	@Test
+	fun onCreateFromApiMoveEdit() {
+		activity.intent.putExtra("accountUrl", "url")
+		activity.intent.putExtra("id", 27)
+		activity.simulateNetwork()
+		mocker.server.enqueue("move_get_edit")
+
+		activity.onCreate(null, null)
+
+		val move = activity.getPrivate<Move>("move")
+		assertThat(move.id, `is`(1))
+		assertThat(move.description, `is`("move"))
+		assertThat(move.date, `is`(Date(2020, 3, 8)))
+		assertThat(move.natureEnum, `is`(Nature.Transfer))
+		assertThat(move.categoryName, `is`("category"))
+		assertThat(move.outUrl, `is`("out"))
+		assertThat(move.inUrl, `is`("in"))
+		assertThat(move.value, `is`(1.0))
+		assertThat(move.detailList.size, `is`(1))
+		assertThat(move.detailList[0].description, `is`("detail"))
+		assertThat(move.detailList[0].amount, `is`(1))
+		assertThat(move.detailList[0].value, `is`(27.0))
+		assertTrue(move.checked)
+
+		assertFalse(move.warnCategory)
+		assertTrue(move.isDetailed)
+	}
+
+	@Test
+	fun onCreateWithSavedState() {
+		val saved = Bundle()
+		saved.putString("move", readBundle("move"))
+		saved.putString("moveForm", readBundle("move_form"))
+
+		activity.onCreate(saved, null)
+
+		val form = activity.getPrivate<MoveForm>("moveForm")
+
+		assertTrue(form.isUsingCategories)
+
+		assertThat(form.categoryList.size, `is`(1))
+		assertThat(form.categoryList[0], `is`(ComboItem("My Category", "category")))
+
+		assertThat(form.natureList.size, `is`(3))
+		assertThat(form.natureList[0], `is`(ComboItem("Out", "0")))
+		assertThat(form.natureList[1], `is`(ComboItem("In", "1")))
+		assertThat(form.natureList[2], `is`(ComboItem("Transfer", "2")))
+
+		assertThat(form.accountList.size, `is`(2))
+		assertThat(form.accountList[0], `is`(ComboItem("My Out", "out")))
+		assertThat(form.accountList[1], `is`(ComboItem("My In", "in")))
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(move.id, `is`(1))
+		assertThat(move.description, `is`("move"))
+		assertThat(move.date, `is`(Date(2020, 3, 8)))
+		assertThat(move.natureEnum, `is`(Nature.Transfer))
+		assertThat(move.categoryName, `is`("category"))
+		assertThat(move.outUrl, `is`("out"))
+		assertThat(move.inUrl, `is`("in"))
+		assertThat(move.value, `is`(1.0))
+		assertThat(move.detailList.size, `is`(1))
+		assertThat(move.detailList[0].description, `is`("detail"))
+		assertThat(move.detailList[0].amount, `is`(1))
+		assertThat(move.detailList[0].value, `is`(27.0))
+		assertTrue(move.checked)
+
+		assertFalse(move.warnCategory)
+		assertTrue(move.isDetailed)
+	}
+
+	@Test
+	fun populateResponseMoveNotAllowedByAccounts() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form_no_accounts"))
+
+		activity.onCreate(saved, null)
+
+		val form = activity.getPrivate<MoveForm>("moveForm")
+
+		assertTrue(form.blockedByAccounts())
+		assertThat(activity.no_accounts.visibility, `is`(View.VISIBLE))
+
+		assertThat(activity.form.visibility, `is`(View.GONE))
+		assertThat(activity.warnings.visibility, `is`(View.VISIBLE))
+	}
+
+	@Test
+	fun populateResponseMoveNotAllowedByCategories() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form_no_categories"))
+
+		activity.onCreate(saved, null)
+
+		val form = activity.getPrivate<MoveForm>("moveForm")
+
+		assertTrue(form.blockedByCategories())
+		assertThat(activity.no_categories.visibility, `is`(View.VISIBLE))
+
+		assertThat(activity.form.visibility, `is`(View.GONE))
+		assertThat(activity.warnings.visibility, `is`(View.VISIBLE))
+	}
+
+	@Test
+	fun populateResponseMoveCheckedWarning() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_checked"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.remove_check.visibility, `is`(View.VISIBLE))
+	}
+
+	@Test
+	fun populateResponseDescription() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.description.text.toString(), `is`("move"))
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.description.setText("another")
+		assertThat(move.description, `is`("another"))
+	}
+
+	@Test
+	fun populateResponseDate() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.date.text.toString(), `is`("2020-03-08"))
+	}
+
+	@Test
+	fun populateResponseUsingCategories() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_with_category"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.category.text.toString(), `is`("My Category"))
+	}
+
+	@Test
+	fun populateResponseNotUsingCategories() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
+		saved.putString("move", readBundle("move_without_category"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.category.visibility, `is`(View.GONE))
+	}
+
+	@Test
+	fun populateResponseWarnCategoryLose() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form_not_using_categories"))
+		saved.putString("move", readBundle("move_with_category"))
+
+		activity.onCreate(saved, null)
+
+		val fieldFlags = activity.lose_category.paintFlags
+		val strikeLine = Paint.STRIKE_THRU_TEXT_FLAG
+		assertThat(fieldFlags.and(strikeLine), `is`(strikeLine))
+
+		assertThat(activity.lose_category.visibility, `is`(View.VISIBLE))
+	}
+
+	@Test
+	fun populateResponseNatureTransfer() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.nature.text.toString(), `is`("Transfer"))
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(move.natureEnum, `is`(Nature.Transfer))
+		assertThat(activity.account_out.visibility, `is`(View.VISIBLE))
+		assertThat(activity.account_in.visibility, `is`(View.VISIBLE))
+
+		assertNotNull(move.outUrl)
+		assertNotNull(move.inUrl)
+
+		assertThat(activity.account_out.text.toString(), not(`is`("account out")))
+		assertThat(activity.account_in.text.toString(), not(`is`("account in")))
+	}
+
+	@Test
+	fun populateResponseNatureIn() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_in"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.nature.text.toString(), `is`("In"))
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(move.natureEnum, `is`(Nature.In))
+
+		assertThat(activity.account_out.visibility, `is`(View.GONE))
+		assertThat(activity.account_in.visibility, `is`(View.VISIBLE))
+
+		assertNull(move.outUrl)
+		assertNotNull(move.inUrl)
+
+		assertThat(activity.account_out.text.toString(), `is`("account out"))
+		assertThat(activity.account_in.text.toString(), not(`is`("account in")))
+	}
+
+	@Test
+	fun populateResponseAccounts() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move"))
+
+		activity.onCreate(saved, null)
+
+		assertThat(activity.account_out.text.toString(), `is`("My Out"))
+		assertThat(activity.account_in.text.toString(), `is`("My In"))
+	}
+
+	@Test
+	fun populateResponseDetails() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_detailed"))
+
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertTrue(move.isDetailed)
+
+		assertThat(activity.simple_value.visibility, `is`(View.GONE))
+		assertThat(activity.detailed_value.visibility, `is`(View.VISIBLE))
+
+		assertThat(activity.details.childCount, `is`(2))
+
+		val detail1 = activity.details.getChildAt(0) as DetailBox
+		val getText1 = { id: Int -> detail1.findViewById<TextView>(id).text.toString() }
+		assertThat(getText1(R.id.detail_description), `is`("detail 1"))
+		assertThat(getText1(R.id.detail_amount), `is`("1"))
+		assertThat(getText1(R.id.detail_value), `is`("27.00".getDecimal()))
+
+		val detail2 = activity.details.getChildAt(1) as DetailBox
+		val getText2 = { id: Int -> detail2.findViewById<TextView>(id).text.toString() }
+		assertThat(getText2(R.id.detail_description), `is`("detail 2"))
+		assertThat(getText2(R.id.detail_amount), `is`("2"))
+		assertThat(getText2(R.id.detail_value), `is`("54.00".getDecimal()))
+	}
+
+	@Test
+	fun populateResponseValue() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move_single_value"))
+
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertFalse(move.isDetailed)
+
+		assertThat(activity.simple_value.visibility, `is`(View.VISIBLE))
+		assertThat(activity.detailed_value.visibility, `is`(View.GONE))
+
+		assertThat(activity.value.text.toString(), `is`("1.00".getDecimal()))
+
+		activity.value.setText("2")
+		assertThat(move.value, `is`(2.0))
+
+		assertThat(activity.details.childCount, `is`(0))
+	}
+
+	@Test
+	fun onSaveInstance() {
+		val originalMove = Gson().fromJson(
+			readBundle("move"),
+			Move::class.java
+		)
+
+		val originalForm = Gson().fromJson(
+			readBundle("move_form"),
+			MoveCreation::class.java
+		)
+
+		val originalState = Bundle()
+		originalState.putJson("move", originalMove)
+		originalState.putJson("moveForm", originalForm)
+
+		activity.onCreate(originalState, null)
+
+		val newState = Bundle()
+		activity.onSaveInstanceState(newState, PersistableBundle())
+
+		val newMove = newState.getFromJson("move", Move())
+		assertThat(newMove, `is`(originalMove))
+
+		val newForm = newState.getFromJson("moveForm", MoveCreation())
+		assertThat(newForm, `is`(originalForm))
+	}
+
+	@Test
+	fun dateDialog() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		assertThat(activity.date.text.toString(), `is`("date"))
+
+		activity.showDatePicker(View(activity))
+
+		val dialog = getLatestDialog() as DatePickerDialog
+		assertNotNull(dialog)
+
+		dialog.updateDate(1986, Calendar.MARCH, 27)
+		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
+
+		assertThat(activity.date.text.toString(), `is`("1986-03-27"))
+	}
+
+	@Test
+	fun changeCategory() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.category.text.toString(), `is`("category"))
+		assertNull(move.categoryName)
+
+		activity.changeCategory(View(activity))
+
+		val alert = getLatestAlertDialog()
+		shadowOf(alert).clickOnItem(0)
+
+		assertThat(activity.category.text.toString(), `is`("My Category"))
+		assertThat(move.categoryName, `is`("category"))
+	}
+
+	@Test
+	fun warnLoseCategory() {
+		val saved = Bundle()
+		activity.onCreate(saved, null)
+
+		activity.warnLoseCategory(View(activity))
+
+		val alert = getLatestAlertDialog()
+		val shadow = shadowOf(alert)
+
+		assertThat(shadow.title.toString(), `is`("Ops!"))
+		val message = activity.getString(R.string.losingCategory)
+		assertThat(shadow.message.toString(), `is`(message))
+	}
+
+	@Test
+	fun changeNature() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.nature.text.toString(), `is`("Out"))
+		assertThat(move.natureEnum, `is`(Nature.Out))
+
+		activity.changeNature(View(activity))
+
+		val alert = getLatestAlertDialog()
+		shadowOf(alert).clickOnItem(2)
+
+		assertThat(activity.nature.text.toString(), `is`("Transfer"))
+		assertThat(move.natureEnum, `is`(Nature.Transfer))
+	}
+
+	@Test
+	fun changeAccountOut() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.account_out.text.toString(), `is`("account out"))
+		assert(move.outUrl.isNullOrEmpty())
+
+		activity.changeAccountOut(View(activity))
+
+		val alert = getLatestAlertDialog()
+		shadowOf(alert).clickOnItem(0)
+
+		assertThat(activity.account_out.text.toString(), `is`("My Out"))
+		assertThat(move.outUrl, `is`("out"))
+	}
+
+	@Test
+	fun changeAccountIn() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		assertThat(activity.account_in.text.toString(), `is`("account in"))
+		assert(move.inUrl.isNullOrEmpty())
+
+		activity.changeAccountIn(View(activity))
+
+		val alert = getLatestAlertDialog()
+		shadowOf(alert).clickOnItem(1)
+
+		assertThat(activity.account_in.text.toString(), `is`("My In"))
+		assertThat(move.inUrl, `is`("in"))
+	}
+
+	@Test
+	fun useDetailed() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.useDetailed(View(activity))
+
+		assertTrue(move.isDetailed)
+	}
+
+	@Test
+	fun useSimple() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.useSimple(View(activity))
+
+		assertFalse(move.isDetailed)
+	}
+
+	@Test
+	fun addDetail() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.detail_description.setText("cat")
+		activity.detail_amount.setText("18")
+		activity.detail_value.setText("3.14".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		assertThat(activity.detail_description.text.toString(), isEmptyString())
+		assertThat(activity.detail_amount.text.toString(), `is`("1"))
+		assertThat(activity.detail_value.text.toString(), isEmptyString())
+
+		assertThat(move.detailList.size, `is`(1))
+		assertThat(move.detailList[0].description, `is`("cat"))
+		assertThat(move.detailList[0].amount, `is`(18))
+		assertThat(move.detailList[0].value, `is`(3.14))
+
+		assertThat(activity.details.childCount, `is`(1))
+		val detail = activity.details.getChildAt(0) as DetailBox
+		val getText = { id: Int -> detail.findViewById<TextView>(id).text.toString() }
+		assertThat(getText(R.id.detail_description), `is`("cat"))
+		assertThat(getText(R.id.detail_amount), `is`("18"))
+		assertThat(getText(R.id.detail_value), `is`("3.14".getDecimal()))
+	}
+
+	@Test
+	fun addDetailNoDescription() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.detail_description.setText("")
+		activity.detail_amount.setText("18")
+		activity.detail_value.setText("3.14".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		val alert = getLatestAlertDialog()
+		assertTrue(alert.isShowing)
+
+		val shadow = shadowOf(alert)
+		assertThat(shadow.title.toString(), `is`("Ops!"))
+		val message = activity.getString(R.string.fill_all)
+		assertThat(shadow.message.toString(), `is`(message))
+
+		assertThat(move.detailList.size, `is`(0))
+		assertThat(activity.details.childCount, `is`(0))
+	}
+
+	@Test
+	fun addDetailNoAmount() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.detail_description.setText("cat")
+		activity.detail_amount.setText("")
+		activity.detail_value.setText("3.14".getDecimal())
+
+		activity.addDetail(View(activity))
+
+		val alert = getLatestAlertDialog()
+		assertTrue(alert.isShowing)
+
+		val shadow = shadowOf(alert)
+		assertThat(shadow.title.toString(), `is`("Ops!"))
+		val message = activity.getString(R.string.fill_all)
+		assertThat(shadow.message.toString(), `is`(message))
+
+		assertThat(move.detailList.size, `is`(0))
+		assertThat(activity.details.childCount, `is`(0))
+	}
+
+	@Test
+	fun addDetailNoValue() {
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+
+		activity.detail_description.setText("cat")
+		activity.detail_amount.setText("18")
+		activity.detail_value.setText("")
+
+		activity.addDetail(View(activity))
+
+		val alert = getLatestAlertDialog()
+		assertTrue(alert.isShowing)
+
+		val shadow = shadowOf(alert)
+		assertThat(shadow.title.toString(), `is`("Ops!"))
+		val message = activity.getString(R.string.fill_all)
+		assertThat(shadow.message.toString(), `is`(message))
+
+		assertThat(move.detailList.size, `is`(0))
+		assertThat(activity.details.childCount, `is`(0))
+	}
+
+	@Test
+	fun save() {
+		activity.simulateNetwork()
+		mocker.server.enqueue("empty")
+
+		activity.intent.putExtra(
+			"__parent",
+			WelcomeActivity::class.java
+		)
+		activity.intent.putExtra("id", 27)
+
+		val saved = Bundle()
+		saved.putString("moveForm", readBundle("move_form"))
+		saved.putString("move", readBundle("move"))
+		activity.onCreate(saved, null)
+
+		val move = activity.getPrivate<Move>("move")
+		assertNotNull(move.value)
+
+		activity.save(View(activity))
+
+		assertNull(move.value)
+
+		val shadow = shadowOf(activity)
+		val intent = shadow.peekNextStartedActivity()
+		assertThat(intent.getIntExtra("id", 0), `is`(0))
+		assertThat(intent.getActivityName(), `is`("WelcomeActivity"))
+	}
+	/*
+	fun save(@Suppress(ON_CLICK) view: View) {
+		move.clearNotUsedValues()
+		callApi {
+			it.saveMove(move) {
+				intent.removeExtra("id")
+				backWithExtras()
+			}
+		}
+	}
+	*/
+}

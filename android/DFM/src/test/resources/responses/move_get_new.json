@@ -1,0 +1,39 @@
+{
+	"data": {
+		"move": null,
+
+		"isUsingCategories": true,
+
+		"categoryList": [
+			{
+				"text": "Category",
+				"value": "category"
+			}
+		],
+		"natureList": [
+			{
+				"text": "Out",
+				"value": 0
+			},
+			{
+				"text": "In",
+				"value": 1
+			},
+			{
+				"text": "Transfer",
+				"value": 2
+			}
+		],
+		"accountList": [
+			{
+				"text": "Account",
+				"value": "account"
+			}
+		]
+	},
+	"environment": {
+		"mobileTheme": "Dark",
+		"language": "pt-BR"
+	}
+}
+

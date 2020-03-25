@@ -1,6 +1,5 @@
 package com.darakeon.dfm.moves
 
-import android.app.DatePickerDialog
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
@@ -51,16 +50,6 @@ class MovesActivity : BaseActivity() {
 	private var moveForm: MoveForm = MoveCreation()
 	private val moveFormKey = "moveForm"
 
-	private val dialog: DatePickerDialog
-		get() = with(move.date) {
-			return getDateDialog(year, javaMonth, day) { y, m, d ->
-				move.year = y
-				move.month = m+1
-				move.day = d
-				date.text = move.date.format()
-			}
-		}
-
 	private var accountUrl = ""
 	private var id = 0
 
@@ -88,11 +77,12 @@ class MovesActivity : BaseActivity() {
 		else
 			move.date = Date()
 
-		move.setDefaultData(accountUrl, data.isUsingCategories)
 		populateResponse()
 	}
 
 	private fun populateResponse() {
+		move.setDefaultData(accountUrl, moveForm.isUsingCategories)
+
 		if (!isMoveAllowed()) return
 
 		if (move.checked)
@@ -218,7 +208,12 @@ class MovesActivity : BaseActivity() {
 	}
 
 	fun showDatePicker(@Suppress(ON_CLICK) view: View) {
-		dialog.show()
+		with(move.date) {
+			getDateDialog(year, javaMonth, day) { y, m, d ->
+				move.date = Date(y, m+1, d)
+				date.text = move.date.format()
+			}.show()
+		}
 	}
 
 	fun changeCategory(@Suppress(ON_CLICK) view: View) {
