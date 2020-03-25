@@ -70,7 +70,7 @@
 			android:layout_height="wrap_content"
 			android:onClick="saveSettings" />
 	</LinearLayout>
-	
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -79,11 +79,10 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/site_label"
 			android:text="@string/site" />
 
 		<TextView
-			android:id="@+id/site_value"
+			android:id="@+id/site"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="end" />
@@ -97,14 +96,13 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/version_label"
 			android:text="@string/version" />
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="end"
-			android:id="@+id/version_value" />
+			android:id="@+id/version" />
 	</LinearLayout>
 
 	<include layout="@layout/bottom_menu" />

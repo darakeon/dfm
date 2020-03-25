@@ -12,9 +12,9 @@ import com.darakeon.dfm.extensions.backWithExtras
 import com.darakeon.dfm.extensions.getFromJson
 import com.darakeon.dfm.extensions.putJson
 import kotlinx.android.synthetic.main.settings.move_check
-import kotlinx.android.synthetic.main.settings.site_value
+import kotlinx.android.synthetic.main.settings.site
 import kotlinx.android.synthetic.main.settings.use_categories
-import kotlinx.android.synthetic.main.settings.version_value
+import kotlinx.android.synthetic.main.settings.version
 
 class SettingsActivity : BaseActivity() {
 	override val contentView = R.layout.settings
@@ -40,8 +40,8 @@ class SettingsActivity : BaseActivity() {
 
 		setControls()
 
-		site_value.text = MainInfo.getSiteUrl(this)
-		version_value.text = MainInfo.getAppVersion(this)
+		site.text = MainInfo.getSiteUrl(this)
+		version.text = MainInfo.getAppVersion(this)
 	}
 
 	private fun populateScreen(data: Settings) {
@@ -79,6 +79,4 @@ class SettingsActivity : BaseActivity() {
 			.setPositiveButton(R.string.ok_button) { _, _ -> backWithExtras() }
 			.show()
 	}
-
-
 }
