@@ -1,0 +1,34 @@
+{
+	"isUsingCategories": true,
+
+	"categoryList": [
+		{
+			"text": "My Category",
+			"value": "category"
+		}
+	],
+	"natureList": [
+		{
+			"text": "Out",
+			"value": 0
+		},
+		{
+			"text": "In",
+			"value": 1
+		},
+		{
+			"text": "Transfer",
+			"value": 2
+		}
+	],
+	"accountList": [
+		{
+			"text": "My Out",
+			"value": "out"
+		},
+		{
+			"text": "My In",
+			"value": "in"
+		}
+	]
+}
