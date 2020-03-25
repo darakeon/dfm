@@ -69,7 +69,7 @@ class RequestServiceTest {
 		assertThat(environment.mobileTheme, `is`("Dark"))
 
 		val extract = body.data!!
-		assertThat(extract.title, `is`("March"))
+		assertThat(extract.title, `is`("account"))
 		assertThat(extract.total, `is`(27.0))
 		assertThat(extract.canCheck, `is`(true))
 

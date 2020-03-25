@@ -1,6 +1,5 @@
 package com.darakeon.dfm.extract
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
@@ -29,18 +28,7 @@ import kotlinx.android.synthetic.main.extract.total_value
 import java.util.Calendar
 
 class ExtractActivity : BaseActivity() {
-	private val accountUrl: String get() =
-		getExtraOrUrl("accountUrl") ?: ""
-
-	override val contentView = R.layout.extract
-	override val title = R.string.title_activity_extract
-	override val contextMenuResource = R.menu.move_options
-	override val viewWithContext: ListView get() = main_table
-
-	private val clickedMove get() = clickedView as MoveLine
-
-	private var extract = Extract()
-	private val extractKey = "extract"
+	private var accountUrl: String = ""
 
 	private val now = Calendar.getInstance()
 	private var year: Int = now.get(Calendar.YEAR)
@@ -48,26 +36,28 @@ class ExtractActivity : BaseActivity() {
 	private var month: Int = now.get(Calendar.MONTH)
 	private val monthKey = "month"
 
-	private val dialog: DatePickerDialog
-		get() = getDateDialog(year, month) {
-			y, m -> updateScreen(y, m)
-		}
+	private var extract = Extract()
+	private val extractKey = "extract"
 
-	private fun updateScreen(year: Int, month: Int) {
-		setDate(month, year)
-		getExtract()
-	}
+	override val contentView = R.layout.extract
+	override val title = R.string.title_activity_extract
+
+	override val contextMenuResource = R.menu.move_options
+	override val viewWithContext: ListView get() = main_table
+	private val clickedMove get() = clickedView as MoveLine
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
+		accountUrl = getExtraOrUrl("accountUrl") ?: ""
 
 		if (savedInstanceState != null) {
 			extract = savedInstanceState
 				.getFromJson(extractKey, Extract())
 
 			setDate(
-				savedInstanceState.getInt(monthKey),
-				savedInstanceState.getInt(yearKey)
+				savedInstanceState.getInt(yearKey),
+				savedInstanceState.getInt(monthKey)
 			)
 
 			fillMoves()
@@ -78,28 +68,29 @@ class ExtractActivity : BaseActivity() {
 	}
 
 	private fun setDateFromCaller() {
-		if (query.containsKey("id")) {
-			val id = query["id"]?.toInt() ?: 0
+		val id = query["id"]?.toIntOrNull()
+
+		if (id != null) {
 			val startMonth = id.rem(100) - 1
 			val startYear = id / 100
-			setDate(startMonth, startYear)
+			setDate(startYear, startMonth)
 		} else {
-			val startMonth = intent.getIntExtra("month", month)
 			val startYear = intent.getIntExtra("year", year)
-			setDate(startMonth, startYear)
+			val startMonth = intent.getIntExtra("month", month)
+			setDate(startYear, startMonth)
 		}
 	}
 
-	private fun setDate(month: Int, year: Int) {
-		this.month = month
+	private fun setDate(year: Int, month: Int) {
 		this.year = year
+		this.month = month
 
-		intent.putExtra("month", month)
 		intent.putExtra("year", year)
+		intent.putExtra("month", month)
 
 		val date = Calendar.getInstance()
-		date.set(Calendar.MONTH, month)
 		date.set(Calendar.YEAR, year)
+		date.set(Calendar.MONTH, month)
 		reportChange.text = date.formatNoDay()
 	}
 
@@ -111,7 +102,10 @@ class ExtractActivity : BaseActivity() {
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		dialog.show()
+		getDateDialog(year, month) { y, m ->
+			setDate(y, m)
+			getExtract()
+		}.show()
 	}
 
 	private fun getExtract() {
@@ -144,11 +138,36 @@ class ExtractActivity : BaseActivity() {
 		}
 	}
 
-
 	fun goToSummary(@Suppress(ON_CLICK) view: View) {
 		redirect<SummaryActivity> {
 			it.putExtra("accountUrl", accountUrl)
 			it.putExtra("year", year)
+		}
+	}
+
+	override fun onContextItemSelected(item: MenuItem): Boolean {
+		when (item.itemId) {
+			R.id.edit_move -> {
+				goToMove(clickedMove.id)
+				return true
+			}
+			R.id.delete_move -> {
+				askDelete()
+				return true
+			}
+			R.id.check_move -> {
+				callApi {
+					it.check(clickedMove.id, clickedMove.nature, this::check)
+				}
+				return true
+			}
+			R.id.uncheck_move -> {
+				callApi {
+					it.uncheck(clickedMove.id, clickedMove.nature, this::uncheck)
+				}
+				return true
+			}
+			else -> return super.onContextItemSelected(item)
 		}
 	}
 
@@ -163,37 +182,6 @@ class ExtractActivity : BaseActivity() {
 		createMove(extras)
 	}
 
-
-	override fun onContextItemSelected(item: MenuItem): Boolean {
-		when (item.itemId) {
-			R.id.edit_move -> {
-				edit()
-				return true
-			}
-			R.id.delete_move -> {
-				askDelete()
-				return true
-			}
-			R.id.check_move -> {
-				callApi {
-					it.check(clickedMove.id, clickedMove.nature, this::reverseCheck)
-				}
-				return true
-			}
-			R.id.uncheck_move -> {
-				callApi {
-					it.uncheck(clickedMove.id, clickedMove.nature, this::reverseCheck)
-				}
-				return true
-			}
-			else -> return super.onContextItemSelected(item)
-		}
-	}
-
-	private fun edit() {
-		goToMove(clickedMove.id)
-	}
-
 	private fun askDelete(): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
 
@@ -206,46 +194,47 @@ class ExtractActivity : BaseActivity() {
 		return false
 	}
 
-	private fun reverseCheck() {
-		clickedMove.reverseCheck()
-		showCheckOrUncheck()
+	private fun check() {
+		clickedMove.check()
+		val menu = clickedMove.menu ?: return
+		showUncheck(menu)
 	}
 
-	public override fun changeContextMenu(view: View, menuInfo: ContextMenu) {
+	private fun uncheck() {
+		clickedMove.uncheck()
+		val menu = clickedMove.menu ?: return
+		showCheck(menu)
+	}
+
+	public override fun changeContextMenu(view: View, menu: ContextMenu) {
+		clickedMove.menu = menu
 		if (extract.canCheck) {
-			clickedMove.menu = menuInfo
-			showCheckOrUncheck()
+			if (clickedMove.isChecked) {
+				showUncheck(menu)
+			} else {
+				showCheck(menu)
+			}
 		} else {
-			hideMenuItem(menuInfo, R.id.check_move)
-			hideMenuItem(menuInfo, R.id.uncheck_move)
+			hideMenuItem(menu, R.id.check_move)
+			hideMenuItem(menu, R.id.uncheck_move)
 		}
 	}
 
-	private fun showCheckOrUncheck() {
-		val menu = clickedMove.menu ?: return
+	private fun showCheck(menu: Menu) {
+		showMenuItem(menu, R.id.check_move)
+		hideMenuItem(menu, R.id.uncheck_move)
+	}
 
-		val toHide = if (clickedMove.isChecked)
-			R.id.check_move
-		else
-			R.id.uncheck_move
-		hideMenuItem(menu, toHide)
-
-		val toShow = if (clickedMove.isChecked)
-			R.id.uncheck_move
-		else
-			R.id.check_move
-		showMenuItem(menu, toShow)
+	private fun showUncheck(menu: Menu) {
+		showMenuItem(menu, R.id.uncheck_move)
+		hideMenuItem(menu, R.id.check_move)
 	}
 
 	private fun hideMenuItem(menu: Menu, id: Int) {
-		toggleMenuItem(menu, id, false)
+		menu.findItem(id).isVisible = false
 	}
 
 	private fun showMenuItem(menu: Menu, id: Int) {
-		toggleMenuItem(menu, id, true)
-	}
-
-	private fun toggleMenuItem(menu: Menu, id: Int, show: Boolean) {
-		menu.findItem(id).isVisible = show
+		menu.findItem(id).isVisible = true
 	}
 }
