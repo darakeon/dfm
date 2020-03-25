@@ -1,7 +1,6 @@
 package com.darakeon.dfm.welcome
 
 import android.os.Bundle
-import android.view.Window
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.base.BaseActivity
@@ -12,8 +11,6 @@ class WelcomeActivity : BaseActivity() {
 	override val contentView = R.layout.welcome
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE)
-
 		super.onCreate(savedInstanceState)
 
 		if (intent.getBooleanExtra("EXIT", false)) {

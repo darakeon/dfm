@@ -19,4 +19,7 @@ class Authentication(private val context: Context) {
 	fun clear() {
 		ticket = ""
 	}
+
+	val isLoggedIn
+		get() = ticket != ""
 }

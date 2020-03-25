@@ -3,6 +3,8 @@ package com.darakeon.dfm.auth
 import com.darakeon.dfm.utils.activity.MockContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -26,5 +28,18 @@ class AuthenticationTest {
 		auth.ticket = "new-ticket"
 		auth.clear()
 		assertThat(auth.ticket, `is`(""))
+	}
+
+	@Test
+	fun isLoggedIn() {
+		auth.ticket = "new-ticket"
+		assertTrue(auth.isLoggedIn)
+	}
+
+	@Test
+	fun isLoggedOut() {
+		auth.ticket = "new-ticket"
+		auth.clear()
+		assertFalse(auth.isLoggedIn)
 	}
 }
