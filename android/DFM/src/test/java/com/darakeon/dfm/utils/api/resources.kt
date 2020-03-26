@@ -4,6 +4,12 @@ import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
 
+fun readBundle(jsonName: String) =
+	readFromFile("bundles/$jsonName.json")
+
+fun readResponse(jsonName: String) =
+	readFromFile("responses/$jsonName.json")
+
 fun readFromFile(filename: String): String {
 	val resource = ClassLoader.getSystemResource(filename)
 	val path = Paths.get(resource.toURI())
