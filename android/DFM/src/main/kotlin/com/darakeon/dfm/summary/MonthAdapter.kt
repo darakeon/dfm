@@ -4,7 +4,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.summary.Month
 import com.darakeon.dfm.base.Adapter
 
-class YearAdapter(
+class MonthAdapter(
 	activity: SummaryActivity,
 	list: Array<Month>,
 	private val accountUrl: String,

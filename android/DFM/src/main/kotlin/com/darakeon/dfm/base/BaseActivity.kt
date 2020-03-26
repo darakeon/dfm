@@ -65,7 +65,6 @@ abstract class BaseActivity: Activity() {
 	protected open val title: Int = 0
 	protected open val contextMenuResource = 0
 	protected open val viewWithContext: View? = null
-	protected open val highlight: View? = null
 
 	protected val isLoggedIn
 		get() = auth?.isLoggedIn ?: false
