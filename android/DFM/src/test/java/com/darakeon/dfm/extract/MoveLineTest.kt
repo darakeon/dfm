@@ -70,7 +70,7 @@ class MoveLineTest {
 
 		assertThat(moveLine.nature, `is`(Nature.In))
 		assertThat(
-			moveLine.getPrivate("checkNature") as Nature,
+			moveLine.getPrivate("checkNature"),
 			`is`(Nature.In)
 		)
 	}
@@ -91,7 +91,7 @@ class MoveLineTest {
 
 		assertThat(moveLine.nature, `is`(Nature.Out))
 		assertThat(
-			moveLine.getPrivate("checkNature") as Nature,
+			moveLine.getPrivate("checkNature"),
 			`is`(Nature.Out)
 		)
 	}

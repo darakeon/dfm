@@ -37,7 +37,7 @@ class ApiTest {
 		activity = mocker.create()
 		activity.simulateNetwork()
 
-		api = activity.getPrivate("api") as Api
+		api = activity.getPrivate("api")
 	}
 
 	@After
@@ -201,10 +201,10 @@ class ApiTest {
 
 	@Test
 	fun cancel() {
-		val ui = api.getPrivate(
+		val ui = api.getPrivate<UIHandler>(
 			"requestHandler",
 			"uiHandler"
-		) as UIHandler
+		)
 
 		ui.startUIWait()
 

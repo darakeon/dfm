@@ -45,7 +45,7 @@ class LoginActivityTest {
 
 		activity.login(view)
 
-		val auth = activity.getPrivate("auth") as Authentication
+		val auth = activity.getPrivate<Authentication>("auth")
 		assertTrue(auth.isLoggedIn)
 
 		val shadow = shadowOf(activity)

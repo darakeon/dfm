@@ -2,8 +2,9 @@ package com.darakeon.dfm.extensions
 
 import java.lang.reflect.Field
 
-fun Any.getPrivate(vararg fieldNames: String): Any? {
-	return getField(fieldNames.asList()) { _, _ -> }
+fun <T> Any.getPrivate(vararg fieldNames: String): T {
+	@Suppress("UNCHECKED_CAST")
+	return getField(fieldNames.asList()) as T
 }
 
 fun Any.setPrivate(vararg fieldNames: String, value: () -> Any) {
@@ -12,7 +13,10 @@ fun Any.setPrivate(vararg fieldNames: String, value: () -> Any) {
 	}
 }
 
-private fun Any.getField(fieldNames: List<String>, set: (Field?, Any?) -> Unit): Any? {
+private fun Any.getField(
+	fieldNames: List<String>,
+	set: ((Field?, Any?) -> Unit)? = null
+): Any? {
 	var field: Field? = null
 	var element: Any? = this
 	var parent: Any? = null
@@ -23,7 +27,7 @@ private fun Any.getField(fieldNames: List<String>, set: (Field?, Any?) -> Unit):
 		element = field?.get(element)
 	}
 
-	set(field, parent)
+	set?.invoke(field, parent)
 
 	return element
 }
