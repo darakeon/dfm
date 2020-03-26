@@ -9,6 +9,7 @@ import android.widget.Button
 import com.darakeon.dfm.R
 import com.darakeon.dfm.accounts.AccountsActivity
 import com.darakeon.dfm.api.Api
+import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.setValue
 import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.moves.MovesCreateActivity
@@ -112,12 +113,12 @@ class BaseActivityTest {
 		activity.setValue("Theme", R.style.Light.toString())
 
 		val originalTheme = activity.theme
-			.getPrivate("mThemeImpl", "mThemeResId") as Int
+			.getPrivate<Int>("mThemeImpl", "mThemeResId")
 
 		activity.onCreate(null, null)
 
 		val newTheme = activity.theme
-			.getPrivate("mThemeImpl", "mThemeResId") as Int
+			.getPrivate<Int>("mThemeImpl", "mThemeResId")
 
 		assertThat(newTheme, not(`is`(originalTheme)))
 	}
@@ -126,8 +127,8 @@ class BaseActivityTest {
 	fun onCreateAddApiAndAuth() {
 		val activity = mocker.get()
 
-		var api = activity.getPrivate("api")
-		var auth = activity.getPrivate("auth")
+		var api = activity.getPrivate<Api>("api")
+		var auth = activity.getPrivate<Authentication>("auth")
 
 		assertNull(api)
 		assertNull(auth)
@@ -316,7 +317,7 @@ class BaseActivityTest {
 	fun onDestroy() {
 		val activity = mocker.create()
 
-		val api = activity.getPrivate("api") as Api
+		val api = activity.getPrivate<Api>("api")
 
 		activity.testDestroy()
 

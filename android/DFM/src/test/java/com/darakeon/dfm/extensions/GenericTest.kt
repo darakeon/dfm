@@ -9,28 +9,28 @@ class GenericTest {
 	@Test
 	fun getChild() {
 		val test = TestChildClass(27)
-		val value = test.getPrivate("pet")
-		assertThat(value as Int, `is`(27))
+		val value = test.getPrivate<Int>("pet")
+		assertThat(value, `is`(27))
 	}
 
 	@Test
 	fun getChildWithoutProperty() {
 		val test = TestChildClass(27)
-		val value = test.getPrivate("not_existent")
+		val value = test.getPrivate<Any>("not_existent")
 		assertNull(value)
 	}
 
 	@Test
 	fun getGrandChild() {
 		val test = TestParentClass(TestChildClass(27))
-		val value = test.getPrivate("child", "pet")
-		assertThat(value as Int, `is`(27))
+		val value = test.getPrivate<Int>("child", "pet")
+		assertThat(value, `is`(27))
 	}
 
 	@Test
 	fun getGrandChildWithoutProperty() {
 		val test = TestParentClass(TestChildClass(27))
-		val value = test.getPrivate("not_existent", "not_existent")
+		val value = test.getPrivate<Any>("not_existent", "not_existent")
 		assertNull(value)
 	}
 

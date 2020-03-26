@@ -49,11 +49,11 @@ private fun onSet(
 }
 
 private fun DatePickerDialog.hide(fieldName: String): DatePickerDialog {
-	val child = getPrivate(
+	val child = getPrivate<View>(
 		"mDatePicker",
 		"mDelegate",
 		"m${fieldName}Spinner"
-	) as View
+	)
 
 	child.visibility = View.GONE
 	return this
