@@ -25,7 +25,7 @@ class Server {
 	}
 
 	fun enqueue(jsonName: String) {
-		val jsonBody = readFromFile("responses/$jsonName.json")
+		val jsonBody = readResponse(jsonName)
 		val response = MockResponse().setBody(jsonBody)
 		server.enqueue(response)
 	}
