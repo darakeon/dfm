@@ -271,7 +271,7 @@ class RequestServiceTest {
 
 		val summary = body.data!!
 		assertThat(summary.title, `is`("account"))
-		assertThat(summary.total, `is`(1.0))
+		assertThat(summary.total, `is`(2.0))
 
 		val monthList = summary.monthList
 		assertThat(monthList.size, `is`(2))

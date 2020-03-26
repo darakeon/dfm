@@ -1,11 +1,9 @@
 package com.darakeon.dfm.summary
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.summary.Summary
-import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.getDateDialog
 import com.darakeon.dfm.extensions.ON_CLICK
@@ -20,54 +18,38 @@ import kotlinx.android.synthetic.main.summary.total_value
 import java.util.Calendar
 
 class SummaryActivity : BaseActivity() {
-	private val accountUrl: String get() =
-		getExtraOrUrl("accountUrl") ?: ""
+	private var accountUrl: String = ""
 
 	private var year: Int = 0
-	private val yearKey = "yearKey"
+	private val yearKey = "year"
 
 	private var summary = Summary()
-	private val summaryKey = "summaryKey"
-
-	private val dialog: DatePickerDialog
-		get() = getDateDialog(year) {
-			y -> updateScreen(y)
-		}
+	private val summaryKey = "summary"
 
 	override val contentView = R.layout.summary
 	override val title = R.string.title_activity_summary
 
-	private fun updateScreen(year: Int) {
-		setDate(year)
-		getSummary()
-	}
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		highlight?.setBackgroundColor(highLightColor)
+		accountUrl = getExtraOrUrl("accountUrl") ?: ""
 
 		if (savedInstanceState != null) {
-			year = savedInstanceState.getInt(yearKey)
-			summary = savedInstanceState.getFromJson(summaryKey, Summary())
-
+			val year = savedInstanceState.getInt(yearKey)
 			setDate(year)
+
+			summary = savedInstanceState.getFromJson(summaryKey, Summary())
 			fillSummary()
 		} else {
-			setDateFromCaller()
+			setDate(getYear())
 			getSummary()
 		}
 	}
 
-	private fun setDateFromCaller() {
-		if (query.containsKey("id")) {
-			val startYear = query["id"]?.toInt() ?: 0
-			setDate(startYear)
-		} else {
-			val today = Calendar.getInstance()
-			val startYear = intent.getIntExtra("year", today.get(Calendar.YEAR))
-			setDate(startYear)
-		}
+	private fun getYear(): Int {
+		val today = Calendar.getInstance()
+		return query["id"]?.toIntOrNull()
+			?: intent.getIntExtra("year", today[Calendar.YEAR])
 	}
 
 	private fun setDate(year: Int) {
@@ -95,7 +77,7 @@ class SummaryActivity : BaseActivity() {
 			main_table.visibility = View.VISIBLE
 			empty_list.visibility = View.GONE
 
-			main_table.adapter = YearAdapter(
+			main_table.adapter = MonthAdapter(
 				this,
 				summary.monthList,
 				accountUrl,
@@ -105,7 +87,10 @@ class SummaryActivity : BaseActivity() {
 	}
 
 	fun changeDate(@Suppress(ON_CLICK) view: View) {
-		dialog.show()
+		getDateDialog(year) { y ->
+			setDate(y)
+			getSummary()
+		}.show()
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {

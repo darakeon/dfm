@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Extract
-import com.darakeon.dfm.auth.highLightColor
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.confirm
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -61,8 +60,6 @@ class ExtractActivity : BaseActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		highlight?.setBackgroundColor(highLightColor)
 
 		if (savedInstanceState != null) {
 			extract = savedInstanceState

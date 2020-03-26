@@ -11,12 +11,12 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class YearAdapterTest {
+class MonthAdapterTest {
 	@Test
 	fun populateView() {
 		val list = arrayOf(Month("september", 9, 0.0))
 		val activity = ActivityMock().create<SummaryActivity>()
-		val adapter = YearAdapter(activity, list, "url", 1989)
+		val adapter = MonthAdapter(activity, list, "url", 1989)
 		val line = activity.layoutInflater
 			.inflate(R.layout.month_line, null)
 			as MonthLine
