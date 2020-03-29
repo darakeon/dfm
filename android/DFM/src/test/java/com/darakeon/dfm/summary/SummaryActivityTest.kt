@@ -178,6 +178,11 @@ class SummaryActivityTest {
 			activity.reportChange.text.toString(),
 			`is`("1986")
 		)
+
+		assertThat(
+			activity.intent.getIntExtra("year", 0),
+			`is`(1986)
+		)
 	}
 
 	@Test
