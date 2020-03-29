@@ -54,6 +54,7 @@ class SummaryActivity : BaseActivity() {
 
 	private fun setDate(year: Int) {
 		this.year = year
+		intent.putExtra(yearKey, year)
 		reportChange.text = year.toString()
 	}
 
