@@ -64,4 +64,24 @@ class UIHandlerTest {
 			`is`(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
 		)
 	}
+
+	@Test
+	fun startAfterEndWait() {
+		handler.endUIWait()
+		handler.startUIWait()
+
+		val dialog = getLatestAlertDialog()
+		assertFalse(dialog.isShowing)
+
+		val screenOn = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+		assertThat(
+			activity.window.attributes.flags.and(screenOn),
+			`is`(0)
+		)
+
+		assertThat(
+			activity.requestedOrientation,
+			`is`(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+		)
+	}
 }
