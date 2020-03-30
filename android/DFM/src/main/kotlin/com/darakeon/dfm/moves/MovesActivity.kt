@@ -4,14 +4,14 @@ import android.app.DatePickerDialog
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
-import android.widget.ScrollView
-import android.widget.TextView
+import android.view.View.FOCUS_DOWN
 import com.darakeon.dfm.R
-import com.darakeon.dfm.api.entities.ComboItem
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.MoveCreation
+import com.darakeon.dfm.api.entities.moves.MoveForm
 import com.darakeon.dfm.api.entities.moves.Nature
+import com.darakeon.dfm.api.entities.setLabel
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.dialogs.alertError
 import com.darakeon.dfm.dialogs.getDateDialog
@@ -22,225 +22,143 @@ import com.darakeon.dfm.extensions.onChange
 import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.extensions.showChangeList
 import com.darakeon.dfm.extensions.toDoubleByCulture
-import kotlinx.android.synthetic.main.moves_create.account_in
-import kotlinx.android.synthetic.main.moves_create.account_out
-import kotlinx.android.synthetic.main.moves_create.category
-import kotlinx.android.synthetic.main.moves_create.date
-import kotlinx.android.synthetic.main.moves_create.description
-import kotlinx.android.synthetic.main.moves_create.detail_amount
-import kotlinx.android.synthetic.main.moves_create.detail_description
-import kotlinx.android.synthetic.main.moves_create.detail_value
-import kotlinx.android.synthetic.main.moves_create.detailed_value
-import kotlinx.android.synthetic.main.moves_create.details
-import kotlinx.android.synthetic.main.moves_create.form
-import kotlinx.android.synthetic.main.moves_create.lose_category
-import kotlinx.android.synthetic.main.moves_create.nature
-import kotlinx.android.synthetic.main.moves_create.no_accounts
-import kotlinx.android.synthetic.main.moves_create.no_categories
-import kotlinx.android.synthetic.main.moves_create.remove_check
-import kotlinx.android.synthetic.main.moves_create.simple_value
-import kotlinx.android.synthetic.main.moves_create.value
-import kotlinx.android.synthetic.main.moves_create.warnings
+import kotlinx.android.synthetic.main.moves.account_in
+import kotlinx.android.synthetic.main.moves.account_out
+import kotlinx.android.synthetic.main.moves.category
+import kotlinx.android.synthetic.main.moves.date
+import kotlinx.android.synthetic.main.moves.description
+import kotlinx.android.synthetic.main.moves.detail_amount
+import kotlinx.android.synthetic.main.moves.detail_description
+import kotlinx.android.synthetic.main.moves.detail_value
+import kotlinx.android.synthetic.main.moves.detailed_value
+import kotlinx.android.synthetic.main.moves.details
+import kotlinx.android.synthetic.main.moves.form
+import kotlinx.android.synthetic.main.moves.lose_category
+import kotlinx.android.synthetic.main.moves.nature
+import kotlinx.android.synthetic.main.moves.no_accounts
+import kotlinx.android.synthetic.main.moves.no_categories
+import kotlinx.android.synthetic.main.moves.remove_check
+import kotlinx.android.synthetic.main.moves.simple_value
+import kotlinx.android.synthetic.main.moves.value
+import kotlinx.android.synthetic.main.moves.warnings
 
-class MovesCreateActivity : BaseActivity() {
-	private val dialog: DatePickerDialog
-		get() = with(move.date) {
-			return getDateDialog(year, javaMonth, day) {
-				y, m, d -> updateFromDateCombo(y, m+1, d)
-			}
-		}
-
-	override val contentView = R.layout.moves_create
+class MovesActivity : BaseActivity() {
+	override val contentView = R.layout.moves
 	override val title = R.string.title_activity_move
 
 	private var move = Move()
 	private val moveKey = "move"
-	private var moveCreation = MoveCreation()
-	private val moveCreationKey = "moveCreation"
+	private var moveForm: MoveForm = MoveCreation()
+	private val moveFormKey = "moveForm"
 
-	private fun updateFromDateCombo(year: Int, month: Int, day: Int) {
-		move.year = year
-		move.month = month
-		move.day = day
-		date.text = move.date.format()
-	}
+	private val dialog: DatePickerDialog
+		get() = with(move.date) {
+			return getDateDialog(year, javaMonth, day) { y, m, d ->
+				move.year = y
+				move.month = m+1
+				move.day = d
+				date.text = move.date.format()
+			}
+		}
 
-	private val accountUrl get() = getExtraOrUrl("accountUrl") ?: ""
-	private val id get() = getExtraOrUrl("id")?.toInt() ?: 0
+	private var accountUrl = ""
+	private var id = 0
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
+		accountUrl = getExtraOrUrl("accountUrl") ?: ""
+		id = getExtraOrUrl("id")?.toIntOrNull() ?: 0
+
 		if (savedInstanceState == null) {
-			initScreen()
+			callApi { it.getMove(id, this::populateScreen) }
 		} else {
-			startScreenFromSaved(savedInstanceState)
+			move = savedInstanceState.getFromJson(moveKey, Move())
+			moveForm = savedInstanceState.getFromJson(moveFormKey, MoveCreation())
+
+			populateResponse()
 		}
-	}
-
-	override fun onSaveInstanceState(outState: Bundle) {
-		super.onSaveInstanceState(outState)
-		outState.putJson(moveKey, move)
-		outState.putJson(moveCreationKey, moveCreation)
-	}
-
-	private fun initScreen() {
-		callApi {
-			it.getMove(id, this::populateScreen)
-		}
-
-		setCurrentDate()
-		setControls()
-	}
-
-	private fun startScreenFromSaved(savedInstanceState: Bundle) {
-		moveCreation = savedInstanceState.getFromJson(moveCreationKey, MoveCreation())
-		populateCategoryAndNature()
-		setControls()
-
-		move = savedInstanceState.getFromJson(moveKey, Move())
-		populateOldData()
 	}
 
 	private fun populateScreen(data: MoveCreation) {
-		moveCreation = data
+		moveForm = data
 
 		if (data.move != null)
 			move = data.move
+		else
+			move.date = Date()
 
 		move.setDefaultData(accountUrl, data.isUsingCategories)
-		populateOldData()
-		populateCategoryAndNature()
+		populateResponse()
 	}
 
-	private fun populateOldData() {
-		var canMove = true
+	private fun populateResponse() {
+		if (!isMoveAllowed()) return
 
-		if (moveCreation.accountList.isEmpty()) {
-			canMove = false
-			no_accounts.visibility = View.VISIBLE
-		}
-
-		if (moveCreation.isUsingCategories) {
-			val categoryList = moveCreation.categoryList
-
-			if (categoryList.isNullOrEmpty()) {
-				canMove = false
-				no_categories.visibility = View.VISIBLE
-			} else {
-				setDataFromList(categoryList, move.categoryName, category)
-			}
-		}
-
-		if (!canMove) {
-			form.visibility = View.GONE
-			warnings.visibility = View.VISIBLE
-			return
-		}
-
-		if (move.checked) {
+		if (move.checked)
 			remove_check.visibility = View.VISIBLE
+
+		description.setText(move.description)
+		description.onChange {
+			move.description = it
 		}
 
 		date.text = move.date.format()
 
-		moveCreation.natureList.firstOrNull {
-			it.value.toInt() == move.natureEnum?.value
-		}?.let {
-			setNature(it.text, it.value.toInt())
+		if (moveForm.isUsingCategories) {
+			moveForm.categoryList
+				.setLabel(move.categoryName, category)
+		} else {
+			category.visibility = View.GONE
 		}
 
-		setDataFromList(moveCreation.accountList, move.outUrl, account_out)
-		setDataFromList(moveCreation.accountList, move.inUrl, account_in)
+		if (move.warnCategory)
+		{
+			lose_category.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
+			lose_category.visibility = View.VISIBLE
+		}
 
-		description.setText(move.description)
+		val nature = move.natureEnum
+		val natureOption = moveForm.natureList.firstOrNull {
+			it.value.toInt() == nature?.value
+		} ?: moveForm.natureList.first()
+		setNature(natureOption.text, natureOption.value.toInt())
+
+		moveForm.accountList.setLabel(move.outUrl, account_out)
+		moveForm.accountList.setLabel(move.inUrl, account_in)
 
 		if (move.detailList.isNotEmpty()) {
 			useDetailed()
-
 			move.detailList.forEach {
 				addViewDetail(move, it.description, it.amount, it.value)
 			}
 		} else if (move.value != null) {
 			useSimple()
-
 			value.setText(String.format("%1$,.2f", move.value))
 		}
+
+		value.onChange { move.setValue(it) }
 	}
 
-	private fun setDataFromList(list: Array<ComboItem>, dataSaved: String?, field: TextView) {
-		val saved = list.firstOrNull {
-			it.value == dataSaved
-		} ?: return
+	private fun isMoveAllowed(): Boolean {
+		var canMove = true
 
-		field.text = saved.text
-	}
-
-	private fun populateCategoryAndNature() {
-		category.visibility =
-			if (moveCreation.isUsingCategories)
-				View.VISIBLE
-			else
-				View.GONE
-
-		lose_category.visibility =
-			if (move.warnCategory)
-				View.VISIBLE
-			else
-				View.GONE
-
-		if (move.warnCategory)
-		{
-			lose_category.paintFlags =
-				lose_category.paintFlags or
-					Paint.STRIKE_THRU_TEXT_FLAG
+		if (moveForm.blockedByAccounts()) {
+			canMove = false
+			no_accounts.visibility = View.VISIBLE
 		}
 
-		if (move.natureEnum == null)
-		{
-			moveCreation.natureList
-				.firstOrNull()?.let {
-					setNature(it.text, it.value.toInt())
-				}
-		}
-	}
-
-	private fun setCurrentDate() {
-		move.date = Date()
-	}
-
-	private fun setControls() {
-		date.text = move.date.format()
-
-		description.onChange {
-			move.description = it
+		if (moveForm.blockedByCategories()) {
+			canMove = false
+			no_categories.visibility = View.VISIBLE
 		}
 
-		value.onChange {
-			move.setValue(it)
+		if (!canMove) {
+			form.visibility = View.GONE
+			warnings.visibility = View.VISIBLE
 		}
-	}
 
-	fun showDatePicker(@Suppress(ON_CLICK) view: View) {
-		dialog.show()
-	}
-
-	fun changeCategory(@Suppress(ON_CLICK) view: View) {
-		val categoryList = moveCreation.categoryList ?: return
-		showChangeList(categoryList, R.string.category) { text, value ->
-			category.text = text
-			move.categoryName = value
-		}
-	}
-
-	fun warnLoseCategory(@Suppress(ON_CLICK) view: View) {
-		this.alertError(R.string.losingCategory)
-	}
-
-	fun changeNature(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveCreation.natureList, R.string.nature) { text, value ->
-			setNature(text, value.toInt())
-		}
+		return canMove
 	}
 
 	private fun setNature(text: String, value: Int) {
@@ -264,24 +182,6 @@ class MovesCreateActivity : BaseActivity() {
 		}
 	}
 
-	fun changeAccountOut(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveCreation.accountList, R.string.account) { text, value ->
-			account_out.text = text
-			move.outUrl = value
-		}
-	}
-
-	fun changeAccountIn(@Suppress(ON_CLICK) view: View) {
-		showChangeList(moveCreation.accountList, R.string.account) { text, value ->
-			account_in.text = text
-			move.inUrl = value
-		}
-	}
-
-	fun useDetailed(@Suppress(ON_CLICK) view: View) {
-		useDetailed()
-	}
-
 	private fun useDetailed() {
 		move.isDetailed = true
 
@@ -289,10 +189,6 @@ class MovesCreateActivity : BaseActivity() {
 		detailed_value.visibility = View.VISIBLE
 
 		scrollToTheEnd()
-	}
-
-	fun useSimple(@Suppress(ON_CLICK) view: View) {
-		useSimple()
 	}
 
 	private fun useSimple() {
@@ -304,14 +200,72 @@ class MovesCreateActivity : BaseActivity() {
 		scrollToTheEnd()
 	}
 
+	private fun scrollToTheEnd() {
+		form.postDelayed({
+			form.fullScroll(FOCUS_DOWN)
+		}, 100)
+	}
+
+	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
+		val row = DetailBox(this, move, description, amount, value)
+		details.addView(row)
+	}
+
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		outState.putJson(moveKey, move)
+		outState.putJson(moveFormKey, moveForm)
+	}
+
+	fun showDatePicker(@Suppress(ON_CLICK) view: View) {
+		dialog.show()
+	}
+
+	fun changeCategory(@Suppress(ON_CLICK) view: View) {
+		showChangeList(moveForm.categoryList, R.string.category) { text, value ->
+			category.text = text
+			move.categoryName = value
+		}
+	}
+
+	fun warnLoseCategory(@Suppress(ON_CLICK) view: View) {
+		this.alertError(R.string.losingCategory)
+	}
+
+	fun changeNature(@Suppress(ON_CLICK) view: View) {
+		showChangeList(moveForm.natureList, R.string.nature) { text, value ->
+			setNature(text, value.toInt())
+		}
+	}
+
+	fun changeAccountOut(@Suppress(ON_CLICK) view: View) {
+		showChangeList(moveForm.accountList, R.string.account) { text, value ->
+			account_out.text = text
+			move.outUrl = value
+		}
+	}
+
+	fun changeAccountIn(@Suppress(ON_CLICK) view: View) {
+		showChangeList(moveForm.accountList, R.string.account) { text, value ->
+			account_in.text = text
+			move.inUrl = value
+		}
+	}
+
+	fun useDetailed(@Suppress(ON_CLICK) view: View) {
+		useDetailed()
+	}
+
+	fun useSimple(@Suppress(ON_CLICK) view: View) {
+		useSimple()
+	}
+
 	fun addDetail(@Suppress(ON_CLICK) view: View) {
 		val description = detail_description.text.toString()
-		val amountStr = detail_amount.text.toString()
-		val valueStr = detail_value.text.toString()
+		val amount = detail_amount.text.toString().toIntOrNull()
+		val value = detail_value.text.toString().toDoubleByCulture()
 
-		val value = valueStr.toDoubleByCulture()
-
-		if (description.isEmpty() || amountStr.isEmpty() || valueStr.isEmpty() || value == null) {
+		if (description.isEmpty() || amount == null || value == null) {
 			alertError(R.string.fill_all)
 			return
 		}
@@ -322,8 +276,6 @@ class MovesCreateActivity : BaseActivity() {
 		detail_amount.setText(amountDefault.toString())
 		detail_value.setText("")
 
-		val amount = amountStr.toInt()
-
 		move.add(description, amount, value)
 
 		addViewDetail(move, description, amount, value)
@@ -331,28 +283,13 @@ class MovesCreateActivity : BaseActivity() {
 		scrollToTheEnd()
 	}
 
-	private fun addViewDetail(move: Move, description: String, amount: Int, value: Double) {
-		val row = DetailBox(this, move, description, amount, value)
-		details.addView(row)
-	}
-
 	fun save(@Suppress(ON_CLICK) view: View) {
 		move.clearNotUsedValues()
 		callApi {
-			it.saveMove(move, this::cleanAndBack)
+			it.saveMove(move) {
+				intent.removeExtra("id")
+				backWithExtras()
+			}
 		}
-	}
-
-	private fun cleanAndBack() {
-		intent.removeExtra("id")
-		back()
-	}
-
-	private fun back() {
-		backWithExtras()
-	}
-
-	private fun scrollToTheEnd() {
-		form.postDelayed({ form.fullScroll(ScrollView.FOCUS_DOWN) }, 100)
 	}
 }

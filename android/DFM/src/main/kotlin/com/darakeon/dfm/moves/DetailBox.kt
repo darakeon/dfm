@@ -16,7 +16,7 @@ class DetailBox(
 	private var value: Double
 ) : LinearLayout(context) {
 	init {
-		inflate(context, R.layout.moves_create_detail, this)
+		inflate(context, R.layout.moves_detail, this)
 
 		val descriptionField = findViewById<TextView>(R.id.detail_description)
 		descriptionField.text = description

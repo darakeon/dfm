@@ -9,7 +9,7 @@ import com.darakeon.dfm.R
 import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.login.LoginActivity
-import com.darakeon.dfm.moves.MovesCreateActivity
+import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.welcome.WelcomeActivity
 
@@ -74,7 +74,7 @@ internal fun Activity.goToSettings() {
 }
 
 internal fun Activity.createMove(extras: Bundle? = null) {
-	goToActivityWithBack(MovesCreateActivity::class.java, extras)
+	goToActivityWithBack(MovesActivity::class.java, extras)
 }
 
 private fun Activity.goToActivityWithBack(newActivity: Class<*>, extras: Bundle? = null) {

@@ -352,7 +352,7 @@ class ExtractActivityTest {
 		activity.onContextItemSelected(item)
 
 		val intent = shadowOf(activity).peekNextStartedActivity()
-		assertThat(intent.getActivityName(), `is`("MovesCreateActivity"))
+		assertThat(intent.getActivityName(), `is`("MovesActivity"))
 		assertThat(intent.getIntExtra("id", 0), `is`(1))
 		assertThat(intent.getStringExtra("accountUrl"), `is`("url"))
 		assertThat(intent.getIntExtra("year", 0), `is`(1986))

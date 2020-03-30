@@ -23,7 +23,7 @@ import com.darakeon.dfm.extensions.goToSettings
 import com.darakeon.dfm.extensions.logout
 import com.darakeon.dfm.extensions.redirect
 import com.darakeon.dfm.extensions.refresh
-import com.darakeon.dfm.moves.MovesCreateActivity
+import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import kotlinx.android.synthetic.main.bottom_menu.action_close
 import kotlinx.android.synthetic.main.bottom_menu.action_home
@@ -137,7 +137,7 @@ abstract class BaseActivity: Activity() {
 			if (this is SettingsActivity)
 				action_settings.isEnabled = false
 
-			if (this is MovesCreateActivity)
+			if (this is MovesActivity)
 				action_move.isEnabled = false
 		}
 	}

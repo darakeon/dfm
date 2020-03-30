@@ -109,7 +109,7 @@
 			<tools:validation testUrl="https://dontflymoney.com/@Summary" />
 		</activity>
 
-		<activity android:name=".moves.MovesCreateActivity">
+		<activity android:name=".moves.MovesActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 

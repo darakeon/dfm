@@ -2,7 +2,9 @@ package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.ComboItem
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class MoveCreationTest {
@@ -13,8 +15,8 @@ class MoveCreationTest {
 		val natures = arrayOf(ComboItem("n", "n"))
 		val accounts = arrayOf(ComboItem("a", "a"))
 
-		val creation1 = MoveCreation(move, true, categories, natures, accounts)
-		val creation2 = MoveCreation(move, true, categories, natures, accounts)
+		val creation1 = MoveCreation(true, categories, natures, accounts, move)
+		val creation2 = MoveCreation(true, categories, natures, accounts, move)
 
 		assertEquals(creation1, creation2)
 	}
@@ -30,8 +32,8 @@ class MoveCreationTest {
 		val natures = arrayOf(ComboItem("n", "n"))
 		val accounts = arrayOf(ComboItem("a", "a"))
 
-		val creation1 = MoveCreation(move1, true, categories, natures, accounts)
-		val creation2 = MoveCreation(move2, true, categories, natures, accounts)
+		val creation1 = MoveCreation(true, categories, natures, accounts, move1)
+		val creation2 = MoveCreation(true, categories, natures, accounts, move2)
 
 		assertNotEquals(creation1, creation2)
 	}
@@ -46,8 +48,8 @@ class MoveCreationTest {
 		val natures = arrayOf(ComboItem("n", "n"))
 		val accounts = arrayOf(ComboItem("a", "a"))
 
-		val creation1 = MoveCreation(move, true, categories1, natures, accounts)
-		val creation2 = MoveCreation(move, true, categories2, natures, accounts)
+		val creation1 = MoveCreation(true, categories1, natures, accounts, move)
+		val creation2 = MoveCreation(true, categories2, natures, accounts, move)
 
 		assertNotEquals(creation1, creation2)
 	}
@@ -62,8 +64,8 @@ class MoveCreationTest {
 
 		val accounts = arrayOf(ComboItem("a", "a"))
 
-		val creation1 = MoveCreation(move, true, categories, natures1, accounts)
-		val creation2 = MoveCreation(move, true, categories, natures2, accounts)
+		val creation1 = MoveCreation(true, categories, natures1, accounts, move)
+		val creation2 = MoveCreation(true, categories, natures2, accounts, move)
 
 		assertNotEquals(creation1, creation2)
 	}
@@ -77,9 +79,64 @@ class MoveCreationTest {
 		val accounts1 = arrayOf(ComboItem("a1", "a1"))
 		val accounts2 = arrayOf(ComboItem("a2", "a2"))
 
-		val creation1 = MoveCreation(move, true, categories, natures, accounts1)
-		val creation2 = MoveCreation(move, true, categories, natures, accounts2)
+		val creation1 = MoveCreation(true, categories, natures, accounts1, move)
+		val creation2 = MoveCreation(true, categories, natures, accounts2, move)
 
 		assertNotEquals(creation1, creation2)
+	}
+
+	@Test
+	fun blockedByAccounts() {
+		val categories = arrayOf(ComboItem("c", "c"))
+		val natures = arrayOf(ComboItem("n", "n"))
+		val accounts = emptyArray<ComboItem>()
+
+		val creation = MoveCreation(true, categories, natures, accounts)
+
+		assertTrue(creation.blockedByAccounts())
+	}
+
+	@Test
+	fun notBlockedByAccounts() {
+		val categories = arrayOf(ComboItem("c", "c"))
+		val natures = arrayOf(ComboItem("n", "n"))
+		val accounts = arrayOf(ComboItem("a", "a"))
+
+		val creation = MoveCreation(true, categories, natures, accounts)
+
+		assertFalse(creation.blockedByAccounts())
+	}
+
+	@Test
+	fun blockedByCategories() {
+		val categories = emptyArray<ComboItem>()
+		val natures = arrayOf(ComboItem("n", "n"))
+		val accounts = arrayOf(ComboItem("a", "a"))
+
+		val creation = MoveCreation(true, categories, natures, accounts)
+
+		assertTrue(creation.blockedByCategories())
+	}
+
+	@Test
+	fun notBlockedByCategories() {
+		val categories = arrayOf(ComboItem("c", "c"))
+		val natures = arrayOf(ComboItem("n", "n"))
+		val accounts = arrayOf(ComboItem("a", "a"))
+
+		val creation = MoveCreation(true, categories, natures, accounts)
+
+		assertFalse(creation.blockedByCategories())
+	}
+
+	@Test
+	fun notBlockedBecauseNotUsingCategories() {
+		val categories = emptyArray<ComboItem>()
+		val natures = arrayOf(ComboItem("n", "n"))
+		val accounts = arrayOf(ComboItem("a", "a"))
+
+		val creation = MoveCreation(false, categories, natures, accounts)
+
+		assertFalse(creation.blockedByCategories())
 	}
 }

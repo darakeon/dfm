@@ -188,7 +188,7 @@ class RequestServiceTest {
 		assertThat(accountList[0].text, `is`("Account"))
 		assertThat(accountList[0].value, `is`("account"))
 
-		val categoryList = data.categoryList!!
+		val categoryList = data.categoryList
 		assertThat(categoryList.size, `is`(1))
 		assertThat(categoryList[0].text, `is`("Category"))
 		assertThat(categoryList[0].value, `is`("category"))
