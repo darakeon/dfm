@@ -43,11 +43,9 @@ internal class RequestHandler(
 			return
 		}
 
-		response.enqueue(ResponseHandler(
-			activity,
-			uiHandler,
-			onSuccess
-		))
+		response.enqueue(
+			ResponseHandler(activity, uiHandler, onSuccess)
+		)
 
 		uiHandler.startUIWait()
 	}
