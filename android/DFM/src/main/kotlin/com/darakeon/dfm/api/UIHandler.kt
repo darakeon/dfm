@@ -2,9 +2,13 @@ package com.darakeon.dfm.api
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.pm.ActivityInfo
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 import android.view.Surface
-import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import com.darakeon.dfm.dialogs.createWaitDialog
 
 open class UIHandler(
@@ -13,28 +17,28 @@ open class UIHandler(
 	private var dialog: Dialog? = null
 
 	fun startUIWait() {
-		openProgressBar()
+		openDialog()
 		disableSleep()
 		disableRotation()
 	}
 
-	private fun openProgressBar() {
+	private fun openDialog() {
 		dialog = activity.createWaitDialog()
 	}
 
 	private fun disableSleep() {
-		activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+		activity.window.addFlags(FLAG_KEEP_SCREEN_ON)
 	}
 
 	private fun disableRotation() {
 		val currentRotation = activity.windowManager.defaultDisplay.rotation
 
 		activity.requestedOrientation = when (currentRotation) {
-			Surface.ROTATION_0 -> ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-			Surface.ROTATION_90 -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-			Surface.ROTATION_180 -> ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-			Surface.ROTATION_270 -> ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-			else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+			Surface.ROTATION_0 -> SCREEN_ORIENTATION_PORTRAIT
+			Surface.ROTATION_90 -> SCREEN_ORIENTATION_LANDSCAPE
+			Surface.ROTATION_180 -> SCREEN_ORIENTATION_REVERSE_PORTRAIT
+			Surface.ROTATION_270 -> SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+			else -> SCREEN_ORIENTATION_UNSPECIFIED
 		}
 	}
 
@@ -50,13 +54,10 @@ open class UIHandler(
 	}
 
 	private fun enableSleep() {
-		activity.window.clearFlags(
-			WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-		)
+		activity.window.clearFlags(FLAG_KEEP_SCREEN_ON)
 	}
 
 	private fun enableRotation() {
-		activity.requestedOrientation =
-			ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+		activity.requestedOrientation = SCREEN_ORIENTATION_UNSPECIFIED
 	}
 }

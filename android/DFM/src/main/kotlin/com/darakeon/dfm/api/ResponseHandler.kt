@@ -68,22 +68,17 @@ internal class ResponseHandler<T>(
 		}
 	}
 
-	private fun assemblyResponse(
-		code: Int?,
-		error: String?
-	) {
+	private fun assemblyResponse(code: Int?, error: String?) {
 		val tfa = activity.resources.getInteger(R.integer.TFA)
 		val uninvited = activity.resources.getInteger(R.integer.uninvited)
 
-		if (code == tfa) {
-			activity.redirect<TFAActivity>()
-		} else if (code == uninvited) {
-			activity.logoutLocal()
-		} else {
-			val message = error ?:
-				activity.getString(R.string.error_not_identified)
-
-			activity.alertError(message)
+		when (code) {
+			tfa -> activity.redirect<TFAActivity>()
+			uninvited -> activity.logoutLocal()
+			else -> activity.alertError(getError(error))
 		}
 	}
+
+	private fun getError(error: String?) =
+		error ?: activity.getString(R.string.error_not_identified)
 }
