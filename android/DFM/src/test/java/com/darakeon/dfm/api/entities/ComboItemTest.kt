@@ -1,0 +1,32 @@
+package com.darakeon.dfm.api.entities
+
+import android.widget.TextView
+import com.darakeon.dfm.utils.execute
+import org.hamcrest.Matchers.`is`
+import org.junit.Assert.*
+import org.junit.Test
+import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.anyInt
+import org.mockito.Mockito.mock
+
+class ComboItemTest {
+	@Test
+	fun setLabel() {
+		val list = arrayOf(
+			ComboItem("text1", "value1"),
+			ComboItem("text2", "value2"),
+			ComboItem("text3", "value3")
+		)
+
+		val field = mock(TextView::class.java)
+
+		var text = ""
+		`when`(field.setText(anyString()))
+			.execute { text = it[0] as String }
+
+		list.setLabel("value2", field)
+
+		assertThat(text, `is`("text2"))
+	}
+}

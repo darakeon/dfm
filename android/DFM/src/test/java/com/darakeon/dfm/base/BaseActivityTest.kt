@@ -12,7 +12,7 @@ import com.darakeon.dfm.api.Api
 import com.darakeon.dfm.auth.Authentication
 import com.darakeon.dfm.auth.setValue
 import com.darakeon.dfm.extensions.getPrivate
-import com.darakeon.dfm.moves.MovesCreateActivity
+import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
@@ -275,8 +275,8 @@ class BaseActivityTest {
 	}
 
 	@Test
-	fun onCreateCustomizeBottomMenuMovesCreateActivity() {
-		val activity = mocker.create<MovesCreateActivity>()
+	fun onCreateCustomizeBottomMenuMovesActivity() {
+		val activity = mocker.create<MovesActivity>()
 
 		val menu = activity.bottom_menu
 		assertTrue(menu.action_home.isEnabled)
@@ -407,7 +407,7 @@ class BaseActivityTest {
 			.peekNextStartedActivity()
 			.getActivityName()
 
-		assertThat(called, `is`("MovesCreateActivity"))
+		assertThat(called, `is`("MovesActivity"))
 	}
 
 	@Test

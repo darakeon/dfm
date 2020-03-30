@@ -160,7 +160,7 @@ class NavigationTest {
 		`when`(activity.intent).thenReturn(intent)
 
 		activity.createMove()
-		assertThat(calledActivity, `is`("MovesCreateActivity"))
+		assertThat(calledActivity, `is`("MovesActivity"))
 
 		val extras = calledIntent?.extras ?: Bundle()
 		assertThat(extras["__parent"]?.toString(), containsString("BaseActivity"))
@@ -175,7 +175,7 @@ class NavigationTest {
 		bundle.putString("test", "passed")
 
 		activity.createMove(bundle)
-		assertThat(calledActivity, `is`("MovesCreateActivity"))
+		assertThat(calledActivity, `is`("MovesActivity"))
 
 		val extras = calledIntent?.extras ?: Bundle()
 		assertThat(extras["__parent"]?.toString(), containsString("BaseActivity"))
