@@ -37,7 +37,7 @@ class AdapterTest {
 
 		inflater = mocker.mockInflater()
 
-		val list = arrayOf("L", "C", "S", "D")
+		val list = listOf("L", "C", "S", "D")
 		adapter = MockAdapter(activity, list)
 	}
 

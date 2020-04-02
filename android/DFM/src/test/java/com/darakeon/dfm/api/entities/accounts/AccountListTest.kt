@@ -12,11 +12,11 @@ class AccountListTest {
 		val account2 = Account("Two", 2.0, "two")
 
 		val firstEntity = AccountList(
-			arrayOf(account0, account1, account2)
+			listOf(account0, account1, account2)
 		)
 
 		val secondEntity = AccountList(
-			arrayOf(account0, account1, account2)
+			listOf(account0, account1, account2)
 		)
 
 		assertEquals(firstEntity, secondEntity)
@@ -29,11 +29,11 @@ class AccountListTest {
 		val account2 = Account("Two", 2.0, "two")
 
 		val firstEntityList = AccountList(
-			arrayOf(account0, account1)
+			listOf(account0, account1)
 		)
 
 		val secondEntityList = AccountList(
-			arrayOf(account0, account2)
+			listOf(account0, account2)
 		)
 
 		assertNotEquals(firstEntityList, secondEntityList)

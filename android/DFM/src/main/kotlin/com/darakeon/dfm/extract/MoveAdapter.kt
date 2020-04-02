@@ -6,7 +6,7 @@ import com.darakeon.dfm.base.Adapter
 
 class MoveAdapter(
 	private val activity: ExtractActivity,
-	list: Array<Move>,
+	list: List<Move>,
 	private val canCheck: Boolean
 ) : Adapter<ExtractActivity, Move, MoveLine>(activity, list) {
 	override val id: Int

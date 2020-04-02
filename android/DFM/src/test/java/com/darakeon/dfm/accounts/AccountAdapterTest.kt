@@ -14,7 +14,7 @@ import org.robolectric.RobolectricTestRunner
 class AccountAdapterTest {
 	@Test
 	fun populateView() {
-		val list = arrayOf(Account("name", 0.0, "url"))
+		val list = listOf(Account("name", 0.0, "url"))
 		val activity = ActivityMock().create<AccountsActivity>()
 		val adapter = AccountAdapter(activity, list)
 		val line = activity.layoutInflater

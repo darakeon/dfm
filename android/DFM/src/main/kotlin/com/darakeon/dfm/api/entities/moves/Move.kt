@@ -4,32 +4,33 @@ import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.extensions.toDoubleByCulture
 import java.util.ArrayList
 
-class Move {
-	var id: Int = 0
-	var description: String? = null
-	var year: Int = 0
-	var month: Int = 0
-	var day: Int = 0
+data class Move (
+	var id: Int = 0,
+	var description: String? = null,
+	var year: Int = 0,
+	var month: Int = 0,
+	var day: Int = 0,
 
-	var nature: Int? = null
+	var nature: Int? = null,
+
+	var categoryName: String? = null,
+
+	var outUrl: String? = null,
+	var inUrl: String? = null,
+
+	var value: Double? = null,
+	var detailList: MutableList<Detail> = ArrayList(),
+
+	var checked: Boolean = false
+) {
+	var isDetailed: Boolean = false
+
 	var natureEnum
 		get() = Nature.get(nature)
 		set(value) { nature = value?.value }
 
 	var warnCategory: Boolean = false
 		private set
-
-	var categoryName: String? = null
-
-	var outUrl: String? = null
-	var inUrl: String? = null
-
-	var value: Double? = null
-	var detailList: MutableList<Detail> = ArrayList()
-
-	var checked: Boolean = false
-
-	var isDetailed: Boolean = false
 
 	var date: Date
 		get() = Date(year, month, day)

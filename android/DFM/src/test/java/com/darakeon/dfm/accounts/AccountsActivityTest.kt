@@ -49,7 +49,7 @@ class AccountsActivityTest {
 		activity.onCreate(null, null)
 
 		val accountList = activity
-			.getPrivate<Array<Account>>("accountList")
+			.getPrivate<List<Account>>("accountList")
 
 		assertThat(accountList.size, `is`(2))
 		assertThat(accountList[0].name, `is`("Account 1"))
@@ -68,7 +68,7 @@ class AccountsActivityTest {
 		activity.onCreate(saved, null)
 
 		val accountList = activity
-			.getPrivate<Array<Account>>("accountList")
+			.getPrivate<List<Account>>("accountList")
 
 		assertThat(accountList.size, `is`(2))
 		assertThat(accountList[0].name, `is`("Account 1"))

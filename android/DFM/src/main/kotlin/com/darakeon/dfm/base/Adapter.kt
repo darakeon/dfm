@@ -9,7 +9,7 @@ import com.darakeon.dfm.auth.getThemeLineColor
 
 abstract class Adapter<Act, Ent, Lin>(
 	private val activity: Act,
-	protected val list: Array<Ent>
+	protected val list: List<Ent>
 ) : BaseAdapter()
 	where Ent : Any, Act : Context, Lin: View
 {

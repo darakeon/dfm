@@ -14,7 +14,7 @@ import org.robolectric.RobolectricTestRunner
 class MoveAdapterTest {
 	@Test
 	fun populateView() {
-		val list = arrayOf(Move("name", 2019, 5, 4, 0.0, false, 4))
+		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, 4))
 		val activity = ActivityMock().create<ExtractActivity>()
 		val adapter = MoveAdapter(activity, list, false)
 		val line = activity.layoutInflater
