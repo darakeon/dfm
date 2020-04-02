@@ -65,10 +65,20 @@ itself. Well, we are always our most demanding client.
 
 #### Automated tests
 
+##### Core
+
 - [SpecFlow - BDD](https://specflow.org)
+
+##### Browser
+
 - [Node](https://nodejs.org/en/)
 - [Jest](https://jestjs.io/)
 - [Puppeteer](https://developers.google.com/web/tools/puppeteer)
+
+##### Android
+
+- [Robolectric](http://robolectric.org/)
+- [Junit](https://junit.org/)
 
 ### Tools
 
