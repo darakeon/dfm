@@ -12,11 +12,11 @@ class ExtractTest {
 		val move3 = Move("move_3", 2020, 2, 22, 3.0, true, 3)
 
 		val firstEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		val secondEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		assertEquals(firstEntity, secondEntity)
@@ -29,11 +29,11 @@ class ExtractTest {
 		val move3 = Move("move_3", 2020, 2, 22, 3.0, true, 3)
 
 		val firstEntity = Extract(
-			arrayOf(move1, move2), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move2)
 		)
 
 		val secondEntity = Extract(
-			arrayOf(move1, move3), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)
@@ -46,11 +46,11 @@ class ExtractTest {
 		val move3 = Move("move_3", 2020, 2, 22, 3.0, true, 3)
 
 		val firstEntity = Extract(
-			arrayOf(move1, move2, move3), "extract 1", 6.0, false
+			"extract 1", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		val secondEntity = Extract(
-			arrayOf(move1, move2, move3), "extract 2", 6.0, false
+			"extract 2", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)
@@ -63,11 +63,11 @@ class ExtractTest {
 		val move3 = Move("move_3", 2020, 2, 22, 3.0, true, 3)
 
 		val firstEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		val secondEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 7.0, false
+			"extract", 7.0, false, listOf(move1, move2, move3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)
@@ -80,11 +80,11 @@ class ExtractTest {
 		val move3 = Move("move_3", 2020, 2, 22, 3.0, true, 3)
 
 		val firstEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 6.0, false
+			"extract", 6.0, false, listOf(move1, move2, move3)
 		)
 
 		val secondEntity = Extract(
-			arrayOf(move1, move2, move3), "extract", 6.0, true
+			"extract", 6.0, true, listOf(move1, move2, move3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)

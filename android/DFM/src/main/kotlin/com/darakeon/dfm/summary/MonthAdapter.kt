@@ -6,7 +6,7 @@ import com.darakeon.dfm.base.Adapter
 
 class MonthAdapter(
 	activity: SummaryActivity,
-	list: Array<Month>,
+	list: List<Month>,
 	private val accountUrl: String,
 	private val yearNumber: Int
 ) : Adapter<SummaryActivity, Month, MonthLine>(activity, list) {

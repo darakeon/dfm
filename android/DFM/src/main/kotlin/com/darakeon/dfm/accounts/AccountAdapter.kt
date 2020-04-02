@@ -6,7 +6,7 @@ import com.darakeon.dfm.base.Adapter
 
 class AccountAdapter(
 	activity: AccountsActivity,
-	list: Array<Account>
+	list: List<Account>
 ) : Adapter<AccountsActivity, Account, AccountLine>(activity, list) {
 	override val id: Int
 		get() = R.layout.accounts_line

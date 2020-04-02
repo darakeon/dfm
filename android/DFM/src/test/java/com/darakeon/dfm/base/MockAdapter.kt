@@ -6,7 +6,7 @@ import android.widget.TextView
 
 class MockAdapter(
 	activity: Activity,
-	list: Array<String>
+	list: List<String>
 ): Adapter<Activity, String, View>(activity, list)
 {
 	override val id = android.R.layout.simple_list_item_1

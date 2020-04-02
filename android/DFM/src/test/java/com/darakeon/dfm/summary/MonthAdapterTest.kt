@@ -14,7 +14,7 @@ import org.robolectric.RobolectricTestRunner
 class MonthAdapterTest {
 	@Test
 	fun populateView() {
-		val list = arrayOf(Month("september", 9, 0.0))
+		val list = listOf(Month("september", 9, 0.0))
 		val activity = ActivityMock().create<SummaryActivity>()
 		val adapter = MonthAdapter(activity, list, "url", 1989)
 		val line = activity.layoutInflater

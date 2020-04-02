@@ -12,11 +12,11 @@ class SummaryTest {
 		val month3 = Month("Month_3", 3, 3.0)
 
 		val firstEntity = Summary(
-			"Summary", 6.0, arrayOf(month1, month2, month3)
+			"Summary", 6.0, listOf(month1, month2, month3)
 		)
 
 		val secondEntity = Summary(
-			"Summary", 6.0, arrayOf(month1, month2, month3)
+			"Summary", 6.0, listOf(month1, month2, month3)
 		)
 
 		assertEquals(firstEntity, secondEntity)
@@ -29,11 +29,11 @@ class SummaryTest {
 		val month3 = Month("Month_3", 3, 3.0)
 
 		val firstEntity = Summary(
-			"Summary", 6.0, arrayOf(month1, month2)
+			"Summary", 6.0, listOf(month1, month2)
 		)
 
 		val secondEntity = Summary(
-			"Summary", 6.0, arrayOf(month1, month3)
+			"Summary", 6.0, listOf(month1, month3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)
@@ -46,11 +46,11 @@ class SummaryTest {
 		val month3 = Month("Month_3", 3, 3.0)
 
 		val firstEntity = Summary(
-			"Summary 1", 6.0, arrayOf(month1, month2, month3)
+			"Summary 1", 6.0, listOf(month1, month2, month3)
 		)
 
 		val secondEntity = Summary(
-			"Summary 2", 6.0, arrayOf(month1, month2, month3)
+			"Summary 2", 6.0, listOf(month1, month2, month3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)
@@ -63,11 +63,11 @@ class SummaryTest {
 		val month3 = Month("Month_3", 3, 3.0)
 
 		val firstEntity = Summary(
-			"Summary", 6.0, arrayOf(month1, month2, month3)
+			"Summary", 6.0, listOf(month1, month2, month3)
 		)
 
 		val secondEntity = Summary(
-			"Summary", 7.0, arrayOf(month1, month2, month3)
+			"Summary", 7.0, listOf(month1, month2, month3)
 		)
 
 		assertNotEquals(firstEntity, secondEntity)

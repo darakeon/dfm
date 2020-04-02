@@ -15,7 +15,7 @@ class AccountsActivity : BaseActivity() {
 	override val contentView = R.layout.accounts
 	override val title = R.string.title_activity_accounts
 
-	private var accountList: Array<Account> = emptyArray()
+	private var accountList: List<Account> = emptyList()
 	private val accountListKey = "accountList"
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class AccountsActivity : BaseActivity() {
 
 		if (savedInstanceState != null) {
 			accountList = savedInstanceState
-				.getFromJson(accountListKey, emptyArray())
+				.getFromJson(accountListKey, emptyList())
 
 			fillAccounts()
 		} else {
