@@ -5,17 +5,22 @@ import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.api.entities.settings.Settings
 import com.darakeon.dfm.utils.api.Server
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class RequestServiceTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var server: Server
 
 	private val service

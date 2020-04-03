@@ -4,11 +4,13 @@ import android.view.View
 import com.darakeon.dfm.R
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -16,6 +18,9 @@ import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
 class TFAActivityTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var mocker: ActivityMock
 
 	@Before

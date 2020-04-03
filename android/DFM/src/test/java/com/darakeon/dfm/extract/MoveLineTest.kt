@@ -8,6 +8,7 @@ import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.getDecimal
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import kotlinx.android.synthetic.main.extract.main_table
 import kotlinx.android.synthetic.main.move_line.view.check_move
@@ -21,6 +22,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -29,6 +31,9 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 class MoveLineTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: ExtractActivity
 	private lateinit var moveLine: MoveLine
 

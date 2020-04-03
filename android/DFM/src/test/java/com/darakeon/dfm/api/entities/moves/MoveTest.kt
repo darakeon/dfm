@@ -2,6 +2,7 @@ package com.darakeon.dfm.api.entities.moves
 
 import com.darakeon.dfm.api.entities.Date
 import com.darakeon.dfm.utils.getDecimal
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.hasItem
 import org.hamcrest.CoreMatchers.not
@@ -10,9 +11,13 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.Rule
 import org.junit.Test
 
 class MoveTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun natureEnum() {
 		val move = Move()

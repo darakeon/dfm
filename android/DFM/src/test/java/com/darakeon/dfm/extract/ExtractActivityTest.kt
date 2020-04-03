@@ -18,6 +18,7 @@ import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.api.readBundle
 import com.darakeon.dfm.utils.getDecimal
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.extract.empty_list
@@ -32,6 +33,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -42,6 +44,9 @@ import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
 class ExtractActivityTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var mocker: ActivityMock
 	private lateinit var activity: ExtractActivity
 

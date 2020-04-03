@@ -1,10 +1,15 @@
 package com.darakeon.dfm.api.entities.accounts
 
+import com.darakeon.dfm.utils.log.LogRule
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Rule
 import org.junit.Test
 
 class AccountListTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun equals() {
 		val account0 = Account("Zero", 0.0, "zero")

@@ -3,11 +3,16 @@ package com.darakeon.dfm.api
 import android.os.Build
 import com.darakeon.dfm.utils.activity.MockContext
 import com.darakeon.dfm.tests.setAndroidVersion
+import com.darakeon.dfm.utils.log.LogRule
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Rule
 import org.junit.Test
 
 class InternetTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun isOnline_23AndSoOn() {
 		setAndroidVersion(Build.VERSION_CODES.M)

@@ -1,10 +1,15 @@
 package com.darakeon.dfm.api.entities.summary
 
+import com.darakeon.dfm.utils.log.LogRule
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Rule
 import org.junit.Test
 
 class SummaryTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun equals() {
 		val month1 = Month("Month_1", 1, 1.0)

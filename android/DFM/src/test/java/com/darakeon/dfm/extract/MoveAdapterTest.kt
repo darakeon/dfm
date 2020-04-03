@@ -3,15 +3,20 @@ package com.darakeon.dfm.extract
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.log.LogRule
 import kotlinx.android.synthetic.main.move_line.view.name
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class MoveAdapterTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun populateView() {
 		val list = listOf(Move("name", 2019, 5, 4, 0.0, false, 4))

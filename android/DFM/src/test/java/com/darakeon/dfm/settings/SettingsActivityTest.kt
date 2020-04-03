@@ -13,6 +13,7 @@ import com.darakeon.dfm.extensions.putJson
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.api.readBundle
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import com.darakeon.dfm.welcome.WelcomeActivity
 import com.google.gson.Gson
@@ -26,6 +27,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -34,6 +36,9 @@ import org.robolectric.shadows.ShadowAlertDialog.getShownDialogs
 
 @RunWith(RobolectricTestRunner::class)
 class SettingsActivityTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var mocker: ActivityMock
 	private lateinit var activity: SettingsActivity
 

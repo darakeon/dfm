@@ -9,17 +9,22 @@ import com.darakeon.dfm.api.entities.moves.Detail
 import com.darakeon.dfm.api.entities.moves.Move
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.getDecimal
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class DetailBoxTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var context: Context
 	private lateinit var box: DetailBox
 	private var move: Move = Move()

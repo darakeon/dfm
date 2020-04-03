@@ -1,11 +1,16 @@
 package com.darakeon.dfm.api.entities
 
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Rule
 import org.junit.Test
 import java.util.Calendar
 
 class DateTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun formatInitWithTimes() {
 		val date = Date(2019, 5, 4)
