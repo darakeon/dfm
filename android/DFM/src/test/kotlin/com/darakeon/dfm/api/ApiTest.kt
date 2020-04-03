@@ -13,6 +13,7 @@ import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -22,6 +23,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
@@ -202,6 +204,17 @@ class ApiTest {
 			called = true
 		}
 		assertTrue(called)
+	}
+
+	@Test
+	fun error() {
+		server.enqueue("error")
+
+		var called = false
+		api.wakeUpSite{
+			called = true
+		}
+		assertFalse(called)
 	}
 
 	@Test

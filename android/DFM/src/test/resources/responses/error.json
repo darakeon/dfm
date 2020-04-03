@@ -1,5 +1,4 @@
 {
-	"error": {},
-	"code": {}
+	"error": "something went wrong",
+	"code": 2013
 }
-
