@@ -2,6 +2,7 @@ package com.darakeon.dfm.utils.api
 
 import com.darakeon.dfm.api.entities.Body
 import okhttp3.Request
+import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,5 +70,9 @@ class CallMock : Call<Body<String>> {
 		return Request.Builder()
 			.url("http://dontflymoney.com/tests")
 			.build()
+	}
+
+	override fun timeout(): Timeout {
+		return Timeout()
 	}
 }
