@@ -55,7 +55,11 @@ class TestActivity : BaseActivity() {
 	var inflatedContextMenu = false
 		private set
 
-	override fun changeContextMenu(view: View, menu: ContextMenu) {
+	override fun changeContextMenu(
+		menu: ContextMenu,
+		view: View,
+		menuInfo: ContextMenu.ContextMenuInfo
+	) {
 		inflatedContextMenu = true
 	}
 

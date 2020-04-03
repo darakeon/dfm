@@ -132,7 +132,7 @@ Legend:
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`3`</sup>
 - [x] `200217>200220` Run app tests at CI
-- [ ] `200218>......` Make android automated tests
+- [x] `200218>200407` Make android automated tests
 - [x] `200217>200221` Add android build to CI
 
 ## <a name="4.1.4.1"></a>4.1.4.1 :ant: <sup>`2`</sup>
