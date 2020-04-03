@@ -9,6 +9,7 @@ import com.darakeon.dfm.utils.activity.MockContext
 import com.darakeon.dfm.utils.TestException
 import com.darakeon.dfm.utils.execute
 import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.welcome.WelcomeActivity
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.containsString
@@ -17,6 +18,7 @@ import org.hamcrest.CoreMatchers.startsWith
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
@@ -26,6 +28,9 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class NavigationTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: BaseActivity
 
 	private var calledIntent: Intent? = null

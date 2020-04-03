@@ -12,6 +12,7 @@ local.properties
 
 */build
 build
+DFM/log
 
 res/values/license.xml
 DFM/src/main/res/values/localaddress.xml

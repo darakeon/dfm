@@ -1,11 +1,16 @@
 package com.darakeon.dfm.extensions
 
 import com.darakeon.dfm.utils.TestException
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Rule
 import org.junit.Test
 
 class ExceptionTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun getStackTraceText() {
 		val ex = TestException("test")

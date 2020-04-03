@@ -2,16 +2,21 @@ package com.darakeon.dfm.extensions
 
 import android.os.Bundle
 import com.darakeon.dfm.api.entities.Date
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 
 class BundleTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var bundle: Bundle
 	private val dic = HashMap<String, String>()
 

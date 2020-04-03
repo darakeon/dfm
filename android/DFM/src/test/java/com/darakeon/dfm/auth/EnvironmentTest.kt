@@ -7,10 +7,12 @@ import com.darakeon.dfm.api.entities.Environment
 import com.darakeon.dfm.extensions.refresh
 import com.darakeon.dfm.utils.activity.MockContext
 import com.darakeon.dfm.utils.execute
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyInt
@@ -18,6 +20,9 @@ import org.mockito.Mockito.`when`
 import java.util.Locale
 
 class EnvironmentTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: Activity
 	private var refreshed = false
 

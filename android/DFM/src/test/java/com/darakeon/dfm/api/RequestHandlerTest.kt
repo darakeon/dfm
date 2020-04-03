@@ -7,6 +7,7 @@ import com.darakeon.dfm.utils.api.CallMock
 import com.darakeon.dfm.utils.TestException
 import com.darakeon.dfm.utils.robolectric.assertAlertError
 import com.darakeon.dfm.utils.api.internetError
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
@@ -14,6 +15,7 @@ import org.junit.Assert.assertNotNull
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -21,6 +23,9 @@ import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 class RequestHandlerTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: BaseActivity
 	private lateinit var handler: RequestHandler
 

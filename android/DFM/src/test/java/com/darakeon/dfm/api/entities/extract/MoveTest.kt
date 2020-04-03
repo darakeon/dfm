@@ -1,11 +1,16 @@
 package com.darakeon.dfm.api.entities.extract
 
 import com.darakeon.dfm.api.entities.Date
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Rule
 import org.junit.Test
 
 class MoveTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun checkDate() {
 		val move = Move("desc", 1986, 3, 27, 5889.93, false, 1)

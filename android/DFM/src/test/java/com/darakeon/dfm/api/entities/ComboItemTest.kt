@@ -2,15 +2,19 @@ package com.darakeon.dfm.api.entities
 
 import android.widget.TextView
 import com.darakeon.dfm.utils.execute
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.Matchers.`is`
 import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.anyInt
 import org.mockito.Mockito.mock
 
 class ComboItemTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun setLabel() {
 		val list = arrayOf(

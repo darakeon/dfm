@@ -19,12 +19,14 @@ import com.darakeon.dfm.utils.activity.getActivityName
 import com.darakeon.dfm.utils.api.internetError
 import com.darakeon.dfm.utils.api.internetSlow
 import com.darakeon.dfm.utils.api.noBody
+import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.startsWith
 import org.junit.Assert.assertNull
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.`when`
@@ -38,6 +40,9 @@ import java.net.SocketTimeoutException
 
 @RunWith(RobolectricTestRunner::class)
 internal class ResponseHandlerTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: BaseActivity
 	private lateinit var ui: UIHandler
 	private var waitEnded = false

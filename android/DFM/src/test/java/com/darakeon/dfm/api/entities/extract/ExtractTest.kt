@@ -1,10 +1,15 @@
 package com.darakeon.dfm.api.entities.extract
 
+import com.darakeon.dfm.utils.log.LogRule
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Rule
 import org.junit.Test
 
 class ExtractTest {
+	@get:Rule
+	val log = LogRule()
+
 	@Test
 	fun equals() {
 		val move1 = Move("move_1", 2020, 2, 22, 1.0, true, 1)

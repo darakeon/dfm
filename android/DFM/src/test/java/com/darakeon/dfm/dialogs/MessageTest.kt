@@ -4,12 +4,14 @@ import android.app.Dialog
 import com.darakeon.dfm.R
 import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.assertAlertWait
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertFalse
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -18,6 +20,9 @@ import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 class MessageTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var activity: BaseActivity
 
 	@Before

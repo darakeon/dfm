@@ -16,6 +16,7 @@ import com.darakeon.dfm.moves.MovesActivity
 import com.darakeon.dfm.settings.SettingsActivity
 import com.darakeon.dfm.utils.activity.ActivityMock
 import com.darakeon.dfm.utils.activity.getActivityName
+import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
 import com.darakeon.dfm.utils.robolectric.simulateNetwork
 import kotlinx.android.synthetic.main.bottom_menu.action_close
@@ -32,6 +33,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
@@ -42,6 +44,9 @@ import org.robolectric.shadows.ShadowToast.getTextOfLatestToast
 
 @RunWith(RobolectricTestRunner::class)
 class BaseActivityTest {
+	@get:Rule
+	val log = LogRule()
+
 	private lateinit var mocker: ActivityMock
 
 	@Before
