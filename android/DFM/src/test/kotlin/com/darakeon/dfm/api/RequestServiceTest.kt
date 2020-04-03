@@ -9,7 +9,9 @@ import com.darakeon.dfm.utils.log.LogRule
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
+import org.junit.Assert
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -316,5 +318,20 @@ class RequestServiceTest {
 		assertThat(environment.mobileTheme, `is`("Dark"))
 
 		assertNotNull(body.data)
+	}
+
+	@Test
+	fun error() {
+		server.enqueue("error")
+
+		val response = service.wakeUpSite().execute()
+		assertNotNull(response)
+		val body = response.body()!!
+
+		assertNull(body.environment)
+		assertNull(body.data)
+
+		assertThat(body.error, `is`("something went wrong"))
+		assertThat(body.code, `is`(2013))
 	}
 }
