@@ -5,6 +5,7 @@ import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ListView
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Extract
@@ -44,7 +45,6 @@ class ExtractActivity : BaseActivity() {
 
 	override val contextMenuResource = R.menu.move_options
 	override val viewWithContext: ListView get() = main_table
-	private val clickedMove get() = clickedView as MoveLine
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -146,24 +146,31 @@ class ExtractActivity : BaseActivity() {
 	}
 
 	override fun onContextItemSelected(item: MenuItem): Boolean {
+		val menuInfo = item.menuInfo as AdapterView.AdapterContextMenuInfo
+		val move = menuInfo.targetView as MoveLine
+
 		when (item.itemId) {
 			R.id.edit_move -> {
-				goToMove(clickedMove.id)
+				goToMove(move.id)
 				return true
 			}
 			R.id.delete_move -> {
-				askDelete()
+				askDelete(move)
 				return true
 			}
 			R.id.check_move -> {
 				callApi {
-					it.check(clickedMove.id, clickedMove.nature, this::check)
+					it.check(move.id, move.nature) {
+						this.check(move)
+					}
 				}
 				return true
 			}
 			R.id.uncheck_move -> {
 				callApi {
-					it.uncheck(clickedMove.id, clickedMove.nature, this::uncheck)
+					it.uncheck(move.id, move.nature) {
+						this.uncheck(move)
+					}
 				}
 				return true
 			}
@@ -182,7 +189,7 @@ class ExtractActivity : BaseActivity() {
 		createMove(extras)
 	}
 
-	private fun askDelete(): Boolean {
+	private fun askDelete(clickedMove: MoveLine): Boolean {
 		var messageText = getString(R.string.sure_to_delete)
 
 		messageText = String.format(messageText, clickedMove.description)
@@ -194,22 +201,32 @@ class ExtractActivity : BaseActivity() {
 		return false
 	}
 
-	private fun check() {
-		clickedMove.check()
-		val menu = clickedMove.menu ?: return
+	private fun check(move: MoveLine) {
+		move.check()
+		val menu = move.menu ?: return
 		showUncheck(menu)
 	}
 
-	private fun uncheck() {
-		clickedMove.uncheck()
-		val menu = clickedMove.menu ?: return
+	private fun uncheck(move: MoveLine) {
+		move.uncheck()
+		val menu = move.menu ?: return
 		showCheck(menu)
 	}
 
-	public override fun changeContextMenu(view: View, menu: ContextMenu) {
-		clickedMove.menu = menu
+	public override fun changeContextMenu(
+		menu: ContextMenu,
+		view: View,
+		menuInfo: ContextMenu.ContextMenuInfo
+	) {
+		val menuAdapter = menuInfo as
+			AdapterView.AdapterContextMenuInfo
+
+		val move = menuAdapter.targetView as MoveLine
+
+		move.menu = menu
+
 		if (extract.canCheck) {
-			if (clickedMove.isChecked) {
+			if (move.isChecked) {
 				showUncheck(menu)
 			} else {
 				showCheck(menu)

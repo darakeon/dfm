@@ -5,7 +5,7 @@ import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.base.Adapter
 
 class MoveAdapter(
-	private val activity: ExtractActivity,
+	activity: ExtractActivity,
 	list: List<Move>,
 	private val canCheck: Boolean
 ) : Adapter<ExtractActivity, Move, MoveLine>(activity, list) {
@@ -13,5 +13,5 @@ class MoveAdapter(
 		get() = R.layout.move_line
 
 	override fun populateView(view: MoveLine, position: Int) =
-		view.setMove(activity, list[position], canCheck)
+		view.setMove(list[position], canCheck)
 }

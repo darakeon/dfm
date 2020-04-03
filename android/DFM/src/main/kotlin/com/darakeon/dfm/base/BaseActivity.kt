@@ -34,8 +34,6 @@ import kotlinx.android.synthetic.main.bottom_menu.bottom_menu
 import java.util.HashMap
 
 abstract class BaseActivity: Activity() {
-	var clickedView: View? = null
-
 	private var api: Api? = null
 
 	var serverUrl: String? = null
@@ -72,7 +70,11 @@ abstract class BaseActivity: Activity() {
 	private val hasTitle
 		get() = title != 0
 
-	protected open fun changeContextMenu(view: View, menu: ContextMenu) {}
+	protected open fun changeContextMenu(
+		menu: ContextMenu,
+		view: View,
+		menuInfo: ContextMenu.ContextMenuInfo
+	) {}
 
 	val query = HashMap<String, String>()
 
@@ -142,12 +144,16 @@ abstract class BaseActivity: Activity() {
 		}
 	}
 
-	override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo)
+	override fun onCreateContextMenu(
+		menu: ContextMenu,
+		view: View,
+		menuInfo: ContextMenu.ContextMenuInfo
+	) {
+		super.onCreateContextMenu(menu, view, menuInfo)
 
 		if (contextMenuResource != 0) {
 			menuInflater.inflate(contextMenuResource, menu)
-			changeContextMenu(v, menu)
+			changeContextMenu(menu, view, menuInfo)
 		}
 	}
 

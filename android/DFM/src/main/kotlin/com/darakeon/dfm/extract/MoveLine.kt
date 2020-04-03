@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import com.darakeon.dfm.R
 import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.api.entities.moves.Nature
-import com.darakeon.dfm.base.BaseActivity
 import com.darakeon.dfm.extensions.applyGlyphicon
 import com.darakeon.dfm.extensions.setColorByAttr
 import kotlinx.android.synthetic.main.move_line.view.check_move
@@ -24,7 +23,7 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 	private var move: Move? = null
 	private var checkNature: Nature = Nature.Out
 
-	fun setMove(activity: BaseActivity, move: Move, canCheck: Boolean) {
+	fun setMove(move: Move, canCheck: Boolean) {
 		this.move = move
 
 		name.text = move.description
@@ -34,7 +33,6 @@ class MoveLine(context: Context, attributeSet: AttributeSet) : LinearLayout(cont
 		setDateField(move)
 
 		setOnClickListener {
-			activity.clickedView = it
 			it.showContextMenu()
 		}
 	}

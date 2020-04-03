@@ -7,6 +7,7 @@ import com.darakeon.dfm.api.entities.extract.Move
 import com.darakeon.dfm.api.entities.moves.Nature
 import com.darakeon.dfm.extensions.getPrivate
 import com.darakeon.dfm.utils.activity.ActivityMock
+import com.darakeon.dfm.utils.activity.TestActivity
 import com.darakeon.dfm.utils.getDecimal
 import com.darakeon.dfm.utils.log.LogRule
 import com.darakeon.dfm.utils.robolectric.RoboContextMenu
@@ -34,12 +35,19 @@ class MoveLineTest {
 	@get:Rule
 	val log = LogRule()
 
-	private lateinit var activity: ExtractActivity
+	private lateinit var mocker: ActivityMock
+	private lateinit var activity: TestActivity
 	private lateinit var moveLine: MoveLine
 
 	@Before
 	fun setup() {
-		activity = ActivityMock().create<ExtractActivity>()
+		mocker = ActivityMock()
+
+		activity = mocker.get()
+		activity.testContentView = R.layout.extract
+		activity.hasContextMenu = true
+		activity.onCreate(null, null)
+
 		moveLine = activity.layoutInflater
 			.inflate(R.layout.move_line, activity.main_table, false)
 			as MoveLine
@@ -53,7 +61,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertThat(moveLine.description, `is`("zelda"))
 		assertThat(moveLine.name.text.toString(), `is`("zelda"))
@@ -67,7 +75,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertThat(moveLine.value.text.toString(), `is`("34.00".getDecimal()))
 		val color = activity.getColor(R.color.positive_dark)
@@ -88,7 +96,7 @@ class MoveLineTest {
 			-34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertThat(moveLine.value.text.toString(), `is`("34.00".getDecimal()))
 		val color = activity.getColor(R.color.negative_dark)
@@ -109,7 +117,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, true)
+		moveLine.setMove(move, true)
 
 		assertThat(moveLine.check_move.visibility, `is`(View.VISIBLE))
 	}
@@ -122,7 +130,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertThat(moveLine.check_move.visibility, `is`(View.GONE))
 	}
@@ -135,7 +143,7 @@ class MoveLineTest {
 			34.0, true, 1
 		)
 
-		moveLine.setMove(activity, move, true)
+		moveLine.setMove(move, true)
 
 		assertThat(moveLine.check_move.text.toString(), `is`("\uE101"))
 		assertTrue(moveLine.isChecked)
@@ -154,7 +162,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, true)
+		moveLine.setMove(move, true)
 
 		assertThat(moveLine.check_move.text.toString(), `is`("\uE085"))
 		assertFalse(moveLine.isChecked)
@@ -174,7 +182,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertNull(moveLine.date)
 	}
@@ -188,7 +196,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertNotNull(moveLine.date)
 		assertThat(moveLine.date?.text.toString(), `is`("1986-02-21"))
@@ -202,24 +210,30 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		// to show context menu, moveLine must be added to something
-		val root = activity.main_table
-		val linearLayout = root.parent as LinearLayout
-		linearLayout.addView(moveLine)
+		// to show context menu, moveLine must be
+		// added to something that is inside activity
+		val root = activity.main_table.parent as LinearLayout
+		root.addView(moveLine)
 
 		val menu = RoboContextMenu()
 		activity.menuInflater.inflate(R.menu.move_options, menu)
 		moveLine.menu = menu
 
-		moveLine.setMove(activity, move, true)
-
 		val shadow = shadowOf(moveLine)
+		assertNull(shadow.onClickListener)
+
+		moveLine.setMove(move, true)
+
 		assertNotNull(shadow.onClickListener)
+
+		var showingMenu = false
+		moveLine.setOnCreateContextMenuListener { _, _, _ ->
+			showingMenu = true
+		}
 
 		moveLine.performClick()
 
-		assertNotNull(activity.clickedView)
-		assertThat(activity.clickedView as View, `is`(moveLine as View))
+		assertTrue(showingMenu)
 	}
 
 	@Test
@@ -230,7 +244,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, false)
+		moveLine.setMove(move, false)
 
 		assertThat(moveLine.id, `is`(1))
 	}
@@ -243,7 +257,7 @@ class MoveLineTest {
 			34.0, false, 1
 		)
 
-		moveLine.setMove(activity, move, true)
+		moveLine.setMove(move, true)
 
 		assertFalse(moveLine.isChecked)
 
@@ -264,7 +278,7 @@ class MoveLineTest {
 			34.0, true, 1
 		)
 
-		moveLine.setMove(activity, move, true)
+		moveLine.setMove(move, true)
 
 		assertTrue(moveLine.isChecked)
 
