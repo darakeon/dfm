@@ -1,4 +1,7 @@
 {
+	"4.1.4.2": [
+		"Add automated tests to android application, to keep stuff that is already working from breaking"
+	],
 	"4.1.4.1": [
 		"Change system main tool to make it easier to test, lowering failure possibility"
 	],

@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>DFM.Tests.Util</AssemblyName>
     <RootNamespace>DFM.Tests.Util</RootNamespace>
-    <AssemblyVersion>4.1.4.1</AssemblyVersion>
-    <FileVersion>4.1.4.1</FileVersion>
+    <AssemblyVersion>4.1.4.2</AssemblyVersion>
+    <FileVersion>4.1.4.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

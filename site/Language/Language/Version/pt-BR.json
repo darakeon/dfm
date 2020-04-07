@@ -1,4 +1,7 @@
 {
+	"4.1.4.2": [
+		"Adiciona testes automatizados na aplicação android, para impedir quebra de partes que já funcionavam antes de novas funcionalidades"
+	],
 	"4.1.4.1": [
 		"Mudada ferramenta principal usada no sistema para facilitar teste, trazendo menos chances de erros"
 	],
