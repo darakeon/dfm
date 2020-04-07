@@ -297,7 +297,8 @@ class ExtractActivityTest {
 		val month = activity.getPrivate<Int>("month")
 		assertThat(month, `is`(aMonthJava))
 
-		assertThat(activity.main_table.adapter.count, `is`(1))
+		val extract = activity.getPrivate<Extract>("extract")
+		assertThat(extract.moveList.size, `is`(1))
 	}
 
 	@Test
