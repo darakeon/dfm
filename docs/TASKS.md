@@ -4,9 +4,9 @@
 
 This is the task list for the project. Done, Doing, To-do, all here, all planned. =)
 
-- [go to published version](#4.1.4.1)
-- [go to version in development](#4.1.4.2)
-- [dev version state](../../4.1.4.2/docs/TASKS.md#4.1.4.2)
+- [go to published version](#4.1.4.2)
+- [go to version in development](#4.1.4.3)
+- [dev version state](../../4.1.4.3/docs/TASKS.md#4.1.4.3)
 
 Legend:
 - :dragon:: a huge change in system

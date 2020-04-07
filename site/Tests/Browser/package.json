@@ -1,6 +1,6 @@
 {
 	"name": "browser-tests",
-	"version": "401.4.1",
+	"version": "401.4.2",
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
