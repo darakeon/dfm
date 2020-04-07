@@ -254,7 +254,8 @@ class SummaryActivityTest {
 		val year = activity.getPrivate<Int>("year")
 		assertThat(year, `is`(1986))
 
-		assertThat(activity.main_table.adapter.count, `is`(2))
+		val summary = activity.getPrivate<Summary>("summary")
+		assertThat(summary.monthList.size, `is`(2))
 	}
 
 	@Test
