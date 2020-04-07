@@ -51,7 +51,7 @@ class SettingsActivityTest {
 	@Test
 	fun structure() {
 		activity.onCreate(null, null)
-		R.layout.settings
+
 		assertNotNull(activity.findViewById(R.id.use_categories))
 		assertNotNull(activity.findViewById(R.id.move_check))
 		assertNotNull(activity.findViewById(R.id.site))
@@ -115,12 +115,12 @@ class SettingsActivityTest {
 
 		activity.onCreate(saved, null)
 
-		val siteRegex = Regex("http://\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/")
 		val siteValue = activity.site.text.toString()
-		assertTrue(siteRegex.matches(siteValue))
+		assertNotNull(siteValue)
+		assertTrue(siteValue.startsWith("http"))
 
-		val versionRegex = Regex("\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}")
 		val versionValue = activity.version.text.toString()
+		val versionRegex = Regex("\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}")
 		assertTrue(versionRegex.matches(versionValue))
 	}
 
