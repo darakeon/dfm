@@ -11,7 +11,6 @@
 - [ ] RUN TESTS
   - [ ] .NET
   - [ ] Puppeteer
-  - [ ] Android
 - [ ] Change version numbers and add to jsons
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
