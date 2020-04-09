@@ -121,10 +121,16 @@ Legend:
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
 
-## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`3`</sup>
+## <a name="4.1.6.0"></a>4.1.6.0 :sheep: <sup>`3`</sup>
 - [ ] Add change language icon to site
 - [ ] Make default language EN if browser is not PT, ES, IT or FR
 - [ ] Fix accessibility of blue and red values at mobile
+
+## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`4`</sup>
+- [ ] Remove move on delete and Android
+- [ ] Add different icon for test at android
+- [ ] Check if android tests are really testing all methods
+- [ ] Test android tests payloads x .net api objects
 
 ## <a name="4.1.4.3"></a>4.1.4.3 :ant: <sup>`2`</sup>
 - [ ] Run browser tests at CI
