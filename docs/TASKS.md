@@ -134,7 +134,7 @@ Legend:
 
 ## <a name="4.1.4.3"></a>4.1.4.3 :ant: <sup>`2`</sup>
 - [ ] Run browser tests at CI
-- [ ] Run core tests at CI
+- [ ] `200409>......` Run core tests at CI
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`3`</sup>
 - [x] `200217>200220` Run app tests at CI
