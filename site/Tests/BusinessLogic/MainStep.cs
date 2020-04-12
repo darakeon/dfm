@@ -102,8 +102,6 @@ namespace DFM.BusinessLogic.Tests
 
 			Cfg.Init();
 
-			Cleaner.Cleanup();
-
 			SessionFactoryManager.Initialize<UserMap, User>(Cfg.DB);
 			SessionManager.Init(getTicketKey);
 

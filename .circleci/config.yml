@@ -35,6 +35,10 @@ jobs:
           name: tests_email
           command: dotnet.exe test -v m --no-build
       - run:
+          path: site\Tests\BusinessLogic
+          name: tests_business_logic
+          command: dotnet.exe test -v m --no-build
+      - run:
           name: publish-site
           command: dotnet.exe publish -c Release -r win10-x64 site\DFM.sln
       - run:
