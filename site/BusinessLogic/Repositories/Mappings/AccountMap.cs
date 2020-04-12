@@ -10,10 +10,6 @@ namespace DFM.BusinessLogic.Repositories.Mappings
 	{
 		public void Override(AutoMapping<Account> mapping)
 		{
-			mapping.Map(a => a.Name)
-				.Length(MaxLen.AccountName)
-				.UniqueKey("Account_NameUser");
-
 			mapping.Map(a => a.Url)
 				.Length(MaxLen.AccountUrl)
 				.UniqueKey("Account_UrlUser");
