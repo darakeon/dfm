@@ -17,6 +17,5 @@ TestResults/*
 Tests/Core/log
 *.feature.cs
 
-smtp.json
 appSettings.json
 *.amazon.json

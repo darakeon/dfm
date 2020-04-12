@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -76,12 +77,6 @@ namespace DFM.Email
 
 			var config = Cfg.Smtp;
 
-			Enum.TryParse(
-				config.DeliveryMethod,
-				true,
-				out SmtpDeliveryMethod method
-			);
-
 			var credentials = new NetworkCredential(
 				config.UserName,
 				config.Password
@@ -90,10 +85,11 @@ namespace DFM.Email
 			using var smtp = new SmtpClient(config.Host, config.Port)
 			{
 				Timeout = 60000,
-				DeliveryMethod = method,
+				DeliveryMethod = config.DeliveryMethod,
 				EnableSsl = config.EnableSsl,
 				UseDefaultCredentials = config.DefaultCredentials,
 				Credentials = credentials,
+				PickupDirectoryLocation = config.PickupDirectory
 			};
 
 			try
