@@ -5,6 +5,9 @@ const { setDefaultOptions } = require('expect-puppeteer')
 setDefaultOptions({ timeout: 10000 })
 
 async function call(path) {
+	page.setExtraHTTPHeaders({
+		'Accept-Language': 'pt-BR'
+	})
 	const result = await page.goto(url(path))
 	
 	const status = result.status()
