@@ -93,10 +93,10 @@ describe('Moves', () => {
 
 		await page.click('#Detailed_True')
 		await page.type('#DetailList_0__Detail_Description', 'Detail')
-		await page.type('#DetailList_0__Detail_Value', '1,00')
+		await page.type('#DetailList_0__Value', '1,00')
 		await page.click('.btn-add-detail')
 		await page.type('#DetailList_1__Detail_Description', 'Detail')
-		await page.type('#DetailList_1__Detail_Value', '1,00')
+		await page.type('#DetailList_1__Value', '1,00')
 
 		await page.click('#body form button[type="submit"]')
 	
