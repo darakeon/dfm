@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 const util = require('util')
-const uuid = require('uuid/v4')
+const { v4: uuid } = require('uuid')
 
 const password = {
 	plain: 'password',
