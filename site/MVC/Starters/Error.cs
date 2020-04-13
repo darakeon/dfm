@@ -10,7 +10,7 @@ namespace DFM.MVC.Starters
 	{
 		public static void AddHandlers(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.UseStatusCodePagesWithRedirects(
+			app.UseStatusCodePagesWithReExecute(
 				Route.GetUrl<RouteDefault>("Ops", "Code", "{0}")
 			);
 
