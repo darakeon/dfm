@@ -1,22 +1,20 @@
 @echo off
 
-cd %windir%\system32\inetsrv\
+taskkill /IM "DFM.MVC.exe"
 
-appcmd stop apppool "DfM Test"
-appcmd stop sites "DfM Test"
-appcmd start apppool "DfM Test"
-appcmd start sites "DfM Test"
+dotnet.exe publish -c Release ..\..\MVC\MVC.csproj -o site 
 
-cd %~dp0
+SET ASPNETCORE_ENVIRONMENT=BrowserTests
 
-cd ..\..\MVC
-
-msbuild MVC.csproj /p:DeployOnBuild=True /p:PublishProfile=browser /p:Configuration=BrowserTests -verbosity:quiet
-
-cd ..\Tests\Browser
+cd site
+start DFM.MVC.exe p2709
+cd ..
+timeout 2
 
 REM Run sequentially because of page sessions
 REM There are tests that login and logoff
-npm test -- --runInBand
+call npm test -- --runInBand
 
-pause
+taskkill /IM "DFM.MVC.exe"
+timeout 2
+rmdir site /s /q
