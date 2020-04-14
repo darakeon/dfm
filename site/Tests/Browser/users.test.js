@@ -4,10 +4,6 @@ const db = require('./db')
 const puppy = require('./puppy')
 
 describe('Users', () => {
-	beforeAll(async () => {
-		await db.cleanup()
-	}, 30000)
-
 	beforeEach(async () => {
 		await db.cleanupTickets()
 	})

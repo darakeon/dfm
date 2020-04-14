@@ -6,7 +6,7 @@ setDefaultOptions({ timeout: 10000 })
 
 async function call(path) {
 	page.setExtraHTTPHeaders({
-		'Accept-Language': 'pt-BR'
+		'Accept-Language': db.language
 	})
 	const result = await page.goto(url(path))
 	
@@ -52,6 +52,8 @@ async function logon(email) {
 }
 
 async function callLogonPage(email) {
+	await db.cleanupTickets()
+
 	await call('Users/Logon')
 	await page.waitForSelector('#body form')
 

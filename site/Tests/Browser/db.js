@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const sqlite = require('sqlite3')
 const util = require('util')
 const { v4: uuid } = require('uuid')
 
@@ -7,8 +7,18 @@ const password = {
 	encrypted: '$2a$11$B.hVZuq8he7GopqvMeFXWOphCfy.ATSnR7ksneKS.eiCCKFkP8usS',
 }
 
-async function cleanup() {
-	await execute('call cleanup')
+const language = 'pt-BR'
+
+async function createContract() {
+	await execute(
+		`insert into contract (beginDate, version) 
+			values (datetime('now'), 'test')`
+	)
+
+	await execute(
+		`insert into terms (contract_ID, language, json)
+			select id, '${language}', '{ \"Text\": \"contract\" }' from contract`
+	)
 }
 
 async function createUserIfNotExists(email, active, wizard) {
@@ -21,7 +31,7 @@ async function createUserIfNotExists(email, active, wizard) {
 
 	if (exist) {
 		await changeUserState(email, active, wizard)
-		user = { id: users[0].id }
+		user = { ID: users[0].ID }
 	} else {
 		user = await createUser(email, active, wizard)
 	}
@@ -38,13 +48,18 @@ async function getUser(email) {
 }
 
 async function changeUserState(email, active, wizard) {
+	const user = await execute(
+		`select config_id from user where email='${email}'`
+	)
 	await execute(
-		`update user u` +
-			` inner join config c` +
-				` on u.config_id = c.id` +
-			` set u.active=${active},` +
-				` c.wizard=${wizard}` +
-		` where u.email='${email}'`
+		`update user
+			set active=${active?1:0}
+			where email='${email}'`
+	)
+	await execute(
+		`update config as c
+			set wizard=${wizard?1:0}
+			where id=${user[0].Config_ID}`
 	)
 }
 
@@ -64,10 +79,10 @@ async function createUser(email, active, wizard) {
 		`insert into user`
 			+ ` (password, email, active, wrongLogin, config_id)`
 		+ ` values`
-			+ `('${password.encrypted}', '${email}', ${active}, 0, ${config[0].id})`
+			+ `('${password.encrypted}', '${email}', ${active}, 0, ${config[0].ID})`
 	)
 
-	return { id: result.insertId }
+	return { ID: result.lastID }
 }
 
 async function acceptLastContract(email) {
@@ -92,7 +107,7 @@ async function acceptLastContract(email) {
 	await execute(
 		'insert into acceptance'
 		+ ' (createDate, accepted, acceptDate, user_ID, contract_ID)'
-		+ ` select now(), 1, now(), id, ${contracts[0].id}`
+		+ ` select datetime('now'), 1, datetime('now'), id, ${contracts[0].ID}`
 			+ ` from user where email='${email}'`
 	)
 }
@@ -100,9 +115,9 @@ async function acceptLastContract(email) {
 async function cleanupTickets() {
 	await execute(
 		'update ticket set'
-			+ ' key_ = regexp_replace(concat(key_, "_", now()), "[ :-]", ""),'
+			+ ` key_ = key_ || strftime('%Y%m%d%H%M%S','now'),`
 			+ '	active = 0'
-		+ '	where active =1 and id <> 0'
+		+ '	where active = 1 and id <> 0'
 	)
 }
 
@@ -115,7 +130,7 @@ async function createToken(email, action) {
 		`insert into security`
 			+ ` (token, active, expire, action, sent, user_id)`
 		+ ` values`
-			+ ` ('${guid}', 1, date_add(now(), interval 1 hour), ${action}, 0, ${users[0].id})`
+			+ ` ('${guid}', 1, datetime('now','+1 hour'), ${action}, 0, ${users[0].ID})`
 	)
 
 	return guid
@@ -137,7 +152,7 @@ async function createAccountIfNotExists(name, user) {
 
 async function getAccount(url, user) {
 	return execute(
-		`select id from account where url='${url}' and user_id=${user.id}`
+		`select id from account where url='${url}' and user_id=${user.ID}`
 	)
 }
 
@@ -146,7 +161,7 @@ async function createAccount(name, url, user) {
 		`insert into account `
 			+ `(name, url, beginDate, user_id)`
 		+ ` values`
-			+ ` ('${name}', '${url}', now(), ${user.id})`
+			+ ` ('${name}', '${url}', datetime('now'), ${user.ID})`
 	)
 }
 
@@ -168,7 +183,7 @@ async function createCategoryIfNotExists(name, user, disabled) {
 
 async function getCategory(name, user) {
 	return execute(
-		`select id from category where name='${name}' and user_id=${user.id}`
+		`select id from category where name='${name}' and user_id=${user.ID}`
 	)
 }
 
@@ -177,7 +192,7 @@ async function createCategory(name, user, active) {
 		`insert into category `
 			+ `(name, user_id, active)`
 		+ ` values`
-			+ ` ('${name}', ${user.id}, ${active})`
+			+ ` ('${name}', ${user.ID}, ${active})`
 	)
 }
 
@@ -185,7 +200,7 @@ async function updateCategory(name, user, active) {
 	return execute(
 		`update category set`
 			+ ` active=${active}`
-		+ ` where name='${name}' and user_id=${user.id}`
+		+ ` where name='${name}' and user_id=${user.ID}`
 	)
 }
 
@@ -199,9 +214,9 @@ async function createSchedule(
 	const accountOut = await getAccount(accountOutUrl, user)
 	const accountIn = await getAccount(accountInUrl, user)
 	
-	const categoryId = category.length == 0 ? 'null' : category[0].id
-	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].id
-	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].id
+	const categoryId = category.length == 0 ? 'null' : category[0].ID
+	const accountOutId = accountOut.length == 0 ? 'null' : accountOut[0].ID
+	const accountInId = accountIn.length == 0 ? 'null' : accountIn[0].ID
 	
 	const dateParts = date.split('-')
 	const year = dateParts[0]
@@ -216,7 +231,7 @@ async function createSchedule(
 		+ `values `
 			+ `(${times}, ${boundless}, ${showInstallment}, ${frequency}, `
 			+ `'${description}', ${year}, ${month}, ${day}, '${nature}', ${value}, `
-			+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.id}, 1, 0);`
+			+ `${categoryId}, ${accountOutId}, ${accountInId}, ${user.ID}, 1, 0);`
 	)
 }
 
@@ -231,42 +246,47 @@ async function getMoveId(description, year, month, day) {
 		+ `limit 1`
 	)
 	
-	return result[0].id
+	return result[0].ID
 }
 
 async function checkMove(id, nature) {
 	await execute(`update move set checked${nature}=1 where id=${id}`)
 }
 
-async function execute(query) {
-	const connection = mysql.createConnection({
-		host     : 'localhost',
-		database : 'dfm_browser_test',
-		user     : 'dfm_user',
-	})
-
-	connection.connect()
-
+async function execute(query) {	
 	let done = false;
 	let result;
 	let error;
 
-	connection.query(
-		query,
-		function (errors, results, fields) {
-			done = true
-			error = errors
-			result = results
-		}
+	const db = new sqlite.Database(
+		'site/tests.db',
+		(err) => { if (err) throw err }
 	)
+
+	if (query.indexOf('select') == 0) {
+		db.all(query, [], (err, rows) => {
+			done = true
+			error = err
+			result = rows			
+		})
+	} else {
+		db.run(query, [], function(err) {
+			done = true
+			error = err
+			result = this
+		})
+	}
 
 	while (!done)
 		await delay(100)
 
-	connection.end()
+	db.close()
 
-	if (error)
+	if (error) {
+		console.log(query)
+		console.error(error)
 		throw error
+	}
 
 	return result
 }
@@ -281,7 +301,8 @@ function delay(time, val) {
 
 module.exports = {
 	password,
-	cleanup,
+	language,
+	createContract,
 	createUserIfNotExists,
 	cleanupTickets,
 	createToken,

@@ -11,7 +11,6 @@ describe('Moves', () => {
 	let category = {};
 
 	beforeAll(async () => {
-		await db.cleanup()
 		user = await puppy.logon('moves@dontflymoney.com')
 		accountIn = await db.createAccountIfNotExists('Account In', user)
 		accountOut = await db.createAccountIfNotExists('Account Out', user)
