@@ -133,7 +133,7 @@ Legend:
 - [ ] Test android tests payloads x .net api objects
 
 ## <a name="4.1.4.3"></a>4.1.4.3 :ant: <sup>`2`</sup>
-- [ ] `200412>......` Run browser tests at CI
+- [x] `200412>200414` Run browser tests at CI
 - [x] `200409>200412` Run core tests at CI
 
 ## <a name="4.1.4.2"></a>4.1.4.2 :ant: <sup>`3`</sup>
