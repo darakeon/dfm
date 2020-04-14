@@ -80,7 +80,7 @@ jobs:
       - run:
           name: create_log_folders
           path: site/Tests/Browser
-          command: mkdir server/inbox; mkdir log
+          command: mkdir log
       - run:
           name: run_site
           path: site/Tests/Browser/server
