@@ -1,4 +1,7 @@
 {
+	"4.1.4.3": [
+		"Add core and browser tests to integration that runs them automatically"
+	],
 	"4.1.4.2": [
 		"Add automated tests to android application, to keep stuff that is already working from breaking"
 	],
