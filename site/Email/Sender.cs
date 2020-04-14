@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -58,12 +57,7 @@ namespace DFM.Email
 
 		public void Send()
 		{
-			var emailSender = Cfg.EmailSender;
-
-			if (emailSender == "DontSend")
-				return;
-
-			if (emailSender == "MakeError")
+			if (Cfg.ForceEmailError)
 				MailError.WithMessage(EmailStatus.EmailNotSent);
 
 			if (String.IsNullOrEmpty(subject))

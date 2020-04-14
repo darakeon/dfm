@@ -1,5 +1,4 @@
-﻿using System;
-using DFM.BusinessLogic;
+﻿using DFM.BusinessLogic;
 using DFM.BusinessLogic.Response;
 using DFM.Generic;
 
@@ -7,33 +6,15 @@ namespace DFM.Tests.Util
 {
 	public class ConfigHelper
 	{
-		private static String oldEmailConfig;
-
 		public static void BreakTheEmailSystem()
 		{
-			oldEmailConfig = Cfg.EmailSender;
-			Cfg.EmailSender = "MakeError";
+			Cfg.ForceEmailError = true;
 		}
 
 		public static void FixTheEmailSystem()
 		{
-			Cfg.EmailSender = oldEmailConfig;
-			oldEmailConfig = "";
+			Cfg.ForceEmailError = false;
 		}
-
-
-
-		public static void ActivateEmailSystem()
-		{
-			Cfg.EmailSender = "";
-		}
-
-		public static void DeactivateEmailSystem()
-		{
-			Cfg.EmailSender = "DontSend";
-		}
-
-
 
 		public static void ActivateMoveEmailForUser(ServiceAccess sa)
 		{

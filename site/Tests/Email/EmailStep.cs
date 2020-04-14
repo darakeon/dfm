@@ -39,8 +39,6 @@ namespace DFM.Email.Tests
 		[When(@"I try to send the e-mail")]
 		public void WhenITryToSendTheEMail()
 		{
-			ConfigHelper.ActivateEmailSystem();
-
 			try
 			{
 				sender.Send();
@@ -49,8 +47,6 @@ namespace DFM.Email.Tests
 			{
 				error = e;
 			}
-
-			ConfigHelper.DeactivateEmailSystem();
 		}
 
 

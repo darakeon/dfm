@@ -1,5 +1,4 @@
 {
-	"EmailSender": "DontSend",
 	"Email": "dfm@dontflymoney.com",
 
 	"Smtp": {
