@@ -146,7 +146,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 		[When(@"I try to run the scheduler with e-mail system ok")]
 		public void WhenITryToRunTheSchedulerWithEMailSystemOk()
 		{
-			ConfigHelper.ActivateEmailSystem();
 			ConfigHelper.ActivateMoveEmailForUser(service);
 
 			try
@@ -159,7 +158,6 @@ namespace DFM.BusinessLogic.Tests.D.Robot
 			}
 
 			ConfigHelper.DeactivateMoveEmailForUser(service);
-			ConfigHelper.DeactivateEmailSystem();
 		}
 		#endregion
 

@@ -26,7 +26,7 @@ namespace DFM.MVC.Controllers
 
 			var errorManager = new ErrorManager(HttpContext);
 
-			var model = new OpsCodeModel()
+			var model = new OpsCodeModel
 			{
 				EmailSent = errorManager.EmailSent
 			};

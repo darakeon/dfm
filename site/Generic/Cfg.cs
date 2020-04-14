@@ -34,11 +34,7 @@ namespace DFM.Generic
 		public static String Login => DB["Login"];
 		public static String Password => DB["Password"];
 
-		public static String EmailSender
-		{
-			get => dic["EmailSender"];
-			set => dic["EmailSender"] = value;
-		}
+		public static Boolean ForceEmailError;
 
 		public static String Email => dic["Email"];
 
