@@ -127,7 +127,7 @@ Legend:
 - [ ] Fix accessibility of blue and red values at mobile
 
 ## <a name="4.1.5.0"></a>4.1.5.0 :sheep: <sup>`4`</sup>
-- [ ] Remove move on delete and Android
+- [ ] Remove move on delete at Android
 - [ ] Add different icon for test at android
 - [ ] Check if android tests are really testing all methods
 - [ ] Test android tests payloads x .net api objects
