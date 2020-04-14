@@ -28,9 +28,6 @@ namespace DFM.Generic.Configs
 
 			PickupDirectory = Path.Combine(
 				Directory.GetCurrentDirectory(),
-				"..",
-				"..",
-				"..",
 				smtp["pickupDirectoryLocation"]
 			);
 		}
