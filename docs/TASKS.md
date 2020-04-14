@@ -116,7 +116,7 @@ Legend:
 ## <a name="4.2.0.1"></a>4.2.0.1 :ant: <sup>`1`</sup>
 - [ ] Replace XML at UI android by compose jetpack
 
-## <a name="4.2.0.0"></a>4.2.0.0 :ant: <sup>`3`</sup>
+## <a name="4.2.0.0"></a>4.2.0.0 :whale: <sup>`3`</sup>
 - [ ] Reset Misc on password change
 - [ ] Add Misc reset manually
 - [ ] Add misc to accounts
