@@ -16,7 +16,7 @@ namespace DFM.MVC.Helpers.Global
 		public static Task Process(HttpContext context)
 		{
 			var manager = new ErrorManager(context);
-			return Task.Run(() => manager.process());
+			return Task.Run(manager.process);
 		}
 
 		private readonly HttpContext context;

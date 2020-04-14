@@ -43,9 +43,9 @@ namespace DFM.MVC
 
 			Rewrite.TestThemAll(app);
 
-			Error.AddHandlers(app, env);
-
 			Context.Set(app);
+
+			Error.AddHandlers(app, env);
 
 			StaticFiles.Configure(app, env);
 
