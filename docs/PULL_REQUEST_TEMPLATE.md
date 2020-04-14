@@ -9,9 +9,6 @@
 ## Tasks to publish
 
 - [ ] try to drop single load context
-- [ ] RUN TESTS
-  - [ ] .NET
-  - [ ] Puppeteer
 - [ ] Change version numbers and add to jsons
 - [ ] Execute non-destructive Sql
 - [ ] Update Site
