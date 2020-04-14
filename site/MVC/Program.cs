@@ -10,19 +10,13 @@ namespace DFM.MVC
 	{
 		public static void Main(String[] args)
 		{
-			var host = CreateHostBuilder(args).Build();
-
-			if (args.Contains("--start-and-end"))
-				Startup.StopHostAfterConfig(host);
-
-			host.Run();
-		}
-
-		public static IHostBuilder CreateHostBuilder(String[] args) =>
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(
 					b => build(args, b)
-				);
+				)
+				.Build()
+				.Run();
+		}
 
 		private static void build(String[] args, IWebHostBuilder webBuilder)
 		{

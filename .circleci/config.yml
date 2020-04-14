@@ -11,35 +11,34 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
+          key: dotnet-packages-{{ checksum "site//DFM.sln" }}
       - run:
           name: dependencies
-          command: dotnet.exe restore site\DFM.sln
+          command: dotnet.exe restore site/DFM.sln
       - run:
           name: copy_assets
           command: sh .circleci/site/copy_assets.sh
       - save_cache:
           paths:
-            - C:\Users\circleci\.nuget\packages
-          key: dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
+            - ~/.nuget/packages
+          key: dotnet-packages-{{ checksum "site//DFM.sln" }}
       - run:
           name: build
-          command: dotnet.exe build -c Debug site\DFM.sln --no-restore
+          command: dotnet.exe build -c Debug site/DFM.sln --no-restore
       - run:
-          path: site\Tests\Language
+          path: site/Tests/Language
           name: tests_language
           command: dotnet.exe test -v m --no-build
       - run:
-          path: site\Tests\Email
+          path: site/Tests/Email
           name: tests_email
           command: dotnet.exe test -v m --no-build
       - run:
-          path: site\Tests\BusinessLogic
+          path: site/Tests/BusinessLogic
           name: tests_business_logic
           command: dotnet.exe test -v m --no-build
       - run:
-          path: site\Tests\MVC
+          path: site/Tests/MVC
           name: tests_mvc
           command: dotnet.exe test -v m --no-build
 
@@ -49,26 +48,55 @@ jobs:
       shell: powershell.exe
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
       - run:
-          name: dependencies
-          command: dotnet.exe restore site\DFM.sln
+          name: create_node_modules
+          path: site/Tests/Browser
+          command: mkdir node_modules
+      - restore_cache:
+          key: packages-{{ checksum "site//DFM.sln" }}-{{ checksum "site//Tests//Browser//package.json" }}
+      - run:
+          name: check_npm_restore
+          path: site/Tests/Browser
+          command: dir node_modules
+      - run:
+          name: dependencies_dotnet
+          command: dotnet.exe restore site/DFM.sln
+      - run:
+          name: dependencies_node
+          path: site/Tests/Browser
+          command: npm install
+      - save_cache:
+          paths:
+            - ~/.nuget/packages
+            #- site/Tests/Browser/node_modules
+          key: packages-{{ checksum "site//DFM.sln" }}-{{ checksum "site//Tests//Browser//package.json" }}
       - run:
           name: copy_assets
           command: sh .circleci/site/copy_assets.sh
-      - save_cache:
-          paths:
-            - C:\Users\circleci\.nuget\packages
-          key: dotnet-packages-v1-{{ checksum "site\\DFM.sln" }}
       - run:
-          name: publish-site
-          command: dotnet.exe publish -c Release -r win10-x64 site\DFM.sln
+          name: publish_site
+          path: site/MVC
+          command: dotnet.exe publish -c Release MVC.csproj -o ../Tests/Browser/server
       - run:
-          name: execute-mvc
-          path: site/MVC/bin/Release/
-          command: .\DFM.MVC.exe --start-and-end
+          name: create_log_folders
+          path: site/Tests/Browser
+          command: mkdir server/inbox; mkdir log
+      - run:
+          name: run_site
+          path: site/Tests/Browser/server
+          command: start DFM.MVC.exe p2709
+      - run:
+          name: create_contract
+          path: site/Tests/Browser
+          command: node contract.js
+      - run:
+          name: tests_browser
+          path: site/Tests/Browser
+          command: npm test -- --runInBand
+      - store_artifacts:
+          path: site/Tests/Browser/log
+      - store_artifacts:
+          path: inbox
 
   android:
     docker:
@@ -78,7 +106,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/DFM/build.gradle" }}
+          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/DFM/build.gradle" }}
       - run:
           name: runable_gradlew
           path: android
@@ -90,13 +118,13 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/DFM/build.gradle" }}
+          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum "android/DFM/build.gradle" }}
       - run:
           name: build
           path: android
           command: ./gradlew build -x test
       - run:
-          name: test
+          name: tests_android
           path: android
           command: ./gradlew test
       - store_artifacts:

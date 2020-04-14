@@ -8,7 +8,7 @@ describe('Users', () => {
 		await db.cleanupTickets()
 	})
 
-	test('SignUp', async () => {
+	test.only('SignUp', async () => {
 		await puppy.call('Users/SignUp')
 		await page.waitForSelector('#body form')
 
