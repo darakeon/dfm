@@ -27,7 +27,10 @@ namespace DFM.Generic
 			if (!TimeZoneList.ContainsKey(timeZoneName))
 				return DateTime.UtcNow;
 
-			var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
+			var timeZone =
+				timeZones.First(
+					tz => tz.StandardName == timeZoneName
+				);
 
 			return TimeZoneInfo.ConvertTime(
 				DateTime.UtcNow,
