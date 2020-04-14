@@ -44,7 +44,7 @@ namespace DFM.Generic
 
 		public static String GooglePlay => dic["GooglePlay"];
 
-		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"]);
+		public static Int32 VersionCount => Int32.Parse(dic["VersionCount"] ?? "0");
 
 		public static Smtp Smtp => new Smtp(dic.GetSection("Smtp"));
 		public static Rewrite Rewrites => new Rewrite("rewrites.json");
