@@ -5,10 +5,6 @@ const db = require('./db.js')
 const puppy = require('./puppy.js')
 
 describe('Ops', () => {
-	beforeAll(async () => {
-		await db.cleanup()
-	}, 30000)
-
 	test('Index', async () => {
 		await puppy.call('Ops')
 

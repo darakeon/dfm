@@ -11,7 +11,6 @@ describe('Schedules', () => {
 	let category = {};
 
 	beforeAll(async () => {
-		await db.cleanup()
 		user = await puppy.logon('schedules@dontflymoney.com')
 		accountIn = await db.createAccountIfNotExists('Account In', user)
 		accountOut = await db.createAccountIfNotExists('Account Out', user)
@@ -51,7 +50,7 @@ describe('Schedules', () => {
 			category, accountOut, null,
 			user
 		)
-		const id = result.insertId
+		const id = result.lastID
 
 		await puppy.call('Schedules')
 

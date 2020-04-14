@@ -8,7 +8,6 @@ describe('Categories', () => {
 	let user = {};
 
 	beforeAll(async () => {
-		await db.cleanup()
 		user = await puppy.logon('categories@dontflymoney.com')
 	}, 30000)
 
