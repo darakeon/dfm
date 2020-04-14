@@ -115,7 +115,7 @@ async function acceptLastContract(email) {
 async function cleanupTickets() {
 	await execute(
 		'update ticket set'
-			+ ` key_ = key_ || strftime('%Y%m%d%H%M%S','now'),`
+			+ ` key_ = key_ || strftime('%Y%m%d%H%M%f','now'),`
 			+ '	active = 0'
 		+ '	where active = 1 and id <> 0'
 	)
@@ -259,7 +259,7 @@ async function execute(query) {
 	let error;
 
 	const db = new sqlite.Database(
-		'site/tests.db',
+		'server/tests.db',
 		(err) => { if (err) throw err }
 	)
 
