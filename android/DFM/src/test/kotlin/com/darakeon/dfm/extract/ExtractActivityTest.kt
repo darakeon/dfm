@@ -39,7 +39,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
-import org.robolectric.shadows.ShadowDialog.getLatestDialog
+import org.robolectric.shadows.ShadowDialog.getShownDialogs
 import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
@@ -283,8 +283,9 @@ class ExtractActivityTest {
 
 		activity.changeDate(View(activity))
 
-		val dialog = getLatestDialog() as DatePickerDialog
-		assertNotNull(dialog)
+		val dialog = getShownDialogs()
+			.filterIsInstance<DatePickerDialog>()
+			.last { it.isShowing }
 
 		mocker.server.enqueue("extract")
 

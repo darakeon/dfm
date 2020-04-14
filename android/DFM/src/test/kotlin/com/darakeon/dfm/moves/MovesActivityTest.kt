@@ -60,7 +60,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog
-import org.robolectric.shadows.ShadowDialog.getLatestDialog
+import org.robolectric.shadows.ShadowDialog.getShownDialogs
 import java.util.Calendar
 
 @RunWith(RobolectricTestRunner::class)
@@ -508,8 +508,9 @@ class MovesActivityTest {
 
 		activity.showDatePicker(View(activity))
 
-		val dialog = getLatestDialog() as DatePickerDialog
-		assertNotNull(dialog)
+		val dialog = getShownDialogs()
+			.filterIsInstance<DatePickerDialog>()
+			.last { it.isShowing }
 
 		dialog.updateDate(1986, Calendar.MARCH, 27)
 		dialog.getButton(Dialog.BUTTON_POSITIVE).performClick()
