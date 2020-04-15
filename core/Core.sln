@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generic.Tests", "Tests\Gene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Tests", "Tests\Entities\Entities.Tests.csproj", "{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "Tests\Api\Api.Tests.csproj", "{A6F06174-C978-416F-9086-CC16D0D4674D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BrowserTests|Any CPU = BrowserTests|Any CPU
@@ -127,6 +129,12 @@ Global
 		{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E22EDFA-FC9E-48D0-818D-CB799F2BEC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.BrowserTests|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.BrowserTests|Any CPU.Build.0 = Debug|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F06174-C978-416F-9086-CC16D0D4674D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
