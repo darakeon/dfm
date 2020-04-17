@@ -1,5 +1,7 @@
 @echo off
 
+cd %~dp0
+
 taskkill /IM "DFM.MVC.exe"
 
 cd ..\..\MVC
@@ -10,6 +12,7 @@ cd ..\Tests\Browser
 SET ASPNETCORE_ENVIRONMENT=CircleCI
 
 cd server
+del tests.db
 start DFM.MVC.exe p2709
 cd ..
 timeout 10

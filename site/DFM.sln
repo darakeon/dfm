@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language.Tests", "Tests\Lan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Email.Tests", "Tests\Email\Email.Tests.csproj", "{F4A55496-34C2-4FEB-A19B-8BD437007035}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC.Tests", "Tests\Mvc\MVC.Tests.csproj", "{02E9F72D-A580-42FF-946D-AA4F252E4754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC.Tests", "Tests\MVC\MVC.Tests.csproj", "{02E9F72D-A580-42FF-946D-AA4F252E4754}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

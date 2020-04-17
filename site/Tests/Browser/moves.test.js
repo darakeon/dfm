@@ -15,7 +15,7 @@ describe('Moves', () => {
 		accountIn = await db.createAccountIfNotExists('Account In', user)
 		accountOut = await db.createAccountIfNotExists('Account Out', user)
 		category = await db.createCategoryIfNotExists('Category Move', user)
-	}, 30000)
+	})
 
 	test('Index', async () => {
 		await puppy.call(`Account/${accountOut}/Moves`)
@@ -112,18 +112,17 @@ describe('Moves', () => {
 			category, accountOut, null
 		)
 
-		await puppy.call(`Account/${accountOut}/Moves/Edit/${id}`)
+		const form = `Account/${accountOut}/Moves/Edit/${id}`
+		await puppy.call(form)
 		await page.waitForSelector('#body form')
 
 		await puppy.clear('#Description')
 		await page.type('#Description', 'Move Edited')
 		await page.type('#Value', '2,00')
-		await page.click('#body form button[type="submit"]')
+		await puppy.submit('/' + form)
 
 		const table = await puppy.content('#body .table')
-		expect(table).toContain(
-			`<td>Move Edited</td>`
-		)
+		expect(table).toContain(`<td>Move Edited</td>`)
 	})
 
 	test('Delete', async () => {

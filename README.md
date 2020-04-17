@@ -91,3 +91,4 @@ itself. Well, we are always our most demanding client.
 - [GitExtensions](https://github.com/gitextensions/gitextensions)
 - [KDiff3](https://www.kde.org/applications/development/kdiff3/)
 - [Notepad++](https://notepad-plus-plus.org/)
+- [Docker](https://www.docker.com/)

@@ -5,5 +5,5 @@ db.createContract()
 		console.log('contract created!')
 	})
 	.catch(e => {
-		console.error(e)
+		process.exit(1)
 	})

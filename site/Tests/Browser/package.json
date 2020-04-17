@@ -4,7 +4,7 @@
 	"description": "DfM Site Tests",
 	"main": "index.js",
 	"dependencies": {
-		"sqlite3": "^4.1.1",
+		"sqlite3": "4.2.0",
 		"uuid": "^7.0.3"
 	},
 	"devDependencies": {
@@ -29,6 +29,9 @@
 		"preset": "jest-puppeteer",
 		"setupFilesAfterEnv": [
 			"./jest.setup.js"
+		],
+		"modulePathIgnorePatterns": [
+			"node_modules*"
 		]
 	}
 }

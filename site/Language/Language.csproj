@@ -31,8 +31,8 @@
     <None Remove="Language\Site\tokens.json" />
     <None Remove="Language\Site\users.json" />
     <None Remove="Language\Site\wizard.json" />
-    <None Remove="Language\Version\en-US.json" />
-    <None Remove="Language\Version\pt-BR.json" />
+    <None Remove="Language\Version\en-us.json" />
+    <None Remove="Language\Version\pt-br.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,10 +102,10 @@
     <Content Include="Language\Site\wizard.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Language\Version\en-US.json">
+    <Content Include="Language\Version\en-us.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Language\Version\pt-BR.json">
+    <Content Include="Language\Version\pt-br.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
