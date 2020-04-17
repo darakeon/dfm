@@ -9,7 +9,7 @@ describe('Accounts', () => {
 
 	beforeAll(async () => {
 		user = await puppy.logon('accounts@dontflymoney.com')
-	}, 30000)
+	})
 
 	test('Empty List', async () => {
 		await puppy.call('Accounts')

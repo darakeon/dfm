@@ -54,7 +54,8 @@ namespace DFM.Generic
 		}
 
 		public static IDictionary<String, String> TimeZoneList =
-			timeZones.ToDictionary(tz => tz.StandardName, tz => tz.DisplayName);
+			timeZones.GroupBy(tz => tz.StandardName)
+				.ToDictionary(tz => tz.Key, tz => tz.ToList().First().DisplayName);
 
 		public static Boolean IsTimeZone(this String timeZone)
 		{

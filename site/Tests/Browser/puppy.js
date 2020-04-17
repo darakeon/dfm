@@ -2,9 +2,11 @@ const db = require('./db')
 
 const { setDefaultOptions } = require('expect-puppeteer')
 
-setDefaultOptions({ timeout: 10000 })
+let initialized = false;
 
-async function call(path) {
+async function init() {
+	if (initialized) return
+
 	page.setExtraHTTPHeaders({
 		'Accept-Language': db.language
 	})
@@ -14,7 +16,14 @@ async function call(path) {
 			console.error(r.url(), r.status())
 	})
 
+	initialized = true
+}
+
+async function call(path) {
+	await init()
+
 	const result = await page.goto(url(path))
+	await page.waitForSelector('body')
 	
 	const status = result.status()
 	if (status == 200)
@@ -45,10 +54,11 @@ async function setValue(selector, value) {
 async function logon(email) {
 	user = await db.createUserIfNotExists(email, 1)
 
-	const cookies = await page.cookies()
+	let cookies = await page.cookies()
 
 	if (cookies.length == 0) await callLogonPage(email)
 
+	cookies = await page.cookies()
 	const dfmCookie = cookies
 		.filter(c => c.name == 'DFM')[0]
 
@@ -66,13 +76,17 @@ async function callLogonPage(email) {
 	await page.type('#Email', email)
 	await page.type('#Password', db.password.plain)
 	await page.click('#RememberMe')
-	await page.click('#body form button[type="submit"]')
+
+	await submit('/Users/LogOn')
 }
 
 async function submit(action) {
 	const selector = `form[action="${action}"] button[type="submit"]`
-	await page.waitForSelector(selector)
+	const logPath = action.replace(/\//g, '_')
+
+	var button = await page.waitForSelector(selector, { visible: true })
 	await page.click(selector)
+	await page.waitForSelector('footer')
 }
 
 async function createMove(
@@ -118,13 +132,19 @@ async function createMove(
 }
 
 async function imageLog(name) {
+	console.log(`Recording ${name}`)
+	
 	await page.setViewport({
 		width: 1024,
 		height: 768,
 		deviceScaleFactor: 1,
 	})
 	
-	await page.screenshot({path: 'log/' + name + '.png'})
+	await page.screenshot({
+		path: 'log/' + name + '.png'
+	})
+
+	console.log(`${name} recorded`)
 }
 
 module.exports = {

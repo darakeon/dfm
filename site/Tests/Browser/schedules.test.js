@@ -15,7 +15,7 @@ describe('Schedules', () => {
 		accountIn = await db.createAccountIfNotExists('Account In', user)
 		accountOut = await db.createAccountIfNotExists('Account Out', user)
 		category = await db.createCategoryIfNotExists('Category Move', user)
-	}, 30000)
+	})
 
 	test('Index', async () => {
 		await puppy.call('Schedules')

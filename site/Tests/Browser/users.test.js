@@ -32,7 +32,7 @@ describe('Users', () => {
 		await page.type('#Email', email)
 		await page.type('#Password', db.password.plain)
 		await page.click('#RememberMe')
-		await page.click('#body form button[type="submit"]')
+		await puppy.submit('/Users/LogOn')
 
 		await expect(page.title()).resolves.toMatch('DfM - Contas')
 	})
